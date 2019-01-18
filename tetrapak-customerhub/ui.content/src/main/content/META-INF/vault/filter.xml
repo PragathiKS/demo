@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/tetrapak-customerhub" mode="merge"/>
+    <filter root="/content/customerhub" mode="merge"/>
+    <filter root="/content/dam/customerhub" mode="merge"/>
+</workspaceFilter>
