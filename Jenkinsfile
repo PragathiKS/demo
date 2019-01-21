@@ -11,7 +11,7 @@ pipeline {
         jdk 'jdk8'
     }
 	environment {
-     sonar_url = "http://10.202.13.230:9000"
+     sonar_url = "http://127.0.0.1:9000"
 	 author_url = "http://10.202.13.228:4502"
 	 publish_url = "http://10.202.13.229:4503"
 	 package_name = "tetrapak-complete-package"
