@@ -2,8 +2,9 @@ pipeline {
     agent any
 	
 	parameters {
-        choice(choices: ['tetrapak-publicweb', 'tetrapak-customerhub', 'tetrapak-commons'], description: 'Which Directory want to run Build', name: 'region')
-    }
+    choice choices: ['tetrapak-commons', 'tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'Directory'
+                }
+
 
     tools {
         maven 'maven'
