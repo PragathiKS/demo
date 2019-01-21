@@ -13,7 +13,7 @@ pipeline {
 	 test_url = "https://diagnostics.roche.com"
    }
    parameters {
-        choice(defaultValue: true, description: '', name: 'userFlag')
+        choice(choices: ['tetrapak-publicweb', 'tetrapak-customerhub', 'tetrapak-commons'], description: 'Which Directory want to run Build', name: 'region')
     }
     stages {
         stage ('Initialize') {
