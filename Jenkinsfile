@@ -2,7 +2,7 @@ pipeline {
     agent any
 	
 	parameters {
-    choice choices: ['tetrapak-commons', 'tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'Directory'
+    choice choices: ['tetrapak-commons', 'tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
                 }
 
 
@@ -30,7 +30,8 @@ pipeline {
 
         stage ('Build') {
             steps {
-			    cd /var/lib/jenkins/workspace/Tetrapak/${params.Directory}
+			    echo "Choice: ${params.CHOICE}"
+			    cd /var/lib/jenkins/workspace/Tetrapak/'${params.CHOICE}'
                 sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}' 
             }
             
