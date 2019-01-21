@@ -25,11 +25,14 @@
     <description>Tetrapak Customerhub</description>
 
     <modules>
-        <module>core</module>
+		<module>core</module>
+		<module>integration</module>
         <module>ui.apps</module>
+		<module>ui.clickdummy</module>
         <module>ui.content</module>
         <module>it.tests</module>
         <module>it.launcher</module>
+		<module>complete</module>
     </modules>
 
     <properties>
