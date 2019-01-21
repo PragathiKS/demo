@@ -12,6 +12,9 @@ pipeline {
 	 package_name = "tetrapak-complete-package"
 	 test_url = "https://diagnostics.roche.com"
    }
+   parameters {
+        choice(defaultValue: true, description: '', name: 'userFlag')
+    }
     stages {
         stage ('Initialize') {
             steps {
