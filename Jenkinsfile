@@ -38,7 +38,53 @@ pipeline {
             
         }
 		
+	/*	stage ('Sonar_JS') {
+			steps {
+			    
 
+			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.sources="./" -Dsonar.exclusions=target/package/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/**,target/package/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/** -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JSBranch -Dbuildversion=1.0.0-DEV01"
+                }
+            }
+			
+		stage ('Sonar_CSS') {
+			steps {
+			     
+			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=cs -Dsonar.sources="./" -Dsonar.exclusions=src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/** -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=CSranch -Dbuildversion=1.0.0-DEV01"
+                }
+            }
+
+        stage ('Sonar_JAVA') {
+			steps {
+			    
+			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.sources="./" -Dsonar.inclusions="**/*.java" -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JAVABranch -Dbuildversion=1.0.0-DEV01"
+                }
+            }
+
+        stage ('Author_Deployment') {
+		    steps {
+			echo "Uninstalling Old Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
+			echo "Removing Old Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
+			echo "Uploading New Package"
+			sh 'curl -u admin:"r0che@&ATH" -F name=${package_name} -F file=@/var/jenkins_home/workspace/Tetrapack/roche.Tetrapack.complete/target/${package_name}-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
+			echo "Installing New Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${package_name}"'
+			}
+		    }
+
+		stage ('Publish_Deployment') {
+		    steps {
+			echo "Uninstalling Old Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
+			echo "Removing Old Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
+			echo "Uploading New Package"
+			sh 'curl -u admin:"r0che@&ATH" -F name=${package_name} -F file=@/var/jenkins_home/workspace/Tetrapack/roche.Tetrapack.complete/target/${package_name}-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
+			echo "Installing New Package"
+			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${package_name}"'
+			}
+		    }  
 		       
 		stage ('pa11y') {
 		    steps {
