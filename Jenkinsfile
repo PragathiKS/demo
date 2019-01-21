@@ -16,6 +16,7 @@ pipeline {
 	 publish_url = "http://10.202.13.229:4503"
 	 package_name = "tetrapak-complete-package"
 	 test_url = "https://diagnostics.roche.com"
+	 directory = ${params.CHOICE}
    }
    
     stages {
@@ -30,8 +31,8 @@ pipeline {
 
         stage ('Build') {
             steps {
-			    echo "Choice: ${params.CHOICE}"
-			    sh 'cd /var/lib/jenkins/workspace/Tetrapak/'${params.CHOICE}''
+			    echo "Choice: ${directory}"
+			    sh 'cd /var/lib/jenkins/workspace/Tetrapak/'${directory}''
                 sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}' 
             }
             
