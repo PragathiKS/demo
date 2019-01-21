@@ -62,26 +62,26 @@ pipeline {
 		stage ('Author_Deployment') {
 		    steps {
 			echo "Uninstalling Old Package"
-			sh 'curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
+			sh "curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}""
 			echo "Removing Old Package"
-			sh 'curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
+			sh "curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}""
 			echo "Uploading New Package"
-			sh 'curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-SNAPSHOT.zip -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
+			sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-SNAPSHOT.zip -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=upload" --verbose"
 			echo "Installing New Package"
-			sh 'curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete"'
+			sh "curl -u admin:admin -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete""
 			}
 		    }
 
 		stage ('Publish_Deployment') {
 		    steps {
 			echo "Uninstalling Old Package"
-			sh 'curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
+			sh "curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}""
 			echo "Removing Old Package"
-			sh 'curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
+			sh "curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}""
 			echo "Uploading New Package"
-			sh 'curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-SNAPSHOT.zip -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
+			sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-SNAPSHOT.zip -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=upload" --verbose"
 			echo "Installing New Package"
-			sh 'curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete"'
+			sh "curl -u admin:admin -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete""
 			}
 		    }  
 		       
