@@ -52,13 +52,13 @@ pipeline {
 			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.sources='./' -Dsonar.exclusions=**/tests/**,**/breadcrumb/**,**/clientlibs/** -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=CSSBranch -Dbuildversion=${BUILD_NUMBER}"
                 }
             }
-		stage ('Sonar_JAVA') {
+	/*	stage ('Sonar_JAVA') {
 			steps {
 			    
 
 			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.sources='./' -Dsonar.exclusions=**/tests/**,**/customerhub/**,**/inegration/**,**/launcher/**,**/models/**,**/schedulers/** -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JAVABranch -Dbuildversion=${BUILD_NUMBER}"
                 }
-            }	
+            }	*/
 		stage ('Author_Deployment') {
 		    steps {
 			echo "Uninstalling Old Package"
