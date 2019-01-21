@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	
+	parameters {
+        choice(choices: ['tetrapak-publicweb', 'tetrapak-customerhub', 'tetrapak-commons'], description: 'Which Directory want to run Build', name: 'region')
+    }
 
     tools {
         maven 'maven'
@@ -12,9 +16,7 @@ pipeline {
 	 package_name = "tetrapak-complete-package"
 	 test_url = "https://diagnostics.roche.com"
    }
-   parameters {
-        choice(choices: ['tetrapak-publicweb', 'tetrapak-customerhub', 'tetrapak-commons'], description: 'Which Directory want to run Build', name: 'region')
-    }
+   
     stages {
         stage ('Initialize') {
             steps {
