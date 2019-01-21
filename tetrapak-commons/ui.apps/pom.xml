@@ -32,7 +32,7 @@
     <!-- ====================================================================== -->
     <artifactId>tetrapak-commons.ui.apps</artifactId>
     <packaging>content-package</packaging>
-    <name>Tetrapak Commons - UI apps</name>
+    <name>Tetrapak Commons - UI Apps</name>
     <description>UI apps package for Tetrapak Commons</description>
 
     <!-- <scm>
@@ -127,13 +127,6 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
-		
-		<dependency>
-            <groupId>com.day.jcr.vault</groupId>
-            <artifactId>content-package-maven-plugin</artifactId>
-			<version>1.0.2</version>
-        </dependency>
-		
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.core</artifactId>
