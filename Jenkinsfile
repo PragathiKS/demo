@@ -49,14 +49,14 @@ pipeline {
 		stage ('Sonar_CSS') {
 			steps {
 			     
-			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=cs -Dsonar.sources="./" -Dsonar.exclusions=src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/** -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=CSranch -Dbuildversion=1.0.0-DEV01"
+			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=cs -Dsonar.sources='./' -Dsonar.exclusions=src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/** -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=CSranch -Dbuildversion=1.0.0-DEV01"
                 }
             }
 
         stage ('Sonar_JAVA') {
 			steps {
 			    
-			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.sources="./" -Dsonar.inclusions="**/*.java" -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JAVABranch -Dbuildversion=1.0.0-DEV01"
+			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.sources='./' -Dsonar.inclusions="**/*.java" -Dsonar.host.url=${sonar_url} -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JAVABranch -Dbuildversion=1.0.0-DEV01"
                 }
             }
 
