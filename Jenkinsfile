@@ -31,7 +31,7 @@ pipeline {
         stage ('Build') {
             steps {
 			    echo "Choice: ${params.CHOICE}"
-			    
+			    cd /var/lib/jenkins/workspace/Tetrapak/'${params.CHOICE}'
                 sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}' 
             }
             
