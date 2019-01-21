@@ -60,31 +60,7 @@ pipeline {
                 }
             }
 
-        stage ('Author_Deployment') {
-		    steps {
-			echo "Uninstalling Old Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
-			echo "Removing Old Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
-			echo "Uploading New Package"
-			sh 'curl -u admin:"r0che@&ATH" -F name=${package_name} -F file=@/var/jenkins_home/workspace/Tetrapack/roche.Tetrapack.complete/target/${package_name}-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
-			echo "Installing New Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${package_name}"'
-			}
-		    }
-
-		stage ('Publish_Deployment') {
-		    steps {
-			echo "Uninstalling Old Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${package_name}"'
-			echo "Removing Old Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${package_name}"'
-			echo "Uploading New Package"
-			sh 'curl -u admin:"r0che@&ATH" -F name=${package_name} -F file=@/var/jenkins_home/workspace/Tetrapack/roche.Tetrapack.complete/target/${package_name}-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=upload" --verbose'
-			echo "Installing New Package"
-			sh 'curl -u admin:"r0che@&ATH" -F force=true "${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${package_name}"'
-			}
-		    }  
+        
 		       
 		stage ('pa11y') {
 		    steps {
