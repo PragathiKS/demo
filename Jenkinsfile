@@ -15,7 +15,7 @@ pipeline {
 	 author_url = "http://10.202.13.228:4502"
 	 publish_url = "http://10.202.13.229:4503"
 	 package_name = "tetrapak-complete-package"
-	 test_url = "https://diagnostics.roche.com"
+	 test_url = "http://tetrapack.sapient.com"
 
    }
    
