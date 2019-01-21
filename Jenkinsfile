@@ -42,7 +42,7 @@ pipeline {
 			steps {
 			    
 
-			    sh "'mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.sources="./" -Dsonar.exclusions=target/package/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/**,target/package/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/** -Dsonar.host.url="${sonar_url}" -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JSBranch -Dbuildversion=1.0.0-DEV01'"
+			    sh 'mvn -f '$workspace/${params.CHOICE}/pom.xml' -e -B sonar:sonar  -Dsonar.language=js -Dsonar.sources="./" -Dsonar.exclusions=target/package/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/node_modules/**,src/main/jcr_root/spa/src/coverage/**,src/main/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/**,target/package/jcr_root/spa/app/etc/designs/Tetrapack/clientlibs/js/** -Dsonar.host.url="${sonar_url}" -Dsonar.login="admin" -Dsonar.password="admin" -Dsonar.projectKey=case.management -Dsonar.branch=JSBranch -Dbuildversion=1.0.0-DEV01'
                 }
             }
 			
