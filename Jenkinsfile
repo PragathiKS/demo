@@ -38,7 +38,7 @@ pipeline {
             
         }
 		
-	/*	stage ('Sonar_JS') {
+		stage ('Sonar_JS') {
 			steps {
 			    
 
