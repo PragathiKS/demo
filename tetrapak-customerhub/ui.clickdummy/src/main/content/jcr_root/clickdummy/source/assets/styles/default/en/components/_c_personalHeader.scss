@@ -1,0 +1,27 @@
+.c-personal-header {
+    &-section {
+        background-color: $color-theme;
+        color: $color-tertiary;
+        box-shadow: 0 2px 17px -5px $color-border;
+    }
+    &-editlink {
+        background-color: $color-btn;
+        &,
+        &:hover,
+        &:visited,
+        &:focus {
+            color: $color-primary;
+        }
+        font-weight: bold;
+        box-shadow: 0 3px 12px -3px $color-primary;
+    }
+    &-title {
+        color: $color-theme;
+    }
+}
+
+.c-error-msg,
+.page-url-label,
+.editpage-url-label {
+    color: $color-theme;
+}

@@ -1,0 +1,43 @@
+.c-profile-preview {
+    &-summary {
+        box-shadow: 0 2px 17px -5px $color-border;
+        background-color: $color-btn;
+        .profile-img {
+            background-color: $color-theme;
+            border: convert-to-rem(10px) solid $color-theme;
+            svg {
+                background-color: $color-tertiary;
+                border: convert-to-rem(6px) solid $color-tertiary;
+            }
+        }
+        .profile-name,
+        .profile-position {
+            color: $color-deep;
+        }
+        .profile-name {
+            font-weight: bold;
+        }
+    }
+    &-desc {
+        .profile-label {
+            color: $color-theme;
+            font-weight: bold;
+        }
+        .profile-field {
+            color: $color-primary;
+        }
+    }
+    &-link {
+        font-weight: bold;
+    }
+}
+
+.form-element {
+    border: 1px solid $color-theme;
+}
+
+.form-button {
+    background-color: $color-btn;
+    color: $color-primary;
+    box-shadow: 0 3px 12px -3px $color-primary;
+}

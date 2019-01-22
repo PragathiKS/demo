@@ -1,0 +1,25 @@
+// Function to change px to rem unit
+@function convert-to-rem($args) {
+    $argsLength: length($args);
+    $result: "";
+    $remValue: "";
+    @for $index from 1 through $argsLength {
+        $currentValue: nth($args, $index);
+        @if ($currentValue==0 or $currentValue==0px or $currentValue==auto) {
+            $remValue: $currentValue;
+            $result: #{$result + $remValue};
+        }
+        @else {
+            $remValue: nth($args, $index)/$font-html;
+            $result: #{$result + $remValue}rem;
+        }
+        @if ($index < $argsLength) {
+            $result: #{$result + " "};
+        }
+    }
+    @return $result;
+}
+
+@function calculate-base-font($target-breakpoint) {
+    @return round(($target-breakpoint/$desktop-large-bp)*$font-html);
+}
