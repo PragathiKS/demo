@@ -144,5 +144,9 @@
     "global": {
       "js": "app/jcr_root/etc/designs/customerhub/clientlibs/global.publish/js"
     }
+  },
+  "createComponent": {
+    "componentsFolder": "source/templates/components",
+    "importsFile": "source/scripts/bundle/imports.js"
   }
 }
