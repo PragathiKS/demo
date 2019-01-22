@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.tetrapak.customerhub.core.filters;
+package com.tetrapak.commons.integration.filters;
 
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
@@ -37,7 +37,7 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.junit.Assert.*;
 
-public class LoggingFilterTest {
+public class CommonsLoggingFilterTest {
 
     @Rule
     public final SlingContext context = new SlingContext();
@@ -45,7 +45,7 @@ public class LoggingFilterTest {
     @Rule
     public final TestLoggerFactoryResetRule testLoggerFactoryResetRule = new TestLoggerFactoryResetRule();
 
-    private LoggingFilter fixture = new LoggingFilter();
+    private CommonsLoggingFilter fixture = new CommonsLoggingFilter();
 
     private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
 
