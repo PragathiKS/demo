@@ -13,7 +13,7 @@
   "scripts": {
     "wizard": "node wizard",
     "build": "webpack && node removeHash && grunt",
-    "affiliates": "node affiliates"
+    "createComponent": "node createComponent"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
