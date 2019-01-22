@@ -4,6 +4,8 @@ const CleanPlugin = require("clean-webpack-plugin");
 // const fs = require('fs-extra');
 // const reporter = require('eslint-detailed-reporter');
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -52,12 +54,24 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: cacheGroups
-    }
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
   module: {
     rules: [
       {
-        test: /(\.scss|\.sass)$/,
+        test: /\.(sc|sa|c)ss$/,
         exclude: /node_modules/,
         use: [
           MiniCSSExtractPlugin.loader,
@@ -80,9 +94,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  performance: {
-    hints: false
   },
   plugins: [
     new CleanPlugin([
