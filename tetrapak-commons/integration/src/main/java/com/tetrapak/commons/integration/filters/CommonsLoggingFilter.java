@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
                    Constants.SERVICE_RANKING + ":Integer=-700"
 
            })
-public class LoggingFilter implements Filter {
+public class CommonsLoggingFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
