@@ -5,6 +5,7 @@ import $ from 'jquery';
 // Local imports
 import bundleImport from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
+import { templates } from '../utils/templates';
 // CSS imports
 import '../../styles/vendor.scss';
 import '../../styles/global/core/core.scss';
@@ -24,6 +25,9 @@ $(function () {
   // Fetch component bundles
   components.forEach(component => {
     // Import bundle
-    bundleImport(component, bundleImporter);
+    bundleImport(component, function (args) {
+      args.templates = templates;
+      bundleImporter(args);
+    });
   });
 });

@@ -129,8 +129,9 @@
     },
     "componentGroups": {
       "home": [
-        "SampleComponent",
-        "SampleComponent1"
+        "source/templates/components/SampleComponent/v1/SampleComponent",
+        "source/templates/components/SampleComponent1/v1/SampleComponent1",
+        "source/templates/components/TestComponent/v1/TestComponent"
       ]
     },
     "clean": "app",

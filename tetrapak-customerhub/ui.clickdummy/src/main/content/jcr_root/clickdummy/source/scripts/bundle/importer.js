@@ -2,10 +2,10 @@ import { logger } from '../utils/logger';
 
 const initialized = [];
 
-export default function ({ default: ComponentRef }) {
+export default function ({ default: ComponentRef, templates }) {
   if (typeof ComponentRef === 'function') {
     // Get component instance
-    const comp = new ComponentRef();
+    const comp = new ComponentRef({ templates });
     const compStr = ComponentRef.toString();
     // Get component name
     const nameMatch = compStr.match(/(class|function)\s[^\s(){}]+/);
@@ -27,7 +27,7 @@ export default function ({ default: ComponentRef }) {
       ComponentRef.moduleName = `_wp_module_${Date.now()}${initialized.length}`;
     }
     if (!initialized.includes(ComponentRef.moduleName)) {
-      ComponentRef.init();
+      ComponentRef.init({ templates });
       initialized.push(ComponentRef.moduleName);
       logger.log(`[Webpack] ${ComponentRef.moduleName} has been initialized.`);
     } else {

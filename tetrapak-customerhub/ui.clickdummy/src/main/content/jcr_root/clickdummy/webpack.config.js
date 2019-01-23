@@ -1,8 +1,6 @@
 const config = require("./config").webpack;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
-// const fs = require('fs-extra');
-// const reporter = require('eslint-detailed-reporter');
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -92,6 +90,17 @@ module.exports = {
         use: [
           "babel-loader"
         ]
+      },
+      {
+        test: /\.hbs$/,
+        exclude: /node_modules/,
+        loader: "handlebars-loader",
+        options: {
+          helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
+          precompileOptions: {
+            knownHelpersOnly: false
+          }
+        }
       }
     ]
   },
