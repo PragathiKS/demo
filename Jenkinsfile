@@ -84,7 +84,7 @@ pipeline {
 		stage ('sitespeed') {
 			steps {
 				echo "Starting Sitespeed Test Run"
-				sh 'sitespeed.io -b chrome --browsertime.xvfb true -d 1 --outputFolder sitespeed ${test_url}'
+				sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'sitespeed', reportFiles: 'index.html', reportName: 'sitespeed Report', reportTitles: ''])					
 					}
 							}
