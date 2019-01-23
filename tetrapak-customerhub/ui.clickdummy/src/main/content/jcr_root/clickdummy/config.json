@@ -147,6 +147,8 @@
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
-    "importsFile": "source/scripts/bundle/imports.js"
+    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
+    "componentTemplate": "ccTemplates/classTmp.txt",
+    "importsJsFile": "source/scripts/bundle/imports.js"
   }
 }

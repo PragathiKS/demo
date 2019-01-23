@@ -13,15 +13,40 @@ const questions = [
   }
 ];
 
-function generateImport(name, version) {
-  let importContent = fs.readFileSync(config.importsFile, 'utf8');
-  const regex = /\/\*\{import\}\*\//;
-  if (regex.test(importContent)) {
-    importContent = importContent.replace(regex, function (match) {
-      return `case '${name}': import(\`../../templates/components/${name}/${version}/${name}/${name}\`).then(execute); break;\n    ${match}`;
+function getLatestVersion(versions) {
+  if (Array.isArray(versions)) {
+    versions.sort((curr, next) => {
+      curr = +curr.replace('v');
+      next = +next.replace('v');
+      return next - curr;
     });
-    if (importContent) {
-      fs.writeFileSync(config.importsFile, importContent, 'utf8');
+    return versions[versions.length - 1];
+  }
+}
+
+function generateImports() {
+  let importContent = fs.readFileSync(config.importsTemplate, 'utf8');
+  const regex = /\{imports\}/;
+  if (regex.test(importContent)) {
+    let components = fs.readdirSync(config.componentsFolder);
+    components.splice(components.indexOf('.DS_Store'), 1);
+    if (Array.isArray(components)) {
+      components.sort();
+      const imports = [];
+      components.forEach((component, index) => {
+        let version = getLatestVersion(fs.readdirSync(`${config.componentsFolder}/${component}`));
+        if (fs.existsSync(`${config.componentsFolder}/${component}/${version}/${component}/${component}.js`)) {
+          let importStr = `case '${component}': import(\`../../templates/components/${component}/${version}/${component}/${component}\`).then(execute); break;\n    `;
+          if (index === components.length - 1) {
+            importStr = importStr.trim();
+          }
+          imports.push(importStr);
+        }
+      });
+      importContent = importContent.replace(regex, imports.join(''));
+      if (importContent) {
+        fs.writeFileSync(config.importsJsFile, importContent, 'utf8');
+      }
     }
   }
 }
@@ -32,11 +57,7 @@ function createComponent(name, version) {
   fs.mkdirsSync(componentPath);
   // Create files
   fs.writeFileSync(`${componentPath}/${name}.scss`, '');
-  fs.writeFileSync(`${componentPath}/${name}.js`, `
-  class ${name} {
-    init() { /*TODO*/ }
-  }
-  export default ${name};`);
+  fs.writeFileSync(`${componentPath}/${name}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, name));
   fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
   fs.writeFileSync(`${componentPath}/ux-model.json`, '{}');
   fs.writeFileSync(`${componentPath}/ux-preview.hbs`, `
@@ -54,7 +75,7 @@ function createComponent(name, version) {
   <sly data-sly-call="$\{lib.${name}_template @data=${name}Model\}" />`);
   console.log('\x1b[32m%s\x1b[0m', `Component ${name} has been created!`);
   // Generate import
-  generateImport(name, version);
+  generateImports();
 }
 
 wizard({ questions })
