@@ -91,7 +91,7 @@ pipeline {
 		stage ('zap') {
 			steps {
 				echo "Starting Zap Test Run"
-				sh 'zap-cli --zap-path /opt/ZAP_2.6.0 start -o "-config api.key=12345"'
+				sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
 				sh 'zap-cli --api-key 12345 spider ${test_url}'
 				sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
 				sh 'zap-cli --api-key 12345 shutdown'
