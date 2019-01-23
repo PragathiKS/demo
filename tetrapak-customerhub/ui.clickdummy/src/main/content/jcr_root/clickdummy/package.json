@@ -11,8 +11,11 @@
     "sanitize-html": "^1.19.3"
   },
   "scripts": {
-    "wizard": "node wizard",
-    "build": "webpack && node removeHash && grunt",
+    "build": "npm run prod && npm run removeHash && grunt",
+    "buildDev": "npm run dev && npm run removeHash && grunt",
+    "prod": "webpack",
+    "dev": "webpack --config=webpack.dev.js",
+    "removeHash": "node removeHash",
     "createComponent": "node createComponent"
   },
   "devDependencies": {
