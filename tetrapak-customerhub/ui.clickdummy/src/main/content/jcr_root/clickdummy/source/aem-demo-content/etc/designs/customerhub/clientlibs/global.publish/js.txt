@@ -1,1 +1,2 @@
 js/global.js
+../common.publish/js/common.js

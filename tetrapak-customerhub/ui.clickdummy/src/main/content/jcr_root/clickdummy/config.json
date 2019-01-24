@@ -121,6 +121,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "common": {
+        "test": "[\\\\/]scripts[\\\\/](common|utils)[\\\\/]",
+        "name": "common",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "home": {
         "testMultiple": true,
         "name": "home",
@@ -145,6 +151,9 @@
     },
     "global": {
       "js": "app/jcr_root/etc/designs/customerhub/clientlibs/global.publish/js"
+    },
+    "common": {
+      "js": "app/jcr_root/etc/designs/customerhub/clientlibs/common.publish/js"
     }
   },
   "createComponent": {
