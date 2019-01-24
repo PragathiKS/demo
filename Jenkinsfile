@@ -74,7 +74,7 @@ pipeline {
 			}
 		    }  
 			
-		stage ('Publish_Deployment') {
+		stage ('Dispatcher Flush') {
 		    steps {
             echo "Cache Flush Started"
 			sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/home --header CQ-Page:/home 'http://10.202.13.229/dispatcher/invalidate.cache'"
