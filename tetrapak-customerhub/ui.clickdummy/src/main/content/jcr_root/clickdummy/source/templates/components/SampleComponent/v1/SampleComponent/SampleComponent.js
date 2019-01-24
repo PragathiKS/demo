@@ -8,7 +8,7 @@ class SampleComponent {
     logger.log(this.templates.testHandlebars({
       data: 'World'
     }));
-    logger.log('Class based initialization successful')
+    logger.log('Class based initialization successful');
   }
 }
 

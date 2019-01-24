@@ -9,7 +9,7 @@ import { templates } from '../utils/templates';
 import './corescss';
 
 $(function () {
-  const $componentReference = $('[data-module]')
+  const $componentReference = $('[data-module]');
   const components = [];
   // Discover components
   $componentReference.each(function () {

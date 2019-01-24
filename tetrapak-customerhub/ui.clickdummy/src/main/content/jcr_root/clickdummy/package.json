@@ -11,13 +11,14 @@
     "sanitize-html": "^1.19.3"
   },
   "scripts": {
-    "build": "npm run eslint && npm run prod && npm run removeHash && grunt",
-    "buildDev": "npm run eslint && npm run dev && npm run removeHash && grunt",
+    "build": "npm run eslint && npm run sasslint && npm run prod && npm run removeHash && grunt",
+    "buildDev": "npm run eslint && npm run sasslint && npm run dev && npm run removeHash && grunt",
     "prod": "webpack",
     "dev": "webpack --config=webpack.dev.js",
     "removeHash": "node removeHash",
     "createComponent": "node createComponent",
-    "eslint": "eslint ./source/templates/components/**/*.js ./source/scripts/**/*.js -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html"
+    "eslint": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html",
+    "sasslint": "sass-lint --config ./sass-lint.yml './source/styles/global/**/*.scss, ./source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
