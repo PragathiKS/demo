@@ -92,7 +92,7 @@ pipeline {
 		stage ('sitespeed_Mobile') {
 			steps {
 				echo "Starting Sitespeed Test Run"
-				sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --userAgent "[Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-G925F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36]" ${test_url} -b firefox --outputFolder sitespeed_mobile'
+				sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])					
 					}
 							}
