@@ -99,7 +99,7 @@ pipeline {
 		stage ('sitespeed_IPad') {
 			steps {
 				echo "Starting Sitespeed Test Run"
-				sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --userAgent "[Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10]" ${test_url} -b firefox --outputFolder sitespeed_ipad'
+				sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --ipad ${test_url} -b firefox --outputFolder sitespeed_ipad'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])					
 					}
 							}
