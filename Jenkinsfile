@@ -73,6 +73,18 @@ pipeline {
 			sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			}
 		    }  
+			
+		stage ('Publish_Deployment') {
+		    steps {
+            echo "Cache Flush Started"
+			curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/home --header CQ-Page:/home 'http://10.202.13.229/dispatcher/invalidate.cache'
+			curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/content --header CQ-Page:/content 'http://10.202.13.229/dispatcher/invalidate.cache'
+			curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/etc --header CQ-Page:/etc 'http://10.202.13.229/dispatcher/invalidate.cache'
+			curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/libs --header CQ-Page:/libs 'http://10.202.13.229/dispatcher/invalidate.cache'
+
+
+			}
+		    }  	
 		       
 		stage ('pa11y') {
 		    steps {
