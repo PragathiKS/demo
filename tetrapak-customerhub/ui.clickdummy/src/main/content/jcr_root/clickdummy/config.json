@@ -112,19 +112,12 @@
       "prod": "production"
     },
     "entry": {
-      "global": "source/scripts/core/core.js",
-      "styles": "source/scripts/core/corescss.js"
+      "global": "source/scripts/core/core.js"
     },
     "cacheGroups": {
       "vendor": {
         "test": "[\\\\/]node_modules[\\\\/]|[\\\\/]vendor\\.scss",
         "name": "vendor",
-        "minSize": 0,
-        "chunks": "all"
-      },
-      "global": {
-        "test": "[\\\\/]scripts[\\\\/](utils|common)[\\\\/]|[\\\\/]core\\.scss",
-        "name": "global",
         "minSize": 0,
         "chunks": "all"
       },
