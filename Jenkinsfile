@@ -49,8 +49,8 @@ pipeline {
                }
            }
 		stage ('Deployment Author and Publish Parallel') {
-		    
-			   parallel {
+		    steps {
+			   parallel (
 			       stage('Author Deployment') {
 			          echo "Uninstalling Old Package"
 			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}'"
@@ -73,8 +73,8 @@ pipeline {
 			            echo "Installing New Package"
 			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			                                     }
-		                }  
-			         
+		                )  
+			                  }
 			                                               }
 		stage ('Dispatcher Flush') {
 		    steps {
