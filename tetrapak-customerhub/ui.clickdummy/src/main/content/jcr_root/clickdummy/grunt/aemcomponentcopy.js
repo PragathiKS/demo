@@ -13,6 +13,13 @@ module.exports = {
         cwd: config.aem.src.componentPath,
         src: ['**/*.html', '!**/*Sample.hbs'],
         dest: config.aem.target.componentPath
+      },
+      {
+        expand: true,
+        dot: true,
+        cwd: config.aem.src.atomPath,
+        src: ['**/*.html', '!**/*Sample.hbs'],
+        dest: config.aem.target.atomPath
       }
     ]
   }

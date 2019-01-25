@@ -7,6 +7,7 @@
   "server": "http://admin:admin@localhost:4502",
   "aem": {
     "src": {
+      "atomPath": "<%= config.source %>/templates/atoms",
       "componentPath": "<%= config.source %>/templates/components",
       "content": "<%= config.app %>/jcr_root/content/customerhub-ux/**/.content.xml",
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
@@ -18,6 +19,7 @@
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
+      "atomPath": "<%= config.app %>/jcr_root/apps/customerhub/atoms",
       "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/components"
     },
     "uxContentDescriptor": "customerhub-ux",
@@ -136,9 +138,8 @@
     },
     "componentGroups": {
       "home": [
-        "source/templates/components/SampleComponent/v1/SampleComponent",
-        "source/templates/components/SampleComponent1/v1/SampleComponent1",
-        "source/templates/components/TestComponent/v1/TestComponent"
+        "source/templates/components/HelloWorld/v1/HelloWorld",
+        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
       ]
     },
     "clean": "app",
