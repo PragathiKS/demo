@@ -7,7 +7,7 @@
     "core-js": "^3.0.0-beta.3",
     "jquery": "^3.3.1",
     "jquerydeparam": "^1.1.2",
-    "lzstorage": "^1.0.7",
+    "lzstorage": "^1.0.8",
     "sanitize-html": "^1.19.3"
   },
   "scripts": {

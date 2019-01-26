@@ -98,6 +98,9 @@ module.exports = {
       }
     ]
   },
+  stats: {
+    warnings: false
+  },
   plugins: [
     new CleanPlugin([
       config.clean

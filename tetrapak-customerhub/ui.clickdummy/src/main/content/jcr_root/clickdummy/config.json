@@ -124,20 +124,16 @@
         "chunks": "all"
       },
       "common": {
-        "test": "[\\\\/]scripts[\\\\/](common|utils)[\\\\/]",
-        "name": "common",
-        "minSize": 0,
-        "chunks": "all"
-      },
-      "home": {
         "testMultiple": true,
-        "name": "home",
+        "name": "common",
         "minSize": 0,
         "chunks": "all"
       }
     },
     "componentGroups": {
-      "home": [
+      "common": [
+        "source/scripts/common",
+        "source/scripts/utils",
         "source/templates/components/HelloWorld/v1/HelloWorld",
         "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
       ]

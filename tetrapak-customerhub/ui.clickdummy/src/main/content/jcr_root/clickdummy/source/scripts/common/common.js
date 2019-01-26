@@ -17,16 +17,12 @@ const { getCookie } = storageUtil;
 /**
  * Checks if current user agent belongs to mobile
  */
-export const isMobile = () => {
-  return IS_MOBILE_REGEX.test(currentUserAgent);
-};
+export const isMobile = () => IS_MOBILE_REGEX.test(currentUserAgent);
 
 /**
  * Checks if current user agent belongs to tablet
  */
-export const isTablet = () => {
-  return IS_TABLET_REGEX.test(currentUserAgent);
-};
+export const isTablet = () => IS_TABLET_REGEX.test(currentUserAgent);
 
 /**
  * Checks if current user agent belongs to desktop
