@@ -15,13 +15,10 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [],
 
-
     // list of files to exclude
     exclude: [
       '**/*.min.js',
-      'node_modules/',
-      '../source/coverage/**/*.js',
-      '../source/templates/components/contactForm/*.js'
+      'node_modules/'
     ],
 
     // preprocess matching files before serving them to the browser
