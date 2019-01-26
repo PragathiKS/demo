@@ -1,11 +1,7 @@
 const config = require('../config.json');
 module.exports = function (grunt) {
-  var _ = require('lodash');
-  var async = require('async');
   var xmlBuilder = require('xmlbuilder');
-  var fs = require('fs'),
-    path = require('path');
-
+  var path = require('path');
 
   grunt.registerMultiTask('aemcomponentcopy', 'Aem component copy', function () {
     var done = this.async();
@@ -40,10 +36,8 @@ module.exports = function (grunt) {
     });
 
     grunt.log.ok(this.files.length, " files processed");
-
     done();
   });
-
 
   var buildContentDescriptor = function (component, group) {
     var content = {
@@ -56,7 +50,6 @@ module.exports = function (grunt) {
         '@componentGroup': group
       }
     };
-
     var xml = xmlBuilder.create(content, { encoding: 'UTF-8' });
     return xml.end({
       pretty: true,
@@ -64,5 +57,4 @@ module.exports = function (grunt) {
       newline: '\n'
     });
   }
-
 }
