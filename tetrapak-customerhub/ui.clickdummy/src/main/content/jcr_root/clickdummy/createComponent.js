@@ -22,19 +22,8 @@ function createComponent(name, version) {
   fs.writeFileSync(`${componentPath}/${name}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, name));
   fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
   fs.writeFileSync(`${componentPath}/ux-model.json`, '{}');
-  fs.writeFileSync(`${componentPath}/ux-preview.hbs`, `
-  ---
-  {
-    "layout"	   : "app.hbs",
-    "title"      : "",
-    "fsdId"      : "${name}",
-    "categories" : "components",
-    "description": "",
-    "components" : "${name}",
-    "hiddenUX"   : true
-  }
-  ---
-  <sly data-sly-call="$\{lib.${name}_template @data=${name}Model\}" />`);
+  const previewHtml = fs.readFileSync(config.pageTemplate, 'utf8').replace(/#name#/g, name);
+  fs.writeFileSync(`${componentPath}/ux-preview.hbs`, previewHtml);
   console.log('\x1b[32m%s\x1b[0m', `Component ${name} has been created!`);
 }
 
