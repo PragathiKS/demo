@@ -1,5 +1,5 @@
 {
-  "name": "customerhub",
+  "name": "tp-customerhub",
   "version": "0.0.1",
   "dependencies": {
     "@babel/runtime": "^7.2.0",

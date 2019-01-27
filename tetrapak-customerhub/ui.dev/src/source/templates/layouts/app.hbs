@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/customerhub/components/{{fsdId}}/v1/{{fsdId}}/{{fsdId}}-template.html" />
+<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/tp-customerhub/components/{{fsdId}}/v1/{{fsdId}}/{{fsdId}}-template.html" />
 <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}">
     <head>
         <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
@@ -10,8 +10,8 @@
         <meta name="template" content="demoTemplate">
         <meta name="pageType" content="GenericPageType">
         <title>{{fsdId}} Component | UpFront</title>
-        <sly data-sly-call="${clientLib.css @ categories='vendor.publish'}" />
-        <sly data-sly-call="${clientLib.css @ categories='global.publish'}" />
+        <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.vendor'}" />
+        <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.global'}" />
     </head>
 </sly>
 
@@ -19,8 +19,8 @@
     {{> body}}
 
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
-        data-sly-call="${clientLib.js @ categories='vendor.publish'}" />
+        data-sly-call="${clientLib.js @ categories='tp.customerhub.vendor'}" />
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
-        data-sly-call="${clientLib.js @ categories='global.publish'}" />
+        data-sly-call="${clientLib.js @ categories='tp.customerhub.global'}" />
 </body>
 </html>
