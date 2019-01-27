@@ -9,7 +9,6 @@ aem:
     - 'copy:uxlibdemo'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
-    - 'aemdeploy'
 
 default:
   description: "run default task which build the whole application"

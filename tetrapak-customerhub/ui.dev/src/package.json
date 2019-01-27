@@ -11,7 +11,7 @@
     "sanitize-html": "^1.19.3"
   },
   "scripts": {
-    "build": "npm run eslint && npm run sasslint && npm run prod && npm run removeHash && grunt",
+    "build": "npm run eslint && npm run sasslint && npm run prod && npm run removeHash && grunt aem",
     "buildDev": "npm run eslintDev && npm run sasslintDev && npm run dev && npm run removeHash && grunt",
     "prod": "webpack",
     "dev": "webpack --config=webpack.dev.js",
