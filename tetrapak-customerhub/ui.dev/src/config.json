@@ -157,6 +157,9 @@
     },
     "common": {
       "js": "app/jcr_root/etc/designs/tp-customerhub/clientlibs/common.publish/js"
+    },
+    "default.en": {
+      "js": "app/jcr_root/etc/designs/tp-customerhub/clientlibs/default.en.publish/js"
     }
   },
   "createComponent": {
