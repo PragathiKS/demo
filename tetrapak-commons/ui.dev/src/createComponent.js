@@ -3,7 +3,7 @@ const config = require('./config').createComponent;
 const fs = require('fs-extra');
 const questions = [
   {
-    question: "Enter component name without spaces and special characters\nRules: \n1. Name should start with capital\n2. Name should not start with a number\n:",
+    question: "Enter component name\nRules: \n1. Name for class component should start with capital\n2. Name should not start with a number\n3. Name can contain an underscore\n:",
     key: "componentName"
   },
   {
@@ -18,7 +18,7 @@ function createComponent(name, version) {
   const componentPath = `${config.componentsFolder}/${name}/${version}/${name}`;
   fs.mkdirsSync(componentPath);
   // Create files
-  fs.writeFileSync(`${componentPath}/${name}.scss`, '');
+  fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
   fs.writeFileSync(`${componentPath}/${name}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, name));
   fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
   fs.writeFileSync(`${componentPath}/ux-model.json`, '{}');
@@ -31,8 +31,7 @@ wizard({ questions })
   .then(([data, version]) => {
     if (
       data.answer
-      && !(/^\d|[^A-Za-z0-9]/).test(data.answer)
-      && !(/[a-z]/).test(data.answer.charAt(0))
+      && !(/^\d|[^A-Za-z0-9_]/).test(data.answer)
     ) {
       // Check if component already exists
       try {
