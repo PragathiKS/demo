@@ -1,27 +1,3 @@
-// Import any vendor specific scss file here
-@import "vendor/bootstrap/functions";
-@import "vendor/bootstrap/variables";
-@import "vendor/bootstrap/mixins";
-@import "vendor/bootstrap/root";
-@import "vendor/bootstrap/reboot";
-@import "vendor/bootstrap/type";
-@import "vendor/bootstrap/code";
-@import "vendor/bootstrap/grid";
-@import "vendor/bootstrap/tables";
-@import "vendor/bootstrap/forms";
-@import "vendor/bootstrap/buttons";
-@import "vendor/bootstrap/transitions";
-@import "vendor/bootstrap/dropdown";
-@import "vendor/bootstrap/nav";
-@import "vendor/bootstrap/navbar";
-@import "vendor/bootstrap/alert";
-@import "vendor/bootstrap/progress";
-@import "vendor/bootstrap/media";
-@import "vendor/bootstrap/close";
-@import "vendor/bootstrap/toasts";
-@import "vendor/bootstrap/modal";
-@import "vendor/bootstrap/tooltip";
-@import "vendor/bootstrap/popover";
-@import "vendor/bootstrap/carousel";
-@import "vendor/bootstrap/spinners";
-@import "vendor/bootstrap/utilities";
+.test-secondary-vendor {
+    color: #999;
+}
