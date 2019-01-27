@@ -132,7 +132,7 @@
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
-        "minSize": 0,
+        "enforce": true,
         "chunks": "all"
       }
     },
