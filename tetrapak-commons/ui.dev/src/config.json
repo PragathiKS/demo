@@ -1,0 +1,163 @@
+{
+  "appFolder": "app",
+  "sourceFolder": "source",
+  "publishFolder": "app/jcr_root/etc/designs/tp-common/clientlibs",
+  "demoFolder": "source/aem-demo-content/etc/designs/tp-common/clientlibs",
+  "assetFolder": "source/assets",
+  "server": "http://admin:admin@localhost:4502",
+  "aem": {
+    "src": {
+      "atomPath": "<%= config.source %>/templates/atoms",
+      "componentPath": "<%= config.source %>/templates/components",
+      "content": "<%= config.app %>/jcr_root/content/tp-common-ux/**/.content.xml",
+      "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
+      "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
+      "models": "<%= config.app %>/jcr_root/apps/**/*.js",
+      "staticassets": "<%= config.app %>/jcr_root/etc/**/*.{js,css}",
+      "mediaassets": "<%= config.app %>/jcr_root/**/*.{jpg,mov,png,mp4,svg}",
+      "fontassets": "<%= config.app %>/jcr_root/**/*.{otf,eot,ttf,woff}",
+      "jsonData": "<%= config.app %>/jcr_root/**/*.json"
+    },
+    "target": {
+      "atomPath": "<%= config.app %>/jcr_root/apps/tp-common/atoms",
+      "componentPath": "<%= config.app %>/jcr_root/apps/tp-common/components"
+    },
+    "uxContentDescriptor": "tp-common-ux",
+    "componentGroup": "tp-common",
+    "componentGroupName": "Tetrapak common"
+  },
+  "assemble": {
+    "options": {
+      "layouts": "*.hbs",
+      "layoutdir": "<%= config.source %>/templates/layouts",
+      "data": [
+        "<%= config.source %>/data/*.{json,yml}",
+        "<%= config.source %>/templates/components/{,*/}*.json"
+      ],
+      "partials": [
+        "<%= config.source %>/templates/components/{,*/}*.hbs"
+      ],
+      "collections": [
+        {
+          "name": "components",
+          "inflection": "component",
+          "sortorder": "ascending",
+          "sortby": "datetime"
+        }
+      ],
+      "helpers": [
+        "<%= config.source %>/helpers/*"
+      ],
+      "plugins": [
+        "grunt-tasks/assemble-aem-plugin.js"
+      ]
+    },
+    "pages": {
+      "options": {
+        "aemuxlib": {
+          "contentRoot": "<%= config.app %>/jcr_root/content/tp-common-ux",
+          "designJcrPath": "/etc/designs/tp-common",
+          "jcrFileRoot": "<%= config.app %>/jcr_root/",
+          "wrapJsonData": true
+        }
+      },
+      "files": [
+        {
+          "expand": true,
+          "src": [
+            "<%= config.source %>/templates/components/**/**/**/*.hbs"
+          ],
+          "dest": "<%= config.app %>/jcr_root/apps/tp-common/components"
+        }
+      ]
+    }
+  },
+  "copy": {
+    "uxlibdemo": [
+      {
+        "expand": true,
+        "dot": true,
+        "cwd": "<%= config.source %>/aem-demo-content",
+        "src": [
+          "etc/designs/**"
+        ],
+        "dest": "<%= config.app %>/jcr_root/"
+      }
+    ],
+    "jsonData": [
+      {
+        "expand": true,
+        "flatten": true,
+        "cwd": "<%= config.source %>/templates/components/",
+        "src": [
+          "**/data/*.json"
+        ],
+        "dest": "<%= config.app %>/jcr_root/etc/designs/tp-common/jsonData"
+      }
+    ]
+  },
+  "webfont": {
+    "src": "<%= config.source %>/assets/icons/*.svg",
+    "target": "<%= config.source %>/aem-demo-content/etc/designs/tp-common/clientlibs/vendor.publish/iconfonts",
+    "scss": {
+      "target": "<%= config.source %>/assets/styles/common"
+    },
+    "fontFile": "tp-common-icons",
+    "relativePath": "../iconfonts"
+  },
+  "webpack": {
+    "filePath": "etc/designs/tp-common/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "etc/designs/tp-common/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "root": "app/jcr_root",
+    "modes": {
+      "dev": "development",
+      "prod": "production"
+    },
+    "entry": {
+      "global": "source/scripts/core/core.js"
+    },
+    "cacheGroups": {
+      "vendor": {
+        "test": "[\\\\/]node_modules[\\\\/]|[\\\\/]vendor\\.scss",
+        "name": "vendor",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "common": {
+        "testMultiple": true,
+        "name": "common",
+        "minSize": 0,
+        "chunks": "all"
+      }
+    },
+    "componentGroups": {
+      "common": [
+        "source/scripts/common",
+        "source/scripts/utils",
+        "source/templates/components/HelloWorld/v1/HelloWorld",
+        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
+      ]
+    },
+    "clean": "app",
+    "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css"
+  },
+  "clientlibs": {
+    "vendor": {
+      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/vendor.publish/js"
+    },
+    "global": {
+      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/global.publish/js"
+    },
+    "common": {
+      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/common.publish/js"
+    }
+  },
+  "createComponent": {
+    "componentsFolder": "source/templates/components",
+    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
+    "componentTemplate": "ccTemplates/classTmp.txt",
+    "pageTemplate": "ccTemplates/pageTmp.txt",
+    "importsJsFile": "source/scripts/bundle/imports.js"
+  }
+}

@@ -1,0 +1,13 @@
+@import './imports';
+[class^="b64icon-"] {
+    display: inline-block;
+    &::before {
+        display: inline-block;
+        content: '';
+        vertical-align: top;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+}
+// Add base64 icons here

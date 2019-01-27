@@ -1,0 +1,41 @@
+// Global css code for document, components, widgets, buttons and links
+html {
+    font-family: $default-font;
+    font-size: $font-html;
+    @media #{$tablet} {
+        font-size: calculate-base-font($tablet-bp);
+    }
+    @media #{$tablet-large} {
+        font-size: calculate-base-font($tablet-large-bp);
+    }
+    @media #{$desktop} {
+        font-size: calculate-base-font($desktop-bp);
+    }
+    @media #{$desktop-large} {
+        font-size: calculate-base-font($desktop-large-bp);
+    }
+}
+
+.container {
+    margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    &,
+    &:hover,
+    &:visited,
+    &:focus {
+        display: inline-block;
+        color: inherit;
+        text-decoration: none;
+    }
+}

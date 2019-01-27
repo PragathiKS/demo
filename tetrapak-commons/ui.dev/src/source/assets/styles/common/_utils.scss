@@ -1,0 +1,33 @@
+// Include custom utility classes here
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-sm-left {
+    @media #{$tablet} {
+        float: left;
+    }
+}
+
+.float-sm-right {
+    @media #{$tablet} {
+        float: right;
+    }
+}
+
+.align {
+    &Top,
+    &Left,
+    &Right {
+        &::before,
+        &::after {
+            content: " ";
+            display: table;
+            clear: both;
+        }
+    }
+}

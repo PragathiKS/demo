@@ -1,0 +1,49 @@
+.mock-profile-container {
+    @include padding(40px);
+}
+
+.mock-top-header,
+.mock-profile-summary {
+    @include padding(40px);
+    @include border-radius(6px);
+    @include margin-bottom(10px);
+    background-color: $color-theme;
+}
+
+.mock-profile-summary {
+    &.alignLeft,
+    &.alignRight {
+        @include height(120px);
+    }
+    &.alignLeft {
+        @include margin-right(20px);
+    }
+    &.alignRight {
+        @include margin-left(20px);
+    }
+}
+
+.mock-profile-content {
+    &.alignLeft,
+    &.alignRight {
+        width: calc(100% - #{convert-to-rem(100px)});
+    }
+    &::before,
+    &::after {
+        content: "";
+        display: inline-block;
+    }
+}
+
+.mock-profile-content::before,
+.mock-profile-content::after,
+.mock-profile-line {
+    @include padding(10px);
+    @include margin(5px 0);
+    width: 50%;
+    background-color: $color-shadow;
+}
+
+.mock-profile-line {
+    width: 30%;
+}
