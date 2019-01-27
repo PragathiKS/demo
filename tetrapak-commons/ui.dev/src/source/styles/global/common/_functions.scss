@@ -1,19 +1,19 @@
 // Function to change px to rem unit
 @function convert-to-rem($args) {
-    $argsLength: length($args);
+    $args-length: length($args);
     $result: "";
-    $remValue: "";
-    @for $index from 1 through $argsLength {
-        $currentValue: nth($args, $index);
-        @if ($currentValue==0 or $currentValue==0px or $currentValue==auto) {
-            $remValue: $currentValue;
-            $result: #{$result + $remValue};
+    $rem-value: "";
+    @for $index from 1 through $args-length {
+        $current-value: nth($args, $index);
+        @if ($current-value==0 or $current-value==0px or $current-value==auto) {
+            $rem-value: $current-value;
+            $result: #{$result + $rem-value};
         }
         @else {
-            $remValue: nth($args, $index)/$font-html;
-            $result: #{$result + $remValue}rem;
+            $rem-value: nth($args, $index)/$font-html;
+            $result: #{$result + $rem-value}rem;
         }
-        @if ($index < $argsLength) {
+        @if ($index < $args-length) {
             $result: #{$result + " "};
         }
     }
