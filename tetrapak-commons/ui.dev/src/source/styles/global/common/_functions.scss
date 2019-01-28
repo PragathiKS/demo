@@ -4,7 +4,7 @@
     $result: "";
     $rem-value: "";
     @for $index from 1 through $args-length {
-        $current-value: nth($args, $index);
+    $current-value: nth($args, $index);
         @if ($current-value==0 or $current-value==0px or $current-value==auto) {
             $rem-value: $current-value;
             $result: #{$result + $rem-value};
