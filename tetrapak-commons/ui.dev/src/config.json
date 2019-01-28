@@ -2,7 +2,7 @@
   "appFolder": "app",
   "sourceFolder": "source",
   "publishFolder": "app/jcr_root/etc/designs/tp-common/clientlibs",
-  "demoFolder": "source/aem-demo-content/etc/designs/tp-common/clientlibs",
+  "demoFolder": "source/clientlib-format/etc/designs/tp-common/clientlibs",
   "assetFolder": "source/assets",
   "server": "http://admin:admin@localhost:4502",
   "aem": {
@@ -77,7 +77,7 @@
       {
         "expand": true,
         "dot": true,
-        "cwd": "<%= config.source %>/aem-demo-content",
+        "cwd": "<%= config.source %>/clientlib-format",
         "src": [
           "etc/designs/**"
         ],
@@ -98,7 +98,7 @@
   },
   "webfont": {
     "src": "<%= config.source %>/assets/icons/*.svg",
-    "target": "<%= config.source %>/aem-demo-content/etc/designs/tp-common/clientlibs/vendor.publish/iconfonts",
+    "target": "<%= config.source %>/clientlib-format/etc/designs/tp-common/clientlibs/vendor.publish/iconfonts",
     "scss": {
       "target": "<%= config.source %>/assets/styles/common"
     },
