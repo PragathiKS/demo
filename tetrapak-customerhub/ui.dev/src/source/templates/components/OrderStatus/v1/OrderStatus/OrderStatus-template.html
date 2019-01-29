@@ -1,1 +1,10 @@
-<sly data-sly-template.OrderStatus_template="${@ data, flag}"></sly>
+<sly data-sly-template.OrderStatus_template="${@ data, flag}">
+  <div class="org__order-status" data-module="OrderStatus">
+    <sly
+      data-sly-use.title="/apps/tp-customerhub/atoms/title/v1/title/title.html"
+      data-sly-call="${title.title_template @data=data}" />
+      <div class="org__order-status__table js-orderstatus-table">
+        <!--/* Order status table renders here */-->
+      </div>
+  </div>
+</sly>

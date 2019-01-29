@@ -16,7 +16,9 @@
 </sly>
 
 <body>
-    {{> body}}
+    <div class="tp__container">
+        {{> body}}
+    </div>
 
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
         data-sly-call="${clientLib.js @ categories='tp.customerhub.vendor'}" />

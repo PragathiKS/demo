@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        {{> ../atoms/th 'Tetrapak Order Number'}}
+        {{> ../atoms/th 'Purchase Order Number'}}
+        {{> ../atoms/th 'Order Date'}}
+        {{> ../atoms/th 'Requested Delivery'}}
+        {{> ../atoms/th 'ETA'}}
+        {{> ../atoms/th 'Status'}}
+        {{> ../atoms/th 'Order Summary'}}
+    </tr>
+    {{#each this}}
+        {{> ../molecules/row this}}
+    {{/each}}
+</table>

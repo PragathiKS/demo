@@ -7,6 +7,7 @@ aem:
   description: "build app with ux-lib, deploy and watch for changes followed by auto deploy"
   tasks:
     - 'copy:uxlibdemo'
+    - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
 
@@ -14,6 +15,7 @@ default:
   description: "run default task which build the whole application"
   tasks:
     - 'copy:uxlibdemo'
+    - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'

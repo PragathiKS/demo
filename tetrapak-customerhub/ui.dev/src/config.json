@@ -141,7 +141,8 @@
         "source/scripts/common",
         "source/scripts/utils",
         "source/templates/components/HelloWorld/v1/HelloWorld",
-        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
+        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars",
+        "source/templates/components/OrderStatus/v1/OrderStatus"
       ]
     },
     "clean": "app",
