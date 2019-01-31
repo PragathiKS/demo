@@ -1,0 +1,48 @@
+<div class="tp_layout">
+    {{# header }}
+    {{> organisms_ch-header }}
+    {{/ header }}
+
+    <div class="tp_layout-ch">
+
+        <aside>
+            {{> organisms_ch-tp_sideMenu }}
+        </aside>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {{> atoms-tp_pageTitle }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">                    
+                        {{# tp_performance }}
+                            {{> organisms_ch-tp_performance }}
+                        {{/ tp_performance }}
+
+                        {{# tp_ch_articles }}
+                            {{> organisms_ch-tp_ch-articles }}
+                        {{/ tp_ch_articles }}
+
+                        {{# tp_projects }}
+                            {{> organisms_ch-tp_projectsDashboard }}
+                        {{/ tp_projects }}
+
+                        {{# tp_supportTeam }}
+                            {{> organisms_ch-tp_supportTeam }}
+                        {{/ tp_supportTeam }}
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        {{# tp_notifications }}
+                            {{> organisms_ch-tp_notifications }}
+                        {{/ tp_notifications }}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</div>

@@ -6,10 +6,16 @@ $font-html-sm: 12px;
 $zindex-default: 0;
 // Maximum 3 levels allowed in z-index
 $zindex-p: 1; // primary
-$zindex-s: 2; // secondary 
-$zindex-t: 3; // tertiary 
+$zindex-s: 2; // secondary
+$zindex-t: 3; // tertiary
 // To move element to the background
 $zindex-hide: -1;
 //z-index header to be greater than others except modal
 $zindex-header: 100;
 $zindex-nav: $zindex-header+1;
+// Patternlab variables
+$spacing-big: 24px;
+$spacing-small: 16px;
+$spacing-big-half: 12px;
+$spacing-small-half: 8px;
+$border-radius: 4px;

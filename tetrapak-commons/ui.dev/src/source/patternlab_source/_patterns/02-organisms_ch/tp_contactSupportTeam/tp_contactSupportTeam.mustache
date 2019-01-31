@@ -1,0 +1,16 @@
+<div class="tp_container tp_contactSupportTeam">
+    {{> atoms-tp_containerTitle }}
+    <div class="row">
+        <div class="col-md-8 tp_contactSupportTeam-form">
+            <form id="contact-supportTeam">
+                <p>{{ contactSupportTeamForm_text }}</p>
+                {{> atoms-text-area }}
+            </form>
+            {{> atoms-button-formSubmit }}
+        </div>
+        <div class="col-md-4">
+            <h4 class="tp_contactSupportTeam-cardTitle">{{ supportTeamCard_title }}</h4>
+            {{> molecules-tp_supportTeamCard }}
+        </div>
+    </div>
+</div>

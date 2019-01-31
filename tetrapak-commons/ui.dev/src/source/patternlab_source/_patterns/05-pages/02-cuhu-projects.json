@@ -1,0 +1,233 @@
+{
+    "header" : {
+        "navigation" : [
+            {
+                "label": "Solutions",
+                "url": "#"
+            },
+            {
+                "label": "Innovation",
+                "url": "#"
+            },
+            {
+                "label": "Sustainability",
+                "url": "#"
+            },
+            {
+                "label": "Careers",
+                "url": "#"
+            },
+            {
+                "label": "About us",
+                "url": "#"
+            }
+        ],
+
+        "positionClass" : "position",
+
+        "mobileMenu" : {
+            "iconName" : "icon-Burger"
+        },
+
+        "login" : {
+            "iconName" : "icon-Avatar",
+            "loginName" : "Charlie Svensson",
+            "url" : "#"
+        },
+
+        "notification" : {
+            "iconName" : "icon-Bell"
+        }
+    },
+
+    "page_title" : "Projects",
+
+    "tp_sideMenu_listItem" : [
+        {
+            "label": "Dashboard",
+            "icon": "icon-Dashboard",
+            "url": "link.pages-cuhu-home"
+        },
+        {
+            "label": "Installed Equipment",
+            "icon": "icon-Install",
+            "url": "#"
+        },
+        {
+            "label": "PACKAGE DESIGN",
+            "icon": "icon-Frozen_kopi",
+            "url": "#",
+            "has-externalLink" : "tp_sideMenu_externalLink",
+            "tp_sideMenu_externalLink" : {
+                "externalLink-icon" : "icon-External_link"
+            }
+        },
+        {
+            "label": "Ordering",
+            "icon": "icon-Cart",
+            "url": "#",
+            "has-subList" : "has-subMenu",
+            "tp_sideMenu_openSubListIcon": {
+                "open-sublist-icon": "icon-Chevron_Down"
+            },
+            "tp_sideMenu_subList" : [
+                {
+                    "tp_sideMenu_subListItem" : [
+                        {
+                            "label": "Order History",
+                            "url": "#"
+                        },
+                        {
+                            "label": "Packaging Material",
+                            "url": "#",
+                            "has-externalLink" : "tp_sideMenu_externalLink",
+                            "tp_sideMenu_externalLink" : {
+                                "externalLink-icon" : "icon-External_link"
+                            }
+                        },
+                        {
+                            "label": "Parts",
+                            "url": "#",
+                            "has-externalLink" : "tp_sideMenu_externalLink",
+                            "tp_sideMenu_externalLink" : {
+                                "externalLink-icon" : "icon-External_link"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Parts Inventory",
+            "icon": "icon-Inventory",
+            "url": "#",
+            "has-externalLink" : "tp_sideMenu_externalLink",
+            "tp_sideMenu_externalLink" : {
+                "externalLink-icon" : "icon-External_link"
+            }
+        },
+        {
+            "label": "FINANCIALS",
+            "icon": "icon-Finacials",
+            "url": "#"
+        },
+        {
+            "label": "Training",
+            "icon": "icon-Training",
+            "url": "#"
+        },
+        {
+            "label": "Projects",
+            "icon": "icon-Collaboration",
+            "url": "link.pages-cuhu-projects",
+            "is_active": "yes"
+        },
+        {
+            "label": "CONTACT",
+            "icon": "icon-Phone",
+            "url": "#"
+        },
+        {
+            "label": "About my tetra pak",
+            "icon": "icon-Info",
+            "url": "link.pages-cuhu-about-us"
+        },
+        {
+            "label": "LOG OUT",
+            "icon": "icon-Logout",
+            "url": "#"
+        }
+    ],
+
+    "tp_projects" : [
+        {
+            "iconName" : "icon-Plus",
+            "tp_projects_column" : [
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "Instalation of Line Controller 30 in A3 Speed Line",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                },
+                {
+                    "iconName": "icon-Microsoft_Teams",
+                    "sectionTitle": "QR codes on packages in India and Sri Lanka",
+                    "btnText" : "Go to project page",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right",
+                    "btnTextLink" : "#"
+                }
+            ]
+        }
+    ]
+}

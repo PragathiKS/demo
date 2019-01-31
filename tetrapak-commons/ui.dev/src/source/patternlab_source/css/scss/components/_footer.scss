@@ -1,0 +1,109 @@
+/*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+/* Footer Common css */
+.tp_footer {
+    clear: both;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Customer Hub Footer css */
+// .tp_footer-ch {
+// }
+
+/* Public Web Footer css */
+.tp_footer-pw {
+    background: $color-congress-blue;
+    min-height: 300px;
+    padding: $spacing-small*4 0 0;
+    @include vendor-prefix(transform, skewY(6deg));
+    transform-origin: left top;
+
+    @media #{$medium} {
+        min-height: 300px;
+        padding: $spacing-small*4 0 0;
+	}
+
+    @media #{$large} {
+        min-height: 350px;
+	}
+
+    .tp_pw-container {
+        padding-top: $spacing-big;
+        @include vendor-prefix(transform, skewY(-6deg));
+
+        @media #{$medium} {
+            padding-top: $spacing-big*2;
+    	}
+
+        @media #{$large} {
+            padding-top: $spacing-big*4;
+    	}
+    }
+
+    .tp_navigation {
+        margin-top: $spacing-big;
+        text-align: left;
+
+        @media #{$large} {
+            margin: $spacing-small-half 0;
+    	}
+
+        .tp_navigationItem {
+            margin-right: $spacing-big;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            @media #{$small} {
+                display: block;
+                margin-right: 0;
+                margin-top: $spacing-small;
+        	}
+        }
+
+        .tp_navigationItemLink {
+            color: $color-white;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-mercury;
+            }
+        }
+    }
+
+    .tp_socialNavigation {
+        margin-top: $spacing-big;
+
+        @media #{$large} {
+            margin-top: 0;
+            text-align: right;
+    	}
+    }
+
+    .tp_textBtn {
+        color: $color-white;
+        @include font-size(.75, large);
+        line-height: 1.66;
+        margin: $spacing-big 0;
+
+        @media #{$large} {
+            margin: $spacing-big*2 0;
+    	}
+
+        i {
+            @include font-size(1, large);
+            line-height: 1.2;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-mercury;
+        }
+    }
+}

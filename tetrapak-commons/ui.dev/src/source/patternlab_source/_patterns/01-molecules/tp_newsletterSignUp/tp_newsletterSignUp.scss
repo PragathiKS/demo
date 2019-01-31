@@ -1,0 +1,34 @@
+.tp_newsletterSignUp {
+
+    &:after {
+        clear: both;
+        content: '';
+        display: block;
+    }
+
+    &-label {
+        margin-bottom: $spacing-small-half;
+    }
+
+    &-inputWrapper {
+        float: none;
+        max-width: 100%;
+        @media #{$medium} {
+            float: left;
+            max-width: calc(100% - 200px);
+        }
+    }
+
+    .tp_btn {
+
+        @media #{$medium} {
+            float: left;
+            margin-left: $spacing-small-half;
+        }
+    }
+
+    &-smallInfoText {
+        display: block;
+        margin: $spacing-small 0;
+    }
+}

@@ -1,0 +1,100 @@
+.tp_sideMenu {
+    background: $color-congress-blue;
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    padding: $spacing-big 0;
+    text-transform: uppercase;
+
+    &-listItem {
+        border-bottom: 1px solid $color-tory-blue;
+        position: relative;
+
+        &:first-child {
+            border-top: 1px solid $color-tory-blue;
+        }
+
+        &.has-subMenu {
+            .subMenu-icon {
+                @include font-size(.5, large);
+                padding-right: 0;
+                @include position(absolute, $spacing-big, $spacing-big);
+            }
+
+            &.subMenu-open {
+                background: $color-tory-blue;
+
+                .subMenu-icon {
+                    @include rotate(180deg);
+                    top: 20px;
+                }
+            }
+        }
+
+        &.tp_sideMenu_externalLink {
+            .tp_sideMenu_externalLink-icon {
+                @include font-size(.5, large);
+                padding-right: 0;
+                @include position(absolute, $spacing-big, $spacing-big);
+            }
+        }
+    }
+
+    &-listItemLink {
+        color: $color-white;
+        display: inline-block;
+        padding: $spacing-small $spacing-big;
+        width: 100%;
+
+        i {
+            @include font-size(1, large);
+            margin-right: -4px;
+            padding-right: 16px;
+            vertical-align: middle;
+        }
+
+        &:focus,
+        &:hover {
+            color: $color-white;
+        }
+
+        &:hover,
+        &.active {
+            background: $color-tory-blue;
+        }
+    }
+
+    &-subMenuList {
+        display: none;
+
+        &.open {
+            display: block;
+        }
+
+        .tp_sideMenu-subMenuListItem {
+            background: $color-tory-blue;
+            position: relative;
+
+            &.tp_sideMenu_externalLink {
+                .tp_sideMenu_externalLink-icon {
+                    color: $color-white;
+                    @include font-size(.5, large);
+                    padding-right: 0;
+                    @include position(absolute, $spacing-small+2, $spacing-small+4);
+                }
+            }
+        }
+
+        .tp_sideMenu-subMenuListItemLink {
+            color: $color-white;
+            display: block;
+            padding: $spacing-small $spacing-big $spacing-small 56px;
+            transition: none;
+            width: 100%;
+
+            &:hover,
+            &.active {
+                background: $color-congress-blue;
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.tp_imageText {
+
+    &-imgCol {
+
+        img {
+            border-radius: $border-radius;
+            display: block;
+            margin-bottom: $spacing-small;
+
+            @media #{$medium} {
+                margin-bottom: $spacing-big;
+            }
+        }
+    }
+
+    &-title {
+        margin-bottom: $spacing-small;
+        
+        @media #{$medium} {
+            margin-bottom: $spacing-big;
+        }
+    }
+
+    .tp_imageText-contentCol {
+
+        p {
+            margin-bottom: $spacing-small;
+
+            @media #{$medium} {
+                margin-bottom: $spacing-big;
+            }
+        }
+    }
+
+}

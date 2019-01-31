@@ -1,0 +1,51 @@
+/* TetraPak Main SCSS */
+
+// Bootstrap is included in the './css/vendor' folder and is output as vendor.min.css file in public './css/vendor.min.css' file
+
+@import 'scss/base/reset';
+
+@import 'scss/abstracts/mixins';
+@import 'scss/abstracts/fonts';
+@import 'scss/abstracts/variables';
+@import 'scss/components/icons-tetrapak';
+
+@import 'scss/base/body';
+@import 'scss/base/color';
+@import 'scss/base/grid';
+@import 'scss/base/forms';
+@import 'scss/base/headings';
+
+@import 'scss/components/buttons';
+@import 'scss/components/header';
+@import 'scss/components/navigation';
+@import 'scss/components/container';
+@import 'scss/components/footer';
+
+// Molecule
+@import '../_patterns/01-molecules/tp_article/tp_article';
+@import '../_patterns/01-molecules/tp_iconCard/tp_iconCard';
+@import '../_patterns/01-molecules/tp_supportTeamCard/tp_supportTeamCard';
+@import '../_patterns/01-molecules/tp_newsletterSignUp/tp_newsletterSignUp';
+@import '../_patterns/01-molecules/tp_textCta/tp_textCta';
+@import '../_patterns/01-molecules/tp_video/tp_video';
+@import '../_patterns/01-molecules/tp_imageText/tp_imageText';
+
+// Organisms Customer Hub
+@import '../_patterns/02-organisms_ch/tp_sideMenu/tp_sideMenu';
+@import '../_patterns/02-organisms_ch/tp_performance/tp_performance';
+@import '../_patterns/02-organisms_ch/tp_ch-articles/tp_ch-articles';
+@import '../_patterns/02-organisms_ch/tp_projects/tp_projects';
+@import '../_patterns/02-organisms_ch/tp_supportTeam/tp_supportTeam';
+@import '../_patterns/02-organisms_ch/tp_notifications/tp_notifications';
+@import '../_patterns/02-organisms_ch/tp_iconCards/tp_iconCards';
+@import '../_patterns/02-organisms_ch/tp_contactSupportTeam/tp_contactSupportTeam';
+
+// Organisms Public Web
+@import '../_patterns/03-organisms_pw/tp_pw-hero/tp_pw-hero';
+@import '../_patterns/03-organisms_pw/tp_pw-breadcrumb/tp_pw-breadcrumb';
+@import '../_patterns/03-organisms_pw/tp_pw-articles/tp_pw-articles';
+@import '../_patterns/03-organisms_pw/tp_pw-imageText/tp_pw-imageText';
+@import '../_patterns/03-organisms_pw/tp_pw-tabListContent/tp_pw-tabListContent';
+@import '../_patterns/03-organisms_pw/tp_pw-articleBlock/tp_pw-articleBlock';
+
+@import 'scss/layout/layout';

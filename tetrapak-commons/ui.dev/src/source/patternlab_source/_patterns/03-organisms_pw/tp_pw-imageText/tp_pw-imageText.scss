@@ -1,0 +1,61 @@
+.tp_pw-imageText {
+    height: auto;
+    margin-bottom: $spacing-big;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @media #{$medium} {
+        margin-bottom: $spacing-big*2;
+    }
+
+    .tp_pw-imageTextimg {
+        border-radius: $border-radius;
+        display: block;
+        height: auto;
+        max-height: 500px;
+        width: 100%;
+    }
+
+    .tp_pw-imageTextwrapper {
+        background: $color-white;
+        padding: $spacing-big $spacing-small;
+        position: relative;
+
+        @media #{$medium} {
+            background: transparent;
+            color: $color-white;
+            height: auto;
+            left: 50%;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            @include vendor-prefix(transform, translate(-50%,-50%));
+            width: 100%;
+            z-index: 1000;
+        }
+
+        &.popOut {
+            @media #{$medium} {
+                top: 65%;
+                @include vendor-prefix(transform, translate(-50%,-65%));
+            }
+        }
+    }
+
+    .tp_pw-containerTitle {
+        margin-bottom: $spacing-small;
+
+        @media #{$large} {
+            margin-bottom: $spacing-big;
+        }
+    }
+
+    p {
+        margin-bottom: $spacing-small;
+
+        @media #{$large} {
+            margin-bottom: $spacing-big;
+        }
+    }
+}

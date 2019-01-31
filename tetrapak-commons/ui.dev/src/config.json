@@ -8,6 +8,7 @@
   "aem": {
     "src": {
       "atomPath": "<%= config.source %>/templates/atoms",
+      "moleculePath": "<%= config.source %>/templates/molecules",
       "componentPath": "<%= config.source %>/templates/components",
       "content": "<%= config.app %>/jcr_root/content/tp-common-ux/**/.content.xml",
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
@@ -20,6 +21,7 @@
     },
     "target": {
       "atomPath": "<%= config.app %>/jcr_root/apps/tp-common/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/tp-common/molecules",
       "componentPath": "<%= config.app %>/jcr_root/apps/tp-common/components"
     },
     "uxContentDescriptor": "tp-common-ux",

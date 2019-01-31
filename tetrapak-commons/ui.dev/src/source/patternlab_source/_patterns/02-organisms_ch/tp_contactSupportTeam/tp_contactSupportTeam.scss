@@ -1,0 +1,20 @@
+.tp_contactSupportTeam {
+
+    &-form {
+
+        margin-bottom: $spacing-small;
+        @media #{$medium} {
+        }
+
+        textarea {
+            height: 200px;
+            margin-bottom: $spacing-small;
+            resize: none;
+        }
+    }
+
+    &-cardTitle {
+        margin-bottom: $spacing-small;
+    }
+
+}

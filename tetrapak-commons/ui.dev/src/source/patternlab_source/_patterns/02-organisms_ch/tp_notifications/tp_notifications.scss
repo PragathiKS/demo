@@ -1,0 +1,50 @@
+.tp_notifications {
+    padding: 0;
+
+    .tp_container-title {
+        margin: $spacing-small $spacing-small $spacing-big;
+
+        @media #{$medium} {
+            margin: $spacing-big;
+        }
+    }
+
+    &-listItem {
+        border-bottom: 1px solid $color-mercury;
+        padding: $spacing-small ($spacing-small*2.5);
+        position: relative;
+
+        &:first-child {
+            border-top: 1px solid $color-mercury;
+        }
+
+        &.status-ok {
+
+            .tp_notifications-title:before {
+                @include notification-blob($color-success);
+            }
+        }
+
+        &.status-danger {
+
+            .tp_notifications-title:before {
+                @include notification-blob($color-alert);
+            }
+        }
+
+        .tp_notifications-close {
+            cursor: pointer;
+            @include font-size(0.75, large);
+            @include position(absolute, 20px, $spacing-big);
+        }
+    }
+
+    &-title {
+        font-family: $font-bold;
+        position: relative;
+    }
+
+    &-description {
+        color: $color-boulder;
+    }
+}

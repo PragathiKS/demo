@@ -1,0 +1,18 @@
+{{# supportTeam_card_molecule }}
+<div class="tp_supportTeamCard">
+    {{> atoms-avatar }}
+    <div class="tp_supportTeamCard-name">{{ name }}</div>
+    <p class="text-small tp_supportTeamCard-jobTitle">{{ title }}</p>
+    <p class="text-small tp_supportTeamCard-info">{{ info }}</p>
+    <address class="text-small">
+        {{# email }}
+            {{> atoms-icon }} <a href="mailto:{{ supportTeam_email }}">{{ supportTeam_email }}</a>
+            <br/>
+        {{/ email }}
+
+        {{# phone }}
+            {{> atoms-icon }} {{ supportTeam_phone }}
+        {{/ phone }}
+    </address>
+</div>
+{{/ supportTeam_card_molecule }}

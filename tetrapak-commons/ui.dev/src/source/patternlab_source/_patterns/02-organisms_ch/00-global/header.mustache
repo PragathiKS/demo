@@ -1,0 +1,38 @@
+<header class="tp_header tp_header-ch {{positionClass}}">
+    <div class="row">
+
+        <div class="col-8 col-lg-2 d-flex align-items-center">
+            {{# mobileMenu }}
+            <span class="tp_header-mobileMenuIcon d-inline d-lg-none">
+                <a href="#">{{> atoms-icon }}</a>
+            </span>
+            {{/ mobileMenu }}
+
+            {{> atoms-logo }}
+        </div>
+
+        <div class="col-lg-7 d-none d-lg-flex align-items-center">
+            {{> molecules-tp_navigation }}
+        </div>
+
+        <div class="col-4 col-lg-3 d-flex align-items-center text-right">
+            {{# login }}
+            <div class="tp_header-login">
+                <a href="{{url}}">
+                    {{> atoms-icon }} <span class="d-none d-md-inline">{{loginName}}</span>
+                </a>
+            </div>
+            {{/ login }}
+
+            <div class="tp_header-divider"></div>
+
+            {{# notification }}
+            <div class="tp_header-notification">
+                <a href="#">{{> atoms-icon }}</a>
+                <div class="tp_header-notificationNumber text-smallest">15</div>
+            </div>
+            {{/ notification }}
+        </div>
+
+    </div>
+</header><!-- end c-header -->

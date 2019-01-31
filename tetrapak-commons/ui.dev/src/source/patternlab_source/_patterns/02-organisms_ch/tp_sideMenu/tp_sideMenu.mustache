@@ -1,0 +1,34 @@
+<nav id="tp_sideMenu" class="tp_sideMenu text-small">
+    <ul class="tp_sideMenu-list">
+        {{# tp_sideMenu_listItem }}
+        <li class="tp_sideMenu-listItem {{has-subList}} {{has-externalLink}}">
+            <a href="{{ url }}" class="tp_sideMenu-listItemLink{{# is_active }} active{{/ is_active }}">
+                <i class="{{ icon }}"></i>
+                {{ label }}
+
+                {{# tp_sideMenu_openSubListIcon }}
+                <i class="{{ open-sublist-icon }} subMenu-icon"></i>
+                {{/ tp_sideMenu_openSubListIcon }}
+
+                {{# tp_sideMenu_externalLink }}
+                <i class="{{ externalLink-icon }} tp_sideMenu_externalLink-icon"></i>
+                {{/ tp_sideMenu_externalLink }}
+            </a>
+
+            {{# tp_sideMenu_subList }}
+            <ul class="tp_sideMenu-subMenuList">
+                {{# tp_sideMenu_subListItem }}
+                <li class="tp_sideMenu-subMenuListItem {{has-externalLink}}">
+                    <a href="{{ url }}" class="tp_sideMenu-subMenuListItemLink{{# is_active }} active{{/ is_active }}">{{ label }}</a>
+
+                    {{# tp_sideMenu_externalLink }}
+                    <i class="{{ externalLink-icon }} tp_sideMenu_externalLink-icon"></i>
+                    {{/ tp_sideMenu_externalLink }}
+                </li>
+                {{/ tp_sideMenu_subListItem }}
+            </ul>
+            {{/ tp_sideMenu_subList }}
+        </li>
+        {{/ tp_sideMenu_listItem }}
+    </ul><!--end tp_sideMenu-list-->
+</nav><!--end tp_sideMenu-->

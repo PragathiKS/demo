@@ -1,0 +1,267 @@
+/*------------------------------------*\
+    #FORMS Elements
+\*------------------------------------*/
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    color: $color-text;
+    font-family: $font;
+    @include font-size(.875, large);
+    display: block;
+    padding-bottom: 0.3rem;
+}
+
+button,
+input,
+select,
+textarea {
+    color: $color-text;
+    font-family: $font;
+    @include font-size(.875, large);
+    margin: 0;
+    outline: 0;
+}
+
+input {
+    background: $color-wild-sand;
+    border: 1px solid $color-mercury;
+    border-radius: $border-radius;
+    height: 40px;
+    padding: 0 1rem;
+    width: 100%;
+
+    &::placeholder {
+        opacity: 1; /* Firefox */
+    }
+
+    &:focus {
+        border: 1px solid $color-boulder;
+    }
+
+    &.tp-readonly {
+        color: rgba(74,74,74,.5);
+
+        &::placeholder {
+            color: rgba(74,74,74,.5);
+            opacity: 1; /* Firefox */
+        }
+
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: rgba(74,74,74,.5);
+        }
+
+        &::-ms-input-placeholder { /* Microsoft Edge */
+            color: rgba(74,74,74,.5);
+        }
+
+        &:hover,
+        &:focus {
+            border: 1px solid $color-mercury;
+        }
+    }
+}
+
+textarea {
+    background: $color-wild-sand;
+    border: 1px solid $color-mercury;
+    border-radius: $border-radius;
+    padding: .75rem 1rem;
+    width: 100%;
+
+    &::placeholder {
+        opacity: 1; /* Firefox */
+    }
+
+    &:focus {
+        border: 1px solid $color-boulder;
+    }
+}
+
+input[type=text],
+input[type=search],
+input[type=url],
+input[type=number],
+textarea,
+select {
+	@include vendor-prefix(appearance, none);
+}
+
+/* SELECT OPTIONS */
+select {
+    background: url(../icons/Chevron_Down.svg) no-repeat right 1rem center $color-wild-sand;
+    background-size: .875rem;
+    border: 1px solid $color-mercury;
+    border-radius: $border-radius;
+    height: 40px;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Customize radio button */
+.tp-radioBtn {
+    @include vendor-prefix(user-select, none);
+    color: $color-text;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font;
+    @include font-size(.875, large);
+    line-height: 1.75;
+    margin: 0 20px 10px 0;
+    padding-left: 30px;
+    position: relative;
+    width: auto;
+
+    /* Hide the browser's default radio button */
+    input {
+        opacity: 0;
+        position: absolute;
+
+        /* Show the indicator (dot/circle) when checked */
+        &:checked ~ .tp-radioBtnCustom:after {
+            display: block;
+        }
+    }
+
+    /* Create a custom radio button */
+    .tp-radioBtnCustom {
+        background: $color-wild-sand;
+        border: 1px solid $color-mercury;
+        border-radius: 50%;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 20px;
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        &:after {
+            background: $color-tundora;
+            border-radius: 50%;
+            content: "";
+            display: none;
+            height: 8px;
+            left: 5px;
+            position: absolute;
+            top: 5px;
+            width: 8px;
+        }
+    }
+}
+
+/* Customize checkbox */
+.tp-checkBox {
+    @include vendor-prefix(user-select, none);
+    color: $color-text;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font;
+    @include font-size(.875, large);
+    line-height: 1.75;
+    margin: 0 20px 10px 0;
+    padding-left: 30px;
+    position: relative;
+    width: auto;
+
+    /* Hide the browser's default radio button */
+    input {
+        opacity: 0;
+        position: absolute;
+
+        /* Show the indicator (dot/circle) when checked */
+        &:checked ~ .tp-checkBoxCustom:after {
+            display: block;
+        }
+    }
+
+    /* Create a custom radio button */
+    .tp-checkBoxCustom {
+        background: $color-wild-sand;
+        border: 1px solid $color-mercury;
+        border-radius: $border-radius;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 20px;
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        &:after {
+            background: url(../icons/Tick.svg) no-repeat center;
+            background-size: 100%;
+            content: "";
+            display: none;
+            height: 10px;
+            left: 3px;
+            position: absolute;
+            top: 4px;
+            width: 11px;
+        }
+    }
+}
+
+/* search box */
+.tp-searchBox {
+    display: block;
+    position: relative;
+    width: auto;
+
+    input {
+        display: inline;
+        padding-right: 2rem;
+        z-index: 1;
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        color: $color-text;
+        cursor: pointer;
+        display: inline;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        z-index: 10;
+
+        &:hover, &:focus {
+            background: transparent;
+            color: $color-text;
+        }
+    }
+
+}
+
+/* Search cancel button and search decoration webkit appearance none */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+.tp-error {
+    border: 1px solid $color-alert;
+
+    &:focus {
+        border: 1px solid $color-alert;
+    }
+}
+
+.tp-errorText {
+    color: $color-alert;
+}
+
+.tp-valid {
+	color: $color-success;
+}
+
+.tp-warning {
+    color: $color-warning;
+}

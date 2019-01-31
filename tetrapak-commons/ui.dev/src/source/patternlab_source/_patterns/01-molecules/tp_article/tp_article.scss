@@ -1,0 +1,39 @@
+.tp_article {
+    border-radius: $border-radius;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @media #{$medium} {
+        height: 100%;
+    }
+
+    &-content {
+        overflow: hidden;
+        padding: $spacing-small;
+        position: relative;
+
+        @media #{$medium} {
+            padding: $spacing-small $spacing-big $spacing-big;
+        }
+    }
+
+    &-image {
+        display: block;
+        height: auto;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    &-title {
+        margin-bottom: $spacing-small;
+    }
+
+    &-list {
+        @extend .text-small;
+        color: $color-boulder;
+        list-style: disc;
+        margin-bottom: $spacing-small;
+        padding-left: $spacing-small;
+    }
+}

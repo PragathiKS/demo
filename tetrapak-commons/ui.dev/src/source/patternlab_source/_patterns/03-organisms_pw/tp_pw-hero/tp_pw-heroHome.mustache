@@ -1,0 +1,22 @@
+<div class="tp_pw-hero tp_pw-heroSkew">
+    {{> atoms-hero }}
+    <!-- <div class="tp_pw-heroImgOverlay"></div> -->
+    <div class="container">
+        <div class="row tp_pw-heroTextWrapper">
+            <div class="col-md-7 col-lg-5">
+                {{# hero_tagline }}
+                <div class="text-small">{{{hero_tagline}}}</div>
+                {{/ hero_tagline }}
+                {{# hero_title }}
+                <h1>{{hero_title}}</h1>
+                {{/ hero_title }}
+                {{# hero_subTitle }}
+                <h4>{{hero_subTitle}}</h4>
+                {{/ hero_subTitle }}
+                {{# hero_btn }}
+                {{> atoms-textLink-secondaryBtn }}
+                {{/ hero_btn }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,374 @@
+{
+    "header" : {
+        "navigation" : [
+            {
+                "label": "Solutions",
+                "url": "#"
+            },
+            {
+                "label": "Innovation",
+                "url": "#"
+            },
+            {
+                "label": "Sustainability",
+                "url": "#"
+            },
+            {
+                "label": "Careers",
+                "url": "#"
+            },
+            {
+                "label": "About Us",
+                "url": "#"
+            }
+        ],
+
+        "mobileMenu" : {
+            "iconName" : "icon-Burger"
+        },
+
+        "mylogin" : {
+            "iconName" : "icon-Avatar",
+            "myloginName" : "My Tetra Pak",
+            "url" : "#"
+        },
+
+        "search" : {
+            "iconName" : "icon-Search"
+        },
+
+        "language" : {
+            "iconName" : "icon-Globe",
+            "languageName" : "EN"
+        }
+    },
+
+    "tp_pw_hero": {
+        "imgHero" : {
+            "srcLarge": "/images/hero/pw_hero_home_large.jpg",
+            "srcSmall": "/images/hero/pw_hero_home_small.jpg",
+            "alt": "Ready to help you in every step",
+            "class": "tp_pw-heroImg"
+        },
+        "hero_tagline" : "",
+        "hero_title" : "Ready to help you in every step",
+        "hero_subTitle" : "",
+        "hero_btn" : ""
+    },
+
+    "tp_pw_articleBlock" : {
+        "container_tagline" : "Complete solutions",
+        "container_title" : "Ensure efficiency and quality",
+        "article_text" : "From idea to launch – and beyond. Let us help you integrate and manage the whole value chain of processing and packaging through our complete solutions for food and beverages, expertise and innovations. We are ready to increase efficiency, optimize performance and secure food quality – in a sustainable way. With us as your trusted partner, business will become easier.",
+        "btnText" : "Discover our range of solutions",
+        "btnTextIcon" : "icon-Circle_Arrow_Right",
+        "btnTextLink" : "#",
+        "img" : {
+            "src": "/images/img_solutions_triangle.png",
+            "alt": "Complete solutions - Ensure efficiency and quality",
+            "class": "tp_container-image"
+        }
+    },
+
+    "tp_pw_imageTextRight" : {
+        "imgText" : {
+            "srcLarge": "/images/img_industry_large.png",
+            "srcMediumBig": "/images/img_industry_mediumBig.png",
+            "srcMedium": "/images/img_industry_medium.png",
+            "srcSmall": "/images/img_industry_small.png",
+            "alt": "Smarter world, smarter business",
+            "class": "tp_pw-imageTextimg"
+        },
+        "container_title" : "Smarter world, smarter business",
+        "container_tagline": "Join our webinar",
+        "article_text": "Industry 4.0 is everything from robots and artificial intelligence to smart algorithms and self-driving cars. In this webinar we give you as a food manufacturer insights on Industry 4.0 and the opportunities that it brings.",
+        "btnText" : "Learn about Industry 4.0",
+        "btnTextIcon" : "icon-Chevron_Right",
+        "btnTextLink" : "#"
+    },
+
+    "tp_pw_tabContent" : {
+        "tabListContentVersion": "main",
+        "backgroundModifierClass": "",
+        "container_tagline" : "",
+        "container_title" : "Solutions for all needs",
+        "tp_pw_tabMenuListItem" : [
+            {
+                "tabID" : "1",
+                "tabMenuModifierClass": "active",
+                "tabMenuLinkText" : "World's first ambient drinking yoghurt with large fruit pices",
+                "iconName" : "icon-Chevron_Right",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "2",
+                "tabMenuModifierClass": "no-border",
+                "tabMenuLinkText" : "Tangible result for your business",
+                "iconName" : "icon-Chevron_Right",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "3",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Total Productive Maintenance implementation for dairy producer",
+                "iconName" : "icon-Chevron_Right",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "4",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Supply chain auditing that secures food quality",
+                "iconName" : "icon-Chevron_Right",
+                "iconModifierClass" : ""
+            }
+        ],
+        "tp_pw_tabContent_1" : {
+            "imageText_molecule" : {
+                "img" : {
+                    "src" : "../../images/BiggerMoments1024.png",
+                    "alt" : "Tab Content Image",
+                    "class" : ""
+                },
+                "content" : {
+                    "title" : "Bigger moments of nature",
+                    "text" : "Ambient drinking yoghurt now got that extra - laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi.",
+                    "btnText" : "Learn about the insights",
+                    "btnTextIcon" : "icon-Chevron_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_2" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "The magic inside Tetra Pak",
+                    "text" : "In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor."
+                }
+            }
+        },
+        "tp_pw_tabContent_3" : {
+            "imageText_molecule" : {
+                "img" : {
+                    "src" : "../../images/YellowMan1024.png",
+                    "alt" : "Tab Content Image",
+                    "class" : ""
+                },
+                "content" : {
+                    "title" : "Total Productive Maintenance implementation",
+                    "text" : "Placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue.",
+                    "btnText" : "Lorem Ipsum",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_4" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "High Shear Mixers",
+                    "text" : "Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue."
+                }
+            }
+        },
+
+        "btnText" : "Explore other stories",
+        "btnTextIcon" : "icon-Circle_Arrow_Right",
+        "btnTextLink" : "#"
+    },
+
+    "tp_pw_tabContentReverse" : {
+        "tabListContentVersion": "second",
+        "backgroundModifierClass": "tp_color-white",
+        "container_tagline" : "",
+        "container_title" : "Featured news",
+        "tp_pw_tabMenuListItem" : [
+            {
+                "tabID" : "1",
+                "tabMenuModifierClass": "no-border",
+                "tabMenuLinkText" : "Tetra Pak® Plant Secure boosts customer profitability​",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "2",
+                "tabMenuModifierClass": "active",
+                "tabMenuLinkText" : "Tetra Pak 2018 Sustainability Report is here​",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "3",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Tetra Pak achieves 50% renewable electricity consumption",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "4",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Tetra Pak revitalises organic milk for Mengniu",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            }
+        ],
+        "tp_pw_tabContent_1" : {
+            "imageText_molecule" : {
+                "img" : {
+                    "src" : "../../images/img_SustainabilityReport.jpg",
+                    "alt" : "Sustainability Report 2018",
+                    "class" : ""
+                },
+                "content" : {
+                    "title" : "Sustainability Report 2018",
+                    "text" : "Did you know that 72 million children in 58 countries received milk or other nutritious beverages in Tetra Pak packages during 2017? In our sustainability report you will learn more about the progress within Protecting Food, People and Futures – the pillars of our sustainability work.",
+                    "btnText" : "Get the sustainability report 2018",
+                    "btnTextIcon" : "icon-Chevron_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_2" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "High Shear Mixers",
+                    "text" : "Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue."
+                }
+            }
+        },
+        "tp_pw_tabContent_3" : {
+            "imageText_molecule" : {
+                "img" : {
+                    "src" : "../../images/BiggerMoments1024.png",
+                    "alt" : "Tab Content Image",
+                    "class" : ""
+                },
+                "content" : {
+                    "title" : "Bigger moments of nature",
+                    "text" : "Ambient drinking yoghurt now got that extra - laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi.",
+                    "btnText" : "Learn about the insights",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_4" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "The magic inside Tetra Pak",
+                    "text" : "In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor."
+                }
+            }
+        },
+
+        "btnText" : "Explore more news",
+        "btnTextIcon" : "icon-Circle_Arrow_Right",
+        "btnTextLink" : "#"
+    },
+
+    "tp_pw_imageText" : {
+        "imgText" : {
+            "srcLarge": "/images/img_millennials_large.jpg",
+            "srcMediumBig": "/images/img_millennials_mediumBig.jpg",
+            "srcMedium": "/images/img_millennials_medium.jpg",
+            "srcSmall": "/images/img_millennials_small.jpg",
+            "alt": "How well do you know the millennials?",
+            "class": "tp_pw-imageTextimg"
+        },
+        "container_title" : "How well do you know the millennials?",
+        "container_tagline": "Recommended whitepaper",
+        "article_text": "Young, aspirational and demanding. They spend approximately $600 billion annually. But who are the millennials? How can you optimise your products and packages to meet their needs?",
+        "btnText" : "Get to know the millennials",
+        "btnTextIcon" : "icon-Chevron_Right",
+        "btnTextLink" : "#"
+    },
+
+    "tp_pw_articles" : {
+        "containerBgClass": "",
+        "article_dividerClass": "tp_pw-articlesNoDivider",
+        "container_tagline" : "Explore",
+        "container_title" : "From idea to launch and improvements",
+        "tp_pw_article_col" : [
+            {
+                "img" : {
+                    "src": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/safe-healthy_workplaces_our_aproach.jpg",
+                    "alt": "Tetra Pak",
+                    "class": "tp_article-image"
+                },
+                "article_title": "Processing",
+                "article_text": "Do you want big particles, high viscosity or a perfectly smooth mouthfeel? Batch or continuous? Either way you get best practice in terms of food safety, efficiency, product quality and environmental performance. We give you new ways to move forward with your business. Together we turn challenges into success.",
+                "btnText" : "Discover our processing solutions",
+                "btnTextIcon" : "icon-Circle_Arrow_Right",
+                "btnTextLink" : "#"
+            },
+            {
+                "img" : {
+                    "src": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/safe-healthy_workplaces_safety_culture.jpg",
+                    "alt": "Tetra Pak",
+                    "class": "tp_article-image"
+                },
+                "article_title": "Packaging",
+                "article_text": "Protect your food and beverages in the very best way. We offer you the most attractive and complete carton packaging range for consuming fresh and safe products. All our packages provide consumer convenience, easy opening, optimal shelf life – and the ability to stand out and give your brand maximum exposure.",
+                "btnText" : "Packaging that stands out",
+                "btnTextIcon" : "icon-Circle_Arrow_Right",
+                "btnTextLink" : "#"
+            },
+            {
+                "img" : {
+                    "src": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/safe-healthy_workplaces_health_wellbeing.jpg",
+                    "alt": "Tetra Pak",
+                    "class": "tp_article-image"
+                },
+                "article_title": "Services",
+                "article_text": "Our services offer is not just about fixing something that's broken. It's about preventing breakdown and protecting investments. We cover every aspect of your food production. Our tailored service solutions improve performance, optimise costs and ensure food safety throughout the lifecycle of your operation.",
+                "btnText" : "How our services improve your business",
+                "btnTextIcon" : "icon-Circle_Arrow_Right",
+                "btnTextLink" : "#"
+            }
+        ]
+    },
+
+    "footer" : {
+
+        "navigation" : [
+            {
+                "url" : "#",
+                "label" : "Legal Information"
+            },
+            {
+                "url" : "#",
+                "label" : "Contact us"
+            },
+            {
+                "url" : "#",
+                "label" : "Tetra Laval Group"
+            },
+            {
+                "url" : "#",
+                "label" : "沪ICP备17056308号-1"
+            }
+        ],
+
+        "social_navigation": [
+            {
+                "url" : "#",
+                "iconName" : "icon-Linkedin"
+            },
+            {
+                "url" : "#",
+                "iconName" : "icon-Facebook"
+            },
+            {
+                "url" : "#",
+                "iconName" : "icon-Twitter"
+            },
+            {
+                "url" : "#",
+                "iconName" : "icon-Youtube"
+            }
+        ],
+
+        "btnText" : "To top",
+        "btnTextIcon" : "icon-Circle_Arrow_Up",
+        "btnTextLink" : "#"
+    }
+}

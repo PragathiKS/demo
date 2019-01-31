@@ -1,0 +1,67 @@
+.tp_projects {
+
+    > div {
+
+        > div {
+            margin-bottom: $spacing-small;
+
+            @media #{$medium} {
+                margin-bottom: $spacing-big;
+            }
+
+            @media #{$small} {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            &.noBottomSpace {
+                @media #{$medium} {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .tp_projects-wrapper {
+        background: $color-wild-sand;
+        border-radius: $border-radius;
+        overflow: hidden;
+        padding: $spacing-small;
+        position: relative;
+        width: 100%;
+
+        @media #{$medium} {
+            height: 100%;
+            padding: $spacing-big;
+        }
+
+        .tp_icon {
+            color: $color-tory-blue;
+            @include font-size(2.5, large);
+            position: absolute;
+        }
+
+        h4 {
+            margin-left: $spacing-small*3.5;
+            min-height: $spacing-small*3;
+            vertical-align: middle;
+        }
+
+        .tp_textBtn {
+            margin-top: $spacing-small;
+        }
+
+        &.tp_projects-addProject {
+            background: $color-mercury;
+            border: 1px dashed $color-congress-blue;
+            text-align: center;
+
+            .tp_icon {
+                color: $color-tory-blue;
+                @include font-size(1.5, large);
+                position: relative;
+            }
+        }
+    }
+}

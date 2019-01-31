@@ -1,0 +1,9 @@
+<picture>
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+    <source srcset="{{ imgText.srcLarge }}" media="(min-width: 1025px)">
+    <source srcset="{{ imgText.srcMediumBig }}" media="(min-width: 768px)">
+    <source srcset="{{ imgText.srcMedium }}" media="(min-width: 480px)">
+
+    <!--[if IE 9]></video><![endif]-->
+    <img srcset="{{imgText.srcSmall}}" alt="{{imgText.alt}}" title="{{imgText.alt}}" class="{{imgText.class}}" />
+</picture>

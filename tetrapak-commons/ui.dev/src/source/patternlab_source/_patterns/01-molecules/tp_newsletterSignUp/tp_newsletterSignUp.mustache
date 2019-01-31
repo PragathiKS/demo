@@ -1,0 +1,10 @@
+{{# inlineForm_molecule }}
+<form class="tp_newsletterSignUp" id="tp_newsletterSignUp">
+    <label for="{{ id }}" class="tp_newsletterSignUp-label">{{ label }}</label>
+    <div class="tp_newsletterSignUp-inputWrapper">
+        <input id="{{ id }}" type="{{ type }}" placeholder="{{ placeholder }}" value="{{ value }}" class="tp_newsletterSignUp-input"/>
+        <span class="tp_newsletterSignUp-smallInfoText text-smallest">{{ smallInfoText }}</span>
+    </div>
+    {{> atoms-button-secondary-formSubmit }}
+</form>
+{{/ inlineForm_molecule }}

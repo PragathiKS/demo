@@ -1,0 +1,36 @@
+<div class="tp_layout">
+    {{# header }}
+    {{> organisms_ch-header }}
+    {{/ header }}
+
+    <div class="tp_layout-ch">
+
+        <aside>
+            {{> organisms_ch-tp_sideMenu }}
+        </aside>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {{> atoms-tp_pageTitle }}
+
+                        {{# tp_iconCards }}
+                            {{> organisms_ch-tp_iconCards }}
+                        {{/ tp_iconCards }}
+
+                        {{# tp_contactSupportTeam }}
+                            {{> organisms_ch-tp_contactSupportTeam }}
+                        {{/ tp_contactSupportTeam }}
+
+                        {{# tp_supportTeam }}
+                            {{> organisms_ch-tp_supportTeam }}
+                        {{/ tp_supportTeam }}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</div>

@@ -1,0 +1,175 @@
+/*------------------------------------*\
+    #Fonts
+\*------------------------------------*/
+
+/**
+ * All fonts format added
+ */
+
+@font-face {
+    font-family: 'muliblack';
+    src: url('../../../fonts/muli-black-webfont.eot');
+    src: url('../../../fonts/muli-black-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-black-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-black-webfont.woff') format('woff'),
+        url('../../../fonts/muli-black-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-black-webfont.svg#muliblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliblack_italic';
+    src: url('../../../fonts/muli-blackitalic-webfont.eot');
+    src: url('../../../fonts/muli-blackitalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-blackitalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-blackitalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-blackitalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-blackitalic-webfont.svg#muliblack_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulibold';
+    src: url('../../../fonts/muli-bold-webfont.eot');
+    src: url('../../../fonts/muli-bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-bold-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-bold-webfont.woff') format('woff'),
+        url('../../../fonts/muli-bold-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-bold-webfont.svg#mulibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulibold_italic';
+    src: url('../../../fonts/muli-bolditalic-webfont.eot');
+    src: url('../../../fonts/muli-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-bolditalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-bolditalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-bolditalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-bolditalic-webfont.svg#mulibold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliextrabold';
+    src: url('../../../fonts/muli-extrabold-webfont.eot');
+    src: url('../../../fonts/muli-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-extrabold-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-extrabold-webfont.woff') format('woff'),
+        url('../../../fonts/muli-extrabold-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-extrabold-webfont.svg#muliextrabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliextrabold_italic';
+    src: url('../../../fonts/muli-extrabolditalic-webfont.eot');
+    src: url('../../../fonts/muli-extrabolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-extrabolditalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-extrabolditalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-extrabolditalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-extrabolditalic-webfont.svg#muliextrabold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliextralight';
+    src: url('../../../fonts/muli-extralight-webfont.eot');
+    src: url('../../../fonts/muli-extralight-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-extralight-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-extralight-webfont.woff') format('woff'),
+        url('../../../fonts/muli-extralight-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-extralight-webfont.svg#muliextralight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliextralight_italic';
+    src: url('../../../fonts/muli-extralightitalic-webfont.eot');
+    src: url('../../../fonts/muli-extralightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-extralightitalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-extralightitalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-extralightitalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-extralightitalic-webfont.svg#muliextralight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliitalic';
+    src: url('../../../fonts/muli-italic-webfont.eot');
+    src: url('../../../fonts/muli-italic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-italic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-italic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-italic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-italic-webfont.svg#muliitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulilight';
+    src: url('../../../fonts/muli-light-webfont.eot');
+    src: url('../../../fonts/muli-light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-light-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-light-webfont.woff') format('woff'),
+        url('../../../fonts/muli-light-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-light-webfont.svg#mulilight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulilight_italic';
+    src: url('../../../fonts/muli-lightitalic-webfont.eot');
+    src: url('../../../fonts/muli-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-lightitalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-lightitalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-lightitalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-lightitalic-webfont.svg#mulilight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'muliregular';
+    src: url('../../../fonts/muli-regular-webfont.eot');
+    src: url('../../../fonts/muli-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-regular-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-regular-webfont.woff') format('woff'),
+        url('../../../fonts/muli-regular-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-regular-webfont.svg#muliregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulisemibold';
+    src: url('../../../fonts/muli-semibold-webfont.eot');
+    src: url('../../../fonts/muli-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-semibold-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-semibold-webfont.woff') format('woff'),
+        url('../../../fonts/muli-semibold-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-semibold-webfont.svg#mulisemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mulisemibold_italic';
+    src: url('../../../fonts/muli-semibolditalic-webfont.eot');
+    src: url('../../../fonts/muli-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/muli-semibolditalic-webfont.woff2') format('woff2'),
+        url('../../../fonts/muli-semibolditalic-webfont.woff') format('woff'),
+        url('../../../fonts/muli-semibolditalic-webfont.ttf') format('truetype'),
+        url('../../../fonts/muli-semibolditalic-webfont.svg#mulisemibold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

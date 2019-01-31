@@ -1,0 +1,128 @@
+{
+    "header" : {
+        "navigation" : [
+            {
+            },
+            {
+            },
+            {
+            },
+            {
+            }
+        ],
+
+        "mobileMenu" : {
+        },
+
+        "login" : {
+        },
+
+        "notification" : {
+        }
+    },
+
+    "tp_pw_hero" : {},
+
+    "tp_pw_breadcrumb" : {},
+
+    "tp_pw_articleBlock" : {},
+
+    "tp_pw_articlesNoImg" : {
+        "containerBgClass": "",
+        "article_dividerClass": "tp_pw-articlesDivider",
+        "tp_pw_article_col" : [
+            {
+                "img": ""
+
+            },
+            {
+                "img": ""
+            },
+            {
+                "img": ""
+            }
+        ]
+    },
+
+    "tp_pw_articleBlockVideo" : {},
+
+    "tp_pw_imageText" : {},
+
+    "tp_pw_tabContentReverse" : {
+        "tabListContentVersion": "second",
+        "backgroundModifierClass": "",
+        "tp_pw_tabMenuListItem" : [
+            {
+                "tabID" : "1",
+                "tabMenuModifierClass": "active",
+                "tabMenuLinkText" : "Dolor sit amet consectetur",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "2",
+                "tabMenuModifierClass": "no-border",
+                "tabMenuLinkText" : "Dolor sit amet consectetur",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "3",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Dolor sit amet consectetur",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            },
+            {
+                "tabID" : "4",
+                "tabMenuModifierClass": "",
+                "tabMenuLinkText" : "Dolor sit amet consectetur",
+                "iconName" : "icon-Chevron_Left",
+                "iconModifierClass" : ""
+            }
+        ],
+        "tp_pw_tabContent_1" : {
+            "imageText_molecule" : {
+                "img": {},
+                "content" : {
+                    "title" : "Lorem Ipsum",
+                    "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue.",
+                    "btnText" : "Lorem Ipsum",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_2" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "Ipsum Lorem",
+                    "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue."
+                }
+            }
+        },
+        "tp_pw_tabContent_3" : {
+            "imageText_molecule" : {
+                "img": {},
+                "content" : {
+                    "title" : "Ipsum Lorem",
+                    "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue.",
+                    "btnText" : "Lorem Ipsum",
+                    "btnTextIcon" : "icon-Circle_Arrow_Right"
+                }
+            }
+        },
+        "tp_pw_tabContent_4" : {
+            "video_molecule" : {
+                "youtubeVideoID" : "__ZS3KftUd0",
+                "content": {
+                    "title" : "Ipsum Lorem",
+                    "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan. Nam elit metus, placerat sit amet turpis in, varius faucibus dolor. Phasellus dignissim rutrum augue sit amet cursus. Suspendisse feugiat sagittis mi. Donec non tortor fermentum arcu hendrerit sagittis eget ut tortor. Integer dictum lacus enim, non feugiat lectus ornare eu. Proin vulputate condimentum feugiat. Morbi nec dictum tortor, eu semper augue."
+                }
+            }
+        }
+    },
+
+    "footer" : {
+    }
+}

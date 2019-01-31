@@ -1,0 +1,18 @@
+.tp_ch-articles {
+
+    .tp_ch-articlesDivider {
+        margin-bottom: $spacing-small;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media #{$medium} {
+            margin-bottom: 0;
+        }
+    }
+
+    .tp_article {
+        background: $color-wild-sand;
+    }
+}

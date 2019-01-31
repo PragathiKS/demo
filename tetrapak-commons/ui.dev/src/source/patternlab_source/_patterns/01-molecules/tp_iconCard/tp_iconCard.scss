@@ -1,0 +1,30 @@
+.tp_iconCard {
+    background: $color-wild-sand;
+    margin-bottom: $spacing-small;
+    padding: $spacing-small;
+
+    @media #{$large} {
+        margin-bottom: 0;
+        padding: $spacing-big;
+    }
+
+    .card-icon {
+        color: $color-congress-blue;
+        display: block;
+        text-align: center;
+        @include font-size(2, large);
+    }
+
+    &-title {
+        margin-bottom: $spacing-small;
+        margin-top: $spacing-small;
+    }
+
+    &-list {
+        color: $color-boulder;
+        list-style: disc;
+        margin-bottom: $spacing-small;
+        padding-left: $spacing-small;
+    }
+
+}

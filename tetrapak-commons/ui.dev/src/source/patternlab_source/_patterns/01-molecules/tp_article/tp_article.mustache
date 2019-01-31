@@ -1,0 +1,17 @@
+<div class="tp_article">
+    {{# img }}
+    {{> atoms-module-img }}
+    {{/ img }}
+    <div class="tp_article-content">
+        <h4 class="tp_article-title">{{ article_title }}</h4>
+        <p class="tp_article-intro">{{ article_text }}</p>
+        {{# articleList }}
+        <ul class="tp_article-list">
+            {{# articleListItem }}
+            <li>{{listItem}}</li>
+            {{/ articleListItem }}
+        </ul>
+        {{/ articleList }}
+        {{> atoms-button-text }}
+    </div>
+</div>

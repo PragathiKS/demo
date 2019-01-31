@@ -1,0 +1,114 @@
+/*------------------------------------*\
+    #BODY
+\*------------------------------------*/
+
+/**
+ * Body base styles
+ */
+body {
+    background: $color-mercury;
+    color: $color-text;
+    font-family: $font;
+    @include font-size(.875, large);
+    -webkit-text-size-adjust: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+	color: $color-congress-blue;
+    display: inline-block;
+	text-decoration: none;
+	outline: 0;
+	transition: all $anim-speed-quick $anim-ease;
+
+	&:hover, &:focus {
+		color: $color-text;
+	}
+}
+
+/*------------------------------------*\
+    #MEDIA ELEMENTS
+\*------------------------------------*/
+
+/**
+ * Make media elements responsive
+ */
+img, video, object {
+	max-width: 100%;
+	height: auto;
+}
+
+/**
+ * Iframe base styles
+ */
+iframe {
+	margin-bottom: $spacing-big;
+}
+
+/**
+ * Figure base styles
+ */
+figure {
+	margin-bottom: $spacing-big;
+
+	/**
+	 * Figure image base styles
+	 */
+	img {
+		margin-bottom: $spacing-small;
+	}
+}
+
+/**
+ * Figure caption base styles
+ */
+figcaption {
+	font-style: italic;
+}
+
+/**
+ * Ordered/Unordered list base styles
+ */
+ol, ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+
+/**
+ * Table base styles
+ */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1px solid $color-boulder;
+	width: 100%;
+}
+
+/**
+ * Table header base styles
+ */
+th {
+	text-align: left;
+	border: 1px solid $color-boulder;
+	padding: 0.2em;
+}
+
+/**
+ * Table cell base styles
+ */
+td {
+	border: 1px solid $color-boulder;
+	padding: 0.5em;
+}
+
+
+/**
+ * Main content area
+ */
+[role=main] {
+	flex: 1;
+}

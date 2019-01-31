@@ -1,0 +1,55 @@
+<div class="tp_pw-container tp_tabListContent tabListContent-version-{{ tabListContentVersion }}">
+    <!--<div class="container {{ backgroundModifierClass }}"> -->
+        <div class="row">
+
+            <div class="col-md-4">
+                {{> molecules-tp_pw-titleWrapper }}
+
+                <div class="tp_tabListContent-tabMenu">
+                    <ul class="tp_tabListContent-tabMenuList">
+                        {{# tp_pw_tabMenuListItem }}
+                        <li class="tp_tabListContent-tabMenuListItem">
+                            <a href="#" data-tab-id="{{ tabID }}" class="tp_tabListContent-tabMenuListItem-link {{ tabMenuModifierClass }}">
+                                {{ tabMenuLinkText }}<br>
+                                {{> atoms-icon }}
+                            </a>
+                        </li>
+                        {{/ tp_pw_tabMenuListItem }}
+                    </ul>
+                </div>
+                {{> atoms-button-text }}
+            </div>
+
+            <div class="col-md-8">
+                <div class="tp_tabListContent-contentWrapper">
+
+                    <div class="tp_tabListContent-contentTab active" data-tab-id="1">
+                        {{# tp_pw_tabContent_1 }}
+                        {{> molecules-tp_imageText }}
+                        {{/ tp_pw_tabContent_1 }}
+                    </div>
+
+                    <div class="tp_tabListContent-contentTab" data-tab-id="2">
+                        {{# tp_pw_tabContent_2 }}
+                        {{> molecules-tp_video }}
+                        {{/ tp_pw_tabContent_2 }}
+                    </div>
+
+                    <div class="tp_tabListContent-contentTab" data-tab-id="3">
+                        {{# tp_pw_tabContent_3 }}
+                        {{> molecules-tp_imageText }}
+                        {{/ tp_pw_tabContent_3 }}
+                    </div>
+
+                    <div class="tp_tabListContent-contentTab" data-tab-id="4">
+                        {{# tp_pw_tabContent_4 }}
+                        {{> molecules-tp_video }}
+                        {{/ tp_pw_tabContent_4 }}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    <!-- </div> -->
+</div>

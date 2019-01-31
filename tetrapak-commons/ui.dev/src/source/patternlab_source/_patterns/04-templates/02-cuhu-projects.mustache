@@ -1,0 +1,29 @@
+<div class="tp_layout">
+    {{# header }}
+    {{> organisms_ch-header }}
+    {{/ header }}
+
+    <div class="tp_layout-ch">
+
+        <aside>
+            {{> organisms_ch-tp_sideMenu }}
+        </aside>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {{> atoms-tp_pageTitle }}
+
+                        {{# tp_projects }}
+                            {{> organisms_ch-tp_projects }}
+                        {{/ tp_projects }}
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</div>

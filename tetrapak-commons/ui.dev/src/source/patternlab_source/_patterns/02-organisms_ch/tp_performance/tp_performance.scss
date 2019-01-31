@@ -1,0 +1,64 @@
+.tp_performance {
+
+    > div {
+
+        > div {
+            margin-bottom: $spacing-small;
+
+            @media #{$medium} {
+                margin-bottom: $spacing-big;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .tp_performance-wrapper {
+        background: $color-wild-sand;
+        border-radius: $border-radius;
+        overflow: hidden;
+        padding: $spacing-small;
+        position: relative;
+        width: 100%;
+
+        @media #{$medium} {
+            height: 100%;
+            padding: $spacing-big;
+        }
+
+        .tp_icon {
+            color: $color-tory-blue;
+            @include font-size(2, large);
+            position: absolute;
+        }
+
+        .tp_performance-wrapperContent {
+            margin-left: $spacing-big*2;
+
+            h4 {
+                margin-bottom: $spacing-small;
+            }
+
+            .tp_iconText {
+                margin-bottom: $spacing-small;
+                position: relative;
+
+                .tp_icon {
+                    color: $color-tundora;
+                    display: inline;
+                    @include font-size(1, large);
+                    margin-right: $spacing-small-half;
+                    position: relative;
+                    vertical-align: middle;
+                }
+
+                span {
+                    display: inline;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}

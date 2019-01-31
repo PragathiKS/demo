@@ -1,0 +1,17 @@
+<div class="tp_container tp_notifications">
+    {{> atoms-tp_containerTitleWithIcon }}
+
+    <div class="tp_notifications-wrapper">
+        <ul class="tp_notifications-list">
+            {{# tp_notifications_notice }}
+                <li class="tp_notifications-listItem {{ noticeStatusClass }}">
+                    {{> atoms-icon }}
+                    <p class="tp_notifications-title">{{ noticeTitle }}</p>
+                    <p class="text-small tp_notifications-description">{{ noticeDescription }}</p>
+                    {{> atoms-button-text }}
+                </li>
+            {{/ tp_notifications_notice }}
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+{
+    "header" : {
+        "navigation" : [
+            {
+            },
+            {
+            },
+            {
+            },
+            {
+            }
+        ],
+
+        "positionClass" : "position",
+
+        "mobileMenu" : {
+        },
+
+        "login" : {
+        },
+
+        "notification" : {
+        }
+    },
+
+    "tp_iconCards": {
+        "tp_cardIcons_column" : [
+            {},
+            {},
+            {}
+        ]
+    },
+
+    "tp_contactSupportTeam" : {
+        "contactSupportTeamForm_text" : "Write a message below or contact your team support",
+        "supportTeamCard_title" : "Your Tetra Pak team support",
+        "supportTeam_card_molecule": [
+            {
+                "iconName" : "icon-Circle_filled_Tick",
+                "iconModifierClass": "status-offline",
+                "name": "Lorem ipsum",
+                "title": "Lorem ipsum dolor sit",
+                "info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.",
+                "email": {
+                    "supportTeam_email": "name@tetrapak.com",
+                    "iconName" : "icon-peech"
+                },
+                "phone": {
+                    "supportTeam_phone": "+4612345678",
+                    "iconName" : "icon-Phone"
+                }
+            }
+        ]
+    },
+
+    "tp_supportTeam" : {
+        "tp_supportTeam_column" : [
+            {
+
+            },
+            {
+
+            },
+            {
+
+            }
+        ]
+    }
+}
