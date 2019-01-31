@@ -20,16 +20,7 @@ class HelloWorldHandlebars {
     $body.on('input', '.js-textfield', this.changeText);
   }
   loadForm = () => {
-    this.cache.$helloWorldForm.html(this.templates.textCtaComponent({
-      dateSubTitle: {
-        subTitleAbove: 'Subtext Lorem Ipsum',
-        date: '2018-07-09'
-      },
-      title: 'Lorem ipsum header',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sem et metus varius rutrum. Vivamus et sapien quis leo faucibus accumsan.',
-      btnText: 'Lorem Ipsum',
-      btnTextIcon: 'icon-Circle_Arrow_Right'
-    }));
+    this.cache.$helloWorldForm.html(this.templates.changeTextForm()).find('.js-textfield').val(this.cache.$dynamicText.text());
   }
   changeText = (e) => {
     this.cache.$dynamicText.text($(e.target).val());

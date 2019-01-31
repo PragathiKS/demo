@@ -87,6 +87,7 @@ module.exports = {
         loader: "handlebars-loader",
         options: {
           helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
+          partialDirs: [path.join(__dirname, 'source/templates/hbs-templates')],
           precompileOptions: {
             knownHelpersOnly: false
           }
