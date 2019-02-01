@@ -1,0 +1,28 @@
+// Media variables
+$desktop-xlarge-bp: 1440px !default; //desktop-extra-large-break-point
+$desktop-large-bp: 1280px !default;  
+$desktop-bp: 1024px !default;
+$desktop-large-mw-bp: 1439px !default; // desktop-large-max-width-break-point
+$desktop-mw-bp: 1279px !default;
+$tablet-large-bp: 992px !default;
+$tablet-bp: 768px !default;
+$tablet-large-mw-bp: 1023px !default;
+$tablet-mw-bp: 991px !default;
+$mobile-large-bp: 600px !default;
+$mobile-mw-bp: 767px !default;
+$mobile-bp: 320px !default;
+// Breakpoints
+$desktop-x-large: '(min-width: #{$desktop-xlarge-bp})'; // Usage => @media #{$desktop-x-large} { ... }
+$desktop-large: '(min-width: #{$desktop-large-bp})'; // Usage => @media #{$desktop-large} { ... }
+$desktop-large-only: '(min-width: #{$desktop-large-bp}) and (max-width: #{$desktop-large-mw-bp})'; // Usage => @media #{$desktop-large-only} { ... }
+$desktop: '(min-width: #{$desktop-bp})'; // Usage => @media #{$desktop} { ... }
+$desktop-only: '(min-width: #{$desktop-bp}) and (max-width: #{$desktop-mw-bp})'; // Usage => @media #{$desktop-only} { ... }
+$tablet-large: '(min-width: #{$tablet-large-bp})'; // Usage => @media #{$tablet-large} { ... }
+$tablet-large-only: '(min-width: #{$tablet-large-bp}) and (max-width: #{$tablet-large-mw-bp})'; // Usage => @media #{$tablet-large-only} { ... }
+$tablet: '(min-width: #{$tablet-bp})'; // Usage => @media #{$tablet} { ... }
+$tablet-only: '(min-width: #{$tablet-bp}) and (max-width: #{$tablet-mw-bp})'; // @media #{$tablet-only} { ... };
+$mobile-large: '(min-width: #{$mobile-large-bp}) and (max-width: #{$mobile-mw-bp})'; // @media #{$mobile-large} { ... }
+$mobile: '(min-width: #{$mobile-bp}) and (max-width: #{$mobile-mw-bp})'; // Usage => @media #{$mobile} { ... }
+// Breakpoints landscape
+$tablet-landscape: '#{$tablet} and (orientation: landscape)'; // Usage => @media #{$tablet-landscape} { ... }
+$mobile-landscape: '#{$mobile} and (orientation: landscape)'; // Usage => @media #{$mobile-landscape} { ... }

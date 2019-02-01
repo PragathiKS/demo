@@ -1,0 +1,5 @@
+class #component# {
+  init() {/*TODO*/}
+}
+
+export default #component#;

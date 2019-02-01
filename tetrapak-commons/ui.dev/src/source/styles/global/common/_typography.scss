@@ -1,0 +1,81 @@
+// font-family
+$font: 'mulibold',
+sans-serif;
+$font-bold: 'mulibold',
+sans-serif;
+$font-italic: 'muliitalic',
+sans-serif;
+$font-boldItalic: 'mulibold_italic',
+sans-serif;
+$font-black: 'muliblack',
+sans-serif;
+$font-blackItalic: 'muliblack_italic',
+sans-serif;
+$font-extraBold: 'muliextrabold',
+sans-serif;
+$font-extraBoldItalic: 'muliextrabold_italic',
+sans-serif;
+$font-extraLight: 'muliextralight',
+sans-serif;
+$font-extraLightItalic: 'muliextralight_italic',
+sans-serif;
+$font-light: 'mulilight',
+sans-serif;
+$font-lightItalic: 'mulilight_italic',
+sans-serif;
+$font-semiBold: 'mulisemibold',
+sans-serif;
+$font-semiBoldItalic: 'mulisemibold_italic',
+sans-serif;
+// Font sizes
+h1 {
+    @include font-size(42px);
+    @include line-height(48px);
+}
+
+h2 {
+    @include font-size(32px);
+    @include line-height(40px);
+}
+
+h3 {
+    @include font-size(24px);
+    @include line-height(32px);
+}
+
+h4 {
+    @include font-size(18px);
+    @include line-height(24px);
+}
+
+h5 {
+    @include font-size(16px);
+    @include line-height(20px);
+}
+
+h6 {
+    @include font-size(16px);
+    @include line-height(20px);
+}
+
+p,
+th,
+td {
+    @include font-size(14px);
+    @include line-height(24px);
+}
+
+.atom__text-small {
+    @include font-size(12px);
+    @include line-height(20px);
+}
+
+.atom__text-smallest {
+    @include font-size(10px);
+    @include line-height(16px);
+}
+
+a {
+    @include font-size(14px);
+    @include line-height(24px);
+}
