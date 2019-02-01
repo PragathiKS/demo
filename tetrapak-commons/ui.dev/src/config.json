@@ -146,6 +146,10 @@
         "source/templates/components/HelloWorldHandlebars/"
       ]
     },
+    "handlebars": {
+      "helpersFolder": "source/scripts/helpers",
+      "currentRelativeFolder": "source/templates/hbs-templates"
+    },
     "clean": "app",
     "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css"

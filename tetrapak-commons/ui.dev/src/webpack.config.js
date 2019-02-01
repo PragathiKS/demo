@@ -98,8 +98,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: "handlebars-loader",
         options: {
-          helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
-          partialDirs: [path.join(__dirname, 'source/templates/hbs-templates')],
+          helperDirs: [path.join(__dirname, config.handlebars.helpersFolder)],
+          partialDirs: [path.join(__dirname, config.handlebars.currentRelativeFolder)],
           precompileOptions: {
             knownHelpersOnly: false
           }
