@@ -1,0 +1,11 @@
+<sly data-sly-template.tp_textCta_template="${@ data}">
+  <div class="tp_textCta">
+    <span data-sly-test="${data.dateSubTitle}" class="tp_textCta-date">${data.dateSubTitle.date}</span>
+    <span data-sly-test="${data.dateSubTitle}" class="tp_textCta-subTitleAbove">${data.dateSubTitle.subTitleAbove}</span>
+    <h4 class="tp_textCta-title">${data.title}</h4>
+    <p>${data.text}</p>
+    <sly
+      data-sly-use.buttonText="/apps/tp-common/atoms/button-text/v1/button-text/button-text.html"
+      data-sly-call="${buttonText.buttontext_template @data=data}" />
+  </div>
+</sly>
