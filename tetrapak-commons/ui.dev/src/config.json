@@ -140,10 +140,10 @@
     },
     "componentGroups": {
       "common": [
-        "source/scripts/common",
-        "source/scripts/utils",
-        "source/templates/components/HelloWorld/v1/HelloWorld",
-        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
+        "source/scripts/common/",
+        "source/scripts/utils/",
+        "source/templates/components/HelloWorld/",
+        "source/templates/components/HelloWorldHandlebars/"
       ]
     },
     "clean": "app",
