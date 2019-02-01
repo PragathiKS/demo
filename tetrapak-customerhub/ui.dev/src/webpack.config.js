@@ -92,8 +92,8 @@ module.exports = {
         options: {
           helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
           partialDirs: [
-            path.join(__dirname, 'source/templates/hbs-templates'),
-            path.resolve('../../../tetrapak-commons/ui.dev/src/source/templates/hbs-templates')
+            path.join(__dirname, config.handlebars.currentRelativeFolder),
+            path.resolve(config.handlebars.commonRelativeFolder)
           ],
           precompileOptions: {
             knownHelpersOnly: false

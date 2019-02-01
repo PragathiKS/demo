@@ -145,6 +145,10 @@
         "source/templates/components/OrderStatus/v1/OrderStatus"
       ]
     },
+    "handlebars": {
+      "currentRelativeFolder": "source/templates/hbs-templates",
+      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates/hbs-templates"
+    },
     "clean": "app",
     "cssPath": "etc/designs/tp-customerhub/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "etc/designs/tp-customerhub/clientlibs/[name].publish/css/[name].css"
