@@ -78,7 +78,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: "handlebars-loader",
         options: {
-          helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
+          helperDirs: [
+            path.join(__dirname, config.handlebars.helpersFolder),
+            path.resolve(config.handlebars.commonHelpersFolder)
+          ],
           partialDirs: [
             path.join(__dirname, config.handlebars.currentRelativeFolder),
             path.resolve(config.handlebars.commonRelativeFolder)
