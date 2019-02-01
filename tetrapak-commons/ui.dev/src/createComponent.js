@@ -5,17 +5,12 @@ const questions = [
   {
     question: "Enter component name\nRules: \n1. Name for class component should start with capital\n2. Name should not start with a number\n3. Name can contain an underscore\n:",
     key: "componentName"
-  },
-  {
-    question: "Enter component version number",
-    key: "version",
-    defaultValue: "v1"
   }
 ];
 
-function createComponent(name, version) {
+function createComponent(name) {
   // Create folder structure
-  const componentPath = `${config.componentsFolder}/${name}/${version}/${name}`;
+  const componentPath = `${config.componentsFolder}/${name}`;
   fs.mkdirsSync(componentPath);
   // Create files
   fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
@@ -28,7 +23,7 @@ function createComponent(name, version) {
 }
 
 wizard({ questions })
-  .then(([data, version]) => {
+  .then(([data]) => {
     if (
       data.answer
       && !(/^\d|[^A-Za-z0-9_]/).test(data.answer)
@@ -37,15 +32,9 @@ wizard({ questions })
       try {
         const componentList = fs.readdirSync(config.componentsFolder);
         if (componentList.includes(data.answer)) {
-          // Check if the version number exists
-          const versionList = fs.readdirSync(`${config.componentsFolder}/${data.answer}`);
-          if (versionList.includes(version.answer)) {
-            console.log('\x1b[31m%s\x1b[0m', `Component name and version exists!`);
-          } else {
-            createComponent(data.answer, version.answer);
-          }
+          console.log('\x1b[31m%s\x1b[0m', `Component with name ${data.answer} already exists!`);
         } else {
-          createComponent(data.answer, version.answer);
+          createComponent(data.answer);
         }
       } catch (e) {
         console.log('\x1b[31m%s\x1b[0m', 'Something went wrong!');
