@@ -2,8 +2,6 @@ const config = require("./config").webpack;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -86,8 +84,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: "handlebars-loader",
         options: {
-          helperDirs: [path.join(__dirname, 'source/scripts/helpers')],
-          partialDirs: [path.join(__dirname, 'source/templates/hbs-templates')],
+          helperDirs: [path.join(__dirname, config.handlebars.helpersFolder)],
+          partialDirs: [path.join(__dirname, config.handlebars.currentRelativeFolder)],
           precompileOptions: {
             knownHelpersOnly: false
           }

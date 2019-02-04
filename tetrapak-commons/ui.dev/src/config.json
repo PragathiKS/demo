@@ -140,11 +140,15 @@
     },
     "componentGroups": {
       "common": [
-        "source/scripts/common",
-        "source/scripts/utils",
-        "source/templates/components/HelloWorld/v1/HelloWorld",
-        "source/templates/components/HelloWorldHandlebars/v1/HelloWorldHandlebars"
+        "source/scripts/common/",
+        "source/scripts/utils/",
+        "source/templates/components/HelloWorld/",
+        "source/templates/components/HelloWorldHandlebars/"
       ]
+    },
+    "handlebars": {
+      "helpersFolder": "source/scripts/helpers",
+      "currentRelativeFolder": "source/templates/hbs-templates"
     },
     "clean": "app",
     "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
@@ -166,9 +170,14 @@
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
-    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
+    "atomsFolder": "source/templates/atoms",
+    "moleculesFolder": "source/templates/molecules",
     "componentTemplate": "ccTemplates/classTmp.txt",
-    "pageTemplate": "ccTemplates/pageTmp.txt",
-    "importsJsFile": "source/scripts/bundle/imports.js"
+    "pageTemplate": "ccTemplates/pageTmp.txt"
+  },
+  "patternImporter": {
+    "importPath": "../../../../../patternlab/source",
+    "destPath": "source",
+    "expiry": 90
   }
 }

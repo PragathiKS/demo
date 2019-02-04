@@ -5,3 +5,5 @@ source/PhantomJS*
 package-lock.json
 sass-lint-report.html
 eslint-report.html
+.vscode
+patternmanifest.json
