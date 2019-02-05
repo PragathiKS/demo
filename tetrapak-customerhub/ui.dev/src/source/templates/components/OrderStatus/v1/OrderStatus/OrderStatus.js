@@ -8,12 +8,16 @@ class OrderStatus {
   cache = {};
   initCache() {
     this.cache.api = $('#apiUrl').val();
+    this.cache.authorization = $('#apiAuthorization').val();
   }
   init() {
     this.initCache();
     ajaxWrapper.getXhrObj({
       url: this.cache.api,
-      method: 'GET'
+      method: 'GET',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('Authorization', this.cache.authorization);
+      }
     }).done((data) => {
       if (
         data
