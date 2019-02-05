@@ -1,3 +1,4 @@
 {
-  "titleText": "Ordering"
+  "titleText": "Ordering",
+  "api": "/etc/designs/tp-customerhub/jsonData/OrderStatus.json"
 }
