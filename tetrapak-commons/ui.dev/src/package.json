@@ -19,6 +19,7 @@
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",
+    "importPatterns": "node patternImporter",
     "eslint": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html",
     "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\"",
     "sasslint": "sass-lint --config ./sass-lint.yml './source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'",
