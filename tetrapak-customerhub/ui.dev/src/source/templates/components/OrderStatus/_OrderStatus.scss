@@ -10,8 +10,12 @@
             border-collapse: collapse;
         }
         td {
-            @include padding(0 10px);
-            border-bottom: 1px solid;
+            border-bottom: 1px solid $color-wild-sand;
+        }
+        th,
+        td {
+            @include padding(10px);
+            white-space: nowrap;
         }
     }
 }

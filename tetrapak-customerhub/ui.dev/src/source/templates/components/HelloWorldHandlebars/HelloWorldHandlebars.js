@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { $body } from '../../../../../scripts/utils/commonSelectors';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 class HelloWorldHandlebars {
   constructor({ templates }) {
