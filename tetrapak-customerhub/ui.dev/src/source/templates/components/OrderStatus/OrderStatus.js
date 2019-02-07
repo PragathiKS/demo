@@ -15,6 +15,9 @@ class OrderStatus {
     ajaxWrapper.getXhrObj({
       url: this.cache.api,
       method: 'GET',
+      cache: true,
+      dataType: 'json',
+      contentType: 'application/json',
       beforeSend: (xhr) => {
         xhr.setRequestHeader('Authorization', this.cache.authorization);
       }
@@ -24,6 +27,7 @@ class OrderStatus {
         && data.allorders
         && data.allorders.length
       ) {
+        data.allorders = data.allorders.slice(0, 10);
         data.allorders.forEach(item => {
           const contactDetails = item.contactDetails;
           if (contactDetails) {

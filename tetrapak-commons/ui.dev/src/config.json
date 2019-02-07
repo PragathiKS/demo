@@ -128,7 +128,7 @@
       "common": {
         "testMultiple": true,
         "name": "common",
-        "minSize": 0,
+        "enforce": true,
         "chunks": "all"
       },
       "default_en": {
