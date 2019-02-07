@@ -10,6 +10,7 @@ aem:
     - 'shell:webpackProd'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
+    - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
 
@@ -20,6 +21,7 @@ default:
     - 'shell:webpackDev'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
+    - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'

@@ -207,6 +207,7 @@
         "shell:webpackDev",
         "shell:removeChunkHash",
         "copy:uxlibdemo",
+        "copy:jsonData",
         "assemble",
         "aemcomponentcopy:uxlib",
         "aemdeploy"
