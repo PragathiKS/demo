@@ -24,13 +24,13 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '../source/templates/**/*.js': ['coverage'],
+      'templates/**/*.js': ['coverage'],
       '../app/jcr_root/etc/designs/roche/pharma/customerportal/jsonData/*.json': ['json_fixtures']
     },
 
     jsonFixturesPreprocessor: {
       stripPrefix: path.join(__dirname, 'app/jcr_root/etc/designs/roche/pharma/customerportal/jsonData/').replace(/[\\]/g, '/'),
-      variableName: 'mockJson'
+      variableName: 'tpData'
     },
 
     // test results reporter to use
