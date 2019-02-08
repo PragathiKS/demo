@@ -72,8 +72,8 @@ Example:<br><br>
     <div class="component__child">This is a child</div>
 </div>
 ```
-<br>
-```
+
+```css
 .component {
     border: 1px solid;
     &__child {
@@ -81,6 +81,7 @@ Example:<br><br>
     }
 }
 ```
+
 <br><br>
 2. For classes that are referenced in JavaScript, it is adviceable to add a ``js-*`` prefix to the class. There should be separate classes for CSS and JS as shown below:<br>
 ```html
@@ -88,7 +89,8 @@ Example:<br><br>
 ```
 <br><br>
 3. There should not be more than 3 levels of nesting of classes in our sass code. Following example shows nesting of more than 3 levels which is wrong:<br>
-```
+
+```css
 .component {
     .child__component {
         .child2__component {
@@ -99,6 +101,7 @@ Example:<br><br>
     }
 }
 ```
+
 <br>
 We have linting rules enabled which will detect these errors and stop the build.
 
