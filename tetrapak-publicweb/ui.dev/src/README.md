@@ -84,7 +84,7 @@ Example:<br><br>
 <br><br>
 2. For classes that are referenced in JavaScript, it is adviceable to add a ``js-*`` prefix to the class. There should be separate classes for CSS and JS as shown below:<br>
 ```html
-<div class="component js-component">...</div>
+<div class="component js-component"></div>
 ```
 <br><br>
 3. There should not be more than 3 levels of nesting of classes in our sass code. Following example shows nesting of more than 3 levels which is wrong:<br>
