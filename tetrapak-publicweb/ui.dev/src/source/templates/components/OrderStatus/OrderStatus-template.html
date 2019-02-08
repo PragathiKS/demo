@@ -1,0 +1,12 @@
+<sly data-sly-template.OrderStatus_template="${@ data, flag}">
+  <input type="hidden" id="apiUrl" name="apiUrl" value="${data.api}" />
+  <input type="hidden" id="apiAuthorization" value="${data.apiAuthorization}" />
+  <div class="org__order-status" data-module="OrderStatus">
+    <sly
+      data-sly-use.title="/apps/tp-publicweb/atoms/title/title.html"
+      data-sly-call="${title.title_template @data=data}" />
+      <div class="org__order-status__table js-orderstatus-table">
+        <!--/* Order status table renders here */-->
+      </div>
+  </div>
+</sly>

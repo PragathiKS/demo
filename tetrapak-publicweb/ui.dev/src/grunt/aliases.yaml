@@ -1,0 +1,28 @@
+aemsync:
+  description: "sync app folder to aem"
+  tasks:
+    - 'aemdeploy'
+
+aem:
+  description: "build app with ux-lib, deploy and watch for changes followed by auto deploy"
+  tasks:
+    - 'shell:linting'
+    - 'shell:webpackProd'
+    - 'shell:removeChunkHash'
+    - 'copy:uxlibdemo'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'
+
+default:
+  description: "run default task which build the whole application"
+  tasks:
+    - 'shell:lintingDev'
+    - 'shell:webpackDev'
+    - 'shell:removeChunkHash'
+    - 'copy:uxlibdemo'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'
+    - 'aemdeploy'
+    - 'watch'

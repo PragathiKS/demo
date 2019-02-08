@@ -1,0 +1,222 @@
+{
+  "appFolder": "app",
+  "sourceFolder": "source",
+  "publishFolder": "app/jcr_root/etc/designs/tp-publicweb/clientlibs",
+  "demoFolder": "source/clientlib-format/etc/designs/tp-publicweb/clientlibs",
+  "assetFolder": "source/assets",
+  "server": "http://admin:admin@localhost:4502",
+  "aem": {
+    "src": {
+      "atomPath": "<%= config.source %>/templates/atoms",
+      "componentPath": "<%= config.source %>/templates/components",
+      "content": "<%= config.app %>/jcr_root/content/tp-publicweb-ux/**/.content.xml",
+      "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
+      "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
+      "models": "<%= config.app %>/jcr_root/apps/**/*.js",
+      "staticassets": "<%= config.app %>/jcr_root/etc/**/*.{js,css}",
+      "mediaassets": "<%= config.app %>/jcr_root/**/*.{jpg,mov,png,mp4,svg}",
+      "fontassets": "<%= config.app %>/jcr_root/**/*.{otf,eot,ttf,woff}",
+      "jsonData": "<%= config.app %>/jcr_root/**/*.json"
+    },
+    "target": {
+      "atomPath": "<%= config.app %>/jcr_root/apps/tp-publicweb/atoms",
+      "componentPath": "<%= config.app %>/jcr_root/apps/tp-publicweb/components"
+    },
+    "uxContentDescriptor": "tp-publicweb-ux",
+    "componentGroup": "tp-publicweb",
+    "componentGroupName": "Customer Hub"
+  },
+  "assemble": {
+    "options": {
+      "layouts": "*.hbs",
+      "layoutdir": "<%= config.source %>/templates/layouts",
+      "data": [
+        "<%= config.source %>/data/*.{json,yml}",
+        "<%= config.source %>/templates/components/{,*/}*.json"
+      ],
+      "partials": [
+        "<%= config.source %>/templates/components/{,*/}*.hbs"
+      ],
+      "collections": [
+        {
+          "name": "components",
+          "inflection": "component",
+          "sortorder": "ascending",
+          "sortby": "datetime"
+        }
+      ],
+      "helpers": [
+        "<%= config.source %>/helpers/*"
+      ],
+      "plugins": [
+        "grunt-tasks/assemble-aem-plugin.js"
+      ]
+    },
+    "pages": {
+      "options": {
+        "aemuxlib": {
+          "contentRoot": "<%= config.app %>/jcr_root/content/tp-publicweb-ux",
+          "designJcrPath": "/etc/designs/tp-publicweb",
+          "jcrFileRoot": "<%= config.app %>/jcr_root/",
+          "wrapJsonData": true
+        }
+      },
+      "files": [
+        {
+          "expand": true,
+          "src": [
+            "<%= config.source %>/templates/components/**/**/**/*.hbs"
+          ],
+          "dest": "<%= config.app %>/jcr_root/apps/tp-publicweb/components"
+        }
+      ]
+    }
+  },
+  "copy": {
+    "uxlibdemo": [
+      {
+        "expand": true,
+        "dot": true,
+        "cwd": "<%= config.source %>/clientlib-format",
+        "src": [
+          "etc/designs/**"
+        ],
+        "dest": "<%= config.app %>/jcr_root/"
+      }
+    ],
+    "jsonData": [
+      {
+        "expand": true,
+        "flatten": true,
+        "cwd": "<%= config.source %>/templates/components/",
+        "src": [
+          "**/data/*.json"
+        ],
+        "dest": "<%= config.app %>/jcr_root/etc/designs/tp-publicweb/jsonData"
+      }
+    ]
+  },
+  "webfont": {
+    "src": "<%= config.source %>/assets/icons/*.svg",
+    "target": "<%= config.source %>/clientlib-format/etc/designs/tp-publicweb/clientlibs/vendor.publish/iconfonts",
+    "scss": {
+      "target": "<%= config.source %>/assets/styles/common"
+    },
+    "fontFile": "tp-publicweb-icons",
+    "relativePath": "../iconfonts"
+  },
+  "webpack": {
+    "filePath": "etc/designs/tp-publicweb/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "etc/designs/tp-publicweb/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "root": "app/jcr_root",
+    "modes": {
+      "dev": "development",
+      "prod": "production"
+    },
+    "entry": {
+      "global": "source/scripts/core/core.js"
+    },
+    "cacheGroups": {
+      "vendor": {
+        "test": "[\\\\/]node_modules[\\\\/]|[\\\\/]vendor\\.scss",
+        "name": "vendor",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "common": {
+        "testMultiple": true,
+        "name": "common",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "default_en": {
+        "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
+        "name": "default.en",
+        "enforce": true,
+        "chunks": "all"
+      }
+    },
+    "componentGroups": {
+      "common": [
+        "source/scripts/common/",
+        "source/scripts/utils/",
+        "source/templates/components/HelloWorld/",
+        "source/templates/components/HelloWorldHandlebars/",
+        "source/templates/components/OrderStatus/"
+      ]
+    },
+    "handlebars": {
+      "helpersFolder": "source/scripts/helpers",
+      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/script/helpers",
+      "currentRelativeFolder": "source/templates/hbs-templates",
+      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates/hbs-templates"
+    },
+    "clean": "app",
+    "cssPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css"
+  },
+  "clientlibs": {
+    "vendor": {
+      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/vendor.publish/js"
+    },
+    "global": {
+      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/global.publish/js"
+    },
+    "common": {
+      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/common.publish/js"
+    },
+    "default.en": {
+      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/default.en.publish/js"
+    }
+  },
+  "createComponent": {
+    "componentsFolder": "source/templates/components",
+    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
+    "componentTemplate": "ccTemplates/classTmp.txt",
+    "pageTemplate": "ccTemplates/pageTmp.txt",
+    "importsJsFile": "source/scripts/bundle/imports.js"
+  },
+  "watch": {
+    "assemble": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.hbs",
+        "<%= config.source %>/templates/layouts/**/*.hbs",
+        "<%= config.source %>/templates/components/**/*.json"
+      ],
+      "tasks": [
+        "assemble",
+        "copy:jsonData",
+        "aemdeploy:components",
+        "aemdeploy:models",
+        "aemdeploy:jsonData"
+      ]
+    },
+    "static": {
+      "files": [
+        "<%= config.source %>/scripts/**/*.js",
+        "<%= config.source %>/templates/**/*.js",
+        "<%= config.source %>/styles/*.scss",
+        "<%= config.source %>/templates/components/**/*.scss"
+      ],
+      "tasks": [
+        "shell:lintingDev",
+        "shell:webpackDev",
+        "shell:removeChunkHash",
+        "copy:uxlibdemo",
+        "copy:jsonData",
+        "assemble",
+        "aemcomponentcopy:uxlib",
+        "aemdeploy"
+      ]
+    },
+    "aem": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.html"
+      ],
+      "tasks": [
+        "aemcomponentcopy:uxlib",
+        "aemdeploy:components"
+      ]
+    }
+  }
+}
