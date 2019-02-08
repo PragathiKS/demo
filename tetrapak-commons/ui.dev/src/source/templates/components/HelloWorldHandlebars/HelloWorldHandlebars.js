@@ -5,6 +5,7 @@ class HelloWorldHandlebars {
   constructor({ templates }) {
     this.templates = templates;
   }
+
   cache = {};
   init() {
     this.initCache();

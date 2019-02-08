@@ -11,18 +11,20 @@
     "sanitize-html": "^1.19.3"
   },
   "scripts": {
-    "build": "npm run eslint && npm run sasslint && npm run prod && npm run removeHash && grunt aem",
-    "buildDev": "npm run eslintDev && npm run sasslintDev && npm run dev && npm run removeHash && grunt",
-    "prod": "webpack",
-    "dev": "webpack --config=webpack.dev.js",
+    "build": "npm run gruntProd",
+    "buildDev": "npm run gruntDev",
+    "prod": "webpack --color",
+    "dev": "webpack --config=webpack.dev.js --color",
     "removeHash": "node removeHash",
+    "gruntDev": "grunt",
+    "gruntProd": "grunt aem",
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",
     "eslint": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html",
-    "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\"",
+    "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" --color",
     "sasslint": "sass-lint --config ./sass-lint.yml './source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'",
-    "sasslintDev": "sass-lint --config ./sass-lint-dev.yml './source/templates/components/**/*.scss' -v -q"
+    "sasslintDev": "sass-lint --config ./sass-lint-dev.yml './source/templates/components/**/*.scss' -v -q --color"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -52,7 +54,9 @@
     "grunt-contrib-connect": "0.9.0",
     "grunt-contrib-copy": "0.8.0",
     "grunt-contrib-handlebars": "^0.11.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-remove-logging": "^0.2.0",
+    "grunt-shell": "^3.0.1",
     "grunt-usemin": "^3.1.1",
     "grunt-webfont": "^1.7.2",
     "handlebars-loader": "^1.7.1",

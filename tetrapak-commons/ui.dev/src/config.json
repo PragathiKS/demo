@@ -179,5 +179,48 @@
     "importPath": "../../../../../patternlab/source",
     "destPath": "source",
     "expiry": 90
+  },
+  "watch": {
+    "assemble": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.hbs",
+        "<%= config.source %>/templates/layouts/**/*.hbs",
+        "<%= config.source %>/templates/components/**/*.json"
+      ],
+      "tasks": [
+        "assemble",
+        "copy:jsonData",
+        "aemdeploy:components",
+        "aemdeploy:models",
+        "aemdeploy:jsonData"
+      ]
+    },
+    "static": {
+      "files": [
+        "<%= config.source %>/scripts/**/*.js",
+        "<%= config.source %>/templates/**/*.js",
+        "<%= config.source %>/styles/*.scss",
+        "<%= config.source %>/templates/components/**/*.scss"
+      ],
+      "tasks": [
+        "shell:lintingDev",
+        "shell:webpackDev",
+        "shell:removeChunkHash",
+        "copy:uxlibdemo",
+        "copy:jsonData",
+        "assemble",
+        "aemcomponentcopy:uxlib",
+        "aemdeploy"
+      ]
+    },
+    "aem": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.html"
+      ],
+      "tasks": [
+        "aemcomponentcopy:uxlib",
+        "aemdeploy:components"
+      ]
+    }
   }
 }
