@@ -67,8 +67,8 @@
     max-height: convert-to-rem($args);
 }
 
-@mixin line-height($args) {
-    line-height: convert-to-rem($args);
+@mixin line-height($line-height, $font-size) {
+    line-height: calculate-line-height($line-height, $font-size);
 }
 
 @mixin letter-spacing($args) {
