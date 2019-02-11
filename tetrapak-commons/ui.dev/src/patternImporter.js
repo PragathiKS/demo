@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
+const { hasArgs } = require('./args');
 const { importPath, destPath, expiry } = require('./config').patternImporter;
 const patterns = `${path.resolve(importPath)}/_patterns`;
 const targetPatterns = `${path.resolve(destPath)}/templates/hbs-templates`;
@@ -9,6 +10,18 @@ const expiryMilliseconds = expiry * 24 * 60 * 60 * 1000;
 let manifest = {
   patterns: {}
 };
+
+if (
+  hasArgs('force')
+  && fs.existsSync('./patternmanifest.json')
+) {
+  // Remove manifest
+  fs.removeSync('./patternmanifest.json');
+  // Delete target files and directories
+  fs.readdirSync(patterns).filter(pattern => (pattern !== '.gitkeep' && pattern !== '.gitignore')).forEach((targetDir) => {
+    fs.removeSync(`${targetPatterns}/${targetDir}`);
+  });
+}
 
 // Create manifest if not already present
 if (!fs.existsSync('./patternmanifest.json')) {
