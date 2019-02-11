@@ -1,7 +1,6 @@
 @import "media";
-$font-html: 16px;
-$font-html-md: 14px;
-$font-html-sm: 12px;
+$font-baseline: 14px;
+$lh-baseline: #{calculate-line-height(24px, $font-baseline)};
 // Variables for z-index
 $zindex-default: 0;
 // Maximum 3 levels allowed in z-index

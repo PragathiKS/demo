@@ -1,0 +1,13 @@
+html {
+    @include line-height(24px, $font-baseline);
+    font-size: $font-baseline;
+    @media #{$desktop} {
+        font-size: calculate-base-font($v-desktop);
+    }
+    @media #{$desktop-large} {
+        font-size: calculate-base-font($v-desktop-l);
+    }
+    @media #{$mobile} {
+        font-size: calculate-base-font($v-mobile, true);
+    }
+}
