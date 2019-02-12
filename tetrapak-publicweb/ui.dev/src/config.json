@@ -151,6 +151,9 @@
       "currentRelativeFolder": "source/templates/hbs-templates",
       "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates/hbs-templates"
     },
+    "fonts": {
+      "fontPath": "etc/designs/tp-common/clientlibs/vendor.publish/fonts"
+    },
     "clean": "app",
     "cssPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css"
