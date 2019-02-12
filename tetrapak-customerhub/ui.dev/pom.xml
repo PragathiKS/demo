@@ -30,10 +30,10 @@
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>tetrapak-customerhub.ui.clickdummy</artifactId>
+    <artifactId>tetrapak-customerhub.ui.dev</artifactId>
     <packaging>content-package</packaging>
-    <name>Tetrapak Customerhub - UI Clickdummy</name>
-    <description>UI Clickdummy package for Tetrapak Customerhub</description>
+    <name>Tetrapak Customerhub - UI Dev</name>
+    <description>UI Dev package for Tetrapak Customerhub</description>
 
     <!-- <scm>
         <connection></connection>
