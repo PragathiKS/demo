@@ -29,6 +29,16 @@
                             jcr:primaryType="nt:unstructured"
                             mergeList="{Boolean}true"/>
                     </content-default>
+					<header-policy
+                        jcr:description="To include only header"
+                        jcr:lastModified="{Date}2019-02-12T11:50:40.078+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Header Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="/apps/customerhub/components/structure/header">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </header-policy>
                 </responsivegrid>
             </components>
         </foundation>
