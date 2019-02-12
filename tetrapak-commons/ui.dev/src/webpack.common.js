@@ -57,9 +57,22 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           MiniCSSExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader"
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: "resolve-url-loader"
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+              sourceMapContents: false
+            }
+          }
         ]
       },
       {
@@ -67,7 +80,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'file-loader',
         options: {
-          name: '[path][name].[ext]'
+          name: `${config.fonts.fontPath}/[name].[ext]`
         }
       },
       {

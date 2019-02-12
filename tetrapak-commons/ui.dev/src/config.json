@@ -148,7 +148,10 @@
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
-      "currentRelativeFolder": "source/templates/hbs-templates"
+      "currentRelativeFolder": "source/templates-hbs"
+    },
+    "fonts": {
+      "fontPath": "etc/designs/tp-common/clientlibs/vendor.publish/fonts"
     },
     "clean": "app",
     "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
