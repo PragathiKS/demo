@@ -20,7 +20,7 @@
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",
-    "importPatternsDiff": "node patternImporter",
+    "importPatternsSafe": "node patternImporter",
     "importPatterns": "node patternImporter --force",
     "eslint": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html",
     "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" --color",
