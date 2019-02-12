@@ -30,10 +30,10 @@
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>tetrapak-commons.ui.clickdummy</artifactId>
+    <artifactId>tetrapak-commons.ui.dev</artifactId>
     <packaging>content-package</packaging>
-    <name>Tetrapak Commons - UI Clickdummy</name>
-    <description>UI clickdummy package for Tetrapak Commons</description>
+    <name>Tetrapak Commons - UI Dev</name>
+    <description>UI Dev package for Tetrapak Commons</description>
 
     <!-- <scm>
         <connection></connection>
