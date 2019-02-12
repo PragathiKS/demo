@@ -1,3 +1,4 @@
+require('colors');
 const path = require('path');
 const fs = require('fs-extra');
 const { hasArgs } = require('./args');
@@ -60,11 +61,11 @@ try {
         currentInstance.newEntry = false;
         if (currentInstance.isFile) {
           fs.copySync(currentInstance.currentFilePath, currentInstance.targetFilePath);
-          console.log('\x1b[32m%s\x1b[0m', `Copied "${currentInstance.currentFilePath}" to "${currentInstance.targetPath}"`);
+          console.log('\x1b[32m%s%s\x1b[0m', '[Imported]:', ` "${currentInstance.targetPath}"\n`.bold);
         }
         if (currentInstance.isDir) {
           fs.mkdirSync(currentInstance.targetFilePath);
-          console.log('\x1b[32m%s\x1b[0m', `Created directory "${currentInstance.targetFilePath}"`);
+          console.log('\x1b[32m%s%s\x1b[0m', '[Created directory]:', ` "${currentInstance.targetFilePath}"\n`.bold);
         }
       }
       if (currentInstance.isDir) {
