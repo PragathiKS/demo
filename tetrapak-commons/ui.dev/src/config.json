@@ -100,12 +100,12 @@
   },
   "webfont": {
     "src": "<%= config.source %>/assets/icons/*.svg",
-    "target": "<%= config.source %>/clientlib-format/etc/designs/tp-common/clientlibs/vendor.publish/iconfonts",
+    "target": "<%= config.source %>/assets/fonts",
     "scss": {
-      "target": "<%= config.source %>/assets/styles/common"
+      "target": "<%= config.source %>/styles/global/icon-fonts"
     },
-    "fontFile": "tp-common-icons",
-    "relativePath": "../iconfonts"
+    "fontFile": "tp-icons",
+    "relativePath": "../../../assets/fonts"
   },
   "webpack": {
     "filePath": "etc/designs/tp-common/clientlibs/[name].publish/js/[name].js",
@@ -148,7 +148,10 @@
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
-      "currentRelativeFolder": "source/templates/hbs-templates"
+      "currentRelativeFolder": "source/templates-hbs"
+    },
+    "fonts": {
+      "fontPath": "etc/designs/tp-common/clientlibs/global.publish/fonts"
     },
     "clean": "app",
     "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
