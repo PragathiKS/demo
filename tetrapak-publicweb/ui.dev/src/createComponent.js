@@ -58,6 +58,9 @@ wizard({ questions })
           folder = config.moleculesFolder;
           moduleName = 'Molecule';
         }
+        if (!fs.existsSync(folder)) {
+          fs.mkdirsSync(folder);
+        }
         const componentList = fs.readdirSync(folder);
         if (componentList.includes(data.answer)) {
           console.log('\x1b[31m%s\x1b[0m', `${moduleName} with name ${data.answer} already exists!`);
