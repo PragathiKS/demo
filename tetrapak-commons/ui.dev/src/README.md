@@ -175,10 +175,10 @@ To import patterns from ``Patternlab`` you need to run following command:<br><br
 npm run importPatterns
 ```
 
-Everytime you run this command, all patterns will be imported into the project regardless of whether a pattern already exists. To avoid that, you need to run ``npm run importPatternsSafe`` command to ensure that only new patterns are imported and existing ones remain untouched.<br><br>
+Everytime you run this command, all patterns will be imported into the project regardless of whether a pattern already exists in the system. To avoid that, we need to run ``npm run importPatternsSafe`` command to ensure that only new patterns are imported and existing ones are remained untouched.<br><br>
 
 ### Configuration
-When running the command, you will be asked to configure patternlab ``source`` and ``destination`` directories. This is a one time activity as pattern importer saves these configuration settings. To change the settings again, you need to change the ``patternImporterConfig.json``.<br><br>
+When running the command, you will be asked to configure patternlab ``source`` and ``destination`` directories. This is a one time activity as pattern importer saves these configuration settings. To change the settings again, you need to change the ``patternImporterConfig.json`` file.<br><br>
 
 ### How to use imported patterns?
 Imported patterns are ``handlebar`` files which are saved under ``source/templates-hbs`` directory. Handlebar patterns are used for client-side rendering of components in a headless manner. To render them, ``webpack`` pre-compiles these templates and save them as functions. To test how these templates work, follow the steps below:<br><br>
@@ -208,7 +208,7 @@ class TestComponent {
 }
 ```
 
-Notice that I am calling testHbsComponent as a function. Webpack already does this pre-compilation work for us.
+Notice that we are calling testHbsComponent as a function. Webpack already does this pre-compilation work for us.
 
 8. Last, but not the least, we need to add ``#testApp`` div inside html template file created as part of component to check if handlebars template renders correctly. We also need to add a ``data-module`` to execute the JavaScript component.
 
@@ -224,4 +224,4 @@ npm run createComponent
 These commands create a boilerplate for implementing atoms and molecules in sightly.
 
 ### How to import styles?
-Pattern importer imports styles for each and every pattern created inside patternlab. To use these styles we need to import the partial scss files inside ``styles/default/en/base.scss``. Since ``base.scss`` is the entry point for project styles, all the imports are managed inside this file. We would recommend to segregate these imports into separate partials. For example, styles for all atoms can be imported inside a ``_atomImports.scss`` partial file. If this file does not already exists, feel free to create one.
+Pattern importer imports styles for each and every pattern created inside patternlab. To use these styles we need to import the partial scss files inside ``styles/default/en/base.scss``. Since ``base.scss`` is the entry point for project styles, all imports are managed inside this file. We would recommend to segregate these imports into separate partials. For example, styles for all atoms can be imported inside a ``_atomImports.scss`` partial file. If this file does not already exists, feel free to create one.
