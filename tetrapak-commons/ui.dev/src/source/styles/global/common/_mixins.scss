@@ -173,22 +173,3 @@
     position: -webkit-sticky;
     position: sticky;
 }
-
-@mixin keyframes($animation-name) {
-    @each $prop in '-webkit-', '-moz-', '-ms-', '-o-', '' {
-        #{$prop}keyframes #{$animation-name} {
-            @content;
-        }
-    }
-}
-
-@mixin notification-blob($color) {
-    background: $color;
-    border-radius: 50%;
-    content: '';
-    display: inline-block;
-    height: $spacing-small-half;
-    width: $spacing-small-half;
-    @include position(absolute, initial, initial, $spacing-small-half, -$spacing-small);
-}
-
