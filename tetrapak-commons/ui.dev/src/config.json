@@ -178,11 +178,6 @@
     "componentTemplate": "ccTemplates/classTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt"
   },
-  "patternImporter": {
-    "importPath": "../../../../../patternlab/source",
-    "destPath": "source",
-    "expiry": 90
-  },
   "watch": {
     "assemble": {
       "files": [
