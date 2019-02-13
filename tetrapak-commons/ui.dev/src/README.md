@@ -224,4 +224,4 @@ npm run createComponent
 These commands create a boilerplate for implementing atoms and molecules in sightly.
 
 ### How to import styles?
-Pattern importer imports styles for each and every pattern created inside patternlab. To use these styles we need to import the partial scss files inside ``styles/default/en/base.scss``. Since ``base.scss`` is the entry point for project styles, all imports are managed inside this file. We would recommend to segregate these imports into separate partials. For example, styles for all atoms can be imported inside a ``_atomImports.scss`` partial file. If this file does not already exists, feel free to create one.
+Pattern importer imports styles for each and every pattern created inside patternlab. To use these styles we need to import partial scss files inside ``styles/default/en/base.scss``. Since ``base.scss`` is the entry point for project styles, all imports are managed inside this file. We would recommend to segregate these imports into separate partials. For example, styles for all atoms can be imported inside a ``_atomImports.scss`` partial file. If this file does not already exists, feel free to create one.
