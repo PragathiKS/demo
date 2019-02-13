@@ -7,3 +7,4 @@ sass-lint-report.html
 eslint-report.html
 .vscode
 patternmanifest.json
+patternImporterConfig.json
