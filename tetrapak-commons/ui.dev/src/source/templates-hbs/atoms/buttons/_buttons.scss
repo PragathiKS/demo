@@ -3,49 +3,41 @@
 \*------------------------------------*/
 
 .tp-btn {
-  background: $color-congress-blue;
-  border: 0;
-  border-radius: $border-radius;
-  font-size: 14px; // Need a mixin for this & should have standard variables
-  padding: 0 16px; // Need a mixin for this & should have standard padding variables
-  transition: background 0.2s ease; // Need a mixin for this
-  line-height: 40px; // Need mixin for this
-
-  color: $color-white;
-  font-family: $font-light;
-  letter-spacing: 0.5px; // Create variables for different spacing (normal, 0.5 and 1)
-  cursor: pointer;
-
-  &:hover {
-    background: $color-jordy-blue;
-    color: $color-congress-blue;
-  }
-
-  &__text {
-    margin-right: 5px; // Need mixin for this
-    float: left;
-
-    .tp-btn--disabled & {
-      opacity: 0.4;
-    }
-  }
-
-  &__icon {
-    opacity: 1;
-
-    .tp-btn--disabled & {
-      opacity: 0.4;
-    }
-  }
-
-  &--disabled {
-    background: $color-wild-sand; // Extend these styles
-    color: $color-congress-blue;
-
+    background: $color-congress-blue;
+    border: 0;
+    border-radius: $border-radius;
+    @include font-size(14px);
+    @include padding(0 16px);
+    transition: background 0.2s ease; // Need a mixin for this
+    @include line-height(40px, 14px);
+    color: $color-white;
+    font-family: $font-light;
+    @include letter-spacing(0.5px);
+    cursor: pointer;
     &:hover {
-      cursor: default;
-      background: $color-wild-sand; // Extend these styles
-      color: $color-congress-blue;
+        background: $color-jordy-blue;
+        color: $color-congress-blue;
     }
-  }
+    &__text {
+        @include margin-right(5px);
+        float: left;
+        .tp-btn--disabled & {
+            opacity: 0.4;
+        }
+    }
+    &__icon {
+        opacity: 1;
+        .tp-btn--disabled & {
+            opacity: 0.4;
+        }
+    }
+    &--disabled {
+        background: $color-wild-sand; // Extend these styles
+        color: $color-congress-blue;
+        &:hover {
+            cursor: default;
+            background: $color-wild-sand; // Extend these styles
+            color: $color-congress-blue;
+        }
+    }
 }
