@@ -8,7 +8,7 @@
         jcr:uuid="118236dd-c2a3-4edd-ab53-c51907776cd1"
         sling:resourceType="wcm/core/components/policies/mappings">
         <root
-            cq:policy="wcm/foundation/components/responsivegrid/policy_1550040356033"
+            cq:policy="wcm/foundation/components/responsivegrid/root-policy"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
             <responsivegrid
