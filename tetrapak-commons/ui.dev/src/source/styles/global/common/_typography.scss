@@ -2,20 +2,34 @@
     #TYPOGRAPHY
 \*------------------------------------*/
 
-$font: "muliregular", sans-serif;
-$font-secondary: "muliregular", sans-serif;
+ $font: "muliregular", sans-serif;
+ $font-secondary: "muliregular", sans-serif;
+ $font-regular: "muliregular", sans-serif;
+ $font-black: "muliblack", sans-serif;
+ $font-blackItalic: "muliblack_italic", sans-serif;
+ $font-bold: "mulibold", sans-serif;
+ $font-boldItalic: "mulibold_italic", sans-serif;
+ $font-extraBold: "muliextrabold", sans-serif;
+ $font-extraBoldItalic: "muliextrabold_italic", sans-serif;
+ $font-extraLight: "muliextralight", sans-serif;
+ $font-extraLightItalic: "muliextralight_italic", sans-serif;
+ $font-italic: "muliitalic", sans-serif;
+ $font-light: "mulilight", sans-serif;
+ $font-lightItalic: "mulilight_italic", sans-serif;
+ $font-semiBold: "mulisemibold", sans-serif;
+ $font-semiBoldItalic: "mulisemibold_italic", sans-serif;
 
-$font-regular: "muliregular", sans-serif;
-$font-black: "muliblack", sans-serif;
-$font-blackItalic: "muliblack_italic", sans-serif;
-$font-bold: "mulibold", sans-serif;
-$font-boldItalic: "mulibold_italic", sans-serif;
-$font-extraBold: "muliextrabold", sans-serif;
-$font-extraBoldItalic: "muliextrabold_italic", sans-serif;
-$font-extraLight: "muliextralight", sans-serif;
-$font-extraLightItalic: "muliextralight_italic", sans-serif;
-$font-italic: "muliitalic", sans-serif;
-$font-light: "mulilight", sans-serif;
-$font-lightItalic: "mulilight_italic", sans-serif;
-$font-semiBold: "mulisemibold", sans-serif;
-$font-semiBoldItalic: "mulisemibold_italic", sans-serif;
+ 
+.hero {
+    font-family: $font-regular;
+    @include font-size($font-xxxl);
+    font-weight: normal;
+    @include line-height(60px,$font-baseline);
+}
+
+h1 {
+    font-family: $font-regular;
+    @include font-size($font-xxl);
+    font-weight: lighter;
+    @include line-height(48px,$font-baseline);
+}

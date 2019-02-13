@@ -1,6 +1,7 @@
 require('colors');
 const path = require('path');
 const fs = require('fs-extra');
+const exec = require('child_process').exec;
 const { hasArgs } = require('./args');
 const { importPath, destPath, expiry } = require('./config').patternImporter;
 // Sources
@@ -121,6 +122,14 @@ try {
   }
   if (fs.existsSync(icons)) {
     patternReader(manifest.icons, icons, targetIcons);
+    exec('grunt webfont', function (err, stdout) {
+      if (err) {
+        console.log('\x1b[31m%s\x1b[0m', 'Some error occurred while generating icon fonts');
+        return;
+      }
+      console.log(stdout);
+      console.log('Icon fonts generated');
+    });
   } else {
     console.log('\x1b[31m%s\x1b[0m', 'Icons do not exists in source. Please check the source path.');
   }

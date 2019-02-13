@@ -1,5 +1,13 @@
 @import "media";
+$font-xs : 10px;
+$font-sm : 12px;
 $font-baseline: 14px;
+$font-md : 18px;
+$font-l : 24px;
+$font-xl : 32px;
+$font-xxl : 42px;
+$font-xxxl : 60px;
+
 $lh-baseline: #{calculate-line-height(24px, $font-baseline)};
 
 // Variables for z-index
@@ -61,3 +69,5 @@ $color-text-link-active: $color-congress-blue;
   * Animation Easing
   */
  $anim-ease: ease;
+
+ 

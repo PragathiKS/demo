@@ -2,7 +2,6 @@
   "name": "tp-customerhub",
   "version": "0.0.1",
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
     "bootstrap": "^4.2.1",
     "core-js": "^3.0.0-beta.3",
     "jquery": "^3.3.1",
@@ -32,6 +31,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "@babel/runtime": "^7.3.1",
     "aemsync": "1.0.2",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
