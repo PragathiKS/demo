@@ -30,15 +30,42 @@
                             mergeList="{Boolean}true"/>
                     </content-default>
 					<header-policy
-                        jcr:description="To include only header"
-                        jcr:lastModified="{Date}2019-02-12T11:50:40.078+05:30"
-                        jcr:lastModifiedBy="admin"
+                        jcr:description="To include only header and navigation"                        
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Header Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="/apps/customerhub/components/structure/header">
+                        components="/apps/customerhub/components/structure/header,/apps/customerhub/components/structure/navigation">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </header-policy>
+					<root-policy
+                        jcr:description="Policy for editing templates"                        
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Template policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:tetrapak-customerhub,/apps/customerhub/components/form/container]"
+                        policyResourceType="wcm/foundation/components/responsivegrid">
+                        <cq:authoring jcr:primaryType="nt:unstructured">
+                            <assetToComponentMapping jcr:primaryType="nt:unstructured">
+                                <image
+                                    jcr:primaryType="nt:unstructured"
+                                    assetGroup="media"
+                                    assetMimetype="image/*"
+                                    droptarget="image"
+                                    resourceType="customerhub/components/content/image"
+                                    type="Images"/>
+                            </assetToComponentMapping>
+                        </cq:authoring>
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"
+                            mergeList="{Boolean}true"/>
+                    </root-policy>
+                    <notification-policy                        
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Notification Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="/apps/customerhub/components/content/notification">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </notification-policy>
                 </responsivegrid>
             </components>
         </foundation>

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[/etc/mobile/groups/responsive]"
-        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/base-page"
-        jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[mix:versionable]"
+        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/dashboard-page"
         jcr:primaryType="cq:PageContent"
-        jcr:uuid="c85f4def-b92b-4d14-8ed5-13acb15dbd88"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -16,19 +13,36 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <cq:responsive jcr:primaryType="nt:unstructured"/>
-                <header                    
+                <header
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/header"/>
-				<navigation                    
+                <navigation
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/navigation"/>
-			</responsivegrid>
-            <responsivegrid_65318                
+            </responsivegrid>
+            <responsivegrid_1324320121
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 editable="{Boolean}true">
-                <cq:responsive jcr:primaryType="nt:unstructured"/>
-            </responsivegrid_65318>
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        width="9"/>
+                </cq:responsive>
+            </responsivegrid_1324320121>
+            <responsivegrid_323908642
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        offset="0"
+                        width="3"/>
+                </cq:responsive>
+                <notification
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/notification"/>
+            </responsivegrid_323908642>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">
