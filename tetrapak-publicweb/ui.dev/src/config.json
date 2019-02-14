@@ -148,8 +148,11 @@
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
       "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/script/helpers",
-      "currentRelativeFolder": "source/templates/hbs-templates",
-      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates/hbs-templates"
+      "currentRelativeFolder": "source/templates-hbs",
+      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
+    },
+    "fonts": {
+      "fontPath": "etc/designs/tp-common/clientlibs/global.publish/fonts"
     },
     "clean": "app",
     "cssPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css",
@@ -171,6 +174,8 @@
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
+    "atomsFolder": "source/templates/atoms",
+    "moleculesFolder": "source/templates/molecules",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt",
