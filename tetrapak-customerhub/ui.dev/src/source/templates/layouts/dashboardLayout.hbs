@@ -18,7 +18,17 @@
 <body>
     <div class="tp__container">
         <div class="row">
-            {{> body}}
+            {{!-- Header goes here --}}
+            <div class="col-lg-2">
+                {{!-- Side nav goes here --}}
+            </div>
+            <div class="col-lg-6">
+                {{!-- Main content goes here --}}
+                {{> body}}
+            </div>
+            <div class="col-lg-4">
+                {{!-- Notification panel goes here --}}
+            </div>
         </div>
     </div>
 
