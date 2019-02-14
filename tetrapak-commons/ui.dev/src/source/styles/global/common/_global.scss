@@ -19,110 +19,126 @@ html {
 /**
  * Body base styles
  */
- body {
+
+body {
     background: $color-mercury;
     color: $color-text;
     font-family: $font;
     -webkit-text-size-adjust: 100%;
     min-height: 100vh;
-  }
-  
-  a {
+}
+
+a {
     color: $color-congress-blue;
     display: inline-block;
     text-decoration: none;
     outline: 0;
     transition: all $anim-speed-quick $anim-ease;
-  
     &:hover,
     &:focus {
-      color: $color-text;
+        color: $color-text;
     }
-  }
-  
-  /*------------------------------------*\
+}
+
+/*------------------------------------*\
       #MEDIA ELEMENTS
   \*------------------------------------*/
-  
-  /**
-   * Make media elements responsive
-   */
-  img,
-  video,
-  object {
+
+/**
+  * Make media elements responsive
+  */
+
+img,
+video,
+object {
     max-width: 100%;
     height: auto;
-  }
-  
-  /**
-   * Iframe base styles
-   */
-  iframe {
+}
+
+/**
+  * Iframe base styles
+  */
+
+iframe {
     margin-bottom: $spacing-big;
-  }
-  
-  /**
-   * Figure base styles
-   */
-  figure {
+}
+
+/**
+  * Figure base styles
+  */
+
+figure {
     margin-bottom: $spacing-big;
-  
     /**
-       * Figure image base styles
-       */
+      * Figure image base styles
+      */
     img {
-      margin-bottom: $spacing-small;
+        margin-bottom: $spacing-small;
     }
-  }
-  
-  /**
-   * Figure caption base styles
-   */
-  figcaption {
+}
+
+/**
+  * Figure caption base styles
+  */
+
+figcaption {
     font-style: italic;
-  }
-  
-  /**
-   * Ordered/Unordered list base styles
-   */
-  ol,
-  ul {
+}
+
+/**
+  * Ordered/Unordered list base styles
+  */
+
+ol,
+ul {
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-  
-  /**
-   * Table base styles
-   */
-  table {
+}
+
+/**
+  * Table base styles
+  */
+
+table {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid $color-boulder;
     width: 100%;
-  }
-  
-  /**
-   * Table header base styles
-   */
-  th {
+}
+
+/**
+  * Table header base styles
+  */
+
+th {
     text-align: left;
     border: 1px solid $color-boulder;
     padding: 0.2em;
-  }
-  
-  /**
+}
+
+/**
    * Table cell base styles
    */
-  td {
+
+td {
     border: 1px solid $color-boulder;
     padding: 0.5em;
-  }
-  
-  /**
+}
+
+/**
    * Main content area
    */
-  [role="main"] {
+
+[role="main"] {
     flex: 1;
-  }
-  
+}
+
+// Custom classes for layout
+.tp__container {
+    max-width: 100%;
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        margin: 0 auto;
+    }
+}
