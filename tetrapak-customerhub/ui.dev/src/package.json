@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npm run gruntProd",
     "buildDev": "npm run gruntDev",
-    "buildWatch": "npm run buildWatch",
+    "buildWatch": "npm run gruntWatch",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",
     "removeHash": "node removeHash",
