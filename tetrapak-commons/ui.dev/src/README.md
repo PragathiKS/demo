@@ -21,7 +21,7 @@ npm run build
 
 UI.Dev uses the power of <b>Webpack</b> and <b>Grunt</b> both. Webpack is used for compiling JS and SCSS. Grunt is used for deploying the changes to AEM server.
 
-# Creating components/molecules/atoms
+# Creating components, molecules and atoms
 
 To create component run ``npm run createComponent``. Components are created under ``source/templates/components`` folder.<br><br>
 For JavaScript we use ES6 modules. Each component is defined as a class with a mandatory init method. Each component is defined at organism level.
@@ -165,11 +165,89 @@ describe('MyComponent', function () {
 });
 ```
 
-# Pattern Importer
+# Importing patterns from patternlab
 
+Patterns (atoms, molecules, organisms, etc.) are created in patternlab as prototype versions. These patterns are then imported into accelerator for component development. To use patternlab, we need to have a local version of it since we need to refer to the patternlab source code. To clone a local version of patternlab please checkout following repository:<br><br>
+<a href="https://del.tools.publicis.sapient.com/bitbucket/projects/TET/repos/patternlab/browse">https://del.tools.publicis.sapient.com/bitbucket/projects/TET/repos/patternlab/browse</a>
+<br><br>
 To import patterns from ``Patternlab`` you need to run following command:<br><br>
 ```sh
 npm run importPatterns
 ```
 
-Please note that we need to configure ``Patternlab`` and ``Accelerator`` both locally to make this setup work. The configuration for this setup can be found in ``config.json > patternsImporter``.
+Everytime you run this command, all patterns will be imported into the project regardless of whether a pattern already exists in the system. To avoid that, we need to run ``npm run importPatternsSafe`` command to ensure that only new patterns are imported and existing ones are remained untouched.<br><br>
+
+### Configuration
+When running the command, you will be asked to configure patternlab ``source`` and ``destination`` directories. This is a one time activity as pattern importer saves these configuration settings. To change the settings again, you need to change the ``patternImporterConfig.json`` file.<br><br>
+
+### How to use imported patterns?
+Imported patterns are ``handlebar`` files which are saved under ``source/templates-hbs`` directory. Handlebar patterns are used for client-side rendering of components in a headless manner. To render them, ``webpack`` pre-compiles these templates and save them as functions. To test how these templates work, follow the steps below:<br><br>
+
+1. Create a component using ``npm run createComponent`` command.
+2. Provide the name of component. Since we are creating a test component, we will name it as ``TestComponent``.
+3. It will create a ``TestComponent`` component under ``source/templates/components`` directory including a ``TestComponent`` js file.
+4. Let's assume the imported pattern was ``buttons.hbs`` atom. Webpack would have already pre-compiled this atom as a handlebars partial.
+5. To access the ``buttons.hbs`` partial, create a handlebar component under ``source/templates-hbs/components`` folder. Let's name this component as ``testHbsComponent``.
+6. Call the ``buttons.hbs`` inside ``testHbsComponent`` as follows:
+```html
+{{> atoms/buttons/buttons }}
+```
+
+<b>Note that</b> if button atom requires some data, we need to pass that using a valid handlebars partial syntax.
+
+7. Update the component JS file as follows:
+```js
+import $ from 'jquery';
+class TestComponent {
+    constructor({ templates }) {
+        this.templates = templates;
+    }
+    init() {
+        $('#testApp').html(this.templates.testHbsComponent());
+    }
+}
+```
+
+Notice that we are calling testHbsComponent as a function. Webpack already does this pre-compilation work for us.
+
+8. Last, but not the least, we need to add ``#testApp`` div inside html template file created as part of component to check if handlebars template renders correctly. We also need to add a ``data-module`` to execute the JavaScript component.
+
+### How to create patterns in Sightly (HTL)?
+At the moment, patternlab does not support sightly patterns. Therefore, we need to create them manually by referring to existing handlebars pattern. For example, if we wish to create ``buttons`` atom in sightly, we need to <b>manually</b> convert handlebars code into sightly code and then use it as a HTL partial inside component template file. To make it a bit easier, we have added following commands for you:<br><br>
+
+```sh
+npm run createAtom
+npm run createMolecule
+npm run createComponent
+```
+
+These commands create a boilerplate for implementing atoms and molecules in sightly.
+
+### How to import styles?
+Pattern importer imports styles for each and every pattern created inside patternlab. To use these styles we need to import partial scss files inside ``styles/default/en/base.scss``. Since ``base.scss`` is the entry point for project styles, all imports are managed inside this file. We would recommend to segregate these imports into separate partials. For example, styles for all atoms can be imported inside a ``_atomImports.scss`` partial file. If this file does not already exists, feel free to create one.<br><br>
+
+# Generating Icon fonts
+Pattern importer imports SVGs which are required for generating icon fonts. Icon fonts are automatically generated by pattern importer. However, if fonts generator is not configured properly, this step might fail. Don't worry! Your patterns would still be imported.<br><br>
+
+To generate icon fonts we use ``grunt webfont`` plugin. To configure grunt webfont please follow the steps below:
+
+1. Download the dependencies:
+Windows:
+- <a href="https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi">Python</a>
+- <a href="https://www.freetype.org/ttfautohint/#download">TTF Auto Hint</a>
+- <a href="http://fontforge.github.io/en-US/downloads/windows/">Font forge</a>
+Mac OSX:
+```sh
+brew install ttfautohint fontforge --with-python
+```
+Linux:
+```sh
+sudo apt-get install fortforge ttfautohint
+```
+2. Set PATH variable: Make sure that ``PATH`` variable is set for installed dependencies.<br><br>
+3. Install webfont plugin: This should be installed already! However, if it doesn't work, run following command:
+```sh
+npm install --save-dev grunt-webfont
+```
+
+The webfont plugin should start working now.
