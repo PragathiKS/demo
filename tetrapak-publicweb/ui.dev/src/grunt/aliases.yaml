@@ -38,4 +38,3 @@ default:
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
-    - 'watch'
