@@ -24,7 +24,10 @@ const cacheGroups = (function () {
     } else if (currentGroup.testMultiple) {
       currentGroup.test = function (module) {
         if (module.resource) {
-          return !!componentGroups[cacheGroup].filter(path => module.resource.includes(path)).length;
+          return !!componentGroups[cacheGroup].filter(path => {
+            const moduleResource = module.resource.replace(/[\\]/g, '/');
+            return moduleResource.includes(path);
+          }).length;
         }
         return false;
       }
