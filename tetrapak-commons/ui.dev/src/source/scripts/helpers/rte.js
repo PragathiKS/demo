@@ -10,12 +10,15 @@ import sanitizeHtml from 'sanitize-html';
 import Handlebars from 'handlebars';
 
 export default function (htmlText) {
+  const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub']);
   const allowedAttr = sanitizeHtml.defaults.allowedAttributes;
-  allowedAttr.img = ['src', 'alt', 'data-*'];
-  allowedAttr.sup = ['data-*'];
-  allowedAttr.sub = ['data-*'];
+  allowedAttr.img = ['src', 'alt'];
+  allowedTags.forEach(tag => {
+    allowedAttr[tag] = Array.isArray(allowedAttr[tag]) ? allowedAttr[tag] : [];
+    allowedAttr[tag].push('class', 'id', 'data-*');
+  });
   const cleanHtml = sanitizeHtml(htmlText, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub']),
+    allowedTags,
     allowedAttributes: allowedAttr
   });
   return new Handlebars.SafeString(cleanHtml);
