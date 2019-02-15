@@ -64,7 +64,7 @@ export default function (options) {
       && typeof config.renditions === 'undefined'
     )
   ) {
-    return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ')}"${srcAttr}${altAttr} />`);
+    return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr} />`);
   }
   const attributes = [];
   Object.keys(config.renditions).forEach(rendition => {
@@ -85,5 +85,5 @@ export default function (options) {
   attributes.forEach(attr => {
     renditionAttr += ` ${attr.rendition}="${src}?${queryString(attr.variation)}"`;
   });
-  return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ')}"${srcAttr}${altAttr}${renditionAttr} />`);
+  return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr}${renditionAttr} />`);
 }
