@@ -115,5 +115,13 @@ module.exports = {
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
     })
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  },
+  resolve: {
+    alias: {
+      handlebars: 'handlebars/runtime'
+    }
+  }
 };
