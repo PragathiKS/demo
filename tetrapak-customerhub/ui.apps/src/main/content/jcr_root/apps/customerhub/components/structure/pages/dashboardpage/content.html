@@ -1,4 +1,6 @@
-<sly data-sly-resource="${'header' @ resourceType='customerhub/components/structure/header'}" />
-<sly data-sly-resource="${'navigation' @ resourceType='customerhub/components/structure/navigation'}" />
-<H2>Dashboard Content</H2>
-<sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}" />
+<div class="col-lg-6 tp-column__content">
+	<sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}" />
+</div>
+<div class="col-lg-4 tp-column__notif">
+	{{!-- Notification panel goes here --}}
+</div>
