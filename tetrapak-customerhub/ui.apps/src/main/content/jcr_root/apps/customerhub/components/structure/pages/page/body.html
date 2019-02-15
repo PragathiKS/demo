@@ -1,1 +1,9 @@
-<sly data-sly-include="content.html"></sly>
+<div class="tp-container">
+	<sly data-sly-resource="${'header' @ resourceType='customerhub/components/structure/header'}" />
+	<div class="row">
+    	<div class="col-lg-2 tp-column__sidenav">
+			<sly data-sly-resource="${'navigation' @ resourceType='customerhub/components/structure/navigation'}" />
+		</div>
+        <sly data-sly-include="content.html"></sly>
+    </div>
+</div>
