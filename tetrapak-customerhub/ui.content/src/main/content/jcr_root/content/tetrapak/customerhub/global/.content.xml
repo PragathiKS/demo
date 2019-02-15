@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-02-14T14:00:49.513+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/customerhub/templates/basepage"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Global"
+        sling:resourceType="customerhub/components/structure/page"/>
+    <dashboard/>
+    <installed-equipment/>
+    <package-design/>
+    <ordering/>
+    <parts-inventory/>
+    <financials/>
+    <training/>
+    <projects/>
+    <contact/>
+</jcr:root>
