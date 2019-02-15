@@ -12,11 +12,13 @@
   "scripts": {
     "build": "npm run gruntProd",
     "buildDev": "npm run gruntDev",
+    "buildWatch": "npm run gruntWatch",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",
     "removeHash": "node removeHash",
     "gruntDev": "grunt",
     "gruntProd": "grunt aem",
+    "gruntWatch": "grunt aemWatch",
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",

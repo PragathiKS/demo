@@ -232,15 +232,15 @@ Pattern importer imports SVGs which are required for generating icon fonts. Icon
 To generate icon fonts we use ``grunt webfont`` plugin. To configure grunt webfont please follow the steps below:
 
 1. Download the dependencies:
-Windows:
+<br>Windows:
 - <a href="https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi">Python</a>
 - <a href="https://www.freetype.org/ttfautohint/#download">TTF Auto Hint</a>
 - <a href="http://fontforge.github.io/en-US/downloads/windows/">Font forge</a>
-Mac OSX:
+<br>Mac OSX:
 ```sh
 brew install ttfautohint fontforge --with-python
 ```
-Linux:
+<br>Linux:
 ```sh
 sudo apt-get install fortforge ttfautohint
 ```

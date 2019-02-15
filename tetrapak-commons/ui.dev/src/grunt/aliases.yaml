@@ -4,7 +4,7 @@ aemsync:
     - 'aemdeploy'
 
 aem:
-  description: "build app with ux-lib, deploy and watch for changes followed by auto deploy"
+  description: "build app with ux-lib for production"
   tasks:
     - 'shell:linting'
     - 'shell:webpackProd'
@@ -14,9 +14,9 @@ aem:
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
 
-default:
-  description: "run default task which build the whole application"
-  tasks:
+aemWatch:
+  description: "build app with ux-lib for development with watch mode"
+  task:
     - 'shell:lintingDev'
     - 'shell:webpackDev'
     - 'shell:removeChunkHash'
@@ -26,3 +26,15 @@ default:
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
     - 'watch'
+
+default:
+  description: "build app with ux-lib for development without watch mode"
+  tasks:
+    - 'shell:lintingDev'
+    - 'shell:webpackDev'
+    - 'shell:removeChunkHash'
+    - 'copy:uxlibdemo'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'
+    - 'aemdeploy'

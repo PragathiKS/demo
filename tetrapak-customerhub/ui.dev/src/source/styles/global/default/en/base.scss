@@ -1,8 +1,8 @@
 // Styles framework imported from common
 @import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/icon-fonts/tp-icons';
+@import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/common/fonts';
 @import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/common/imports';
 @import './body';
 @import './atoms';
 // Components import
-@import '../../../../templates/components/HelloWorld/HelloWorld';
 @import '../../../../templates/components/OrderStatus/OrderStatus';

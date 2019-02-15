@@ -1,4 +1,7 @@
 // Import any vendor specific scss file here
+// Bootstrap grid system overrides
+@import 'vendor/variables';
+// Bootstrap imports
 @import "vendor/bootstrap/functions";
 @import "vendor/bootstrap/variables";
 @import "vendor/bootstrap/mixins";
