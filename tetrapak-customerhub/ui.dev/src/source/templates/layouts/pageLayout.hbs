@@ -29,14 +29,11 @@
                      data-sly-use.SideNavigationLib="/apps/tp-customerhub/components/SideNavigation/SideNavigation-template.html"
                      data-sly-call="${SideNavigationLib.SideNavigation_template @data=SideNavigationModel}" />
             </div>
-            <div class="col-lg-6 tp-column__content">
+            <div class="col-lg-10 tp-column__content">
                 {{!-- Main content goes here --}}
                 {{#if_notin "Header,SideNavigation" fsdId}}
                     {{> body}}
                 {{/if_notin}}
-            </div>
-            <div class="col-lg-4 tp-column__notif">
-                {{!-- Notification panel goes here --}}
             </div>
         </div>
     </div>
