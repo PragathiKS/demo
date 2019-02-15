@@ -1,3 +1,11 @@
+/**
+ * Checks if value is not available in given list
+ *
+ * Usage:
+ * {{#if_notin "<comma separated values...>" value}}
+ *   ...
+ * {{/if_notin}}
+ */
 import Handlebars from 'handlebars';
 import 'core-js/features/array/includes';
 

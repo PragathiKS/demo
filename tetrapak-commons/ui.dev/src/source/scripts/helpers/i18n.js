@@ -1,3 +1,11 @@
+/**
+ * Resolves i18n key and value
+ *
+ * Usage:
+ *
+ * {{i18n key="<i18n key>"}}
+ */
+
 import Handlebars from 'handlebars';
 import { getI18n } from '../common/common';
 

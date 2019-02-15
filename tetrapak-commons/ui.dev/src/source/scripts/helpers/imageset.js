@@ -1,4 +1,6 @@
 /**
+ * Renders an image with adaptive rendition attributes
+ *
  * Usage:
  *
  * {{imageset src="..." alt="..." config="..." }}

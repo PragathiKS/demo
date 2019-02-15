@@ -1,3 +1,11 @@
+/**
+ * Checks if value is available in given list
+ *
+ * Usage:
+ * {{#if_in "<comma separated values...>" value}}
+ *   ...
+ * {{/if_in}}
+ */
 import Handlebars from 'handlebars';
 import 'core-js/features/array/includes';
 
