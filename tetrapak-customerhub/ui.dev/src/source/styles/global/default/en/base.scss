@@ -2,7 +2,6 @@
 @import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/icon-fonts/tp-icons';
 @import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/common/fonts';
 @import '../../../../../../../../tetrapak-commons/ui.dev/src/source/styles/global/common/imports';
-@import './body';
 @import './atoms';
-// Components import
-@import '../../../../templates/components/OrderStatus/OrderStatus';
+@import './molecules';
+@import './components';

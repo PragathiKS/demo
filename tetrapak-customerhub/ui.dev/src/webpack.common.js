@@ -127,6 +127,7 @@ module.exports = {
     fs: 'empty'
   },
   resolve: {
+    mainFields: ['main', 'module'],
     alias: {
       handlebars: 'handlebars/runtime'
     }
