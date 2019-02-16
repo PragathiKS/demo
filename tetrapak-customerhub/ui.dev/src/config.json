@@ -145,7 +145,7 @@
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
-      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/script/helpers",
+      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/scripts/helpers",
       "currentRelativeFolder": "source/templates-hbs",
       "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
     },
