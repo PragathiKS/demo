@@ -3,12 +3,10 @@
  * @author Sachin Singh
  * @date 16/02/2019
  */
-import LazyLoad from 'vanilla-lazyload';
+import dynamicMedia from './dynamicMedia';
 
 export default {
   init() {
-    new LazyLoad({
-      elements_selector: '.tp-image[data-src]'
-    });
+    dynamicMedia.init();
   }
 };

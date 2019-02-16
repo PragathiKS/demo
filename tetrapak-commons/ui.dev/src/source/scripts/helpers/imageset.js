@@ -16,18 +16,17 @@
  * {
  *   baseUrl: 'https://...'
  *   renditions: {
- *     desktop: "<width>,<height>,<cropStartX>,<cropStartY>,<cropEndX>,<cropEndY>",
- *     tabletl: "<width>,<height>,<cropStartX>,<cropStartY>,<cropEndX>,<cropEndY>",
- *     tabletp: "<width>,<height>,<cropStartX>,<cropStartY>,<cropEndX>,<cropEndY>",
- *     mobilel: "<width>,<height>,<cropStartX>,<cropStartY>,<cropEndX>,<cropEndY>",
- *     mobiley: "<width>,<height>,<cropStartX>,<cropStartY>,<cropEndX>,<cropEndY>"
+ *     desktop: "<width>,<height>,<cropStartX>,<cropStartY>,<cropWidthX>,<cropWidthY>",
+ *     tabletl: "<width>,<height>,<cropStartX>,<cropStartY>,<cropWidthX>,<cropWidthY>",
+ *     tabletp: "<width>,<height>,<cropStartX>,<cropStartY>,<cropWidthX>,<cropWidthY>",
+ *     mobilel: "<width>,<height>,<cropStartX>,<cropStartY>,<cropWidthX>,<cropWidthY>",
+ *     mobiley: "<width>,<height>,<cropStartX>,<cropStartY>,<cropWidthX>,<cropWidthY>"
  *   }
  * }
  */
 
 import Handlebars from 'handlebars';
-
-const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAADUlEQVQI12P4////fwAJ+wP90YOM8AAAAABJRU5ErkJggg==';
+import { IMAGE_PLACEHOLDER } from '../utils/constants';
 
 function queryString(variation) {
   const queryParams = [];
@@ -42,7 +41,7 @@ export default function (options) {
   let alt = Handlebars.escapeExpression(options.hash.alt);
   const classes = Handlebars.escapeExpression(options.hash.classes);
   const config = options.hash.config;
-  let appliedClasses = ['tp-image'];
+  let appliedClasses = ['tp-image', 'js-dynamic-media'];
   if (typeof classes === 'string') {
     appliedClasses = [...appliedClasses, ...classes.split(' ').map(className => Handlebars.escapeExpression(className.trim()))];
   } else if (Array.isArray(classes)) {
@@ -66,7 +65,7 @@ export default function (options) {
       && typeof config.renditions === 'undefined'
     )
   ) {
-    return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr} />`);
+    return new Handlebars.SafeString(`<img src="${IMAGE_PLACEHOLDER}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr} />`);
   }
   const attributes = [];
   Object.keys(config.renditions).forEach(rendition => {
@@ -87,5 +86,5 @@ export default function (options) {
   attributes.forEach(attr => {
     renditionAttr += ` ${attr.rendition}="${src}?${queryString(attr.variation)}"`;
   });
-  return new Handlebars.SafeString(`<img src="${placeholderImage}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr}${renditionAttr} />`);
+  return new Handlebars.SafeString(`<img src="${IMAGE_PLACEHOLDER}" class="${appliedClasses.join(' ').trim()}"${srcAttr}${altAttr}${renditionAttr} />`);
 }
