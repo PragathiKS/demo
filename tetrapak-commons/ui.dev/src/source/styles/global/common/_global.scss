@@ -12,6 +12,19 @@ html {
     }
 }
 
+$text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'section', 'article', 'nav', 'aside', 'header', 'footer', 'b', 'strong', 'i', 'td', 'th');
+%textreset {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+@each $tag in $text-tags {
+    #{$tag} {
+        @extend %textreset;
+    }
+}
+
 /*------------------------------------*\
     #BODY
 \*------------------------------------*/
