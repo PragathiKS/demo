@@ -1,5 +1,6 @@
 import 'core-js/features/array/includes';
 import $ from 'jquery';
+import deparam from 'jquerydeparam';
 import { throwError, parseJson, isValidSelector } from '../common/common';
 import { ajaxWrapper } from '../utils/ajax';
 import { templates } from './templates';
@@ -282,7 +283,7 @@ function _getStatus(data, textStatus, jqXHR) {
 function _setXHRData(jqXHRObj, data, textStatus) {
   if (this.url) {
     jqXHRObj.url = this.url.split('?')[0];
-    jqXHRObj.requestData = $.deparam(this.url.split('?')[1]);
+    jqXHRObj.requestData = deparam(this.url.split('?')[1]);
   }
   jqXHRObj.id = this.dataId;
   if (Array.isArray(this.dataId)) {
@@ -313,7 +314,7 @@ function _setXHRData(jqXHRObj, data, textStatus) {
 function _resolveTargets(config, jqXHRObj) {
   let customConfig = null;
   let id = jqXHRObj.id;
-  if (config.target && !$.isValidSelector(config.target)) {
+  if (config.target && !isValidSelector(config.target)) {
     if (Array.isArray(id) && id.length === 1) {
       // Convert id to string by assigning first value
       id = id[0];

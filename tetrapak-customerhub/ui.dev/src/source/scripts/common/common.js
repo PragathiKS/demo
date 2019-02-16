@@ -192,3 +192,40 @@ export const loader = (target, appendMode) => {
     return new Loader(loading);
   }
 };
+
+/**
+ * Wrapper to throw a generic error
+ * @param {string} message Error message
+ */
+export const throwError = (message) => {
+  throw new Error(message);
+};
+
+/**
+ * Parse JSON string if it is parsable. Otherwise returns the original string.
+ * @param {string} jsonData JSON string
+ */
+export const parseJson = (data) => {
+  let parsedData = data;
+  if (typeof data === 'string') {
+    try {
+      parsedData = JSON.parse(data);
+    } catch (e) {
+      parsedData = data;
+    }
+  }
+  return parsedData;
+};
+
+/**
+ * Returns true if current selector is valid
+ * @param {string|object|object[]} selector Selector string or object
+ */
+export const isValidSelector = (selector) => (
+  typeof selector === 'string'
+  || selector instanceof $
+  || selector instanceof Node
+  || selector instanceof NodeList
+  || selector instanceof HTMLCollection
+  || Array.isArray(selector)
+);
