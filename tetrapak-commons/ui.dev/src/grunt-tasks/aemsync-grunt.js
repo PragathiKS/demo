@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     grunt.log.writeln("Aemsync targets: ", options.targets.join(','));
     var pusher = new Pusher(options.targets, 0, function (err) {
       if (err) {
-        console.log(err);
+        grunt.log.ok(err);
       }
       done();
     });
@@ -24,9 +24,9 @@ module.exports = function (grunt) {
 
     if (this.filesSrc.length) {
       pusher.processQueue();
+      grunt.log.ok("Files processed: " + this.filesSrc.length);
     } else {
       pusher.onPushEnd('Files do not exists yet!');
     }
-    grunt.log.ok("Files processed: " + this.filesSrc.length);
   });
 }
