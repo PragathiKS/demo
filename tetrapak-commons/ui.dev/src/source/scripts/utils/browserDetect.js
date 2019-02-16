@@ -21,48 +21,34 @@ const UA = {
 /**
  * Returns true if current browser is webkit
  */
-export const isWebkit = () => {
-  return UA.hasWebkit;
-};
+export const isWebkit = () => UA.hasWebkit;
 
 /**
  * Returns true if current browser is chrome
  */
-export const isChrome = () => {
-  return UA.hasWebkit && UA.hasChrome;
-};
+export const isChrome = () => (UA.hasWebkit && UA.hasChrome);
 
 /**
  * Returns true if current browser is safari
  */
-export const isSafari = () => {
-  return UA.hasWebkit && UA.hasSafari && !UA.hasChrome;
-};
+export const isSafari = () => (UA.hasWebkit && UA.hasSafari && !UA.hasChrome);
 
 /**
  * Returns true if current browser is edge
  */
-export const isEdge = () => {
-  return UA.hasWebkit && UA.hasEdge;
-};
+export const isEdge = () => (UA.hasWebkit && UA.hasEdge);
 
 /**
  * Returns true if current browser is firefox
  */
-export const isFirefox = () => {
-  return UA.hasMozilla && UA.hasFirefox;
-}
+export const isFirefox = () => (UA.hasMozilla && UA.hasFirefox);
 
 /**
  * Returns true if current browser is internet explorer
  */
-export const isIE = () => {
-  return UA.hasMSIE || UA.hasTrident || UA.isEdge;
-};
+export const isIE = () => (UA.hasMSIE || UA.hasTrident || UA.isEdge);
 
 /**
  * Returns true if current browser is opera
  */
-export const isOpera = () => {
-  return UA.hasWebkit && UA.hasOpera;
-};
+export const isOpera = () => (UA.hasWebkit && UA.hasOpera);
