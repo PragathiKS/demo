@@ -7,6 +7,7 @@ aem:
   description: "build app with ux-lib for production"
   tasks:
     - 'shell:linting'
+    - 'shell:karmaTests'
     - 'shell:webpackProd'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
@@ -18,6 +19,7 @@ aemWatch:
   description: "build app with ux-lib for development with watch mode"
   task:
     - 'shell:lintingDev'
+    - 'shell:karmaTests'
     - 'shell:webpackDev'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
@@ -31,6 +33,7 @@ default:
   description: "build app with ux-lib for development without watch mode"
   tasks:
     - 'shell:lintingDev'
+    - 'shell:karmaTests'
     - 'shell:webpackDev'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
