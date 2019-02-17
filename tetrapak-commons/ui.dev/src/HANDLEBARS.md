@@ -18,7 +18,7 @@ A typical handlebar template looks like below:
 
 # Similarity with Moustache
 
-Handlebars is based on Moustache templates. The syntax followed by handlebars is very similar to Moustache. The only difference between the Handlebars and Moustache is handlebars compiles much faster than moustache templates, and provides rich support for built-in and custom helpers.
+Handlebars is based on Moustache templates which means that the syntax followed by handlebars is very similar to Moustache. The only difference between the Handlebars and Moustache is handlebars compiles much faster compared to moustache, and provides rich support for built-in and custom helpers.
 
 # Compilation
 
