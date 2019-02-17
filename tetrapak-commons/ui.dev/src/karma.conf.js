@@ -24,6 +24,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+    failOnEmptyTestSuite: false,
     frameworks: ['mocha', 'chai', 'sinon'],
     files: [
       'testcases.webpack.js' //just load this file
