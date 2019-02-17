@@ -47,7 +47,7 @@ First template calls the second template as well as the actual Sling model requi
 ### How automatic integration works?
 
 Let's assume we created a header component in following folder structure:<br><br>
-``ui.apps > src > main > content > jcr_root > apps > tp-common > components > header.html``<br><br>
+``ui.apps > src > main > content > jcr_root > apps > tp-publicweb > components > header.html``<br><br>
 
 This component calls ``header-template.html`` which contains the actual HTML code and ``HeaderModel.java`` which provides data to the template file. This component is now expecting presence of ``header-template.html`` during the final build in order to render HTML correctly. At the time of deployment, ``ui.dev`` merges with ``ui.apps`` and places the ``header-template.html`` file inside the source folder of ``header.html``. Since both files are now present in same folder, component is now fully integrated.
 
@@ -101,7 +101,7 @@ To call JavaScript code, add a ``data-module`` attribute to hello world app.
 
 ### Testing "HelloWorld" in browser
 
-Start local AEM server on port 4502. Compile front-end code using ``npm run buildDev`` command and open <a href="http://localhost:4502/content/tp-common-ux/HelloWorld.ux-preview.html">http://localhost:4502/content/tp-common-ux/HelloWorld.ux-preview.html</a> in your browser. You should be able to view your component.
+Start local AEM server on port 4502. Compile front-end code using ``npm run buildDev`` command and open <a href="http://localhost:4502/content/tp-publicweb-ux/HelloWorld.ux-preview.html">http://localhost:4502/content/tp-publicweb-ux/HelloWorld.ux-preview.html</a> in your browser. You should be able to view your component.
 
 ### Optimizing component
 
