@@ -1,8 +1,8 @@
 {
   "appFolder": "app",
   "sourceFolder": "source",
-  "publishFolder": "app/jcr_root/etc/designs/tp-common/clientlibs",
-  "demoFolder": "source/clientlib-format/etc/designs/tp-common/clientlibs",
+  "publishFolder": "app/jcr_root/etc/designs/commons/clientlibs",
+  "demoFolder": "source/clientlib-format/etc/designs/commons/clientlibs",
   "assetFolder": "source/assets",
   "server": "http://admin:admin@localhost:4502",
   "aem": {
@@ -10,7 +10,7 @@
       "atomPath": "<%= config.source %>/templates/atoms",
       "moleculePath": "<%= config.source %>/templates/molecules",
       "componentPath": "<%= config.source %>/templates/components",
-      "content": "<%= config.app %>/jcr_root/content/tp-common-ux/**/.content.xml",
+      "content": "<%= config.app %>/jcr_root/content/commons-ux/**/.content.xml",
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
       "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
       "models": "<%= config.app %>/jcr_root/apps/**/*.js",
@@ -20,12 +20,12 @@
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
-      "atomPath": "<%= config.app %>/jcr_root/apps/tp-common/atoms",
-      "moleculePath": "<%= config.app %>/jcr_root/apps/tp-common/molecules",
-      "componentPath": "<%= config.app %>/jcr_root/apps/tp-common/components"
+      "atomPath": "<%= config.app %>/jcr_root/apps/commons/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/commons/molecules",
+      "componentPath": "<%= config.app %>/jcr_root/apps/commons/components"
     },
-    "uxContentDescriptor": "tp-common-ux",
-    "componentGroup": "tp-common",
+    "uxContentDescriptor": "commons-ux",
+    "componentGroup": "commons",
     "componentGroupName": "Tetrapak common"
   },
   "assemble": {
@@ -57,8 +57,8 @@
     "pages": {
       "options": {
         "aemuxlib": {
-          "contentRoot": "<%= config.app %>/jcr_root/content/tp-common-ux",
-          "designJcrPath": "/etc/designs/tp-common",
+          "contentRoot": "<%= config.app %>/jcr_root/content/commons-ux",
+          "designJcrPath": "/etc/designs/commons",
           "jcrFileRoot": "<%= config.app %>/jcr_root/",
           "wrapJsonData": true
         }
@@ -69,7 +69,7 @@
           "src": [
             "<%= config.source %>/templates/components/**/**/**/*.hbs"
           ],
-          "dest": "<%= config.app %>/jcr_root/apps/tp-common/components"
+          "dest": "<%= config.app %>/jcr_root/apps/commons/components"
         }
       ]
     }
@@ -94,7 +94,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/tp-common/jsonData"
+        "dest": "<%= config.app %>/jcr_root/etc/designs/commons/jsonData"
       }
     ]
   },
@@ -108,8 +108,8 @@
     "relativePath": "../../../assets/fonts"
   },
   "webpack": {
-    "filePath": "etc/designs/tp-common/clientlibs/[name].publish/js/[name].js",
-    "chunkFilePath": "etc/designs/tp-common/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "filePath": "etc/designs/commons/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "etc/designs/commons/clientlibs/[name].publish/js/[name].[chunkhash].js",
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
@@ -151,24 +151,24 @@
       "currentRelativeFolder": "source/templates-hbs"
     },
     "fonts": {
-      "fontPath": "etc/designs/tp-common/clientlibs/global.publish/fonts"
+      "fontPath": "etc/designs/commons/clientlibs/global.publish/fonts"
     },
     "clean": "app",
-    "cssPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css",
-    "cssChunkPath": "etc/designs/tp-common/clientlibs/[name].publish/css/[name].css"
+    "cssPath": "etc/designs/commons/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "etc/designs/commons/clientlibs/[name].publish/css/[name].css"
   },
   "clientlibs": {
     "vendor": {
-      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/vendor.publish/js"
+      "js": "app/jcr_root/etc/designs/commons/clientlibs/vendor.publish/js"
     },
     "global": {
-      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/global.publish/js"
+      "js": "app/jcr_root/etc/designs/commons/clientlibs/global.publish/js"
     },
     "common": {
-      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/common.publish/js"
+      "js": "app/jcr_root/etc/designs/commons/clientlibs/common.publish/js"
     },
     "default.en": {
-      "js": "app/jcr_root/etc/designs/tp-common/clientlibs/default.en.publish/js"
+      "js": "app/jcr_root/etc/designs/commons/clientlibs/default.en.publish/js"
     }
   },
   "createComponent": {
