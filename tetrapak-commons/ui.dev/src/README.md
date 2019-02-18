@@ -242,9 +242,9 @@ BEM allows us to nest children under parent node without increasing the overall 
 To identify classes for atoms, molecules and components (organism) we prefer using following prefixes:
 
 ```css
-.atom-* {} /* Atom */
-.mol-* {} /* Molecule */
-.c-* {} /* Component */
+.tpatom-* {} /* Atom */
+.tpmol-* {} /* Molecule */
+.tp-* {} /* Component */
 .js-* {} /* Prefixes for JS specific classes */
 ```
 
