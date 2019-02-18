@@ -1,15 +1,15 @@
 {
   "appFolder": "app",
   "sourceFolder": "source",
-  "publishFolder": "app/jcr_root/etc/designs/tp-publicweb/clientlibs",
-  "demoFolder": "source/clientlib-format/etc/designs/tp-publicweb/clientlibs",
+  "publishFolder": "app/jcr_root/etc/designs/publicweb/clientlibs",
+  "demoFolder": "source/clientlib-format/etc/designs/publicweb/clientlibs",
   "assetFolder": "source/assets",
   "server": "http://admin:admin@localhost:4502",
   "aem": {
     "src": {
       "atomPath": "<%= config.source %>/templates/atoms",
       "componentPath": "<%= config.source %>/templates/components",
-      "content": "<%= config.app %>/jcr_root/content/tp-publicweb-ux/**/.content.xml",
+      "content": "<%= config.app %>/jcr_root/content/publicweb-ux/**/.content.xml",
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
       "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
       "models": "<%= config.app %>/jcr_root/apps/**/*.js",
@@ -19,11 +19,11 @@
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
-      "atomPath": "<%= config.app %>/jcr_root/apps/tp-publicweb/atoms",
-      "componentPath": "<%= config.app %>/jcr_root/apps/tp-publicweb/components"
+      "atomPath": "<%= config.app %>/jcr_root/apps/publicweb/atoms",
+      "componentPath": "<%= config.app %>/jcr_root/apps/publicweb/components"
     },
-    "uxContentDescriptor": "tp-publicweb-ux",
-    "componentGroup": "tp-publicweb",
+    "uxContentDescriptor": "publicweb-ux",
+    "componentGroup": "publicweb",
     "componentGroupName": "Customer Hub"
   },
   "assemble": {
@@ -55,8 +55,8 @@
     "pages": {
       "options": {
         "aemuxlib": {
-          "contentRoot": "<%= config.app %>/jcr_root/content/tp-publicweb-ux",
-          "designJcrPath": "/etc/designs/tp-publicweb",
+          "contentRoot": "<%= config.app %>/jcr_root/content/publicweb-ux",
+          "designJcrPath": "/etc/designs/publicweb",
           "jcrFileRoot": "<%= config.app %>/jcr_root/",
           "wrapJsonData": true
         }
@@ -67,7 +67,7 @@
           "src": [
             "<%= config.source %>/templates/components/**/**/**/*.hbs"
           ],
-          "dest": "<%= config.app %>/jcr_root/apps/tp-publicweb/components"
+          "dest": "<%= config.app %>/jcr_root/apps/publicweb/components"
         }
       ]
     }
@@ -92,22 +92,22 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/tp-publicweb/jsonData"
+        "dest": "<%= config.app %>/jcr_root/etc/designs/publicweb/jsonData"
       }
     ]
   },
   "webfont": {
     "src": "<%= config.source %>/assets/icons/*.svg",
-    "target": "<%= config.source %>/clientlib-format/etc/designs/tp-publicweb/clientlibs/vendor.publish/iconfonts",
+    "target": "<%= config.source %>/clientlib-format/etc/designs/publicweb/clientlibs/vendor.publish/iconfonts",
     "scss": {
       "target": "<%= config.source %>/assets/styles/common"
     },
-    "fontFile": "tp-publicweb-icons",
+    "fontFile": "publicweb-icons",
     "relativePath": "../iconfonts"
   },
   "webpack": {
-    "filePath": "etc/designs/tp-publicweb/clientlibs/[name].publish/js/[name].js",
-    "chunkFilePath": "etc/designs/tp-publicweb/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "filePath": "etc/designs/publicweb/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "etc/designs/publicweb/clientlibs/[name].publish/js/[name].[chunkhash].js",
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
@@ -155,21 +155,21 @@
       "fontPath": "etc/designs/tp-common/clientlibs/global.publish/fonts"
     },
     "clean": "app",
-    "cssPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css",
-    "cssChunkPath": "etc/designs/tp-publicweb/clientlibs/[name].publish/css/[name].css"
+    "cssPath": "etc/designs/publicweb/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "etc/designs/publicweb/clientlibs/[name].publish/css/[name].css"
   },
   "clientlibs": {
     "vendor": {
-      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/vendor.publish/js"
+      "js": "app/jcr_root/etc/designs/publicweb/clientlibs/vendor.publish/js"
     },
     "global": {
-      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/global.publish/js"
+      "js": "app/jcr_root/etc/designs/publicweb/clientlibs/global.publish/js"
     },
     "common": {
-      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/common.publish/js"
+      "js": "app/jcr_root/etc/designs/publicweb/clientlibs/common.publish/js"
     },
     "default.en": {
-      "js": "app/jcr_root/etc/designs/tp-publicweb/clientlibs/default.en.publish/js"
+      "js": "app/jcr_root/etc/designs/publicweb/clientlibs/default.en.publish/js"
     }
   },
   "createComponent": {
