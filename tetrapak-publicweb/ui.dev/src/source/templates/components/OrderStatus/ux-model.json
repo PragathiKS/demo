@@ -1,5 +1,5 @@
 {
   "titleText": "Ordering",
-  "api": "/etc/designs/tp-publicweb/jsonData/OrderStatus.json",
+  "api": "/etc/designs/publicweb/jsonData/OrderStatus.json",
   "apiAuthorization": "Bearer AMAVm3zqEReeamnyZWTafO4lt6Bk"
 }
