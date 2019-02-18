@@ -1,7 +1,7 @@
 app
 node_modules
-source/coverage
-source/PhantomJS*
+coverage
+TESTS-PhantomJS*
 package-lock.json
 sass-lint-report.html
 eslint-report.html

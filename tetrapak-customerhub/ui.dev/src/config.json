@@ -140,14 +140,12 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/HelloWorld/",
-        "source/templates/components/HelloWorldHandlebars/",
         "source/templates/components/OrderStatus/"
       ]
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
-      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/script/helpers",
+      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/scripts/helpers",
       "currentRelativeFolder": "source/templates-hbs",
       "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
     },
