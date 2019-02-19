@@ -17,7 +17,7 @@ class modalWindow {
     $('#myModal').modal();
     $('.single-item').slick({
       dots: true,
-      appendDots: $('.dots'),
+      appendDots: $('.slider-dots'),
       prevArrow: false,
       nextArrow: false,
       customPaging: function () {

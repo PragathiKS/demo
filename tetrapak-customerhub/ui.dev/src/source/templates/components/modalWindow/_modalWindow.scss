@@ -1,15 +1,41 @@
 @import '../../../../node_modules/slick-carousel/slick/slick';
 
-.modal-dialog{
+.modal-dialog {
     max-width: 704px;
 }
 .modal-header,
-.modal-body{
+.modal-body {
+    border: 0;
     padding: 0;
 }
-.tp-close-btn{
+.tp-close-btn {
     position: absolute;
     right: 0;
     top: 5px;
     z-index: 1;
+}
+
+.intro-slider {
+    font-family: 'muliregular';
+    &__description {
+        @include padding(25px);
+    }
+    &__title {
+        font-family: 'mulilight';
+        margin-bottom: 25px;
+	}
+}
+
+.slider-dots {
+    text-align: center;
+    ul,
+    li {
+        display: inline-block;
+	}
+}
+
+.slick-active .tp-dot {
+	&::after {
+		background-color: #023F88;
+	}
 }
