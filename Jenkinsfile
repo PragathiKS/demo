@@ -28,8 +28,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-			    sh "cd $workspace/${params.CHOICE}/ui.dev/src"
-				sh "npm install"
+			    sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
                 sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
             }  
         }
