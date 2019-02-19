@@ -7,8 +7,11 @@
                 <div class="modal-content">               
                     <!-- Modal body -->
                     <div class="modal-body">    
-                        <img src="" />                
-                        <sly data-sly-use.closeButton="/apps/commons/atoms/buttons/closeButton-template.html" />
+                        <!-- <img src="" />                 -->
+                        <sly
+      data-sly-use.title="/apps/customerhub/atoms/title/title.html"
+      data-sly-call="${title.title_template @data=data}" />
+                        <sly data-sly-use.closeButton="/apps/commons/atoms/closeButton/closeButton-template.html" data-sly-call="${closeButton.closeButton_template @data=data}"/>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
