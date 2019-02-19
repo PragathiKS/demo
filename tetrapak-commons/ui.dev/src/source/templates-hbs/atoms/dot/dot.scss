@@ -4,9 +4,8 @@
     height: 24px;
     position: relative;
     border: 0;
-
     &::after {
-        @include transition(background-color,.5s);
+        @include transition(background-color, .5s);
         @include border-xs($color-tundora);
         @include bg-transparent;
         position: absolute;
@@ -16,21 +15,20 @@
         width: 16px;
         height: 16px;
         content: '';
-        border-radius:50%;
+        border-radius: 50%;
         display: inline-block;
         cursor: pointer;
-        
         &:hover {
             @extend .hover-state;
-          }
+        }
     }
-
     &--filled {
         &::after {
             @extend .hover-state;
         }
     }
 }
+
 .hover-state {
     @include bg-brand-blue;
     @include border-xs($color-congress-blue);

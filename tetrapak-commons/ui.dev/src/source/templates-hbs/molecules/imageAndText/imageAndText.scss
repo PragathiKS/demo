@@ -3,16 +3,16 @@
     @include bg-transparent;
     @media #{$desktop} {
         width: 33%;
-        margin: 0 24px;
-     }
+        @include margin(0 24px);
+    }
     img {
         width: 100%;
-        border-radius: 5px 5px 0 0 ; 
+        border-radius: 5px 5px 0 0;
     }
     &__text {
         @include padding(24px);
         h4 {
-            @include margin-bottom(16px); 
+            @include margin-bottom(16px);
         }
     }
 }

@@ -1,18 +1,20 @@
 .tp-image-card {
+    @include padding(12px);
+    background-color: $color-white;
     width: 100%;
-    padding: 12px;
-    @include bg-white;
+    display: flex;
     @media #{$desktop} {
         width: 33.33%;
         margin: 0;
-     }
+    }
     &__container {
+        background-color: $color-wild-sand;
         img {
             width: 100%;
-            border-radius: 5px 5px 0 0 ;
+            border-radius: 5px 5px 0 0;
         }
         &__text {
-            padding: 24px;
+            @include padding(24px);
             font-family: $font-light !important;
             h4 {
                 @include margin-bottom(16px);

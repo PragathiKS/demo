@@ -1,11 +1,10 @@
 .tp-get-started {
     @include box-shadow-normal;
-    @include bg-white;
+    @include padding(12px);
+    background-color: $color-white;
     border-radius: 5px;
-    padding: 12px;
     &__heading {
-        padding-bottom: 12px;
-        padding-left: 12px;
+        @include padding(0px 0px 12px 12px);
         font-family: $font-light !important;
     }
     &__details {
@@ -16,9 +15,5 @@
         @media #{$desktop} {
             flex-direction: row;
         }
-        .tp-get-start-container:nth-child(2){
-            margin: 0 24px;
-        }
     }
-
 }
