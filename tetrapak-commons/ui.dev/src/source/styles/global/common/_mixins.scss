@@ -175,7 +175,6 @@
 }
 
 // Mixin for borders
-
 @mixin border-xs ($color:$color-black) {
     border: 1px solid $color;
 }
@@ -218,4 +217,17 @@
 
 @mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
     transition: $what $time $how;
+}
+@mixin bg-color ($color:white) {
+    background-color: $color;
+}
+
+// mixin for transition
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    transition: $what $time $how;
+}
+
+// Box shadow
+@mixin box-shadow-normal {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
