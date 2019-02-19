@@ -1,6 +1,6 @@
 .tp-get-started {
     @include box-shadow-normal;
-    @include padding(12px);
+    @include padding(24px 12px 12px 12px);
     background-color: $color-white;
     border-radius: 5px;
     &__heading {
