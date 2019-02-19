@@ -3,9 +3,9 @@
     @include padding(24px 12px 12px 12px);
     background-color: $color-white;
     border-radius: 5px;
-    &__heading {
-        @include padding(0px 0px 12px 12px);
-        font-family: $font-light !important;
+    & &__heading {
+        @include padding(0 0 12px 12px);
+        font-family: $font-light;
     }
     &__details {
         display: flex;
