@@ -8,6 +8,7 @@
   "aem": {
     "src": {
       "atomPath": "<%= config.source %>/templates/atoms",
+      "moleculePath": "<%= config.source %>/templates/molecules",
       "componentPath": "<%= config.source %>/templates/components",
       "content": "<%= config.app %>/jcr_root/content/customerhub-ux/**/.content.xml",
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
@@ -19,8 +20,9 @@
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
-      "atomPath": "<%= config.app %>/jcr_root/apps/customerhub/atoms",
-      "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/components"
+      "atomPath": "<%= config.app %>/jcr_root/apps/customerhub/content/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/customerhub/content/molecules",
+      "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/content/components"
     },
     "uxContentDescriptor": "customerhub-ux",
     "componentGroup": "customerhub",
@@ -67,7 +69,7 @@
           "src": [
             "<%= config.source %>/templates/components/**/**/**/*.hbs"
           ],
-          "dest": "<%= config.app %>/jcr_root/apps/customerhub/components"
+          "dest": "<%= config.app %>/jcr_root/apps/customerhub/content/components"
         }
       ]
     }
