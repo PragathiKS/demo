@@ -173,3 +173,55 @@
     position: -webkit-sticky;
     position: sticky;
 }
+
+// Mixin for borders
+
+@mixin border-xs ($color:$color-black) {
+    border: 1px solid $color;
+}
+
+@mixin border-s ($color:$color-black) {
+    border: 2px solid $color;
+}
+
+@mixin border-md ($color:$color-black) {
+    border: 3px solid $color;
+}
+
+@mixin border-l ($color:$color-black) {
+    border: 4px solid $color;
+}
+
+@mixin border-xl ($color:$color-black) {
+    border: 5px solid $color;
+}
+
+// Mixin for background color
+
+@mixin bg-white {
+    background-color: $color-white;
+}
+
+@mixin bg-black {
+    background-color: $color-black;
+}
+
+@mixin bg-brand-blue {
+    background-color: $color-congress-blue;
+}
+
+@mixin bg-transparent {
+    background-color: transparent;
+}
+
+// mixin for transition
+
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    transition: $what $time $how;
+}
+
+// Box shadow
+
+@mixin box-shadow-normal {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

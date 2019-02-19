@@ -1,0 +1,20 @@
+.tp-get-start-organism {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    @include bg-white;
+    .tp-get-start-organism__heading {
+        padding: 24px;
+    }
+    .tp-get-start-organism__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        @media #{$desktop} {
+            flex-direction: row;
+        }
+    }
+    .tp-get-start-container:nth-child(2){
+        margin: 0;
+    }
+}

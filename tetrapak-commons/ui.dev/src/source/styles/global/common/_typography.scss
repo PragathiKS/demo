@@ -21,15 +21,50 @@
 
  
 .hero {
-    font-family: $font-regular;
     @include font-size($font-xxxl);
+    @include line-height(60px, $font-baseline);
+    font-family: $font-regular;
     font-weight: normal;
-    @include line-height(60px,$font-baseline);
 }
 
 h1 {
-    font-family: $font-regular;
     @include font-size($font-xxl);
+    @include line-height(48px, $font-baseline);
+    font-family: $font-regular;
     font-weight: lighter;
-    @include line-height(48px,$font-baseline);
+}
+
+h2 {
+    @include font-size($font-xl);
+    @include line-height(40px, $font-baseline);
+    font-weight: lighter;
+    font-family: $font-regular;
+}
+
+h3 {
+    @include line-height(32px, $font-baseline);
+    @include font-size($font-l);
+    font-weight: lighter;
+    font-family: $font-regular;
+}
+
+h4 {
+    @include font-size($font-md);
+    @include line-height(24px, $font-baseline);
+    font-weight: lighter;
+    font-family: $font-regular;
+}
+
+.font-style-sm {
+    @include font-size($font-sm);
+    @include line-height(20px, $font-baseline);
+    font-weight: normal;
+    font-family: $font-regular;
+}
+
+.font-style-xs {
+    @include font-size($font-xs);
+    @include line-height(16px, $font-baseline);
+    font-weight: normal;
+    font-family: $font-regular;
 }
