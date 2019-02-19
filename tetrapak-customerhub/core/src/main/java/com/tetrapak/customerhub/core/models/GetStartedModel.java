@@ -13,15 +13,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Model(adaptables = Resource.class) public class GetStartedModel {
+@Model(adaptables = Resource.class)
+public class GetStartedModel {
 
-    @Inject private Resource resource;
+    @Inject
+    private Resource resource;
+
+    @Inject
+    private String headingI18n;
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @PostConstruct protected void init() {
+    @PostConstruct
+    protected void init() {
         logger.info("post construct started");
         logger.info("resource: {}", resource);
         logger.info("resourceType: {}", resource.getName());
@@ -41,5 +47,9 @@ import java.util.List;
 
     public List<GetStartedBean> getGetStartedList() {
         return getStartedList;
+    }
+
+    public String getHeadingI18n() {
+        return headingI18n;
     }
 }
