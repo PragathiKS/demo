@@ -4,8 +4,6 @@ import com.tetrapak.customerhub.core.beans.GetStartedBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -24,13 +22,8 @@ public class GetStartedModel {
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
     @PostConstruct
     protected void init() {
-        logger.info("post construct started");
-        logger.info("resource: {}", resource);
-        logger.info("resourceType: {}", resource.getName());
         Resource childResource = resource.getChild("list");
         Iterator<Resource> itr = childResource.listChildren();
         while (itr.hasNext()) {
