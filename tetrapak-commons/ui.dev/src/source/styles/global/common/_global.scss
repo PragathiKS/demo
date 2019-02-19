@@ -36,13 +36,14 @@ $text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'sect
 body {
     background: $color-mercury;
     color: $color-text;
-    font-family: $font;
     -webkit-text-size-adjust: 100%;
     min-height: 100vh;
 }
 
 a {
     color: $color-congress-blue;
+    font-family: $font-regular;
+    font-weight: normal;
     display: inline-block;
     text-decoration: none;
     outline: 0;
@@ -149,9 +150,21 @@ td {
 
 // Custom classes for layout
 .tp-container {
+    @include padding(15px);
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);
         margin: 0 auto;
+    }
+}
+
+.tp-container {
+    .row {
+        @include margin-left(-15px);
+        @include margin-right(-15px);
+    }
+    [class*="col-"] {
+        @include padding-left(15px);
+        @include padding-right(15px);
     }
 }
