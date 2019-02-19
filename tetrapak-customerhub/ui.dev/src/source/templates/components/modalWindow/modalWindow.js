@@ -27,6 +27,9 @@ class modalWindow {
     $('.slick-next').on('click', function () {
       $('.single-item').slick('slickNext');
     });
+    $('.icon-Close').on('click', function () {
+      $('#myModal').modal('toggle');
+    });
   }
 }
 
