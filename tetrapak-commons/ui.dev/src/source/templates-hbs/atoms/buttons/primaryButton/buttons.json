@@ -1,0 +1,5 @@
+{
+  "primaryBtn": true,
+  "btnClasses": "tp-btn--disabled",
+  "btnTextIcon": "icon-Circle_Arrow_Right"
+}
