@@ -1,0 +1,20 @@
+<sly data-sly-template.modalWindow_template="${@ data, flag}">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary js-btn"> Open modal </button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal" data-module="modalWindow">
+            <div class="modal-dialog">
+                <div class="modal-content">               
+                    <!-- Modal body -->
+                    <div class="modal-body">    
+                        <img src="" />                
+                        <sly data-sly-use.closeButton="/apps/commons/atoms/buttons/closeButton-template.html" />
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </sly>
