@@ -1,0 +1,15 @@
+@import '../../../../node_modules/slick-carousel/slick/slick';
+
+.modal-dialog{
+    max-width: 704px;
+}
+.modal-header,
+.modal-body{
+    padding: 0;
+}
+.tp-close-btn{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    z-index: 1;
+}

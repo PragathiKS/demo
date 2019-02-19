@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import 'slick-carousel';
 
 class modalWindow {
   cache = {};
@@ -14,6 +15,18 @@ class modalWindow {
     this.initCache();
     this.bindEvents();
     $('#myModal').modal();
+    $('.single-item').slick({
+      dots: true,
+      appendDots: $('.dots'),
+      prevArrow: false,
+      nextArrow: false,
+      customPaging: function () {
+        return '<button class="tp-dot"></button>'; // Remove button, customize content of "li"
+      }
+    });
+    $('.slick-next').on('click', function () {
+      $('.single-item').slick('slickNext');
+    });
   }
 }
 
