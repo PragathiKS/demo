@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.beans.GettingStartedBean;
+import com.tetrapak.customerhub.core.beans.GetStartedBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Model(adaptables = Resource.class) public class GettingStartedModel {
+@Model(adaptables = Resource.class) public class GetStartedModel {
 
     @Inject private Resource resource;
 
-    private List<GettingStartedBean> gettingStartedList = new ArrayList<>();
+    private List<GetStartedBean> getStartedList = new ArrayList<>();
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,16 +30,16 @@ import java.util.List;
         while (itr.hasNext()) {
             Resource res = itr.next();
             ValueMap valueMap = res.getValueMap();
-            GettingStartedBean bean = new GettingStartedBean();
+            GetStartedBean bean = new GetStartedBean();
             bean.setImagePath((String) valueMap.get("imagePath"));
             bean.setImageAltI18n((String) valueMap.get("imageAltI18n"));
             bean.setTitleI18n((String) valueMap.get("titleI18n"));
             bean.setDescriptionI18n((String) valueMap.get("descriptionI18n"));
-            gettingStartedList.add(bean);
+            getStartedList.add(bean);
         }
     }
 
-    public List<GettingStartedBean> getGettingStartedList() {
-        return gettingStartedList;
+    public List<GetStartedBean> getGetStartedList() {
+        return getStartedList;
     }
 }
