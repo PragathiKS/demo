@@ -1,0 +1,19 @@
+.tp-get-started {
+    border-radius: 5px;
+    @include box-shadow-normal;
+    @include bg-white;
+    &__heading {
+        padding: $padding-l;
+    }
+    &__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        @media #{$desktop} {
+            flex-direction: row;
+        }
+    }
+    &:nth-child(2){
+        margin: 0;
+    }
+}
