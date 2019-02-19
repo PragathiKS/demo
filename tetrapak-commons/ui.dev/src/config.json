@@ -20,9 +20,9 @@
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
-      "atomPath": "<%= config.app %>/jcr_root/apps/commons/atoms",
-      "moleculePath": "<%= config.app %>/jcr_root/apps/commons/molecules",
-      "componentPath": "<%= config.app %>/jcr_root/apps/commons/components"
+      "atomPath": "<%= config.app %>/jcr_root/apps/commons/content/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/commons/content/molecules",
+      "componentPath": "<%= config.app %>/jcr_root/apps/commons/content/components"
     },
     "uxContentDescriptor": "commons-ux",
     "componentGroup": "commons",
@@ -69,7 +69,7 @@
           "src": [
             "<%= config.source %>/templates/components/**/**/**/*.hbs"
           ],
-          "dest": "<%= config.app %>/jcr_root/apps/commons/components"
+          "dest": "<%= config.app %>/jcr_root/apps/commons/content/components"
         }
       ]
     }
