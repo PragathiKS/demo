@@ -323,6 +323,7 @@
                         <destFile>${sonar.jacoco.reportPath}</destFile>
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
