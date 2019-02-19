@@ -18,6 +18,19 @@
       "imageAltI18n": "cuhu.getstarted.experiencealttext",
       "titleI18n" : "cuhu.getstarted.experiencetitle",
       "descriptionI18n" : "cuhu.getstarted.experiencedescription"
+    },
+    {
+      "imagePath" : "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.experiencealttext",
+      "titleI18n" : "cuhu.getstarted.experiencetitle",
+      "descriptionI18n" : "cuhu.getstarted.experiencedescription"
+    },
+    {
+      "imagePath" : "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.experiencealttext",
+      "titleI18n" : "cuhu.getstarted.experiencetitle",
+      "descriptionI18n" : "cuhu.getstarted.experiencedescription"
     }
+
   ]
 }

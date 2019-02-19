@@ -210,6 +210,10 @@
     background-color: $color-congress-blue;
 }
 
+@mixin bg-light-grey {
+    background-color: $color-wild-sand;
+}
+
 @mixin bg-transparent {
     background-color: transparent;
 }

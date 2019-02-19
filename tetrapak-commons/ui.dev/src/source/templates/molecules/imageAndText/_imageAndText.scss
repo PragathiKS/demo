@@ -1,19 +1,24 @@
-.tp-get-start-container {
+.tp-image-card {
     width: 100%;
-    @include bg-transparent;
+    padding: 12px;
+    @include bg-white;
     @media #{$desktop} {
-        width: 33%;
-        margin: 0 24px;
+        width: 33.33%;
+        margin: 0;
      }
-    img {
-        width: 100%;
-        border-radius: 5px 5px 0 0 ;
-    }
-    &__text {
-        @include padding(24px);
-        h4 {
-            padding: 0;
-            @include margin-bottom(16px);
+    &__container {
+        img {
+            width: 100%;
+            border-radius: 5px 5px 0 0 ;
+        }
+        &__text {
+            padding: 24px;
+            font-family: $font-light !important;
+            h4 {
+                @include margin-bottom(16px);
+                font-family: $font-light !important;
+                padding: 0;
+            }
         }
     }
 }
