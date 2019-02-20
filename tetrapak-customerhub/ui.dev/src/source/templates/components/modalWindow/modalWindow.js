@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
-import { storageUtil } from '../../../scripts/common/common';
+import { storageUtil, getI18n } from '../../../scripts/common/common';
 
 class modalWindow {
   cache = {};
@@ -10,23 +10,28 @@ class modalWindow {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    $('.slick-next').on('click', function () {
-      $('.single-item').slick('slickNext');
-    });
+    $('.js-slick-next').on('click', function () {
+      if ($(this).hasClass('js-get-started-btn')) {
+        $('#myModal').modal('toggle');
+        storageUtil.set('introScreen', true);
+      }
 
-    $('.icon-Close, .get-started-btn').on('click', function () {
-      $('#myModal').modal('toggle');
-      storageUtil.set('introScreen', true);
+      $('.single-item').slick('slickNext');
     });
 
     $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
       if (slick.$slides.length === nextSlide+1) {
-        $('.slick-next').hide();
-        $('.get-started-btn').show();
+        $('.js-slick-next').addClass('js-get-started-btn');
+        $('.js-slick-next .tp-next-btn__text').text(getI18n($('#getStartedBtnI18n').val()));
       } else {
-        $('.slick-next').show();
-        $('.get-started-btn').hide();
+        $('.js-slick-next').removeClass('js-get-started-btn');
+        $('.js-slick-next .tp-next-btn__text').text(getI18n($('#nextBtnI18n').val()));
       }
+    });
+
+    $('.js-close-btn').on('click', function () {
+      $('#myModal').modal('toggle');
+      storageUtil.set('introScreen', true);
     });
   }
   init() {
