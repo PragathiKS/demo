@@ -1,11 +1,19 @@
 .tp-get-started {
     @include box-shadow-normal;
-    @include padding(24px 12px 12px 12px);
+    @include padding(16px 8px 8px 8px);
+    width: 100%;
     background-color: $color-white;
     border-radius: 5px;
-    &__heading {
-        @include padding(0px 0px 12px 12px);
-        font-family: $font-light !important;
+    @media #{$desktop} {
+        @include padding(24px 12px 12px 12px);
+    }
+    & &__heading {
+        @include padding(0 0 8px 8px);
+        font-family: $font-light;
+        @media #{$desktop} {
+            @include font-size($font-l);
+            @include padding(0 0 12px 12px);
+        }
     }
     &__details {
         display: flex;
