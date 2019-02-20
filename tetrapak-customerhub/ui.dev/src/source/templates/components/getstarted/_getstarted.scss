@@ -4,16 +4,9 @@
     width: 100%;
     background-color: $color-white;
     border-radius: 5px;
-    @media #{$desktop} {
-        @include padding(24px 12px 12px 12px);
-    }
     & &__heading {
-        @include padding(0 0 8px 8px);
+        @include padding(0 0 12px 12px);
         font-family: $font-light;
-        @media #{$desktop} {
-            @include font-size($font-l);
-            @include padding(0 0 12px 12px);
-        }
     }
     &__details {
         display: flex;

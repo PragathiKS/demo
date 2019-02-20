@@ -1,6 +1,6 @@
 {
   "headingI18n": "cuhu.getstarted.heading",
-  "list": [
+  "getStartedList": [
     {
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
       "imageAltI18n": "cuhu.getstarted.businessalttext",

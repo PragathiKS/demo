@@ -7,9 +7,14 @@ npm install -g grunt-cli
 
 # Build
 
-Development environment
+Development
 ```sh
 npm run buildDev
+```
+
+Development with grunt deployment (For local grunt workflow please use this command)
+```sh
+npm run buildStart
 ```
 
 Development environment with watch mode

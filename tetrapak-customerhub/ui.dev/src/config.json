@@ -1,8 +1,8 @@
 {
   "appFolder": "app",
   "sourceFolder": "source",
-  "publishFolder": "app/jcr_root/etc/designs/customerhub/clientlibs",
-  "demoFolder": "source/clientlib-format/etc/designs/customerhub/clientlibs",
+  "publishFolder": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs",
+  "demoFolder": "source/clientlib-format/apps/settings/wcm/designs/customerhub/clientlibs",
   "assetFolder": "source/assets",
   "server": "http://admin:admin@localhost:4502",
   "aem": {
@@ -14,15 +14,15 @@
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
       "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
       "models": "<%= config.app %>/jcr_root/apps/**/*.js",
-      "staticassets": "<%= config.app %>/jcr_root/etc/**/*.{js,css}",
+      "staticassets": "<%= config.app %>/jcr_root/apps/settings/wcm/**/*.{js,css}",
       "mediaassets": "<%= config.app %>/jcr_root/**/*.{jpg,mov,png,mp4,svg}",
       "fontassets": "<%= config.app %>/jcr_root/**/*.{otf,eot,ttf,woff}",
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
     },
     "target": {
-      "atomPath": "<%= config.app %>/jcr_root/apps/customerhub/content/atoms",
-      "moleculePath": "<%= config.app %>/jcr_root/apps/customerhub/content/molecules",
-      "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/content/components"
+      "atomPath": "<%= config.app %>/jcr_root/apps/customerhub/components/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/customerhub/components/molecules",
+      "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/components/content"
     },
     "uxContentDescriptor": "customerhub-ux",
     "componentGroup": "customerhub",
@@ -58,7 +58,7 @@
       "options": {
         "aemuxlib": {
           "contentRoot": "<%= config.app %>/jcr_root/content/customerhub-ux",
-          "designJcrPath": "/etc/designs/customerhub",
+          "designJcrPath": "/apps/settings/wcm/designs/customerhub",
           "jcrFileRoot": "<%= config.app %>/jcr_root/",
           "wrapJsonData": true
         }
@@ -69,7 +69,7 @@
           "src": [
             "<%= config.source %>/templates/components/**/**/**/*.hbs"
           ],
-          "dest": "<%= config.app %>/jcr_root/apps/customerhub/content/components"
+          "dest": "<%= config.app %>/jcr_root/apps/customerhub/components/content"
         }
       ]
     }
@@ -81,7 +81,7 @@
         "dot": true,
         "cwd": "<%= config.source %>/clientlib-format",
         "src": [
-          "etc/designs/**"
+          "apps/settings/wcm/designs/**"
         ],
         "dest": "<%= config.app %>/jcr_root/"
       }
@@ -100,7 +100,7 @@
   },
   "webfont": {
     "src": "<%= config.source %>/assets/icons/*.svg",
-    "target": "<%= config.source %>/clientlib-format/etc/designs/customerhub/clientlibs/vendor.publish/iconfonts",
+    "target": "<%= config.source %>/clientlib-format/apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/iconfonts",
     "scss": {
       "target": "<%= config.source %>/assets/styles/common"
     },
@@ -108,8 +108,8 @@
     "relativePath": "../iconfonts"
   },
   "webpack": {
-    "filePath": "etc/designs/customerhub/clientlibs/[name].publish/js/[name].js",
-    "chunkFilePath": "etc/designs/customerhub/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "filePath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/js/[name].[chunkhash].js",
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
@@ -152,24 +152,24 @@
       "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
     },
     "fonts": {
-      "fontPath": "etc/designs/tp-common/clientlibs/global.publish/fonts"
+      "fontPath": "apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts"
     },
     "clean": "app",
-    "cssPath": "etc/designs/customerhub/clientlibs/[name].publish/css/[name].css",
-    "cssChunkPath": "etc/designs/customerhub/clientlibs/[name].publish/css/[name].css"
+    "cssPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css"
   },
   "clientlibs": {
     "vendor": {
-      "js": "app/jcr_root/etc/designs/customerhub/clientlibs/vendor.publish/js"
+      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js"
     },
     "global": {
-      "js": "app/jcr_root/etc/designs/customerhub/clientlibs/global.publish/js"
+      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/global.publish/js"
     },
     "common": {
-      "js": "app/jcr_root/etc/designs/customerhub/clientlibs/common.publish/js"
+      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js"
     },
     "default.en": {
-      "js": "app/jcr_root/etc/designs/customerhub/clientlibs/default.en.publish/js"
+      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js"
     }
   },
   "createComponent": {
