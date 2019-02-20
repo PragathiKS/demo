@@ -1,7 +1,6 @@
-<sly data-sly-template.nextButton_template="${@ data, flag}">
-    <button class="tp-next-btn ${data.btnClasses} ">
-        <p class="tp-next-btn__text">${data.btnText} </p>
-        <span class="tp-next-btn__icon ${data.btnTextIcon}"></span>
-
+<sly data-sly-template.nextButton_template="${@ nextBtnText, btnClasses, btnTextIcon, flag}">
+    <button class="tp-next-btn ${btnClasses} ">
+        <p class="tp-next-btn__text">${nextBtnText} </p>
+        <i class="tp-next-btn__icon ${btnTextIcon}"></i>
     </button>
 </sly>

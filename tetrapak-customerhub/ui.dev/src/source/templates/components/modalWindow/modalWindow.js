@@ -20,13 +20,12 @@ class modalWindow {
     });
 
     $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-      console.log(slick.$slides.length +','+ currentSlide + ',' + nextSlide); // eslint-disable-line
       if (slick.$slides.length === nextSlide+1) {
         $('.slick-next').hide();
         $('.get-started-btn').show();
       } else {
         $('.slick-next').show();
-        $('.get-started-btn').hide(); 
+        $('.get-started-btn').hide();
       }
     });
   }
@@ -35,7 +34,7 @@ class modalWindow {
 
     /* Mandatory method */
     this.initCache();
-      
+
     if (!introScreen) {
       this.bindEvents();
 
