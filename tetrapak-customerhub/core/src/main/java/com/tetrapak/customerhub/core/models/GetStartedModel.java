@@ -4,6 +4,7 @@ import com.tetrapak.customerhub.core.beans.GetStartedBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
@@ -18,7 +19,7 @@ public class GetStartedModel {
     @Self
     private Resource resource;
 
-    @Inject
+    @Inject @Optional
     private String headingI18n;
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
