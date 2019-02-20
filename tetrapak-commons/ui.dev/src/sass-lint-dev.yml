@@ -6,9 +6,9 @@ options:
   # Don't merge default rules
   merge-default-rules: false
   # Output file instead of logging results
-  # output-file: 'clickdummy/sass-lint-report.html'
-  # Raise an error if more than 20 warnings are generated
-  max-warnings: 20
+  # output-file: 'sass-lint-report.html'
+  # Raise an error if more than 5 warnings are generated
+  max-warnings: 5
 
 # Rule Configuration
 rules:

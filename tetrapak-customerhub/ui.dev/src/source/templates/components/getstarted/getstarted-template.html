@@ -1,10 +1,9 @@
-<sly data-sly-template.GetStarted_template="${@ data, flag}">
-  <div class="tp-get-started">
+<sly data-sly-template.getstarted_template="${@ data, flag}">
+  <section class="tp-get-started">
     <h3 class="tp-get-started__heading">${data.headingI18n @i18n}</h3>
-    <div class="tp-get-started__details" data-sly-list.child=${data.list}>
-      <sly data-sly-use.imageAndText="/apps/commons/content/molecules/imageAndText/imageAndText-template.html"
+    <div class="tp-get-started__details" data-sly-list.child=${data.getStartedList}>
+      <sly data-sly-use.imageAndText="/apps/commons/components/molecules/imageAndText/imageAndText-template.html"
         data-sly-call="${imageAndText.imageAndText_template @data=child}" />
-      </sly>
     </div>
-  </div>
+  </section>
 </sly>

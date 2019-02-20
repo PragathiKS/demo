@@ -149,7 +149,8 @@ td {
 }
 
 // Custom classes for layout
-.tp__container {
+.tp-container {
+    @include padding(0 15px);
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);

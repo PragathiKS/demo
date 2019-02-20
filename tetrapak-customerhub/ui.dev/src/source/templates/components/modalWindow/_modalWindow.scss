@@ -1,7 +1,15 @@
 @import '../../../../node_modules/slick-carousel/slick/slick';
 
 .modal-dialog {
-    max-width: 704px;
+    max-width: 700px;
+    @media #{$mobile} {
+        margin: 16px;
+    }    
+}
+.modal-content{
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
 }
 .modal-header,
 .modal-body {
@@ -14,20 +22,29 @@
     top: 5px;
     z-index: 1;
 }
-
 .intro-slider {
     font-family: 'muliregular';
+    
+    &__slider-image{
+        width: 700px;
+        height: 300px;
+    }
     &__description {
-        @include padding(25px);
+        @include padding(17px 25px);
     }
     &__title {
         font-family: 'mulilight';
-        margin-bottom: 25px;
+        margin-bottom: 13px;
+        line-height: 32px;
+
 	}
 }
-
+.next-button-wrapper{
+    margin-left: 7px;
+}
 .slider-dots {
     text-align: center;
+    margin-bottom: 16px;
     ul,
     li {
         display: inline-block;

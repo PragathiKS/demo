@@ -88,6 +88,22 @@
                 <groupId>org.apache.jackrabbit</groupId>
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
+				<configuration>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>tetrapak</groupId>
+                            <artifactId>tetrapak-customerhub.core</artifactId>
+                            <target>/apps/customerhub/install</target>
+                        </embedded>
+                    </embeddeds>
+                    <subPackages>
+                        <subPackage>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.all</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                    </subPackages>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.day.jcr.vault</groupId>
