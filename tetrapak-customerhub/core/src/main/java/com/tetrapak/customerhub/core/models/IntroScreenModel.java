@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Model(adaptables = Resource.class)
-public class GetStartedModel {
+public class IntroScreenModel {
 
     @Self
     private Resource resource;
@@ -23,13 +23,25 @@ public class GetStartedModel {
     @Optional
     private String headingI18n;
 
+    @Inject
+    @Optional
+    private String nextBtnI18n;
+
+    @Inject
+    @Optional
+    private String closeBtnI18n;
+
+    @Inject
+    @Optional
+    private String getStartedBtnI18n;
+
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
+        Iterator<Resource> itr = childResource.listChildren();
         if (null != childResource) {
-            Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource res = itr.next();
                 ValueMap valueMap = res.getValueMap();
@@ -49,5 +61,17 @@ public class GetStartedModel {
 
     public String getHeadingI18n() {
         return headingI18n;
+    }
+
+    public String getNextBtnI18n() {
+        return nextBtnI18n;
+    }
+
+    public String getCloseBtnI18n() {
+        return closeBtnI18n;
+    }
+
+    public String getGetStartedBtnI18n() {
+        return getStartedBtnI18n;
     }
 }
