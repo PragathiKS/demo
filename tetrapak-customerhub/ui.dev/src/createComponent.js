@@ -31,7 +31,8 @@ function createComponent(name) {
   fs.mkdirsSync(componentPath);
   // Create files
   fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
-  fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
+  const templateFileName = name.toLowerCase();
+  fs.writeFileSync(`${componentPath}/${templateFileName}-template.html`, `<sly data-sly-template.${templateFileName}_template="$\{@ data, flag\}"></sly>`);
   if (!(hasArgs('atom') || hasArgs('molecule'))) {
     const jsFileName = `${name.charAt(0).toUpperCase()}${name.substring(1)}`;
     fs.writeFileSync(`${componentPath}/${jsFileName}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, jsFileName));
