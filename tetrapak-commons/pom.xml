@@ -10,13 +10,14 @@
     <description>Tetrapak Commons</description>
 
     <modules>
-        <module>core</module>
+		<module>core</module>
 		<module>integration</module>
         <module>ui.apps</module>
 		<module>ui.dev</module>
         <module>ui.content</module>
         <module>it.tests</module>
         <module>it.launcher</module>
+		<module>complete</module>
 		
     </modules>
 
@@ -29,9 +30,12 @@
         <sling.password>admin</sling.password>
         <vault.user>admin</vault.user>
         <vault.password>admin</vault.password>
-
+		<crx.workspace>crx.default</crx.workspace>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 
     <build>
@@ -199,7 +203,7 @@
                 <plugin>
                     <groupId>com.day.jcr.vault</groupId>
                     <artifactId>content-package-maven-plugin</artifactId>
-                    <version>1.0.2</version>
+                    <version>0.0.20</version>
                     <configuration>
                         <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
                         <failOnError>true</failOnError>
@@ -297,6 +301,26 @@
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+				<plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.9</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>default-report</id>
+                            <phase>prepare-package</phase>
+                            <goals><goal>report</goal></goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <destFile>${sonar.jacoco.reportPath}</destFile>
                     </configuration>
                 </plugin>
             </plugins>

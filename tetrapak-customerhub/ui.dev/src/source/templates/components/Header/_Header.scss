@@ -1,0 +1,9 @@
+/*TODO - Temp style for header for demo purpose*/
+
+header.header {
+    @include margin(0 -16px 24px);
+    @include bg-color($color-white);
+    height: 88px;
+    text-align: center;
+    line-height: 88px;
+}
