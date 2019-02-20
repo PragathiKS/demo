@@ -113,16 +113,6 @@
                     </subPackages>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.day.jcr.vault</groupId>
-                <artifactId>content-package-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <verbose>true</verbose>
-                    <failOnError>true</failOnError>
-                    <group>tetrapak-publicweb</group>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.sling</groupId>

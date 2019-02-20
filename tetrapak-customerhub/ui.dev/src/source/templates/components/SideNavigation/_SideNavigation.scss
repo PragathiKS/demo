@@ -1,0 +1,7 @@
+nav.tp-left-nav {
+    display: none;
+    text-align: center;
+    @media #{$desktop} {
+        display: block;
+    }
+}
