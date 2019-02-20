@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'slick-carousel';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
 
-class modalWindow {
+class introscreen {
   cache = {};
   initCache() {
     /* Initialize cache here */
@@ -12,14 +12,14 @@ class modalWindow {
     /* Bind jQuery events here */
     $('.js-slick-next').on('click', function () {
       if ($(this).hasClass('js-get-started-btn')) {
-        $('#myModal').modal('toggle');
+        $('.js-intro-modal').modal('toggle');
         storageUtil.set('introScreen', true);
       }
 
-      $('.single-item').slick('slickNext');
+      $('.js-intro-slider').slick('slickNext');
     });
 
-    $('.single-item').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    $('.js-intro-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
       if (slick.$slides.length === nextSlide+1) {
         $('.js-slick-next').addClass('js-get-started-btn');
         $('.js-slick-next .tp-next-btn__text').text(getI18n($('#getStartedBtnI18n').val()));
@@ -30,7 +30,7 @@ class modalWindow {
     });
 
     $('.js-close-btn').on('click', function () {
-      $('#myModal').modal('toggle');
+      $('.js-intro-modal').modal('toggle');
       storageUtil.set('introScreen', true);
     });
   }
@@ -43,9 +43,9 @@ class modalWindow {
     if (!introScreen) {
       this.bindEvents();
 
-      $('#myModal').modal();
+      $('.js-intro-modal').modal();
 
-      $('.single-item').slick({
+      $('.js-intro-slider').slick({
         dots: true,
         infinite: false,
         appendDots: $('.slider-dots'),
@@ -59,4 +59,4 @@ class modalWindow {
   }
 }
 
-export default modalWindow;
+export default introscreen;

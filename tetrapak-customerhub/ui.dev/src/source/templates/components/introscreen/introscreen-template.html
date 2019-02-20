@@ -1,7 +1,7 @@
-<sly data-sly-template.modalWindow_template="${@ data, flag}">
+<sly data-sly-template.introscreen_template="${@ data, flag}">
     <input type="hidden" id="getStartedBtnI18n" name="getStartedBtnI18n" value="${data.getStartedBtnI18n}" />
     <input type="hidden" id="nextBtnI18n" name="nextBtnI18n" value="${data.nextBtnI18n}" />
-    <div class="modal" id="myModal" data-module="modalWindow">
+    <div class="modal js-intro-modal" id="into-modal" data-module="introscreen">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal body -->
@@ -10,7 +10,7 @@
                         data-sly-call="${closeButton.closeButton_template @data=data, btnClasses='js-close-btn'}" />
                 </div>
                 <div class="modal-body">
-                    <div class="slider single-item intro-slider">
+                    <div class="slider single-item intro-slider js-intro-slider">
                         <sly data-sly-list.getStartedItem="${data.getStartedList}">
                             <div class="intro-slider__slide">
                                 <img class="intro-slider__slider-image" src="${getStartedItem.imagePath}" alt="${getStartedItem.imageAltI18n @i18n}" />

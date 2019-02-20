@@ -16,8 +16,8 @@
 }
 .tp-close-btn {
     position: absolute;
-    right: 0;
     @include top (5px);
+    @include right (5px);
     z-index: 1;
 }
 .intro-slider {
