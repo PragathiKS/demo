@@ -1,6 +1,6 @@
 <sly data-sly-template.modalWindow_template="${@ data, flag}">
     <div class="modal" id="myModal" data-module="modalWindow">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal body -->
                 <div class="modal-header">
@@ -10,39 +10,48 @@
                 <div class="modal-body">
                     <div class="slider single-item intro-slider">
                         <div class="intro-slider__slide">
-                            <img src="https://www.gstatic.com/webp/gallery/4.jpg" width="704" height="305" />
-							<div class="intro-slider__description">
-								<h3 class="intro-slider__title">One place for your business</h3>
-								<p>My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions..
-								</p>
-							</div>
+                            <img class="intro-slider__slider-image" src="https://www.gstatic.com/webp/gallery/4.jpg"
+                                width="700" height="300" />
+                            <div class="intro-slider__description">
+                                <h3 class="intro-slider__title">One place for your business</h3>
+                                <p>My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in
+                                    smart ways to help you save time and money, improve performance and increase your
+                                    knowledge. You get advice and insights that improve your daily work. My Tetra Pak
+                                    helps to bring the best out of your solutions..
+                                </p>
+                            </div>
                         </div>
                         <div class="intro-slider__slide">
-                            <img src="https://www.gstatic.com/webp/gallery/4.jpg" width="704" height="305" />
-							<div class="intro-slider__description">
-								<h3 class="intro-slider__title">Notifications that you need</h3>
-								<p>Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work.</p>
-							</div>
+                            <img class="intro-slider__slider-image" src="https://www.gstatic.com/webp/gallery/4.jpg"
+                                width="700" height="300" />
+                            <div class="intro-slider__description">
+                                <h3 class="intro-slider__title">Notifications that you need</h3>
+                                <p>Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when
+                                    something needs your attention. Explore the details around performance issues,
+                                    maintenance and optimisation – you can use the notifications as a checklist for your
+                                    daily work.</p>
+                            </div>
                         </div>
                         <div class="intro-slider__slide">
-                            <img src="https://www.gstatic.com/webp/gallery/4.jpg" width="704" height="305" />
-							<div class="intro-slider__description">
-								<h3 class="intro-slider__title">Customise your experience</h3>
-								<p>Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business.</p>
-							</div>
-                        </div>                        
+                            <img class="intro-slider__slider-image" src="https://www.gstatic.com/webp/gallery/4.jpg"
+                                width="700" height="300" />
+                            <div class="intro-slider__description">
+                                <h3 class="intro-slider__title">Customise your experience</h3>
+                                <p>Which kind of notifications do you want to receive? Which are the performance goals
+                                    of our business? Your areas of interest? Optimise My Tetra Pak for your needs and
+                                    bring new value to your business.</p>
+                            </div>
+                        </div>
                     </div>
-                    <sly data-sly-use.nextButton="/apps/commons/content/atoms/nextButton/nextButton-template.html"
-                    data-sly-call="${nextButton.nextButton_template @data=data}" />
+                    <div class="next-button-wrapper">
+                        <sly data-sly-use.nextButton="/apps/commons/content/atoms/nextButton/nextButton-template.html"
+                            data-sly-call="${nextButton.nextButton_template @data=data}" />
+                    </div>
 
-                    <div class="slider-dots"></div>                   
-                   
+
+                    <div class="slider-dots"></div>
+
                 </div>
-                <!-- Modal footer -->
-                <!--<div class="modal-footer">
-                    <sly data-sly-use.dotButton="/apps/commons/content/atoms/dotButton/dotButton-template.html"
-                        data-sly-call="${dotButton.dotButton_template @data=data}" />
-                </div>-->
             </div>
         </div>
     </div>
