@@ -16,8 +16,8 @@
         }
         &__text {
             @include padding(16px);
+            @include word-spacing(1px);
             font-family: $font-light;
-            word-spacing: 1px;
             @media #{$desktop} {
                 @include padding(24px);
             }

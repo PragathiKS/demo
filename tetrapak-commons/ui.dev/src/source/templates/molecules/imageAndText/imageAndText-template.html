@@ -1,10 +1,10 @@
 <sly data-sly-template.imageAndText_template="${@ data, flag}">
   <div class="tp-image-card">
     <div class="tp-image-card__container">
-      <img src="${data.imagePath}" tabindex="0" alt="${data.imageAltI18n @i18n}" />
+      <img src="${data.imagePath}" alt="${data.imageAltI18n @i18n}" />
       <div class="tp-image-card__container__text">
-        <h4 tabindex="0">${data.titleI18n @i18n}</h4>
-        <p tabindex="0" class="font-style-sm">
+        <h4>${data.titleI18n @i18n}</h4>
+        <p class="font-style-sm">
           ${data.descriptionI18n @i18n}
         </p>
       </div>
