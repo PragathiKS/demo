@@ -1,0 +1,47 @@
+.tp-pw-footer {
+    min-height: 260px;
+    background-color: $color-congress-blue;
+
+    &__container {
+        @include padding(60px 0);
+    }
+
+    &__link {
+        color: $color-white;
+
+        &:hover {
+            color: $color-mercury;
+            text-decoration: none;
+        }
+    }
+
+    &__navigation-list {
+
+        @media #{$desktop} {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        &__item {
+            @include margin-right(24px);
+            @include margin-bottom(10px);
+            display: block;
+
+        }
+    }
+
+    &__social-media-items {
+        &__link {
+            @include font-size(25px);
+            @include margin-right(20px);
+        }
+        &__link:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .tp_textBtn {
+        @include margin-top(70px);
+    }
+
+}
