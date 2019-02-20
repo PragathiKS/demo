@@ -12,7 +12,7 @@ class introscreen {
     /* Bind jQuery events here */
     $('.js-slick-next').on('click', function () {
       if ($(this).hasClass('js-get-started-btn')) {
-        $('.js-intro-modal').modal('toggle');
+        $('.js-intro-modal').modal('hide');
         storageUtil.set('introScreen', true);
       }
 
@@ -30,7 +30,7 @@ class introscreen {
     });
 
     $('.js-close-btn').on('click', function () {
-      $('.js-intro-modal').modal('toggle');
+      $('.js-intro-modal').modal('hide');
       storageUtil.set('introScreen', true);
     });
   }
