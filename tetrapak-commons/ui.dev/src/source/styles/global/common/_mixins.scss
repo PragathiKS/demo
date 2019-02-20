@@ -235,3 +235,15 @@
 @mixin word-spacing($args) {
     word-spacing: convert-to-rem($args);
 }
+
+@mixin box-shadow-modal {
+    -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+}
+@mixin display-none {
+    display: none;
+}
+@mixin no-border {
+    border: 0;
+}
