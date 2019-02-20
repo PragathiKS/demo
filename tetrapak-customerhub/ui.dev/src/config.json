@@ -14,7 +14,7 @@
       "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
       "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
       "models": "<%= config.app %>/jcr_root/apps/**/*.js",
-      "staticassets": "<%= config.app %>/jcr_root/etc/**/*.{js,css}",
+      "staticassets": "<%= config.app %>/jcr_root/apps/settings/wcm/**/*.{js,css}",
       "mediaassets": "<%= config.app %>/jcr_root/**/*.{jpg,mov,png,mp4,svg}",
       "fontassets": "<%= config.app %>/jcr_root/**/*.{otf,eot,ttf,woff}",
       "jsonData": "<%= config.app %>/jcr_root/**/*.json"
