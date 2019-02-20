@@ -29,7 +29,7 @@ aemWatch:
     - 'aemdeploy'
     - 'watch'
 
-default:
+aemStart:
   description: "build app with ux-lib for development without watch mode"
   tasks:
     - 'shell:lintingDev'
@@ -41,3 +41,15 @@ default:
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
+
+default:
+  description: "build app with ux-lib for development without watch mode"
+  tasks:
+    - 'shell:lintingDev'
+    - 'shell:karmaTests'
+    - 'shell:webpackDev'
+    - 'shell:removeChunkHash'
+    - 'copy:uxlibdemo'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'

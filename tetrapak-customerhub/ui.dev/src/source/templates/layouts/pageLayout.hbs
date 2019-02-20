@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/customerhub/content/components/{{fsdId}}/{{fsdId}}-template.html" />
+<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/customerhub/components/content/{{fsdId}}/{{fsdId}}-template.html" />
 <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}">
     <head>
         <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
@@ -19,14 +19,14 @@
     {{!-- Body --}}
     <div class="tp-container">
         {{!-- Header component --}}
-        <sly data-sly-use.HeaderModel="/apps/customerhub/content/components/Header/ux-model.js"
-             data-sly-use.HeaderLib="/apps/customerhub/content/components/Header/Header-template.html"
+        <sly data-sly-use.HeaderModel="/apps/customerhub/components/content/Header/ux-model.js"
+             data-sly-use.HeaderLib="/apps/customerhub/components/content/Header/Header-template.html"
              data-sly-call="${HeaderLib.Header_template @data=HeaderModel}" />
         <div class="row">
             {{!-- Navigation component --}}
             <div class="col-lg-2 tp-column__sidenav">
-                <sly data-sly-use.SideNavigationModel="/apps/customerhub/content/components/SideNavigation/ux-model.js"
-                     data-sly-use.SideNavigationLib="/apps/customerhub/content/components/SideNavigation/SideNavigation-template.html"
+                <sly data-sly-use.SideNavigationModel="/apps/customerhub/components/content/SideNavigation/ux-model.js"
+                     data-sly-use.SideNavigationLib="/apps/customerhub/components/content/SideNavigation/SideNavigation-template.html"
                      data-sly-call="${SideNavigationLib.SideNavigation_template @data=SideNavigationModel}" />
             </div>
             <div class="col-lg-10 tp-column__content">
