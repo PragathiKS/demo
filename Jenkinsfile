@@ -130,13 +130,9 @@ pipeline {
 				sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
 				sh 'zap-cli --api-key 12345 shutdown'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
-					  },
+					  }
 				
-                "Karma_Report" : {
-			
-				sh 'echo "Publishing Karma"'
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '${params.CHOICE}/ui.dev/src/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])					
-					},				
+                	
 				 )		
             }						
 		}
