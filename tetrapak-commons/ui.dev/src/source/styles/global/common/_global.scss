@@ -157,4 +157,12 @@ td {
         @include max-width($body-max-width);
         margin: 0 auto;
     }
+    .row {
+        @include margin-left(-15px);
+        @include margin-right(-15px);
+    }
+    [class*="col-"] {
+        @include padding-left(15px);
+        @include padding-right(15px);
+    }
 }
