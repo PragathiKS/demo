@@ -100,7 +100,7 @@
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
-                            <filter>true</filter>
+                            <!-- <filter>true</filter> -->
                         </subPackage>
                     </subPackages>
                 </configuration>

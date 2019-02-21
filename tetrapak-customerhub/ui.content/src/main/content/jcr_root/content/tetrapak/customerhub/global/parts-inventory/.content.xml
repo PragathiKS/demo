@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:lastModified="{Date}2019-02-15T17:57:28.738+05:30"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-02-20T08:27:11.549Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
         cq:redirectTarget="https://www.tetrapak.com/"
         cq:template="/apps/customerhub/templates/landingpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Parts Inventory"
+        jcr:uuid="f92edd2b-a19a-4c09-9470-a73341ff203c"
         sling:resourceType="customerhub/components/structure/pages/landingpage"/>
 </jcr:root>
