@@ -4,58 +4,69 @@ import 'slick-carousel';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
 
 class introscreen {
+  constructor({ templates }) { 
+    this.templates = templates;
+  }
   cache = {};
   initCache() {
     /* Initialize cache here */
+    this.cache.$introScreenModal = $('.js-intro-modal');
+    this.cache.$introScreenCarousel = $('.js-intro-slider');
+    this.cache.$carouselNextBtn = $('.js-slick-next');
+    this.cache.$carouselNextBtnTxt = $('.js-slick-next .tp-next-btn__text');
   }
+
   bindEvents() {
     /* Bind jQuery events here */
-    $('.js-slick-next').on('click', function () {
-      if ($(this).hasClass('js-get-started-btn')) {
-        $('.js-intro-modal').modal('hide');
-        storageUtil.set('introScreen', true);
+    this.cache.$carouselNextBtn.on('click', () => {
+      if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
+        this.closeCarousel();
       }
 
-      $('.js-intro-slider').slick('slickNext');
+      this.cache.$introScreenCarousel.slick('slickNext');
     });
 
-    $('.js-intro-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
       if (slick.$slides.length === nextSlide+1) {
-        $('.js-slick-next').addClass('js-get-started-btn');
-        $('.js-slick-next .tp-next-btn__text').text(getI18n($('#getStartedBtnI18n').val()));
+        this.cache.$carouselNextBtn.addClass('js-get-started-btn');
+        this.cache.$carouselNextBtnTxt.text(getI18n($('#getStartedBtnI18n').val()));
       } else {
-        $('.js-slick-next').removeClass('js-get-started-btn');
-        $('.js-slick-next .tp-next-btn__text').text(getI18n($('#nextBtnI18n').val()));
+        this.cache.$carouselNextBtn.removeClass('js-get-started-btn');
+        this.cache.$carouselNextBtnTxt.text(getI18n($('#nextBtnI18n').val()));
       }
     });
 
-    $('.js-close-btn').on('click', function () {
-      $('.js-intro-modal').modal('hide');
-      storageUtil.set('introScreen', true);
+    $('.js-close-btn').on('click', () => {
+      this.closeCarousel();
     });
   }
+
   init() {
     let introScreen = storageUtil.get('introScreen');
 
     /* Mandatory method */
-    this.initCache();
-
     if (!introScreen) {
+      this.initCache();
       this.bindEvents();
 
-      $('.js-intro-modal').modal();
+      this.cache.$introScreenModal.modal();
 
-      $('.js-intro-slider').slick({
+      this.cache.$introScreenCarousel.slick({
         dots: true,
         infinite: false,
         appendDots: $('.slider-dots'),
         prevArrow: false,
         nextArrow: false,
-        customPaging: function () {
-          return '<button class="tp-dot"></button>'; // Remove button, customize content of "li"
+        customPaging: () => {
+          return this.templates.cuhuDot(); // Remove button, customize content of "li"
         }
       });
     }
+  }
+
+  closeCarousel() {
+    this.cache.$introScreenModal.modal('hide');
+    storageUtil.set('introScreen', true);
   }
 }
 
