@@ -8,7 +8,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>bundle</type>
             <scope>provided</scope>
         </dependency>

@@ -24,7 +24,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-commons</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -117,34 +117,34 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 		 <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.integration</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.it.launcher</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.apps</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>content-package</type> 
         </dependency>
          <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.content</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>content-package</type> 
         </dependency>
          <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.dev</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>content-package</type> 
         </dependency>
         
