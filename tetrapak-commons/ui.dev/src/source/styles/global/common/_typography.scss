@@ -37,42 +37,35 @@ sans-serif;
 .hero {
     @include font-size($font-xxxl);
     @include line-height(60px, $font-baseline);
-    font-family: $font-regular;
     font-weight: normal;
 }
 
 h1 {
     @include font-size($font-xxl);
-    font-family: $font-light;
     font-weight: lighter;
 }
 
 h2 {
     @include font-size($font-xl);
     font-weight: lighter;
-    font-family: $font-light;
 }
 
 h3 {
     @include font-size($font-l);
     font-weight: lighter;
-    font-family: $font-light;
 }
 
 h4 {
     @include font-size($font-md);
     font-weight: lighter;
-    font-family: $font-light;
 }
 
 .font-style-sm {
     @include font-size($font-sm);
     font-weight: normal;
-    font-family: $font-light;
 }
 
 .font-style-xs {
     @include font-size($font-xs);
     font-weight: normal;
-    font-family: $font-regular;
 }
