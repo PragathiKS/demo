@@ -15,14 +15,13 @@
 }
 
 .tp-close-btn {
-    position: absolute;
     @include top(5px);
     @include right(5px);
+    position: absolute;
     z-index: $zindex-p;
 }
 
 .intro-slider {
-    font-family: 'muliregular';
     &__slider-image {
         @media #{$desktop} {
             @include width(700px);
@@ -30,22 +29,22 @@
         }
     }
     &__description {
-        @include padding(17px 25px);
+        @include padding($padding-md $padding-l);
     }
     &__title {
-        font-family: 'mulilight';
+        @include margin-top ($margin-sm);
         @include margin-bottom ($margin-l);
         @include line-height (32px, $font-l);
     }
 }
 
 .next-button-wrapper {
-    @include margin-left ($margin-sm);
+    @include margin-left ($margin-l);
 }
 
 .slider-dots {
-    text-align: center;
     @include margin-bottom($margin-md);
+    text-align: center;
     .slick-dots,
     li {
         display: inline-block;
@@ -53,7 +52,9 @@
 }
 
 .slick-active {
-    .tp-dot::after {
-        background-color: #023F88;
+    .tp-dot {
+        &::after {
+            background-color: $color-congress-blue;
+        }
     }
 }
