@@ -1,1 +1,72 @@
-{}
+{
+  "footerLogo": {
+    "imagePath": "https://assets.tetrapak.com/static/publishingimages/logo/stamp_rgb_en_small.png",
+    "imageLink": "http://www.google.com",
+    "imageAltI18n": "pw.footer.businessalttext",
+    "imageTitleI18n": "pw.footer.businesstitletext",
+    "linkPath": "#"
+  },
+  "footerNavigationLinks": [
+    {
+      "linkTextI18n": "Contact",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": true
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "About Us",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Case of studyyy",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": true
+    }
+  ],
+  "navigateToTop": {
+    "ctaLabelI18n": "navigate to top"
+  },
+  "socialMediaLinkedin": "http://www.linkedin.com",
+  "socialMediaFacebook": "",
+  "socialMediaTwitter": "http://www.twitter.com",
+  "socialMediaYoutube": "http://www.youtube.com"
+}

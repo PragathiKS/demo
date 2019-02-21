@@ -1,1 +1,33 @@
-<sly data-sly-template.footer_template="${@ data, flag}"></sly>
+<sly data-sly-template.footer_template="${@ data, flag}">
+  <footer class="tp-pw-footer container">
+    <div class="tp-pw-footer__container">
+      <div class="row">
+        <div class="col-lg-3">
+          <a href="${data.footerLogo.imageLink}" data-sly-unwrap="${!data.footerLogo.imageLink}">
+            <img class="tp-pw-footer__logo" src="${data.footerLogo.imagePath}" alt="${data.footerLogo.imageAltI18n}" title="${data.footerLogo.imageTitleI18n}">
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems=${data.footerNavigationLinks}>
+            <li class="tp-pw-footer__navigation-list__item">
+              <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}" target="${navigationItems.targetBlank ? '_blank' : ''}">${navigationItems.linkTextI18n}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <div class="tp-pw-footer__social-media-items">
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaLinkedin}" target="_blank" data-sly-test="${data.socialMediaLinkedin}"><i class="icon-Linkedin"></i></a>
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaFacebook}" target="_blank" data-sly-test="${data.socialMediaFacebook}"><i class="icon-Facebook"></i></a>
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaTwitter}" target="_blank" data-sly-test="${data.socialMediaTwitter}"><i class="icon-Twitter"></i></a>
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaYoutube}" target="_blank" data-sly-test="${data.socialMediaYoutube}"><i class="icon-Youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <a href="#" class="tp_textBtn tp-pw-footer__link">${data.navigateToTop.ctaLabelI18n} <i class="icon-Circle_Arrow_Up"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</sly>

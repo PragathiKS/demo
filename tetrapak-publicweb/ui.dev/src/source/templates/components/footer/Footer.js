@@ -1,14 +1,22 @@
+import $ from 'jquery';
+
 class Footer {
   cache = {};
+
   initCache() {
-    /* Initialize cache here */
+    this.cache.toTopLink = $('.tp-pw-footer .tp_textBtn');
   }
+
   bindEvents() {
-    /* Bind jQuery events here */
-  }
-  init() {
-    /* Mandatory method */
+
     this.initCache();
+    this.cache.toTopLink.click(function () {
+      $('html, body').animate({scrollTop: 0}, 700);
+      return false;
+    });
+  }
+
+  init() {
     this.bindEvents();
   }
 }
