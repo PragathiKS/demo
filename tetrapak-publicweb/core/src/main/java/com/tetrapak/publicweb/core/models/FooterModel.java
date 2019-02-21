@@ -15,58 +15,61 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.tetrapak.publicweb.core.beans.FooterBean;
 
-@Model(adaptables=Resource.class, defaultInjectionStrategy=DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
 
-    @Self
-    private Resource resource;
+	@Self
+	private Resource resource;
 
-    @Inject
-    private String imagePath;
-    
-    @Inject
-    private String imageAltI18n;
-    
-    @Inject
-    private String imageLink;
-    
-    @Inject
-    private String imageTitleI18n;
-    
-    @Inject
-    private String ctaLabelI18n;
-    
-    @Inject
-    private String socialMediaLinkedin;
-    
-    @Inject
-    private String socialMediaFacebook;
-    
-    @Inject
-    private String socialMediaTwitter;
-    
-    @Inject
-    private String socialMediaYoutube;
+	@Inject
+	private String imagePath;
 
-    private List<FooterBean> footerNavigationLinkList = new ArrayList<>();
+	@Inject
+	private String imageAltI18n;
 
-    @PostConstruct
-    protected void init() {
-        Resource childResource = resource.getChild("footerNavigationLinks");
-        if (childResource != null) {
-        	Iterator<Resource> itr = childResource.listChildren();
-            while (itr.hasNext()) {
-                Resource res = itr.next();
-                ValueMap valueMap = res.getValueMap();
-                FooterBean bean = new FooterBean();
-                bean.setLinkTextI18n((String) valueMap.get("linkTextI18n"));
-                bean.setLinkTooltipI18n((String) valueMap.get("linkTooltipI18n"));
-                bean.setLinkPath((String) valueMap.get("linkPath"));
-                bean.setTargetBlank((String) valueMap.get("targetBlank"));
-                footerNavigationLinkList.add(bean);
-            }
-        }        
-    }
+	@Inject
+	private String imageLink;
+
+	@Inject
+	private String imageTitleI18n;
+
+	@Inject
+	private String ctaLabelI18n;
+
+	@Inject
+	private String linkPath;
+
+	@Inject
+	private String socialMediaLinkedin;
+
+	@Inject
+	private String socialMediaFacebook;
+
+	@Inject
+	private String socialMediaTwitter;
+
+	@Inject
+	private String socialMediaYoutube;
+
+	private List<FooterBean> footerNavigationLinks = new ArrayList<>();
+
+	@PostConstruct
+	protected void init() {
+		Resource childResource = resource.getChild("footerNavigationLinks");
+		if (childResource != null) {
+			Iterator<Resource> itr = childResource.listChildren();
+			while (itr.hasNext()) {
+				Resource res = itr.next();
+				ValueMap valueMap = res.getValueMap();
+				FooterBean bean = new FooterBean();
+				bean.setLinkTextI18n((String) valueMap.get("linkTextI18n"));
+				bean.setLinkTooltipI18n((String) valueMap.get("linkTooltipI18n"));
+				bean.setLinkPath((String) valueMap.get("linkPath"));
+				bean.setTargetBlank((String) valueMap.get("targetBlank"));
+				footerNavigationLinks.add(bean);
+			}
+		}
+	}
 
 	public Resource getResource() {
 		return resource;
@@ -86,6 +89,10 @@ public class FooterModel {
 
 	public String getImageTitleI18n() {
 		return imageTitleI18n;
+	}
+
+	public String getLinkPath() {
+		return linkPath;
 	}
 
 	public String getCtaLabelI18n() {
@@ -108,8 +115,8 @@ public class FooterModel {
 		return socialMediaYoutube;
 	}
 
-	public List<FooterBean> getFooterNavigationLinkList() {
-		return footerNavigationLinkList;
+	public List<FooterBean> getFooterNavigationLinks() {
+		return footerNavigationLinks;
 	}
 
 }
