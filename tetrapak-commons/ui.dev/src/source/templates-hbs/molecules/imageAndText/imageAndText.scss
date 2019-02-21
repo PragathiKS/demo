@@ -1,6 +1,6 @@
 .tp-get-start-container {
     width: 100%;
-    @include bg-transparent;
+    @include bg-color(transparent);
     @media #{$desktop} {
         width: 33%;
         @include margin(0 24px);

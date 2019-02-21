@@ -2,7 +2,7 @@
     #BUTTONS
 \*------------------------------------*/
 
-.tp-next-btn {       
+.tp-next-btn {
     @include font-size($font-baseline);
     @include padding($padding-zero $padding-md);
     @include line-height(40px, $font-baseline);
@@ -11,25 +11,21 @@
     border: 0;
     color: $color-text-link;
     font-family: $font-light;
-    cursor: pointer;  
-
+    cursor: pointer;
     &__text {
         @include margin-right($margin-sm);
-        float: left;
         .tp-btnNext--disabled & {
             opacity: $opacity-mid;
         }
     }
-
     &__icon {
         display: inline-block;
         .tp-btnNext--disabled & {
             opacity: $opacity-mid;
         }
     }
-
     &--disabled {
         background: $color-wild-sand;
-        color: $color-congress-blue;        
+        color: $color-congress-blue;
     }
 }

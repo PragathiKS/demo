@@ -1,32 +1,32 @@
 @import '../../../../node_modules/slick-carousel/slick/slick';
-
-.modal-dialog {
+.tp-modal-dialog.modal-dialog {
     @include max-width(700px);
     @media #{$mobile} {
-        @include margin (16px);
-    }    
+        @include margin ($margin-md);
+    }
+    .modal-content {
+        @include box-shadow-modal;
+    }
+    .modal-header,
+    .modal-body {
+        @include no-border;
+        @include padding(0);
+    }
 }
-.modal-content{
-   @include box-shadow-modal;
-}
-.modal-header,
-.modal-body {
-    @include no-border;
-    @include padding(0);
-}
+
 .tp-close-btn {
     position: absolute;
-    @include top (5px);
-    @include right (5px);
-    z-index: 1;
+    @include top(5px);
+    @include right(5px);
+    z-index: $zindex-p;
 }
+
 .intro-slider {
     font-family: 'muliregular';
-    
-    &__slider-image{        
+    &__slider-image {
         @media #{$desktop} {
             @include width(700px);
-            @include height (300px);
+            @include height(300px);
         }
     }
     &__description {
@@ -34,25 +34,26 @@
     }
     &__title {
         font-family: 'mulilight';
-        @include margin-bottom (13px);
-        line-height: 32px;
+        @include margin-bottom ($margin-l);
+        @include line-height (32px, $font-l);
+    }
+}
 
-	}
+.next-button-wrapper {
+    @include margin-left ($margin-sm);
 }
-.next-button-wrapper{
-    @include margin-left (7px);
-}
+
 .slider-dots {
     text-align: center;
-    @include margin-bottom(16px);
-    ul,
+    @include margin-bottom($margin-md);
+    .slick-dots,
     li {
         display: inline-block;
-	}
+    }
 }
 
-.slick-active .tp-dot {
-	&::after {
-		background-color: #023F88;
-	}
+.slick-active {
+    .tp-dot::after {
+        background-color: #023F88;
+    }
 }

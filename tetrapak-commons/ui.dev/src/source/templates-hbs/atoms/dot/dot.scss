@@ -1,5 +1,5 @@
 .tp-dot {
-    @include bg-transparent;
+    @include bg-color(transparent);
     width: 24px;
     height: 24px;
     position: relative;
@@ -8,7 +8,7 @@
     &::after {
         @include transition(background-color,.5s);
         @include border-xs($color-tundora);
-        @include bg-transparent;
+        @include bg-color(transparent);
         position: absolute;
         top: 4px;
         left: 4px;
@@ -32,6 +32,6 @@
     }
 }
 .hover-state {
-    @include bg-brand-blue;
+    // @include bg-brand-blue;
     @include border-xs($color-congress-blue);
 }
