@@ -46,7 +46,7 @@ public class IntroScreenModelTest {
     }
 
     @Test
-    public void testGetMessage() throws Exception {
+    public void testGetMessage() {
         Assert.assertEquals("About_GS_Heading", introScreenModel.getHeadingI18n());
         Assert.assertEquals("About_GS_Close", introScreenModel.getCloseBtnI18n());
         Assert.assertEquals("About_GS_Started", introScreenModel.getGetStartedBtnI18n());

@@ -58,7 +58,7 @@ public class GetStartedModelTest {
     }
 
     @Test
-    public void testGetMessage() throws Exception {
+    public void testGetMessage() {
         String heading = getStartedModel.getHeadingI18n();
         assertNotNull(heading);
         assertTrue(heading.length() > 0);
