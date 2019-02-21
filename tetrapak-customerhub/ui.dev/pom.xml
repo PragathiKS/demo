@@ -130,7 +130,7 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
