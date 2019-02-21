@@ -20,7 +20,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-publicweb</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>tetrapak-publicweb.integration</artifactId>
