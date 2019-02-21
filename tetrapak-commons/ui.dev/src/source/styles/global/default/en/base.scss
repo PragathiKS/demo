@@ -4,4 +4,5 @@
 // Import components below
 @import '../../../../templates/components/HelloWorld/HelloWorld.scss';
 @import '../../../../templates/components/HelloWorldHandlebars/HelloWorldHandlebars.scss';
-@import '../../../../templates/molecules/imageAndText/imageAndText';
+// Patternlab imports
+@import '../../../../templates-hbs/atoms/buttons/primaryButton/buttons';

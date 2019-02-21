@@ -40,8 +40,8 @@ public class IntroScreenModel {
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
-        Iterator<Resource> itr = childResource.listChildren();
         if (null != childResource) {
+            Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource res = itr.next();
                 ValueMap valueMap = res.getValueMap();
