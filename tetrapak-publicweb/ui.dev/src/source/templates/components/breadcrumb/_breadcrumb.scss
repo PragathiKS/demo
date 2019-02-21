@@ -1,0 +1,27 @@
+.tp_pw-breadcrumb {
+    color: $color-boulder;
+    margin: $spacing-small 0 $spacing-small $spacing-small-half;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @media #{$medium} {
+        margin: $spacing-big 0 $spacing-big $spacing-big;
+	}
+
+    @media #{$large} {
+        margin: $spacing-big 0 $spacing-big $spacing-big*2;
+	}
+
+    .tp_icon {
+        display: inline;
+        @include font-size(.5, large);
+        margin: 0 $spacing-small-half;
+        vertical-align: middle;
+    }
+
+    span {
+        color: $color-text;
+        font-weight: bold;
+    }
+}

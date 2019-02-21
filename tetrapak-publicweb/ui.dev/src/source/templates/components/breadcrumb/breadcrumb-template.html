@@ -1,0 +1,13 @@
+<sly data-sly-template.breadcrumb_template="${@ data, flag}">
+  <div class="tp_pw-breadcrumb text-small">
+    <a href="${data.breadcrumbHomePath}">${data.breadcrumbHomeLabelI18n}</a>
+    <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
+    	<sly data-sly-test="${!subpagesList.last}">
+    		<a href="${subpages.subpageLinkPath}"><i class="icon-Chevron_Right tp_icon"></i> ${subpages.subpageTitleI18n}</a>
+    	</sly>
+    	<sly data-sly-test="${subpagesList.last}">
+    		<i class="icon-Chevron_Right tp_icon"></i> <span>${subpages.subpageTitleI18n}</span>
+    	</sly>
+    <sly>
+	</div>
+</sly>
