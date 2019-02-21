@@ -2,39 +2,44 @@ package com.tetrapak.publicweb.core.beans;
 
 public class FooterBean {
 
-	private String imageAltI18n;
+	private String linkTextI18n;
+	
+	private String linkTooltipI18n;
+	
+	private String linkPath; 
 
-    private String titleI18n;
+    private String targetBlank;
 
-    private String descriptionI18n;
+	public String getLinkTextI18n() {
+		return linkTextI18n;
+	}
 
-    public String getImageAltI18n() {
+	public void setLinkTextI18n(String linkTextI18n) {
+		this.linkTextI18n = linkTextI18n;
+	}
 
-        return imageAltI18n;
-    }
+	public String getLinkTooltipI18n() {
+		return linkTooltipI18n;
+	}
 
-    public void setImageAltI18n(String imageAltI18n) {
+	public void setLinkTooltipI18n(String linkTooltipI18n) {
+		this.linkTooltipI18n = linkTooltipI18n;
+	}
 
-        this.imageAltI18n = imageAltI18n;
-    }
+	public String getLinkPath() {
+		return linkPath;
+	}
 
-    public String getTitleI18n() {
+	public void setLinkPath(String linkPath) {
+		this.linkPath = linkPath;
+	}
 
-        return titleI18n;
-    }
+	public String getTargetBlank() {
+		return targetBlank;
+	}
 
-    public void setTitleI18n(String titleI18n) {
+	public void setTargetBlank(String targetBlank) {
+		this.targetBlank = targetBlank;
+	}
 
-        this.titleI18n = titleI18n;
-    }
-
-    public String getDescriptionI18n() {
-
-        return descriptionI18n;
-    }
-
-    public void setDescriptionI18n(String descriptionI18n) {
-
-        this.descriptionI18n = descriptionI18n;
-    }
 }
