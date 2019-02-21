@@ -142,7 +142,8 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/OrderStatus/"
+        "source/templates/components/OrderStatus/",
+        "source/templates/components/introscreen/"
       ]
     },
     "handlebars": {
