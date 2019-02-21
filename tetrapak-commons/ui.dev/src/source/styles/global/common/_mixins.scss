@@ -213,3 +213,11 @@
 @mixin word-spacing($args) {
     word-spacing: convert-to-rem($args);
 }
+
+@mixin box-shadow-modal {
+    box-shadow: 0 0 8px 0 $color-black-opacity20;
+}
+
+@mixin no-border {
+    border: 0;
+}

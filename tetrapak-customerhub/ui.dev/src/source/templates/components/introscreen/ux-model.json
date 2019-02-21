@@ -1,0 +1,26 @@
+{
+  "headingI18n": "cuhu.getstarted.heading",
+  "nextBtnI18n": "cuhu.getstarted.next",
+  "closeBtnI18n": "cuhu.getstarted.close",
+  "getStartedBtnI18n": "cuhu.getstarted.getstartedtext",
+  "getStartedList": [
+    {
+      "imagePath": "https://www.gstatic.com/webp/gallery/4.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext",
+      "titleI18n": "cuhu.getstarted.businesstitle",
+      "descriptionI18n": "cuhu.getstarted.businessdescription Depart do be so he enough talent. Sociable formerly six but handsome. Up do view time they shot. He concluded disposing provision by questions as situation. Its estimating are motionless day sentiments end. Calling an imagine at forbade. At name no an what like spot. Pressed my by do affixed he studied. "
+    },
+    {
+      "imagePath": "https://www.gstatic.com/webp/gallery/4.jpg",
+      "imageAltI18n": "cuhu.getstarted.notificationalttext",
+      "titleI18n": "cuhu.getstarted.notificationtitle",
+      "descriptionI18n": "cuhu.getstarted.notificationdescription"
+    },
+    {
+      "imagePath": "https://www.gstatic.com/webp/gallery/4.jpg",
+      "imageAltI18n": "cuhu.getstarted.experiencealttext",
+      "titleI18n": "cuhu.getstarted.experiencetitle",
+      "descriptionI18n": "cuhu.getstarted.experiencedescription"
+    }
+ ]
+}

@@ -36,6 +36,7 @@ $text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'sect
 body {
     background: $color-mercury;
     color: $color-text;
+    font-family: $font-light;
     -webkit-text-size-adjust: 100%;
     min-height: 100vh;
 }
@@ -156,9 +157,6 @@ td {
         @include max-width($body-max-width);
         margin: 0 auto;
     }
-}
-
-.tp-container {
     .row {
         @include margin-left(-15px);
         @include margin-right(-15px);
