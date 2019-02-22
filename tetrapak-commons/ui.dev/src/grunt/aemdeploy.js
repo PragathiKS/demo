@@ -29,5 +29,10 @@ module.exports = {
     src: [
       config.aem.src.jsonData
     ]
+  },
+  contentXML: {
+    src: [
+      config.aem.src.contentXML
+    ]
   }
 };

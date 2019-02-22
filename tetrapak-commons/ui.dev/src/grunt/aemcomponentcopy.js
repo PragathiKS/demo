@@ -2,8 +2,8 @@ var config = require('../config.json');
 module.exports = {
   uxlib: {
     options: {
-      replaceTargetContentXml: false,
-      useDummyContentXml: false,
+      replaceTargetContentXml: true,
+      useDummyContentXml: true,
       componentGroup: config.aem.componentGroup
     },
     files: [

@@ -11,6 +11,7 @@
       "moleculePath": "<%= config.source %>/templates/molecules",
       "componentPath": "<%= config.source %>/templates/components",
       "content": "<%= config.app %>/jcr_root/content/customerhub-ux/**/.content.xml",
+      "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
       "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
       "models": "<%= config.app %>/jcr_root/apps/**/*.js",
       "staticassets": "<%= config.app %>/jcr_root/apps/settings/wcm/**/*.{js,css}",
@@ -24,7 +25,7 @@
       "componentPath": "<%= config.app %>/jcr_root/apps/customerhub/components/content"
     },
     "uxContentDescriptor": "customerhub-ux",
-    "componentGroup": "customerhub",
+    "componentGroup": "tetrapak-customerhub",
     "componentGroupName": "Customer Hub"
   },
   "assemble": {
