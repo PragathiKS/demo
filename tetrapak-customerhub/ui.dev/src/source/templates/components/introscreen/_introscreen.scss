@@ -3,12 +3,12 @@
     .modal-dialog {
         @include max-width(700px);
         @media #{$mobile} {
-            @include margin($margin-md);
+            @include margin(0 $margin-md);
         }
         .modal-content {
             @include box-shadow-modal;
             @media #{$mobile} {
-                height: calc(100vh - #{$margin-md} * 2);
+                @include margin($margin-md 0);
             }
         }
         .modal-header,
@@ -25,8 +25,7 @@
     }
     @media #{$mobile} {
         .modal-dialog-centered {
-            min-height: calc(100vh - #{$margin-md} * 2);
-            height: calc(100vh - #{$margin-md} * 2);
+            min-height: 100%;
         }
     }
 }
