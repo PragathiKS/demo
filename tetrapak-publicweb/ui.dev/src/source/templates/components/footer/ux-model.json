@@ -1,11 +1,9 @@
 {
-  "footerLogo": {
-    "imagePath": "https://assets.tetrapak.com/static/publishingimages/logo/stamp_rgb_en_small.png",
-    "imageLink": "http://www.google.com",
-    "imageAltI18n": "pw.footer.businessalttext",
-    "imageTitleI18n": "pw.footer.businesstitletext",
-    "linkPath": "#"
-  },
+  "imagePath": "http://localhost:4502/content/dam/publicweb/logo_tetra_pak_white.svg",
+  "imageLink": "http://www.google.com",
+  "imageAltI18n": "pw.footer.businessalttext",
+  "imageTitleI18n": "pw.footer.businesstitletext",
+  "linkPath": "#",
   "footerNavigationLinks": [
     {
       "linkTextI18n": "Contact",

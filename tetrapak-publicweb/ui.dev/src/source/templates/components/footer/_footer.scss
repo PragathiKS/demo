@@ -3,7 +3,11 @@
     background-color: $color-congress-blue;
 
     &__container {
-        @include padding(60px 0);
+        @include padding(60px $padding-sm);
+
+        @media #{$desktop} {
+            @include padding(60px $padding-l);
+        }
     }
 
     &__link {
@@ -16,15 +20,17 @@
     }
 
     &__navigation-list {
+        @include margin-top($spacing-big);
 
         @media #{$desktop} {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
+            margin-top: 0;
         }
 
         &__item {
-            @include margin-right(24px);
-            @include margin-bottom(10px);
+            @include margin-right($margin-l);
+            @include margin-bottom($margin-md);
             display: block;
 
         }
@@ -32,8 +38,8 @@
 
     &__social-media-items {
         &__link {
-            @include font-size(25px);
-            @include margin-right(20px);
+            @include font-size($font-l);
+            @include margin-right($margin-l);
         }
         &__link:last-child {
             margin-right: 0;
