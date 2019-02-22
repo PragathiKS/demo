@@ -2,14 +2,16 @@
 .modal--intro-screen {
     .modal-dialog {
         @include max-width(700px);
-        @media #{$mobile} {
-            @include margin(0 $margin-md);
-        }
+        @include margin(0 $margin-md);
         .modal-content {
             @include box-shadow-modal;
+            @include margin($margin-md 0);
             overflow: hidden;
-            @media #{$mobile} {
-                @include margin($margin-md 0);
+        }
+        &,
+        .modal-content {
+            @media #{$desktop} {
+                margin: 0;
             }
         }
         .modal-header,
