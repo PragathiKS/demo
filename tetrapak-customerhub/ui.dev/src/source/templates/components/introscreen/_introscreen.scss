@@ -11,12 +11,7 @@
             @include box-shadow-modal;
             @include margin($margin-md 0);
             overflow: hidden;
-        } // &,
-        // .modal-content {
-        //     @media #{$desktop} {
-        //         margin: 0;
-        //     }
-        // }
+        }
         .modal-header,
         .modal-body {
             @include no-border;
