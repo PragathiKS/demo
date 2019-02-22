@@ -1,7 +1,7 @@
 pipeline {
     agent any	
 	parameters {
-    choice choices: ['tetrapak-commons', 'tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
+    choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
                 }
     tools {
         maven 'maven'
@@ -28,7 +28,9 @@ pipeline {
 
         stage ('Build') {
             steps {
+			    sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
 			    sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                 sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 				 
             }  
@@ -55,24 +57,32 @@ pipeline {
 			   parallel (
 			       "Author Deployment" : {
 			          echo "Uninstalling Old Package"
+					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
 			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
 			          echo "Removing Old Package"
+					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
 			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
 			          echo "Uploading New Package"
+					  sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			          sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			          echo "Installing New Package"
-			         sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			                                  },
 		                    
 
 		            "Publish_Deployment" : {
 		                echo "Uninstalling Old Package"
+						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&nametetrapak-commons.complete'"
 			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
 			            echo "Removing Old Package"
+						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
 			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
 			            echo "Uploading New Package"
+						sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			            sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			            echo "Installing New Package"
+						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
 			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			                                     }
 		                )  
