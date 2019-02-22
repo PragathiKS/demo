@@ -45,7 +45,7 @@
                                     fieldDescription="Select path of the page that links to the logo."
                                     fieldLabel="Logo Image Link"
                                     name="./imageLink"
-                                    rootPath="/content/publicweb"/>
+                                    rootPath="/content"/>
                             <imagetitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -85,7 +85,7 @@
                                                     fieldDescription="Select Link"
                                                     fieldLabel="Link Path"
                                                     name="./linkPath"
-                                                    rootPath="/content/publicweb"/>
+                                                    rootPath="/content"/>
                                                 <targetBlank
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
