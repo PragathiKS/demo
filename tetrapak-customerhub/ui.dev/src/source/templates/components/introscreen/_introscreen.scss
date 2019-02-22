@@ -1,19 +1,22 @@
 @import '../../../../node_modules/slick-carousel/slick/slick';
 .modal--intro-screen {
     .modal-dialog {
-        @include max-width(700px);
         @include margin(0 $margin-md);
+        max-width: 100%;
+        @media #{$desktop} {
+            @include max-width(700px);
+            margin: auto;
+        }
         .modal-content {
             @include box-shadow-modal;
             @include margin($margin-md 0);
             overflow: hidden;
-        }
-        &,
-        .modal-content {
-            @media #{$desktop} {
-                margin: 0;
-            }
-        }
+        } // &,
+        // .modal-content {
+        //     @media #{$desktop} {
+        //         margin: 0;
+        //     }
+        // }
         .modal-header,
         .modal-body {
             @include no-border;
@@ -52,11 +55,13 @@
     }
     &__description {
         @include padding($padding-md $padding-l);
+        word-wrap: break-word;
     }
     &__title {
         @include margin-top ($margin-sm);
         @include margin-bottom ($margin-l);
         @include line-height (32px, $font-l);
+        word-wrap: break-word;
     }
 }
 
