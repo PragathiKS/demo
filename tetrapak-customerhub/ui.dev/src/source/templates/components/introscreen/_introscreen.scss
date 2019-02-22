@@ -33,18 +33,20 @@
 }
 
 .tp-close-btn {
-    @include top(5px);
-    @include right(5px);
+    @include top(9px);
+    @include right(9px);
+    @include padding(0);
+    @include font-size($font-normal);
     position: absolute;
     z-index: $zindex-p;
-    @include font-size($font-normal);
+    color: $color-text;
 }
 
 .intro-slider {
     &__slider-image {
+        width: 100%;
         @media #{$desktop} {
             @include width(700px);
-            @include height(300px);
         }
     }
     &__description {
