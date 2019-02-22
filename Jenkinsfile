@@ -13,7 +13,7 @@ pipeline {
 	 author_url = "http://10.202.13.228:4502"
 	 publish_url = "http://10.202.13.229:4503"
 	 package_name = "tetrapak-complete-package"
-	 test_url = "http://tetrapak.sapient.com"
+	 test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-us.html "
    }
    
     stages {
