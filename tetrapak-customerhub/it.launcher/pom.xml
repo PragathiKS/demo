@@ -5,7 +5,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -287,12 +287,12 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.it.tests</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

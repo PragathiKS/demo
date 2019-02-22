@@ -4,7 +4,7 @@ import 'slick-carousel';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
 
 class introscreen {
-  constructor({ templates }) { 
+  constructor({ templates }) {
     this.templates = templates;
   }
   cache = {};
@@ -27,7 +27,7 @@ class introscreen {
     });
 
     this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-      if (slick.$slides.length === nextSlide+1) {
+      if (slick.$slides.length === nextSlide + 1) {
         this.cache.$carouselNextBtn.addClass('js-get-started-btn');
         this.cache.$carouselNextBtnTxt.text(getI18n($('#getStartedBtnI18n').val()));
       } else {
@@ -57,9 +57,7 @@ class introscreen {
         appendDots: $('.slider-dots'),
         prevArrow: false,
         nextArrow: false,
-        customPaging: () => {
-          return this.templates.cuhuDot(); // Remove button, customize content of "li"
-        }
+        customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
       });
     }
   }
