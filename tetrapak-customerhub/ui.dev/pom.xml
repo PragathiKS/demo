@@ -58,6 +58,40 @@
                     <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
             </plugin>
+			
+
+            <!-- ====================================================================== -->
+            <!-- V A U L T   P A C K A G E   P L U G I N S                              -->
+            <!-- ====================================================================== -->
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+				<configuration>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>tetrapak</groupId>
+                            <artifactId>tetrapak-customerhub.core</artifactId>
+                            <target>/apps/customerhub/install</target>
+                        </embedded>
+                    </embeddeds>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <failOnError>true</failOnError>
+                    <group>tetrapak-customerhub</group>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>htl-maven-plugin</artifactId>
+            </plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -80,46 +114,6 @@
 					</arguments>
 				</configuration>
 			</plugin>
-
-            <!-- ====================================================================== -->
-            <!-- V A U L T   P A C K A G E   P L U G I N S                              -->
-            <!-- ====================================================================== -->
-            <plugin>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>filevault-package-maven-plugin</artifactId>
-                <extensions>true</extensions>
-				<configuration>
-                    <embeddeds>
-                        <embedded>
-                            <groupId>tetrapak</groupId>
-                            <artifactId>tetrapak-customerhub.core</artifactId>
-                            <target>/apps/customerhub/install</target>
-                        </embedded>
-                    </embeddeds>
-                    <subPackages>
-                        <subPackage>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.all</artifactId>
-                            <filter>true</filter>
-                        </subPackage>
-                    </subPackages>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.day.jcr.vault</groupId>
-                <artifactId>content-package-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <verbose>true</verbose>
-                    <failOnError>true</failOnError>
-                    <group>tetrapak-customerhub</group>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>htl-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 
