@@ -5,6 +5,6 @@
         cq:templateType="/conf/tetrapak-customerhub/settings/wcm/template-types/empty-page"
         jcr:description="This page is used to create only dashboard page. It will contain notification component by default."
         jcr:primaryType="cq:PageContent"
-        jcr:title="Landing Page"
+        jcr:title="Dashboard Page"
         status="enabled"/>
 </jcr:root>
