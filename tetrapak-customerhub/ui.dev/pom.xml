@@ -75,12 +75,6 @@
                             <target>/apps/customerhub/install</target>
                         </embedded>
                     </embeddeds>
-					<subPackages>
-                        <subPackage>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.all</artifactId>
-                        </subPackage>
-                    </subPackages>
                 </configuration>
             </plugin>
             <plugin>
