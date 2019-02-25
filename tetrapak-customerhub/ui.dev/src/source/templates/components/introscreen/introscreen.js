@@ -4,16 +4,16 @@ import 'slick-carousel';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
 
 class introscreen {
-  constructor({ templates }) {
+  constructor({ templates, el }) {
     this.templates = templates;
+    this.root = $(el);
   }
   cache = {};
   initCache() {
     /* Initialize cache here */
-    this.cache.$introScreenModal = $('.js-intro-modal');
-    this.cache.$introScreenCarousel = $('.js-intro-slider');
-    this.cache.$carouselNextBtn = $('.js-slick-next');
-    this.cache.$carouselNextBtnTxt = $('.js-slick-next .tp-next-btn__text');
+    this.cache.$introScreenCarousel = this.root.find('.js-intro-slider');
+    this.cache.$carouselNextBtn = this.root.find('.js-slick-next');
+    this.cache.$carouselNextBtnTxt = this.root.find('.js-slick-next .tp-next-btn__text');
   }
 
   bindEvents() {
@@ -29,14 +29,14 @@ class introscreen {
     this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
       if (slick.$slides.length === nextSlide + 1) {
         this.cache.$carouselNextBtn.addClass('js-get-started-btn');
-        this.cache.$carouselNextBtnTxt.text(getI18n($('#getStartedBtnI18n').val()));
+        this.cache.$carouselNextBtnTxt.text(getI18n(this.root.find('#getStartedBtnI18n').val()));
       } else {
         this.cache.$carouselNextBtn.removeClass('js-get-started-btn');
-        this.cache.$carouselNextBtnTxt.text(getI18n($('#nextBtnI18n').val()));
+        this.cache.$carouselNextBtnTxt.text(getI18n(this.root.find('#nextBtnI18n').val()));
       }
     });
 
-    $('.js-close-btn').on('click', () => {
+    this.root.find('.js-close-btn').on('click', () => {
       this.closeCarousel();
     });
   }
@@ -49,12 +49,12 @@ class introscreen {
       this.initCache();
       this.bindEvents();
 
-      this.cache.$introScreenModal.modal();
+      this.root.modal();
 
       this.cache.$introScreenCarousel.slick({
         dots: true,
         infinite: false,
-        appendDots: $('.slider-dots'),
+        appendDots: this.root.find('.slider-dots'),
         prevArrow: false,
         nextArrow: false,
         customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
@@ -63,7 +63,7 @@ class introscreen {
   }
 
   closeCarousel() {
-    this.cache.$introScreenModal.modal('hide');
+    this.root.modal('hide');
     storageUtil.set('introScreen', true);
   }
 }

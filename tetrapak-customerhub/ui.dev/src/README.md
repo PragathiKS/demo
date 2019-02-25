@@ -88,8 +88,11 @@ Edit JavaScript file and add following code:
 ```js
 import $ from 'jquery';
 class HelloWorld {
+    constructor({ el }) {
+        this.app = $(el);
+    }
     init() {
-        $('.app').text('Hello Earth!');
+        this.app.text('Hello Earth!');
     }
 }
 ```
@@ -103,6 +106,8 @@ To call JavaScript code, add a ``data-module`` attribute to hello world app.
     </div>
 </sly>
 ```
+
+<b>Note:</b> The current reference of ``[data-module]`` element is passed as a root reference. This reference can be used to find elements present within current instance of sightly component. It's is recommended to always use this root reference to find elements within component. Using direct selectors can cause runtime issues in scenarios where a component is included more than once.
 
 ### Testing "HelloWorld" in browser
 
@@ -184,11 +189,12 @@ For front-end applications which requires client-side rendering we use handlebar
 
 ```js
 class HelloWorld {
-    constructor({ templates }) {
+    constructor({ templates, el }) {
         this.templates = templates;
+        this.app = $(el);
     }
     init() {
-        $('.app').html(this.templates.helloWorld()); // <-- Method "helloWorld" is same as hbs file name
+        this.app.html(this.templates.helloWorld()); // <-- Method "helloWorld" is same as hbs file name
     }
 }
 ```
@@ -203,10 +209,13 @@ Render library has created to handle complex scenarios when rendering handlebar 
 ```js
 import { render } from '../../../scripts/utils/render';
 class HelloWorld {
+    constructor({ el }) {
+        this.app = $(el);
+    }
     init() {
         render.fn({
             template: 'helloWorld',
-            target: '.app'
+            target: this.app
         });
     }
 }
