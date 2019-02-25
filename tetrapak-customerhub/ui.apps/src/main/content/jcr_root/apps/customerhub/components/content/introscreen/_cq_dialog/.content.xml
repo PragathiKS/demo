@@ -46,7 +46,8 @@
                         <field
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
-                            name="./list">
+                            name="./list"
+                            validation="multifield-max-7">
                             <items jcr:primaryType="nt:unstructured">
                                 <column
                                     jcr:primaryType="nt:unstructured"
