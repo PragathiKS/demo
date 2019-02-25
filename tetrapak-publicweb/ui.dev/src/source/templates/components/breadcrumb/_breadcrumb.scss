@@ -5,23 +5,30 @@
     position: relative;
     width: 100%;
 
-    @media #{$medium} {
+    @media #{$desktop} {
         margin: $spacing-big 0 $spacing-big $spacing-big;
 	}
 
-    @media #{$large} {
+    @media #{$desktop-large} {
         margin: $spacing-big 0 $spacing-big $spacing-big*2;
 	}
 
+    &__link {
+        @include font-size(12px);
+        color: $color-boulder;
+    }
+
     .tp_icon {
+        @include font-size(9px);
+        @include margin(0 $margin-sm);
+
         display: inline;
-        @include font-size(.5, large);
-        margin: 0 $spacing-small-half;
         vertical-align: middle;
     }
 
     span {
-        color: $color-text;
+        @include font-size(12px);
+        color: $color-tundora;
         font-weight: bold;
     }
 }
