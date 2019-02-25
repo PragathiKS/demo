@@ -2,7 +2,7 @@ import HelloWorld from '../templates/components/HelloWorld/HelloWorld';
 
 describe('HelloWorld', function () {
   before(function () {
-    this.helloWorld = new HelloWorld();
+    this.helloWorld = new HelloWorld({ el: document.body });
     this.helloWorldSpy = sinon.spy(this.helloWorld, 'init');
     this.helloWorld.init();
   });

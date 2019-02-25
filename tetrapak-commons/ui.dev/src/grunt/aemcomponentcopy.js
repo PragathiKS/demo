@@ -2,10 +2,11 @@ const config = require('../config.json');
 const options = {
   replaceTargetContentXml: true,
   useDummyContentXml: true,
-  componentGroup: config.aem.componentGroup
+  componentGroup: config.aem.componentGroup,
+  mode: 'development'
 };
 const prodOptions = Object.assign({}, options, {
-  replaceTargetContentXml: false
+  mode: 'production'
 });
 const files = [
   {
