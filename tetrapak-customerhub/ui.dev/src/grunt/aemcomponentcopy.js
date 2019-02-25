@@ -5,7 +5,7 @@ const options = {
   componentGroup: config.aem.componentGroup
 };
 const prodOptions = Object.assign({}, options, {
-  replaceTargetContentXml: false
+  replaceMode: 'development'
 });
 const files = [
   {
