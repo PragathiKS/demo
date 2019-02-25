@@ -94,7 +94,7 @@
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
 							<filter>true</filter>
-                            </subPackage>
+                        </subPackage>
                     </subPackages>
                 </configuration>
             </plugin>
