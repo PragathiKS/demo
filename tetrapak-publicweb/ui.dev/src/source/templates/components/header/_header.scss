@@ -1,0 +1,150 @@
+
+.tp_header {
+    height: 68px;
+    width: 100%;
+    z-index: 1000;
+
+    @media #{$medium} {
+        height: 88px;
+    }
+
+    .row {
+        height: 100%;
+    }
+
+    .tp_logo {
+        height: auto;
+        max-width: 150px;
+        width: 100%;
+    }
+
+    .tp_icon {
+        @include font-size(1.5, large);
+    }
+
+    .tp_header-mobileMenuIcon {
+        margin-right: $spacing-small;
+
+        @media #{$medium} {
+            margin-right: $spacing-big;
+        }
+    }
+}
+
+
+.tp_header-ch {
+    background: $color-white;
+    padding: 0 $spacing-small;
+    top: 0;
+
+    &.position {
+        position: fixed;
+    }
+
+    @media #{$medium} {
+        padding: 0 $spacing-big;
+    }
+
+    .tp_header-login,
+    .tp_header-divider,
+    .tp_header-notification {
+        display: inline;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .tp_header-login {
+        flex: 1;
+
+        .tp_icon {
+            @media #{$medium} {
+                margin-right: $spacing-small-half;
+            }
+        }
+    }
+
+    .tp_header-divider {
+        background: $color-white;
+        height: 24px;
+        margin: 0 $spacing-small-half;
+        width: 1px;
+
+        @media #{$medium} {
+            background: $color-mercury;
+            margin: 0 $spacing-big;
+        }
+    }
+
+    .tp_header-notification {
+        position: relative;
+
+
+    }
+}
+
+
+.tp_header-pw {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    height: 130px;
+    overflow: hidden;
+    padding: 32px $spacing-small 73px;
+    position: relative;
+
+    @media #{$medium} {
+        height: 130px;
+        padding: 32px $spacing-big 73px;
+    }
+
+    @media #{$large} {
+        padding: 32px $spacing-big*2 73px;
+    }
+
+    .tp_navigation {
+        .tp_navigationItemLink {
+            color: $color-white;
+            }
+        
+        .tp_navigationItemLink &:hover,
+        &:focus,
+        &:active {
+            color: $color-mercury;
+        }
+    }
+
+    .tp_header-search,
+    .tp_header-myLogin,
+    .tp_header-language {
+        display: inline;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .tp_icon {
+    	@include font-size(1.25, large);
+        color: $color-white;
+
+        @media #{$medium} {
+            margin-right: $spacing-small-half;
+        }
+    }
+
+    .tp_header-search {
+        flex: 1;
+    }
+
+    .tp_header-myLogin {
+        margin: 0 $spacing-small;
+
+        @media #{$medium} {
+            margin: 0 $spacing-big;
+        }
+    }
+
+    a {
+        color: $color-white;
+
+        &:hover {
+            color: $color-mercury;
+        }
+    }
+}
