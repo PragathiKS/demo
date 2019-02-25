@@ -1,19 +1,22 @@
 import $ from 'jquery';
 
 class HelloWorld {
+  constructor({ el }) {
+    this.root = $(el);
+  }
   cache = {};
   init() {
     this.initCache();
     this.bindEvents();
   }
   initCache() {
-    this.cache.$btn = $('.js-cuhu__btn');
+    this.cache.$btn = this.root.find('.js-cuhu__btn');
   }
   bindEvents() {
     this.cache.$btn.on('click', this.changeText);
   }
   changeText() {
-    $('.helloworld').find('span').text('Text is changed');
+    this.root.find('.helloworld').find('span').text('Text is changed');
   }
 }
 

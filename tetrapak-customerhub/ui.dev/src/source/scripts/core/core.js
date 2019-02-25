@@ -15,17 +15,18 @@ $(function () {
   // Discover components
   $componentReference.each(function () {
     const componentList = $(this).data('module').split(',').map(componentName => componentName.trim());
-    componentList.forEach(function (componentName) {
+    componentList.forEach((componentName) => {
       if (!components.includes(componentName)) {
-        components.push(componentName);
+        components.push({ componentName, el: this });
       }
     });
   });
   // Fetch component bundles
-  components.forEach(component => {
+  components.forEach(({ componentName, el }) => {
     // Import bundle
-    bundleImport(component, function (args) {
+    bundleImport(componentName, function (args) {
       args.templates = templates;
+      args.el = el;
       bundleImporter(args);
     });
   });
