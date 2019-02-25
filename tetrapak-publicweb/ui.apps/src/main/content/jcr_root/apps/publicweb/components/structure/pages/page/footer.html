@@ -4,3 +4,10 @@
          data-sly-call="${clientlib.js @ categories=clientlibCategories}"></sly>
     <sly data-sly-include="customfooterlibs.html"></sly>
 </template>
+<footer>
+  <div class="container">
+    <div class="row"
+         data-sly-resource="${'footer' @ resourceType='publicweb/components/content/footer'}">
+    </div>
+  </div>
+</footer>
