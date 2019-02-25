@@ -1,8 +1,11 @@
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
   plugins: [
-    require('precss'),
-    require('autoprefixer')({
-      browsers: ['>1%', 'last 2 versions']
+    precss,
+    autoprefixer({
+      browsers: ['>0.5%', 'last 2 versions', 'not ie <= 10']
     })
   ]
 }

@@ -1,28 +1,9 @@
+const webpack = require('webpack');
+const path = require('path');
+const webpackConfig = require('./config').webpack;
+
 module.exports = function (config) {
   config.set({
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'source',
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon'],
-    files: [
-      'tests/*.spec.js'
-    ],
-    // list of files to exclude
-    exclude: [],
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'scripts/core/core.js': ['webpack', 'sourcemap'],
-      'tests/*.spec.js': ['webpack', 'sourcemap']
-    },
-    webpack: webpackConfig,
-    reporters: ['progress', 'coverage', 'dots', 'junit'],
-    // web server port
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
     browsers: ['PhantomJSCustom'],
     customLaunchers: {
       PhantomJSCustom: {
@@ -37,15 +18,58 @@ module.exports = function (config) {
         }
       }
     },
-    singleRun: true,
-    concurrency: Infinity,
-    coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
+    browserNoActivityTimeout: 60000,
+    singleRun: true, //just run once by default
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    failOnEmptyTestSuite: false,
+    frameworks: ['mocha', 'chai', 'sinon'],
+    files: [
+      'testcases.webpack.js' //just load this file
+    ],
+    preprocessors: {
+      'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
     },
-    junitReporter: {
-      outputFile: 'test-results.xml'
+    reporters: ['progress', 'coverage-istanbul', 'dots', 'junit'], //report results in this format
+    coverageIstanbulReporter: {
+      reports: ['html'],
+      dir: 'coverage/',
+      fixWebpackSourcePaths: true
+    },
+    webpack: {
+      devtool: 'inline-source-map',
+      mode: 'development',
+      module: {
+        rules: [
+          { test: /\.js$/, loader: 'babel-loader' },
+          {
+            enforce: 'post',
+            test: /\.js$/,
+            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack/,
+            loader: 'istanbul-instrumenter-loader',
+            query: {
+              esModules: true
+            }
+          },
+          {
+            test: /\.hbs$/,
+            exclude: /node_modules/,
+            loader: "handlebars-loader",
+            options: {
+              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
+              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              precompileOptions: {
+                knownHelpersOnly: false
+              }
+            }
+          }
+        ]
+      }
+    },
+    webpackServer: {
+      noInfo: true //please don't spam the console when running in karma!
     }
-  })
-}
-
+  });
+};

@@ -11,13 +11,22 @@ module.exports = function (grunt) {
     });
 
     grunt.log.writeln("Aemsync targets: ", options.targets.join(','));
-    var pusher = new Pusher(options.targets, 0, function () { done(); });
+    var pusher = new Pusher(options.targets, 0, function (err) {
+      if (err) {
+        grunt.log.ok(err);
+      }
+      done();
+    });
 
     this.filesSrc.forEach(function (file) {
       pusher.addItem(path.resolve(file));
     });
 
-    pusher.processQueue();
-    grunt.log.ok("Files processed: " + this.filesSrc.length);
+    if (this.filesSrc.length) {
+      pusher.processQueue();
+      grunt.log.ok("Files processed: " + this.filesSrc.length);
+    } else {
+      pusher.onPushEnd('Files do not exists yet!');
+    }
   });
 }

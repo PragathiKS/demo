@@ -1,9 +1,0 @@
-.tp__container {
-    max-width: 100%;
-    background-color: $color-mercury;
-    @include padding(24px 15px);
-    @media #{$desktop} {
-        @include max-width(1366px);
-        margin: 0 auto;
-    }
-}

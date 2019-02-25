@@ -1,0 +1,19 @@
+.tp-get-started {
+    @include box-shadow-normal;
+    @include padding(16px 8px 8px 8px);
+    width: 100%;
+    background-color: $color-white;
+    border-radius: 5px;
+    & &__heading {
+        @include padding(0 0 12px 12px);
+        font-family: $font-light;
+    }
+    &__details {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        @media #{$desktop} {
+            flex-direction: row;
+        }
+    }
+}

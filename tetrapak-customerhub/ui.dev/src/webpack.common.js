@@ -24,7 +24,10 @@ const cacheGroups = (function () {
     } else if (currentGroup.testMultiple) {
       currentGroup.test = function (module) {
         if (module.resource) {
-          return !!componentGroups[cacheGroup].filter(path => module.resource.includes(path)).length;
+          return !!componentGroups[cacheGroup].filter(path => {
+            const moduleResource = module.resource.replace(/[\\]/g, '/');
+            return moduleResource.includes(path);
+          }).length;
         }
         return false;
       }
@@ -119,5 +122,15 @@ module.exports = {
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
     })
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  },
+  resolve: {
+    mainFields: ['main', 'module'],
+    alias: {
+      handlebars: 'handlebars/runtime',
+      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
+    }
+  }
 }

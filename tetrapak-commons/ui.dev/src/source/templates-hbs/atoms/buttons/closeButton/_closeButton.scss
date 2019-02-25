@@ -1,0 +1,11 @@
+/*------------------------------------*\
+    #Close BUTTONS
+\*------------------------------------*/
+
+.tp-close-btn {
+    @include width($min-accessible-dimension);
+    @include height($min-accessible-dimension);
+    background: none;
+    border: none;
+    cursor: pointer;
+}

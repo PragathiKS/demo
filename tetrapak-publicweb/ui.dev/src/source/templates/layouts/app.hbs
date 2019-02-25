@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/tp-publicweb/components/{{fsdId}}/{{fsdId}}-template.html" />
+<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/publicweb/components/content/{{fsdId}}/{{fsdId}}-template.html" />
 <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}">
     <head>
         <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
@@ -16,7 +16,7 @@
 </sly>
 
 <body>
-    <div class="tp__container">
+    <div class="tp-container">
         {{> body}}
     </div>
 

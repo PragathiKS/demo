@@ -5,6 +5,9 @@ module.exports = {
   lintingDev: {
     command: 'npm run eslintDev && npm run sasslintDev'
   },
+  karmaTests: {
+    command: 'npm run test'
+  },
   webpackProd: {
     command: 'npm run prod'
   },

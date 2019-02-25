@@ -7,7 +7,7 @@ npm install -g grunt-cli
 
 # Build
 
-Development environment
+Development
 ```sh
 npm run buildDev
 ```
