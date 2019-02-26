@@ -18,25 +18,61 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <introscreen
-                    jcr:created="{Date}2019-02-26T15:41:41.947+05:30"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-02-26T15:41:54.249+05:30"
-                    jcr:lastModifiedBy="admin"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/content/introscreen"
-                    closeBtnI18n="sadsd"
-                    getStartedBtnI18n="sd"
-                    headingI18n="sd"
-                    nextBtnI18n="asda">
-                    <list jcr:primaryType="nt:unstructured">
-                        <item0
-                            jcr:primaryType="nt:unstructured"
-                            descriptionI18n="sadaads"
-                            imageAltI18n="adsa"
-                            imagePath="/content/dam/customerhub/p1.PNG"
-                            titleI18n="sdad"/>
-                    </list>
-                </introscreen>
+                jcr:created="{Date}2019-02-21T12:36:27.435Z"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2019-02-25T09:23:01.926Z"
+                jcr:lastModifiedBy="sapient-tarun"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="customerhub/components/content/introscreen"
+                closeBtnI18n="Intro_screen_Closebutton"
+                getStartedBtnI18n="Intro_screen_GetStarted"
+                headingI18n="Intro_Screen_Heading"
+                nextBtnI18n="Intro_Screen_NextCaption">
+                <list jcr:primaryType="nt:unstructured">
+                    <item0
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc1"
+                        imageAltI18n="About_GetStarted_Image1_altText"
+                        imagePath="/content/dam/customerhub/p1.PNG"
+                        titleI18n="About_GetStarted_title1"/>
+                    <item1
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc2"
+                        imageAltI18n="About_GetStarted_Image2_altText"
+                        imagePath="/content/dam/customerhub/p2.PNG"
+                        titleI18n="About_GetStarted_title2"/>
+                    <item2
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc3"
+                        imageAltI18n="About_GetStarted_Image3_altText"
+                        imagePath="/content/dam/customerhub/p3.PNG"
+                        titleI18n="About_GetStarted_title3"/>
+                    <item3
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc3"
+                        imageAltI18n="About_GetStarted_Image2_altText"
+                        imagePath="/content/dam/customerhub/p1.PNG"
+                        titleI18n="About_GetStarted_title2"/>
+                    <item4
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc1"
+                        imageAltI18n="About_GetStarted_Image3_altText"
+                        imagePath="/content/dam/customerhub/p2.PNG"
+                        titleI18n="About_GetStarted_title3"/>
+                    <item5
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc2"
+                        imageAltI18n="About_GetStarted_Image1_altText"
+                        imagePath="/content/dam/customerhub/p3.PNG"
+                        titleI18n="About_GetStarted_title1"/>
+                    <item6
+                        jcr:primaryType="nt:unstructured"
+                        descriptionI18n="About_GetStarted_Desc2"
+                        imageAltI18n="About_GetStarted_Image2_altText"
+                        imagePath="/content/dam/customerhub/p1.PNG"
+                        titleI18n="About_GetStarted_title2"/>
+                </list>
+            </introscreen>
             </responsivegrid>
         </root>
     </jcr:content>
