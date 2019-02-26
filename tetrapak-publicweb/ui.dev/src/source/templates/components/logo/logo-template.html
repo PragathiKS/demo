@@ -1,1 +1,5 @@
-<sly data-sly-template.logo_template="${@ data, flag}"></sly>
+<sly data-sly-template.logo_template="${@ data, flag}">
+  <a href="${data.imageLink}" data-sly-unwrap="${!data.imageLink}">
+    <img class="tp-pw-logo" src="${data.imagePath}" alt="${data.imageAltI18n}">
+  </a>       
+</sly>
