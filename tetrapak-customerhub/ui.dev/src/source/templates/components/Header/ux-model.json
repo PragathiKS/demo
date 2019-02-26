@@ -1,1 +1,32 @@
-{}
+{
+    "logoUrl": "/content/dam/tp_images/logo.jpg",
+    "logoTextI18n": "cuhu.logotext.text",
+    "getUserInfoI18n": "Charlie Svensson",
+    "HeaderNavLinks": [
+        {
+            "href": "/content/dam/tp-banner/banner.jpg",
+            "name": "Solutions",
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "/content/dam/tp-banner/banner.jpg",
+            "name": "Innovation",
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "/content/dam/tp-banner/banner.jpg",
+            "name": "Sustainability",
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "/content/dam/tp-banner/banner.jpg",
+            "name": "Careers",
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "/content/dam/tp-banner/banner.jpg",
+            "name": "About us",
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        }
+    ]
+}
