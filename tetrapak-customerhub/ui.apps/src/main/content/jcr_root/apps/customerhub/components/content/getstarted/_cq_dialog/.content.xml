@@ -24,7 +24,8 @@
                         jcr:title="List"
                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                         composite="{Boolean}true"
-                        fieldLabel="List of tabs">
+                        fieldLabel="List of tabs"
+                        validation="multifield-max-7">
                         <field
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"

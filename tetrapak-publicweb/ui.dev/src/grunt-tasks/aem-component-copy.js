@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         } else {
           if (options.useDummyContentXml) {
             grunt.verbose.writeln("Generating dummy .content.xml for " + sourceFile);
-            var dummyComponentContentXml = buildContentDescriptor(path.basename(path.dirname(sourceFile)) + " component", options.componentGroup);
+            var dummyComponentContentXml = buildContentDescriptor(path.basename(path.dirname(sourceFile)) + " component", options);
             grunt.file.write(destContentXml, dummyComponentContentXml);
           }
         }
@@ -39,17 +39,20 @@ module.exports = function (grunt) {
     done();
   });
 
-  var buildContentDescriptor = function (component, group) {
-    var content = {
+  var buildContentDescriptor = function (component, options) {
+    group = options.componentGroup;
+    const content = {
       'jcr:root': {
         '@xmlns:cq': "http://www.day.com/jcr/cq/1.0",
         '@xmlns:jcr': "http://www.jcp.org/jcr/1.0",
-        '@jcr:primaryType': "cq:Component",
-        '@jcr:title': config.aem.componentGroupName + " " + component,
-        '@allowedParents': "[*/parsys]",
-        '@componentGroup': group
+        '@jcr:primaryType': "cq:Component"
       }
     };
+    if (options.mode === 'development') {
+      content['jcr:root']['@jcr:title'] = config.aem.componentGroupName + " " + component;
+      content['jcr:root']['@allowedParents'] = '[*/parsys]';
+      content['jcr:root']['@componentGroup'] = group;
+    }
     var xml = xmlBuilder.create(content, { encoding: 'UTF-8' });
     return xml.end({
       pretty: true,
