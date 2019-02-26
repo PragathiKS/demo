@@ -1,0 +1,13 @@
+<div class="tp-container">
+<sly data-sly-resource="${'header' @ resourceType='customerhub/components/structure/header'}" />
+	<div class="row">
+    	<div class="col-lg-2 tp-column__sidenav">
+			<sly data-sly-resource="${'navigation' @ resourceType='customerhub/components/structure/navigation'}" />
+		</div>
+        <div class="col-lg-6 tp-column__content">
+            <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+                data-sly-repeat.child="${templatedContainer.structureResources}"
+                data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+        </div>
+	</div>
+</div>
