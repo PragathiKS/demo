@@ -2,11 +2,8 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-02-26T15:42:50.431+05:30"
-        cq:lastModifiedBy="admin"
         cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/landing-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Ordering"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -19,7 +16,4 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
-    <order-history/>
-    <packaging-material/>
-    <parts/>
 </jcr:root>
