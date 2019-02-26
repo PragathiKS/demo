@@ -17,7 +17,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Heading i18 Key"
-                            fieldLabel="Haeding i18 Key"
+                            fieldLabel="Heading i18 Key"
                             name="./headingI18n"/>
                     <list
                         jcr:primaryType="nt:unstructured"
