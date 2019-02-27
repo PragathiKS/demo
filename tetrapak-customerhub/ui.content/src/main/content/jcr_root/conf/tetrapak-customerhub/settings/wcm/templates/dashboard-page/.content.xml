@@ -6,5 +6,6 @@
         jcr:description="This page is used to create only dashboard page. It will contain notification component by default."
         jcr:primaryType="cq:PageContent"
         jcr:title="Dashboard Page"
+		shortTitle="dashboard"
         status="enabled"/>
 </jcr:root>
