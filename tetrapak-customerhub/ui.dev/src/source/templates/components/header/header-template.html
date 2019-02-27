@@ -1,0 +1,37 @@
+<sly data-sly-template.header_template="${@ data, flag}">
+    <header class="tp-header">
+        <span class="tp-header__burger-menu icon-Burger_Menu"></span>
+        
+        <sly data-sly-test="${data.logoDisplay}">
+          <div class="tp-header__logo">
+            <a href="${data.dLogoLink}" class="d-none d-md-inline-block">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+            </a>
+            <!--/*logo for mobile  */-->
+            <a href="${data.mLogoLink}" class="d-md-none">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+            </a>
+          </div>
+        </sly>
+        <sly data-sly-test="${data.navDisplay}">
+          <nav class="tp-header__nav">
+            <ul>
+            <sly data-sly-list.headerLinks="${data.headerNavLinks}">            
+                <li class="tp-header__list">
+                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}">${headerLinks.name}</a> 
+                </li>
+            </sly>
+            </ul>
+          </nav>
+      </sly>
+      <sly data-sly-test="${data.rightNavDisplay}">
+        <div class="tp-header__nav-right">
+          <span class="tp-header__user icon-Avatar">${data.getUserInfoI18n}</span>
+          <button type="button" class="tp-header__bell icon-Bell">
+             <!--/* TODO - The value will be dynamic when notification story is developed. */-->
+            <label class="tp-header__notif">2</label>
+          </button>
+        </div>
+      </sly>       
+    </header>
+</sly>
