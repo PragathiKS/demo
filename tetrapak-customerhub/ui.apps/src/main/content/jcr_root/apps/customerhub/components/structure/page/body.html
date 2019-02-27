@@ -4,10 +4,13 @@
     	<div class="col-lg-2 tp-column__sidenav">
 			<sly data-sly-resource="${'navigation' @ resourceType='customerhub/components/structure/navigation'}" />
 		</div>
-        <div class="col-lg-${currentPage.template.shortTitle=='dashboard'? '6' : '10'} tp-column__content">
+        <div class="col-lg-${currentPage.template.shortTitle == 'dashboard'? '6' : '10'} tp-column__content">
             <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
                 data-sly-repeat.child="${templatedContainer.structureResources}"
                 data-sly-resource="${child.path @ resourceType=child.resourceType}"></sly>
         </div>
+		<div data-sly-test="${currentPage.template.shortTitle == 'dashboard'}" class="col-lg-4 tp-column__notif">
+			<sly data-sly-resource="${'notification' @ resourceType='customerhub/components/structure/notification'}" />
+		</div>
 	</div>
 </div>
