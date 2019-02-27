@@ -2,11 +2,11 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-02-26T15:41:54.253+05:30"
+        cq:lastModified="{Date}2019-02-26T15:45:57.352+05:30"
         cq:lastModifiedBy="admin"
-        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/dashboard-page"
+        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/landing-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Dashboard"
+        jcr:title="About My Tetra Pak"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -17,17 +17,14 @@
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
-                <introscreen
-                jcr:created="{Date}2019-02-21T12:36:27.435Z"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-02-25T09:23:01.926Z"
+                <getstarted
+                jcr:created="{Date}2019-02-20T05:12:55.048Z"
+                jcr:createdBy="sapient-nitin"
+                jcr:lastModified="{Date}2019-02-25T12:49:46.959Z"
                 jcr:lastModifiedBy="sapient-tarun"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="customerhub/components/content/introscreen"
-                closeBtnI18n="Intro_screen_Closebutton"
-                getStartedBtnI18n="Intro_screen_GetStarted"
-                headingI18n="Intro_Screen_Heading"
-                nextBtnI18n="Intro_Screen_NextCaption">
+                sling:resourceType="customerhub/components/content/getstarted"
+                headingI18n="About_GetStarted_Heading">
                 <list jcr:primaryType="nt:unstructured">
                     <item0
                         jcr:primaryType="nt:unstructured"
@@ -38,8 +35,8 @@
                     <item1
                         jcr:primaryType="nt:unstructured"
                         descriptionI18n="About_GetStarted_Desc2"
-                        imageAltI18n="About_GetStarted_Image2_altText"
-                        imagePath="/content/dam/customerhub/p2.PNG"
+                        imageAltI18n="About_GetStarted_Image21_altText"
+                        imagePath="/content/dam/customerhub/p1.PNG"
                         titleI18n="About_GetStarted_title2"/>
                     <item2
                         jcr:primaryType="nt:unstructured"
@@ -49,30 +46,12 @@
                         titleI18n="About_GetStarted_title3"/>
                     <item3
                         jcr:primaryType="nt:unstructured"
-                        descriptionI18n="About_GetStarted_Desc3"
-                        imageAltI18n="About_GetStarted_Image2_altText"
-                        imagePath="/content/dam/customerhub/p1.PNG"
-                        titleI18n="About_GetStarted_title2"/>
-                    <item4
-                        jcr:primaryType="nt:unstructured"
-                        descriptionI18n="About_GetStarted_Desc1"
-                        imageAltI18n="About_GetStarted_Image3_altText"
-                        imagePath="/content/dam/customerhub/p2.PNG"
-                        titleI18n="About_GetStarted_title3"/>
-                    <item5
-                        jcr:primaryType="nt:unstructured"
-                        descriptionI18n="About_GetStarted_Desc2"
-                        imageAltI18n="About_GetStarted_Image1_altText"
+                        descriptionI18n="About_GetStarted_Desc4"
+                        imageAltI18n="About_GetStarted_Image4_altText"
                         imagePath="/content/dam/customerhub/p3.PNG"
-                        titleI18n="About_GetStarted_title1"/>
-                    <item6
-                        jcr:primaryType="nt:unstructured"
-                        descriptionI18n="About_GetStarted_Desc2"
-                        imageAltI18n="About_GetStarted_Image2_altText"
-                        imagePath="/content/dam/customerhub/p1.PNG"
-                        titleI18n="About_GetStarted_title2"/>
+                        titleI18n="About_GetStarted_title4"/>
                 </list>
-            </introscreen>
+            </getstarted>
             </responsivegrid>
         </root>
     </jcr:content>
