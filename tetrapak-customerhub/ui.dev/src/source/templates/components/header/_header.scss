@@ -80,7 +80,7 @@
         border: none;
         cursor: pointer;
         @include padding-right(0);
-        &:before {
+        &::before {
             @include font-size($font-normal);
             color: $color-congress-blue;
         }
