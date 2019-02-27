@@ -94,7 +94,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/customerhub/jsonData"
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/customerhub/jsonData"
       }
     ]
   },
