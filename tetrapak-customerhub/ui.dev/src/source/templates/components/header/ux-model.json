@@ -2,8 +2,6 @@
     "logoUrl": "/content/dam/tp_images/logo.jpg",
     "logoTextI18n": "cuhu.logotext.text",
     "getUserInfoI18n": "Charlie Svensson",
-    "logoDisplay": true,
-    "navDisplay": true,
     "rightNavDisplay": true,
     "mLogoLink": "https://www.google.com/",
     "dLogoLink": "https://www.publicissapient.com/",
