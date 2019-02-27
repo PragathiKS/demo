@@ -8,7 +8,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-commons</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -93,7 +93,6 @@
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
-                            <filter>true</filter>
                         </subPackage>
                     </subPackages>
                 </configuration>
@@ -123,7 +122,7 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

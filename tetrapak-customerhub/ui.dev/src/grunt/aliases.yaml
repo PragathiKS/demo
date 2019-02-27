@@ -11,9 +11,7 @@ aem:
     - 'shell:webpackProd'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
-    - 'copy:jsonData'
-    - 'assemble'
-    - 'aemcomponentcopy:uxlib'
+    - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
   description: "build app with ux-lib, followed by auto deploy, followed by watch"
@@ -50,6 +48,4 @@ default:
     - 'shell:webpackDev'
     - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
-    - 'copy:jsonData'
-    - 'assemble'
-    - 'aemcomponentcopy:uxlib'
+    - 'aemcomponentcopy:uxlibProd'

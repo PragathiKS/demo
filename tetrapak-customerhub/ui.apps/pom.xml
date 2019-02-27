@@ -8,7 +8,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -45,12 +45,6 @@
             </resource>
         </resources>
         <plugins>
-            <!--
-                we want to keep some of the META-INF files and not configure
-                everything in the plugin (mainly the filters).
-
-                copy the resource explicitly instead of attaching it to the default resources
-            -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <!-- ensure that the empty directories are copied -->
@@ -65,8 +59,8 @@
             <plugin>
                 <groupId>org.apache.jackrabbit</groupId>
                 <artifactId>filevault-package-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
+                <extensions>true</extensions>				
+                <configuration>				
                     <embeddeds>
                         <embedded>
                             <groupId>tetrapak</groupId>
@@ -77,8 +71,7 @@
                     <subPackages>
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.all</artifactId>
-                             <filter>true</filter>
+                            <artifactId>core.wcm.components.all</artifactId>                            					
                         </subPackage>
                     </subPackages>
                 </configuration>
@@ -108,7 +101,7 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

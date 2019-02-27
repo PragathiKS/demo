@@ -1,0 +1,93 @@
+pipeline {
+    agent any	
+	parameters {
+    choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
+                }
+    tools {
+        maven 'maven'
+        jdk 'jdk8'
+    }
+	
+	environment {
+     sonar_url = "http://127.0.0.1:9000"
+	 author_url = "http://13.69.79.81:4502"
+	 publish_url = "http://13.69.73.197:4503"
+	 package_name = "tetrapak-complete-package"
+	 test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/ordering/order-history.html  http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/financials.html  http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/training.html  http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/projects.html  http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/contact.html  http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/about-us.html"
+	 test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net"
+   }
+   
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+			    sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+			    sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				 
+            }  
+        }
+		
+
+		stage ('Deployment Author and Publish Parallel') {
+		    steps {
+			   parallel (
+			       "Author Deployment" : {
+			          echo "Uninstalling Old Package"
+					  sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
+			          echo "Removing Old Package"
+					  sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+			          echo "Uploading New Package"
+					  sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			          sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			          echo "Installing New Package"
+					  sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+			                                  },
+		                    
+
+		            "Publish_Deployment" : {
+		                echo "Uninstalling Old Package"
+						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&nametetrapak-commons.complete'"
+			            sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
+			            echo "Removing Old Package"
+						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+			            sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+			            echo "Uploading New Package"
+						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			            sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			            echo "Installing New Package"
+						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+			            sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+			                                     }
+		                )  
+			                  }
+			                                               }
+		stage ('Dispatcher Flush, Pa11y, Sitespeed, Zap Tools Execution') {
+		    steps {
+
+            echo "Cache Flush Started"
+			sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/home --header CQ-Page:/home 'http://10.202.13.229/dispatcher/invalidate.cache'"
+			sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/content --header CQ-Page:/content 'http://10.202.13.229/dispatcher/invalidate.cache'"
+			sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/etc --header CQ-Page:/etc 'http://10.202.13.229/dispatcher/invalidate.cache'"
+			sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/libs --header CQ-Page:/libs 'http://10.202.13.229/dispatcher/invalidate.cache'"
+
+		     	
+				
+                			
+            }						
+		}
+	}
+	}
+		
