@@ -66,7 +66,7 @@
             display: inline-block;
             border-right: 1px $color-mercury solid;
         }
-        &:before {
+        &::before {
             @include font-size($font-normal);
             color: $color-congress-blue;
             @include padding-right(3px);
@@ -80,7 +80,7 @@
         border: none;
         cursor: pointer;
         @include padding-right(0);
-        &:before {
+        &::before {
             @include font-size($font-normal);
             color: $color-congress-blue;
         }
