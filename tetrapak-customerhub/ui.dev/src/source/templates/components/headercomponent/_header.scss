@@ -66,6 +66,11 @@
             display: inline-block;
             border-right: 1px $color-mercury solid;
         }
+        &:before {
+            @include font-size($font-normal);
+            color: $color-congress-blue;
+            @include padding-right(3px);
+        }
     }
     &__bell {
         @include padding-left($padding-md);
@@ -75,14 +80,10 @@
         border: none;
         cursor: pointer;
         @include padding-right(0);
-    }
-    &__user:before,
-    &__bell:before {
-        @include font-size($font-normal);
-        color: $color-congress-blue;
-    }
-    &__user:before {
-        @include padding-right(3px);
+        &:before {
+            @include font-size($font-normal);
+            color: $color-congress-blue;
+        }
     }
     &__burger-menu {
         @include font-size($font-normal);

@@ -2,7 +2,7 @@
     "logoUrl": "/content/dam/tp_images/logo.jpg",
     "logoTextI18n": "cuhu.logotext.text",
     "getUserInfoI18n": "Charlie Svensson",
-    "HeaderNavLinks": [
+    "headerNavLinks": [
         {
             "href": "/content/dam/tp-banner/banner.jpg",
             "name": "Solutions",
