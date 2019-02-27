@@ -1,0 +1,19 @@
+{
+    "sections" : [
+        {
+            "imagePath" : "/images/hero/pw_hero_solutions_old_large.jpg",
+            "title" : "One place for your business",
+            "description" : "My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions.My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions."
+        },
+        {
+            "imagePath" : "/images/hero/pw_hero_solutions_old_large.jpg",
+            "title" : "Notifications that you need",
+            "description" : "Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work."
+        },
+        {
+            "imagePath" : "/images/hero/pw_hero_solutions_old_large.jpg",
+            "title" : "Customise your experience",
+            "description" : "Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."
+        }
+    ]
+}

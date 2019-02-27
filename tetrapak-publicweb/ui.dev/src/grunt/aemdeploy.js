@@ -25,11 +25,6 @@ module.exports = {
       config.aem.src.staticassets
     ]
   },
-  // fontassets: {
-  //   src: [
-  //     config.aem.src.fontassets
-  //   ]
-  // },
   jsonData: {
     src: [
       config.aem.src.jsonData

@@ -33,7 +33,8 @@ function createComponent(name) {
   fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
   fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
   if (!(hasArgs('atom') || hasArgs('molecule'))) {
-    fs.writeFileSync(`${componentPath}/${name}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, name));
+    const jsFileName = `${name.charAt(0).toUpperCase()}${name.substring(1)}`;
+    fs.writeFileSync(`${componentPath}/${jsFileName}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, jsFileName));
     fs.writeFileSync(`${componentPath}/ux-model.json`, '{}');
     const previewHtml = fs.readFileSync(config.pageTemplate, 'utf8').replace(/#name#/g, name);
     fs.writeFileSync(`${componentPath}/ux-preview.hbs`, previewHtml);

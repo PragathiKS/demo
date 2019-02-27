@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- |  Copyright 2015 Adobe Systems Incorporated
- |
- |  Licensed under the Apache License, Version 2.0 (the "License");
- |  you may not use this file except in compliance with the License.
- |  You may obtain a copy of the License at
- |
- |      http://www.apache.org/licenses/LICENSE-2.0
- |
- |  Unless required by applicable law or agreed to in writing, software
- |  distributed under the License is distributed on an "AS IS" BASIS,
- |  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- |  See the License for the specific language governing permissions and
- |  limitations under the License.
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,7 +8,7 @@
     <parent>
         <groupId>tetrapak</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -35,22 +20,15 @@
     <name>Tetrapak Customerhub - UI Dev</name>
     <description>UI Dev package for Tetrapak Customerhub</description>
 
-    <!-- <scm>
-        <connection></connection>
-        <developerConnection></developerConnection>
-        <url></url>
-        <tag>HEAD</tag>
-    </scm-->
-
     <!-- ====================================================================== -->
     <!-- B U I L D   D E F I N I T I O N                                        -->
     <!-- ====================================================================== -->
     <build>
-        <sourceDirectory>src/main/content/jcr_root</sourceDirectory>
+        <sourceDirectory>${basedir}/src/app/jcr_root</sourceDirectory>
         <resources>
             <!-- define the resources that will go into the package -->
             <resource>
-                <directory>${basedir}/src/main/content/jcr_root</directory>
+                <directory>${basedir}/src/app/jcr_root</directory>
                 <excludes>
                     <!-- exclude .vlt control files in the package -->
                     <exclude>**/.vlt</exclude>
@@ -80,6 +58,28 @@
                     <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>npm run build (Dev)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>compile</phase>						
+					</execution>
+				</executions>
+				<configuration>
+					<executable>npm</executable>
+					<workingDirectory>src/</workingDirectory>
+					<arguments>
+						<argument>run</argument>
+						<argument>buildDev</argument>
+					</arguments>
+				</configuration>
+			</plugin>
 
             <!-- ====================================================================== -->
             <!-- V A U L T   P A C K A G E   P L U G I N S                              -->
@@ -88,7 +88,7 @@
                 <groupId>org.apache.jackrabbit</groupId>
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
-                <configuration>
+				<configuration>
                     <embeddeds>
                         <embedded>
                             <groupId>tetrapak</groupId>
@@ -100,7 +100,6 @@
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
-                            <filter>true</filter>
                         </subPackage>
                     </subPackages>
                 </configuration>
@@ -167,7 +166,7 @@
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -197,4 +196,5 @@
             <artifactId>cq-wcm-taglib</artifactId>
         </dependency>
     </dependencies>
+    
 </project>

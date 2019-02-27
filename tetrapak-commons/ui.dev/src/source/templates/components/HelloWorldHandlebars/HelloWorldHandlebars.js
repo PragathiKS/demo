@@ -1,11 +1,8 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
+import { render } from '../../../scripts/utils/render';
 
 class HelloWorldHandlebars {
-  constructor({ templates }) {
-    this.templates = templates;
-  }
-
   cache = {};
   init() {
     this.initCache();
@@ -21,7 +18,12 @@ class HelloWorldHandlebars {
     $body.on('input', '.js-textfield', this.changeText);
   }
   loadForm = () => {
-    this.cache.$helloWorldForm.html(this.templates.changeTextForm()).find('.js-textfield').val(this.cache.$dynamicText.text());
+    render.fn({
+      template: 'changeTextForm',
+      target: this.cache.$helloWorldForm
+    }, () => {
+      this.cache.$helloWorldForm.find('.js-textfield').val(this.cache.$dynamicText.text());
+    });
   }
   changeText = (e) => {
     this.cache.$dynamicText.text($(e.target).val());

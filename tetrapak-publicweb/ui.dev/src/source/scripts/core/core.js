@@ -6,6 +6,7 @@ import $ from 'jquery';
 import bundleImport from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';
+import domReady from '../utils/domReady';
 import './corescss';
 
 $(function () {
@@ -13,19 +14,21 @@ $(function () {
   const components = [];
   // Discover components
   $componentReference.each(function () {
-    const componentList = $(this).data('module').split(',');
-    componentList.forEach(function (componentName) {
+    const componentList = $(this).data('module').split(',').map(componentName => componentName.trim());
+    componentList.forEach((componentName) => {
       if (!components.includes(componentName)) {
-        components.push(componentName);
+        components.push({ componentName, el: this });
       }
     });
   });
   // Fetch component bundles
-  components.forEach(component => {
+  components.forEach(({ componentName, el }) => {
     // Import bundle
-    bundleImport(component, function (args) {
+    bundleImport(componentName, function (args) {
       args.templates = templates;
+      args.el = el;
       bundleImporter(args);
     });
   });
+  domReady.init();
 });
