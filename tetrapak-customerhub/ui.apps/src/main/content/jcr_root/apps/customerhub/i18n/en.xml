@@ -1,104 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
+    cq:lastReplicatedBy="sapient-tarun"
+    cq:lastReplicationAction="Activate"
     jcr:language="en"
-    jcr:mixinTypes="[mix:language]"
+    jcr:mixinTypes="[cq:ReplicationStatus,mix:language]"
     jcr:primaryType="nt:folder">
-    <About_GS_Desc1
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_Desc1
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions."/>
-    <About_GS_Desc2
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+        sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
+    <About_GetStarted_Desc2
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work."/>
-    <About_GS_Desc3
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_Desc3
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
-    <About_GS_Heading
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+    <About_GetStarted_Desc4
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Get Started"/>
-    <About_GS_Image1_alt
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+        sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
+    <About_GetStarted_Heading
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get Started now"/>
+    <About_GetStarted_Image1_altText
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.784Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Image1_alt"/>
-    <About_GS_Img2_alt
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_Img2_altText
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="alt2"/>
-    <About_GS_Img3_alt
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+    <About_GetStarted_Img3_altText
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.784Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Image3_alt"/>
-    <About_GS_title1
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_Img4_altText
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ImageAlt4"/>
+    <About_GetStarted_title1
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="One place for your business"/>
-    <About_GS_title2
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+    <About_GetStarted_title2
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Notifications that you need"/>
-    <About_GS_title3
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_title3
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your experience"/>
-    <Intro_Btncaption
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+    <About_GetStarted_title4
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Next"/>
-    <Intro_Closebtn_key
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+        sling:message="Customise your new experience"/>
+    <Intro_screen_Closebutton
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Close"/>
-    <Intro_comp_heading
-        cq:lastReplicated="{Date}2019-02-22T06:58:30.111Z"
+    <Intro_Screen_description5
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Introduction"/>
-    <Intro_StartButton_key
-        cq:lastReplicated="{Date}2019-02-22T06:58:29.716Z"
+        sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
+    <Intro_screen_GetStarted
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Get Started"/>
+    <Intro_Screen_Heading
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Introduction"/>
+    <Intro_Screen_Img5_altText
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ImageAlt5"/>
+    <Intro_Screen_NextCaption
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Next"/>
+    <Intro_Screen_title5
+        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customise your experience"/>
 </jcr:root>
