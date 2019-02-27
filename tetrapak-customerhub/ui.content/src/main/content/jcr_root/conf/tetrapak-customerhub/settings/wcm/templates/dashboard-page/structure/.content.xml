@@ -17,9 +17,6 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 editable="{Boolean}true">
                 <cq:responsive jcr:primaryType="nt:unstructured"/>
-				<notification
-					jcr:primaryType="nt:unstructured"
-					sling:resourceType="customerhub/components/content/notification"/>
             </responsivegrid>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
