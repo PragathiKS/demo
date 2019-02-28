@@ -1,0 +1,14 @@
+.order-search {
+    @include padding($padding-l);
+    @include border-radius($border-radius);
+    @include box-shadow-normal;
+    background-color: $color-white;
+    .form-control {
+        @include margin-bottom($margin-md);
+        @include border-xs($color-boulder);
+        @include height(40px);
+    }
+    .btn--grey {
+        @include margin-right($margin-md);
+    }
+}
