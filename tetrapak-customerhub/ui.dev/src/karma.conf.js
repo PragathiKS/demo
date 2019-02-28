@@ -31,7 +31,7 @@ module.exports = function(config) {
     ],
     preprocessors: {
       "**/*.js": "coverage",
-      "testcases.webpack.js": ["webpack", "sourcemap", "coverage"] //preprocess with webpack and our sourcemap loader
+      "testcases.webpack.js": ["webpack", "sourcemap"] //preprocess with webpack and our sourcemap loader
     },
     reporters: [
       "progress",
