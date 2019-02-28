@@ -18,6 +18,7 @@
         @include top(30px);
         @include left(32px);
         position: absolute;
+        @include width(156px);
     }
     &__nav {
         text-align: center;
