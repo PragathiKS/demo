@@ -26,8 +26,7 @@ class introscreen {
       this.cache.$introScreenCarousel.slick('slickNext');
     });
 
-    this.cache.$introScreenCarousel.on('beforeChange', () => {
-      let [, slick, , nextSlide] = [...arguments];
+    this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
       if (slick.$slides.length === nextSlide + 1) {
         this.cache.$carouselNextBtn.addClass('js-get-started-btn');
         this.cache.$carouselNextBtnTxt.text(getI18n(this.root.find('#getStartedBtnI18n').val()));
