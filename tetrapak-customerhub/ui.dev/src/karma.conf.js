@@ -1,19 +1,19 @@
-const webpack = require('webpack');
-const path = require('path');
-const webpackConfig = require('./config').webpack;
+const webpack = require("webpack");
+const path = require("path");
+const webpackConfig = require("./config").webpack;
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
-    browsers: ['PhantomJSCustom'],
+    browsers: ["PhantomJSCustom"],
     customLaunchers: {
       PhantomJSCustom: {
-        base: 'PhantomJS',
+        base: "PhantomJS",
         //debug: true,
         options: {
-          windowName: 'my-window',
+          windowName: "my-window",
           viewportSize: {
-            'width': 1920,
-            'height': 1080
+            width: 1920,
+            height: 1080
           }
         }
       }
@@ -25,30 +25,50 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     failOnEmptyTestSuite: false,
-    frameworks: ['mocha', 'chai', 'sinon'],
+    frameworks: ["mocha", "chai", "sinon"],
     files: [
-      'testcases.webpack.js' //just load this file
+      "testcases.webpack.js" //just load this file
     ],
     preprocessors: {
-      'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
+      "**/*.js": "coverage",
+      "testcases.webpack.js": ["webpack", "sourcemap", "coverage"] //preprocess with webpack and our sourcemap loader
     },
-    reporters: ['progress', 'coverage-istanbul', 'dots', 'junit'], //report results in this format
+    reporters: [
+      "progress",
+      "coverage",
+      "coverage-istanbul",
+      "dots",
+      "junit",
+      "verbose"
+    ], //report results in this format
     coverageIstanbulReporter: {
-      reports: ['html'],
-      dir: 'coverage/',
-      fixWebpackSourcePaths: true
+      reports: ["html"],
+      dir: "coverage/",
+      fixWebpackSourcePaths: true,
+      // enforce percentage thresholds
+      // anything under these percentages will cause karma to fail with an exit code of 1 if not running in watch mode
+      thresholds: {
+        emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
+        // thresholds for all files
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        }
+      }
     },
     webpack: {
-      devtool: 'inline-source-map',
-      mode: 'development',
+      devtool: "inline-source-map",
+      mode: "development",
       module: {
         rules: [
-          { test: /\.js$/, loader: 'babel-loader' },
+          { test: /\.js$/, loader: "babel-loader" },
           {
-            enforce: 'post',
+            enforce: "post",
             test: /\.js$/,
             exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack/,
-            loader: 'istanbul-instrumenter-loader',
+            loader: "istanbul-instrumenter-loader",
             query: {
               esModules: true
             }
@@ -58,8 +78,15 @@ module.exports = function (config) {
             exclude: /node_modules/,
             loader: "handlebars-loader",
             options: {
-              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
-              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              helperDirs: [
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder)
+              ],
+              partialDirs: [
+                path.join(
+                  __dirname,
+                  webpackConfig.handlebars.currentRelativeFolder
+                )
+              ],
               precompileOptions: {
                 knownHelpersOnly: false
               }
