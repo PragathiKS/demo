@@ -103,7 +103,7 @@ pipeline {
 			},
 		     	"karma" : {
 			    echo "Publising karma Test Report"
-				sh 
+				sh 'echo "Karma Report"'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '$workspace/${params.CHOICE}/ui.dev/src/coverage', reportFiles: 'pa11y.html', reportName: 'pally Report', reportTitles: ''])
 				
 			      },
