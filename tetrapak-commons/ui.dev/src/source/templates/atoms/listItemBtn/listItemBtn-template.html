@@ -1,0 +1,31 @@
+<sly data-sly-template.listItemBtn_template="${@ data, className}">
+    <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
+          <button class="tpatom-list-item__btn">
+            <span>
+              <sly data-sly-test="${data.isIconAvailable}">
+                  <i class="tpatom-list-item__icon ${data.iconClass}"></i>
+              </sly>
+              <span class="tpatom-list-item__label">${data.iconLabel}</span>
+            </span>
+            <sly data-sly-test="${data.isSubMenuAvailable}">
+              <i class="tpatom-list-item__submenu icon-Chevron_Down"></i>
+            </sly>
+          </button>
+    </sly>
+     <sly data-sly-test="${!hasSubmenu}">
+          <a class="tpatom-list-item__link ${className}" href="${data.href}">
+            <span>
+              <sly data-sly-test="${data.isIconAvailable}">
+                  <i class="tpatom-list-item__icon ${data.iconClass}"></i>
+              </sly>
+              <span class="tpatom-list-item__label">${data.iconLabel}</span>
+            </span>
+            <sly data-sly-test="${data.isExternalLink}">
+              <i class="tpatom-list-item__external-link icon-External_Link"></i>
+            </sly>
+            <sly data-sly-test="${data.isSubMenuAvailable}">
+              <i class="tpatom-list-item__submenu icon-Chevron_Down"></i>
+            </sly>
+          </a>
+    </sly>
+</sly>

@@ -1,7 +1,72 @@
-nav.tp-left-nav {
-    display: none;
-    text-align: center;
+.tp-left-nav-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: display 1s;
     @media #{$desktop} {
-        display: block;
+        width: 224px;
+        @include bg-color(transparent);
+    }
+}
+
+.tp-left-nav {
+    @include bg-color($color-congress-blue);
+    color: $color-white;
+    width: 300px;
+    transition: width 1s;
+    @media #{$desktop} {
+        width: 224px;
+        border-radius: 0 4px 4px 0;
+    }
+    &__ul {
+        @include padding(0);
+        list-style: none;
+        max-height: 100vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+            width: 0
+        }
+        @media #{$desktop} {
+            overflow: auto;
+        }
+    }
+    &__head {
+        @include padding(32px 16px);
+        color: $color-white;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-tory-blue;
+        @media #{$desktop} {
+            @include padding(24px 24px 16px 24px);
+        }
+        &__title {
+            @include font-size(18px);
+            font-weight: 300;
+            @include line-height(24px, 18px);
+        }
+        &__close-btn {
+            @include padding(0);
+            @include margin(0);
+            @include no-border;
+            @media #{$desktop} {
+                display: none;
+            }
+            background: transparent;
+            .icon-Close {
+                @include font-size(16px);
+                color: $color-white;
+            }
+        }
+    }
+}
+
+.tp-left-nav .tp-sticky {
+    @include bg-color($color-white);
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    color: $color-black;
+    @media #{$desktop} {
+        display: none;
     }
 }

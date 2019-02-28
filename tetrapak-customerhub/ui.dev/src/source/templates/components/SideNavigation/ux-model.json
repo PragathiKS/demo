@@ -1,1 +1,106 @@
-{}
+{
+  "navHeading": "My Tetra Pak",
+  "stickyListItem": {
+    "href": "#",
+    "isIconAvailable": "true",
+    "iconClass": "icon-Bell",
+    "iconLabel": "Tetra Pak Home"
+  },
+  "sideNavItems": [
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Dashboard",
+      "iconLabel": "Dashboard",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Install",
+      "iconLabel": "Installed equipment",
+      "isExternalLink": "true"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Packaging_Design",
+      "iconLabel": "Package design",
+      "isExternalLink": "true"
+    },
+    {
+      "isIconAvailable": "true",
+      "iconClass": "icon-Cart",
+      "iconLabel": "Ordering",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "true",
+      "subMenuList": [
+        {
+          "href": "#",
+          "isIconAvailable": "true",
+          "iconClass": "icon-Inventory",
+          "iconLabel": "Inside Ordering",
+          "isExternalLink": "true",
+          "isSubMenuAvailable": "false"
+        }
+      ]
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Inventory",
+      "iconLabel": "Parts inventory",
+      "isExternalLink": "true",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Financials",
+      "iconLabel": "Financials",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Training",
+      "iconLabel": "Training",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Collaboration",
+      "iconLabel": "Projects",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Phone",
+      "iconLabel": "Contact",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Info",
+      "iconLabel": "About My Tetra Pak",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    },
+    {
+      "href": "#",
+      "isIconAvailable": "true",
+      "iconClass": "icon-Logout",
+      "iconLabel": "Log out",
+      "isExternalLink": "false",
+      "isSubMenuAvailable": "false"
+    }
+  ]
+}
