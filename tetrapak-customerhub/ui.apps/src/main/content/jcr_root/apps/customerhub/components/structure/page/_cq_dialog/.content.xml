@@ -46,9 +46,6 @@
                                                 renderReadOnly="{Boolean}true"
                                                 text="Is icon available"
                                                 value="true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="isIconAvailable"/>
                                             </isIconAvailable>
                                             <iconClass
                                                 jcr:primaryType="nt:unstructured"
@@ -56,7 +53,6 @@
                                                 emptyText="Select"
                                                 fieldLabel="Icon Class"
                                                 name="./iconClass"
-                                                renderReadOnly="{Boolean}true"
                                                 translateOptions="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <Dashboard jcr:primaryType="nt:unstructured"

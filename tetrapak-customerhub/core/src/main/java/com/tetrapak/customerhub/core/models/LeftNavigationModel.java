@@ -26,6 +26,8 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
+    private LeftNavigationBean stickyNavItem = new LeftNavigationBean();
+
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
@@ -34,9 +36,10 @@ public class LeftNavigationModel {
             ValueMap map = globalConfigResource.getValueMap();
             navHeading = (String) map.get("navHeadingI18n");
             closeBtnText = (String) map.get("closeBtnText");
+            setStickyNavItemBean(map);
         }
 
-        Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE);
+        Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
         Page globalPage = globalResource.adaptTo(Page.class);
         Iterator<Page> itr = globalPage.listChildren();
         while (itr.hasNext()) {
@@ -45,6 +48,15 @@ public class LeftNavigationModel {
             LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
             leftNavItems.add(leftNavigationBean);
         }
+    }
+
+    private void setStickyNavItemBean(ValueMap valueMap) {
+        stickyNavItem.setPath((String) valueMap.get("stickyHref"));
+        stickyNavItem.setIconAvailable(valueMap.containsKey("isStickyIconAvailable"));
+        stickyNavItem.setIconClass((String) valueMap.get("stickyIconClass"));
+        stickyNavItem.setExternalLink(true);
+        stickyNavItem.setHiddenInNavigation(false);
+        stickyNavItem.setSubMenuAvailable(false);
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
