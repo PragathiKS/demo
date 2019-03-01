@@ -17,7 +17,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Heading i18 Key"
-                            fieldLabel="Haeding i18 Key"
+                            fieldLabel="Heading i18 Key"
                             name="./headingI18n"/>
                     <nextBtn
                             jcr:primaryType="nt:unstructured"
@@ -42,12 +42,12 @@
                         jcr:title="List"
                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                         composite="{Boolean}true"
-                        fieldLabel="List of tabs">
+                        fieldLabel="List of tabs"
+						validation="multifield-max-7">
                         <field
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
-                            name="./list"
-                            validation="multifield-max-7">
+                            name="./list">
                             <items jcr:primaryType="nt:unstructured">
                                 <column
                                     jcr:primaryType="nt:unstructured"

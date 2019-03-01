@@ -6,5 +6,6 @@
         jcr:description="This page is used to create all pages except dashboard page. It will not contain notification component."
         jcr:primaryType="cq:PageContent"
         jcr:title="Landing Page"
+		shortTitle="landing"
         status="enabled"/>
 </jcr:root>
