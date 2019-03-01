@@ -1,0 +1,6 @@
+.tpmol-list-item {
+    &__sublist {
+        display: none;
+        @include bg-color($color-tory-blue);
+    }
+}
