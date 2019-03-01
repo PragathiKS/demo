@@ -1,6 +1,6 @@
 <sly data-sly-template.button_template="${@ buttonText, buttonClasses, btnIcon, flag}">
-  <button class="btn ${buttonClasses}">
-    ${buttonText}
+  <button type="button" class="btn btn--tp ${buttonClasses}">
+    <span class="btn__text">${buttonText}</span>
     <i class="btn__icon ${btnIcon}"></i>
   </button>
 </sly>

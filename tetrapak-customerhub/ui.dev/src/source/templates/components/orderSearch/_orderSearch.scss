@@ -1,4 +1,5 @@
 .order-search {
+    $gutter-space: 2 * $margin-md / 3;
     @include padding($padding-l);
     @include border-radius($border-radius);
     @include box-shadow-normal;
@@ -7,8 +8,38 @@
         @include margin-bottom($margin-md);
         @include border-xs($color-boulder);
         @include height(40px);
+        &[readonly] {
+            @include bg-color;
+        }
     }
-    .btn--grey {
+    .btn--secondary {
         @include margin-right($margin-md);
+    }
+    &__date-range.form-control {
+        margin-bottom: 0;
+    }
+    .icon-wrapper {
+        @include margin-bottom($margin-md);
+    }
+    @media #{$desktop} {
+        &__order-status,
+        &__delivery-address,
+        .icon-wrapper {
+            width: calc(100% / 3 - #{$gutter-space});
+        }
+        &__order-status,
+        .icon-wrapper {
+            float: left;
+            @include margin-right($margin-md);
+        }
+        &__search-term {
+            @include margin-right($margin-md);
+            .order-search & {
+                margin-bottom: 0;
+            }
+        }
+        &__flex-container {
+            @include display-flex;
+        }
     }
 }

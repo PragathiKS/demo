@@ -1,20 +1,30 @@
 .btn {
-    @include padding($padding-sm $padding-md);
+    &--tp {
+        @include padding($padding-sm $padding-md);
+        white-space: nowrap;
+        .icon-Chevron_Right {
+            @include margin-right(-$margin-sm);
+        }
+    }
+    &--primary {
+        color: $color-white;
+        background-color: $color-congress-blue;
+        &:hover {
+            background: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
+    }
+    &--secondary {
+        color: $color-congress-blue;
+        background-color: $color-wild-sand;
+        &:hover {
+            background: $color-mercury;
+        }
+    }
     &__icon {
         display: inline;
         &::before {
             @include margin-left($margin-sm);
         }
-    }
-    .icon-Chevron_Right {
-        @include margin-right(-$margin-sm);
-    }
-    &--blue {
-        color: $color-white;
-        background-color: $color-congress-blue;
-    }
-    &--grey {
-        color: $color-congress-blue;
-        background-color: $color-wild-sand;
     }
 }

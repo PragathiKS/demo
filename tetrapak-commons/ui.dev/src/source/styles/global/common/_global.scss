@@ -79,6 +79,16 @@ iframe {
 }
 
 /**
+  * Form Element styles
+  */
+
+select {
+    @extend %appearance;
+    background: url('../../../assets/icons/Chevron_Down.svg') no-repeat right $margin-sm center;
+    background-size: 12px;
+}
+
+/**
   * Figure base styles
   */
 
@@ -164,5 +174,16 @@ td {
     [class*="col-"] {
         @include padding-left(15px);
         @include padding-right(15px);
+    }
+}
+
+// Classes for Wrapping icons
+.icon-wrapper {
+    position: relative;
+    &__icon {
+        @include right($margin-sm);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }

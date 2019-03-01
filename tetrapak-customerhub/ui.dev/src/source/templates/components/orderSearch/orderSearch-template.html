@@ -1,22 +1,15 @@
 <sly data-sly-template.orderSearch_template="${@ data, flag}">
-    <div class="order-search form-group">
-        <input type="text" name="date-range" class="form-control" />
-        <select name="order-status" class="form-control">
-            <option value="">${data.allStatusesTextI18n}</option>
-            <sly data-sly-list.status=${data.Summary.status}>
-                <option value="${status}">${status}</option>
-            </sly>
-        </select>
-        <select name="delivery-address" class="form-control">
-            <option value="">${data.allAddressesTextI18n}</option>
-            <sly data-sly-list.addresses=${data.Summary.deliveryAddress}>
-                <option value="${addresses.name}">${addresses.name}</option>
-            </sly>
-        </select>
-        <input type="text" name="search-term" class="form-control" placeholder="Purchase order No.  /  Tetra Pak order No.  /  Delivery No.  /  Product ID" />
-        <sly data-sly-use.resetButton="/apps/commons/components/atoms/button/button.html"
-             data-sly-call="${resetButton.button_template @buttonText=data.resetButtonText, buttonClasses='btn--grey'}" />
-        <sly data-sly-use.searchButton="/apps/commons/components/atoms/button/button.html"
-             data-sly-call="${searchButton.button_template @buttonText=data.searchButtonText, buttonClasses='btn--blue', btnIcon='icon-Chevron_Right'}" />
+    <div class="order-search form-group" data-module="OrderSearch">
+        <code class="d-none order-search__config">
+            {
+                "apiURL": "/etc/designs/customerhub/jsonData/orderSearchSummary.json",
+                "resetButtonTextI18n": "Reset",
+                "searchButtonTextI18n": "Search orders",
+                "allStatusesTextI18n": "All statuses",
+                "allAddressesTextI18n": "All delivery address"
+            }
+        </code>
+        <div class="order-search__form form-group"> 
+        </div>
     </div>
 </sly>
