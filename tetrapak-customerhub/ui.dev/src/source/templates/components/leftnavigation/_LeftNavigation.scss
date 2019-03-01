@@ -1,59 +1,56 @@
 .tp-left-nav-container {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: display 1s;
+    background-color: rgba($color-black, 0.5);
+    transition: transform .5s;
     @media #{$desktop} {
-        width: 224px;
-        @include bg-color(transparent);
+        @include width(224px);
+        background: transparent;
     }
 }
 
 .tp-left-nav {
     @include bg-color($color-congress-blue);
     color: $color-white;
-    width: 300px;
-    transition: width 1s;
+    max-width: 300px;
+    width: 90%;
     @media #{$desktop} {
-        width: 224px;
+        max-width: 224px;
+        width: 100%;
         border-radius: 0 4px 4px 0;
     }
     &__ul {
-        @include padding(0);
+        padding: 0;
         list-style: none;
         max-height: 100vh;
         overflow-y: scroll;
-        -ms-overflow-style: none;
-        &::-webkit-scrollbar {
-            width: 0
-        }
         @media #{$desktop} {
-            overflow: auto;
+            overflow: initial;
         }
     }
     &__head {
-        @include padding(32px 16px);
+        @include padding($padding-xl $padding-md);
         color: $color-white;
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid $color-tory-blue;
         @media #{$desktop} {
-            @include padding(24px 24px 16px 24px);
+            @include padding($padding-l $padding-l $padding-md $padding-l);
         }
         &__title {
-            @include font-size(18px);
+            @include font-size($font-md);
             font-weight: 300;
-            @include line-height(24px, 18px);
+            @include line-height(24px, $font-md);
         }
         &__close-btn {
-            @include padding(0);
-            @include margin(0);
-            @include no-border;
+            padding: 0;
+            border: 0;
+            margin: 0;
             @media #{$desktop} {
                 display: none;
             }
             background: transparent;
             .icon-Close {
-                @include font-size(16px);
+                @include font-size($font-normal);
                 color: $color-white;
             }
         }
@@ -61,12 +58,19 @@
 }
 
 .tp-left-nav .tp-sticky {
-    @include bg-color($color-white);
-    position: sticky;
+    max-width: 300px;
+    width: 90%;
+    background: $color-white;
+    position: fixed;
     bottom: 0;
-    left: 0;
+    left: 15px;
     color: $color-black;
+    transition: display .2s;
     @media #{$desktop} {
         display: none;
     }
+}
+
+.slideIn {
+    transform: translateX(-120%);
 }

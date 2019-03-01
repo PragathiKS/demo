@@ -1,5 +1,6 @@
 {
   "navHeading": "My Tetra Pak",
+  "closeBtnText": "Close",
   "stickyListItem": {
     "href": "#",
     "isIconAvailable": "true",
@@ -19,7 +20,7 @@
       "href": "#",
       "isIconAvailable": "true",
       "iconClass": "icon-Install",
-      "iconLabel": "Installed equipment",
+      "iconLabel": "Equipment",
       "isExternalLink": "true"
     },
     {
@@ -90,7 +91,7 @@
       "href": "#",
       "isIconAvailable": "true",
       "iconClass": "icon-Info",
-      "iconLabel": "About My Tetra Pak",
+      "iconLabel": "My Tetra Pak",
       "isExternalLink": "false",
       "isSubMenuAvailable": "false"
     },

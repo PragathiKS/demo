@@ -1,0 +1,80 @@
+.tpatom-list-item {
+    width: 100%;
+    border-bottom: 1px solid $color-tory-blue;
+    background-color: $color-congress-blue;
+    &__link {
+        @include padding($padding-md);
+        width: 100%;
+        position: relative;
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l);
+        }
+        &:hover,
+        &:visited {
+            background-color: $color-tory-blue;
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
+    &__btn {
+        @include padding($padding-md);
+        background-color: $color-congress-blue;
+        color: $color-white;
+        position: relative;
+        width: 100%;
+        border-bottom: 1px solid $color-tory-blue;
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l);
+        }
+        &:hover {
+            @include bg-color($color-tory-blue);
+            color: $color-white;
+            font-family: mulilight;
+            text-decoration: none;
+        }
+    }
+    &__btn-label {
+        @include padding(0 $padding-sm 0 $padding-l);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        @include letter-spacing(1px);
+        text-align: left;
+        vertical-align: middle;
+        font-weight: bold;
+        display: inline-block;
+        width: 95%;
+        @media #{$desktop} {
+            width: 90%;
+        }
+    }
+    &__icon {
+        @include font-size($padding-md);
+        @include line-height(16px, $font-normal);
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: $font-normal;
+        transform: translateY(-50%);
+        @media #{$desktop} {
+            left: $font-l;
+        }
+    }
+    &__label {
+        @include padding(0 $padding-sm 0 $padding-l);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        @include letter-spacing(1px);
+        vertical-align: middle;
+        font-weight: bold;
+        display: inline-block;
+        width: 95%;
+        @media #{$desktop} {
+            width: 90%;
+        }
+    }
+    &__external-link,
+    &__submenu {
+        @include font-size(8px);
+        vertical-align: middle;
+    }
+}

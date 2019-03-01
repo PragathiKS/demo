@@ -1,23 +1,23 @@
-<sly data-sly-template.SideNavigation_template="${@ data, flag}">
-  <div data-module="sidenavigation">
+<sly data-sly-template.leftnavigation_template="${@ data, flag}">
+   <div data-module="LeftNavigation">
     <aside class="tp-left-nav-container" >
       <nav class="tp-left-nav">
         <ul class="tp-left-nav__ul">
           <li class="tp-left-nav__head">
-            <span class="tp-left-nav__head__title">${data.navHeading}</span>
-            <button class="tp-left-nav__head__close-btn js-close-btn" ><i class="icon-Close"></i></button>
+            <span class="tp-left-nav__head__title">${data.navHeading @i18n}</span>
+            <button type="button" class="tp-left-nav__head__close-btn js-close-btn" ><i class="icon-Close"></i><span class="sr-only">${data.closeBtnText @i18n}</span></button>
           </li>
           <sly data-sly-list.child=${data.sideNavItems}>
               <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"
                     data-sly-call="${nestedListItem.nestedListItem_template @data=child}">
               </sly>
-              <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/atoms/listItem/listItem-template.html"
+              <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
                     data-sly-call="${listItem.listItem_template @data=child}">
               </sly>
           </sly>
         </ul>
         <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
-            data-sly-call="${listItemBtn.listItemBtn_template @data=data.stickyListItem,className='tp-sticky'}">
+            data-sly-call="${listItemBtn.listItemBtn_template @data=data.stickyListItem,flag='stickyBottom'}">
         </sly>
       </nav>
     </aside>
