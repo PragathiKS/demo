@@ -3,8 +3,14 @@
     <thead class="tpmol-table__head {{baseClass}}__head {{jsBaseClass}}__head">
         <tr class="tpmol-table__rowheading {{baseClass}}__row {{baseClass}}__rowheading {{jsBaseClass}}__rowheading">
             {{#each headings}}
-            <th class="tpmol-table__cellheading {{../baseClass}}__cell {{../baseClass}}__cellheading {{../jsBaseClass}}__cellheading {{../jsBaseClass}}__cellheading--{{@index}}">
-                {{i18n key=this}}
+            <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{../baseClass}}__cell {{../baseClass}}__cellheading {{../jsBaseClass}}__cellheading {{../jsBaseClass}}__cellheading--{{@index}}">
+                {{#if isSortable}}
+                <button type="button" class="tpmol-table__sort {{#if isSortable}}{{sortOrder}} icon-Chevron_Down {{/if}}{{../baseClass}}__sort {{../jsBaseClass}}__sort" data-key="{{key}}">
+                    {{i18n key=i18nKey}}
+                </button>
+                {{else}}
+                {{i18n key=i18nKey}}
+                {{/if}}
             </th>
             {{/each}}
         </tr>
@@ -15,8 +21,8 @@
         {{#each list}}
         <tr class="tpmol-table__row {{../baseClass}}__row {{../jsBaseClass}}__row {{../jsBaseClass}}__row--{{@index}}">
             {{#each this}}
-            <td class="tpmol-table__cell {{../../baseClass}}__cell {{../../jsBaseClass}}__cell {{../../jsBaseClass}}__cell--{{@index}}">
-                {{this}}
+            <td data-key="{{key}}" class="tpmol-table__cell {{../../baseClass}}__cell {{../../jsBaseClass}}__cell {{../../jsBaseClass}}__cell--{{@index}}">
+                {{value}}
             </td>
             {{/each}}
         </tr>

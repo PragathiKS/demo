@@ -12,7 +12,10 @@ import 'core-js/features/array/includes';
 function _tableSort(order, activeKeys) {
   const dataArray = [];
   activeKeys.forEach((key, index) => {
-    dataArray[index] = order[key];
+    dataArray[index] = {
+      key,
+      value: order[key]
+    };
   });
   return dataArray;
 }
@@ -41,7 +44,12 @@ function _processTableData(data) {
       });
       return _tableSort(processedOrder, activeKeys);
     });
-    data.orderHeadings = activeKeys.map(key => `cuhu.ordering.${key}`);
+    data.orderHeadings = activeKeys.map(key => ({
+      key,
+      i18nKey: `cuhu.ordering.${key}`,
+      isSortable: key === 'orderDate',
+      sortOrder: 'asc'
+    }));
   }
 }
 
