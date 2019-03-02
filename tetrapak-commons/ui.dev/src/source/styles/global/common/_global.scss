@@ -106,8 +106,7 @@ figcaption {
 
 ol,
 ul {
-    margin: 0;
-    padding: 0;
+    @extend %textreset;
     list-style: none;
 }
 
@@ -118,7 +117,6 @@ ul {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid $color-boulder;
     width: 100%;
 }
 
@@ -126,19 +124,26 @@ table {
   * Table header base styles
   */
 
-th {
+th,
+td {
     text-align: left;
-    border: 1px solid $color-boulder;
-    padding: 0.2em;
+    white-space: nowrap;
 }
 
-/**
-   * Table cell base styles
-   */
+th {
+    @include padding($padding-sm $padding-l $padding-sm 0);
+    @include font-size($font-baseline);
+    @include line-height(24px, $font-baseline);
+    border-bottom: 1px solid $color-boulder;
+    font-family: $font;
+    font-weight: bold;
+}
 
 td {
-    border: 1px solid $color-boulder;
-    padding: 0.5em;
+    @include padding($padding-sm 0);
+    @include font-size($font-sm);
+    @include line-height(24px, $font-sm);
+    border-bottom: 1px solid $color-mercury;
 }
 
 /**

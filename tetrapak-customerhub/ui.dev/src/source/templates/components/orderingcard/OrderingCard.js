@@ -5,6 +5,19 @@ import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 
 /**
+ * Ensures that data is in same order as keys
+ * @param {object} order Data object
+ * @param {string[]} activeKeys Headings
+ */
+function _tableSort(order, activeKeys) {
+  const dataArray = [];
+  activeKeys.forEach((key, index) => {
+    dataArray[index] = order[key];
+  });
+  return dataArray;
+}
+
+/**
  * Processes data before rendering
  * @param {object} data JSON data object
  */
@@ -17,13 +30,18 @@ function _processTableData(data) {
     const activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
     data.orders = data.orders.map(order => {
       const processedOrder = {};
+      if (activeKeys.length === 0) {
+        activeKeys.push(...Object.keys(order));
+        return _tableSort(order, activeKeys);
+      }
       Object.keys(order).forEach(key => {
         if (activeKeys.includes(key)) {
           processedOrder[key] = order[key];
         }
       });
-      return processedOrder;
+      return _tableSort(processedOrder, activeKeys);
     });
+    data.orderHeadings = activeKeys.map(key => `cuhu.ordering.${key}`);
   }
 }
 

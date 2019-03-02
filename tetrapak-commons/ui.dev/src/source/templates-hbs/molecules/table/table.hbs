@@ -1,0 +1,26 @@
+<table class="tpmol-table {{baseClass}} {{jsBaseClass}}">
+    {{#if headings}}
+    <thead class="tpmol-table__head {{baseClass}}__head {{jsBaseClass}}__head">
+        <tr class="tpmol-table__rowheading {{baseClass}}__row {{baseClass}}__rowheading {{jsBaseClass}}__rowheading">
+            {{#each headings}}
+            <th class="tpmol-table__cellheading {{../baseClass}}__cell {{../baseClass}}__cellheading {{../jsBaseClass}}__cellheading {{../jsBaseClass}}__cellheading--{{@index}}">
+                {{i18n key=this}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    {{/if}}
+    {{#if list}}
+    <tbody class="tpmol-table__body {{baseClass}}__body">
+        {{#each list}}
+        <tr class="tpmol-table__row {{../baseClass}}__row {{../jsBaseClass}}__row {{../jsBaseClass}}__row--{{@index}}">
+            {{#each this}}
+            <td class="tpmol-table__cell {{../../baseClass}}__cell {{../../jsBaseClass}}__cell {{../../jsBaseClass}}__cell--{{@index}}">
+                {{this}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </tbody>
+    {{/if}}
+</table>

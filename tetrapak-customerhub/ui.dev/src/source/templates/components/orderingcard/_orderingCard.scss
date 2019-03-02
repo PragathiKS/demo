@@ -1,0 +1,15 @@
+.tp-ordering-card {
+    &__title {
+        @include margin-bottom($margin-md);
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+            @include font-size($font-l);
+            @include line-height(32px, $font-l);
+        }
+    }
+    &__tablewrapper {
+        @include horizontal-scroll-touch;
+    }
+}
