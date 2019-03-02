@@ -58,8 +58,14 @@ module.exports = function (config) {
             exclude: /node_modules/,
             loader: "handlebars-loader",
             options: {
-              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
-              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              helperDirs: [
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder),
+                path.resolve(webpackConfig.handlebars.commonHelpersFolder)
+              ],
+              partialDirs: [
+                path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder),
+                path.resolve(webpackConfig.handlebars.commonRelativeFolder)
+              ],
               precompileOptions: {
                 knownHelpersOnly: false
               }
