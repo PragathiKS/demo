@@ -65,7 +65,11 @@ module.exports = function (config) {
       mode: 'development',
       module: {
         rules: [
-          { test: /\.js$/, loader: 'babel-loader' },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+          },
           {
             enforce: 'post',
             test: /\.js$/,
@@ -97,6 +101,14 @@ module.exports = function (config) {
             }
           }
         ]
+      },
+      node: {
+        fs: 'empty'
+      },
+      resolve: {
+        alias: {
+          handlebars: 'handlebars/runtime'
+        }
       }
     },
     webpackServer: {

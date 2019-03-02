@@ -1,15 +1,9 @@
 <sly data-sly-template.orderingcard_template="${@ data, flag}">
   <input type="hidden" id="ordApiUrl" name="ordApiUrl" value="${data.apiUrl}" />
   <input type="hidden" id="ordPreferencesUrl" name="ordPreferencesUrl" value="${data.preferencesUrl}" />
-  <input type="hidden" id="ordTitleI18n" name="ordTitleI18n" value="${data.titleI18n}" />
-  <input type="hidden" id="ordPreferencesTitleI18n" name="ordPreferencesTitleI18n" value="${data.preferencesTitleI18n}" />
-  <input type="hidden" id="ordPreferencesDescriptionI18n" name="ordPreferencesDescriptionI18n" value="${data.preferencesDescriptionI18n}" />
   <input type="hidden" id="ordSavedPreferences" name="ordSavedPreferences" value="${data.savedPreferences}" />
-  <input type="hidden" id="ordAllOrdersI18n" name="ordAllOrdersI18n" value="${data.allOrdersI18n}" />
   <input type="hidden" id="ordAllOrdersLink" name="ordAllOrdersLink" value="${data.allOrdersLink}" />
-  <input type="hidden" id="ordSaveSettingsI18n" name="ordSaveSettingsI18n" value="${data.saveSettingsI18n}" />
-  <input type="hidden" id="ordCloseBtnI18n" name="ordCloseBtnI18n" value="${data.closeBtnI18n}" />
-  <input type="hidden" id="ordPreferencesBtnI18n" name="ordPreferencesBtnI18n" value="${data.preferencesBtnI18n}" />
+  <input type="hidden" id="ordI18nKeys" name="ordI18nKeys" value="${data.i18nKeys}" />
   <div class="tp-ordering-card js-ordering-card" aria-live="polite" data-module="OrderingCard">
     <!--/* Ordering component renders here */-->
   </div>

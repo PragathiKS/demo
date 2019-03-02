@@ -1,18 +1,12 @@
 {
   "apiUrl": "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json",
   "preferencesUrl": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
-  "titleI18n": "cuhu.ordering.title",
-  "preferencesTitleI18n": "cuhu.ordering.preferencestitle",
-  "preferencesDescriptionI18n": "cuhu.ordering.preferencesdescription",
   "savedPreferences": [
     "orderNumber",
     "poNumber",
     "orderDate",
     "status"
   ],
-  "allOrdersI18n": "cuhu.ordering.allorders",
   "allOrdersLink": "https://google.com",
-  "saveSettingsI18n": "cuhu.ordering.save",
-  "closeBtnI18n": "cuhu.ordering.close",
-  "preferencesBtnI18n": "cuhu.ordering.preferences"
+  "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\"}"
 }

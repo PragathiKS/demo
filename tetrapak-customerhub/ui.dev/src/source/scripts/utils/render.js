@@ -281,18 +281,20 @@ function _getStatus(data, textStatus, jqXHR) {
  * @param {string} textStatus
  */
 function _setXHRData(jqXHRObj, data, textStatus) {
-  if (this.url) {
-    jqXHRObj.url = this.url.split('?')[0];
-    jqXHRObj.requestData = deparam(this.url.split('?')[1]);
-  }
-  jqXHRObj.id = this.dataId;
-  if (Array.isArray(this.dataId)) {
-    jqXHRObj.dataIdStr = this.dataId.join(',');
-  } else {
-    jqXHRObj.dataIdStr = this.dataId;
-  }
-  if (this.pathObject) {
-    jqXHRObj.pathObject = this.pathObject;
+  if (this) {
+    if (this.url) {
+      jqXHRObj.url = this.url.split('?')[0];
+      jqXHRObj.requestData = deparam(this.url.split('?')[1]);
+    }
+    jqXHRObj.id = this.dataId;
+    if (Array.isArray(this.dataId)) {
+      jqXHRObj.dataIdStr = this.dataId.join(',');
+    } else {
+      jqXHRObj.dataIdStr = this.dataId;
+    }
+    if (this.pathObject) {
+      jqXHRObj.pathObject = this.pathObject;
+    }
   }
   jqXHRObj.done = true;
   if (textStatus === 'success') {
