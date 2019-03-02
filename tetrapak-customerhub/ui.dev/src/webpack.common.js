@@ -28,7 +28,7 @@ const cacheGroups = (function () {
         if (module.resource) {
           return !!componentGroups[cacheGroup].filter(path => {
             const moduleResource = module.resource.replace(/[\\]/g, '/');
-            return moduleResource.includes(path);
+            return (moduleResource.includes(path) && !(/\.spec\.js$/).test(moduleResource));
           }).length;
         }
         return false;

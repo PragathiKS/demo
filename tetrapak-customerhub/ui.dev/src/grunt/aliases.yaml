@@ -7,7 +7,7 @@ aem:
   description: "build app with ux-lib, followed by auto deploy"
   tasks:
     - 'shell:linting'
-    - 'shell:karmaTests'
+    - 'shell:karmaTestsProd'
     - 'shell:webpackProd'
     - 'copy:uxlibdemo'
     - 'aemcomponentcopy:uxlibProd'
@@ -41,7 +41,7 @@ default:
   description: "run default task which build the whole application"
   tasks:
     - 'shell:lintingDev'
-    - 'shell:karmaTests'
+    - 'shell:karmaTestsProd'
     - 'shell:webpackDev'
     - 'copy:uxlibdemo'
     - 'aemcomponentcopy:uxlibProd'
