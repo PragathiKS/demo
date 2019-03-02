@@ -176,6 +176,7 @@
     "componentsFolder": "source/templates/components",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
+    "testTemplate": "ccTemplates/testTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt",
     "importsJsFile": "source/scripts/bundle/imports.js"
   },
