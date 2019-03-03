@@ -130,44 +130,6 @@ td {
     white-space: nowrap;
 }
 
-th {
-    @include padding($padding-sm $padding-l $padding-sm 0);
-    @include font-size($font-baseline);
-    @include line-height(24px, $font-baseline);
-    border-bottom: 1px solid $color-boulder;
-    font-family: $font;
-    font-weight: bold;
-    position: relative;
-    button {
-        @include padding(0 12px 0 0);
-        border: 0;
-        cursor: pointer;
-        background: transparent;
-        &::before {
-            // icon placement
-            @include right($spacing-small);
-            @include font-size($font-sm);
-            @include width($font-sm);
-            @include height($font-sm/2);
-            transition: transform 0.3s;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-        }
-        &.desc::before {
-            transform: rotate(180deg);
-        }
-    }
-}
-
-td {
-    @include padding($padding-sm 0);
-    @include font-size($font-sm);
-    @include line-height(24px, $font-sm);
-    border-bottom: 1px solid $color-mercury;
-}
-
 /**
    * Main content area
    */
