@@ -68,7 +68,7 @@ function _processTableData(data) {
       key,
       i18nKey: `cuhu.ordering.${key}`,
       isSortable: ['orderDate'].includes(key),
-      sortOrder: 'asc'
+      sortOrder: 'desc'
     }));
   }
 }
