@@ -1,0 +1,9 @@
+.tpatom-settings {
+    @include width($min-accessible-dimension);
+    @include height($min-accessible-dimension);
+    &__icon {
+        @include font-size(14px);
+        @include width(14px);
+        @include height(14px);
+    }
+}
