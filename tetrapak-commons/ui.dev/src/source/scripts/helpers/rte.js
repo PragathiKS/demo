@@ -10,16 +10,16 @@ import sanitizeHtml from 'sanitize-html';
 import Handlebars from 'handlebars';
 
 const cache = {};
+const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub', 'span']);
+const allowedAttr = sanitizeHtml.defaults.allowedAttributes;
+const allowedSchemes = sanitizeHtml.defaults.allowedSchemes.concat(['tel']);
+allowedAttr.img = ['src', 'alt'];
+allowedTags.forEach(tag => {
+  allowedAttr[tag] = Array.isArray(allowedAttr[tag]) ? allowedAttr[tag] : [];
+  allowedAttr[tag].push('class', 'id', 'data-*');
+});
 
 function getConfig() {
-  const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub', 'span']);
-  const allowedAttr = sanitizeHtml.defaults.allowedAttributes;
-  const allowedSchemes = sanitizeHtml.defaults.allowedSchemes.concat(['tel']);
-  allowedAttr.img = ['src', 'alt'];
-  allowedTags.forEach(tag => {
-    allowedAttr[tag] = Array.isArray(allowedAttr[tag]) ? allowedAttr[tag] : [];
-    allowedAttr[tag].push('class', 'id', 'data-*');
-  });
   cache.config = cache.config || {
     allowedTags,
     allowedSchemes,
