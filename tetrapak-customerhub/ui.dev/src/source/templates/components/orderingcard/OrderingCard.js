@@ -5,6 +5,19 @@ import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 
 /**
+ * Returns formatted contacts HTML
+ * @param {object[]} contacts List of contacts
+ */
+function _processContacts(contacts) {
+  // Get contact list template file
+  return this.cache.contactListTemplate({
+    contacts,
+    baseClass: 'tp-ordering-card',
+    jsClass: 'js-ordering-card'
+  });
+}
+
+/**
  * Ensures that data is in same order as keys
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
@@ -12,9 +25,16 @@ import 'core-js/features/array/includes';
 function _tableSort(order, activeKeys) {
   const dataArray = [];
   activeKeys.forEach((key, index) => {
+    let value = '';
+    if (key === 'contact') {
+      value = _processContacts.call(this, order[key]);
+    } else {
+      value = order[key];
+    }
     dataArray[index] = {
       key,
-      value: order[key]
+      value: value,
+      isRTE: ['contact'].includes(key)
     };
   });
   return dataArray;
@@ -35,19 +55,19 @@ function _processTableData(data) {
       const processedOrder = {};
       if (activeKeys.length === 0) {
         activeKeys.push(...Object.keys(order));
-        return _tableSort(order, activeKeys);
+        return _tableSort.call(this, order, activeKeys);
       }
       Object.keys(order).forEach(key => {
         if (activeKeys.includes(key)) {
           processedOrder[key] = order[key];
         }
       });
-      return _tableSort(processedOrder, activeKeys);
+      return _tableSort.call(this, processedOrder, activeKeys);
     });
     data.orderHeadings = activeKeys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
-      isSortable: key === 'orderDate',
+      isSortable: ['orderDate'].includes(key),
       sortOrder: 'asc'
     }));
   }
@@ -63,6 +83,7 @@ class OrderingCard {
     this.cache.preferencesUrl = $('#ordPreferencesUrl').val();
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
+    this.cache.contactListTemplate = render.get('contactList');
     try {
       this.cache.i18nKeys = JSON.parse($('#ordI18nKeys').val());
     } catch (e) {

@@ -1,0 +1,8 @@
+.tpmol-contacts {
+    &__contact {
+        &--name,
+        &--tel {
+            @include margin-right(12px);
+        }
+    }
+}

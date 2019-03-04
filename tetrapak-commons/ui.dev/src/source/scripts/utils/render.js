@@ -460,7 +460,17 @@ function _fn(template, data, target, callback) {
 }
 
 export const render = {
+  /**
+   * Renders template
+   */
   fn() {
     return _fn.apply(this, arguments);
+  },
+  /**
+   * Gets template body
+   * @param {string} name Template name
+   */
+  get(name) {
+    return templates[name];
   }
 };

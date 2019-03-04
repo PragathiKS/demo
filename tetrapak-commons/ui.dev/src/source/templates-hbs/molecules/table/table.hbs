@@ -1,11 +1,11 @@
-<table class="tpmol-table {{baseClass}} {{jsBaseClass}}">
+<table class="tpmol-table {{baseClass}} {{jsClass}}">
     {{#if headings}}
-    <thead class="tpmol-table__head {{baseClass}}__head {{jsBaseClass}}__head">
-        <tr class="tpmol-table__rowheading {{baseClass}}__row {{baseClass}}__rowheading {{jsBaseClass}}__rowheading">
+    <thead class="tpmol-table__head {{baseClass}}__head {{jsClass}}__head">
+        <tr class="tpmol-table__rowheading {{baseClass}}__row {{baseClass}}__rowheading {{jsClass}}__rowheading">
             {{#each headings}}
-            <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{../baseClass}}__cell {{../baseClass}}__cellheading {{../jsBaseClass}}__cellheading {{../jsBaseClass}}__cellheading--{{@index}}">
+            <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{../baseClass}}__cell {{../baseClass}}__cellheading {{../jsClass}}__cellheading {{../jsClass}}__cellheading--{{@index}}">
                 {{#if isSortable}}
-                <button type="button" class="tpmol-table__sort {{#if isSortable}}{{sortOrder}} icon-Chevron_Down {{/if}}{{../baseClass}}__sort {{../jsBaseClass}}__sort" data-key="{{key}}">
+                <button type="button" class="tpmol-table__sort {{#if isSortable}}{{sortOrder}} icon-Chevron_Down {{/if}}{{../baseClass}}__sort {{../jsClass}}__sort" data-key="{{key}}">
                     {{i18n key=i18nKey}}
                 </button>
                 {{else}}
@@ -19,10 +19,14 @@
     {{#if list}}
     <tbody class="tpmol-table__body {{baseClass}}__body">
         {{#each list}}
-        <tr class="tpmol-table__row {{../baseClass}}__row {{../jsBaseClass}}__row {{../jsBaseClass}}__row--{{@index}}">
+        <tr class="tpmol-table__row {{../baseClass}}__row {{../jsClass}}__row {{../jsClass}}__row--{{@index}}">
             {{#each this}}
-            <td data-key="{{key}}" class="tpmol-table__cell {{../../baseClass}}__cell {{../../jsBaseClass}}__cell {{../../jsBaseClass}}__cell--{{@index}}">
-                {{value}}
+            <td data-key="{{key}}" class="tpmol-table__cell {{../../baseClass}}__cell {{../../jsClass}}__cell {{../../jsClass}}__cell--{{@index}}">
+                {{#if isRTE}}
+                    {{rte value}} {{!-- Renders safe HTML --}}
+                {{else}}
+                    {{value}}
+                {{/if}}
             </td>
             {{/each}}
         </tr>

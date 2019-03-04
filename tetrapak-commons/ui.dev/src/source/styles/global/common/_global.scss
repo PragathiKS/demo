@@ -49,6 +49,9 @@ a {
     text-decoration: none;
     outline: 0;
     transition: all $anim-speed-quick $anim-ease;
+    &:hover {
+        text-decoration: none;
+    }
     &:hover,
     &:focus {
         color: $color-text;
