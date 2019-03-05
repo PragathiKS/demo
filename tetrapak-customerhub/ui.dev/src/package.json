@@ -13,17 +13,12 @@
     "vanilla-lazyload": "^8.17.0"
   },
   "scripts": {
-    "build": "npm run gruntProd",
-    "buildDev": "npm run gruntDev",
-    "buildWatch": "npm run gruntWatch",
-    "buildStart": "npm run gruntStart",
+    "build": "grunt aem",
+    "buildDev": "grunt",
+    "buildWatch": "grunt aemWatch",
+    "buildStart": "grunt aemStart",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",
-    "removeHash": "node removeHash",
-    "gruntDev": "grunt",
-    "gruntProd": "grunt aem",
-    "gruntWatch": "grunt aemWatch",
-    "gruntStart": "grunt aemStart",
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",
@@ -31,7 +26,7 @@
     "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" --color",
     "sasslint": "sass-lint --config ./sass-lint.yml './source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'",
     "sasslintDev": "sass-lint --config ./sass-lint-dev.yml './source/templates/components/**/*.scss' -v -q --color",
-    "test": "node ensureTestCasesDirectory && karma start karma.conf.js"
+    "test": "karma start karma.conf.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -101,6 +96,7 @@
     "time-grunt": "1.1.0",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.29.0",
+    "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.2.1",
     "webpack-merge": "^4.2.1",
     "webpack-shell-plugin": "^0.5.0",

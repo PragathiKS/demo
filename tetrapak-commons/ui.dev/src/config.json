@@ -158,18 +158,9 @@
     "cssChunkPath": "apps/settings/wcm/designs/commons/clientlibs/[name].publish/css/[name].css"
   },
   "clientlibs": {
-    "vendor": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/js"
-    },
-    "global": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/global.publish/js"
-    },
-    "common": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/common.publish/js"
-    },
-    "default.en": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/default.en.publish/js"
-    }
+    "vendor": "apps/settings/wcm/designs/commons/clientlibs/vendor.publish/js/vendor.js",
+    "common": "apps/settings/wcm/designs/commons/clientlibs/common.publish/js/common.js",
+    "default.en": "apps/settings/wcm/designs/commons/clientlibs/default.en.publish/js/default.js"
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
