@@ -12,7 +12,7 @@ html {
     }
 }
 
-$text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'section', 'article', 'nav', 'aside', 'header', 'footer', 'b', 'strong', 'i', 'td', 'th');
+$text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'section', 'article', 'nav', 'aside', 'header', 'footer', 'b', 'strong', 'i', 'td', 'th', 'button');
 %textreset {
     padding: 0;
     margin: 0;
@@ -41,11 +41,6 @@ body {
     min-height: 100vh;
 }
 
-button {
-    border: 0;
-    outline: 0;
-}
-
 a {
     color: $color-congress-blue;
     font-family: $font-regular;
@@ -54,10 +49,18 @@ a {
     text-decoration: none;
     outline: 0;
     transition: all $anim-speed-quick $anim-ease;
+    &:hover {
+        text-decoration: none;
+    }
     &:hover,
     &:focus {
         color: $color-text;
     }
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
 }
 
 /*------------------------------------*\
@@ -111,8 +114,7 @@ figcaption {
 
 ol,
 ul {
-    margin: 0;
-    padding: 0;
+    @extend %textreset;
     list-style: none;
 }
 
@@ -123,7 +125,6 @@ ul {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid $color-boulder;
     width: 100%;
 }
 
@@ -131,19 +132,10 @@ table {
   * Table header base styles
   */
 
-th {
-    text-align: left;
-    border: 1px solid $color-boulder;
-    padding: 0.2em;
-}
-
-/**
-   * Table cell base styles
-   */
-
+th,
 td {
-    border: 1px solid $color-boulder;
-    padding: 0.5em;
+    text-align: left;
+    white-space: nowrap;
 }
 
 /**

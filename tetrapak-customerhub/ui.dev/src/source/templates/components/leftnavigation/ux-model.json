@@ -3,35 +3,31 @@
   "closeBtnText": "Close",
   "stickyListItem": {
     "href": "#",
-    "isIconAvailable": "true",
     "iconClass": "icon-Bell",
     "iconLabel": "Tetra Pak Home"
   },
-  "sideNavItems": [
+  "leftNavItems": [
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
       "isExternalLink": "false",
-      "isSubMenuAvailable": "false"
+      "isSubMenuAvailable": "false",
+      "isActive": "true"
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Install",
-      "iconLabel": "Equipment",
-      "isExternalLink": "true"
+      "iconLabel": "Installed equipment",
+      "isExternalLink": "false"
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Packaging_Design",
       "iconLabel": "Package design",
       "isExternalLink": "true"
     },
     {
-      "isIconAvailable": "true",
       "iconClass": "icon-Cart",
       "iconLabel": "Ordering",
       "isExternalLink": "false",
@@ -39,9 +35,19 @@
       "subMenuList": [
         {
           "href": "#",
-          "isIconAvailable": "true",
-          "iconClass": "icon-Inventory",
-          "iconLabel": "Inside Ordering",
+          "iconLabel": "Order History",
+          "isExternalLink": "false",
+          "isSubMenuAvailable": "false"
+        },
+        {
+          "href": "#",
+          "iconLabel": "Packaging material",
+          "isExternalLink": "true",
+          "isSubMenuAvailable": "false"
+        },
+        {
+          "href": "#",
+          "iconLabel": "Parts",
           "isExternalLink": "true",
           "isSubMenuAvailable": "false"
         }
@@ -49,7 +55,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Inventory",
       "iconLabel": "Parts inventory",
       "isExternalLink": "true",
@@ -57,7 +62,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
       "isExternalLink": "false",
@@ -65,7 +69,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Training",
       "iconLabel": "Training",
       "isExternalLink": "false",
@@ -73,7 +76,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Collaboration",
       "iconLabel": "Projects",
       "isExternalLink": "false",
@@ -81,7 +83,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Phone",
       "iconLabel": "Contact",
       "isExternalLink": "false",
@@ -89,7 +90,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Info",
       "iconLabel": "My Tetra Pak",
       "isExternalLink": "false",
@@ -97,7 +97,6 @@
     },
     {
       "href": "#",
-      "isIconAvailable": "true",
       "iconClass": "icon-Logout",
       "iconLabel": "Log out",
       "isExternalLink": "false",

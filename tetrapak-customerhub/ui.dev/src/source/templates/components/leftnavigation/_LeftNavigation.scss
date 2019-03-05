@@ -1,76 +1,81 @@
-.tp-left-nav-container {
-    width: 100%;
-    background-color: rgba($color-black, 0.5);
-    transition: transform .5s;
-    @media #{$desktop} {
-        @include width(224px);
-        background: transparent;
-    }
-}
-
 .tp-left-nav {
-    @include bg-color($color-congress-blue);
-    color: $color-white;
-    max-width: 300px;
-    width: 90%;
-    @media #{$desktop} {
-        max-width: 224px;
+    &__overlay {
+        background-color: rgba($color-black, 0.5);
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        border-radius: 0 4px 4px 0;
-    }
-    &__ul {
-        padding: 0;
-        list-style: none;
-        max-height: 100vh;
-        overflow-y: scroll;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform .4s;
+        z-index: $zindex-nav;
+        &.translated {
+            transform: translateX(0);
+        }
         @media #{$desktop} {
+            @include max-width(224px);
+            width: 100%;
+            background: transparent;
+            position: static;
+            transform: translateX(0);
+        }
+    }
+    &__container {
+        @include bg-color($color-congress-blue);
+        @include max-width(300px);
+        color: $color-white;
+        width: 90%;
+        display: block;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform .4s;
+        &.translated {
+            transform: translateX(0);
+        }
+        @media #{$desktop} {
+            @include max-width(224px);
+            @include border-radius(0 4px 4px 0);
+            width: 100%;
+            overflow: auto;
+            transform: translateX(0);
+        }
+    }
+    &__ullist {
+        @include vertical-scroll-touch;
+        padding: 0;
+        height: 100%;
+        transition: transform .4s ease-in-out 0s;
+        @media #{$desktop} {
+            width: 100%;
             overflow: initial;
         }
     }
-    &__head {
+    &__main-heading {
         @include padding($padding-xl $padding-md);
+        position: relative;
         color: $color-white;
-        display: flex;
-        justify-content: space-between;
         border-bottom: 1px solid $color-tory-blue;
         @media #{$desktop} {
             @include padding($padding-l $padding-l $padding-md $padding-l);
         }
-        &__title {
-            @include font-size($font-md);
-            font-weight: 300;
-            @include line-height(24px, $font-md);
+    }
+    &__main-heading-title {
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+        font-weight: 300;
+    }
+    &__close-btn {
+        @include right(16px);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        @media #{$desktop} {
+            display: none;
         }
-        &__close-btn {
-            padding: 0;
-            border: 0;
-            margin: 0;
-            @media #{$desktop} {
-                display: none;
-            }
-            background: transparent;
-            .icon-Close {
-                @include font-size($font-normal);
-                color: $color-white;
-            }
+        .icon-Close {
+            @include font-size($font-normal);
+            color: $color-white;
         }
     }
-}
-
-.tp-left-nav .tp-sticky {
-    max-width: 300px;
-    width: 90%;
-    background: $color-white;
-    position: fixed;
-    bottom: 0;
-    left: 15px;
-    color: $color-black;
-    transition: display .2s;
-    @media #{$desktop} {
-        display: none;
-    }
-}
-
-.slideIn {
-    transform: translateX(-120%);
 }

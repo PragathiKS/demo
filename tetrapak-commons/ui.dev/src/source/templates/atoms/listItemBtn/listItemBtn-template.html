@@ -1,7 +1,7 @@
-<sly data-sly-template.listItemBtn_template="${@ data, flag}">
+<sly data-sly-template.listItemBtn_template="${@ data, flag,identifier}">
     <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
-          <button class="tpatom-list-item__btn">
-            <sly data-sly-test="${data.isIconAvailable}">
+          <button type="button" class="tpatom-list-item__btn js-list-item__btn">
+            <sly data-sly-test="${data.iconClass}">
                 <i class="tpatom-list-item__icon ${data.iconClass}"></i>
             </sly>
             <span class="tpatom-list-item__btn-label">${data.iconLabel @i18n}</span>
@@ -11,9 +11,9 @@
           </button>
     </sly>
      <sly data-sly-test="${!hasSubmenu}">
-          <a class="tpatom-list-item__link ${flag=='stickyBottom' ? 'tp-sticky': ''}" href="${data.href}">
-            <sly data-sly-test="${data.isIconAvailable}">
-                <i class="tpatom-list-item__icon ${data.iconClass}"></i>
+          <a class="tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}">
+            <sly data-sly-test="${data.iconClass}">
+                <i class="tpatom-list-item__icon  ${data.iconClass}"></i>
             </sly>
             <span class="tpatom-list-item__label">${data.iconLabel @i18n}</span>
             <sly data-sly-test="${data.isExternalLink}">
