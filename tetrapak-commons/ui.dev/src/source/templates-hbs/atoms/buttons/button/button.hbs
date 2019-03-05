@@ -1,0 +1,15 @@
+{{!-- Generic button to handle all button types --}}
+<button
+    type="{{buttonType}}"
+    class="tpatom-btn{{#if modifier}} tpatom-btn--{{modifier}}{{/if}}{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}"
+    {{#if disabled}}
+        disabled
+    {{/if}}
+    {{#eachData this}}
+        {{@key}}="{{this}}"
+    {{/eachData}}>
+        <span class="tpatom-btn__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>
+        {{#if iconClass}}
+            <i class="icon {{iconClass}}"></i>
+        {{/if}}
+</button>

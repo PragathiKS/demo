@@ -1,8 +1,10 @@
 import $ from 'jquery';
+import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
  * Returns formatted contacts HTML
@@ -73,6 +75,10 @@ function _processTableData(data) {
   }
 }
 
+function _openSettingsPanel() {
+  this.root.find('.js-ordering-card__modal').modal();
+}
+
 class OrderingCard {
   constructor({ el }) {
     this.root = $(el);
@@ -92,6 +98,7 @@ class OrderingCard {
   }
   bindEvents() {
     /* Bind jQuery events here */
+    $body.on('click', '.js-ordering-card__settings', this.openSettingsPanel);
   }
   renderTable() {
     logger.log(`Testing template strings`);
@@ -105,6 +112,7 @@ class OrderingCard {
       target: this.root
     });
   }
+  openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   init() {
     /* Mandatory method */
     this.initCache();

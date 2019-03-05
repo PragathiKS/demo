@@ -1,0 +1,56 @@
+.tpatom-btn {
+    cursor: pointer;
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.4;
+    }
+    &--primary {
+        @include font-size($font-baseline);
+        @include line-height(40px, $font-baseline);
+        @include padding(0 $padding-md);
+        @include letter-spacing(0.5px);
+        border-radius: $border-radius;
+        transition: background-color $anim-speed-quick ease;
+        font-family: $font-light;
+        margin-right: auto;
+        &,
+        &[disabled]:hover {
+            background-color: $color-congress-blue;
+            color: $color-white;
+        }
+        &:hover {
+            background-color: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
+        span {
+            @include margin-right($margin-xs);
+        }
+    }
+    &--close,
+    &--settings {
+        @include width($min-accessible-dimension);
+        @include height($min-accessible-dimension);
+        color: $color-text;
+    }
+    &--close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media #{$desktop} {
+            @include top($spacing-small-half);
+            @include right($spacing-small-half);
+        }
+        .icon {
+            @include font-size($font-normal);
+            @include width($spacing-small);
+            @include height($spacing-small);
+        }
+    }
+    &--settings {
+        .icon {
+            @include font-size($font-baseline);
+            @include width($spacing-baseline);
+            @include height($spacing-baseline);
+        }
+    }
+}

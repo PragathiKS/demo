@@ -1,7 +1,19 @@
 <div class="tp-ordering-card__orders">
     <div class="tp-ordering-card__title">{{i18n key=labels.title}}</div>
-    {{> atoms/buttons/settings/settings baseClass="tp-ordering-card" jsClass="js-ordering-card" }}
+    {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
     <div class="tp-ordering-card__tablewrapper">
         {{> molecules/table/table baseClass="tp-ordering-card" jsClass="js-ordering-card" list=orders headings=orderHeadings}}
+    </div>
+    {{!-- Settings overlay --}}
+    <div class="modal tp-modal js-ordering-card__modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
+            <div class="modal-content tp-modal-content">
+                {{> molecules/modals/modalHeader/modalHeader title=labels.preferencesTitle closeBtnText=labels.closeBtn}}
+                <div class="modal-body tp-modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                {{> molecules/modals/modalFooter/modalFooter buttonText=labels.saveSettings}}
+            </div>
+        </div>
     </div>
 </div>
