@@ -1,0 +1,41 @@
+.tpatom-checkbox {
+    &__label {
+        @include margin-bottom($margin-sm);
+        position: relative;
+        padding: 0;
+    }
+    &__input {
+        position: absolute;
+        z-index: $zindex-hide;
+        opacity: 0;
+        &+.icon::before {
+            display: none;
+        }
+        &:checked {
+            &+.icon::before {
+                display: inline-block;
+            }
+        }
+    }
+    &__icon {
+        @include width(20px);
+        @include height(20px);
+        @include border-radius($border-radius);
+        @include padding(2px);
+        @include margin-top(2px);
+        @include margin-right($margin-sm);
+        display: inline-block;
+        border: 1px solid $color-boulder;
+        color: $color-boulder;
+        &::before {
+            @include font-size($font-baseline);
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+    }
+    &__text {
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+    }
+}

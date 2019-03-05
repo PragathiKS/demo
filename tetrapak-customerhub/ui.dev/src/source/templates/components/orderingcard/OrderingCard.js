@@ -7,6 +7,23 @@ import 'core-js/features/array/includes';
 import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
+ * Caches available keys from data
+ * @param {string[]} availableKeys Available keys
+ * @param {string[]} orderKeys Order keys
+ */
+function _setAvailableKeys(availableKeys, orderKeys) {
+  if (availableKeys.length === 0) {
+    availableKeys.push(...orderKeys);
+  } else {
+    orderKeys.forEach(key => {
+      if (!availableKeys.includes(key)) {
+        availableKeys.push(key);
+      }
+    });
+  }
+}
+
+/**
  * Returns formatted contacts HTML
  * @param {object[]} contacts List of contacts
  */
@@ -48,18 +65,24 @@ function _tableSort(order, activeKeys) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], tableData } = this.cache;
+  this.cache.availableKeys = availableKeys;
+  if (!tableData) {
+    this.cache.tableData = data;
+  }
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
     const activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
     data.orders = data.orders.map(order => {
       const processedOrder = {};
+      const orderKeys = Object.keys(order);
+      _setAvailableKeys(availableKeys, orderKeys);
       if (activeKeys.length === 0) {
-        activeKeys.push(...Object.keys(order));
+        activeKeys.push(...orderKeys);
         return _tableSort.call(this, order, activeKeys);
       }
-      Object.keys(order).forEach(key => {
+      orderKeys.forEach(key => {
         if (activeKeys.includes(key)) {
           processedOrder[key] = order[key];
         }
@@ -71,6 +94,11 @@ function _processTableData(data) {
       i18nKey: `cuhu.ordering.${key}`,
       isSortable: ['orderDate'].includes(key),
       sortOrder: 'desc'
+    }));
+    data.settingOptions = availableKeys.map(key => ({
+      key,
+      i18nKey: `cuhu.ordering.${key}`,
+      isChecked: activeKeys.includes(key)
     }));
   }
 }
