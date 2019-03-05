@@ -1,4 +1,6 @@
+import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 
 class OrderSearch {
   cache = {};
@@ -17,12 +19,17 @@ class OrderSearch {
     this.initCache();
     this.bindEvents();
 
-    let config = JSON.parse(this.cache.config);
+    let config = {};
+    try {
+      config = JSON.parse(this.cache.config);
+    } catch (err) {
+      logger.error(err.message);
+    }
 
     render.fn({
       template: 'orderSearch',
       url: config.apiURL,
-      target: '.order-search__form',
+      target: '.js-order-search__form',
       ajaxConfig: {
         method: 'GET'
       },

@@ -1,15 +1,9 @@
-<sly data-sly-template.orderSearch_template="${@ data, flag}">
-    <div class="order-search form-group" data-module="OrderSearch">
+<sly data-sly-template.ordersearch_template="${@ data, flag}">
+    <div class="order-search" data-module="OrderSearch">
         <code class="d-none order-search__config">
-            {
-                "apiURL": "/etc/designs/customerhub/jsonData/orderSearchSummary.json",
-                "resetButtonTextI18n": "Reset",
-                "searchButtonTextI18n": "Search orders",
-                "allStatusesTextI18n": "All statuses",
-                "allAddressesTextI18n": "All delivery address"
-            }
+            ${data.config}
         </code>
-        <div class="order-search__form form-group"> 
+        <div class="order-search__form js-order-search__form form-group" aria-live="polite"> 
         </div>
     </div>
 </sly>

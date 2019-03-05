@@ -1,21 +1,21 @@
-<div class="icon-wrapper">
-    <input type="text" name="date-range" class="form-control order-search__date-range" readonly value="{{Summary.startDate}} - {{Summary.endDate}}" />
+<div class="icon-wrapper float-left">
+    <input type="text" name="date-range" class="form-control order-search__date-range" readonly value="{{summary.filterStartDate}} - {{summary.filterEndDate}}" />
     <i class="icon-wrapper__icon icon-Calandar2"></i>
 </div>
-<select name="order-status" class="form-control order-search__order-status">
+<select name="order-status" class="form-control order-search__order-status float-left">
     <option value="">{{allStatusesTextI18n}}</option>
-    {{#each Summary.status}}
+    {{#each summary.status}}
         <option value="{{this}}">{{this}}</option>
     {{/each}}
 </select>
 <select name="delivery-address" class="form-control order-search__delivery-address">
     <option value="">{{allAddressesTextI18n}}</option>
-    {{#each Summary.deliveryAddress}}
+    {{#each summary.deliveryAddress}}
         <option value="{{this.name}}">{{this.name}}</option>
     {{/each}}
 </select>
 <div class="order-search__flex-container">
-    <input type="text" name="search-term" class="form-control order-search__search-term" placeholder="Purchase order No.  /  Tetra Pak order No.  /  Delivery No.  /  Product ID" />
+    <input type="text" name="search-term" class="form-control order-search__search-term" placeholder="{{searchTermPlaceholderI18n}}" />
     {{> atoms/buttons/primaryButton/buttons btnText=this.resetButtonTextI18n btnClasses='btn--secondary' }}
     {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonTextI18n btnClasses='btn--primary' btnIcon='icon-Chevron_Right' }}
 </div>

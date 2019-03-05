@@ -9,7 +9,7 @@
         @include border-xs($color-boulder);
         @include height(40px);
         &[readonly] {
-            @include bg-color;
+            background-color: $color-white;
         }
     }
     .btn--secondary {
@@ -29,7 +29,6 @@
         }
         &__order-status,
         .icon-wrapper {
-            float: left;
             @include margin-right($margin-md);
         }
         &__search-term {

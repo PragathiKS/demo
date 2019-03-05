@@ -1,7 +1,7 @@
 {
-    "Summary": {
-        "startDate": "2019-09-20",
-        "endDate": "2019-09-27",
+    "summary": {
+        "filterStartDate": "YYYY-MM-DD",
+        "filterEndDate": "YYYY-MM-DD",
         "status": [
             "Completed",
             "Confirmed",
