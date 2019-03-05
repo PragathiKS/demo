@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="56px" viewBox="0 0 64 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>FCF05219-5781-4D74-9017-CC239BC50334</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons" transform="translate(-937.000000, -157.000000)" fill="#023F88">
-            <path d="M937.537,183.092146 C937.537,182.683146 964.467,157.289146 965.183,157.289146 C966.615,156.591146 968.048,157.289146 969.48,157.986146 C970.197,158.683146 970.913,159.380146 970.913,160.775146 L970.913,167.999246 L997.418,167.999246 C999.567,167.999246 1001,169.393246 1001,171.486246 L1001,197.448146 C1001,199.540146 999.567,200.935146 997.418,200.935146 L970.913,200.935146 L970.913,208.606146 C970.913,210.001146 970.197,210.699146 969.48,211.396146 C968.048,212.093146 966.615,212.791146 965.183,212.093146 C964.467,212.093146 937.537,186.699146 937.537,186.290146 C936.821,185.593146 936.821,183.789146 937.537,183.092146 Z" id="Bold_Arrow_Left"></path>
-        </g>
-    </g>
-</svg>
+<svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><style>.cls-1{fill:#023f88;}</style></defs><title>Bold_Arrow_Left</title><g id="Icons"><g id="Icons-Symbols-Rev1"><g id="Basic-Icons"><g id="Bold-arrow-left"><path id="bold_arrow_left" data-name="bold arrow left" class="cls-1" d="M.56,33.6a2.64,2.64,0,0,1,0-3.2C.56,30,27.49,4.6,28.21,4.6c1.43-.7,2.86,0,4.29.69a3.6,3.6,0,0,1,1.44,2.79v7.68h26.5A3.33,3.33,0,0,1,64,19.24V44.76a3.33,3.33,0,0,1-3.58,3.48H33.94v7.68a3.6,3.6,0,0,1-1.44,2.79c-1.43.69-2.86,1.39-4.29.69C27.49,59.4.56,34,.56,33.6Z"/></g></g></g></g></svg>

@@ -43,7 +43,11 @@ module.exports = function (config) {
       mode: 'development',
       module: {
         rules: [
-          { test: /\.js$/, loader: 'babel-loader' },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+          },
           {
             enforce: 'post',
             test: /\.js$/,
@@ -58,14 +62,28 @@ module.exports = function (config) {
             exclude: /node_modules/,
             loader: "handlebars-loader",
             options: {
-              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
-              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              helperDirs: [
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder),
+                path.resolve(webpackConfig.handlebars.commonHelpersFolder)
+              ],
+              partialDirs: [
+                path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder),
+                path.resolve(webpackConfig.handlebars.commonRelativeFolder)
+              ],
               precompileOptions: {
                 knownHelpersOnly: false
               }
             }
           }
         ]
+      },
+      node: {
+        fs: 'empty'
+      },
+      resolve: {
+        alias: {
+          handlebars: 'handlebars/runtime'
+        }
       }
     },
     webpackServer: {
