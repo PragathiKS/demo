@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>B445B690-3D59-4D9D-9414-2DF25D3F13D7</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons" transform="translate(-543.000000, -406.000000)" fill="#023F88">
-            <path d="M583.632,438 L605.212,459.58 C607.596,461.964 607.596,465.829 605.212,468.212 C602.828,470.596 598.964,470.596 596.58,468.212 L575,446.632 L553.42,468.212 C551.036,470.596 547.172,470.596 544.788,468.212 C542.404,465.829 542.404,461.964 544.788,459.58 L566.368,438 L544.788,416.42 C542.404,414.036 542.404,410.171 544.788,407.788 C547.172,405.404 551.036,405.404 553.42,407.788 L575,429.368 L596.58,407.788 C598.964,405.404 602.828,405.404 605.212,407.788 C607.596,410.171 607.596,414.036 605.212,416.42 L583.632,438 Z" id="Close"></path>
-        </g>
-    </g>
-</svg>
+<svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><style>.cls-1{fill:#023f88;}</style></defs><title>Close</title><g id="Icons"><g id="Icons-Symbols-Rev1"><g id="Basic-Icons"><g id="Close"><path id="close-2" data-name="close" class="cls-1" d="M40.63,32,62.21,53.58a6.1,6.1,0,0,1-8.63,8.63L32,40.63,10.42,62.21a6.1,6.1,0,0,1-8.63-8.63L23.37,32,1.79,10.42a6.1,6.1,0,0,1,8.63-8.63L32,23.37,53.58,1.79a6.1,6.1,0,0,1,8.63,8.63Z"/></g></g></g></g></svg>

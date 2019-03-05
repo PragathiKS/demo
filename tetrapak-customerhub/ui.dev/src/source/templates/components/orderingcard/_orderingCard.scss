@@ -1,0 +1,27 @@
+.tp-ordering-card {
+    position: relative;
+    &__title {
+        @include margin-bottom($margin-md);
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+            @include font-size($font-l);
+            @include line-height(32px, $font-l);
+        }
+    }
+    &__tablewrapper {
+        @include horizontal-scroll-touch;
+    }
+    &__settings {
+        // Settings icon
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media #{$desktop} {
+            // Compensating for padding from top and right to render effective spacing of 24px
+            @include top($spacing-small-half);
+            @include right($spacing-small-half);
+        }
+    }
+}

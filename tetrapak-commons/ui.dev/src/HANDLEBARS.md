@@ -148,3 +148,12 @@ render.fn({
 If target is not specified, render js will place an empty div next to ``<code>`` block and render the template file.
 
 <b>Please note</b> that ``<code>`` block is a data source and render js gives preference to it over ``data`` option.
+
+### Get render template function
+
+In few scenarios you might need the actual template function (instead of using ``render.fn``) to custom render handlebar files. One way is to access templates from class constructor as already shown in examples above. There is another cleaner way to get the template function using ``render.get``.
+
+```js
+const template = render.get('&lt;template name&gt;');
+$('.app').html(template());
+```
