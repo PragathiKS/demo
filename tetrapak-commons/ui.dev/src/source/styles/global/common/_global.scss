@@ -84,8 +84,6 @@ iframe {
 
 select {
     @extend %appearance;
-    background: url('../../../assets/icons/Chevron_Down.svg') no-repeat right $margin-sm center;
-    background-size: 12px;
 }
 
 /**

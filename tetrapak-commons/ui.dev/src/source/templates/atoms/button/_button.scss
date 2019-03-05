@@ -1,10 +1,8 @@
-.btn {
-    &--tp {
-        @include padding($padding-sm $padding-md);
-        white-space: nowrap;
-        .icon-Chevron_Right {
-            @include margin-right(-$margin-sm);
-        }
+.tpatom-btn {
+    @include padding($padding-sm $padding-md);
+    white-space: nowrap;
+    .icon-Chevron_Right {
+        @include margin-right(-$margin-sm);
     }
     &--primary {
         color: $color-white;
