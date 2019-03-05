@@ -6,35 +6,35 @@ use(function() {
     "logoDisplay": true,
     "navDisplay": true,
     "rightNavDisplay": true,
-    "mLogoLink": "https://www.google.com/",
-    "dLogoLink": "https://www.publicissapient.com/",
+    "mLogoLink": "/content/tetrapak/customerhub/global/dashboard.html",
+    "dLogoLink": "/content/tetrapak/customerhub/global/dashboard.html",
     "headerNavLinks": [
         {
-            "href": "https://www.google.com/",
+            "href": "/content/tetrapak/public-web/global/en/solutions.html",
             "name": "Solutions",
             "targetNew": false,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "https://www.google.com/",
+            "href": "/content/tetrapak/public-web/global/en/innovations.html",
             "name": "Innovation",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "https://www.google.com/",
+            "href": "/content/tetrapak/public-web/global/en/sustainability.html",
             "name": "Sustainability",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "https://www.google.com/",
+            "href": "/content/tetrapak/public-web/global/en/careers.html",
             "name": "Careers",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "https://www.google.com/",
+            "href": "/content/tetrapak/public-web/global/en/about-us.html",
             "name": "About us",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
