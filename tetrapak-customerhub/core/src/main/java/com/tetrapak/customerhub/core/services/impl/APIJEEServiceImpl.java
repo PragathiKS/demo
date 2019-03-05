@@ -15,11 +15,13 @@ public class APIJEEServiceImpl implements APIJEEService {
 
     @Activate
     public void activate(APIJEEServiceConfig config) {
+
         this.config = config;
     }
 
     @Override
     public String getApiJeeServiceUrl() {
+
         return config.apiJeeServiceUrl();
     }
 }
