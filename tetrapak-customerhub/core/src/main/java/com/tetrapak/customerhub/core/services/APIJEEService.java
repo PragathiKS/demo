@@ -1,5 +1,5 @@
 package com.tetrapak.customerhub.core.services;
 
-public interface ApiJeeService {
+public interface APIJEEService {
     String getApiJeeServiceUrl();
 }

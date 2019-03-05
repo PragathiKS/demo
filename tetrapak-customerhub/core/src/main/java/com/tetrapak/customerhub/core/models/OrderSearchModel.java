@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.services.ApiJeeService;
+import com.tetrapak.customerhub.core.services.APIJEEService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -27,7 +27,7 @@ public class OrderSearchModel {
     private String allAddressesTextI18n;
 
     @OSGiService
-    ApiJeeService apiJeeService;
+    APIJEEService apiJeeService;
 
     private String apiURL;
 
