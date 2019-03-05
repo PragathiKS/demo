@@ -15,7 +15,8 @@
         }
         @media #{$desktop} {
             @include max-width(224px);
-            width: 100%;
+            @include margin(0 -15px);
+            width: auto;
             background: transparent;
             position: static;
             transform: translateX(0);
@@ -36,7 +37,7 @@
         @media #{$desktop} {
             @include max-width(224px);
             @include border-radius(0 4px 4px 0);
-            width: 100%;
+            width: auto;
             overflow: auto;
             transform: translateX(0);
         }
