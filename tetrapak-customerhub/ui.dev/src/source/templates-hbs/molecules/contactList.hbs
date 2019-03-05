@@ -1,10 +1,10 @@
 {{!-- Custom contacts template specific to Orders component --}}
-<div class="tpmol-contacts {{baseClass}}__contacts">
+<div class="tpmol-contacts{{#if baseClass}} {{baseClass}}__contacts{{/if}}">
     {{#each contacts}}
-    <div class="tpmol-contacts__contact {{../baseClass}}__contacts__contact">
-        <span class="tpmol-contacts__contact--name {{../baseClass}}__contacts__contact--name">{{name}}</span>
-        <a class="tpmol-contacts__contact--tel {{../baseClass}}__contacts__contact--tel" href="tel:{{telNumber}}">{{telNumber}}</a>
-        <a class="tpmol-contacts__contact--email {{../baseClass}}__contacts__contact--email" href="mailto:{{email}}">{{email}}</a>
+    <div class="tpmol-contacts__contact{{#if ../baseClass}} {{../baseClass}}__contact{{/if}}">
+        <span class="tpmol-contacts__contact-name{{#if ../baseClass}} {{../baseClass}}__contact-name{{/if}}">{{name}}</span>
+        <a class="tpmol-contacts__contact-tel{{#if ../baseClass}} {{../baseClass}}__contact-tel{{/if}}" href="tel:{{telNumber}}">{{telNumber}}</a>
+        <a class="tpmol-contacts__contact-email{{#if ../baseClass}} {{../baseClass}}__contact-email{{/if}}" href="mailto:{{email}}">{{email}}</a>
     </div>
     {{/each}}
 </div>
