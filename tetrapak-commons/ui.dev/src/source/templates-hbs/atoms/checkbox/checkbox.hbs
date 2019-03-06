@@ -1,6 +1,6 @@
 <div class="tpatom-checkbox{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}">
     <label class="tpatom-checkbox__label clearfix" for="tpatomCheck{{uniqueKey}}">
-        <input type="checkbox" class="tpatom-checkbox__input float-left" id="tpatomCheck{{uniqueKey}}" value="{{value}}" {{#if isChecked}}checked="checked"{{/if}} />
+        <input type="checkbox" class="tpatom-checkbox__input float-left" id="tpatomCheck{{uniqueKey}}" value="{{value}}" {{#if isChecked}}checked="checked"{{/if}} {{#if disabled}}disabled{{/if}} />
         <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
         <span class="tpatom-checkbox__text{{#if hideText}} sr-only{{/if}}">{{i18n key=text}}</span>
     </label>

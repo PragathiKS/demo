@@ -1,4 +1,5 @@
 .tpatom-checkbox {
+    $root: &;
     &__label {
         @include margin-bottom($margin-sm);
         position: relative;
@@ -14,6 +15,13 @@
         &:checked {
             &+.icon::before {
                 display: inline-block;
+            }
+        }
+        &[disabled] {
+            &~#{$root}__icon,
+            &~#{$root}__text {
+                cursor: not-allowed;
+                opacity: $opacity-disabled;
             }
         }
     }

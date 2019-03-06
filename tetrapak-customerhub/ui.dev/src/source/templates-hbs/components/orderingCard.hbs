@@ -1,7 +1,7 @@
 <div class="tp-ordering-card__orders">
     <div class="tp-ordering-card__title">{{i18n key=labels.title}}</div>
     {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
-    <div class="tp-ordering-card__tablewrapper">
+    <div class="tp-ordering-card__tablewrapper js-ordering-card__tablewrapper">
         {{> molecules/table/table baseClass="tp-ordering-card" jsClass="js-ordering-card" list=orders headings=orderHeadings}}
     </div>
     {{!-- Settings overlay --}}
@@ -13,11 +13,11 @@
                     <div class="tp-ordering-card__modal-desc">{{labels.preferencesDescription}}</div>
                     <div class="tp-ordering-card__modal-options">
                         {{#each settingOptions}}
-                            {{> atoms/checkbox/checkbox uniqueKey=@index text=i18nKey value=key isChecked=isChecked}}
+                            {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked disabled=isMandatory}}
                         {{/each}}
                     </div>
                 </div>
-                {{> molecules/modals/modalFooter/modalFooter buttonText=labels.saveSettings}}
+                {{> molecules/modals/modalFooter/modalFooter buttonText=labels.saveSettings baseClass="tp-ordering-card__modal-save" jsClass="js-ordering-card__modal-save"}}
             </div>
         </div>
     </div>

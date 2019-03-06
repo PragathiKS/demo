@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
-import { $body } from '../../../scripts/utils/commonSelectors';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 
 /**
  * Caches available keys from data
@@ -65,19 +65,20 @@ function _tableSort(order, activeKeys) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], tableData } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [] } = this.cache;
   this.cache.availableKeys = availableKeys;
-  if (!tableData) {
-    this.cache.tableData = data;
-  }
+  this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
-    const activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
+    let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
+    activeKeys = activeKeys.filter(key => key);
     data.orders = data.orders.map(order => {
       const processedOrder = {};
       const orderKeys = Object.keys(order);
-      _setAvailableKeys(availableKeys, orderKeys);
+      if (availableKeys.length === 0) {
+        _setAvailableKeys(availableKeys, orderKeys);
+      }
       if (activeKeys.length === 0) {
         activeKeys.push(...orderKeys);
         return _tableSort.call(this, order, activeKeys);
@@ -98,13 +99,42 @@ function _processTableData(data) {
     data.settingOptions = availableKeys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
-      isChecked: activeKeys.includes(key)
+      isChecked: activeKeys.includes(key),
+      isMandatory: ['orderNumber', 'poNumber', 'orderDate'].includes(key)
     }));
   }
+  return data;
 }
 
+/**
+ * Opens settings overlay panel
+ */
 function _openSettingsPanel() {
   this.root.find('.js-ordering-card__modal').modal();
+}
+
+function _saveSettings() {
+  // Get selected preferences
+  const selectedFields = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+    return $(el).val();
+  });
+  ajaxWrapper.getXhrObj({
+    url: this.cache.preferencesUrl,
+    data: {
+      fields: selectedFields.join(',')
+    },
+    method: ajaxMethods.POST
+  }).done((data) => {
+    if (data.status === 'success') {
+      this.cache.savedPreferences = selectedFields.join(',');
+      this.renderTable({
+        template: 'orderingTable',
+        data: _processTableData.call(this, this.cache.tableData),
+        target: this.root.find('.js-ordering-card__tablewrapper')
+      });
+      this.root.find('.js-ordering-card__modal').modal('hide');
+    }
+  });
 }
 
 class OrderingCard {
@@ -126,21 +156,26 @@ class OrderingCard {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    $body.on('click', '.js-ordering-card__settings', this.openSettingsPanel);
+    this.root
+      .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
+      .on('click', '.js-ordering-card__modal-save', this.saveSettings);
   }
-  renderTable() {
-    logger.log(`Testing template strings`);
-    render.fn({
-      template: 'orderingCard',
-      url: this.cache.apiUrl,
-      ajaxConfig: {
-        method: ajaxMethods.POST
-      },
-      beforeRender: (...args) => _processTableData.apply(this, args),
-      target: this.root
-    });
+  renderTable(config) {
+    if (typeof config === 'undefined') {
+      config = {
+        template: 'orderingCard',
+        url: this.cache.apiUrl,
+        ajaxConfig: {
+          method: ajaxMethods.POST
+        },
+        beforeRender: (...args) => _processTableData.apply(this, args),
+        target: this.root
+      };
+    }
+    render.fn(config);
   }
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
+  saveSettings = (...args) => _saveSettings.apply(this, args);
   init() {
     /* Mandatory method */
     this.initCache();
