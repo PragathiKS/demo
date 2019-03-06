@@ -10,7 +10,7 @@ class OrderSearch {
   }
   initCache() {
     /* Initialize cache here */
-    this.cache.config = this.root.find('.order-search__config').text();
+    this.cache.config = this.root.find('.js-order-search__config').text();
   }
   bindEvents() {
     /* Bind jQuery events here */

@@ -1,32 +1,32 @@
 <form>
-    <div class="icon-wrapper float-lg-left">
+    <div class="form-element float-lg-left">
         <input type="text" name="date-range" class="form-control tp-order-search__date-range" data-locator="calendar-picker" readonly value="{{summary.filterStartDate}} - {{summary.filterEndDate}}" aria-label="{{dateRangeLabelI18n}}" />
-        <i class="icon-wrapper__icon icon-Calandar2"></i>
+        <i class="form-element__icon icon-Calendar2"></i>
     </div>
 
-    <div class="icon-wrapper float-lg-left">
+    <div class="form-element float-lg-left">
         <select name="order-status" class="form-control tp-order-search__order-status" data-locator="status-drpdwn" aria-label="{{orderStatusLabelI18n}}">
             <option value="">{{allStatusesTextI18n}}</option>
             {{#each summary.status}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
-        <i class="icon-wrapper__icon icon-Chevron_Down"></i>
+        <i class="form-element__icon icon-Chevron_Down"></i>
     </div>
 
-    <div class="icon-wrapper float-lg-left">
+    <div class="form-element float-lg-left">
         <select name="delivery-address" class="form-control tp-order-search__delivery-address" data-locator="address-drpdwn" aria-label="{{deliveryAddressLabelI18n}}">
             <option value="">{{allAddressesTextI18n}}</option>
             {{#each summary.deliveryAddress}}
                 <option value="{{this.name}}">{{this.name}}, {{this.name2}}, {{this.city}}, {{this.state}}, {{this.postalCode}}, {{this.country}}</option>
             {{/each}}
         </select>
-        <i class="icon-wrapper__icon icon-Chevron_Down"></i>
+        <i class="form-element__icon icon-Chevron_Down"></i>
     </div>
 
     <div class="tp-order-search__flex-container">
         <input type="text" name="search-term" class="form-control tp-order-search__search-term"  data-locator="search-input" aria-label="{{searchInputLabelI18n}}" placeholder="{{searchTermPlaceholderI18n}}" />
-        {{> atoms/buttons/primaryButton/buttons buttonType="reset" btnText=this.resetButtonTextI18n btnClasses="tpatom-btn--secondary" }}
-        {{> atoms/buttons/primaryButton/buttons buttonType="button" btnText=this.searchButtonTextI18n btnClasses="tpatom-btn--primary" iconClass="icon-Chevron_Right" dataLocator="search-order-btn" }}
+        {{> atoms/buttons/primaryButton/buttons buttonType="reset" btnText=this.resetButtonTextI18n btnClasses="tpatom-button--secondary" }}
+        {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonTextI18n btnClasses="tpatom-button--primary" iconClass="icon-Chevron_Right" dataLocator="search-order-btn" }}
     </div>
 </form>
