@@ -1,12 +1,15 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.services.APIJEEService;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.inject.Inject;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderSearchModel {
 
     @Self
@@ -23,6 +26,9 @@ public class OrderSearchModel {
 
     @Inject
     private String allAddressesTextI18n;
+
+    @OSGiService
+    APIJEEService apiJeeService;
 
     private String apiURL;
 
@@ -43,7 +49,6 @@ public class OrderSearchModel {
     }
 
     public String getApiURL() {
-        // This needs to be made configurable specific to run modes
-        return "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
+        return null != apiJeeService ? apiJeeService.getApiJeeServiceUrl() : "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
     }
 }
