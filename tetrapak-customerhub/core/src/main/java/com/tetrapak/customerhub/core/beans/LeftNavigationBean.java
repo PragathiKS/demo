@@ -2,12 +2,10 @@ package com.tetrapak.customerhub.core.beans;
 
 public class LeftNavigationBean {
     private String path;
-    private boolean isHiddenInNavigation;
-    private boolean isIconAvailable;
     private String iconClass;
     private String iconLabel;
     private boolean isExternalLink;
-    private boolean isSubMenuAvailable;
+    private boolean isActive;
 
     public String getPath() {
         return path;
@@ -15,22 +13,6 @@ public class LeftNavigationBean {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public boolean isHiddenInNavigation() {
-        return isHiddenInNavigation;
-    }
-
-    public void setHiddenInNavigation(boolean hiddenInNavigation) {
-        isHiddenInNavigation = hiddenInNavigation;
-    }
-
-    public boolean isIconAvailable() {
-        return isIconAvailable;
-    }
-
-    public void setIconAvailable(boolean iconAvailable) {
-        isIconAvailable = iconAvailable;
     }
 
     public String getIconClass() {
@@ -57,11 +39,11 @@ public class LeftNavigationBean {
         isExternalLink = externalLink;
     }
 
-    public boolean isSubMenuAvailable() {
-        return isSubMenuAvailable;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setSubMenuAvailable(boolean subMenuAvailable) {
-        isSubMenuAvailable = subMenuAvailable;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

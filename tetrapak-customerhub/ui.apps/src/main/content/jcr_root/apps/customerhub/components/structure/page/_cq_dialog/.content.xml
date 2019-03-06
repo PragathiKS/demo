@@ -38,15 +38,6 @@
                                                 fieldDescription="Enter Navigation Title i18n key"
                                                 fieldLabel="Navigation Title i18n key"
                                                 name="./iconLabel"/>
-                                            <isIconAvailable
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                fieldDescription="Must be checked if icon is available to display in navigation"
-                                                name="./isIconAvailable"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Is icon available"
-                                                value="true">
-                                            </isIconAvailable>
                                             <iconClass
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
@@ -88,6 +79,9 @@
                                                     <Logout jcr:primaryType="nt:unstructured"
                                                              text="Logout"
                                                              value="icon-Logout"/>
+                                                    <Bell jcr:primaryType="nt:unstructured"
+                                                            text="Bell"
+                                                            value="icon-Bell"/>
                                                 </items>
                                             </iconClass>
                                         </items>

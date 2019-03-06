@@ -1,9 +1,10 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -30,7 +31,8 @@ public class LeftNavigationModel {
 
     @PostConstruct
     protected void init() {
-        Resource childResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
+        Resource childResource = resource.getResourceResolver().getResource(
+                CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
         Resource globalConfigResource = getGlobalConfigurationResource(childResource);
         if (null != globalConfigResource) {
             ValueMap map = globalConfigResource.getValueMap();
@@ -45,37 +47,43 @@ public class LeftNavigationModel {
         while (itr.hasNext()) {
             Page childPage = itr.next();
             ValueMap valueMap = childPage.getContentResource().getValueMap();
-            LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
-            leftNavItems.add(leftNavigationBean);
+            if (isHiddenInNavigation(valueMap)) {
+                LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
+                leftNavItems.add(leftNavigationBean);
+            }
         }
     }
 
     private void setStickyNavItemBean(ValueMap valueMap) {
         stickyNavItem.setPath((String) valueMap.get("stickyHref"));
-        stickyNavItem.setIconAvailable(valueMap.containsKey("isStickyIconAvailable"));
         stickyNavItem.setIconClass((String) valueMap.get("stickyIconClass"));
         stickyNavItem.setExternalLink(true);
-        stickyNavItem.setHiddenInNavigation(false);
-        stickyNavItem.setSubMenuAvailable(false);
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
         LeftNavigationBean bean = new LeftNavigationBean();
         bean.setIconClass((String) valueMap.get("iconClass"));
         bean.setExternalLink(isExternalLink(valueMap));
-        bean.setHiddenInNavigation(isHiddenInNavigation(valueMap));
-        bean.setIconAvailable(isIconAvailable(valueMap));
-        bean.setIconLabel(getPageNamei18key(valueMap));
+        bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setPath(getResolvedPagePath(childPage));
-        bean.setSubMenuAvailable(childPage.listChildren(new PageFilter()).hasNext());
+        bean.setActive(isCurrentPage(childPage));
         return bean;
+    }
+
+    private boolean isCurrentPage(Page childPage) {
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if(null != pageManager) {
+            Page currentPage = pageManager.getContainingPage(resource);
+            return StringUtils.equalsIgnoreCase(childPage.getPath(), currentPage.getPath());
+        }
+        return false;
     }
 
     private String getResolvedPagePath(Page childPage) {
         return resource.getResourceResolver().map(childPage.getPath() + CustomerHubConstants.HTML_EXTENSION);
     }
 
-    private String getPageNamei18key(ValueMap valueMap) {
+    private String getPageNameI18key(ValueMap valueMap) {
         if (valueMap.containsKey("iconLabel")) {
             return (String) valueMap.get("iconLabel");
         }
@@ -83,13 +91,6 @@ public class LeftNavigationModel {
             return (String) valueMap.get("jcr:title");
         }
         return "";
-    }
-
-    private boolean isIconAvailable(ValueMap valueMap) {
-        if (valueMap.containsKey(CustomerHubConstants.IS_ICON_AVAILABLE_PROPERTY)) {
-            return true;
-        }
-        return false;
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
