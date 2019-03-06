@@ -1,4 +1,4 @@
-<button type="button" class="btn tpatom-btn{{#if btnClasses}} {{btnClasses}}{{/if}}">
+<button type="{{buttonType}}" class="btn tpatom-btn{{#if btnClasses}} {{btnClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}>
     <span class="tpatom-btn__text">{{btnText}}</span>
     <i class="tpatom-btn__icon{{#if iconClass}} {{iconClass}}{{/if}}"></i>
 </button>

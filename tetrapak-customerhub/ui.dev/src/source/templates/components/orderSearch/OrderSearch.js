@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 
 class OrderSearch {
   cache = {};
@@ -31,7 +32,7 @@ class OrderSearch {
       url: config.apiURL,
       target: '.js-order-search__form',
       ajaxConfig: {
-        method: 'GET'
+        method: ajaxMethods.POST
       },
       beforeRender(data) {
         this.data = $.extend(data, config);
