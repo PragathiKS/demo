@@ -22,7 +22,7 @@
         @include height(12px);
     }
     .icon-wrapper__icon {
-        font-size: 12px;
+        @include font-size(12px);
     }
     @media #{$desktop} {
         .icon-wrapper {
