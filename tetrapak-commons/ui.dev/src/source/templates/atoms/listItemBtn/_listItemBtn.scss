@@ -26,22 +26,13 @@
             color: $color-white;
             text-decoration: none;
         }
-        &--sticky {
-            @include max-width(300px);
-            width: 100%;
+        &--whiteBackground {
             background: $color-white;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            display: block;
-            transform: translateX(-100%);
-            transition: transform $anim-speed-normal;
             color: $color-black;
             font-weight: bold;
             &:hover,
             &:visited {
                 color: $color-black;
-                text-decoration: none;
             }
             @media #{$desktop} {
                 display: none;
@@ -86,7 +77,7 @@
         @include padding(0 $padding-md 0 $padding-l);
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
-        @include letter-spacing(1px);
+        @include letter-spacing($letter-spacing-sm);
         font-family: $font-light;
         display: inline-block;
         width: 100%;

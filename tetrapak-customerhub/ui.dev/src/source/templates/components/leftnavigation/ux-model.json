@@ -1,7 +1,7 @@
 {
   "navHeading": "My Tetra Pak",
   "closeBtnText": "Close",
-  "stickyListItem": {
+  "tpLogoListItem": {
     "href": "#",
     "iconClass": "icon-TetraPak",
     "iconLabel": "Tetra Pak Home"
