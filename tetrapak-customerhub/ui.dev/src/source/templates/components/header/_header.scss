@@ -5,6 +5,8 @@
     @include padding-top($padding-xl);
     @include bg-color(#fff);
     @include margin-bottom($margin-l);
+    @include margin-left(-15px);
+    @include margin-right(-15px);
     @include font-size(14px);
     font-family: $font-bold;
     color: $color-congress-blue;
@@ -16,8 +18,12 @@
     }
     &__logo {
         @include top(30px);
-        @include left(32px);
+        @include left(36px);
         position: absolute;
+        @include width(156px);
+        @media #{$desktop} {
+            @include left(32px);
+        }
     }
     &__nav {
         text-align: center;
