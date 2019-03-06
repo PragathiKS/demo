@@ -47,7 +47,7 @@ public class LeftNavigationModel {
         while (itr.hasNext()) {
             Page childPage = itr.next();
             ValueMap valueMap = childPage.getContentResource().getValueMap();
-            if (isHiddenInNavigation(valueMap)) {
+            if (!isHiddenInNavigation(valueMap)) {
                 LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
                 leftNavItems.add(leftNavigationBean);
             }
