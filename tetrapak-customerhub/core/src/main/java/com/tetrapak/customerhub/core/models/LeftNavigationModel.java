@@ -29,6 +29,8 @@ public class LeftNavigationModel {
 
     private LeftNavigationBean stickyNavItem = new LeftNavigationBean();
 
+    public static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
+
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(
@@ -94,7 +96,7 @@ public class LeftNavigationModel {
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
-        if (valueMap.containsKey(CustomerHubConstants.HIDE_IN_NAV_PROPERTY)) {
+        if (valueMap.containsKey(HIDE_IN_NAV_PROPERTY)) {
             return true;
         }
         return false;
