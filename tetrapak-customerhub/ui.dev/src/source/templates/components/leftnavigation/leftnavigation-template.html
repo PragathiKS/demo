@@ -5,7 +5,9 @@
         <ul class="tp-left-nav__ullist">
           <li class="tp-left-nav__main-heading">
             <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n}</span>
-            <button type="button" class="tp-left-nav__close-btn js-close-btn" ><i class="icon-Close"></i><span class="sr-only">${data.closeBtnText @i18n}</span></button>
+            <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
+              data-sly-call="${closeButton.closeButton_template @data=data,closeBtnText='${data.closeBtnText}',btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
+            </sly>
           </li>
           <sly data-sly-list.child=${data.leftNavItems}>
               <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"

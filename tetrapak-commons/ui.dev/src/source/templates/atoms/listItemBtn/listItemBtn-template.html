@@ -1,27 +1,16 @@
 <sly data-sly-template.listItemBtn_template="${@ data, flag,identifier}">
-    <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
-          <button type="button" class="tpatom-list-item__btn js-list-item__btn">
-            <sly data-sly-test="${data.iconClass}">
-                <i class="tpatom-list-item__icon ${data.iconClass}"></i>
-            </sly>
-            <span class="tpatom-list-item__btn-label">${data.iconLabel @i18n}</span>
-            <sly data-sly-test="${data.isSubMenuAvailable}">
-              <i class="tpatom-list-item__submenu icon-Chevron_Down"></i>
-            </sly>
-          </button>
-    </sly>
-     <sly data-sly-test="${!hasSubmenu}">
-          <a class="tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}">
-            <sly data-sly-test="${data.iconClass}">
-                <i class="tpatom-list-item__icon  ${data.iconClass}"></i>
-            </sly>
-            <span class="tpatom-list-item__label">${data.iconLabel @i18n}</span>
-            <sly data-sly-test="${data.isExternalLink}">
-              <i class="tpatom-list-item__external-link icon-External_Link"></i>
-            </sly>
-            <sly data-sly-test="${data.isSubMenuAvailable}">
-              <i class="tpatom-list-item__submenu icon-Chevron_Down"></i>
-            </sly>
-          </a>
-    </sly>
+  <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
+    <button type="button" class="tpatom-list-item tpatom-list-item__btn text-left js-list-item__btn">
+      <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
+          data-sly-call="${listItemIcon.listItemIcon_template @data=data}">
+      </sly>
+    </button>
+  </sly>
+  <sly data-sly-test="${!hasSubmenu}">
+    <a class="tpatom-list-item tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}">
+      <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
+          data-sly-call="${listItemIcon.listItemIcon_template @data=data}">
+      </sly>
+    </a>
+  </sly>
 </sly>

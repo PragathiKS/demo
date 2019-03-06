@@ -1,4 +1,7 @@
 .tpmol-list-item {
+    width: 100%;
+    border-bottom: 1px solid $color-tory-blue;
+    background-color: $color-congress-blue;
     &__sublist {
         display: none;
     }

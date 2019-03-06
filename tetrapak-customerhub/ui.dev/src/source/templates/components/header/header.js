@@ -1,16 +1,17 @@
 import $ from 'jquery';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
-class header {
+class Header {
   constructor({ el }) {
     this.root = $(el);
   }
 
   init() {
     this.root.find('.tp-header__burger-menu').on('click', () => {
-      $(document).trigger('showLeftNav');
+      $body.trigger('showLeftNav');
     });
   }
 }
 
-export default header;
+export default Header;
 
