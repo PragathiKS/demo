@@ -1,0 +1,101 @@
+.tp-header {
+    @include height(88px);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include padding-top($padding-xl);
+    @include bg-color(#fff);
+    @include margin-bottom($margin-l);
+    @include margin-left(-15px);
+    @include margin-right(-15px);
+    @include font-size(14px);
+    font-family: $font-bold;
+    color: $color-congress-blue;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    @media #{$desktop} {
+        @include padding-left($padding-l);
+        @include padding-right($padding-l);
+    }
+    &__logo {
+        @include top(30px);
+        @include left(36px);
+        position: absolute;
+        @include width(156px);
+        @media #{$desktop} {
+            @include left(32px);
+        }
+    }
+    &__nav {
+        text-align: center;
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }
+    }
+    &__list {
+        @include padding-right($padding-l);
+        @include padding-left($padding-l);
+        display: inline-block;
+    }
+    &__links {
+        @include line-height(24px, $font-baseline);
+        font-family: $font-bold;
+        color: $color-congress-blue;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &__nav-right {
+        @include padding-left($padding-xxxl);
+        @include line-height(24px, $font-baseline);
+        @include top(30px);
+        @include right(24px);
+        text-align: right;
+        position: absolute;
+    }
+    &__notif {
+        @include font-size($font-xs);
+        @include bg-color($color-alert);
+        @include top(-8px);
+        @include right(-8px);
+        @include width(16px);
+        @include height(16px);
+        text-align: center;
+        color: $color-white;
+        position: absolute;
+        border-radius: 50%;
+    }
+    &__user {
+        display: none;
+        @media #{$desktop} {
+            @include padding-right($padding-md);
+            display: inline-block;
+            border-right: 1px $color-mercury solid;
+        }
+        &::before {
+            @include font-size($font-normal);
+            color: $color-congress-blue;
+            @include padding-right(3px);
+        }
+    }
+    &__bell {
+        @include padding-left($padding-md);
+        position: relative;
+        background: none;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        @include padding-right(0);
+        &::before {
+            @include font-size($font-normal);
+            color: $color-congress-blue;
+        }
+    }
+    &__burger-menu {
+        @include font-size($font-normal);
+        color: $color-congress-blue;
+        @media #{$desktop} {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<sly data-sly-template.introscreen_template="${@ data, flag}">
+    <div class="modal modal--intro-screen js-intro-modal" id="into-modal" data-module="introscreen">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <sly data-sly-test.closeBtnText="#{data.closeBtnI18n @i18n}" />
+                <div class="modal-header">
+                    <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
+                        data-sly-call="${closeButton.closeButton_template @data=data, closeBtnText=closeBtnText, btnClasses='js-close-btn'}" />
+                </div>
+                <div class="modal-body">
+                    <div class="slider single-item intro-slider js-intro-slider">
+                        <sly data-sly-list.getStartedItem="${data.getStartedList}">
+                            <div class="intro-slider__slide">
+                                <img class="intro-slider__slider-image" src="${getStartedItem.imagePath}" alt="${getStartedItem.imageAltI18n @i18n}" />
+                                <div class="intro-slider__description">
+                                    <h3 class="intro-slider__title">${getStartedItem.titleI18n @i18n}</h3>
+                                    <p>${getStartedItem.descriptionI18n @i18n}</p>
+                                </div>
+                            </div>
+                        </sly>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                     <div class="next-button-wrapper">
+                        <sly data-sly-test.nextBtnText="${data.nextBtnI18n @i18n}" />
+                        <sly data-sly-use.nextButton="/apps/commons/components/atoms/nextButton/nextButton-template.html"
+                            data-sly-call="${nextButton.nextButton_template @nextBtnText=nextBtnText, btnClasses='js-slick-next', btnTextIcon='icon-Circle_Arrow_Right'}" />
+                    </div>
+                    <div class="slider-dots"></div>
+                    <input type="hidden" id="getStartedBtnI18n" name="getStartedBtnI18n" value="${data.getStartedBtnI18n}" />
+                    <input type="hidden" id="nextBtnI18n" name="nextBtnI18n" value="${data.nextBtnI18n}" />     
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>

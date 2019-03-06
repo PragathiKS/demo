@@ -3,8 +3,8 @@ package com.tetrapak.customerhub.core.models;
 import com.tetrapak.customerhub.core.beans.GetStartedBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
@@ -13,26 +13,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class IntroScreenModel {
 
     @Self
     private Resource resource;
 
     @Inject
-    @Optional
     private String headingI18n;
 
     @Inject
-    @Optional
     private String nextBtnI18n;
 
     @Inject
-    @Optional
     private String closeBtnI18n;
 
     @Inject
-    @Optional
     private String getStartedBtnI18n;
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
@@ -40,8 +36,8 @@ public class IntroScreenModel {
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
-        Iterator<Resource> itr = childResource.listChildren();
         if (null != childResource) {
+            Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource res = itr.next();
                 ValueMap valueMap = res.getValueMap();

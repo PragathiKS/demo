@@ -8,6 +8,9 @@ module.exports = {
   karmaTests: {
     command: 'npm run test'
   },
+  karmaTestsProd: {
+    command: 'npm run test -- --mode=production'
+  },
   webpackProd: {
     command: 'npm run prod'
   },

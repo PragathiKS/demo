@@ -9,11 +9,8 @@ aem:
     - 'shell:linting'
     - 'shell:karmaTests'
     - 'shell:webpackProd'
-    - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
-    - 'copy:jsonData'
-    - 'assemble'
-    - 'aemcomponentcopy:uxlib'
+    - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
   description: "build app with ux-lib followed by auto deploy followed by watch"
@@ -21,7 +18,6 @@ aemWatch:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
     - 'copy:jsonData'
     - 'assemble'
@@ -35,7 +31,6 @@ aemStart:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
     - 'copy:jsonData'
     - 'assemble'
@@ -48,8 +43,5 @@ default:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'shell:removeChunkHash'
     - 'copy:uxlibdemo'
-    - 'copy:jsonData'
-    - 'assemble'
-    - 'aemcomponentcopy:uxlib'
+    - 'aemcomponentcopy:uxlibProd'
