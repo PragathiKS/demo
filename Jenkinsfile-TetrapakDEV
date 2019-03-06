@@ -41,7 +41,7 @@ pipeline {
         }
 		
 		stage ('Sonar_JS') {
-		    script {
+		    
 			steps {
 			    if (params.Skip_Test) {
 			             echo "Stage is Skipped"
@@ -50,12 +50,12 @@ pipeline {
 					   {
 			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/${params.CHOICE}/**/* -Dsonar.exclusions=**/ui.apps/**/*,**/complete/**/*,**/target/**/*,**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JSBranch_DEV -Dbuildversion=${BUILD_NUMBER}"
 				       }
-                }
+                
             }
 			}
 			
 		stage ('Sonar_CSS') {
-		     script {
+		     
 			steps {
 			    if (params.Skip_Test) {
 			             echo "Stage is Skipped"
@@ -64,19 +64,18 @@ pipeline {
 					   {
 			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/${params.CHOICE}/**/* -Dsonar.exclusions=**/ui.apps/**/*,**/test/**/*,**/ui.dev/**/*,**/complete/src/**/*.less,,**/target/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=CSSBranch_DEV -Dbuildversion=${BUILD_NUMBER}"
 				}
-                }
+                
             }
 			}
 		stage ('Sonar_JAVA') {
 			steps {  
-			  script {
 			   if (params.Skip_Test) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
 					   {
 			    sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JAVABranch_DEV -Dbuildversion=${BUILD_NUMBER}"
-				}
+				
                }
            }
 		   }
