@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>A4D71238-15CA-4802-86C4-EA379566F565</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons" transform="translate(-1040.000000, -673.000000)" fill="#023F88">
-            <path d="M1100.5,730 C1102.434,730 1104,731.567 1104,733.5 C1104,735.433 1102.434,737 1100.5,737 L1043.5,737 C1041.567,737 1040,735.433 1040,733.5 C1040,731.567 1041.567,730 1043.5,730 L1100.5,730 Z M1054,728 C1050.7,728 1048,725.3 1048,722 L1048,699 C1048,695.7 1050.7,693 1054,693 C1057.3,693 1060,695.7 1060,699 L1060,722 C1060,725.3 1057.3,728 1054,728 Z M1071,728 C1067.7,728 1065,725.3 1065,722 L1065,689 C1065,685.7 1067.7,683 1071,683 C1074.3,683 1077,685.7 1077,689 L1077,722 C1077,725.3 1074.3,728 1071,728 Z M1088,728 C1084.7,728 1082,725.3 1082,722 L1082,679 C1082,675.7 1084.7,673 1088,673 C1091.3,673 1094,675.7 1094,679 L1094,722 C1094,725.3 1091.3,728 1088,728 Z" id="Performance"></path>
-        </g>
-    </g>
-</svg>
+<svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><style>.cls-1{fill:#023f88;}</style></defs><title>Performance</title><rect class="cls-1" y="57" width="64" height="7" rx="3.5"/><rect class="cls-1" x="8" y="20" width="12" height="35" rx="6"/><rect class="cls-1" x="25" y="10" width="12" height="45" rx="6"/><rect class="cls-1" x="42" width="12" height="55" rx="6"/></svg>

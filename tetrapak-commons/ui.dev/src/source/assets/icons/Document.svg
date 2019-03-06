@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="48px" height="64px" viewBox="0 0 48 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>263E3F58-0519-4D06-9461-3C91F3AEC554</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons" transform="translate(-1050.000000, -406.000000)" fill="#023F88">
-            <path d="M1098,421.25 C1098,420.417 1097.709,419.708 1097.126,419.125 L1084.875,406.875 C1084.292,406.291 1083.584,406 1082.751,406 L1082,406 L1082,422 L1098,422 L1098,421.25 Z M1078,423 C1078,423.833 1078.291,424.541 1078.874,425.125 C1079.459,425.708 1080.167,426 1081,426 L1098,426 L1098,467 C1098,467.833 1097.709,468.541 1097.126,469.125 C1096.541,469.708 1095.833,470 1095,470 L1053,470 C1052.167,470 1051.459,469.708 1050.874,469.125 C1050.291,468.541 1050,467.833 1050,467 L1050,408.999 C1050,408.167 1050.291,407.458 1050.874,406.875 C1051.459,406.291 1052.167,406 1053,406 L1078,406 L1078,423 Z" id="Document"></path>
-        </g>
-    </g>
-</svg>
+<svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><style>.cls-1{fill:#023f88;}</style></defs><title>Document</title><path class="cls-1" d="M36,17a3,3,0,0,0,3,3H56V61a3,3,0,0,1-3,3H11a3,3,0,0,1-3-3V3A2.89,2.89,0,0,1,8.87.88,2.9,2.9,0,0,1,11,0H36Zm20-1.75a2.93,2.93,0,0,0-.87-2.13L42.88.88A2.9,2.9,0,0,0,40.75,0H40V16H56Z"/></svg>

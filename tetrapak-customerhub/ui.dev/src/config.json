@@ -94,7 +94,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/customerhub/jsonData"
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/customerhub/jsonData"
       }
     ]
   },
@@ -131,6 +131,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "dashboard": {
+        "testMultiple": true,
+        "name": "dashboard",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -142,8 +148,10 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/OrderStatus/",
         "source/templates/components/introscreen/"
+      ],
+      "dashboard": [
+        "source/templates/components/orderingcard/"
       ]
     },
     "handlebars": {
@@ -160,23 +168,15 @@
     "cssChunkPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css"
   },
   "clientlibs": {
-    "vendor": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js"
-    },
-    "global": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/global.publish/js"
-    },
-    "common": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js"
-    },
-    "default.en": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js"
-    }
+    "vendor": "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js/vendor.js",
+    "common": "apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js/common.js",
+    "default.en": "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js/default.js"
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
+    "testTemplate": "ccTemplates/testTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt",
     "importsJsFile": "source/scripts/bundle/imports.js"
   },

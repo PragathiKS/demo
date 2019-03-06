@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="46px" viewBox="0 0 64 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>1B5E4062-9FE9-4917-B91F-C485002AACD1</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons" transform="translate(-1335.000000, -416.000000)" fill="#023F88">
-            <path d="M1399,421 L1367,440 L1335,421 L1335,418.519 C1335,417.128 1336.128,416 1337.519,416 L1396.481,416 C1397.872,416 1399,417.128 1399,418.519 L1399,421 Z M1399,451.6074 L1377.965,438.4894 L1399,426.0004 L1399,451.6074 Z M1374.707,441.4238 L1399,456.5748 L1399,459.4818 C1399,460.8718 1397.872,461.9998 1396.481,461.9998 L1337.519,461.9998 C1336.128,461.9998 1335,460.8718 1335,459.4818 L1335,457.0198 L1359.658,441.6418 L1367,445.9998 L1374.707,441.4238 Z M1356.4004,438.706 L1335.0004,452.053 L1335.0004,426 L1356.4004,438.706 Z" id="Envelope"></path>
-        </g>
-    </g>
-</svg>
+<svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><style>.cls-1{fill:#023f88;}</style></defs><title>Envelope</title><path class="cls-1" d="M64,15V12.52A2.52,2.52,0,0,0,61.48,10h-59A2.52,2.52,0,0,0,0,12.52V15L32,34Z"/><polygon class="cls-1" points="64 45.61 64 20 42.97 32.49 64 45.61"/><path class="cls-1" d="M39.71,35.42,32,40l-7.34-4.36L0,51v2.46A2.52,2.52,0,0,0,2.52,56h59A2.52,2.52,0,0,0,64,53.48V50.57Z"/><polygon class="cls-1" points="21.4 32.71 0 20 0 46.05 21.4 32.71"/></svg>
