@@ -32,8 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.tetrapak.customerhub.core.models.HelloWorldModel;
-
 /** 
  *  Test case which uses OSGi services injection
  *  
