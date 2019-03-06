@@ -27,6 +27,21 @@ public class OrderSearchModel {
 
     @Inject
     private String allAddressesTextI18n;
+    
+    @Inject
+    private String dateRangeLabelI18n;
+    
+    @Inject
+    private String deliveryAddressLabelI18n;
+    
+    @Inject
+    private String orderStatusLabelI18n;
+    
+    @Inject
+    private String searchInputLabelI18n;
+    
+    @Inject
+    private String searchTermPlaceholderI18n;
 
     @OSGiService
     APIJEEService apiJeeService;
@@ -54,4 +69,25 @@ public class OrderSearchModel {
     public String getApiURL() {
         return GlobalUtil.getApiURL(apiJeeService, DEFAULT_JSON);
     }
+
+    public String getDateRangeLabelI18n() {
+        return dateRangeLabelI18n;
+    }
+
+    public String getDeliveryAddressLabelI18n() {
+        return deliveryAddressLabelI18n;
+    }
+
+    public String getOrderStatusLabelI18n() {
+        return orderStatusLabelI18n;
+    }
+
+    public String getSearchInputLabelI18n() {
+        return searchInputLabelI18n;
+    }
+
+    public String getSearchTermPlaceholderI18n() {
+        return searchTermPlaceholderI18n;
+    }
+
 }
