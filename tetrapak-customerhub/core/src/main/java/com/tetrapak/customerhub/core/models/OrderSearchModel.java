@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.services.APIJEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -30,6 +31,8 @@ public class OrderSearchModel {
     @OSGiService
     APIJEEService apiJeeService;
 
+    private static final String DEFAULT_JSON = "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
+
     private String apiURL;
 
     public String getResetButtonTextI18n() {
@@ -49,6 +52,6 @@ public class OrderSearchModel {
     }
 
     public String getApiURL() {
-        return null != apiJeeService ? apiJeeService.getApiJeeServiceUrl() : "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
+        return GlobalUtil.getApiURL(apiJeeService, DEFAULT_JSON);
     }
 }
