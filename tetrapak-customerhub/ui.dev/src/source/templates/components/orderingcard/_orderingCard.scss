@@ -39,4 +39,10 @@
             @include margin-bottom($margin-l);
         }
     }
+    &__viewmore {
+        @include margin-top($margin-md);
+        @media #{$desktop} {
+            @include margin-top($margin-l);
+        }
+    }
 }

@@ -65,7 +65,7 @@ function _tableSort(order, activeKeys) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [] } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders } = this.cache;
   this.cache.availableKeys = availableKeys;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
@@ -103,6 +103,7 @@ function _processTableData(data) {
       isMandatory: ['orderNumber', 'poNumber', 'orderDate'].includes(key)
     }));
   }
+  data.viewAllOrders = viewAllOrders;
   return data;
 }
 
