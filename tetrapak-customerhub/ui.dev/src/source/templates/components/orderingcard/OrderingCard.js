@@ -133,8 +133,13 @@ function _saveSettings() {
         data: _processTableData.call(this, this.cache.tableData),
         target: this.root.find('.js-ordering-card__tablewrapper')
       });
+      this.root.find('.js-ordering-card__save-error').addClass('d-none');
       this.root.find('.js-ordering-card__modal').modal('hide');
+    } else {
+      this.root.find('.js-ordering-card__save-error').removeClass('d-none');
     }
+  }).fail(() => {
+    this.root.find('.js-ordering-card__save-error').removeClass('d-none');
   });
 }
 

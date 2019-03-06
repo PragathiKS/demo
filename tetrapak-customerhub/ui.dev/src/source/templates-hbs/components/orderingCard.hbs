@@ -19,6 +19,7 @@
                             {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked disabled=isMandatory}}
                         {{/each}}
                     </div>
+                    <div class="tp-ordering-card__save-error js-ordering-card__save-error d-none">{{labels.saveError}}</div>
                 </div>
                 {{> molecules/modals/modalFooter/modalFooter buttonText=labels.saveSettings baseClass="tp-ordering-card__modal-save" jsClass="js-ordering-card__modal-save"}}
             </div>
