@@ -2,6 +2,6 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Component"
     jcr:title="Public Web Header"
-    jcr:description="This is header component for Public Web."
+    jcr:description="This is the header component for public web."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup=".hidden"/>
+    componentGroup="tetrapak-publicweb"/>

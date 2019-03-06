@@ -16,17 +16,16 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import com.tetrapak.publicweb.core.beans.FooterBean;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class LogoModel {
+public class HeaderModel {
 
 	@Self
 	private Resource resource;
 
-	@Inject
 	private String headerDummyText;
 
 	@PostConstruct
 	protected void init() {
-		
+		headerDummyText = "Test Text";
 	}
 
 	public String getHeaderDummyText() {
