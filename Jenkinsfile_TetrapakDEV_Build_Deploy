@@ -43,10 +43,11 @@ pipeline {
 
 		stage ('Deployment Author and Publish Parallel') {
 		    steps {
+			  script {
 			   parallel (
 			       "Author Deployment" : {
 				        if (params.Skip_Test) {
-			          echo "Stage is Skipped"
+			             echo "Stage is Skipped"
 					                           }
 					  else
 					   {
@@ -61,6 +62,7 @@ pipeline {
 						
 			                                     }
 		                )  
+						}
 			                  }
 			                                               }
 		stage ('Dispatcher Flush, Pa11y, Sitespeed, Zap Tools Execution') {
