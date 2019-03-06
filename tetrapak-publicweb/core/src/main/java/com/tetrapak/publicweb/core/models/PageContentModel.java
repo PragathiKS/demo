@@ -1,42 +1,25 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.xss.XSSAPI;
-import org.apache.solr.common.SolrInputDocument;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.NameConstants;
-import com.day.cq.wcm.api.Page;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageContentModel {
 	
     private String pagePath;
-
-    @Inject
-    private ResourceResolverFactory resolverFactory;
 
     @Inject
     @Named("jcr:description")
@@ -101,16 +84,12 @@ public class PageContentModel {
     private ValueMap jcrMap;
 
     private Resource resource;
-
-    private static final Logger logger = LoggerFactory.getLogger(PageContentModel.class);
     
     @PostConstruct
     public void init() {
         if (resource == null)
             return;
 
-        ResourceResolver resolver = resource.getResourceResolver();
-        final TagManager tagManager = resolver.adaptTo(TagManager.class);
         pagePath = resource.getParent().getPath();
         
         jcrMap = resource.getValueMap();

@@ -1,20 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;  
-import java.util.Iterator;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
@@ -29,7 +23,7 @@ public class ArticleNoImageModel {
 	private String contentType;
 
 	@Inject
-	private String articlepath;
+	private String articlePath;
 
 	@Inject
 	private String title;
@@ -47,8 +41,6 @@ public class ArticleNoImageModel {
 	protected void init() {
 		ResourceResolver resolver = resource.getResourceResolver();
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
-		
-		Resource jcrContentResource = currentPage.getContentResource();
 		
 		if ("automatic".equals(contentType)) {
 			title = "";

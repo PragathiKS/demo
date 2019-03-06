@@ -3,13 +3,9 @@ package com.tetrapak.publicweb.core.models;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.solr.common.SolrInputDocument;
 
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.tagging.TagManager;
@@ -60,10 +56,6 @@ public class BasePageModel {
 
     protected TagManager getTagManager() {
         return jcrResource.getResourceResolver().adaptTo(TagManager.class);
-    }
-
-    public String getResourceType() {
-        return ResourceType.valueFromTemplate(pageContent.getSlingResourceType()).name();
     }
 
     public Resource getJcrResource() {

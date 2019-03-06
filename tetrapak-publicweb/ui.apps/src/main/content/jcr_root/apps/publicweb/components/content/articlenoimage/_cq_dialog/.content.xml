@@ -13,7 +13,7 @@
         <items
             jcr:primaryType="nt:unstructured"
             sling:hideChildren="[column]">
-            <logo
+            <articlenoimage
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Article No Image"
                 sling:resourceType="granite/ui/components/foundation/section">
@@ -99,7 +99,7 @@
                         </items>
                     </column>
                 </items>
-            </logo>
+            </articlenoimage>
         </items>
     </content>
 </jcr:root>
