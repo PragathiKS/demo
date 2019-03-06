@@ -2,13 +2,6 @@
     &.active {
         background: $color-denim;
     }
-    .tpmol-list-item__sublist & {
-        background-color: $color-tory-blue;
-        border-bottom: 1px solid $color-denim;
-        &:hover {
-            background: $color-denim;
-        }
-    }
     &:hover {
         background: $color-tory-blue;
     }

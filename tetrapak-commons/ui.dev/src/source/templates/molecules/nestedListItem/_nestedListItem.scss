@@ -1,8 +1,17 @@
 .tpmol-list-item {
     width: 100%;
-    border-bottom: 1px solid $color-tory-blue;
-    background-color: $color-congress-blue;
+    border-bottom: 1px solid $color-denim;
+    &:hover {
+        background: $color-denim;
+    }
     &__sublist {
         display: none;
+    }
+    .tpmol-list-item__sublist & {
+        background-color: $color-tory-blue;
+        border-bottom: 1px solid $color-denim;
+        &:hover {
+            background: $color-denim;
+        }
     }
 }
