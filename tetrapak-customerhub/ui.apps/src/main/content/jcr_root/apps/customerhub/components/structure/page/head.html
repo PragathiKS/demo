@@ -15,4 +15,6 @@
                                 staticDesignPath   = page.staticDesignPath,
                                 clientLibCategories = page.clientLibCategories}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
-</template>
+	<script>//prehiding snippet for Adobe Target with asynchronous Launch deployment(function(g,b,d,f){(function(a,c,d){if(a){vare=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3);</script>
+	<script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+	</template>
