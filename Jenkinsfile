@@ -15,6 +15,8 @@ pipeline {
 	 package_name = "tetrapak-complete-package"
 	 test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-us.html "
 	 test_url_pally_zap = "http://tetrapak.sapient.com"
+	 
+	 karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
    }
    
     stages {
@@ -104,7 +106,7 @@ pipeline {
 		     	"karma" : {
 			    echo "Publising karma Test Report"
 				sh 'echo "Karma Report"'
-				sh 'cp -r ${workspace}/${params.CHOICE}/ui.dev/src/coverage /app/build-area/releases/coverage'
+				sh 'cp -r ${karmapath} /app/build-area/releases/coverage'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
 				
 			      },
