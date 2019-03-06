@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;  
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,7 +13,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.tetrapak.publicweb.core.beans.FooterBean;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LogoModel {

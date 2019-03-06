@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Article No Image"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items
+            jcr:primaryType="nt:unstructured"
+            sling:hideChildren="[column]">
+            <logo
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Article No Image"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <contentType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Select Content Type"
+                                class="cq-dialog-dropdown-showhide"
+                                cq-dialog-dropdown-showhide-target=".content-option-listfrom-showhide-target"
+                                name="./contentType"
+                                renderReadOnly="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <automatic
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Automatic"
+                                        value="automatic"/>
+                                    <manual
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Manual"
+                                        value="manual"/>
+                                </items>
+                            </contentType>
+                            
+                            <automaticcontent
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container"
+                                class="hidden content-option-listfrom-showhide-target"
+                                showhidetargetvalue="automatic">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <articlepath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select article path"
+                                        fieldLabel="Article Path"
+                                        name="./articlepath"
+                                        rootPath="/content"/>
+                                </items>
+                            </automaticcontent>
+                
+                            <manualcontent
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container"
+                                class="hidden content-option-listfrom-showhide-target"
+                                showhidetargetvalue="manual">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Title"
+                                        name="./title"/>
+                                    <vanityDescription
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Vanity Description"
+                                        name="./vanityDescription"/>
+                                    <ctaText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Call to action Text i18n Key"
+                                        name="./ctaTexti18nKey"/>
+                                    <openInNewWindow
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        name="./openInNewWindow"
+                                        text="Open In New Window?"
+                                        value="true"/>
+                                    <openInNewWindowDelete
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="./openInNewWindow@Delete"
+                                        value="{Boolean}true"/>
+                                </items>
+                            </manualcontent>
+                        </items>
+                    </column>
+                </items>
+            </logo>
+        </items>
+    </content>
+</jcr:root>
