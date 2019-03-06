@@ -32,7 +32,7 @@
                                     defaultValue="one-column"
                                     fieldDescription="Set the number of columns"
                                     fieldLabel="Number of Columns"
-                                    name="./column">
+                                    name="./numberOfcolumns">
                                     <items jcr:primaryType="nt:unstructured">
                                         <left
                                             jcr:primaryType="nt:unstructured"
