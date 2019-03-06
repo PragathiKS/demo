@@ -1,6 +1,6 @@
 {{!-- Generic button to handle all button types --}}
 <button
-    type="{{buttonType}}"
+    type="{{#if buttonType}}{{buttonType}}{{else}}button{{/if}}"
     class="tpatom-btn{{#if modifier}} tpatom-btn--{{modifier}}{{/if}}{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}"
     {{#if disabled}}
         disabled

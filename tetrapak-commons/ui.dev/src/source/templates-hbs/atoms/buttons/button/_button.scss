@@ -1,17 +1,21 @@
-.tpatom-btn {
+.tpatom-btn,
+.tpatom-link {
     cursor: pointer;
     &[disabled] {
         cursor: not-allowed;
         opacity: $opacity-disabled;
     }
-    &--primary {
+    &--primary,
+    &--secondary {
         @include font-size($font-baseline);
         @include line-height(40px, $font-baseline);
         @include padding(0 $padding-md);
         @include letter-spacing(0.5px);
+        font-family: $font-light;
+    }
+    &--primary {
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
-        font-family: $font-light;
         margin-right: auto;
         &,
         &[disabled]:hover {
@@ -24,6 +28,14 @@
         }
         span {
             @include margin-right($margin-xs);
+        }
+    }
+    &--secondary {
+        background: none;
+        border: 0;
+        color: $color-text-link;
+        span {
+            @include margin-right($margin-sm);
         }
     }
     &--close,
