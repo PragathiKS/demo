@@ -1,11 +1,14 @@
 package com.tetrapak.customerhub.core.beans;
 
+import java.util.List;
+
 public class LeftNavigationBean {
     private String path;
     private String iconClass;
     private String iconLabel;
     private boolean isExternalLink;
     private boolean isActive;
+    private List<LeftNavigationBean> subMenuList;
 
     public String getPath() {
         return path;
@@ -45,5 +48,13 @@ public class LeftNavigationBean {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<LeftNavigationBean> getSubMenuList() {
+        return subMenuList;
+    }
+
+    public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
+        this.subMenuList = subMenuList;
     }
 }

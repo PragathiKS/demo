@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
@@ -27,7 +28,7 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
-    private LeftNavigationBean stickyNavItem = new LeftNavigationBean();
+    private LeftNavigationBean tpLogoListItem = new LeftNavigationBean();
 
     public static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
@@ -51,15 +52,31 @@ public class LeftNavigationModel {
             ValueMap valueMap = childPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(valueMap)) {
                 LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
+                if(childPage.listChildren(new PageFilter()).hasNext()){
+                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
+                }
                 leftNavItems.add(leftNavigationBean);
             }
         }
     }
 
+    private LeftNavigationBean setChildPages(Page childPage, LeftNavigationBean leftNavigationBean) {
+        Iterator<Page> itr = childPage.listChildren(new PageFilter());
+        while(itr.hasNext()){
+            Page subPage = itr.next();
+            ValueMap vMap = subPage.getContentResource().getValueMap();
+            if (!isHiddenInNavigation(vMap)) {
+                LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
+                leftNavigationBean.getSubMenuList().add(leftNavigationChildBean);
+            }
+        }
+        return leftNavigationBean;
+    }
+
     private void setStickyNavItemBean(ValueMap valueMap) {
-        stickyNavItem.setPath((String) valueMap.get("stickyHref"));
-        stickyNavItem.setIconClass((String) valueMap.get("stickyIconClass"));
-        stickyNavItem.setExternalLink(true);
+        tpLogoListItem.setPath((String) valueMap.get("stickyHref"));
+        tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
+        tpLogoListItem.setExternalLink(true);
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
