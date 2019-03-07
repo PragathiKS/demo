@@ -24,4 +24,25 @@
             @include right($spacing-small-half);
         }
     }
+    &__modal-body {
+        @include padding(0 $padding-md);
+        @media #{$desktop} {
+            @include padding(0 $padding-l);
+        }
+    }
+    &__modal-desc {
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+        @include margin-bottom($margin-md);
+        word-wrap: break-word;
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+    &__viewmore {
+        @include margin-top($margin-md);
+        @media #{$desktop} {
+            @include margin-top($margin-l);
+        }
+    }
 }

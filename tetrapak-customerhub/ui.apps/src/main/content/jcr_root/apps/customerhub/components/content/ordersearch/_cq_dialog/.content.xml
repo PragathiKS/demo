@@ -30,17 +30,52 @@
                     <allStatusesText
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter All Status Button Text i18 Key"
-                            fieldLabel="All Status Button Text Key"
+                            fieldDescription="Enter All Statuses Text i18 Key"
+                            fieldLabel="All Statuses Button Text Key"
                             required="true"
                             name="./allStatusesTextI18n"/>
                     <allAddressesText
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter All Address Button Text i18 Key"
-                            fieldLabel="All Address Button Text Key"
+                            fieldDescription="Enter All Addresses Button Text i18 Key"
+                            fieldLabel="All Addresses Text Key"
                             required="true"
                             name="./allAddressesTextI18n"/>
+					<dateRangeLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Date Range Label i18 Key"
+                            fieldLabel="Date Range Label Key"
+                            required="true"
+                            name="./dateRangeLabelI18n"/>
+                    <deliveryAddressLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Delivery Address Label i18 Key"
+                            fieldLabel="Delivery Address Label Key"
+                            required="true"
+                            name="./deliveryAddressLabelI18n"/>
+                    <orderStatusLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Order Status Label i18 Key"
+                            fieldLabel="Order Status Label Key"
+                            required="true"
+                            name="./orderStatusLabelI18n"/>
+                    <searchInputLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Search Input Label i18 Key"
+                            fieldLabel="Search Input Label Key"
+                            required="true"
+                            name="./searchInputLabelI18n"/>
+                    <searchTermPlaceholder
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Search Term Placeholder i18 Key"
+                            fieldLabel="Search Term Placeholder Key"
+                            required="true"
+                            name="./searchTermPlaceholderI18n"/>							
                 </items>
             </column>
         </items>

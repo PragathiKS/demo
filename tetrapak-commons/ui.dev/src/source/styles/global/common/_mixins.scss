@@ -195,11 +195,6 @@
     border: 5px solid $color;
 }
 
-// Mixin for background color
-@mixin bg-color ($color:white) {
-    background-color: $color;
-}
-
 // mixin for transition
 @mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
     transition: $what $time $how;
@@ -216,8 +211,4 @@
 
 @mixin box-shadow-modal {
     box-shadow: 0 0 8px 0 $color-black-opacity20;
-}
-
-@mixin no-border {
-    border: 0;
 }
