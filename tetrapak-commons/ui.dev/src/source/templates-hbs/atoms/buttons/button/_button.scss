@@ -1,3 +1,17 @@
+%default-btn {
+    @include font-size($font-baseline);
+    @include line-height(40px, $font-baseline);
+    @include padding(0 $padding-md);
+    @include letter-spacing(0.5px);
+    font-family: $font-light;
+}
+
+%hiddentext-btn {
+    @include width($min-accessible-dimension);
+    @include height($min-accessible-dimension);
+    color: $color-text;
+}
+
 .tpatom-btn,
 .tpatom-link {
     cursor: pointer;
@@ -5,15 +19,8 @@
         cursor: not-allowed;
         opacity: $opacity-disabled;
     }
-    &--primary,
-    &--secondary {
-        @include font-size($font-baseline);
-        @include line-height(40px, $font-baseline);
-        @include padding(0 $padding-md);
-        @include letter-spacing(0.5px);
-        font-family: $font-light;
-    }
     &--primary {
+        @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
         margin-right: auto;
@@ -31,6 +38,7 @@
         }
     }
     &--secondary {
+        @extend %default-btn;
         background: none;
         border: 0;
         padding: 0;
@@ -39,13 +47,8 @@
             @include margin-right($margin-sm);
         }
     }
-    &--close,
-    &--settings {
-        @include width($min-accessible-dimension);
-        @include height($min-accessible-dimension);
-        color: $color-text;
-    }
     &--close {
+        @extend %hiddentext-btn;
         position: absolute;
         top: 0;
         right: 0;
@@ -60,6 +63,7 @@
         }
     }
     &--settings {
+        @extend %hiddentext-btn;
         .icon {
             @include font-size($font-baseline);
             @include width($spacing-baseline);
