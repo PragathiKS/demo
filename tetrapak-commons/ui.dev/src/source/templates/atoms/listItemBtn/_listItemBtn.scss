@@ -18,7 +18,7 @@
         &:visited {
             color: $color-white;
         }
-        &--whiteBackground {
+        &--customBackground {
             background: $color-white;
             color: $color-black;
             font-weight: bold;
@@ -47,7 +47,7 @@
         position: absolute;
         top: 0;
         cursor: pointer;
-        height: 53px;
+        height: 53px; // TODO- Height to be changed
         width: 100%;
         z-index: 1;
         opacity: 0;
