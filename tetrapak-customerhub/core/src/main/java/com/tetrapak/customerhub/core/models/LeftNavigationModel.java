@@ -67,6 +67,10 @@ public class LeftNavigationModel {
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
+                if(null == leftNavigationBean.getSubMenuList()){
+                    leftNavigationBean.setSubMenuList(new ArrayList<LeftNavigationBean>() {
+                    });
+                }
                 leftNavigationBean.getSubMenuList().add(leftNavigationChildBean);
             }
         }
