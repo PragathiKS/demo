@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.services.APIJEEService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -44,7 +44,7 @@ public class OrderSearchModel {
     private String searchTermPlaceholderI18n;
 
     @OSGiService
-    APIJEEService apiJeeService;
+    APIGEEService apigeeService;
 
     private static final String DEFAULT_JSON = "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
 
@@ -67,7 +67,7 @@ public class OrderSearchModel {
     }
 
     public String getApiURL() {
-        return GlobalUtil.getApiURL(apiJeeService, DEFAULT_JSON);
+        return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
     }
 
     public String getDateRangeLabelI18n() {

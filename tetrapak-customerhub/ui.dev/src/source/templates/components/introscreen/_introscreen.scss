@@ -14,8 +14,8 @@
         }
         .modal-header,
         .modal-body {
-            @include no-border;
             @include padding(0);
+            border: 0;
         }
     }
     .modal-footer {

@@ -19,8 +19,8 @@
     {{#if list}}
     <tbody class="tpmol-table__body{{#if baseClass}} {{baseClass}}__body{{/if}}">
         {{#each list}}
-        <tr class="tpmol-table__row{{#if ../baseClass}} {{../baseClass}}__row{{/if}}{{#if ../jsClass}} {{../jsClass}}__row {{../jsClass}}__row--{{@index}}{{/if}}">
-            {{#each this}}
+        <tr {{#if rowLink}}tabindex=0 data-href="{{rowLink}}"{{/if}} class="tpmol-table__row{{#if ../baseClass}} {{../baseClass}}__row{{/if}}{{#if ../jsClass}} {{../jsClass}}__row {{../jsClass}}__row--{{@index}}{{/if}}">
+            {{#each this.row}}
             <td data-key="{{key}}" class="tpmol-table__cell{{#if ../../baseClass}} {{../../baseClass}}__cell{{/if}}{{#if ../../jsClass}} {{../../jsClass}}__cell {{../../jsClass}}__cell--{{@index}}{{/if}}">
                 {{#if isRTE}}
                     {{rte value}} {{!-- Renders safe HTML --}}

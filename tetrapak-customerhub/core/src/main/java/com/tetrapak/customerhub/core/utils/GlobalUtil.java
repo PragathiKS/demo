@@ -1,9 +1,9 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.tetrapak.customerhub.core.services.APIJEEService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 
 public class GlobalUtil {
-    public static String getApiURL(APIJEEService apiJeeService, String defaultJson) {
-        return null != apiJeeService ? apiJeeService.getApiJeeServiceUrl() : defaultJson;
+    public static String getApiURL(APIGEEService apiJeeService, String defaultJson) {
+        return null != apiJeeService ? apiJeeService.getApigeeServiceUrl() : defaultJson;
     }
 }
