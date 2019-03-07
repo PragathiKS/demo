@@ -1,0 +1,73 @@
+%default-btn {
+    @include font-size($font-baseline);
+    @include line-height(40px, $font-baseline);
+    @include padding(0 $padding-md);
+    @include letter-spacing(0.5px);
+    font-family: $font-light;
+}
+
+%hiddentext-btn {
+    @include width($min-accessible-dimension);
+    @include height($min-accessible-dimension);
+    color: $color-text;
+}
+
+.tpatom-btn,
+.tpatom-link {
+    cursor: pointer;
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: $opacity-disabled;
+    }
+    &--primary {
+        @extend %default-btn;
+        border-radius: $border-radius;
+        transition: background-color $anim-speed-quick ease;
+        margin-right: auto;
+        &,
+        &[disabled]:hover {
+            background-color: $color-congress-blue;
+            color: $color-white;
+        }
+        &:hover {
+            background-color: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
+        span {
+            @include margin-right($margin-xs);
+        }
+    }
+    &--secondary {
+        @extend %default-btn;
+        background: none;
+        border: 0;
+        padding: 0;
+        color: $color-text-link;
+        span {
+            @include margin-right($margin-sm);
+        }
+    }
+    &--close {
+        @extend %hiddentext-btn;
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media #{$desktop} {
+            @include top($spacing-small-half);
+            @include right($spacing-small-half);
+        }
+        .icon {
+            @include font-size($font-normal);
+            @include width($spacing-small);
+            @include height($spacing-small);
+        }
+    }
+    &--settings {
+        @extend %hiddentext-btn;
+        .icon {
+            @include font-size($font-baseline);
+            @include width($spacing-baseline);
+            @include height($spacing-baseline);
+        }
+    }
+}

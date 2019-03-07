@@ -25,6 +25,7 @@ $zindex-nav: $zindex-header+1;
 // Patternlab variables
 $spacing-big: 24px;
 $spacing-small: 16px;
+$spacing-baseline: 14px;
 $spacing-big-half: 12px;
 $spacing-small-half: 8px;
 /* Border Radius */
@@ -78,7 +79,8 @@ $margin-xl: 32px;
 $margin-xxl: 40px;
 // opacity varriables
 $opacity-mid:0.5;
+$opacity-disabled: 0.4;
 //icon boxing
 $min-accessible-dimension:46px;
-// letter spaing
+// letter spacing
 $letter-spacing-sm: 1px;
