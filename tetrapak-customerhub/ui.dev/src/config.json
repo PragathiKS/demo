@@ -148,7 +148,9 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/introscreen/"
+        "source/templates/components/introscreen/",
+        "source/templates/components/leftnavigation/",
+        "source/templates/components/header/"
       ],
       "dashboard": [
         "source/templates/components/orderingcard/"
