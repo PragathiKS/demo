@@ -1,7 +1,7 @@
 <sly data-sly-template.header_template="${@ data, flag}">
-    <header class="tp-header">
-        <span class="tp-header__burger-menu icon-Burger_Menu"></span>
-        
+    <header class="tp-header" data-module="Header">
+        <span class="tp-header__burger-menu icon-Burger"></span>
+
         <sly data-sly-test="${data.logoUrl}">
           <div class="tp-header__logo">
             <a href="${data.dLogoLink}" class="d-none d-md-inline-block">
@@ -16,9 +16,9 @@
         <sly data-sly-test="${data.headerNavLinks}">
           <nav class="tp-header__nav">
             <ul>
-            <sly data-sly-list.headerLinks="${data.headerNavLinks}">            
+            <sly data-sly-list.headerLinks="${data.headerNavLinks}">
                 <li class="tp-header__list">
-                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}">${headerLinks.name}</a> 
+                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}">${headerLinks.name}</a>
                 </li>
             </sly>
             </ul>
@@ -32,6 +32,6 @@
             <label class="tp-header__notif">2</label>
           </button>
         </div>
-      </sly>       
+      </sly>
     </header>
 </sly>

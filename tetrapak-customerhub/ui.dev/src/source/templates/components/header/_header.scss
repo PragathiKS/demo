@@ -3,9 +3,11 @@
     @include padding-left($padding-md);
     @include padding-right($padding-md);
     @include padding-top($padding-xl);
-    @include bg-color(#fff);
     @include margin-bottom($margin-l);
+    @include margin-left(-15px);
+    @include margin-right(-15px);
     @include font-size(14px);
+    background: $color-white;
     font-family: $font-bold;
     color: $color-congress-blue;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -16,8 +18,12 @@
     }
     &__logo {
         @include top(30px);
-        @include left(32px);
+        @include left(36px);
         position: absolute;
+        @include width(156px);
+        @media #{$desktop} {
+            @include left(32px);
+        }
     }
     &__nav {
         text-align: center;
@@ -49,11 +55,11 @@
     }
     &__notif {
         @include font-size($font-xs);
-        @include bg-color($color-alert);
         @include top(-8px);
         @include right(-8px);
         @include width(16px);
         @include height(16px);
+        background: $color-alert;
         text-align: center;
         color: $color-white;
         position: absolute;

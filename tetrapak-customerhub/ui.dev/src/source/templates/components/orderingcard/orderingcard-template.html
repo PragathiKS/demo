@@ -1,0 +1,11 @@
+<sly data-sly-template.orderingcard_template="${@ data, flag}">
+  <input type="hidden" id="ordApiUrl" name="ordApiUrl" value="${data.apiUrl}" />
+  <input type="hidden" id="ordPreferencesUrl" name="ordPreferencesUrl" value="${data.preferencesUrl}" />
+  <input type="hidden" id="ordSavedPreferences" name="ordSavedPreferences" value="${data.savedPreferences}" />
+  <input type="hidden" id="ordAllOrdersLink" name="ordAllOrdersLink" value="${data.allOrdersLink}" />
+  <input type="hidden" id="ordDetailLink" name="ordDetailLink" value="${data.orderDetailLink}" />
+  <input type="hidden" id="ordI18nKeys" name="ordI18nKeys" value="${data.i18nKeys}" />
+  <div class="tp-ordering-card tp-card js-ordering-card" aria-live="polite" data-module="OrderingCard">
+    <!--/* Ordering component renders here */-->
+  </div>
+</sly>
