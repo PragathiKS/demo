@@ -13,12 +13,6 @@ html {
 }
 
 $text-tags: ( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'section', 'article', 'nav', 'aside', 'header', 'footer', 'b', 'strong', 'i', 'td', 'th', 'button');
-%textreset {
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
 @each $tag in $text-tags {
     #{$tag} {
         @extend %textreset;
@@ -84,6 +78,17 @@ object {
 
 iframe {
     margin-bottom: $spacing-big;
+}
+
+/**
+  * Form Element styles
+  */
+
+select {
+    @extend %appearance;
+    &.form-control {
+        @include padding-right($padding-l);
+    }
 }
 
 /**
@@ -161,5 +166,16 @@ td {
     [class*="col-"] {
         @include padding-left(15px);
         @include padding-right(15px);
+    }
+}
+
+// Classes for Wrapping icons
+.form-element {
+    position: relative;
+    &__icon {
+        @include right($margin-sm);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
