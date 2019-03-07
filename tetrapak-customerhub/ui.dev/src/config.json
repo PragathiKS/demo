@@ -148,7 +148,8 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/introscreen/"
+        "source/templates/components/introscreen/",
+        "source/templates/components/leftnavigation/"
       ],
       "dashboard": [
         "source/templates/components/orderingcard/"
