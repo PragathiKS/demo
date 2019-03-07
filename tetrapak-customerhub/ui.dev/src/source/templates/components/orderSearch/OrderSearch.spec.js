@@ -9,6 +9,10 @@ describe('OrderSearch', function () {
         this.renderSpy = sinon.spy(render, 'fn');
         this.orderSearch.init();
     });
+    after(function () {
+        this.initSpy.restore();
+        this.renderSpy.restore();
+    });
     it('should initialize', function () {
         expect(this.orderSearch.init.called).to.be.true;
     });
