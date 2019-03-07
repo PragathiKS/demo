@@ -1,4 +1,5 @@
 @import "media";
+$font-xxs: 8px;
 $font-xs: 10px;
 $font-sm: 12px;
 $font-baseline: 14px;
@@ -81,3 +82,5 @@ $opacity-mid:0.5;
 $opacity-disabled: 0.4;
 //icon boxing
 $min-accessible-dimension:46px;
+// letter spacing
+$letter-spacing-sm: 1px;
