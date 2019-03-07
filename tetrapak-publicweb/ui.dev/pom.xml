@@ -90,7 +90,7 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
-						<phase>compile</phase>						
+						<phase>compile</phase>
 					</execution>
 				</executions>
 				<configuration>
@@ -114,15 +114,14 @@
                     <embeddeds>
                         <embedded>
                             <groupId>tetrapak</groupId>
-                            <artifactId>tetrapak-commons.core</artifactId>
-                            <target>/apps/commons/install</target>
+                            <artifactId>tetrapak-publicweb.core</artifactId>
+                            <target>/apps/publicweb/install</target>
                         </embedded>
                     </embeddeds>
                     <subPackages>
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
-                            <filter>true</filter>
                         </subPackage>
                     </subPackages>
                 </configuration>
@@ -134,7 +133,7 @@
                 <configuration>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
-                    <group>tetrapak-customerhub</group>
+                    <group>tetrapak-publicweb</group>
                 </configuration>
             </plugin>
 
