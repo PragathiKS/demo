@@ -117,6 +117,22 @@ function _openSettingsPanel() {
   this.root.find('.js-ordering-card__modal').modal();
 }
 
+/**
+ * Opens order detail page for current order
+ */
+function _openOrderDetails() {
+  const currentTarget = $(this);
+  window.open(currentTarget.attr('href'), '_self');
+}
+
+/**
+ * Stops event propagation of parent element in child context
+ * @param {object} e Event object
+ */
+function _stopEvtProp(e) {
+  e.stopPropagation();
+}
+
 function _saveSettings() {
   // Get selected preferences
   const selectedFields = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
@@ -169,7 +185,9 @@ class OrderingCard {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
-      .on('click', '.js-ordering-card__modal-save', this.saveSettings);
+      .on('click', '.js-ordering-card__modal-save', this.saveSettings)
+      .on('click', '.js-ordering-card__row', this.openOrderDetails)
+      .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
   renderTable(config) {
     if (typeof config === 'undefined') {
@@ -187,6 +205,10 @@ class OrderingCard {
   }
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
+  stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
+  openOrderDetails(...args) {
+    return _openOrderDetails.apply(this, args);
+  }
   init() {
     /* Mandatory method */
     this.initCache();

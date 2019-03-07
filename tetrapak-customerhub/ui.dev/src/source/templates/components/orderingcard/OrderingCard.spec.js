@@ -19,8 +19,11 @@ describe('OrderingCard', function () {
     this.settingsSpy = sinon.spy(this.orderingCard, 'openSettingsPanel');
     this.saveSettingsSpy = sinon.spy(this.orderingCard, 'saveSettings');
     this.renderSpy = sinon.spy(render, 'fn');
+    this.orderDetailSpy = sinon.spy(this.orderingCard, 'openOrderDetails');
+    this.stopEvtPropSpy = sinon.spy(this.orderingCard, 'stopEvtProp');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderingCardData));
+    this.openStub = sinon.stub(window, 'open');
     this.orderingCard.init();
   });
   after(function () {
@@ -29,7 +32,10 @@ describe('OrderingCard', function () {
     this.settingsSpy.restore();
     this.saveSettingsSpy.restore();
     this.renderSpy.restore();
+    this.orderDetailSpy.restore();
+    this.stopEvtPropSpy.restore();
     this.ajaxStub.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.orderingCard.init.called).to.be.true;
@@ -56,5 +62,13 @@ describe('OrderingCard', function () {
     }));
     $('.js-ordering-card__modal-save').trigger('click');
     expect($('.js-ordering-card__save-error').hasClass('d-none')).to.be.false;
+  });
+  it('should redirect to order detail page on click of order summary row', function () {
+    $('.js-ordering-card__row').first().trigger('click');
+    expect(this.orderingCard.openOrderDetails.called).to.be.true;
+  });
+  it('should open default calling or email app depending upon device', function () {
+    $('.js-ordering-card__row').first().find('a').first().trigger('click');
+    expect(this.orderingCard.stopEvtProp.called).to.be.true;
   });
 });
