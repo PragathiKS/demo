@@ -137,6 +137,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "orders": {
+        "testMultiple": true,
+        "name": "orders",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -152,6 +158,9 @@
       ],
       "dashboard": [
         "source/templates/components/orderingcard/"
+      ],
+      "orders": [
+        "source/templates/components/ordersearch/"
       ]
     },
     "handlebars": {
