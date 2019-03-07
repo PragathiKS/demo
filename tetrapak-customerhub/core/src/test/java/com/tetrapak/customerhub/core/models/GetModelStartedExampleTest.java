@@ -18,13 +18,15 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class GetModelStartedExampleTest {
 	
 	private GetStartedModel getStartedModel= null;
+	private static final String GET_STARTED_CONTENT_ROOT = "/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted"; 
+	private static final String GET_STARTED_RESOURCE_JSON = "getstarted.json"; 
 	
 	 @Rule
-	 public final AemContext aemContext = CuhuCoreAemContext.getAemContext();
+	 public final AemContext aemContext = CuhuCoreAemContext.getAemContext(GET_STARTED_RESOURCE_JSON, GET_STARTED_CONTENT_ROOT);
 	
 	 @Before
 	 public void setup() {
-		Resource getStartedResource = aemContext.currentResource(CuhuCoreAemContext.GET_STARTED_CONTENT_ROOT);
+		Resource getStartedResource = aemContext.currentResource(GET_STARTED_CONTENT_ROOT);
 	    getStartedModel = getStartedResource.adaptTo(GetStartedModel.class);
 	 	}
 	
@@ -42,4 +44,5 @@ public class GetModelStartedExampleTest {
         Assert.assertEquals("Image1 alt",bean.getImageAltI18n());
         Assert.assertEquals("/content/dam/customerhub/p2.PNG",bean.getImagePath());
 	}
+	
 }
