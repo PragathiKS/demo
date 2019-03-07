@@ -18,10 +18,12 @@
             }
         }
         &[disabled] {
-            &~#{$root}__icon,
-            &~#{$root}__text {
-                cursor: not-allowed;
-                opacity: $opacity-disabled;
+            &~#{$root} {
+                &__icon,
+                &__text {
+                    cursor: not-allowed;
+                    opacity: $opacity-disabled;
+                }
             }
         }
     }
