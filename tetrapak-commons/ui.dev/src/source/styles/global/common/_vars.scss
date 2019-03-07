@@ -1,4 +1,5 @@
 @import "media";
+$font-xxs: 8px;
 $font-xs: 10px;
 $font-sm: 12px;
 $font-baseline: 14px;
@@ -24,6 +25,7 @@ $zindex-nav: $zindex-header+1;
 // Patternlab variables
 $spacing-big: 24px;
 $spacing-small: 16px;
+$spacing-baseline: 14px;
 $spacing-big-half: 12px;
 $spacing-small-half: 8px;
 /* Border Radius */
@@ -53,6 +55,7 @@ $color-border: $color-boulder;
  */
 
 $anim-speed-quick: 0.2s;
+$anim-speed-normal: 0.3s;
 /**
   * Animation Easing
   */
@@ -76,5 +79,8 @@ $margin-xl: 32px;
 $margin-xxl: 40px;
 // opacity varriables
 $opacity-mid:0.5;
+$opacity-disabled: 0.4;
 //icon boxing
 $min-accessible-dimension:46px;
+// letter spacing
+$letter-spacing-sm: 1px;
