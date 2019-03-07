@@ -1,4 +1,4 @@
-class header {
+class Header {
   cache = {};
   initCache() {
     /* Initialize cache here */
@@ -13,4 +13,4 @@ class header {
   }
 }
 
-export default header;
+export default Header;
