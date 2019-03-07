@@ -106,7 +106,7 @@ pipeline {
 		     	"karma" : {
 			    echo "Publising karma Test Report"
 				sh 'echo "Karma Report"'
-				sh 'cp -r ${karmapath} /app/build-area/releases/coverage'
+				sh 'cp -r ${karmapath} /app/build-area/releases'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
 				
 			      },
