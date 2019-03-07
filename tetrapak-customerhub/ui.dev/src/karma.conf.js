@@ -110,9 +110,6 @@ module.exports = function (config) {
           handlebars: 'handlebars/runtime'
         }
       }
-    },
-    webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
     }
   });
 };
