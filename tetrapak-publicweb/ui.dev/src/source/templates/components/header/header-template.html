@@ -2,10 +2,7 @@
   <header class="tp-pw-header">
     <div class="tp-pw-header__container d-flex">
       <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
-        <sly
-          data-sly-use.logo="/apps/publicweb/components/content/logo/logo-template.html"
-          data-sly-call="${logo.logo_template @data=data.logoData}"
-        />
+        <sly data-sly-resource="${'header' @ resourceType='publicweb/components/content/logo'}"/>
       </div>
       <div class="tp-pw-header__main-navigation col-6 align-items-start">
         <div class="">
