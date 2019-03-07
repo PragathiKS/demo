@@ -45,4 +45,8 @@
             @include margin-top($margin-l);
         }
     }
+    &__no-data {
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+    }
 }

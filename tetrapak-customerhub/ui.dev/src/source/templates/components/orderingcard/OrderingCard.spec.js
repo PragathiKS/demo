@@ -64,11 +64,17 @@ describe('OrderingCard', function () {
     expect($('.js-ordering-card__save-error').hasClass('d-none')).to.be.false;
   });
   it('should redirect to order detail page on click of order summary row', function () {
-    $('.js-ordering-card__row').first().trigger('click');
-    expect(this.orderingCard.openOrderDetails.called).to.be.true;
+    const rowLink = $('.js-ordering-card__row').first();
+    if (rowLink.length) {
+      rowLink.trigger('click');
+      expect(this.orderingCard.openOrderDetails.called).to.be.true;
+    }
   });
   it('should open default calling or email app depending upon device', function () {
-    $('.js-ordering-card__row').first().find('a').first().trigger('click');
-    expect(this.orderingCard.stopEvtProp.called).to.be.true;
+    const tableLink = $('.js-ordering-card__row').first().find('a').first();
+    if (tableLink.length) {
+      tableLink.trigger('click');
+      expect(this.orderingCard.stopEvtProp.called).to.be.true;
+    }
   });
 });
