@@ -3,19 +3,19 @@ package com.tetrapak.customerhub.core.beans;
 import java.util.List;
 
 public class LeftNavigationBean {
-    private String path;
+    private String href;
     private String iconClass;
     private String iconLabel;
     private boolean isExternalLink;
     private boolean isActive;
     private List<LeftNavigationBean> subMenuList;
 
-    public String getPath() {
-        return path;
+    public String getHref() {
+        return href;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public String getIconClass() {
