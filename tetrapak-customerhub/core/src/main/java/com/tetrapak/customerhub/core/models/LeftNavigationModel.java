@@ -67,6 +67,10 @@ public class LeftNavigationModel {
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
+                if(null == leftNavigationBean.getSubMenuList()){
+                    leftNavigationBean.setSubMenuList(new ArrayList<LeftNavigationBean>() {
+                    });
+                }
                 leftNavigationBean.getSubMenuList().add(leftNavigationChildBean);
             }
         }
@@ -74,7 +78,7 @@ public class LeftNavigationModel {
     }
 
     private void setStickyNavItemBean(ValueMap valueMap) {
-        tpLogoListItem.setPath((String) valueMap.get("stickyHref"));
+        tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
     }
@@ -84,7 +88,7 @@ public class LeftNavigationModel {
         bean.setIconClass((String) valueMap.get("iconClass"));
         bean.setExternalLink(isExternalLink(valueMap));
         bean.setIconLabel(getPageNameI18key(valueMap));
-        bean.setPath(getResolvedPagePath(childPage));
+        bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(isCurrentPage(childPage));
         return bean;
     }
@@ -154,5 +158,9 @@ public class LeftNavigationModel {
 
     public String getCloseBtnText() {
         return closeBtnText;
+    }
+
+    public LeftNavigationBean getTpLogoListItem() {
+        return tpLogoListItem;
     }
 }

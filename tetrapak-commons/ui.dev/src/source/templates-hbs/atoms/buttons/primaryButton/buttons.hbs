@@ -1,7 +1,6 @@
-<button class="tp-btn {{ btnClasses }} ">
-
-    <p class="tp-btn__text">{{ btnText }}</p>
-
-    <span class="tp-btn__icon {{ btnTextIcon }}"></span>
-
+<button type="{{#if buttonType}}{{buttonType}}{{else}}button{{/if}}" class="btn tpatom-button{{#if btnClasses}} {{btnClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}>
+    <span class="tpatom-button__text">{{btnText}}</span>
+    {{#if iconClass}}
+        <i class="tpatom-button__icon {{iconClass}}"></i>
+    {{/if}}
 </button>
