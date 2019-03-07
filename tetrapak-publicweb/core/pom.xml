@@ -52,6 +52,9 @@
                         <!-- Import any version of javax.inject, to allow 
                             running on multiple versions of AEM -->
                         <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
+                        <Embed-Dependency>
+                        	commons-lang3
+                        </Embed-Dependency>
                         <Sling-Model-Packages>
                             com.tetrapak.publicweb.core
                         </Sling-Model-Packages>
@@ -134,5 +137,11 @@
             <groupId>uk.org.lidalia</groupId>
             <artifactId>slf4j-test</artifactId>
         </dependency>
+        		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
     </dependencies>
 </project>
