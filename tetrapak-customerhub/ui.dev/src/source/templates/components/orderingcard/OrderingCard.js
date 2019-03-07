@@ -41,8 +41,11 @@ function _processContacts(contacts) {
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
  */
-function _tableSort(order, activeKeys) {
-  const dataArray = [];
+function _tableSort(order, activeKeys, orderDetailLink) {
+  const dataObject = {
+    rowLink: `${orderDetailLink}?q=${order['orderNumber']}`,
+    row: []
+  };
   activeKeys.forEach((key, index) => {
     let value = '';
     if (key === 'contact') {
@@ -50,13 +53,13 @@ function _tableSort(order, activeKeys) {
     } else {
       value = order[key];
     }
-    dataArray[index] = {
+    dataObject.row[index] = {
       key,
-      value: value,
+      value,
       isRTE: ['contact'].includes(key)
     };
   });
-  return dataArray;
+  return dataObject;
 }
 
 /**
@@ -65,7 +68,7 @@ function _tableSort(order, activeKeys) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink } = this.cache;
   this.cache.availableKeys = availableKeys;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
@@ -81,14 +84,14 @@ function _processTableData(data) {
       }
       if (activeKeys.length === 0) {
         activeKeys.push(...orderKeys);
-        return _tableSort.call(this, order, activeKeys);
+        return _tableSort.call(this, order, activeKeys, orderDetailLink);
       }
       orderKeys.forEach(key => {
         if (activeKeys.includes(key)) {
           processedOrder[key] = order[key];
         }
       });
-      return _tableSort.call(this, processedOrder, activeKeys);
+      return _tableSort.call(this, processedOrder, activeKeys, orderDetailLink);
     });
     data.orderHeadings = activeKeys.map(key => ({
       key,
@@ -152,6 +155,7 @@ class OrderingCard {
     this.cache.apiUrl = $('#ordApiUrl').val();
     this.cache.preferencesUrl = $('#ordPreferencesUrl').val();
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
+    this.cache.orderDetailLink = $('#ordDetailLink').val();
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
     try {
