@@ -1,32 +1,32 @@
 package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class)
 public class LogoModel {
 
 	@Self
 	private Resource resource;
 
-	@Inject
 	private String imagePath;
-
-	@Inject
 	private String imageAltI18n;
-
-	@Inject
 	private String imageLink;
 
 	@PostConstruct
 	protected void init() {
-		
+		InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
+		imagePath = inheritanceValueMap1.getInherited("imagePath", String.class);
+		imageAltI18n = inheritanceValueMap1.getInherited("imageAltI18n", String.class);
+		imageLink = inheritanceValueMap1.getInherited("imageLink", String.class);
+
 	}
 
 	public Resource getResource() {
