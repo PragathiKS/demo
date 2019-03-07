@@ -49,13 +49,15 @@ public class LeftNavigationModel {
         Iterator<Page> itr = globalPage.listChildren();
         while (itr.hasNext()) {
             Page childPage = itr.next();
-            ValueMap valueMap = childPage.getContentResource().getValueMap();
-            if (!isHiddenInNavigation(valueMap)) {
-                LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
-                if(childPage.listChildren(new PageFilter()).hasNext()){
-                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
-                }
-                leftNavItems.add(leftNavigationBean);
+            if (null != childPage && null != childPage.getContentResource()) {
+	            ValueMap valueMap = childPage.getContentResource().getValueMap();
+	            if (!isHiddenInNavigation(valueMap)) {
+	                LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
+	                if(childPage.listChildren(new PageFilter()).hasNext()){
+	                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
+	                }
+	                leftNavItems.add(leftNavigationBean);
+	            }
             }
         }
     }
