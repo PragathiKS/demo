@@ -68,7 +68,7 @@ function _tableSort(order, activeKeys, orderDetailLink) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields } = this.cache;
   this.cache.availableKeys = availableKeys;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
@@ -103,7 +103,7 @@ function _processTableData(data) {
       key,
       i18nKey: `cuhu.ordering.${key}`,
       isChecked: activeKeys.includes(key),
-      isMandatory: ['orderNumber', 'poNumber', 'orderDate'].includes(key)
+      isMandatory: defaultFields.split(',').includes(key)
     }));
   }
   data.viewAllOrders = viewAllOrders;
@@ -156,6 +156,7 @@ class OrderingCard {
     this.cache.preferencesUrl = $('#ordPreferencesUrl').val();
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
+    this.cache.defaultFields = $('#ordDefaultFields').val();
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
     try {
