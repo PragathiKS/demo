@@ -5,74 +5,93 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
 import com.tetrapak.publicweb.core.beans.FooterBean;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class)
 public class FooterModel {
+
+	private static final Logger log = LoggerFactory.getLogger(FooterModel.class);
 
 	@Self
 	private Resource resource;
 
-	@Inject
 	private String imagePath;
-
-	@Inject
 	private String imageAltI18n;
-
-	@Inject
 	private String imageLink;
-
-	@Inject
 	private String imageTitleI18n;
-
-	@Inject
 	private String ctaLabelI18n;
-
-	@Inject
 	private String linkPath;
-
-	@Inject
 	private String socialMediaLinkedin;
-
-	@Inject
 	private String socialMediaFacebook;
-
-	@Inject
 	private String socialMediaTwitter;
-
-	@Inject
 	private String socialMediaYoutube;
-
 	private List<FooterBean> footerNavigationLinks = new ArrayList<>();
 
 	@PostConstruct
 	protected void init() {
-		Resource childResource = resource.getChild("footerNavigationLinks");
-		if (childResource != null) {
-			Iterator<Resource> itr = childResource.listChildren();
-			while (itr.hasNext()) {
-				Resource res = itr.next();
-				ValueMap valueMap = res.getValueMap();
-				FooterBean bean = new FooterBean();
-				bean.setLinkTextI18n((String) valueMap.get("linkTextI18n"));
-				bean.setLinkTooltipI18n((String) valueMap.get("linkTooltipI18n"));
-				bean.setLinkPath((String) valueMap.get("linkPath"));
-				bean.setTargetBlank((String) valueMap.get("targetBlank"));
-				footerNavigationLinks.add(bean);
-			}
-		}
+		InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
+		imagePath = inheritanceValueMap1.getInherited("imagePath", String.class);
+		imageAltI18n = inheritanceValueMap1.getInherited("imageAltI18n", String.class);
+		imageLink = inheritanceValueMap1.getInherited("imageLink", String.class);
+		imageTitleI18n = inheritanceValueMap1.getInherited("imageTitleI18n", String.class);
+		ctaLabelI18n = inheritanceValueMap1.getInherited("ctaLabelI18n", String.class);
+		linkPath = inheritanceValueMap1.getInherited("linkPath", String.class);
+		socialMediaLinkedin = inheritanceValueMap1.getInherited("socialMediaLinkedin", String.class);
+		socialMediaFacebook = inheritanceValueMap1.getInherited("socialMediaFacebook", String.class);
+		socialMediaTwitter = inheritanceValueMap1.getInherited("socialMediaTwitter", String.class);
+		socialMediaYoutube = inheritanceValueMap1.getInherited("socialMediaYoutube", String.class);
+		String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
+		setMultiFieldItems(footerNavLinks);
 	}
 
-	public Resource getResource() {
-		return resource;
+	/**
+	 * Method to get Multi field data
+	 * 
+	 * @return submenuItems
+	 */
+	private void setMultiFieldItems(String[] footerNavLinks) {
+		@SuppressWarnings("deprecation")
+		JSONObject jObj;
+		try {
+			if (footerNavLinks == null) {
+				log.error("footerNavLinks is NULL");
+			}
+
+			if (footerNavLinks != null) {
+				for (int i = 0; i < footerNavLinks.length; i++) {
+					jObj = new JSONObject(footerNavLinks[i]);
+					FooterBean bean = new FooterBean();
+					log.info("*^*^*^*^*^*^^*^*^*^*^*^^*^*^*^*");
+					String linkTextI18n = jObj.getString("linkTextI18n");
+					String linkTooltipI18n = jObj.getString("linkTooltipI18n");
+					String linkPath = jObj.getString("linkPath");
+					String targetBlank = jObj.getString("targetBlank");
+					log.info("linkTextI18n : " + linkTextI18n);
+					log.info("linkTooltipI18n : " + linkTooltipI18n);
+					log.info("linkPath : " + linkPath);
+					log.info("targetBlank : " + targetBlank);
+					bean.setLinkTextI18n(linkTextI18n);
+					bean.setLinkTooltipI18n(linkTooltipI18n);
+					bean.setLinkPath(linkPath);
+					bean.setTargetBlank(targetBlank);
+					footerNavigationLinks.add(bean);
+
+				}
+			}
+		} catch (Exception e) {
+			log.error("Exception while Multifield data {}", e.getMessage(), e);
+		}
+
 	}
 
 	public String getImagePath() {
@@ -116,6 +135,10 @@ public class FooterModel {
 	}
 
 	public List<FooterBean> getFooterNavigationLinks() {
+		Iterator<FooterBean> abc = footerNavigationLinks.iterator();
+		while(abc.hasNext()) {
+			log.info(abc.next().getLinkPath());
+		}
 		return footerNavigationLinks;
 	}
 

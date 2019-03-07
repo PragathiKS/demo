@@ -53,49 +53,53 @@
                                     fieldLabel="Image Title i18 Key"
                                     name="./imageTitleI18n"/>
                             <footerNavigationLinks
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="Navigation Links"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Navigation links">
-                                <field
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./footerNavigationLinks">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
+                                    sling:resourceType="granite/ui/components/foundation/form/multifield"
+                                    fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                    fieldLabel="Navigation Links New">
+                                        <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                        acs-commons-nested=""
+                                        name="./footerNavigationLinks">
+                                        <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                        method="absolute"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <column
                                             jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <linktext
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Enter Link Text i18 key"
-                                                    fieldLabel="Link Text i18 Key"
-                                                    name="./linkTextI18n"/>
-                                                <linktooltip
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Enter Link Tool Tip i18 key"
-                                                    fieldLabel="Link Tool Tip i18 Key"
-                                                    name="./linkTooltipI18n"/>
-                                                <linkpath
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    fieldDescription="Select Link"
-                                                    fieldLabel="Link Path"
-                                                    name="./linkPath"
-                                                    rootPath="/content"/>
-                                                <targetBlank
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                    fieldDescription="Open link in a new window ?"
-                                                    text="New Window"
-                                                    name="./targetBlank"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
+                                            sling:resourceType="granite/ui/components/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <linktext
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Link Text i18 key"
+                                                        fieldLabel="Link Text i18 Key"
+                                                        name="./linkTextI18n"/>
+                                                    <linktooltip
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Link Tool Tip i18 key"
+                                                        fieldLabel="Link Tool Tip i18 Key"
+                                                        name="./linkTooltipI18n"/>
+                                                    <linkpath
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Select Link"
+                                                        fieldLabel="Link Path"
+                                                        name="./linkPath"
+                                                        rootPath="/content"/>
+                                                    <targetBlank
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Open link in a new window ?"
+                                                        text="New Window"
+                                                        name="./targetBlank"/>
+                                                </items>
+                                            </column>
+                                        </items>
+                                        </field>
                             </footerNavigationLinks>
                             <ctaLabel
                                     jcr:primaryType="nt:unstructured"
