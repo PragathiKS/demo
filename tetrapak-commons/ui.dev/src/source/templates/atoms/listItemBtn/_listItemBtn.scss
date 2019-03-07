@@ -36,18 +36,11 @@
     }
     &__btn {
         @include padding($padding-md);
-        background-color: $color-congress-blue;
         color: $color-white;
         position: relative;
         width: 100%;
         @media #{$desktop} {
             @include padding($padding-md $padding-l);
-        }
-        &:hover {
-            background: $color-tory-blue;
-            color: $color-white;
-            font-family: mulilight;
-            text-decoration: none;
         }
     }
     &__checkbox {
