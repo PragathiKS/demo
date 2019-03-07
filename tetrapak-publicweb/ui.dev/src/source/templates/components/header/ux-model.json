@@ -1,7 +1,7 @@
 {
   "logoData": {
     "imagePath": "http://localhost:4502/content/dam/publicweb/logo_tetra_pak_white.svg",
-    "imageLink": "/content/tetrapak/en",
+    "imageLink": "http://www.google.com",
     "imageAltI18n": "pw.logo.alttext"
   },
   "mainNavigationLinks": [
