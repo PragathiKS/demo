@@ -1,5 +1,6 @@
-<sly data-sly-template.button_template="${@ data, flag}">
-  <button class="cuhu__btn js-cuhu__btn">
-    ${data.buttonText}
+<sly data-sly-template.button_template="${@ buttonText, buttonClasses, btnIcon, flag}">
+  <button type="button" class="btn tpatom-button ${buttonClasses}">
+    <span class="tpatom-button__text">${buttonText}</span>
+    <i class="tpatom-button__icon ${btnIcon}"></i>
   </button>
 </sly>

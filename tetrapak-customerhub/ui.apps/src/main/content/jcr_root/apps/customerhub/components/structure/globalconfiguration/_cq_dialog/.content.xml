@@ -91,9 +91,9 @@
                                     <Logout jcr:primaryType="nt:unstructured"
                                             text="Logout"
                                             value="icon-Logout"/>
-                                    <Bell jcr:primaryType="nt:unstructured"
-                                          text="Bell"
-                                          value="icon-Bell"/>
+                                    <TetraPak jcr:primaryType="nt:unstructured"
+                                          text="TetraPak"
+                                          value="icon-TetraPak"/>
                                 </items>
                             </iconClass>
                         </items>

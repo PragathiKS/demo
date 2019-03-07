@@ -7,7 +7,7 @@ use(function() {
     "navDisplay": true,
     "rightNavDisplay": true,
     "mLogoLink": "/content/tetrapak/customerhub/global/dashboard.html",
-    "dLogoLink": "/content/tetrapak/customerhub/global/dashboard.html",
+    "dLogoLink": "/content/tetrapak/public-web/global/en/solutions.html",
     "headerNavLinks": [
         {
             "href": "/content/tetrapak/public-web/global/en/solutions.html",
