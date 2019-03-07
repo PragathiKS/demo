@@ -13,10 +13,6 @@ class LeftNavigation {
       e.stopPropagation();
     });
     $body.on('showLeftNav', this.openSideNav);
-    this.root.find('.js-list-item__btn').on('click', function () {
-      /* TODO -- Need to implement it with bootstrap/css*/
-      $(this).siblings('.tpmol-list-item__sublist').slideToggle(500);
-    });
   }
 
   closeSideNav = () => {

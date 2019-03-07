@@ -5,6 +5,7 @@
           data-sly-call="${listItemIcon.listItemIcon_template @data=data}">
       </sly>
     </button>
+    <input type="checkbox" checked class="tpatom-list-item__checkbox">
   </sly>
   <sly data-sly-test="${!hasSubmenu}">
     <a class="tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}">

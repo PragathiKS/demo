@@ -1,15 +1,17 @@
 .tpmol-list-item {
     width: 100%;
     border-bottom: 1px solid $color-denim;
+    position: relative;
     &:hover {
         background: $color-denim;
-    }
-    &__sublist {
-        display: none;
     }
     .tpmol-list-item__sublist & {
         background-color: $color-tory-blue;
         border-bottom: 1px solid $color-denim;
+        transition: all $anim-speed-normal ease;
+        overflow: hidden;
+        opacity: 1;
+        height: auto;
         &:hover {
             background: $color-denim;
         }
