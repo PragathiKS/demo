@@ -159,4 +159,8 @@ public class LeftNavigationModel {
     public String getCloseBtnText() {
         return closeBtnText;
     }
+
+    public LeftNavigationBean getTpLogoListItem() {
+        return tpLogoListItem;
+    }
 }
