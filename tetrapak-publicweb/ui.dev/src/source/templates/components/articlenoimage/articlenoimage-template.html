@@ -1,1 +1,8 @@
-<sly data-sly-template.articlenoimage_template="${@ data, flag}"></sly>
+<sly data-sly-template.articlenoimage_template="${@ data, flag}">
+  <div class="pw-article">
+    <img data-sly-test="${data.articleImagePath}" class="pw-article__image" src="${data.articleImagePath}" alt="${data.articleImageAltI18n}">
+    <h4 data-sly-test="${data.articleTitleI18n}" class="pw-article__title" >${data.articleTitleI18n}</h4>
+    <p class="pw-article__description">${data.articleDescriptionI18n}</p>
+    <a data-sly-test="${data.linkPath}" class="pw-article__link" href="${data.linkPath}" title="${data.linkTooltipI18n ? data.linkTooltipI18n : data.linkTextI18n}">${data.linkTextI18n} <i class="icon-Circle_Arrow_Right"></i></a>
+  </div>
+</sly>

@@ -1,0 +1,42 @@
+.pw-article {
+    &__image {
+        @include border-radius($border-radius);
+        @include margin-bottom($margin-md);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__title {
+        @include font-size(18px);
+        @include line-height(24px, 18px);
+        @include padding(0 0 $padding-md);
+        @media #{$desktop} {
+            @include padding(0 0 $padding-l);
+            @include font-size(18px);
+        }
+    }
+
+    &__description {
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+        @include padding-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include font-size(14px);
+            @include padding-bottom($padding-l);
+        }
+    }
+    &__link {
+        @include padding-bottom($padding-md);
+        @media #{$desktop} {
+            padding-bottom: 0;
+        }
+
+        & i {
+            vertical-align: middle;
+        }
+    }
+}
