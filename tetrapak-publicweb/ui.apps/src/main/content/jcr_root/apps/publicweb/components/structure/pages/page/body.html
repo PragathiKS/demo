@@ -1,5 +1,9 @@
-<sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
+<div>
+  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
+</div>
 <div class="tp-container">
   <sly data-sly-include="content.html"></sly>
-  <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/content/footer'}"/>
+</div>
+<div>
+  <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
 </div>

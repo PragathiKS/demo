@@ -1,24 +1,26 @@
 <sly data-sly-template.header_template="${@ data, flag}">
   <header class="tp-pw-header">
-    <div class="tp-pw-header__container d-flex">
-      <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
-        <sly data-sly-resource="${'header' @ resourceType='publicweb/components/content/logo'}"/>
-      </div>
-      <div class="tp-pw-header__main-navigation col-6 align-items-start">
-        <div class="">
-          <ul class="d-flex justify-content-center" data-sly-list.mainNavigationItem=${data.mainNavigationLinks}>
-            <li>
-              <a href="${mainNavigationItem.linkPath}"
-                 title="${mainNavigationItem.linkTooltipI18n ? mainNavigationItem.linkTooltipI18n : mainNavigationItem.linkTextI18n}">${mainNavigationItem.linkTextI18n}</a>
-            </li>
-          </ul>
+    <div class="tp-pw-header__container">
+      <div class="d-flex tp-container">
+        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
+          <sly data-sly-resource="${'header' @ resourceType='publicweb/components/content/logo'}"/>
         </div>
-      </div>
-      <div class="col-sm-6 col-lg-3 d-flex align-items-start justify-content-end">
-        <div class="tp-pw-header__secondary-navigation">
-          <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Search"></i></a>
-          <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Avatar"></i><span>${data.loginTextI18n}</span></a>
-          <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Globe"></i><span>EN</span><span><i class="icon-Chevron_Down"></i></span></a>
+        <div class="tp-pw-header__main-navigation col-6 align-items-start">
+          <div class="">
+            <ul class="d-flex justify-content-center" data-sly-list.mainNavigationItem=${data.mainNavigationLinks}>
+              <li>
+                <a href="${mainNavigationItem.linkPath}"
+                   title="${mainNavigationItem.linkTooltipI18n ? mainNavigationItem.linkTooltipI18n : mainNavigationItem.linkTextI18n}">${mainNavigationItem.linkTextI18n}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 d-flex align-items-start justify-content-end">
+          <div class="tp-pw-header__secondary-navigation">
+            <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Search"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Avatar"></i><span>${data.loginTextI18n}</span></a>
+            <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Globe"></i><span>EN</span><span><i class="icon-Chevron_Down"></i></span></a>
+          </div>
         </div>
       </div>
     </div>
