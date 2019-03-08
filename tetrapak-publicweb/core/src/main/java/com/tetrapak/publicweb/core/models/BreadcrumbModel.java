@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -26,8 +26,6 @@ public class BreadcrumbModel {
 	@Self
 	private Resource resource;
 
-	@Inject
-	@Optional
 	private String homePagePath;
 	
 	private static final Logger log = LoggerFactory.getLogger(BreadcrumbModel.class);
@@ -51,6 +49,8 @@ public class BreadcrumbModel {
 	}
     
     private void buildBreadcrumbItems(Page currentPage) {
+		InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
+		homePagePath = inheritanceValueMap1.getInherited("homePagePath", String.class);
     	Page homePage = pageManager.getPage(homePagePath);
     	
     	if (homePage != null) {
