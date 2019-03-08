@@ -2,6 +2,7 @@
     width: 100%;
     border-bottom: 1px solid $color-denim;
     position: relative;
+    &.active,
     &:hover {
         background: $color-denim;
     }
