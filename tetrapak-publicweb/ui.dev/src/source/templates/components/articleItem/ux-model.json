@@ -1,0 +1,11 @@
+{
+  "contentType": "manual",
+  "articlepath": "/content/tetrapak/public-web/global/en/solutions/test-landing-1-solutions",
+  "articleTitle": "Article Title 1",
+  "vanityDescriptionI18n": "Article Description 1",
+  "ctaTexti18nKey": "CTA Text 1",
+  "openInNewWindow": "true",
+  "showImage": "true",
+  "articleImagePath": "/content/dam/publicweb/asset.jpg",
+  "articleImageAltI18n": "Test Image"
+}

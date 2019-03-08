@@ -14,7 +14,7 @@ import com.day.cq.wcm.api.PageManager;
 
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class ArticleNoImageModel {
+public class ArticleItemModel {
 
 	@Self
 	private Resource resource;
