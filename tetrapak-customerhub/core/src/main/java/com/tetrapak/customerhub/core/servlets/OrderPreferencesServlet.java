@@ -46,11 +46,11 @@ import java.io.IOException;
  */
 @Component(service=Servlet.class,
            property={
-                   Constants.SERVICE_DESCRIPTION + "=Saved Prefernces Servlet",
+                   Constants.SERVICE_DESCRIPTION + "=Order Prefernces Servlet",
                    "sling.servlet.paths="+ "/bin/userServlet",
                    "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                   "sling.servlet.resourceTypes="+ "customerhub/components/structure/page",
-                   "sling.servlet.extensions=" + "txt"
+                   "sling.servlet.resourceTypes="+ "/customerhub/components/content/orderingcard",
+                   "sling.servlet.extensions=" + "json"
            })
 public  class OrderPreferencesServlet extends SlingAllMethodsServlet {
 

@@ -4,4 +4,5 @@
     jcr:description="Ordering Card Component"
     jcr:primaryType="cq:Component"
     jcr:title="Ordering Card"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-customerhub"
+	cq:isContainer=true />
