@@ -1,16 +1,12 @@
 .tp_pw-breadcrumb {
+    @include margin($spacing-small 0);
     color: $color-boulder;
-    margin: $spacing-small 0 $spacing-small $spacing-small-half;
     overflow: hidden;
     position: relative;
     width: 100%;
 
     @media #{$desktop} {
-        margin: $spacing-big 0 $spacing-big $spacing-big;
-	}
-
-    @media #{$desktop-large} {
-        margin: $spacing-big 0 $spacing-big $spacing-big*2;
+        @include margin($spacing-big 0);
 	}
 
     &__link {

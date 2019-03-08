@@ -1,29 +1,34 @@
 {
-  "megamenuLinks": [
+  "logoData": {
+    "imagePath": "http://localhost:4502/content/dam/publicweb/logo_tetra_pak_white.svg",
+    "imageLink": "/content/tetrapak/public-web/global/en/",
+    "imageAltI18n": "pw.logo.alttext"
+  },
+  "mainNavigationLinks": [
     {
       "linkTextI18n": "Solutions",
-      "linkTooltipI18n": "Solutions",
-      "linkPath": "/content/tetrapak/public-web/global/en/solutions"
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
     },
     {
       "linkTextI18n": "Innovation",
-      "linkTooltipI18n": "Innovation",
-      "linkPath": "/content/tetrapak/public-web/global/en/innovations"
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
     },
     {
       "linkTextI18n": "Sustainability",
-      "linkTooltipI18n": "Sustainability",
-      "linkPath": "/content/tetrapak/public-web/global/en/sustainability"
+      "linkTooltipI18n": "",
+      "linkPath": "#"
     },
     {
       "linkTextI18n": "Careers",
-      "linkTooltipI18n": "Careers",
-      "linkPath": "/content/tetrapak/public-web/global/en/careers"
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
     },
     {
       "linkTextI18n": "About Us",
-      "linkTooltipI18n": "About Us",
-      "linkPath": "/content/tetrapak/public-web/global/en/about-us"
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
     }
   ],
   "loginTextI18n": "My TetraPak"
