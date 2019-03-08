@@ -75,7 +75,14 @@
                             fieldDescription="Enter All Orders Link"
                             fieldLabel="All Orders Link"
                             required="true"
-                            name="./allOrdersLink"/>							
+                            name="./allOrdersLink"/>
+                     <orderDetailLink
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Order Detail Link"
+                            fieldLabel="Order Detail Link"
+                            required="true"
+                            name="./orderDetailLink"/>							
                 </items>
             </column>
         </items>

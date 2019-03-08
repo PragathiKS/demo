@@ -8,10 +8,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -47,15 +43,12 @@ public class OrderingCardModel {
     @Inject
     private String allOrdersLink;
     
-   /* @Inject
-    private String orderDetailLink;*/
-    
-    private String[] savedPreferences ;
-    
+    @Inject
+    private String orderDetailLink;
 
     @OSGiService
     APIGEEService apigeeService;
-    
+
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
     
     private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
@@ -97,6 +90,10 @@ public class OrderingCardModel {
         return allOrdersLink;
     }
 
+    public String getOrderDetailLink() {
+        return orderDetailLink;
+    }
+
     public String getApiURL() {
         return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
     }
@@ -104,13 +101,4 @@ public class OrderingCardModel {
     public String getPreferencesURL() {
         return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
     }
-
-    public String[] getSavedPreferences() {
-        return savedPreferences;
-    }
-
-    public void setSavedPreferences(String[] savedPreferences) {
-        this.savedPreferences = savedPreferences;
-    }
- 
 }
