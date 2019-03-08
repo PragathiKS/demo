@@ -57,11 +57,23 @@ public class LinkUtils extends WCMUsePojo{
 				for (int i = 0; i < footerNavLinks.length; i++) {
 					jObj = new JSONObject(footerNavLinks[i]);
 					NavigationLinkBean bean = new NavigationLinkBean();
-
-					String linkTextI18n = jObj.getString("linkTextI18n");
-					String linkTooltipI18n = jObj.getString("linkTooltipI18n");
-					String linkPath = jObj.getString("linkPath");
-					String targetBlank = jObj.getString("targetBlank");
+					
+					String linkTextI18n = "";
+					String linkTooltipI18n = "";
+					String linkPath = "";
+					String targetBlank = "";
+					if (jObj.has("linkTextI18n")) {
+						linkTextI18n = jObj.getString("linkTextI18n");
+					}
+					if (jObj.has("linkTooltipI18n")) {
+						linkTooltipI18n = jObj.getString("linkTooltipI18n");
+					}
+					if (jObj.has("linkPath")) {
+						linkPath = jObj.getString("linkPath");
+					}
+					if (jObj.has("targetBlank")) {
+						targetBlank = jObj.getString("targetBlank");
+					}
 
 					bean.setLinkTextI18n(linkTextI18n);
 					bean.setLinkTooltipI18n(linkTooltipI18n);
