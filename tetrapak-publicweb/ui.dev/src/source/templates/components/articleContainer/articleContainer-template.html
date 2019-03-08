@@ -3,8 +3,7 @@
     <h3 class="article-container__title ${data.titleAlignment}">${data.titleI18n}</h3>
     <div class="d-md-block d-lg-flex" data-sly-list="${data.totalColumns}">
       <div class="article-container__column">
-        <h3>PLACEHOLDER article title</h3>
-        <p>PLACEHOLDER Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusantium aliquid animatur corporiit velit veritatis voluptatum.</p>
+         <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articlenoimage'}"/>
       </div>
     </div>
   </div>
