@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.servlets.OrderPreferencesServlet;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -8,6 +9,10 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -43,12 +48,15 @@ public class OrderingCardModel {
     @Inject
     private String allOrdersLink;
     
-    @Inject
-    private String orderDetailLink;
+   /* @Inject
+    private String orderDetailLink;*/
+    
+    private String[] savedPreferences ;
+    
 
     @OSGiService
     APIGEEService apigeeService;
-
+    
     private static final String DEFAULT_JSON = "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
     
     private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
@@ -90,10 +98,6 @@ public class OrderingCardModel {
         return allOrdersLink;
     }
 
-    public String getOrderDetailLink() {
-        return orderDetailLink;
-    }
-
     public String getApiURL() {
         return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
     }
@@ -101,4 +105,13 @@ public class OrderingCardModel {
     public String getPreferencesURL() {
         return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
     }
+
+    public String[] getSavedPreferences() {
+        return savedPreferences;
+    }
+
+    public void setSavedPreferences(String[] savedPreferences) {
+        this.savedPreferences = savedPreferences;
+    }
+ 
 }
