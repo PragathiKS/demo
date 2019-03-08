@@ -48,6 +48,8 @@ public class OrderingCardModel {
 
     @OSGiService
     APIGEEService apigeeService;
+    
+    private String [] savedPreferences ;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
     
@@ -100,5 +102,13 @@ public class OrderingCardModel {
 
     public String getPreferencesURL() {
         return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
+    }
+
+    public String [] getSavedPreferences() {
+        return savedPreferences;
+    }
+
+    public void setSavedPreferences(String [] savedPreferences) {
+        this.savedPreferences = savedPreferences;
     }
 }
