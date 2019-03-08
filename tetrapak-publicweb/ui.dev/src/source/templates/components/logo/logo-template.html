@@ -1,5 +1,7 @@
-<sly data-sly-template.logo_template="${@ data, flag}">
-  <a href="${data.imageLink}" data-sly-unwrap="${!data.imageLink}">
+<sly data-sly-template.logo_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <a data-sly-test="${data.imagePath}" href="${data.imageLink}" data-sly-unwrap="${!data.imageLink}">
     <img class="tp-pw-logo" src="${data.imagePath}" alt="${data.imageAltI18n}">
-  </a>       
+  </a>
+  <sly data-sly-call="${templates.placeholder @ isEmpty = !data.imagePath}"></sly>
 </sly>

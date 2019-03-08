@@ -74,3 +74,9 @@ buildNumber.properties
 ### IntelliJ ###
 .idea/
 *.iml
+
+# NPM
+*-lock.json
+/lib
+/node
+/node_modules

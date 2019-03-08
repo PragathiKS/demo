@@ -68,7 +68,7 @@ function _tableSort(order, activeKeys, orderDetailLink) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields } = this.cache;
   this.cache.availableKeys = availableKeys;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
@@ -103,7 +103,7 @@ function _processTableData(data) {
       key,
       i18nKey: `cuhu.ordering.${key}`,
       isChecked: activeKeys.includes(key),
-      isMandatory: ['orderNumber', 'poNumber', 'orderDate'].includes(key)
+      isMandatory: defaultFields.split(',').includes(key)
     }));
   }
   data.viewAllOrders = viewAllOrders;
@@ -115,6 +115,22 @@ function _processTableData(data) {
  */
 function _openSettingsPanel() {
   this.root.find('.js-ordering-card__modal').modal();
+}
+
+/**
+ * Opens order detail page for current order
+ */
+function _openOrderDetails() {
+  const currentTarget = $(this);
+  window.open(currentTarget.attr('href'), '_self');
+}
+
+/**
+ * Stops event propagation of parent element in child context
+ * @param {object} e Event object
+ */
+function _stopEvtProp(e) {
+  e.stopPropagation();
 }
 
 function _saveSettings() {
@@ -156,6 +172,7 @@ class OrderingCard {
     this.cache.preferencesUrl = $('#ordPreferencesUrl').val();
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
+    this.cache.defaultFields = $('#ordDefaultFields').val();
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
     try {
@@ -168,7 +185,9 @@ class OrderingCard {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
-      .on('click', '.js-ordering-card__modal-save', this.saveSettings);
+      .on('click', '.js-ordering-card__modal-save', this.saveSettings)
+      .on('click', '.js-ordering-card__row', this.openOrderDetails)
+      .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
   renderTable(config) {
     if (typeof config === 'undefined') {
@@ -186,6 +205,10 @@ class OrderingCard {
   }
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
+  stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
+  openOrderDetails(...args) {
+    return _openOrderDetails.apply(this, args);
+  }
   init() {
     /* Mandatory method */
     this.initCache();

@@ -1,0 +1,83 @@
+.tp-pw-header {
+
+    &__container {
+        @include padding(32px 3px 0);
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        height: 130px;
+        @media #{$desktop} {
+            @include padding(32px 35px 0);
+        }
+    }
+
+    &__logo-placeholder {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }
+
+        img {
+            min-width: 156px;
+            width: 156px;
+        }
+    }
+
+    &__main-navigation {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }
+
+        li {
+            @include margin(0 24px);
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            color: $color-white;
+            font-weight: bold;
+        }
+    }
+
+    &__secondary-navigation {
+        &__link {
+            @include margin-left($margin-md);
+            color: $color-white;
+            font-weight: bold;
+
+            span {
+                display: none;
+                @media #{$desktop} {
+                    display: inline;
+                }
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:hover {
+                color: $color-white;
+            }
+        }
+        i {
+            @include font-size($font-normal);
+            vertical-align: middle;
+            & + span {
+                @media #{$desktop} {
+                    @include margin-left($margin-sm);
+                }
+            }
+        }
+        .icon-Chevron_Down {
+            @include font-size($font-sm);
+            font-weight: normal;
+            vertical-align: sub;
+        }
+    }
+
+}

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Public Web Footer"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items
+            jcr:primaryType="nt:unstructured"
+            sling:hideChildren="[column]">
+            <general
+                jcr:primaryType="nt:unstructured"
+                jcr:title="General"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <footerNavigationLinks
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/multifield"
+                                    fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                    fieldLabel="Navigation Links New">
+                                        <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                        acs-commons-nested=""
+                                        name="./footerNavigationLinks">
+                                        <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                        method="absolute"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <linktext
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Link Text i18 key"
+                                                        fieldLabel="Link Text i18 Key"
+                                                        name="./linkTextI18n"/>
+                                                    <linktooltip
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Link Tool Tip i18 key"
+                                                        fieldLabel="Link Tool Tip i18 Key"
+                                                        name="./linkTooltipI18n"/>
+                                                    <linkpath
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Select Link"
+                                                        fieldLabel="Link Path"
+                                                        name="./linkPath"
+                                                        rootPath="/content"/>
+                                                    <targetBlank
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Open link in a new window ?"
+                                                        text="New Window"
+                                                        name="./targetBlank"/>
+                                                </items>
+                                            </column>
+                                        </items>
+                                        </field>
+                            </footerNavigationLinks>
+                            <ctaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Navigate To Top anchor label i18 key"
+                                    fieldLabel="To Top Anchor Label i18 Key"
+                                    name="./ctaLabelI18n"/>
+                        </items>
+                    </column>
+                </items>
+            </general>
+            <sociallinks
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Social Links"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <socialmedialinkedin
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter LinkedIn link"
+                                    fieldLabel="LinkedIn Link"
+                                    name="./socialMediaLinkedin"/>
+                            <socialmediafacebook
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Facebook link"
+                                    fieldLabel="Facebook Link"
+                                    name="./socialMediaFacebook"/>
+                            <socialmediatwitter
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Twitter link"
+                                    fieldLabel="Twitter Link"
+                                    name="./socialMediaTwitter"/>
+                            <socialmediayoutube
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Youtube link"
+                                    fieldLabel="Youtube Link"
+                                    name="./socialMediaYoutube"/>
+                        </items>
+                    </column>
+                </items>
+            </sociallinks>
+        </items>
+    </content>
+</jcr:root>
