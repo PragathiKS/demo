@@ -20,6 +20,9 @@
             transform: rotate(180deg);
         }
     }
+    &__row[tabindex] {
+        cursor: pointer;
+    }
     &__cell {
         &heading {
             @include padding($padding-sm $padding-l $padding-sm 0);

@@ -4,9 +4,11 @@
  * @date 16/02/2019
  */
 import dynamicMedia from './dynamicMedia';
+import { toast } from './toast';
 
 export default {
   init() {
     dynamicMedia.init();
+    toast.init();
   }
 };

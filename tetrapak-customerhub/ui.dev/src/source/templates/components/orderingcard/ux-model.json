@@ -8,6 +8,12 @@
     "status",
     "contact"
   ],
+  "defaultFields": [
+    "orderNumber",
+    "poNumber",
+    "orderDate"
+  ],
   "allOrdersLink": "https://google.com",
-  "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\"}"
+  "orderDetailLink": "https://yahoo.com",
+  "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\",\"saveError\":\"cuhu.ordering.saveerror\",\"noData\":\"cuhu.ordering.nodata\"}"
 }

@@ -1,0 +1,35 @@
+{
+  "logoData": {
+    "imagePath": "http://localhost:4502/content/dam/publicweb/logo_tetra_pak_white.svg",
+    "imageLink": "http://www.google.com",
+    "imageAltI18n": "pw.logo.alttext"
+  },
+  "mainNavigationLinks": [
+    {
+      "linkTextI18n": "Solutions",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
+    },
+    {
+      "linkTextI18n": "Innovation",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
+    },
+    {
+      "linkTextI18n": "Sustainability",
+      "linkTooltipI18n": "",
+      "linkPath": "#"
+    },
+    {
+      "linkTextI18n": "Careers",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
+    },
+    {
+      "linkTextI18n": "About Us",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#"
+    }
+  ],
+  "loginTextI18n": "My TetraPak"
+}

@@ -1,0 +1,3 @@
+{
+    "config": "{\"apiURL\": \"/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json\", \"dateRangeLabelI18n\": \"Order History Date Range\", \"orderStatusLabelI18n\": \"Order Status\", \"deliveryAddressLabelI18n\": \"Delivery Addresses\", \"searchInputLabelI18n\": \"Order History Search Input\", \"searchTermPlaceholderI18n\": \"Purchase order No. / Tetra Pak order No. / Delivery No. / Product ID\", \"resetButtonTextI18n\": \"Reset\", \"searchButtonTextI18n\": \"Search orders\", \"allStatusesTextI18n\": \"All statuses\", \"allAddressesTextI18n\": \"All delivery address\"}"
+}

@@ -25,8 +25,8 @@
       "componentPath": "<%= config.app %>/jcr_root/apps/publicweb/components/content"
     },
     "uxContentDescriptor": "publicweb-ux",
-    "componentGroup": "publicweb",
-    "componentGroupName": "Customer Hub"
+    "componentGroup": "tetrapak-publicweb",
+    "componentGroupName": "Public Web"
   },
   "assemble": {
     "options": {
