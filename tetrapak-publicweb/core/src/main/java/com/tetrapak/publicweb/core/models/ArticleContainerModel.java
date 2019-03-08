@@ -20,21 +20,25 @@ public class ArticleContainerModel {
 	private String titleAlignment;
 
 	private String[] totalColumns;
+
 	@PostConstruct
 	protected void init() {
-		if(numberOfcolumns.equalsIgnoreCase("one-column")) {
-			totalColumns = new String[] {"col1"};			
+		if (numberOfcolumns != null) {
+			if (numberOfcolumns.equalsIgnoreCase("one-column")) {
+				totalColumns = new String[] { "col1" };
 
-		} else if (numberOfcolumns.equalsIgnoreCase("two-column")) {
-			totalColumns = new String[] {"col1", "col2"};
+			} else if (numberOfcolumns.equalsIgnoreCase("two-column")) {
+				totalColumns = new String[] { "col1", "col2" };
 
-		} else {
-			totalColumns = new String[] {"col1","col2","col3"};
+			} else {
+				totalColumns = new String[] { "col1", "col2", "col3" };
 
+			}
 		}
+
 	}
 
-	public String[] getTotalColumns() {		
+	public String[] getTotalColumns() {
 		return totalColumns;
 	}
 
