@@ -6,10 +6,10 @@
       </div>
       <div class="tp-pw-header__main-navigation col-6 align-items-start">
         <div class="">
-          <ul class="d-flex justify-content-center" data-sly-list.mainNavigationItem=${data.mainNavigationLinks}>
+          <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
             <li>
-              <a href="${mainNavigationItem.linkPath}"
-                 title="${mainNavigationItem.linkTooltipI18n ? mainNavigationItem.linkTooltipI18n : mainNavigationItem.linkTextI18n}">${mainNavigationItem.linkTextI18n}</a>
+              <a href="${megaMenuItem.linkPath}"
+                 title="${megaMenuItem.linkTooltipI18n ? megaMenuItem.linkTooltipI18n : megaMenuItem.linkTextI18n}">${megaMenuItem.linkTextI18n}</a>
             </li>
           </ul>
         </div>
