@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
 import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.tetrapak.publicweb.core.beans.FooterBean;
+import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class)
@@ -30,7 +30,7 @@ public class FooterModel {
 	private String socialMediaFacebook;
 	private String socialMediaTwitter;
 	private String socialMediaYoutube;
-	private List<FooterBean> footerNavigationLinks = new ArrayList<>();
+	private List<NavigationLinkBean> footerNavigationLinks = new ArrayList<>();
 
 	@PostConstruct
 	protected void init() {
@@ -41,44 +41,7 @@ public class FooterModel {
 		socialMediaTwitter = inheritanceValueMap1.getInherited("socialMediaTwitter", String.class);
 		socialMediaYoutube = inheritanceValueMap1.getInherited("socialMediaYoutube", String.class);
 		String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
-		setMultiFieldItems(footerNavLinks);
-	}
-
-	/**
-	 * Method to get Multi field data
-	 *
-	 * @return submenuItems
-	 */
-	private void setMultiFieldItems(String[] footerNavLinks) {
-		@SuppressWarnings("deprecation")
-		JSONObject jObj;
-		try {
-			if (footerNavLinks == null) {
-				log.error("footerNavLinks is NULL");
-			}
-
-			if (footerNavLinks != null) {
-				for (int i = 0; i < footerNavLinks.length; i++) {
-					jObj = new JSONObject(footerNavLinks[i]);
-					FooterBean bean = new FooterBean();
-
-					String linkTextI18n = jObj.getString("linkTextI18n");
-					String linkTooltipI18n = jObj.getString("linkTooltipI18n");
-					String linkPath = jObj.getString("linkPath");
-					String targetBlank = jObj.getString("targetBlank");
-
-					bean.setLinkTextI18n(linkTextI18n);
-					bean.setLinkTooltipI18n(linkTooltipI18n);
-					bean.setLinkPath(LinkUtils.sanitizeLink(linkPath));
-					bean.setTargetBlank(targetBlank);
-					footerNavigationLinks.add(bean);
-
-				}
-			}
-		} catch (Exception e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
-		}
-
+		LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, log);
 	}
 
 	public String getCtaLabelI18n() {
@@ -101,7 +64,7 @@ public class FooterModel {
 		return socialMediaYoutube;
 	}
 
-	public List<FooterBean> getFooterNavigationLinks() {
+	public List<NavigationLinkBean> getFooterNavigationLinks() {
 		return footerNavigationLinks;
 	}
 
