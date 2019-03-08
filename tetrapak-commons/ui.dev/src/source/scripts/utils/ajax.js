@@ -118,6 +118,14 @@ export const ajaxWrapper = {
         loader: null
       };
     ajaxOptions = $.extend({}, defaultOptions, options);
+    const { url: apiUrl } = ajaxOptions;
+    if (
+      typeof apiUrl === 'string'
+      && (/jsonData/).test(apiUrl)
+      && (/\.json$/).test(apiUrl)
+    ) {
+      ajaxOptions.type = 'GET';
+    }
     options.loader = undefined;
     var beforeSendCache = ajaxOptions.beforeSend;
     ajaxOptions.beforeSend = _getBeforeSend(self, ajaxOptions, beforeSendCache);
