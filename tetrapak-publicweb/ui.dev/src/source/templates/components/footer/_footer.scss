@@ -23,8 +23,7 @@
         @include margin-top($spacing-big);
 
         @media #{$desktop} {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
             margin-top: 0;
         }
 
@@ -40,9 +39,10 @@
         &__link {
             @include font-size($font-l);
             @include margin-right($margin-l);
-        }
-        &__link:last-child {
-            margin-right: 0;
+
+            &:last-child {
+                margin-right: 0;
+            }
         }
     }
 
