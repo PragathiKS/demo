@@ -5,6 +5,7 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { getToken } from '../../../scripts/utils/auth';
 
 /**
  * Caches available keys from data
@@ -214,6 +215,9 @@ class OrderingCard {
     this.initCache();
     this.bindEvents();
     this.renderTable();
+    getToken().then(({ data }) => {
+      logger.log(data);
+    });
   }
 }
 
