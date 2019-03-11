@@ -77,11 +77,7 @@ public  class OrderPreferencesServlet extends SlingAllMethodsServlet {
            properties.put(ORDER_PREFERENCES,preferList);
             resourceResolver.commit();   
             
-           if (preferList != null) {            
-            OrderingCardModel orderingCardModel = req.adaptTo(OrderingCardModel.class);           
-            orderingCardModel.setSavedPreferences(preferList);
-            resp.getWriter().write(" Output from saved preferences is :" +  orderingCardModel.getSavedPreferences());
-           }
+
         } catch (RepositoryException e) {
         }
         
