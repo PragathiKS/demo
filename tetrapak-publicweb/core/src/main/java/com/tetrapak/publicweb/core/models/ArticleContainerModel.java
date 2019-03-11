@@ -19,13 +19,30 @@ public class ArticleContainerModel {
 	@Inject
 	private String titleAlignment;
 
+	@Inject
+	private Boolean showBox;
+
+	private String[] totalColumns;
+
 	@PostConstruct
 	protected void init() {
-		
+		if (numberOfcolumns != null) {
+			if (numberOfcolumns.equalsIgnoreCase("one-column")) {
+				totalColumns = new String[] { "col1" };
+
+			} else if (numberOfcolumns.equalsIgnoreCase("two-column")) {
+				totalColumns = new String[] { "col1", "col2" };
+
+			} else {
+				totalColumns = new String[] { "col1", "col2", "col3" };
+
+			}
+		}
+
 	}
 
-	public String getNumberOfcolumns() {
-		return numberOfcolumns;
+	public String[] getTotalColumns() {
+		return totalColumns;
 	}
 
 	public String getTitleI18n() {
@@ -34,6 +51,10 @@ public class ArticleContainerModel {
 
 	public String getTitleAlignment() {
 		return titleAlignment;
+	}
+
+	public Boolean getShowBox(){
+		return showBox;
 	}
 
 }

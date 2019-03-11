@@ -10,6 +10,8 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
 import com.day.cq.commons.inherit.InheritanceValueMap;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 @Model(adaptables = Resource.class)
 public class LogoModel {
 
@@ -42,6 +44,6 @@ public class LogoModel {
 	}
 
 	public String getImageLink() {
-		return imageLink;
+		return LinkUtils.sanitizeLink(imageLink);
 	}
 }

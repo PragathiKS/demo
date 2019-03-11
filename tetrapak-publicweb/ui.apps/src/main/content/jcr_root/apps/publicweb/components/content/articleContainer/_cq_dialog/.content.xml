@@ -80,6 +80,17 @@
                                         value="text-right"/>
                                 </items>
                             </titlealignment>
+                            <showBox
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                name="./showBox"
+                                text="Show Box?"
+                                value="true"/>
+                            <showBoxDelete
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./showBox@Delete"
+                                value="{Boolean}true"/>
                         </items>
                     </column>
                 </items>

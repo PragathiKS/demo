@@ -76,7 +76,7 @@
         .icon-Chevron_Down {
             @include font-size($font-sm);
             font-weight: normal;
-            vertical-align: sub;
+            padding-left:5px;
         }
     }
 
