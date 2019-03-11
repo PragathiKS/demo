@@ -101,7 +101,4 @@ public class OrderingCardModel {
         return savedPreferences;
     }
 
-    public void setSavedPreferences(String [] savedPreferences) {
-        this.savedPreferences = savedPreferences;
-    }
 }
