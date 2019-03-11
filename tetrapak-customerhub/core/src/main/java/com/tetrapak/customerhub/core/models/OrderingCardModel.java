@@ -42,9 +42,6 @@ public class OrderingCardModel {
     
     @Inject
     private String allOrdersLink;
-    
-    @Inject
-    private String orderDetailLink;
 
     @OSGiService
     APIGEEService apigeeService;
@@ -90,10 +87,6 @@ public class OrderingCardModel {
 
     public String getAllOrdersLink() {
         return allOrdersLink;
-    }
-
-    public String getOrderDetailLink() {
-        return orderDetailLink;
     }
 
     public String getApiURL() {
