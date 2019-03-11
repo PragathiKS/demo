@@ -1,6 +1,6 @@
 {
-  "apiUrl": "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json",
-  "preferencesUrl": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
+  "apiURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json",
+  "preferencesURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
   "savedPreferences": [
     "orderNumber",
     "poNumber",
@@ -15,5 +15,5 @@
   ],
   "allOrdersLink": "https://google.com",
   "orderDetailLink": "https://yahoo.com",
-  "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\",\"saveError\":\"cuhu.ordering.saveerror\",\"noData\":\"cuhu.ordering.nodata\"}"
+  "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\",\"saveError\":\"cuhu.ordering.saveerror\",\"noData\":\"cuhu.ordering.nodata\",\"dataError\":\"cuhu.ordering.dataerror\"}"
 }

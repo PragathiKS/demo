@@ -178,6 +178,7 @@ class OrderingCard {
     try {
       this.cache.i18nKeys = JSON.parse($('#ordI18nKeys').val());
     } catch (e) {
+      this.cache.i18nKeys = {};
       logger.log(e);
     }
   }
@@ -190,6 +191,7 @@ class OrderingCard {
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
   renderTable(config) {
+    const $this = this;
     if (typeof config === 'undefined') {
       config = {
         template: 'orderingCard',
@@ -197,7 +199,14 @@ class OrderingCard {
         ajaxConfig: {
           method: ajaxMethods.POST
         },
-        beforeRender: (...args) => _processTableData.apply(this, args),
+        beforeRender(data) {
+          if (!data) {
+            this.data = data = {
+              isError: true
+            };
+          }
+          return _processTableData.apply($this, [data]);
+        },
         target: this.root
       };
     }

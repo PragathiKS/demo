@@ -1,5 +1,9 @@
-{{#if orders}}
-    {{> molecules/table/table baseClass="tp-ordering-card" jsClass="js-ordering-card" list=orders headings=orderHeadings}}
+{{#if isError}}
+    <div class="tp-ordering-card__no-data">{{i18n key=labels.dataError}}</div>
 {{else}}
-    <div class="tp-ordering-card__no-data">{{i18n key=labels.noData}}</div>
+    {{#if orders}}
+        {{> molecules/table/table baseClass="tp-ordering-card" jsClass="js-ordering-card" list=orders headings=orderHeadings}}
+    {{else}}
+        <div class="tp-ordering-card__no-data">{{i18n key=labels.noData}}</div>
+    {{/if}}
 {{/if}}
