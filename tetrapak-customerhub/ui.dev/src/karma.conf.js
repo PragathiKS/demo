@@ -7,10 +7,10 @@ const mode = getArgs('mode') || 'development';
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJSCustom'],
+    browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
-      PhantomJSCustom: {
-        base: 'PhantomJS',
+      ChromeHeadlessCustom: {
+        base: 'ChromeHeadless',
         //debug: true,
         options: {
           windowName: 'my-window',
@@ -110,9 +110,6 @@ module.exports = function (config) {
           handlebars: 'handlebars/runtime'
         }
       }
-    },
-    webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
     }
   });
 };

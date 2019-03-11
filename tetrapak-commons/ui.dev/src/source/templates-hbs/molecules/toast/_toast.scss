@@ -1,0 +1,29 @@
+%text-props {
+    @include font-size($font-sm);
+    color: $color-white;
+}
+
+.tpatom-toast {
+    @extend %text-props;
+    @include padding(6px $padding-md);
+    @include border-radius($border-radius);
+    @include line-height(20px, $font-sm);
+    @include padding-right(44px);
+    position: relative;
+    &__dismiss {
+        @extend %text-props;
+        @include width(44px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        .icon {
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            display: inline-block;
+        }
+    }
+    &--error {
+        background-color: $color-alert;
+    }
+}
