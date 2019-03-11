@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
@@ -8,7 +9,10 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderSearchModel {
@@ -27,19 +31,19 @@ public class OrderSearchModel {
 
     @Inject
     private String allAddressesTextI18n;
-    
+
     @Inject
     private String dateRangeLabelI18n;
-    
+
     @Inject
     private String deliveryAddressLabelI18n;
-    
+
     @Inject
     private String orderStatusLabelI18n;
-    
+
     @Inject
     private String searchInputLabelI18n;
-    
+
     @Inject
     private String searchTermPlaceholderI18n;
 
@@ -50,44 +54,26 @@ public class OrderSearchModel {
 
     private String apiURL;
 
-    public String getResetButtonTextI18n() {
-        return resetButtonTextI18n;
+    private String config;
+
+    @PostConstruct
+    protected void init() {
+        Map<String, String> i18KeyMap = new HashMap();
+        i18KeyMap.put("resetButtonTextI18n", resetButtonTextI18n);
+        i18KeyMap.put("searchButtonTextI18n", searchButtonTextI18n);
+        i18KeyMap.put("allStatusesTextI18n", allStatusesTextI18n);
+        i18KeyMap.put("allAddressesTextI18n", allAddressesTextI18n);
+        i18KeyMap.put("dateRangeLabelI18n", dateRangeLabelI18n);
+        i18KeyMap.put("deliveryAddressLabelI18n", deliveryAddressLabelI18n);
+        i18KeyMap.put("orderStatusLabelI18n", orderStatusLabelI18n);
+        i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
+        i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
+        i18KeyMap.put("apiURL", GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON));
+        Gson gson = new Gson();
+        config = gson.toJson(i18KeyMap);
     }
 
-    public String getSearchButtonTextI18n() {
-        return searchButtonTextI18n;
+    public String getConfig() {
+        return config;
     }
-
-    public String getAllStatusesTextI18n() {
-        return allStatusesTextI18n;
-    }
-
-    public String getAllAddressesTextI18n() {
-        return allAddressesTextI18n;
-    }
-
-    public String getApiURL() {
-        return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
-    }
-
-    public String getDateRangeLabelI18n() {
-        return dateRangeLabelI18n;
-    }
-
-    public String getDeliveryAddressLabelI18n() {
-        return deliveryAddressLabelI18n;
-    }
-
-    public String getOrderStatusLabelI18n() {
-        return orderStatusLabelI18n;
-    }
-
-    public String getSearchInputLabelI18n() {
-        return searchInputLabelI18n;
-    }
-
-    public String getSearchTermPlaceholderI18n() {
-        return searchTermPlaceholderI18n;
-    }
-
 }
