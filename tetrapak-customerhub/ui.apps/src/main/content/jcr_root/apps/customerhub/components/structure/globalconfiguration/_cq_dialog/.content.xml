@@ -34,7 +34,7 @@
                     </section>
                     <stickySection
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Sticky Items for Left Navigation"
+                            jcr:title="Tetrapak Home Configuration"
                             sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                         <items jcr:primaryType="nt:unstructured">
                             <href
@@ -47,8 +47,8 @@
                             <title
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Enter Sticky Title i18 Key"
-                                    fieldLabel="Sticky Title i18 Key"
+                                    fieldDescription="Enter Tetrapak home i18 Key"
+                                    fieldLabel="Tetrapak home i18 Key"
                                     name="./stickyLabel"/>
                             <iconClass
                                     jcr:primaryType="nt:unstructured"
@@ -58,6 +58,9 @@
                                     name="./stickyIconClass"
                                     translateOptions="{Boolean}true">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <None jcr:primaryType="nt:unstructured"
+                                               text="None"
+                                               value=""/>
                                     <Dashboard jcr:primaryType="nt:unstructured"
                                                text="Dashboard"
                                                value="icon-Dashboard"/>

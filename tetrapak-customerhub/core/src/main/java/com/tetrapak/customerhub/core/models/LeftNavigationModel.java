@@ -83,6 +83,7 @@ public class LeftNavigationModel {
         tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
+        tpLogoListItem.setIconLabel("stickyLabel");
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
