@@ -224,9 +224,6 @@ class OrderingCard {
     this.initCache();
     this.bindEvents();
     this.renderTable();
-    getToken().then(({ data }) => {
-      logger.log(data);
-    });
   }
 }
 
