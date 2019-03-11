@@ -30,7 +30,7 @@
             @include line-height(24px, $font-baseline);
             border-bottom: 1px solid $color-boulder;
             font-family: $font;
-            font-weight: bold;
+            font-weight: normal;
             position: relative;
         }
         @include padding($padding-sm 0);
