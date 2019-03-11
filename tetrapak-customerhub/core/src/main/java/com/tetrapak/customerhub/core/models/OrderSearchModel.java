@@ -50,7 +50,7 @@ public class OrderSearchModel {
     @OSGiService
     APIGEEService apigeeService;
 
-    private static final String DEFAULT_JSON = "/etc/designs/customerhub/jsonData/orderSearchSummary.json";
+    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
 
     private String apiURL;
 
