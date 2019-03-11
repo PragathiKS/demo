@@ -19,6 +19,9 @@ public class ArticleContainerModel {
 	@Inject
 	private String titleAlignment;
 
+	@Inject
+	private Boolean showBox;
+
 	private String[] totalColumns;
 
 	@PostConstruct
@@ -48,6 +51,10 @@ public class ArticleContainerModel {
 
 	public String getTitleAlignment() {
 		return titleAlignment;
+	}
+
+	public Boolean getShowBox(){
+		return showBox;
 	}
 
 }

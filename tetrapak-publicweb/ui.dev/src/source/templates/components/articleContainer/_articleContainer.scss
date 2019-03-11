@@ -20,12 +20,12 @@
         }
 
     }
-
+/*
     &__column {
         & + .article-container__column {
             @media #{$desktop} {
                 @include margin-left($margin-l);
             }
         }
-    }
+    } */
 }
