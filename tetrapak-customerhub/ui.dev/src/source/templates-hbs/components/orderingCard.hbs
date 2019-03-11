@@ -1,6 +1,10 @@
 <div class="tp-ordering-card__orders">
     <div class="tp-ordering-card__title">{{i18n key=labels.title}}</div>
-    {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
+    {{#unless isError}}
+        {{#if orders}}
+            {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
+        {{/if}}
+    {{/unless}}
     <div class="tp-ordering-card__tablewrapper js-ordering-card__tablewrapper">
         {{> components/orderingTable this}}
     </div>
