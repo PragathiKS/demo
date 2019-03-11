@@ -14,7 +14,7 @@ import com.day.cq.wcm.api.PageManager;
 
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class ArticleNoImageModel {
+public class ArticleItemModel {
 
 	@Self
 	private Resource resource;
@@ -26,16 +26,25 @@ public class ArticleNoImageModel {
 	private String articlePath;
 
 	@Inject
-	private String title;
+	private String articleTitle;
 	
 	@Inject
-	private String vanityDescription;
+	private String vanityDescriptionI18n;
 
 	@Inject
 	private String ctaTexti18nKey;
 
 	@Inject
 	private Boolean openInNewWindow;
+	
+	@Inject
+	private Boolean showImage;
+
+	@Inject
+	private String articleImagePath;
+	
+	@Inject
+	private String articleImageAltI18n;
 
 	@PostConstruct
 	protected void init() {
@@ -43,8 +52,8 @@ public class ArticleNoImageModel {
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
 		
 		if ("automatic".equals(contentType)) {
-			title = "";
-			vanityDescription = "";
+			articleTitle = "";
+			vanityDescriptionI18n = "";
 			ctaTexti18nKey = "";
 			openInNewWindow = false;
 			
@@ -53,8 +62,8 @@ public class ArticleNoImageModel {
 				Resource jcrContentResource = landingPage.getContentResource();
 				LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
 				if (landingPageModel != null) {
-					title = landingPageModel.getTitle();
-					vanityDescription = landingPageModel.getVanityDescription();
+					articleTitle = landingPageModel.getTitle();
+					vanityDescriptionI18n = landingPageModel.getVanityDescription();
 					ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
 					openInNewWindow = landingPageModel.isOpenInNewWindow();
 				}
@@ -67,12 +76,12 @@ public class ArticleNoImageModel {
 		return resource;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getArticleTitle() {
+		return articleTitle;
 	}
 
-	public String getVanityDescription() {
-		return vanityDescription;
+	public String getVanityDescriptionI18n() {
+		return vanityDescriptionI18n;
 	}
 
 	public String getCtaTexti18nKey() {
@@ -81,5 +90,29 @@ public class ArticleNoImageModel {
 	
 	public Boolean isOpenInNewWindow() {
 		return openInNewWindow;
+	}
+	
+	public String getContentType() {
+		return contentType;
+	}
+
+	public String getArticlePath() {
+		return articlePath;
+	}
+
+	public Boolean getOpenInNewWindow() {
+		return openInNewWindow;
+	}
+
+	public Boolean getShowImage() {
+		return showImage;
+	}
+
+	public String getArticleImagePath() {
+		return articleImagePath;
+	}
+
+	public String getArticleImageAltI18n() {
+		return articleImageAltI18n;
 	}
 }

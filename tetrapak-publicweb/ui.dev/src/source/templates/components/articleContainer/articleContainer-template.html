@@ -1,10 +1,12 @@
-<sly data-sly-template.articleContainer_template="${@ data, flag}">
+<sly data-sly-template.articleContainer_template="${@ data, flag}"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div class="article-container">
     <h3 class="article-container__title ${data.titleAlignment}">${data.titleI18n}</h3>
     <div class="d-md-block d-lg-flex" data-sly-list="${data.totalColumns}">
       <div class="article-container__column">
-         <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articlenoimage'}"/>
+         <sly data-sly-resource="${'item' @ resourceType='publicweb/components/content/articleItem'}"/>
       </div>
     </div>
   </div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !data.totalColumns}"></sly>
 </sly>
