@@ -60,33 +60,33 @@ pipeline {
 			   parallel (
 			       "Author Deployment" : {
 			          echo "Uninstalling Old Package"
-					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
+					  sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
 			          echo "Removing Old Package"
-					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
-			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+					  sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
 			          echo "Uploading New Package"
-					  sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-			          sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+					  sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			          sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			          echo "Installing New Package"
-					  sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-			          sh "curl -u admin:admin -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+					  sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+			          sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			                                  },
 		                    
 
 		            "Publish_Deployment" : {
 		                echo "Uninstalling Old Package"
-						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&nametetrapak-commons.complete'"
-			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&nametetrapak-commons.complete'"
+			            sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
 			            echo "Removing Old Package"
-						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
-			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+			            sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
 			            echo "Uploading New Package"
-						sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-			            sh "curl -u admin:admin -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+			            sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 			            echo "Installing New Package"
-						sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-			            sh "curl -u admin:admin -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+			            sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 			                                     }
 		                )  
 			                  }
