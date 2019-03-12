@@ -1,12 +1,22 @@
-<sly data-sly-template.imageAndText_template="${@ data, flag}">
-  <div class="tp-image-card">
-    <div class="tp-image-card__container">
+<sly data-sly-template.imageAndText_template="${@ data,columns,flag}">
+  <div class="tpmol-image-card tpmol-image-card__col--${columns}">
+    <div class="tpmol-image-card__container">
       <img src="${data.imagePath}" alt="${data.imageAltI18n @i18n}" />
-      <div class="tp-image-card__container__text">
+      <div class="tpmol-image-card__text">
         <h4>${data.titleI18n @i18n}</h4>
-        <p class="font-style-sm">
-          ${data.descriptionI18n @i18n}
-        </p>
+        <sly data-sly-test.description="${data.descriptionI18n @i18n}">
+           <p class="font-style-sm">
+              ${description @ context='html'}
+            </p>
+        </sly>
+        <sly data-sly-test.linkText="${data.linkTextI18n @i18n}">
+        <sly data-sly-test.linkUrl="${data.linkUrl}" />
+          <div class="tpmol-image-card__link">
+            <sly data-sly-use.nextButton="/apps/commons/components/atoms/nextButton/nextButton-template.html"
+                data-sly-call="${nextButton.nextButton_template @nextBtnText=linkText, btnClasses='js-slick-next', btnTextIcon='icon-Circle_Arrow_Right',linkUrl=linkUrl}" >
+            </sly>
+          </div>
+        </sly>
       </div>
     </div>
   </div>
