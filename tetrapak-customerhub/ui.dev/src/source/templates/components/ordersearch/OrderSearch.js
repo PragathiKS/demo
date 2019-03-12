@@ -9,7 +9,7 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
  */
 function _processOrderSearchData(data) {
   data = $.extend(true, data, this.cache.config);
-  data['dateRange'] = data.summary.filterStartDate + ' - ' + data.summary.filterEndDate;
+  data['dateRange'] = `${data.summary.filterStartDate} - ${data.summary.filterEndDate}`;
   return data;
 }
 
