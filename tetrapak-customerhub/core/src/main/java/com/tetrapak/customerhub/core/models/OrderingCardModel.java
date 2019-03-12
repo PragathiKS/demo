@@ -8,7 +8,9 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Set;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderingCardModel {
@@ -27,32 +29,50 @@ public class OrderingCardModel {
 
     @Inject
     private String allOrdersI18n;
-    
+
     @Inject
     private String saveSettingsI18n;
-    
+
     @Inject
     private String closeBtnI18n;
-    
+
     @Inject
     private String preferencesBtnI18n;
-    
+
     @Inject
     private String saveErrorI18n;
-    
+
     @Inject
     private String allOrdersLink;
 
     @OSGiService
     APIGEEService apigeeService;
-    
-    private String [] savedPreferences ;
+
+    private Set<String> savedPreferences;
+
+    private Set<String> defaultFields;
+
+    private Set<String> disabledFields;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
-    
+
     private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
-    
-    
+
+    @PostConstruct
+    protected void init() {
+        defaultFields.add("orderNumber");
+        defaultFields.add("poNumber");
+        defaultFields.add("orderDate");
+
+        disabledFields.add("contact");
+
+        savedPreferences.add("orderNumber");
+        savedPreferences.add("poNumber");
+        savedPreferences.add("orderDate");
+        savedPreferences.add("status");
+        savedPreferences.add("contact");
+    }
+
     public String getTitleI18n() {
         return titleI18n;
     }
@@ -97,8 +117,15 @@ public class OrderingCardModel {
         return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
     }
 
-    public String [] getSavedPreferences() {
+    public Set<String> getSavedPreferences() {
         return savedPreferences;
     }
 
+    public Set<String> getDefaultFields() {
+        return defaultFields;
+    }
+
+    public Set<String> getDisabledFields() {
+        return disabledFields;
+    }
 }
