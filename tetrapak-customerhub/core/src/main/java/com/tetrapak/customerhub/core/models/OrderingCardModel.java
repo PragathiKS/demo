@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
@@ -10,6 +11,8 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -48,6 +51,8 @@ public class OrderingCardModel {
     @OSGiService
     APIGEEService apigeeService;
 
+    private String i18nKeys;
+
     private Set<String> savedPreferences;
 
     private Set<String> defaultFields;
@@ -71,39 +76,20 @@ public class OrderingCardModel {
         savedPreferences.add("orderDate");
         savedPreferences.add("status");
         savedPreferences.add("contact");
+
+        Map<String, String> i18KeyMap = new HashMap();
+        i18KeyMap.put("title", titleI18n);
+        i18KeyMap.put("preferencesTitle", preferencesTitleI18n);
+        i18KeyMap.put("preferencesDescription", preferencesDescriptionI18n);
+        i18KeyMap.put("allOrders", allOrdersI18n);
+        i18KeyMap.put("saveSettings", saveSettingsI18n);
+        i18KeyMap.put("closeBtn", closeBtnI18n);
+        i18KeyMap.put("preferencesBtn", preferencesBtnI18n);
+        i18KeyMap.put("saveError", saveErrorI18n);
+        Gson gson = new Gson();
+        i18nKeys = gson.toJson(i18KeyMap);
     }
 
-    public String getTitleI18n() {
-        return titleI18n;
-    }
-
-    public String getPreferencesTitleI18n() {
-        return preferencesTitleI18n;
-    }
-
-    public String getPreferencesDescriptionI18n() {
-        return preferencesDescriptionI18n;
-    }
-
-    public String getAllOrdersI18n() {
-        return allOrdersI18n;
-    }
-
-    public String getSaveSettingsI18n() {
-        return saveSettingsI18n;
-    }
-
-    public String getCloseBtnI18n() {
-        return closeBtnI18n;
-    }
-
-    public String getPreferencesBtnI18n() {
-        return preferencesBtnI18n;
-    }
-
-    public String getSaveErrorI18n() {
-        return saveErrorI18n;
-    }
 
     public String getAllOrdersLink() {
         return allOrdersLink;
@@ -127,5 +113,9 @@ public class OrderingCardModel {
 
     public Set<String> getDisabledFields() {
         return disabledFields;
+    }
+
+    public String getI18nKeys() {
+        return i18nKeys;
     }
 }
