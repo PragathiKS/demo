@@ -3,7 +3,7 @@
     <div class="tpmol-image-card__container">
       <img src="${data.imagePath}" alt="${data.imageAltI18n @i18n}" />
       <div class="tpmol-image-card__text">
-        <h4>${data.titleI18n @i18n}</h4>
+        <h4 class="tpmol-image-card__heading">${data.titleI18n @i18n}</h4>
         <sly data-sly-test.description="${data.descriptionI18n @i18n}">
            <p class="font-style-sm">
               ${description @ context='html'}
