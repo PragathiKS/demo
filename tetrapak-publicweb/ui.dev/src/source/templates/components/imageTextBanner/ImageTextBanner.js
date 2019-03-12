@@ -1,4 +1,4 @@
-class ArticleContainer {
+class ImageTextBanner {
   cache = {};
   initCache() {
     /* Initialize cache here */
@@ -13,4 +13,4 @@ class ArticleContainer {
   }
 }
 
-export default ArticleContainer;
+export default ImageTextBanner;

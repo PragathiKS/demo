@@ -84,11 +84,11 @@
                                         jcr:primaryType="nt:unstructured"
                                         selected="true"
                                         text="Left"
-                                        value="text-left"/>
+                                        value="pw-banner"/>
                                     <right
                                         jcr:primaryType="nt:unstructured"
                                         text="Right"
-                                        value="text-right"/>
+                                        value="pw-banner--right"/>
                                 </items>
                             </contentalignment>
                             <ctatext

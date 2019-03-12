@@ -1,0 +1,13 @@
+<sly data-sly-template.imageTextBanner_template="${@ data, flag}">
+  <div class="pw-banner ${data.contentAlignment}">
+    <img class="pw-banner__image pw-banner__image-mobile" src="${data.mobileImage}" alt="">
+    <img class="pw-banner__image pw-banner__image-desktop" src="${data.desktopImage}" alt="">
+    <div class="pw-banner__content">
+      <span class="pw-banner__content__subtitle">${data.bannerSubtitleI18n}</span>
+      <h3 class="pw-banner__content__title">${data.bannerTitleI18n}</h3>
+      <p class="pw-banner__content__description">${data.bannerDescriptionI18n}</p>
+      <sly data-sly-use.pwButton="/apps/publicweb/components/atoms/button/button-template.html"
+           data-sly-call="${pwButton.button_template @ btnPath=data.btnTextLink, btnText=data.btnTextI18n, btnTooltip=data.btnTooltipI18n, btnTarget=data.btnTargetBlank}" />
+    </div>
+  </div>
+</sly>
