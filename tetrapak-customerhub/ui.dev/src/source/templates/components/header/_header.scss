@@ -7,6 +7,7 @@
     @include margin-left(-15px);
     @include margin-right(-15px);
     @include font-size(14px);
+    @include max-width(1360px);
     background: $color-white;
     font-family: $font-bold;
     color: $color-congress-blue;
@@ -14,7 +15,6 @@
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 1360px;
     z-index: $zindex-header;
     @media #{$desktop} {
         @include padding-left($padding-l);
