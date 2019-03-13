@@ -80,11 +80,9 @@ public class ListContentImageModel {
 		List<String> tabs = new ArrayList<String>();
 		JSONObject jObj;
 		try {
-			if (tabLinks == null || tabLinks == null) {
+			if (tabLinks == null) {
 				log.error("Tab Links value is NULL");
-			}
-
-			if (tabLinks != null) {
+			} else {
 				for (int i = 0; i < tabLinks.length; i++) {
 					jObj = new JSONObject(tabLinks[i]);
 
