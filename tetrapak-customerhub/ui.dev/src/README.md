@@ -126,8 +126,8 @@ Atoms and molecules don't have JavaScript files.
 ## Cache groups
 
 By default webpack generates separate chunk for each module imported using ``data-module`` attribute. The advantage of having separate chunks is that your webpage downloads limited number of script files required for the application.<br>
-Imagine loading a huge bundle containing half of the code which is not even being used, compared to loading smaller sized chunks.<br>
-The downside of this approach is that it results into too many network requests for your application.<br>
+Imagine loading a huge bundle (in comparison to loading smaller sized chunks) containing half of the code which is not even being used.<br>
+The downside however is that it results into too many network requests for your application.<br>
 Fortunately, webpack provides with an option to group two or more chunks together using ``cacheGroup`` configuration. You can find this configuration in ``config.json`` file.
 
 ### Creating cache groups
@@ -178,7 +178,7 @@ Desktop: ``&gt;= 1024px``
 ``$mobile-landscape``: Same as ``$mobile`` with orientation as ``landscape``
 ``$mobile-large-landscape``: Same as ``$mobile-large``
 
-You can check the definition in ``tetrapak-commons > ui.dev > src > source > styles > common > _media.scss``.
+You can check the definition in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _media.scss``.
 
 ## Mobile first approach
 
@@ -196,11 +196,11 @@ The CSS framework implements mobile first approach. Therefore, you may never hav
 ## Base CSS and component max-width
 
 The base CSS has already been implemented in ``tetrapak-commons``. Some components follow maximum width of ``1366px`` as per design. To set ``1366px`` max-width you need to use ``tp-container`` class.<br>
-To check the base css implementation go to ``tetrapak-commons > ui.dev > src > source > styles > common > _global.scss``.
+To check the base css implementation go to ``tetrapak-commons > ui.dev > src > source > styles > global > common > _global.scss``.
 
 ## Fonts
 
-For English language we are using ``Muli`` font and it's variants. The font family definitions and variables can be found in ``tetrapak-commons > ui.dev > src > source > styles > common > _fonts.scss`` and ``tetrapak-commons > ui.dev > src > source > styles > common > _typography.scss``.
+For English language we are using ``Muli`` font and it's variants. The font family definitions and variables can be found in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _fonts.scss`` and ``tetrapak-commons > ui.dev > src > source > styles > global > common > _typography.scss``.
 
 ## Using REM
 
@@ -223,6 +223,50 @@ In some cases where mixins can't be used, we can use ``convert-to-rem`` function
     width: calc(100% - #{convert-to-rem(20px)});
 }
 ```
+
+## BEM guidelines and prefixes
+
+For CSS we are using BEM (Block Element Modifier). Let's understand how BEM works using a simple example below:
+
+```html
+<div class="tp-comp">
+  <div class="tp-comp__child">
+  </div>
+</div>
+```
+
+The child element has the same root class along with the suffix "__child". In SASS we can nest the child element using the partial suffix as shown below:
+
+```scss
+.tp-comp {
+    color: red;
+    &__child {
+        color: green;
+    }
+}
+```
+
+The final output after compilation is shown below:
+
+```css
+.tp-comp {
+    color: red; }
+  .tp-comp__child {
+        color: green; }
+```
+
+BEM convention allows us to perform SASS style nesting as well as reduce selector specificity. To read more about BEM please go through the link below:<br>
+<a href="http://getbem.com/">Block Element Modifier</a>
+
+### Prefixes
+
+To differentiate between atoms, molecules and organism (components) we are using following prefixes in our CSS classes:<br>
+Atoms: ``tpatom-*``
+Molecules: ``tpmol-*``
+Organism (Component): ``tp-*``
+JS classes: ``js-*``
+<br>
+Please note that JS classes should be separate from classes used for styling.
 
 ## Icons
 
@@ -273,4 +317,104 @@ To learn more about HTL please follow the link below:
 
 ## Create component command and HTL
 
-Create component command creates a default HTL template file where you define the HTML of your component.
+Create component command creates a default HTL template file where you define the HTML of your component. It also creates two other files named as ``ux-model.json`` and ``ux-preview.hbs``. These files are used for assembling a page for developing HTL component and providing a mock JSON model. You can preview your component in local AEM instance using following URL:<br>
+
+http://localhost:4502/content/customerhub-ux/&lt;component-name&gt;.ux-preview.html<br>
+
+Component name is same as component's ``fsdId``. The ``fsdId`` field is configured in ``ux-preview.hbs`` file. This field is pre-configured. It also configures the base page layout. Layouts are defined under ``ui.dev > src > source > template > layouts``. The default layout is ``app.hbs``. You can also create custom layouts according to your needs and configure them in ``ux-preview.hbs``.
+
+## Handlebars
+
+For client side templating we use handlebars. A handlebar template look like below:<br>
+
+```hbs
+<div class="tp-comp">
+    {{prop}}
+    <div class="tp-comp__child">
+        {{childProp}}
+    </div>
+</div>
+```
+
+To learn more about handlebars please follow the link below:<br>
+<a href="https://handlebarsjs.com/">Handlebars</a>
+
+## Handlebar atoms, molecules, and components
+
+Handlebars atoms, molecules and components are placed under ``templates-hbs`` folder.
+
+## Compiling handlebars
+
+Handlebar templates are pre-compiled by webpack using ``handlebars-loader``. In front-end code (class files) you can access handlebar templates as follows:
+
+```js
+class MyComponent {
+    constructor({ templates }) {
+        this.templates = templates;
+    }
+    myMethod() {
+        $(selector).html(this.templates.myTemplateFileName(/* Pass JSON data here */));
+    }
+}
+```
+
+There is even a better way(s) to access handlebars template file using ``render`` module.<br>
+
+If you are rendering the template file you can use ``render.fn``:
+
+```js
+import { render } from '../../../scripts/utils/render';
+class MyComponent {
+    myMethod() {
+        render.fn({
+            template: 'myTemplateFileName',
+            data: { /* JSON data */ },
+            target: selector
+        });
+    }
+}
+```
+
+If you simply want to get hbs template HTML, you can use ``render.get``.
+
+```js
+import { render } from '../../../scripts/utils/render';
+class MyComponent {
+    myMethod() {
+        $(selector).html(render.get('myTemplateFileName')(/* JSON data */));
+    }
+}
+```
+
+A detailed documentation for ``render`` module is available in HANDLEBARS.md.
+
+# JavaScript unit testing
+
+For JS unit testing we use ``Mocha``, ``Chai`` and ``Sinon``. ``Karma`` (task runner) is used for running test suites. ``Mocha`` is the unit testing framework where as ``Chai`` is an assertion library. ``Sinon`` is used for spying and stubbing methods to change their behavior according to our testing requirements.
+
+## Unit test "spec" file
+
+The unit test file is created alongside component JS file using ``createComponent`` command. An example of unit test file is shown below:
+
+### MyComponent.spec.js
+
+```js
+import MyComponent from './MyComponent';
+
+describe('MyComponent', function () {
+    before(function () {
+        this.comp = new MyComponent({ el: document.body });
+        sinon.spy(this.comp, 'init');
+        this.comp.init(); // Initialize component
+    });
+    it('should initialize on first load', function () {
+        expect(this.comp.init.called).to.be.true;
+    }); // Test case
+    ...
+});
+```
+
+To learn more about ``Mocha``, ``Chai`` and ``Sinon`` please refer to the links below:<br>
+<a href="https://mochajs.org/">Mocha</a>
+<a href="https://www.chaijs.com/api/assert/">Chai</a>
+<a href="https://sinonjs.org/">Sinon</a>
