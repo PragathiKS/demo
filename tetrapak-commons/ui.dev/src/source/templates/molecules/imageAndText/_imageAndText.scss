@@ -1,38 +1,71 @@
-.tp-image-card {
-    @include padding(8px);
+.tpmol-image-card {
+    @include padding($padding-sm $padding-sm $padding-l $padding-sm);
     background-color: $color-white;
-    width: 100%;
     display: flex;
+    width: 100%;
     @media #{$desktop} {
         width: 33.33%;
         margin: 0;
+        &__col--2 {
+            width: 50%;
+        }
+        &__col--3 {
+            width: 33.33%;
+        }
+        &__col--4 {
+            width: 25%;
+        }
     }
     &__container {
         width: 100%;
         background-color: $color-wild-sand;
         img {
             max-width: 100%;
-            border-radius: 5px 5px 0 0;
+            border-radius: $border-radius $border-radius 0 0;
         }
-        &__text {
-            @include padding(16px);
-            @include word-spacing(1px);
-            font-family: $font-light;
-            @media #{$desktop} {
-                @include padding(24px);
+    }
+    &__heading {
+        @include margin-bottom($margin-sm);
+        @include line-height($font-l, $font-md);
+        @media #{$desktop} {
+            @include margin-bottom($margin-md);
+        }
+        font-family: $font-light;
+        padding: 0;
+    }
+    &__text {
+        @include padding($padding-md);
+        @include word-spacing($word-spacing-sm);
+        font-family: $font-light;
+        word-break: break-word;
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+        .font-style-sm {
+            @include line-height(21px, $font-sm);
+        }
+    }
+    &__link {
+        @include padding-top($padding-md);
+        @include word-spacing($word-spacing-sm);
+        @include font-size($font-normal);
+        font-family: $font-light;
+        color: $color-congress-blue;
+        .tp-next-btn {
+            @include line-height($font-normal, $font-normal);
+            font-weight: bold;
+            position: relative;
+            &:visited,
+            &:hover,
+            &:active {
+                color: $color-congress-blue;
             }
-            h4 {
-                @include margin-bottom(11px);
-                @include line-height(24px, 18px);
-                @media #{$desktop} {
-                    @include margin-bottom(16px);
-                }
-                font-family: $font-light;
-                padding: 0;
-            }
-            .font-style-sm {
-                @include line-height(21px, 12px);
-            }
+        }
+        .tp-next-btn__icon {
+            @include font-size($font-l);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
 }
