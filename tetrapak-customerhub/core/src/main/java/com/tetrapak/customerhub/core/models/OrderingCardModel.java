@@ -87,7 +87,7 @@ public class OrderingCardModel {
         savedPreferences = userPreferenceService.getSavedPreferences(resource);
 
 
-        Map<String, String> i18KeyMap = new HashMap();
+        Map<String, String> i18KeyMap = new HashMap<>();
         i18KeyMap.put("title", titleI18n);
         i18KeyMap.put("preferencesTitle", preferencesTitleI18n);
         i18KeyMap.put("preferencesDescription", preferencesDescriptionI18n);
