@@ -141,7 +141,7 @@ function _saveSettings() {
     return $(el).val();
   });
   ajaxWrapper.getXhrObj({
-    resourceType: 'customerhub/components/content/orderingcard',
+    url: this.cache.preferencesUrl,
     data: {
       fields: selectedFields.join(',')
     },
@@ -204,7 +204,7 @@ class OrderingCard {
         template: 'orderingCard',
         url: this.cache.apiUrl,
         ajaxConfig: {
-          method: ajaxMethods.POST
+          method: ajaxMethods.GET
         },
         beforeRender(data) {
           if (!data) {

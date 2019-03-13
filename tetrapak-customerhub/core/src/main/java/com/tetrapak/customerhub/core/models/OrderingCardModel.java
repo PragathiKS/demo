@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,6 +13,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,6 +59,9 @@ public class OrderingCardModel {
     @OSGiService
     APIGEEService apigeeService;
 
+    @OSGiService
+    UserPreferenceService userPreferenceService;
+
     private String i18nKeys;
 
     private Set<String> savedPreferences;
@@ -71,17 +76,16 @@ public class OrderingCardModel {
 
     @PostConstruct
     protected void init() {
+        defaultFields = new LinkedHashSet<>();
         defaultFields.add("orderNumber");
         defaultFields.add("poNumber");
         defaultFields.add("orderDate");
 
+        disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
 
-        savedPreferences.add("orderNumber");
-        savedPreferences.add("poNumber");
-        savedPreferences.add("orderDate");
-        savedPreferences.add("status");
-        savedPreferences.add("contact");
+        savedPreferences = userPreferenceService.getSavedPreferences(resource);
+
 
         Map<String, String> i18KeyMap = new HashMap();
         i18KeyMap.put("title", titleI18n);
@@ -108,7 +112,7 @@ public class OrderingCardModel {
     }
 
     public String getPreferencesURL() {
-        return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
+        return resource.getPath() + ".preference.json";
     }
 
     public Set<String> getSavedPreferences() {
