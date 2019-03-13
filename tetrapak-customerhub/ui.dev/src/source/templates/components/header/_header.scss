@@ -11,7 +11,11 @@
     font-family: $font-bold;
     color: $color-congress-blue;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 1360px;
+    z-index: $zindex-header;
     @media #{$desktop} {
         @include padding-left($padding-l);
         @include padding-right($padding-l);
