@@ -41,7 +41,7 @@ public class LeftNavigationModel {
             ValueMap map = globalConfigResource.getValueMap();
             navHeading = (String) map.get("navHeadingI18n");
             closeBtnText = (String) map.get("closeBtnText");
-            setStickyNavItemBean(map);
+            setLogoListItem(map);
         }
 
         Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
@@ -79,10 +79,11 @@ public class LeftNavigationModel {
         return leftNavigationBean;
     }
 
-    private void setStickyNavItemBean(ValueMap valueMap) {
+    private void setLogoListItem(ValueMap valueMap) {
         tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
+        tpLogoListItem.setIconLabel("stickyLabel");
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/commons" mode="merge"/>
+    <filter root="/apps/commons" mode="replace"/>
     <filter root="/apps/sling" mode="merge" />
-	<filter root="/apps/settings/wcm/designs" mode="merge"/>
+	<filter root="/apps/settings/wcm/designs/customerhub" mode="replace"/>
 </workspaceFilter>

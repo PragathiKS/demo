@@ -58,6 +58,12 @@
             max-height: 0;
             opacity: 0;
         }
+        &:checked~.tpatom-list-item__btn>.tpatom-list-item__arrow-down {
+            opacity: 1;
+        }
+        &:checked~.tpatom-list-item__btn>.tpatom-list-item__arrow-up {
+            opacity: 0;
+        }
     }
     &__icon {
         @include font-size($padding-md);
@@ -89,7 +95,8 @@
         }
     }
     &__external-link,
-    &__submenu {
+    &__arrow-down,
+    &__arrow-up {
         @include font-size($font-xxs);
         position: absolute;
         top: 50%;
@@ -102,5 +109,11 @@
         &:visited {
             color: $color-white;
         }
+    }
+    &__arrow-down {
+        opacity: 0;
+    }
+    &__arrow-up {
+        opacity: 1;
     }
 }

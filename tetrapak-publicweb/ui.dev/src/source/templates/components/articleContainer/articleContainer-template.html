@@ -1,0 +1,29 @@
+<sly data-sly-template.articleContainer_template="${@ data, flag}"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<sly data-sly-test="${data.showBox}">
+  <div class="article-container" style="margin:80px;">
+</sly>
+<sly data-sly-test="${!data.showBox}">
+  <div class="article-container" style="background-color:unset">
+</sly>
+    <h3 class="article-container__title ${data.titleAlignment}">${data.titleI18n}</h3>
+    <div class="d-md-block d-lg-flex" data-sly-list="${data.totalColumns}">
+   		<sly data-sly-test="${data.totalColumns.length == 1}">
+          <div class="article-container__column" style="width:100%">
+             <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articleItem'}"/>
+          </div>
+        </sly>
+		<sly data-sly-test="${data.totalColumns.length == 2}">
+          <div class="article-container__column col-lg-6">
+             <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articleItem'}"/>
+          </div>
+        </sly>
+        <sly data-sly-test="${data.totalColumns.length == 3}">
+          <div class="article-container__column col-lg-4">
+             <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articleItem'}"/>
+          </div>
+        </sly>
+    </div>
+  </div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !data.totalColumns}"></sly>
+</sly>

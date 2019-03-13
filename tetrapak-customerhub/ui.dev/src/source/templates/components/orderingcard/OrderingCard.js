@@ -12,11 +12,13 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
  * @param {string[]} orderKeys Order keys
  */
 function _setAvailableKeys(availableKeys, orderKeys) {
+  const { disabledFieldList } = this.cache;
   if (availableKeys.length === 0) {
-    availableKeys.push(...orderKeys);
-  } else {
     orderKeys.forEach(key => {
-      if (!availableKeys.includes(key)) {
+      if (
+        !disabledFieldList.includes(key)
+        && !availableKeys.includes(key)
+      ) {
         availableKeys.push(key);
       }
     });
@@ -68,19 +70,19 @@ function _tableSort(order, activeKeys, orderDetailLink) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields } = this.cache;
+  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields, disabledFieldList } = this.cache;
   this.cache.availableKeys = availableKeys;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
     let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
-    activeKeys = activeKeys.filter(key => key);
+    activeKeys = activeKeys.filter(key => key && !disabledFieldList.includes(key));
     data.orders = data.orders.map(order => {
       const processedOrder = {};
       const orderKeys = Object.keys(order);
       if (availableKeys.length === 0) {
-        _setAvailableKeys(availableKeys, orderKeys);
+        _setAvailableKeys.call(this, availableKeys, orderKeys);
       }
       if (activeKeys.length === 0) {
         activeKeys.push(...orderKeys);
@@ -173,11 +175,17 @@ class OrderingCard {
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
     this.cache.defaultFields = $('#ordDefaultFields').val();
+    this.cache.disabledFields = $('#ordDisabledFields').val();
+    this.cache.disabledFieldList = [];
+    if (typeof this.cache.disabledFields === 'string') {
+      this.cache.disabledFieldList = this.cache.disabledFields.split(',');
+    }
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
     try {
       this.cache.i18nKeys = JSON.parse($('#ordI18nKeys').val());
     } catch (e) {
+      this.cache.i18nKeys = {};
       logger.log(e);
     }
   }
@@ -190,14 +198,22 @@ class OrderingCard {
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
   renderTable(config) {
+    const $this = this;
     if (typeof config === 'undefined') {
       config = {
         template: 'orderingCard',
         url: this.cache.apiUrl,
         ajaxConfig: {
-          method: ajaxMethods.POST
+          method: ajaxMethods.GET
         },
-        beforeRender: (...args) => _processTableData.apply(this, args),
+        beforeRender(data) {
+          if (!data) {
+            this.data = data = {
+              isError: true
+            };
+          }
+          return _processTableData.apply($this, [data]);
+        },
         target: this.root
       };
     }

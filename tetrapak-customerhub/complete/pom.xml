@@ -122,13 +122,7 @@
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.it.launcher</artifactId>
               <version>${project.version}</version>
-        </dependency>
-          <dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-customerhub.ui.apps</artifactId>
-              <version>${project.version}</version>
-			  <type>content-package</type>
-        </dependency>
+        </dependency>          
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-customerhub.ui.content</artifactId>
@@ -141,7 +135,12 @@
               <version>${project.version}</version>
             <type>content-package</type>
         </dependency>
-        
+        <dependency>
+            <groupId>tetrapak</groupId>
+            <artifactId>tetrapak-customerhub.ui.apps</artifactId>
+              <version>${project.version}</version>
+			  <type>content-package</type>
+        </dependency>
 
         <dependency>
             <groupId>com.adobe.aem</groupId>

@@ -90,7 +90,7 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
-						<phase>compile</phase>						
+						<phase>compile</phase>
 					</execution>
 				</executions>
 				<configuration>
@@ -111,11 +111,12 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
 				<configuration>
+					<failOnDependencyErrors>false</failOnDependencyErrors>
                     <embeddeds>
                         <embedded>
                             <groupId>tetrapak</groupId>
-                            <artifactId>tetrapak-commons.core</artifactId>
-                            <target>/apps/commons/install</target>
+                            <artifactId>tetrapak-publicweb.core</artifactId>
+                            <target>/apps/publicweb/install</target>
                         </embedded>
                     </embeddeds>
                     <subPackages>
@@ -131,9 +132,10 @@
                 <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+					<filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
-                    <group>tetrapak-customerhub</group>
+                    <group>tetrapak-publicweb</group>
                 </configuration>
             </plugin>
 

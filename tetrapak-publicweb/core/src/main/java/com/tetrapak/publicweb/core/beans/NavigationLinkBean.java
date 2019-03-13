@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.beans;
 
-public class FooterBean {
+public class NavigationLinkBean {
 
 	private String linkTextI18n;
 	

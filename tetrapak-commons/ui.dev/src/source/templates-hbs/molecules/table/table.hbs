@@ -5,8 +5,9 @@
             {{#each headings}}
             <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{#if ../baseClass}} {{../baseClass}}__cell {{../baseClass}}__cellheading{{/if}}{{#if jsClass}}  {{../jsClass}}__cellheading {{../jsClass}}__cellheading--{{@index}}{{/if}}">
                 {{#if isSortable}}
-                <button type="button" class="tpmol-table__sort {{#if isSortable}}{{sortOrder}} icon-Chevron_Down{{/if}}{{#if ../baseClass}} {{../baseClass}}__sort{{/if}}{{#if ../jsClass}} {{../jsClass}}__sort{{/if}}" data-key="{{key}}">
-                    {{i18n key=i18nKey}}
+                <button type="button" class="tpmol-table__sort clearfix{{#if isSortable}} {{sortOrder}}{{/if}}{{#if ../baseClass}} {{../baseClass}}__sort{{/if}}{{#if ../jsClass}} {{../jsClass}}__sort{{/if}}" data-key="{{key}}">
+                    <span>{{i18n key=i18nKey}}</span>
+                    <i class="icon icon-Chevron_Down"></i>
                 </button>
                 {{else}}
                 {{i18n key=i18nKey}}

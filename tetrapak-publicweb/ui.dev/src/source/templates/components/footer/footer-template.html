@@ -1,20 +1,20 @@
 <sly data-sly-template.footer_template="${@ data, flag}">
   <footer class="tp-pw-footer">
-    <div class="tp-pw-footer__container">
+    <div class="tp-pw-footer__container tp-container">
       <div class="row">
-        <div class="col-lg-3 text-lg-center">
-          <a href="${data.imageLink}" data-sly-unwrap="${!data.imageLink}">
-            <img class="tp-pw-footer__logo" src="${data.imagePath}" alt="${data.imageAltI18n}" title="${data.imageTitleI18n}">
-          </a>
+        <div class="col-lg-3 text-lg-left">
+          <div class="footer-logo">
+              <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/content/logo'}"/>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems=${data.footerNavigationLinks}>
+        <div class="col-lg-6 text-lg-center">
+          <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems="${data.footerNavigationLinks}" style="justify-content: space-between;">
             <li class="tp-pw-footer__navigation-list__item">
               <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}" target="${navigationItems.targetBlank ? '_blank' : ''}">${navigationItems.linkTextI18n}</a>
             </li>
           </ul>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 text-lg-right">
           <div class="tp-pw-footer__social-media-items">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaLinkedin}" target="_blank" data-sly-test="${data.socialMediaLinkedin}"><i class="icon-Linkedin"></i></a>
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaFacebook}" target="_blank" data-sly-test="${data.socialMediaFacebook}"><i class="icon-Facebook"></i></a>

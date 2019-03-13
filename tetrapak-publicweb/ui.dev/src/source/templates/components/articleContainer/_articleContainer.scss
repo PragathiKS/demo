@@ -1,0 +1,31 @@
+.article-container {
+    @include border-radius($border-radius);
+    @include padding($padding-l $padding-md);
+    background-color: $color-white;
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+    }
+
+    &__title {
+        @include font-size(24px);
+        @include line-height(32px, 24px);
+        @include margin-bottom($margin-md);
+        font-family: $font-light;
+
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height(40px, $font-xl);
+            @include margin-bottom($margin-l);
+        }
+
+    }
+/*
+    &__column {
+        & + .article-container__column {
+            @media #{$desktop} {
+                @include margin-left($margin-l);
+            }
+        }
+    } */
+}

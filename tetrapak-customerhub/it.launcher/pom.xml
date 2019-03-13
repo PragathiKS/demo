@@ -294,5 +294,17 @@
             <artifactId>tetrapak-customerhub.core</artifactId>
             <version>${project.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.wcm</groupId>
+			<artifactId>io.wcm.testing.aem-mock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+		</dependency>               
     </dependencies>
 </project>
