@@ -141,7 +141,7 @@ function _saveSettings() {
     return $(el).val();
   });
   ajaxWrapper.getXhrObj({
-    url: this.cache.preferencesUrl,
+    resourceType: 'customerhub/components/content/orderingcard',
     data: {
       fields: selectedFields.join(',')
     },

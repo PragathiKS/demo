@@ -46,6 +46,12 @@ public class OrderingCardModel {
     private String saveErrorI18n;
 
     @Inject
+    private String noDataI18n;
+
+    @Inject
+    private String dataErrorI18n;
+
+    @Inject
     private String allOrdersLink;
 
     @OSGiService
@@ -86,6 +92,8 @@ public class OrderingCardModel {
         i18KeyMap.put("closeBtn", closeBtnI18n);
         i18KeyMap.put("preferencesBtn", preferencesBtnI18n);
         i18KeyMap.put("saveError", saveErrorI18n);
+        i18KeyMap.put("noData", noDataI18n);
+        i18KeyMap.put("dataError", dataErrorI18n);
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
     }
