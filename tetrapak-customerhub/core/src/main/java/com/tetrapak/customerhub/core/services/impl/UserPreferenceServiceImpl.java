@@ -16,7 +16,7 @@ import javax.jcr.Session;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Component(immediate = true, service = UserPreferenceService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(immediate = true, service = UserPreferenceService.class)
 public class UserPreferenceServiceImpl implements UserPreferenceService {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -37,10 +37,8 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
             Resource userResource = resourceResolver.getResource(path);
             ValueMap map = userResource.getValueMap();
             if (map.containsKey(ORDER_PREFERENCES)) {
-                String preferences = (String) map.get(ORDER_PREFERENCES);
-
-                String[] preferencesList = preferences.split(",");
-                for (String pref : preferencesList) {
+                String[] preferences = (String[]) map.get(ORDER_PREFERENCES);
+                for (String pref : preferences) {
                     savedPreferences.add(pref);
                 }
             }
