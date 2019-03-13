@@ -1,4 +1,12 @@
 .tp-left-nav {
+    @media #{$desktop} {
+        @include width(224px);
+        @include top(88px);
+        @include vertical-scroll-touch;
+        position: fixed;
+        height: calc(100vh - #{convert-to-rem(88px)});
+        overflow-y: scroll;
+    }
     &__overlay {
         background-color: transparent;
         position: fixed;
@@ -14,7 +22,6 @@
         }
         @media #{$desktop} {
             @include max-width(224px);
-            @include margin(0 -15px);
             display: block;
             width: auto;
             background: transparent;
@@ -25,7 +32,6 @@
     &__container {
         @include max-width(300px);
         z-index: $zindex-nav;
-        background: $color-congress-blue;
         color: $color-white;
         width: 90%;
         display: block;
@@ -39,7 +45,6 @@
             @include max-width(224px);
             @include border-radius(0 $border-radius $border-radius 0);
             width: auto;
-            overflow: auto;
             transform: translateX(0);
         }
     }
@@ -58,6 +63,7 @@
         position: relative;
         color: $color-white;
         border-bottom: 1px solid $color-tory-blue;
+        background-color: $color-congress-blue;
         @media #{$desktop} {
             @include padding($padding-l $padding-l $padding-md $padding-l);
         }
