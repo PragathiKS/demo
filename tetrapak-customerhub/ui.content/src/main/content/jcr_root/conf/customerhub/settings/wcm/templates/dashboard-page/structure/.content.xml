@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[/etc/mobile/groups/responsive]"
-        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/dashboard-page"
+        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
