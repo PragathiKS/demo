@@ -12,6 +12,9 @@ class LeftNavigation {
     this.root.find('.tpmol-list-item', 'tpatom-list-item').on('click', (e) => {
       e.stopPropagation();
     });
+    this.root.find('.tp-left-nav__main-heading').on('click', (e) => {
+      e.stopPropagation();
+    });
     $body.on('showLeftNav', this.openSideNav);
   }
 

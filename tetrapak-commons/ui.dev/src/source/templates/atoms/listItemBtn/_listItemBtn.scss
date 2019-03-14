@@ -79,6 +79,9 @@
         &::before {
             vertical-align: top;
         }
+        .tpmol-list-item__sublist &~.tpatom-list-item__label {
+            @include padding-left(24px);
+        }
     }
     &__label {
         @include padding(0 $padding-md 0 $padding-l);
