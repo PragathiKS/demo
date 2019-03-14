@@ -14,6 +14,7 @@
   if(window.location.pathname.slice(1) !== "") {
     var siteSections = window.location.pathname.slice(1).split("/");
     digitalData.pageinfo['channel'] = siteSections[0];
+
     siteSections.forEach(function (siteSection, index) {
       digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
       pageName += ":" + siteSection;
