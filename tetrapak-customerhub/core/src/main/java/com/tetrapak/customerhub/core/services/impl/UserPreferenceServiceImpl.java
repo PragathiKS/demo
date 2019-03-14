@@ -24,6 +24,7 @@ import java.util.Set;
 public class UserPreferenceServiceImpl implements UserPreferenceService {
 
     private static final String TETRAPAK_USER = "customerhubUser";
+
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private static final String ORDER_PREFERENCES = "orderPreferences";
