@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { route } from 'jqueryrouter';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -21,31 +22,35 @@ class OrderSearch {
   }
   initCache() {
     /* Initialize cache here */
-    this.cache.config = this.root.find('.js-order-search__config').text();
+    this.cache.configJson = this.root.find('.js-order-search__config').text();
+    try {
+      this.cache.config = JSON.parse(this.cache.configJson);
+    } catch (e) {
+      this.cache.config = {};
+      logger.error(e);
+    }
   }
   bindEvents() {
-    /* Bind jQuery events here */
+    route((...args) => {
+      const [info] = args;
+      if (info.hash) {
+        const { config } = this.cache;
+        render.fn({
+          template: 'orderSearch',
+          url: config.apiURL,
+          target: '.js-order-search__form',
+          ajaxConfig: {
+            method: ajaxMethods.POST
+          },
+          beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+        });
+      }
+    });
   }
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-
-    try {
-      this.cache.config = JSON.parse(this.cache.config);
-
-      render.fn({
-        template: 'orderSearch',
-        url: this.cache.config.apiURL,
-        target: '.js-order-search__form',
-        ajaxConfig: {
-          method: ajaxMethods.POST
-        },
-        beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-      });
-    } catch (err) {
-      logger.error(err.message);
-    }
     routing.push('OrderSearch');
   }
 }
