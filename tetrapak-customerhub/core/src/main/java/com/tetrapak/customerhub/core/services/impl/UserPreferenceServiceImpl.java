@@ -9,7 +9,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +24,7 @@ import java.util.Set;
 public class UserPreferenceServiceImpl implements UserPreferenceService {
 
     private static final String TETRAPAK_USER = "customerhubUser";
+
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private static final String ORDER_PREFERENCES = "orderPreferences";
@@ -40,29 +40,30 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
         ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory, paramMap);
         Session session = resource.getResourceResolver().adaptTo(Session.class);
         String userId = session.getUserID();
-        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-        try {
-            Authorizable user = userManager.getAuthorizable(userId);
+        if (null != resourceResolver) {
+            UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+            try {
+                Authorizable user = userManager.getAuthorizable(userId);
 
-            String path = user.getPath();
-            Resource userResource = resourceResolver.getResource(path);
-            ValueMap map = userResource.getValueMap();
-            if (map.containsKey(ORDER_PREFERENCES)) {
-                String[] preferences = (String[]) map.get(ORDER_PREFERENCES);
-                for (String pref : preferences) {
-                    savedPreferences.add(pref);
+                String path = user.getPath();
+                Resource userResource = resourceResolver.getResource(path);
+                ValueMap map = userResource.getValueMap();
+                if (map.containsKey(ORDER_PREFERENCES)) {
+                    String[] preferences = (String[]) map.get(ORDER_PREFERENCES);
+                    for (String pref : preferences) {
+                        savedPreferences.add(pref);
+                    }
+                }
+            } catch (RepositoryException e) {
+                LOG.error("Exception in UserPreferencesServlet", e);
+            } finally {
+                if (null != resourceResolver && resourceResolver.isLive()) {
+                    resourceResolver.close();
                 }
             }
-        } catch (RepositoryException e) {
-            LOG.error("Exception in UserPreferencesServlet", e);
-        } finally {
-            if(null != session && session.isLive()){
-                session.logout();
-            }
-            if(null != resourceResolver && resourceResolver.isLive()){
-                resourceResolver.close();
-            }
         }
+
+
         return savedPreferences;
     }
 }
