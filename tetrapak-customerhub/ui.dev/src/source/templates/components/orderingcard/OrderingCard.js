@@ -204,7 +204,7 @@ class OrderingCard {
         template: 'orderingCard',
         url: this.cache.apiUrl,
         ajaxConfig: {
-          method: ajaxMethods.POST
+          method: ajaxMethods.GET
         },
         beforeRender(data) {
           if (!data) {
