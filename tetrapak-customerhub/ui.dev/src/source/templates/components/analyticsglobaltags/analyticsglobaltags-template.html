@@ -1,0 +1,97 @@
+<sly data-sly-template.analyticsglobaltags_template="${@ data, flag}">
+  <script>
+    var digitalData = {
+          pageinfo: {},
+          userinfo: {},
+          error: {}
+        },
+        pageName = "";
+  </script>
+
+  <sly data-sly-test="${data.siteName}">
+    <script>
+      digitalData.pageinfo['siteName'] = "${data.siteName @ context='scriptString'}";
+      pageName += digitalData.pageinfo['siteName'];
+    </script>
+  </sly>
+
+  <script>
+    if(window.location.pathname.slice(1) !== "") {
+      var siteSectios = window.location.pathname.slice(1).split("/");
+      digitalData.pageinfo['channel'] = siteSectios[0];
+
+      for(var i = 0; i < siteSectios.length - 1; i++) {
+        digitalData.pageinfo['siteSection'+(i+1)] = siteSectios[i];
+        pageName += ":"+siteSectios[i];
+      }
+    }
+  </script>
+
+  <sly data-sly-test="${data.pageType}">
+    <script>
+      digitalData.pageinfo['pageType'] = "${data.pageType @ context='scriptString'}";
+      pageName += ":"+digitalData.pageinfo['pageType'];
+    </script>
+  </sly>
+
+  <script>
+    if(pageName.substring(0, 1) == ":") {
+      pageName = pageName.substring(1);
+    }
+    digitalData.pageinfo['pageName'] = pageName;
+  </script>
+
+  <sly data-sly-test="${data.siteCountry}">
+    <script>
+      digitalData.pageinfo['siteCountry'] = "${data.siteCountry @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.siteLanguage}">
+    <script>
+      digitalData.pageinfo['siteLanguage'] = "${data.siteLanguage @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.logInStatus}">
+    <script>
+      digitalData.userinfo['logInStatus'] = "${data.logInStatus @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.salesForceId}">
+    <script>
+      digitalData.userinfo['salesForceId'] = "${data.salesForceId @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.userRoles}">
+    <script>
+      digitalData.userinfo['userRoles'] = "${data.userRoles @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.userCountryCode}">
+    <script>
+      digitalData.userinfo['userCountryCode'] = "${data.userCountryCode @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.userLanguage}">
+    <script>
+      digitalData.userinfo['userLanguage'] = "${data.userLanguage @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.errorcode}">
+    <script>
+      digitalData.error['errorcode'] = "${data.errorcode @ context='scriptString'}";
+    </script>
+  </sly>
+
+  <sly data-sly-test="${data.errortype}">
+    <script>
+      digitalData.error['errortype'] = "${data.errortype @ context='scriptString'}";
+    </script>
+  </sly>
+</sly>

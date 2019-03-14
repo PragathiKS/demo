@@ -1,0 +1,13 @@
+{
+  "siteName": "customerhub",
+  "pageType": "dashboard",
+  "siteCountry": "",
+  "siteLanguage": "en",
+  "logInStatus": "logged-in",
+  "salesForceId": "",
+  "userRoles": "sales manager",
+  "userCountryCode": "",
+  "userLanguage": "",
+  "errorcode": "404",
+  "errortype": "page not found"
+}
