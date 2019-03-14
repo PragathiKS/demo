@@ -15,11 +15,8 @@
           </ul>
         </div>
         <div class="col-lg-3 text-lg-right">
-          <div class="tp-pw-footer__social-media-items">
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaLinkedin}" target="_blank" data-sly-test="${data.socialMediaLinkedin}"><i class="icon-Linkedin"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaFacebook}" target="_blank" data-sly-test="${data.socialMediaFacebook}"><i class="icon-Facebook"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaTwitter}" target="_blank" data-sly-test="${data.socialMediaTwitter}"><i class="icon-Twitter"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaYoutube}" target="_blank" data-sly-test="${data.socialMediaYoutube}"><i class="icon-Youtube"></i></a>
+          <div class="tp-pw-footer__social-media-items" data-sly-list.socialLink="${data.footerSocialLinks}">
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${socialLink.socialMediaLinkPath}" target="_blank" data-sly-test="${socialLink.socialMediaLinkPath}"><i class="${socialLink.socialMediaIconClass}"></i></a>
           </div>
         </div>
       </div>
