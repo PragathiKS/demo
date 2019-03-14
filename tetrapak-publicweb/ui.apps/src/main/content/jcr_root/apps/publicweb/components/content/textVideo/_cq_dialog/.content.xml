@@ -68,11 +68,11 @@
                                         value="damVideo"/>
                                 </items>
                             </videoSource>
-                            <youtubeEmbedURL
+                            <youtubeVideoID
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldLabel="Youtube Embed URL"
-                                name="./youtubeEmbedURL"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Youtube Video ID"
+                                name="./youtubeVideoID"/>
                             <damVideoPath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

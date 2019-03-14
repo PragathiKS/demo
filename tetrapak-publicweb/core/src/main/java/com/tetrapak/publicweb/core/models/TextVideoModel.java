@@ -33,16 +33,20 @@ public class TextVideoModel {
 	private String videoSource;
 
 	@Inject
-	private String youtubeEmbedURL;
+	private String youtubeVideoID;
 	
 	@Inject
 	private String damVideoPath;
-
+	
+	private String youtubeEmbedURL;
+	
 	@PostConstruct
 	protected void init() {
 		if (StringUtils.isNotEmpty(linkURL)) {
 			linkURL = LinkUtils.sanitizeLink(linkURL);
 		}
+		
+		youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID; 
 	}
 
 	public String getTitle() {
@@ -69,6 +73,10 @@ public class TextVideoModel {
 		return videoSource;
 	}
 
+	public String getYoutubeVideoID() {
+		return youtubeVideoID;
+	}
+	
 	public String getYoutubeEmbedURL() {
 		return youtubeEmbedURL;
 	}
