@@ -5,6 +5,7 @@ export const INVALID_OBJECT = 'Function \'fn\' expects a valid configuration obj
 export const PARSE_ERROR = 'Block data could not be parsed';
 export const TEMPLATE_MISSING = 'Target template is missing';
 export const INVALID_URL = 'URL is invalid';
+export const INIT_FAILED = 'One or more components were not initialized';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',

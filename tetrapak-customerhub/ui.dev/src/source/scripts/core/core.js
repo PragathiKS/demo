@@ -9,6 +9,8 @@ import { templates } from '../utils/templates';
 import domReady from '../utils/domReady';
 import './corescss';
 import routing from '../utils/routing';
+import { logger } from '../utils/logger';
+import { INIT_FAILED } from '../utils/constants';
 
 $(function () {
   const $componentReference = $('[data-module]');
@@ -34,5 +36,7 @@ $(function () {
   domReady.init();
   Promise.all(allImports)
     .then(routing.init)
-    .catch(routing.init);
+    .catch(() => {
+      logger.log(INIT_FAILED);
+    });
 });

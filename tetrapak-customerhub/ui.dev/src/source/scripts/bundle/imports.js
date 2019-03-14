@@ -10,10 +10,10 @@ export default function (component, execute) {
   if (Array.isArray(components)) {
     components = components.filter(component => !(/\.spec\.js$/).test(component));
     const matched = components.filter(path => path.includes(`/${component}.js`));
-    let cImportPr = null;
+    let cImportPromise = null;
     if (matched.length === 1) {
-      allImports.push(cImportPr = cImport(matched[0]));
-      cImportPr.then(execute);
+      allImports.push(cImportPromise = cImport(matched[0]));
+      cImportPromise.then(execute);
     } else if (matched.length > 1) {
       const latestVersion = 'v' + matched.map(match => {
         let dir = match.replace(`/${component}.js`);
@@ -24,8 +24,8 @@ export default function (component, execute) {
         && (/v\d+$/).test(latestVersion)
       ) {
         const latestMatch = matched.filter(path => path.includes(`/${latestVersion}/${component}/${component}.js`))[0];
-        allImports.push(cImportPr = cImport(latestMatch));
-        cImportPr.then(execute);
+        allImports.push(cImportPromise = cImport(latestMatch));
+        cImportPromise.then(execute);
       } else {
         logger.error('Something went wrong while importing bundle');
       }
