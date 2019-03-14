@@ -38,32 +38,50 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
         final Map<String, Object> paramMap = new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, TETRAPAK_USER);
         ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory, paramMap);
-        Session session = resource.getResourceResolver().adaptTo(Session.class);
-        String userId = session.getUserID();
-        if (null != resourceResolver) {
-            UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-            try {
-                Authorizable user = userManager.getAuthorizable(userId);
-
-                String path = user.getPath();
-                Resource userResource = resourceResolver.getResource(path);
-                ValueMap map = userResource.getValueMap();
-                if (map.containsKey(ORDER_PREFERENCES)) {
-                    String[] preferences = (String[]) map.get(ORDER_PREFERENCES);
-                    for (String pref : preferences) {
-                        savedPreferences.add(pref);
-                    }
-                }
-            } catch (RepositoryException e) {
-                LOG.error("Exception in UserPreferencesServlet", e);
-            } finally {
-                if (null != resourceResolver && resourceResolver.isLive()) {
-                    resourceResolver.close();
-                }
-            }
+        if (null == resourceResolver) {
+            return savedPreferences;
         }
 
+        Session session = resource.getResourceResolver().adaptTo(Session.class);
+        if (null == session) {
+            return savedPreferences;
+        }
 
+        String userId = session.getUserID();
+        if (null == userId) {
+            return savedPreferences;
+        }
+
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        if (null == userManager) {
+            return savedPreferences;
+        }
+        try {
+            Authorizable user = userManager.getAuthorizable(userId);
+            String path = user.getPath();
+            Resource userResource = resourceResolver.getResource(path);
+            if (null == userResource) {
+                return savedPreferences;
+            }
+            ValueMap map = userResource.getValueMap();
+            savedPreferences = getUpdatedSavedPreferences(savedPreferences, map);
+        } catch (RepositoryException e) {
+            LOG.error("Exception in UserPreferencesServlet", e);
+        } finally {
+            if (null != resourceResolver && resourceResolver.isLive()) {
+                resourceResolver.close();
+            }
+        }
+        return savedPreferences;
+    }
+
+    private Set<String> getUpdatedSavedPreferences(Set<String> savedPreferences, ValueMap map) {
+        if (map.containsKey(ORDER_PREFERENCES)) {
+            String[] preferences = (String[]) map.get(ORDER_PREFERENCES);
+            for (String pref : preferences) {
+                savedPreferences.add(pref);
+            }
+        }
         return savedPreferences;
     }
 }
