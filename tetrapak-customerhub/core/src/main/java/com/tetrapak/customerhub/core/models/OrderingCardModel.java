@@ -84,8 +84,10 @@ public class OrderingCardModel {
         disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
 
-        savedPreferences = userPreferenceService.getSavedPreferences(resource);
-
+        savedPreferences = new LinkedHashSet<>();
+        if(null != userPreferenceService) {
+            savedPreferences = userPreferenceService.getSavedPreferences(resource);
+        }
 
         Map<String, String> i18KeyMap = new HashMap<>();
         i18KeyMap.put("title", titleI18n);
