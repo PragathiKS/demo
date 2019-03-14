@@ -1,0 +1,69 @@
+<sly data-sly-template.analyticsscript_template="${@ data, flag}">
+  var digitalData = {
+        pageinfo: {},
+        userinfo: {},
+        error: {}
+      },
+      pageName = "";
+
+  <sly data-sly-test="${data.siteName}">
+    digitalData.pageinfo['siteName'] = "${data.siteName}";
+    pageName += digitalData.pageinfo['siteName'];
+  </sly>
+
+  if(window.location.pathname.slice(1) !== "") {
+    var siteSections = window.location.pathname.slice(1).split("/");
+    digitalData.pageinfo['channel'] = siteSections[0];
+
+    siteSections.forEach(function (siteSection, index) {
+      digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
+      pageName += ":" + siteSection;
+    });
+  }
+
+  <sly data-sly-test="${data.pageType}">
+    digitalData.pageinfo['pageType'] = "${data.pageType}";
+    pageName += ":"+digitalData.pageinfo['pageType'];
+  </sly>
+
+  if(pageName.substring(0, 1) == ":") {
+    pageName = pageName.substring(1);
+  }
+  digitalData.pageinfo['pageName'] = pageName;
+
+  <sly data-sly-test="${data.siteCountry}">
+    digitalData.pageinfo['siteCountry'] = "${data.siteCountry}";
+  </sly>
+
+  <sly data-sly-test="${data.siteLanguage}">
+    digitalData.pageinfo['siteLanguage'] = "${data.siteLanguage}";
+  </sly>
+
+  <sly data-sly-test="${data.logInStatus}">
+    digitalData.userinfo['logInStatus'] = "${data.logInStatus}";
+  </sly>
+
+  <sly data-sly-test="${data.salesForceId}">
+     digitalData.userinfo['salesForceId'] = "${data.salesForceId}";
+  </sly>
+
+  <sly data-sly-test="${data.userRoles}">
+    digitalData.userinfo['userRoles'] = "${data.userRoles}";
+  </sly>
+
+  <sly data-sly-test="${data.userCountryCode}">
+    digitalData.userinfo['userCountryCode'] = "${data.userCountryCode}";
+  </sly>
+
+  <sly data-sly-test="${data.userLanguage}">
+    digitalData.userinfo['userLanguage'] = "${data.userLanguage}";
+  </sly>
+
+  <sly data-sly-test="${data.errorcode}">
+    digitalData.error['errorcode'] = "${data.errorcode}";
+  </sly>
+
+  <sly data-sly-test="${data.errortype}">
+    digitalData.error['errortype'] = "${data.errortype}";
+  </sly>
+</sly>

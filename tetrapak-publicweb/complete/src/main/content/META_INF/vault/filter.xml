@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/publicweb/install" mode="merge"/>
+    <filter root="/apps/publicweb/install" mode="replace"/>
 	</workspaceFilter>

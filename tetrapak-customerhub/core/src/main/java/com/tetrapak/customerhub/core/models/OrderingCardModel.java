@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,6 +13,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,10 +48,19 @@ public class OrderingCardModel {
     private String saveErrorI18n;
 
     @Inject
+    private String noDataI18n;
+
+    @Inject
+    private String dataErrorI18n;
+
+    @Inject
     private String allOrdersLink;
 
     @OSGiService
     APIGEEService apigeeService;
+
+    @OSGiService
+    UserPreferenceService userPreferenceService;
 
     private String i18nKeys;
 
@@ -65,19 +76,20 @@ public class OrderingCardModel {
 
     @PostConstruct
     protected void init() {
+        defaultFields = new LinkedHashSet<>();
         defaultFields.add("orderNumber");
         defaultFields.add("poNumber");
         defaultFields.add("orderDate");
 
+        disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
 
-        savedPreferences.add("orderNumber");
-        savedPreferences.add("poNumber");
-        savedPreferences.add("orderDate");
-        savedPreferences.add("status");
-        savedPreferences.add("contact");
+        savedPreferences = new LinkedHashSet<>();
+        if(null != userPreferenceService) {
+            savedPreferences = userPreferenceService.getSavedPreferences(resource);
+        }
 
-        Map<String, String> i18KeyMap = new HashMap();
+        Map<String, String> i18KeyMap = new HashMap<>();
         i18KeyMap.put("title", titleI18n);
         i18KeyMap.put("preferencesTitle", preferencesTitleI18n);
         i18KeyMap.put("preferencesDescription", preferencesDescriptionI18n);
@@ -86,6 +98,8 @@ public class OrderingCardModel {
         i18KeyMap.put("closeBtn", closeBtnI18n);
         i18KeyMap.put("preferencesBtn", preferencesBtnI18n);
         i18KeyMap.put("saveError", saveErrorI18n);
+        i18KeyMap.put("noData", noDataI18n);
+        i18KeyMap.put("dataError", dataErrorI18n);
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
     }
@@ -100,7 +114,7 @@ public class OrderingCardModel {
     }
 
     public String getPreferencesURL() {
-        return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
+        return resource.getPath() + ".preference.json";
     }
 
     public Set<String> getSavedPreferences() {
