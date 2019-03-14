@@ -7,6 +7,9 @@
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <sly data-sly-include="customheaderlibs.html"></sly>
+    <sly data-sly-test="${page.hasCloudconfigSupport}">
+    	<script>//prehiding snippet for Adobe Target with asynchronous Launch deployment(function(g,b,d,f){(function(a,c,d){if(a){vare=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3);</script>
+    </sly>
     <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
                                 staticDesignPath   = page.staticDesignPath,

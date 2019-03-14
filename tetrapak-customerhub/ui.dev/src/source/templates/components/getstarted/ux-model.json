@@ -1,23 +1,26 @@
 {
   "headingI18n": "cuhu.getstarted.heading",
+  "cols": 3,
   "getStartedList": [
     {
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
       "imageAltI18n": "cuhu.getstarted.businessalttext",
       "titleI18n": "cuhu.getstarted.businesstitle",
-      "descriptionI18n": "cuhu.getstarted.businessdescription"
+      "descriptionI18n": "<b>Bold Text</b> With Simple text",
+      "linkTextI18n": "Learn more",
+      "linkUrl": "https://www.tetrapak.com"
+    },
+    {
+      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext",
+      "titleI18n": "cuhu.getstarted.businesstitle",
+      "descriptionI18n": "<b>Bold Text</b> With Simple text"
     },
     {
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
       "imageAltI18n": "cuhu.getstarted.notificationalttext",
       "titleI18n": "cuhu.getstarted.notificationtitle",
       "descriptionI18n": "cuhu.getstarted.notificationdescription"
-    },
-    {
-      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
-      "imageAltI18n": "cuhu.getstarted.experiencealttext",
-      "titleI18n": "cuhu.getstarted.experiencetitle",
-      "descriptionI18n": "cuhu.getstarted.experiencedescription"
     }
   ]
 }

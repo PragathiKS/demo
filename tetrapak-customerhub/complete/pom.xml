@@ -62,6 +62,7 @@
                 <configuration>
                 	<failOnError>true</failOnError>
 					<failOnEmptyFilter>false</failOnEmptyFilter>
+                    <failOnDependencyErrors>false</failOnDependencyErrors>
                     <embeddeds>
 						<embedded>
                             <groupId>tetrapak</groupId>

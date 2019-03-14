@@ -89,6 +89,7 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
 				<configuration>
+				<failOnDependencyErrors>false</failOnDependencyErrors>
                     <embeddeds>
                         <embedded>
                             <groupId>tetrapak</groupId>
@@ -109,6 +110,7 @@
                 <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+					<filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
                     <group>tetrapak-customerhub</group>
