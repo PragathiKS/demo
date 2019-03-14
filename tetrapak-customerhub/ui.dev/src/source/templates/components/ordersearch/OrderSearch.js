@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import routing from '../../../scripts/utils/routing';
 
 /**
  * Processes data before rendering
@@ -45,6 +46,7 @@ class OrderSearch {
     } catch (err) {
       logger.error(err.message);
     }
+    routing.push('OrderSearch');
   }
 }
 

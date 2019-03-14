@@ -3,11 +3,12 @@ import 'core-js/features/promise';
 import 'core-js/features/array/includes';
 import $ from 'jquery';
 // Local imports
-import bundleImport from '../bundle/imports';
+import bundleImport, { allImports } from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';
 import domReady from '../utils/domReady';
 import './corescss';
+import routing from '../utils/routing';
 
 $(function () {
   const $componentReference = $('[data-module]');
@@ -31,4 +32,7 @@ $(function () {
     });
   });
   domReady.init();
+  Promise.all(allImports)
+    .then(routing.init)
+    .catch(routing.init);
 });
