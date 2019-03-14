@@ -25,18 +25,18 @@
         cursor: pointer;
     }
     &__cell {
+        @include padding($padding-sm $padding-sm $padding-sm 0);
+        @include font-size($font-sm);
+        @include line-height(24px, $font-sm);
+        border-bottom: 1px solid $color-mercury;
         &heading {
             @include padding($padding-sm $padding-l $padding-sm 0);
             @include font-size($font-baseline);
             @include line-height(24px, $font-baseline);
             border-bottom: 1px solid $color-boulder;
-            font-family: $font;
+            font-family: $font-bold;
             font-weight: normal;
             position: relative;
         }
-        @include padding($padding-sm 0);
-        @include font-size($font-sm);
-        @include line-height(24px, $font-sm);
-        border-bottom: 1px solid $color-mercury;
     }
 }

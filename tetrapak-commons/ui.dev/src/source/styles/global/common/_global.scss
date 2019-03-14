@@ -167,6 +167,16 @@ td {
         @include padding-left(15px);
         @include padding-right(15px);
     }
+    .row {
+        .tp-column__sidenav {
+            padding-left: 0;
+        }
+    }
+}
+
+// Top margin for content as we have fixed header
+.tp-column__content {
+    @include margin-top(112px);
 }
 
 // Classes for Wrapping icons

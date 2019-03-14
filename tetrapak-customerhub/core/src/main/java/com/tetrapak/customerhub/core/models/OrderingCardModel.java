@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -8,7 +10,12 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderingCardModel {
@@ -27,63 +34,76 @@ public class OrderingCardModel {
 
     @Inject
     private String allOrdersI18n;
-    
+
     @Inject
     private String saveSettingsI18n;
-    
+
     @Inject
     private String closeBtnI18n;
-    
+
     @Inject
     private String preferencesBtnI18n;
-    
+
     @Inject
     private String saveErrorI18n;
-    
+
+    @Inject
+    private String noDataI18n;
+
+    @Inject
+    private String dataErrorI18n;
+
     @Inject
     private String allOrdersLink;
 
     @OSGiService
     APIGEEService apigeeService;
-    
-    private String [] savedPreferences ;
+
+    @OSGiService
+    UserPreferenceService userPreferenceService;
+
+    private String i18nKeys;
+
+    private Set<String> savedPreferences;
+
+    private Set<String> defaultFields;
+
+    private Set<String> disabledFields;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
-    
+
     private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
-    
-    
-    public String getTitleI18n() {
-        return titleI18n;
+
+    @PostConstruct
+    protected void init() {
+        defaultFields = new LinkedHashSet<>();
+        defaultFields.add("orderNumber");
+        defaultFields.add("poNumber");
+        defaultFields.add("orderDate");
+
+        disabledFields = new LinkedHashSet<>();
+        disabledFields.add("contact");
+
+        savedPreferences = new LinkedHashSet<>();
+        if(null != userPreferenceService) {
+            savedPreferences = userPreferenceService.getSavedPreferences(resource);
+        }
+
+        Map<String, String> i18KeyMap = new HashMap<>();
+        i18KeyMap.put("title", titleI18n);
+        i18KeyMap.put("preferencesTitle", preferencesTitleI18n);
+        i18KeyMap.put("preferencesDescription", preferencesDescriptionI18n);
+        i18KeyMap.put("allOrders", allOrdersI18n);
+        i18KeyMap.put("saveSettings", saveSettingsI18n);
+        i18KeyMap.put("closeBtn", closeBtnI18n);
+        i18KeyMap.put("preferencesBtn", preferencesBtnI18n);
+        i18KeyMap.put("saveError", saveErrorI18n);
+        i18KeyMap.put("noData", noDataI18n);
+        i18KeyMap.put("dataError", dataErrorI18n);
+        Gson gson = new Gson();
+        i18nKeys = gson.toJson(i18KeyMap);
     }
 
-    public String getPreferencesTitleI18n() {
-        return preferencesTitleI18n;
-    }
-
-    public String getPreferencesDescriptionI18n() {
-        return preferencesDescriptionI18n;
-    }
-
-    public String getAllOrdersI18n() {
-        return allOrdersI18n;
-    }
-
-    public String getSaveSettingsI18n() {
-        return saveSettingsI18n;
-    }
-
-    public String getCloseBtnI18n() {
-        return closeBtnI18n;
-    }
-
-    public String getPreferencesBtnI18n() {
-        return preferencesBtnI18n;
-    }
-
-    public String getSaveErrorI18n() {
-        return saveErrorI18n;
-    }
 
     public String getAllOrdersLink() {
         return allOrdersLink;
@@ -94,11 +114,22 @@ public class OrderingCardModel {
     }
 
     public String getPreferencesURL() {
-        return GlobalUtil.getPreferencesURL(apigeeService, PREFERENCES_JSON);
+        return resource.getPath() + ".preference.json";
     }
 
-    public String [] getSavedPreferences() {
+    public Set<String> getSavedPreferences() {
         return savedPreferences;
     }
 
+    public Set<String> getDefaultFields() {
+        return defaultFields;
+    }
+
+    public Set<String> getDisabledFields() {
+        return disabledFields;
+    }
+
+    public String getI18nKeys() {
+        return i18nKeys;
+    }
 }
