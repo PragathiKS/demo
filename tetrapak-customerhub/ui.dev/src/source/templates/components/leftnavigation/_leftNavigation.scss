@@ -8,17 +8,19 @@
         overflow-y: scroll;
     }
     &__overlay {
-        background-color: transparent;
+        background-color: rgba(6, 6, 6, 0);
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        transition: background-color $anim-speed-normal;
+        transition: z-index $anim-speed-normal;
+        transition-delay: $anim-speed-normal;
         z-index: $zindex-hide;
         &.color-transform {
             z-index: $zindex-nav;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(6, 6, 6, 0.5);
+            transition: z-index 0s, background-color 0s;
         }
         @media #{$desktop} {
             @include max-width(224px);
@@ -43,7 +45,6 @@
         }
         @media #{$desktop} {
             @include max-width(224px);
-            @include border-radius(0 $border-radius $border-radius 0);
             width: auto;
             transform: translateX(0);
         }
