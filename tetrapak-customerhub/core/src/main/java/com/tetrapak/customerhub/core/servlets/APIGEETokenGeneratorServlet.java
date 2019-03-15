@@ -23,7 +23,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Base64;
 
 @Component(service = Servlet.class,
@@ -56,8 +55,8 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         httpUrlConnection.setRequestProperty("Authorization", "Basic " + authBytes.toString());
         httpUrlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         httpUrlConnection.setRequestProperty("Accept", "application/json");
-        httpUrlConnection.setRequestProperty("grant_type","client_credentials");
-        
+        httpUrlConnection.setDoOutput(true);
+
         String str =  "grant_type:client_credentials";
         byte[] outputInBytes = str.getBytes("UTF-8");
         
