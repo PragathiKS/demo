@@ -51,7 +51,9 @@ class OrderSearch {
       }
     });
   }
-  renderFilters = (...args) => _renderFilters.apply(this, args);
+  renderFilters() {
+    return _renderFilters.apply(this, arguments);
+  }
   init() {
     /* Mandatory method */
     this.initCache();
