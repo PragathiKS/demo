@@ -1,0 +1,79 @@
+.pw-banner {
+    $self: &;
+    position: relative;
+
+    &__image {
+        @include border-radius($border-radius);
+        width: 100%;
+    }
+    &__image-mobile {
+        display: block;
+        width: 100%;
+
+        @media #{$desktop} {
+            display: none;
+        }
+    }
+    &__image-desktop {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }
+    }
+    &__content {
+        @include border-radius($border-radius);
+        @include margin-top(-4px);
+        @include padding($padding-l+4px $padding-md $padding-l);
+        background-color: $color-white;
+
+        @media #{$desktop} {
+            @include margin-top(0);
+            color: $color-white;
+            background-color: transparent;
+            left: $margin-xxl;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(50% - #{convert-to-rem(24px)});
+        }
+
+        &__title,
+        &__description {
+            @include margin-bottom($padding-md);
+            overflow: hidden;
+
+            @media #{$desktop} {
+                @include margin-bottom($padding-l);
+            }
+        }
+
+        &__subtitle {
+            @include font-size($font-sm);
+            @include line-height(20px, $font-sm);
+        }
+        &__title {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            font-family: $font-light;
+            max-height: $font-xl*2;
+
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                @include line-height(40px, $font-xl);
+                max-height: 40px*2;
+            }
+        }
+        &__description {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            max-height: $font-l*5;
+        }
+    }
+    &--right {
+        #{ $self }__content {
+            left: auto;
+            right: $margin-xxl;
+        }
+    }
+}

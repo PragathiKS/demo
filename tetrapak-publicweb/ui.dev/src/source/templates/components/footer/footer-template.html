@@ -10,22 +10,19 @@
         <div class="col-lg-6 text-lg-center">
           <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems="${data.footerNavigationLinks}" style="justify-content: space-between;">
             <li class="tp-pw-footer__navigation-list__item">
-              <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}" target="${navigationItems.targetBlank ? '_blank' : ''}">${navigationItems.linkTextI18n}</a>
+              <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}" target="${navigationItems.targetBlank ? '_blank' : ''}">${navigationItems.linkTextI18n @ i18n}</a>
             </li>
           </ul>
         </div>
         <div class="col-lg-3 text-lg-right">
-          <div class="tp-pw-footer__social-media-items">
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaLinkedin}" target="_blank" data-sly-test="${data.socialMediaLinkedin}"><i class="icon-Linkedin"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaFacebook}" target="_blank" data-sly-test="${data.socialMediaFacebook}"><i class="icon-Facebook"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaTwitter}" target="_blank" data-sly-test="${data.socialMediaTwitter}"><i class="icon-Twitter"></i></a>
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${data.socialMediaYoutube}" target="_blank" data-sly-test="${data.socialMediaYoutube}"><i class="icon-Youtube"></i></a>
+          <div class="tp-pw-footer__social-media-items" data-sly-list.socialLink="${data.footerSocialLinks}">
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link" href="${socialLink.socialMediaLinkPath}" target="_blank" data-sly-test="${socialLink.socialMediaLinkPath}"><i class="${socialLink.socialMediaIconClass}"></i></a>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col text-center">
-          <a href="#" class="tp_textBtn tp-pw-footer__link">${data.ctaLabelI18n} <i class="icon-Circle_Arrow_Up"></i></a>
+          <a href="#" class="tp_textBtn tp-pw-footer__link">${data.ctaLabelI18n @ i18n} <i class="icon-Circle_Arrow_Up"></i></a>
         </div>
       </div>
     </div>
