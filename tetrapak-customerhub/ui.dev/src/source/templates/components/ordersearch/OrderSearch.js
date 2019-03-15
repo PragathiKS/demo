@@ -72,11 +72,10 @@ class OrderSearch {
     this.cache.$submitButton = this.root.find('.js-order-search__submit');
   }
   bindPostEvents() {
-    this.cache.$submitButton.on('click', () => {
-      _trackAnalytics.call(this);
-    });
+    this.cache.$submitButton.on('click', this.trackAnalytics);
   }
   renderFilters = (...args) => _renderFilters.apply(this, args);
+  trackAnalytics = () => _trackAnalytics.call(this);
   init() {
     this.initCache();
     this.bindEvents();
