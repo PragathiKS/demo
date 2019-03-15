@@ -1,10 +1,10 @@
-<form>
-    {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="date-range" label=this.dateRangeLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__date-range" dataLocator="calendar-picker" readonly=true }}
-    {{> atoms/dropdown/dropdown defaultValue=this.allStatusesTextI18n options=this.summary.status name="order-status" label=this.orderStatusLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__order-status" dataLocator="status-drpdwn" }}
-    {{> atoms/dropdown/dropdown defaultValue=this.allAddressesTextI18n options=this.summary.deliveryAddress name="delivery-address" label=this.deliveryAddressLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__delivery-address" dataLocator="address-drpdwn" }}
+<form class="js-order-search__filters">
+    {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.dateRangeLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__date-range" dataLocator="calendar-picker" readonly=true }}
+    {{> atoms/dropdown/dropdown defaultValue=this.allStatusesTextI18n options=this.summary.status name="orderstatus" label=this.orderStatusLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__order-status" dataLocator="status-drpdwn" }}
+    {{> atoms/dropdown/dropdown defaultValue=this.allAddressesTextI18n options=this.summary.deliveryAddress name="deliveryaddress" label=this.deliveryAddressLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__delivery-address" dataLocator="address-drpdwn" }}
 
     <div class="tp-order-search__flex-container">
-        {{> atoms/input/input name="search-term" label=this.searchInputLabelI18n eleClasses="tp-order-search__search-term" dataLocator="search-input" placeholder=this.searchTermPlaceholderI18n }}
+        {{> atoms/input/input name="search" label=this.searchInputLabelI18n eleClasses="tp-order-search__search-term" dataLocator="search-input" placeholder=this.searchTermPlaceholderI18n }}
         {{> atoms/buttons/primaryButton/buttons buttonType="reset" btnText=this.resetButtonTextI18n btnClasses="tpatom-button--secondary"  dataLocator="search-reset-btn" }}
         {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonTextI18n btnClasses="tpatom-button--primary" iconClass="icon-Chevron_Right" dataLocator="search-order-btn" }}
     </div>

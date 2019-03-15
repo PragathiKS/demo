@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import { route } from 'jqueryrouter';
+import { router, route } from 'jqueryrouter';
+import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import routing from '../../../scripts/utils/routing';
 
 /**
  * Processes data before rendering
@@ -11,10 +11,39 @@ import routing from '../../../scripts/utils/routing';
  */
 function _processOrderSearchData(data) {
   data = $.extend(true, data, this.cache.config);
-  data.dateRange = `${data.summary.filterStartDate} - ${data.summary.filterEndDate}`;
+  const { filterStartDate, filterEndDate } = data.summary;
+  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
   return data;
 }
 
+/**
+ * Render table based on selected filters
+ */
+function _renderTable() {
+  this.cache.$filters = $('.js-order-search__filters');
+  const filters = this.cache.$filters.serialize();
+  const filterProp = deparam(filters);
+  if (filterProp.daterange) {
+    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
+    filterProp['orderdate-from'] = orderdateFrom.trim();
+    filterProp['orderdate-to'] = orderdateTo.trim();
+    delete filterProp.daterange;
+  }
+  this.cache.defaultParams = filterProp;
+  Object.keys(filterProp).forEach(key => {
+    if (!filterProp[key]) {
+      delete filterProp[key];
+    }
+  });
+  router.set({
+    route: '#/orders',
+    queryString: $.param(filterProp)
+  }, true);
+}
+
+/**
+ * Renders filter section
+ */
 function _renderFilters() {
   const { config } = this.cache;
   render.fn({
@@ -25,7 +54,7 @@ function _renderFilters() {
       method: ajaxMethods.POST
     },
     beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-  });
+  }, () => this.renderTable());
 }
 
 class OrderSearch {
@@ -45,20 +74,23 @@ class OrderSearch {
   }
   bindEvents() {
     route((...args) => {
-      const [info] = args;
+      const [info, , query] = args;
       if (info.hash) {
-        this.renderFilters();
+        logger.log(query);
       }
     });
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
+  renderTable() {
+    return _renderTable.apply(this, arguments);
+  }
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    routing.push('OrderSearch');
+    this.renderFilters();
   }
 }
 
