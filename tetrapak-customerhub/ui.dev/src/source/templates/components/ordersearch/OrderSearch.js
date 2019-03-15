@@ -20,7 +20,8 @@ function _processOrderSearchData(data) {
  * Fire analytics on search submit
  */
 function _trackAnalytics() {
-  let analyticsData = `${this.cache.dateRangeEle.val()}|${this.cache.statusEle.val()}|${this.cache.addressEle.val()}|${this.cache.searchInputEle.val()}`;
+  const { $dateRange, $status, $address, $searchInput } = this.cache;
+  let analyticsData = `${$dateRange.val()}|${$status.val()}|${$address.val()}|${$searchInput.val()}`;
   trackAnalytics(analyticsData, 'SearchOrders');
 }
 
@@ -64,14 +65,14 @@ class OrderSearch {
     });
   }
   initPostCache() {
-    this.cache.dateRangeEle = this.root.find('.js-order-search__date-range');
-    this.cache.statusEle = this.root.find('.js-order-search__order-status');
-    this.cache.addressEle = this.root.find('.js-order-search__delivery-address');
-    this.cache.searchInputEle = this.root.find('.js-order-search__search-term');
-    this.cache.submitButton = this.root.find('.js-order-search__submit');
+    this.cache.$dateRange = this.root.find('.js-order-search__date-range');
+    this.cache.$status = this.root.find('.js-order-search__order-status');
+    this.cache.$address = this.root.find('.js-order-search__delivery-address');
+    this.cache.$searchInput = this.root.find('.js-order-search__search-term');
+    this.cache.$submitButton = this.root.find('.js-order-search__submit');
   }
   bindPostEvents() {
-    this.cache.submitButton.on('click', () => {
+    this.cache.$submitButton.on('click', () => {
       _trackAnalytics.call(this);
     });
   }
