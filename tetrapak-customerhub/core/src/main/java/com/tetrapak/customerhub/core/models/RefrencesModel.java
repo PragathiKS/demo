@@ -30,7 +30,9 @@ public class RefrencesModel {
 	 */
     public String getContentPath() {
     	String path = contentPath;
-    	path = path.replace("/global", "/"+null!=locale?locale:"global");
+    	if (null != path) {
+    		path = path.replace("/global", "/"+null!=locale?locale:"global");
+    	}
         return path;
     }
     
