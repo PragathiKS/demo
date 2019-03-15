@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +47,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         logger.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         JsonObject jsonResponse = new JsonObject();
-        final String apiURL = apigeeService.getApigeeServiceUrl();
+        final String apiURL = apigeeService.getApigeeServiceUrl() + "/oauth2/v2/token";
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
 
