@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,6 +40,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         logger.debug("HTTP GET request from APIGEETokenGeneratorServlet");
+        JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl();
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
@@ -48,20 +51,28 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         URL url = new URL(apiURL);
         URLConnection urlConnection = url.openConnection();
         urlConnection.setRequestProperty("Authorization", "Basic " + authBytes.toString());
-        InputStream is = urlConnection.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
+        try {
+            InputStream is = urlConnection.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
 
-        int numCharsRead;
-        char[] charArray = new char[1024];
-        StringBuffer sb = new StringBuffer();
-        while ((numCharsRead = isr.read(charArray)) > 0) {
-            sb.append(charArray, 0, numCharsRead);
+            int numCharsRead;
+            char[] charArray = new char[1024];
+            StringBuffer sb = new StringBuffer();
+            while ((numCharsRead = isr.read(charArray)) > 0) {
+                sb.append(charArray, 0, numCharsRead);
+            }
+            String result = sb.toString();
+
+
+            jsonResponse.addProperty("result", result);
+            jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
+            GlobalUtil.writeJsonResponse(response, jsonResponse);
         }
-        String result = sb.toString();
-
-        JsonObject jsonResponse = new JsonObject();
-        jsonResponse.addProperty("result", result);
-        jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
-        GlobalUtil.writeJsonResponse(response, jsonResponse);
+        catch(FileNotFoundException e){
+            logger.error("Unable to connect to the url {}",apiURL, e);
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_FAILURE);
+            GlobalUtil.writeJsonResponse(response, jsonResponse);
+        }
     }
 }
