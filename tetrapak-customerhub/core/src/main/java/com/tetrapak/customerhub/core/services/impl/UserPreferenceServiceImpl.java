@@ -25,7 +25,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 
     private static final String TETRAPAK_USER = "customerhubUser";
 
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private static final String ORDER_PREFERENCES = "orderPreferences";
 
@@ -66,7 +66,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
             ValueMap map = userResource.getValueMap();
             savedPreferences = getUpdatedSavedPreferences(savedPreferences, map);
         } catch (RepositoryException e) {
-            LOG.error("Exception in UserPreferencesServlet", e);
+            logger.error("Exception in UserPreferencesServlet", e);
         } finally {
             if (null != resourceResolver && resourceResolver.isLive()) {
                 resourceResolver.close();
