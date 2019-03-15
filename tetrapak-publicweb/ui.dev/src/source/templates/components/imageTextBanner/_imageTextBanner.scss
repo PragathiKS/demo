@@ -1,12 +1,10 @@
-@import '~tpCommon/styles/global/common/vars';
-@import '~tpCommon/styles/global/common/mixins';
-
 .pw-banner {
     $self: &;
     position: relative;
 
     &__image {
         @include border-radius($border-radius);
+        width: 100%;
     }
     &__image-mobile {
         display: block;
@@ -37,15 +35,16 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: calc(50% - 24px);
+            width: calc(50% - #{convert-to-rem(24px)});
         }
 
         &__title,
         &__description {
-            @include padding-bottom($padding-md);
+            @include margin-bottom($padding-md);
+            overflow: hidden;
 
             @media #{$desktop} {
-                @include padding-bottom($padding-l);
+                @include margin-bottom($padding-l);
             }
         }
 
@@ -57,15 +56,18 @@
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);
             font-family: $font-light;
+            max-height: $font-xl*2;
 
             @media #{$desktop} {
                 @include font-size($font-xl);
                 @include line-height(40px, $font-xl);
+                max-height: 40px*2;
             }
         }
         &__description {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
+            max-height: $font-l*5;
         }
     }
     &--right {
