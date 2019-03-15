@@ -4,6 +4,14 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -20,9 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.Base64;
 
 @Component(service = Servlet.class,
@@ -47,27 +53,27 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         final String password = apigeeService.getApigeeClientSecret();
 
         String authString = username + ":" + password;
-        byte[] authBytes = Base64.getEncoder().encode(authString.getBytes());
+        String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 
-        URL url = new URL(apiURL);
-        HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
-        httpUrlConnection.setRequestMethod(HttpConstants.METHOD_POST);
-        httpUrlConnection.setRequestProperty("Authorization", "Basic " + authBytes.toString());
-        httpUrlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        httpUrlConnection.setRequestProperty("Accept", "application/json");
-        httpUrlConnection.setDoOutput(true);
+        HttpPost postRequest = new HttpPost(apiURL);
+        postRequest.addHeader("Authorization", "Basic " + encodedAuthString);
+        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        postRequest.addHeader("Accept", "application/json");
+        ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
+        postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
-        String str =  "grant_type:client_credentials";
-        byte[] outputInBytes = str.getBytes("UTF-8");
-        
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        int statusCode = HttpStatus.SC_NOT_FOUND;
         try {
-            OutputStream os = httpUrlConnection.getOutputStream();
-            os.write( outputInBytes );    
-            os.close();
-            
-            InputStream is = httpUrlConnection.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
+            HttpResponse httpResponse = httpClient.execute(postRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
+            response.setStatus(statusCode);
+            logger.debug("Http Post request status code: {}", statusCode);
 
+            InputStream is = httpResponse.getEntity().getContent();
+
+            InputStreamReader isr = new InputStreamReader(is);
             int numCharsRead;
             char[] charArray = new char[1024];
             StringBuffer sb = new StringBuffer();
@@ -76,14 +82,12 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             }
             String result = sb.toString();
 
-
             jsonResponse.addProperty("result", result);
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
             GlobalUtil.writeJsonResponse(response, jsonResponse);
-        }
-        catch(FileNotFoundException e){
-            logger.error("Unable to connect to the url {}",apiURL, e);
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        } catch (FileNotFoundException e) {
+            logger.error("Unable to connect to the url {}", apiURL, e);
+            response.setStatus(statusCode);
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_FAILURE);
             GlobalUtil.writeJsonResponse(response, jsonResponse);
         }
