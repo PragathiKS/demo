@@ -20,6 +20,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Base64;
@@ -49,10 +51,22 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         byte[] authBytes = Base64.getEncoder().encode(authString.getBytes());
 
         URL url = new URL(apiURL);
-        URLConnection urlConnection = url.openConnection();
-        urlConnection.setRequestProperty("Authorization", "Basic " + authBytes.toString());
+        HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
+        httpUrlConnection.setRequestMethod(HttpConstants.METHOD_POST);
+        httpUrlConnection.setRequestProperty("Authorization", "Basic " + authBytes.toString());
+        httpUrlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        httpUrlConnection.setRequestProperty("Accept", "application/json");
+        httpUrlConnection.setRequestProperty("grant_type","client_credentials");
+        
+        String str =  "grant_type:client_credentials";
+        byte[] outputInBytes = str.getBytes("UTF-8");
+        
         try {
-            InputStream is = urlConnection.getInputStream();
+            OutputStream os = httpUrlConnection.getOutputStream();
+            os.write( outputInBytes );    
+            os.close();
+            
+            InputStream is = httpUrlConnection.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
 
             int numCharsRead;
