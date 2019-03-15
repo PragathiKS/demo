@@ -11,8 +11,21 @@ import routing from '../../../scripts/utils/routing';
  */
 function _processOrderSearchData(data) {
   data = $.extend(true, data, this.cache.config);
-  data['dateRange'] = `${data.summary.filterStartDate} - ${data.summary.filterEndDate}`;
+  data.dateRange = `${data.summary.filterStartDate} - ${data.summary.filterEndDate}`;
   return data;
+}
+
+function _renderFilters() {
+  const { config } = this.cache;
+  render.fn({
+    template: 'orderSearch',
+    url: config.apiURL,
+    target: '.js-order-search__form',
+    ajaxConfig: {
+      method: ajaxMethods.POST
+    },
+    beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+  });
 }
 
 class OrderSearch {
@@ -34,19 +47,11 @@ class OrderSearch {
     route((...args) => {
       const [info] = args;
       if (info.hash) {
-        const { config } = this.cache;
-        render.fn({
-          template: 'orderSearch',
-          url: config.apiURL,
-          target: '.js-order-search__form',
-          ajaxConfig: {
-            method: ajaxMethods.POST
-          },
-          beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-        });
+        this.renderFilters();
       }
     });
   }
+  renderFilters = (...args) => _renderFilters.apply(this, args);
   init() {
     /* Mandatory method */
     this.initCache();
