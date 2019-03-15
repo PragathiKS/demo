@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
 import com.day.cq.commons.inherit.InheritanceValueMap;
 import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
+import com.tetrapak.publicweb.core.beans.SocialLinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class)
@@ -26,42 +27,63 @@ public class FooterModel {
 	private Resource resource;
 
 	private String ctaLabelI18n;
-	private String socialMediaLinkedin;
-	private String socialMediaFacebook;
-	private String socialMediaTwitter;
-	private String socialMediaYoutube;
+	private List<SocialLinkBean> footerSocialLinks = new ArrayList<>();
 	private List<NavigationLinkBean> footerNavigationLinks = new ArrayList<>();
 
 	@PostConstruct
 	protected void init() {
 		InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
 		ctaLabelI18n = inheritanceValueMap1.getInherited("ctaLabelI18n", String.class);
-		socialMediaLinkedin = inheritanceValueMap1.getInherited("socialMediaLinkedin", String.class);
-		socialMediaFacebook = inheritanceValueMap1.getInherited("socialMediaFacebook", String.class);
-		socialMediaTwitter = inheritanceValueMap1.getInherited("socialMediaTwitter", String.class);
-		socialMediaYoutube = inheritanceValueMap1.getInherited("socialMediaYoutube", String.class);
 		String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
+		String[] socialLinks = inheritanceValueMap1.getInherited("footerSocialLinks", String[].class);
+		setSocialLinks(socialLinks);
 		LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, log);
+	}
+
+	/**
+	 * Method to get multi field social link items.
+	 * 
+	 */
+	public void setSocialLinks(String[] socialLinks) {
+		@SuppressWarnings("deprecation")
+		JSONObject jObj;
+		try {
+			if (socialLinks == null) {
+				log.error("socialLinks is NULL");
+				return;
+			}
+
+			if (socialLinks != null) {
+				for (int i = 0; i < socialLinks.length; i++) {
+					jObj = new JSONObject(socialLinks[i]);
+					SocialLinkBean bean = new SocialLinkBean();
+
+					String socialMedia = "";
+					String socialMediaLinkPath = "";
+					if (jObj.has("socialMedia")) {
+						socialMedia = jObj.getString("socialMedia");
+					}
+					if (jObj.has("socialMediaLinkPath")) {
+						socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
+					}
+
+					bean.setSocialMediaLinkPath(socialMediaLinkPath);
+					bean.setSocialMediaIconClass("icon-" + socialMedia);
+					footerSocialLinks.add(bean);
+
+				}
+			}
+		} catch (Exception e) {
+			log.error("Exception while Multifield data {}", e.getMessage(), e);
+		}
 	}
 
 	public String getCtaLabelI18n() {
 		return ctaLabelI18n;
 	}
 
-	public String getSocialMediaLinkedin() {
-		return socialMediaLinkedin;
-	}
-
-	public String getSocialMediaFacebook() {
-		return socialMediaFacebook;
-	}
-
-	public String getSocialMediaTwitter() {
-		return socialMediaTwitter;
-	}
-
-	public String getSocialMediaYoutube() {
-		return socialMediaYoutube;
+	public List<SocialLinkBean> getFooterSocialLinks() {
+		return footerSocialLinks;
 	}
 
 	public List<NavigationLinkBean> getFooterNavigationLinks() {

@@ -1,0 +1,15 @@
+.tpatom-button {
+    @include border-radius($border-radius);
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-baseline);
+    @include padding($padding-sm $padding-md 10px);
+    background-color: $color-wild-sand;
+
+    &:hover {
+        background-color: $color-mercury;
+    }
+
+    &__icon {
+        @include padding-left($padding-xs);
+    }
+}

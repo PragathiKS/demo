@@ -4,6 +4,7 @@ import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Processes data before rendering
@@ -42,6 +43,15 @@ function _renderTable() {
 }
 
 /**
+ * Fire analytics on search submit
+ */
+function _trackAnalytics() {
+  const { $dateRange, $status, $address, $searchInput } = this.cache;
+  let analyticsData = `${$dateRange.val()}|${$status.val()}|${$address.val()}|${$searchInput.val()}`;
+  trackAnalytics(analyticsData, 'SearchOrders');
+}
+
+/**
  * Renders filter section
  */
 function _renderFilters() {
@@ -54,7 +64,11 @@ function _renderFilters() {
       method: ajaxMethods.POST
     },
     beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-  }, () => this.renderTable());
+  }, () => {
+    this.renderTable();
+    this.initPostCache();
+    this.bindPostEvents();
+  });
 }
 
 class OrderSearch {
@@ -86,8 +100,18 @@ class OrderSearch {
   renderTable() {
     return _renderTable.apply(this, arguments);
   }
+  initPostCache() {
+    this.cache.$dateRange = this.root.find('.js-order-search__date-range');
+    this.cache.$status = this.root.find('.js-order-search__order-status');
+    this.cache.$address = this.root.find('.js-order-search__delivery-address');
+    this.cache.$searchInput = this.root.find('.js-order-search__search-term');
+    this.cache.$submitButton = this.root.find('.js-order-search__submit');
+  }
+  bindPostEvents() {
+    this.cache.$submitButton.on('click', this.trackAnalytics);
+  }
+  trackAnalytics = () => _trackAnalytics.call(this);
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.renderFilters();

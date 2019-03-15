@@ -17,6 +17,7 @@ describe('OrderSearch', function () {
     $(document.body).empty().html(orderSearchTemplate());
     this.orderSearch = new OrderSearch({ el: document.body });
     this.initSpy = sinon.spy(this.orderSearch, 'init');
+    this.analyticsSpy = sinon.spy(this.orderSearch, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderSearchData));
@@ -28,6 +29,7 @@ describe('OrderSearch', function () {
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
+    this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.routeStub.restore();
     this.ajaxStub.restore();
@@ -37,5 +39,9 @@ describe('OrderSearch', function () {
   });
   it('should render component on page load', function () {
     expect(render.fn.called).to.be.true;
+  });
+  it('should set Analytics tags on click of search button', function () {
+    $('.js-order-search__submit').trigger('click');
+    expect(this.orderSearch.trackAnalytics.called).to.be.true;
   });
 });
