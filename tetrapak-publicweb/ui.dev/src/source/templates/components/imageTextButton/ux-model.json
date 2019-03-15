@@ -1,0 +1,13 @@
+{
+  "title": "Test Title",
+  "subtitle": "Test Subtitle",
+  "description": "Test Description",
+  "ctaLinkTexti18n": "Tetra Pak",
+  "ctaLinkURL": "https://www.tetrapak.com",
+  "processingHotspotUrl": "/content/tetrapak/public-web/global/en",
+  "openProcessingHotspotInNewWindow": true,
+  "packagingHotspotUrl": "/content/tetrapak/public-web/global/en",
+  "openPackagingHotspotInNewWindow": true,
+  "servicesHotspotUrl": "/content/tetrapak/public-web/global/en",
+  "openServicesHotspotInNewWindow": true
+}
