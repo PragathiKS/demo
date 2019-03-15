@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import * as routeExports from 'jqueryrouter';
 import OrderSearch from './OrderSearch';
 import orderSearchData from './data/orderSearchSummary.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -19,12 +20,16 @@ describe('OrderSearch', function () {
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderSearchData));
+    this.routeStub = sinon.stub(routeExports, 'route').callsArgWith(0, {
+      hash: true
+    });
     this.orderSearch.init();
   });
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderSpy.restore();
+    this.routeStub.restore();
     this.ajaxStub.restore();
   });
   it('should initialize', function () {
