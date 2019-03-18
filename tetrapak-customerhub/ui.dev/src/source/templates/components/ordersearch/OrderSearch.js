@@ -6,6 +6,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { sanitize } from '../../../scripts/common/common';
 
 /**
  * Processes data before rendering
@@ -70,6 +71,26 @@ function _processTableData(data) {
 }
 
 /**
+ * Backfills search fields as per query object
+ * @param {object} query Current query object
+ */
+function _setSearchFields(query) {
+  const { $dateRange, $deliveryAddress, $search, $orderStatus } = this.cache;
+  if ($dateRange && $dateRange.length) {
+    $dateRange.val(`${query['orderdate-from']} - ${query['orderdate-to']}`);
+  }
+  if ($deliveryAddress && $deliveryAddress.length) {
+    $deliveryAddress.val(query.deliveryaddress);
+  }
+  if ($search && $search.length) {
+    $search.val(query.search);
+  }
+  if ($orderStatus && $orderStatus.length) {
+    $orderStatus.val(query.orderstatus);
+  }
+}
+
+/**
  * Renders table section
  * @param {object} filterParams Selected filter parameters
  */
@@ -98,6 +119,7 @@ function _renderTable(filterParams) {
     if ($filters && $filters.length) {
       $filters.removeClass('d-none');
     }
+    this.setSearchFields(filterParams);
   });
 }
 
@@ -124,9 +146,9 @@ function _setFilters(isModifiedSearch) {
   });
   if (!window.location.hash || isModifiedSearch) {
     router.set({
-      route: '#/orders',
+      route: '#/',
       queryString: $.param(filterProp)
-    }, true);
+    }, !isModifiedSearch);
   } else {
     router.init();
   }
@@ -135,9 +157,12 @@ function _setFilters(isModifiedSearch) {
 /**
  * Fire analytics on search submit
  */
-function _trackAnalytics() {
-  const formData = deparam(this.cache.$filters.serialize());
-  trackAnalytics(`${formData.daterange}|${formData.orderstatus}|${formData.deliveryaddress}|${formData.search}`, 'SearchOrders');
+function _trackAnalytics(defaultParam) {
+  const formData = defaultParam || deparam(this.cache.$filters.serialize());
+  if (!formData.daterange) {
+    formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
+  }
+  trackAnalytics(`${sanitize(formData.daterange)}|${sanitize(formData.orderstatus)}|${sanitize(formData.deliveryaddress)}|${sanitize(formData.search)}`, 'SearchOrders');
 }
 
 /**
@@ -157,6 +182,17 @@ function _renderFilters() {
     this.initPostCache();
     this.setFilters();
   });
+}
+
+/**
+ * Sanitize parameters in query object
+ * @param {object} query Query object
+ */
+function _sanitizeQuery(query) {
+  Object.keys(query).forEach(key => {
+    query[key] = sanitize(query[key]);
+  });
+  return query;
 }
 
 class OrderSearch {
@@ -179,12 +215,16 @@ class OrderSearch {
     route((...args) => {
       const [info, , query] = args;
       if (info.hash) {
-        this.renderTable(query);
+        this.renderTable(_sanitizeQuery(query));
       }
     });
     this.root.on('click', '.js-order-search__submit', () => {
       this.setFilters(true);
       this.trackAnalytics();
+    });
+    this.root.on('click', '.js-order-search__reset', () => {
+      this.resetSearch();
+      this.trackAnalytics(this.cache.defaultParams);
     });
   }
   renderFilters() {
@@ -193,11 +233,24 @@ class OrderSearch {
   setFilters() {
     return _setFilters.apply(this, arguments);
   }
+  setSearchFields() {
+    return _setSearchFields.apply(this, arguments);
+  }
+  resetSearch() {
+    router.set({
+      route: '#/',
+      queryString: $.param(this.cache.defaultParams)
+    });
+  }
   renderTable() {
     return _renderTable.apply(this, arguments);
   }
   initPostCache() {
-    this.cache.$filters = $('.js-order-search__filters');
+    this.cache.$filters = this.root.find('.js-order-search__filters');
+    this.cache.$dateRange = this.root.find('.js-order-search__date-range');
+    this.cache.$orderStatus = this.root.find('.js-order-search__order-status');
+    this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
+    this.cache.$search = this.root.find('.js-order-search__search-term');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);
