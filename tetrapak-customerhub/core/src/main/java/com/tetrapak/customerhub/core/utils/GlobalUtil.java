@@ -1,13 +1,19 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.tetrapak.customerhub.core.services.APIGEEService;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 
 public class GlobalUtil {
 
@@ -35,5 +41,43 @@ public class GlobalUtil {
         }
         return resourceResolver;
     }
+//  To check the runmode development to execute the launch js for development  environment -r development
+    public static boolean isRunModeDevelopment(){
+		return isRunModeAvailable("development");
+	}
+
+//  To check the runmode staging to execute the launch js for staging environment -r staging
+	public static boolean isRunModeStaging(){
+		return isRunModeAvailable("staging");
+	}
+//  To check the runmode staging to execute the launch js for production environment -r production
+	public static boolean isRunModeProduction(){
+		return isRunModeAvailable("production");
+	}
+    
+// To check rum mode availble  - if available return true else false    
+    public static boolean isRunModeAvailable(String key) {
+		Set<String> runModesSet = getRunModes();
+		if (runModesSet.contains(key)) {
+			return true;
+		} else {
+			String runMode = System.getProperty("sling.run.modes");
+			if (runMode != null && runMode.contains(key)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    // To get available run modes
+	public static Set<String> getRunModes() {
+    	return	getService(SlingSettingsService.class).getRunModes();
+	}
+    
+	@SuppressWarnings("unchecked")
+    public static <T> T getService(final Class<T> clazz) {
+        final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
+        return (T) bundleContext.getService(bundleContext.getServiceReference(clazz.getName()));
+    }
+
 
 }
