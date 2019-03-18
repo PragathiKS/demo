@@ -42,6 +42,7 @@ function _processContacts(contacts) {
  * Ensures that data is in same order as keys
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
+ * @param {string} orderDetailLink Order Detail link
  */
 function _tableSort(order, activeKeys, orderDetailLink) {
   const dataObject = {
