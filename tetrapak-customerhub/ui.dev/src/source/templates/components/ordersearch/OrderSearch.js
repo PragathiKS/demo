@@ -53,8 +53,7 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { config } = this.cache;
-  const { orderDetailLink } = config;
+  const { orderDetailLink } = this.cache.config;
   let keys = [];
   if (Array.isArray(data.orders)) {
     data.orders = data.orders.map(order => {
