@@ -2,7 +2,7 @@ pipeline {
     agent any	
 	parameters {
     choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
-	booleanParam defaultValue: true, description: 'Please uncheck to run test', name: 'Skip_Test'
+	booleanParam defaultValue: true, description: 'Please uncheck to run test', name: 'Skip_Tool_Execution'
                 }
     tools {
         maven 'maven'
@@ -45,7 +45,7 @@ pipeline {
 		    
 			steps {
 			   script {
-			    if (params.Skip_Test) {
+			    if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -60,7 +60,7 @@ pipeline {
 		     
 			steps {
 			     script {
-			    if (params.Skip_Test) {
+			    if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -73,7 +73,7 @@ pipeline {
 		stage ('Sonar_JAVA') {
 			steps {  
 			     script {
-			   if (params.Skip_Test) {
+			   if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -135,7 +135,7 @@ pipeline {
 			},
 		     	
 		        "Pa11y" : {
-				   if (params.Skip_Test) {
+				   if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -149,7 +149,7 @@ pipeline {
 				  
 				
 		        "sitespeed_Desktop" : {
-			         if (params.Skip_Test) {
+			         if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -162,7 +162,7 @@ pipeline {
 							
 							
 	            "sitespeed_Mobile" : {
-			         if (params.Skip_Test) {
+			         if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -174,7 +174,7 @@ pipeline {
 					},
 							
 		        "sitespeed_IPad" : {
-			        if (params.Skip_Test) {
+			        if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else
@@ -187,7 +187,7 @@ pipeline {
 							
 							
 		        "zap" :{
-			       if (params.Skip_Test) {
+			       if (params.Skip_Tool_Execution) {
 			             echo "Stage is Skipped"
 					                           }
 					  else

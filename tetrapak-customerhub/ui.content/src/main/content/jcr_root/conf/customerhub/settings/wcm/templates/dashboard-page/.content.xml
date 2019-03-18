@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:templateType="/conf/customerhub/settings/wcm/template-types/empty-page"
+        jcr:description="This page is used to create only dashboard page. It will contain notification component by default."
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Dashboard Page"
+		shortTitle="dashboard"
+        status="enabled"/>
+</jcr:root>

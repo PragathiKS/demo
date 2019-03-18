@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-02-26T15:42:50.431+05:30"
         cq:lastModifiedBy="admin"
-        cq:template="/conf/tetrapak-customerhub/settings/wcm/templates/landing-page"
+        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="Ordering"
         sling:resourceType="customerhub/components/structure/page">
