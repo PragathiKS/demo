@@ -1,4 +1,4 @@
-<form class="js-order-search__filters">
+<form class="js-order-search__filters d-none">
     {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.dateRangeLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__date-range js-order-search__date-range" dataLocator="calendar-picker" readonly=true }}
     {{> atoms/dropdown/dropdown defaultValue=this.allStatusesTextI18n options=this.summary.status name="orderstatus" label=this.orderStatusLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__order-status js-order-search__order-status" dataLocator="status-drpdwn" }}
     {{> atoms/dropdown/dropdown defaultValue=this.allAddressesTextI18n options=this.summary.deliveryAddress name="deliveryaddress" label=this.deliveryAddressLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__delivery-address js-order-search__delivery-address" dataLocator="address-drpdwn" }}

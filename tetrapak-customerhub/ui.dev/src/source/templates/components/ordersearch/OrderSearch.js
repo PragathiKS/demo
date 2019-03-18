@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
 import deparam from 'jquerydeparam';
+import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -18,10 +19,93 @@ function _processOrderSearchData(data) {
 }
 
 /**
+ * Returns contact HTML template
+ * @param {object} contacts Contacts object
+ */
+function _processContacts(contacts) {
+  return this.cache.contactListTemplate({
+    contacts,
+    baseClass: 'tp-order-search',
+    jsClass: 'js-order-search'
+  });
+}
+
+/**
+ * Processes order table data
+ * @param {object} order Order object
+ * @param {string[]} keys List of keys
+ * @param {string} orderDetailLink order detail link
+ */
+function _tableSort(order, keys, orderDetailLink) {
+  const dataObject = {
+    rowLink: `${orderDetailLink}?q=${order['orderNumber']}`,
+    row: []
+  };
+  keys.forEach((key, index) => {
+    const value = (key === 'contact') ? _processContacts.call(this, order[key]) : order[key];
+    dataObject.row[index] = {
+      key,
+      value,
+      isRTE: ['contact'].includes(key)
+    };
+  });
+  return dataObject;
+}
+
+function _processTableData(data) {
+  const { config } = this.cache;
+  const { orderDetailLink } = config;
+  let keys = [];
+  if (Array.isArray(data.orders)) {
+    data.orders = data.orders.map(order => {
+      keys = (keys.length === 0) ? Object.keys(order) : keys;
+      return _tableSort.call(this, order, keys, orderDetailLink);
+    });
+    data.orderHeadings = keys.map(key => ({
+      key,
+      i18nKey: `cuhu.ordering.${key}`,
+      isSortable: ['orderDate'].includes(key),
+      sortOrder: 'desc'
+    }));
+  }
+}
+
+/**
+ * Renders table section
+ * @param {object} filterParams Selected filter parameters
+ */
+function _renderTable(filterParams) {
+  const { config, $filters } = this.cache;
+  const $this = this;
+  render.fn({
+    template: 'orderingTable',
+    target: '.js-order-search__table',
+    url: {
+      path: config.ordersApiURL,
+      data: filterParams
+    },
+    beforeRender(data) {
+      if (!data) {
+        this.data = data = {
+          isError: true
+        };
+      }
+      return _processTableData.apply($this, [data]);
+    },
+    ajaxConfig: {
+      method: ajaxMethods.GET
+    }
+  }, () => {
+    if ($filters && $filters.length) {
+      $filters.removeClass('d-none');
+    }
+  });
+}
+
+/**
  * Render table based on selected filters
  */
-function _renderTable() {
-  this.cache.$filters = $('.js-order-search__filters');
+function _setFilters(isModifiedSearch) {
   const filters = this.cache.$filters.serialize();
   const filterProp = deparam(filters);
   if (filterProp.daterange) {
@@ -30,25 +114,30 @@ function _renderTable() {
     filterProp['orderdate-to'] = orderdateTo.trim();
     delete filterProp.daterange;
   }
-  this.cache.defaultParams = filterProp;
+  if (!isModifiedSearch) {
+    this.cache.defaultParams = filterProp;
+  }
   Object.keys(filterProp).forEach(key => {
     if (!filterProp[key]) {
       delete filterProp[key];
     }
   });
-  router.set({
-    route: '#/orders',
-    queryString: $.param(filterProp)
-  }, true);
+  if (!window.location.hash || isModifiedSearch) {
+    router.set({
+      route: '#/orders',
+      queryString: $.param(filterProp)
+    }, true);
+  } else {
+    router.init();
+  }
 }
 
 /**
  * Fire analytics on search submit
  */
 function _trackAnalytics() {
-  const { $dateRange, $status, $address, $searchInput } = this.cache;
-  let analyticsData = `${$dateRange.val()}|${$status.val()}|${$address.val()}|${$searchInput.val()}`;
-  trackAnalytics(analyticsData, 'SearchOrders');
+  const formData = deparam(this.cache.$filters.serialize());
+  trackAnalytics(`${formData.daterange}|${formData.orderstatus}|${formData.deliveryaddress}|${formData.search}`, 'SearchOrders');
 }
 
 /**
@@ -58,16 +147,15 @@ function _renderFilters() {
   const { config } = this.cache;
   render.fn({
     template: 'orderSearch',
-    url: config.apiURL,
+    url: config.searchApiURL,
     target: '.js-order-search__form',
     ajaxConfig: {
-      method: ajaxMethods.POST
+      method: ajaxMethods.GET
     },
     beforeRender: (...args) => _processOrderSearchData.apply(this, args)
   }, () => {
-    this.renderTable();
     this.initPostCache();
-    this.bindPostEvents();
+    this.setFilters();
   });
 }
 
@@ -79,6 +167,7 @@ class OrderSearch {
   initCache() {
     /* Initialize cache here */
     this.cache.configJson = this.root.find('.js-order-search__config').text();
+    this.cache.contactListTemplate = render.get('contactList');
     try {
       this.cache.config = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -90,27 +179,29 @@ class OrderSearch {
     route((...args) => {
       const [info, , query] = args;
       if (info.hash) {
-        logger.log(query);
+        this.renderTable(query);
       }
+    });
+    this.root.on('click', '.js-order-search__submit', () => {
+      this.setFilters(true);
+      this.trackAnalytics();
     });
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
+  setFilters() {
+    return _setFilters.apply(this, arguments);
+  }
   renderTable() {
     return _renderTable.apply(this, arguments);
   }
   initPostCache() {
-    this.cache.$dateRange = this.root.find('.js-order-search__date-range');
-    this.cache.$status = this.root.find('.js-order-search__order-status');
-    this.cache.$address = this.root.find('.js-order-search__delivery-address');
-    this.cache.$searchInput = this.root.find('.js-order-search__search-term');
-    this.cache.$submitButton = this.root.find('.js-order-search__submit');
+    this.cache.$filters = $('.js-order-search__filters');
   }
-  bindPostEvents() {
-    this.cache.$submitButton.on('click', this.trackAnalytics);
-  }
-  trackAnalytics = () => _trackAnalytics.call(this);
+  trackAnalytics() {
+    return _trackAnalytics.apply(this, arguments);
+  };
   init() {
     this.initCache();
     this.bindEvents();
