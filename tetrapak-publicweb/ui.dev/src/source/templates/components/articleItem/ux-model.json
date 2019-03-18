@@ -1,8 +1,8 @@
 {
   "contentType": "manual",
-  "articlepath": "/content/tetrapak/public-web/global/en/solutions/test-landing-1-solutions",
+  "articlePath": "http://www.google.com",
   "articleTitle": "Article Title 1",
-  "vanityDescriptionI18n": "Article Description 1",
+  "vanityDescriptionI18n": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis dolore ex id laborum magni maxime, nemo nulla optio quaerat ratione rem reprehenderit, totam, unde voluptate. Aperiam quisquam voluptatem voluptates.",
   "ctaTexti18nKey": "CTA Text 1",
   "openInNewWindow": "true",
   "showImage": "true",

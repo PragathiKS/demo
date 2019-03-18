@@ -1,4 +1,5 @@
 {
+  "enableHeroImage": true,
   "megamenuLinks": [
     {
       "linkTextI18n": "Solutions",
