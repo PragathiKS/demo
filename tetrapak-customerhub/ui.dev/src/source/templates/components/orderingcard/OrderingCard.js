@@ -5,6 +5,26 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+/**
+ * Fire analytics on search submit
+ */
+function _trackAnalytics() {
+  let analyticsData = '';
+
+  // Get selected preferences
+  $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+    return $(el).parent().text();
+  }).forEach(function (element, index) {
+    if (index > 0) {
+      analyticsData += ' | ';
+    }
+    analyticsData += $.trim(element);
+  });
+
+  trackAnalytics(analyticsData, 'ordersettings');
+}
 
 /**
  * Caches available keys from data
@@ -162,6 +182,9 @@ function _saveSettings() {
   }).fail(() => {
     this.root.find('.js-ordering-card__save-error').removeClass('d-none');
   });
+
+  // Fire Analytics
+  this.trackAnalytics();
 }
 
 class OrderingCard {
@@ -222,6 +245,7 @@ class OrderingCard {
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
   stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
+  trackAnalytics = () => _trackAnalytics.call(this);
   openOrderDetails(...args) {
     return _openOrderDetails.apply(this, args);
   }
