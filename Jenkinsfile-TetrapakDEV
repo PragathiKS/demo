@@ -3,7 +3,7 @@ pipeline {
 	
 	parameters {
 		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
-		booleanParam defaultValue: true, description: 'Please uncheck in case you want to run the pipeline with all Tool's execution', name: 'Skip_Tool_Execution'
+		booleanParam defaultValue: true, description: 'Please uncheck in case you want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
 	}
 	
 	tools {
