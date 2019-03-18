@@ -23,6 +23,10 @@
         padding: 0;
         flex-direction: column;
         align-items: initial;
+        .next-button-wrapper {
+            @include margin-left ($margin-l);
+            margin-right: auto;
+        }
     }
     @media #{$mobile} {
         .modal-dialog-centered {
@@ -58,10 +62,6 @@
         @include line-height (32px, $font-l);
         word-wrap: break-word;
     }
-}
-
-.next-button-wrapper {
-    @include margin-left ($margin-l);
 }
 
 .slider-dots {
