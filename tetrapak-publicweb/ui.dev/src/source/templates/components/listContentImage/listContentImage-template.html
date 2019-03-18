@@ -1,16 +1,33 @@
 <sly data-sly-template.listcontentimage_template="${@ data, flag}"
-	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-	<div data-locator="text-video" class="pw-textvideo">
-      <p>Title - ${data.titleI18n  @ i18n}</p>
-      <p>Tabs Alignment - ${data.tabsAlignment}</p>
-      <p>Link Text  - ${data.linkTextI18n @ i18n}</p>
-      <p>Link Tool Tip - ${data.linkTooltipI18n  @ i18n}</p>
-      <p>Link Path - ${data.linkPath}</p>
-      <p>New Window ? - ${data.targetBlank}</p>
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''}">
+    <div class="row">
+        <div class="col-md-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''}">
+            <div class="tp_pw-titleWrapper">
+              <h2 class="tp_pw-containerTitle">${data.titleI18n  @ i18n}</h2>
+            </div>
+            <div class="pw-listContentImage__tabMenu">
+                <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
+                    <li class="pw-listContentImage__tabMenuListItem">
+                        <a href="#" data-tab-id="${itemList.index}" class="pw-listContentImage__tabMenuListItem__Link d-block ${itemList.first? 'active' : ''}">
+                            ${item}
+                            <i class="icon-Chevron_Right tp_icon"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+              data-sly-call="${pwButton.button_template @ btnPath=data.linkPath, btnText=data.linkTextI18n, btnTooltip=data.linkTooltipI18n, btnTarget=data.targetBlank}" /-->
+        </div>
+        <div class="col-md-8 ${data.tabsAlignment == 'text-right'? 'order-1' : ''}">
+            <div class="pw-listContentImage__contentWrapper" data-sly-list="${data.tabLinks}">
+                <div class="pw-listContentImage__contentTab ${itemList.first? 'active' : ''}" data-tab-id="${itemList.index}">
+                    <h1>${item}</h1>
+                    <!--sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/-->
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-  <p> Tabs alignment : </p>
-    <sly data-sly-list="${data.tabLinks}">
-		<p> ${item  @ i18n} </p>
-	</sly>
-	<sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>
+  <sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>
 </sly>
