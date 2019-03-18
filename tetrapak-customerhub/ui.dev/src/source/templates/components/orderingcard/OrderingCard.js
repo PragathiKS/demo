@@ -5,6 +5,7 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { generateToken } from '../../../scripts/utils/auth';
 
 /**
  * Caches available keys from data
@@ -231,6 +232,9 @@ class OrderingCard {
     this.initCache();
     this.bindEvents();
     this.renderTable();
+    generateToken().then(({ data }) => {
+      console.log(data); // eslint-disable-line
+    });
   }
 }
 
