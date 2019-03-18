@@ -41,18 +41,18 @@ public class GlobalUtil {
         }
         return resourceResolver;
     }
-//  To check the runmode development to execute the launch js for development  environment -r development
+//  To check the runmode development to execute the launch js for development  environment -r dev
     public static boolean isRunModeDevelopment(){
-		return isRunModeAvailable("development");
+		return isRunModeAvailable("dev");
 	}
 
-//  To check the runmode staging to execute the launch js for staging environment -r staging
+//  To check the runmode staging to execute the launch js for staging environment -r stage
 	public static boolean isRunModeStaging(){
-		return isRunModeAvailable("staging");
+		return isRunModeAvailable("stage");
 	}
-//  To check the runmode staging to execute the launch js for production environment -r production
+//  To check the runmode staging to execute the launch js for production environment -r prod
 	public static boolean isRunModeProduction(){
-		return isRunModeAvailable("production");
+		return isRunModeAvailable("prod");
 	}
     
 // To check rum mode availble  - if available return true else false    
