@@ -103,6 +103,7 @@ function _renderTable(filterParams) {
 
 /**
  * Render table based on selected filters
+ * @param {boolean} isModifiedSearch Flag to check if it's first or modified render
  */
 function _setFilters(isModifiedSearch) {
   const filters = this.cache.$filters.serialize();
