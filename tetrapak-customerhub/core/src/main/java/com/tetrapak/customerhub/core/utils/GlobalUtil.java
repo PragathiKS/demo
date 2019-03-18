@@ -41,21 +41,21 @@ public class GlobalUtil {
         }
         return resourceResolver;
     }
-//  To check the runmode development to execute the launch js for development  environment -r dev
+//  To check the run mode development to execute the launch js for development  environment -r dev
     public static boolean isRunModeDevelopment(){
 		return isRunModeAvailable("dev");
 	}
 
-//  To check the runmode staging to execute the launch js for staging environment -r stage
+//  To check the run mode staging to execute the launch js for staging environment -r stage
 	public static boolean isRunModeStaging(){
 		return isRunModeAvailable("stage");
 	}
-//  To check the runmode staging to execute the launch js for production environment -r prod
+//  To check the run mode staging to execute the launch js for production environment -r prod
 	public static boolean isRunModeProduction(){
 		return isRunModeAvailable("prod");
 	}
     
-// To check rum mode availble  - if available return true else false    
+// To check rum mode available  - if available return true else false    
     public static boolean isRunModeAvailable(String key) {
 		Set<String> runModesSet = getRunModes();
 		if (runModesSet.contains(key)) {
@@ -78,6 +78,4 @@ public class GlobalUtil {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         return (T) bundleContext.getService(bundleContext.getServiceReference(clazz.getName()));
     }
-
-
 }
