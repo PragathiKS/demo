@@ -95,13 +95,13 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { config, $filters } = this.cache;
+  const { /*config,*/ $filters } = this.cache;
   const $this = this;
   render.fn({
     template: 'orderingTable',
     target: '.js-order-search__table',
     url: {
-      path: config.ordersApiURL,
+      path: '/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json', // Temporary hardcoding
       data: filterParams
     },
     beforeRender(data) {
@@ -169,10 +169,10 @@ function _trackAnalytics(defaultParam) {
  * Renders filter section
  */
 function _renderFilters() {
-  const { config } = this.cache;
+  //const { config } = this.cache;
   render.fn({
     template: 'orderSearch',
-    url: config.searchApiURL,
+    url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
     target: '.js-order-search__form',
     ajaxConfig: {
       method: ajaxMethods.GET
