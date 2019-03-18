@@ -201,7 +201,7 @@ class OrderSearch {
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);
-  };
+  }
   init() {
     this.initCache();
     this.bindEvents();
