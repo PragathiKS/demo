@@ -176,7 +176,10 @@ td {
 
 // Top margin for content as we have fixed header
 .tp-column__content {
-    @include margin-top(112px);
+    @include margin-top(104px);
+    @media #{$desktop} {
+        @include margin-top(112px);
+    }
 }
 
 // Classes for Wrapping icons
@@ -191,11 +194,11 @@ td {
 }
 
 // Page title
-.page-title {
-    @include margin-bottom($margin-l);
-    @include font-size($font-xl);
-    @media #{$mobile} {
-        @include margin-bottom($margin-md);
-        @include font-size($font-l);
+.tp-page-title {
+    @include margin-bottom($margin-md);
+    @include font-size($font-l);
+    @media #{$desktop} {
+        @include margin-bottom($margin-l);
+        @include font-size($font-xl);
     }
 }
