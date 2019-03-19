@@ -12,6 +12,12 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Map;
 
+import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import java.util.Set;
+
+
 public class GlobalUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
@@ -43,5 +49,42 @@ public class GlobalUtil {
         resp.setContentType("application/json");
         resp.getWriter().write(jsonResponse.toString());
     }
+//  To check the run mode development to execute the launch js for development  environment -r dev
+    public static boolean isRunModeDevelopment(){
+		return isRunModeAvailable("dev");
+	}
+
+//  To check the run mode staging to execute the launch js for staging environment -r stage
+	public static boolean isRunModeStaging(){
+		return isRunModeAvailable("stage");
+	}
+//  To check the run mode staging to execute the launch js for production environment -r prod
+	public static boolean isRunModeProduction(){
+		return isRunModeAvailable("prod");
+	}
+    
+// To check rum mode available  - if available return true else false    
+    public static boolean isRunModeAvailable(String key) {
+		Set<String> runModesSet = getRunModes();
+		if (runModesSet.contains(key)) {
+			return true;
+		} else {
+			String runMode = System.getProperty("sling.run.modes");
+			if (runMode != null && runMode.contains(key)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    // To get available run modes
+	public static Set<String> getRunModes() {
+    	return	getService(SlingSettingsService.class).getRunModes();
+	}
+    
+	@SuppressWarnings("unchecked")
+    public static <T> T getService(final Class<T> clazz) {
+        final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
+        return (T) bundleContext.getService(bundleContext.getServiceReference(clazz.getName()));
+    }    
 
 }

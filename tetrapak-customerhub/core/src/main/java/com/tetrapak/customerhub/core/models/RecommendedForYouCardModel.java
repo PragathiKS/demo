@@ -40,6 +40,7 @@ public class RecommendedForYouCardModel {
                 recommendedForYouCardBean.setTitleI18n((String) valueMap.get("titleI18n"));
                 recommendedForYouCardBean.setDescriptionI18n((String) valueMap.get("descriptionI18n"));
                 recommendedForYouCardBean.setLinkUrl((String) valueMap.get("linkUrl"));
+                recommendedForYouCardBean.setLinkTextI18n((String) valueMap.get("linkTextI18n"));
                 getStartedList.add(recommendedForYouCardBean);
             }
         }

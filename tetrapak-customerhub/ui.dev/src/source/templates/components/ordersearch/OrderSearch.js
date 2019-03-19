@@ -162,7 +162,7 @@ function _trackAnalytics(defaultParam) {
   if (!formData.daterange) {
     formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
   }
-  trackAnalytics(`${sanitize(formData.daterange)}|${sanitize(formData.orderstatus)}|${sanitize(formData.deliveryaddress)}|${sanitize(formData.search)}`, 'SearchOrders');
+  trackAnalytics(`${sanitize(formData.daterange)}|${sanitize(formData.orderstatus)}|${sanitize(formData.deliveryaddress)}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
 }
 
 /**
