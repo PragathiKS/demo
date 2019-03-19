@@ -3,4 +3,8 @@
          data-sly-test.clientlibCategories="${page.clientLibCategories}"
          data-sly-call="${clientlib.js @ categories=clientlibCategories}"></sly>
     <sly data-sly-include="customfooterlibs.html"></sly>
+    <sly data-sly-use.footerGlobalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil"></sly>
+    <sly data-sly-test="${footerGlobalUtil.isRunModeStaging || footerGlobalUtil.isRunModeProduction}">
+    	 <sly data-sly-resource="${'cloudconfig-footer' @ resourceType='cq/cloudconfig/components/scripttags/footer'}"></sly>
+     </sly>
 </template>
