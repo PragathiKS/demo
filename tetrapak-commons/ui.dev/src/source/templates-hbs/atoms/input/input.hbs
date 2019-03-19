@@ -6,12 +6,12 @@
         {{#if readonly}}
             readonly="readonly"
         {{/if}}
-        value="{{#if defaultValue}}{{defaultValue}}{{/if}}"
+        value="{{#if defaultValue}}{{i18n key=defaultValue}}{{/if}}"
         {{#if label}}
-            aria-label="{{label}}"
+            aria-label="{{i18n key=label}}"
         {{/if}}
         {{#if placeholder}}
-            placeholder="{{placeholder}}"
+            placeholder="{{i18n key=placeholder}}"
         {{/if}}
     />
     {{#if iconClass}}
