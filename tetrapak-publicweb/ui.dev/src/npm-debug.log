@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/lucpoved/.nvm/versions/node/v7.1.0/bin/node',
+1 verbose cli   '/Users/lucpoved/.nvm/versions/node/v7.1.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'buildWatch' ]
+2 info using npm@3.10.9
+3 info using node@v7.1.0
+4 verbose run-script [ 'prebuildWatch', 'buildWatch', 'postbuildWatch' ]
+5 info lifecycle publicweb@0.0.1~prebuildWatch: publicweb@0.0.1
+6 silly lifecycle publicweb@0.0.1~prebuildWatch: no script for prebuildWatch, continuing
+7 info lifecycle publicweb@0.0.1~buildWatch: publicweb@0.0.1
+8 verbose lifecycle publicweb@0.0.1~buildWatch: unsafe-perm in lifecycle true
+9 verbose lifecycle publicweb@0.0.1~buildWatch: PATH: /Users/lucpoved/.nvm/versions/node/v7.1.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/lucpoved/WebstormProjects/3Share/TetraPak/tetrapak/tetrapak-publicweb/ui.dev/src/node_modules/.bin:/Users/lucpoved/.nvm/versions/node/v7.1.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle publicweb@0.0.1~buildWatch: CWD: /Users/lucpoved/WebstormProjects/3Share/TetraPak/tetrapak/tetrapak-publicweb/ui.dev/src
+11 silly lifecycle publicweb@0.0.1~buildWatch: Args: [ '-c', 'npm run gruntWatch' ]
+12 silly lifecycle publicweb@0.0.1~buildWatch: Returned: code: 1  signal: null
+13 info lifecycle publicweb@0.0.1~buildWatch: Failed to exec buildWatch script
+14 verbose stack Error: publicweb@0.0.1 buildWatch: `npm run gruntWatch`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/lucpoved/.nvm/versions/node/v7.1.0/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/lucpoved/.nvm/versions/node/v7.1.0/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:885:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid publicweb@0.0.1
+16 verbose cwd /Users/lucpoved/WebstormProjects/3Share/TetraPak/tetrapak/tetrapak-publicweb/ui.dev/src
+17 error Darwin 16.7.0
+18 error argv "/Users/lucpoved/.nvm/versions/node/v7.1.0/bin/node" "/Users/lucpoved/.nvm/versions/node/v7.1.0/bin/npm" "run" "buildWatch"
+19 error node v7.1.0
+20 error npm  v3.10.9
+21 error code ELIFECYCLE
+22 error publicweb@0.0.1 buildWatch: `npm run gruntWatch`
+22 error Exit status 1
+23 error Failed at the publicweb@0.0.1 buildWatch script 'npm run gruntWatch'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the publicweb package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     npm run gruntWatch
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs publicweb
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls publicweb
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

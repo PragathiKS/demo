@@ -18,9 +18,6 @@ public class TextVideoModel {
 	private String title;
 
 	@Inject
-	private String subtitle;
-
-	@Inject
 	private String description;
 
 	@Inject
@@ -51,10 +48,6 @@ public class TextVideoModel {
 
 	public String getTitle() {
 		return title;
-	}
-
-	public String getSubtitle() {
-		return subtitle;
 	}
 
 	public String getDescription() {
