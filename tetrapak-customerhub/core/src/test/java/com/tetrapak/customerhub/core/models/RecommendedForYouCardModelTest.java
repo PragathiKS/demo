@@ -43,6 +43,7 @@ public class RecommendedForYouCardModelTest {
         Assert.assertEquals("Image1 alt",recommendedForYouCardBean.getImageAltI18n());
         Assert.assertEquals("/content/dam/customerhub/p2.PNG",recommendedForYouCardBean.getImagePath());
         Assert.assertEquals("www.tetrapak.com", recommendedForYouCardBean.getLinkUrl());
+        Assert.assertEquals("tetrapak", recommendedForYouCardBean.getLinkTextI18n());
         Assert.assertEquals(3,recommendedForYouCardModel.getCols());
 	}
 
