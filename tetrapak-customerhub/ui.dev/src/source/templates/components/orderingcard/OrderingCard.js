@@ -11,17 +11,10 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on search submit
  */
 function _trackAnalytics() {
-  let analyticsData = '';
-
   // Get selected preferences
-  $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
-    return $(el).parent().text();
-  }).forEach(function (element, index) {
-    if (index > 0) {
-      analyticsData += ' | ';
-    }
-    analyticsData += $.trim(element);
-  });
+  const analyticsData = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+    return $.trim($(el).parent().text());
+  }).join('|');
 
   trackAnalytics(analyticsData, 'ordersettings');
 }
