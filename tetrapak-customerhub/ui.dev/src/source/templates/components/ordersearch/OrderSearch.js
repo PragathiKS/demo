@@ -22,7 +22,7 @@ function _processOrderSearchData(data) {
 function _trackAnalytics() {
   const { $dateRange, $status, $address, $searchInput } = this.cache;
   let analyticsData = `${$dateRange.val()}|${$status.val()}|${$address.val()}|${$searchInput.val()}`;
-  trackAnalytics(analyticsData, 'SearchOrders');
+  trackAnalytics(analyticsData, 'orders', 'SearchOrders');
 }
 
 function _renderFilters() {
