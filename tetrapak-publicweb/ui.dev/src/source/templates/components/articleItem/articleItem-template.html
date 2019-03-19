@@ -1,8 +1,8 @@
 <sly data-sly-template.articleItem_template="${@ data, flag}">
   <div class="pw-article">
-    <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image" src="${data.articleImagePath}" alt="${data.articleImageAltI18n}"/>
-    <h4 data-sly-test="${data.articleTitle}" class="pw-article__title" >${data.articleTitle}</h4>
-    <p class="pw-article__description">${data.vanityDescriptionI18n}</p>
-    <a data-sly-test="${data.articlePath}" class="pw-article__link" href="${data.articlePath}" title="${data.ctaTexti18nKey}">${data.ctaTexti18nKey} <i class="icon-Circle_Arrow_Right"></i></a>
+    <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image" src="${data.articleImagePath}" alt="${data.articleImageAltI18n @ i18n}"/>
+    <h4 data-sly-test="${data.articleTitle}" class="pw-article__title" >${data.articleTitle @ i18n}</h4>
+    <p class="pw-article__description">${data.vanityDescriptionI18n @ i18n}</p>
+    <a data-sly-test="${data.articlePath}" class="pw-article__link" href="${data.articlePath}" title="${data.ctaTexti18nKey @ i18n}">${data.ctaTexti18nKey @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
   </div>
 </sly>
