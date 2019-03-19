@@ -79,6 +79,25 @@
                                 fieldLabel="DAM Video Path"
                                 name="./damVideoPath"
                                 rootPath="/content/dam/publicweb" />
+                            <textalignment
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                defaultValue="left"
+                                fieldDescription="Set the text alignment"
+                                fieldLabel="Text Alignment"
+                                name="./textAlignment">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <left
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Left"
+                                        value="text-left"/>
+                                    <right
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Right"
+                                        value="text-right"/>
+                                </items>
+                            </textalignment>
                         </items>
                     </column>
                 </items>
