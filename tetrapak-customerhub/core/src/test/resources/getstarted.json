@@ -14,7 +14,8 @@
          "imagePath":"/content/dam/customerhub/p2.PNG",
          "imageAltI18n":"Image1 alt",
          "descriptionI18n":"Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",
-         "linkUrl": "www.tetrapak.com"
+         "linkUrl": "www.tetrapak.com",
+         "linkTextI18n": "tetrapak"
       },
       "item1":{
          "jcr:primaryType":"nt:unstructured",
@@ -22,15 +23,17 @@
          "imagePath":"/content/dam/customerhub/p3.PNG",
          "imageAltI18n":"Image2 alt",
          "descriptionI18n":"A complete carton packaging range for consuming fresh products, offering user convenience, easy opening and optimal shelf life.",
-         "linkUrl": "www.tetrapak.com"
+         "linkUrl": "www.tetrapak.com",
+         "linkTextI18n": "tetrapak"
       },
       "item2":{
          "jcr:primaryType":"nt:unstructured",
          "titleI18n":"Customize your experience",
          "imagePath":"/content/dam/customerhub/p3.PNG",
          "imageAltI18n":"Image3 alt",
-         "descriptionI18n":"Tetra Pak� Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations.",
-         "linkUrl": "www.tetrapak.com"
+         "descriptionI18n":"Tetra Pak Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations.",
+         "linkUrl": "www.tetrapak.com",
+         "linkTextI18n": "tetrapak"
       }
    }
 }
