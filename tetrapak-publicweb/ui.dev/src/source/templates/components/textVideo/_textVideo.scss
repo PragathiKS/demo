@@ -7,6 +7,12 @@
         @include padding($padding-xxxl);
     }
 
+    &--text-right {
+        > .row {
+            flex-direction: row-reverse
+        }
+    }
+
     &__title,
     &__description {
         @include margin-bottom($padding-md);
@@ -34,7 +40,8 @@
             @include margin-bottom(0);
         }
 
-        video, iframe {
+        video,
+        iframe {
             @include border-radius($border-radius);
             @include margin-bottom(0);
             height: 100%;
