@@ -241,8 +241,9 @@ class OrderingCard {
       auth.getToken(({ data }) => {
         config.ajaxConfig.beforeSend = (jqXHR) => {
           jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/json');
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         };
+        config.ajaxConfig.cache = true;
         render.fn(config);
       });
     } else {

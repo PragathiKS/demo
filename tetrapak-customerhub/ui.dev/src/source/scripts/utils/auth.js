@@ -33,7 +33,7 @@ function generateToken() {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
               logger.debug(result);
-              const expiry = Math.floor((+result.expires_in) / (24 * 60 * 60 * 1000));
+              const expiry = (+result.expires_in) / (24 * 60 * 60 * 1000);
               lzs.setCookie('appData', result, expiry);
               resolve({
                 data: result,
