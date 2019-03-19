@@ -43,4 +43,7 @@
             clear: both;
         }
     }
+    &__table {
+        @include horizontal-scroll-touch;
+    }
 }

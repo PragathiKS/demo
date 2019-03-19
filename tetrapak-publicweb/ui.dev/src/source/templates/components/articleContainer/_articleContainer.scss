@@ -1,8 +1,9 @@
 .article-container {
     @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
     @include padding($padding-l $padding-md);
+    $self: &;
     background-color: $color-white;
-
     @media #{$desktop} {
         @include padding($padding-xxxl);
     }
@@ -20,12 +21,16 @@
         }
 
     }
-/*
+
     &__column {
-        & + .article-container__column {
+        @media #{$desktop} {
+            flex: 1;
+        }
+
+        & + #{$self}__column {
             @media #{$desktop} {
                 @include margin-left($margin-l);
             }
         }
-    } */
+    }
 }

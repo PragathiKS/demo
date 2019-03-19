@@ -136,4 +136,4 @@ module.exports = {
       tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }
-}
+};

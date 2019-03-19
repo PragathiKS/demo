@@ -45,31 +45,37 @@ public class LeftNavigationModel {
         }
 
         Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
-        Page globalPage = globalResource.adaptTo(Page.class);
-        Iterator<Page> itr = globalPage.listChildren();
-        while (itr.hasNext()) {
-            Page childPage = itr.next();
-            if (null != childPage && null != childPage.getContentResource()) {
-	            ValueMap valueMap = childPage.getContentResource().getValueMap();
-	            if (!isHiddenInNavigation(valueMap)) {
-	                LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
-	                if(childPage.listChildren(new PageFilter()).hasNext()){
-	                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
-	                }
-	                leftNavItems.add(leftNavigationBean);
-	            }
+        if (null != globalResource) {
+            Page globalPage = globalResource.adaptTo(Page.class);
+            if (null != globalPage) {
+                Iterator<Page> itr = globalPage.listChildren();
+                while (itr.hasNext()) {
+                    Page childPage = itr.next();
+                    if (null != childPage && null != childPage.getContentResource()) {
+                        ValueMap valueMap = childPage.getContentResource().getValueMap();
+                        if (!isHiddenInNavigation(valueMap)) {
+                            LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
+                            if (childPage.listChildren(new PageFilter()).hasNext()) {
+                                leftNavigationBean = setChildPages(childPage, leftNavigationBean);
+                            }
+                            leftNavItems.add(leftNavigationBean);
+                        }
+                    }
+                }
             }
+
         }
+
     }
 
     private LeftNavigationBean setChildPages(Page childPage, LeftNavigationBean leftNavigationBean) {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
-        while(itr.hasNext()){
+        while (itr.hasNext()) {
             Page subPage = itr.next();
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
-                if(null == leftNavigationBean.getSubMenuList()){
+                if (null == leftNavigationBean.getSubMenuList()) {
                     leftNavigationBean.setSubMenuList(new ArrayList<LeftNavigationBean>() {
                     });
                 }
@@ -98,7 +104,7 @@ public class LeftNavigationModel {
 
     private boolean isCurrentPage(Page childPage) {
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
-        if(null != pageManager) {
+        if (null != pageManager) {
             Page currentPage = pageManager.getContainingPage(resource);
             return StringUtils.equalsIgnoreCase(childPage.getPath(), currentPage.getPath());
         }

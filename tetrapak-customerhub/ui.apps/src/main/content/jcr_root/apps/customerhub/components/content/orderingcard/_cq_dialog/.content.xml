@@ -76,13 +76,20 @@
                             fieldLabel="All Orders Link"
                             required="true"
                             name="./allOrdersLink"/>
+                    <noData
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter No Data i18 key"
+                            fieldLabel="No Data i18 key"
+                            required="true"
+                            name="./noDataI18n"/>
                     <dataError
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Data Error i18 key"
                             fieldLabel="Data Error i18 key"
                             required="true"
-                            name="./dataError"/>
+                            name="./dataErrorI18n"/>
                 </items>
             </column>
         </items>

@@ -1,12 +1,16 @@
+import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import LZStorage from 'lzstorage';
 import 'core-js/features/promise';
+import { RESULTS_EMPTY, ajaxMethods } from './constants';
 
 const lzs = new LZStorage({
   compression: true
 });
 
-export const getToken = () => (
+const servletHost = $('#servletHost').val() || '';
+
+export const generateToken = () => (
   new Promise(function (resolve, reject) {
     const appData = lzs.get('appData');
     if (appData) {
@@ -19,25 +23,27 @@ export const getToken = () => (
       });
     } else {
       ajaxWrapper.getXhrObj({
-        url: 'https://api-mig.tetrapak.com/oauth2/v2/token',
-        dataType: 'json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Basic ${window.btoa('KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ:jX38HGX7Ze4j6vvZ')}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          jqXHR.setRequestHeader('Accept', 'application/json');
-        }
+        url: `${servletHost}/bin/customerhub/token-generator`,
+        method: ajaxMethods.GET
       }).done(function (data, textStatus, jqXHR) {
-        if (data) {
-          resolve({
-            data,
-            textStatus,
-            jqXHR
-          });
-        } else {
+        try {
+          if (data && data.status === 'success') {
+            const result = JSON.parse(data.result);
+            const expiry = (+result.expires_in) / (24 * 60 * 60 * 1000);
+            lzs.setCookie('appData', result, expiry);
+            resolve({
+              data: result,
+              textStatus,
+              jqXHR
+            });
+          } else {
+            throw new Error(RESULTS_EMPTY);
+          }
+        } catch (e) {
           reject({
             jqXHR,
             textStatus: 'empty',
-            errorThrown: ''
+            errorThrown: e.message
           });
         }
       }).fail(function (jqXHR, textStatus, errorThrown) {

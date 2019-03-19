@@ -5,6 +5,19 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+/**
+ * Fire analytics on search submit
+ */
+function _trackAnalytics() {
+  // Get selected preferences
+  const analyticsData = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+    return $.trim($(el).parent().text());
+  }).join('|');
+
+  trackAnalytics(analyticsData, 'ordersettings');
+}
 
 /**
  * Caches available keys from data
@@ -42,6 +55,7 @@ function _processContacts(contacts) {
  * Ensures that data is in same order as keys
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
+ * @param {string} orderDetailLink Order Detail link
  */
 function _tableSort(order, activeKeys, orderDetailLink) {
   const dataObject = {
@@ -162,6 +176,9 @@ function _saveSettings() {
   }).fail(() => {
     this.root.find('.js-ordering-card__save-error').removeClass('d-none');
   });
+
+  // Fire Analytics
+  this.trackAnalytics();
 }
 
 class OrderingCard {
@@ -204,7 +221,7 @@ class OrderingCard {
         template: 'orderingCard',
         url: this.cache.apiUrl,
         ajaxConfig: {
-          method: ajaxMethods.POST
+          method: ajaxMethods.GET
         },
         beforeRender(data) {
           if (!data) {
@@ -222,6 +239,7 @@ class OrderingCard {
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
   stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
+  trackAnalytics = () => _trackAnalytics.call(this);
   openOrderDetails(...args) {
     return _openOrderDetails.apply(this, args);
   }

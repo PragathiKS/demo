@@ -31,14 +31,14 @@
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter sub title i18 Key"
-                                fieldLabel="Sub Title i18 Key"
+                                fieldDescription="Enter sub title"
+                                fieldLabel="Sub Title"
                                 name="./bannerSubtitleI18n"/>
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter title i18 Key"
-                                fieldLabel="Title i18 Key"
+                                fieldDescription="Enter title"
+                                fieldLabel="Title"
                                 name="./titleI18n"/>
                             <desktopimage
                                     jcr:primaryType="nt:unstructured"
@@ -50,8 +50,8 @@
                             <desktopimagealt
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Enter Alt Text i18 Key for dekstop image"
-                                    fieldLabel="Desktop Image Alt Text i18 Key"
+                                    fieldDescription="Enter Alt Text for dekstop image"
+                                    fieldLabel="Desktop Image Alt Text"
                                     name="./desktopImageAltI18n"/>
                             <mobileimage
                                     jcr:primaryType="nt:unstructured"
@@ -63,14 +63,14 @@
                             <mobileimagealt
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Enter Alt Text i18 Key for mobile image"
-                                    fieldLabel="Mobile Image Alt Text i18 Key"
+                                    fieldDescription="Enter Alt Text for mobile image"
+                                    fieldLabel="Mobile Image Alt Text"
                                     name="./mobileImageAltI18n"/>
                             <description
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldDescription="Enter text i18 Key"
-                                fieldLabel="Text i18 Key"
+                                fieldDescription="Enter text"
+                                fieldLabel="Description"
                                 name="./bannerDescriptionI18n"/>     
                             <contentalignment
                                 jcr:primaryType="nt:unstructured"
@@ -84,18 +84,18 @@
                                         jcr:primaryType="nt:unstructured"
                                         selected="true"
                                         text="Left"
-                                        value="text-left"/>
+                                        value="pw-banner"/>
                                     <right
                                         jcr:primaryType="nt:unstructured"
                                         text="Right"
-                                        value="text-right"/>
+                                        value="pw-banner--right"/>
                                 </items>
                             </contentalignment>
                             <ctatext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter Link Text i18 Key"
-                                fieldLabel="Link Text i18 Key"
+                                fieldDescription="Enter Link Text"
+                                fieldLabel="Link Text"
                                 name="./bannerCtaTextI18n"/>
                             <ctapath
                                 jcr:primaryType="nt:unstructured"
@@ -113,8 +113,8 @@
                             <ctatooltip
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter Link Tool Tip i18 key"
-                                fieldLabel="Link Tool Tip i18 Key"
+                                fieldDescription="Enter Link Tool Tip"
+                                fieldLabel="Link Tool Tip"
                                 name="./bannerCtaTooltipI18n"/>
                         </items>
                     </column>

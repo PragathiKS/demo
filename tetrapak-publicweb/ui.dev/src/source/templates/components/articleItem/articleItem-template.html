@@ -1,8 +1,10 @@
-<sly data-sly-template.articleItem_template="${@ data, flag}">
-  <div class="pw-article">
+<sly data-sly-template.articleItem_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.vanityDescriptionI18n}" class="pw-article">
     <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image" src="${data.articleImagePath}" alt="${data.articleImageAltI18n}"/>
     <h4 data-sly-test="${data.articleTitle}" class="pw-article__title" >${data.articleTitle}</h4>
     <p class="pw-article__description">${data.vanityDescriptionI18n}</p>
     <a data-sly-test="${data.articlePath}" class="pw-article__link" href="${data.articlePath}" title="${data.ctaTexti18nKey}">${data.ctaTexti18nKey} <i class="icon-Circle_Arrow_Right"></i></a>
   </div>
+  <sly data-sly-test="${!data.vanityDescriptionI18n}" data-sly-call="${templates.placeholder @ isEmpty = !data.vanityDescriptionI18n}"></sly>
 </sly>
