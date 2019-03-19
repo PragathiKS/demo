@@ -44,6 +44,28 @@
         .font-style-sm {
             @include line-height(21px, $font-sm);
         }
+        ul,
+        ol {
+            list-style: initial;
+            @include padding($padding-md 0 0 $padding-md);
+            li {
+                @include font-size($font-sm);
+                color: $color-tundora;
+            }
+        }
+    }
+    &__normal-text {
+        p {
+            @include line-height(21px, $font-sm);
+            @include font-size($font-sm);
+        }
+    }
+    &__rich-text {
+        p {
+            @include line-height(21px, $font-sm);
+            @include font-size($font-baseline);
+            font-weight: bold;
+        }
     }
     &__link {
         @include padding-top($padding-md);
