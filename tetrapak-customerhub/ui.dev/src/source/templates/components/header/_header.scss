@@ -29,6 +29,9 @@
             @include left(32px);
         }
     }
+    &__link {
+        max-width: 100%;
+    }
     &__nav {
         text-align: center;
         display: none;

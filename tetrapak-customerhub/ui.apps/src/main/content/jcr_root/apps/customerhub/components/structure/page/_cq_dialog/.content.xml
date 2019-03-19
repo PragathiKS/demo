@@ -46,6 +46,9 @@
                                                 name="./iconClass"
                                                 translateOptions="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
+                                                    <None jcr:primaryType="nt:unstructured"
+                                                          text="None"
+                                                          value=""/>
                                                     <Dashboard jcr:primaryType="nt:unstructured"
                                                              text="Dashboard"
                                                              value="icon-Dashboard"/>
