@@ -1,8 +1,7 @@
 <sly data-sly-template.analyticsscript_template="${@ data, flag}">
   var digitalData = {
         pageinfo: {},
-        userinfo: {},
-        error: {}
+        userinfo: {}
       },
       pageName = "";
 
@@ -60,6 +59,7 @@
   </sly>
 
   <sly data-sly-test="${data.errorcode}">
+    digitalData.error = {};
     digitalData.error['errorcode'] = "${data.errorcode}";
   </sly>
 

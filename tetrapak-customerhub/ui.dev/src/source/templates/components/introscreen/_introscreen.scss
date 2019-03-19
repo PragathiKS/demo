@@ -61,7 +61,10 @@
 }
 
 .next-button-wrapper {
-    @include margin-left ($margin-l);
+    .modal-footer & {
+        @include margin-left ($margin-l);
+        margin-right: auto;
+    }
 }
 
 .slider-dots {
