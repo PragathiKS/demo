@@ -96,6 +96,13 @@
             }
         }
     }
+    .tp-icon {
+        @include margin-top(-6px);
+        @include font-size($font-sm);
+        position: absolute;
+        right: convert-to-rem(16px);
+        top: 50%;
+    }
 
     &.tp_color-white {
         .tp_tabListContent-tabMenuListItem-link {
