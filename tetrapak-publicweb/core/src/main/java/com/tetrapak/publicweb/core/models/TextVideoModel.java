@@ -37,6 +37,9 @@ public class TextVideoModel {
 	
 	private String youtubeEmbedURL;
 	
+	@Inject
+	private String textAlignment;
+	
 	@PostConstruct
 	protected void init() {
 		if (StringUtils.isNotEmpty(linkURL)) {
@@ -76,6 +79,10 @@ public class TextVideoModel {
 
 	public String getDamVideoPath() {
 		return damVideoPath;
+	}
+
+	public String getTextAlignment() {
+		return textAlignment;
 	}
 
 }
