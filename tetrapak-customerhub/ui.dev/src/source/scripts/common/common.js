@@ -8,6 +8,8 @@ import Handlebars from 'handlebars';
 
 const currentUserAgent = window.navigator.userAgent;
 
+export const apiHost = $('#apiHost').val();
+
 // Initialize storage utility
 export const storageUtil = new LZStorage();
 

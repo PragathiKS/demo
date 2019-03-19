@@ -1,5 +1,5 @@
 <button type="{{#if buttonType}}{{buttonType}}{{else}}button{{/if}}" class="btn tpatom-button{{#if btnClasses}} {{btnClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}>
-    <span class="tpatom-button__text">{{btnText}}</span>
+    <span class="tpatom-button__text">{{i18n key=btnText}}</span>
     {{#if iconClass}}
         <i class="tpatom-button__icon {{iconClass}}"></i>
     {{/if}}
