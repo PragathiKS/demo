@@ -189,3 +189,13 @@ td {
         transform: translateY(-50%);
     }
 }
+
+// Page title
+.page-title {
+    @include margin-bottom($margin-l);
+    @include font-size($font-xl);
+    @media #{$mobile} {
+        @include margin-bottom($margin-md);
+        @include font-size($font-l);
+    }
+}
