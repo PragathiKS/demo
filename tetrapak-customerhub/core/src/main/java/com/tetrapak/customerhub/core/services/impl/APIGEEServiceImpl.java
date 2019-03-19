@@ -24,4 +24,14 @@ public class APIGEEServiceImpl implements APIGEEService {
 
         return config.apigeeServiceUrl();
     }
+
+    @Override
+    public String getApigeeClientID() {
+        return config.apigeeClientID();
+    }
+
+    @Override
+    public String getApigeeClientSecret() {
+        return config.apigeeClientSecret();
+    }
 }

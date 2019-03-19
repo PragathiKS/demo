@@ -8,7 +8,8 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
-        //debug: true,
+        // debug: true,
+        // flags: ['--remote-debugging-port=9222'],
         options: {
           windowName: 'my-window',
           viewportSize: {

@@ -72,8 +72,6 @@ public class OrderingCardModel {
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
 
-    private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
-
     @PostConstruct
     protected void init() {
         defaultFields = new LinkedHashSet<>();
@@ -110,7 +108,8 @@ public class OrderingCardModel {
     }
 
     public String getApiURL() {
-        return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
+        //return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
+        return DEFAULT_JSON;
     }
 
     public String getPreferencesURL() {

@@ -18,6 +18,7 @@ describe('OrderingCard', function () {
     this.initSpy = sinon.spy(this.orderingCard, 'init');
     this.settingsSpy = sinon.spy(this.orderingCard, 'openSettingsPanel');
     this.saveSettingsSpy = sinon.spy(this.orderingCard, 'saveSettings');
+    this.analyticsSpy = sinon.spy(this.orderingCard, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.orderDetailSpy = sinon.spy(this.orderingCard, 'openOrderDetails');
     this.stopEvtPropSpy = sinon.spy(this.orderingCard, 'stopEvtProp');
@@ -31,6 +32,7 @@ describe('OrderingCard', function () {
     this.initSpy.restore();
     this.settingsSpy.restore();
     this.saveSettingsSpy.restore();
+    this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.orderDetailSpy.restore();
     this.stopEvtPropSpy.restore();
@@ -62,6 +64,10 @@ describe('OrderingCard', function () {
     }));
     $('.js-ordering-card__modal-save').trigger('click');
     expect($('.js-ordering-card__save-error').hasClass('d-none')).to.be.false;
+  });
+  it('should set Analytics tags on click of save settings button', function () {
+    $('.js-ordering-card__modal-save').trigger('click');
+    expect(this.orderingCard.trackAnalytics.called).to.be.true;
   });
   it('should redirect to order detail page on click of order summary row', function () {
     const rowLink = $('.js-ordering-card__row').first();

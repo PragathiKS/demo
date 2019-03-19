@@ -1,9 +1,12 @@
 import $ from 'jquery';
-import { route } from 'jqueryrouter';
+import { router, route } from 'jqueryrouter';
+import deparam from 'jquerydeparam';
+import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import routing from '../../../scripts/utils/routing';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { sanitize } from '../../../scripts/common/common';
 
 /**
  * Processes data before rendering
@@ -11,21 +14,185 @@ import routing from '../../../scripts/utils/routing';
  */
 function _processOrderSearchData(data) {
   data = $.extend(true, data, this.cache.config);
-  data.dateRange = `${data.summary.filterStartDate} - ${data.summary.filterEndDate}`;
+  const { filterStartDate, filterEndDate } = data.summary;
+  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
   return data;
 }
 
+/**
+ * Returns contact HTML template
+ * @param {object} contacts Contacts object
+ */
+function _processContacts(contacts) {
+  return this.cache.contactListTemplate({
+    contacts,
+    baseClass: 'tp-order-search',
+    jsClass: 'js-order-search'
+  });
+}
+
+/**
+ * Processes order table data
+ * @param {object} order Order object
+ * @param {string[]} keys List of keys
+ * @param {string} orderDetailLink order detail link
+ */
+function _tableSort(order, keys, orderDetailLink) {
+  const dataObject = {
+    rowLink: `${orderDetailLink}?q=${order['orderNumber']}`,
+    row: []
+  };
+  keys.forEach((key, index) => {
+    const value = (key === 'contact') ? _processContacts.call(this, order[key]) : order[key];
+    dataObject.row[index] = {
+      key,
+      value,
+      isRTE: ['contact'].includes(key)
+    };
+  });
+  return dataObject;
+}
+
+function _processTableData(data) {
+  const { orderDetailLink } = this.cache.config;
+  let keys = [];
+  if (Array.isArray(data.orders)) {
+    data.orders = data.orders.map(order => {
+      keys = (keys.length === 0) ? Object.keys(order) : keys;
+      return _tableSort.call(this, order, keys, orderDetailLink);
+    });
+    data.orderHeadings = keys.map(key => ({
+      key,
+      i18nKey: `cuhu.ordering.${key}`,
+      isSortable: ['orderDate'].includes(key),
+      sortOrder: 'desc'
+    }));
+  }
+}
+
+/**
+ * Backfills search fields as per query object
+ * @param {object} query Current query object
+ */
+function _setSearchFields(query) {
+  const { $dateRange, $deliveryAddress, $search, $orderStatus } = this.cache;
+  if ($dateRange && $dateRange.length) {
+    $dateRange.val(`${query['orderdate-from']} - ${query['orderdate-to']}`);
+  }
+  if ($deliveryAddress && $deliveryAddress.length) {
+    $deliveryAddress.val(query.deliveryaddress);
+  }
+  if ($search && $search.length) {
+    $search.val(query.search);
+  }
+  if ($orderStatus && $orderStatus.length) {
+    $orderStatus.val(query.orderstatus);
+  }
+}
+
+/**
+ * Renders table section
+ * @param {object} filterParams Selected filter parameters
+ */
+function _renderTable(filterParams) {
+  const { /*config,*/ $filters } = this.cache;
+  const $this = this;
+  render.fn({
+    template: 'orderingTable',
+    target: '.js-order-search__table',
+    url: {
+      path: '/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json', // Temporary hardcoding
+      data: filterParams
+    },
+    beforeRender(data) {
+      if (!data) {
+        this.data = data = {
+          isError: true
+        };
+      }
+      return _processTableData.apply($this, [data]);
+    },
+    ajaxConfig: {
+      method: ajaxMethods.GET
+    }
+  }, () => {
+    if ($filters && $filters.length) {
+      $filters.removeClass('d-none');
+    }
+    this.setSearchFields(filterParams);
+  });
+}
+
+/**
+ * Render table based on selected filters
+ * @param {boolean} isModifiedSearch Flag to check if it's first or modified render
+ */
+function _setFilters(isModifiedSearch) {
+  const filters = this.cache.$filters.serialize();
+  const filterProp = deparam(filters);
+  if (filterProp.daterange) {
+    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
+    filterProp['orderdate-from'] = orderdateFrom.trim();
+    filterProp['orderdate-to'] = orderdateTo.trim();
+    delete filterProp.daterange;
+  }
+  if (!isModifiedSearch) {
+    this.cache.defaultParams = filterProp;
+  }
+  Object.keys(filterProp).forEach(key => {
+    if (!filterProp[key]) {
+      delete filterProp[key];
+    }
+  });
+  if (!window.location.hash || isModifiedSearch) {
+    router.set({
+      route: '#/',
+      queryString: $.param(filterProp)
+    }, !isModifiedSearch);
+  } else {
+    router.init();
+  }
+}
+
+/**
+ * Fire analytics on search submit
+ */
+function _trackAnalytics(defaultParam) {
+  const formData = defaultParam || deparam(this.cache.$filters.serialize());
+  if (!formData.daterange) {
+    formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
+  }
+  trackAnalytics(`${sanitize(formData.daterange)}|${sanitize(formData.orderstatus)}|${sanitize(formData.deliveryaddress)}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
+}
+
+/**
+ * Renders filter section
+ */
 function _renderFilters() {
-  const { config } = this.cache;
+  //const { config } = this.cache;
   render.fn({
     template: 'orderSearch',
-    url: config.apiURL,
+    url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
     target: '.js-order-search__form',
     ajaxConfig: {
-      method: ajaxMethods.POST
+      method: ajaxMethods.GET
     },
     beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+  }, () => {
+    this.initPostCache();
+    this.setFilters();
   });
+}
+
+/**
+ * Sanitize parameters in query object
+ * @param {object} query Query object
+ */
+function _sanitizeQuery(query) {
+  Object.keys(query).forEach(key => {
+    query[key] = sanitize(query[key]);
+  });
+  return query;
 }
 
 class OrderSearch {
@@ -36,6 +203,7 @@ class OrderSearch {
   initCache() {
     /* Initialize cache here */
     this.cache.configJson = this.root.find('.js-order-search__config').text();
+    this.cache.contactListTemplate = render.get('contactList');
     try {
       this.cache.config = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -45,18 +213,52 @@ class OrderSearch {
   }
   bindEvents() {
     route((...args) => {
-      const [info] = args;
+      const [info, , query] = args;
       if (info.hash) {
-        this.renderFilters();
+        this.renderTable(_sanitizeQuery(query));
       }
     });
+    this.root.on('click', '.js-order-search__submit', () => {
+      this.setFilters(true);
+      this.trackAnalytics();
+    });
+    this.root.on('click', '.js-order-search__reset', () => {
+      this.resetSearch();
+      this.trackAnalytics(this.cache.defaultParams);
+    });
   }
-  renderFilters = (...args) => _renderFilters.apply(this, args);
+  renderFilters() {
+    return _renderFilters.apply(this, arguments);
+  }
+  setFilters() {
+    return _setFilters.apply(this, arguments);
+  }
+  setSearchFields() {
+    return _setSearchFields.apply(this, arguments);
+  }
+  resetSearch() {
+    router.set({
+      route: '#/',
+      queryString: $.param(this.cache.defaultParams)
+    });
+  }
+  renderTable() {
+    return _renderTable.apply(this, arguments);
+  }
+  initPostCache() {
+    this.cache.$filters = this.root.find('.js-order-search__filters');
+    this.cache.$dateRange = this.root.find('.js-order-search__date-range');
+    this.cache.$orderStatus = this.root.find('.js-order-search__order-status');
+    this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
+    this.cache.$search = this.root.find('.js-order-search__search-term');
+  }
+  trackAnalytics() {
+    return _trackAnalytics.apply(this, arguments);
+  }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    routing.push('OrderSearch');
+    this.renderFilters();
   }
 }
 
