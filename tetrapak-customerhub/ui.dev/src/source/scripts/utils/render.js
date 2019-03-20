@@ -362,6 +362,7 @@ function _renderAjax(config) {
     _resolveLoader(ajaxConfig, config, url);
     if (sendReq) {
       validUrls.push(url);
+      logger.log('I was called 2');
       ajaxWrapper.getXhrObj(ajaxConfig)
         .always(function (data, textStatus) {
           // Resolve pending requests

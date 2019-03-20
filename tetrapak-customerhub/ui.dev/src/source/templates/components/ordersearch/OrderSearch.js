@@ -4,9 +4,10 @@ import deparam from 'jquerydeparam';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize } from '../../../scripts/common/common';
+import { sanitize, apiHost } from '../../../scripts/common/common';
+import auth from '../../../scripts/utils/auth';
 
 /**
  * Processes data before rendering
@@ -95,13 +96,14 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { /*config,*/ $filters } = this.cache;
+  logger.log('I was called');
+  const { $filters, accessToken = '' } = this.cache;
   const $this = this;
   render.fn({
     template: 'orderingTable',
     target: '.js-order-search__table',
     url: {
-      path: '/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json', // Temporary hardcoding
+      path: `${apiHost}/${API_ORDER_HISTORY}`,
       data: filterParams
     },
     beforeRender(data) {
@@ -113,7 +115,12 @@ function _renderTable(filterParams) {
       return _processTableData.apply($this, [data]);
     },
     ajaxConfig: {
-      method: ajaxMethods.GET
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      },
+      method: ajaxMethods.GET,
+      cache: true
     }
   }, () => {
     if ($filters && $filters.length) {
@@ -169,18 +176,25 @@ function _trackAnalytics(defaultParam) {
  * Renders filter section
  */
 function _renderFilters() {
-  //const { config } = this.cache;
-  render.fn({
-    template: 'orderSearch',
-    url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
-    target: '.js-order-search__form',
-    ajaxConfig: {
-      method: ajaxMethods.GET
-    },
-    beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-  }, () => {
-    this.initPostCache();
-    this.setFilters();
+  auth.getToken(({ data }) => {
+    this.cache.accessToken = data.access_token;
+    render.fn({
+      template: 'orderSearch',
+      url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
+      target: '.js-order-search__form',
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true
+      },
+      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+    }, () => {
+      this.initPostCache();
+      this.setFilters();
+    });
   });
 }
 
