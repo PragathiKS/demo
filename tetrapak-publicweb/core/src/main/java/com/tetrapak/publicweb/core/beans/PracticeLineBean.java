@@ -4,19 +4,19 @@ public class PracticeLineBean {
 	
 	private String contentType;
 
-	private String articlePath;
+	private String practicePath;
 
-	private String articleTitle;
+	private String practiceTitle;
 
 	private String vanityDescription;
 
 	private String ctaTexti18nKey;
 
-	private Boolean openInNewWindow;
+	private String linkTarget;
 
-	private String articleImagePath;
+	private String practiceImagePath;
 
-	private String articleImageAltI18n;
+	private String practiceImageAltI18n;
 
 	public String getContentType() {
 		return contentType;
@@ -26,20 +26,20 @@ public class PracticeLineBean {
 		this.contentType = contentType;
 	}
 
-	public String getArticlePath() {
-		return articlePath;
+	public String getPracticePath() {
+		return practicePath;
 	}
 
-	public void setArticlePath(String articlePath) {
-		this.articlePath = articlePath;
+	public void setPracticePath(String practicePath) {
+		this.practicePath = practicePath;
 	}
 
-	public String getArticleTitle() {
-		return articleTitle;
+	public String getPracticeTitle() {
+		return practiceTitle;
 	}
 
-	public void setArticleTitle(String articleTitle) {
-		this.articleTitle = articleTitle;
+	public void setPracticeTitle(String practiceTitle) {
+		this.practiceTitle = practiceTitle;
 	}
 
 	public String getVanityDescription() {
@@ -58,28 +58,30 @@ public class PracticeLineBean {
 		this.ctaTexti18nKey = ctaTexti18nKey;
 	}
 
-	public Boolean getOpenInNewWindow() {
-		return openInNewWindow;
+	public String getLinkTarget() {
+		return linkTarget;
 	}
 
-	public void setOpenInNewWindow(Boolean openInNewWindow) {
-		this.openInNewWindow = openInNewWindow;
+	public void setLinkTarget(String linkTarget) {
+		this.linkTarget = linkTarget;
 	}
 
-	public String getArticleImagePath() {
-		return articleImagePath;
+	public String getPracticeImagePath() {
+		return practiceImagePath;
 	}
 
-	public void setArticleImagePath(String articleImagePath) {
-		this.articleImagePath = articleImagePath;
+	public void setPracticeImagePath(String practiceImagePath) {
+		this.practiceImagePath = practiceImagePath;
 	}
 
-	public String getArticleImageAltI18n() {
-		return articleImageAltI18n;
+	public String getPracticeImageAltI18n() {
+		return practiceImageAltI18n;
 	}
 
-	public void setArticleImageAltI18n(String articleImageAltI18n) {
-		this.articleImageAltI18n = articleImageAltI18n;
+	public void setPracticeImageAltI18n(String practiceImageAltI18n) {
+		this.practiceImageAltI18n = practiceImageAltI18n;
 	}
+
+	
 
 }

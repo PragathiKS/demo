@@ -37,9 +37,6 @@ public class CarouselModel {
 	@Inject
 	private Boolean showBox;
 	
-	@Inject
-	private String[] tabDetails;
-	
 	private List<PracticeLineBean> tabs = new ArrayList<>();
 
 	@PostConstruct
@@ -48,9 +45,8 @@ public class CarouselModel {
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
 
 		Resource childResource = resource.getChild("tabDetails");
-		log.info("This is the child resource : " + childResource.getPath());
-
 		if (null != childResource) {
+			log.info("This is the child resource : " + childResource.getPath());
 			Iterator<Resource> itr = childResource.listChildren();
 			while (itr.hasNext()) {
 				Resource res = itr.next();
@@ -64,29 +60,27 @@ public class CarouselModel {
 				}
 
 				if ("automatic".equals(contentType)) {
-					String articlePath = "";
-					if (valueMap.containsKey("articlePath")) {
-						articlePath = valueMap.get("articlePath", String.class);
+					String practicePath = "";
+					if (valueMap.containsKey("practicePath")) {
+						practicePath = valueMap.get("practicePath", String.class);
 					}
 
-					Page landingPage = pageManager.getPage(articlePath);
+					Page landingPage = pageManager.getPage(practicePath);
 					if (landingPage != null) {
 						Resource jcrContentResource = landingPage.getContentResource();
-						LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
-						if (landingPageModel != null) {
-							bean.setArticleTitle(landingPageModel.getTitle());
-							bean.setVanityDescription(landingPageModel.getVanityDescription());
-							bean.setCtaTexti18nKey(landingPageModel.getCtaTexti18nKey());
-							bean.setOpenInNewWindow(landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow()
-											: false);
-							bean.setArticleImagePath(landingPageModel.getArticleImagePath());
-							bean.setArticleImageAltI18n(landingPageModel.getArticleImageAltI18n());
+						PracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(PracticeLinePageModel.class);
+						if (practiceLinePageModel != null) {
+							bean.setPracticeTitle(practiceLinePageModel.getTitle());
+							bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
+							bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
+							bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
+							bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
 						}
 					}
 				} else {
 
-					if (valueMap.containsKey("articleTitle")) {
-						bean.setArticleTitle(valueMap.get("articleTitle", String.class));
+					if (valueMap.containsKey("practiceTitle")) {
+						bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
 					}
 
 					if (valueMap.containsKey("vanityDescription")) {
@@ -97,16 +91,16 @@ public class CarouselModel {
 						bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
 					}
 
-					if (valueMap.containsKey("openInNewWindow")) {
-						bean.setOpenInNewWindow(Boolean.parseBoolean(valueMap.get("openInNewWindow", String.class)));
+					if (valueMap.containsKey("linkTarget")) {
+						bean.setLinkTarget(valueMap.get("linkTarget", String.class));
 					}
 
-					if (valueMap.containsKey("articleImagePath")) {
-						bean.setArticleImagePath(valueMap.get("articleImagePath", String.class));
+					if (valueMap.containsKey("practiceImagePath")) {
+						bean.setPracticeImagePath(valueMap.get("practiceImagePath", String.class));
 					}
 
-					if (valueMap.containsKey("articleImageAltI18n")) {
-						bean.setArticleImageAltI18n(valueMap.get("articleImageAltI18n", String.class));
+					if (valueMap.containsKey("practiceImageAltI18n")) {
+						bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
 					}
 
 				}

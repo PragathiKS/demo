@@ -97,42 +97,52 @@
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                         fieldDescription="Select practice line path to automatically populate values when content type is automatic"
                                                         fieldLabel="Practice Line Path"
-                                                        name="./articlePath"
+                                                        name="./practicePath"
                                                         rootPath="/content"/>
                                                     <title
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                         fieldLabel="Practice Line Title"
-                                                        name="./articleTitle"/>
+                                                        name="./practiceTitle"/>
                                                     <vanityDescription
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                                         fieldLabel="Description"
                                                         name="./vanityDescription"/>
-                                                    <ctaText
+                                                    <linkText
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                         fieldLabel="Link Text"
                                                         name="./ctaTexti18nKey"/>
-                                                    <openInNewWindow
+                                                    <linkTarget
                                                         jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                        name="./openInNewWindow"
-                                                        text="Open In New Window?"
-                                                        value="true"/>
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldLabel="Link Target"
+                                                        name="./linkTarget">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <new
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="New Window"
+                                                                value="_blank"/>
+                                                            <same
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Same Window"
+                                                                value="_self"/>
+                                                        </items>
+                                                    </linkTarget>
                                                     <imagepath
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                         fieldDescription="Select Practice Line Image Path"
                                                         fieldLabel="Practice Line Image Path"
-                                                        name="./articleImagePath"
+                                                        name="./practiceImagePath"
                                                         rootPath="/content/dam/publicweb"/>
                                                     <imagealt
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                         fieldDescription="Enter Alt Text"
                                                         fieldLabel="Alt Text"
-                                                        name="./articleImageAltI18n"/>
+                                                        name="./practiceImageAltI18n"/>
                                                 </items>
                                             </column>
                                         </items>
