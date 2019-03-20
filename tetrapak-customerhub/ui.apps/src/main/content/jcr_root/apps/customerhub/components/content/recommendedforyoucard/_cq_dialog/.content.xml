@@ -26,6 +26,7 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             emptyText="Select"
                             fieldLabel="CSS Class"
+                            fieldDescription="Select css class for the component from the dropdown"
                             name="./className"
                             translateOptions="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
