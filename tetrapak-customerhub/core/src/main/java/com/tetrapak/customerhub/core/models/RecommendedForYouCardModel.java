@@ -22,6 +22,9 @@ public class RecommendedForYouCardModel {
     @Inject
     private String headingI18n;
 
+    @Inject
+    private String className;
+
     private List<RecommendedForYouCardBean> getStartedList = new ArrayList<>();
 
     private int cols = 0;
@@ -56,5 +59,9 @@ public class RecommendedForYouCardModel {
 
     public int getCols() {
         return getStartedList.size();
+    }
+
+    public String getClassName(){
+        return className;
     }
 }
