@@ -1,12 +1,17 @@
-import OrderingCard from './OrderingCard';
 import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
+import OrderingCard from './OrderingCard';
 import orderingCardData from './data/orderingCardData.json';
 import orderingCardTemplate from '../../../test-templates-hbs/orderingcard.hbs';
 
 describe('OrderingCard', function () {
-  const jqRef = {};
+  const jqRef = {
+    setRequestHeader() {
+      // Dummy method
+    }
+  };
   function ajaxResponse(response) {
     const pr = $.Deferred();
     pr.resolve(response, 'success', jqRef);
@@ -18,12 +23,20 @@ describe('OrderingCard', function () {
     this.initSpy = sinon.spy(this.orderingCard, 'init');
     this.settingsSpy = sinon.spy(this.orderingCard, 'openSettingsPanel');
     this.saveSettingsSpy = sinon.spy(this.orderingCard, 'saveSettings');
+    this.analyticsSpy = sinon.spy(this.orderingCard, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.orderDetailSpy = sinon.spy(this.orderingCard, 'openOrderDetails');
     this.stopEvtPropSpy = sinon.spy(this.orderingCard, 'stopEvtProp');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderingCardData));
     this.openStub = sinon.stub(window, 'open');
+    this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
+      data: {
+        access_token: "fLW1l1EA38xjklTrTa5MAN7GFmo2",
+        expires_in: "43199",
+        token_type: "BearerToken"
+      }
+    });
     this.orderingCard.init();
   });
   after(function () {
@@ -31,11 +44,13 @@ describe('OrderingCard', function () {
     this.initSpy.restore();
     this.settingsSpy.restore();
     this.saveSettingsSpy.restore();
+    this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.orderDetailSpy.restore();
     this.stopEvtPropSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
+    this.tokenStub.restore();
   });
   it('should initialize', function () {
     expect(this.orderingCard.init.called).to.be.true;
@@ -62,6 +77,10 @@ describe('OrderingCard', function () {
     }));
     $('.js-ordering-card__modal-save').trigger('click');
     expect($('.js-ordering-card__save-error').hasClass('d-none')).to.be.false;
+  });
+  it('should set Analytics tags on click of save settings button', function () {
+    $('.js-ordering-card__modal-save').trigger('click');
+    expect(this.orderingCard.trackAnalytics.called).to.be.true;
   });
   it('should redirect to order detail page on click of order summary row', function () {
     const rowLink = $('.js-ordering-card__row').first();

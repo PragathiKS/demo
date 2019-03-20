@@ -17,7 +17,7 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 size="L">
                 <items jcr:primaryType="nt:unstructured">
-                    <customerhub
+                	<customerhub
                         cq:showOnCreate="{Boolean}true"
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Customer Hub"
@@ -46,6 +46,9 @@
                                                 name="./iconClass"
                                                 translateOptions="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
+                                                    <None jcr:primaryType="nt:unstructured"
+                                                          text="None"
+                                                          value=""/>
                                                     <Dashboard jcr:primaryType="nt:unstructured"
                                                              text="Dashboard"
                                                              value="icon-Dashboard"/>
@@ -86,6 +89,13 @@
                                             </iconClass>
                                         </items>
                                     </section>
+                                   <errorpages
+										    jcr:primaryType="nt:unstructured"
+										    fieldLabel="Configure Error Page Root Path"
+										    fieldDescription="Error pages for this content tree"
+										    name="./errorPages"
+										    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+										    rootPath="/content/tetrapak/customerhub"/>
                                 </items>
                             </column>
                         </items>

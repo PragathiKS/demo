@@ -23,6 +23,9 @@ public class IntroScreenModel {
     private String headingI18n;
 
     @Inject
+    private String className;
+
+    @Inject
     private String nextBtnI18n;
 
     @Inject
@@ -57,6 +60,10 @@ public class IntroScreenModel {
 
     public String getHeadingI18n() {
         return headingI18n;
+    }
+
+    public String getClassName(){
+        return className;
     }
 
     public String getNextBtnI18n() {

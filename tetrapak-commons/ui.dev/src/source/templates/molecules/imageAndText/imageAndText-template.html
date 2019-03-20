@@ -1,15 +1,15 @@
-<sly data-sly-template.imageAndText_template="${@ data,columns,flag}">
+<sly data-sly-template.imageAndText_template="${@ data,columns,className,flag}">
   <div class="tpmol-image-card tpmol-image-card__col--${columns}">
     <div class="tpmol-image-card__container">
       <img src="${data.imagePath}" alt="${data.imageAltI18n @i18n}" />
       <div class="tpmol-image-card__text">
         <h4 class="tpmol-image-card__heading">${data.titleI18n @i18n}</h4>
-        <sly data-sly-test.description="${data.descriptionI18n @i18n}">
-           <p class="font-style-sm">
+        <sly data-sly-test.description="${data.descriptionI18n}">
+           <div class="${className} font-style-sm">
               ${description @ context='html'}
-            </p>
+           </div>
         </sly>
-        <sly data-sly-test.linkText="${data.linkTextI18n @i18n}">
+        <sly data-sly-test.linkText="${data.linkTextI18n}">
         <sly data-sly-test.linkUrl="${data.linkUrl}" />
           <div class="tpmol-image-card__link">
             <sly data-sly-use.nextButton="/apps/commons/components/atoms/nextButton/nextButton-template.html"

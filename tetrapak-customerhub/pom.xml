@@ -374,6 +374,25 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
+            <build>
+            <pluginManagement>
+            <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>npm</executable>
+                    <workingDirectory>src/</workingDirectory>
+                    <arguments>
+                        <argument>run</argument>
+                        <argument>buildDev</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            </plugins>
+            </pluginManagement>
+            </build>
         </profile>
 
         <!-- Development profile: install only the bundle -->
@@ -420,6 +439,19 @@
                 <pluginManagement>
                     <plugins>
                         <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
                             <executions>
@@ -460,6 +492,19 @@
                 <pluginManagement>
                     <plugins>
                         <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
                             <executions>
@@ -491,6 +536,58 @@
             </build>
         </profile>
 
+        <profile>
+            <id>autoInstallMinify</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.jackrabbit</groupId>
+                            <artifactId>filevault-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>create-package</id>
+                                    <goals>
+                                        <goal>package</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.day.jcr.vault</groupId>
+                            <artifactId>content-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>install-package</id>
+                                    <goals>
+                                        <goal>install</goal>
+                                    </goals>
+                                    <configuration>
+                                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
     </profiles>
 
 

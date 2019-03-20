@@ -1,10 +1,25 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import auth from '../../../scripts/utils/auth';
+import { apiHost } from '../../../scripts/common/common';
+
+/**
+ * Fire analytics on search submit
+ */
+function _trackAnalytics() {
+  // Get selected preferences
+  const analyticsData = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+    return $.trim($(el).parent().text());
+  }).join('|');
+
+  trackAnalytics(analyticsData, 'settings', 'ordersettings');
+}
 
 /**
  * Caches available keys from data
@@ -42,6 +57,7 @@ function _processContacts(contacts) {
  * Ensures that data is in same order as keys
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
+ * @param {string} orderDetailLink Order Detail link
  */
 function _tableSort(order, activeKeys, orderDetailLink) {
   const dataObject = {
@@ -162,6 +178,9 @@ function _saveSettings() {
   }).fail(() => {
     this.root.find('.js-ordering-card__save-error').removeClass('d-none');
   });
+
+  // Fire Analytics
+  this.trackAnalytics();
 }
 
 class OrderingCard {
@@ -202,7 +221,7 @@ class OrderingCard {
     if (typeof config === 'undefined') {
       config = {
         template: 'orderingCard',
-        url: this.cache.apiUrl,
+        url: `${apiHost}/${API_ORDER_HISTORY}`,
         ajaxConfig: {
           method: ajaxMethods.GET
         },
@@ -217,11 +236,24 @@ class OrderingCard {
         target: this.root
       };
     }
-    render.fn(config);
+    if (config.url) {
+      // Fetch API token and render table
+      auth.getToken(({ data }) => {
+        config.ajaxConfig.beforeSend = (jqXHR) => {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        };
+        config.ajaxConfig.cache = true;
+        render.fn(config);
+      });
+    } else {
+      render.fn(config);
+    }
   }
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
   stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
+  trackAnalytics = () => _trackAnalytics.call(this);
   openOrderDetails(...args) {
     return _openOrderDetails.apply(this, args);
   }

@@ -1,5 +1,4 @@
 {
-  "apiURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json",
   "preferencesURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
   "savedPreferences": [
     "orderNumber",

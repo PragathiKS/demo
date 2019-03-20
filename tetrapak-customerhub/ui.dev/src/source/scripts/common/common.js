@@ -4,8 +4,11 @@ import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
+import Handlebars from 'handlebars';
 
 const currentUserAgent = window.navigator.userAgent;
+
+export const apiHost = $('#apiHost').val();
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
@@ -272,3 +275,9 @@ export const isValidSelector = (selector) => (
   || selector instanceof HTMLCollection
   || Array.isArray(selector)
 );
+
+/**
+ * Sanitize input value to prevent XSS
+ * @param {any} input Input value
+ */
+export const sanitize = (input) => Handlebars.escapeExpression(input);
