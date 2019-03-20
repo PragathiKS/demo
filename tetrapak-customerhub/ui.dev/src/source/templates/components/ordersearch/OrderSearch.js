@@ -55,11 +55,14 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { orderDetailLink } = this.cache.config;
+  const { orderDetailLink, disabledFields } = this.cache.config;
   let keys = [];
   if (Array.isArray(data.orders)) {
     data.orders = data.orders.map(order => {
       keys = (keys.length === 0) ? Object.keys(order) : keys;
+      if (Array.isArray(disabledFields)) {
+        keys = keys.filter(key => !disabledFields.includes(key));
+      }
       return _tableSort.call(this, order, keys, orderDetailLink);
     });
     data.orderHeadings = keys.map(key => ({
