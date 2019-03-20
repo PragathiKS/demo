@@ -374,6 +374,25 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
+            <build>
+            <pluginManagement>
+            <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>npm</executable>
+                    <workingDirectory>src/</workingDirectory>
+                    <arguments>
+                        <argument>run</argument>
+                        <argument>buildDev</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            </plugins>
+            </pluginManagement>
+            </build>
         </profile>
 
         <!-- Development profile: install only the bundle -->
@@ -394,19 +413,6 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>exec-maven-plugin</artifactId>
-                            <version>1.6.0</version>
-                            <configuration>
-                                <executable>npm</executable>
-                                <workingDirectory>src/</workingDirectory>
-                                <arguments>
-                                    <argument>run</argument>
-                                    <argument>buildDev</argument>
-                                </arguments>
-                            </configuration>
-                        </plugin>
                         <plugin>
                             <groupId>org.apache.sling</groupId>
                             <artifactId>maven-sling-plugin</artifactId>
