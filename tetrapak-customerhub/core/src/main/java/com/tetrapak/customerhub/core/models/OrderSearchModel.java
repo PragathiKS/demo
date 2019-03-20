@@ -14,6 +14,9 @@ import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Model class for order search component
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderSearchModel {
 
@@ -51,8 +54,6 @@ public class OrderSearchModel {
     private APIGEEService apigeeService;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
-
-    private String apiURL;
 
     private String config;
 

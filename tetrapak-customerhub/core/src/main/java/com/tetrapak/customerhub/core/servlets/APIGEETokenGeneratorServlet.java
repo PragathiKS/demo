@@ -30,6 +30,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Base64;
 
+/**
+ * API GEE Token Generator Servlet
+ * @author Nitin Kumar
+ */
 @Component(service = Servlet.class,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=API GEE Token Generator Servlet",
@@ -41,11 +45,13 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     @Reference
     private APIGEEService apigeeService;
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final long serialVersionUID = 1;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(APIGEETokenGeneratorServlet.class);
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-        logger.debug("HTTP GET request from APIGEETokenGeneratorServlet");
+        LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl() + "/oauth2/v2/token";
         final String username = apigeeService.getApigeeClientID();
@@ -68,14 +74,14 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             HttpResponse httpResponse = httpClient.execute(postRequest);
             statusCode = httpResponse.getStatusLine().getStatusCode();
             response.setStatus(statusCode);
-            logger.debug("Http Post request status code: {}", statusCode);
+            LOGGER.debug("Http Post request status code: {}", statusCode);
 
             InputStream is = httpResponse.getEntity().getContent();
 
             InputStreamReader isr = new InputStreamReader(is);
             int numCharsRead;
             char[] charArray = new char[1024];
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             while ((numCharsRead = isr.read(charArray)) > 0) {
                 sb.append(charArray, 0, numCharsRead);
             }
@@ -85,7 +91,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
             GlobalUtil.writeJsonResponse(response, jsonResponse);
         } catch (FileNotFoundException e) {
-            logger.error("Unable to connect to the url {}", apiURL, e);
+            LOGGER.error("Unable to connect to the url {}", apiURL, e);
             response.setStatus(statusCode);
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_FAILURE);
             GlobalUtil.writeJsonResponse(response, jsonResponse);

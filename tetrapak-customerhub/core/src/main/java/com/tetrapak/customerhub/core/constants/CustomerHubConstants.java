@@ -1,6 +1,13 @@
 package com.tetrapak.customerhub.core.constants;
 
+/**
+ * The CustomerHubConstants class
+ */
 public class CustomerHubConstants {
+
+    private CustomerHubConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static final String GLOBAL_PAGE_PATH = "/content/tetrapak/customerhub/global";
 
