@@ -3,7 +3,7 @@ import $ from 'jquery';
 class ListContentImage {
   cache = {};
   initCache() {
-    this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__Link', '.pw-listContentImage' );
+    this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', '.pw-listContentImage' );
     let tabListContentArray = [];
     let $overallTabListContentClass = $( '.pw-listContentImage' );
     // get each specific class of tabListContent Organisms version and put in array
@@ -67,17 +67,14 @@ class ListContentImage {
       // Mobile
       // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link
       let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', grandParentClass ).clone();
-      $( '..pw-listContentImage__tabMenuListItem .pw-listContentImage__contentTab', grandParentClass ).slideUp( 'slow', function() {
+      $( '.pw-listContentImage__tabMenuListItem .pw-listContentImage__contentTab', grandParentClass ).slideUp( 'slow', function() {
         $( this ).remove();
       });
       $.each( $tabMenuItem, function() {
         if ( $( this ).children( 'a.active' ).hasClass( 'active' ) ) {
-          $clonedActiveTabContent.appendTo( $( this ) ).slideDown( 'slow' ); // .css( 'display', 'none' )
+          $clonedActiveTabContent.appendTo( $( this ) ).slideDown( 'slow' );
         }
       });
-
-      // clear the clone variable
-      // $clonedActiveTabContent = '';
     });
   }
   init() {
