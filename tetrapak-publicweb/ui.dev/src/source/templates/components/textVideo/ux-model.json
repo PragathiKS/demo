@@ -1,0 +1,10 @@
+{
+  "title": "Test Title",
+  "subtitle": "Test Subtitle",
+  "description": "Test Description",
+  "linkTexti18n": "Tetra Pak",
+  "linkURL": "https://www.tetrapak.com",
+  "videoSource": "damVideo",
+  "youtubeEmbedURL": "****",
+  "damVideoPath": "/content/dam/publicweb/videos/test.mp4"
+}
