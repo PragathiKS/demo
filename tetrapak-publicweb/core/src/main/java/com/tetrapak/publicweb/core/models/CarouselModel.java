@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,7 @@ import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.commons.json.JSONObject;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -43,93 +44,85 @@ public class CarouselModel {
 
 	@PostConstruct
 	protected void init() {
-		setTabDeatils(tabDetails, resource);
-	}
-
-	private void setTabDeatils(String[] tabDetails, Resource resource) {
 		ResourceResolver resolver = resource.getResourceResolver();
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-		@SuppressWarnings("deprecation")
-		JSONObject jObj;
-		try {
-			if (tabDetails == null) {
-				log.error("Tab Details is NULL");
-				return;
-			}
+		Resource childResource = resource.getChild("tabDetails");
+		log.info("This is the child resource : " + childResource.getPath());
 
-			if (tabDetails != null) {
-				for (int i = 0; i < tabDetails.length; i++) {
-					jObj = new JSONObject(tabDetails[i]);
-					PracticeLineBean bean = new PracticeLineBean();
+		if (null != childResource) {
+			Iterator<Resource> itr = childResource.listChildren();
+			while (itr.hasNext()) {
+				Resource res = itr.next();
+				ValueMap valueMap = res.getValueMap();
 
-					String contentType = "";
-					String socialMediaLinkPath = "";
-					if (jObj.has("contentType")) {
-						contentType = jObj.getString("contentType");
+				PracticeLineBean bean = new PracticeLineBean();
+
+				String contentType = "";
+				if (valueMap.containsKey("contentType")) {
+					contentType = valueMap.get("contentType", String.class);
+				}
+
+				if ("automatic".equals(contentType)) {
+					String articlePath = "";
+					if (valueMap.containsKey("articlePath")) {
+						articlePath = valueMap.get("articlePath", String.class);
 					}
-					
-					if ("automatic".equals(contentType)) {
-						String articlePath = "";
-						if (jObj.has("articlePath")) {
-							articlePath = jObj.getString("articlePath");
-						}
-						
-						Page landingPage = pageManager.getPage(articlePath);
-						if (landingPage != null) {
-							Resource jcrContentResource = landingPage.getContentResource();
-							LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
-							if (landingPageModel != null) {
-								bean.setArticleTitle(landingPageModel.getTitle());
-								bean.setVanityDescriptionI18n(landingPageModel.getVanityDescription());
-								bean.setCtaTexti18nKey(landingPageModel.getCtaTexti18nKey());
-								bean.setOpenInNewWindow(landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow() : false);
-								bean.setShowImage(landingPageModel.getShowImage() != null ? landingPageModel.getShowImage() : false);
-								bean.setArticleImagePath(landingPageModel.getArticleImagePath());
-								bean.setArticleImageAltI18n(landingPageModel.getArticleImageAltI18n());
-							}
-						}
 
-					} else {
-					
-						if (jObj.has("articleTitle")) {
-							bean.setArticleTitle(jObj.getString("articleTitle"));
+					Page landingPage = pageManager.getPage(articlePath);
+					if (landingPage != null) {
+						Resource jcrContentResource = landingPage.getContentResource();
+						LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
+						if (landingPageModel != null) {
+							bean.setArticleTitle(landingPageModel.getTitle());
+							bean.setVanityDescriptionI18n(landingPageModel.getVanityDescription());
+							bean.setCtaTexti18nKey(landingPageModel.getCtaTexti18nKey());
+							bean.setOpenInNewWindow(
+									landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow()
+											: false);
+							bean.setShowImage(
+									landingPageModel.getShowImage() != null ? landingPageModel.getShowImage() : false);
+							bean.setArticleImagePath(landingPageModel.getArticleImagePath());
+							bean.setArticleImageAltI18n(landingPageModel.getArticleImageAltI18n());
 						}
-						
-						if (jObj.has("vanityDescriptionI18n")) {
-							bean.setVanityDescriptionI18n(jObj.getString("vanityDescriptionI18n"));
-						}
-						
-						if (jObj.has("ctaTexti18nKey")) {
-							bean.setCtaTexti18nKey(jObj.getString("ctaTexti18nKey"));
-						}
-						
-						if (jObj.has("showImage")) {
-							bean.setShowImage(Boolean.parseBoolean(jObj.getString("showImage")));
-						}
-						
-						if (jObj.has("openInNewWindow")) {
-							bean.setOpenInNewWindow(Boolean.parseBoolean(jObj.getString("openInNewWindow")));
-						}
-						
-						if (jObj.has("articleImagePath")) {
-							bean.setArticleImagePath(jObj.getString("articleImagePath"));
-						}
-						
-						if (jObj.has("articleImageAltI18n")) {
-							bean.setArticleImageAltI18n(jObj.getString("articleImageAltI18n"));
-						}
-
 					}
-					
-					tabs.add(bean);
+				} else {
+
+					if (valueMap.containsKey("articleTitle")) {
+						bean.setArticleTitle(valueMap.get("articleTitle", String.class));
+					}
+
+					if (valueMap.containsKey("vanityDescriptionI18n")) {
+						bean.setVanityDescriptionI18n(valueMap.get("vanityDescriptionI18n", String.class));
+					}
+
+					if (valueMap.containsKey("ctaTexti18nKey")) {
+						bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
+					}
+
+					if (valueMap.containsKey("showImage")) {
+						bean.setShowImage(Boolean.parseBoolean(valueMap.get("showImage", String.class)));
+					}
+
+					if (valueMap.containsKey("openInNewWindow")) {
+						bean.setOpenInNewWindow(Boolean.parseBoolean(valueMap.get("openInNewWindow", String.class)));
+					}
+
+					if (valueMap.containsKey("articleImagePath")) {
+						bean.setArticleImagePath(valueMap.get("articleImagePath", String.class));
+					}
+
+					if (valueMap.containsKey("articleImageAltI18n")) {
+						bean.setArticleImageAltI18n(valueMap.get("articleImageAltI18n", String.class));
+					}
 
 				}
+
+				tabs.add(bean);
+
 			}
-		} catch (Exception e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
 		}
-		
+
 	}
 
 	public String getTitleI18n() {
@@ -140,7 +133,7 @@ public class CarouselModel {
 		return titleAlignment;
 	}
 
-	public Boolean getShowBox(){
+	public Boolean getShowBox() {
 		return showBox;
 	}
 
