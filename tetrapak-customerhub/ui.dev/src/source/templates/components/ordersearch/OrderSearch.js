@@ -96,37 +96,38 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  logger.log('I was called');
-  const { $filters, accessToken = '' } = this.cache;
+  const { $filters } = this.cache;
   const $this = this;
-  render.fn({
-    template: 'orderingTable',
-    target: '.js-order-search__table',
-    url: {
-      path: `${apiHost}/${API_ORDER_HISTORY}`,
-      data: filterParams
-    },
-    beforeRender(data) {
-      if (!data) {
-        this.data = data = {
-          isError: true
-        };
-      }
-      return _processTableData.apply($this, [data]);
-    },
-    ajaxConfig: {
-      beforeSend(jqXHR) {
-        jqXHR.setRequestHeader('Authorization', `Bearer ${accessToken}`);
-        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'orderingTable',
+      target: '.js-order-search__table',
+      url: {
+        path: `${apiHost}/${API_ORDER_HISTORY}`,
+        data: filterParams
       },
-      method: ajaxMethods.GET,
-      cache: true
-    }
-  }, () => {
-    if ($filters && $filters.length) {
-      $filters.removeClass('d-none');
-    }
-    this.setSearchFields(filterParams);
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        }
+        return _processTableData.apply($this, [data]);
+      },
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true
+      }
+    }, () => {
+      if ($filters && $filters.length) {
+        $filters.removeClass('d-none');
+      }
+      this.setSearchFields(filterParams);
+    });
   });
 }
 
@@ -177,7 +178,6 @@ function _trackAnalytics(defaultParam) {
  */
 function _renderFilters() {
   auth.getToken(({ data }) => {
-    this.cache.accessToken = data.access_token;
     render.fn({
       template: 'orderSearch',
       url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
