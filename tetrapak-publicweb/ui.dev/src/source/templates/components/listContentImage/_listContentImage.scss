@@ -130,4 +130,10 @@
             vertical-align: middle;
         }
     }
+    &__editWrapper {
+        @include margin-top($margin-l);
+        #{ $self }__contentTab {
+            display: block !important; //sass-lint:disable-line no-important
+        }
+    }
 }

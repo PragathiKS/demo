@@ -1,5 +1,6 @@
 <sly data-sly-template.listcontentimage_template="${@ data, flag}"
   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <sly data-sly-test.showEdit="${wcmmode.edit ? 'd-block' : 'd-none'}" />
   <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''} pw-theme--${data.pwTheme} tabListContent-version-main" data-module="ListContentImage">
     <div class="row">
         <div class="col-lg-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''}">
@@ -20,13 +21,20 @@
               data-sly-call="${pwButton.button_template @ btnPath=data.linkPath, btnText=data.linkTextI18n, btnTooltip=data.linkTooltipI18n, btnTarget=data.targetBlank, btnIcon='icon-Circle_Arrow_Right'}">
         </div>
         <div class="col-lg-8 ${data.tabsAlignment == 'text-right'? 'order-1' : ''}">
-            <div class="pw-listContentImage__contentWrapper" data-sly-list="${data.tabLinks}">
-                <div class="pw-listContentImage__contentTab ${itemList.first? 'active' : ''}" data-tab-id="${itemList.index}">
-                    <h1>${item}</h1>
-                    <!--sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/-->
-                </div>
+            <div class="pw-listContentImage__contentWrapper">
             </div>
         </div>
+    </div>
+    <div class="pw-listContentImage__editWrapper ${showEdit}">
+       <div class="row" data-sly-list="${data.tabLinks}">
+            <sly data-sly-test.parsys="${'par{0}' @ format=[itemList.count]}" />
+            <div class="pw-listContentImage__editTab col-12" data-tab-id="${itemList.index}">
+                <h3>Edit tab number ${itemList.count} Content</h3>
+                <div class="pw-listContentImage__contentTab ${itemList.first? 'active' : ''}" data-tab-id="${itemList.index}">
+                    <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}">
+                </div>
+            </div>
+        </div> 
     </div>
   </div>
   <sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>

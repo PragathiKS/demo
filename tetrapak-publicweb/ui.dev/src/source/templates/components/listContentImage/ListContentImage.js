@@ -12,10 +12,18 @@ class ListContentImage {
       let specificTabListContentVersion = tabListContentClassArr[tabListContentClassArr.length - 1];
       tabListContentArray.push( specificTabListContentVersion );
     });
-    // Loop through the list of tabListContent organism version and clone its active tabContent and append under active tab in the tablist (for mobile)
+    // Loop through the list of tabListContent organism version and first clone the editTabContent and then clone its active tabContent and append under active tab in the tablist (for mobile)
     tabListContentArray.forEach( function( element ) {
       const grandParentClass = '.'+element;
       const $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', grandParentClass );
+      const $editTabItem = $('.pw-listContentImage__editTab', grandParentClass);
+      const $contentWrapper = $( '.pw-listContentImage__contentWrapper', grandParentClass );
+
+      // Clone all EditTab Content to the Content Wrapper
+      $.each($editTabItem, function() {
+        let $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
+        $contentWrapper.append($clonedEditTabContent);
+      });
 
       // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link (this is hidden in desktop view with css)
       let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', grandParentClass ).clone();
