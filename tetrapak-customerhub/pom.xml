@@ -531,7 +531,7 @@
         </profile>
 
         <profile>
-            <id>autoInstallProd</id>
+            <id>autoInstallMinify</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
