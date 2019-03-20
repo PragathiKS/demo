@@ -25,7 +25,6 @@
         }
     }
     &__heading {
-        @include margin-bottom($margin-sm);
         @include line-height($font-l, $font-md);
         @media #{$desktop} {
             @include margin-bottom($margin-md);
@@ -47,7 +46,7 @@
         ul,
         ol {
             list-style: initial;
-            @include padding($padding-md 0 0 $padding-md);
+            @include padding($padding-sm 0 0 $padding-md);
             li {
                 @include font-size($font-sm);
                 color: $color-tundora;
@@ -64,7 +63,6 @@
         p {
             @include line-height(21px, $font-sm);
             @include font-size($font-baseline);
-            font-weight: bold;
         }
     }
     &__link {
