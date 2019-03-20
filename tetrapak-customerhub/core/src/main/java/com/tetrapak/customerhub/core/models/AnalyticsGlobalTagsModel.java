@@ -34,6 +34,9 @@ public class AnalyticsGlobalTagsModel {
     
     public String getPageType() {
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if(null == pageManager){
+            return "";
+        }
         Page currentPage = pageManager.getContainingPage(resource.getPath());
         String pageType = currentPage.getTitle();
         return pageType;       
@@ -64,17 +67,23 @@ public class AnalyticsGlobalTagsModel {
     }
     
     public ArrayList<String> getUserRoles() {
-        ArrayList<String> userRoles = new ArrayList<String>();
-        String userRole = null;
+        ArrayList<String> userRoles = new ArrayList<>();
+        String userRole;
         ResourceResolver resourceResolver = resource.getResourceResolver();
         Session session = resource.getResourceResolver().adaptTo(Session.class);
+        if(null == session){
+            return userRoles;
+        }
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        if(null == userManager){
+            return userRoles;
+        }
         Authorizable user;
         try {
-            user = (User) userManager.getAuthorizable(session.getUserID());
+            user = userManager.getAuthorizable(session.getUserID());
             Iterator<Group> itr = user.memberOf();
             while (itr.hasNext()) {
-                Group group = (Group) itr.next();
+                Group group = itr.next();
                 userRole = group.getPrincipal().getName();
                 userRoles.add(userRole);
             }

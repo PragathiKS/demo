@@ -39,7 +39,7 @@ import java.util.Base64;
 public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
 
     @Reference
-    APIGEEService apigeeService;
+    private APIGEEService apigeeService;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
