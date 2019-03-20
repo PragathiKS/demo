@@ -1,12 +1,13 @@
 {
-  "headingI18n": "cuhu.getstarted.heading",
+  "headingI18n": "Get started",
   "cols": 3,
+  "className": "tpmol-image-card__normal-text",
   "getStartedList": [
     {
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
       "imageAltI18n": "cuhu.getstarted.businessalttext",
-      "titleI18n": "cuhu.getstarted.businesstitle",
-      "descriptionI18n": "<b>Bold Text</b> With Simple text",
+      "titleI18n": "Reduced variability thanks to Tetra Pak's Plant Care with Performance Guarantee",
+      "descriptionI18n": "<p>Food and drink producer reduced variability by 84% thanks to Tetra Pak Plant Care with Performance Guarantee </p><ul><li>Reduced variability by 84% in a year</li><li>Improve standards and quality</li><li>3 year performance guarantee agreement</li><li>Improve equipment reliability</li></ul>",
       "linkTextI18n": "Learn more",
       "linkUrl": "https://www.tetrapak.com"
     },
@@ -14,7 +15,7 @@
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
       "imageAltI18n": "cuhu.getstarted.businessalttext",
       "titleI18n": "cuhu.getstarted.businesstitle",
-      "descriptionI18n": "<b>Bold Text</b> With Simple text"
+      "descriptionI18n": "Some test with the default text with out rich text"
     },
     {
       "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",

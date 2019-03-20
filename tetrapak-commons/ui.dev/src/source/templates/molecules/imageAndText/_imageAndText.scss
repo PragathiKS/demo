@@ -25,11 +25,7 @@
         }
     }
     &__heading {
-        @include margin-bottom($margin-sm);
         @include line-height($font-l, $font-md);
-        @media #{$desktop} {
-            @include margin-bottom($margin-md);
-        }
         font-family: $font-light;
         padding: 0;
     }
@@ -43,6 +39,33 @@
         }
         .font-style-sm {
             @include line-height(21px, $font-sm);
+        }
+        ul,
+        ol {
+            list-style: initial;
+            @include padding($padding-sm 0 0 $padding-md);
+            li {
+                @include font-size($font-sm);
+                @include line-height(22.5px, $font-baseline);
+                color: $color-light-gray;
+            }
+        }
+    }
+    &__normal-text {
+        @include margin-top($margin-sm);
+        @media #{$desktop} {
+            @include margin-top($margin-md);
+        }
+        p {
+            @include line-height(21px, $font-sm);
+            @include font-size($font-sm);
+        }
+    }
+    &__rich-text {
+        @include margin-top($margin-sm);
+        p {
+            @include line-height(21px, $font-baseline);
+            @include font-size($font-baseline);
         }
     }
     &__link {
