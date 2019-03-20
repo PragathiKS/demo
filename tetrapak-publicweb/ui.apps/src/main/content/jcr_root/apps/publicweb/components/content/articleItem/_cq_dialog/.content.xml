@@ -69,18 +69,18 @@
                                     <vanityDescription
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                        fieldLabel="Vanity Description i18n key"
-                                        name="./vanityDescriptionI18n"/>
+                                        fieldLabel="Description"
+                                        name="./vanityDescription"/>
                                     <ctaText
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Call to action Text i18n Key"
+                                        fieldLabel="Link Text"
                                         name="./ctaTexti18nKey"/>
                                     <openInNewWindow
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                         name="./openInNewWindow"
-                                        text="Open In New Window?"
+                                        text="Open In New Window? (for External URLs and PDFs)"
                                         value="true"/>
                                     <openInNewWindowDelete
                                         jcr:primaryType="nt:unstructured"
@@ -115,8 +115,8 @@
                                     <imagealt
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Alt Text i18 Key"
-                                        fieldLabel="Alt Text i18 Key"
+                                        fieldDescription="Enter Alt Text"
+                                        fieldLabel="Alt Text"
                                         name="./articleImageAltI18n"/>
                                 </items>
                             </imagecontent>
