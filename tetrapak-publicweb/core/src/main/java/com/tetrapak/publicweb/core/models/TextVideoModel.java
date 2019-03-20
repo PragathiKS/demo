@@ -14,75 +14,82 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
-	@Inject
-	private String title;
+    @Inject
+    private String title;
 
-	@Inject
-	private String description;
+    @Inject
+    private String description;
 
-	@Inject
-	private String linkTexti18n;
+    @Inject
+    private String linkTexti18n;
 
-	@Inject
-	private String linkURL;
+    @Inject
+    private String linkURL;
 
-	@Inject
-	private String videoSource;
+    @Inject
+    private String videoSource;
 
-	@Inject
-	private String youtubeVideoID;
-	
-	@Inject
-	private String damVideoPath;
-	
-	private String youtubeEmbedURL;
-	
-	@Inject
-	private String textAlignment;
-	
-	@PostConstruct
-	protected void init() {
-		if (StringUtils.isNotEmpty(linkURL)) {
-			linkURL = LinkUtils.sanitizeLink(linkURL);
-		}
-		
-		youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID; 
-	}
+    @Inject
+    private String youtubeVideoID;
 
-	public String getTitle() {
-		return title;
-	}
+    @Inject
+    private String damVideoPath;
 
-	public String getDescription() {
-		return description;
-	}
+    private String youtubeEmbedURL;
 
-	public String getLinkTexti18n() {
-		return linkTexti18n;
-	}
+    @Inject
+    private String textAlignment;
 
-	public String getLinkURL() {
-		return linkURL;
-	}
+    @Inject
+    private String pwTheme;
 
-	public String getVideoSource() {
-		return videoSource;
-	}
+    @PostConstruct
+    protected void init() {
+        if (StringUtils.isNotEmpty(linkURL)) {
+            linkURL = LinkUtils.sanitizeLink(linkURL);
+        }
 
-	public String getYoutubeVideoID() {
-		return youtubeVideoID;
-	}
-	
-	public String getYoutubeEmbedURL() {
-		return youtubeEmbedURL;
-	}
+        youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+    }
 
-	public String getDamVideoPath() {
-		return damVideoPath;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getTextAlignment() {
-		return textAlignment;
-	}
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLinkTexti18n() {
+        return linkTexti18n;
+    }
+
+    public String getLinkURL() {
+        return linkURL;
+    }
+
+    public String getVideoSource() {
+        return videoSource;
+    }
+
+    public String getYoutubeVideoID() {
+        return youtubeVideoID;
+    }
+
+    public String getYoutubeEmbedURL() {
+        return youtubeEmbedURL;
+    }
+
+    public String getDamVideoPath() {
+        return damVideoPath;
+    }
+
+    public String getTextAlignment() {
+        return textAlignment;
+    }
+
+    public String getPwTheme() {
+        return pwTheme;
+    }
 
 }

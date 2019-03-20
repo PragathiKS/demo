@@ -1,31 +1,35 @@
 <sly data-sly-template.textVideo_template="${@ data, flag}">
   <div class="pw-text-video pw-text-video--${data.textAlignment} pw-theme--${data.pwTheme}" data-locator="text-video">
-      <div class="row">
-          <div class="col-md-12 col-lg-4">
-              <div class="pw-text-video__title">
-                  <sly data-sly-test="${data.title}" data-sly-use.title="/apps/publicweb/components/atoms/title/title.html"
-                       data-sly-call="${title.title_template @ titleText=data.title}" />
-              </div>
-              <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
-              <a class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}" href="${data.linkURL}" title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
-          </div>
-          <div class="col-md-12 col-lg-8">
-              <sly data-sly-test="${data.videoSource == 'damVideo'}">
-                  <div class="pw-text-video__video">
-                      <video controls>
-                          <source src="${data.damVideoPath}" type="video/mp4">
-                          Your browser does not support HTML5 video.
-                      </video>
-                  </div>
-              </sly>
-              <sly data-sly-test="${data.videoSource == 'youtube'}">
-                  <div class="pw-text-video__video">
-                      <iframe src="${data.youtubeEmbedURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-              </sly>
-              <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
-              <a class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}" href="${data.linkURL}" title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
-          </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-4">
+        <div class="pw-text-video__title">
+          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/publicweb/components/atoms/title/title.html"
+               data-sly-call="${title.title_template @ titleText=data.title}"/>
+        </div>
+        <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
+        <a class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}" href="${data.linkURL}"
+           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
       </div>
+      <div class="col-md-12 col-lg-8">
+        <sly data-sly-test="${data.videoSource == 'damVideo'}">
+          <div class="pw-text-video__video">
+            <video controls>
+              <source src="${data.damVideoPath}" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+        </sly>
+        <sly data-sly-test="${data.videoSource == 'youtube'}">
+          <div class="pw-text-video__video">
+            <iframe src="${data.youtubeEmbedURL}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+        </sly>
+        <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
+        <a class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}" href="${data.linkURL}"
+           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
+      </div>
+    </div>
   </div>
 </sly>
