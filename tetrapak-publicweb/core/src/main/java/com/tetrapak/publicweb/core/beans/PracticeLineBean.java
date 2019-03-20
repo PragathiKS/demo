@@ -14,8 +14,6 @@ public class PracticeLineBean {
 
 	private Boolean openInNewWindow;
 
-	private Boolean showImage;
-
 	private String articleImagePath;
 
 	private String articleImageAltI18n;
@@ -68,14 +66,6 @@ public class PracticeLineBean {
 		this.openInNewWindow = openInNewWindow;
 	}
 
-	public Boolean getShowImage() {
-		return showImage;
-	}
-
-	public void setShowImage(Boolean showImage) {
-		this.showImage = showImage;
-	}
-
 	public String getArticleImagePath() {
 		return articleImagePath;
 	}
@@ -91,6 +81,5 @@ public class PracticeLineBean {
 	public void setArticleImageAltI18n(String articleImageAltI18n) {
 		this.articleImageAltI18n = articleImageAltI18n;
 	}
-
 
 }

@@ -77,11 +77,8 @@ public class CarouselModel {
 							bean.setArticleTitle(landingPageModel.getTitle());
 							bean.setVanityDescriptionI18n(landingPageModel.getVanityDescription());
 							bean.setCtaTexti18nKey(landingPageModel.getCtaTexti18nKey());
-							bean.setOpenInNewWindow(
-									landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow()
+							bean.setOpenInNewWindow(landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow()
 											: false);
-							bean.setShowImage(
-									landingPageModel.getShowImage() != null ? landingPageModel.getShowImage() : false);
 							bean.setArticleImagePath(landingPageModel.getArticleImagePath());
 							bean.setArticleImageAltI18n(landingPageModel.getArticleImageAltI18n());
 						}
@@ -98,10 +95,6 @@ public class CarouselModel {
 
 					if (valueMap.containsKey("ctaTexti18nKey")) {
 						bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
-					}
-
-					if (valueMap.containsKey("showImage")) {
-						bean.setShowImage(Boolean.parseBoolean(valueMap.get("showImage", String.class)));
 					}
 
 					if (valueMap.containsKey("openInNewWindow")) {

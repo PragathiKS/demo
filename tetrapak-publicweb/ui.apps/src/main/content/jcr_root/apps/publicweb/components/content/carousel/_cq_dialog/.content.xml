@@ -120,12 +120,6 @@
                                                         name="./openInNewWindow"
                                                         text="Open In New Window?"
                                                         value="true"/>
-                                                    <showImage
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                        text="Show Image"
-                                                        value="true"
-                                                        name="./showImage"/>
                                                     <imagepath
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
