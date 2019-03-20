@@ -17,19 +17,46 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author TetraPak
+ *
+ */
 public class GlobalUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
+    
+    /**
+     * Making private to not allow to create instance
+     */
+    private GlobalUtil() {
+    	
+    }
 
+    /**
+     * 
+     * @param apigeeService
+     * @param defaultJson
+     * @return String
+     */
     public static String getApiURL(APIGEEService apigeeService, String defaultJson) {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : defaultJson;
     }
-
+    /**
+     * 
+     * @param apigeeService
+     * @param preferencesJson
+     * @return String
+     */
     public static String getPreferencesURL(APIGEEService apigeeService, String preferencesJson) {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : preferencesJson;
     }
-
+    /**
+     * 
+     * @param resourceFactory
+     * @param paramMap
+     * @return ResourceResolver
+     */
     public static ResourceResolver getResourceResolverFromSubService(
             final ResourceResolverFactory resourceFactory, final Map<String, Object> paramMap) {
         ResourceResolver resourceResolver = null;
@@ -44,7 +71,12 @@ public class GlobalUtil {
         }
         return resourceResolver;
     }
-
+    /**
+     * 
+     * @param resp
+     * @param jsonResponse
+     * @throws IOException
+     */
     public static void writeJsonResponse(SlingHttpServletResponse resp, JsonObject jsonResponse) throws IOException {
         resp.setContentType("application/json");
         resp.getWriter().write(jsonResponse.toString());
