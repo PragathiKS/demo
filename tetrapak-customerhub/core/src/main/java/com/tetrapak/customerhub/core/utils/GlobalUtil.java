@@ -30,7 +30,7 @@ public class GlobalUtil {
      * Making private to not allow to create instance
      */
     private GlobalUtil() {
-    	
+    	super();
     }
 
     /**
