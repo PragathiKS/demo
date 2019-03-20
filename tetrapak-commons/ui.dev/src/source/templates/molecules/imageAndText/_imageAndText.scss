@@ -26,6 +26,7 @@
     }
     &__heading {
         @include line-height($font-l, $font-md);
+        @include margin-bottom($margin-sm);
         @media #{$desktop} {
             @include margin-bottom($margin-md);
         }
