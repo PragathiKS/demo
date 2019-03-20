@@ -75,7 +75,7 @@ public class CarouselModel {
 						LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
 						if (landingPageModel != null) {
 							bean.setArticleTitle(landingPageModel.getTitle());
-							bean.setVanityDescriptionI18n(landingPageModel.getVanityDescription());
+							bean.setVanityDescription(landingPageModel.getVanityDescription());
 							bean.setCtaTexti18nKey(landingPageModel.getCtaTexti18nKey());
 							bean.setOpenInNewWindow(landingPageModel.isOpenInNewWindow() != null ? landingPageModel.isOpenInNewWindow()
 											: false);
@@ -89,8 +89,8 @@ public class CarouselModel {
 						bean.setArticleTitle(valueMap.get("articleTitle", String.class));
 					}
 
-					if (valueMap.containsKey("vanityDescriptionI18n")) {
-						bean.setVanityDescriptionI18n(valueMap.get("vanityDescriptionI18n", String.class));
+					if (valueMap.containsKey("vanityDescription")) {
+						bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
 					}
 
 					if (valueMap.containsKey("ctaTexti18nKey")) {

@@ -8,7 +8,7 @@ public class PracticeLineBean {
 
 	private String articleTitle;
 
-	private String vanityDescriptionI18n;
+	private String vanityDescription;
 
 	private String ctaTexti18nKey;
 
@@ -42,12 +42,12 @@ public class PracticeLineBean {
 		this.articleTitle = articleTitle;
 	}
 
-	public String getVanityDescriptionI18n() {
-		return vanityDescriptionI18n;
+	public String getVanityDescription() {
+		return vanityDescription;
 	}
 
-	public void setVanityDescriptionI18n(String vanityDescriptionI18n) {
-		this.vanityDescriptionI18n = vanityDescriptionI18n;
+	public void setVanityDescription(String vanityDescription) {
+		this.vanityDescription = vanityDescription;
 	}
 
 	public String getCtaTexti18nKey() {
