@@ -31,7 +31,7 @@
                                     text="Getting Started"
                                     value="tpmol-image-card__normal-text"/>
                             <rich jcr:primaryType="nt:unstructured"
-                                  text="Dashboard"
+                                  text="Recommended For You"
                                   value="tpmol-image-card__rich-text"/>
                         </items>
                     </className>
