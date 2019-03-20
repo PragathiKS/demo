@@ -1,0 +1,27 @@
+<sly data-sly-template.textVideo_template="${@ data, flag}">
+  <div data-locator="text-video" class="pw-textvideo">
+      <p>Title - ${data.title}</p>
+      <p>Subtitle - ${data.subtitle}</p>
+      <p>Description - ${data.description}</p>
+      <p>Link Text  - ${data.linkTexti18n @ i18n}</p>
+      <p>Link URL - ${data.linkURL}</p>
+      <p>Video Source - ${data.videoSource}</p>
+      <p>Youtube Video ID - ${data.youtubeVideoID}</p>
+      <p>Dam Video Path - ${data.damVideoPath}</p>
+      
+      <sly data-sly-test="${data.videoSource == 'damVideo'}">
+          <div style="padding:50px; margin:50px">
+              <video width="560" controls>
+                  <source src="${data.damVideoPath}" type="video/mp4">
+                  Your browser does not support HTML5 video.
+              </video>
+          </div>
+      </sly>
+      <sly data-sly-test="${data.videoSource == 'youtube'}">
+          <div style="padding:50px; margin:50px">
+              <iframe width="560" height="315" src="${data.youtubeEmbedURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+      </sly>
+      
+  </div>
+</sly>

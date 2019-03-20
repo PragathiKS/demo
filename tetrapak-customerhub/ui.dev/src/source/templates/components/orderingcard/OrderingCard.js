@@ -1,11 +1,13 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import auth from '../../../scripts/utils/auth';
+import { apiHost } from '../../../scripts/common/common';
 
 /**
  * Fire analytics on search submit
@@ -219,7 +221,7 @@ class OrderingCard {
     if (typeof config === 'undefined') {
       config = {
         template: 'orderingCard',
-        url: this.cache.apiUrl,
+        url: `${apiHost}/${API_ORDER_HISTORY}`,
         ajaxConfig: {
           method: ajaxMethods.GET
         },
@@ -234,7 +236,19 @@ class OrderingCard {
         target: this.root
       };
     }
-    render.fn(config);
+    if (config.url) {
+      // Fetch API token and render table
+      auth.getToken(({ data }) => {
+        config.ajaxConfig.beforeSend = (jqXHR) => {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        };
+        config.ajaxConfig.cache = true;
+        render.fn(config);
+      });
+    } else {
+      render.fn(config);
+    }
   }
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);

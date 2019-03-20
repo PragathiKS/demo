@@ -19,6 +19,23 @@
                             fieldDescription="Enter Heading"
                             fieldLabel="Heading"
                             name="./headingI18n"/>
+                    <className
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            emptyText="Select"
+                            fieldLabel="CSS Class"
+                            fieldDescription="Select css class for the component from the dropdown"
+                            name="./className"
+                            translateOptions="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <normal jcr:primaryType="nt:unstructured"
+                                    text="Getting Started"
+                                    value="tpmol-image-card__normal-text"/>
+                            <rich jcr:primaryType="nt:unstructured"
+                                  text="Recommended For You"
+                                  value="tpmol-image-card__rich-text"/>
+                        </items>
+                    </className>
                     <nextBtn
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

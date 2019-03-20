@@ -36,6 +36,7 @@ public class GetStartedModelTest {
         assertNotNull(heading);
         assertTrue(heading.length() > 0);
         Assert.assertEquals("getStarted",getStartedModel.getHeadingI18n());
+		 Assert.assertEquals("abc", getStartedModel.getClassName());
         assertTrue(getStartedModel.getGetStartedList().size() > 0);
         List<GetStartedBean> list = getStartedModel.getGetStartedList();
         GetStartedBean bean = list.get(0);
