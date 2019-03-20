@@ -20,7 +20,7 @@ public class ArticleContainerModel {
 	private String titleAlignment;
 
 	@Inject
-	private Boolean showBox;
+	private String pwTheme;
 
 	private String[] totalColumns;
 
@@ -53,8 +53,8 @@ public class ArticleContainerModel {
 		return titleAlignment;
 	}
 
-	public Boolean getShowBox(){
-		return showBox;
+	public String getPwTheme(){
+		return pwTheme;
 	}
 
 }
