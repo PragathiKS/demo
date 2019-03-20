@@ -46,10 +46,6 @@ a {
     &:hover {
         text-decoration: none;
     }
-    &:hover,
-    &:focus {
-        color: $color-text;
-    }
 }
 
 button {

@@ -57,10 +57,10 @@ public class OrderingCardModel {
     private String allOrdersLink;
 
     @OSGiService
-    APIGEEService apigeeService;
+    private APIGEEService apigeeService;
 
     @OSGiService
-    UserPreferenceService userPreferenceService;
+    private UserPreferenceService userPreferenceService;
 
     private String i18nKeys;
 

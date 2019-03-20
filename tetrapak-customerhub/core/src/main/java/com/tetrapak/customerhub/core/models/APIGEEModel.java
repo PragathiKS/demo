@@ -15,7 +15,7 @@ public class APIGEEModel {
     private Resource resource;
 
     @OSGiService
-    APIGEEService apigeeService;
+    private APIGEEService apigeeService;
 
     public String getApiURL() {
         return GlobalUtil.getApiURL(apigeeService, "");

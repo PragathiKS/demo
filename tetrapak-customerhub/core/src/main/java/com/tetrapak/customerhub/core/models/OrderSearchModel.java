@@ -48,7 +48,7 @@ public class OrderSearchModel {
     private String searchTermPlaceholderI18n;
 
     @OSGiService
-    APIGEEService apigeeService;
+    private APIGEEService apigeeService;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
 
