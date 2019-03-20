@@ -4,6 +4,9 @@
     width: 100%;
     background-color: $color-white;
     border-radius: 5px;
+    @media #{$desktop} {
+        @include padding(24px 8px 8px 8px);
+    }
     & &__heading {
         @include padding(0 0 12px 12px);
         font-family: $font-light;
