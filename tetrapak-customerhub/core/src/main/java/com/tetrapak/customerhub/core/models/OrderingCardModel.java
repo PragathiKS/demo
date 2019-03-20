@@ -57,10 +57,10 @@ public class OrderingCardModel {
     private String allOrdersLink;
 
     @OSGiService
-    APIGEEService apigeeService;
+    private APIGEEService apigeeService;
 
     @OSGiService
-    UserPreferenceService userPreferenceService;
+    private UserPreferenceService userPreferenceService;
 
     private String i18nKeys;
 
@@ -71,8 +71,6 @@ public class OrderingCardModel {
     private Set<String> disabledFields;
 
     private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
-
-    private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
 
     @PostConstruct
     protected void init() {
@@ -110,7 +108,8 @@ public class OrderingCardModel {
     }
 
     public String getApiURL() {
-        return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
+        //return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
+        return DEFAULT_JSON;
     }
 
     public String getPreferencesURL() {

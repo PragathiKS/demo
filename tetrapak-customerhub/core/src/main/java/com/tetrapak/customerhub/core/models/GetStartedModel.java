@@ -22,6 +22,9 @@ public class GetStartedModel {
     @Inject
     private String headingI18n;
 
+    @Inject
+    private String className;
+
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
     @PostConstruct
@@ -48,5 +51,9 @@ public class GetStartedModel {
 
     public String getHeadingI18n() {
         return headingI18n;
+    }
+
+    public String getClassName(){
+        return className;
     }
 }

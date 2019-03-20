@@ -1,7 +1,7 @@
 <div class="tpatom-dropdown form-element{{#if wrapClasses}} {{wrapClasses}}{{/if}}">
-    <select name="{{name}}" class="form-control{{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{label}}"{{/if}}>
+    <select name="{{name}}" class="form-control{{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
         {{#if defaultValue}}
-            <option value="">{{defaultValue}}</option>
+            <option value="">{{i18n key=defaultValue}}</option>
         {{/if}}
         {{#each options}}
             <option value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>

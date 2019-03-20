@@ -1,0 +1,18 @@
+<sly data-sly-template.imageTextButton_template="${@ data, flag}">
+  <div data-locator="image-text-button" class="pw-imagetextbutton">
+      <p>Title - ${data.title}</p>
+      <p>Subtitle - ${data.subtitle}</p>
+      <p>Description - ${data.description}</p>
+      <p>Link Text  - ${data.ctaLinkTexti18n @ i18n}</p>
+      <p>Link URL - ${data.ctaLinkURL}</p>
+      <p>Processing Hotspot Url - ${data.processingHotspotUrl}</p>
+      <p>Open Processing link in new window - ${data.openProcessingHotspotInNewWindow}</p>
+      <p>Packaging Hotspot Url - ${data.packagingHotspotUrl}</p>
+      <p>Open Packaging link in new window - ${data.openPackagingHotspotInNewWindow}</p>
+      <p>Services Hotspot Url - ${data.servicesHotspotUrl}</p>
+      <p>Open Services link in new window - ${data.openServicesHotspotInNewWindow}</p>
+      
+      <img src="/content/dam/publicweb/image-text-button.png" alt="Image Text Button">
+      
+  </div>
+</sly>

@@ -35,6 +35,7 @@ public class RecommendedForYouCardModelTest {
         assertNotNull(heading);
         assertTrue(heading.length() > 0);
         Assert.assertEquals("getStarted", recommendedForYouCardModel.getHeadingI18n());
+        Assert.assertEquals("abc", recommendedForYouCardModel.getClassName());
         assertTrue(recommendedForYouCardModel.getGetStartedList().size() > 0);
         List<RecommendedForYouCardBean> list = recommendedForYouCardModel.getGetStartedList();
 		 RecommendedForYouCardBean recommendedForYouCardBean = list.get(0);
