@@ -26,6 +26,7 @@ public class OrderingCardModelTest {
 
     @Before
     public void setup() {
+        aemContext.load().json("/" + "user.json", "/home");
         apigeeService = new APIGEEServiceImpl();
         userPreferenceService = new UserPreferenceServiceImpl();
 
@@ -37,7 +38,7 @@ public class OrderingCardModelTest {
     }
 
     @Test
-    public void testGetStartedMessage() {
+    public void testModel() {
         String i18nKeys = orderingCardModel.getI18nKeys();
         Assert.assertTrue(i18nKeys.contains("cuhu.ordering.title"));
         Assert.assertEquals(1, orderingCardModel.getDisabledFields().size());
@@ -45,6 +46,6 @@ public class OrderingCardModelTest {
         Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
         Assert.assertEquals("/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json", orderingCardModel.getApiURL());
         Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
-        Assert.assertEquals(0, orderingCardModel.getSavedPreferences().size());
+        Assert.assertEquals(6, orderingCardModel.getSavedPreferences().size());
     }
 }

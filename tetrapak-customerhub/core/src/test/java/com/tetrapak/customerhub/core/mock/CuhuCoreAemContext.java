@@ -24,7 +24,7 @@ public class CuhuCoreAemContext {
 
     public static AemContext getAemContextWithJcrMock(String resourceJosnFileName, String resourcePath) {
         return new AemContext(new SetUpCallback<Object>(resourceJosnFileName, resourcePath),
-                ResourceResolverType.JCR_MOCK, ResourceResolverType.RESOURCERESOLVER_MOCK);
+                ResourceResolverType.JCR_MOCK);
     }
 
     public static <T> AemContext getAemContext(String resourceJosnFileName, String resourcePath,
