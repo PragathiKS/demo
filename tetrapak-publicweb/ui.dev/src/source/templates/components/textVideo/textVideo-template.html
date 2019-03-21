@@ -1,27 +1,36 @@
-<sly data-sly-template.textVideo_template="${@ data, flag}">
-  <div data-locator="text-video" class="pw-textvideo">
-      <p>Title - ${data.title}</p>
-      <p>Subtitle - ${data.subtitle}</p>
-      <p>Description - ${data.description}</p>
-      <p>Link Text  - ${data.linkTexti18n @ i18n}</p>
-      <p>Link URL - ${data.linkURL}</p>
-      <p>Video Source - ${data.videoSource}</p>
-      <p>Youtube Video ID - ${data.youtubeVideoID}</p>
-      <p>Dam Video Path - ${data.damVideoPath}</p>
-      
-      <sly data-sly-test="${data.videoSource == 'damVideo'}">
-          <div style="padding:50px; margin:50px">
-              <video width="560" controls>
-                  <source src="${data.damVideoPath}" type="video/mp4">
-                  Your browser does not support HTML5 video.
-              </video>
+<sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" class="pw-text-video pw-text-video--${data.textAlignment} pw-theme--${data.pwTheme}" data-locator="text-video">
+    <div class="row">
+      <div class="col-md-12 col-lg-4">
+        <div class="pw-text-video__title">
+          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/publicweb/components/atoms/title/title.html"
+               data-sly-call="${title.title_template @ titleText=data.title}"/>
+        </div>
+        <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
+        <a class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}" href="${data.linkURL}"
+           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
+      </div>
+      <div class="col-md-12 col-lg-8">
+        <sly data-sly-test="${data.videoSource == 'damVideo'}">
+          <div class="pw-text-video__video">
+            <video controls>
+              <source src="${data.damVideoPath}" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
           </div>
-      </sly>
-      <sly data-sly-test="${data.videoSource == 'youtube'}">
-          <div style="padding:50px; margin:50px">
-              <iframe width="560" height="315" src="${data.youtubeEmbedURL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </sly>
+        <sly data-sly-test="${data.videoSource == 'youtube'}">
+          <div class="pw-text-video__video">
+            <iframe src="${data.youtubeEmbedURL}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
           </div>
-      </sly>
-      
+        </sly>
+        <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
+        <a class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}" href="${data.linkURL}"
+           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
+      </div>
+    </div>
   </div>
+  <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>

@@ -94,7 +94,10 @@
             transform: translateY(-50%);
 
             @media #{$desktop} {
-                left: calc(50% - #{convert-to-rem(720px)} + #{convert-to-rem($margin-xxxl*2)});
+                @include padding-left($padding-xxxl*2);
+                @include padding-right($padding-l/2);
+                left: calc(50% - #{convert-to-rem(720px)});
+                max-width: #{convert-to-rem(720px)};
             }
         }
 
