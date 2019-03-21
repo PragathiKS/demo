@@ -10,5 +10,6 @@
         <div class="tp-order-search__table js-order-search__table" aria-live="polite">
           <!--/* Renders table section */-->
         </div>
+        <sly data-sly-use.pagination="/apps/customerhub/components/content/pagination/pagination-template.html" data-sly-call="${pagination.pagination_template @customEvent='ordersearch', maxVisible=7}" />
     </div>
 </sly>
