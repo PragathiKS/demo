@@ -76,6 +76,8 @@
         @include line-height(24px, $font-baseline);
         @include border-radius($border-radius);
         @include min-width(24px);
+        transition: background-color $anim-speed-quick ease;
+        &:hover,
         &.active {
             background-color: $color-congress-blue;
             color: $color-white;

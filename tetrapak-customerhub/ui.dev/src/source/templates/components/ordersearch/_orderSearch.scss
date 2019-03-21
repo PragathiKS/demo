@@ -1,9 +1,12 @@
 .tp-order-search {
     $gutter-space: 2 * $margin-md / 3;
-    @include padding($padding-l);
+    @include padding($padding-md);
     @include border-radius($border-radius);
     @include box-shadow-normal;
     background-color: $color-white;
+    @media #{$desktop} {
+        @include padding($padding-l);
+    }
     .form-control {
         @include border-xs($color-boulder);
         @include height(40px);
