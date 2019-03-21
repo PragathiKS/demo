@@ -20,7 +20,6 @@ function _getPage(pageNumber, currentPage) {
 function _rendePagination(...args) {
   const [, data] = args;
   const paginationData = this.calculatePages(data);
-
   if (paginationData.totalPages > 0) {
     render.fn({
       template: 'pagination',

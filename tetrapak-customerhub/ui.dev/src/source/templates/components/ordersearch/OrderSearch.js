@@ -4,7 +4,7 @@ import deparam from 'jquerydeparam';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
@@ -131,12 +131,12 @@ function _renderTable(filterParams) {
       if ($filters && $filters.length) {
         $filters.removeClass('d-none');
       }
-      if (filterParams && !data.isError && data.orders) {
+      if (filterParams && !data.isError && data.totalOrdersForQuery) {
         const { skip } = filterParams;
         let currentPage = 1;
-        let totalPages = Math.ceil((+data.totalOrdersForQuery) / data.orders.length);
+        let totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
         if (skip) {
-          currentPage = (skip / data.orders.length) + 1;
+          currentPage = (skip / ORDER_HISTORY_ROWS_PER_PAGE) + 1;
         }
         this.root.find('.js-pagination').trigger('ordersearch.paginate', [{
           currentPage,
@@ -250,14 +250,27 @@ class OrderSearch {
         this.renderTable(_sanitizeQuery(query));
       }
     });
-    this.root.on('click', '.js-order-search__submit', () => {
-      this.setFilters(true);
-      this.trackAnalytics();
-    });
-    this.root.on('click', '.js-order-search__reset', () => {
-      this.resetSearch();
-      this.trackAnalytics(this.cache.defaultParams);
-    });
+    this.root
+      .on('click', '.js-order-search__submit', () => {
+        this.setFilters(true);
+        this.trackAnalytics();
+      })
+      .on('click', '.js-order-search__reset', () => {
+        this.resetSearch();
+        this.trackAnalytics(this.cache.defaultParams);
+      })
+      .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
+        const [, data] = args;
+        const routeQuery = deparam(window.location.hash.substring(2));
+        delete routeQuery.skip;
+        if (data.pageIndex > 0) {
+          routeQuery.skip = data.pageIndex * ORDER_HISTORY_ROWS_PER_PAGE;
+        }
+        router.set({
+          route: '#/',
+          queryString: $.param(routeQuery)
+        });
+      });
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
