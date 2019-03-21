@@ -105,4 +105,11 @@ describe('OrderSearch', function () {
     expect(this.resetSpy.called).to.be.true;
     done();
   });
+  it('should go to next page on click of pagination', function () {
+    $('.js-pagination').trigger('ordersearch.pagenav', [{
+      pageNumber: 2,
+      pageIndex: 1
+    }]);
+    expect(render.fn.called).to.be.true;
+  });
 });
