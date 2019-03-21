@@ -5,6 +5,7 @@
         </code>
         <div class="tp-order-search__form js-order-search__form" aria-live="polite">
           <!--/* Renders filter section */-->
+          <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
         </div>
         <div class="tp-order-search__table js-order-search__table" aria-live="polite">
           <!--/* Renders table section */-->
