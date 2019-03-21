@@ -40,6 +40,9 @@ public class ListContentImageModel {
 	@Inject
 	private String[] tabLinks;
 
+	@Inject
+	private String pwTheme;
+
 	public String getTitleI18n() {
 		return titleI18n;
 	}
@@ -66,6 +69,10 @@ public class ListContentImageModel {
 
 	public String[] getTabLinks() {
 		return getTabLinks(tabLinks).toArray(new String[0]);
+	}
+	
+	public String getPwTheme(){
+		return pwTheme;
 	}
 
 	/**

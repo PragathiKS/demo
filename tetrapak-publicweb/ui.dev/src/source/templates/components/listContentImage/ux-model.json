@@ -9,5 +9,6 @@
 		"tab-uno", 
 		"tab-dos", 
 		"tab-tres"
-	]
+	],
+	"pwTheme": "grayscale-lighter"
 }

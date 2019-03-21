@@ -111,6 +111,11 @@
                     </column>
                 </items>
             </properties>
+            <design
+                jcr:primaryType="nt:unstructured"
+                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design"
+                sling:resourceType="granite/ui/components/foundation/include">
+            </design>
         </items>
     </content>
 </jcr:root>
