@@ -101,7 +101,6 @@ function _setSearchFields(query) {
 function _renderTable(filterParams) {
   const { $filters } = this.cache;
   const $this = this;
-  this.setSearchFields(filterParams);
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'orderingTable',
@@ -258,9 +257,11 @@ class OrderSearch {
     return _setSearchFields.apply(this, arguments);
   }
   resetSearch() {
+    const { defaultParams } = this.cache;
+    this.setSearchFields($.extend({}, defaultParams));
     router.set({
       route: '#/',
-      queryString: $.param(this.cache.defaultParams)
+      queryString: $.param(defaultParams)
     });
   }
   renderTable() {
