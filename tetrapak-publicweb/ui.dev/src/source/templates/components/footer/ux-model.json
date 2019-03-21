@@ -60,11 +60,23 @@
       "targetBlank": true
     }
   ],
-  "navigateToTop": {
-    "ctaLabelI18n": "navigate to top"
-  },
-  "socialMediaLinkedin": "http://www.linkedin.com",
-  "socialMediaFacebook": "",
-  "socialMediaTwitter": "http://www.twitter.com",
-  "socialMediaYoutube": "http://www.youtube.com"
+  "ctaLabelI18n": "navigate to top",
+  "footerSocialLinks": [
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Facebook"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Twitter"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Youtube"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Linkedin"
+    }
+  ]
 }

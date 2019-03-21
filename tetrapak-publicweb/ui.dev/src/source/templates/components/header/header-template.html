@@ -1,5 +1,5 @@
 <sly data-sly-template.header_template="${@ data, flag}">
-  <header class="tp-pw-header">
+  <header class="tp-pw-header ${wcmmode.edit ? 'wcmmode-edit': ''}">
     <div class="tp-pw-header__container">
       <div class="d-flex tp-container">
         <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
@@ -23,6 +23,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="tp-pw-header__hero-image">
+      <sly data-sly-test="${data.enableHeroImage}" data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
     </div>
   </header><!-- end c-header -->
 </sly>

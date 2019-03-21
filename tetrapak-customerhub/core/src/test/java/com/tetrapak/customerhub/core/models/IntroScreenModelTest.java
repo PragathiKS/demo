@@ -27,6 +27,7 @@ public class IntroScreenModelTest {
         context.build().resource("/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted",
                 "sling:resourceType", "customerhub/components/content/getstarted",
                 "headingI18n", "About_GS_Heading",
+                "className","abc",
                 "closeBtnI18n", "About_GS_Close",
                 "getStartedBtnI18n", "About_GS_Started",
                 "nextBtnI18n", "About_GS_Next"
@@ -48,6 +49,7 @@ public class IntroScreenModelTest {
     @Test
     public void testGetMessage() {
         Assert.assertEquals("About_GS_Heading", introScreenModel.getHeadingI18n());
+        Assert.assertEquals("abc", introScreenModel.getClassName());
         Assert.assertEquals("About_GS_Close", introScreenModel.getCloseBtnI18n());
         Assert.assertEquals("About_GS_Started", introScreenModel.getGetStartedBtnI18n());
         Assert.assertEquals("About_GS_Next", introScreenModel.getNextBtnI18n());

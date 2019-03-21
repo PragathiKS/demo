@@ -2,6 +2,8 @@ package com.tetrapak.customerhub.core.models;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -20,66 +22,115 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
+/**
+ * AnalyticsGlobalTagsModel Implementation
+ * @param Resource, the parameter of the class
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AnalyticsGlobalTagsModel {
     
     @Self
     private Resource resource;
     
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
     
+    /**
+     * Get Site Name.
+     * @return customerhub
+     */
     public String getSiteName() {
         return "customerhub";
     }
     
+    /**
+     * Get Page Type.
+     * @return pageType, if successful
+     */
     public String getPageType() {
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if(null == pageManager){
+            return "";
+        }
         Page currentPage = pageManager.getContainingPage(resource.getPath());
         String pageType = currentPage.getTitle();
         return pageType;       
     }
     
+    /**
+     * Get Site Language.
+     * @return english 
+     */
     public String getSiteLanguage() {
         return "en";
     }
     
+    /**
+     * Get Site Country.
+     * @return gb 
+     */
     public String getSiteCountry() {
         return "gb";
     }
     
+    /**
+     * Get LogIn Status.
+     * @return logged-in status
+     */
     public String getLogInStatus() {
         return "logged-in";
     }
     
+    /**
+     * Get Sales Force Id.
+     * @return 12ffsf343243345 value
+     */
     public String getSalesForceId() {
         return "12ffsf343243345";
     }
     
+    /**
+     * Get User Language.
+     * @return english
+     */
     public String getUserLanguage() {
         return "en";
     }
     
+    /**
+     * Get User Country Code.
+     * @return gb
+     */
     public String getUserCountryCode() {
         return "gb";
     }
     
-    public ArrayList<String> getUserRoles() {
-        ArrayList<String> userRoles = new ArrayList<String>();
-        String userRole = null;
+    /**
+     * Get User Roles.
+     * @return userRoles, if successful
+     */
+    public List<String> getUserRoles() {
+        ArrayList<String> userRoles = new ArrayList<>();
+        String userRole;
         ResourceResolver resourceResolver = resource.getResourceResolver();
         Session session = resource.getResourceResolver().adaptTo(Session.class);
+        if(null == session){
+            return userRoles;
+        }
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        if(null == userManager){
+            return userRoles;
+        }
         Authorizable user;
         try {
-            user = (User) userManager.getAuthorizable(session.getUserID());
+            user = userManager.getAuthorizable(session.getUserID());
             Iterator<Group> itr = user.memberOf();
             while (itr.hasNext()) {
-                Group group = (Group) itr.next();
+                Group group = itr.next();
                 userRole = group.getPrincipal().getName();
                 userRoles.add(userRole);
             }
         } catch (RepositoryException e) {
-            LOG.error("RepositoryException in AnalyticsGlobalTagsModel", e);
+            LOGGER.error("RepositoryException in AnalyticsGlobalTagsModel", e);
         }
         
         return userRoles;
