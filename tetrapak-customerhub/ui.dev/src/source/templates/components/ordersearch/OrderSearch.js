@@ -4,7 +4,7 @@ import deparam from 'jquerydeparam';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
@@ -183,7 +183,7 @@ function _renderFilters() {
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
-      url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
+      url: `${apiHost}/${API_SEARCH}`,
       target: '.js-order-search__form',
       ajaxConfig: {
         beforeSend(jqXHR) {
