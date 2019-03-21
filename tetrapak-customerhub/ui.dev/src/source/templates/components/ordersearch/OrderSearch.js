@@ -123,7 +123,9 @@ function _renderTable(filterParams) {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         method: ajaxMethods.GET,
-        cache: true
+        cache: true,
+        showLoader: true,
+        cancellable: true
       }
     }, () => {
       if ($filters && $filters.length) {
@@ -191,7 +193,9 @@ function _renderFilters() {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         method: ajaxMethods.GET,
-        cache: true
+        cache: true,
+        showLoader: true,
+        cancellable: true
       },
       beforeRender: (...args) => _processOrderSearchData.apply(this, args)
     }, () => {
