@@ -115,6 +115,12 @@ class Pagination {
         (config.customEvent ? `${config.customEvent}.paginate` : 'paginate'),
         this.renderPagination
       )
+      .on(
+        (config.customEvent ? `${config.customEvent}.pagedisabled` : 'pagedisabled'),
+        () => {
+          this.root.find('.js-page-number').attr('disabled', 'disabled');
+        }
+      )
       .on('click', '.js-page-number', this, this.selectPage);
 
   }

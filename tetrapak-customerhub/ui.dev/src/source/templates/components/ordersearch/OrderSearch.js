@@ -101,6 +101,7 @@ function _setSearchFields(query) {
 function _renderTable(filterParams) {
   const { $filters } = this.cache;
   const $this = this;
+  this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'orderingTable',
