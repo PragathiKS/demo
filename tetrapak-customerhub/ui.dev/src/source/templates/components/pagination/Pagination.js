@@ -14,6 +14,39 @@ function _getPage(pageNumber, currentPage) {
 }
 
 /**
+ * Renders pagination component
+ * @param  {...any} args Arguments
+ */
+function _rendePagination(...args) {
+  const [, data] = args;
+  const paginationData = this.calculatePages(data);
+
+  if (paginationData.totalPages > 0) {
+    render.fn({
+      template: 'pagination',
+      data: paginationData,
+      target: this.root
+    });
+  }
+}
+
+/**
+ * Triggers a custom event to select a page
+ * @param  {object} event Event object
+ */
+function _selectPage(event) {
+  const { data: $this } = event;
+  const { customEvent } = $this.cache.config;
+  const pageNumber = $(this).data('pageNumber');
+  $this.root
+    .find('.js-page-number').attr('disabled', 'disabled').end()
+    .trigger(customEvent ? `${customEvent}.pagenav` : 'pagenav', [{
+      pageNumber,
+      pageIndex: pageNumber - 1
+    }]);
+}
+
+/**
  * Calculates visible pages as per configuration
  * @param {object} data Pagination data
  */
@@ -78,34 +111,25 @@ class Pagination {
   }
   bindEvents() {
     const { config } = this.cache;
-    this.root.on(
-      (config.customEvent ? `${config.customEvent}.paginate` : 'paginate'),
-      this.renderPagination
-    );
+    this.root
+      .on(
+        (config.customEvent ? `${config.customEvent}.paginate` : 'paginate'),
+        this.renderPagination
+      )
+      .on('click', '.js-page-number', this, this.selectPage);
+
   }
   calculatePages() {
     return _calculatePages.apply(this, arguments);
   }
-  renderPagination = (...args) => {
-    const [, data] = args;
-    const paginationData = this.calculatePages(data);
-
-    if (paginationData.totalPages > 0) {
-      render.fn({
-        template: 'pagination',
-        data: paginationData,
-        target: this.root
-      });
-    }
+  renderPagination = (...args) => _rendePagination.apply(this, args);
+  selectPage() {
+    return _selectPage.apply(this, arguments);
   }
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.root.trigger(`${this.cache.config.customEvent}.paginate`, [{
-      totalPages: 100,
-      currentPage: 20
-    }]); // temporary
   }
 }
 

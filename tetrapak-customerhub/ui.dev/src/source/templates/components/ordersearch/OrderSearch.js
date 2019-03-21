@@ -127,9 +127,21 @@ function _renderTable(filterParams) {
         showLoader: true,
         cancellable: true
       }
-    }, () => {
+    }, (data) => {
       if ($filters && $filters.length) {
         $filters.removeClass('d-none');
+      }
+      if (filterParams && !data.isError && data.orders) {
+        const { skip } = filterParams;
+        let currentPage = 1;
+        let totalPages = Math.ceil((+data.totalOrdersForQuery) / data.orders.length);
+        if (skip) {
+          currentPage = (skip / data.orders.length) + 1;
+        }
+        this.root.find('.js-pagination').trigger('ordersearch.paginate', [{
+          currentPage,
+          totalPages
+        }]);
       }
     });
   });
