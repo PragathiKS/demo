@@ -31,6 +31,14 @@ describe('Pagination', function () {
       currentPage: 1
     }]);
     $('.js-pagination').trigger('ordersearch.paginate', [{
+      totalPages: 20,
+      currentPage: 10
+    }]);
+    $('.js-pagination').trigger('ordersearch.paginate', [{
+      totalPages: 20,
+      currentPage: 19
+    }]);
+    $('.js-pagination').trigger('ordersearch.paginate', [{
       totalPages: 4,
       currentPage: 1
     }]);
