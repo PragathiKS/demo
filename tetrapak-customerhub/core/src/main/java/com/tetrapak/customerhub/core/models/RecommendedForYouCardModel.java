@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Model class for Recommended for you card component
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RecommendedForYouCardModel {
 
@@ -26,8 +29,6 @@ public class RecommendedForYouCardModel {
     private String className;
 
     private List<RecommendedForYouCardBean> getStartedList = new ArrayList<>();
-
-    private int cols = 0;
 
     @PostConstruct
     protected void init() {
