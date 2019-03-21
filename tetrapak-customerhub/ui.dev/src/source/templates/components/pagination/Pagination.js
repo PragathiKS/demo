@@ -104,7 +104,7 @@ class Pagination {
     this.bindEvents();
     this.root.trigger(`${this.cache.config.customEvent}.paginate`, [{
       totalPages: 13,
-      currentPage: 1
+      currentPage: 6
     }]); // temporary
   }
 }

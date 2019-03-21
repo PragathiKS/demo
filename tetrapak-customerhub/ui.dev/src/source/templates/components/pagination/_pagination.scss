@@ -1,0 +1,11 @@
+.tp-pagination {
+    @include margin-top($margin-md);
+    @include margin-left(-4px);
+    @include margin-right(-4px);
+    @media #{$desktop} {
+        @include margin-top($margin-l);
+    }
+    &__ellipsis {
+        @include padding(0 3px);
+    }
+}
