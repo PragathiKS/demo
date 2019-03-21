@@ -1,5 +1,5 @@
-<sly data-sly-template.textVideo_template="${@ data, flag}">
-  <div class="pw-text-video pw-text-video--${data.textAlignment} pw-theme--${data.pwTheme}" data-locator="text-video">
+<sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" class="pw-text-video pw-text-video--${data.textAlignment} pw-theme--${data.pwTheme}" data-locator="text-video">
     <div class="row">
       <div class="col-md-12 col-lg-4">
         <div class="pw-text-video__title">
@@ -32,4 +32,5 @@
       </div>
     </div>
   </div>
+  <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>

@@ -49,7 +49,9 @@ public class TextVideoModel {
             linkURL = LinkUtils.sanitizeLink(linkURL);
         }
 
-        youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+        if (youtubeVideoID != null) {
+            youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+        }
     }
 
     public String getTitle() {
