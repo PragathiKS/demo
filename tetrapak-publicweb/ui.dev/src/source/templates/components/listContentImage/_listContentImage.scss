@@ -7,6 +7,9 @@
         @include margin-bottom($margin-l);
         @include padding($padding-l);
     }
+    &__title {
+        @include margin-bottom($margin-l);
+    }
     &__tabMenuListItem {
         &:last-child {
             #{ $self }__tabMenuListItem__link {
