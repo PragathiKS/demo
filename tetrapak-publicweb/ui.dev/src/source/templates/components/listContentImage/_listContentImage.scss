@@ -9,8 +9,8 @@
     }
     &__tabMenuListItem {
         &:last-child {
-            &__link {
-                @include border-xs($color-mercury);
+             #{ $self }__tabMenuListItem__link {
+                border-bottom: 1px solid $color-mercury;
 
                 &.active {
                     @include border-xs($color-boulder);
@@ -111,7 +111,7 @@
         top: 50%;
     }
 
-    &.pw-theme--grayscale-lighter {
+    &.pw-theme--grayscale-white {
         #{ $self }__tabMenuListItem__link {
             &.active {
                 background: $color-wild-sand;

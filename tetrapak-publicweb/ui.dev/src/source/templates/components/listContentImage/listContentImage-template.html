@@ -4,9 +4,7 @@
   <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''} pw-theme--${data.pwTheme} tabListContent-version-main" data-module="ListContentImage">
     <div class="row">
         <div class="col-lg-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''}">
-            <div class="tp_pw-titleWrapper">
-              <h2 class="tp_pw-containerTitle">${data.titleI18n  @ i18n}</h2>
-            </div>
+            <h2 class="pw-listContentImage__Title">${data.titleI18n  @ i18n}</h2>
             <div class="pw-listContentImage__tabMenu">
                 <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
                     <li class="pw-listContentImage__tabMenuListItem">
@@ -18,7 +16,7 @@
                 </ul>
             </div>
             <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-              data-sly-call="${pwButton.button_template @ btnPath=data.linkPath, btnText=data.linkTextI18n, btnTooltip=data.linkTooltipI18n, btnTarget=data.targetBlank, btnIcon='icon-Circle_Arrow_Right'}">
+              data-sly-call="${pwButton.button_template @ btnPath=data.linkPath, btnText=data.linkTextI18n, btnTooltip=data.linkTooltipI18n, btnTarget=data.targetBlank, btnIcon='icon-Circle_Arrow_Right', variant='link'}">
         </div>
         <div class="col-lg-8 ${data.tabsAlignment == 'text-right'? 'order-1' : ''}">
             <div class="pw-listContentImage__contentWrapper">
