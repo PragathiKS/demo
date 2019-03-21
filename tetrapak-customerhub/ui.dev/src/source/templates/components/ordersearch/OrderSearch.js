@@ -101,6 +101,7 @@ function _setSearchFields(query) {
 function _renderTable(filterParams) {
   const { $filters } = this.cache;
   const $this = this;
+  this.setSearchFields(filterParams);
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'orderingTable',
@@ -131,7 +132,6 @@ function _renderTable(filterParams) {
       if ($filters && $filters.length) {
         $filters.removeClass('d-none');
       }
-      this.setSearchFields(filterParams);
     });
   });
 }
