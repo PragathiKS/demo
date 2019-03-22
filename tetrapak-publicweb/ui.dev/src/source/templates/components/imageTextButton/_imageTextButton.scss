@@ -1,0 +1,32 @@
+.pw-image-text-button {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
+    @include padding($padding-md);
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+    }
+
+    &__title,
+    &__description {
+        @include margin-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($padding-l);
+        }
+    }
+
+    &__description {
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+    }
+
+    &__link {
+        @include margin-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+    }
+
+}

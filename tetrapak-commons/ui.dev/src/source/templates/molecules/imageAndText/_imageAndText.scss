@@ -50,6 +50,9 @@
                 color: $color-light-gray;
             }
         }
+        ol {
+            list-style: decimal;
+        }
     }
     &__normal-text {
         @include margin-top($margin-sm);
@@ -89,6 +92,9 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+        }
+        .tp-next-btn__text {
+            @include font-size(13px)
         }
     }
 }

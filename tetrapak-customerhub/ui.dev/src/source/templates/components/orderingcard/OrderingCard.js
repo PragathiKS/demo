@@ -223,7 +223,9 @@ class OrderingCard {
         template: 'orderingCard',
         url: `${apiHost}/${API_ORDER_HISTORY}`,
         ajaxConfig: {
-          method: ajaxMethods.GET
+          method: ajaxMethods.GET,
+          showLoader: true,
+          cancellable: true
         },
         beforeRender(data) {
           if (!data) {

@@ -373,20 +373,30 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
+			<build>
+            <pluginManagement>
+            <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>npm</executable>
+                    <workingDirectory>src/</workingDirectory>
+                    <arguments>
+                        <argument>run</argument>
+                        <argument>buildDev</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            </plugins>
+            </pluginManagement>
+            </build>
         </profile>
 
         <!-- Development profile: install only the bundle -->
         <profile>
-            <id>autoInstallBundle</id>
-            <!-- 
-                To enable this feature for a bundle, the maven-sling-plugin 
-                (without configuration) needs to be included:
-                 
-                <plugin> 
-                    <groupId>org.apache.sling</groupId> 
-                    <artifactId>maven-sling-plugin</artifactId> 
-                 </plugin> 
-            -->
+            <id>autoInstallBundle</id>            
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -418,6 +428,19 @@
             <build>
                 <pluginManagement>
                     <plugins>
+						<plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
                         <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
@@ -458,6 +481,19 @@
             <build>
                 <pluginManagement>
                     <plugins>
+						<plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
                         <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
@@ -481,6 +517,58 @@
                                     </goals>
                                     <configuration>
                                         <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+		<profile>
+            <id>autoInstallMinify</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.jackrabbit</groupId>
+                            <artifactId>filevault-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>create-package</id>
+                                    <goals>
+                                        <goal>package</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.day.jcr.vault</groupId>
+                            <artifactId>content-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>install-package</id>
+                                    <goals>
+                                        <goal>install</goal>
+                                    </goals>
+                                    <configuration>
+                                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
                                     </configuration>
                                 </execution>
                             </executions>

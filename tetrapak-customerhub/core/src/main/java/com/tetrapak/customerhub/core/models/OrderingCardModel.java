@@ -1,9 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -59,8 +57,8 @@ public class OrderingCardModel {
     @Inject
     private String allOrdersLink;
 
-    @OSGiService
-    private APIGEEService apigeeService;
+    @Inject
+    private String orderDetailLink;
 
     @OSGiService
     private UserPreferenceService userPreferenceService;
@@ -73,8 +71,6 @@ public class OrderingCardModel {
 
     private Set<String> disabledFields;
 
-    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
-
     @PostConstruct
     protected void init() {
         defaultFields = new LinkedHashSet<>();
@@ -86,7 +82,7 @@ public class OrderingCardModel {
         disabledFields.add("contact");
 
         savedPreferences = new LinkedHashSet<>();
-        if(null != userPreferenceService) {
+        if (null != userPreferenceService) {
             savedPreferences = userPreferenceService.getSavedPreferences(resource);
         }
 
@@ -110,9 +106,8 @@ public class OrderingCardModel {
         return allOrdersLink;
     }
 
-    public String getApiURL() {
-        //return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
-        return DEFAULT_JSON;
+    public String getOrderDetailLink() {
+        return orderDetailLink;
     }
 
     public String getPreferencesURL() {

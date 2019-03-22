@@ -1,0 +1,30 @@
+.tpatom-heading,
+.tpatom-subheading {
+    @include padding(0);
+    font-family: $font-light;
+}
+
+.tpatom-heading {
+    @include font-size(24px);
+    @include line-height(32px, 24px);
+    font-family: $font-light;
+    @media #{$desktop} {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+
+    &--small {
+        @include font-size(18px);
+        @include line-height(24px, 18px);
+        @media #{$desktop} {
+            @include font-size(18px);
+        }
+    }
+}
+
+.tpatom-subheading {
+    @include font-size($font-sm);
+    @include line-height(20px, $font-sm);
+    letter-spacing: 1.5px;
+    
+}
