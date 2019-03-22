@@ -49,10 +49,6 @@
             }
         }
 
-        &__subtitle {
-            @include font-size($font-sm);
-            @include line-height(20px, $font-sm);
-        }
         &__title {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);

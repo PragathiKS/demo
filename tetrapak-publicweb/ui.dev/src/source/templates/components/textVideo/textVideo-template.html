@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-md-12 col-lg-4">
         <div class="pw-text-video__title">
-          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/publicweb/components/atoms/title/title.html"
-               data-sly-call="${title.title_template @ titleText=data.title}"/>
+          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
+               data-sly-call="${title.heading_template @ headingText=data.title}"/>
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
         <a class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}" href="${data.linkURL}"
@@ -27,8 +27,10 @@
           </div>
         </sly>
         <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
-        <a class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}" href="${data.linkURL}"
-           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
+        <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
+          <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+               data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnIcon='icon-Circle_Arrow_Right', variant='link'}" />
+        </div>
       </div>
     </div>
   </div>

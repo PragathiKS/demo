@@ -195,6 +195,7 @@
         "<%= config.source %>/scripts/**/*.js",
         "<%= config.source %>/templates/**/*.js",
         "<%= config.source %>/styles/*.scss",
+        "<%= config.source %>/templates/atoms/**/*.scss",
         "<%= config.source %>/templates/components/**/*.scss"
       ],
       "tasks": [
