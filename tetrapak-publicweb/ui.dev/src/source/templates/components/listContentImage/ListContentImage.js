@@ -3,7 +3,7 @@ import $ from 'jquery';
 class ListContentImage {
   cache = {};
   initCache() {
-    this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__Link', '.pw-listContentImage' );
+    this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', '.pw-listContentImage' );
     let tabListContentArray = [];
     let $overallTabListContentClass = $( '.pw-listContentImage' );
     // get each specific class of tabListContent Organisms version and put in array
@@ -12,10 +12,18 @@ class ListContentImage {
       let specificTabListContentVersion = tabListContentClassArr[tabListContentClassArr.length - 1];
       tabListContentArray.push( specificTabListContentVersion );
     });
-    // Loop through the list of tabListContent organism version and clone its active tabContent and append under active tab in the tablist (for mobile)
+    // Loop through the list of tabListContent organism version and first clone the editTabContent and then clone its active tabContent and append under active tab in the tablist (for mobile)
     tabListContentArray.forEach( function( element ) {
       const grandParentClass = '.'+element;
       const $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', grandParentClass );
+      const $editTabItem = $('.pw-listContentImage__editTab', grandParentClass);
+      const $contentWrapper = $( '.pw-listContentImage__contentWrapper', grandParentClass );
+
+      // Clone all EditTab Content to the Content Wrapper
+      $.each($editTabItem, function() {
+        let $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
+        $contentWrapper.append($clonedEditTabContent);
+      });
 
       // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link (this is hidden in desktop view with css)
       let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', grandParentClass ).clone();
@@ -67,17 +75,14 @@ class ListContentImage {
       // Mobile
       // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link
       let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', grandParentClass ).clone();
-      $( '..pw-listContentImage__tabMenuListItem .pw-listContentImage__contentTab', grandParentClass ).slideUp( 'slow', function() {
+      $( '.pw-listContentImage__tabMenuListItem .pw-listContentImage__contentTab', grandParentClass ).slideUp( 'slow', function() {
         $( this ).remove();
       });
       $.each( $tabMenuItem, function() {
         if ( $( this ).children( 'a.active' ).hasClass( 'active' ) ) {
-          $clonedActiveTabContent.appendTo( $( this ) ).slideDown( 'slow' ); // .css( 'display', 'none' )
+          $clonedActiveTabContent.appendTo( $( this ) ).slideDown( 'slow' );
         }
       });
-
-      // clear the clone variable
-      // $clonedActiveTabContent = '';
     });
   }
   init() {

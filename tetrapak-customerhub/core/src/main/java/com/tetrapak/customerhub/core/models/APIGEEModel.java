@@ -8,11 +8,11 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+/**
+ * Model class for API GEE
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class APIGEEModel {
-
-    @Self
-    private Resource resource;
 
     @OSGiService
     private APIGEEService apigeeService;

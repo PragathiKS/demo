@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Model class for left navigation component
+ */
 @Model(adaptables = Resource.class)
 public class LeftNavigationModel {
 
@@ -36,12 +39,14 @@ public class LeftNavigationModel {
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(
                 CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
-        Resource globalConfigResource = getGlobalConfigurationResource(childResource);
-        if (null != globalConfigResource) {
-            ValueMap map = globalConfigResource.getValueMap();
-            navHeading = (String) map.get("navHeadingI18n");
-            closeBtnText = (String) map.get("closeBtnText");
-            setLogoListItem(map);
+        if (null != childResource) {
+            Resource globalConfigResource = getGlobalConfigurationResource(childResource);
+            if (null != globalConfigResource) {
+                ValueMap map = globalConfigResource.getValueMap();
+                navHeading = (String) map.get("navHeadingI18n");
+                closeBtnText = (String) map.get("closeBtnText");
+                setLogoListItem(map);
+            }
         }
 
         Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
@@ -51,21 +56,23 @@ public class LeftNavigationModel {
                 Iterator<Page> itr = globalPage.listChildren();
                 while (itr.hasNext()) {
                     Page childPage = itr.next();
-                    if (null != childPage && null != childPage.getContentResource()) {
-                        ValueMap valueMap = childPage.getContentResource().getValueMap();
-                        if (!isHiddenInNavigation(valueMap)) {
-                            LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
-                            if (childPage.listChildren(new PageFilter()).hasNext()) {
-                                leftNavigationBean = setChildPages(childPage, leftNavigationBean);
-                            }
-                            leftNavItems.add(leftNavigationBean);
-                        }
-                    }
+                    populateLeftNavItems(childPage);
                 }
             }
-
         }
+    }
 
+    private void populateLeftNavItems(Page childPage) {
+        if (null != childPage && null != childPage.getContentResource()) {
+            ValueMap valueMap = childPage.getContentResource().getValueMap();
+            if (!isHiddenInNavigation(valueMap)) {
+                LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
+                if (childPage.listChildren(new PageFilter()).hasNext()) {
+                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
+                }
+                leftNavItems.add(leftNavigationBean);
+            }
+        }
     }
 
     private LeftNavigationBean setChildPages(Page childPage, LeftNavigationBean leftNavigationBean) {
@@ -133,24 +140,19 @@ public class LeftNavigationModel {
     }
 
     private boolean isExternalLink(ValueMap valueMap) {
-        if (valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY)) {
-            return true;
-        }
-        return false;
+        return valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY);
     }
 
     private Resource getGlobalConfigurationResource(Resource childResource) {
-        if (null != childResource) {
-            Resource res = childResource.getChild("globalconfiguration");
-            if (null != res) {
-                return res;
-            } else {
-                Iterator<Resource> itr = childResource.listChildren();
-                while (itr.hasNext()) {
-                    Resource nextResource = itr.next();
-                    if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
-                        return nextResource;
-                    }
+        Resource res = childResource.getChild("globalconfiguration");
+        if (null != res) {
+            return res;
+        } else {
+            Iterator<Resource> itr = childResource.listChildren();
+            while (itr.hasNext()) {
+                Resource nextResource = itr.next();
+                if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
+                    return nextResource;
                 }
             }
         }
