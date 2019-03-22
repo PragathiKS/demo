@@ -22,10 +22,10 @@ function _getBeforeSend(self, ajaxOptions, beforeSendCache) {
       ajaxOptions.loader.addClass('loading');
       if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderBtn)) {
         self.loaderRef = loader().insertAfter(ajaxOptions.loader);
-      } else if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderReplace)) {
-        self.loaderRef = loader().target(ajaxOptions.loader);
-      } else {
+      } else if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderAppend)) {
         self.loaderRef = loader().appendTo(ajaxOptions.loader);
+      } else {
+        self.loaderRef = loader().target(ajaxOptions.loader);
       }
     }
     if (typeof beforeSendCache === 'function') {
@@ -98,7 +98,7 @@ export const ajaxWrapper = {
     name: 'xhrPool'
   },
   loaderClasses: {
-    loaderReplace: 'loader-rpl',
+    loaderAppend: 'loader-append',
     loaderBtn: 'loader-btn'
   },
   getXhrObj: function getXhrObj(options, callback, complete) {

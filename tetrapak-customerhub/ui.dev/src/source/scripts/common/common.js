@@ -188,7 +188,7 @@ export class Loader {
  * @param {boolean} appendMode Append mode
  */
 export const loader = (target, appendMode) => {
-  const loading = templates.loading();
+  const loading = templates.loader();
   if (target) {
     $(target)[appendMode ? 'append' : 'html'](loading);
   } else {

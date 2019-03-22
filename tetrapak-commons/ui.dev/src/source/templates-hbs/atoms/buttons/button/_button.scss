@@ -70,4 +70,17 @@
             @include height($spacing-baseline);
         }
     }
+    &--pagination {
+        @include padding(0 4px);
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+        @include border-radius($border-radius);
+        @include min-width(24px);
+        transition: background-color $anim-speed-quick ease;
+        &:hover,
+        &.active {
+            background-color: $color-congress-blue;
+            color: $color-white;
+        }
+    }
 }
