@@ -2,7 +2,7 @@
   "contentType": "manual",
   "articlePath": "http://www.google.com",
   "articleTitle": "Article Title 1",
-  "vanityDescriptionI18n": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis dolore ex id laborum magni maxime, nemo nulla optio quaerat ratione rem reprehenderit, totam, unde voluptate. Aperiam quisquam voluptatem voluptates.",
+  "vanityDescription": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis dolore ex id laborum magni maxime, nemo nulla optio quaerat ratione rem reprehenderit, totam, unde voluptate. Aperiam quisquam voluptatem voluptates.",
   "ctaTexti18nKey": "CTA Text 1",
   "openInNewWindow": "true",
   "showImage": "true",

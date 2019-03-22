@@ -3,7 +3,6 @@ import { ajaxWrapper } from './ajax';
 import LZStorage from 'lzstorage';
 import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
-import { logger } from './logger';
 
 const lzs = new LZStorage({
   compression: true
@@ -15,7 +14,6 @@ function generateToken() {
   return (
     new Promise(function (resolve, reject) {
       const appData = lzs.get('appData');
-      logger.debug(appData);
       if (appData) {
         resolve({
           data: appData,
@@ -32,7 +30,6 @@ function generateToken() {
           try {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
-              logger.debug(result);
               const expiry = (+result.expires_in) / (24 * 60 * 60 * 1000);
               lzs.setCookie('appData', result, expiry);
               resolve({

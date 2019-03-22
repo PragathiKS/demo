@@ -4,9 +4,10 @@ import deparam from 'jquerydeparam';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize } from '../../../scripts/common/common';
+import { sanitize, apiHost } from '../../../scripts/common/common';
+import auth from '../../../scripts/utils/auth';
 
 /**
  * Processes data before rendering
@@ -54,11 +55,14 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { orderDetailLink } = this.cache.config;
+  const { orderDetailLink, disabledFields } = this.cache.config;
   let keys = [];
   if (Array.isArray(data.orders)) {
     data.orders = data.orders.map(order => {
       keys = (keys.length === 0) ? Object.keys(order) : keys;
+      if (Array.isArray(disabledFields)) {
+        keys = keys.filter(key => !disabledFields.includes(key));
+      }
       return _tableSort.call(this, order, keys, orderDetailLink);
     });
     data.orderHeadings = keys.map(key => ({
@@ -95,31 +99,53 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { /*config,*/ $filters } = this.cache;
+  const { $filters } = this.cache;
   const $this = this;
-  render.fn({
-    template: 'orderingTable',
-    target: '.js-order-search__table',
-    url: {
-      path: '/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json', // Temporary hardcoding
-      data: filterParams
-    },
-    beforeRender(data) {
-      if (!data) {
-        this.data = data = {
-          isError: true
-        };
+  this.setSearchFields(filterParams);
+  this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'orderingTable',
+      target: '.js-order-search__table',
+      url: {
+        path: `${apiHost}/${API_ORDER_HISTORY}`,
+        data: filterParams
+      },
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        }
+        return _processTableData.apply($this, [data]);
+      },
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true,
+        showLoader: true,
+        cancellable: true
       }
-      return _processTableData.apply($this, [data]);
-    },
-    ajaxConfig: {
-      method: ajaxMethods.GET
-    }
-  }, () => {
-    if ($filters && $filters.length) {
-      $filters.removeClass('d-none');
-    }
-    this.setSearchFields(filterParams);
+    }, (data) => {
+      if ($filters && $filters.length) {
+        $filters.removeClass('d-none');
+      }
+      if (filterParams && !data.isError && data.totalOrdersForQuery) {
+        const { skip } = filterParams;
+        let currentPage = 1;
+        let totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
+        if (skip) {
+          currentPage = (skip / ORDER_HISTORY_ROWS_PER_PAGE) + 1;
+        }
+        this.root.find('.js-pagination').trigger('ordersearch.paginate', [{
+          currentPage,
+          totalPages
+        }]);
+      }
+    });
   });
 }
 
@@ -169,18 +195,26 @@ function _trackAnalytics(defaultParam) {
  * Renders filter section
  */
 function _renderFilters() {
-  //const { config } = this.cache;
-  render.fn({
-    template: 'orderSearch',
-    url: '/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json', // Temporary hardcoding
-    target: '.js-order-search__form',
-    ajaxConfig: {
-      method: ajaxMethods.GET
-    },
-    beforeRender: (...args) => _processOrderSearchData.apply(this, args)
-  }, () => {
-    this.initPostCache();
-    this.setFilters();
+  auth.getToken(({ data }) => {
+    render.fn({
+      template: 'orderSearch',
+      url: `${apiHost}/${API_SEARCH}`,
+      target: '.js-order-search__form',
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true,
+        showLoader: true,
+        cancellable: true
+      },
+      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+    }, () => {
+      this.initPostCache();
+      this.setFilters();
+    });
   });
 }
 
@@ -218,14 +252,27 @@ class OrderSearch {
         this.renderTable(_sanitizeQuery(query));
       }
     });
-    this.root.on('click', '.js-order-search__submit', () => {
-      this.setFilters(true);
-      this.trackAnalytics();
-    });
-    this.root.on('click', '.js-order-search__reset', () => {
-      this.resetSearch();
-      this.trackAnalytics(this.cache.defaultParams);
-    });
+    this.root
+      .on('click', '.js-order-search__submit', () => {
+        this.setFilters(true);
+        this.trackAnalytics();
+      })
+      .on('click', '.js-order-search__reset', () => {
+        this.resetSearch();
+        this.trackAnalytics(this.cache.defaultParams);
+      })
+      .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
+        const [, data] = args;
+        const routeQuery = deparam(window.location.hash.substring(2));
+        delete routeQuery.skip;
+        if (data.pageIndex > 0) {
+          routeQuery.skip = data.pageIndex * ORDER_HISTORY_ROWS_PER_PAGE;
+        }
+        router.set({
+          route: '#/',
+          queryString: $.param(routeQuery)
+        });
+      });
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
@@ -237,9 +284,11 @@ class OrderSearch {
     return _setSearchFields.apply(this, arguments);
   }
   resetSearch() {
+    const { defaultParams } = this.cache;
+    this.setSearchFields($.extend({}, defaultParams));
     router.set({
       route: '#/',
-      queryString: $.param(this.cache.defaultParams)
+      queryString: $.param(defaultParams)
     });
   }
   renderTable() {

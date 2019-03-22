@@ -2,6 +2,9 @@ package com.tetrapak.customerhub.core.beans;
 
 import java.util.List;
 
+/**
+ * The LeftNavigationBean Class
+ */
 public class LeftNavigationBean {
     private String href;
     private String iconClass;

@@ -12,4 +12,13 @@
     &__icon {
         @include padding-left($padding-xs);
     }
+    &--link {
+        @include border-radius(0);
+        @include padding(0);
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+            color: $color-tundora;
+        }
+    }
 }

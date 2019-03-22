@@ -144,7 +144,8 @@
         "source/scripts/utils/",
         "source/templates/components/HelloWorld/",
         "source/templates/components/HelloWorldHandlebars/",
-        "source/templates/components/OrderStatus/"
+        "source/templates/components/OrderStatus/",
+        "source/templates/components/listContentImage/"
       ]
     },
     "handlebars": {
