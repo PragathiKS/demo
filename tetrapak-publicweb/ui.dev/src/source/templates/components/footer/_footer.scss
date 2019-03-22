@@ -13,7 +13,8 @@
     &__link {
         color: $color-white;
 
-        &:hover {
+        &:hover,
+        &:active {
             color: $color-mercury;
             text-decoration: none;
         }
