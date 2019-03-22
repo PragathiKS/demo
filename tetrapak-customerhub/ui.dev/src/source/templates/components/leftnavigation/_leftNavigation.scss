@@ -1,9 +1,10 @@
 .tp-left-nav {
     @media #{$desktop} {
-        @include width(224px);
+        $nav-width: 2/12*100%;
         @include top(88px);
         @include vertical-scroll-touch;
         position: fixed;
+        width: $nav-width;
         height: calc(100vh - #{convert-to-rem(88px)});
         overflow-y: scroll;
     }
