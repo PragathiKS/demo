@@ -1,14 +1,20 @@
-<sly data-sly-template.imageTextBanner_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<sly data-sly-template.imageTextBanner_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.desktopImage}" class="pw-banner ${data.contentAlignment}">
     <img class="pw-banner__image d-md-block d-lg-none" src="${data.mobileImage}" alt="">
     <img class="pw-banner__image d-none d-lg-block" src="${data.desktopImage}" alt="">
     <div class="pw-banner__content">
-      <span class="pw-banner__content__subtitle">${data.bannerSubtitleI18n @ i18n}</span>
+      <div data-sly-test="${data.bannerSubtitleI18n}" class="pw-banner__content__subtitle">
+        <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${subheading.subheading_template @ headingText=data.bannerSubtitleI18n}"/>
+      </div>
       <h3 class="pw-banner__content__title">${data.titleI18n @ i18n}</h3>
       <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
-      <sly data-sly-test="${data.bannerCtaPath != '#'}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-           data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank}" />
+      <sly data-sly-test="${data.bannerCtaPath != '#'}"
+           data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+           data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank}"/>
     </div>
   </div>
-  <sly data-sly-test="${!data.desktopImage}" data-sly-call="${templates.placeholder @ isEmpty = !data.desktopImage}"></sly>
+  <sly data-sly-test="${!data.desktopImage}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.desktopImage}"></sly>
 </sly>

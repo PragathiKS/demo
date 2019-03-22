@@ -28,40 +28,21 @@ public class ImageTextButtonModel {
 
 	@Inject
 	private String ctaLinkURL;
-	
-	@Inject
-	private String processingHotspotUrl;
+
+  @Inject
+  private String imagePath;
+
+  @Inject
+  private String imageAltI18n;
 
 	@Inject
-	private Boolean openProcessingHotspotInNewWindow;
-	
-	@Inject
-	private String packagingHotspotUrl;
-
-	@Inject
-	private Boolean openPackagingHotspotInNewWindow;
-
-	@Inject
-	private String servicesHotspotUrl;
-	
-	@Inject
-	private Boolean openServicesHotspotInNewWindow;
+	private String pwTheme;
 
 	@PostConstruct
 	protected void init() {
 		if (StringUtils.isNotEmpty(ctaLinkURL)) {
 			ctaLinkURL = LinkUtils.sanitizeLink(ctaLinkURL);
 		}
-		if (StringUtils.isNotEmpty(processingHotspotUrl)) {
-			processingHotspotUrl = LinkUtils.sanitizeLink(processingHotspotUrl);
-		}
-		if (StringUtils.isNotEmpty(packagingHotspotUrl)) {
-			packagingHotspotUrl = LinkUtils.sanitizeLink(packagingHotspotUrl);
-		}
-		if (StringUtils.isNotEmpty(servicesHotspotUrl)) {
-			servicesHotspotUrl = LinkUtils.sanitizeLink(servicesHotspotUrl);
-		}
-
 	}
 
 	public String getTitle() {
@@ -84,28 +65,16 @@ public class ImageTextButtonModel {
 		return ctaLinkURL;
 	}
 
-	public String getProcessingHotspotUrl() {
-		return processingHotspotUrl;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public Boolean getOpenProcessingHotspotInNewWindow() {
-		return openProcessingHotspotInNewWindow;
+	public String getImageAltI18n() {
+		return imageAltI18n;
 	}
 
-	public String getPackagingHotspotUrl() {
-		return packagingHotspotUrl;
-	}
+  public String getPwTheme(){
+    return pwTheme;
+  }
 
-	public Boolean getOpenPackagingHotspotInNewWindow() {
-		return openPackagingHotspotInNewWindow;
-	}
-
-	public String getServicesHotspotUrl() {
-		return servicesHotspotUrl;
-	}
-
-	public Boolean getOpenServicesHotspotInNewWindow() {
-		return openServicesHotspotInNewWindow;
-	}
-	
 }

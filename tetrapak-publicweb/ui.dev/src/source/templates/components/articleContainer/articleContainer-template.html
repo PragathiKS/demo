@@ -1,6 +1,9 @@
 <sly data-sly-template.articleContainer_template="${@ data, flag}">
   <div class="article-container pw-theme--${data.pwTheme}">
-    <h3 class="article-container__title ${data.titleAlignment}">${data.titleI18n @ i18n}</h3>
+    <div class="article-container__title ${data.titleAlignment}">
+      <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+           data-sly-call="${heading.heading_template @ headingText=data.titleI18n}"/>
+    </div>
     <div class="d-md-block d-lg-flex" data-sly-list="${data.totalColumns}">
       <div class="article-container__column">
         <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articleItem'}"/>

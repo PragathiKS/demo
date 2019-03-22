@@ -52,61 +52,28 @@
                                 fieldLabel="CTA Link URL"
                                 rootPath="/content/tetrapak/public-web"
                                 name="./ctaLinkURL"/>
-                            <processingHotspotUrl
+                            <image
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldLabel="Processing Hotspot URL"
-                                rootPath="/content/tetrapak/public-web"
-                                name="./processingHotspotUrl"/>
-                            <openProcessingHotspotInNewWindow
+                                fieldDescription="Select the path to image"
+                                fieldLabel="Image Path"
+                                name="./imagePath"
+                                rootPath="/content/dam/publicweb"/>
+                            <imageAlt
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                name="./openProcessingHotspotInNewWindow"
-                                text="Open Processing Hotspot In New Window?"
-                                value="true"/>
-                            <openProcessingHotspotInNewWindowDelete
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                name="./openProcessingHotspotInNewWindow@Delete"
-                                value="{Boolean}true"/>
-                            <packagingHotspotUrl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldLabel="Packaging Hotspot URL"
-                                rootPath="/content/tetrapak/public-web"
-                                name="./packagingHotspotUrl"/>
-                            <openPackagingHotspotInNewWindow
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                name="./openPackagingHotspotInNewWindow"
-                                text="Open Packaging Hotspot In New Window?"
-                                value="true"/>
-                            <openPackagingHotspotInNewWindowDelete
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                name="./openPackagingHotspotInNewWindow@Delete"
-                                value="{Boolean}true"/>
-                            <servicesHotspotUrl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldLabel="Services Hotspot URL"
-                                rootPath="/content/tetrapak/public-web"
-                                name="./servicesHotspotUrl"/>
-                            <openServicesHotspotInNewWindow
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                name="./openServicesHotspotInNewWindow"
-                                text="Open Services Hotspot In New Window?"
-                                value="true"/>
-                            <openServicesHotspotInNewWindowDelete
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                name="./openServicesHotspotInNewWindow@Delete"
-                                value="{Boolean}true"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Alternative Text"
+                                fieldLabel="Desktop Image Alt Text"
+                                name="./imageAltI18n"/>
                         </items>
                     </column>
                 </items>
             </imageTextButton>
+            <design
+                jcr:primaryType="nt:unstructured"
+                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design"
+                sling:resourceType="granite/ui/components/foundation/include">
+            </design>
         </items>
     </content>
 </jcr:root>
