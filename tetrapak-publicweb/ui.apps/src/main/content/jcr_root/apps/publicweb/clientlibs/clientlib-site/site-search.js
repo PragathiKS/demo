@@ -1,5 +1,9 @@
 $(document).on('ready', function () {
 
+    if (document.getElementById("pw-search-results")) {
+            performSearch();
+        }
+
     var urlValues = getUrlVars();  
 
     $('#f_search_inp').bind("enterKey",function(e){
@@ -18,7 +22,8 @@ $(document).on('ready', function () {
             window.history.pushState(state, document.title, updatedURLAfterQueryTerm);
         }
 
-        performSearch();
+        window.location = $("#search-data-resultspath").attr("data") + ".html?q=" + queryTerm;
+
     });
 
     $('#f_search_inp').keyup(function(e){
@@ -53,14 +58,14 @@ $(document).on('ready', function () {
                 searchResultsPath: searchResultsPath,
                 fulltextSearchTerm : encodedQueryTerm,
             },
-            success: function(data) {               
-                        $('.search-results').html('');
+            success: function(data) {    
+                        var totalResults = data.length;                
+                        $('.search-results').html("<h3>Search Results </h3>");
+                        $('.search-results').append("<h4>" + totalResults + " results found.</h4>");
                         $.each(data, function(i, obj) {
-                            $('.search-results').append("<p><a href=\"" + obj.path + "\" >" + obj.title + "</a></p>");
+                            $('.search-results').append("<p><a href=\"" + obj.path + ".html\" >" + obj.title + "</a></p>");
                     });
 
-                var totalResults = data.length;                
-                alert(totalResults + " results updated.");
             }
         });
     };
