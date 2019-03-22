@@ -1,9 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.services.impl.APIGEEServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.UserPreferenceServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
@@ -15,7 +13,6 @@ import org.junit.Test;
 public class OrderingCardModelTest {
 
     private OrderingCardModel orderingCardModel = null;
-    private APIGEEService apigeeService;
     private UserPreferenceService userPreferenceService;
     private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
     private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
@@ -27,10 +24,8 @@ public class OrderingCardModelTest {
     @Before
     public void setup() {
         aemContext.load().json("/" + "user.json", "/home");
-        apigeeService = new APIGEEServiceImpl();
         userPreferenceService = new UserPreferenceServiceImpl();
 
-        aemContext.registerInjectActivateService(apigeeService);
         aemContext.registerInjectActivateService(userPreferenceService);
 
         Resource resource = aemContext.currentResource(COMPONENT_PATH);
@@ -44,8 +39,8 @@ public class OrderingCardModelTest {
         Assert.assertEquals(1, orderingCardModel.getDisabledFields().size());
         Assert.assertEquals(3, orderingCardModel.getDefaultFields().size());
         Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
-        Assert.assertEquals("/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json", orderingCardModel.getApiURL());
         Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
+        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getOrderDetailLink());
         Assert.assertEquals(6, orderingCardModel.getSavedPreferences().size());
     }
 }
