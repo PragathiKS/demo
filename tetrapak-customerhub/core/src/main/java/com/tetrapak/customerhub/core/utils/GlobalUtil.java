@@ -25,13 +25,6 @@ import java.util.Set;
 public class GlobalUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
-    
-    /**
-     * Making private to not allow to create instance
-     */
-    private GlobalUtil() {
-    	super();
-    }
 
     /**
      * 
