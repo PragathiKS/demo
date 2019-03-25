@@ -7,7 +7,8 @@ class ListContentImage {
     let tabListContentArray = [];
     let $overallTabListContentClass = $( '.pw-listContentImage' );
     // get each specific class of tabListContent Organisms version and put in array
-    $.each( $overallTabListContentClass , function () {
+    $.each( $overallTabListContentClass , function (index) {
+      $(this).addClass('listContentImage-version'+index);
       let tabListContentClassArr        = $( this ).attr('class').match(/\S+/gi);
       let specificTabListContentVersion = tabListContentClassArr[tabListContentClassArr.length - 1];
       tabListContentArray.push( specificTabListContentVersion );
