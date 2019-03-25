@@ -207,5 +207,10 @@ pipeline {
 				}
 			}
 		}
+		stage (sendemail) {
+			script {
+				emailext attachLog: true, body: 'Build deployed on ENV', subject: 'Test Email', to: 'Tushar.Tushar@publicissapeint.com'
+			}
+		}
 	}
 }
