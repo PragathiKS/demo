@@ -94,7 +94,7 @@ pipeline {
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Commons Package on author"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-						
+						sleep 20
 						echo "Uninstalling Old Package on author"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"						
 						echo "Deleting Old Package on author"
@@ -113,7 +113,7 @@ pipeline {
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Commons Package on publish"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-						
+						sleep 20
 						echo "Uninstalling Old Package on publish"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
 						echo "Deleting Old Package on publish"
