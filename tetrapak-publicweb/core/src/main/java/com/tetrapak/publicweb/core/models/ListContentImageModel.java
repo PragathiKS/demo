@@ -17,108 +17,108 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ListContentImageModel {
 
-	private static final Logger log = LoggerFactory.getLogger(ListContentImageModel.class);
-
-	@Inject
-	private String titleI18n;
-
-	@Inject
-	private String tabsAlignment;
-
-	@Inject
-	private String linkTextI18n;
-
-	@Inject
-	private String linkTooltipI18n;
-
-	@Inject
-	private String linkPath;
-
-	@Inject
-	private Boolean targetBlank;
-
-	@Inject
-	private String[] tabLinks;
-
-	@Inject
-	private String pwTheme;
+    private static final Logger log = LoggerFactory.getLogger(ListContentImageModel.class);
 
     @Inject
-        private String pwButtonTheme;
+    private String titleI18n;
 
-  @Inject
-  private String pwPadding;
+    @Inject
+    private String tabsAlignment;
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
+    @Inject
+    private String linkTextI18n;
 
-	public String getTabsAlignment() {
-		return tabsAlignment;
-	}
+    @Inject
+    private String linkTooltipI18n;
 
-	public String getLinkTextI18n() {
-		return linkTextI18n;
-	}
+    @Inject
+    private String linkPath;
 
-	public String getLinkTooltipI18n() {
-		return linkTooltipI18n;
-	}
+    @Inject
+    private Boolean targetBlank;
 
-	public String getLinkPath() {
-		return LinkUtils.sanitizeLink(linkPath);
-	}
+    @Inject
+    private String[] tabLinks;
 
-	public Boolean getTargetBlank() {
-		return targetBlank;
-	}
+    @Inject
+    private String pwTheme;
 
-	public String[] getTabLinks() {
-		return getTabLinks(tabLinks).toArray(new String[0]);
-	}
-	
-	public String getPwTheme(){
-		return pwTheme;
-	}
+    @Inject
+    private String pwButtonTheme;
+
+    @Inject
+    private String pwPadding;
+
+    public String getTitleI18n() {
+        return titleI18n;
+    }
+
+    public String getTabsAlignment() {
+        return tabsAlignment;
+    }
+
+    public String getLinkTextI18n() {
+        return linkTextI18n;
+    }
+
+    public String getLinkTooltipI18n() {
+        return linkTooltipI18n;
+    }
+
+    public String getLinkPath() {
+        return LinkUtils.sanitizeLink(linkPath);
+    }
+
+    public Boolean getTargetBlank() {
+        return targetBlank;
+    }
+
+    public String[] getTabLinks() {
+        return getTabLinks(tabLinks).toArray(new String[0]);
+    }
+
+    public String getPwTheme() {
+        return pwTheme;
+    }
 
     public String getPwButtonTheme() {
-            return pwButtonTheme;
+        return pwButtonTheme;
+    }
+
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    /**
+     * Method to get the tab link text from the multifield property saved in CRX for
+     * each of the tab links.
+     *
+     * @param tabLinks String[]
+     * @return List<String>
+     */
+    public static List<String> getTabLinks(String[] tabLinks) {
+        @SuppressWarnings("deprecation")
+        List<String> tabs = new ArrayList<String>();
+        JSONObject jObj;
+        try {
+            if (tabLinks == null) {
+                log.error("Tab Links value is NULL");
+            } else {
+                for (int i = 0; i < tabLinks.length; i++) {
+                    jObj = new JSONObject(tabLinks[i]);
+
+                    String tabLinkTextI18n = "";
+                    if (jObj.has("tabLinkTextI18n")) {
+                        tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
+                    }
+                    tabs.add(tabLinkTextI18n);
+
+                }
+            }
+        } catch (Exception e) {
+            log.error("Exception while Multifield data {}", e.getMessage(), e);
         }
-
-	public String getPwPadding(){
-  		return pwPadding;
-  	}
-
-	/**
-	 * Method to get the tab link text from the multifield property saved in CRX for
-	 * each of the tab links.
-	 * 
-	 * @param tabLinks String[]
-	 * @return List<String>
-	 */
-	public static List<String> getTabLinks(String[] tabLinks) {
-		@SuppressWarnings("deprecation")
-		List<String> tabs = new ArrayList<String>();
-		JSONObject jObj;
-		try {
-			if (tabLinks == null) {
-				log.error("Tab Links value is NULL");
-			} else {
-				for (int i = 0; i < tabLinks.length; i++) {
-					jObj = new JSONObject(tabLinks[i]);
-
-					String tabLinkTextI18n = "";
-					if (jObj.has("tabLinkTextI18n")) {
-						tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
-					}
-					tabs.add(tabLinkTextI18n);
-
-				}
-			}
-		} catch (Exception e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
-		}
-		return tabs;
-	}
+        return tabs;
+    }
 
 }

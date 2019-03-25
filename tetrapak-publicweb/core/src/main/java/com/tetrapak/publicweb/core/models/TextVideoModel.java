@@ -44,13 +44,13 @@ public class TextVideoModel {
     private String pwTheme;
 
     @Inject
-        private String pwButtonTheme;
+    private String pwButtonTheme;
 
     @Inject
-        private String pwPadding;
+    private String pwPadding;
 
     @Inject
-        private String pwDisplay;
+    private String pwDisplay;
 
     @PostConstruct
     protected void init() {
@@ -104,14 +104,14 @@ public class TextVideoModel {
     }
 
     public String getPwButtonTheme() {
-            return pwButtonTheme;
-        }
+        return pwButtonTheme;
+    }
 
     public String getPwPadding() {
-            return pwPadding;
-        }
+        return pwPadding;
+    }
 
     public String getPwDisplay() {
-                return pwDisplay;
-            }
+        return pwDisplay;
+    }
 }
