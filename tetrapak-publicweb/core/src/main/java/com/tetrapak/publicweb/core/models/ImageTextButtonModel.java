@@ -24,7 +24,7 @@ public class ImageTextButtonModel {
 	private String description;
 
 	@Inject
-	private String ctaLinkTexti18n;
+	private String ctaLinkTextI18n;
 
 	@Inject
 	private String ctaLinkURL;
@@ -57,8 +57,8 @@ public class ImageTextButtonModel {
 		return description;
 	}
 
-	public String getCtaLinkTexti18n() {
-		return ctaLinkTexti18n;
+	public String getCtaLinkTextI18n() {
+		return ctaLinkTextI18n;
 	}
 
 	public String getCtaLinkURL() {
