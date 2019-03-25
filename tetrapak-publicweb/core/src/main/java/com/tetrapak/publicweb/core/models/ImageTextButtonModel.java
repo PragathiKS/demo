@@ -14,67 +14,74 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ImageTextButtonModel {
 
-	@Inject
-	private String title;
+    @Inject
+    private String title;
 
-	@Inject
-	private String subtitle;
+    @Inject
+    private String subtitle;
 
-	@Inject
-	private String description;
+    @Inject
+    private String description;
 
-	@Inject
-	private String ctaLinkTextI18n;
+    @Inject
+    private String ctaLinkTextI18n;
 
-	@Inject
-	private String ctaLinkURL;
+    @Inject
+    private String ctaLinkURL;
 
-  @Inject
-  private String imagePath;
+    @Inject
+    private String imagePath;
 
-  @Inject
-  private String imageAltI18n;
+    @Inject
+    private String imageAltI18n;
 
-	@Inject
-	private String pwTheme;
+    @Inject
+    private String pwTheme;
 
-	@PostConstruct
-	protected void init() {
-		if (StringUtils.isNotEmpty(ctaLinkURL)) {
-			ctaLinkURL = LinkUtils.sanitizeLink(ctaLinkURL);
-		}
-	}
+    @Inject
+    private String pwButtonTheme;
 
-	public String getTitle() {
-		return title;
-	}
+    @PostConstruct
+    protected void init() {
+        if (StringUtils.isNotEmpty(ctaLinkURL)) {
+            ctaLinkURL = LinkUtils.sanitizeLink(ctaLinkURL);
+        }
+    }
 
-	public String getSubtitle() {
-		return subtitle;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getSubtitle() {
+        return subtitle;
+    }
 
-	public String getCtaLinkTextI18n() {
-		return ctaLinkTextI18n;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getCtaLinkURL() {
-		return ctaLinkURL;
-	}
+    public String getCtaLinkTextI18n() {
+        return ctaLinkTextI18n;
+    }
 
-	public String getImagePath() {
-		return imagePath;
-	}
+    public String getCtaLinkURL() {
+        return ctaLinkURL;
+    }
 
-	public String getImageAltI18n() {
-		return imageAltI18n;
-	}
+    public String getImagePath() {
+        return imagePath;
+    }
 
-  public String getPwTheme(){
-    return pwTheme;
-  }
+    public String getImageAltI18n() {
+        return imageAltI18n;
+    }
+
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
 
 }
