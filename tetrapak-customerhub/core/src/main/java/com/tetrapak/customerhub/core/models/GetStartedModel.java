@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Model class for Get Started Component
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class GetStartedModel {
 
@@ -21,6 +24,9 @@ public class GetStartedModel {
 
     @Inject
     private String headingI18n;
+
+    @Inject
+    private String className;
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
@@ -48,5 +54,9 @@ public class GetStartedModel {
 
     public String getHeadingI18n() {
         return headingI18n;
+    }
+
+    public String getClassName(){
+        return className;
     }
 }

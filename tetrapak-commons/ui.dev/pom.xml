@@ -62,14 +62,6 @@
 							<goal>exec</goal>
 						</goals>
 						<phase>compile</phase>
-						<configuration>
-							<executable>npm</executable>
-							<workingDirectory>src/</workingDirectory>
-							<arguments>
-								<argument>run</argument>
-								<argument>buildDev</argument>
-							</arguments>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

@@ -72,6 +72,7 @@ wizard({ questions })
           createComponent(data.answer);
         }
       } catch (e) {
+        console.log(e);
         console.log('\x1b[31m%s\x1b[0m', 'Something went wrong!');
       }
     } else {

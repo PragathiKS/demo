@@ -169,18 +169,18 @@ function _renderData(config) {
     if (!renderTarget.length) {
       renderTarget = $('<div>');
       if ($rootTemplate.length) {
-        $rootTemplate.removeClass('hidden').append(renderTarget);
+        $rootTemplate.removeClass('d-none').append(renderTarget);
       } else if (codeBlock.length) {
         codeBlock.after(renderTarget);
       } else {
         $body.append(renderTarget);
       }
     }
-    // If render target needs to be hidden, then add 'hidden' class to the target
+    // If render target needs to be hidden, then add 'd-none' class to the target
     if (config.hidden) {
-      renderTarget.addClass('hidden');
+      renderTarget.addClass('d-none');
     } else {
-      renderTarget.removeClass('hidden');
+      renderTarget.removeClass('d-none');
     }
     // Render template in target element
     try {

@@ -6,9 +6,14 @@ import orderingCardData from '../orderingcard/data/orderingCardData.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { render } from '../../../scripts/utils/render';
 import orderSearchTemplate from '../../../test-templates-hbs/ordersearch.hbs';
+import auth from '../../../scripts/utils/auth';
 
 describe('OrderSearch', function () {
-  const jqRef = {};
+  const jqRef = {
+    setRequestHeader() {
+      // Dummy method
+    }
+  };
   function ajaxResponse(response) {
     const pr = $.Deferred();
     pr.resolve(response, 'success', jqRef);
@@ -23,6 +28,13 @@ describe('OrderSearch', function () {
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderSearchData));
+    this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
+      data: {
+        access_token: "fLW1l1EA38xjklTrTa5MAN7GFmo2",
+        expires_in: "43199",
+        token_type: "BearerToken"
+      }
+    });
     this.routeStub = sinon.stub(routeExports, 'route').callsArgWith(
       0,
       {
@@ -44,6 +56,7 @@ describe('OrderSearch', function () {
     this.renderSpy.restore();
     this.routeStub.restore();
     this.ajaxStub.restore();
+    this.tokenStub.restore();
   });
   it('should initialize', function (done) {
     expect(this.orderSearch.init.called).to.be.true;
@@ -63,8 +76,8 @@ describe('OrderSearch', function () {
       },
       undefined,
       {
-        'orderdate-from': 'YYYY-MM-DD',
-        'orderdate-to': 'YYYY-MM-DD',
+        'orderdate-from': '2018-01-05',
+        'orderdate-to': '2018-02-20',
         'search': 'test'
       }
     );
@@ -91,5 +104,12 @@ describe('OrderSearch', function () {
     $('.js-order-search__reset').trigger('click');
     expect(this.resetSpy.called).to.be.true;
     done();
+  });
+  it('should go to next page on click of pagination', function () {
+    $('.js-pagination').trigger('ordersearch.pagenav', [{
+      pageNumber: 2,
+      pageIndex: 1
+    }]);
+    expect(render.fn.called).to.be.true;
   });
 });

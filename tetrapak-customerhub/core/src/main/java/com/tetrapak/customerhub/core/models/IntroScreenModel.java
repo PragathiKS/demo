@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
+/**
+ * Model class for Intro Screen Component
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class IntroScreenModel {
 
@@ -21,6 +25,9 @@ public class IntroScreenModel {
 
     @Inject
     private String headingI18n;
+
+    @Inject
+    private String className;
 
     @Inject
     private String nextBtnI18n;
@@ -57,6 +64,10 @@ public class IntroScreenModel {
 
     public String getHeadingI18n() {
         return headingI18n;
+    }
+
+    public String getClassName(){
+        return className;
     }
 
     public String getNextBtnI18n() {

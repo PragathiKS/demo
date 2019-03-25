@@ -17,19 +17,39 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author TetraPak
+ *
+ */
 public class GlobalUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
+    /**
+     * 
+     * @param apigeeService
+     * @param defaultJson
+     * @return String
+     */
     public static String getApiURL(APIGEEService apigeeService, String defaultJson) {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : defaultJson;
     }
-
+    /**
+     * 
+     * @param apigeeService
+     * @param preferencesJson
+     * @return String
+     */
     public static String getPreferencesURL(APIGEEService apigeeService, String preferencesJson) {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : preferencesJson;
     }
-
+    /**
+     * 
+     * @param resourceFactory
+     * @param paramMap
+     * @return ResourceResolver
+     */
     public static ResourceResolver getResourceResolverFromSubService(
             final ResourceResolverFactory resourceFactory, final Map<String, Object> paramMap) {
         ResourceResolver resourceResolver = null;
@@ -44,26 +64,48 @@ public class GlobalUtil {
         }
         return resourceResolver;
     }
-
+    /**
+     * 
+     * @param resp
+     * @param jsonResponse
+     * @throws IOException
+     */
     public static void writeJsonResponse(SlingHttpServletResponse resp, JsonObject jsonResponse) throws IOException {
         resp.setContentType("application/json");
         resp.getWriter().write(jsonResponse.toString());
     }
-//  To check the run mode development to execute the launch js for development  environment -r dev
+    /**
+     * 
+     * @return boolean
+     * @description To check the run mode development to execute the launch js for development environment -r dev
+     */
     public static boolean isRunModeDevelopment(){
 		return isRunModeAvailable("dev");
 	}
 
-//  To check the run mode staging to execute the launch js for staging environment -r stage
+    /**
+     * 
+     * @return boolean
+     * @description To check the run mode staging to execute the launch js for staging environment -r stage
+     */
 	public static boolean isRunModeStaging(){
 		return isRunModeAvailable("stage");
 	}
-//  To check the run mode staging to execute the launch js for production environment -r prod
+	/**
+	 * 
+	 * @return boolean
+	 * @description To check the run mode staging to execute the launch js for production environment -r prod
+	 */
 	public static boolean isRunModeProduction(){
 		return isRunModeAvailable("prod");
 	}
     
-// To check rum mode available  - if available return true else false    
+    /**
+     * 
+     * @param key String
+     * @return boolean
+     * @description To check rum mode available  - if available return true else false
+     */ 
     public static boolean isRunModeAvailable(String key) {
 		Set<String> runModesSet = getRunModes();
 		if (runModesSet.contains(key)) {
@@ -76,11 +118,19 @@ public class GlobalUtil {
 		}
 		return false;
 	}
-    // To get available run modes
+    /**
+     * 
+     * @return Set<String>
+     * @description To get available run modes
+     */
 	public static Set<String> getRunModes() {
     	return	getService(SlingSettingsService.class).getRunModes();
 	}
-    
+    /**
+     * 
+     * @param clazz
+     * @return T
+     */    
 	@SuppressWarnings("unchecked")
     public static <T> T getService(final Class<T> clazz) {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();

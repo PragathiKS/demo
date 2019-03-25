@@ -144,7 +144,8 @@
         "source/scripts/utils/",
         "source/templates/components/HelloWorld/",
         "source/templates/components/HelloWorldHandlebars/",
-        "source/templates/components/OrderStatus/"
+        "source/templates/components/OrderStatus/",
+        "source/templates/components/listContentImage/"
       ]
     },
     "handlebars": {
@@ -194,6 +195,7 @@
         "<%= config.source %>/scripts/**/*.js",
         "<%= config.source %>/templates/**/*.js",
         "<%= config.source %>/styles/*.scss",
+        "<%= config.source %>/templates/atoms/**/*.scss",
         "<%= config.source %>/templates/components/**/*.scss"
       ],
       "tasks": [

@@ -8,6 +8,8 @@ import Handlebars from 'handlebars';
 
 const currentUserAgent = window.navigator.userAgent;
 
+export const apiHost = $('#apiHost').val();
+
 // Initialize storage utility
 export const storageUtil = new LZStorage();
 
@@ -186,7 +188,7 @@ export class Loader {
  * @param {boolean} appendMode Append mode
  */
 export const loader = (target, appendMode) => {
-  const loading = templates.loading();
+  const loading = templates.loader();
   if (target) {
     $(target)[appendMode ? 'append' : 'html'](loading);
   } else {

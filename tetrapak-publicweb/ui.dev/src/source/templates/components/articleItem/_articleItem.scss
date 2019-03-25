@@ -10,13 +10,9 @@
     }
 
     &__title {
-        @include font-size(18px);
-        @include line-height(24px, 18px);
-        @include padding(0 0 $padding-md);
-        font-family: $font-light;
+        @include margin-bottom($margin-md);
         @media #{$desktop} {
-            @include padding(0 0 $padding-l);
-            @include font-size(18px);
+            @include margin-bottom($margin-l);
         }
     }
 
@@ -35,10 +31,6 @@
         @include padding-bottom($padding-md);
         @media #{$desktop} {
             padding-bottom: 0;
-        }
-
-        & i {
-            vertical-align: middle;
         }
     }
 }

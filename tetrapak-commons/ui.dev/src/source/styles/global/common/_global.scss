@@ -46,14 +46,11 @@ a {
     &:hover {
         text-decoration: none;
     }
-    &:hover,
-    &:focus {
-        color: $color-text;
-    }
 }
 
 button {
     background-color: transparent;
+    color: $color-text;
     cursor: pointer;
 }
 
@@ -163,10 +160,6 @@ td {
         @include margin-left(-15px);
         @include margin-right(-15px);
     }
-    [class*="col-"] {
-        @include padding-left(15px);
-        @include padding-right(15px);
-    }
     .row {
         .tp-column__sidenav {
             padding-left: 0;
@@ -174,9 +167,32 @@ td {
     }
 }
 
-// Top margin for content as we have fixed header
-.tp-column__content {
-    @include margin-top(112px);
+.tp-column {
+    $content-width: 770px;
+    $nav-width: 224px;
+    &__content,
+    &__notif {
+        @include padding(0 $padding-md);
+        @media #{$desktop} {
+            @include padding(0 $padding-l);
+        }
+    }
+    &__content {
+        @include margin-top(104px);
+        @media #{$desktop} {
+            @include margin-top(112px);
+        }
+        &.col-lg-2 {
+            $content-max-width: $content-width/$body-max-width*100;
+            max-width: $content-max-width;
+        }
+    }
+    &__notif {
+        @media #{$desktop} {
+            $notif-max-width: ($body-max-width - $nav-width - $content-width)/$body-max-width*100;
+            max-width: $notif-max-width;
+        }
+    }
 }
 
 // Classes for Wrapping icons
@@ -187,5 +203,15 @@ td {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+    }
+}
+
+// Page title
+.tp-page-title {
+    @include margin-bottom($margin-md);
+    @include font-size($font-l);
+    @media #{$desktop} {
+        @include margin-bottom($margin-l);
+        @include font-size($font-xl);
     }
 }
