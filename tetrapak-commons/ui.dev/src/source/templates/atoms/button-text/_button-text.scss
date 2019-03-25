@@ -3,15 +3,27 @@
     @include font-size($font-baseline);
     @include line-height($font-l, $font-baseline);
     @include padding($padding-sm $padding-md 10px);
-    background-color: $color-wild-sand;
-
-    &:hover {
-        background-color: $color-mercury;
-    }
 
     &__icon {
         @include padding-left($padding-xs);
     }
+
+    &--primary {
+        background-color: $color-wild-sand;
+        &:hover {
+            background-color: $color-mercury;
+        }
+    }
+
+    &--secondary {
+        color: white;
+        background-color: $color-congress-blue;
+        &:hover {
+            background-color: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
+    }
+
     &--link {
         @include border-radius(0);
         @include padding(0);

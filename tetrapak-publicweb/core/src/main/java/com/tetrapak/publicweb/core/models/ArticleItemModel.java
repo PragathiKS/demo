@@ -48,6 +48,9 @@ public class ArticleItemModel {
 	@Inject
 	private String articleImageAltI18n;
 
+  @Inject
+  private String pwButtonTheme;
+
 	@PostConstruct
 	protected void init() {
 		ResourceResolver resolver = resource.getResourceResolver();
@@ -120,4 +123,8 @@ public class ArticleItemModel {
 	public String getArticleImageAltI18n() {
 		return articleImageAltI18n;
 	}
+
+  public String getPwButtonTheme() {
+    return pwButtonTheme;
+  }
 }

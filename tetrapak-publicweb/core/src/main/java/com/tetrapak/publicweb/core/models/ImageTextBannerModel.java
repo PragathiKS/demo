@@ -48,6 +48,9 @@ public class ImageTextBannerModel {
 	@Inject
 	private String bannerCtaTooltipI18n;
 
+  @Inject
+  private String pwButtonTheme;
+
 	@PostConstruct
 	protected void init() {
 
@@ -100,5 +103,9 @@ public class ImageTextBannerModel {
 	public String getBannerCtaTooltipI18n() {
 		return bannerCtaTooltipI18n;
 	}
+
+  public String getPwButtonTheme() {
+    return pwButtonTheme;
+  }
 
 }

@@ -8,5 +8,6 @@
   "bannerCtaPath": "#",
   "bannerCtaTextI18n": "Learn about Industry 4.0",
   "bannerCtaTooltipI18n": "Learn about Industry 4.0",
-  "targetBlank": true
+  "targetBlank": true,
+  "pwButtonTheme": "primary"
 }

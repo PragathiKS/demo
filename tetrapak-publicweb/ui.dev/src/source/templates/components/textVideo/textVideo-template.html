@@ -1,16 +1,20 @@
 <sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" class="pw-text-video pw-text-video--${data.textAlignment} pw-theme--${data.pwTheme}" data-locator="text-video">
+  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}"
+       class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}"
+       data-locator="text-video">
     <div class="row">
-      <div class="col-md-12 col-lg-4">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
         <div class="pw-text-video__title">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
                data-sly-call="${title.heading_template @ headingText=data.title}"/>
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
-        <a class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}" href="${data.linkURL}"
-           title="${data.linkTexti18n @ i18n}">${data.linkTexti18n @ i18n} <i class="icon-Circle_Arrow_Right"></i></a>
+        <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
+          <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+                data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnIcon='icon-Circle_Arrow_Right', variant=data.pwButtonTheme}" />
+        </div>
       </div>
-      <div class="col-md-12 col-lg-8">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video">
             <video controls>
@@ -29,7 +33,7 @@
         <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
           <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-               data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnIcon='icon-Circle_Arrow_Right', variant='link'}" />
+               data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, variant=data.pwButtonTheme}" />
         </div>
       </div>
     </div>

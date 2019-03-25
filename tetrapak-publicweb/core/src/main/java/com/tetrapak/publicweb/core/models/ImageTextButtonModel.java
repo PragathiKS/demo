@@ -24,7 +24,7 @@ public class ImageTextButtonModel {
 	private String description;
 
 	@Inject
-	private String ctaLinkTexti18n;
+	private String ctaLinkTextI18n;
 
 	@Inject
 	private String ctaLinkURL;
@@ -37,6 +37,9 @@ public class ImageTextButtonModel {
 
 	@Inject
 	private String pwTheme;
+
+  @Inject
+  private String pwButtonTheme;
 
 	@PostConstruct
 	protected void init() {
@@ -57,8 +60,8 @@ public class ImageTextButtonModel {
 		return description;
 	}
 
-	public String getCtaLinkTexti18n() {
-		return ctaLinkTexti18n;
+	public String getCtaLinkTextI18n() {
+		return ctaLinkTextI18n;
 	}
 
 	public String getCtaLinkURL() {
@@ -76,5 +79,9 @@ public class ImageTextButtonModel {
   public String getPwTheme(){
     return pwTheme;
   }
+
+    public String getPwButtonTheme() {
+      return pwButtonTheme;
+    }
 
 }
