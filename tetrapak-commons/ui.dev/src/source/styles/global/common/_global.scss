@@ -188,8 +188,10 @@ td {
         }
     }
     &__notif {
-        $notif-max-width: ($body-max-width - $nav-width - $content-width)/$body-max-width*100;
-        max-width: $notif-max-width;
+        @media #{$desktop} {
+            $notif-max-width: ($body-max-width - $nav-width - $content-width)/$body-max-width*100;
+            max-width: $notif-max-width;
+        }
     }
 }
 
