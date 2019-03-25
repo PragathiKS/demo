@@ -123,7 +123,7 @@ pipeline {
 				)  
 			}
 		}
-		
+	}
     stages {
        		stage ('Dispatcher Flush') {
 		    steps {
@@ -183,9 +183,9 @@ pipeline {
 				sh 'zap-cli --api-key 12345 shutdown'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
 				}
-		}
+		    }
                 	
 				 		
-            }						
-		}
+        }						
 	}
+	
