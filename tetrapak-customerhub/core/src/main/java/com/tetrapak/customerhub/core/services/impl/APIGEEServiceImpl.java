@@ -7,12 +7,20 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 
+/**
+ * Impl class for API GEE Service
+ * @author Nitin Kumar
+ */
 @Component(immediate = true, service = APIGEEService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = APIGEEServiceConfig.class)
 public class APIGEEServiceImpl implements APIGEEService {
 
     private APIGEEServiceConfig config;
 
+    /**
+     * activate method
+     * @param config
+     */
     @Activate
     public void activate(APIGEEServiceConfig config) {
 

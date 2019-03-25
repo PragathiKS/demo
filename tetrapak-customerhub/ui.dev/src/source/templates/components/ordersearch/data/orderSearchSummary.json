@@ -1,24 +1,24 @@
 {
   "summary": {
-    "filterStartDate": "YYYY-MM-DD",
-    "filterEndDate": "YYYY-MM-DD",
+    "filterStartDate": "2018-01-05",
+    "filterEndDate": "2018-02-20",
     "status": [
       {
-        "key": "Completed",
+        "key": "10",
         "desc": "Completed"
       },
       {
-        "key": "Confirmed",
+        "key": "20",
         "desc": "Confirmed"
       },
       {
-        "key": "Not Confirmed",
+        "key": "30",
         "desc": "Not Confirmed"
       }
     ],
     "deliveryAddress": [
       {
-        "key": "Address 1",
+        "key": "1",
         "desc": {
           "name": "Swedish Milk AB 1",
           "name2": "Extra AB",
@@ -29,7 +29,7 @@
         }
       },
       {
-        "key": "Address 2",
+        "key": "2",
         "desc": {
           "name": "Swedish Milk AB 2",
           "name2": "Extra AB",

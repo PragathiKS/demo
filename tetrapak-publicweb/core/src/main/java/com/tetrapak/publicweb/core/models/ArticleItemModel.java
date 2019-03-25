@@ -31,7 +31,7 @@ public class ArticleItemModel {
 	private String articleTitle;
 
 	@Inject
-	private String vanityDescriptionI18n;
+	private String vanityDescription;
 
 	@Inject
 	private String ctaTexti18nKey;
@@ -55,7 +55,7 @@ public class ArticleItemModel {
 
 		if ("automatic".equals(contentType)) {
 			articleTitle = "";
-			vanityDescriptionI18n = "";
+			vanityDescription = "";
 			ctaTexti18nKey = "";
 			openInNewWindow = false;
 
@@ -65,7 +65,7 @@ public class ArticleItemModel {
 				LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
 				if (landingPageModel != null) {
 					articleTitle = landingPageModel.getTitle();
-					vanityDescriptionI18n = landingPageModel.getVanityDescription();
+					vanityDescription = landingPageModel.getVanityDescription();
 					ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
 					openInNewWindow = landingPageModel.isOpenInNewWindow();
 					showImage = landingPageModel.getShowImage();
@@ -85,8 +85,8 @@ public class ArticleItemModel {
 		return articleTitle;
 	}
 
-	public String getVanityDescriptionI18n() {
-		return vanityDescriptionI18n;
+	public String getVanityDescription() {
+		return vanityDescription;
 	}
 
 	public String getCtaTexti18nKey() {

@@ -45,15 +45,8 @@
             </resource>
         </resources>
         <plugins>
-            <!--
-                we want to keep some of the META-INF files and not configure
-                everything in the plugin (mainly the filters).
-
-                copy the resource explicitly instead of attaching it to the default resources
-            -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <!-- ensure that the empty directories are copied -->
                 <configuration>
                     <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
@@ -71,14 +64,6 @@
 						<phase>compile</phase>						
 					</execution>
 				</executions>
-				<configuration>
-					<executable>npm</executable>
-					<workingDirectory>src/</workingDirectory>
-					<arguments>
-						<argument>run</argument>
-						<argument>buildDev</argument>
-					</arguments>
-				</configuration>
 			</plugin>
 
             <!-- ====================================================================== -->

@@ -1,0 +1,54 @@
+.pw-text-video {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
+    @include padding($padding-md);
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+    }
+
+    &--text-right {
+        > .row {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__title,
+    &__description {
+        @include margin-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($padding-l);
+        }
+    }
+
+    &__description {
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+    }
+
+    &__video {
+        @include border-radius($border-radius);
+        @include margin-bottom($padding-md);
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+
+        video,
+        iframe {
+            @include border-radius($border-radius);
+            @include margin-bottom(0);
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+}

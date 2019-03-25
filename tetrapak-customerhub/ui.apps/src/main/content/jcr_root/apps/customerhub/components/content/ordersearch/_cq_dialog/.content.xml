@@ -75,7 +75,14 @@
                             fieldDescription="Enter Search Term Placeholder i18 Key"
                             fieldLabel="Search Term Placeholder Key"
                             required="true"
-                            name="./searchTermPlaceholderI18n"/>							
+                            name="./searchTermPlaceholderI18n"/>
+                    <orderDetailLink
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                            fieldDescription="Enter Orders detail page Link"
+                            fieldLabel="Order detail Link"
+                            required="true"
+                            name="./orderDetailLink"/>
                 </items>
             </column>
         </items>
