@@ -45,7 +45,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="CTA Link Text"
-                                name="./ctaLinkTexti18n"/>
+                                name="./ctaLinkTextI18n"/>
                             <ctaLinkUrl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
