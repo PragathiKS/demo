@@ -77,7 +77,7 @@ pipeline {
 					}
 				}
 			}
-		
+		}
 		
 		stage ('Deployment Author and Publish Parallel') {
 			steps {
