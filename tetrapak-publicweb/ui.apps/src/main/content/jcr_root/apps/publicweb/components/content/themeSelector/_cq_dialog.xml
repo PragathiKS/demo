@@ -62,14 +62,10 @@
                                         selected="true"
                                         text="Link Text"
                                         value="link"/>
-                                    <primaryButton
+                                    <button
                                         jcr:primaryType="nt:unstructured"
                                         selected="true"
-                                        text="Button - Primary"
-                                        value="primary"/>
-                                    <secondaryButton
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Button - Secondary"
+                                        text="Button"
                                         value="secondary"/>
                                 </items>
                             </pwButtonThemes>

@@ -10,6 +10,7 @@
 
     &--primary {
         background-color: $color-wild-sand;
+
         &:hover {
             background-color: $color-mercury;
         }
@@ -21,6 +22,25 @@
         &:hover {
             background-color: $color-jordy-blue;
             color: $color-congress-blue;
+        }
+    }
+
+    &--shift {
+        color: white;
+        background-color: $color-congress-blue;
+        @media #{$desktop} {
+            color: $color-congress-blue;
+            background-color: $color-wild-sand;
+
+        }
+
+        &:hover {
+            color: $color-congress-blue;
+            background-color: $color-jordy-blue;
+            @media #{$desktop} {
+                color: $color-congress-blue;
+                background-color: $color-mercury;
+            }
         }
     }
 

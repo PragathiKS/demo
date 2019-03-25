@@ -120,28 +120,6 @@
                     </column>
                 </items>
             </properties>
-            <design
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Design"
-                sling:resourceType="granite/ui/components/foundation/section">
-                <layout
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                    margin="{Boolean}false"/>
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pwButtonThemes
-                                jcr:primaryType="nt:unstructured"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"
-                                sling:resourceType="granite/ui/components/foundation/include">
-                            </pwButtonThemes>
-                        </items>
-                    </column>
-                </items>
-            </design>
         </items>
     </content>
 </jcr:root>

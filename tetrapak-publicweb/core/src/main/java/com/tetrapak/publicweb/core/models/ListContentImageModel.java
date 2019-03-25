@@ -43,6 +43,12 @@ public class ListContentImageModel {
 	@Inject
 	private String pwTheme;
 
+    @Inject
+        private String pwButtonTheme;
+
+  @Inject
+  private String pwPadding;
+
 	public String getTitleI18n() {
 		return titleI18n;
 	}
@@ -74,6 +80,14 @@ public class ListContentImageModel {
 	public String getPwTheme(){
 		return pwTheme;
 	}
+
+    public String getPwButtonTheme() {
+            return pwButtonTheme;
+        }
+
+	public String getPwPadding(){
+  		return pwPadding;
+  	}
 
 	/**
 	 * Method to get the tab link text from the multifield property saved in CRX for
