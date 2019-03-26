@@ -1,16 +1,26 @@
 <sly data-sly-template.carousel_template="${@ data, flag}"
 	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-    <p>Title : ${data.titleI18n}</p>
-    <p>Title Alignment : ${data.titleAlignment}
-    <p>Show Box : ${data.showBox}</p>
-
-<sly data-sly-list.tabItem="${data.tabs}">
-	<p>Practice Line Title : ${tabItem.practiceTitle}</p>
-    <p>Description : ${tabItem.vanityDescription}
-    <p>Link Text : ${tabItem.ctaTexti18nKey}</p>
-    <p>Practice Line Image Path : ${tabItem.practiceImagePath}</p>
-    <p>Practice Line Image Alt Text : ${tabItem.practiceImageAltI18n}</p>
-</sly>
-
+	
+	<div class="pw-carousel" data-module="Carousel">
+		<h2 class="pw-carousel__title ${data.titleAlignment}">${data.titleI18n}</h2>
+		<ul class="nav nav-pills mb-3" role="tablist" data-sly-list.tabItem="${data.tabs}">
+			<li class="nav-item">
+				<a class="nav-link ${tabItemList.first? 'active' : ''}" id="pills-tab-${tabItemList.index}" data-toggle="pill" href="#pills-${tabItemList.index}" role="tab" aria-controls="pills-${tabItemList.index}" aria-selected="${tabItemList.first? 'true' : 'false'}">${tabItem.practiceTitle}</a>
+			</li>
+		</ul>
+		<div class="tab-content" data-sly-list.tabItem="${data.tabs}">
+			<div class="tab-pane fade ${tabItemList.first? 'show active' : ''}" id="pills-${tabItemList.index}" role="tabpanel">
+				<div class="tab-pane__img">
+					<img src="${tabItem.practiceImagePath}" alt="${tabItem.practiceImageAltI18n}">
+				</div>
+				<div class="tab-pane__text">
+					${tabItem.practiceTitle}<br/>
+					${tabItem.vanityDescription}<br/>
+					<sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+              		data-sly-call="${pwButton.button_template @ btnPath=tabItem.articlepath, btnText=tabItem.ctaTexti18nKey, btnTarget=tabItem.linkTarget}">
+				</div>
+			</div>
+		</div>
+	</div>
 	<sly data-sly-test="${!data.tabs}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabs}"></sly>
 </sly>
