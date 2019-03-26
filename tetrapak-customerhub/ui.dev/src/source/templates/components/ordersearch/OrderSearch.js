@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
 import deparam from 'jquerydeparam';
+import Lightpick from 'lightpick';
 import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
@@ -215,6 +216,7 @@ function _renderFilters() {
     }, () => {
       this.initPostCache();
       this.setFilters();
+      this.initializeCalendar();
     });
   });
 }
@@ -281,6 +283,26 @@ class OrderSearch {
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
+  initializeCalendar() {
+    const { $rangeSelector } = this.cache;
+    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+    if (rangeSelectorEl) {
+      const [startDate, endDate] = $rangeSelector.val().split(' - ');
+      // Initialize inline calendar
+      this.cache.picker = new Lightpick({
+        field: rangeSelectorEl,
+        singleDate: false,
+        numberOfMonths: 2,
+        inline: true,
+        maxDate: Date.now(),
+        startDate,
+        endDate,
+        dropdowns: false,
+        format: 'YYYY-MM-DD',
+        separator: ' - '
+      });
+    }
+  }
   setFilters() {
     return _setFilters.apply(this, arguments);
   }
@@ -304,6 +326,7 @@ class OrderSearch {
     this.cache.$orderStatus = this.root.find('.js-order-search__order-status');
     this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
     this.cache.$search = this.root.find('.js-order-search__search-term');
+    this.cache.$rangeSelector = this.root.find('.js-range-selector');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);

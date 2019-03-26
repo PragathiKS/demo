@@ -3,7 +3,7 @@
         <div class="modal-content tp-modal-content">
             {{> molecules/modals/modalHeader/modalHeader title=this.selectDatesI18n closeBtnText=this.closeBtnI18n}}
             <div class="modal-body tp-modal-body tp-order-search__modal-body">
-                {{!-- TODO --}}
+                {{> atoms/input/input type="hidden" defaultValue=this.dateRange name="daterange" label=this.dateRangeLabelI18n eleClasses="tp-order-search__range-selector js-range-selector" }}
             </div>
             {{> molecules/modals/modalFooter/modalFooter buttonText=this.setDatesBtnI18n baseClass="tp-order-search__calendar" jsClass="js-calendar"}}
         </div>
