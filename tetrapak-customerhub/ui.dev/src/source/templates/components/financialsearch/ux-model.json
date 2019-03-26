@@ -1,0 +1,3 @@
+{
+  "config": "{\r\n        \"statementOfAccount\":\"Statement of account\",\r\n        \"findCustomer\":\"Find customer\",\r\n        \"accountNumber\":\"Account Number\",\r\n        \"accountService\":\"Account service\",\r\n        \"selectStatus\":\"Select Status\",\r\n        \"selectDaterange\":\"Select date range\",\r\n        \"selectDocType\":\"Select doc type\",\r\n        \"selectStatus\":\"Select Status\",\r\n\t\t\"placeholderForDocumentNo\":\"Document No\"\r\n    }"
+}
