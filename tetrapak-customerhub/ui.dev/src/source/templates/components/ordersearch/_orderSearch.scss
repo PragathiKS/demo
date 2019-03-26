@@ -49,4 +49,9 @@
     &__table {
         @include horizontal-scroll-touch;
     }
+    &__modal {
+        .tpmol-modal-footer {
+            justify-content: center;
+        }
+    }
 }

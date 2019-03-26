@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
 import deparam from 'jquerydeparam';
+import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
@@ -260,6 +261,9 @@ class OrderSearch {
       .on('click', '.js-order-search__reset', () => {
         this.resetSearch();
         this.trackAnalytics(this.cache.defaultParams);
+      })
+      .on('click', '.js-order-search__date-range', () => {
+        $('.js-order-search__modal').modal();
       })
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;

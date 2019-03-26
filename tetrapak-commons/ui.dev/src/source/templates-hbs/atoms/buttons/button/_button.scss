@@ -23,7 +23,6 @@
         @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
-        margin-right: auto;
         &,
         &[disabled]:hover {
             background-color: $color-congress-blue;
