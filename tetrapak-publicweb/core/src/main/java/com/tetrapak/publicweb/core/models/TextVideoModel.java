@@ -43,6 +43,15 @@ public class TextVideoModel {
     @Inject
     private String pwTheme;
 
+    @Inject
+    private String pwButtonTheme;
+
+    @Inject
+    private String pwPadding;
+
+    @Inject
+    private String pwDisplay;
+
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
@@ -94,4 +103,15 @@ public class TextVideoModel {
         return pwTheme;
     }
 
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
+
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    public String getPwDisplay() {
+        return pwDisplay;
+    }
 }

@@ -6,6 +6,7 @@
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="Customer Hub"
+        errorPages="/content/tetrapak/customerhub/error"
         sling:resourceType="customerhub/components/structure/page"/>
     <global/>
 </jcr:root>

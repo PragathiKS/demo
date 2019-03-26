@@ -3,7 +3,7 @@
     @include margin-bottom($margin-xxxl);
     @include padding($padding-l $padding-md);
     $self: &;
-    background-color: $color-white;
+
     @media #{$desktop} {
         @include padding($padding-xxxl);
     }

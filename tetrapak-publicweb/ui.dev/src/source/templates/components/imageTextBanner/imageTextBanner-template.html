@@ -12,7 +12,7 @@
       <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
       <sly data-sly-test="${data.bannerCtaPath != '#'}"
            data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-           data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank}"/>
+           data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank, variant='shift'}" />
     </div>
   </div>
   <sly data-sly-test="${!data.desktopImage}"

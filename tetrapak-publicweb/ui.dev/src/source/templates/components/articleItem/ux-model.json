@@ -7,5 +7,6 @@
   "openInNewWindow": "true",
   "showImage": "true",
   "articleImagePath": "/content/dam/publicweb/asset.jpg",
-  "articleImageAltI18n": "Test Image"
+  "articleImageAltI18n": "Test Image",
+  "pwButtonTheme": "link"
 }

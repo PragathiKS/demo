@@ -36,8 +36,8 @@ pipeline {
 				sh "rm -rf /var/lib/jenkins/workspace/Tetrapak/tetrapak-commons/ui.dev/src/node_modules/"
 				sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
 				sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
-				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER} -PautoInstallMinify"
-				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER} -PautoInstallMinify"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 			}  
 		}
 
@@ -49,7 +49,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JSBranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsJS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -63,7 +64,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=CSSBranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsCSS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -77,7 +79,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JAVABranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsJAVA -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -205,6 +208,11 @@ pipeline {
 						}				                	
 					)		
 				}
+			}
+		}
+		stage (sendemail) {
+			steps {
+				emailext attachLog: true, body: 'Build deployed on ENV', subject: 'Test Email', to: 'Tushar.Tushar@publicissapeint.com'
 			}
 		}
 	}
