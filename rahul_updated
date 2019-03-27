@@ -15,6 +15,7 @@ pipeline {
 	 package_name = "tetrapak-complete-package"
 	 test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-us.html "
 	 test_url_pally_zap = "http://tetrapak.sapient.com"
+	 karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
    }
    
 	stages {
@@ -135,7 +136,16 @@ pipeline {
 
 			}
 		}
-stage ('Pally') {
+		stage ('karma') {
+            steps {      	
+		        
+			    echo "Publising karma Test Report"
+				sh 'echo "Karma Report"'
+				sh 'cp -r ${karmapath} /app/build-area/releases'
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+				
+			      }
+        stage ('Pally') {
             steps {      	
 		        
 			    echo "Starting pa11y test Run"
@@ -178,9 +188,9 @@ stage ('Pally') {
 			  	echo "Starting Zap Test Run"
 				sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
 				sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
-				sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
+				sh 'zap-cli --api-key 12345 report -f html -o "zap/zap.html"'
 				sh 'zap-cli --api-key 12345 shutdown'
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/var/lib/jenkins/workspace/rahul_test_pipeline/zap', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
 				}
 		    }
 			
