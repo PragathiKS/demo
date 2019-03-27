@@ -200,7 +200,7 @@ pipeline {
 								echo "Starting Zap Test Run"
 								sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
 								sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
-								sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
+								sh 'zap-cli --api-key 12345 report -f html -o "zap/zap.html"'
 								sh 'zap-cli --api-key 12345 shutdown'
 								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/var/lib/jenkins/workspace/Tetrapak/zap', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
 							}
