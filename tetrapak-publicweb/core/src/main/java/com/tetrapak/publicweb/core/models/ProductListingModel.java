@@ -12,7 +12,7 @@ import org.apache.sling.models.annotations.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.beans.ProductBean;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductListingModel {
@@ -29,8 +29,8 @@ public class ProductListingModel {
         return titleI18n;
     }
 
-    public String[] getTabLinks() {
-        return getTabLinks(tabLinks).toArray(new String[0]);
+    public String[] getTabLinks() {    	
+        return tabLinks;
     }
 
     /**
@@ -40,22 +40,30 @@ public class ProductListingModel {
      * @param tabLinks String[]
      * @return List<String>
      */
-    public static List<String> getTabLinks(String[] tabLinks) {
-        @SuppressWarnings("deprecation")
-        List<String> tabs = new ArrayList<String>();
+    public static List<ProductBean> getTabLinks(String[] tabLinks) {
+    	List<ProductBean> tabs = new ArrayList<ProductBean>();
+    	log.info("Tab Links --> " + tabLinks.toString());
+    	for (String s : tabLinks) {
+    		log.info("Item : " + s);
+    	}
+      
         JSONObject jObj;
         try {
             if (tabLinks == null) {
                 log.error("Tab Links value is NULL");
             } else {
                 for (int i = 0; i < tabLinks.length; i++) {
+                	ProductBean bean = new ProductBean();
                     jObj = new JSONObject(tabLinks[i]);
 
-                    String tabLinkTextI18n = "";
                     if (jObj.has("tabLinkTextI18n")) {
-                        tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
+                    	bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
                     }
-                    tabs.add(tabLinkTextI18n);
+                    
+                    if (jObj.has("categoryTag")) {
+                    	bean.setCategoryTag(jObj.getString("categoryTag"));
+                    }
+                    tabs.add(bean);
 
                 }
             }
@@ -64,5 +72,10 @@ public class ProductListingModel {
         }
         return tabs;
     }
+    
+    public List<ProductBean> getTabs() {    	
+        return getTabLinks(tabLinks);
+    }
+
 
 }
