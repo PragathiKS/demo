@@ -87,6 +87,10 @@
 
         img {
             max-width: none;
+
+            @media #{$desktop} {
+                width: 100%;
+            }
         }
     }
 
