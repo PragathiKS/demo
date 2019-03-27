@@ -1,0 +1,5 @@
+<sly data-sly-template.productlisting_template="${@ data, flag}"
+data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+PRODUCT LISTING COMPONENT
+<sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>	
+</sly>
