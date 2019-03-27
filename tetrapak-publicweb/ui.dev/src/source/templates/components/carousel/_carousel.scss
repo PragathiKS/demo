@@ -64,7 +64,7 @@
             font-family: $font-light;
             line-height: convert-to-rem(40px);
             height: convert-to-rem(40px);
-            &:not(last-child) {
+            &:not(:last-child) {
                 border-bottom: 0;
             }
             &:hover {
