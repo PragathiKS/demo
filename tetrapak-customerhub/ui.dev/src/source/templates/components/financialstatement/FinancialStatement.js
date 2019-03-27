@@ -18,9 +18,9 @@ function _processOrderSearchData(data) {
 }
 
 function _renderAddressDetail() {
-  this.root.find('.tp-financial-search__account-number').text(this.cache.data.selectedCustomerData.info.acountNo);
-  this.root.find('.tp-financial-search__address-title').text(this.cache.data.selectedCustomerData.info.title);
-  this.root.find('.tp-financial-search__address-detail').text(this.cache.data.selectedCustomerData.info.address);
+  this.root.find('.tp-financial-statement__account-number').text(this.cache.data.selectedCustomerData.info.acountNo);
+  this.root.find('.tp-financial-statement__address-title').text(this.cache.data.selectedCustomerData.info.title);
+  this.root.find('.tp-financial-statement__address-detail').text(this.cache.data.selectedCustomerData.info.address);
 }
 function _setSelectedCustomer(key) {
   this.cache.data.customerData.forEach(item => {
@@ -33,9 +33,9 @@ function _setSelectedCustomer(key) {
 }
 function _renderFilters() {
   render.fn({
-    template: 'financialSearch',
-    url: `../../apps/settings/wcm/designs/customerhub/jsonData/financialSearch.json`,
-    target: '.js-financial-search__select-customer-dropdown',
+    template: 'financialStatement',
+    url: `../../apps/settings/wcm/designs/customerhub/jsonData/financialStatement.json`,
+    target: '.js-financial-statement__select-customer-dropdown',
     ajaxConfig: {
       method: ajaxMethods.GET,
       cache: true,
@@ -48,14 +48,14 @@ function _renderFilters() {
   });
 
 }
-class FinancialSearch {
+class FinancialStatement {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
 
   initCache() {
-    this.cache.configJson = this.root.find('.js-financial-search__config').text();
+    this.cache.configJson = this.root.find('.js-financial-statement__config').text();
     try {
       this.cache.config = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -70,7 +70,7 @@ class FinancialSearch {
 
   bindEvents() {
     this.root
-      .on('change', '.js-financial-search__find-customer', (e) => {
+      .on('change', '.js-financial-statement__find-customer', (e) => {
         this.setSelectedCustomer(e.target.value);
       });
   }
@@ -84,4 +84,4 @@ class FinancialSearch {
   }
 }
 
-export default FinancialSearch;
+export default FinancialStatement;
