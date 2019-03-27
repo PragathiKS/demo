@@ -13,7 +13,7 @@
         &:last-child {
             #{ $self }__tabMenuListItem__link {
                 border-bottom: 1px solid $color-mercury;
-                &.active {
+                &.active { //sass-lint:disable-line nesting-depth
                     @include border-xs($color-boulder);
                 }
             }

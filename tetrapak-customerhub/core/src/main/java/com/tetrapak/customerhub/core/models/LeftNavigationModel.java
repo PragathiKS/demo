@@ -5,6 +5,8 @@ import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -38,7 +40,7 @@ public class LeftNavigationModel {
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(
-                CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
+        		GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
             Resource globalConfigResource = getGlobalConfigurationResource(childResource);
             if (null != globalConfigResource) {
@@ -49,7 +51,7 @@ public class LeftNavigationModel {
             }
         }
 
-        Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
+        Resource globalResource = resource.getResourceResolver().getResource(GlobalUtil.getCustomerhubConfigPagePath(resource));
         if (null != globalResource) {
             Page globalPage = globalResource.adaptTo(Page.class);
             if (null != globalPage) {

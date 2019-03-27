@@ -1,9 +1,13 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.day.cq.wcm.api.Page;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.slf4j.Logger;
@@ -135,6 +139,39 @@ public class GlobalUtil {
     public static <T> T getService(final Class<T> clazz) {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         return (T) bundleContext.getService(bundleContext.getServiceReference(clazz.getName()));
-    }    
+    }
+	
+	/**
+	 * The method provides the customer hub globalconfig page path. 
+	 * @param contentPageResource
+	 * @return String globalconfig page path
+	 */
+	public static String getCustomerhubConfigPagePath(Resource contentPageResource) {
+		String customerhubConfigPagePath = StringUtils.EMPTY;
+		if (null != contentPageResource) {
+			customerhubConfigPagePath = getCustomerhubConfigPage(contentPageResource).getPath();
+		}
+		return customerhubConfigPagePath;		
+	}
+	
+	/**
+	 * The method provides the customer hub globalconfig page.
+	 * 
+	 * @param contentPageResource
+	 * @return Page globalconfig
+	 */
+	public static Page getCustomerhubConfigPage(Resource contentPageResource) {
+		Page customerhubConfigPage = null;
+		if (null != contentPageResource) {
+			Page contentPage = null;
+			if (contentPageResource.isResourceType("Page")) {
+				contentPage = contentPageResource.adaptTo(Page.class);
+			} else {
+				contentPage = contentPageResource.getParent().getParent().adaptTo(Page.class);
+			}
+			customerhubConfigPage = contentPage.getAbsoluteParent(3);
+		}
+		return customerhubConfigPage;		
+	}
 
 }
