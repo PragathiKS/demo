@@ -90,6 +90,33 @@
                                         value="pw-banner--right"/>
                                 </items>
                             </contentalignment>
+                            <contrastLayer
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                defaultValue=""
+                                fieldDescription="Add a opacity layer to generate text contrast"
+                                fieldLabel="Text Contrast Layer"
+                                name="./contrastLayer">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <disabled
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Disabled"
+                                        value=""/>
+                                    <flat
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Flat"
+                                        value="flat"/>
+                                    <toRight
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Gradient left to right"
+                                        value="gradient-to-right"/>
+                                    <toLeft
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Gradient right to left"
+                                        value="gradient-to-left"/>
+                                </items>
+                            </contrastLayer>
                             <ctatext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
