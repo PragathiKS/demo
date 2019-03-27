@@ -1,7 +1,9 @@
 {
 	"titleI18n": "Mixers in best practice line",
 	"titleAlignment": "text-center",
-	"showBox": "false",
+	"pwTheme": "grayscale-lighter",
+	"pwPadding": "regular",
+	"pwButtonTheme": "link",
 	"tabs": [
 		{
 			"practiceTitle": "Drink type yoghurt line (ambient)",
@@ -9,7 +11,7 @@
 			"articlepath": "http://www.google.com",
 			"ctaTexti18nKey": "Discover mixer solutions for ambient yoghurt",
 			"linkTarget": "_self",
-			"practiceImagePath": "http://www.planet-obuca.com/js/vendor/skdslider/v1.0.2/slides/1.jpg",
+			"practiceImagePath": "https://picsum.photos/1440/300",
 			"practiceImageAltI18n": "image-alt"
 		},
 		{
@@ -18,7 +20,7 @@
 			"articlepath": "http://www.google.com",
 			"ctaTexti18nKey": "Look at mixer solutions for Juice lines",
 			"linkTarget": "_self",
-			"practiceImagePath": "http://www.planet-obuca.com/js/vendor/skdslider/v1.0.2/slides/1.jpg",
+			"practiceImagePath": "https://picsum.photos/1440/301",
 			"practiceImageAltI18n": "image-alt"
 		}
 	]

@@ -35,7 +35,13 @@ public class CarouselModel {
 	private String titleAlignment;
 
 	@Inject
-	private Boolean showBox;
+    private String pwTheme;
+
+    @Inject
+    private String pwButtonTheme;
+
+    @Inject
+    private String pwPadding;
 	
 	private List<PracticeLineBean> tabs = new ArrayList<>();
 
@@ -120,9 +126,17 @@ public class CarouselModel {
 		return titleAlignment;
 	}
 
-	public Boolean getShowBox() {
-		return showBox;
-	}
+	public String getPwTheme() {
+        return pwTheme;
+    }
+
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
+
+    public String getPwPadding() {
+        return pwPadding;
+    }
 
 	public List<PracticeLineBean> getTabs() {
 		return tabs;
