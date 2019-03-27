@@ -3,6 +3,5 @@
     <filter root="/apps/customerhub" mode="update">
 		<exclude pattern="/apps/customerhub/i18n(/.*)"/>
 	</filter>
-    <filter root="/apps/sling/servlet/errorhandler" mode="merge"/>
 	<filter root="/apps/settings/wcm/designs/customerhub" mode="update"/>
 </workspaceFilter>
