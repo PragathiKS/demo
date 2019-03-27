@@ -82,4 +82,11 @@
             color: $color-white;
         }
     }
+    &--calendar {
+        @include width($spacing-big);
+        @include height($spacing-big);
+        border-radius: 50%;
+        background-color: $color-tundora;
+        color: $color-white;
+    }
 }

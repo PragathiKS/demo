@@ -1,13 +1,13 @@
 // Custom CSS for lightpick calendar plugin
 .lightpick {
-    &__month {
-        @include max-width(294px);
-    }
     &__toolbar,
     &__tooltip {
         display: none;
     }
     &__month-title {
+        &-bar {
+            @include margin-bottom(16px);
+        }
         text-align: center;
     }
     &__select {
@@ -21,6 +21,7 @@
             @include margin-right(4px);
         }
     }
+    &__months,
     &__days-of-the-week,
     &__days {
         &::before,
@@ -28,6 +29,22 @@
             display: block;
             clear: both;
             content: "";
+        }
+    }
+    &__months {
+        @media #{$mobile} {
+            @include max-width(294px);
+            margin: 0 auto;
+        }
+    }
+    &__month {
+        @include max-width(294px);
+        @media #{$desktop} {
+            @include margin-right(24px);
+            float: left;
+        }
+        &:last-of-type {
+            margin-right: 0;
         }
     }
     &__days div,

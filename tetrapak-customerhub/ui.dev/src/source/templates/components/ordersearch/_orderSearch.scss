@@ -49,9 +49,31 @@
     &__table {
         @include horizontal-scroll-touch;
     }
+    &__calendar-nav {
+        @media #{$mobile} {
+            @include max-width(294px);
+            margin: 0 auto;
+        }
+    }
     &__modal {
         .tpmol-modal-footer {
             justify-content: center;
+        }
+        &-dialog {
+            max-width: calc(100% - #{convert-to-rem(48px)});
+            margin: auto;
+            @media #{$tablet} {
+                @include max-width(500px);
+            }
+            @media #{$desktop} {
+                @include max-width(663px);
+            }
+        }
+        &-body {
+            @include padding(0 $padding-md);
+            @media #{$desktop} {
+                @include padding(0 $padding-l);
+            }
         }
     }
 }
