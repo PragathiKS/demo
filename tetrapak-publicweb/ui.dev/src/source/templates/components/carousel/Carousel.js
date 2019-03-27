@@ -2,11 +2,6 @@ import $ from 'jquery';
 import 'bootstrap';
 
 class Carousel {
-  setVersions() {
-    $('.pw-carousel').each(function(index){
-      $(this).addClass('pw-carousel-version'+index);
-    });
-  }
   bindEvents() {
     /* Bind jQuery events here */
     $('body').bind('show.bs.tab', function(e){
@@ -14,13 +9,12 @@ class Carousel {
       if (!parentCarousel) {
         return;
       }
-      let grandParentClassNamesArr = $(parentCarousel).attr('class').match(/\S+/gi);
-      let specificGrandParentClassVersion = grandParentClassNamesArr[grandParentClassNamesArr.length - 1];
-      const grandParentClass = '.'+specificGrandParentClassVersion;
+      let grandParentId = $(parentCarousel).attr('id');
+      const grandParentIdSelector = '#'+grandParentId;
 
-      const $dropPills = $('.pw-carousel__mobileDropdown a.dropdown-item', grandParentClass),
-        $mobileDrpdwn = $('.pw-carousel__mobileDropdown__toggle', grandParentClass),
-        $tabPills = $('.pw-carousel__navPills__pill', grandParentClass);
+      const $dropPills = $('.pw-carousel__mobileDropdown a.dropdown-item', grandParentIdSelector),
+        $mobileDrpdwn = $('.pw-carousel__mobileDropdown__toggle', grandParentIdSelector),
+        $tabPills = $('.pw-carousel__navPills__pill', grandParentIdSelector);
 
       let selectedText = e.target.innerText;
       $dropPills.each(function() {
@@ -42,7 +36,6 @@ class Carousel {
   }
   init() {
     /* Mandatory method */
-    this.setVersions();
     this.bindEvents();
   }
 }

@@ -42,6 +42,8 @@ public class CarouselModel {
 
     @Inject
     private String pwPadding;
+
+    private Integer carouselId = (int )(Math.random() * 1000 + 1);
 	
 	private List<PracticeLineBean> tabs = new ArrayList<>();
 
@@ -136,6 +138,10 @@ public class CarouselModel {
 
     public String getPwPadding() {
         return pwPadding;
+    }
+
+   	public Integer getCarouselId() {
+        return carouselId;
     }
 
 	public List<PracticeLineBean> getTabs() {
