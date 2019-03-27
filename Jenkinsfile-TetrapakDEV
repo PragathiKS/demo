@@ -49,8 +49,8 @@ pipeline {
 						echo "Skipping Sonar execution for JS profile"
 					}
 					else {
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsJS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=/ui.dev/src/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=/ui.dev/src/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsJS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -63,8 +63,8 @@ pipeline {
 						echo "Skipping Sonar execution for CSS profile"
 					}
 					else{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsCSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=/ui.dev/src/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=/ui.dev/src/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CommonsCSS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}   
 			}
@@ -92,7 +92,7 @@ pipeline {
 						echo "Uninstalling Old Commons Package on author"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
 						echo "Deleting Old Commons Package on author"
-						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true cmd=delete '${author_url}/crx/packmgr/service/.json/etc/packages/tetrapak/tetrapak-commons.complete'"
 						echo "Uploading New Commons Package on author"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Commons Package on author"
