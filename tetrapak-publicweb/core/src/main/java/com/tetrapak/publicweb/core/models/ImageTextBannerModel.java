@@ -37,6 +37,9 @@ public class ImageTextBannerModel {
     private String contentAlignment;
 
     @Inject
+    private String contrastLayer;
+
+    @Inject
     private String bannerCtaTextI18n;
 
     @Inject
@@ -83,6 +86,10 @@ public class ImageTextBannerModel {
 
     public String getContentAlignment() {
         return contentAlignment;
+    }
+
+    public String getContrastLayer() {
+        return contrastLayer;
     }
 
     public String getBannerCtaTextI18n() {
