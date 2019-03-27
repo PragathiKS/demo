@@ -50,6 +50,8 @@
         @include horizontal-scroll-touch;
     }
     &__calendar-nav {
+        position: relative;
+        z-index: $zindex-p;
         @media #{$mobile} {
             @include max-width(294px);
             margin: 0 auto;
@@ -58,6 +60,10 @@
     &__modal {
         .tpmol-modal-footer {
             justify-content: center;
+        }
+        .lightpick {
+            @include top(-24px);
+            position: relative;
         }
         &-dialog {
             max-width: calc(100% - #{convert-to-rem(48px)});
