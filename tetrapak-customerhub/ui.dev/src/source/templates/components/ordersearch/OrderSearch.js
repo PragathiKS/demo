@@ -265,7 +265,10 @@ class OrderSearch {
         this.trackAnalytics(this.cache.defaultParams);
       })
       .on('click', '.js-order-search__date-range', () => {
-        $('.js-order-search__modal').modal();
+        this.openRangeSelector();
+      })
+      .on('click', '.js-calendar', () => {
+        this.submitDateRange();
       })
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
@@ -303,6 +306,14 @@ class OrderSearch {
       });
     }
   }
+  openRangeSelector() {
+    this.cache.$modal.modal('show');
+  }
+  submitDateRange() {
+    const { $dateRange, $rangeSelector, $modal } = this.cache;
+    $dateRange.val($rangeSelector.val());
+    $modal.modal('hide');
+  }
   setFilters() {
     return _setFilters.apply(this, arguments);
   }
@@ -327,6 +338,7 @@ class OrderSearch {
     this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
     this.cache.$search = this.root.find('.js-order-search__search-term');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
+    this.cache.$modal = this.root.find('.js-order-search__modal');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);

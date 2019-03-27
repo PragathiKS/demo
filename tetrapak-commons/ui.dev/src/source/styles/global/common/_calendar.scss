@@ -54,5 +54,24 @@
     }
     &__day {
         @include padding(10px 0);
+        &.is-next-month,
+        &.is-previous-month {
+            color: $color-wild-sand;
+        }
+        &.is-today {
+            background-color: $color-mercury;
+        }
+        &.is-in-range,
+        &.is-start-date,
+        &.is-end-date {
+            color: $color-white;
+        }
+        &.is-in-range {
+            background-color: $color-jordy-blue;
+        }
+        &.is-start-date,
+        &.is-end-date {
+            background-color: $color-congress-blue;
+        }
     }
 }
