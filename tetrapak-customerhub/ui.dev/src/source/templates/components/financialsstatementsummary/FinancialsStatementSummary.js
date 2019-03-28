@@ -39,6 +39,7 @@ function _processTableData(data) {
       sortOrder: 'desc'
     }));
   }
+  debugger; //eslint-disable-line
 }
 
 /**
