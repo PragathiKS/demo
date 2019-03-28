@@ -39,6 +39,17 @@ function _processTableData(data) {
       sortOrder: 'desc'
     }));
   }
+
+  if (Array.isArray(data.salesOffices)) {
+    data.salesOffices.forEach(function (elem, index) {
+      data.documentHeadings = keys.map(key => ({
+        key,
+        i18nKey: `cuhu.ordering.${key}`,
+        isSortable: ['orderDate'].includes(key),
+        sortOrder: 'desc'
+      }));
+    })
+  }
   debugger; //eslint-disable-line
 }
 

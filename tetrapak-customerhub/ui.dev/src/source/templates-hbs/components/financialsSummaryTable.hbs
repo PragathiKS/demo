@@ -1,5 +1,13 @@
-{{> molecules/table/table baseClass="tp-financials-summary" jsClass="js-financials-summary" list=summary headings=summaryHeadings}}
-
+<div class="tp-financials-summary__table">
+    {{> molecules/table/table baseClass="tp-financials-summary" jsClass="js-financials-summary" list=summary headings=summaryHeadings}}
+</div>
+<h4>Documents</h4>
 {{#each salesOffices}}
     <h4>{{desc}}</h4>
+    {{#each data}}
+        {{title}}
+        <div class="tp-financials-summary__table">
+            {{> molecules/table/table baseClass="tp-financials-summary" jsClass="js-financials-summary" list=summary headings=summaryHeadings}}
+        </div>
+    {{/each}}
 {{/each}}
