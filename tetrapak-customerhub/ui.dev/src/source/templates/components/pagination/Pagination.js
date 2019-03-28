@@ -35,14 +35,17 @@ function _rendePagination(...args) {
  */
 function _selectPage(event) {
   const { data: $this } = event;
+  const self = $(this);
   const { customEvent } = $this.cache.config;
-  const pageNumber = $(this).data('pageNumber');
-  $this.root
-    .find('.js-page-number').attr('disabled', 'disabled').end()
-    .trigger(customEvent ? `${customEvent}.pagenav` : 'pagenav', [{
-      pageNumber,
-      pageIndex: pageNumber - 1
-    }]);
+  const pageNumber = self.data('pageNumber');
+  if (!self.hasClass('active')) {
+    $this.root
+      .find('.js-page-number').attr('disabled', 'disabled').end()
+      .trigger(customEvent ? `${customEvent}.pagenav` : 'pagenav', [{
+        pageNumber,
+        pageIndex: pageNumber - 1
+      }]);
+  }
 }
 
 /**
