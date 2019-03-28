@@ -202,7 +202,7 @@ pipeline {
 								sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
 								sh 'zap-cli --api-key 12345 report -f html -o "zap/zap.html"'
 								sh 'zap-cli --api-key 12345 shutdown'
-								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/var/lib/jenkins/workspace/Tetrapak/zap', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
+								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/var/lib/jenkins/workspace/Tetrapak_DEV/zap', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
 							}
 						}
 					)		
