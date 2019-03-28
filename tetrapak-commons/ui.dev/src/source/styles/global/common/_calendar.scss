@@ -90,5 +90,9 @@
         &.is-end-date {
             background-color: $color-congress-blue;
         }
+        &.is-disabled {
+            font-family: $font;
+            color: $color-boulder;
+        }
     }
 }

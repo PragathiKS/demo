@@ -318,7 +318,10 @@ class OrderSearch {
   navigateCalendar(e) {
     const $this = e.data;
     const action = $(this).data('action');
-    $this.root.find(`.lightpick__${action}`).trigger('click');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript click
+    }
   }
   setFilters() {
     return _setFilters.apply(this, arguments);
