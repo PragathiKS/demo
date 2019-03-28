@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
 import deparam from 'jquerydeparam';
+import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
 import 'core-js/features/array/includes';
@@ -10,6 +11,26 @@ import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
+
+/**
+ * Disables calendar next button if visible months has current month
+ * @param {object} $this Current class object
+ */
+function _disableCalendarNext($this) {
+  // Check if current visible months contain current month
+  const currentMonth = moment().month();
+  const currentYear = moment().year();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  if (
+    visibleMonths.includes(currentMonth)
+    && visibleYears.includes(currentYear)
+  ) {
+    $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
+  } else {
+    $this.root.find('.js-calendar-next').removeAttr('disabled');
+  }
+}
 
 /**
  * Processes data before rendering
@@ -305,6 +326,7 @@ class OrderSearch {
         format: 'YYYY-MM-DD',
         separator: ' - '
       });
+      _disableCalendarNext(this);
     }
   }
   openRangeSelector() {
@@ -320,7 +342,8 @@ class OrderSearch {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript click
+      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      _disableCalendarNext($this);
     }
   }
   setFilters() {
