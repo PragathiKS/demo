@@ -2,11 +2,9 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-03-20T10:53:43.851Z"
-        cq:lastModifiedBy="admin"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="500 - Internal Server Error"
+        jcr:title="Something Went Wrong"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -35,4 +33,6 @@
             </responsivegrid>
         </root>
     </jcr:content>
+    <_x0034_04/>
+    <_x0035_00/>
 </jcr:root>
