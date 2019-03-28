@@ -4,12 +4,8 @@
     <jcr:content
         cq:cloudserviceconfigs="[/etc/cloudservices/testandtarget/abtetrapak/framework]"
         cq:conf="/conf/CustomerHub Launch"
-        cq:lastModified="{Date}2019-03-20T10:53:43.851Z"
-        cq:lastModifiedBy="sapient-dhirendra"
-        cq:lastReplicated="{Date}2019-03-22T03:13:00.945Z"
-        cq:lastReplicatedBy="sapient-user"
-        cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+		hideInNav="true"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"

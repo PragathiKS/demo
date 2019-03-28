@@ -3,11 +3,6 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:conf="/conf/CustomerHub Launch"
-        cq:lastModified="{Date}2019-03-27T13:28:12.302+05:30"
-        cq:lastModifiedBy="admin"
-        cq:lastReplicated="{Date}2019-03-22T03:11:59.792Z"
-        cq:lastReplicatedBy="sapient-user"
-        cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
