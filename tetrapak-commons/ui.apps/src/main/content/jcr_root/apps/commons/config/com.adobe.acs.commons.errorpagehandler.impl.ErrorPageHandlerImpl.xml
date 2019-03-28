@@ -3,4 +3,4 @@
     jcr:primaryType="sling:OsgiConfig"
     enabled="{Boolean}true"
     error-page.fallback-name="500"
-    error-page.system.path="/content/tetrapak/customerhub/en/error"/>
+    error-page.system-path="/content/tetrapak/customerhub/en/error"/>
