@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.beans;
 
-public class ProductBean {
+public class ProductListBean {
 	
 	private String tabLinkTextI18n;
 	
@@ -21,7 +21,5 @@ public class ProductBean {
 	public void setCategoryTag(String categoryTag) {
 		this.categoryTag = categoryTag;
 	}
-	
-	
 
 }
