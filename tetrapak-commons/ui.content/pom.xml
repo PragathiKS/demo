@@ -89,6 +89,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <acHandling>merge_preserve</acHandling>
+					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                 </configuration>
             </plugin>
             <plugin>
