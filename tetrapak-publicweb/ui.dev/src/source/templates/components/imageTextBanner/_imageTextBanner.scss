@@ -3,24 +3,15 @@
     $self: &;
     position: relative;
 
+    &__image-wrapper {
+        position: relative;
+    }
+
     &__image {
         @include border-radius($border-radius);
         width: 100%;
     }
-    &__image-mobile {
-        display: block;
-        width: 100%;
 
-        @media #{$desktop} {
-            display: none;
-        }
-    }
-    &__image-desktop {
-        display: none;
-        @media #{$desktop} {
-            display: block;
-        }
-    }
     &__content {
         @include border-radius($border-radius);
         @include margin-top(-4px);
@@ -32,11 +23,11 @@
             color: $color-white;
             background-color: transparent;
             left: $margin-xxl;
+            max-width: calc(50% - #{convert-to-rem(24px)});
             padding: 0;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: calc(50% - #{convert-to-rem(24px)});
         }
 
         &__title,

@@ -1,8 +1,10 @@
 <sly data-sly-template.imageTextBanner_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.desktopImage}" class="pw-banner ${data.contentAlignment}">
-    <img class="pw-banner__image d-md-block d-lg-none" src="${data.mobileImage}" alt="">
-    <img class="pw-banner__image d-none d-lg-block" src="${data.desktopImage}" alt="">
+    <div class="pw-banner-image-wrapper">
+      <img class="pw-banner__image d-md-block d-lg-none" src="${data.mobileImage}" alt="">
+      <img class="pw-banner__image d-none d-lg-block" src="${data.desktopImage}" alt="">
+    </div>
     <div class="pw-banner__content">
       <div data-sly-test="${data.bannerSubtitleI18n}" class="pw-banner__content__subtitle">
         <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
