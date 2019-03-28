@@ -74,13 +74,15 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		
 		// get search arguments	    
 		String productCategory = request.getParameter("productCategory");	
+		String productRootPath = request.getParameter("productRootPath");	
 		log.info("Product category : " + productCategory);
+		
 		
 		Gson gson = new Gson();
 		String responseJSON = "not-set";
 		
 		// search for resources
-		List<ProductInfoBean> resources = getListOfProducts(productCategory);		
+		List<ProductInfoBean> resources = getListOfProducts(productCategory, productRootPath);		
 		if(resources != null) {
 			responseJSON = gson.toJson(resources);
 			log.info("Here is the JSON object : {}",  responseJSON);
@@ -99,14 +101,15 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	
 	/**
 	 * Method to create a query and execute to get the results.
+	 * @param productRootPath 
 	 * @param fulltextSearchTerm
 	 * @param searchRootPath
 	 * @return List<ProductInfoBean>
 	 */
-	public List<ProductInfoBean> getListOfProducts(String productCategory) {
+	public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("path", "/content/tetrapak/public-web");
+		map.put("path", productRootPath);
 		map.put("type", "cq:Page");
         map.put("1_property", "jcr:content/cq:template");
         map.put("1_property.value", "/apps/publicweb/templates/productpage");
@@ -116,7 +119,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	        map.put("2_property.value", productCategory);
 		}
 		
-        map.put("p.limit", "-1");
+        map.put("p.limit", "9");
 		
 		log.info("Here is the query PredicateGroup : {} ",  PredicateGroup.create(map));			
 		

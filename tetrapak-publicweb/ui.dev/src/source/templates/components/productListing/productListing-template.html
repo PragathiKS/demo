@@ -11,5 +11,6 @@ data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
 	</sly><br/><br/>
 	<div class="product-cards"/>
 </div>
-<sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>	
+<sly data-sly-test="${!data.productRootPath}" data-sly-call="${templates.placeholder @ isEmpty = !data.productRootPath}"></sly>	
+<div class=".hidden" id="product-data-rootpath" data="${data.productRootPath}"></div>
 </sly>

@@ -12,12 +12,14 @@ $(document).on('ready', function () {
     });
 
     function getProductListing() {
+        var productRootPath = $("#product-data-rootpath").attr("data");  
         $.ajax({            
             url: '/bin/tetrapak/pw-productlisting',
             type: 'get',
             async: false,
             data: {
-                productCategory: productCategory
+                productCategory: productCategory,
+                productRootPath: productRootPath
             },
             success: function(data) {    
                         var totalResults = data.length;                

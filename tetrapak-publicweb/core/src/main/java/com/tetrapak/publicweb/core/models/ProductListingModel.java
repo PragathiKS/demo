@@ -28,12 +28,19 @@ public class ProductListingModel {
 	
 	@Inject
 	private String titleI18n;
+	
+	@Inject
+	private String productRootPath;
 
 	@Inject
 	private String[] tabLinks;
 
 	public String getTitleI18n() {
 		return titleI18n;
+	}
+	
+	public String getProductRootPath() {
+		return productRootPath;
 	}
 
 	public String[] getTabLinks() {
