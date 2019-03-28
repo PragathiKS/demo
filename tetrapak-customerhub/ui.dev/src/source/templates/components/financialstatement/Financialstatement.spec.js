@@ -2,6 +2,7 @@ import FinancialStatement from './FinancialStatement';
 import financialStatementTemplate from '../../../test-templates-hbs/financialstatement.hbs';
 import { render } from '../../../scripts/utils/render';
 import $ from 'jquery';
+import { $document } from '../../../scripts/utils/commonSelectors';
 
 
 describe('FinancialStatement', function () {
