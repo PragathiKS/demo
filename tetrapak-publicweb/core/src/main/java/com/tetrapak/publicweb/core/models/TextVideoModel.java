@@ -35,6 +35,9 @@ public class TextVideoModel {
     @Inject
     private String damVideoPath;
 
+    @Inject
+    private String thumbnailPath;
+
     private String youtubeEmbedURL;
 
     @Inject
@@ -42,6 +45,15 @@ public class TextVideoModel {
 
     @Inject
     private String pwTheme;
+
+    @Inject
+    private String pwButtonTheme;
+
+    @Inject
+    private String pwPadding;
+
+    @Inject
+    private String pwDisplay;
 
     @PostConstruct
     protected void init() {
@@ -86,6 +98,10 @@ public class TextVideoModel {
         return damVideoPath;
     }
 
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
     public String getTextAlignment() {
         return textAlignment;
     }
@@ -94,4 +110,15 @@ public class TextVideoModel {
         return pwTheme;
     }
 
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
+
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    public String getPwDisplay() {
+        return pwDisplay;
+    }
 }

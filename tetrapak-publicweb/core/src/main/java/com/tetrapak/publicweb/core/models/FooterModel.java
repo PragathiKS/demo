@@ -21,73 +21,72 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class)
 public class FooterModel {
 
-	private static final Logger log = LoggerFactory.getLogger(FooterModel.class);
+    private static final Logger log = LoggerFactory.getLogger(FooterModel.class);
 
-	@Self
-	private Resource resource;
+    @Self
+    private Resource resource;
 
-	private String ctaLabelI18n;
-	private List<SocialLinkBean> footerSocialLinks = new ArrayList<>();
-	private List<NavigationLinkBean> footerNavigationLinks = new ArrayList<>();
+    private String ctaLabelI18n;
+    private List<SocialLinkBean> footerSocialLinks = new ArrayList<>();
+    private List<NavigationLinkBean> footerNavigationLinks = new ArrayList<>();
 
-	@PostConstruct
-	protected void init() {
-		InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
-		ctaLabelI18n = inheritanceValueMap1.getInherited("ctaLabelI18n", String.class);
-		String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
-		String[] socialLinks = inheritanceValueMap1.getInherited("footerSocialLinks", String[].class);
-		setSocialLinks(socialLinks);
-		LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, log);
-	}
+    @PostConstruct
+    protected void init() {
+        InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
+        ctaLabelI18n = inheritanceValueMap1.getInherited("ctaLabelI18n", String.class);
+        String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
+        String[] socialLinks = inheritanceValueMap1.getInherited("footerSocialLinks", String[].class);
+        setSocialLinks(socialLinks);
+        LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, log);
+    }
 
-	/**
-	 * Method to get multi field social link items.
-	 * 
-	 */
-	public void setSocialLinks(String[] socialLinks) {
-		@SuppressWarnings("deprecation")
-		JSONObject jObj;
-		try {
-			if (socialLinks == null) {
-				log.error("socialLinks is NULL");
-				return;
-			}
+    /**
+     * Method to get multi field social link items.
+     */
+    public void setSocialLinks(String[] socialLinks) {
+        @SuppressWarnings("deprecation")
+        JSONObject jObj;
+        try {
+            if (socialLinks == null) {
+                log.error("socialLinks is NULL");
+                return;
+            }
 
-			if (socialLinks != null) {
-				for (int i = 0; i < socialLinks.length; i++) {
-					jObj = new JSONObject(socialLinks[i]);
-					SocialLinkBean bean = new SocialLinkBean();
+            if (socialLinks != null) {
+                for (int i = 0; i < socialLinks.length; i++) {
+                    jObj = new JSONObject(socialLinks[i]);
+                    SocialLinkBean bean = new SocialLinkBean();
 
-					String socialMedia = "";
-					String socialMediaLinkPath = "";
-					if (jObj.has("socialMedia")) {
-						socialMedia = jObj.getString("socialMedia");
-					}
-					if (jObj.has("socialMediaLinkPath")) {
-						socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
-					}
+                    String socialMedia = "";
+                    String socialMediaLinkPath = "";
+                    if (jObj.has("socialMedia")) {
+                        socialMedia = jObj.getString("socialMedia");
+                    }
+                    if (jObj.has("socialMediaLinkPath")) {
+                        socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
+                    }
 
-					bean.setSocialMediaLinkPath(socialMediaLinkPath);
-					bean.setSocialMediaIconClass("icon-" + socialMedia);
-					footerSocialLinks.add(bean);
+                    bean.setSocialMediaLinkPath(socialMediaLinkPath);
+                    bean.setSocialMediaIconClass("icon-" + socialMedia);
+                    footerSocialLinks.add(bean);
 
-				}
-			}
-		} catch (Exception e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
-		}
-	}
+                }
+            }
+        } catch (Exception e) {
+            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        }
+    }
 
-	public String getCtaLabelI18n() {
-		return ctaLabelI18n;
-	}
+    public String getCtaLabelI18n() {
+        return ctaLabelI18n;
+    }
 
-	public List<SocialLinkBean> getFooterSocialLinks() {
-		return footerSocialLinks;
-	}
+    public List<SocialLinkBean> getFooterSocialLinks() {
+        return footerSocialLinks;
+    }
 
-	public List<NavigationLinkBean> getFooterNavigationLinks() {
-		return footerNavigationLinks;
-	}
+    public List<NavigationLinkBean> getFooterNavigationLinks() {
+        return footerNavigationLinks;
+    }
 
 }

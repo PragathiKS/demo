@@ -6,6 +6,9 @@
   "videoSource": "damVideo",
   "youtubeEmbedURL": "https://www.youtube.com/embed/MkcGKWjNw3c",
   "damVideoPath": "/content/dam/publicweb/test.mp4",
-  "textAlignment": "text-left",
-  "pwTheme": "grayscale-lighter"
+  "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+  "pwTheme": "grayscale-lighter",
+  "pwButtonTheme": "link",
+  "pwPadding": "regular",
+  "pwDisplay": "row-left-to-right"
 }

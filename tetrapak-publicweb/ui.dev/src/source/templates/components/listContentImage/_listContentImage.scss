@@ -1,11 +1,10 @@
 .pw-listContentImage {
     @include border-radius($border-radius);
     @include margin-bottom($margin-xxxl);
-    @include padding($padding-xxxl);
     $self: &;
+
     @media #{$desktop} {
         @include margin-bottom($margin-l);
-        @include padding($padding-l);
     }
     &__title {
         @include margin-bottom($margin-l);
@@ -14,7 +13,7 @@
         &:last-child {
             #{ $self }__tabMenuListItem__link {
                 border-bottom: 1px solid $color-mercury;
-                &.active {
+                &.active { //sass-lint:disable-line nesting-depth
                     @include border-xs($color-boulder);
                 }
             }
@@ -125,11 +124,6 @@
         @include margin-top($margin-md);
         @media #{$desktop} {
             @include margin-top($margin-l);
-        }
-        &__icon {
-            @include margin-left($margin-sm);
-            @include font-size(20px);
-            vertical-align: middle;
         }
     }
     &__editWrapper {

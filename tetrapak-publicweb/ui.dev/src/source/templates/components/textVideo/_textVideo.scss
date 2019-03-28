@@ -1,17 +1,46 @@
 .pw-text-video {
     @include border-radius($border-radius);
     @include margin-bottom($margin-xxxl);
-    @include padding($padding-md);
+    $self: &;
 
-    @media #{$desktop} {
-        @include padding($padding-xxxl);
+    &--display-row {
+        > .row {
+            flex-direction: row;
+        }
     }
 
-    &--text-right {
+    &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
         }
     }
+
+    &--display-column {
+        > .row {
+            flex-direction: column;
+        }
+
+        #{$self}__video {
+            @include margin-top($padding-md);
+            @media #{$desktop} {
+                @include margin-top($padding-l);
+            }
+        }
+    }
+
+    &--display-column-reversed {
+        > .row {
+            flex-direction: column-reverse;
+        }
+
+        #{$self}__video {
+            @include margin-bottom($padding-md);
+            @media #{$desktop} {
+                @include margin-bottom($padding-l);
+            }
+        }
+    }
+
 
     &__title,
     &__description {

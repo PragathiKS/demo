@@ -10,7 +10,7 @@
     <p class="pw-article__description">${data.vanityDescription}</p>
     <div class="pw-article__link" data-sly-test="${data.articlePath}">
       <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-            data-sly-call="${pwButton.button_template @ btnPath=data.articlePath, btnText=data.ctaTexti18nKey, btnTooltip=data.ctaTexti18nKey, btnIcon='icon-Circle_Arrow_Right', variant='link'}" />
+            data-sly-call="${pwButton.button_template @ btnPath=data.articlePath, btnText=data.ctaTexti18nKey, btnTooltip=data.ctaTexti18nKey, variant=data.pwButtonTheme}" />
     </div>
   </div>
   <sly data-sly-test="${!data.vanityDescription}"

@@ -12,93 +12,100 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ImageTextBannerModel {
 
-	@Inject
-	private String bannerSubtitleI18n;
+    @Inject
+    private String bannerSubtitleI18n;
 
-	@Inject
-	private String titleI18n;
+    @Inject
+    private String titleI18n;
 
-	@Inject
-	private String desktopImage;
-	
-	@Inject
-	private String desktopImageAltI18n;
+    @Inject
+    private String desktopImage;
 
-	@Inject
-	private String mobileImage;
+    @Inject
+    private String desktopImageAltI18n;
 
-	@Inject
-	private String mobileImageAltI18n;
-	
-	@Inject
-	private String bannerDescriptionI18n;
+    @Inject
+    private String mobileImage;
 
-	@Inject
-	private String contentAlignment;
+    @Inject
+    private String mobileImageAltI18n;
 
-	@Inject
-	private String bannerCtaTextI18n;
-	
-	@Inject
-	private String bannerCtaPath;
+    @Inject
+    private String bannerDescriptionI18n;
 
-	@Inject
-	private String targetBlank;
+    @Inject
+    private String contentAlignment;
 
-	@Inject
-	private String bannerCtaTooltipI18n;
+    @Inject
+    private String contrastLayer;
 
-	@PostConstruct
-	protected void init() {
+    @Inject
+    private String bannerCtaTextI18n;
 
-	}
+    @Inject
+    private String bannerCtaPath;
 
-	public String getBannerSubtitleI18n() {
-		return bannerSubtitleI18n;
-	}
+    @Inject
+    private String targetBlank;
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
+    @Inject
+    private String bannerCtaTooltipI18n;
 
-	public String getDesktopImage() {
-		return desktopImage;
-	}
+    @PostConstruct
+    protected void init() {
 
-	public String getDesktopImageAltI18n() {
-		return desktopImageAltI18n;
-	}
+    }
 
-	public String getMobileImage() {
-		return mobileImage;
-	}
+    public String getBannerSubtitleI18n() {
+        return bannerSubtitleI18n;
+    }
 
-	public String getMobileImageAltI18n() {
-		return mobileImageAltI18n;
-	}
+    public String getTitleI18n() {
+        return titleI18n;
+    }
 
-	public String getBannerDescriptionI18n() {
-		return bannerDescriptionI18n;
-	}
+    public String getDesktopImage() {
+        return desktopImage;
+    }
 
-	public String getContentAlignment() {
-		return contentAlignment;
-	}
+    public String getDesktopImageAltI18n() {
+        return desktopImageAltI18n;
+    }
 
-	public String getBannerCtaTextI18n() {
-		return bannerCtaTextI18n;
-	}
+    public String getMobileImage() {
+        return mobileImage;
+    }
 
-	public String getBannerCtaPath() {
-		return LinkUtils.sanitizeLink(bannerCtaPath);
-	}
+    public String getMobileImageAltI18n() {
+        return mobileImageAltI18n;
+    }
 
-	public String getTargetBlank() {
-		return targetBlank;
-	}
+    public String getBannerDescriptionI18n() {
+        return bannerDescriptionI18n;
+    }
 
-	public String getBannerCtaTooltipI18n() {
-		return bannerCtaTooltipI18n;
-	}
+    public String getContentAlignment() {
+        return contentAlignment;
+    }
+
+    public String getContrastLayer() {
+        return contrastLayer;
+    }
+
+    public String getBannerCtaTextI18n() {
+        return bannerCtaTextI18n;
+    }
+
+    public String getBannerCtaPath() {
+        return LinkUtils.sanitizeLink(bannerCtaPath);
+    }
+
+    public String getTargetBlank() {
+        return targetBlank;
+    }
+
+    public String getBannerCtaTooltipI18n() {
+        return bannerCtaTooltipI18n;
+    }
 
 }

@@ -1,0 +1,20 @@
+.tpatom-contrast-layer {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    $self: &;
+
+    &--flat {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    &--gradient-to-right {
+        background: linear-gradient(to right, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 50%);
+    }
+
+    &--gradient-to-left {
+        background: linear-gradient(to left, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 50%);
+    }
+}

@@ -18,7 +18,7 @@ import com.day.cq.wcm.api.NameConstants;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageContentModel {
-	
+
     private String pagePath;
 
     @Inject
@@ -80,18 +80,18 @@ public class PageContentModel {
     @Inject
     @Default
     protected String author;
-    
+
     private ValueMap jcrMap;
 
     private Resource resource;
-    
+
     @PostConstruct
     public void init() {
         if (resource == null)
             return;
 
         pagePath = resource.getParent().getPath();
-        
+
         jcrMap = resource.getValueMap();
     }
 

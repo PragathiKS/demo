@@ -63,7 +63,7 @@ public class OrderSearchModel {
         disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
 
-        Map<String, String> i18KeyMap = new HashMap();
+        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
         i18KeyMap.put("resetButtonTextI18n", resetButtonTextI18n);
         i18KeyMap.put("searchButtonTextI18n", searchButtonTextI18n);
         i18KeyMap.put("allStatusesTextI18n", allStatusesTextI18n);
@@ -73,6 +73,8 @@ public class OrderSearchModel {
         i18KeyMap.put("orderStatusLabelI18n", orderStatusLabelI18n);
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
+        i18KeyMap.put("disabledFields", disabledFields);
+        
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
     }

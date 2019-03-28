@@ -86,17 +86,16 @@
     .pw-banner {
         $pw-banner: &;
         &__content {
-            color: $color-white;
-            background-color: transparent;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-
             @media #{$desktop} {
                 @include padding-left($padding-xxxl*2);
                 @include padding-right($padding-l/2);
+                color: $color-white;
+                background-color: transparent;
                 left: calc(50% - #{convert-to-rem(720px)});
                 max-width: #{convert-to-rem(720px)};
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
             }
         }
 
@@ -107,7 +106,8 @@
 
             @media #{$desktop} {
                 @include font-size($font-xxxl);
-                @include line-height($font-xxxl, $font-xxxl);
+                @include line-height(70px, $font-xxxl);
+                max-height: calc(#{convert-to-rem(70px)} * 2);
             }
         }
         &--right {
