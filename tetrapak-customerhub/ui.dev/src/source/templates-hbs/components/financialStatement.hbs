@@ -1,21 +1,21 @@
 <h3 class="tp-financial-statement__select-customer-heading">{{this.statementOfAccount}}</h3>
 <h4 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h4>
-{{> atoms/dropdown/dropdown options=this.customerData name="selectCustomer" label='selectCustomer' wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
+{{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
 <div class="tp-financial-statement__customer-detail">
-    <div class="tp-financial-statement__account"><span class="tp-financial-statement__account-title">{{this.accountNumber}}: </span><span class="tp-financial-statement__account-number"></span></div>
-    <div class="tp-financial-statement__address-title"></div>
-    <div class="tp-financial-statement__address-detail"></div>
+    <p class="tp-financial-statement__account"><span class="tp-financial-statement__account-title">{{this.accountNumber}}: </span><span class="tp-financial-statement__account-number"></span></p>
+    <p class="tp-financial-statement__address-title"></p>
+    <p class="tp-financial-statement__address-detail"></p>
 </div>
 <h4 class="tp-financial-statement__select-customer-label">{{this.accountService}}</h4>
 <form class="tp-financial-statement__filters form-group">
     <div class="tp-financial-statement__calender-container">
-        {{> atoms/dropdown/dropdown options=this.status name="selectCustomer" label='selectCustomer' wrapClasses="tp-financial-statement__status-wrapper" eleClasses="tp-financial-statement__status js-financial-statement__status"}}
-        {{> atoms/input/input iconClass="icon-Calendar2" defaultValue='2018-01-05' name="daterange" label=this.dateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="tp-financial-statement__date-range js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
+        {{> atoms/dropdown/dropdown options=this.status name="selectStatus" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="tp-financial-statement__status js-financial-statement__status"}}
+        {{> atoms/input/input iconClass="icon-Calendar2" defaultValue='2018-01-05' name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="tp-financial-statement__date-range js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
     </div>
     <div class="tp-financial-statement__search-container">
-        {{> atoms/dropdown/dropdown options=this.documentType name="selectCustomer" label='selectCustomer' wrapClasses="tp-financial-statement__document-type-wrapper" eleClasses="tp-financial-statement__document-type js-financial-statement__document-type"}}
+        {{> atoms/dropdown/dropdown options=this.documentType name="selectDocumentType" label=this.selectDocumentTypeLabel wrapClasses="tp-financial-statement__document-type-wrapper" eleClasses="tp-financial-statement__document-type js-financial-statement__document-type"}}
         <div class="tp-financial-statement__document-number-wrapper">
-            {{> atoms/input/input name="statement" label='calender' eleClasses="tp-financial-statement__document-number js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.searchTermPlaceholder }}
+            {{> atoms/input/input name="searchInput" label=this.searchInputLabel eleClasses="tp-financial-statement__document-number js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber }}
         </div>
         {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonText btnClasses="tpatom-button--primary tp-financial-statement__submit-btn js-financial-statement__submit" iconClass="icon-Chevron_Right" dataLocator="statement-financial-btn" }}
         {{> atoms/buttons/primaryButton/buttons btnText=this.resetButtonText iconClass="icon-Close" btnClasses="tpatom-button--secondary js-financial-statement__reset"  dataLocator="statement-reset-btn" }}

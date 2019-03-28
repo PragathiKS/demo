@@ -99,7 +99,6 @@
         display: block;
 
         @media #{$desktop} {
-            clear: both;
             width: calc(100% / 3 - #{$margin-md});
             display: inline-block;
 
