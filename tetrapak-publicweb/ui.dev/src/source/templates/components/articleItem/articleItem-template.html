@@ -5,7 +5,7 @@
          src="${data.articleImagePath}" alt="${data.articleImageAltI18n @ i18n}"/>
     <div data-sly-test="${data.articleTitle}" class="pw-article__title">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_template @ headingText=data.articleTitle, variant='small'}"/>
+           data-sly-call="${heading.heading_h4_template @ headingText=data.articleTitle, variant='small'}"/>
     </div>
     <p class="pw-article__description">${data.vanityDescription}</p>
     <div class="pw-article__link" data-sly-test="${data.articlePath}">

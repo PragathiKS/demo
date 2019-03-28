@@ -9,7 +9,7 @@
         </div>
         <div data-sly-test="${data.title}" class="pw-image-text-button__title">
           <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${heading.heading_template @ headingText=data.title}"/>
+               data-sly-call="${heading.heading_h4_template @ headingText=data.title}"/>
         </div>
         <p class="pw-image-text-button__description">${data.description @ i18n}</p>
         <div class="pw-image-text-button__link" data-sly-test="${data.ctaLinkURL}">
