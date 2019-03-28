@@ -11,11 +11,13 @@ import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +28,14 @@ import com.day.cq.wcm.api.PageManager;
  * AnalyticsGlobalTagsModel Implementation
  * @param Resource, the parameter of the class
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class,Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AnalyticsGlobalTagsModel {
     
     @Self
     private Resource resource;
+    
+    @SlingObject
+    private SlingHttpServletRequest request;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
     
@@ -135,4 +140,24 @@ public class AnalyticsGlobalTagsModel {
         
         return userRoles;
     }
+    
+    /**
+     * Get Error Code.
+     * @return errorCode, if successful
+     */   
+    public Integer getErrorCode(){
+        Integer errorCode = (Integer)request.getAttribute("javax.servlet.error.status_code") ;
+        return errorCode;        
+    }
+    
+    /**
+     * Get Error Message.
+     * @return errorMessage, if successful
+     */
+    public String getErrorMessage(){
+        String errorStatusMessage = (String)request.getAttribute("javax.servlet.error.message") ;
+        String  errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":")+1);
+        return errorMessage.trim();        
+    }
+    
 }
