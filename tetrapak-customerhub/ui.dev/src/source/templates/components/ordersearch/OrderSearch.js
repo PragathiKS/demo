@@ -270,6 +270,7 @@ class OrderSearch {
       .on('click', '.js-calendar', () => {
         this.submitDateRange();
       })
+      .on('click', '.js-calendar-nav', this, this.navigateCalendar)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
         const routeQuery = deparam(window.location.hash.substring(2));
@@ -313,6 +314,11 @@ class OrderSearch {
     const { $dateRange, $rangeSelector, $modal } = this.cache;
     $dateRange.val($rangeSelector.val());
     $modal.modal('hide');
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    $this.root.find(`.lightpick__${action}`).trigger('click');
   }
   setFilters() {
     return _setFilters.apply(this, arguments);
