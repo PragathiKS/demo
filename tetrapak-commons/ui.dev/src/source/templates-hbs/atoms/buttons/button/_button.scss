@@ -23,7 +23,6 @@
         @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
-        margin-right: auto;
         &,
         &[disabled]:hover {
             background-color: $color-congress-blue;
@@ -77,10 +76,17 @@
         @include border-radius($border-radius);
         @include min-width(24px);
         transition: background-color $anim-speed-quick ease;
-        &:hover,
+        &:hover:not([disabled]),
         &.active {
             background-color: $color-congress-blue;
             color: $color-white;
         }
+    }
+    &--calendar {
+        @include width($spacing-big);
+        @include height($spacing-big);
+        border-radius: 50%;
+        background-color: $color-tundora;
+        color: $color-white;
     }
 }
