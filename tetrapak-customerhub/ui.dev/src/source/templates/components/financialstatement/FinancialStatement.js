@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 
-function _processOrderSearchData(data) {
+function _processFinancialStatementData(data) {
   data.customerData.sort((a, b) => {
     if (a.desc.toUpperCase() < b.desc.toUpperCase()) { return -1; }
     if (a.desc.toUpperCase() > b.desc.toUpperCase()) { return 1; }
@@ -18,9 +18,9 @@ function _processOrderSearchData(data) {
 }
 
 function _renderAddressDetail() {
-  this.root.find('.tp-financial-statement__account-number').text(this.cache.data.selectedCustomerData.info.acountNo);
-  this.root.find('.tp-financial-statement__address-title').text(this.cache.data.selectedCustomerData.info.title);
-  this.root.find('.tp-financial-statement__address-detail').text(this.cache.data.selectedCustomerData.info.address);
+  this.root.find('.js-financial-statement__account-number').text(this.cache.data.selectedCustomerData.info.acountNo);
+  this.root.find('.js-financial-statement__address-title').text(this.cache.data.selectedCustomerData.info.title);
+  this.root.find('.js-financial-statement__address-detail').text(this.cache.data.selectedCustomerData.info.address);
 }
 function _setSelectedCustomer(key) {
   this.cache.data.customerData.forEach(item => {
@@ -42,7 +42,7 @@ function _renderFilters() {
       showLoader: true,
       cancellable: true
     },
-    beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+    beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
   }, () => {
     _renderAddressDetail.apply(this);
   });

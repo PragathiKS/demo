@@ -2,9 +2,9 @@
 <h4 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h4>
 {{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
 <div class="tp-financial-statement__customer-detail">
-    <p class="tp-financial-statement__account"><span class="tp-financial-statement__account-title">{{this.accountNumber}}: </span><span class="tp-financial-statement__account-number"></span></p>
-    <p class="tp-financial-statement__address-title"></p>
-    <p class="tp-financial-statement__address-detail"></p>
+    {{> atoms/paragraph/paragraph  wrapClasses="tp-financial-statement__account" eleClasses="js-financial-statement__account-number" pText=this.findCustomer separatorText=" :"}}
+    {{> atoms/paragraph/paragraph  wrapClasses="tp-financial-statement__address-title" eleClasses="js-financial-statement__address-title"}}
+    {{> atoms/paragraph/paragraph  wrapClasses="tp-financial-statement__address-detail" eleClasses="js-financial-statement__address-detail"}}
 </div>
 <h4 class="tp-financial-statement__select-customer-label">{{this.accountService}}</h4>
 <form class="tp-financial-statement__filters form-group">
