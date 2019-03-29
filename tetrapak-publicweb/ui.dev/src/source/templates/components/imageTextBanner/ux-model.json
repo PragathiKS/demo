@@ -1,13 +1,14 @@
 {
   "mobileImage": "https://pix10.agoda.net/hotelImages/163/1632316/1632316_17070922310054340703.jpg?s=1024x768",
   "desktopImage": "http://www.planet-obuca.com/js/vendor/skdslider/v1.0.2/slides/1.jpg",
-  "contentAlignment": "pw-banner--right",
+  "contentAlignment": "pw-banner--left",
   "bannerSubtitleI18n": "Join our webinar",
   "titleI18n": "Smarter world, smarter business",
   "bannerDescriptionI18n": "Industry 4.0 is everything from robots and artificial intelligence to smart algorithms and self-driving cars. In this webinar we give you as a food manufacturer insights on Industry 4.0 and the opportunities that it brings",
   "bannerCtaPath": "#",
   "bannerCtaTextI18n": "Learn about Industry 4.0",
   "bannerCtaTooltipI18n": "Learn about Industry 4.0",
+  "contrastLayer": "gradient-to-right",
   "targetBlank": true,
   "pwButtonTheme": "shift"
 }
