@@ -1,5 +1,5 @@
 {{#if iconClass}}<div class="tpatom-input form-element{{#if wrapClasses}} {{wrapClasses}}{{/if}}">{{/if}}
-    <input type="text" name="{{name}}" class="form-control{{#if eleClasses}} {{eleClasses}}{{/if}}"
+    <input type="{{#if type}}{{type}}{{else}}text{{/if}}" name="{{name}}" class="form-control{{#if eleClasses}} {{eleClasses}}{{/if}}"
         {{#if dataLocator}}
             data-locator="{{dataLocator}}"
         {{/if}}
