@@ -6,11 +6,15 @@ import javax.inject.Inject;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ImageTextBannerModel {
+
+    @Self
+    private Resource resource;
 
     @Inject
     private String bannerSubtitleI18n;
@@ -51,8 +55,15 @@ public class ImageTextBannerModel {
     @Inject
     private String bannerCtaTooltipI18n;
 
+    private Boolean isHeaderBanner = false;
+
     @PostConstruct
     protected void init() {
+
+        String parentName = resource.getParent().getName();
+        if (parentName.equalsIgnoreCase("header")) {
+            isHeaderBanner = true;
+        }
 
     }
 
@@ -106,6 +117,10 @@ public class ImageTextBannerModel {
 
     public String getBannerCtaTooltipI18n() {
         return bannerCtaTooltipI18n;
+    }
+
+    public Boolean getIsHeaderBanner() {
+        return isHeaderBanner;
     }
 
 }
