@@ -23,8 +23,8 @@ import org.osgi.framework.FrameworkUtil;
 import java.util.Set;
 
 /**
- * 
- * @author TetraPak
+ * This is a global util class to access globally common utility methods
+ * @author Nitin Kumar
  *
  */
 public class GlobalUtil {
@@ -32,7 +32,7 @@ public class GlobalUtil {
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
-     * 
+     * Method to get API GEE URL
      * @param apigeeService
      * @param defaultJson
      * @return String
@@ -41,7 +41,7 @@ public class GlobalUtil {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : defaultJson;
     }
     /**
-     * 
+     * Method to get Preference Url
      * @param apigeeService
      * @param preferencesJson
      * @return String
@@ -50,7 +50,7 @@ public class GlobalUtil {
         return null != apigeeService ? apigeeService.getApigeeServiceUrl() : preferencesJson;
     }
     /**
-     * 
+     * Method to get resource resolver from the system user
      * @param resourceFactory
      * @param paramMap
      * @return ResourceResolver
@@ -70,7 +70,7 @@ public class GlobalUtil {
         return resourceResolver;
     }
     /**
-     * 
+     * Method to write json response
      * @param resp
      * @param jsonResponse
      * @throws IOException
@@ -80,7 +80,7 @@ public class GlobalUtil {
         resp.getWriter().write(jsonResponse.toString());
     }
     /**
-     * 
+     * Method to check if run mode is development
      * @return boolean
      * @description To check the run mode development to execute the launch js for development environment -r dev
      */
@@ -89,7 +89,7 @@ public class GlobalUtil {
 	}
 
     /**
-     * 
+     * Method to check if run mode is stage
      * @return boolean
      * @description To check the run mode staging to execute the launch js for staging environment -r stage
      */
@@ -97,7 +97,7 @@ public class GlobalUtil {
 		return isRunModeAvailable("stage");
 	}
 	/**
-	 * 
+	 * Method to check if run mode is Production
 	 * @return boolean
 	 * @description To check the run mode staging to execute the launch js for production environment -r prod
 	 */
@@ -106,7 +106,7 @@ public class GlobalUtil {
 	}
     
     /**
-     * 
+     * Method to check if run mode is available
      * @param key String
      * @return boolean
      * @description To check rum mode available  - if available return true else false
@@ -124,16 +124,17 @@ public class GlobalUtil {
 		return false;
 	}
     /**
-     * 
+     * Method to get all run modes
      * @return Set<String>
      * @description To get available run modes
      */
 	public static Set<String> getRunModes() {
     	return	getService(SlingSettingsService.class).getRunModes();
 	}
+
     /**
-     * 
-     * @param clazz
+     * Method to get service
+     * @param clazz class type
      * @return T
      */    
 	@SuppressWarnings("unchecked")
@@ -143,23 +144,23 @@ public class GlobalUtil {
     }
 	
 	/**
-	 * The method provides the customer hub globalconfig page path. 
-	 * @param contentPageResource
-	 * @return String globalconfig page path
+	 * This method provides the customer hub global config page path.
+	 * @param contentPageResource content page resource
+	 * @return String global config page path
 	 */
 	public static String getCustomerhubConfigPagePath(Resource contentPageResource) {
 		String customerhubConfigPagePath = StringUtils.EMPTY;
-		if (null != contentPageResource) {
-			customerhubConfigPagePath = getCustomerhubConfigPage(contentPageResource).getPath();
+		Page configPage = getCustomerhubConfigPage(contentPageResource);
+		if (null != configPage) {
+			customerhubConfigPagePath = configPage.getPath();
 		}
-		return customerhubConfigPagePath;		
+		return customerhubConfigPagePath;
 	}
 	
 	/**
-	 * The method provides the customer hub globalconfig page.
-	 * 
-	 * @param contentPageResource
-	 * @return Page globalconfig
+	 * This method provides the customer hub global config page.
+	 * @param contentPageResource content page resource
+	 * @return Page global config
 	 */
 	public static Page getCustomerhubConfigPage(Resource contentPageResource) {
 		PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
