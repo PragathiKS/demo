@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.utils;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 
@@ -161,17 +162,13 @@ public class GlobalUtil {
 	 * @return Page globalconfig
 	 */
 	public static Page getCustomerhubConfigPage(Resource contentPageResource) {
+		PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
 		Page customerhubConfigPage = null;
-		if (null != contentPageResource) {
-			Page contentPage = null;
-			if (contentPageResource.isResourceType("Page")) {
-				contentPage = contentPageResource.adaptTo(Page.class);
-			} else {
-				contentPage = contentPageResource.getParent().getParent().adaptTo(Page.class);
-			}
+		if (null != contentPageResource && null != pageManager) {
+			Page contentPage = pageManager.getContainingPage(contentPageResource);
 			customerhubConfigPage = contentPage.getAbsoluteParent(3);
 		}
-		return customerhubConfigPage;		
+		return customerhubConfigPage;
 	}
 
 }
