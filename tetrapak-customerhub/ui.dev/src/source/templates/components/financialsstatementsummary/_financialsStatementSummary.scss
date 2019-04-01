@@ -1,3 +1,71 @@
-.tp-financials-summary__table {
-    overflow-x: auto;
+.tp-financials-summary {
+    @include padding($padding-md);
+    @include border-radius($border-radius);
+    @include box-shadow-normal;
+    background-color: $color-white;
+
+    h4 {
+        @include padding-top($padding-xl);
+        @include padding-bottom($padding-sm);
+    }
+
+    &__table {
+        overflow-x: auto;
+    }
+
+    &__documents {
+        &__cell {
+            display: none;
+
+            &:first-child {
+                display: table-cell;
+            }
+
+            &:last-child {
+                padding-right: 0;
+                text-align: right;
+            }
+
+            @media #{$desktop} {
+                display: table-cell;
+            }
+        }
+
+        &__table-summary,
+        &__table-summary:first-child {
+            display: none;
+            @include font-size($font-baseline);
+            font-family: $font-bold;
+
+            @media #{$desktop} {
+                display: table-cell;
+            }
+        }
+    }
+
+    &__statement {
+        &__cell {
+            &:last-child {
+                @include font-size($font-baseline);
+                font-family: $font-bold;
+                padding-right: 0;
+                text-align: right;
+            }
+        }
+    }
+
+    &__btn-container {
+        @include margin-top($margin-l);
+        text-align: right;
+    }
+
+    &__create-excel {
+        @include margin-right($margin-md);
+    }
+
+    .collapsed {
+        .icon-Chevron_Up::before {
+            transform: rotate(180deg);
+        }
+    }
 }

@@ -1,8 +1,10 @@
 import $ from 'jquery';
+import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+//import { apiHost } from '../../../scripts/common/common';
+//import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 
 /**
  * Processes order table data
@@ -28,29 +30,30 @@ function _tableSort(order, keys) {
 function _processTableData(data) {
   let keys = [];
   if (Array.isArray(data.statementSummary)) {
-    data.summary = data.statementSummary.map(order => {
-      keys = (keys.length === 0) ? Object.keys(order) : keys;
-      return _tableSort.call(this, order, keys);
+    data.summary = data.statementSummary.map(summary => {
+      keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      return _tableSort.call(this, summary, keys);
     });
     data.summaryHeadings = keys.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      isSortable: ['orderDate'].includes(key),
-      sortOrder: 'desc'
+      i18nKey: `cuhu.financials.${key}`
     }));
   }
 
-  if (Array.isArray(data.salesOffices)) {
-    data.salesOffices.forEach(function (elem, index) {
-      data.documentHeadings = keys.map(key => ({
+  if (Array.isArray(data.documents)) {
+    data.documents.forEach((document, index) => {
+      document.title = `${document.title} (${document.records.length})`;
+      document.documnetID = `#document${index}`;
+      document.documentData = document.records.map(record => {
+        keys = Object.keys(record);
+        return _tableSort.call(this, record, keys);
+      });
+      document.documentHeadings = keys.map(key => ({
         key,
-        i18nKey: `cuhu.ordering.${key}`,
-        isSortable: ['orderDate'].includes(key),
-        sortOrder: 'desc'
+        i18nKey: `cuhu.financials.${key}`
       }));
-    })
+    });
   }
-  debugger; //eslint-disable-line
 }
 
 /**
@@ -65,9 +68,10 @@ function _renderTable(filterParams) {
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'financialsSummaryTable',
-      target: '.js-financials-summary__table',
+      target: '.js-financials-summary',
       url: {
-        path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
+        //path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json',
         data: filterParams
       },
       beforeRender(data) {

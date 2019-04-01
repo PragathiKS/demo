@@ -1,0 +1,68 @@
+{
+  "statementSummary": [
+    {
+      "currency": "USD",
+      "current": "$0.00",
+      "overdue": "-$222",
+      "thirty": "$0.00",
+      "sixty": "$0.00",
+      "ninty": "$0.00",
+      "nintyPlus": "$0.00",
+      "total": "$33333"
+    }
+  ],
+  "documents": [
+    {
+      "title": "Packaging projects",
+      "totalAmount": "$6666",
+      "records": [
+        {
+          "documentNumber": "123",
+          "desc": "Invoice",
+          "invoiceReference": "NA",
+          "PONumber": "4444-33",
+          "docDate": "yyy-mm-dd",
+          "dueDate": "yyyy-mm-dd",
+          "currency": "USD",
+          "orgAmount": "$3333"
+        },
+        {
+          "documentNumber": "123",
+          "desc": "Invoice",
+          "invoiceReference": "NA",
+          "PONumber": "4444-33",
+          "docDate": "yyy-mm-dd",
+          "dueDate": "yyyy-mm-dd",
+          "currency": "USD",
+          "orgAmount": "$3333"
+        }
+      ]
+    },
+    {
+      "title": "Packaging projects",
+      "totalAmount": "$7777",
+      "records": [
+        {
+          "documentNumber": "123",
+          "desc": "Invoice",
+          "invoiceReference": "NA",
+          "PONumber": "4444-33",
+          "docDate": "yyy-mm-dd",
+          "dueDate": "yyyy-mm-dd",
+          "currency": "USD",
+          "orgAmount": "$3333"
+        },
+        {
+          "documentNumber": "123",
+          "desc": "Invoice",
+          "invoiceReference": "NA",
+          "PONumber": "4444-33",
+          "docDate": "yyy-mm-dd",
+          "dueDate": "yyyy-mm-dd",
+          "currency": "USD",
+          "orgAmount": "$3333"
+        }
+      ]
+    }
+  ]
+}

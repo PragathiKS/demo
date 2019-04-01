@@ -1,0 +1,9 @@
+.tpmol-accordian-title {
+    @include padding-top(10px);
+    @include padding-bottom(10px);
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid $color-tundora;
+    font-family: $font-bold;
+    text-align: left;
+}
