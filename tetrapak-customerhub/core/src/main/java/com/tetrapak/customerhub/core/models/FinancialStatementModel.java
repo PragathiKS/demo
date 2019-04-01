@@ -64,10 +64,12 @@ public class FinancialStatementModel {
     @Inject
     private String documentHeadingI18n;
     
-    
-
     private String config;
-
+    
+    /**
+     * init method
+     * @return config 
+     */
     @PostConstruct
     protected void init() {
    
@@ -92,6 +94,10 @@ public class FinancialStatementModel {
         config = gson.toJson(i18KeyMap);
     }
 
+    /**
+     * Get Config method.
+     * @return config 
+     */
     public String getConfig() {
         return config;
     }
