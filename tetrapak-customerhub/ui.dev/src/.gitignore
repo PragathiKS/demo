@@ -3,7 +3,6 @@ node_modules
 coverage
 TESTS-HeadlessChrome*
 TESTS-PhantomJS*
-package-lock.json
 sass-lint-report.html
 eslint-report.html
 .vscode
