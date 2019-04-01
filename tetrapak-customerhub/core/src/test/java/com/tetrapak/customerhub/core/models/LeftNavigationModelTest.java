@@ -49,7 +49,7 @@ public class LeftNavigationModelTest {
         LeftNavigationBean bean = leftNavigationModel.getTpLogoListItem();
         Assert.assertEquals("https://www.tetrapak.com", bean.getHref());
         Assert.assertEquals("icon-TetraPak", bean.getIconClass());
-        Assert.assertEquals("stickyLabel", bean.getIconLabel());
+        Assert.assertEquals("Tetra Pak Home", bean.getIconLabel());
         Assert.assertEquals(true, bean.isExternalLink());
         Assert.assertEquals(false, bean.isActive());
 
