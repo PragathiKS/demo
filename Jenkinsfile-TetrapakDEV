@@ -118,7 +118,7 @@ pipeline {
 					"Publish_Deployment" : {
 						echo "Uninstalling Old Commons Package on publish"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-						Sleep 20
+						sleep 20
 						echo "Deleting Old Commons Package  on publish"
 						sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
 						sleep 10
