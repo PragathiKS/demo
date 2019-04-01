@@ -62,6 +62,10 @@ public class OrderSearchModel {
     protected void init() {
         disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
+        disabledFields.add("customerNumber");
+        disabledFields.add("salesOrg");
+        disabledFields.add("requestedDelivery");
+        disabledFields.add("ETA");
 
         Map<String, Object> i18KeyMap = new HashMap<String, Object>();
         i18KeyMap.put("resetButtonTextI18n", resetButtonTextI18n);
