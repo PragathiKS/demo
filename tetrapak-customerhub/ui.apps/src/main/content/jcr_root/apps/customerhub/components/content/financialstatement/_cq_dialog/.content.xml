@@ -20,17 +20,20 @@
 						fieldDescription="Enter Statement of Account i18 Key "
 						fieldLabel="Statement of Account Key" name="./statementOfAccount"
 						required="true" />
-					<findCustomer jcr:primaryType="nt:unstructured"
+					<findCustomer
+					    jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter find Customer i18 Key"
 						fieldLabel="Find Customer Key" name="./findCustomer"
 						required="true" />
-					<accountNumber jcr:primaryType="nt:unstructured"
+					<accountNumber
+					    jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter Account Number i18 Key"
 						fieldLabel="Account Number Key" name="./accountNumber"
 						required="true" />
-					<accountService jcr:primaryType="nt:unstructured"
+					<accountService
+					    jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter Account Service i18 Key"
 						fieldLabel="Account Service Key" name="./accountService"
@@ -91,8 +94,8 @@
 					<documentHeadingI18n
 						jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-						fieldDescription="Enter Document Heading i18 Key"
-						fieldLabel="Currency Key" name="./documentHeadingI18n"
+						fieldDescription="Enter Documents Heading i18 Key"
+						fieldLabel="Documents Heading Key" name="./documentHeadingI18n"
 						required="true" />
 				</items>
 			</column>

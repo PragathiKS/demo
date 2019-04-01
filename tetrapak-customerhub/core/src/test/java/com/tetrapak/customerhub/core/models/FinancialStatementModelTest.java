@@ -1,4 +1,4 @@
-/*package com.tetrapak.customerhub.core.models;
+package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import io.wcm.testing.mock.aem.junit.AemContext;
@@ -11,8 +11,8 @@ import org.junit.Test;
 public class FinancialStatementModelTest {
 
     private FinancialStatementModel financialStatementModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/financials/jcr:content/root/responsivegrid/financialstatement";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/financials/jcr:content/root/responsivegrid/financialstatement";
     private static final String RESOURCE_JSON = "allContent.json";
 
     @Rule
@@ -25,10 +25,12 @@ public class FinancialStatementModelTest {
     }
 
     @Test
-    public void testGetStartedMessage() {
+    public void testGetConfigMessage() {
         String config = financialStatementModel.getConfig();
-        Assert.assertTrue(config.contains("Search statements"));
+        Assert.assertTrue(config.contains("Search statement"));
         Assert.assertTrue(config.contains("Reset search"));
-        
+        Assert.assertTrue(config.contains("Statement Summary"));
+        Assert.assertTrue(config.contains("Find customer"));
+        Assert.assertTrue(config.contains("Document Number"));       
     }
-}*/
+}
