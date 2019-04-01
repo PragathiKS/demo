@@ -12,11 +12,11 @@
         </li>
       </ul>
     </div>
-    <div class="pw-carousel__mobileDropdown dropdown d-block d-lg-none text-center">
-      <button class="btn dropdown-toggle pw-carousel__mobileDropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="pw-carousel__dropdown dropdown d-block d-lg-none text-center">
+      <button class="btn dropdown-toggle pw-carousel__dropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.tabs[0].practiceTitle}
       </button>
-      <div class="dropdown-menu pw-carousel__mobileDropdown__menu" data-sly-list.tabItem="${data.tabs}" role="tablist">
+      <div class="dropdown-menu pw-carousel__dropdown__menu" data-sly-list.tabItem="${data.tabs}" role="tablist">
         <a class="dropdown-item ${tabItemList.first? 'active show' : ''}" data-toggle="pill" href="#pills-${tabItemList.index}-${data.carouselId}" role="tab" aria-controls="pills-${tabItemList.index}-${data.carouselId}">${tabItem.practiceTitle}</a>
       </div>
     </div>

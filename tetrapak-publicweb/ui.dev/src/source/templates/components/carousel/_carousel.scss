@@ -27,11 +27,11 @@
         @include margin-bottom($margin-xxl);
     }
 
-    &__mobileDropdown {
+    &__dropdown {
         @include margin-bottom($margin-xxl);
     }
 
-    &__mobileDropdown__toggle {
+    &__dropdown__toggle {
         @include padding(0 30px 0 8px);
         @include line-height(40px, 40px);
         height: convert-to-rem(40px);
@@ -51,7 +51,7 @@
         }
     }
 
-    &__mobileDropdown__menu {
+    &__dropdown__menu {
         @include padding(0);
         border: 0;
         width: 100%;
