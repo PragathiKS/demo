@@ -15,7 +15,7 @@ import java.util.Iterator;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RecommendedForYouCardModel extends GetStartedModel {
 
-
+    @Override
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
