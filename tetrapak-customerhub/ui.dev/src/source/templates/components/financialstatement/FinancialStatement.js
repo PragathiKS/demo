@@ -19,6 +19,15 @@ function _processFinancialStatementData(data) {
     return 0;
   });
   data = $.extend(true, data, this.cache.i18nKeys);
+  // Resolve i18n keys for calendar modal
+  data.selectDatesI18n = data.selectDates;
+  data.closeBtnI18n = data.closeBtn;
+  data.setDatesI18n = data.setDates;
+  data.dateRangeLabelI18n = data.selectDateRangeLabel;
+  // Remove duplicate properties
+  delete data.selectDates;
+  delete data.closeBtn;
+  delete data.setDates;
   const [selectedCustomerData] = data.customerData;
   data.selectedCustomerData = selectedCustomerData;
   this.cache.data = data;

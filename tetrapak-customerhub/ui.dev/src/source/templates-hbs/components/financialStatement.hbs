@@ -1,3 +1,4 @@
+{{> molecules/calendar/calendarModal this}}
 <h2 class="tp-financial-statement__select-customer-heading">{{this.statementOfAccount}}</h2>
 <h3 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h3>
 {{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
