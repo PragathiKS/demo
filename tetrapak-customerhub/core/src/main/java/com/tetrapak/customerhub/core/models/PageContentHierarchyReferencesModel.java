@@ -17,13 +17,15 @@ import javax.jcr.nodetype.ConstraintViolationException;
 import javax.jcr.version.VersionException;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
@@ -39,15 +41,20 @@ public class PageContentHierarchyReferencesModel {
 	@Self
 	Resource resource;
 	
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    @ValueMapValue
     private String pageContentPath;
     
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    @ValueMapValue
     private String includeSubPages;
     
     List<String> componentsReference = new LinkedList<String>();
     private String locale;
     
+    private final static String PAGE_REFERENCE_RESOURCE_TYPE = "customerhub/components/content/pagereference";
+    
+    
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageContentHierarchyReferencesModel.class.getName());
 	@PostConstruct
     protected void init() {
         if(Objects.nonNull(pageContentPath)) {
@@ -68,24 +75,32 @@ public class PageContentHierarchyReferencesModel {
     }
 
 	private void clonePageContentHierachy(ResourceResolver resourceResolver, String pageContentHierachy, String locale) {
+		Session session = null;
 	try {
-		Session session = resourceResolver.adaptTo(Session.class);
+		session = resourceResolver.adaptTo(Session.class);
 		PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 		Page currentPage = pageManager.getContainingPage(resource);
 		Page srcParentPage = pageManager.getPage(pageContentHierachy);
 		createPageContentHierachy(resourceResolver, pageManager, currentPage, srcParentPage, locale);
 		session.save();
 	} catch (PathNotFoundException e) {
+		LOGGER.error("PathNotFoundException in PageContentHierarchyReferencesModel",e);
 	} catch (ItemExistsException e) {
+		LOGGER.error("ItemExistsException in PageContentHierarchyReferencesModel",e);
 	} catch (VersionException e) {
+		LOGGER.error("VersionException in PageContentHierarchyReferencesModel",e);
 	} catch (ConstraintViolationException e) {
+		LOGGER.error("ConstraintViolationException in PageContentHierarchyReferencesModel",e);
 	} catch (LockException e) {
+		LOGGER.error("LockException in PageContentHierarchyReferencesModel",e);
 	} catch (ValueFormatException e) {
+		LOGGER.error("ValueFormatException in PageContentHierarchyReferencesModel",e);
 	} catch (WCMException e) {
+		LOGGER.error("WCMException in PageContentHierarchyReferencesModel",e);
 	} catch (RepositoryException e) {
+		LOGGER.error("RepositoryException in PageContentHierarchyReferencesModel",e);
 	}
-	
-	}
+ }
 
 	private void createPageContentHierachy(ResourceResolver resourceResolver, PageManager pageManager, Page currentPage,
 			Page srcParentPage, String locale)
@@ -105,7 +120,7 @@ public class PageContentHierarchyReferencesModel {
 					destJcrContent.setProperty(JcrConstants.JCR_TITLE, srcChildrenPage.getTitle());
 				}
 				else {
-					destChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(),srcChildrenPage.getTemplate().getPath(), srcChildrenPage.getTitle());
+					destChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(),srcChildrenPage.getProperties().get("cq:template", String.class), srcChildrenPage.getTitle());
 				}
 				
 				Node childrenJcrContent = destChildrenPage.getContentResource().adaptTo(Node.class);
@@ -117,7 +132,7 @@ public class PageContentHierarchyReferencesModel {
 					destRootNode  = childrenJcrContent.addNode(srcRoot.getName());
 				}
 				
-				destRootNode.setProperty("sling:resourceType", srcRoot.getProperty("sling:resourceType").getValue().getString());
+				destRootNode.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, srcRoot.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE).getValue().getString());
 				Node srcResponsiveGrid = srcRoot.getNode("responsivegrid");
 				Node destResponsiveGrid = null;
 				
@@ -128,7 +143,7 @@ public class PageContentHierarchyReferencesModel {
 					destResponsiveGrid = destRootNode.addNode(srcResponsiveGrid.getName());
 				}
 				
-				destResponsiveGrid.setProperty("sling:resourceType", srcResponsiveGrid.getProperty("sling:resourceType").getValue().getString());
+				destResponsiveGrid.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, srcResponsiveGrid.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE).getValue().getString());
 				Node destPageReference = null;
 				if(destResponsiveGrid.hasNode("pagereference")) {
 					destPageReference = destResponsiveGrid.getNode("pagereference");
@@ -136,7 +151,7 @@ public class PageContentHierarchyReferencesModel {
 					destPageReference = destResponsiveGrid.addNode("pagereference");
 				}
 				
-				destPageReference.setProperty("sling:resourceType", "customerhub/components/content/pagereference");
+				destPageReference.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, PAGE_REFERENCE_RESOURCE_TYPE);
 				String srcChildrenPath = srcChildrenPage.getPath();
 				srcChildrenPath = srcChildrenPath.replace("/en", "/" + locale);
 				destPageReference.setProperty("pageContentPath", srcChildrenPath);
@@ -151,6 +166,7 @@ public class PageContentHierarchyReferencesModel {
 		}
 		return false;
 	}
+	
     private void pageReferenceComponents(String path) {
     	
     	Resource componentResources =	resource.getResourceResolver().getResource(path);
