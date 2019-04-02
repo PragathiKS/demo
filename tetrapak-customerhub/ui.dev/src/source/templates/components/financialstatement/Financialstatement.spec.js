@@ -24,6 +24,9 @@ describe('FinancialStatement', function () {
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
+    this.dateRangeSpy = sinon.spy(this.financialstatement, 'openDateSelector');
+    this.calendarSpy = sinon.spy(this.financialstatement, 'submitDateRange');
+    this.navigateSpy = sinon.spy(this.financialstatement, 'navigateCalendar');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialStatementData));
@@ -42,6 +45,9 @@ describe('FinancialStatement', function () {
     this.setSelectedCustomerSpy.restore();
     this.statusSpy.restore();
     this.renderFiltersSpy.restore();
+    this.dateRangeSpy.restore();
+    this.calendarSpy.restore();
+    this.navigateSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -73,5 +79,20 @@ describe('FinancialStatement', function () {
   it('should change date selector on status change', function () {
     $('.js-financial-statement__status').trigger('change');
     expect(this.statusSpy.called).to.be.true;
+  });
+
+  it('should open date picker modal on click of date range selector', function () {
+    $('.js-financial-statement__date-range').trigger('click');
+    expect(this.dateRangeSpy.called).to.be.true;
+  });
+
+  it('should navigate calendar on click of calendar navigation buttons', function () {
+    $('.js-calendar-prev').trigger('click');
+    expect(this.navigateSpy.called).to.be.true;
+  });
+
+  it('should select current date range and close modal', function () {
+    $('.js-calendar').trigger('click');
+    expect(this.calendarSpy.called).to.be.true;
   });
 });

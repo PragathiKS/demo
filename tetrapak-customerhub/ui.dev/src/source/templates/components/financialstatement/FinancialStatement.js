@@ -127,6 +127,7 @@ class FinancialStatement {
     }
   }
   initPostCache() {
+    this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.dateConfig = {
@@ -137,6 +138,20 @@ class FinancialStatement {
       dropdowns: false,
       format: DATE_FORMAT
     };
+  }
+  submitDateRange() {
+    const { $dateRange, $rangeSelector, $modal } = this.cache;
+    $dateRange.val($rangeSelector.val());
+    $modal.modal('hide');
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      _disableCalendarNext($this);
+    }
   }
   initializeCalendar(isRange) {
     const { $rangeSelector, dateConfig, picker } = this.cache;
@@ -178,7 +193,11 @@ class FinancialStatement {
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
-      });
+      })
+      .on('click', '.js-calendar', () => {
+        this.submitDateRange();
+      })
+      .on('click', '.js-calendar-nav', this, this.navigateCalendar);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
