@@ -211,8 +211,14 @@ function _trackAnalytics(defaultParam) {
   if (!formData.daterange) {
     formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
   }
-  const orderStatusText = this.cache.$orderStatus.find('option').filter(`[value="${formData.orderstatus}"]`).text();
-  trackAnalytics(`DatesChosen|${sanitize(orderStatusText)}|deliveryaddresschoosen|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
+  const deliveryAddressChoosen = formData.deliveryaddress ? 'deliveryaddresschoosen' : '';
+  let orderStatusText = '';
+  if (formData.orderstatus) {
+    orderStatusText = this.cache.$orderStatus.find('option').filter(`[value="${formData.orderstatus}"]`).text();
+  } else {
+    orderStatusText = '';
+  }
+  trackAnalytics(`DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
 }
 
 /**
