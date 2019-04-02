@@ -97,6 +97,18 @@
 						fieldDescription="Enter Documents Heading i18 Key"
 						fieldLabel="Documents Heading Key" name="./documentHeadingI18n"
 						required="true" />
+				     <createExcelBtnI18n
+						jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+						fieldDescription="Enter Create Excel Button i18 Key"
+						fieldLabel="Create Excel Button Key" name="./createExcelBtnI18n"
+						required="true" />
+				     <createPdfBtnI18n
+						jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+						fieldDescription="Enter Create Pdf Button i18 Key"
+						fieldLabel="Create Pdf Button Key" name="./createPdfBtnI18n"
+						required="true" />				
 				</items>
 			</column>
 		</items>

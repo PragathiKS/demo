@@ -31,6 +31,7 @@ public class FinancialStatementModelTest {
         Assert.assertTrue(config.contains("Reset search"));
         Assert.assertTrue(config.contains("Statement Summary"));
         Assert.assertTrue(config.contains("Find customer"));
-        Assert.assertTrue(config.contains("Document Number"));       
+        Assert.assertTrue(config.contains("Document Number"));  
+        Assert.assertTrue(config.contains("Create PDF"));
     }
 }

@@ -64,6 +64,12 @@ public class FinancialStatementModel {
     @Inject
     private String documentHeadingI18n;
     
+    @Inject
+    private String createExcelBtnI18n;
+    
+    @Inject
+    private String createPdfBtnI18n;
+    
     private String config;
     
     /**
@@ -88,6 +94,8 @@ public class FinancialStatementModel {
         i18KeyMap.put("searchButtonText", searchButtonText);
         i18KeyMap.put("summaryHeadingI18n", summaryHeadingI18n);
         i18KeyMap.put("documentHeadingI18n", documentHeadingI18n);
+        i18KeyMap.put("createExcelBtnI18n", createExcelBtnI18n);
+        i18KeyMap.put("createPdfBtnI18n", createPdfBtnI18n);
         
         
         Gson gson = new Gson();

@@ -545,7 +545,9 @@
                      "resetButtonText":"Reset search",
                      "searchButtonText": "Search statement",
                      "summaryHeadingI18n": "Statement Summary",
-                     "documentHeadingI18n":"Documents"
+                     "documentHeadingI18n":"Documents",
+                     "createExcelBtnI18n": "Create Excel",
+                     "createPdfBtnI18n": "Create PDF"
                   }
             }
          }
