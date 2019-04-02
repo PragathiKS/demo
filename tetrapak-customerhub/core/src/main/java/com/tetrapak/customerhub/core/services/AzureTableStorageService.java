@@ -6,26 +6,21 @@ import java.security.InvalidKeyException;
 import java.util.List;
 
 import com.microsoft.azure.storage.StorageException;
-import com.microsoft.azure.storage.table.CloudTable;
-import com.microsoft.azure.storage.table.CloudTableClient;
 import com.microsoft.azure.storage.table.DynamicTableEntity;
 
 public interface AzureTableStorageService {
-
-	CloudTableClient getTableClientReference()
-			throws RuntimeException, IOException, URISyntaxException, InvalidKeyException;
 	
-	CloudTable createTable(CloudTableClient tableClient, String tableName)
+	void createTable( String tableName)
 			throws StorageException, RuntimeException, IOException, InvalidKeyException, IllegalArgumentException,
 			URISyntaxException, IllegalStateException ;
 	
-	List<DynamicTableEntity> retrieveDataFromTable(CloudTable cloudTable)
-			throws InvalidKeyException, RuntimeException, IOException, URISyntaxException;
+	List<DynamicTableEntity> retrieveDataFromTable(String tableName, String userId)
+			throws InvalidKeyException, RuntimeException, IOException, URISyntaxException, StorageException;
 	
-	void insertOrUpdateRowInTable(CloudTable cloudTable, DynamicTableEntity entity)
+	void insertOrUpdateRowInTable(String tableName, DynamicTableEntity entity)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException;
 	
-	void deleteRowInTable(CloudTable cloudTable, DynamicTableEntity entity)
+	boolean deleteRowInTable(String tableName, String userId)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException;
 
 }
