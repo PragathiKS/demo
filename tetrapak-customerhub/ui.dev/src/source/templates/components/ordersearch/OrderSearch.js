@@ -377,7 +377,7 @@ class OrderSearch {
     this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
     this.cache.$search = this.root.find('.js-order-search__search-term');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
-    this.cache.$modal = this.root.find('.js-order-search__modal');
+    this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);

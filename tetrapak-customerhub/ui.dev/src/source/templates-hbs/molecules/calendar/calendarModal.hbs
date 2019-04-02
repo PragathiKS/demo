@@ -1,0 +1,29 @@
+<div class="modal tp-modal tp-cal-cont__modal js-cal-cont__modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered tp-modal-dialog tp-cal-cont__modal-dialog" role="document">
+        <div class="modal-content tp-modal-content">
+            {{> molecules/modals/modalHeader/modalHeader title=this.selectDatesI18n closeBtnText=this.closeBtnI18n}}
+            <div class="modal-body tp-modal-body tp-cal-cont__modal-body">
+                <div class="tp-cal-cont__calendar-nav clearfix">
+                    {{> atoms/buttons/button/button
+                        modifier="calendar"
+                        className="tp-cal-cont__calendar-left float-left"
+                        jsClass="js-calendar-nav js-calendar-prev"
+                        data-action="previous-action"
+                        iconClass="icon-Chevron_Left"
+                        hideText=true
+                        text="cuhu.calendar.prev"}}
+                    {{> atoms/buttons/button/button
+                        modifier="calendar"
+                        className="tp-cal-cont__calendar-left float-right"
+                        jsClass="js-calendar-nav js-calendar-next"
+                        data-action="next-action"
+                        iconClass="icon-Chevron_Right"
+                        hideText=true
+                        text="cuhu.calendar.next"}}
+                </div>
+                {{> atoms/input/input type="hidden" defaultValue=this.dateRange name="daterange" label=this.dateRangeLabelI18n eleClasses="tp-cal-cont__range-selector js-range-selector" }}
+            </div>
+            {{> molecules/modals/modalFooter/modalFooter buttonText=this.setDatesBtnI18n baseClass="tp-cal-cont__calendar" jsClass="js-calendar"}}
+        </div>
+    </div>
+</div>
