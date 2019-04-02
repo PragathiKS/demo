@@ -26,7 +26,7 @@ public class FinancialStatementModelTest {
 
     @Test
     public void testGetConfigMessage() {
-        String config = financialStatementModel.getConfig();
+        String config = financialStatementModel.getI18nKeys();
         Assert.assertTrue(config.contains("Search statement"));
         Assert.assertTrue(config.contains("Reset search"));
         Assert.assertTrue(config.contains("Statement Summary"));

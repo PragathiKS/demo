@@ -70,7 +70,7 @@ public class FinancialStatementModel {
     @Inject
     private String createPdfBtnI18n;
     
-    private String config;
+    private String i18nKeys;
     
     /**
      * init method
@@ -99,15 +99,15 @@ public class FinancialStatementModel {
         
         
         Gson gson = new Gson();
-        config = gson.toJson(i18KeyMap);
+        i18nKeys = gson.toJson(i18KeyMap);
     }
 
     /**
-     * Get Config method.
-     * @return config 
-     */
-    public String getConfig() {
-        return config;
+     * Get i18nkeys method.
+     * @return i18nkeys 
+     */   
+    public String getI18nKeys() {
+        return i18nKeys;
     }
 
 }
