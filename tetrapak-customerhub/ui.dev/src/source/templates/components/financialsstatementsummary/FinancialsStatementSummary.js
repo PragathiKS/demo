@@ -7,21 +7,20 @@ import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
 /**
- * Processes order table data
- * @param {object} order Order object
+ * Processes financials table data
+ * @param {object} data data object
  * @param {string[]} keys List of keys
- * @param {string} orderDetailLink order detail link
  */
-function _tableSort(order, keys) {
+function _tableSort(data, keys) {
   const dataObject = {
     row: []
   };
   keys.forEach((key, index) => {
-    const value = order[key];
+    const value = data[key];
     dataObject.row[index] = {
       key,
       value,
-      isRTE: ['contact'].includes(key)
+      isRTE: [''].includes(key)
     };
   });
   return dataObject;
@@ -61,10 +60,7 @@ function _processTableData(data) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  //const { $filters } = this.cache;
   const $this = this;
-  //this.setSearchFields(filterParams);
-  //this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'financialsSummaryTable',
@@ -80,7 +76,7 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
-        return _processTableData.apply($this, [data]);
+        return $this.processTableData([data]);
       },
       ajaxConfig: {
         beforeSend(jqXHR) {
@@ -119,6 +115,9 @@ class FinancialsStatementSummary {
   }
   renderTable() {
     return _renderTable.apply(this, arguments);
+  }
+  processTableData(data) {
+    return _processTableData.apply(this, data);
   }
   init() {
     /* Mandatory method */

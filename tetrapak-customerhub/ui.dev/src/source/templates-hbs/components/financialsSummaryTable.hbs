@@ -7,7 +7,7 @@
 <div class="tp-financials-summary__documents">
     <h4>Documents</h4>
     {{#each documents}}
-        {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" preIconClass="icon-Chevron_Up" text=title total=totalAmount data-target=documnetID data-toggle="collapse" }}
+        {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=documnetID data-toggle="collapse" }}
         <div class="tp-financials-summary__table collapse" id="document{{@index}}">
             {{> molecules/table/table baseClass="tp-financials-summary__documents" jsClass="js-financials-summary__documents" list=documentData headings=documentHeadings tableSummary=totalAmount}}
         </div>

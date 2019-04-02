@@ -4,9 +4,11 @@
         border: 0;
         cursor: pointer;
         background: transparent;
+
         span {
             @include margin-right(6px);
         }
+
         .icon::before {
             // icon placement
             @include font-size($font-sm);
@@ -15,26 +17,30 @@
             transition: transform 0.3s;
             vertical-align: middle;
         }
+
         &.desc {
             .icon::before {
                 transform: rotate(180deg);
             }
         }
     }
+
     &__row[tabindex] {
         cursor: pointer;
     }
+
     &__cell {
         @include padding($padding-sm $padding-md $padding-sm 0);
         @include font-size($font-sm);
         @include line-height(24px, $font-sm);
         border-bottom: 1px solid $color-mercury;
+
         &heading {
             @include padding($padding-sm $padding-md $padding-sm 0);
             @include font-size($font-baseline);
             @include line-height(24px, $font-baseline);
             border-bottom: 1px solid $color-boulder;
-            font-family: $font-bold;
+            font-family: $font-semiBold;
             font-weight: normal;
             position: relative;
         }
