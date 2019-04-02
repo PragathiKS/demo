@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.beans.RecommendedForYouCardBean;
+import com.tetrapak.customerhub.core.beans.GetStartedBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
@@ -37,8 +37,8 @@ public class RecommendedForYouCardModelTest {
         Assert.assertEquals("getStarted", recommendedForYouCardModel.getHeadingI18n());
         Assert.assertEquals("abc", recommendedForYouCardModel.getClassName());
         assertTrue(recommendedForYouCardModel.getGetStartedList().size() > 0);
-        List<RecommendedForYouCardBean> list = recommendedForYouCardModel.getGetStartedList();
-		 RecommendedForYouCardBean recommendedForYouCardBean = list.get(0);
+        List<GetStartedBean> list = recommendedForYouCardModel.getGetStartedList();
+         GetStartedBean recommendedForYouCardBean = list.get(0);
         Assert.assertEquals("One place for your business",recommendedForYouCardBean.getTitleI18n());
         Assert.assertEquals("Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",recommendedForYouCardBean.getDescriptionI18n());
         Assert.assertEquals("Image1 alt",recommendedForYouCardBean.getImageAltI18n());

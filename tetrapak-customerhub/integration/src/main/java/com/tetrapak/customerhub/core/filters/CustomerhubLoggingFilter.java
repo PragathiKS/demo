@@ -42,14 +42,14 @@ import org.slf4j.LoggerFactory;
            })
 public class CustomerhubLoggingFilter implements Filter {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerhubLoggingFilter.class);
 
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response,
                          final FilterChain filterChain) throws IOException, ServletException {
 
         final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-        logger.debug("request for {}, with selector {}", slingRequest
+        LOGGER.debug("request for {}, with selector {}", slingRequest
                 .getRequestPathInfo().getResourcePath(), slingRequest
                 .getRequestPathInfo().getSelectorString());
 
@@ -58,10 +58,12 @@ public class CustomerhubLoggingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
+        //no implementation required for this method
     }
 
     @Override
     public void destroy() {
+        //no implementation required for this method
     }
 
 }

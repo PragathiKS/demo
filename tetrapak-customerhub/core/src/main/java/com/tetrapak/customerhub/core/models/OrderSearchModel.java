@@ -54,8 +54,6 @@ public class OrderSearchModel {
 
     private Set<String> disabledFields;
 
-    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
-
     private String config;
 
     @PostConstruct
