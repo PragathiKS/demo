@@ -18,9 +18,15 @@ function _processFinancialStatementData(data) {
 }
 
 function _renderAddressDetail() {
-  this.root.find('.js-financial-statement__account-number').text(this.cache.data.selectedCustomerData.info.acountNo);
-  this.root.find('.js-financial-statement__address-title').text(this.cache.data.selectedCustomerData.info.title);
-  this.root.find('.js-financial-statement__address-detail').text(this.cache.data.selectedCustomerData.info.address);
+  render.fn({
+    template: 'financialAddressDetail',
+    target: '.tp-financial-statement__customer-detail',
+    data: {
+      data: this.cache.data.selectedCustomerData,
+      accountNumber: this.cache.data.accountNumber
+    }
+  });
+
 }
 function _setSelectedCustomer(key) {
   this.cache.data.customerData.forEach(item => {
