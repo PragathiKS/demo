@@ -26,6 +26,9 @@ describe('OrderSearch', function () {
     this.analyticsSpy = sinon.spy(this.orderSearch, 'trackAnalytics');
     this.resetSpy = sinon.spy(this.orderSearch, 'resetSearch');
     this.renderSpy = sinon.spy(render, 'fn');
+    this.dateRangeSpy = sinon.spy(this.orderSearch, 'openRangeSelector');
+    this.calendarSpy = sinon.spy(this.orderSearch, 'submitDateRange');
+    this.navigateSpy = sinon.spy(this.orderSearch, 'navigateCalendar');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderSearchData));
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
@@ -54,6 +57,9 @@ describe('OrderSearch', function () {
     this.analyticsSpy.restore();
     this.resetSpy.restore();
     this.renderSpy.restore();
+    this.dateRangeSpy.restore();
+    this.calendarSpy.restore();
+    this.navigateSpy.restore();
     this.routeStub.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -111,5 +117,17 @@ describe('OrderSearch', function () {
       pageIndex: 1
     }]);
     expect(render.fn.called).to.be.true;
+  });
+  it('should open date range selector on click of "date range" input', function () {
+    $('.js-order-search__date-range').trigger('click');
+    expect(this.dateRangeSpy.called).to.be.true;
+  });
+  it('should navigate calendar of click of calendar navigation buttons', function () {
+    $('.js-calendar-nav').eq(0).trigger('click');
+    expect(this.navigateSpy.called).to.be.true;
+  });
+  it('should select date range and close range selector on click of "Set Dates" button', function () {
+    $('.js-calendar').trigger('click');
+    expect(this.calendarSpy.called).to.be.true;
   });
 });

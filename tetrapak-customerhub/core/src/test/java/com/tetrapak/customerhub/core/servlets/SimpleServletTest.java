@@ -41,23 +41,24 @@ public class SimpleServletTest {
         simpleServlet.doGet(request, response);
         assertEquals("Title = resource title", response.getOutputAsString());
     }
-    
+
     // Register multiple services
     @SuppressWarnings("unchecked")
     public <T> List<GenericServiceType<T>> getMultipleMockedService(){
-        
-        GenericServiceType<SimpleServlet> servletGenericsType = new GenericServiceType<SimpleServlet>();
+
+        GenericServiceType<SimpleServlet> servletGenericsType = new GenericServiceType<>();
         servletGenericsType.setClazzType(SimpleServlet.class);
         servletGenericsType.set(new SimpleServlet());
-        List<GenericServiceType<T>> serviceTypes = new ArrayList<GenericServiceType<T>>();
+        List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
         serviceTypes.add((GenericServiceType<T>)servletGenericsType);
         return serviceTypes;
     }
+
     // Register single service
     @SuppressWarnings("unchecked")
     public <T> GenericServiceType<T> getSingleMockedService(){
         
-        GenericServiceType<SimpleServlet> servletGenericsType = new GenericServiceType<SimpleServlet>();
+        GenericServiceType<SimpleServlet> servletGenericsType = new GenericServiceType<>();
         servletGenericsType.setClazzType(SimpleServlet.class);
         servletGenericsType.set(new SimpleServlet());
         return (GenericServiceType<T>)servletGenericsType;

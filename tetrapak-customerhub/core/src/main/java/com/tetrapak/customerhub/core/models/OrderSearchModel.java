@@ -54,14 +54,16 @@ public class OrderSearchModel {
 
     private Set<String> disabledFields;
 
-    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
-
     private String config;
 
     @PostConstruct
     protected void init() {
         disabledFields = new LinkedHashSet<>();
         disabledFields.add("contact");
+        disabledFields.add("customerNumber");
+        disabledFields.add("salesOrg");
+        disabledFields.add("requestedDelivery");
+        disabledFields.add("ETA");
 
         Map<String, Object> i18KeyMap = new HashMap<String, Object>();
         i18KeyMap.put("resetButtonTextI18n", resetButtonTextI18n);

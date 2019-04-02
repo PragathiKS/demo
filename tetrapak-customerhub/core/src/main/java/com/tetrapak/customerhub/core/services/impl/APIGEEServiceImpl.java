@@ -19,7 +19,7 @@ public class APIGEEServiceImpl implements APIGEEService {
 
     /**
      * activate method
-     * @param config
+     * @param config API GEE Service configuration
      */
     @Activate
     public void activate(APIGEEServiceConfig config) {

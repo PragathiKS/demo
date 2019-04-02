@@ -215,3 +215,13 @@ td {
         @include font-size($font-xl);
     }
 }
+
+.tp-modal-dialog {
+    @include margin($margin-md);
+    @media #{$mobile-large} {
+        margin: convert-to-rem($margin-md) auto;
+    }
+    @media #{$desktop} {
+        margin: convert-to-rem($margin-l) auto;
+    }
+}
