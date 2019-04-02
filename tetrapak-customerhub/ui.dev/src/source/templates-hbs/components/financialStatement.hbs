@@ -2,6 +2,7 @@
 <h3 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h3>
 {{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
 <div class="tp-financial-statement__customer-detail">
+    {{> molecules/financialAddressDetail data="this.data.cache" }}
 </div>
 <h3 class="tp-financial-statement__select-customer-label">{{this.accountService}}</h3>
 <form class="tp-financial-statement__filters form-group">
@@ -23,10 +24,10 @@
             </div>
         </div>
         <div class="tp-financial-statement__search-btn-container">
-            {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonText btnClasses="tpatom-button--primary tp-financial-statement__submit-btn js-financial-statement__submit" iconClass="icon-Chevron_Right" dataLocator="statement-financial-btn" }}
+            {{> atoms/buttons/button/button text=this.searchButtonText modifier="primary" className="tp-financial-statement__submit-btn" jsClass="js-financial-statement__submit" iconClass="icon-Chevron_Right" dataLocator="statement-financial-btn" }}
         </div>
         <div class="tp-financial-statement__reset-btn-container">
-            {{> atoms/buttons/primaryButton/buttons btnText=this.resetButtonText iconClass="icon-Close" btnClasses="tpatom-button--secondary js-financial-statement__reset"  dataLocator="statement-reset-btn" }}
+            {{> atoms/buttons/button/button text=this.resetButtonText modifier="secondary" className="tp-financial-statement__reset-btn" iconClass="icon-Close" jsClass="js-financial-statement__reset"  dataLocator="statement-reset-btn" }}
         </div>
     </div>
 </form>

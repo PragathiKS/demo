@@ -54,7 +54,7 @@
     &__account,
     &__address-title,
     &__address-detail {
-        @include padding-top($font-md);
+        @include padding-top($padding-md);
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
     }
@@ -91,14 +91,13 @@
     }
 
     &__date-range-container {
+        @include height(40px);
         width: 100%;
-        height: 40px;
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
             width: (100% / 3);
             display: inline-block;
-            clear: left;
         }
     }
 
@@ -115,9 +114,8 @@
     }
 
     &__document-type-container {
-        width: 100%;
-        height: 40px;
         @include margin(0 0 $margin-md 0);
+        width: 100%;
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
@@ -162,6 +160,12 @@
         }
     }
 
+    &__reset-btn-container {
+        @include margin-bottom(16px);
+        @include padding(8px 16px);
+        background: $color-wild-sand;
+    }
+
     &__document-number-wrapper {
         @extend %wrapper;
         display: block;
@@ -174,11 +178,15 @@
         }
     }
 
+    &__reset-btn {
+        @include line-height($font-l, $font-baseline);
+    }
+
     .form-element__icon {
-        color: $color-boulder;
         @include height(12px);
         @include width(12px);
         @include font-size($font-sm);
+        color: $color-boulder;
     }
 
     .form-element,

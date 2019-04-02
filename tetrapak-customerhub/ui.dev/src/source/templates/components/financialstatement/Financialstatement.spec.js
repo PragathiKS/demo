@@ -6,9 +6,6 @@ import financialStatementData from './data/financialStatement.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
-
-
-
 describe('FinancialStatement', function () {
   const jqRef = {
     setRequestHeader() {
@@ -29,6 +26,13 @@ describe('FinancialStatement', function () {
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialStatementData));
+    this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
+      data: {
+        access_token: "fLW1l1EA38xjklTrTa5MAN7GFmo2",
+        expires_in: "43199",
+        token_type: "BearerToken"
+      }
+    });
     this.financialstatement.init();
   });
   after(function () {
@@ -38,23 +42,28 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
+    this.tokenStub.restore();
   });
+
   it('should initialize', function (done) {
     expect(this.financialstatement.init.called).to.be.true;
     done();
   });
-  it('should render component on page load', function (done) {
-    expect(render.fn.called).to.be.true;
-    done();
-  });
+
   it('should call renderFilters', function (done) {
     expect(this.financialstatement.renderFilters.called).to.be.true;
     done();
   });
-  it('should set new customer by calling setCustomer', function () {
+
+  it('should render customer dropdown', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialStatementData));
+    expect(render.fn.called).to.be.true;
+    done();
+  });
+
+  it('should set new customer by calling setCustomer when changed from dropdown', function () {
     $('.js-financial-statement__find-customer').trigger('change');
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
   });

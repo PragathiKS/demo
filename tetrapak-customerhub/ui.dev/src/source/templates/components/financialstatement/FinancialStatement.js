@@ -1,16 +1,24 @@
 import $ from 'jquery';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
+import auth from '../../../scripts/utils/auth';
+import { apiHost } from '../../../scripts/common/common';
+import { ajaxMethods, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
+
+
 
 function _processFinancialStatementData(data) {
   data.customerData.sort((a, b) => {
-    if (a.desc.toUpperCase() < b.desc.toUpperCase()) { return -1; }
-    if (a.desc.toUpperCase() > b.desc.toUpperCase()) { return 1; }
+    if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
+      return -1;
+    }
+    if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
+      return 1;
+    }
     return 0;
   });
-  data = $.extend(true, data, this.cache.config);
+  data = $.extend(true, data, this.cache.i18nKeys);
   const [selectedCustomerData] = data.customerData;
   data.selectedCustomerData = selectedCustomerData;
   this.cache.data = data;
@@ -21,10 +29,7 @@ function _renderAddressDetail() {
   render.fn({
     template: 'financialAddressDetail',
     target: '.tp-financial-statement__customer-detail',
-    data: {
-      data: this.cache.data.selectedCustomerData,
-      accountNumber: this.cache.data.accountNumber
-    }
+    data: this.cache.data
   });
 
 }
@@ -38,22 +43,28 @@ function _setSelectedCustomer(key) {
 
 }
 function _renderFilters() {
-  render.fn({
-    template: 'financialStatement',
-    url: `../../apps/settings/wcm/designs/customerhub/jsonData/financialStatement.json`,
-    target: '.js-financial-statement__select-customer-dropdown',
-    ajaxConfig: {
-      method: ajaxMethods.GET,
-      cache: true,
-      showLoader: true,
-      cancellable: true
-    },
-    beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
-  }, () => {
-    _renderAddressDetail.apply(this);
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'financialStatement',
+      url: {
+        path: `${apiHost}/${API_FINANCIAL_SUMMARY}`
+      },
+      target: '.js-financial-statement__select-customer-dropdown',
+      ajaxConfig: {
+        method: ajaxMethods.GET,
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        cache: true,
+        showLoader: true,
+        cancellable: true
+      },
+      beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
+    });
   });
-
 }
+
 class FinancialStatement {
   constructor({ el }) {
     this.root = $(el);
@@ -63,9 +74,9 @@ class FinancialStatement {
   initCache() {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
     try {
-      this.cache.config = JSON.parse(this.cache.configJson);
+      this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
-      this.cache.config = {};
+      this.cache.i18nKeys = {};
       logger.error(e);
     }
   }
@@ -80,8 +91,8 @@ class FinancialStatement {
         this.setSelectedCustomer(e.target.value);
       });
   }
-  setSelectedCustomer(data) {
-    _setSelectedCustomer.apply(this, [data]);
+  setSelectedCustomer() {
+    _setSelectedCustomer.apply(this, arguments);
   }
   init() {
     this.initCache();
