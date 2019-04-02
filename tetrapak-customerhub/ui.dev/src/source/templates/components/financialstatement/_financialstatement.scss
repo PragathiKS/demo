@@ -116,6 +116,7 @@
     &__document-type-container {
         @include margin(0 0 $margin-md 0);
         width: 100%;
+        align-self: baseline;
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
@@ -130,9 +131,9 @@
     }
 
     &__document-number-container {
-        width: 100%;
         @include margin(0 0 $margin-md 0);
-
+        align-self: baseline;
+        width: 100%;
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
