@@ -1,12 +1,11 @@
 import $ from 'jquery';
+import moment from 'moment';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { apiHost } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
-
-
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 
 function _processFinancialStatementData(data) {
   data.customerData.sort((a, b) => {
@@ -22,12 +21,13 @@ function _processFinancialStatementData(data) {
   // Resolve i18n keys for calendar modal
   data.selectDatesI18n = data.selectDates;
   data.closeBtnI18n = data.closeBtn;
-  data.setDatesI18n = data.setDates;
+  data.setDatesBtnI18n = data.setDates;
   data.dateRangeLabelI18n = data.selectDateRangeLabel;
   // Remove duplicate properties
   delete data.selectDates;
   delete data.closeBtn;
   delete data.setDates;
+  data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
   const [selectedCustomerData] = data.customerData;
   data.selectedCustomerData = selectedCustomerData;
   this.cache.data = data;
@@ -40,8 +40,8 @@ function _renderAddressDetail() {
     target: '.tp-financial-statement__customer-detail',
     data: this.cache.data
   });
-
 }
+
 function _setSelectedCustomer(key) {
   this.cache.data.customerData.forEach(item => {
     if (item.key === key) {
@@ -49,8 +49,8 @@ function _setSelectedCustomer(key) {
     }
   });
   _renderAddressDetail.apply(this);
-
 }
+
 function _renderFilters() {
   auth.getToken(({ data: authData }) => {
     render.fn({
@@ -72,6 +72,20 @@ function _renderFilters() {
       beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
     });
   });
+}
+
+function _setDateFilter(status) {
+  const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
+  const endDate = moment(Date.now()).format(DATE_FORMAT);
+  if (
+    typeof status === 'string'
+    && ['open'].includes(status.toLowerCase())
+  ) {
+    $dateSelector.val(endDate);
+  } else {
+    const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+    $dateSelector.val(`${startDate} - ${endDate}`);
+  }
 }
 
 class FinancialStatement {
@@ -98,10 +112,16 @@ class FinancialStatement {
     this.root
       .on('change', '.js-financial-statement__find-customer', (e) => {
         this.setSelectedCustomer(e.target.value);
+      })
+      .on('change', '.js-financial-statement__status', (e) => {
+        this.setDateFilter($(e.target).find('option').eq(e.target.selectedIndex).text());
       });
   }
+  setDateFilter() {
+    return _setDateFilter.apply(this, arguments);
+  }
   setSelectedCustomer() {
-    _setSelectedCustomer.apply(this, arguments);
+    return _setSelectedCustomer.apply(this, arguments);
   }
   init() {
     this.initCache();

@@ -22,6 +22,7 @@ describe('FinancialStatement', function () {
     this.financialstatement = new FinancialStatement({ el: document.body });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
+    this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -39,6 +40,7 @@ describe('FinancialStatement', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.setSelectedCustomerSpy.restore();
+    this.statusSpy.restore();
     this.renderFiltersSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
@@ -66,5 +68,10 @@ describe('FinancialStatement', function () {
   it('should set new customer by calling setCustomer when changed from dropdown', function () {
     $('.js-financial-statement__find-customer').trigger('change');
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
+  });
+
+  it('should change date selector on status change', function () {
+    $('.js-financial-statement__status').trigger('change');
+    expect(this.statusSpy.called).to.be.true;
   });
 });

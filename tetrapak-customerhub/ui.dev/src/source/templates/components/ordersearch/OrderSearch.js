@@ -7,7 +7,7 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
@@ -330,7 +330,7 @@ class OrderSearch {
         startDate,
         endDate,
         dropdowns: false,
-        format: 'YYYY-MM-DD',
+        format: DATE_FORMAT,
         separator: ' - '
       });
       _disableCalendarNext(this);

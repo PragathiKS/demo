@@ -12,7 +12,7 @@
             {{> atoms/dropdown/dropdown options=this.status name="selectStatus" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="tp-financial-statement__status js-financial-statement__status"}}
         </div>
         <div class="tp-financial-statement__date-range-container">
-            {{> atoms/input/input iconClass="icon-Calendar2" defaultValue='2018-01-05' name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="tp-financial-statement__date-range js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
+            {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.currentDate name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="tp-financial-statement__date-range js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
         </div>
     </div>
     <div class="tp-financial-statement__search-container">
