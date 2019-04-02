@@ -239,8 +239,6 @@ td {
 }
 
 .tp-modal-dialog {
-    @include margin($margin-md);
-
     @media #{$mobile-large} {
         margin: convert-to-rem($margin-md) auto;
     }

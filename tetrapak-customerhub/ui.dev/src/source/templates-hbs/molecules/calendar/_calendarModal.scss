@@ -4,8 +4,12 @@
         z-index: $zindex-p;
 
         @media #{$mobile} {
-            @include max-width(294px);
+            @include max-width(266px);
             margin: 0 auto;
+        }
+
+        @media #{$mobile-large} {
+            @include max-width(294px);
         }
     }
 

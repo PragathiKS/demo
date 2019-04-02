@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import moment from 'moment';
+import Lightpick from 'lightpick';
+import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
@@ -70,8 +72,27 @@ function _renderFilters() {
         cancellable: true
       },
       beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
+    }, () => {
+      this.initPostCache();
+      this.initializeCalendar();
     });
   });
+}
+
+function _disableCalendarNext($this) {
+  // Check if current visible months contain current month
+  const currentMonth = moment().month();
+  const currentYear = moment().year();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  if (
+    visibleMonths.includes(currentMonth)
+    && visibleYears.includes(currentYear)
+  ) {
+    $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
+  } else {
+    $this.root.find('.js-calendar-next').removeAttr('disabled');
+  }
 }
 
 function _setDateFilter(status) {
@@ -82,9 +103,11 @@ function _setDateFilter(status) {
     && ['open'].includes(status.toLowerCase())
   ) {
     $dateSelector.val(endDate);
+    this.initializeCalendar();
   } else {
     const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
     $dateSelector.val(`${startDate} - ${endDate}`);
+    this.initializeCalendar(true);
   }
 }
 
@@ -103,11 +126,48 @@ class FinancialStatement {
       logger.error(e);
     }
   }
-
+  initPostCache() {
+    this.cache.$rangeSelector = this.root.find('.js-range-selector');
+    this.cache.$modal = this.root.find('.js-cal-cont__modal');
+    this.cache.dateConfig = {
+      singleDate: true,
+      numberOfMonths: 1,
+      inline: true,
+      maxDate: Date.now(),
+      dropdowns: false,
+      format: DATE_FORMAT
+    };
+  }
+  initializeCalendar(isRange) {
+    const { $rangeSelector, dateConfig, picker } = this.cache;
+    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+    if (rangeSelectorEl) {
+      const [startDate, endDate] = $rangeSelector.val().split(' - ');
+      const currentConfig = $.extend({}, dateConfig);
+      if (isRange) {
+        $.extend(currentConfig, {
+          field: rangeSelectorEl,
+          singleDate: false,
+          numberOfMonths: 2,
+          startDate,
+          endDate,
+          separator: ' - '
+        });
+      } else {
+        $.extend(currentConfig, {
+          field: rangeSelectorEl
+        });
+      }
+      if (picker) {
+        picker.destroy();
+      }
+      this.cache.picker = new Lightpick(currentConfig);
+      _disableCalendarNext(this);
+    }
+  }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
-
   bindEvents() {
     this.root
       .on('change', '.js-financial-statement__find-customer', (e) => {
@@ -115,7 +175,13 @@ class FinancialStatement {
       })
       .on('change', '.js-financial-statement__status', (e) => {
         this.setDateFilter($(e.target).find('option').eq(e.target.selectedIndex).text());
+      })
+      .on('click', '.js-financial-statement__date-range', () => {
+        this.openDateSelector();
       });
+  }
+  openDateSelector() {
+    this.cache.$modal.modal('show');
   }
   setDateFilter() {
     return _setDateFilter.apply(this, arguments);
