@@ -10,31 +10,31 @@ use(function() {
     "dLogoLink": "/content/tetrapak/public-web/global/en/solutions.html",
     "headerNavLinks": [
         {
-            "href": "/content/tetrapak/public-web/global/en/solutions.html",
-            "name": "Solutions",
-            "targetNew": false,
-            "titleI18n": "cuhu.HeaderNavLink.title"
-        },
-        {
-            "href": "/content/tetrapak/public-web/global/en/innovations.html",
-            "name": "Innovation",
+            "href": "https://www.tetrapak.com/processing",
+            "name": "Processing",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "/content/tetrapak/public-web/global/en/sustainability.html",
+            "href": "https://www.tetrapak.com/packaging",
+            "name": "Packaging",
+            "targetNew": true,
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "https://www.tetrapak.com/services",
+            "name": "Services",
+            "targetNew": true,
+            "titleI18n": "cuhu.HeaderNavLink.title"
+        },
+        {
+            "href": "https://www.tetrapak.com/sustainability",
             "name": "Sustainability",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
         },
         {
-            "href": "/content/tetrapak/public-web/global/en/careers.html",
-            "name": "Careers",
-            "targetNew": true,
-            "titleI18n": "cuhu.HeaderNavLink.title"
-        },
-        {
-            "href": "/content/tetrapak/public-web/global/en/about-us.html",
+            "href": "https://www.tetrapak.com/about",
             "name": "About us",
             "targetNew": true,
             "titleI18n": "cuhu.HeaderNavLink.title"
