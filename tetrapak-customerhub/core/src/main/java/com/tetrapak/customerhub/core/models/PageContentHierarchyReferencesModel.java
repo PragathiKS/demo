@@ -17,7 +17,6 @@ import javax.jcr.nodetype.ConstraintViolationException;
 import javax.jcr.version.VersionException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -132,7 +131,7 @@ public class PageContentHierarchyReferencesModel {
 					destRootNode  = childrenJcrContent.addNode(srcRoot.getName());
 				}
 				
-				destRootNode.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, srcRoot.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE).getValue().getString());
+				destRootNode.setProperty("sling:resourceType", srcRoot.getProperty("sling:resourceType").getValue().getString());
 				Node srcResponsiveGrid = srcRoot.getNode("responsivegrid");
 				Node destResponsiveGrid = null;
 				
@@ -143,7 +142,7 @@ public class PageContentHierarchyReferencesModel {
 					destResponsiveGrid = destRootNode.addNode(srcResponsiveGrid.getName());
 				}
 				
-				destResponsiveGrid.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, srcResponsiveGrid.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE).getValue().getString());
+				destResponsiveGrid.setProperty("sling:resourceType", srcResponsiveGrid.getProperty("sling:resourceType").getValue().getString());
 				Node destPageReference = null;
 				if(destResponsiveGrid.hasNode("pagereference")) {
 					destPageReference = destResponsiveGrid.getNode("pagereference");
@@ -151,7 +150,7 @@ public class PageContentHierarchyReferencesModel {
 					destPageReference = destResponsiveGrid.addNode("pagereference");
 				}
 				
-				destPageReference.setProperty(SlingConstants.PROPERTY_RESOURCE_TYPE, PAGE_REFERENCE_RESOURCE_TYPE);
+				destPageReference.setProperty("sling:resourceType", PAGE_REFERENCE_RESOURCE_TYPE);
 				String srcChildrenPath = srcChildrenPage.getPath();
 				srcChildrenPath = srcChildrenPath.replace("/en", "/" + locale);
 				destPageReference.setProperty("pageContentPath", srcChildrenPath);
