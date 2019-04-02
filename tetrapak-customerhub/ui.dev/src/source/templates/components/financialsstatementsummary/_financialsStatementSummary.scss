@@ -1,8 +1,7 @@
 .tp-financials-summary {
-    @include padding($padding-md);
-    @include border-radius($border-radius);
-    @include box-shadow-normal;
-    background-color: $color-white;
+    &.tp-card {
+        @include padding-bottom($padding-sm);
+    }
 
     h4 {
         @include padding-top($padding-xl);
@@ -10,7 +9,7 @@
     }
 
     &__table {
-        overflow-x: auto;
+        @include horizontal-scroll-touch;
     }
 
     &__documents {
@@ -56,7 +55,14 @@
 
     &__btn-container {
         @include margin-top($margin-l);
-        text-align: right;
+
+        @media #{$desktop} {
+            text-align: right;
+        }
+
+        .tpatom-btn {
+            @include margin-bottom($margin-md);
+        }
     }
 
     &__create-excel {
