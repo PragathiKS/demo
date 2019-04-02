@@ -151,8 +151,11 @@ pipeline {
 				}
 		    }
 			
+			stage ('Mail') {		  
+		    steps {
 			mail bcc: '', body: 'Please check the pipline log', cc: 'rahul.azad@publicissapient.com', from: '', replyTo: '', subject: 'Tetrapack_Dev', to: 'rahul.azad@publicissapient.com'
-			
+			}
+		    }
 		}
     }
 	
