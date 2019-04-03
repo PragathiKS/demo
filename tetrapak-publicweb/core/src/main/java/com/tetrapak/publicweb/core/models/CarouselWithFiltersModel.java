@@ -71,20 +71,23 @@ public class CarouselWithFiltersModel {
 	}
 
 	private void getCategoryTagsMap(String[] tagID) {
-		for (String tag : tagID) {
-			String tagTitle = tagManager.resolve(tag).getTitle();
-			log.info("Category tags map : {} - {}", tag, tagTitle);
-			categoryTagsMap.put(tag, tagTitle);
-		}
-		
+		if(tagID != null) {
+			for (String tag : tagID) {
+				String tagTitle = tagManager.resolve(tag).getTitle();
+				log.info("Category tags map : {} - {}", tag, tagTitle);
+				categoryTagsMap.put(tag, tagTitle);
+			}
+		}		
 	}
 
 	private void getTagList(String[] tagID) {
-		for (String tag : tagID) {
-			String tagPath = tagManager.resolve(tag).getTagID();
-			log.info("Tag Path : {}", tagPath);
-			prodTypeList.add(tagPath);
-		}
+		if(tagID != null) {
+			for (String tag : tagID) {
+				String tagPath = tagManager.resolve(tag).getTagID();
+				log.info("Tag Path : {}", tagPath);
+				prodTypeList.add(tagPath);
+			}
+		}		
 	}
 
 	public String getTitleI18n() {
