@@ -108,6 +108,7 @@
     &__search-container {
         @media #{$desktop} {
             @include display-flex;
+            flex-wrap: wrap;
         }
     }
 
@@ -120,6 +121,11 @@
             @include padding(0 $padding-md 0 0);
             width: (100% / 3);
         }
+    }
+
+    &__document-type {
+        @include padding(7px 24px 7px 10px);
+        @include line-height(22px, $font-baseline);
     }
 
     &__document-type-wrapper {
@@ -155,13 +161,13 @@
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
-            flex: 1;
         }
     }
 
     &__reset-btn-container {
-        @include margin-bottom(16px);
-        @include padding(8px 16px);
+        @include margin-bottom($margin-md);
+        @include padding($padding-sm $padding-md);
+        display: inline-block;
         background: $color-wild-sand;
     }
 
