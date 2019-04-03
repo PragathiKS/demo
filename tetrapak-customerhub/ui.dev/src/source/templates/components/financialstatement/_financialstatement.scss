@@ -124,7 +124,7 @@
     }
 
     &__document-type {
-        @include padding($padding-l $paddingl $padding-sm $padding-sm);
+        @include padding($padding-l $padding-l $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
     }
 
