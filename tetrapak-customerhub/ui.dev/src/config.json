@@ -143,6 +143,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "financial": {
+        "testMultiple": true,
+        "name": "financial",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -164,6 +170,9 @@
       ],
       "orders": [
         "source/templates/components/ordersearch/"
+      ],
+      "financial": [
+        "source/templates/components/financialstatement/"
       ]
     },
     "handlebars": {

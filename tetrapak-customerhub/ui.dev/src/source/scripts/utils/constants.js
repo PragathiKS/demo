@@ -7,7 +7,9 @@ export const TEMPLATE_MISSING = 'Target template is missing';
 export const INVALID_URL = 'URL is invalid';
 export const INIT_FAILED = 'One or more components were not initialized';
 export const RESULTS_EMPTY = 'Empty results';
+export const DATE_FORMAT = 'YYYY-MM-DD';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
+export const FINANCIAL_DATE_RANGE_PERIOD = 45;
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -19,3 +21,4 @@ export const API_TOKEN = 'bin/customerhub/token-generator';
 export const API_SEARCH = 'orders/summary';
 export const API_ORDER_HISTORY = 'orders/history';
 export const API_ORDER_DETAIL = 'orders/details';
+export const API_FINANCIAL_SUMMARY = 'financials/summary';

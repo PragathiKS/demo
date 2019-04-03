@@ -146,4 +146,12 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your experience"/>
+    <cuhu.calendar.prev
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Previous"/>
+    <cuhu.calendar.next
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Next"/>
 </jcr:root>

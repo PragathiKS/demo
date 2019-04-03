@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**Servlet class for Saving user's preferences
+ * @author Nitin Kumar
+ */
 @Component(service = Servlet.class,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Order Prefernces Servlet",
@@ -41,7 +44,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 
     private static final String ORDER_PREFERENCES = "orderPreferences";
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(SaveOrderPreferencesServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -49,7 +52,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request,
                           final SlingHttpServletResponse response) throws IOException {
-        logger.info("SaveOrderPreferencesServlet POST method started");
+        LOGGER.info("SaveOrderPreferencesServlet POST method started");
 
         final Map<String, Object> paramMap = new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, TETRAPAK_USER);
@@ -87,7 +90,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
                     writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
                 }
             } catch (RepositoryException e) {
-                logger.error("RepositoryException in SaveOrderPreferencesServlet", e);
+                LOGGER.error("RepositoryException in SaveOrderPreferencesServlet", e);
             } finally {
                 if (null != resourceResolver && resourceResolver.isLive()) {
                     resourceResolver.close();
