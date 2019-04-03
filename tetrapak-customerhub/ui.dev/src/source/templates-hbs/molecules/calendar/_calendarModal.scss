@@ -1,15 +1,19 @@
+$width-calendar-mobile: 266px;
+$width-calendar: 294px;
+$dialog-maxwidth: 663px;
+
 .tp-cal-cont {
     &__calendar-nav {
         position: relative;
         z-index: $zindex-p;
 
         @media #{$mobile} {
-            @include max-width(266px);
+            @include max-width($width-calendar-mobile);
             margin: 0 auto;
         }
 
         @media #{$mobile-large} {
-            @include max-width(294px);
+            @include max-width($width-calendar);
         }
     }
 
@@ -26,7 +30,7 @@
 
         &-dialog {
             @media #{$desktop} {
-                @include max-width(663px);
+                @include max-width($dialog-maxwidth);
             }
         }
 
