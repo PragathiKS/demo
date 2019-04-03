@@ -62,6 +62,8 @@
                                 sling:resourceType="cq/gui/components/common/tagspicker"
                                 fieldDescription="Select Product Type"
                                 fieldLabel="Product Type"
+                                eaemMaxTags="1"
+                                validation="eaem.max.tags"
                                 rootPath="/content/cq:tags/tetra-pak"
                                 name="./productType"/>
                             <category
