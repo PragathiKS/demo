@@ -57,97 +57,27 @@
                                         value="text-right"/>
                                 </items>
                             </titlealignment>
-                            <tabdetails
+                            <producttype
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/form/multifield"
-                                fieldLabel="Tabs and details"
-                                class="full-width">
-                                    <field
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/fieldset"
-                                        acs-commons-nested="NODE_STORE"
-                                        name="./tabDetails">
-                                        <layout
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                                            method="absolute"/>
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <column
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/container">
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <contentType
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                        fieldLabel="Select Content Type"
-                                                        name="./contentType">
-                                                        <items jcr:primaryType="nt:unstructured">
-                                                            <automatic
-                                                                jcr:primaryType="nt:unstructured"
-                                                                text="Automatic"
-                                                                value="automatic"/>
-                                                            <manual
-                                                                jcr:primaryType="nt:unstructured"
-                                                                text="Manual"
-                                                                value="manual"/>
-                                                        </items>
-                                                    </contentType>
-                                                    <articlepath
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                        fieldDescription="Select practice line path to automatically populate values when content type is automatic"
-                                                        fieldLabel="Practice Line Path"
-                                                        name="./practicePath"
-                                                        rootPath="/content"/>
-                                                    <title
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                        fieldLabel="Practice Line Title"
-                                                        name="./practiceTitle"/>
-                                                    <vanityDescription
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                        fieldLabel="Description"
-                                                        name="./vanityDescription"/>
-                                                    <linkText
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                        fieldLabel="Link Text"
-                                                        name="./ctaTexti18nKey"/>
-                                                    <linkTarget
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                        fieldLabel="Link Target"
-                                                        name="./linkTarget">
-                                                        <items jcr:primaryType="nt:unstructured">
-                                                            <new
-                                                                jcr:primaryType="nt:unstructured"
-                                                                text="New Window"
-                                                                value="_blank"/>
-                                                            <same
-                                                                jcr:primaryType="nt:unstructured"
-                                                                text="Same Window"
-                                                                value="_self"/>
-                                                        </items>
-                                                    </linkTarget>
-                                                    <imagepath
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                        fieldDescription="Select Practice Line Image Path"
-                                                        fieldLabel="Practice Line Image Path"
-                                                        name="./practiceImagePath"
-                                                        rootPath="/content/dam/publicweb"/>
-                                                    <imagealt
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                        fieldDescription="Enter Alt Text"
-                                                        fieldLabel="Alt Text"
-                                                        name="./practiceImageAltI18n"/>
-                                                </items>
-                                            </column>
-                                        </items>
-                                    </field>
-                            </tabdetails>
+                                sling:resourceType="cq/gui/components/common/tagspicker"
+                                fieldDescription="Select Product Type"
+                                fieldLabel="Product Type"
+                                rootPath="/content/cq:tags/tetra-pak"
+                                name="./productType"/>
+                            <category
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/common/tagspicker"
+                                fieldDescription="Select category for practice line"
+                                fieldLabel="Category"
+                                rootPath="/content/cq:tags/tetra-pak"
+                                name="./category"/>   
+                            <rootpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                fieldDescription="Enter the path under which the practice line pages exist"
+                                fieldLabel="Practice Line Pages Root Path"
+                                name="./rootPath"
+                                rootPath="/content"/>                         
                         </items>
                     </column>
                 </items>

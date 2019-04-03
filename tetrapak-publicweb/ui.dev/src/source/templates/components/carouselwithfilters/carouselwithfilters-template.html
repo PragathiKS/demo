@@ -10,17 +10,28 @@
         <button class="btn dropdown-toggle pw-carousel__dropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ${data.tabs[0].practiceTitle}
         </button>
-        <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-category">
+
+        <!-- Commenting below div for BE testing purpose. TODO: Fix the div with FE integration. -->
+        <!--<div class="dropdown-menu pw-carousel__dropdown__menu js-filter-category">-->
           <!--/* Categories renders here */-->
-        </div>
+            <select  id="categories" name="category" data-sly-list.categoryTag="${data.categoryTagsMap}">
+              <option value="${categoryTag}">${data.categoryTagsMap[categoryTag]}</option>
+            </select>
+        <!--</div>-->
+
       </div>
       <div class="pw-carousel__dropdown dropdown text-center d-lg-inline-block">
         <button class="btn dropdown-toggle pw-carousel__dropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ${data.tabs[0].practiceTitle}
         </button>
-        <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-subcategory">
+
+        <!-- Commenting below div for BE testing purpose. TODO: Fix the div with FE integration. -->
+        <!-- <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-subcategory"> -->
           <!--/* Subcategories renders here */-->
-        </div>
+          <select id="subcategories" name="subcategory">
+          </select>
+        <!-- </div> -->
+
       </div>
     </div>
     <div class="pw-carousel__tabContent tab-content">
@@ -29,5 +40,7 @@
       </div>
     </div>
   </div>
-  <sly data-sly-test="${!data.tabs}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabs}"></sly>
+  <sly data-sly-test="${!data.productType}" data-sly-call="${templates.placeholder @ isEmpty = !data.productType}"></sly>
+  <div class=".hidden" id="producttype-data-prodtype" data="${data.prodType}"></div>
+  <div class=".hidden" id="practice-data-rootpath" data="${data.rootPath}"></div>
 </sly>
