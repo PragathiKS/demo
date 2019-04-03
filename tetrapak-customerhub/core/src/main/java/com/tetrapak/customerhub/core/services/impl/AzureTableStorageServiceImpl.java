@@ -3,8 +3,6 @@ package com.tetrapak.customerhub.core.services.impl;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -18,10 +16,8 @@ import com.microsoft.azure.storage.StorageException;
 import com.microsoft.azure.storage.table.CloudTable;
 import com.microsoft.azure.storage.table.CloudTableClient;
 import com.microsoft.azure.storage.table.DynamicTableEntity;
+import com.microsoft.azure.storage.table.EntityProperty;
 import com.microsoft.azure.storage.table.TableOperation;
-import com.microsoft.azure.storage.table.TableQuery;
-import com.microsoft.azure.storage.table.TableQuery.QueryComparisons;
-import com.microsoft.azure.storage.table.TableResult;
 import com.tetrapak.customerhub.core.services.AzureTableStorageService;
 import com.tetrapak.customerhub.core.services.config.AzureTableStorageServiceConfig;
 
@@ -37,6 +33,8 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 	private AzureTableStorageServiceConfig config;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AzureTableStorageServiceImpl.class);
+	
+	private static final String PARTITION_KEY = "tetrapakuser";
 
 	/**
 	 * activate method
@@ -67,12 +65,12 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			e.printStackTrace();
 			throw e;
 		}
-
+		LOGGER.debug("getTableClientReference: " + storageAccount.toString(false));
 		return storageAccount.createCloudTableClient();
 	}
 
 	/**
-	 * Creates and returns a table for the sample application to use.
+	 * Creates and returns a table for the application to use.
 	 *
 	 * @param tableClient CloudTableClient object
 	 * @param tableName   Name of the table to create
@@ -91,7 +89,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			InvalidKeyException, IllegalArgumentException, URISyntaxException, IllegalStateException {
 
 		// Create a new table
-		CloudTable table = getTableClientReference().getTableReference(tableName);
+		CloudTable table = this.getTableClientReference().getTableReference(tableName);
 		try {
 			if (table.createIfNotExists() == false) {
 				throw new IllegalStateException(String.format("Table with name \"%s\" already exists.", tableName));
@@ -109,40 +107,32 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 	}
 
 	@Override
-	public List<DynamicTableEntity> retrieveDataFromTable(String tableName, String userId)
+	public DynamicTableEntity retrieveDataFromTable(String tableName, String userId)
 			throws InvalidKeyException, RuntimeException, IOException, URISyntaxException, StorageException {
-		List<DynamicTableEntity> rowList = new ArrayList<DynamicTableEntity>();
-		CloudTable cloudTable = getTableClientReference().getTableReference(tableName);
+		DynamicTableEntity retrieveParticularUser = new DynamicTableEntity();
+		CloudTable cloudTable = this.getTableClientReference().getTableReference(tableName);
 		try {
 			if (!userId.isEmpty()) {
-				TableOperation retrieveParticularUserOperation = TableOperation.retrieve("tetrapakuser", userId,
+				TableOperation retrieveParticularUserOperation = TableOperation.retrieve(PARTITION_KEY, userId,
 						DynamicTableEntity.class);
-				DynamicTableEntity retrieveParticularUser = cloudTable.execute(retrieveParticularUserOperation)
-						.getResultAsType();
-				rowList.add(retrieveParticularUser);
+				retrieveParticularUser = cloudTable.execute(retrieveParticularUserOperation).getResultAsType();
+				LOGGER.debug("Data retrieval for the userID:{} successful from Azure Storage", userId);
 			} else {
-				TableQuery<DynamicTableEntity> partitionQuery = TableQuery.from(DynamicTableEntity.class);
-				// Loop through the results, displaying information about the entity.
-				for (DynamicTableEntity entity : cloudTable.execute(partitionQuery)) {
-					LOGGER.info(entity.getPartitionKey() + " " + entity.getRowKey());
-					rowList.add(entity);
-				}
+				LOGGER.warn("UserId cannot be empty!!");
 			}
-
 		} catch (Exception e) {
-			e.printStackTrace();
-			LOGGER.error(e.getMessage());
+			LOGGER.error("An exception occured while retrieving the data for userID:{} from the Azure table", userId,
+					e);
 			throw e;
 		}
-		return rowList;
+		return retrieveParticularUser;
 	}
 
 	@Override
 	public void insertOrUpdateRowInTable(String tableName, DynamicTableEntity entity)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
-		// Create and insert new customer entities
-		LOGGER.info("\nInsert the new entities.");
-		getTableClientReference().getTableReference(tableName).execute(TableOperation.insertOrMerge(entity));
+		LOGGER.debug("\nInsert or merge the given entities.");
+		this.getTableClientReference().getTableReference(tableName).execute(TableOperation.insertOrMerge(entity));
 	}
 
 	@Override
@@ -150,10 +140,10 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
 		if (!userId.isEmpty()) {
 
-			List<DynamicTableEntity> entityList = this.retrieveDataFromTable(tableName, userId);
-			if (!entityList.isEmpty()) {
-				CloudTable cloudTable = getTableClientReference().getTableReference(tableName);
-				cloudTable.execute(TableOperation.delete(entityList.get(0)));
+			DynamicTableEntity entity = this.retrieveDataFromTable(tableName, userId);
+			if (null != entity) {
+				CloudTable cloudTable = this.getTableClientReference().getTableReference(tableName);
+				cloudTable.execute(TableOperation.delete(entity));
 				LOGGER.debug("Deleted the entity with the userID: {}", userId);
 				return true;
 			} else {
@@ -163,6 +153,41 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			LOGGER.warn("Please provide a valid userID to delete the userData!");
 		}
 		return false;
+	}
+
+	@Override
+	public void saveUserPreferencesToAzureTable(String tableName, String userId, String userPrefType,
+			String userPreferencesData)
+			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
+		try {
+			DynamicTableEntity row = this.retrieveDataFromTable(tableName, userId);
+			if(null == row) {
+				row = new DynamicTableEntity();
+				row.setRowKey(userId);
+				row.setPartitionKey(PARTITION_KEY);
+			}
+			row.getProperties().put(userPrefType, new EntityProperty(userPreferencesData));
+			this.insertOrUpdateRowInTable(tableName, row);
+			LOGGER.debug("Data insert/merge for the userID:{} successful to Azure Storage", userId);
+		} catch (InvalidKeyException | RuntimeException | IOException | URISyntaxException | StorageException e) {
+			LOGGER.error("An exception occured while saving the userprefrences for userID:{}, exception: {} ", userId,
+					e);
+			throw e;
+		}
+
+	}
+
+	@Override
+	public String getUserPreferencesFromAzureTable(String tableName, String userId, String userPrefType)
+			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
+		DynamicTableEntity userData = this.retrieveDataFromTable(tableName, userId);
+		if (null != userData) {
+			boolean ifPrefTypePresentInUserData = userData.getProperties().containsKey(userPrefType);
+			if (ifPrefTypePresentInUserData) {
+				return userData.getProperties().get(userPrefType).getValueAsString();
+			}
+		}
+		return null;
 	}
 
 }
