@@ -1,6 +1,8 @@
 // Custom CSS for lightpick calendar plugin
 $width-calendar-mobile: 266px;
 $width-calendar: 294px;
+$date-size-mobile: 36px;
+$date-size: 40px;
 
 .lightpick {
 
@@ -78,17 +80,17 @@ $width-calendar: 294px;
     &__day {
         @include margin-right(2px);
         @include margin-bottom(2px);
-        @include width(36px);
-        @include height(36px);
+        @include width($date-size-mobile);
+        @include height($date-size-mobile);
 
         @media #{$mobile-large} {
-            @include width(40px);
-            @include height(40px);
+            @include width($date-size);
+            @include height($date-size);
         }
 
         @media #{$desktop} {
-            @include width(40px);
-            @include height(40px);
+            @include width($date-size);
+            @include height($date-size);
         }
 
         float: left;
@@ -105,14 +107,14 @@ $width-calendar: 294px;
 
     &__day-of-the-week {
         @include margin-right(2px);
-        @include width(36px);
+        @include width($date-size-mobile);
 
         @media #{$mobile-large} {
-            @include width(40px);
+            @include width($date-size);
         }
 
         @media #{$desktop} {
-            @include width(40px);
+            @include width($date-size);
         }
 
         float: left;
