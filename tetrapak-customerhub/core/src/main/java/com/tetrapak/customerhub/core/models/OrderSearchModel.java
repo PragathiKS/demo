@@ -23,6 +23,15 @@ public class OrderSearchModel {
     private Resource resource;
 
     @Inject
+    private String setDatesBtnI18n;
+
+    @Inject
+    private String closeBtnI18n;
+
+    @Inject
+    private String selectDatesI18n;
+
+    @Inject
     private String resetButtonTextI18n;
 
     @Inject
@@ -54,8 +63,6 @@ public class OrderSearchModel {
 
     private Set<String> disabledFields;
 
-    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json";
-
     private String config;
 
     @PostConstruct
@@ -67,7 +74,10 @@ public class OrderSearchModel {
         disabledFields.add("requestedDelivery");
         disabledFields.add("ETA");
 
-        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
+        Map<String, Object> i18KeyMap = new HashMap<>();
+        i18KeyMap.put("setDatesBtnI18n", setDatesBtnI18n);
+        i18KeyMap.put("closeBtnI18n", closeBtnI18n);
+        i18KeyMap.put("selectDatesI18n", selectDatesI18n);
         i18KeyMap.put("resetButtonTextI18n", resetButtonTextI18n);
         i18KeyMap.put("searchButtonTextI18n", searchButtonTextI18n);
         i18KeyMap.put("allStatusesTextI18n", allStatusesTextI18n);

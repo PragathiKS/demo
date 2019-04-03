@@ -135,10 +135,7 @@ public class LeftNavigationModel {
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
-        if (valueMap.containsKey(HIDE_IN_NAV_PROPERTY)) {
-            return true;
-        }
-        return false;
+        return valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
     private boolean isExternalLink(ValueMap valueMap) {
