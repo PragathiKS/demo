@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
 import javax.annotation.PostConstruct;
 import javax.jcr.ItemExistsException;
 import javax.jcr.Node;
@@ -15,17 +14,16 @@ import javax.jcr.ValueFormatException;
 import javax.jcr.lock.LockException;
 import javax.jcr.nodetype.ConstraintViolationException;
 import javax.jcr.version.VersionException;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -33,6 +31,10 @@ import com.day.cq.wcm.api.WCMException;
 
 /**
  * Model class for page content hierarchy reference 
+ */
+/**
+ * @author Tetrapak-customerhub
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageContentHierarchyReferencesModel {
@@ -46,34 +48,41 @@ public class PageContentHierarchyReferencesModel {
     @ValueMapValue
     private String includeSubPages;
     
+    @SlingObject
+    private ResourceResolver resourceResolver;
+    
+    
     List<String> componentsReference = new LinkedList<String>();
     private String locale;
-    
     private final static String PAGE_REFERENCE_RESOURCE_TYPE = "customerhub/components/content/pagereference";
-    
-    
-    
+    private final static String SLING_RESOURCE_TYPE = "sling:resourceType";
+    private final static String TEMPLATE = "cq:template";
     private static final Logger LOGGER = LoggerFactory.getLogger(PageContentHierarchyReferencesModel.class.getName());
+    /**
+     * 
+     */
 	@PostConstruct
     protected void init() {
         if(Objects.nonNull(pageContentPath)) {
-        	ResourceResolver resourceResolver = resource.getResourceResolver();
         	locale = StringUtils.isNotBlank(locale) ? locale : "en";
-            pageContentPath = pageContentPath.replace("/en", "/" + locale);
-            String pageContentHierachy = new String(pageContentPath);
-        	if(!pageContentPath.endsWith("/jcr:content")) {
-        	pageContentPath= pageContentPath+"/jcr:content/root/responsivegrid";
-        	pageReferenceComponents(pageContentPath);
+        	String pagePath = new String(pageContentPath);
+        	pagePath = pagePath.replace("/en", "/" + locale);
+        	if(!pagePath.endsWith("/jcr:content")) {
+        		pagePath = pagePath+"/jcr:content/root/responsivegrid";
+        		pageReferenceComponents(pagePath);
         	}
-        	else if(pageContentPath.endsWith("/jcr:content")){
-        		pageReferenceComponents(pageContentPath+"/root/responsivegrid");
+        	else if(pagePath.endsWith("/jcr:content")){
+        		pageReferenceComponents(pagePath+"/root/responsivegrid");
         	}
-        	if(Objects.nonNull(includeSubPages) && includeSubPages.equalsIgnoreCase("true"))
-        	clonePageContentHierachy(resourceResolver, pageContentHierachy, locale);
+        	if(Objects.nonNull(includeSubPages) && includeSubPages.equalsIgnoreCase("true")) {
+        		 pageContentPath = pageContentPath.replace("/jcr:content", "");
+        		 clonePageContentHierachy(pageContentPath, locale);
+        	}
+        	
         }
     }
 
-	private void clonePageContentHierachy(ResourceResolver resourceResolver, String pageContentHierachy, String locale) {
+	private void clonePageContentHierachy(String pageContentHierachy, String locale) {
 		Session session = null;
 	try {
 		session = resourceResolver.adaptTo(Session.class);
@@ -83,21 +92,21 @@ public class PageContentHierarchyReferencesModel {
 		createPageContentHierachy(resourceResolver, pageManager, currentPage, srcParentPage, locale);
 		session.save();
 	} catch (PathNotFoundException e) {
-		LOGGER.error("PathNotFoundException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("PathNotFoundException in PageContentHierarchyReferencesModel", e);
 	} catch (ItemExistsException e) {
-		LOGGER.error("ItemExistsException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("ItemExistsException in PageContentHierarchyReferencesModel", e);
 	} catch (VersionException e) {
-		LOGGER.error("VersionException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("VersionException in PageContentHierarchyReferencesModel", e);
 	} catch (ConstraintViolationException e) {
-		LOGGER.error("ConstraintViolationException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("ConstraintViolationException in PageContentHierarchyReferencesModel", e);
 	} catch (LockException e) {
-		LOGGER.error("LockException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("LockException in PageContentHierarchyReferencesModel", e);
 	} catch (ValueFormatException e) {
-		LOGGER.error("ValueFormatException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("ValueFormatException in PageContentHierarchyReferencesModel", e);
 	} catch (WCMException e) {
-		LOGGER.error("WCMException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("WCMException in PageContentHierarchyReferencesModel", e);
 	} catch (RepositoryException e) {
-		LOGGER.error("RepositoryException in PageContentHierarchyReferencesModel",e);
+		LOGGER.error("RepositoryException in PageContentHierarchyReferencesModel", e);
 	}
  }
 
@@ -119,7 +128,7 @@ public class PageContentHierarchyReferencesModel {
 					destJcrContent.setProperty(JcrConstants.JCR_TITLE, srcChildrenPage.getTitle());
 				}
 				else {
-					destChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(),srcChildrenPage.getProperties().get("cq:template", String.class), srcChildrenPage.getTitle());
+					destChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(), srcChildrenPage.getProperties().get(TEMPLATE, String.class), srcChildrenPage.getTitle());
 				}
 				
 				Node childrenJcrContent = destChildrenPage.getContentResource().adaptTo(Node.class);
@@ -131,7 +140,7 @@ public class PageContentHierarchyReferencesModel {
 					destRootNode  = childrenJcrContent.addNode(srcRoot.getName());
 				}
 				
-				destRootNode.setProperty("sling:resourceType", srcRoot.getProperty("sling:resourceType").getValue().getString());
+				destRootNode.setProperty(SLING_RESOURCE_TYPE, srcRoot.getProperty(SLING_RESOURCE_TYPE).getValue().getString());
 				Node srcResponsiveGrid = srcRoot.getNode("responsivegrid");
 				Node destResponsiveGrid = null;
 				
@@ -142,7 +151,7 @@ public class PageContentHierarchyReferencesModel {
 					destResponsiveGrid = destRootNode.addNode(srcResponsiveGrid.getName());
 				}
 				
-				destResponsiveGrid.setProperty("sling:resourceType", srcResponsiveGrid.getProperty("sling:resourceType").getValue().getString());
+				destResponsiveGrid.setProperty(SLING_RESOURCE_TYPE, srcResponsiveGrid.getProperty(SLING_RESOURCE_TYPE).getValue().getString());
 				Node destPageReference = null;
 				if(destResponsiveGrid.hasNode("pagereference")) {
 					destPageReference = destResponsiveGrid.getNode("pagereference");
@@ -150,7 +159,7 @@ public class PageContentHierarchyReferencesModel {
 					destPageReference = destResponsiveGrid.addNode("pagereference");
 				}
 				
-				destPageReference.setProperty("sling:resourceType", PAGE_REFERENCE_RESOURCE_TYPE);
+				destPageReference.setProperty(SLING_RESOURCE_TYPE, PAGE_REFERENCE_RESOURCE_TYPE);
 				String srcChildrenPath = srcChildrenPage.getPath();
 				srcChildrenPath = srcChildrenPath.replace("/en", "/" + locale);
 				destPageReference.setProperty("pageContentPath", srcChildrenPath);
@@ -160,41 +169,27 @@ public class PageContentHierarchyReferencesModel {
 	
 	private boolean isPageExist(ResourceResolver resourceResolver, String pagePath) {
 		Resource resource = resourceResolver.getResource(pagePath);
-		if(null!= resource) {
+		if(Objects.nonNull(resource)) {
 			return true;
 		}
 		return false;
 	}
 	
     private void pageReferenceComponents(String path) {
-    	
-    	Resource componentResources =	resource.getResourceResolver().getResource(path);
-    	if(null != componentResources) {
+    	Resource componentResources =	resourceResolver.getResource(path);
+    	if(Objects.nonNull(componentResources)) {
     		Iterator<Resource> iterators = componentResources.listChildren();
         	while(iterators.hasNext()) {
-        		String componentRefPath = iterators.next().getPath();
-        		if(filterContentDrivenComponent(componentRefPath))
-        		componentsReference.add(componentRefPath);
+        		componentsReference.add(iterators.next().getPath());
         		}
     		}
     	}
     
-    private boolean filterContentDrivenComponent(String path) {
-    	
-		boolean isContentDrivenComponent = false;
-		if(Objects.nonNull(path) && (path.contains("introscreen") || path.contains("recommendedforyoucar") || path.contains("getstarted"))) {
-			isContentDrivenComponent = true;
-		}
-		return isContentDrivenComponent;
-	}
-
 	public List<String> getComponentsReference() {
-		
 		return componentsReference;
 	}
 
 	public String getPageContentPath() {
-		
 		return pageContentPath;
 	}
 

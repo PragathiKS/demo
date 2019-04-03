@@ -4,9 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -33,50 +31,34 @@ public class PageReferencesModel {
 	@PostConstruct
     protected void init() {
         if(Objects.nonNull(pageContentPath)) {
-        	
         	locale = StringUtils.isNotBlank(locale) ? locale : "en";
-            if (null != pageContentPath) {
-            	pageContentPath = pageContentPath.replace("/en", "/" + locale);
-            }
-        	if(!pageContentPath.endsWith("/jcr:content")) {
-        	pageContentPath= pageContentPath+"/jcr:content/root/responsivegrid";
-        	pageReferenceComponents(pageContentPath);
+        	String pagePath = new String(pageContentPath); 
+            pagePath = pagePath.replace("/en", "/" + locale);
+        	if(!pagePath.endsWith("/jcr:content")) {
+        		pagePath = pagePath+"/jcr:content/root/responsivegrid";
+        	    pageReferenceComponents(pagePath);
         	}
-        	else if(pageContentPath.endsWith("/jcr:content")){
-        		pageReferenceComponents(pageContentPath+"/root/responsivegrid");
+        	else if(pagePath.endsWith("/jcr:content")){
+        		pageReferenceComponents(pagePath+"/root/responsivegrid");
         	}
         }
     }
 
     private void pageReferenceComponents(String path) {
-    	
-    	Resource componentResources =	resourceResolver.getResource(path);
-    	if(null != componentResources) {
+    	Resource componentResources = resourceResolver.getResource(path);
+    	if(Objects.nonNull(componentResources)) {
     		Iterator<Resource> iterators = componentResources.listChildren();
         	while(iterators.hasNext()) {
-        		String componentRefPath = iterators.next().getPath();
-        		if(filterContentDrivenComponent(componentRefPath))
-        		componentsReference.add(componentRefPath);
+        		componentsReference.add(iterators.next().getPath());
         		}
     		}
     	}
-    
-    private boolean filterContentDrivenComponent(String path) {
-    	
-		boolean isContentDrivenComponent = false;
-		if(Objects.nonNull(path) && (path.contains("introscreen") || path.contains("recommendedforyoucar") || path.contains("getstarted"))) {
-			isContentDrivenComponent = true;
-		}
-		return isContentDrivenComponent;
-	}
 
 	public List<String> getComponentsReference() {
-		
 		return componentsReference;
 	}
 
 	public String getPageContentPath() {
-		
 		return pageContentPath;
 	}
 
