@@ -1,8 +1,4 @@
 .tp-financials-summary {
-    &.tp-card {
-        @include padding-bottom($padding-sm);
-    }
-
     h4 {
         @include padding-top($padding-xl);
         @include padding-bottom($padding-sm);
@@ -30,14 +26,17 @@
             }
         }
 
-        &__table-summary,
-        &__table-summary:first-child {
-            display: none;
-            @include font-size($font-baseline);
-            font-family: $font-semiBold;
+        &__table-summary {
 
-            @media #{$desktop} {
-                display: table-cell;
+            &,
+            &:first-child {
+                @include font-size($font-baseline);
+                display: none;
+                font-family: $font-semiBold;
+
+                @media #{$desktop} {
+                    display: table-cell;
+                }
             }
         }
     }
@@ -70,8 +69,18 @@
     }
 
     .collapsed {
-        .icon-Chevron_Up::before {
-            transform: rotate(180deg);
+        .icon-Chevron_Up {
+            &::before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__accordion {
+        background-color: $color-wild-sand;
+
+        &.collapsed {
+            background-color: $color-white;
         }
     }
 }

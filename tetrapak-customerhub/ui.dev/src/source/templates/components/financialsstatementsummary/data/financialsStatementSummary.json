@@ -1,5 +1,5 @@
 {
-  "statementSummary": [
+  "summary": [
     {
       "currency": "USD",
       "current": "$0.00",
@@ -13,14 +13,14 @@
   ],
   "documents": [
     {
-      "title": "Packaging projects",
-      "totalAmount": "$6666",
+      "title": "Packaging",
+      "totalAmount": "$12345",
       "records": [
         {
           "documentNumber": "123",
           "desc": "Invoice",
-          "invoiceReference": "NA",
-          "PONumber": "4444-33",
+          "invoiceReference": "http://tetrapak.com",
+          "poNumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
           "currency": "USD",
@@ -29,7 +29,7 @@
         {
           "documentNumber": "123",
           "desc": "Invoice",
-          "invoiceReference": "NA",
+          "invoiceReference": "http://tetrapak.com",
           "PONumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
@@ -40,12 +40,11 @@
     },
     {
       "title": "Packaging projects",
-      "totalAmount": "$7777",
       "records": [
         {
           "documentNumber": "123",
           "desc": "Invoice",
-          "invoiceReference": "NA",
+          "invoiceReference": "http://tetrapak.com",
           "PONumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
@@ -55,7 +54,7 @@
         {
           "documentNumber": "123",
           "desc": "Invoice",
-          "invoiceReference": "NA",
+          "invoiceReference": "http://tetrapak.com",
           "PONumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",

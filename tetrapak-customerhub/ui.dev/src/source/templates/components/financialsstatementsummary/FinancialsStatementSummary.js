@@ -1,20 +1,71 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 //import { apiHost } from '../../../scripts/common/common';
 //import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import deparam from 'jquerydeparam';
+
+/**
+ * Opens order detail page for current order
+ */
+function _downloadInvoice() {
+  window.open($(this).attr('href'), '_blank');
+}
+
+function _getFilters() {
+  const filters = $('.js-financial-statement__filters').serialize();
+  const filterProp = deparam(filters);
+  if (filterProp.daterange) {
+    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
+    filterProp['invoicedate-from'] = orderdateFrom.trim();
+    if (orderdateTo) {
+      filterProp['invoicedate-to'] = orderdateTo.trim();
+    }
+    delete filterProp.daterange;
+  }
+  filterProp['customerkey'] = $('.js-financial-statement__find-customer').val();
+
+  Object.keys(filterProp).forEach(key => {
+    if (!filterProp[key]) {
+      delete filterProp[key];
+    }
+  });
+
+  return $.param(filterProp);
+  /*
+  Object.keys(filterProp).forEach(key => {
+    if (!filterProp[key]) {
+      delete filterProp[key];
+    }
+  });
+  if (!window.location.hash || isModifiedSearch) {
+    router.set({
+      route: '#/',
+      queryString: $.param(filterProp)
+    }, !isModifiedSearch);
+  } else {
+    router.init();
+  }
+  */
+}
 
 /**
  * Processes financials table data
  * @param {object} data data object
  * @param {string[]} keys List of keys
  */
-function _tableSort(data, keys) {
+function _tableSort(data, keys, dataLink) {
   const dataObject = {
     row: []
   };
+
+  if (dataLink) {
+    dataObject.rowLink = `${dataLink}`;
+  }
+
   keys.forEach((key, index) => {
     const value = data[key];
     dataObject.row[index] = {
@@ -28,8 +79,8 @@ function _tableSort(data, keys) {
 
 function _processTableData(data) {
   let keys = [];
-  if (Array.isArray(data.statementSummary)) {
-    data.summary = data.statementSummary.map(summary => {
+  if (Array.isArray(data.summary)) {
+    data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
       return _tableSort.call(this, summary, keys);
     });
@@ -45,7 +96,7 @@ function _processTableData(data) {
       document.documnetID = `#document${index}`;
       document.documentData = document.records.map(record => {
         keys = Object.keys(record);
-        return _tableSort.call(this, record, keys);
+        return _tableSort.call(this, record, keys, record.invoiceReference);
       });
       document.documentHeadings = keys.map(key => ({
         key,
@@ -76,6 +127,7 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
+        data = $.extend(true, data, $this.cache.i18nKeys);
         return $this.processTableData([data]);
       },
       ajaxConfig: {
@@ -99,31 +151,34 @@ class FinancialsStatementSummary {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    /**
-     * If component is added more than once please use "this.root" hook to prevent overlap issues.
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.configJson = $('.js-financial-statement__config').text();
+    try {
+      this.cache.i18nKeys = JSON.parse(this.cache.configJson);
+    } catch (e) {
+      this.cache.i18nKeys = {};
+      logger.error(e);
+    }
   }
   bindEvents() {
     /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.root
+      .on('click', '.js-financials-summary__documents__row', this.downloadInvoice);
+    $('.js-financial-statement').on('financialStatement', this.renderTable);
   }
-  renderTable() {
-    return _renderTable.apply(this, arguments);
+  renderTable = (...arg) => {
+    const filterParams = _getFilters.apply(this);
+    _renderTable.apply(this, [filterParams], ...arg);
   }
   processTableData(data) {
     return _processTableData.apply(this, data);
+  }
+  downloadInvoice() {
+    return _downloadInvoice.call(this);
   }
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.renderTable();
   }
 }
 

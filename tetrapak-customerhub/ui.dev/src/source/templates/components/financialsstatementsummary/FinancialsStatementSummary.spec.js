@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import FinancialsStatementSummary from './FinancialsStatementSummary';
 import financialsStatementSummaryData from './data/financialsStatementSummary.json';
+import financialStatementSummaryTemplate from '../../../test-templates-hbs/financialstatementsummary.hbs';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
@@ -20,6 +22,7 @@ describe('FinancialsStatementSummary', function () {
     this.financialsStatementSummary = new FinancialsStatementSummary({
       el: document.body
     });
+    $(document.body).empty().html(financialStatementSummaryTemplate());
     this.initSpy = sinon.spy(this.financialsStatementSummary, "init");
     this.renderTableSpy = sinon.spy(this.financialsStatementSummary, "renderTable");
     this.processTableData = sinon.spy(this.financialsStatementSummary, "processTableData");
@@ -35,8 +38,10 @@ describe('FinancialsStatementSummary', function () {
       }
     });
     this.financialsStatementSummary.init();
+    $('.js-financial-statement').trigger('financialStatement');
   });
   after(function () {
+    $(document.body).empty();
     this.initSpy.restore();
     this.renderTableSpy.restore();
     this.processTableData.restore();
