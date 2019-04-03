@@ -1,4 +1,7 @@
 // Custom CSS for lightpick calendar plugin
+$width-calendar-mobile: 266px;
+$width-calendar: 294px;
+
 .lightpick {
 
     &__toolbar,
@@ -8,7 +11,7 @@
 
     &__month-title {
         &-bar {
-            @include margin-bottom(16px);
+            @include margin-bottom($margin-md);
         }
 
         text-align: center;
@@ -23,7 +26,7 @@
         background: transparent;
 
         &-months {
-            @include margin-right(4px);
+            @include margin-right($margin-xs);
         }
     }
 
@@ -41,28 +44,28 @@
 
     &__months {
         @media #{$mobile} {
-            @include max-width(266px);
+            @include max-width($width-calendar-mobile);
             margin: 0 auto;
         }
 
         @media #{$mobile-large} {
-            @include max-width(294px);
+            @include max-width($width-calendar);
         }
     }
 
     &__month {
-        @include max-width(294px);
+        @include max-width($width-calendar);
 
         @media #{$mobile} {
-            @include max-width(266px);
+            @include max-width($width-calendar-mobile);
         }
 
         @media #{$mobile-large} {
-            @include max-width(294px);
+            @include max-width($width-calendar);
         }
 
         @media #{$desktop} {
-            @include margin-right(24px);
+            @include margin-right($margin-l);
             float: left;
         }
 
