@@ -10,9 +10,9 @@ import java.util.Set;
 @FunctionalInterface
 public interface UserPreferenceService {
 
-    /** Getter method for this service
+    /**
      * @param resource sling resource
-     * @return List of preferences
+     * @return
      */
     Set<String> getSavedPreferences(Resource resource);
 }

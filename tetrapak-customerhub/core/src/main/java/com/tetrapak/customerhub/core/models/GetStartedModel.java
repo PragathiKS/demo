@@ -20,15 +20,15 @@ import java.util.List;
 public class GetStartedModel {
 
     @Self
-    protected Resource resource;
+    private Resource resource;
 
     @Inject
-    protected String headingI18n;
+    private String headingI18n;
 
     @Inject
-    protected String className;
+    private String className;
 
-    protected List<GetStartedBean> getStartedList = new ArrayList<>();
+    private List<GetStartedBean> getStartedList = new ArrayList<>();
 
     @PostConstruct
     protected void init() {

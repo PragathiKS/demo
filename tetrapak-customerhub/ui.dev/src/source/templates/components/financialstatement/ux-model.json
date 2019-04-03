@@ -1,3 +1,0 @@
-{
-  "i18nKeys": "{\r\n  \"statementOfAccount\": \"Statement of account\",\r\n  \"findCustomer\": \"Find customer\",\r\n  \"accountNumber\": \"Account Number\",\r\n  \"accountService\": \"Account service\",\r\n  \"resetButtonText\": \"Reset search\",\r\n  \"searchButtonText\": \"Search statement\",\r\n  \"selectCustomerLabel\": \"Select customer\",\r\n  \"documentTypeLabel\": \"Select document type\",\r\n  \"placeholderForDocumentNumber\": \"Document number\",\r\n  \"searchInputLabel\": \"Enter Document number\",\r\n  \"selectDateRangeLabel\": \"Select date range\",\r\n  \"selectStatusLabel\": \"Select Status\"\r\n}"
-}

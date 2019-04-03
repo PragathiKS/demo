@@ -26,7 +26,8 @@ public class APIGEEModelTest {
     @Before
     public void setup() {
         apigeeService = new MockAPIGEEServiceImpl();
-        aemContext.registerService(APIGEEService.class, apigeeService);
+
+        aemContext.registerService(apigeeService);
 
         Resource resource = aemContext.currentResource(COMPONENT_PATH);
         apigeeModel = resource.adaptTo(APIGEEModel.class);
@@ -34,7 +35,7 @@ public class APIGEEModelTest {
 
     @Test
     public void testModel() {
-        Assert.assertEquals("https://api-mig.tetrapak.com", apigeeModel.getApiURL());
+        Assert.assertEquals("", apigeeModel.getApiURL());
     }
 
 }

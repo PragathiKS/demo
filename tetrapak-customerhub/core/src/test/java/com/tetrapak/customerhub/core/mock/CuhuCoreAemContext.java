@@ -39,12 +39,6 @@ public class CuhuCoreAemContext {
                 ResourceResolverType.RESOURCERESOLVER_MOCK);
     }
 
-    public static <T> AemContext getAemContextWithJcrMock(String resourceJosnFileName, String resourcePath,
-                                               List<GenericServiceType<T>> serviceTypes) {
-        return new AemContext(new SetUpCallback<T>(resourceJosnFileName, resourcePath, serviceTypes),
-                ResourceResolverType.JCR_MOCK);
-    }
-
     private static final class SetUpCallback<T> implements AemContextCallback {
 
         private String resourceJsonFileName;

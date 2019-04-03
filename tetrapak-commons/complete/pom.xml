@@ -105,7 +105,7 @@
             <artifactId>tetrapak-commons.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-		<!--<dependency>
+		 <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.integration</artifactId>
             <version>${project.version}</version>
@@ -114,7 +114,7 @@
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.it.launcher</artifactId>
             <version>${project.version}</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.apps</artifactId>

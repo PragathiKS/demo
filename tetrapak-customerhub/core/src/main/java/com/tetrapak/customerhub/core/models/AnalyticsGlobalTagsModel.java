@@ -52,9 +52,6 @@ public class AnalyticsGlobalTagsModel {
      * @return pageType, if successful
      */
     public String getPageType() {
-        if(null == resource){
-            return "";
-        }
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if(null == pageManager){
             return "";
@@ -118,10 +115,6 @@ public class AnalyticsGlobalTagsModel {
      */
     public List<String> getUserRoles() {
         ArrayList<String> userRoles = new ArrayList<>();
-        if(null == resource){
-            return userRoles;
-        }
-
         String userRole;
         ResourceResolver resourceResolver = resource.getResourceResolver();
         Session session = resource.getResourceResolver().adaptTo(Session.class);
