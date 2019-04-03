@@ -12,7 +12,12 @@
         <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
              data-sly-call="${subheading.subheading_template @ headingText=data.bannerSubtitleI18n}"/>
       </div>
-      <h3 class="pw-banner__content__title">${data.titleI18n @ i18n}</h3>
+      <div data-sly-test="${data.titleI18n}" class="pw-banner__content__title">
+        <sly data-sly-test="${data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h1_template @ headingText=data.titleI18n, variant='hero'}"/>
+        <sly data-sly-test="${!data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
+      </div>
       <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
       <sly data-sly-test="${data.bannerCtaPath != '#'}"
            data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"

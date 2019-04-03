@@ -16,6 +16,6 @@ export const ajaxMethods = {
 };
 // API URLs
 export const API_TOKEN = 'bin/customerhub/token-generator';
-export const API_SEARCH = 'cfe/orders/summary';
-export const API_ORDER_HISTORY = 'cfe/orders/history';
-export const API_ORDER_DETAIL = 'cfe/orders/details';
+export const API_SEARCH = 'orders/summary';
+export const API_ORDER_HISTORY = 'orders/history';
+export const API_ORDER_DETAIL = 'orders/details';

@@ -41,14 +41,8 @@
         }
 
         &__title {
-            @include font-size($font-l);
-            @include line-height($font-xl, $font-l);
-            font-family: $font-light;
             max-height: $font-xl*2;
-
             @media #{$desktop} {
-                @include font-size($font-xl);
-                @include line-height(40px, $font-xl);
                 max-height: 40px*2;
             }
         }

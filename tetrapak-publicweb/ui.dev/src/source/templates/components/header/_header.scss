@@ -100,13 +100,9 @@
         }
 
         &__content__title {
-            @include font-size($font-l);
-            @include line-height($font-xl, $font-l);
             max-height: none;
 
             @media #{$desktop} {
-                @include font-size($font-xxxl);
-                @include line-height($font-xxxl, $font-xxxl);
                 max-height: #{convert-to-rem($font-xxxl*2)};
             }
         }

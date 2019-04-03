@@ -10,5 +10,6 @@
   "bannerCtaTooltipI18n": "Learn about Industry 4.0",
   "contrastLayer": "gradient-to-right",
   "targetBlank": true,
+  "isHeaderBanner": true,
   "pwButtonTheme": "shift"
 }
