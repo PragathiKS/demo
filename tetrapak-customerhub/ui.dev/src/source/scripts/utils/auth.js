@@ -59,6 +59,11 @@ function generateToken() {
 
 export default {
   getToken(callback, errorCallback) {
-    return generateToken().then(callback).catch(errorCallback);
+    return generateToken().then(callback).catch(() => {
+      storageUtil.removeCookie('authToken');
+      if (typeof errorCallback === 'function') {
+        errorCallback();
+      }
+    });
   }
 };
