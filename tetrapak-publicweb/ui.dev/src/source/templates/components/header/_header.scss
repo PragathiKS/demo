@@ -141,9 +141,9 @@
         position: relative;
         &::after {
             @include right(200px);
+            display: block;
             background-color: $color-white;
             content: '';
-            display: block;
             height: 20px;
             position: absolute;
             top: -10px;

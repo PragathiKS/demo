@@ -17,7 +17,7 @@
         </div>
         <div class="col-sm-6 col-lg-3 d-flex align-items-start justify-content-end">
           <div class="tp-pw-header__secondary-navigation">
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#"><i class="icon-Search"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#" data-root-path="${data.searchRootPath}" data-results-path="${data.searchResultsPath}"><i class="icon-Search"></i></a>
             <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Avatar"></i><span>${data.loginTextI18n}</span></a>
             <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Globe"></i><span>EN</span><span><i class="icon-Chevron_Down"></i></span></a>
           </div>
@@ -33,10 +33,8 @@
         </div>
       </div>
     </div>
-    <div class="tp-pw-header__hero-image">
-      <sly data-sly-test="${data.enableHeroImage}" data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
+    <div class="tp-pw-header__hero-image" data-sly-test="${data.enableHeroImage}">
+      <sly data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
     </div>
   </header><!-- end c-header -->
-  <div class=".hidden" id="search-data-rootpath" data="${data.searchRootPath}"></div>
-  <div class=".hidden" id="search-data-resultspath" data="${data.searchResultsPath}"></div>
 </sly>
