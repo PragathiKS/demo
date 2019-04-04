@@ -9,12 +9,15 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import deparam from 'jquerydeparam';
 
 /**
- * Opens order detail page for current order
+ * Download Invoice
  */
 function _downloadInvoice() {
   window.open($(this).attr('href'), '_blank');
 }
 
+/**
+ * Get filters data
+ */
 function _getFilters() {
   const filters = $('.js-financial-statement__filters').serialize();
   const filterProp = deparam(filters);
@@ -35,21 +38,6 @@ function _getFilters() {
   });
 
   return $.param(filterProp);
-  /*
-  Object.keys(filterProp).forEach(key => {
-    if (!filterProp[key]) {
-      delete filterProp[key];
-    }
-  });
-  if (!window.location.hash || isModifiedSearch) {
-    router.set({
-      route: '#/',
-      queryString: $.param(filterProp)
-    }, !isModifiedSearch);
-  } else {
-    router.init();
-  }
-  */
 }
 
 /**
@@ -118,7 +106,7 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         //path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json',
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary1.json',
         data: filterParams
       },
       beforeRender(data) {
