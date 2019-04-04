@@ -224,6 +224,10 @@ class FinancialStatement {
     return _setDateFilter.apply(this, arguments);
   }
   setSelectedCustomer() {
+    $('.js-financial-statement__reset').trigger('click');
+    const { $dateRange, $rangeSelector } = this.cache;
+    $rangeSelector.val($dateRange.val());
+    this.initializeCalendar();
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
