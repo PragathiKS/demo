@@ -1,22 +1,20 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
-import LZStorage from 'lzstorage';
 import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
-
-const lzs = new LZStorage({
-  compression: true
-});
+import { storageUtil } from '../common/common';
 
 const servletHost = $('#servletHost').val() || '';
 
 function generateToken() {
   return (
     new Promise(function (resolve, reject) {
-      const appData = lzs.get('appData');
-      if (appData) {
+      const access_token = storageUtil.get('authToken');
+      if (access_token) {
         resolve({
-          data: appData,
+          data: {
+            access_token
+          },
           textStatus: 'success',
           jqXHR: {
             fromStorage: true
@@ -31,7 +29,7 @@ function generateToken() {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
               const expiry = (+result.expires_in) / (24 * 60 * 60 * 1000);
-              lzs.setCookie('appData', result, expiry);
+              storageUtil.setCookie('authToken', result.access_token, expiry);
               resolve({
                 data: result,
                 textStatus,
