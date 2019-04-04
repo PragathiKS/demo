@@ -154,4 +154,73 @@
             jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
             jcr:primaryType="nt:folder"
             sling:message="Next"/>
+    <cuhu.financials.currency
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Currency"/>
+    <cuhu.financials.current
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Current"/>        
+    <cuhu.financials.overdue
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Total overdue"/>        
+    <cuhu.financials.thirty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="1 - 30"/>    
+    <cuhu.financials.sixty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="31 - 60"/>    
+    <cuhu.financials.ninty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="61 - 90"/>    
+    <cuhu.financials.nintyPlus
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message=">90"/>    
+    <cuhu.financials.total
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Statement Total"/>    
+    <cuhu.financials.documentNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document No."/>    
+    <cuhu.financials.desc
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Description"/>    
+    <cuhu.financials.invoiceReference
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invoice reference"/>    
+    <cuhu.financials.PONumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="PO Number"/>    
+    <cuhu.financials.docDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document date"/>    
+    <cuhu.financials.dueDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Due date"/>    
+    <cuhu.financials.orgAmount
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Original amount"/> 
+    <cuhu.error.message
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Something went wrong"/>  
+    <cuhu.nodata.message
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No data found"/>         
+               
 </jcr:root>
