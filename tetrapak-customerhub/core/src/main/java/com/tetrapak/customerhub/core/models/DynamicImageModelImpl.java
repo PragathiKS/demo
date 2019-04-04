@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -15,8 +16,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.customerhub.core.models.DynamicImageModel;
-import com.tetrapak.customerhub.core.services.ConfigurationService;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
 
 
 
@@ -178,29 +178,17 @@ public class DynamicImageModelImpl implements DynamicImageModel {
     @Inject
     private String assetAltText;
     
-    /** The image view. */
-    @Inject
-    private String imageView;
-    
     /** The sling request. */
     @Self
     private SlingHttpServletRequest slingRequest;
     
     /** The configuration service. */
     @OSGiService
-    private ConfigurationService configurationService;
+    private DynamicMediaService dynamicMediaService;
     
     /** The file reference. */
     @ValueMapValue
     private String fileReference;
-    
-    /** The view. */
-    @ValueMapValue
-    private String view;
-    
-    /** The view. */
-    @ValueMapValue
-    private String variationType;
     
     /** The alt text. */
     @ValueMapValue
@@ -237,17 +225,12 @@ public class DynamicImageModelImpl implements DynamicImageModel {
      */
     private String createDynamicMediaUrl(final String deviceType, final String imagePath) {
         
-        final Map<String, String> dynamicMediaConfiguration = getDynamicMediaConfiguration();
         String url = "";
+        final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
         final String componentName = getComponentName(slingRequest.getResource());
         if (StringUtils.isNotBlank(componentName)) {
             final StringBuilder key = new StringBuilder(componentName).append(HYPHEN).append(deviceType);
-            view = StringUtils.isNotBlank(imageView) ? imageView : view;
-            if (StringUtils.isNotEmpty(view)) {
-                key.append(HYPHEN).append(view);
-            } else if (StringUtils.isNotEmpty(variationType)) {
-                key.append(HYPHEN).append(variationType);
-            }
+            
             final String imageConfiguration = dynamicMediaConfiguration.get(key.toString());
             if (StringUtils.isNotEmpty(imageConfiguration)) {
                 url = createUrl(imagePath, imageConfiguration);
@@ -258,6 +241,14 @@ public class DynamicImageModelImpl implements DynamicImageModel {
     }
     
     
+    private Map<String, String> getMap(String[] dynamicMediaConfiguration) {
+        Map<String, String> map= new HashMap<>();
+        for(String propValue : dynamicMediaConfiguration) {
+            map.put(StringUtils.substringBefore(propValue, "="), StringUtils.substringAfter(propValue, "="));
+        }
+        return map;
+    }
+
     @Override
     public String getAltText() {
         return StringUtils.isNotEmpty(altText) ? altText : assetAltText;
@@ -277,8 +268,8 @@ public class DynamicImageModelImpl implements DynamicImageModel {
     
    
     @Override
-    public Map<String, String> getDynamicMediaConfiguration() {
-        return configurationService.getDynamicMediaConfMap();
+    public String[] getDynamicMediaConfiguration() {
+        return dynamicMediaService.getDynamicMediaConfMap();
     }
     
    
@@ -290,8 +281,13 @@ public class DynamicImageModelImpl implements DynamicImageModel {
     
     @Override
     public String getImageServiceURL() {
-        return configurationService.getImageServiceUrl();
+        return dynamicMediaService.getImageServiceUrl();
     }
+    
+    @Override
+    public String getRootPath() {
+        return dynamicMediaService.getRootPath();
+    }    
     
    
     @Override
@@ -317,22 +313,13 @@ public class DynamicImageModelImpl implements DynamicImageModel {
         return tabletPortraitUrl;
     }
     
-    
-    @Override
-    public String getVariationType() {
-        return variationType;
-    }
-    
-    
-    @Override
-    public String getView() {
-        return view;
-    }
-    
-    
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
+        String rootPath = getRootPath();
+        if(imagePath != null) {
+        imagePath = imagePath.replace("/content/dam/customerhub", rootPath);
+        }
 		if (StringUtils.isNotBlank(assetAltText) && assetAltText.contains(PERSONALIZATION)) {
 			dynamicMediaUrl = StringUtils.isNotBlank(dynamicMediaUrl)
 					? StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + imagePath
@@ -346,6 +333,10 @@ public class DynamicImageModelImpl implements DynamicImageModel {
 					? StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + fileReference
 					: fileReference;
 		}
+		
+		 if (fileReference.indexOf(".") > 0)
+		     fileReference = fileReference.substring(0, fileReference.lastIndexOf("."));
+	        
         if (StringUtils.isNotBlank(assetAltText) && assetAltText.contains(PERSONALIZATION)) {
             setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
             setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
@@ -369,7 +360,7 @@ public class DynamicImageModelImpl implements DynamicImageModel {
      */
     public void setDefaultImage() {
         if (hasConfiguraton) {
-            setDefaultImageUrl("/etc/designs/roche/pharma/customerportal/clientlibs/global.publish/images/blank.png");
+            setDefaultImageUrl("/content/dam/customerhub/cow-blue-background.png");
         } else if (null != fileReference) {
             StringBuilder defalturl = new StringBuilder(fileReference).append(QUERY_PARAMETER).append("scl=1");
             

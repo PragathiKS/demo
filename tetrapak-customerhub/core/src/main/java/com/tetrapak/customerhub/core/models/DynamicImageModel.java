@@ -20,14 +20,12 @@ public interface DynamicImageModel {
     
     public String getDesktopUrl();
     
-    public Map<String, String> getDynamicMediaConfiguration();
+    public String[] getDynamicMediaConfiguration();
     
     public String getTabletLandscapeUrl();
 
     public String getTabletPortraitUrl();
+    
+    public String getRootPath();
         
-    public String getVariationType();
-    
-    public String getView();
-    
 }
