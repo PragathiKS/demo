@@ -85,6 +85,7 @@ function _renderFilters() {
     }, () => {
       this.initPostCache();
       this.initializeCalendar();
+      this.root.trigger(this.cache.summaryRenderEvent);
     });
   });
 }
@@ -135,6 +136,7 @@ class FinancialStatement {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.summaryRenderEvent = 'financialSummary.render';
   }
   initPostCache() {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
@@ -207,7 +209,13 @@ class FinancialStatement {
       .on('click', '.js-calendar', () => {
         this.submitDateRange();
       })
-      .on('click', '.js-calendar-nav', this, this.navigateCalendar);
+      .on('click', '.js-calendar-nav', this, this.navigateCalendar)
+      .on('click', '.js-financial-statement__submit', this.populateResults)
+      .on('reset', '.js-financial-statement__filters', () => {
+        setTimeout(() => {
+          this.populateResults();
+        }, 0);
+      });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
@@ -216,7 +224,14 @@ class FinancialStatement {
     return _setDateFilter.apply(this, arguments);
   }
   setSelectedCustomer() {
+    $('.js-financial-statement__reset').trigger('click');
+    const { $dateRange, $rangeSelector } = this.cache;
+    $rangeSelector.val($dateRange.val());
+    this.initializeCalendar();
     return _setSelectedCustomer.apply(this, arguments);
+  }
+  populateResults = () => {
+    this.root.trigger(this.cache.summaryRenderEvent);
   }
   init() {
     this.initCache();

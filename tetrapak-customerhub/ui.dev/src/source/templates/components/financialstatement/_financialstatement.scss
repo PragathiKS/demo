@@ -64,6 +64,10 @@
         font-family: $font-bold;
     }
 
+    &__filters {
+        margin-bottom: 0;
+    }
+
     &__status-calender-container {
         @include margin-bottom($margin-md);
     }
@@ -193,4 +197,8 @@
     .form-control {
         height: 100%;
     }
+}
+
+.tp-card.tp-financials {
+    @include padding-bottom($padding-sm);
 }

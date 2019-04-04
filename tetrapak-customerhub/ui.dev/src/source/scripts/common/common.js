@@ -283,3 +283,30 @@ export const isValidSelector = (selector) => (
  * @param {any} input Input value
  */
 export const sanitize = (input) => Handlebars.escapeExpression(input);
+
+
+/**
+ * sort table data
+ * @param {object} data data object
+ * @param {string[]} keys List of keys
+ * @param {dataLink} dataLink Row link
+ */
+export const tableSort = (data, keys, dataLink) => {
+  const dataObject = {
+    row: []
+  };
+
+  if (dataLink) {
+    dataObject.rowLink = `${dataLink}`;
+  }
+
+  keys.forEach((key, index) => {
+    const value = data[key];
+    dataObject.row[index] = {
+      key,
+      value,
+      isRTE: [''].includes(key)
+    };
+  });
+  return dataObject;
+};
