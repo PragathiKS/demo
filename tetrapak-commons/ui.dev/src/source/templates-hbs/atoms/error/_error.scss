@@ -1,0 +1,7 @@
+.tpatom-error {
+    @include font-size($font-baseline);
+
+    &__icon {
+        color: $color-alert
+    }
+}
