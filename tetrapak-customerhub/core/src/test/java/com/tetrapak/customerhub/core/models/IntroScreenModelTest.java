@@ -54,8 +54,8 @@ public class IntroScreenModelTest {
         Assert.assertEquals("About_GS_Started", introScreenModel.getGetStartedBtnI18n());
         Assert.assertEquals("About_GS_Next", introScreenModel.getNextBtnI18n());
         assertTrue(introScreenModel.getGetStartedList().size() > 0);
-        List list = introScreenModel.getGetStartedList();
-        GetStartedBean bean = (GetStartedBean) list.get(0);
+        List<GetStartedBean> list = introScreenModel.getGetStartedList();
+        GetStartedBean bean = list.get(0);
         Assert.assertEquals("About_GS_title1",bean.getTitleI18n());
         Assert.assertEquals("About_GS_Desc1",bean.getDescriptionI18n());
         Assert.assertEquals("About_GS_Image1_alt",bean.getImageAltI18n());
