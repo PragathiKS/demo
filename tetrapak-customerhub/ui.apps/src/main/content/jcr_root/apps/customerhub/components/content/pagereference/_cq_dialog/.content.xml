@@ -19,7 +19,8 @@
                     <reference
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
-                        fieldLabel="Reference"
+                        fieldLabel="Page Reference"
+                        fieldDescription="Select component content page"
                         name="./pageContentPath"
                         predicate="nosystem"
                         rootPath="/content/tetrapak/customerhub/content-components"/>
