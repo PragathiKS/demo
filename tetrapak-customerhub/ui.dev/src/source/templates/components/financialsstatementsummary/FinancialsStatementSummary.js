@@ -55,11 +55,17 @@ function _processTableData(data) {
   }
 
   if (Array.isArray(data.documents) && data.documents.length > 0) {
+    keys.length = 0;
     data.documents.forEach((doc, index) => {
-      doc.title = `${doc.title} (${doc.records.length})`;
+      doc.title = `${doc.salesOffice} (${doc.records.length})`;
       doc.docId = `#document${index}`;
       doc.docData = doc.records.map(record => {
-        keys = Object.keys(record);
+        delete record.salesOffice;
+        if (keys.length === 0) {
+          keys = Object.keys(record);
+          keys.splice(keys.indexOf('orgAmount'), 1);
+          keys.push('orgAmount');
+        }
         return tableSort.call(this, record, keys, record.invoiceReference);
       });
       doc.docHeadings = keys.map(key => ({

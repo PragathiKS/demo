@@ -13,7 +13,7 @@
   ],
   "documents": [
     {
-      "title": "Packaging",
+      "salesOffice": "Packaging",
       "totalAmount": "$12345",
       "records": [
         {
@@ -24,42 +24,51 @@
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
           "currency": "USD",
-          "orgAmount": "$3333"
+          "orgAmount": "$3333",
+          "salesOffice": "Packaging",
+          "salesLocalData": "alphanumeric"
         },
         {
           "documentNumber": "123",
           "desc": "Invoice",
           "invoiceReference": "http://tetrapak.com",
-          "PONumber": "4444-33",
+          "poNumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
           "currency": "USD",
-          "orgAmount": "$3333"
+          "orgAmount": "$3333",
+          "salesOffice": "Packaging",
+          "salesLocalData": "alphanumeric"
         }
       ]
     },
     {
-      "title": "Packaging projects",
+      "salesOffice": "others",
+      "totalAmount": "$12345",
       "records": [
         {
           "documentNumber": "123",
           "desc": "Invoice",
           "invoiceReference": "http://tetrapak.com",
-          "PONumber": "4444-33",
+          "poNumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
           "currency": "USD",
-          "orgAmount": "$3333"
+          "orgAmount": "$3333",
+          "salesOffice": "others",
+          "salesLocalData": "alphanumeric"
         },
         {
           "documentNumber": "123",
           "desc": "Invoice",
           "invoiceReference": "http://tetrapak.com",
-          "PONumber": "4444-33",
+          "poNumber": "4444-33",
           "docDate": "yyy-mm-dd",
           "dueDate": "yyyy-mm-dd",
           "currency": "USD",
-          "orgAmount": "$3333"
+          "orgAmount": "$3333",
+          "salesOffice": "others",
+          "salesLocalData": "alphanumeric"
         }
       ]
     }

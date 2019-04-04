@@ -1,8 +1,8 @@
 {{#if isError}}
-    Something went wrong
+    {{> atoms/error/error error=true message="cuhu.error.message"}}
 {{else}}
     {{#if noData}}
-        No data found
+        {{> atoms/error/error message="cuhu.nodata.message"}}
     {{else}}
         <div class="tp-financials-summary__statement">
             <h4>{{summaryHeadingI18n}}</h4>

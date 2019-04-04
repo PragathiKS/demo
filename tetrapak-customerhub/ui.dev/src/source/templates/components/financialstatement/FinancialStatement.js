@@ -6,32 +6,34 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { apiHost } from '../../../scripts/common/common';
 
 function _processFinancialStatementData(data) {
-  data.customerData.sort((a, b) => {
-    if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
-      return -1;
-    }
-    if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
-      return 1;
-    }
-    return 0;
-  });
   data = $.extend(true, data, this.cache.i18nKeys);
-  // Resolve i18n keys for calendar modal
-  data.selectDatesI18n = data.selectDates;
-  data.closeBtnI18n = data.closeBtn;
-  data.setDatesBtnI18n = data.setDates;
-  data.dateRangeLabelI18n = data.selectDateRangeLabel;
-  // Remove duplicate properties
-  delete data.selectDates;
-  delete data.closeBtn;
-  delete data.setDates;
-  data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
-  const [selectedCustomerData] = data.customerData;
-  data.selectedCustomerData = selectedCustomerData;
+  if (!data.isError) {
+    data.customerData.sort((a, b) => {
+      if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
+        return -1;
+      }
+      if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
+        return 1;
+      }
+      return 0;
+    });
+    // Resolve i18n keys for calendar modal
+    data.selectDatesI18n = data.selectDates;
+    data.closeBtnI18n = data.closeBtn;
+    data.setDatesBtnI18n = data.setDates;
+    data.dateRangeLabelI18n = data.selectDateRangeLabel;
+    // Remove duplicate properties
+    delete data.selectDates;
+    delete data.closeBtn;
+    delete data.setDates;
+    data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+    const [selectedCustomerData] = data.customerData;
+    data.selectedCustomerData = selectedCustomerData;
+  }
   this.cache.data = data;
   return data;
 }
@@ -54,6 +56,7 @@ function _setSelectedCustomer(key) {
 }
 
 function _renderFilters() {
+  const $this = this;
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'financialStatement',
@@ -71,7 +74,14 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        }
+        return _processFinancialStatementData.apply($this, [data]);
+      }
     }, () => {
       this.initPostCache();
       this.initializeCalendar();
