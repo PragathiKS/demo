@@ -18,16 +18,7 @@ import java.util.List;
  * Model class for Intro Screen Component
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class IntroScreenModel {
-
-    @Self
-    private Resource resource;
-
-    @Inject
-    private String headingI18n;
-
-    @Inject
-    private String className;
+public class IntroScreenModel extends GetStartedModel {
 
     @Inject
     private String nextBtnI18n;
@@ -38,8 +29,6 @@ public class IntroScreenModel {
     @Inject
     private String getStartedBtnI18n;
 
-    private List<GetStartedBean> getStartedList = new ArrayList<>();
-
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
@@ -48,26 +37,14 @@ public class IntroScreenModel {
             while (itr.hasNext()) {
                 Resource res = itr.next();
                 ValueMap valueMap = res.getValueMap();
-                GetStartedBean bean = new GetStartedBean();
-                bean.setImagePath((String) valueMap.get("imagePath"));
-                bean.setImageAltI18n((String) valueMap.get("imageAltI18n"));
-                bean.setTitleI18n((String) valueMap.get("titleI18n"));
-                bean.setDescriptionI18n((String) valueMap.get("descriptionI18n"));
-                getStartedList.add(bean);
+                GetStartedBean introScreenBean = new GetStartedBean();
+                introScreenBean.setImagePath((String) valueMap.get("imagePath"));
+                introScreenBean.setImageAltI18n((String) valueMap.get("imageAltI18n"));
+                introScreenBean.setTitleI18n((String) valueMap.get("titleI18n"));
+                introScreenBean.setDescriptionI18n((String) valueMap.get("descriptionI18n"));
+                getStartedList.add(introScreenBean);
             }
         }
-    }
-
-    public List<GetStartedBean> getGetStartedList() {
-        return getStartedList;
-    }
-
-    public String getHeadingI18n() {
-        return headingI18n;
-    }
-
-    public String getClassName(){
-        return className;
     }
 
     public String getNextBtnI18n() {

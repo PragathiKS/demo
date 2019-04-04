@@ -12,6 +12,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+	<properties>
+		<sonar.sources>${basedir}/src/source</sonar.sources>
+	</properties>
+	
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->

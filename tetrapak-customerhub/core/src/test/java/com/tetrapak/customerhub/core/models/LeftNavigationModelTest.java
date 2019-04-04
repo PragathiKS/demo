@@ -28,7 +28,7 @@ public class LeftNavigationModelTest {
 
     @Test
     public void testGetStartedMessage() {
-        /*Assert.assertEquals("My Tetra Pak", leftNavigationModel.getNavHeading());
+        Assert.assertEquals("My Tetra Pak", leftNavigationModel.getNavHeading());
         Assert.assertEquals("Close", leftNavigationModel.getCloseBtnText());
         List<LeftNavigationBean> list = leftNavigationModel.getLeftNavItems();
         LeftNavigationBean leftNavigationBean = list.get(0);
@@ -37,6 +37,7 @@ public class LeftNavigationModelTest {
         Assert.assertEquals("DASHBOARD", leftNavigationBean.getIconLabel());
         Assert.assertEquals(false, leftNavigationBean.isExternalLink());
         Assert.assertEquals(false, leftNavigationBean.isActive());
+        Assert.assertEquals(false, leftNavigationBean.isExpanded());
 
         LeftNavigationBean leftNavigationBeanWithSubMenu = list.get(3);
         List<LeftNavigationBean> subMenuList = leftNavigationBeanWithSubMenu.getSubMenuList();
@@ -49,9 +50,9 @@ public class LeftNavigationModelTest {
         LeftNavigationBean bean = leftNavigationModel.getTpLogoListItem();
         Assert.assertEquals("https://www.tetrapak.com", bean.getHref());
         Assert.assertEquals("icon-TetraPak", bean.getIconClass());
-        Assert.assertEquals("stickyLabel", bean.getIconLabel());
+        Assert.assertEquals("Tetra Pak Home", bean.getIconLabel());
         Assert.assertEquals(true, bean.isExternalLink());
-        Assert.assertEquals(false, bean.isActive());*/
+        Assert.assertEquals(false, bean.isActive());
 
     }
 }

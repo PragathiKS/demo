@@ -2,5 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/commons" mode="replace"/>
     <filter root="/apps/sling/servlet/errorhandler" mode="merge"/>
-	<filter root="/apps/settings/wcm/designs/customerhub" mode="replace"/>
+	<filter root="/apps/settings/wcm/designs/commons" mode="replace"/>
 </workspaceFilter>

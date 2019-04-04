@@ -1,13 +1,36 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
 import deparam from 'jquerydeparam';
+import moment from 'moment';
+import Lightpick from 'lightpick';
+import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
+
+/**
+ * Disables calendar next button if visible months has current month
+ * @param {object} $this Current class object
+ */
+function _disableCalendarNext($this) {
+  // Check if current visible months contain current month
+  const currentMonth = moment().month();
+  const currentYear = moment().year();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  if (
+    visibleMonths.includes(currentMonth)
+    && visibleYears.includes(currentYear)
+  ) {
+    $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
+  } else {
+    $this.root.find('.js-calendar-next').removeAttr('disabled');
+  }
+}
 
 /**
  * Processes data before rendering
@@ -188,7 +211,14 @@ function _trackAnalytics(defaultParam) {
   if (!formData.daterange) {
     formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
   }
-  trackAnalytics(`${sanitize(formData.daterange)}|${sanitize(formData.orderstatus)}|${sanitize(formData.deliveryaddress)}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
+  const deliveryAddressChoosen = formData.deliveryaddress ? 'deliveryaddresschoosen' : '';
+  let orderStatusText = '';
+  if (formData.orderstatus) {
+    orderStatusText = this.cache.$orderStatus.find('option').filter(`[value="${formData.orderstatus}"]`).text();
+  } else {
+    orderStatusText = '';
+  }
+  trackAnalytics(`DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
 }
 
 /**
@@ -214,6 +244,7 @@ function _renderFilters() {
     }, () => {
       this.initPostCache();
       this.setFilters();
+      this.initializeCalendar();
     });
   });
 }
@@ -261,6 +292,13 @@ class OrderSearch {
         this.resetSearch();
         this.trackAnalytics(this.cache.defaultParams);
       })
+      .on('click', '.js-order-search__date-range', () => {
+        this.openRangeSelector();
+      })
+      .on('click', '.js-calendar', () => {
+        this.submitDateRange();
+      })
+      .on('click', '.js-calendar-nav', this, this.navigateCalendar)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
         const routeQuery = deparam(window.location.hash.substring(2));
@@ -276,6 +314,44 @@ class OrderSearch {
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
+  }
+  initializeCalendar() {
+    const { $rangeSelector } = this.cache;
+    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+    if (rangeSelectorEl) {
+      const [startDate, endDate] = $rangeSelector.val().split(' - ');
+      // Initialize inline calendar
+      this.cache.picker = new Lightpick({
+        field: rangeSelectorEl,
+        singleDate: false,
+        numberOfMonths: 2,
+        inline: true,
+        maxDate: Date.now(),
+        startDate,
+        endDate,
+        dropdowns: false,
+        format: DATE_FORMAT,
+        separator: ' - '
+      });
+      _disableCalendarNext(this);
+    }
+  }
+  openRangeSelector() {
+    this.cache.$modal.modal('show');
+  }
+  submitDateRange() {
+    const { $dateRange, $rangeSelector, $modal } = this.cache;
+    $dateRange.val($rangeSelector.val());
+    $modal.modal('hide');
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      _disableCalendarNext($this);
+    }
   }
   setFilters() {
     return _setFilters.apply(this, arguments);
@@ -300,6 +376,8 @@ class OrderSearch {
     this.cache.$orderStatus = this.root.find('.js-order-search__order-status');
     this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
     this.cache.$search = this.root.find('.js-order-search__search-term');
+    this.cache.$rangeSelector = this.root.find('.js-range-selector');
+    this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);

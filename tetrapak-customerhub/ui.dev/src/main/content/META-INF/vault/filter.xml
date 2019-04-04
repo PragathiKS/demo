@@ -3,5 +3,5 @@
     <filter root="/apps/customerhub" mode="merge">
 		<exclude pattern="/apps/customerhub/i18n(/.*)"/>
 	</filter>
-	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="update"/>
+	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="replace"/>
 </workspaceFilter>

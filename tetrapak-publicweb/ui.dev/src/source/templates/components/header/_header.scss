@@ -12,7 +12,6 @@
         }
     }
 
-
     &__logo-placeholder {
         display: none;
         @media #{$desktop} {
@@ -92,30 +91,29 @@
                 @include padding-right($padding-l/2);
                 color: $color-white;
                 background-color: transparent;
-                left: calc(50% - #{convert-to-rem(720px)});
+                left: 50%;
                 max-width: #{convert-to-rem(720px)};
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
+                transform: translate(-100%, -50%);
             }
         }
 
         &__content__title {
-            @include font-size($font-l);
-            @include line-height($font-xl, $font-l);
             max-height: none;
 
             @media #{$desktop} {
-                @include font-size($font-xxxl);
-                @include line-height(70px, $font-xxxl);
-                max-height: calc(#{convert-to-rem(70px)} * 2);
+                max-height: #{convert-to-rem($font-xxxl*2)};
             }
         }
         &--right {
             .pw-banner__content {
                 left: auto;
                 @media #{$desktop} {
-                    right: calc(50% - #{convert-to-rem(720px)} + #{convert-to-rem($margin-xxxl*2)});
+                    @include padding-left($padding-l/2);
+                    @include padding-right($padding-xxxl*2);
+                    left: 50%;
+                    transform: translate(0, -50%);
                 }
             }
         }

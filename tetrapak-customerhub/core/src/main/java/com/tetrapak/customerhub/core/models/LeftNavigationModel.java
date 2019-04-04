@@ -81,6 +81,9 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
+            if(isCurrentPage(subPage)){
+                leftNavigationBean.setExpanded(true);
+            }
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
@@ -98,7 +101,7 @@ public class LeftNavigationModel {
         tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
-        tpLogoListItem.setIconLabel("stickyLabel");
+        tpLogoListItem.setIconLabel((String) valueMap.get("stickyLabel"));
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
@@ -135,10 +138,7 @@ public class LeftNavigationModel {
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
-        if (valueMap.containsKey(HIDE_IN_NAV_PROPERTY)) {
-            return true;
-        }
-        return false;
+        return valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
     private boolean isExternalLink(ValueMap valueMap) {

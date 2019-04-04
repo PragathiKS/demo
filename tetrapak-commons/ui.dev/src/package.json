@@ -12,17 +12,12 @@
     "vanilla-lazyload": "^8.17.0"
   },
   "scripts": {
-    "build": "npm run gruntProd",
-    "buildDev": "npm run gruntDev",
-    "buildWatch": "npm run gruntWatch",
-    "buildStart": "npm run gruntStart",
+    "build": "grunt aem",
+    "buildDev": "grunt",
+    "buildWatch": "grunt aemWatch",
+    "buildStart": "grunt aemStart",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",
-    "removeHash": "node removeHash",
-    "gruntDev": "grunt",
-    "gruntProd": "grunt aem",
-    "gruntWatch": "grunt aemWatch",
-    "gruntStart": "grunt aemStart",
     "createComponent": "node createComponent",
     "createAtom": "node createComponent --atom",
     "createMolecule": "node createComponent --molecule",
@@ -31,7 +26,11 @@
     "eslint": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" -f node_modules/eslint-detailed-reporter/lib/detailed.js -o eslint-report.html",
     "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" --color",
     "sasslint": "sass-lint --config ./sass-lint.yml './source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'",
+    "sasslintWin": "sass-lint --config ./sass-lint.yml ./source/templates/components/**/*.scss -v -q -f html -o sass-lint-report.html",
     "sasslintDev": "sass-lint --config ./sass-lint-dev.yml './source/templates/components/**/*.scss' -v -q --color",
+    "sasslintDevWin": "sass-lint --config ./sass-lint-dev.yml ./source/templates/components/**/*.scss -v -q --color",
+    "sasslinter": "node sasslinter",
+    "sasslinterDev": "node sasslinter --development",
     "test": "node ensureTestCasesDirectory && karma start karma.conf.js"
   },
   "devDependencies": {
