@@ -186,6 +186,7 @@
         @include width(12px);
         @include font-size($font-sm);
         color: $color-boulder;
+        pointer-events: none;
     }
 
     .form-element,
