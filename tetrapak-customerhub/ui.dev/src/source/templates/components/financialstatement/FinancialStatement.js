@@ -75,7 +75,7 @@ function _renderFilters() {
     }, () => {
       this.initPostCache();
       this.initializeCalendar();
-      this.root.trigger(this.cache.customEvent);
+      this.root.trigger(this.cache.summaryRenderEvent);
     });
   });
 }
@@ -126,7 +126,7 @@ class FinancialStatement {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
-    this.cache.customEvent = 'financialStatement';
+    this.cache.summaryRenderEvent = 'financialSummary.render';
   }
   initPostCache() {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
@@ -217,7 +217,7 @@ class FinancialStatement {
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
-    this.root.trigger(this.cache.customEvent);
+    this.root.trigger(this.cache.summaryRenderEvent);
   }
   init() {
     this.initCache();

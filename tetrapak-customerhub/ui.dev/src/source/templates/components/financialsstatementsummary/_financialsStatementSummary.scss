@@ -1,7 +1,13 @@
 .tp-financials-summary {
     h4 {
-        @include padding-top($padding-xl);
+        @include padding-top($padding-l);
         @include padding-bottom($padding-sm);
+        font-family: $font-bold;
+
+        @media #{$desktop} {
+            @include padding-top($padding-xl);
+            font-family: $font-light;
+        }
     }
 
     &__table {

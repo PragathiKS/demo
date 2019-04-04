@@ -3,6 +3,7 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
+import { tableSort } from '../../../scripts/common/common';
 //import { apiHost } from '../../../scripts/common/common';
 //import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -40,37 +41,12 @@ function _getFilters() {
   return $.param(filterProp);
 }
 
-/**
- * Processes financials table data
- * @param {object} data data object
- * @param {string[]} keys List of keys
- */
-function _tableSort(data, keys, dataLink) {
-  const dataObject = {
-    row: []
-  };
-
-  if (dataLink) {
-    dataObject.rowLink = `${dataLink}`;
-  }
-
-  keys.forEach((key, index) => {
-    const value = data[key];
-    dataObject.row[index] = {
-      key,
-      value,
-      isRTE: [''].includes(key)
-    };
-  });
-  return dataObject;
-}
-
 function _processTableData(data) {
   let keys = [];
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
-      return _tableSort.call(this, summary, keys);
+      return tableSort.call(this, summary, keys);
     });
     data.summaryHeadings = keys.map(key => ({
       key,
@@ -78,19 +54,25 @@ function _processTableData(data) {
     }));
   }
 
-  if (Array.isArray(data.documents)) {
-    data.documents.forEach((document, index) => {
-      document.title = `${document.title} (${document.records.length})`;
-      document.documnetID = `#document${index}`;
-      document.documentData = document.records.map(record => {
+  if (Array.isArray(data.documents) && data.documents.length > 0) {
+    data.documents.forEach((doc, index) => {
+      doc.title = `${doc.title} (${doc.records.length})`;
+      doc.docId = `#document${index}`;
+      doc.docData = doc.records.map(record => {
         keys = Object.keys(record);
-        return _tableSort.call(this, record, keys, record.invoiceReference);
+        return tableSort.call(this, record, keys, record.invoiceReference);
       });
-      document.documentHeadings = keys.map(key => ({
+      doc.docHeadings = keys.map(key => ({
         key,
         i18nKey: `cuhu.financials.${key}`
       }));
     });
+  } else {
+    data.noData = true;
+  }
+
+  if (data.summaryHeadingI18n) {
+    data.summaryHeadingI18n = `${data.summaryHeadingI18n} : ${$('.js-financial-statement__date-range').val()}`;
   }
 }
 
@@ -106,7 +88,7 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         //path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary1.json',
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json',
         data: filterParams
       },
       beforeRender(data) {
@@ -140,6 +122,7 @@ class FinancialsStatementSummary {
   initCache() {
     /* Initialize selector cache here */
     this.cache.configJson = $('.js-financial-statement__config').text();
+    this.cache.$filtersRoot = $('.js-financial-statement');
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -151,11 +134,11 @@ class FinancialsStatementSummary {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this.downloadInvoice);
-    $('.js-financial-statement').on('financialStatement', this.renderTable);
+    this.cache.$filtersRoot.on('financialSummary.render', this.renderTable);
   }
-  renderTable = (...arg) => {
-    const filterParams = _getFilters.apply(this);
-    _renderTable.apply(this, [filterParams], ...arg);
+  renderTable = () => {
+    const filterParams = this.getFilters();
+    _renderTable.apply(this, [filterParams]);
   }
   processTableData(data) {
     return _processTableData.apply(this, data);
@@ -163,6 +146,7 @@ class FinancialsStatementSummary {
   downloadInvoice() {
     return _downloadInvoice.call(this);
   }
+  getFilters = () => _getFilters.apply(this);
   init() {
     /* Mandatory method */
     this.initCache();
