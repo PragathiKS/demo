@@ -22,7 +22,7 @@
                         fieldLabel="Reference"
                         name="./pageContentPath"
                         predicate="nosystem"
-                        rootPath="/content/tetrapak/customerhub"/>
+                        rootPath="/content/tetrapak/customerhub/content-components"/>
                 </items>
             </column>
         </items>
