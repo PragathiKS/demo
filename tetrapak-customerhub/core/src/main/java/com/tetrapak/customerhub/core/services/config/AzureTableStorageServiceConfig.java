@@ -31,4 +31,12 @@ public @interface AzureTableStorageServiceConfig {
      */
     @AttributeDefinition(name = "Account Key", description = "Account Secret Key", type = AttributeType.STRING)
     String accountKey();
+    
+    /**
+     * Azure Table in which the user preference data would be saved
+     * 
+     * @return Azure Table name in which the user preference data would be saved
+     */
+    @AttributeDefinition(name = "Table name", description = "Azure Table name in which the user preference data would be saved", type = AttributeType.STRING)
+    String tableName();
 }

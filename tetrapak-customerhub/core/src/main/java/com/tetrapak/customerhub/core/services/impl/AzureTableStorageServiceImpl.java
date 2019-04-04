@@ -33,7 +33,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 	private AzureTableStorageServiceConfig config;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AzureTableStorageServiceImpl.class);
-	
+
 	private static final String PARTITION_KEY = "tetrapakuser";
 
 	/**
@@ -161,7 +161,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
 		try {
 			DynamicTableEntity row = this.retrieveDataFromTable(tableName, userId);
-			if(null == row) {
+			if (null == row) {
 				row = new DynamicTableEntity();
 				row.setRowKey(userId);
 				row.setPartitionKey(PARTITION_KEY);
@@ -188,6 +188,14 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 *return the Table name to be used in Azure to save the userPreferences
+	 */
+	@Override
+	public String getUserPreferencesTableName() {
+		return config.tableName();
 	}
 
 }

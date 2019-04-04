@@ -15,6 +15,8 @@ import com.microsoft.azure.storage.table.DynamicTableEntity;
  *
  */
 public interface AzureTableStorageService {
+	
+	String getUserPreferencesTableName();
 
 	void createTable(String tableName) throws StorageException, RuntimeException, IOException, InvalidKeyException,
 			IllegalArgumentException, URISyntaxException, IllegalStateException;

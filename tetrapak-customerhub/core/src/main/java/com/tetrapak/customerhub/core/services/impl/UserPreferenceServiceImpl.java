@@ -21,7 +21,6 @@ import com.tetrapak.customerhub.core.services.UserPreferenceService;
 public class UserPreferenceServiceImpl implements UserPreferenceService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserPreferenceServiceImpl.class);
-	private final static String tableName = "tetrapakusertable";
 	
 	@Reference
 	private AzureTableStorageService azureTableStorageService;
@@ -33,7 +32,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 			return savedPreferences;
 		}
 		try {
-			savedPreferences = azureTableStorageService.getUserPreferencesFromAzureTable(tableName, userId, prefType);
+			savedPreferences = azureTableStorageService.getUserPreferencesFromAzureTable(azureTableStorageService.getUserPreferencesTableName(), userId, prefType);
 			LOGGER.debug("Got savedPreferences response {} for userID:{}, prefType:{}", userId, prefType,
 					savedPreferences);
 		} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
@@ -45,7 +44,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 	@Override
 	public boolean setPreferences(String userId, String userPrefType, String userPreferencesData) {
 		try {
-			azureTableStorageService.saveUserPreferencesToAzureTable(tableName, userId, userPrefType,
+			azureTableStorageService.saveUserPreferencesToAzureTable(azureTableStorageService.getUserPreferencesTableName(), userId, userPrefType,
 					userPreferencesData);
 		} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
 			LOGGER.error("Some exception occured while setting userpref:{} data for userID:{}", userPrefType, userId,
