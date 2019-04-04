@@ -38,7 +38,7 @@
             &:first-child {
                 @include font-size($font-baseline);
                 display: none;
-                font-family: $font-semiBold;
+                font-family: $font-semi-bold;
 
                 @media #{$desktop} {
                     display: table-cell;
@@ -51,7 +51,7 @@
         &__cell {
             &:last-child {
                 @include font-size($font-baseline);
-                font-family: $font-semiBold;
+                font-family: $font-semi-bold;
                 padding-right: 0;
                 text-align: right;
             }
