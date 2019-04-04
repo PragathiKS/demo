@@ -260,6 +260,38 @@ function _sanitizeQuery(query) {
   return query;
 }
 
+/**
+ * Sets pagination analytics parameters
+ */
+function _setPaginationAnalyticsParameters($this) {
+  const $tpOrderNumber = $.grep($(this).find('td'), ref => ['orderNumber'].includes($(ref).data('key')))[0];
+  if ($tpOrderNumber) {
+    const tpOrderNumber = $.trim($($tpOrderNumber).text());
+    const currentPage = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
+    trackAnalytics(tpOrderNumber, 'orders', 'searchresultclicks');
+    trackAnalytics(currentPage, 'orders', 'pagination');
+    logger.log(window.digitalData);
+  }
+}
+
+/**
+ * Opens order detail page for current order
+ */
+function _openOrderDetails(e) {
+  const $this = e.data;
+  const currentTarget = $(this);
+  window.open(currentTarget.attr('href'), '_self');
+  _setPaginationAnalyticsParameters.apply(this, [$this]);
+}
+
+/**
+ * Stops event propagation of parent element in child context
+ * @param {object} e Event object
+ */
+function _stopEvtProp(e) {
+  e.stopPropagation();
+}
+
 class OrderSearch {
   cache = {};
   constructor({ el }) {
@@ -299,6 +331,8 @@ class OrderSearch {
         this.submitDateRange();
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
+      .on('click', '.js-ordering-card__row', this, this.openOrderDetails)
+      .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
         const routeQuery = deparam(window.location.hash.substring(2));
@@ -311,6 +345,12 @@ class OrderSearch {
           queryString: $.param(routeQuery)
         });
       });
+  }
+  openOrderDetails() {
+    return _openOrderDetails.apply(this, arguments);
+  }
+  stopEvtProp() {
+    return _stopEvtProp.apply(this, arguments);
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
