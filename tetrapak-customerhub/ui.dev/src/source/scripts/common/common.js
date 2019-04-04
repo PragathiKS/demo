@@ -15,6 +15,10 @@ export const apiHost = $('#apiHost').val();
 // Initialize storage utility
 export const storageUtil = new LZStorage();
 
+window.testStore = new LZStorage({
+  compression: true
+});
+
 const { getCookie } = storageUtil;
 
 // Initialize functions for user agent detection
