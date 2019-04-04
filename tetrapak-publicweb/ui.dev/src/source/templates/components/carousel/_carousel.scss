@@ -40,6 +40,7 @@
         width: 100%;
         @media #{$desktop} {
             width: auto;
+            min-width: convert-to-rem(250px);
         }
         &::after {
             @include margin(0);
