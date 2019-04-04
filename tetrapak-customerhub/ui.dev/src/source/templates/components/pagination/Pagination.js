@@ -21,14 +21,14 @@ function _rendePagination(...args) {
   const [, data] = args;
   const paginationData = this.calculatePages(data);
   if (paginationData.totalPages > 1) {
-    this.root.find('.js-pagination').removeClass('d-none');
+    this.root.removeClass('d-none');
     render.fn({
       template: 'pagination',
       data: paginationData,
       target: this.root
     });
   } else {
-    this.root.find('.js-pagination').addClass('d-none');
+    this.root.addClass('d-none');
   }
 }
 
