@@ -2,6 +2,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
+import 'core-js/features/object/assign';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
