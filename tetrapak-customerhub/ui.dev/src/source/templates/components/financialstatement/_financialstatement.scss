@@ -64,6 +64,10 @@
         font-family: $font-bold;
     }
 
+    &__filters {
+        margin-bottom: 0;
+    }
+
     &__status-calender-container {
         @include margin-bottom($margin-md);
     }
@@ -108,6 +112,7 @@
     &__search-container {
         @media #{$desktop} {
             @include display-flex;
+            flex-wrap: wrap;
         }
     }
 
@@ -120,6 +125,11 @@
             @include padding(0 $padding-md 0 0);
             width: (100% / 3);
         }
+    }
+
+    &__document-type {
+        @include padding($padding-sm $padding-l $padding-sm $padding-sm);
+        @include line-height(22px, $font-baseline);
     }
 
     &__document-type-wrapper {
@@ -140,7 +150,7 @@
     }
 
     &__document-number {
-        @include padding($padding-sm);
+        @include padding($font-sm);
     }
 
     &__document-number-wrapper {
@@ -155,13 +165,13 @@
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
-            flex: 1;
         }
     }
 
     &__reset-btn-container {
-        @include margin-bottom(16px);
-        @include padding(8px 16px);
+        @include margin-bottom($margin-md);
+        @include padding($padding-sm $padding-md);
+        display: inline-block;
         background: $color-wild-sand;
     }
 
@@ -180,10 +190,15 @@
         @include width(12px);
         @include font-size($font-sm);
         color: $color-boulder;
+        pointer-events: none;
     }
 
     .form-element,
     .form-control {
         height: 100%;
     }
+}
+
+.tp-card.tp-financials {
+    @include padding-bottom($padding-sm);
 }

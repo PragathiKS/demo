@@ -1,0 +1,11 @@
+<sly data-sly-template.searchResults_template="${@ data, flag}">
+  <div class="pw-search-results js-pw-search-results" data-locator="search-results" data-module="SearchResults">
+    <div class="pw-search-results__title">
+      <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+           data-sly-call="${heading.heading_h4_template @ headingText='Search Results'}"/>
+    </div>
+    <div class="pw-search-results__results-count js-pw-search-results__results-count">
+
+    </div>
+  </div>
+</sly>

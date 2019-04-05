@@ -33,6 +33,7 @@
 
     .form-element__icon {
         @include font-size(12px);
+        pointer-events: none;
     }
 
     @media #{$desktop} {

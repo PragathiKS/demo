@@ -6,32 +6,34 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { apiHost } from '../../../scripts/common/common';
 
 function _processFinancialStatementData(data) {
-  data.customerData.sort((a, b) => {
-    if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
-      return -1;
-    }
-    if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
-      return 1;
-    }
-    return 0;
-  });
   data = $.extend(true, data, this.cache.i18nKeys);
-  // Resolve i18n keys for calendar modal
-  data.selectDatesI18n = data.selectDates;
-  data.closeBtnI18n = data.closeBtn;
-  data.setDatesBtnI18n = data.setDates;
-  data.dateRangeLabelI18n = data.selectDateRangeLabel;
-  // Remove duplicate properties
-  delete data.selectDates;
-  delete data.closeBtn;
-  delete data.setDates;
-  data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
-  const [selectedCustomerData] = data.customerData;
-  data.selectedCustomerData = selectedCustomerData;
+  if (!data.isError) {
+    data.customerData.sort((a, b) => {
+      if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
+        return -1;
+      }
+      if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
+        return 1;
+      }
+      return 0;
+    });
+    // Resolve i18n keys for calendar modal
+    data.selectDatesI18n = data.selectDates;
+    data.closeBtnI18n = data.closeBtn;
+    data.setDatesBtnI18n = data.setDates;
+    data.dateRangeLabelI18n = data.selectDateRangeLabel;
+    // Remove duplicate properties
+    delete data.selectDates;
+    delete data.closeBtn;
+    delete data.setDates;
+    data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+    const [selectedCustomerData] = data.customerData;
+    data.selectedCustomerData = selectedCustomerData;
+  }
   this.cache.data = data;
   return data;
 }
@@ -54,6 +56,7 @@ function _setSelectedCustomer(key) {
 }
 
 function _renderFilters() {
+  const $this = this;
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'financialStatement',
@@ -71,10 +74,18 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processFinancialStatementData.apply(this, args)
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        }
+        return _processFinancialStatementData.apply($this, [data]);
+      }
     }, () => {
       this.initPostCache();
       this.initializeCalendar();
+      this.root.trigger(this.cache.summaryRenderEvent);
     });
   });
 }
@@ -125,6 +136,7 @@ class FinancialStatement {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.summaryRenderEvent = 'financialSummary.render';
   }
   initPostCache() {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
@@ -149,7 +161,9 @@ class FinancialStatement {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);
     }
   }
@@ -197,7 +211,13 @@ class FinancialStatement {
       .on('click', '.js-calendar', () => {
         this.submitDateRange();
       })
-      .on('click', '.js-calendar-nav', this, this.navigateCalendar);
+      .on('click', '.js-calendar-nav', this, this.navigateCalendar)
+      .on('click', '.js-financial-statement__submit', this.populateResults)
+      .on('reset', '.js-financial-statement__filters', () => {
+        setTimeout(() => {
+          this.populateResults();
+        }, 0);
+      });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
@@ -206,7 +226,14 @@ class FinancialStatement {
     return _setDateFilter.apply(this, arguments);
   }
   setSelectedCustomer() {
+    $('.js-financial-statement__reset').trigger('click');
+    const { $dateRange, $rangeSelector } = this.cache;
+    $rangeSelector.val($dateRange.val());
+    this.initializeCalendar();
     return _setSelectedCustomer.apply(this, arguments);
+  }
+  populateResults = () => {
+    this.root.trigger(this.cache.summaryRenderEvent);
   }
   init() {
     this.initCache();
