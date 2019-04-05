@@ -107,13 +107,16 @@ public class PDFGeneratorServlet extends SlingSafeMethodsServlet {
 
         final float MARGIN = 40;
         final boolean IS_LANDSCAPE = true;
-        final PDFont TEXT_FONT = PDType1Font.HELVETICA;
+        final PDFont font = PDType1Font.HELVETICA;
         final float FONT_SIZE = 10;
 
         final float ROW_HEIGHT = 20;
         final float CELL_MARGIN = 5;
 
         float tableHeight = 1000;
+
+        double width = 8.5 * 72;
+        double height = (double) 11 * 72;
 
         Table table = new TableBuilder()
                 .setCellMargin(CELL_MARGIN)
@@ -123,10 +126,10 @@ public class PDFGeneratorServlet extends SlingSafeMethodsServlet {
                 .setNumberOfRows(content.length)
                 .setRowHeight(ROW_HEIGHT)
                 .setMargin(MARGIN)
-                .setPageSize(new PDRectangle(8.5f * 72,
-                        11f * 72))
+                .setPageSize(new PDRectangle((float) width,
+                        (float) height))
                 .setLandscape(IS_LANDSCAPE)
-                .setTextFont(TEXT_FONT)
+                .setTextFont(font)
                 .setFontSize(FONT_SIZE)
                 .build();
         return table;

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * This is table builder class and is used to create table object
+ *
  * @author Nitin Kumar
  */
 public class TableBuilder {
@@ -68,6 +69,12 @@ public class TableBuilder {
         return this;
     }
 
+
+    /**
+     * This method is used to build a table object
+     *
+     * @return table
+     */
     public Table build() {
         return table;
     }
