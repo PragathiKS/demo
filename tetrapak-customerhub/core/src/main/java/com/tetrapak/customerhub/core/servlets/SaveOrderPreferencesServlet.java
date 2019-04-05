@@ -1,16 +1,14 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import org.apache.jackrabbit.api.security.user.Authorizable;
-import org.apache.jackrabbit.api.security.user.UserManager;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Map;
+
+import javax.jcr.Session;
+import javax.servlet.Servlet;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ModifiableValueMap;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
@@ -19,86 +17,92 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.Servlet;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
-@Component(service = Servlet.class,
-        property = {
-                Constants.SERVICE_DESCRIPTION + "=Order Prefernces Servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.resourceTypes=" + "customerhub/components/content/orderingcard",
-                "sling.servlet.selector=" + "preference",
-                "sling.servlet.extensions=" + "json"
-        })
+@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Order Prefernces Servlet",
+		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
+		"sling.servlet.resourceTypes=" + "customerhub/components/content/orderingcard",
+		"sling.servlet.selector=" + "preference", "sling.servlet.extensions=" + "json" })
 public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 
-    private static final long serialVersionUID = 1L;
-    private static final String TETRAPAK_USER = "customerhubUser";
+	private static final long serialVersionUID = 1L;
+	private static final String ORDER_PREFERENCES = "orderPreferences";	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final String ORDER_PREFERENCES = "orderPreferences";
+	@Reference
+	private UserPreferenceService userPreferenceService;
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+	@Override
+	protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
+			throws IOException {
+		logger.info("SaveOrderPreferencesServlet POST method started");
+		Session session = request.getResourceResolver().adaptTo(Session.class);
+		if (null == session) {
+			writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
+			return;
+		}
+		String userId = session.getUserID();
+		String prefFromRequest = request.getParameter("fields");
+		String[] preferList = {};
+		if (null != prefFromRequest) {
+			preferList = prefFromRequest.split(",");
+		}
+		String userPrefType = checkUserPreferenceType(request.getParameter("preferencetype"));
+		Gson gson = new Gson();
+		Type prefDataType = getPreferenceDataType(userPrefType);
+		String json = gson.toJson(preferList, prefDataType);
 
-    @Reference
-    private ResourceResolverFactory resolverFactory;
+		if (!userPreferenceService.setPreferences(userId, userPrefType, json)) {
+			logger.warn("Could not save UserPreferences To Azure Table for userID: {}", userId);
+			writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
+			return;
+		}
+		writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
+	}
 
-    @Override
-    protected void doPost(final SlingHttpServletRequest request,
-                          final SlingHttpServletResponse response) throws IOException {
-        logger.info("SaveOrderPreferencesServlet POST method started");
+	/**
+	 * 
+	 * If no preference is given then by default it would be saved in order
+	 * preferences
+	 * 
+	 * @param preferenceType
+	 * @return
+	 */
+	private String checkUserPreferenceType(String preferenceType) {
+		if (null != preferenceType && !preferenceType.isEmpty()) {
+			return preferenceType;
+		}
+		return ORDER_PREFERENCES;
+	}
 
-        final Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put(ResourceResolverFactory.SUBSERVICE, TETRAPAK_USER);
-        ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory, paramMap);
+	/**
+	 * 
+	 * Order preferences is a String Array For all other preferences, Map of
+	 * key-value pair data is expected
+	 * 
+	 * @param userPrefType
+	 * @return
+	 */
+	private Type getPreferenceDataType(String userPrefType) {
+		Type preferenceDataType = null;
+		if (userPrefType == ORDER_PREFERENCES) {
+			preferenceDataType = new TypeToken<String[]>() {
+			}.getType();
+		} else {
+			preferenceDataType = new TypeToken<Map<String, String>>() {
+			}.getType();
+		}
+		return preferenceDataType;
+	}
 
-        Session session = request.getResourceResolver().adaptTo(Session.class);
-        if (null == session) {
-            writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
-            return;
-        }
-        String userId = session.getUserID();
-        if (null != resourceResolver) {
-            UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-            if (null == userManager) {
-                writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
-                return;
-            }
-            try {
-                Authorizable user = userManager.getAuthorizable(userId);
-                String prefFromRequest = request.getParameter("fields");
-                String[] preferList = prefFromRequest.split(",");
-
-                String path = user.getPath();
-                Resource userResource = resourceResolver.getResource(path);
-                if (null == userResource) {
-                    writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
-                    return;
-                }
-                ModifiableValueMap properties = userResource.adaptTo(ModifiableValueMap.class);
-                if (null == properties) {
-                    writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
-                } else {
-                    properties.put(ORDER_PREFERENCES, preferList);
-                    resourceResolver.commit();
-                    writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
-                }
-            } catch (RepositoryException e) {
-                logger.error("RepositoryException in SaveOrderPreferencesServlet", e);
-            } finally {
-                if (null != resourceResolver && resourceResolver.isLive()) {
-                    resourceResolver.close();
-                }
-            }
-        }
-    }
-
-    private void writeJsonResponse(SlingHttpServletResponse resp, String status) throws IOException {
-        JsonObject jsonResponse = new JsonObject();
-        jsonResponse.addProperty("status", status);
-        GlobalUtil.writeJsonResponse(resp, jsonResponse);
-    }
+	private void writeJsonResponse(SlingHttpServletResponse resp, String status) throws IOException {
+		JsonObject jsonResponse = new JsonObject();
+		jsonResponse.addProperty("status", status);
+		GlobalUtil.writeJsonResponse(resp, jsonResponse);
+	}
 }
