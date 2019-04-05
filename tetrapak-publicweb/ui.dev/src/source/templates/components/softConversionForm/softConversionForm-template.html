@@ -1,0 +1,22 @@
+<sly data-sly-template.softConversionForm_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+${data.titleI18n @ i18n}
+
+<br/>
+${data.description}
+
+<br/>
+${data.headline @ i18n}
+
+<form>
+	${data.firstNameLabel}<input name="first-name" type="text" value="" /><br /> 
+	${data.lastNameLabel}<input name="last-name" type="text" value="" /><br /> 
+	${data.emailAddressLabel}<input name="email-address" type="text" value="" /><br /> 
+	${data.companyLabel}<input name="firstname" type="text" value="" /><br /> 
+	${data.positionLabel}<input name="firstname" type="text" value="" /><br /> 
+	<input checked="checked" name="sex" type="radio" value="male" /> Male <br /> 
+	<input name="sex" type="radio" value="female" /> Female <br />  
+</form>
+<sly data-sly-test="${!data.titleI18n}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+</sly>         
