@@ -29,6 +29,7 @@ describe('OrderSearch', function () {
     this.dateRangeSpy = sinon.spy(this.orderSearch, 'openRangeSelector');
     this.calendarSpy = sinon.spy(this.orderSearch, 'submitDateRange');
     this.navigateSpy = sinon.spy(this.orderSearch, 'navigateCalendar');
+    this.openSpy = sinon.spy(window, 'open');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderSearchData));
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
@@ -60,6 +61,7 @@ describe('OrderSearch', function () {
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
     this.navigateSpy.restore();
+    this.openSpy.restore();
     this.routeStub.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -129,5 +131,9 @@ describe('OrderSearch', function () {
   it('should select date range and close range selector on click of "Set Dates" button', function () {
     $('.js-calendar').trigger('click');
     expect(this.calendarSpy.called).to.be.true;
+  });
+  it('should navigate to order detail page on click of order history row', function () {
+    $('.js-ordering-card__row').first().trigger('click');
+    expect(this.openSpy.called).to.be.true;
   });
 });
