@@ -1,3 +1,4 @@
+{{> molecules/calendar/calendarModal this}}
 <form class="js-order-search__filters form-group d-none">
     {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.dateRangeLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__date-range js-order-search__date-range" dataLocator="calendar-picker" readonly=true }}
     {{> atoms/dropdown/dropdown defaultValue=this.allStatusesTextI18n options=this.summary.status name="orderstatus" label=this.orderStatusLabelI18n wrapClasses="float-lg-left" eleClasses="tp-order-search__order-status js-order-search__order-status" dataLocator="status-drpdwn" }}

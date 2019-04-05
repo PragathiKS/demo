@@ -76,6 +76,13 @@
                                 fieldLabel="DAM Video Path"
                                 name="./damVideoPath"
                                 rootPath="/content/dam/publicweb"/>
+                            <image
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Select a thumbnail for the DAM video"
+                                fieldLabel="Thumbnail"
+                                name="./thumbnailPath"
+                                rootPath="/content/dam/publicweb"/>
                         </items>
                     </column>
                 </items>

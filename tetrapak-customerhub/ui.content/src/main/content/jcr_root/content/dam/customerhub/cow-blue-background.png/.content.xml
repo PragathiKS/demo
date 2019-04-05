@@ -4,15 +4,10 @@
     jcr:primaryType="dam:Asset"
     jcr:uuid="d619487a-620f-4ed8-bcd2-a51147c95e02">
     <jcr:content
-        cq:lastReplicated="{Date}2019-03-21T10:47:28.668Z"
-        cq:lastReplicatedBy="sapient-user"
-        cq:lastReplicationAction="Activate"
         dam:assetState="processed"
         dam:imageServerAsset="{Boolean}true"
         dam:relativePath="customerhub/cow-blue-background.png"
         dam:s7damType="Image"
-        jcr:lastModified="{Date}2019-03-20T12:37:23.453Z"
-        jcr:lastModifiedBy="sapient-dhirendra"
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="dam:AssetContent"
         newRendition="{Boolean}true"

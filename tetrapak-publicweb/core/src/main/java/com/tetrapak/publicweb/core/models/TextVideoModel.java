@@ -35,6 +35,9 @@ public class TextVideoModel {
     @Inject
     private String damVideoPath;
 
+    @Inject
+    private String thumbnailPath;
+
     private String youtubeEmbedURL;
 
     @Inject
@@ -93,6 +96,10 @@ public class TextVideoModel {
 
     public String getDamVideoPath() {
         return damVideoPath;
+    }
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
     }
 
     public String getTextAlignment() {

@@ -7,6 +7,7 @@
         height: calc(100vh - #{convert-to-rem(88px)});
         overflow-y: scroll;
     }
+
     &__overlay {
         background-color: rgba($color-black, 0);
         position: fixed;
@@ -17,11 +18,13 @@
         transition: z-index $anim-speed-normal;
         transition-delay: $anim-speed-normal;
         z-index: $zindex-hide;
+
         &.color-transform {
             z-index: $zindex-nav;
             background-color: rgba($color-black, 0.5);
             transition: z-index 0s, background-color 0s;
         }
+
         @media #{$desktop} {
             @include max-width(224px);
             display: block;
@@ -30,55 +33,65 @@
             position: static;
         }
     }
+
     &__container {
         @include max-width(300px);
-        z-index: $zindex-nav;
-        color: $color-white;
-        width: 90%;
         display: block;
+        color: $color-white;
+        z-index: $zindex-nav;
+        width: 90%;
         height: 100%;
         transform: translateX(-100%);
         transition: transform $anim-speed-normal;
+
         &.translated {
             transform: translateX(0);
         }
+
         @media #{$desktop} {
             @include max-width(224px);
             width: auto;
             transform: translateX(0);
         }
     }
+
     &__ullist {
         @include vertical-scroll-touch;
         padding: 0;
         height: 100%;
         transition: transform $anim-speed-normal;
+
         @media #{$desktop} {
             width: 100%;
             overflow: initial;
         }
     }
+
     &__main-heading {
         @include padding($padding-xl $padding-md);
-        position: relative;
         color: $color-white;
+        position: relative;
         border-bottom: 1px solid $color-tory-blue;
         background-color: $color-congress-blue;
+
         @media #{$desktop} {
             @include padding($padding-l $padding-l $padding-md $padding-l);
         }
     }
+
     &__main-heading-title {
         @include font-size($font-md);
         @include line-height($spacing-big, $font-md);
         font-weight: 300;
     }
+
     &__close-btn {
         @include right($spacing-small);
         color: $color-white;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+
         .icon-Close {
             @include font-size($font-normal);
             color: $color-white;

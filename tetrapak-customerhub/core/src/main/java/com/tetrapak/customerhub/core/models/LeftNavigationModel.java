@@ -5,6 +5,8 @@ import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -38,7 +40,7 @@ public class LeftNavigationModel {
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(
-                CustomerHubConstants.GLOBAL_PAGE_PATH + "/jcr:content/root/responsivegrid");
+        		GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
             Resource globalConfigResource = getGlobalConfigurationResource(childResource);
             if (null != globalConfigResource) {
@@ -49,7 +51,7 @@ public class LeftNavigationModel {
             }
         }
 
-        Resource globalResource = resource.getResourceResolver().getResource(CustomerHubConstants.GLOBAL_PAGE_PATH);
+        Resource globalResource = resource.getResourceResolver().getResource(GlobalUtil.getCustomerhubConfigPagePath(resource));
         if (null != globalResource) {
             Page globalPage = globalResource.adaptTo(Page.class);
             if (null != globalPage) {
@@ -79,6 +81,9 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
+            if(isCurrentPage(subPage)){
+                leftNavigationBean.setExpanded(true);
+            }
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
@@ -96,7 +101,7 @@ public class LeftNavigationModel {
         tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
-        tpLogoListItem.setIconLabel("stickyLabel");
+        tpLogoListItem.setIconLabel((String) valueMap.get("stickyLabel"));
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
@@ -133,10 +138,7 @@ public class LeftNavigationModel {
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
-        if (valueMap.containsKey(HIDE_IN_NAV_PROPERTY)) {
-            return true;
-        }
-        return false;
+        return valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
     private boolean isExternalLink(ValueMap valueMap) {

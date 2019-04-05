@@ -1,0 +1,44 @@
+{{> molecules/calendar/calendarModal this}}
+<h2 class="tp-financial-statement__select-customer-heading">{{this.statementOfAccount}}</h2>
+<h3 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h3>
+{{#if isError}}
+    {{> atoms/error/error error=true message="cuhu.error.message"}}
+{{else}}
+    {{#if customerData}}
+    {{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="tp-financial-statement__select-box js-financial-statement__find-customer"}}
+        <div class="tp-financial-statement__customer-detail">
+            {{> molecules/financialStatement/financialAddressDetail data=this.data.cache }}
+        </div>
+        <h3 class="tp-financial-statement__select-customer-label">{{this.accountService}}</h3>
+        <form class="tp-financial-statement__filters js-financial-statement__filters form-group">
+            <div class="tp-financial-statement__status-calender-container">
+                <div class="tp-financial-statement__status-container float-lg-left">
+                    {{> atoms/dropdown/dropdown options=this.status name="status" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="tp-financial-statement__status js-financial-statement__status"}}
+                </div>
+                <div class="tp-financial-statement__date-range-container">
+                    {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.currentDate name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="tp-financial-statement__date-range js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
+                </div>
+            </div>
+            <div class="tp-financial-statement__search-container">
+                <div class="tp-financial-statement__document-type-container">
+                    {{> atoms/dropdown/dropdown options=this.documentType name="document-type" label=this.selectDocumentTypeLabel wrapClasses="tp-financial-statement__document-type-wrapper" eleClasses="tp-financial-statement__document-type js-financial-statement__document-type"}}
+                </div>
+                <div class="tp-financial-statement__document-number-container">
+                    <div class="tp-financial-statement__document-number-wrapper">
+                        {{> atoms/input/input name="search" label=this.searchInputLabel eleClasses="tp-financial-statement__document-number js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber }}
+                    </div>
+                </div>
+                <div class="tp-financial-statement__buttons-container">
+                    <div class="tp-financial-statement__search-btn-container float-lg-left">
+                        {{> atoms/buttons/button/button text=this.searchButtonText modifier="primary" className="tp-financial-statement__submit-btn" jsClass="js-financial-statement__submit" iconClass="icon-Chevron_Right" dataLocator="statement-financial-btn" }}
+                    </div>
+                    <div class="tp-financial-statement__reset-btn-container">
+                        {{> atoms/buttons/button/button buttonType="reset" text=this.resetButtonText modifier="secondary" className="tp-financial-statement__reset-btn" iconClass="icon-Close" jsClass="js-financial-statement__reset"  dataLocator="statement-reset-btn" }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    {{else}}
+        {{> atoms/error/error message="cuhu.nodata.message"}}
+    {{/if}}
+{{/if}}

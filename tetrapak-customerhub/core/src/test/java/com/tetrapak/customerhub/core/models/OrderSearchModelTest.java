@@ -30,7 +30,7 @@ public class OrderSearchModelTest {
     public void testGetStartedMessage() {
         String config = orderSearchModel.getConfig();
         Assert.assertTrue(config.contains("Search Orders"));
-        Assert.assertEquals(1, orderSearchModel.getDisabledFields().size());
+        Assert.assertEquals(5, orderSearchModel.getDisabledFields().size());
         Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderSearchModel.getOrderDetailLink());
     }
 }

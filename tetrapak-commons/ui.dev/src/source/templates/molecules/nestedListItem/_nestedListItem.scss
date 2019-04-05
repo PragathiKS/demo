@@ -5,7 +5,7 @@
     background-color: $color-congress-blue;
     &.active,
     &:hover {
-        background: $color-denim;
+        background: $color-tory-blue;
     }
     .tpmol-list-item__sublist & {
         background-color: $color-tory-blue;
@@ -14,6 +14,7 @@
         overflow: hidden;
         opacity: 1;
         height: auto;
+        &.active,
         &:hover {
             background: $color-denim;
         }
