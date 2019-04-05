@@ -23,6 +23,8 @@ public class PDFUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PDFUtil.class);
 
+    private static final PDPage page = new PDPage();
+
     public static void printTextPDF(SlingHttpServletResponse response, @NotNull final String fileName, PDFont font, int fontSize, List<String> lines) {
         PDDocument document = new PDDocument();
         int count = 0;
@@ -31,8 +33,6 @@ public class PDFUtil {
             count++;
             tempLines.add(line);
             if (count == 14) {
-                // Create a page and add to document
-                PDPage page = new PDPage();
                 document.addPage(page);
                 printPage(document, page, font, fontSize, tempLines);
                 count = 0;
@@ -40,7 +40,6 @@ public class PDFUtil {
             }
         }
         if (tempLines.size() > 0) {
-            PDPage page = new PDPage();
             document.addPage(page);
             printPage(document, page, font, fontSize, tempLines);
         }
