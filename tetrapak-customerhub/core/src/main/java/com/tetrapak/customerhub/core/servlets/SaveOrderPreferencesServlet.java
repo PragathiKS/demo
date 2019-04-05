@@ -39,7 +39,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(SaveOrderPreferencesServlet.class);
 
 	@Reference
 	private UserPreferenceService userPreferenceService;
