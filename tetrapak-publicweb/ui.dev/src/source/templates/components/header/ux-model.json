@@ -27,5 +27,7 @@
       "linkPath": "/content/tetrapak/public-web/global/en/about-us"
     }
   ],
+  "searchRootPath": "/content/tetrapak/public-web/global",
+  "searchResultsPath": "/content/publicweb-ux/searchResults.ux-preview",
   "loginTextI18n": "My TetraPak"
 }

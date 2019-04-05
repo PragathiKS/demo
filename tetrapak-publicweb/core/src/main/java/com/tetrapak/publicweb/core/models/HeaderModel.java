@@ -28,6 +28,9 @@ public class HeaderModel {
     private Resource resource;
 
     private String loginTextI18n;
+    private String searchRootPath;
+    private String searchResultsPath;
+    
     @Inject
     private Boolean enableHeroImage;
     private List<NavigationLinkBean> megaMenuLinksList = new ArrayList<>();
@@ -36,6 +39,8 @@ public class HeaderModel {
     protected void init() {
         InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
         loginTextI18n = inheritanceValueMap.getInherited("loginTextI18n", String.class);
+        searchRootPath = inheritanceValueMap.getInherited("searchRootPath", String.class);
+        searchResultsPath = inheritanceValueMap.getInherited("searchResultsPath", String.class);
         String[] megaMenuLinks = inheritanceValueMap.getInherited("megamenuLinks", String[].class);
         LinkUtils.setMultifieldNavLinkItems(megaMenuLinks, megaMenuLinksList, log);
     }
@@ -51,4 +56,13 @@ public class HeaderModel {
     public String getLoginTextI18n() {
         return loginTextI18n;
     }
+
+	public String getSearchRootPath() {
+		return searchRootPath;
+	}
+
+	public String getSearchResultsPath() {
+		return searchResultsPath;
+	}    
+    
 }

@@ -1,0 +1,22 @@
+.pw-search-results {
+    @include margin-bottom($margin-l);
+    @include padding($padding-md);
+    background-color: $color-white;
+
+    @media #{$desktop} {
+        @include margin-bottom($margin-xxxl);
+        @include padding($padding-xxxl);
+    }
+
+    &__title,
+    &__results-count {
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    p {
+        @include margin-bottom($margin-sm);
+    }
+}

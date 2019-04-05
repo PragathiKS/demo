@@ -20,12 +20,15 @@ function _getPage(pageNumber, currentPage) {
 function _rendePagination(...args) {
   const [, data] = args;
   const paginationData = this.calculatePages(data);
-  if (paginationData.totalPages > 0) {
+  if (paginationData.totalPages > 1) {
+    this.root.removeClass('d-none');
     render.fn({
       template: 'pagination',
       data: paginationData,
       target: this.root
     });
+  } else {
+    this.root.addClass('d-none');
   }
 }
 
