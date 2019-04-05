@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
-        cq:template="/conf/tetrapak-publicweb/settings/wcm/templates/empty-experience-fragment"
+        cq:template="/conf/publicweb/settings/wcm/templates/empty-experience-fragment"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="publicweb/components/structure/pages/page">
         <root
