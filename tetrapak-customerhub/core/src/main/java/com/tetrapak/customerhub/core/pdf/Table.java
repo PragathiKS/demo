@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * This is table class and is used to create table objects
  * which is used to draw content to a pdf document in a tabular format
+ *
  * @author Nitin Kumar
  */
 public class Table {
@@ -30,6 +31,7 @@ public class Table {
     private float cellMargin;
 
     public Table() {
+        //no implementation required
     }
 
     public Integer getNumberOfColumns() {

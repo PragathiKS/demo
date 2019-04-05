@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.pdf;
 
 /**
  * This is column class and is used to create columns inside a table object
+ *
  * @author Nitin Kumar
  */
 public class Column {
@@ -9,6 +10,10 @@ public class Column {
     private String name;
     private float width;
 
+    /**Public constructor for this class
+     * @param name  string name
+     * @param width float width
+     */
     public Column(String name, float width) {
         this.name = name;
         this.width = width;

@@ -19,12 +19,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Utility class
+ */
 public class PDFUtil {
+
+    /**
+     * private constructor
+     */
+    private PDFUtil(){
+        //adding private constructor
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PDFUtil.class);
 
     private static final PDPage page = new PDPage();
 
+    /**This method is used to print lines of string into a pdf file
+     * @param response http servlet response
+     * @param fileName string file name
+     * @param font font for document
+     * @param fontSize font size
+     * @param lines list of string lines to be printed on document
+     */
     public static void printTextPDF(SlingHttpServletResponse response, @NotNull final String fileName, PDFont font, int fontSize, List<String> lines) {
         PDDocument document = new PDDocument();
         int count = 0;
@@ -39,7 +56,7 @@ public class PDFUtil {
                 tempLines = new ArrayList<>();
             }
         }
-        if (tempLines.size() > 0) {
+        if (!tempLines.isEmpty()) {
             document.addPage(page);
             printPage(document, page, font, fontSize, tempLines);
         }
@@ -67,7 +84,7 @@ public class PDFUtil {
         }
     }
 
-    public static void printOutput(SlingHttpServletResponse response, PDDocument document, String fileName) {
+    private static void printOutput(SlingHttpServletResponse response, PDDocument document, String fileName) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             document.save(out);
@@ -98,6 +115,12 @@ public class PDFUtil {
         }
     }
 
+    /**This method is used to create pdf file printing in tabular format
+     * @param response http servlet response
+     * @param fileName string file name
+     * @param table table object
+     * @throws IOException IO Exception
+     */
     public static void generateTablePDF(SlingHttpServletResponse response, String fileName, Table table) throws IOException {
         PDDocument document = null;
         try {
@@ -112,11 +135,19 @@ public class PDFUtil {
         }
     }
 
-    // Configures basic setup for the table and draws it page by page
+
+    /**This method is used to draw table based on table content passed as parameter
+     * @param doc pdf document
+     * @param table table object
+     * @throws IOException IO Exception
+     */
     public static void drawTable(PDDocument doc, Table table) throws IOException {
         // Calculate pagination
-        Integer rowsPerPage = new Double(Math.floor(table.getHeight() / table.getRowHeight())).intValue() - 1; // subtract
-        Integer numberOfPages = new Double(Math.ceil(table.getNumberOfRows().floatValue() / rowsPerPage)).intValue();
+        double d1 = Math.floor((double) table.getHeight() / (double) table.getRowHeight());
+        Integer rowsPerPage = (int) d1 - 1;
+
+        double d2 = Math.ceil((double) table.getNumberOfRows().floatValue() / rowsPerPage);
+        Integer numberOfPages = (int) d2;
 
         // Generate each page, get the content and draw it
         for (int pageCount = 0; pageCount < numberOfPages; pageCount++) {
@@ -130,53 +161,56 @@ public class PDFUtil {
     // Draws current page table grid and border lines and content
     private static void drawCurrentPage(Table table, String[][] currentPageContent, PDPageContentStream contentStream)
             throws IOException {
-        float tableTopY = table.isLandscape() ? table.getPageSize().getWidth() - table.getMargin() : table.getPageSize().getHeight() - table.getMargin();
+        double widthLandscape = (double) table.getPageSize().getWidth() - (double) table.getMargin();
+        double widthPortrait = (double) table.getPageSize().getHeight() - (double) table.getMargin();
+        double tableTopY = table.isLandscape() ? widthLandscape : widthPortrait;
 
         // Draws grid and borders
         drawTableGrid(table, currentPageContent, contentStream, tableTopY);
 
         // Position cursor to start drawing content
-        float nextTextX = table.getMargin() + table.getCellMargin();
+        double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         // Calculate center alignment for text in cell considering font height
-        float nextTextY = tableTopY - (table.getRowHeight() / 2)
-                - ((table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * table.getFontSize()) / 4);
+        double nextTextY = tableTopY - ((double) table.getRowHeight() / 2)
+                - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * (double) table.getFontSize()) / 4);
 
         // Write column headers
-        writeContentLine(table.getColumnsNamesAsArray(), contentStream, nextTextX, nextTextY, table);
+        writeContentLine(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY, table);
         nextTextY -= table.getRowHeight();
-        nextTextX = table.getMargin() + table.getCellMargin();
+        nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
 
         // Write content
         for (int i = 0; i < currentPageContent.length; i++) {
-            writeContentLine(currentPageContent[i], contentStream, nextTextX, nextTextY, table);
-            nextTextY -= table.getRowHeight();
-            nextTextX = table.getMargin() + table.getCellMargin();
+            writeContentLine(currentPageContent[i], contentStream, (float) nextTextX, (float) nextTextY, table);
+            nextTextY -= (double) table.getRowHeight();
+            nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         }
 
         contentStream.close();
     }
 
     // Writes the content for one line
-    private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, float nextTextX, float nextTextY,
+    private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX, float nextTextY,
                                          Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
             contentStream.beginText();
-            contentStream.newLineAtOffset(nextTextX, nextTextY);
+            contentStream.newLineAtOffset((float) nextTextX, nextTextY);
             contentStream.showText(null == text ? "" : text);
             contentStream.endText();
             nextTextX += table.getColumns().get(i).getWidth();
         }
     }
 
-    private static void drawTableGrid(Table table, String[][] currentPageContent, PDPageContentStream contentStream, float tableTopY)
+    private static void drawTableGrid(Table table, String[][] currentPageContent, PDPageContentStream contentStream, double tableTopY)
             throws IOException {
         // Draw row lines
-        float nextY = tableTopY;
+        double nextY = tableTopY;
         for (int i = 0; i <= currentPageContent.length + 1; i++) {
 
-            contentStream.moveTo(table.getMargin(), nextY);
-            contentStream.lineTo(table.getMargin() + table.getWidth(), nextY);
+            contentStream.moveTo(table.getMargin(), (float) nextY);
+            double width = (double) table.getMargin() + (double) table.getWidth();
+            contentStream.lineTo((float) width, (float) nextY);
             contentStream.stroke();
 
             nextY -= table.getRowHeight();
