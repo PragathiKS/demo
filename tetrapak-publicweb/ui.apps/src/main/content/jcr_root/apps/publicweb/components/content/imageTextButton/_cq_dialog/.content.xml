@@ -52,6 +52,17 @@
                                 fieldLabel="CTA Link URL"
                                 rootPath="/content/tetrapak/public-web"
                                 name="./ctaLinkURL"/>
+                            <openLinkInNewWindow
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                name="./openLinkInNewWindow"
+                                text="Open Link In New Window?"
+                                value="true"/>
+                            <openLinkInNewWindowDelete
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./openLinkInNewWindow@Delete"
+                                value="{Boolean}true"/>
                             <image
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
