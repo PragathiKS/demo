@@ -1,22 +1,31 @@
 <sly data-sly-template.softConversionForm_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-${data.titleI18n @ i18n}
 
-<br/>
-${data.description}
+<div class="soft-conversion-form">  
+    <h3>${data.titleI18n @ i18n}</h3>
+    <p>${data.description}</p>
+    <h4>${data.headline @ i18n}</h4>
+    
+    <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
+    
+        <input checked="checked" name="group" type="radio" value="Professional" /> Professional <br /> 
+        <input name="group" type="radio" value="Media Representative" /> Media Representative <br />  
+        <input name="group" type="radio" value="Student" /> Student <br /> 
+    
+        ${data.firstNameLabel @ i18n}<br /> 
+        <input name="first-name" type="text" value="" /><br /> 
+        ${data.lastNameLabel @ i18n}<br /> 
+        <input name="last-name" type="text" value="" /><br /> 
+        ${data.emailAddressLabel @ i18n}<br /> 
+        <input name="email-address" type="text" value="" /><br /> 
+        ${data.companyLabel @ i18n}<br /> 
+        <input name="company" type="text" value="" /><br /> 
+        ${data.positionLabel @ i18n}<br /> 
+        <input name="position" type="text" value="" /><br /> 
+        <input type="submit" value="${data.nextButtonLabel @ i18n}"><br/>
+    </form>
+</div>
 
-<br/>
-${data.headline @ i18n}
-
-<form>
-	${data.firstNameLabel}<input name="first-name" type="text" value="" /><br /> 
-	${data.lastNameLabel}<input name="last-name" type="text" value="" /><br /> 
-	${data.emailAddressLabel}<input name="email-address" type="text" value="" /><br /> 
-	${data.companyLabel}<input name="firstname" type="text" value="" /><br /> 
-	${data.positionLabel}<input name="firstname" type="text" value="" /><br /> 
-	<input checked="checked" name="sex" type="radio" value="male" /> Male <br /> 
-	<input name="sex" type="radio" value="female" /> Female <br />  
-</form>
 <sly data-sly-test="${!data.titleI18n}"
        data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
 </sly>         

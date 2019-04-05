@@ -12,8 +12,6 @@ import org.apache.sling.models.annotations.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.publicweb.core.beans.RadioButtonGroupBean;
-
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SoftConversionFormModel {
 
@@ -71,7 +69,7 @@ public class SoftConversionFormModel {
 		return buttonLabel;
 	}
 
-	public List<RadioButtonGroupBean> getRadioButtonGroups() {
+	public List<String> getRadioButtonGroups() {
 		return getRadioButtonGroups(radioButtonGroups);
 	}
 
@@ -110,10 +108,9 @@ public class SoftConversionFormModel {
 	 * @param tabLinks String[]
 	 * @return List<String>
 	 */
-	public static List<RadioButtonGroupBean> getRadioButtonGroups(String[] radioButtonGroups) {
+	public static List<String> getRadioButtonGroups(String[] radioButtonGroups) {
 		@SuppressWarnings("deprecation")
-		List<RadioButtonGroupBean> radioButtons = new ArrayList<RadioButtonGroupBean>();
-		RadioButtonGroupBean bean = new  RadioButtonGroupBean();
+		List<String> radioButtons = new ArrayList<String>();
 		JSONObject jObj;
 		try {
 			if (radioButtonGroups == null) {
@@ -123,13 +120,8 @@ public class SoftConversionFormModel {
 					jObj = new JSONObject(radioButtonGroups[i]);
 
 					if (jObj.has("radiobuttonTitle")) {
-						bean.setTitle(jObj.getString("radiobuttonTitle"));
+						radioButtons.add(jObj.getString("radiobuttonTitle"));
 					}
-					if (jObj.has("radioButtonValue")) {
-						bean.setTitle(jObj.getString("radioButtonValue"));
-					}
-					radioButtons.add(bean);
-
 				}
 			}
 		} catch (Exception e) {

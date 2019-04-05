@@ -75,11 +75,6 @@
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                         fieldLabel="Radio Button Title"
                                                         name="./radiobuttonTitle"/>
-                                                    <value
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                        fieldLabel="Radio Button Value"
-                                                        name="./radioButtonValue"/>
                                                 </items>
                                             </column>
                                         </items>
