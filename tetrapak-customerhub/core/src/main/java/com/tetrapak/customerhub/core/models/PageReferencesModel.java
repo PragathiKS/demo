@@ -12,6 +12,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import com.day.crx.JcrConstants;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 /**
  * Model class for page reference components
@@ -25,22 +27,20 @@ public class PageReferencesModel {
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     private String pageContentPath;
     
-    List<String> componentsReference = new LinkedList<String>();
+    List<String> componentsReference = new LinkedList<>();
     private String locale;
     
 	@PostConstruct
     protected void init() {
         if(Objects.nonNull(pageContentPath)) {
         	locale = StringUtils.isNotBlank(locale) ? locale : "en";
-        	String pagePath = new String(pageContentPath); 
-            pagePath = pagePath.replace("/en", "/" + locale);
-        	if(!pagePath.endsWith("/jcr:content")) {
-        		pagePath = pagePath+"/jcr:content/root/responsivegrid";
-        	    pageReferenceComponents(pagePath);
-        	}
-        	else if(pagePath.endsWith("/jcr:content")){
-        		pageReferenceComponents(pagePath+"/root/responsivegrid");
-        	}
+        	String pagePath = String.valueOf(pageContentPath); 
+            pagePath = pagePath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
+            String resGridPathWithoutJcrContent  = CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.ROOT_NODE + CustomerHubConstants.PATH_SEPARATOR +
+    				CustomerHubConstants.RESPONSIVE_GRID_NODE;
+            String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT)? resGridPathWithoutJcrContent:CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
+    		pagePath = pagePath + resGridPath;
+    		pageReferenceComponents(pagePath);
         }
     }
 
