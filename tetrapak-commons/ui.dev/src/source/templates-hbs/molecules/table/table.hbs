@@ -32,6 +32,17 @@
             {{/each}}
         </tr>
         {{/each}}
+        {{#if tableSummary}}
+            {{#each headings}}
+                {{#if @last}}
+                    <tr>
+                        <td colspan="{{../headings.length}}" class="tpmol-table__cell{{#if ../baseClass}} {{../baseClass}}__cell {{../baseClass}}__table-summary{{/if}}{{#if ../jsClass}} {{../jsClass}}__cell {{../jsClass}}__cell--{{@index}}{{/if}}">
+                            {{../tableSummary}}
+                        </td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+        {{/if}}
     </tbody>
     {{/if}}
 </table>

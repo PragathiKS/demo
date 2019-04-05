@@ -11,8 +11,7 @@
       "href": "/content/customerhub-ux/getstarted.ux-preview.html",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
-      "isExternalLink": "false",
-      "isActive": "true"
+      "isExternalLink": "false"
     },
     {
       "href": "/content/customerhub-ux/getstarted.ux-preview.html",
@@ -30,11 +29,13 @@
       "iconClass": "icon-Cart",
       "iconLabel": "Ordering",
       "isExternalLink": "false",
+      "isExpanded": "true",
       "subMenuList": [
         {
           "href": "/content/customerhub-ux/getstarted.ux-preview.html",
           "iconLabel": "Order History",
-          "isExternalLink": "false"
+          "isExternalLink": "false",
+          "isActive": "true"
         },
         {
           "href": "https://www.tetrapak.com",
