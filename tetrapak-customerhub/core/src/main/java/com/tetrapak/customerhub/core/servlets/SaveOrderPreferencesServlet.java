@@ -24,6 +24,13 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
+/**
+ * 
+ * This servlet is used for saving the user preferences for a logged in user
+ * 
+ * @author swalamba
+ *
+ */
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Order Prefernces Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
 		"sling.servlet.resourceTypes=" + "customerhub/components/content/orderingcard",
@@ -31,8 +38,8 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String ORDER_PREFERENCES = "orderPreferences";	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+
+	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
 	@Reference
 	private UserPreferenceService userPreferenceService;
@@ -40,7 +47,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 	@Override
 	protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
 			throws IOException {
-		logger.info("SaveOrderPreferencesServlet POST method started");
+		LOGGER.info("SaveOrderPreferencesServlet POST method started");
 		Session session = request.getResourceResolver().adaptTo(Session.class);
 		if (null == session) {
 			writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
@@ -58,7 +65,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 		String json = gson.toJson(preferList, prefDataType);
 
 		if (!userPreferenceService.setPreferences(userId, userPrefType, json)) {
-			logger.warn("Could not save UserPreferences To Azure Table for userID: {}", userId);
+			LOGGER.warn("Could not save UserPreferences To Azure Table for userID: {}", userId);
 			writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
 			return;
 		}
@@ -77,7 +84,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 		if (null != preferenceType && !preferenceType.isEmpty()) {
 			return preferenceType;
 		}
-		return ORDER_PREFERENCES;
+		return CustomerHubConstants.ORDER_PREFERENCES;
 	}
 
 	/**
@@ -90,7 +97,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 	 */
 	private Type getPreferenceDataType(String userPrefType) {
 		Type preferenceDataType = null;
-		if (userPrefType == ORDER_PREFERENCES) {
+		if (CustomerHubConstants.ORDER_PREFERENCES.equals(userPrefType)) {
 			preferenceDataType = new TypeToken<String[]>() {
 			}.getType();
 		} else {
@@ -100,6 +107,13 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 		return preferenceDataType;
 	}
 
+	/**
+	 * write Json Response
+	 * 
+	 * @param resp   SlingHttpServletResponse
+	 * @param status success or failure
+	 * @throws IOException
+	 */
 	private void writeJsonResponse(SlingHttpServletResponse resp, String status) throws IOException {
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty("status", status);

@@ -37,15 +37,28 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 	private static final String PARTITION_KEY = "tetrapakuser";
 
 	/**
-	 * activate method
+	 * activate method to set AzureTableStorage Configuration
 	 * 
-	 * @param config
+	 * @param config AzureTableStorage Configuration
 	 */
 	@Activate
 	public void activate(AzureTableStorageServiceConfig config) {
 		this.config = config;
 	}
 
+	/**
+	 * @return the TableClientReference on basis of the connection details
+	 *         configured via configuration
+	 * @throws RuntimeException    RuntimeException is the superclass of
+	 *                             thoseexceptions that can be thrown during the
+	 *                             normal operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wronglength, uninitialized, etc).
+	 */
 	private CloudTableClient getTableClientReference()
 			throws RuntimeException, IOException, URISyntaxException, InvalidKeyException {
 		CloudStorageAccount storageAccount;
@@ -61,9 +74,6 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 			LOGGER.error("\nConnection string specifies an invalid key.");
 			LOGGER.error("Please confirm the AccountName and AccountKey in the connection string are valid.");
 			throw e;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
 		}
 		LOGGER.debug("getTableClientReference: " + storageAccount.toString(false));
 		return storageAccount.createCloudTableClient();
@@ -71,18 +81,32 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 
 	/**
 	 * Creates and returns a table for the application to use.
-	 *
+	 * 
+	 * The table will be created using the Azure Table Storage Configurations
+	 * Account Name and Account Secret Key.
+	 * 
 	 * @param tableClient CloudTableClient object
 	 * @param tableName   Name of the table to create
 	 * @return The newly created CloudTable object
 	 *
-	 * @throws StorageException
-	 * @throws RuntimeException
-	 * @throws IOException
-	 * @throws URISyntaxException
-	 * @throws IllegalArgumentException
-	 * @throws InvalidKeyException
-	 * @throws IllegalStateException
+	 * @throws StorageException         Represents an exception for the Microsoft
+	 *                                  Azure storage service.
+	 * 
+	 * @throws RuntimeException         RuntimeException is the superclass of
+	 *                                  thoseexceptions that can be thrown during
+	 *                                  the normal operation of theJava Virtual
+	 *                                  Machine.
+	 * @throws IOException              Signals that an I/O exception of some sort
+	 *                                  has occurred
+	 * @throws URISyntaxException       Checked exception thrown to indicate that a
+	 *                                  string could not be parsed as aURI reference
+	 * @throws IllegalArgumentException Thrown to indicate that a method has been
+	 *                                  passed an illegal orinappropriate argument
+	 * @throws InvalidKeyException      This is the exception for invalid Keys
+	 *                                  (invalid encoding, wronglength,
+	 *                                  uninitialized, etc).
+	 * @throws IllegalStateException    Signals that a method has been invoked at an
+	 *                                  illegal or inappropriate time
 	 */
 	@Override
 	public void createTable(String tableName) throws StorageException, RuntimeException, IOException,
@@ -100,34 +124,68 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 						"Caught connection exception from the client. If running with the default configuration please make sure you have started the storage emulator.");
 			}
 			throw s;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
 		}
 	}
 
+	/**
+	 * 
+	 * This service is used to retrieve entity on basis of a particular userId.
+	 * 
+	 * @param tableName : Name of the table in Azure Table Storage
+	 * @param userId    : unique userId of a user
+	 * @return user data from the Azure Table Storage on basis of userId as row key
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wronglength, uninitialized, etc
+	 * @throws RuntimeException    RuntimeException is the superclass of
+	 *                             thoseexceptions that can be thrown during the
+	 *                             normal operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred. Thisclass is the general class of
+	 *                             exceptions produced by failed orinterrupted I/O
+	 *                             operations.
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference.
+	 * @throws StorageException    Represents an exception for the Microsoft Azure
+	 *                             storage service.
+	 * 
+	 */
 	@Override
 	public DynamicTableEntity retrieveDataFromTable(String tableName, String userId)
 			throws InvalidKeyException, RuntimeException, IOException, URISyntaxException, StorageException {
 		DynamicTableEntity retrieveParticularUser = new DynamicTableEntity();
 		CloudTable cloudTable = this.getTableClientReference().getTableReference(tableName);
-		try {
-			if (!userId.isEmpty()) {
-				TableOperation retrieveParticularUserOperation = TableOperation.retrieve(PARTITION_KEY, userId,
-						DynamicTableEntity.class);
-				retrieveParticularUser = cloudTable.execute(retrieveParticularUserOperation).getResultAsType();
-				LOGGER.debug("Data retrieval for the userID:{} successful from Azure Storage", userId);
-			} else {
-				LOGGER.warn("UserId cannot be empty!!");
-			}
-		} catch (Exception e) {
-			LOGGER.error("An exception occured while retrieving the data for userID:{} from the Azure table", userId,
-					e);
-			throw e;
+
+		if (!userId.isEmpty()) {
+			TableOperation retrieveParticularUserOperation = TableOperation.retrieve(PARTITION_KEY, userId,
+					DynamicTableEntity.class);
+			retrieveParticularUser = cloudTable.execute(retrieveParticularUserOperation).getResultAsType();
+			LOGGER.debug("Data retrieval for the userID:{} successful from Azure Storage", userId);
+		} else {
+			LOGGER.warn("UserId cannot be empty!!");
 		}
+
 		return retrieveParticularUser;
 	}
 
+	/**
+	 * 
+	 * This service is used to: Either insert new user preference. Or update
+	 * existing userPreferences.
+	 * 
+	 * @param tableName Name of the table in Azure Table Storage
+	 * @param entity    on basis of userId of a user
+	 * @throws StorageException    Represents an exception for the Microsoft Azure
+	 *                             storage service
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wronglength, uninitialized, etc).
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference.
+	 * @throws RuntimeException    RuntimeException is the superclass of those
+	 *                             exceptions that can be thrown during the normal
+	 *                             operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred
+	 */
 	@Override
 	public void insertOrUpdateRowInTable(String tableName, DynamicTableEntity entity)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
@@ -135,6 +193,26 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 		this.getTableClientReference().getTableReference(tableName).execute(TableOperation.insertOrMerge(entity));
 	}
 
+	/**
+	 * 
+	 * This service is used to delete all userPreference data for given userId
+	 * 
+	 * @param tableName Name of the table in Azure Table Storage
+	 * @param userId    unique userId of a user
+	 * @return true if successful to delete the row on basis of userId
+	 * @throws StorageException    Represents an exception for the Microsoft Azure
+	 *                             storage service.
+	 * 
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wronglength, uninitialized, etc).
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference
+	 * @throws RuntimeException    RuntimeException is the superclass of thos
+	 *                             eexceptions that can be thrown during the normal
+	 *                             operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred.
+	 */
 	@Override
 	public boolean deleteRowInTable(String tableName, String userId)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
@@ -155,6 +233,27 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 		return false;
 	}
 
+	/**
+	 * 
+	 * This service is used for saving the user preference data to be given in JSON
+	 * format as String of a particular type into the Azure Table Storage table.
+	 * 
+	 * @param tableName           Name of the table in Azure Table Storage
+	 * @param userId              unique userId of a user
+	 * @param userPrefType        type of user-preference
+	 * @param userPreferencesData data stored corresponding to the preference type
+	 * @throws StorageException    Represents an exception for the Microsoft Azure
+	 *                             storage service
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wronglength, uninitialized, etc).
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference.
+	 * @throws RuntimeException    RuntimeException is the superclass of
+	 *                             thoseexceptions that can be thrown during the
+	 *                             normal operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred.
+	 */
 	@Override
 	public void saveUserPreferencesToAzureTable(String tableName, String userId, String userPrefType,
 			String userPreferencesData)
@@ -177,6 +276,29 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 
 	}
 
+	/**
+	 * This service is used to fetch a particular user preference's data for a
+	 * userId and returns in JSON format as String.
+	 * 
+	 * @param tableName    Name of the table in Azure Table Storage
+	 * @param userId       unique userId of a user
+	 * @param userPrefType type of user-preference
+	 * @return particular user preference's data for a userId
+	 * @throws StorageException    Represents an exception for the Microsoft Azure
+	 *                             storage service.
+	 * 
+	 * @throws InvalidKeyException This is the exception for invalid Keys (invalid
+	 *                             encoding, wrong length, uninitialized, etc
+	 * @throws URISyntaxException  Checked exception thrown to indicate that a
+	 *                             string could not be parsed as aURI reference
+	 * @throws RuntimeException    RuntimeException is the superclass of those
+	 *                             exceptions that can be thrown during the normal
+	 *                             operation of theJava Virtual Machine.
+	 * @throws IOException         Signals that an I/O exception of some sort has
+	 *                             occurred. This class is the general class of
+	 *                             exceptions produced by failed orinterrupted I/O
+	 *                             operations.
+	 */
 	@Override
 	public String getUserPreferencesFromAzureTable(String tableName, String userId, String userPrefType)
 			throws StorageException, InvalidKeyException, URISyntaxException, RuntimeException, IOException {
@@ -191,7 +313,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
 	}
 
 	/**
-	 *return the Table name to be used in Azure to save the userPreferences
+	 * @return the Table name to be used in Azure to save the userPreferences
 	 */
 	@Override
 	public String getUserPreferencesTableName() {

@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 
 /**
@@ -29,7 +31,6 @@ import com.tetrapak.customerhub.core.services.UserPreferenceService;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderingCardModel {
 
-	private static final String ORDER_PREFERENCES = "orderPreferences";
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderingCardModel.class);
 	@Self
 	private Resource resource;
@@ -92,23 +93,12 @@ public class OrderingCardModel {
 		disabledFields.add("contact");
 
 		savedPreferences = new LinkedHashSet<>();
-		try {
-			if (null != userPreferenceService) {
-				Session session = resource.getResourceResolver().adaptTo(Session.class);
-				if (null != session) {
-					String userID = session.getUserID();
-					String savedPreferencesStr = userPreferenceService.getSavedPreferences(userID, ORDER_PREFERENCES);
-					if (null != savedPreferencesStr) {
-						Type mapType = new TypeToken<String[]>() {
-						}.getType();
-						Gson gson = new Gson();
-						String[] prefData = gson.fromJson(savedPreferencesStr, mapType);
-						savedPreferences.addAll(Arrays.asList(prefData));
-					}
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.error("Some exception occured while getting savedPreferences ", e);
+
+		Session session = resource.getResourceResolver().adaptTo(Session.class);
+		if (null != session) {
+			String userID = session.getUserID();
+			getUserPreferences(userID);
+
 		}
 
 		Map<String, String> i18KeyMap = new HashMap<>();
@@ -126,30 +116,74 @@ public class OrderingCardModel {
 		i18nKeys = gson.toJson(i18KeyMap);
 	}
 
+	/**
+	 * Fetch the order preferences for the user
+	 * 
+	 * @param userID
+	 */
+	private void getUserPreferences(String userID) {
+		if (null != userPreferenceService) {
+			String savedPreferencesStr = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.ORDER_PREFERENCES);
+			if (null != savedPreferencesStr) {
+				Type mapType = new TypeToken<String[]>() {
+				}.getType();
+				Gson gson = new Gson();
+				try {
+					String[] prefData = gson.fromJson(savedPreferencesStr, mapType);
+					savedPreferences.addAll(Arrays.asList(prefData));
+				} catch (JsonSyntaxException jsonSyntaxException) {
+					LOGGER.error("Some exception occured while parsing type: {} from the JSON {} !!", mapType,
+							savedPreferencesStr, jsonSyntaxException);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @return allOrdersLink
+	 */
 	public String getAllOrdersLink() {
 		return allOrdersLink;
 	}
 
+	/**
+	 * @return orderDetailLink
+	 */
 	public String getOrderDetailLink() {
 		return orderDetailLink;
 	}
 
+	/**
+	 * @return PreferencesURL
+	 */
 	public String getPreferencesURL() {
 		return resource.getPath() + ".preference.json";
 	}
 
+	/**
+	 * @return savedPreferences
+	 */
 	public Set<String> getSavedPreferences() {
 		return savedPreferences;
 	}
 
+	/**
+	 * @return defaultFields
+	 */
 	public Set<String> getDefaultFields() {
 		return defaultFields;
 	}
 
+	/**
+	 * @return disabledFields
+	 */
 	public Set<String> getDisabledFields() {
 		return disabledFields;
 	}
 
+	/**
+	 * @return i18nKeys
+	 */
 	public String getI18nKeys() {
 		return i18nKeys;
 	}

@@ -20,4 +20,6 @@ public class CustomerHubConstants {
     public static final String RESPONSE_STATUS_FAILURE = "failure";
 
     public static final String RESPONSE_STATUS_SUCCESS = "success";
+    
+    public static final String ORDER_PREFERENCES = "orderPreferences";
 }

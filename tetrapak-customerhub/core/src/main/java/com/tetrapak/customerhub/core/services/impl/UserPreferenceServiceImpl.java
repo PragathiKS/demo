@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
+import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Component;
@@ -25,9 +26,18 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 	@Reference
 	private AzureTableStorageService azureTableStorageService;
 
+	/**
+	 * 
+	 * Retrieve user preferences data on basis of userID and preferenceType
+	 * 
+	 * @param userId   unique userId of a user
+	 * @param prefType type of user-preference
+	 * 
+	 * @return user preferences data
+	 */
 	@Override
 	public String getSavedPreferences(String userId, String prefType) {
-		String savedPreferences = new String[] {}.toString();
+		String savedPreferences = Arrays.toString(new String[] {});
 		if (StringUtils.isBlank(userId) || StringUtils.isBlank(prefType)) {
 			return savedPreferences;
 		}
@@ -41,6 +51,16 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 		return savedPreferences;
 	}
 
+	/**
+	 * 
+	 * Set user preferences in the user table on basis of userID, preferenceType
+	 * 
+	 * @param userId              unique userId of a user
+	 * @param prefType            type of user-preference
+	 * 
+	 * @param userPreferencesData data stored corresponding to the preference type
+	 * @return true if successful otherwise false
+	 */
 	@Override
 	public boolean setPreferences(String userId, String userPrefType, String userPreferencesData) {
 		try {
