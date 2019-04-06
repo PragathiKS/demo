@@ -34,7 +34,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
-import com.tetrapak.publicweb.core.beans.PracticeLineBean;
+import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
@@ -84,7 +84,7 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 		String responseJSON = "not-set";
 		
 		// search for resources
-		List<PracticeLineBean> resources = getListOfPracticeLines(productType, subCategoryVal, rootPath);		
+		List<BestPracticeLineBean> resources = getListOfPracticeLines(productType, subCategoryVal, rootPath);		
 		if(resources != null) {
 			responseJSON = gson.toJson(resources);
 			log.info("Here is the JSON object : {}",  responseJSON);
@@ -108,7 +108,7 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 	 * @param searchRootPath
 	 * @return List<ProductInfoBean>
 	 */
-	public List<PracticeLineBean> getListOfPracticeLines(String productType, String subCategoryVal, String rootPath) {
+	public List<BestPracticeLineBean> getListOfPracticeLines(String productType, String subCategoryVal, String rootPath) {
 		Map<String, String> map = new HashMap<>();
 		
 		// Adding query parameters
@@ -137,13 +137,13 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
                         
         // paging metadata
         log.info("Total number of results : {}", result.getTotalMatches());
-        List<PracticeLineBean> resources = new LinkedList<PracticeLineBean>();
+        List<BestPracticeLineBean> resources = new LinkedList<BestPracticeLineBean>();
 		if (result.getHits().size() == 0)
 			return resources;
 
 		// add all the items to the result list
 		for (Hit hit : query.getResult().getHits()) {
-			PracticeLineBean practiceItem = new PracticeLineBean();
+			BestPracticeLineBean practiceItem = new BestPracticeLineBean();
 			try {
 				log.info("Hit : {}", hit.getPath());
 				Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");

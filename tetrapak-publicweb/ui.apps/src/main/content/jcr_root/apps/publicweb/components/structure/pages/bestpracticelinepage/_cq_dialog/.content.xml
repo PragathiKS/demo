@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Practice Line Page"
+    jcr:title="Best Practice Line Page"
     sling:resourceType="cq/gui/components/authoring/dialog"
     extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
     mode="edit">
@@ -21,7 +21,7 @@
                 <items jcr:primaryType="nt:unstructured">
                     <practiceline
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Practice Line Configuration"
+                        jcr:title="Best Practice Line Configuration"
                         sling:resourceType="granite/ui/components/foundation/section">
                         <layout
                             jcr:primaryType="nt:unstructured"
@@ -34,13 +34,13 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <practiceLineProperties
                                         jcr:primaryType="nt:unstructured"
-                                        jcr:title="Practice Line Properties"
+                                        jcr:title="Best Practice Line Properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
                                             <title
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Practice Line Title"
+                                                    fieldLabel="Best Practice Line Title"
                                                     name="./title"/>
                                             <vanityDescription
                                                     jcr:primaryType="nt:unstructured"
@@ -72,7 +72,7 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                     fieldDescription="Select Article Image Path"
-                                                    fieldLabel="Practice Line Image Path"
+                                                    fieldLabel="Best Practice Line Image Path"
                                                     name="./practiceImagePath"
                                                     rootPath="/content/dam/publicweb"/>
                                                 <imagealt
