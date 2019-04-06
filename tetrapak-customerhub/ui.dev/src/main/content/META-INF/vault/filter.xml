@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/customerhub" mode="merge"/>
-    <filter root="/apps/sling" mode="merge"/>
-	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="update"/>
+    <filter root="/apps/customerhub" mode="merge">
+		<exclude pattern="/apps/customerhub/i18n(/.*)"/>
+	</filter>
+	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="replace"/>
 </workspaceFilter>

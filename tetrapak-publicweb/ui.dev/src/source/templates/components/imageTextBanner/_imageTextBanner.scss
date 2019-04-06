@@ -1,25 +1,17 @@
 .pw-banner {
+    @include margin-bottom($margin-xxxl);
     $self: &;
     position: relative;
+
+    &__image-wrapper {
+        position: relative;
+    }
 
     &__image {
         @include border-radius($border-radius);
         width: 100%;
     }
-    &__image-mobile {
-        display: block;
-        width: 100%;
 
-        @media #{$desktop} {
-            display: none;
-        }
-    }
-    &__image-desktop {
-        display: none;
-        @media #{$desktop} {
-            display: block;
-        }
-    }
     &__content {
         @include border-radius($border-radius);
         @include margin-top(-4px);
@@ -48,19 +40,9 @@
             }
         }
 
-        &__subtitle {
-            @include font-size($font-sm);
-            @include line-height(20px, $font-sm);
-        }
         &__title {
-            @include font-size($font-l);
-            @include line-height($font-xl, $font-l);
-            font-family: $font-light;
             max-height: $font-xl*2;
-
             @media #{$desktop} {
-                @include font-size($font-xl);
-                @include line-height(40px, $font-xl);
                 max-height: 40px*2;
             }
         }

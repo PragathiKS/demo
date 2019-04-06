@@ -76,6 +76,13 @@
                             fieldLabel="All Orders Link"
                             required="true"
                             name="./allOrdersLink"/>
+                    <orderDetailLink
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                            fieldDescription="Enter Orders detail page Link"
+                            fieldLabel="Order detail Link"
+                            required="true"
+                            name="./orderDetailLink"/>
                     <noData
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

@@ -1,5 +1,8 @@
 package com.tetrapak.customerhub.core.beans;
 
+/**
+ *  The GetStartedBean class
+ */
 public class GetStartedBean {
     private String imagePath;
 

@@ -1,4 +1,4 @@
-<sly data-sly-template.button_template="${@ btnPath, btnText, btnTooltip, btnTarget, btnIcon, flag}">
-  <a href="${btnPath}" class="tpatom-button" title="${btnTooltip}"
-     data-sly-attribute.target="${btnTarget ? '_blank' : ''}">${btnText}<i class="tpatom-button__icon ${btnIcon ? btnIcon : 'icon-Chevron_Right'}"></i></a>
+<sly data-sly-template.button_template="${@ btnPath, btnText, btnTooltip, btnTarget, flag, variant, customClasses}">
+  <a href="${btnPath}" class="tpatom-button tpatom-button--${variant || 'primary'} ${customClasses}" title="${btnTooltip}"
+     data-sly-attribute.target="${btnTarget ? '_blank' : ''}">${btnText @ i18n}<i class="tpatom-button__icon ${variant != 'link' ? 'icon-Chevron_Right' : 'icon-Circle_Arrow_Right'}"></i></a>
 </sly>

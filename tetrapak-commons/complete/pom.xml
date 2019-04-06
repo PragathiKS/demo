@@ -123,12 +123,6 @@
         </dependency>
          <dependency>
             <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-commons.ui.content</artifactId>
-            <version>${project.version}</version>
-            <type>content-package</type> 
-        </dependency>
-         <dependency>
-            <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.dev</artifactId>
             <version>${project.version}</version>
             <type>content-package</type> 

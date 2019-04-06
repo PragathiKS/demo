@@ -133,7 +133,7 @@ module.exports = {
     mainFields: ['main', 'module'],
     alias: {
       handlebars: 'handlebars/runtime',
-      tpCommon: path.resolve(__dirname, '../../../tetrapak-commons/ui.dev/src/source')
+      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }
 };

@@ -16,7 +16,7 @@ pipeline {
 		author_url = "http://10.202.13.228:4502"
 		publish_url = "http://10.202.13.229:4503"
 		package_name = "tetrapak-complete-package"
-		test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html  http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-us.html "
+		test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-my-tetra-pak.html"
 		test_url_pally_zap = "http://tetrapak.sapient.com"	 
 		karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
 	}
@@ -49,7 +49,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JSBranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -63,7 +64,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.inclusions=**/ui.dev/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=CSSBranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -77,7 +79,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=Tetrapak-${params.CHOICE} -Dsonar.branch=JAVABranch -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -87,31 +90,41 @@ pipeline {
 			steps {
 				parallel (
 					"Author Deployment" : {
-						echo "Uninstalling Old Package"
+						echo "Uninstalling Old Commons Package on author"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
-						echo "Removing Old Package"
+						echo "Deleting Old Commons Package on author"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
-						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
-						echo "Uploading New Package"
+						echo "Uploading New Commons Package on author"
 						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-						echo "Installing New Package"
+						echo "Installing New Commons Package on author"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+						sleep 20
+						echo "Uninstalling Old Package on author"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
+						echo "Deleting Old Package on author"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+						echo "Uploading New Package on author"
+						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+						echo "Installing New Package on author"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 					},
 					"Publish_Deployment" : {
-						echo "Uninstalling Old Package"
+						echo "Uninstalling Old Commons Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"
-						echo "Removing Old Package"
+						echo "Deleting Old Commons Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
-						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
-						echo "Uploading New Package"
+						echo "Uploading New Commons Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-						echo "Installing New Package"
+						echo "Installing New Commons Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+						sleep 20
+						echo "Uninstalling Old Package on publish"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${params.CHOICE}.complete'"						
+						echo "Deleting Old Package on publish"
+						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${params.CHOICE}.complete'"
+						echo "Uploading New Package on publish"
+						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+						echo "Installing New Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 					}
 				)  
@@ -195,6 +208,11 @@ pipeline {
 						}				                	
 					)		
 				}
+			}
+		}
+		stage (sendemail) {
+			steps {
+				emailext attachLog: true, body: 'Build deployed on ENV', subject: 'Test Email', to: 'Tushar.Tushar@publicissapeint.com'
 			}
 		}
 	}

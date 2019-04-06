@@ -3,13 +3,54 @@
     @include font-size($font-baseline);
     @include line-height($font-l, $font-baseline);
     @include padding($padding-sm $padding-md 10px);
-    background-color: $color-wild-sand;
-
-    &:hover {
-        background-color: $color-mercury;
-    }
 
     &__icon {
         @include padding-left($padding-xs);
+    }
+
+    &--primary {
+        background-color: $color-wild-sand;
+
+        &:hover {
+            background-color: $color-mercury;
+        }
+    }
+
+    &--secondary {
+        color: white;
+        background-color: $color-congress-blue;
+        &:hover {
+            background-color: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
+    }
+
+    &--shift {
+        color: white;
+        background-color: $color-congress-blue;
+        @media #{$desktop} {
+            color: $color-congress-blue;
+            background-color: $color-wild-sand;
+
+        }
+
+        &:hover {
+            color: $color-congress-blue;
+            background-color: $color-jordy-blue;
+            @media #{$desktop} {
+                color: $color-congress-blue;
+                background-color: $color-mercury;
+            }
+        }
+    }
+
+    &--link {
+        @include border-radius(0);
+        @include padding(0);
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+            color: $color-tundora;
+        }
     }
 }

@@ -156,7 +156,8 @@
         "source/scripts/utils/",
         "source/templates/components/introscreen/",
         "source/templates/components/leftnavigation/",
-        "source/templates/components/header/"
+        "source/templates/components/header/",
+        "source/templates/components/pagination/"
       ],
       "dashboard": [
         "source/templates/components/orderingcard/"
@@ -185,6 +186,8 @@
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
+    "atomsFolder": "source/templates/atoms",
+    "moleculesFolder": "source/templates/molecules",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
     "testTemplate": "ccTemplates/testTmp.txt",

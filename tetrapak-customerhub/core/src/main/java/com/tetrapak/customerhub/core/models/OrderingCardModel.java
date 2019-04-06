@@ -1,9 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -17,6 +15,9 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Model class for ordering card component
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderingCardModel {
 
@@ -56,11 +57,11 @@ public class OrderingCardModel {
     @Inject
     private String allOrdersLink;
 
-    @OSGiService
-    APIGEEService apigeeService;
+    @Inject
+    private String orderDetailLink;
 
     @OSGiService
-    UserPreferenceService userPreferenceService;
+    private UserPreferenceService userPreferenceService;
 
     private String i18nKeys;
 
@@ -69,10 +70,6 @@ public class OrderingCardModel {
     private Set<String> defaultFields;
 
     private Set<String> disabledFields;
-
-    private static final String DEFAULT_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingCardData.json";
-
-    private static final String PREFERENCES_JSON = "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json";
 
     @PostConstruct
     protected void init() {
@@ -85,7 +82,7 @@ public class OrderingCardModel {
         disabledFields.add("contact");
 
         savedPreferences = new LinkedHashSet<>();
-        if(null != userPreferenceService) {
+        if (null != userPreferenceService) {
             savedPreferences = userPreferenceService.getSavedPreferences(resource);
         }
 
@@ -109,8 +106,8 @@ public class OrderingCardModel {
         return allOrdersLink;
     }
 
-    public String getApiURL() {
-        return GlobalUtil.getApiURL(apigeeService, DEFAULT_JSON);
+    public String getOrderDetailLink() {
+        return orderDetailLink;
     }
 
     public String getPreferencesURL() {

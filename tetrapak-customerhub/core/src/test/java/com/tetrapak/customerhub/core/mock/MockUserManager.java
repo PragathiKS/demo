@@ -86,8 +86,7 @@ public class MockUserManager implements UserManager {
 
 	@Override
 	public Authorizable getAuthorizable(String arg0) throws RepositoryException {
-		// TODO Auto-generated method stub
-		return null;
+		return new MockAuthorizable();
 	}
 
 	@Override

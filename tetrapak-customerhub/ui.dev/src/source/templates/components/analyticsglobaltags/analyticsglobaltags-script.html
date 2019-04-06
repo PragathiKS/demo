@@ -1,8 +1,7 @@
 <sly data-sly-template.analyticsscript_template="${@ data, flag}">
   var digitalData = {
         pageinfo: {},
-        userinfo: {},
-        error: {}
+        userinfo: {}
       },
       pageName = "";
 
@@ -59,11 +58,11 @@
     digitalData.userinfo['userLanguage'] = "${data.userLanguage}";
   </sly>
 
-  <sly data-sly-test="${data.errorcode}">
-    digitalData.error['errorcode'] = "${data.errorcode}";
-  </sly>
-
-  <sly data-sly-test="${data.errortype}">
-    digitalData.error['errortype'] = "${data.errortype}";
-  </sly>
+  <sly data-sly-test="${data.errorCode}">
+    digitalData.error = {};
+    digitalData.error['errorcode'] = "${data.errorCode}";
+	<sly data-sly-test="${data.errorMessage}">
+	  digitalData.error['errortype'] = "${data.errorMessage}";
+	</sly>
+  </sly>  
 </sly>

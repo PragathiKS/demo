@@ -1,0 +1,16 @@
+{
+  "tabsAlignment": "text-left",
+  "titleI18n": "Title",
+  "linkTextI18n": "text link",
+  "linkPath": "https://www.google.com",
+  "linkTooltipI18n": "link tooltip",
+  "targetBlank": "false",
+  "tabLinks": [
+    "tab-uno",
+    "tab-dos",
+    "tab-tres"
+  ],
+  "pwTheme": "grayscale-lighter",
+  "pwButtonTheme": "link",
+  "pwPadding": "regular"
+}

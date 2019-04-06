@@ -1,8 +1,18 @@
-<sly data-sly-template.articleItem_template="${@ data, flag}">
-  <div class="pw-article">
-    <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image" src="${data.articleImagePath}" alt="${data.articleImageAltI18n}"/>
-    <h4 data-sly-test="${data.articleTitle}" class="pw-article__title" >${data.articleTitle}</h4>
-    <p class="pw-article__description">${data.vanityDescriptionI18n}</p>
-    <a data-sly-test="${data.articlePath}" class="pw-article__link" href="${data.articlePath}" title="${data.ctaTexti18nKey}">${data.ctaTexti18nKey} <i class="icon-Circle_Arrow_Right"></i></a>
+<sly data-sly-template.articleItem_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.vanityDescription}" class="pw-article">
+    <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image"
+         src="${data.articleImagePath}" alt="${data.articleImageAltI18n @ i18n}"/>
+    <div data-sly-test="${data.articleTitle}" class="pw-article__title">
+      <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+           data-sly-call="${heading.heading_h4_template @ headingText=data.articleTitle, variant='small'}"/>
+    </div>
+    <p class="pw-article__description">${data.vanityDescription}</p>
+    <div class="pw-article__link" data-sly-test="${data.articlePath}">
+      <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+            data-sly-call="${pwButton.button_template @ btnPath=data.articlePath, btnText=data.ctaTexti18nKey, btnTooltip=data.ctaTexti18nKey, variant=data.pwButtonTheme}" />
+    </div>
   </div>
+  <sly data-sly-test="${!data.vanityDescription}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.vanityDescription}"></sly>
 </sly>

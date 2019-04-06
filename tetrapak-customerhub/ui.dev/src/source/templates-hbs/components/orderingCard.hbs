@@ -17,7 +17,7 @@
             <div class="modal-content tp-modal-content">
                 {{> molecules/modals/modalHeader/modalHeader title=labels.preferencesTitle closeBtnText=labels.closeBtn}}
                 <div class="modal-body tp-modal-body tp-ordering-card__modal-body">
-                    <div class="tp-ordering-card__modal-desc">{{labels.preferencesDescription}}</div>
+                    <div class="tp-ordering-card__modal-desc">{{i18n key=labels.preferencesDescription}}</div>
                     <div class="tp-ordering-card__modal-options">
                         {{#each settingOptions}}
                             {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked disabled=isMandatory}}

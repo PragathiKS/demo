@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:conf="/conf/CustomerHub Launch"
+        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Something Went Wrong"
+        jcr:uuid="2987cfcc-1c24-4a15-86fa-c0d500d2b217"
+        sling:resourceType="customerhub/components/structure/page"
+        hideInNav="true">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid_622605362
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <getstarted
+                    jcr:created="{Date}2019-03-20T11:00:14.225Z"
+                    jcr:createdBy="sapient-dhirendra"
+                    jcr:lastModified="{Date}2019-03-20T11:04:16.891Z"
+                    jcr:lastModifiedBy="sapient-dhirendra"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    textIsRich="true">
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>&lt;b>We are sorry!&lt;/b>&lt;/p>&#xd;&#xa;&lt;p>The page you’re looking for can’t be found.&lt;/p>&#xd;&#xa;&lt;p>&lt;a href=&quot;/content/tetrapak/customerhub.html&quot;>Go back to home&lt;/a>&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
+                            imagePath="/content/dam/customerhub/cow-blue-background.png"/>
+                    </list>
+                </getstarted>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+    <_x0034_04/>
+    <_x0035_00/>
+</jcr:root>

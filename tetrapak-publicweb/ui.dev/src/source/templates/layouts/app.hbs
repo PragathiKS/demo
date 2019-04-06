@@ -15,10 +15,19 @@
     </head>
 </sly>
 
+
+{{#if_in "header" fsdId}}
+  <style>
+    .tp-pw-header__hero-image {
+      margin-top: -9.28571rem;
+      position: relative;
+      z-index: 0;
+    }
+  </style>
+{{/if_in}}
+
 <body>
-    <div class="tp-container">
-        {{> body}}
-    </div>
+    {{> body}}
 
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
         data-sly-call="${clientLib.js @ categories='tp.publicweb.vendor'}" />

@@ -10,51 +10,51 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticleContainerModel {
 
-	@Inject
-	private String numberOfcolumns;
+    @Inject
+    private String numberOfcolumns;
 
-	@Inject
-	private String titleI18n;
+    @Inject
+    private String titleI18n;
 
-	@Inject
-	private String titleAlignment;
+    @Inject
+    private String titleAlignment;
 
-	@Inject
-	private Boolean showBox;
+    @Inject
+    private String pwTheme;
 
-	private String[] totalColumns;
+    private String[] totalColumns;
 
-	@PostConstruct
-	protected void init() {
-		if (numberOfcolumns != null) {
-			if (numberOfcolumns.equalsIgnoreCase("one-column")) {
-				totalColumns = new String[] { "col1" };
+    @PostConstruct
+    protected void init() {
+        if (numberOfcolumns != null) {
+            if (numberOfcolumns.equalsIgnoreCase("one-column")) {
+                totalColumns = new String[]{"col1"};
 
-			} else if (numberOfcolumns.equalsIgnoreCase("two-column")) {
-				totalColumns = new String[] { "col1", "col2" };
+            } else if (numberOfcolumns.equalsIgnoreCase("two-column")) {
+                totalColumns = new String[]{"col1", "col2"};
 
-			} else {
-				totalColumns = new String[] { "col1", "col2", "col3" };
+            } else {
+                totalColumns = new String[]{"col1", "col2", "col3"};
 
-			}
-		}
+            }
+        }
 
-	}
+    }
 
-	public String[] getTotalColumns() {
-		return totalColumns;
-	}
+    public String[] getTotalColumns() {
+        return totalColumns;
+    }
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
+    public String getTitleI18n() {
+        return titleI18n;
+    }
 
-	public String getTitleAlignment() {
-		return titleAlignment;
-	}
+    public String getTitleAlignment() {
+        return titleAlignment;
+    }
 
-	public Boolean getShowBox(){
-		return showBox;
-	}
+    public String getPwTheme() {
+        return pwTheme;
+    }
 
 }

@@ -18,106 +18,113 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticleItemModel {
 
-	@Self
-	private Resource resource;
+    @Self
+    private Resource resource;
 
-	@Inject
-	private String contentType;
+    @Inject
+    private String contentType;
 
-	@Inject
-	private String articlePath;
+    @Inject
+    private String articlePath;
 
-	@Inject
-	private String articleTitle;
+    @Inject
+    private String articleTitle;
 
-	@Inject
-	private String vanityDescriptionI18n;
+    @Inject
+    private String vanityDescription;
 
-	@Inject
-	private String ctaTexti18nKey;
+    @Inject
+    private String ctaTexti18nKey;
 
-	@Inject
-	private Boolean openInNewWindow;
+    @Inject
+    private Boolean openInNewWindow;
 
-	@Inject
-	private Boolean showImage;
+    @Inject
+    private Boolean showImage;
 
-	@Inject
-	private String articleImagePath;
+    @Inject
+    private String articleImagePath;
 
-	@Inject
-	private String articleImageAltI18n;
+    @Inject
+    private String articleImageAltI18n;
 
-	@PostConstruct
-	protected void init() {
-		ResourceResolver resolver = resource.getResourceResolver();
-		PageManager pageManager = resolver.adaptTo(PageManager.class);
+    @Inject
+    private String pwButtonTheme;
 
-		if ("automatic".equals(contentType)) {
-			articleTitle = "";
-			vanityDescriptionI18n = "";
-			ctaTexti18nKey = "";
-			openInNewWindow = false;
+    @PostConstruct
+    protected void init() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-			Page landingPage = pageManager.getPage(articlePath);
-			if (landingPage != null) {
-				Resource jcrContentResource = landingPage.getContentResource();
-				LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
-				if (landingPageModel != null) {
-					articleTitle = landingPageModel.getTitle();
-					vanityDescriptionI18n = landingPageModel.getVanityDescription();
-					ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
-					openInNewWindow = landingPageModel.isOpenInNewWindow();
-					showImage = landingPageModel.getShowImage();
-					articleImagePath = landingPageModel.getArticleImagePath();
-					articleImageAltI18n = landingPageModel.getArticleImageAltI18n();
-				}
-			}
+        if ("automatic".equals(contentType)) {
+            articleTitle = "";
+            vanityDescription = "";
+            ctaTexti18nKey = "";
+            openInNewWindow = false;
 
-		}
-	}
+            Page landingPage = pageManager.getPage(articlePath);
+            if (landingPage != null) {
+                Resource jcrContentResource = landingPage.getContentResource();
+                LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
+                if (landingPageModel != null) {
+                    articleTitle = landingPageModel.getTitle();
+                    vanityDescription = landingPageModel.getVanityDescription();
+                    ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
+                    openInNewWindow = landingPageModel.isOpenInNewWindow();
+                    showImage = landingPageModel.getShowImage();
+                    articleImagePath = landingPageModel.getArticleImagePath();
+                    articleImageAltI18n = landingPageModel.getArticleImageAltI18n();
+                }
+            }
 
-	public Resource getResource() {
-		return resource;
-	}
+        }
+    }
 
-	public String getArticleTitle() {
-		return articleTitle;
-	}
+    public Resource getResource() {
+        return resource;
+    }
 
-	public String getVanityDescriptionI18n() {
-		return vanityDescriptionI18n;
-	}
+    public String getArticleTitle() {
+        return articleTitle;
+    }
 
-	public String getCtaTexti18nKey() {
-		return ctaTexti18nKey;
-	}
+    public String getVanityDescription() {
+        return vanityDescription;
+    }
 
-	public Boolean isOpenInNewWindow() {
-		return openInNewWindow;
-	}
+    public String getCtaTexti18nKey() {
+        return ctaTexti18nKey;
+    }
 
-	public String getContentType() {
-		return contentType;
-	}
+    public Boolean isOpenInNewWindow() {
+        return openInNewWindow;
+    }
 
-	public String getArticlePath() {
-		return LinkUtils.sanitizeLink(articlePath);
-	}
+    public String getContentType() {
+        return contentType;
+    }
 
-	public Boolean getOpenInNewWindow() {
-		return openInNewWindow;
-	}
+    public String getArticlePath() {
+        return LinkUtils.sanitizeLink(articlePath);
+    }
 
-	public Boolean getShowImage() {
-		return showImage;
-	}
+    public Boolean getOpenInNewWindow() {
+        return openInNewWindow;
+    }
 
-	public String getArticleImagePath() {
-		return articleImagePath;
-	}
+    public Boolean getShowImage() {
+        return showImage;
+    }
 
-	public String getArticleImageAltI18n() {
-		return articleImageAltI18n;
-	}
+    public String getArticleImagePath() {
+        return articleImagePath;
+    }
+
+    public String getArticleImageAltI18n() {
+        return articleImageAltI18n;
+    }
+
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
 }

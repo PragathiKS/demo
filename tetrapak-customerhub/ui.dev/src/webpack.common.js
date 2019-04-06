@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const config = require("./config").webpack;
 const clientlibs = require("./config").clientlibs;
 const path = require("path");
@@ -124,7 +125,8 @@ module.exports = {
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
     }),
-    new ChunkRename(clientlibs)
+    new ChunkRename(clientlibs),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   node: {
     fs: 'empty'

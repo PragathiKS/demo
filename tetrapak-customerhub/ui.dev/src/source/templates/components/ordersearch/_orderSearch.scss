@@ -1,9 +1,12 @@
 .tp-order-search {
     $gutter-space: 2 * $margin-md / 3;
-    @include padding($padding-l);
+    @include padding($padding-md);
     @include border-radius($border-radius);
     @include box-shadow-normal;
     background-color: $color-white;
+    @media #{$desktop} {
+        @include padding($padding-l);
+    }
     .form-control {
         @include border-xs($color-boulder);
         @include height(40px);
@@ -45,5 +48,34 @@
     }
     &__table {
         @include horizontal-scroll-touch;
+    }
+    &__calendar-nav {
+        position: relative;
+        z-index: $zindex-p;
+        @media #{$mobile} {
+            @include max-width(294px);
+            margin: 0 auto;
+        }
+    }
+    &__modal {
+        .tpmol-modal-footer {
+            justify-content: center;
+            padding-top: 0;
+        }
+        .lightpick {
+            @include top(-24px);
+            position: relative;
+        }
+        &-dialog {
+            @media #{$desktop} {
+                @include max-width(663px);
+            }
+        }
+        &-body {
+            @include padding(0 $padding-md);
+            @media #{$desktop} {
+                @include padding(0 $padding-l);
+            }
+        }
     }
 }

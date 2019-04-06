@@ -7,8 +7,10 @@
 #/003 { /type "allow" /url "/system/*" }  ## allow OSGi console
 
 ## allow non-public content directories if this isn't a production environment by uncommenting the next few lines
-#/004 { /type "allow" /url "/apps/*"   }  ## allow apps access
-#/005 { /type "allow" /url "/bin/*"    }  ## allow bin path access
+/004 { /type "allow" /url "/apps/settings/wcm/designs/*"   }  ## allow apps access
+/005 { /type "allow" /url "/libs/cq/i18n/*" } ## allow i18n in libs access
+
+#/006 { /type "allow" /url "/bin/*"    }  ## allow bin path access
 
 ## This rule allows content to be access
 /0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG)' /path "/content/*" }  ## disable this rule to allow mapped content only
@@ -38,9 +40,6 @@
 
 ## allow some requests
 /0022 { /type "allow" /method "GET" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login  
-
-## allow some requests
-/0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login  
-
-## This rule allows content to be access
-/0024 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG)' /path "/apps/settings/*" }  ## disable this rule to allow mapped content only
+/0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
+/0024 { /type "allow" /method "GET" /url "/bin/customerhub/token-generator" }
+/0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/global/dashboard/jcr:content/root/responsivegrid/orderingcard.preference.json" }  ## allow POSTs to update the order preferences

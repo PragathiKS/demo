@@ -10,15 +10,15 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LandingPageModel extends BasePageModel {
 
-	private ValueMap jcrMap;
+    private ValueMap jcrMap;
 
-	private String title;
-	private String vanityDescription;
-	private String ctaTexti18nKey;
-	private Boolean openInNewWindow;
-	private Boolean showImage;
-	private String articleImagePath;
-	private String articleImageAltI18n;
+    private String title;
+    private String vanityDescription;
+    private String ctaTexti18nKey;
+    private Boolean openInNewWindow;
+    private Boolean showImage;
+    private String articleImagePath;
+    private String articleImageAltI18n;
 
     @PostConstruct
     public void init() {
@@ -27,13 +27,13 @@ public class LandingPageModel extends BasePageModel {
         jcrMap = super.getPageContent().getJcrMap();
 
         if (jcrMap != null) {
-        	title = jcrMap.get("title", String.class);
-        	vanityDescription = jcrMap.get("vanityDescription", String.class);
-        	ctaTexti18nKey = jcrMap.get("ctaTexti18nKey", String.class);
-        	openInNewWindow = jcrMap.get("openInNewWindow", Boolean.class);
-        	showImage = jcrMap.get("showImage", Boolean.class);
-        	articleImagePath = jcrMap.get("articleImagePath", String.class);
-        	articleImageAltI18n = jcrMap.get("articleImageAltI18n", String.class);
+            title = jcrMap.get("title", String.class);
+            vanityDescription = jcrMap.get("vanityDescription", String.class);
+            ctaTexti18nKey = jcrMap.get("ctaTexti18nKey", String.class);
+            openInNewWindow = jcrMap.get("openInNewWindow", Boolean.class);
+            showImage = jcrMap.get("showImage", Boolean.class);
+            articleImagePath = jcrMap.get("articleImagePath", String.class);
+            articleImageAltI18n = jcrMap.get("articleImageAltI18n", String.class);
         }
     }
 
@@ -54,14 +54,14 @@ public class LandingPageModel extends BasePageModel {
     }
 
     public Boolean getShowImage() {
-		return showImage;
-	}
+        return showImage;
+    }
 
-	public String getArticleImagePath() {
-		return articleImagePath;
-	}
+    public String getArticleImagePath() {
+        return articleImagePath;
+    }
 
-	public String getArticleImageAltI18n() {
-		return articleImageAltI18n;
-	}
+    public String getArticleImageAltI18n() {
+        return articleImageAltI18n;
+    }
 }
