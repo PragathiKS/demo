@@ -1,17 +1,17 @@
 <sly data-sly-template.softConversionForm_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<p><input class="soft-conversion-form-init" type="submit" value="Get insights on mayonnaise production"></p><br/>
+<div id="soft-conversion-form">  
+    <h3>${data.titleI18n @ i18n}</h3><br/>
+    <p>${data.description}</p><br/>
+    <h4>${data.headline @ i18n}</h4><br/>
 
-<div class="soft-conversion-form">  
-    <h3>${data.titleI18n @ i18n}</h3>
-    <p>${data.description}</p>
-    <h4>${data.headline @ i18n}</h4>
-    
     <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
     
         <input checked="checked" name="group" type="radio" value="Professional" /> Professional <br /> 
         <input name="group" type="radio" value="Media Representative" /> Media Representative <br />  
         <input name="group" type="radio" value="Student" /> Student <br /> 
-    
+	    <br/>
         ${data.firstNameLabel @ i18n}<br /> 
         <input name="first-name" type="text" value="" /><br /> 
         ${data.lastNameLabel @ i18n}<br /> 
@@ -21,11 +21,15 @@
         ${data.companyLabel @ i18n}<br /> 
         <input name="company" type="text" value="" /><br /> 
         ${data.positionLabel @ i18n}<br /> 
-        <input name="position" type="text" value="" /><br /> 
-        <input type="submit" value="${data.nextButtonLabel @ i18n}"><br/>
+        <input name="position" type="text" value="" /><br /><br/>
+        <input type="submit" value="${data.nextButtonLabel @ i18n}"><br/><br/>
     </form>
 </div>
-
+<br/>
+<div id="whitepaper-details">
+<h4>Thanks for your interest. Here are the whitepapers you want to see !</h4>
+<br/>
+</div>
 <sly data-sly-test="${!data.titleI18n}"
        data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
 </sly>         

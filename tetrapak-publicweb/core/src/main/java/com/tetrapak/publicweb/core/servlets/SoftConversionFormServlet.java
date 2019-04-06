@@ -48,7 +48,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 	private ResourceResolverFactory resolverFactory;
 
 	private ResourceResolver resourceResolver;
-	
+
 	private String UGC_CONTENT_PATH = "/content/usergenerated";
 
 	@Override
@@ -57,50 +57,47 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 			// get resource resolver, tagManager objects.
 			resourceResolver = getResourceResolver(request);
 			Session session = resourceResolver.adaptTo(Session.class);
-			Node node = resourceResolver.adaptTo(Node.class);
-			Map<String, String> subCategoryTagsMap = new HashMap<>();
 
 			String group = request.getParameter("group");
 			String firstName = request.getParameter("first-name");
-			log.info("** Here is the first name : " + firstName);
 			String lastName = request.getParameter("last-name");
 			String emailAddress = request.getParameter("email-address");
 			String company = request.getParameter("company");
 			String position = request.getParameter("position");
-			
-			Node rootNode = session.getNode(UGC_CONTENT_PATH);
-			Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
-			Node itemNode = JcrUtils.getOrAddNode(pwNode, emailAddress);
-			itemNode.setProperty("group", group);
-			itemNode.setProperty("firstName", firstName);
-			itemNode.setProperty("lastName", lastName);
-			itemNode.setProperty("emailAddress", emailAddress);
-			itemNode.setProperty("company", company);
-			itemNode.setProperty("position", position);
-			
-			session.save();
-			
-			Cookie cookie = new Cookie("softConvUserExists","true");
-			cookie.setPath("/");
-			cookie.setMaxAge(60 * 60 * 24);
-			response.addCookie(cookie);
-			
+
+			if (session != null) {
+				Node rootNode = session.getNode(UGC_CONTENT_PATH);
+				Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
+				Node itemNode = JcrUtils.getOrAddNode(pwNode, emailAddress);
+				itemNode.setProperty("group", group);
+				itemNode.setProperty("firstName", firstName);
+				itemNode.setProperty("lastName", lastName);
+				itemNode.setProperty("emailAddress", emailAddress);
+				itemNode.setProperty("company", company);
+				itemNode.setProperty("position", position);
+
+				session.save();
+
+				Cookie cookie = new Cookie("softConvUserExists", "true");
+				cookie.setPath("/");
+				cookie.setMaxAge(60 * 60 * 24);
+				response.addCookie(cookie);
+			}
+
 			// set the response type
 			response.setContentType("text/html");
 			response.setStatus(HttpServletResponse.SC_OK);
 			PrintWriter writer = response.getWriter();
-			writer.println("Thanks for submitting the form.");
+			writer.println("Thanks for your interest. Here are the whitepapers you want to see !");
 			writer.flush();
 			writer.close();
 
 		} catch (IOException e) {
 			log.error("Error occurred while writing the response object. {}", e);
 		} catch (PathNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (RepositoryException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			log.error("Error finding the path. {}", e1);
+		} catch (RepositoryException e2) {
+			log.error("Error in repository operation. {}", e2);
 		}
 
 	}
