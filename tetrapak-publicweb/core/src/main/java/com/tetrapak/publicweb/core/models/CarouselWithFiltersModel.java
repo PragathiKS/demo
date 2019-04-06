@@ -23,8 +23,6 @@ public class CarouselWithFiltersModel {
 	
 	private static final Logger log = LoggerFactory.getLogger(CarouselWithFiltersModel.class);
 
-	private static final String PUBLIC_WEB_GLOBAL_PAGE = "/content/tetrapak/public-web/global";
-
 	@Self
 	Resource resource;
 	
@@ -123,9 +121,6 @@ public class CarouselWithFiltersModel {
 	}
 
 	public String getRootPath() {
-		if (rootPath == null) {
-			rootPath = PUBLIC_WEB_GLOBAL_PAGE;
-		}
 		return rootPath;
 	}
 	
