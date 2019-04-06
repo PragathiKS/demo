@@ -1,1 +1,54 @@
-{}
+{
+  "productRootPath": "/content/tetrapak/public-web/global/en/products",
+  "titleI18n": "Find the best Mixing solutions",
+  "tabs": [
+    {
+      "tabLinkTextI18n": "All",
+      "categoryTag": "all"
+    },
+    {
+      "tabLinkTextI18n": "Dairy",
+      "categoryTag": "extractor"
+    },
+    {
+      "tabLinkTextI18n": "Beverages",
+      "categoryTag": "catalyze"
+    },
+    {
+      "tabLinkTextI18n": "Prepared Food",
+      "categoryTag": "prepared-food"
+    },
+    {
+      "tabLinkTextI18n": "Ice Cream",
+      "categoryTag": "ice-cream"
+    },
+    {
+      "tabLinkTextI18n": "Cheese and whey",
+      "categoryTag": "cheese-and-whey"
+    },
+    {
+      "tabLinkTextI18n": "Cosmetics",
+      "categoryTag": "cosmetics"
+    }
+  ],
+  "productCards": [
+    {
+      "title": "Extractor",
+      "description": "asd 1",
+      "productImage": "",
+      "imageAltText": "alt",
+      "linkText": "Link te",
+      "linkPath": "/content/tetrapak/public-web/global/en/products/extractor.html"
+    },
+    {
+      "title": "Turn your products into success",
+      "description": "Vanity description",
+      "productImage": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Horizontal_milling_machine--Cincinnati--early_1900s--001.png",
+      "imageAltText": "alt",
+      "linkText": "Google",
+      "linkPath": "/content/tetrapak/public-web/global/en/products/catalyze.html"
+    }
+  ],
+  "pwTheme": "grayscale-lighter",
+  "pwPadding": "regular"
+}
