@@ -1,5 +1,5 @@
-<div class="tpatom-dropdown form-element{{#if wrapClasses}} {{wrapClasses}}{{/if}}">
-    <select name="{{name}}" class="form-control{{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
+<div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
+    <select name="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
         {{#if defaultValue}}
             <option value="">{{i18n key=defaultValue}}</option>
         {{/if}}
@@ -7,5 +7,5 @@
             <option value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>
         {{/each}}
     </select>
-    <i class="form-element__icon icon-Chevron_Down"></i>
+    <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
 </div>
