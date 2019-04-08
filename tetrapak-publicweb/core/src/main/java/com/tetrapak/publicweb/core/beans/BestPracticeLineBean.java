@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.beans;
 
-public class PracticeLineBean {
+public class BestPracticeLineBean {
 	
 	private String contentType;
 

@@ -78,6 +78,7 @@
                                 sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
                                 fieldDescription="Enter the path under which the practice line pages exist"
                                 fieldLabel="Practice Line Pages Root Path"
+                                required="{Boolean}true"
                                 name="./rootPath"
                                 rootPath="/content"/>                         
                         </items>
