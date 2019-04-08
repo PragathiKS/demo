@@ -1,7 +1,7 @@
 package com.tetrapak.customerhub.core.beans;
 
 /**
- *  The GetStartedBean class
+ * The GetStartedBean class
  */
 public class GetStartedBean {
     private String imagePath;
@@ -11,6 +11,10 @@ public class GetStartedBean {
     private String titleI18n;
 
     private String descriptionI18n;
+
+    private String linkUrl;
+
+    private String linkTextI18n;
 
     public String getImagePath() {
 
@@ -50,5 +54,21 @@ public class GetStartedBean {
     public void setDescriptionI18n(String descriptionI18n) {
 
         this.descriptionI18n = descriptionI18n;
+    }
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    public String getLinkTextI18n() {
+        return linkTextI18n;
+    }
+
+    public void setLinkTextI18n(String linkTextI18n) {
+        this.linkTextI18n = linkTextI18n;
     }
 }

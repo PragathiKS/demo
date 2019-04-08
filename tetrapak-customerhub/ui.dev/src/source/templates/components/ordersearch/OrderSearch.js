@@ -7,8 +7,8 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { trackAnalytics, trackParams } from '../../../scripts/utils/analytics';
 import { sanitize, apiHost } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
 
@@ -260,6 +260,39 @@ function _sanitizeQuery(query) {
   return query;
 }
 
+/**
+ * Sets pagination analytics parameters
+ */
+function _setPaginationAnalyticsParameters($this) {
+  const $tpOrderNumber = $.grep($(this).find('td'), ref => ['orderNumber'].includes($(ref).data('key')))[0];
+  if ($tpOrderNumber) {
+    const tpOrderNumber = $.trim($($tpOrderNumber).text());
+    const currentPage = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
+    trackParams({
+      searchresultclicks: tpOrderNumber,
+      pagination: currentPage
+    }, 'orders', 'SearchResultClick');
+  }
+}
+
+/**
+ * Opens order detail page for current order
+ */
+function _openOrderDetails(e) {
+  const $this = e.data;
+  const currentTarget = $(this);
+  window.open(currentTarget.attr('href'), '_self');
+  _setPaginationAnalyticsParameters.apply(this, [$this]);
+}
+
+/**
+ * Stops event propagation of parent element in child context
+ * @param {object} e Event object
+ */
+function _stopEvtProp(e) {
+  e.stopPropagation();
+}
+
 class OrderSearch {
   cache = {};
   constructor({ el }) {
@@ -299,6 +332,8 @@ class OrderSearch {
         this.submitDateRange();
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
+      .on('click', '.js-ordering-card__row', this, this.openOrderDetails)
+      .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
         const routeQuery = deparam(window.location.hash.substring(2));
@@ -311,6 +346,12 @@ class OrderSearch {
           queryString: $.param(routeQuery)
         });
       });
+  }
+  openOrderDetails() {
+    return _openOrderDetails.apply(this, arguments);
+  }
+  stopEvtProp() {
+    return _stopEvtProp.apply(this, arguments);
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
@@ -330,7 +371,7 @@ class OrderSearch {
         startDate,
         endDate,
         dropdowns: false,
-        format: 'YYYY-MM-DD',
+        format: DATE_FORMAT,
         separator: ' - '
       });
       _disableCalendarNext(this);
@@ -349,7 +390,9 @@ class OrderSearch {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);
     }
   }
@@ -377,7 +420,7 @@ class OrderSearch {
     this.cache.$deliveryAddress = this.root.find('.js-order-search__delivery-address');
     this.cache.$search = this.root.find('.js-order-search__search-term');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
-    this.cache.$modal = this.root.find('.js-order-search__modal');
+    this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);

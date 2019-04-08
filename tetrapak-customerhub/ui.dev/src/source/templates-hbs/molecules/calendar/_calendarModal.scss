@@ -1,0 +1,45 @@
+$width-calendar-mobile: 266px;
+$width-calendar: 294px;
+$dialog-maxwidth: 663px;
+
+.tp-cal-cont {
+    &__calendar-nav {
+        position: relative;
+        z-index: $zindex-p;
+
+        @media #{$mobile} {
+            @include max-width($width-calendar-mobile);
+            margin: 0 auto;
+        }
+
+        @media #{$mobile-large} {
+            @include max-width($width-calendar);
+        }
+    }
+
+    &__modal {
+        .tpmol-modal-footer {
+            justify-content: center;
+            padding-top: 0;
+        }
+
+        .lightpick {
+            @include top(-24px);
+            position: relative;
+        }
+
+        &-dialog {
+            @media #{$desktop} {
+                @include max-width($dialog-maxwidth);
+            }
+        }
+
+        &-body {
+            @include padding(0 $padding-md);
+
+            @media #{$desktop} {
+                @include padding(0 $padding-l);
+            }
+        }
+    }
+}

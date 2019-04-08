@@ -1,0 +1,175 @@
+.tp-financial-statement {
+    &__select-customer-heading {
+        @include line-height($font-l, $font-l);
+        @include font-size($font-l);
+
+        @media #{$desktop} {
+            @include line-height($font-xl, $font-l)
+        }
+    }
+
+    &__select-box-wrapper {
+        @media #{$desktop} {
+            width: 50%;
+        }
+    }
+
+    &__select-customer-label {
+        @include padding($padding-md 0 $padding-md 0);
+        @include font-size($font-md);
+        @include line-height($font-l, $font-md);
+        font-family: $font-bold;
+
+        @media #{$desktop} {
+            @include padding($padding-l 0 $padding-md 0);
+            @include line-height($font-l, $font-md);
+            font-family: $font-light;
+        }
+    }
+
+    &__customer-detail {
+        color: $color-tundora;
+        width: 100%;
+
+        @media #{$desktop} {
+            width: 50%;
+        }
+    }
+
+    &__account,
+    &__address-title,
+    &__address-detail {
+        @include padding-top($padding-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+    }
+
+    &__account,
+    &__address-title {
+        font-family: $font-bold;
+    }
+
+    &__filters {
+        margin-bottom: 0;
+    }
+
+    &__status-calender-container {
+        @include margin-bottom($margin-md);
+    }
+
+    &__status-container {
+        @include padding(0 0 $padding-md 0);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__status-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__status {
+        @include padding($padding-sm);
+    }
+
+    &__date-range-container {
+        @include height(40px);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            display: inline-block;
+            width: (100% / 3);
+        }
+    }
+
+    &__date-range-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__search-container {
+        @media #{$desktop} {
+            @include display-flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__document-type-container {
+        @include margin(0 0 $margin-md 0);
+        width: 100%;
+        align-self: baseline;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__document-number-container {
+        @include margin(0 0 $margin-md 0);
+        align-self: baseline;
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__document-number {
+        @include padding($font-sm);
+    }
+
+    &__document-number-wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__search-btn-container {
+        @include margin(0 0 $margin-md 0);
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+        }
+    }
+
+    &__reset-btn-container {
+        @include margin-bottom($margin-md);
+        @include padding($padding-sm $padding-md);
+        display: inline-block;
+        background: $color-wild-sand;
+    }
+
+    &__submit-btn {
+        @media #{$desktop} {
+            width: 100%;
+        }
+    }
+
+    &__reset-btn {
+        @include line-height($font-l, $font-baseline);
+    }
+
+    .form-element__icon {
+        @include height(12px);
+        @include width(12px);
+        @include font-size($font-sm);
+        color: $color-boulder;
+        pointer-events: none;
+    }
+
+    .form-element,
+    .form-control {
+        height: 100%;
+    }
+}
+
+.tp-card.tp-financials {
+    @include padding-bottom($padding-sm);
+}

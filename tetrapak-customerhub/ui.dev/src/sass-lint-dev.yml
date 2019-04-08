@@ -6,9 +6,9 @@ options:
   # Don't merge default rules
   merge-default-rules: false
   # Output file instead of logging results
-  # output-file: 'clickdummy/sass-lint-report.html'
-  # Raise an error if more than 20 warnings are generated
-  max-warnings: 20
+  # output-file: 'sass-lint-report.html'
+  # Raise an error if more than 5 warnings are generated
+  max-warnings: 5
 
 # Rule Configuration
 rules:
@@ -18,7 +18,7 @@ rules:
   placeholder-in-extend: 1
 
   # Mixins
-  mixins-before-declarations: 1
+  mixins-before-declarations: 2
 
   # Line Spacing
   one-declaration-per-line: 1
@@ -29,18 +29,18 @@ rules:
   no-color-hex: 0
   no-color-keywords: 1
   no-color-literals:
-    - 1
+    - 2
     -
       allow-rgba: true
   no-combinators: 0
   no-css-comments: 1
-  no-debug: 1
+  no-debug: 2
   no-disallowed-properties: 2
   no-duplicate-properties: 2
   duplicate-background-images: 0
   no-empty-rulesets: 2
   no-extends: 0
-  no-ids: 1
+  no-ids: 2
   no-important: 2
   no-invalid-hex: 1
   no-mergeable-selectors: 1
@@ -77,7 +77,7 @@ rules:
   # Style Guide
   attribute-quotes: 1
   bem-depth: 0
-  border-zero: 1
+  border-zero: 2
   brace-style: 1
   clean-import-paths: 1
   empty-args: 1
@@ -92,7 +92,7 @@ rules:
       size: 4
   max-line-length: 0
   max-file-line-count: 0
-  nesting-depth: 1
+  nesting-depth: 2
   pseudo-element: 2
   quotes: 1
   shorthand-values: 1
@@ -111,7 +111,7 @@ rules:
   #space-around-operator: 1
 
   # Final Items
-  trailing-semicolon: 1
+  trailing-semicolon: 2
   property-sort-order:
   - 1
   -

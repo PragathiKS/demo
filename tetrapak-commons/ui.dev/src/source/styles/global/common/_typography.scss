@@ -30,9 +30,9 @@ $font-light: "mulilight",
 sans-serif;
 $font-lightItalic: "mulilight_italic",
 sans-serif;
-$font-semiBold: "mulisemibold",
+$font-semi-bold: "mulisemibold",
 sans-serif;
-$font-semiBoldItalic: "mulisemibold_italic",
+$font-semi-boldItalic: "mulisemibold_italic",
 sans-serif;
 .hero {
     @include font-size($font-xxxl);

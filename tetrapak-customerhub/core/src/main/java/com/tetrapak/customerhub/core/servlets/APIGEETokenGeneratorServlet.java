@@ -64,7 +64,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.addHeader("Authorization", "Basic " + encodedAuthString);
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         postRequest.addHeader("Accept", "application/json");
-        ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+        ArrayList<NameValuePair> postParameters = new ArrayList<>();
         postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
