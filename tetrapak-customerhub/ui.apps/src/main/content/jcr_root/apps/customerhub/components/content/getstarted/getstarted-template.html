@@ -1,0 +1,9 @@
+<sly data-sly-template.getstarted_template="${@ data, flag}">
+  <section class="tp-get-started">
+    <h3 class="tp-get-started__heading">${data.headingI18n @i18n}</h3>
+    <div class="tp-get-started__details" data-sly-list.child=${data.getStartedList}>
+       <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" 
+        data-sly-call="${lib.dynamicimage_template @imagePath=child.imagePath, altText=child.imageAltI18n}" />
+    </div>
+  </section>
+</sly>
