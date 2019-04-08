@@ -102,9 +102,13 @@ function _processTableData(data) {
  * @param {object} query Current query object
  */
 function _setSearchFields(query) {
-  const { $dateRange, $deliveryAddress, $search, $orderStatus } = this.cache;
+  const { $dateRange, $rangeSelector, $deliveryAddress, $search, $orderStatus } = this.cache;
+  const currentRange = `${query['orderdate-from']} - ${query['orderdate-to']}`;
   if ($dateRange && $dateRange.length) {
-    $dateRange.val(`${query['orderdate-from']} - ${query['orderdate-to']}`);
+    $dateRange.val(currentRange);
+  }
+  if ($rangeSelector && $rangeSelector.length) {
+    $rangeSelector.val(currentRange);
   }
   if ($deliveryAddress && $deliveryAddress.length) {
     $deliveryAddress.val(query.deliveryaddress);
@@ -356,23 +360,32 @@ class OrderSearch {
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
-  initializeCalendar() {
+  initializeCalendar(reset) {
+    const $this = this;
     const { $rangeSelector } = this.cache;
     const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
     if (rangeSelectorEl) {
-      const [startDate, endDate] = $rangeSelector.val().split(' - ');
       // Initialize inline calendar
+      const { picker } = this.cache;
+      if (picker && reset) {
+        picker.destroy();
+      }
       this.cache.picker = new Lightpick({
         field: rangeSelectorEl,
         singleDate: false,
         numberOfMonths: 2,
         inline: true,
         maxDate: Date.now(),
-        startDate,
-        endDate,
         dropdowns: false,
         format: DATE_FORMAT,
-        separator: ' - '
+        separator: ' - ',
+        selectForward: true,
+        onSelectStart() {
+          $this.root.find('.js-calendar').attr('disabled', 'disabled');
+        },
+        onSelectEnd() {
+          $this.root.find('.js-calendar').removeAttr('disabled');
+        }
       });
       _disableCalendarNext(this);
     }
@@ -390,7 +403,9 @@ class OrderSearch {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);
     }
   }
@@ -402,7 +417,11 @@ class OrderSearch {
   }
   resetSearch() {
     const { defaultParams } = this.cache;
+    if (defaultParams.daterange) {
+      delete defaultParams.daterange;
+    }
     this.setSearchFields($.extend({}, defaultParams));
+    this.initializeCalendar(true);
     router.set({
       route: '#/',
       queryString: $.param(defaultParams)
