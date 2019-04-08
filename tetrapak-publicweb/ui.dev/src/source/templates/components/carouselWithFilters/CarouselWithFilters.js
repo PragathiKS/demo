@@ -29,8 +29,10 @@ class CarouselWithFilters {
       },
       target: '#'+parentId+' .js-carouselfiltered-item',
       beforeRender(data) {
-        this.data = data[0];
-        this.data.variant = btnVariant;
+        if (this.data) {
+          this.data = data[0];
+          this.data.variant = btnVariant;
+        }
       }
     });
   }
