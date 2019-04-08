@@ -8,7 +8,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class PracticeLinePageModel extends BasePageModel {
+public class BestPracticeLinePageModel extends BasePageModel {
 
 	private ValueMap jcrMap;
 
