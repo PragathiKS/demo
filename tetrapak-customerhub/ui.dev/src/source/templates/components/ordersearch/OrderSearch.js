@@ -357,22 +357,28 @@ class OrderSearch {
     return _renderFilters.apply(this, arguments);
   }
   initializeCalendar() {
+    const $this = this;
     const { $rangeSelector } = this.cache;
     const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+    const isRange = true;
     if (rangeSelectorEl) {
-      const [startDate, endDate] = $rangeSelector.val().split(' - ');
       // Initialize inline calendar
       this.cache.picker = new Lightpick({
         field: rangeSelectorEl,
-        singleDate: false,
+        singleDate: !isRange,
         numberOfMonths: 2,
         inline: true,
         maxDate: Date.now(),
-        startDate,
-        endDate,
         dropdowns: false,
         format: DATE_FORMAT,
-        separator: ' - '
+        separator: ' - ',
+        selectForward: true,
+        onSelectStart() {
+          $this.root.find('.js-calendar').attr('disabled', 'disabled');
+        },
+        onSelectEnd() {
+          $this.root.find('.js-calendar').removeAttr('disabled');
+        }
       });
       _disableCalendarNext(this);
     }
