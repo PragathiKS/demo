@@ -4,9 +4,9 @@
 echo "Starting Performance Tests for Tetra Pak Customer Hub..."
 
 echo "Starting /opt/apache-jmeter-5.0/bin/jmeter: Home Page"
-nohup /app/apache-jmeter-5.1/bin/jmeter -n -t "./performance/customerhub/scripts/HomePage.jmx" -Jjmeter.save.saveservice.output_format=csv -n &
+nohup /app/apache-jmeter-5.1/bin/jmeter -n -t "./performance/customerhub/scripts/HomePage.jmx" -Jjmeter.save.saveservice.output_format=csv &
 echo "Starting /opt/apache-jmeter-5.0/bin/jmeter: All Pages"
-nohup /app/apache-jmeter-5.1/bin/jmeter -n -t "./performance/customerhub/scripts/allPages.jmx" -Jjmeter.save.saveservice.output_format=csv -n &
+nohup /app/apache-jmeter-5.1/bin/jmeter -n -t "./performance/customerhub/scripts/allPages.jmx" -Jjmeter.save.saveservice.output_format=csv &
 
 
 # public web scripts under this section
