@@ -1,0 +1,8 @@
+<sly data-sly-test="${wcmmode.edit}">
+<p data-emptytext="Double click configure ${component.title}"
+	class="cq-placeholder"></p>
+</sly>
+<sly data-sly-use.pageReference="com.tetrapak.customerhub.core.models.PageContentHierarchyReferencesModel"/>
+<sly data-sly-list=${pageReference.componentsReference}>
+	<sly data-sly-resource=${item}></sly> 
+</sly>
