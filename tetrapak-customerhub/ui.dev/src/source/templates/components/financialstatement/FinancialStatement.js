@@ -168,19 +168,24 @@ class FinancialStatement {
     }
   }
   initializeCalendar(isRange) {
+    const $this = this;
     const { $rangeSelector, dateConfig, picker } = this.cache;
     const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
     if (rangeSelectorEl) {
-      const [startDate, endDate] = $rangeSelector.val().split(' - ');
       const currentConfig = $.extend({}, dateConfig);
       if (isRange) {
         $.extend(currentConfig, {
           field: rangeSelectorEl,
           singleDate: false,
           numberOfMonths: 2,
-          startDate,
-          endDate,
-          separator: ' - '
+          separator: ' - ',
+          selectForward: true,
+          onSelectStart() {
+            $this.root.find('.js-calendar').attr('disabled', 'disabled');
+          },
+          onSelectEnd() {
+            $this.root.find('.js-calendar').removeAttr('disabled');
+          }
         });
       } else {
         $.extend(currentConfig, {
