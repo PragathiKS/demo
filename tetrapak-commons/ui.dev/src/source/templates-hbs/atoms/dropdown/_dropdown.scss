@@ -7,6 +7,7 @@
         @include padding($padding-sm);
         @include line-height(22px, $font-baseline);
         width: 100%;
+        background-color: $color-white;
     }
 
     &__icon {
