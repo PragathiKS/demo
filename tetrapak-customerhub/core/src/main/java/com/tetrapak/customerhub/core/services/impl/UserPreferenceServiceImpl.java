@@ -3,7 +3,6 @@ package com.tetrapak.customerhub.core.services.impl;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
-import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Component;
@@ -22,7 +21,7 @@ import com.tetrapak.customerhub.core.services.UserPreferenceService;
 public class UserPreferenceServiceImpl implements UserPreferenceService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserPreferenceServiceImpl.class);
-	
+
 	@Reference
 	private AzureTableStorageService azureTableStorageService;
 
@@ -37,16 +36,19 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 	 */
 	@Override
 	public String getSavedPreferences(String userId, String prefType) {
-		String savedPreferences = Arrays.toString(new String[] {});
-		if (StringUtils.isBlank(userId) || StringUtils.isBlank(prefType)) {
-			return savedPreferences;
-		}
-		try {
-			savedPreferences = azureTableStorageService.getUserPreferencesFromAzureTable(azureTableStorageService.getUserPreferencesTableName(), userId, prefType);
-			LOGGER.debug("Got savedPreferences response {} for userID:{}, prefType:{}", userId, prefType,
-					savedPreferences);
-		} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
-			LOGGER.error("Some exception occured while retrieving userpref:{} data for userID:{}", prefType, userId, e);
+		String savedPreferences = null;
+		if (null != azureTableStorageService && !StringUtils.isBlank(userId) && !StringUtils.isBlank(prefType)) {
+			try {
+				savedPreferences = azureTableStorageService.getUserPreferencesFromAzureTable(
+						azureTableStorageService.getUserPreferencesTableName(), userId, prefType);
+				LOGGER.debug("Got savedPreferences response {} for userID:{}, prefType:{}", userId, prefType,
+						savedPreferences);
+			} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
+				LOGGER.error("Some exception occured while retrieving userpref:{} data for userID:{}", prefType, userId,
+						e);
+			}
+		} else {
+			LOGGER.warn("Could not fetch savedPreferences for userID:{}, prefType:{}", userId, prefType);
 		}
 		return savedPreferences;
 	}
@@ -63,15 +65,21 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
 	 */
 	@Override
 	public boolean setPreferences(String userId, String userPrefType, String userPreferencesData) {
-		try {
-			azureTableStorageService.saveUserPreferencesToAzureTable(azureTableStorageService.getUserPreferencesTableName(), userId, userPrefType,
-					userPreferencesData);
-		} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
-			LOGGER.error("Some exception occured while setting userpref:{} data for userID:{}", userPrefType, userId,
-					e);
+		if (null != azureTableStorageService) {
+			try {
+				azureTableStorageService.saveUserPreferencesToAzureTable(
+						azureTableStorageService.getUserPreferencesTableName(), userId, userPrefType,
+						userPreferencesData);
+			} catch (InvalidKeyException | StorageException | URISyntaxException | RuntimeException | IOException e) {
+				LOGGER.error("Some exception occured while setting userpref:{} data for userID:{}", userPrefType,
+						userId, e);
+				return false;
+			}
+			return true;
+		} else {
+			LOGGER.warn("Could not setPreferences for userID {} as azureTableStorageService is not active", userId);
 			return false;
 		}
-		return true;
 	}
 
 }
