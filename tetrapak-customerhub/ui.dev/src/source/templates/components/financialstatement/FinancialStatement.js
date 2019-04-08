@@ -158,7 +158,9 @@ class FinancialStatement {
   }
   submitDateRange() {
     const { $dateRange, $rangeSelector, $modal } = this.cache;
+    const $status = this.root.find('.js-financial-statement__status');
     $dateRange.val($rangeSelector.val());
+    $status.find('option').eq($status.prop('selectedIndex')).data('selectedDate', $rangeSelector.val());
     $modal.modal('hide');
   }
   navigateCalendar(e) {
