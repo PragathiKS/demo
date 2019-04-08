@@ -147,6 +147,7 @@ class FinancialStatement {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
+    this.cache.$status = this.root.find('.js-financial-statement__status');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -157,8 +158,7 @@ class FinancialStatement {
     };
   }
   submitDateRange() {
-    const { $dateRange, $rangeSelector, $modal } = this.cache;
-    const $status = this.root.find('.js-financial-statement__status');
+    const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
     $dateRange.val($rangeSelector.val());
     $status.find('option').eq($status.prop('selectedIndex')).data('selectedDate', $rangeSelector.val());
     $modal.modal('hide');
@@ -228,6 +228,10 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__submit', this.populateResults)
       .on('reset', '.js-financial-statement__filters', () => {
         setTimeout(() => {
+          const { $status } = this.cache;
+          $status.find('option').each(function () {
+            $(this).removeData();
+          });
           this.populateResults();
         }, 0);
       });
