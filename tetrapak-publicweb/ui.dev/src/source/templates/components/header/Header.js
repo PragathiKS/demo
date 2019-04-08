@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import {$document} from '../../../scripts/utils/commonSelectors';
-//import { ajaxWrapper } from '../../../scripts/utils/ajax';
 
 class Header {
   constructor({templates, el}) {
@@ -10,16 +9,14 @@ class Header {
 
   cache = {};
 
-  init() {
-    this.initCache();
-    this.bindEvents();
-  }
-
   initCache() {
     this.cache.$searchBoxToggle = $('.js-tp-pw-header__search-box-toggle');
     this.cache.$searchBox = $('.js-tp-pw-search-box');
     this.cache.$searchBoxInput = $('.js-tp-pw-search-box__input');
     this.cache.$closeSearcBbox = $('.js-tp-pw-search-box__close-search-box');
+    this.cache.secondaryNav = $('.js-tp-pw-header__secondary-navigation');
+    this.cache.searchBoxPointer = $('.js-tp-pw-search-box__pointer');
+    this.cache.pointedElement = $('.' + this.cache.searchBoxPointer.data('pointTo'));
     this.cache.url = location.href.split('?')[1] || null;
     this.setOverlayHeight();
   }
@@ -32,6 +29,9 @@ class Header {
         let searchTerm = $('.js-tp-pw-search-box__input').val();
         this.search(searchTerm);
       }
+    });
+    $(window).on('resize', () => {
+      this.movePointer();
     });
   }
 
@@ -55,6 +55,17 @@ class Header {
   };
   setOverlayHeight = () => {
     this.cache.$searchBox.css('height', $document.height());
+  };
+  movePointer = () => {
+    let secNavWidth = this.cache.secondaryNav.width();
+    console.log(this.cache.pointedElement[0].offsetLeft, secNavWidth); //eslint-disable-line
+    $('.js-tp-pw-search-box__pointer').css('right', secNavWidth + 10 + 'px');
+  };
+
+  init() {
+    this.initCache();
+    this.bindEvents();
+    this.movePointer(this.cache.searchBoxPointer, this.cache.pointedElement);
   }
 }
 
