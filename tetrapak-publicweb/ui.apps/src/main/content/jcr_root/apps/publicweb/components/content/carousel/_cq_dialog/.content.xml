@@ -98,6 +98,7 @@
                                                         fieldDescription="Select practice line path to automatically populate values when content type is automatic"
                                                         fieldLabel="Practice Line Path"
                                                         name="./practicePath"
+                                                        required="{Boolean}true"
                                                         rootPath="/content"/>
                                                     <title
                                                         jcr:primaryType="nt:unstructured"
