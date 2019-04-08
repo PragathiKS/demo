@@ -20,4 +20,9 @@ public class CustomerHubConstants {
     public static final String RESPONSE_STATUS_FAILURE = "failure";
 
     public static final String RESPONSE_STATUS_SUCCESS = "success";
+    public static final String PATH_SEPARATOR = "/";
+    public static final String ROOT_NODE = "root";
+    public static final String RESPONSIVE_GRID_NODE = "responsivegrid";
+    public static final String EMPTY_STRING = "";
+    public static final String CQ_TEMPLATE = "cq:template";
 }
