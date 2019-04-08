@@ -102,9 +102,13 @@ function _processTableData(data) {
  * @param {object} query Current query object
  */
 function _setSearchFields(query) {
-  const { $dateRange, $deliveryAddress, $search, $orderStatus } = this.cache;
+  const { $dateRange, $rangeSelector, $deliveryAddress, $search, $orderStatus } = this.cache;
+  const currentRange = `${query['orderdate-from']} - ${query['orderdate-to']}`;
   if ($dateRange && $dateRange.length) {
-    $dateRange.val(`${query['orderdate-from']} - ${query['orderdate-to']}`);
+    $dateRange.val(currentRange);
+  }
+  if ($rangeSelector && $rangeSelector.length) {
+    $rangeSelector.val(currentRange);
   }
   if ($deliveryAddress && $deliveryAddress.length) {
     $deliveryAddress.val(query.deliveryaddress);
@@ -413,6 +417,9 @@ class OrderSearch {
   }
   resetSearch() {
     const { defaultParams } = this.cache;
+    if (defaultParams.daterange) {
+      delete defaultParams.daterange;
+    }
     this.setSearchFields($.extend({}, defaultParams));
     this.initializeCalendar(true);
     router.set({
