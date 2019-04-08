@@ -117,7 +117,7 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 		
 		// Page type is Practice Line page.
         map.put("1_property", "jcr:content/cq:template");
-        map.put("1_property.value", "/apps/publicweb/templates/practicelinepage");
+        map.put("1_property.value", "/apps/publicweb/templates/bestpracticelinepage");
         
         // Parameter to look for product type as a tag on the page.
 		map.put("2_group.1_group.property", "jcr:content/cq:tags");
