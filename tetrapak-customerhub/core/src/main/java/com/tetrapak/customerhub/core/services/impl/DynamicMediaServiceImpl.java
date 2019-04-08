@@ -29,13 +29,20 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
         return config.imageServiceUrl();
     }
 
-   
+    /**
+     * Sets the Dynamic Media Conf Map. return Dynamic Media Conf Map
+     * @return the dynamic media confMap
+     */   
     @Override
     public String[] getDynamicMediaConfMap() {
         return config.dynamicMediaConfMap();
         
     }
     
+    /**
+     * Sets the Root Path. return Root Path
+     * @return the root Path
+     */  
     @Override
     public String getRootPath() {
         return config.rootPath();
