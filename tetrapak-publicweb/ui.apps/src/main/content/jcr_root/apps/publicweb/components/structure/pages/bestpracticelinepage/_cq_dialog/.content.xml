@@ -44,7 +44,7 @@
                                                     name="./title"/>
                                             <vanityDescription
                                                     jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                                     fieldLabel="Vanity Description"
                                                     name="./vanityDescription"/>
                                             <ctaTexti18nKey
