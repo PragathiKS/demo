@@ -106,19 +106,24 @@ function _disableCalendarNext($this) {
   }
 }
 
-function _setDateFilter(status) {
+function _setDateFilter(status, selectedDate) {
   const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
-  const endDate = moment(Date.now()).format(DATE_FORMAT);
-  if (
-    typeof status === 'string'
-    && ['open'].includes(status.toLowerCase())
-  ) {
-    $dateSelector.val(endDate);
-    this.initializeCalendar();
+  if (selectedDate) {
+    $dateSelector.val(selectedDate);
+    this.initializeCalendar((selectedDate.split(' - ').length > 1));
   } else {
-    const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
-    $dateSelector.val(`${startDate} - ${endDate}`);
-    this.initializeCalendar(true);
+    const endDate = moment(Date.now()).format(DATE_FORMAT);
+    if (
+      typeof status === 'string'
+      && ['open'].includes(status.toLowerCase())
+    ) {
+      $dateSelector.val(endDate);
+      this.initializeCalendar();
+    } else {
+      const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+      $dateSelector.val(`${startDate} - ${endDate}`);
+      this.initializeCalendar(true);
+    }
   }
 }
 
@@ -208,7 +213,8 @@ class FinancialStatement {
         this.setSelectedCustomer(e.target.value);
       })
       .on('change', '.js-financial-statement__status', (e) => {
-        this.setDateFilter($(e.target).find('option').eq(e.target.selectedIndex).text());
+        const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
+        this.setDateFilter(currentTarget.text(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
