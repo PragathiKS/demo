@@ -356,16 +356,19 @@ class OrderSearch {
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
-  initializeCalendar() {
+  initializeCalendar(reset) {
     const $this = this;
     const { $rangeSelector } = this.cache;
     const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
-    const isRange = true;
     if (rangeSelectorEl) {
       // Initialize inline calendar
+      const { picker } = this.cache;
+      if (picker && reset) {
+        picker.destroy();
+      }
       this.cache.picker = new Lightpick({
         field: rangeSelectorEl,
-        singleDate: !isRange,
+        singleDate: false,
         numberOfMonths: 2,
         inline: true,
         maxDate: Date.now(),
@@ -411,6 +414,7 @@ class OrderSearch {
   resetSearch() {
     const { defaultParams } = this.cache;
     this.setSearchFields($.extend({}, defaultParams));
+    this.initializeCalendar(true);
     router.set({
       route: '#/',
       queryString: $.param(defaultParams)
