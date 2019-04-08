@@ -91,6 +91,8 @@ public class OrderingCardModel {
 
 		disabledFields = new LinkedHashSet<>();
 		disabledFields.add("contact");
+		disabledFields.add("customerNumber");
+		disabledFields.add("salesOrg");
 
 		savedPreferences = new LinkedHashSet<>();
 		savedPreferences.addAll(defaultFields);
