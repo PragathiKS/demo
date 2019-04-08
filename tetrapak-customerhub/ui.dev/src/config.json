@@ -172,7 +172,8 @@
         "source/templates/components/ordersearch/"
       ],
       "financial": [
-        "source/templates/components/financialstatement/"
+        "source/templates/components/financialstatement/",
+        "source/templates/components/financialsstatementsummary/"
       ]
     },
     "handlebars": {
