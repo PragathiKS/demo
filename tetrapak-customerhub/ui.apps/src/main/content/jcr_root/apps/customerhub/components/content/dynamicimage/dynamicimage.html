@@ -1,6 +1,6 @@
 <template data-sly-template.dynamicimage_template="${@ imagePath,altText} ">
 <sly data-sly-use.dynamicImageModel="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=imagePath , altText=altText}"/>
-<img data-sly-test="${dynamicImageModel.defaultImageUrl}" src="${dynamicImageModel.defaultImageUrl}" data-object-fit="${dataObjectView}"
+<img src="${dynamicImageModel.desktopUrl}" data-object-fit="${dataObjectView}"
 	itemprop="image" alt="${dynamicImageModel.altText}"
 	data-src_desktop="${dynamicImageModel.desktopUrl}"
 	data-src_desktopL="${dynamicImageModel.desktopLargeUrl}"
