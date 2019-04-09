@@ -48,6 +48,7 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 	protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
 			throws IOException {
 		LOGGER.info("SaveOrderPreferencesServlet POST method started");
+		
 		Session session = request.getResourceResolver().adaptTo(Session.class);
 		if (null == session) {
 			writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
