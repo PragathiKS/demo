@@ -13,8 +13,8 @@
         <div class="tp-financials-summary__documents">
             <h4>{{i18n key=documentHeadingI18n}}</h4>
             {{#each documents}}
-                {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=docId data-toggle="collapse" }}
-                <div class="tp-financials-summary__table collapse" id="document{{@index}}">
+                {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" jsClass="js-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=docId data-toggle="collapse" }}
+                <div class="tp-financials-summary__table js-financials-summary__table collapse" id="document{{@index}}">
                     {{> molecules/table/table baseClass="tp-financials-summary__documents" jsClass="js-financials-summary__documents" list=docData headings=docHeadings tableSummary=totalAmount}}
                 </div>
             {{/each}}

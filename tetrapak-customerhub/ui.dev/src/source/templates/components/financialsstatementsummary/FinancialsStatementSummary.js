@@ -13,10 +13,10 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  */
 function _trackAnalytics() {
   // Get selected preferences
+  let statementHeader = $('[data-target="#' + $(this).parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text();
+  const [statementHeaderTitle] = statementHeader.split('(');
   const analyticsData = {};
-  let statementHeader = $('[data-target="#' + $(this).parents('.tp-financials-summary__table').attr('id') + '"]').find('.tpmol-accordian-title__text').text();
-  statementHeader = $.trim(statementHeader.split('(')[0]);
-  analyticsData['statementheader'] = statementHeader;
+  analyticsData['statementheader'] = $.trim(statementHeaderTitle);
   analyticsData['statementnumber'] = $.trim($(this).find('[data-key=documentNumber]').text());
 
   trackAnalytics(analyticsData, 'financial', 'statementinvoice');
@@ -151,12 +151,8 @@ class FinancialsStatementSummary {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    let $this = this;
     this.root
-      .on('click', '.js-financials-summary__documents__row', function () {
-        $this.downloadInvoice(this);
-        $this.trackAnalytics(this);
-      });
+      .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
     this.cache.$filtersRoot.on('financialSummary.render', this.renderTable);
   }
   renderTable = () => {
@@ -166,8 +162,11 @@ class FinancialsStatementSummary {
   processTableData(data) {
     return _processTableData.apply(this, data);
   }
-  downloadInvoice(obj) {
-    return _downloadInvoice.call(obj);
+  downloadInvoice(e) {
+    const $this = e.data;
+
+    _downloadInvoice.call(this);
+    $this.trackAnalytics(this);
   }
   getFilters = () => _getFilters.apply(this);
   trackAnalytics = (obj) => _trackAnalytics.call(obj);
