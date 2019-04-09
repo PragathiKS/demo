@@ -64,14 +64,14 @@
                                 fieldLabel="Product Type"
                                 eaemMaxTags="1"
                                 validation="eaem.max.tags"
-                                rootPath="/content/cq:tags/tetra-pak"
+                                rootPath="/content/cq:tags"
                                 name="./productType"/>
                             <category
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/common/tagspicker"
                                 fieldDescription="Select category for practice line"
                                 fieldLabel="Category"
-                                rootPath="/content/cq:tags/tetra-pak"
+                                rootPath="/content/cq:tags"
                                 name="./category"/>   
                             <rootpath
                                 jcr:primaryType="nt:unstructured"
