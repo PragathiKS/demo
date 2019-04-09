@@ -1,7 +1,7 @@
 {
   "productRootPath": "/content/tetrapak/public-web/global/en/products",
   "titleI18n": "Find the best Mixing solutions",
-  "tabs": [
+  "tabLinks": [
     {
       "tabLinkTextI18n": "All",
       "categoryTag": "all"

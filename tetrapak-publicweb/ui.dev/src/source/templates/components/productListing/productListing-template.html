@@ -8,16 +8,16 @@
     </div>
     <div class="pw-product-listing__navigation">
       <div class="d-lg-none">
-        <select class="pw-product-listing__navigation__dropdown js-pw-product-listing__navigation__dropdown" data-sly-list.tabItem="${data.tabs}">
-          <option value="${tabItem.categoryTag}">${tabItem.tabLinkTextI18n}</option>
+        <select class="pw-product-listing__navigation__dropdown js-pw-product-listing__navigation__dropdown" data-sly-list.tabItemDropdown="${data.tabs}">
+          <option value="${tabItemDropdown.categoryTag}">${tabItemDropdown.tabLinkTextI18n}</option>
         </select>
       </div>
       <div class="tpatom-button-group d-none d-lg-flex justify-content-center">
         <sly data-sly-list.tabItem="${data.tabs}">
-          <sly data-sly-test="${tabItemList.first}"
+          <sly data-sly-test="${tabItem.categoryTag == 'all'}"
                data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-               data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.tabLinkTextI18n, btnTooltip=tabItem.tabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab tpatom-button--group-item--active', customData=tabItem.categoryTag}"/>
-          <sly data-sly-test="${!tabItemList.first}"
+               data-sly-call="${pwButton.button_template @ btnPath='#', btnText='all', btnTooltip=tabItem.tabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab tpatom-button--group-item--active', customData=tabItem.categoryTag}"/>
+          <sly data-sly-test="${tabItem.categoryTag != 'all'}"
                data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
                data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.tabLinkTextI18n, btnTooltip=tabItem.tabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab', customData=tabItem.categoryTag}"/>
         </sly>

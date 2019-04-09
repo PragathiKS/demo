@@ -3,8 +3,7 @@ import {render} from '../../../scripts/utils/render';
 import {ajaxMethods, API_PRODUCT_LISTING} from '../../../scripts/utils/constants';
 
 class ProductListing {
-  constructor({templates, el}) {
-    this.templates = templates;
+  constructor({el}) {
     this.root = $(el);
   }
 

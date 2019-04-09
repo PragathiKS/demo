@@ -21,74 +21,89 @@ import com.tetrapak.publicweb.core.beans.ProductListBean;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductListingModel {
 
-	private static final Logger log = LoggerFactory.getLogger(ProductListingModel.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductListingModel.class);
 
-	@Self
+    @Self
     private Resource resource;
-	
-	@Inject
-	private String titleI18n;
-	
-	@Inject
-	private String productRootPath;
 
-	@Inject
-	private String[] tabLinks;
+    @Inject
+    private String titleI18n;
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
-	
-	public String getProductRootPath() {
-		return productRootPath;
-	}
+    @Inject
+    private String productRootPath;
 
-	public String[] getTabLinks() {
-		return tabLinks;
-	}
+    @Inject
+    private String pwTheme;
 
-	/**
-	 * Method to get the tab link text from the multifield property saved in CRX for
-	 * each of the tab links.
-	 *
-	 * @param tabLinks String[]
-	 * @return List<ProductBean>
-	 */
-	public List<ProductListBean> getTabLinks(String[] tabLinks) {
-		ResourceResolver resourceResolver = resource.getResourceResolver();
-		TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-		
-		List<ProductListBean> tabs = new ArrayList<ProductListBean>();
-		JSONObject jObj;
-		try {
-			if (tabLinks == null) {
-				log.error("Tab Links value is NULL");
-			} else {
-				for (int i = 0; i < tabLinks.length; i++) {
-					ProductListBean bean = new ProductListBean();
-					jObj = new JSONObject(tabLinks[i]);
+    @Inject
+    private String pwPadding;
 
-					if (jObj.has("tabLinkTextI18n")) {
-						bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
-					}
+    @Inject
+    private String[] tabLinks;
 
-					if (jObj.has("categoryTag")) {
-						Tag tag = tagManager.resolve(jObj.getString("categoryTag"));
-						log.info("Tag : " + tag.getTagID());
-						bean.setCategoryTag(tag.getTagID());
-					}
-					tabs.add(bean);
+    public String getTitleI18n() {
+        return titleI18n;
+    }
 
-				}
-			}
-		} catch (Exception e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
-		}
-		return tabs;
-	}
+    public String getProductRootPath() {
+        return productRootPath;
+    }
 
-	public List<ProductListBean> getTabs() {
-		return getTabLinks(tabLinks);
-	}
+    public String[] getTabLinks() {
+        return tabLinks;
+    }
+
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+
+    /**
+     * Method to get the tab link text from the multifield property saved in CRX for
+     * each of the tab links.
+     *
+     * @param tabLinks String[]
+     * @return List<ProductBean>
+     */
+    public List<ProductListBean> getTabLinks(String[] tabLinks) {
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+
+        List<ProductListBean> tabs = new ArrayList<ProductListBean>();
+        JSONObject jObj;
+        try {
+            if (tabLinks == null) {
+                log.error("Tab Links value is NULL");
+            } else {
+                for (int i = 0; i < tabLinks.length; i++) {
+                    ProductListBean bean = new ProductListBean();
+                    jObj = new JSONObject(tabLinks[i]);
+
+                    if (jObj.has("tabLinkTextI18n")) {
+                        bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
+                    }
+
+                    if (jObj.has("categoryTag")) {
+                        Tag tag = tagManager.resolve(jObj.getString("categoryTag"));
+                        log.info("Tag : " + tag.getTagID());
+                        bean.setCategoryTag(tag.getTagID());
+                    }
+                    tabs.add(bean);
+
+                }
+            }
+        } catch (Exception e) {
+            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        }
+        return tabs;
+    }
+
+    public List<ProductListBean> getTabs() {
+        return getTabLinks(tabLinks);
+    }
 
 }
