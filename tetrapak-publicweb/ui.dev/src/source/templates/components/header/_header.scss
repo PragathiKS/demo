@@ -139,27 +139,17 @@
 
     .tp-container {
         position: relative;
-        &::after {
-            @include right(200px);
-            display: block;
-            background-color: $color-white;
-            content: '';
-            height: 20px;
-            position: absolute;
-            top: -10px;
-            transform: rotate(45deg);
-            width: 20px;
-
-            @media #{$desktop} {
-                @include right(226px);
-            }
-        }
     }
     &__input-wrapper {
+        @include padding(0 3px);
         background-color: $color-white;
         position: relative;
         top: 100px;
         width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 35px);
+        }
     }
 
     &__input {
@@ -186,6 +176,22 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+    }
+
+    &__pointer {
+        @include right(200px);
+        display: block;
+        background-color: $color-white;
+        content: '';
+        height: 20px;
+        position: absolute;
+        top: -10px;
+        transform: rotate(45deg);
+        width: 20px;
+
+        @media #{$desktop} {
+            @include right(226px);
+        }
     }
 
 }
