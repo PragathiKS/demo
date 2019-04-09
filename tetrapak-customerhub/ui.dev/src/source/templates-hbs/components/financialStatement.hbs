@@ -1,6 +1,6 @@
 {{> molecules/calendar/calendarModal this}}
-<h2 class="tp-financial-statement__select-customer-heading">{{this.statementOfAccount}}</h2>
-<h3 class="tp-financial-statement__select-customer-label">{{this.findCustomer}}</h3>
+<h2 class="tp-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
+<h3 class="tp-financial-statement__select-customer-label">{{i18n key=this.findCustomer}}</h3>
 {{#if isError}}
     {{> atoms/error/error error=true message="cuhu.error.message"}}
 {{else}}
@@ -9,7 +9,7 @@
         <div class="tp-financial-statement__customer-detail">
             {{> molecules/financialStatement/financialAddressDetail data=this.data.cache }}
         </div>
-        <h3 class="tp-financial-statement__select-customer-label">{{this.accountService}}</h3>
+        <h3 class="tp-financial-statement__select-customer-label">{{i18n key=this.accountService}}</h3>
         <form class="tp-financial-statement__filters js-financial-statement__filters form-group">
             <div class="tp-financial-statement__status-calender-container">
                 <div class="tp-financial-statement__status-container float-lg-left">
