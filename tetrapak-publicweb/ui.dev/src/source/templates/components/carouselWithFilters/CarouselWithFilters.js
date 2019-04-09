@@ -13,9 +13,9 @@ class CarouselWithFilters {
     this.cache.$catFilterItem = $('.pw-carousel__filters .js-filter-category .dropdown-item', '#'+parentId);
   }
   renderPractice (parentId, catId) {
-    let productType = $('#'+parentId).attr('data-prodtype');
-    let rootPath = $('#'+parentId).attr('data-rootpath');
-    let btnVariant = $('#'+parentId).attr('data-buttontheme');
+    let productType = $('#'+parentId).data('prodtype');
+    let rootPath = $('#'+parentId).data('rootpath');
+    let btnVariant = $('#'+parentId).data('buttontheme');
     render.fn({
       template: 'carouselItem',
       url: GET_CAROUSEL_ITEM,
@@ -38,11 +38,11 @@ class CarouselWithFilters {
   }
   bindSubcategories(parentId) {
     let that = this;
-    $('.js-filter-subcategory .dropdown-item', '#'+parentId).click( function(e) {
+    $('.js-filter-subcategory .dropdown-item', '#'+parentId).click( e => {
       e.preventDefault();
       let parent = e.target.closest('.pw-carousel');
       let pId = $(parent).attr('id');
-      let catId = e.target.getAttribute('data-category');
+      let catId = $(e.target).data('category');
       let catLabel = e.target.innerText;
       $('.subcategory__toggle', '#'+parentId).text(catLabel);
       $('.js-filter-subcategory .active', '#'+parentId).removeClass('active');
@@ -64,7 +64,7 @@ class CarouselWithFilters {
       },
       target: '#'+parentId+' .pw-carousel__filters .js-filter-subcategory'
     },
-    function () {
+    () => {
       // Callback function executed post rendering
       let catLabel = $('.pw-carousel__filters .js-filter-subcategory .active', '#'+parentId).text();
       $('.subcategory__toggle', '#'+parentId).text(catLabel);
@@ -76,11 +76,11 @@ class CarouselWithFilters {
   bindEvents() {
     /* Bind jQuery events here */
     let that = this;
-    this.cache.$catFilterItem.click(function(e) {
+    this.cache.$catFilterItem.click(e => {
       e.preventDefault();
       let parent = e.target.closest('.pw-carousel');
       let parentId = $(parent).attr('id');
-      let catId = e.target.getAttribute('data-category');
+      let catId = $(e.target).data('category');
       let catLabel = e.target.innerText;
       $('.category__toggle', '#'+parentId).text(catLabel);
       $('.js-filter-category .active', '#'+parentId).removeClass('active');
@@ -90,7 +90,7 @@ class CarouselWithFilters {
   }
   initFilters() {
     let parentId = this.root.attr('id');
-    let catId = $('.js-filter-category .active', '#'+parentId).attr('data-category');
+    let catId = $('.js-filter-category .active', '#'+parentId).data('category');
     let catLabel = $('.js-filter-category .active', '#'+parentId).text();
     $('.category__toggle', '#'+parentId).text(catLabel);
     this.renderSubcategories(parentId, catId);
