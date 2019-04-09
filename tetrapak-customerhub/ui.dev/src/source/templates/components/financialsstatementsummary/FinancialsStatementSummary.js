@@ -13,11 +13,11 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  */
 function _trackAnalytics() {
   // Get selected preferences
-  let statementHeader = $('[data-target="#' + $(this).parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text();
-  const [statementHeaderTitle] = statementHeader.split('(');
+  const $this = $(this);
+  const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
   const analyticsData = {};
-  analyticsData['statementheader'] = $.trim(statementHeaderTitle);
-  analyticsData['statementnumber'] = $.trim($(this).find('[data-key=documentNumber]').text());
+  analyticsData['statementheader'] = $.trim(statementHeader);
+  analyticsData['statementnumber'] = $.trim($this.find('[data-key=documentNumber]').text());
 
   trackAnalytics(analyticsData, 'financial', 'statementinvoice');
 }
