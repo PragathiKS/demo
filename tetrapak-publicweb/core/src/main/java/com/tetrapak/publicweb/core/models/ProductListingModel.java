@@ -36,6 +36,9 @@ public class ProductListingModel {
     private String pwTheme;
 
     @Inject
+    private String firstTabLinkTextI18n;
+
+    @Inject
     private String pwPadding;
 
     @Inject
@@ -51,6 +54,10 @@ public class ProductListingModel {
 
     public String[] getTabLinks() {
         return tabLinks;
+    }
+
+    public String getFirstTabLinkTextI18n() {
+        return firstTabLinkTextI18n;
     }
 
     public String getPwPadding() {

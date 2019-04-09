@@ -7,6 +7,7 @@
     }
     &__navigation {
         @include margin-bottom($margin-md);
+        position: relative;
         @media #{$desktop} {
             @include margin-bottom($margin-l);
         }
@@ -15,6 +16,14 @@
             @include padding($padding-sm $padding-md);
             width: 100%;
         }
+        
+        &__icon {
+            @include right(12px);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        } 
     }
 }
 
