@@ -37,7 +37,6 @@ class CarouselWithFilters {
     });
   }
   bindSubcategories(parentId) {
-    let that = this;
     $('.js-filter-subcategory .dropdown-item', '#'+parentId).click( e => {
       e.preventDefault();
       let parent = e.target.closest('.pw-carousel');
@@ -47,11 +46,10 @@ class CarouselWithFilters {
       $('.subcategory__toggle', '#'+parentId).text(catLabel);
       $('.js-filter-subcategory .active', '#'+parentId).removeClass('active');
       $(e.target).addClass('active');
-      that.renderPractice(pId, catId);
+      this.renderPractice(pId, catId);
     });
   }
   renderSubcategories (parentId, catId) {
-    let that = this;
     render.fn({
       template: 'dropdownItems',
       url: GET_SUBCATEGORIES,
@@ -69,13 +67,12 @@ class CarouselWithFilters {
       let catLabel = $('.pw-carousel__filters .js-filter-subcategory .active', '#'+parentId).text();
       $('.subcategory__toggle', '#'+parentId).text(catLabel);
       let subcatId = $('.pw-carousel__filters .js-filter-subcategory .active', '#'+parentId).attr('data-category');
-      that.renderPractice(parentId, subcatId);
-      that.bindSubcategories(parentId);
+      this.renderPractice(parentId, subcatId);
+      this.bindSubcategories(parentId);
     });
   }
   bindEvents() {
     /* Bind jQuery events here */
-    let that = this;
     this.cache.$catFilterItem.click(e => {
       e.preventDefault();
       let parent = e.target.closest('.pw-carousel');
@@ -85,7 +82,7 @@ class CarouselWithFilters {
       $('.category__toggle', '#'+parentId).text(catLabel);
       $('.js-filter-category .active', '#'+parentId).removeClass('active');
       $(e.target).addClass('active');
-      that.renderSubcategories(parentId, catId);
+      this.renderSubcategories(parentId, catId);
     });
   }
   initFilters() {
