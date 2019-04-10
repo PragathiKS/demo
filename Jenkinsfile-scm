@@ -1,6 +1,6 @@
 properties([
     pipelineTriggers([
-        scm('* * * * *')
+  [$class: "SCMTrigger", scmpoll_spec: "* * * * *"],
     ])
 ])
 
