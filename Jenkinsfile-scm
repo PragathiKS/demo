@@ -1,9 +1,9 @@
 
-peline {
+pipeline {
     
 agent any
     triggers {
-        cron('14 16 * * *')
+        cron('16 16 * * *')
     }
 
 stages {
