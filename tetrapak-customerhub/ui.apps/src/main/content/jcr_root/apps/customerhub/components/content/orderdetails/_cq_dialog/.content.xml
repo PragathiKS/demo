@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Parts Order Details Dialog"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+            margin="{Boolean}false"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <backToOrderHistory
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter back link label which takes back to the order history page."
+                        fieldLabel="Back Link Label"
+                        name="./backToOrderHistory"
+                        required="true"/>
+                    <orderNo
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Order number Label"
+                        fieldLabel="Order Number Label"
+                        name="./orderNo"
+                        required="true"/>
+                    <customerNameLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Customer Name Label"
+                        fieldLabel="Customer Name Label"
+                        name="./customerNameLabel"
+                        required="true"/>
+                    <purchaseOrderNumberLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Purchase Order Number Label"
+                        fieldLabel="Purchase Order Number Label"
+                        name="./purchaseOrderNumberLabel"
+                        required="true"/>
+                    <orderDateLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Order Date Label"
+                        fieldLabel="Order Date Label"
+                        name="./orderDateLabel"
+                        required="true"/>
+                    <customerNumberLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Customer number Label"
+                        fieldLabel="Customer Number Label"
+                        name="./customerNumberLabel"
+                        required="true"/>
+                    <customerReferenceLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Customer Reference Label"
+                        fieldLabel="Customer Reference Label"
+                        name="./customerReferenceLabel"
+                        required="true"/>
+                    <webRefLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Web Reference Label"
+                        fieldLabel="Web Reference Label"
+                        name="./webRefLabel"
+                        required="true"/>
+                    <custSupCentreLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Customer Support Centre Label"
+                        fieldLabel="Customer Support Centre Label"
+                        name="./custSupCentreLabel"
+                        required="true"/>
+                    <createExcelLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Create Excel Label"
+                        fieldLabel="Create Excel Label"
+                        name="./createExcelLabel"
+                        required="true"/>
+                    <createPdfLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Create Pdf Label"
+                        fieldLabel="Create Pdf Label"
+                        name="./createPdfLabel"
+                        required="true"/>
+                    <deliveryNumberLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Delivery Number Label"
+                        fieldLabel="Delivery Number Label"
+                        name="./deliveryNumberLabel"
+                        required="true"/>
+                    <shippingLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Shipping Label"
+                        fieldLabel="Shipping Label"
+                        name="./shippingLabel"
+                        required="true"/>
+                    <trackOrderLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Track Order Label"
+                        fieldLabel="Track Order Label"
+                        name="./trackOrderLabel"
+                        required="true"/>
+                    <deliveryAddrLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Delivery Address Label"
+                        fieldLabel="Delivery Address Label"
+                        name="./deliveryAddrLabel"
+                        required="true"/>
+                    <invoiceAddrLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Invoice Address Label"
+                        fieldLabel="Invoice Address Label"
+                        name="./invoiceAddrLabel"
+                        required="true"/>
+                    <totalWeightLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Total Weight Label"
+                        fieldLabel="Total Weight Label"
+                        name="./totalWeightLabel"
+                        required="true"/>
+                    <totalPricePreVatLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Total Price Pre-VAT Label"
+                        fieldLabel="Total Price Pre-VAT Label"
+                        name="./totalPricePreVatLabel"
+                        required="true"/>
+                    <totalVatLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Total VAT Label"
+                        fieldLabel="Total VAT Label"
+                        name="./totalVatLabel"
+                        required="true"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
