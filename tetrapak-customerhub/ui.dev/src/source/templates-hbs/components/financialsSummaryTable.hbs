@@ -5,16 +5,16 @@
         {{> atoms/error/error message="cuhu.nodata.message"}}
     {{else}}
         <div class="tp-financials-summary__statement">
-            <h4>{{summaryHeadingI18n}}</h4>
+            <h4>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h4>
             <div class="tp-financials-summary__table">
                 {{> molecules/table/table baseClass="tp-financials-summary__statement" jsClass="js-financials-summary__statement" list=summary headings=summaryHeadings}}
             </div>
         </div>
         <div class="tp-financials-summary__documents">
-            <h4>{{documentHeadingI18n}}</h4>
+            <h4>{{i18n key=documentHeadingI18n}}</h4>
             {{#each documents}}
-                {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=docId data-toggle="collapse" }}
-                <div class="tp-financials-summary__table collapse" id="document{{@index}}">
+                {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" jsClass="js-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=docId data-toggle="collapse" }}
+                <div class="tp-financials-summary__table js-financials-summary__table collapse" id="document{{@index}}">
                     {{> molecules/table/table baseClass="tp-financials-summary__documents" jsClass="js-financials-summary__documents" list=docData headings=docHeadings tableSummary=totalAmount}}
                 </div>
             {{/each}}

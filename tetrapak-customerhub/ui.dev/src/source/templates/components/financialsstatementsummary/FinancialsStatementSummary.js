@@ -3,11 +3,24 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort } from '../../../scripts/common/common';
-//import { apiHost } from '../../../scripts/common/common';
-//import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { apiHost, tableSort } from '../../../scripts/common/common';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import deparam from 'jquerydeparam';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+/**
+ * Fire analytics on Invoice Download
+ */
+function _trackAnalytics() {
+  // Get selected preferences
+  const $this = $(this);
+  const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
+  const analyticsData = {};
+  analyticsData['statementheader'] = $.trim(statementHeader);
+  analyticsData['statementnumber'] = $.trim($this.find('[data-key=documentNumber]').text());
+
+  trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+}
 
 /**
  * Download Invoice
@@ -77,9 +90,7 @@ function _processTableData(data) {
     data.noData = true;
   }
 
-  if (data.summaryHeadingI18n) {
-    data.summaryHeadingI18n = `${data.summaryHeadingI18n} : ${$('.js-financial-statement__date-range').val()}`;
-  }
+  data.dateRange = $('.js-financial-statement__date-range').val();
 }
 
 /**
@@ -93,8 +104,8 @@ function _renderTable(filterParams) {
       template: 'financialsSummaryTable',
       target: '.js-financials-summary',
       url: {
-        //path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json',
+        path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
+        //path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
         data: filterParams
       },
       beforeRender(data) {
@@ -139,7 +150,7 @@ class FinancialsStatementSummary {
   bindEvents() {
     /* Bind jQuery events here */
     this.root
-      .on('click', '.js-financials-summary__documents__row', this.downloadInvoice);
+      .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
     this.cache.$filtersRoot.on('financialSummary.render', this.renderTable);
   }
   renderTable = () => {
@@ -149,10 +160,14 @@ class FinancialsStatementSummary {
   processTableData(data) {
     return _processTableData.apply(this, data);
   }
-  downloadInvoice() {
-    return _downloadInvoice.call(this);
+  downloadInvoice(e) {
+    const $this = e.data;
+
+    _downloadInvoice.call(this);
+    $this.trackAnalytics(this);
   }
   getFilters = () => _getFilters.apply(this);
+  trackAnalytics = (obj) => _trackAnalytics.call(obj);
   init() {
     /* Mandatory method */
     this.initCache();

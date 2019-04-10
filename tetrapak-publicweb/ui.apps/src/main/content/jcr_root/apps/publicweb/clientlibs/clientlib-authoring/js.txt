@@ -1,1 +1,2 @@
 script.js
+max-tags-limit.js

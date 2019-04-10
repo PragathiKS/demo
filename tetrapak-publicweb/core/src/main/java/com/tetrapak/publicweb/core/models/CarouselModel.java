@@ -18,7 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.PracticeLineBean;
+import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselModel {
@@ -45,7 +46,7 @@ public class CarouselModel {
 
     private Integer carouselId = (int )(Math.random() * 1000 + 1);
 	
-	private List<PracticeLineBean> tabs = new ArrayList<>();
+	private List<BestPracticeLineBean> tabs = new ArrayList<>();
 
 	@PostConstruct
 	protected void init() {
@@ -60,7 +61,7 @@ public class CarouselModel {
 				Resource res = itr.next();
 				ValueMap valueMap = res.getValueMap();
 
-				PracticeLineBean bean = new PracticeLineBean();
+				BestPracticeLineBean bean = new BestPracticeLineBean();
 
 				String contentType = "";
 				if (valueMap.containsKey("contentType")) {
@@ -76,13 +77,14 @@ public class CarouselModel {
 					Page landingPage = pageManager.getPage(practicePath);
 					if (landingPage != null) {
 						Resource jcrContentResource = landingPage.getContentResource();
-						PracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(PracticeLinePageModel.class);
+						BestPracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(BestPracticeLinePageModel.class);
 						if (practiceLinePageModel != null) {
 							bean.setPracticeTitle(practiceLinePageModel.getTitle());
 							bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
 							bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
 							bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
 							bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
+							bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
 						}
 					}
 				} else {
@@ -109,6 +111,11 @@ public class CarouselModel {
 
 					if (valueMap.containsKey("practiceImageAltI18n")) {
 						bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
+					}
+					
+					if (valueMap.containsKey("practicePath")) {
+						String path = valueMap.get("practicePath", String.class);
+						bean.setPracticePath(LinkUtils.sanitizeLink(path));
 					}
 
 				}
@@ -144,7 +151,7 @@ public class CarouselModel {
         return carouselId;
     }
 
-	public List<PracticeLineBean> getTabs() {
+	public List<BestPracticeLineBean> getTabs() {
 		return tabs;
 	}
 	

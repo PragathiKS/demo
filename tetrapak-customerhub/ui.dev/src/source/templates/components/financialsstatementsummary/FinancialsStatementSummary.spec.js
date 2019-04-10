@@ -28,6 +28,7 @@ describe('FinancialsStatementSummary', function () {
     this.processTableData = sinon.spy(this.financialsStatementSummary, "processTableData");
     this.getFilters = sinon.spy(this.financialsStatementSummary, "getFilters");
     this.downloadInvoice = sinon.spy(this.financialsStatementSummary, "downloadInvoice");
+    this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialsStatementSummaryData));
@@ -49,6 +50,7 @@ describe('FinancialsStatementSummary', function () {
     this.processTableData.restore();
     this.getFilters.restore();
     this.downloadInvoice.restore();
+    this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -77,6 +79,11 @@ describe('FinancialsStatementSummary', function () {
   it('should download invoice on click of document row', function (done) {
     $('.js-financials-summary__documents__row').trigger('click');
     expect(this.financialsStatementSummary.downloadInvoice.called).to.be.true;
+    done();
+  });
+  it('should fire analytics on invoice download', function (done) {
+    $('.js-financials-summary__documents__row').trigger('click');
+    expect(this.financialsStatementSummary.trackAnalytics.called).to.be.true;
     done();
   });
 });

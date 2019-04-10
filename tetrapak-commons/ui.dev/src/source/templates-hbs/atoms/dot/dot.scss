@@ -3,23 +3,25 @@
     height: 24px;
     position: relative;
     border: 0;
+
     &::after {
         @include transition(background-color, .5s);
         @include border-xs($color-tundora);
         position: absolute;
         top: 4px;
         left: 4px;
-        cursor: pointer;
         width: 16px;
         height: 16px;
         content: '';
         border-radius: 50%;
         display: inline-block;
         cursor: pointer;
+
         &:hover {
             @extend .hover-state;
         }
     }
+
     &--filled {
         &::after {
             @extend .hover-state;

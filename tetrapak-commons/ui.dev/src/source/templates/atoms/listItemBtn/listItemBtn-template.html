@@ -1,6 +1,6 @@
 <sly data-sly-template.listItemBtn_template="${@ data, flag,identifier}">
   <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
-    <input type="checkbox" "${data.isExpanded ? '':'checked'}" class="tpatom-list-item__checkbox">
+    <input type="checkbox" class="tpatom-list-item__checkbox" checked="${data.isExpanded ? '' : 'checked'}">
     <button type="button" class="tpatom-list-item__btn text-left js-list-item__btn">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
           data-sly-call="${listItemIcon.listItemIcon_template @data=data}">

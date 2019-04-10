@@ -94,6 +94,10 @@ select {
     }
 }
 
+select::-ms-expand {
+    display: none;
+}
+
 /**
   * Figure base styles
   */

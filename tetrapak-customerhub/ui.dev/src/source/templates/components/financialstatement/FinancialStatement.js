@@ -82,10 +82,12 @@ function _renderFilters() {
         }
         return _processFinancialStatementData.apply($this, [data]);
       }
-    }, () => {
-      this.initPostCache();
-      this.initializeCalendar();
-      this.root.trigger(this.cache.summaryRenderEvent);
+    }, (data) => {
+      if (!data.isError && Array.isArray(data.customerData)) {
+        this.initPostCache();
+        this.initializeCalendar();
+        this.root.trigger(this.cache.summaryRenderEvent);
+      }
     });
   });
 }
@@ -106,19 +108,24 @@ function _disableCalendarNext($this) {
   }
 }
 
-function _setDateFilter(status) {
+function _setDateFilter(status, selectedDate) {
   const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
-  const endDate = moment(Date.now()).format(DATE_FORMAT);
-  if (
-    typeof status === 'string'
-    && ['open'].includes(status.toLowerCase())
-  ) {
-    $dateSelector.val(endDate);
-    this.initializeCalendar();
+  if (selectedDate) {
+    $dateSelector.val(selectedDate);
+    this.initializeCalendar((selectedDate.split(' - ').length > 1));
   } else {
-    const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
-    $dateSelector.val(`${startDate} - ${endDate}`);
-    this.initializeCalendar(true);
+    const endDate = moment(Date.now()).format(DATE_FORMAT);
+    if (
+      typeof status === 'string'
+      && ['open'].includes(status.toLowerCase())
+    ) {
+      $dateSelector.val(endDate);
+      this.initializeCalendar();
+    } else {
+      const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+      $dateSelector.val(`${startDate} - ${endDate}`);
+      this.initializeCalendar(true);
+    }
   }
 }
 
@@ -142,6 +149,7 @@ class FinancialStatement {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
+    this.cache.$status = this.root.find('.js-financial-statement__status');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -152,8 +160,9 @@ class FinancialStatement {
     };
   }
   submitDateRange() {
-    const { $dateRange, $rangeSelector, $modal } = this.cache;
+    const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
     $dateRange.val($rangeSelector.val());
+    $status.find('option').eq($status.prop('selectedIndex')).data('selectedDate', $rangeSelector.val());
     $modal.modal('hide');
   }
   navigateCalendar(e) {
@@ -161,24 +170,31 @@ class FinancialStatement {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      $defaultCalendarNavBtn[0].dispatchEvent(new Event('mousedown')); // JavaScript mousedown event
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);
     }
   }
   initializeCalendar(isRange) {
+    const $this = this;
     const { $rangeSelector, dateConfig, picker } = this.cache;
     const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
     if (rangeSelectorEl) {
-      const [startDate, endDate] = $rangeSelector.val().split(' - ');
       const currentConfig = $.extend({}, dateConfig);
       if (isRange) {
         $.extend(currentConfig, {
           field: rangeSelectorEl,
           singleDate: false,
           numberOfMonths: 2,
-          startDate,
-          endDate,
-          separator: ' - '
+          separator: ' - ',
+          selectForward: true,
+          onSelectStart() {
+            $this.root.find('.js-calendar').attr('disabled', 'disabled');
+          },
+          onSelectEnd() {
+            $this.root.find('.js-calendar').removeAttr('disabled');
+          }
         });
       } else {
         $.extend(currentConfig, {
@@ -201,7 +217,8 @@ class FinancialStatement {
         this.setSelectedCustomer(e.target.value);
       })
       .on('change', '.js-financial-statement__status', (e) => {
-        this.setDateFilter($(e.target).find('option').eq(e.target.selectedIndex).text());
+        const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
+        this.setDateFilter(currentTarget.text(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
@@ -213,6 +230,10 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__submit', this.populateResults)
       .on('reset', '.js-financial-statement__filters', () => {
         setTimeout(() => {
+          const { $status } = this.cache;
+          $status.find('option').each(function () {
+            $(this).removeData();
+          });
           this.populateResults();
         }, 0);
       });

@@ -14,7 +14,7 @@
         <p class="pw-image-text-button__description">${data.description @ i18n}</p>
         <div class="pw-image-text-button__link" data-sly-test="${data.ctaLinkURL}">
           <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-               data-sly-call="${pwButton.button_template @ btnPath=data.ctaLinkURL, btnText=data.ctaLinkTextI18n, btnTooltip=data.ctaLinkTextI18n, variant=data.pwButtonTheme}"/>
+               data-sly-call="${pwButton.button_template @ btnPath=data.ctaLinkURL, btnText=data.ctaLinkTextI18n, btnTooltip=data.ctaLinkTextI18n, btnTarget=data.openLinkInNewWindow, variant=data.pwButtonTheme}"/>
         </div>
       </div>
       <div class="col-md-12 col-lg-5">
