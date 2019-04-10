@@ -80,6 +80,13 @@
                                         </items>
                                     </field>
                             </radiobuttons>
+                            <documentpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Select Whitepaper document"
+                                fieldLabel="Whitepaper Document Path"
+                                name="./documentPath"
+                                rootPath="/content/dam/publicweb"/>
                         </items>
                     </column>
                 </items>
@@ -130,17 +137,24 @@
                             <previousbutton
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter label for previous navigation label"
+                                fieldDescription="Enter label for previous navigation button"
                                 fieldLabel="Previous Button Label"
                                 value="Previous"
                                 name="./previousButtonLabel"/>
                             <nextbutton
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter label for next navigation label"
+                                fieldDescription="Enter label for next navigation button"
                                 fieldLabel="Next Button Label"
                                 value="Next"
                                 name="./nextButtonLabel"/>
+                            <submitbutton
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter label for submit button"
+                                fieldLabel="Submit Button Label"
+                                value="Submit"
+                                name="./submitButtonLabel"/>
                         </items>
                     </column>
                 </items>

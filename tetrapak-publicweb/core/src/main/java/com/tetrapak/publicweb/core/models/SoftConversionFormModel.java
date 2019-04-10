@@ -31,6 +31,9 @@ public class SoftConversionFormModel {
 
 	@Inject
 	private String[] radioButtonGroups;
+	
+	@Inject
+	private String documentPath;
 
 	@Inject
 	private String firstNameLabel;
@@ -52,6 +55,9 @@ public class SoftConversionFormModel {
 
 	@Inject
 	private String nextButtonLabel;
+	
+	@Inject
+	private String submitButtonLabel;
 
 	public String getTitleI18n() {
 		return titleI18n;
@@ -99,6 +105,14 @@ public class SoftConversionFormModel {
 
 	public String getNextButtonLabel() {
 		return nextButtonLabel;
+	}
+
+	public String getDocumentPath() {
+		return documentPath;
+	}
+
+	public String getSubmitButtonLabel() {
+		return submitButtonLabel;
 	}
 
 	/**
