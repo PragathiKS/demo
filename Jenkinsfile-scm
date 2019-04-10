@@ -1,6 +1,5 @@
 properties([
     pipelineTriggers([
-#  [$class: "SCMTrigger", spec: "* * * * *"],
  cron('* * * * *') 
     ])
 ])
