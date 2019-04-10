@@ -1,13 +1,15 @@
-properties([
-    pipelineTriggers([
- triggers { cron('10 16 * * *') }
-    ])
-])
 
-node {
-  stage ('Checkout') {
+peline {
     
-      git(
+agent any
+    triggers {
+        cron('12 16 * * *')
+    }])
+
+stages {
+  stage ('Checkout') {
+
+    git(
       poll: true,
           url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
           credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
@@ -15,4 +17,5 @@ node {
       )
     
   }
+}
 }
