@@ -1,10 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -15,18 +13,15 @@ import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
@@ -42,13 +37,8 @@ public class AnalyticsGlobalTagsModel {
 
 	@SlingObject
 	private SlingHttpServletRequest request;
-	
-    @Reference
-    private ResourceResolverFactory resolverFactory;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
-	
-	private static final String TETRAPAK_USER = "customerhubUser";
 
 	/**
 	 * Get Site Name.
@@ -143,11 +133,7 @@ public class AnalyticsGlobalTagsModel {
 		}
 
 		String userRole;
-	
-		final Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, TETRAPAK_USER);
-        ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory, paramMap);
-		/*ResourceResolver resourceResolver = resource.getResourceResolver();*/
+		ResourceResolver resourceResolver = resource.getResourceResolver();
 		Session session = resource.getResourceResolver().adaptTo(Session.class);
 		if (null == session) {
 			return userRoles;
