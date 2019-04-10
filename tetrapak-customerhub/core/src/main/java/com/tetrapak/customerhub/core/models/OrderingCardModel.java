@@ -91,9 +91,11 @@ public class OrderingCardModel {
 
 		disabledFields = new LinkedHashSet<>();
 		disabledFields.add("contact");
+		disabledFields.add("customerNumber");
+		disabledFields.add("salesOrg");
 
 		savedPreferences = new LinkedHashSet<>();
-
+		savedPreferences.addAll(defaultFields);
 		Session session = resource.getResourceResolver().adaptTo(Session.class);
 		if (null != session) {
 			String userID = session.getUserID();
@@ -123,7 +125,8 @@ public class OrderingCardModel {
 	 */
 	private void getUserPreferences(String userID) {
 		if (null != userPreferenceService) {
-			String savedPreferencesStr = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.ORDER_PREFERENCES);
+			String savedPreferencesStr = userPreferenceService.getSavedPreferences(userID,
+					CustomerHubConstants.ORDER_PREFERENCES);
 			if (null != savedPreferencesStr) {
 				Type mapType = new TypeToken<String[]>() {
 				}.getType();

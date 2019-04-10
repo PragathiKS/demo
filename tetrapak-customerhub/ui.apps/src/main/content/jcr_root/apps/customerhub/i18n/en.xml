@@ -221,6 +221,18 @@
     <cuhu.nodata.message
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="No data found"/>         
+        sling:message="No data found"/>
+    <cuhu.orderingcard.pref.Close
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Close"/>
+    <cuhu.orderingHistory.SelectDates
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Select Dates"/>
+    <cuhu.orderingHistory.SetDate
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Set Dates"/>
                
 </jcr:root>

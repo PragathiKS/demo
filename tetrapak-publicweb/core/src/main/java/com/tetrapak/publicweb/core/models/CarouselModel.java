@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselModel {
@@ -83,6 +84,7 @@ public class CarouselModel {
 							bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
 							bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
 							bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
+							bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
 						}
 					}
 				} else {
@@ -109,6 +111,11 @@ public class CarouselModel {
 
 					if (valueMap.containsKey("practiceImageAltI18n")) {
 						bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
+					}
+					
+					if (valueMap.containsKey("practicePath")) {
+						String path = valueMap.get("practicePath", String.class);
+						bean.setPracticePath(LinkUtils.sanitizeLink(path));
 					}
 
 				}

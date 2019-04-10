@@ -29,7 +29,7 @@
         <div class="pw-carousel__tabPane__text">
           <h3>${tabItem.practiceTitle}</h3>
           <p>${tabItem.vanityDescription}</p>
-          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html" data-sly-call="${pwButton.button_template @ btnPath=tabItem.articlepath, btnText=tabItem.ctaTexti18nKey, btnTarget=tabItem.linkTarget, variant=data.pwButtonTheme}" />
+          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html" data-sly-call="${pwButton.button_template @ btnPath=tabItem.practicePath, btnText=tabItem.ctaTexti18nKey, btnTarget=tabItem.linkTarget, variant=data.pwButtonTheme}" />
         </div>
       </div>
     </div>

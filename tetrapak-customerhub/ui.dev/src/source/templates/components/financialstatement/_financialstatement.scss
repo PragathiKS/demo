@@ -168,6 +168,10 @@
     .form-control {
         height: 100%;
     }
+
+    .tpatom-error {
+        @include margin-bottom($margin-md);
+    }
 }
 
 .tp-card.tp-financials {
