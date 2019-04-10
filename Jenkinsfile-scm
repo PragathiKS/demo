@@ -3,8 +3,8 @@ peline {
     
 agent any
     triggers {
-        cron('12 16 * * *')
-    }])
+        cron('14 16 * * *')
+    }
 
 stages {
   stage ('Checkout') {
