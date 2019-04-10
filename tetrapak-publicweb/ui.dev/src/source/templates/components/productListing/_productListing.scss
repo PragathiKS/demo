@@ -1,0 +1,83 @@
+.pw-product-listing {
+    @include margin-bottom($margin-xxxl);
+
+    &__title {
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include margin-bottom($margin-xl);
+        }
+    }
+
+    &__navigation {
+        @include margin-bottom($margin-md);
+        position: relative;
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+
+        &__dropdown {
+            @include padding($padding-sm $padding-md);
+            width: 100%;
+        }
+
+        &__icon {
+            @include right(12px);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    }
+}
+
+.pw-product-card-grid {
+    @media #{$desktop} {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 24px;
+    }
+
+    &__item {
+        &__image,
+        &__title,
+        &__description,
+        &__link {
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+
+        &__link {
+            @media #{$desktop} {
+                @include margin-bottom(0);
+            }
+        }
+
+        &__image {
+            width: 100%;
+        }
+    }
+}
+
+.tpatom-button-group {
+    .tpatom-button--group-item {
+        border-radius: 0;
+
+        &:first-child {
+            border-radius: convert-to-rem($border-radius) 0 0 convert-to-rem($border-radius);
+        }
+
+        &:last-child {
+            border-radius: 0 convert-to-rem($border-radius) convert-to-rem($border-radius) 0;
+        }
+
+        &:hover,
+        &:focus,
+        &--active {
+            @include border-radius($border-radius);
+            color: $color-white;
+            background-color: $color-congress-blue;
+        }
+    }
+}
