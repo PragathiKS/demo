@@ -60,7 +60,6 @@ public class ArticleItemModel {
             articleTitle = "";
             vanityDescription = "";
             ctaTexti18nKey = "";
-            openInNewWindow = false;
 
             Page landingPage = pageManager.getPage(articlePath);
             if (landingPage != null) {
@@ -70,8 +69,6 @@ public class ArticleItemModel {
                     articleTitle = landingPageModel.getTitle();
                     vanityDescription = landingPageModel.getVanityDescription();
                     ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
-                    openInNewWindow = landingPageModel.isOpenInNewWindow();
-                    showImage = landingPageModel.getShowImage();
                     articleImagePath = landingPageModel.getArticleImagePath();
                     articleImageAltI18n = landingPageModel.getArticleImageAltI18n();
                 }
@@ -94,10 +91,6 @@ public class ArticleItemModel {
 
     public String getCtaTexti18nKey() {
         return ctaTexti18nKey;
-    }
-
-    public Boolean isOpenInNewWindow() {
-        return openInNewWindow;
     }
 
     public String getContentType() {
