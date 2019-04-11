@@ -9,25 +9,22 @@ stage ('Checkout') {
 steps {
 echo "dummy step"}
 
-
-
 post {
+
       always {
       mail subject: "STARTED: Job '${env.JOB_NAME}'",
       body: """STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
       you can check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
       to: 'harsimran.kaur@publicissapient.com'
 }
-}
- failure {
+      failure {
       mail subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: """\033[1;31mJOB FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
       Check console output for errors  "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]\033[0m""",
       to: 'harsimran.kaur@publicissapient.com'
       }
- 
+} 
 }
- 
 }
 
 }
