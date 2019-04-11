@@ -197,6 +197,20 @@
                         fieldLabel="Requested KPK Label"
                         name="./kpkPopUpDescription"
                         required="true"/>
+                    <errorMsg
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Error Message in case an error occurs on order details page,&#xa;Used on both Parts and Package order details page."
+                        fieldLabel="Error message"
+                        name="./errorMsg"
+                        required="false"/>
+                    <noDataMsg
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter error message incase the data is not available from API, Used on both Parts and Package order details page."
+                        fieldLabel="No Data Error Message"
+                        name="./noDataMsg"
+                        required="false"/>
                 </items>
             </column>
         </items>

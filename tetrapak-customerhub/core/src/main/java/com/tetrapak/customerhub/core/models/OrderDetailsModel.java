@@ -92,10 +92,15 @@ public class OrderDetailsModel {
 	
 	@Inject
 	private String kpkPopUpDescription;
+	
+	@Inject
+	private String noDataMsg;
+	
+	@Inject
+	private String errorMsg;
 
 	private String i18nKeys;
 
-	
 	/**
 	 * Populating the i18n keys to a JSON object string getting values from the dialog
 	 */
@@ -127,6 +132,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("etd", etd);
 		i18KeyMap.put("kpkPopUpHeading", kpkPopUpHeading);
 		i18KeyMap.put("kpkPopUpDescription", kpkPopUpDescription);
+		i18KeyMap.put("noDataMsg", noDataMsg);
+		i18KeyMap.put("errorMsg", errorMsg);
 		i18nKeys = new Gson().toJson(i18KeyMap);
 	}
 	
@@ -310,6 +317,21 @@ public class OrderDetailsModel {
 	 */
 	public String getKpkPopUpDescription() {
 		return kpkPopUpDescription;
+	}
+	
+
+	/**
+	 * @return the noDataMsg
+	 */
+	public String getNoDataMsg() {
+		return noDataMsg;
+	}
+
+	/**
+	 * @return the errorMsg
+	 */
+	public String getErrorMsg() {
+		return errorMsg;
 	}
 
 }
