@@ -5,26 +5,26 @@ agent any
 
 stages {
 
-  stage ('Checkout') {
- steps {
+stage ('Checkout') {
+steps {
 echo "dummy step"
 }}
 
 }
 
-
-
- post {
-        always {
-
+post {
+      always {
       mail subject: "STARTED: Job '${env.JOB_NAME}'",
       body: """STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
       Check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
       to: 'harsimran.kaur@publicissapient.com'
-
 }
 }
-
-
-
+ failure {
+      mail subject: "FAILURE: Job '${env.JOB_NAME}'",
+      body: """JOB FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+      Check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
+      to: 'harsimran.kaur@publicissapient.com'
+        }
+ 
 }
