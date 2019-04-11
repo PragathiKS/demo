@@ -44,6 +44,20 @@
         }
     }
 
+    &--group-item {
+        color: $color-tundora;
+        background-color: $color-mercury;
+
+        &:hover, &:focus {
+            color: $color-white;
+            background-color: $color-congress-blue;
+        }
+        
+        i {
+            display: none;
+        }
+    }
+
     &--link {
         @include border-radius(0);
         @include padding(0);

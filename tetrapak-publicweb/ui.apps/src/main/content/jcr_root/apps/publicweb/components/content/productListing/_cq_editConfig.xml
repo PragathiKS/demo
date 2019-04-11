@@ -3,7 +3,6 @@
     jcr:primaryType="cq:EditConfig">
     <cq:listeners
         jcr:primaryType="cq:EditListenersConfig"
-        afteredit="REFRESH_SELF"
         afterchilddelete="CQ.CoreComponents.panelcontainer.v1.AFTER_CHILD_DELETE"
         afterchildinsert="CQ.CoreComponents.panelcontainer.v1.AFTER_CHILD_INSERT"
         afterchildmove="CQ.CoreComponents.panelcontainer.v1.AFTER_CHILD_MOVE"/>

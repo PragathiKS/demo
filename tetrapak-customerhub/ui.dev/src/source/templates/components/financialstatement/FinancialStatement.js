@@ -82,10 +82,12 @@ function _renderFilters() {
         }
         return _processFinancialStatementData.apply($this, [data]);
       }
-    }, () => {
-      this.initPostCache();
-      this.initializeCalendar();
-      this.root.trigger(this.cache.summaryRenderEvent);
+    }, (data) => {
+      if (!data.isError && Array.isArray(data.customerData)) {
+        this.initPostCache();
+        this.initializeCalendar();
+        this.root.trigger(this.cache.summaryRenderEvent);
+      }
     });
   });
 }

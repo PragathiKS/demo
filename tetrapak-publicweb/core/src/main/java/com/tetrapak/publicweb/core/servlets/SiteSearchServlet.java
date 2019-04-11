@@ -22,8 +22,12 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +49,21 @@ import com.tetrapak.publicweb.core.beans.SearchResultBean;
 @Component(service = Servlet.class, property = {
 		Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/tetrapak/pw-search" })
+@Designate(ocd = SiteSearchServlet.Config.class)
 public class SiteSearchServlet extends SlingSafeMethodsServlet {
+	
+	@ObjectClassDefinition(name = "Tetra Pak - Public Web Search Servlet", description = "Tetra Pak - Public Web Search servlet")
+	public static @interface Config {
+
+		@AttributeDefinition(name = "Search Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
+		String search_rootpath() default "searchRootPath";
+		
+		@AttributeDefinition(name = "Full Text Search Term Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the full text search term.")
+		String fulltext_searchterm() default "fulltextSearchTerm";
+		
+		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
+		String system_user() default "writeService";
+	}
 
 	private static final long serialVersionUID = 1L;
 	
@@ -59,6 +77,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     
     private Session session; 
     private ResourceResolver resourceResolver;
+    
+    private String SEARCH_ROOT_PATH;
+    private String FULLTEXT_SEARCH_TERM;
+    private String SYSTEM_USER;
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -71,9 +93,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 			queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 
 			// get search arguments
-			String searchRootPath = request.getParameter("searchRootPath");
+			String searchRootPath = request.getParameter(SEARCH_ROOT_PATH);
 
-			String fulltextSearchTerm = URLDecoder.decode(request.getParameter("fulltextSearchTerm"), "UTF-8").replace("%20", " ");
+			String fulltextSearchTerm = URLDecoder.decode(request.getParameter(FULLTEXT_SEARCH_TERM), "UTF-8").replace("%20", " ");
 
 			log.debug("Keyword to search : {}", fulltextSearchTerm);
 
@@ -152,14 +174,31 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 	
 	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, "writeService");
+		param.put(ResourceResolverFactory.SUBSERVICE, SYSTEM_USER);
 		ResourceResolver resourceResolver = null;
 		try {
 			resourceResolver = resolverFactory.getServiceResourceResolver(param);
-		} catch (LoginException e1) {
-			log.error("[Error getting the resource resolver");
+			if(resourceResolver == null) {
+				log.error("[Resource resolver from system user is null. Getting it from request now.");
+				resourceResolver = request.getResourceResolver();
+			}
+		} catch (LoginException e) {
+			log.error("[Error getting the resource resolver. {}", e);
 			resourceResolver = request.getResourceResolver();
 		}
 		return resourceResolver;
+	}
+	
+	@Activate
+	protected void activate(final Config config) {
+		this.SEARCH_ROOT_PATH = (String.valueOf(config.search_rootpath()) != null) ? String.valueOf(config.search_rootpath())
+				: null;
+		log.info("configure: SEARCH_ROOT_PATH='{}'", this.SEARCH_ROOT_PATH);
+		this.FULLTEXT_SEARCH_TERM = (String.valueOf(config.fulltext_searchterm()) != null) ? String.valueOf(config.fulltext_searchterm())
+				: null;
+		log.info("configure: FULLTEXT_SEARCH_TERM='{}'", this.FULLTEXT_SEARCH_TERM);
+		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
+				: null;
+		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
 	}
 }

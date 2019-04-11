@@ -5,7 +5,7 @@
         {{> atoms/error/error message="cuhu.nodata.message"}}
     {{else}}
         <div class="tp-financials-summary__statement">
-            <h4>{{i18n key=summaryHeadingI18n}}</h4>
+            <h4>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h4>
             <div class="tp-financials-summary__table">
                 {{> molecules/table/table baseClass="tp-financials-summary__statement" jsClass="js-financials-summary__statement" list=summary headings=summaryHeadings}}
             </div>

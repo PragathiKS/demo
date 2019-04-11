@@ -78,20 +78,7 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
 				<configuration>
-				<failOnDependencyErrors>false</failOnDependencyErrors>
-                    <embeddeds>
-                        <embedded>
-                            <groupId>tetrapak</groupId>
-                            <artifactId>tetrapak-customerhub.core</artifactId>
-                            <target>/apps/customerhub/install</target>
-                        </embedded>
-                    </embeddeds>
-                    <subPackages>
-                        <subPackage>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.all</artifactId>
-                        </subPackage>
-                    </subPackages>
+					<failOnDependencyErrors>false</failOnDependencyErrors>
                 </configuration>
             </plugin>
             <plugin>
@@ -154,34 +141,6 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
-        <dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-customerhub.core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adobe.aem</groupId>
-            <artifactId>uber-jar</artifactId>
-            <classifier>apis</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adobe.cq</groupId>
-            <artifactId>core.wcm.components.all</artifactId>
-            <type>zip</type>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.jcr</groupId>
-            <artifactId>jcr</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.day.cq.wcm</groupId>
             <artifactId>cq-wcm-taglib</artifactId>
