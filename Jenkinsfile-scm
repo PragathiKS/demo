@@ -1,21 +1,26 @@
 
 pipeline {
-    
+
 agent any
     triggers {
         cron('30 10 * * *')
     }
 
 stages {
+
   stage ('Checkout') {
  steps {
     git(
       poll: true,
           url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
           credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
-          branch: 'develop'
-      )
-    }
-  }
+          branch: 'develop' )}}
+  
+ stage ('Mail') {
+                    steps {
+                        mail bcc: '', body: 'Please check the pipline log', cc: 'harsimran.kaur@publicissapient.com', from: '', replyTo: '', subject: 'Tetrapack_Dev', to: 'harsimran.kaur@publicissapient.com'
+                        }
+
+								
 }
-}
+
