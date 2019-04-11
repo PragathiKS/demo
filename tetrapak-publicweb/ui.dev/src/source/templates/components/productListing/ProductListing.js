@@ -13,6 +13,7 @@ class ProductListing {
     this.cache.initialCall = $('.js-product-listng-tab.tpatom-button--group-item--active', this.root).attr('data');
     this.cache.tabButtons = $('.js-product-listng-tab', this.root);
     this.cache.dropDown = $('.js-pw-product-listing__navigation__dropdown', this.root);
+    this.cache.productRootPath = this.root.data('productRootPath');
   }
 
   bindEvents() {
@@ -50,7 +51,7 @@ class ProductListing {
         method: ajaxMethods.GET,
         data: {
           productCategory: category || 'all',
-          productRootPath: '/content/tetrapak/public-web/global/en/products'
+          productRootPath: this.cache.productRootPath
         }
       },
       target: '.js-pw-product-listing__cards-container'
