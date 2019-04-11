@@ -234,13 +234,13 @@ post {
       mail subject: "STARTED: Job '${env.JOB_NAME}'",
       body: """STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
       you can check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
-      to: 'harsimran.kaur@publicissapient.com'
+      to: 'TetraPak_India_FullTeam@publicisgroupe.onmicrosoft.com'
 }
       failure {
       mail subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: """JOB FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
       Check console output for errors  "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
-      to: 'harsimran.kaur@publicissapient.com, TetraPak_India_FullTeam@publicisgroupe.onmicrosoft.com'
+      to: 'TetraPak_India_FullTeam@publicisgroupe.onmicrosoft.com'
       }
 
 }
