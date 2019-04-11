@@ -114,8 +114,12 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 		ResourceResolver resourceResolver = null;
 		try {
 			resourceResolver = resolverFactory.getServiceResourceResolver(param);
-		} catch (LoginException e1) {
-			log.error("[Error getting the resource resolver");
+			if(resourceResolver == null) {
+				log.error("[Resource resolver from system user is null. Getting it from request now.");
+				resourceResolver = request.getResourceResolver();
+			}
+		} catch (LoginException e) {
+			log.error("[Error getting the resource resolver. {}", e);
 			resourceResolver = request.getResourceResolver();
 		}
 		return resourceResolver;
