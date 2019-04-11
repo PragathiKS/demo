@@ -39,7 +39,6 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
 import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
-import com.tetrapak.publicweb.core.servlets.SubCategoryTagServlet.Config;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**

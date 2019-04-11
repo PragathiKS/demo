@@ -23,8 +23,12 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +53,24 @@ property = {
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
         "sling.servlet.paths=" + "/bin/tetrapak/pw-productlisting"
 })
+@Designate(ocd = ProductListingServlet.Config.class)
 public class ProductListingServlet extends SlingSafeMethodsServlet {
+	
+	@ObjectClassDefinition(name = "Tetra Pak - Public Web Product Listing Servlet", description = "Tetra Pak - Public Web Product Listing servlet")
+	public static @interface Config {
+
+		@AttributeDefinition(name = "Product Category Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product category.")
+		String product_category() default "productCategory";
+		
+		@AttributeDefinition(name = "Product Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product root path.")
+		String product_rootpath() default "productRootPath";
+		
+		@AttributeDefinition(name = "Product Page Template Path", description = "Path for the Product Page template.")
+		String product_template() default "/apps/publicweb/templates/productpage";
+		
+		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
+		String system_user() default "writeService";
+	}
 
 	private static final long serialVersionUID = 1L;
 	
@@ -63,6 +84,11 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     
     private Session session; 
     private ResourceResolver resourceResolver;
+    
+    private String PRODUCT_CATEGORY;
+    private String PRODUCT_ROOT_PATH;
+    private String PRODUCT_TEMPLATE;
+    private String SYSTEM_USER;
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
@@ -73,8 +99,8 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 		
 		// get search arguments	    
-		String productCategory = request.getParameter("productCategory");	
-		String productRootPath = request.getParameter("productRootPath");	
+		String productCategory = request.getParameter(PRODUCT_CATEGORY);	
+		String productRootPath = request.getParameter(PRODUCT_ROOT_PATH);	
 		log.info("Product category : " + productCategory);
 		
 		
@@ -112,7 +138,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		map.put("path", productRootPath);
 		map.put("type", "cq:Page");
         map.put("1_property", "jcr:content/cq:template");
-        map.put("1_property.value", "/apps/publicweb/templates/productpage");
+        map.put("1_property.value", PRODUCT_TEMPLATE);
         
 		if(!productCategory.equalsIgnoreCase("all")) {
 			map.put("2_property", "jcr:content/cq:tags");
@@ -156,7 +182,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	
 	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, "writeService");
+		param.put(ResourceResolverFactory.SUBSERVICE, SYSTEM_USER);
 		ResourceResolver resourceResolver = null;
 		try {
 			resourceResolver = resolverFactory
@@ -166,5 +192,21 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 			resourceResolver = request.getResourceResolver();
 		}
 		return resourceResolver;
+	}
+	
+	@Activate
+	protected void activate(final Config config) {
+		this.PRODUCT_CATEGORY = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
+				: null;
+		log.info("configure: PRODUCT_CATEGORY='{}'", this.PRODUCT_CATEGORY);
+		this.PRODUCT_ROOT_PATH = (String.valueOf(config.product_rootpath()) != null) ? String.valueOf(config.product_rootpath())
+				: null;
+		log.info("configure: PRODUCT_ROOT_PATH='{}'", this.PRODUCT_ROOT_PATH);
+		this.PRODUCT_TEMPLATE = (String.valueOf(config.product_template()) != null) ? String.valueOf(config.product_template())
+				: null;
+		log.info("configure: PRODUCT_TEMPLATE='{}'", this.PRODUCT_TEMPLATE);
+		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
+				: null;
+		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
 	}
 }

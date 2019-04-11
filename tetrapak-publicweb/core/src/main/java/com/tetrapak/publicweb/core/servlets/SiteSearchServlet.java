@@ -38,7 +38,6 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
-import com.tetrapak.publicweb.core.servlets.SubCategoryTagServlet.Config;
 
 /**
  * This is the servlet that is triggered when a search is performed on the page
