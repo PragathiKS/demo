@@ -7,7 +7,9 @@ stages {
 
 stage ('Checkout') {
 steps {
-echo "dummy step"}
+echo "checking failure scenerio for this job"
+sh "exit 1:"
+}
 
 post {
 
