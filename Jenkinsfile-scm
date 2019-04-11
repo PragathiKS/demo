@@ -19,7 +19,7 @@ stages {
                     steps {
                        /*   mail bcc: '', body: 'Please check the pipline log', cc: 'harsimran.kaur@publicissapient.com', from: '', replyTo: '', subject: 'Tetrapack_Dev', to: 'harsimran.kaur@publicissapient.com' */
 
-subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+mail subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
         <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
       recipientProviders: [[$class: 'harsimran.kaur@publicissapient']]
