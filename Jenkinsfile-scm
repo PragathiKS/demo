@@ -20,7 +20,7 @@ stages {
  steps {
      mail subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
- Check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+ Check console output at "${env.BUILD_URL}" for Job ${env.JOB_NAME},with Build Number [${env.BUILD_NUMBER}]""",
 to: 'harsimran.kaur@publicissapient.com'
 
                         }
