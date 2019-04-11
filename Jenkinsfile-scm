@@ -1,4 +1,3 @@
-
 pipeline {
 
 agent any
@@ -20,7 +19,9 @@ stages {
                     steps {
                         mail bcc: '', body: 'Please check the pipline log', cc: 'harsimran.kaur@publicissapient.com', from: '', replyTo: '', subject: 'Tetrapack_Dev', to: 'harsimran.kaur@publicissapient.com'
                         }
+                     }
 
 								
 }
 
+}
