@@ -1,0 +1,29 @@
+.tp-order-detail {
+    &__order-info {
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-l);
+
+        &-title {
+            @include margin-right($margin-l);
+            font-family: $font-semi-bold;
+            width: 40%;
+        }
+    }
+
+    &__cust-support {
+        @include padding-top($padding-l);
+        border-top: 1px solid $color-mercury;
+    }
+
+    &__create-excel {
+        @include margin-right($margin-md);
+    }
+
+    .tpatom-btn {
+        @include margin-top($padding-md);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+    }
+}

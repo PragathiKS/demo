@@ -1,0 +1,40 @@
+<h3>{{orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h3>
+<div class="tp-order-detail__order-info">
+    <div class="row">
+        <div class="col-lg">
+            <span class="tp-order-detail__order-info-title"> {{customerNameLabel}} </span>
+            {{orderDetails.customerName}}
+        </div>
+        <div class="col-lg">
+            <span class="tp-order-detail__order-info-title"> {{purchaseOrderNumberLabel}} </span>
+            {{orderDetails.purchaseOrderNumber}}
+        </div>
+        <div class="col-lg text-lg-right">
+            <span class="tp-order-detail__order-info-title"> {{orderDateLabel}} </span>
+            {{orderDetails.placedOn}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <span class="tp-order-detail__order-info-title"> {{customerNumberLabel}} </span>
+            {{orderDetails.customerNumber}}
+        </div>
+        <div class="col-lg">
+            <span class="tp-order-detail__order-info-title"> {{customerReferenceLabel}} </span>
+            {{orderDetails.customerReference}}
+        </div>
+        <div class="col-lg text-lg-right">
+            <span class="tp-order-detail__order-info-title"> {{webRefLabel}} </span>
+            {{orderDetails.webRefID}}
+        </div>
+    </div>
+</div>
+<div class="tp-order-detail__cust-support row no-gutters">
+    <div class="tp-order-detail__support-center col-lg-6 text-center text-lg-left">
+        {{> molecules/supportCentre/supportCentre }}
+    </div>
+    <div class="tp-order-detail__btn-container col-lg-6 text-lg-right align-self-center">
+        {{> atoms/buttons/button/button text=createExcelLabel modifier="primary" className="tp-order-detail__create-excel" iconClass="icon-Excel" }}
+        {{> atoms/buttons/button/button text=createPdfLabel modifier="primary" className="tp-order-detail__create-pdf" iconClass="icon-PDF" }}
+    </div>
+</div>
