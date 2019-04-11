@@ -183,6 +183,20 @@
                         fieldLabel="ETD Label"
                         name="./etd"
                         required="true"/>
+                    <kpkPopUpHeading
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Kilo Pack Quantity PopUp Heading Label&#xa;Used on Package order details page."
+                        fieldLabel="Kilo Pack Quantity PopUp Heading"
+                        name="./kpkPopUpHeading"
+                        required="true"/>
+                    <kpkPopUpDescription
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="Enter Requested KPK Label&#xa;Used on Package order details page."
+                        fieldLabel="Requested KPK Label"
+                        name="./kpkPopUpDescription"
+                        required="true"/>
                 </items>
             </column>
         </items>

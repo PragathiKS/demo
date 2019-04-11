@@ -86,6 +86,12 @@ public class OrderDetailsModel {
 	
 	@Inject
 	private String etd;
+	
+	@Inject
+	private String kpkPopUpHeading;
+	
+	@Inject
+	private String kpkPopUpDescription;
 
 	private String i18nKeys;
 
@@ -119,6 +125,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("productionPlace", productionPlace);
 		i18KeyMap.put("requested", requested);
 		i18KeyMap.put("etd", etd);
+		i18KeyMap.put("kpkPopUpHeading", kpkPopUpHeading);
+		i18KeyMap.put("kpkPopUpDescription", kpkPopUpDescription);
 		i18nKeys = new Gson().toJson(i18KeyMap);
 	}
 	
@@ -288,6 +296,20 @@ public class OrderDetailsModel {
 	 */
 	public String getEtd() {
 		return etd;
+	}
+
+	/**
+	 * @return the kpkPopUpHeading
+	 */
+	public String getKpkPopUpHeading() {
+		return kpkPopUpHeading;
+	}
+
+	/**
+	 * @return the kpkPopUpDescription
+	 */
+	public String getKpkPopUpDescription() {
+		return kpkPopUpDescription;
 	}
 
 }
