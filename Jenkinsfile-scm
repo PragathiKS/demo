@@ -7,7 +7,7 @@ stages {
 
 stage ('Checkout') {
 steps {
-echo "dummy step"}}
+echo "dummy step"}
 
 
 
@@ -26,7 +26,7 @@ post {
       to: 'harsimran.kaur@publicissapient.com'
       }
  
- 
+}
  
 }
 
