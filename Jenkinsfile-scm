@@ -1,3 +1,4 @@
+
 pipeline {
 
 agent any
@@ -14,20 +15,20 @@ stages {
           url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
           credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
           branch: 'develop' )}}
-  
+
  stage ('Mail') {
                     steps {
                        /*   mail bcc: '', body: 'Please check the pipline log', cc: 'harsimran.kaur@publicissapient.com', from: '', replyTo: '', subject: 'Tetrapack_Dev', to: 'harsimran.kaur@publicissapient.com' */
 
 mail subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-        <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
+      body: """STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+        Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]",
         to: 'harsimran.kaur@publicissapient.com'
 
                         }
                      }
 
-								
-}
 
 }
+
+}}
