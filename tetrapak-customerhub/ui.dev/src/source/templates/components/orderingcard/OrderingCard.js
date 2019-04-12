@@ -18,7 +18,7 @@ function _trackAnalytics() {
     return $.trim($(el).parent().text());
   }).join('|');
 
-  trackAnalytics(analyticsData, 'settings', 'ordersettings');
+  trackAnalytics(analyticsData, 'settings', 'ordersettings', 'ordersettings');
 }
 
 /**

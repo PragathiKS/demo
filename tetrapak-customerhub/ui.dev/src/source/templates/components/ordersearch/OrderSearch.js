@@ -222,7 +222,7 @@ function _trackAnalytics(defaultParam) {
   } else {
     orderStatusText = '';
   }
-  trackAnalytics(`DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`, 'orders', 'SearchOrders');
+  trackAnalytics(`DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`, 'orders', 'SearchOrders', 'SearchOrders');
 }
 
 /**
