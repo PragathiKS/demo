@@ -3,10 +3,40 @@
         @include margin-top($margin-l);
         @include margin-bottom($margin-l);
 
+        &-table {
+            @media #{$desktop} {
+                display: table;
+            }
+        }
+
+        &-data {
+            @include padding-top($padding-xs);
+            @include padding-bottom($padding-sm);
+
+            @media #{$desktop} {
+                padding: 0;
+                display: table-row;
+            }
+        }
+
         &-title {
-            @include margin-right($margin-l);
+            @include padding-right($margin-l);
             font-family: $font-semi-bold;
-            width: 40%;
+            vertical-align: top;
+
+            @media #{$desktop} {
+                @include padding-top($padding-xs);
+                @include padding-bottom($padding-sm);
+                display: table-cell;
+            }
+        }
+
+        &-text {
+            @media #{$desktop} {
+                @include padding-top($padding-xs);
+                @include padding-bottom($padding-sm);
+                display: table-cell;
+            }
         }
     }
 
