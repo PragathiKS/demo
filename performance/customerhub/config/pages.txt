@@ -1,0 +1,8 @@
+/content/tetrapak/customerhub/en/dashboard.html
+/content/tetrapak/customerhub/en/installed-equipment.html
+/content/tetrapak/customerhub/en/ordering/order-history.html
+/content/tetrapak/customerhub/en/financials.html
+/content/tetrapak/customerhub/en/training.html
+/content/tetrapak/customerhub/en/projects.html
+/content/tetrapak/customerhub/en/contact.html
+/content/tetrapak/customerhub/en/about-my-tetra-pak.html

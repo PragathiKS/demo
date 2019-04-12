@@ -11,6 +11,7 @@ public class LeftNavigationBean {
     private String iconLabel;
     private boolean isExternalLink;
     private boolean isActive;
+    private boolean isExpanded;
     private List<LeftNavigationBean> subMenuList;
 
     public String getHref() {
@@ -59,5 +60,13 @@ public class LeftNavigationBean {
 
     public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
         this.subMenuList = subMenuList;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

@@ -3,7 +3,7 @@
   <div class="pw-carousel pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-module="Carousel" id="pw-carousel-${data.carouselId}">
     <div class="pw-carousel__title ${data.titleAlignment}">
       <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-      data-sly-call="${heading.heading_template @ headingText=data.titleI18n}"/>
+      data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
     </div>
     <div class="pw-carousel__navWrapper justify-content-center d-none d-lg-flex">
       <ul class="pw-carousel__navPills nav nav-pills mb-3 d-inline-flex" role="tablist" data-sly-list.tabItem="${data.tabs}">
@@ -12,11 +12,12 @@
         </li>
       </ul>
     </div>
-    <div class="pw-carousel__mobileDropdown dropdown d-block d-lg-none text-center">
-      <button class="btn dropdown-toggle pw-carousel__mobileDropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="pw-carousel__dropdown dropdown d-block d-lg-none text-center">
+      <label class="d-block text-left">${'Choose line' @ i18n}</label>
+      <button class="btn dropdown-toggle pw-carousel__dropdown__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.tabs[0].practiceTitle}
       </button>
-      <div class="dropdown-menu pw-carousel__mobileDropdown__menu" data-sly-list.tabItem="${data.tabs}" role="tablist">
+      <div class="dropdown-menu pw-carousel__dropdown__menu" data-sly-list.tabItem="${data.tabs}" role="tablist">
         <a class="dropdown-item ${tabItemList.first? 'active show' : ''}" data-toggle="pill" href="#pills-${tabItemList.index}-${data.carouselId}" role="tab" aria-controls="pills-${tabItemList.index}-${data.carouselId}">${tabItem.practiceTitle}</a>
       </div>
     </div>
@@ -28,10 +29,10 @@
         <div class="pw-carousel__tabPane__text">
           <h3>${tabItem.practiceTitle}</h3>
           <p>${tabItem.vanityDescription}</p>
-          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html" data-sly-call="${pwButton.button_template @ btnPath=tabItem.articlepath, btnText=tabItem.ctaTexti18nKey, btnTarget=tabItem.linkTarget, variant=data.pwButtonTheme}">
+          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html" data-sly-call="${pwButton.button_template @ btnPath=tabItem.practicePath, btnText=tabItem.ctaTexti18nKey, btnTarget=tabItem.linkTarget, variant=data.pwButtonTheme}" />
         </div>
       </div>
     </div>
   </div>
-  <sly data-sly-test="${!data.tabs}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabs}"></sly>
+  <sly data-sly-test="${!data.tabs}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabs}" />
 </sly>

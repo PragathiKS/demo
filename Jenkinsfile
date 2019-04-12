@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+          triggers {
+          cron('30 10,15 * * *')
+                   }
+
 	
 	parameters {
 		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
@@ -22,6 +26,18 @@ pipeline {
 	}
 
 	stages {
+
+               stage ('Checkout') {
+                 steps {
+                   git(
+                   poll: true,
+                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
+                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
+                   branch: 'develop'
+                      )
+                   }
+                 }
+
 		stage ('Initialize') {
 			steps {
 				sh '''
@@ -33,8 +49,9 @@ pipeline {
 
 		stage ('Build') {
 			steps {
-				sh "rm -rf /var/lib/jenkins/workspace/Tetrapak/tetrapak-commons/ui.dev/src/node_modules/"
+				sh "rm -rf $workspace/tetrapak-commons/ui.dev/src/node_modules/"
 				sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+				sh "rm -rf $workspace/${params.CHOICE}/ui.dev/src/node_modules/"
 				sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
 				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
@@ -49,8 +66,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -64,8 +81,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.inclusions=**/ui.dev/src/source/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -126,6 +143,8 @@ pipeline {
 						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+
+
 					}
 				)  
 			}
@@ -210,10 +229,20 @@ pipeline {
 				}
 			}
 		}
-		stage (sendemail) {
-			steps {
-				emailext attachLog: true, body: 'Build deployed on ENV', subject: 'Test Email', to: 'Tushar.Tushar@publicissapeint.com'
-			}
-		}
 	}
+post {
+
+      success {
+      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',      
+      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
+}
+      failure {
+      emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',
+      to : 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
+      }
+
+}
+
 }

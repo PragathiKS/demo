@@ -37,6 +37,7 @@ public class LeftNavigationModelTest {
         Assert.assertEquals("DASHBOARD", leftNavigationBean.getIconLabel());
         Assert.assertEquals(false, leftNavigationBean.isExternalLink());
         Assert.assertEquals(false, leftNavigationBean.isActive());
+        Assert.assertEquals(false, leftNavigationBean.isExpanded());
 
         LeftNavigationBean leftNavigationBeanWithSubMenu = list.get(3);
         List<LeftNavigationBean> subMenuList = leftNavigationBeanWithSubMenu.getSubMenuList();

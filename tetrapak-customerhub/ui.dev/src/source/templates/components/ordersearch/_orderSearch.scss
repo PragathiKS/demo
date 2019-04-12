@@ -1,81 +1,58 @@
 .tp-order-search {
-    $gutter-space: 2 * $margin-md / 3;
-    @include padding($padding-md);
-    @include border-radius($border-radius);
-    @include box-shadow-normal;
-    background-color: $color-white;
-    @media #{$desktop} {
-        @include padding($padding-l);
-    }
-    .form-control {
-        @include border-xs($color-boulder);
-        @include height(40px);
-        &[readonly] {
-            background-color: $color-white;
+    $gutter-space: $padding-md / 3;
+
+    &__filters {
+        @include margin-bottom($margin-xl);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
         }
     }
+
+    &__date-range-wrapper,
+    &__status-wrapper,
+    &__address-wrapper {
+        @include margin-bottom($margin-md);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding-right($padding-md);
+            display: inline-block;
+            width: calc(100% / 3 + #{$gutter-space});
+        }
+    }
+
+    &__address-wrapper {
+        width: 100%;
+
+        @media #{$desktop} {
+            padding-right: 0;
+            width: calc(100% / 3 - #{$padding-md} + #{$gutter-space});
+        }
+    }
+
+    &__search-term {
+        @include margin(0 0 $margin-md 0);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include margin(0 $margin-md 0 0);
+            flex: 1;
+        }
+    }
+
     .tpatom-button--secondary {
         @include margin-right($margin-md);
     }
-    .form-element,
-    &__flex-container .form-control {
-        @include margin-bottom($margin-md);
-    }
-    .icon-Chevron_Down {
-        @include height(14px);
-    }
-    .form-element__icon {
-        @include font-size(12px);
-    }
-    @media #{$desktop} {
-        .form-element {
-            @include margin-left($margin-md);
-            width: calc(100% / 3 - #{$gutter-space});
-            &:first-child {
-                margin-left: 0;
-            }
-        }
-        &__search-term {
-            @include margin-right($margin-md);
-            .tp-order-search & {
-                margin-bottom: 0;
-            }
-        }
-        &__flex-container {
+
+    &__flex-container {
+        @media #{$desktop} {
             @include display-flex;
             clear: both;
         }
     }
+
     &__table {
         @include horizontal-scroll-touch;
-    }
-    &__calendar-nav {
-        position: relative;
-        z-index: $zindex-p;
-        @media #{$mobile} {
-            @include max-width(294px);
-            margin: 0 auto;
-        }
-    }
-    &__modal {
-        .tpmol-modal-footer {
-            justify-content: center;
-            padding-top: 0;
-        }
-        .lightpick {
-            @include top(-24px);
-            position: relative;
-        }
-        &-dialog {
-            @media #{$desktop} {
-                @include max-width(663px);
-            }
-        }
-        &-body {
-            @include padding(0 $padding-md);
-            @media #{$desktop} {
-                @include padding(0 $padding-l);
-            }
-        }
     }
 }

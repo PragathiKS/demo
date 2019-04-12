@@ -113,7 +113,7 @@
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
-      "prod": "production"
+      "prod": "development"
     },
     "entry": {
       "global": "source/scripts/core/core.js"
@@ -146,7 +146,8 @@
         "source/templates/components/HelloWorldHandlebars/",
         "source/templates/components/OrderStatus/",
         "source/templates/components/listContentImage/",
-        "source/templates/components/carousel/"
+        "source/templates/components/carousel/",
+        "source/templates/components/carouselWithFilters/"
       ]
     },
     "handlebars": {

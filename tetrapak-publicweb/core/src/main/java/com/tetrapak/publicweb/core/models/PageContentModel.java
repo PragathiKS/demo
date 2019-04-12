@@ -80,6 +80,10 @@ public class PageContentModel {
     @Inject
     @Default
     protected String author;
+    
+    @Inject
+    @Default
+    protected Boolean hideContactAnchorLink;
 
     private ValueMap jcrMap;
 
@@ -168,5 +172,8 @@ public class PageContentModel {
     public ValueMap getJcrMap() {
         return jcrMap;
     }
-
+    
+    public Boolean getHideContactAnchorLink() {
+    	return hideContactAnchorLink;
+    }
 }

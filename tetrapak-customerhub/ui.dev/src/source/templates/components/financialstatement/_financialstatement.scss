@@ -1,8 +1,3 @@
-%wrapper {
-    @include border-xs($color-tundora);
-    @include border-radius($border-radius);
-}
-
 .tp-financial-statement {
     &__select-customer-heading {
         @include line-height($font-l, $font-l);
@@ -19,16 +14,6 @@
         }
     }
 
-    &__select-box {
-        @extend %wrapper;
-        @include padding($padding-sm);
-        width: 100%;
-    }
-
-    &__select-customer-dropdown {
-        width: 100%
-    }
-
     &__select-customer-label {
         @include padding($padding-md 0 $padding-md 0);
         @include font-size($font-md);
@@ -43,8 +28,8 @@
     }
 
     &__customer-detail {
-        width: 100%;
         color: $color-tundora;
+        width: 100%;
 
         @media #{$desktop} {
             width: 50%;
@@ -64,13 +49,17 @@
         font-family: $font-bold;
     }
 
+    &__filters {
+        margin-bottom: 0;
+    }
+
     &__status-calender-container {
         @include margin-bottom($margin-md);
     }
 
     &__status-container {
-        width: 100%;
         @include padding(0 0 $padding-md 0);
+        width: 100%;
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
@@ -79,11 +68,8 @@
     }
 
     &__status-wrapper {
-        @extend %wrapper;
         width: 100%;
         height: 100%;
-
-
     }
 
     &__status {
@@ -96,13 +82,12 @@
 
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
-            width: (100% / 3);
             display: inline-block;
+            width: (100% / 3);
         }
     }
 
     &__date-range-wrapper {
-        @extend %wrapper;
         width: 100%;
         height: 100%;
     }
@@ -110,6 +95,7 @@
     &__search-container {
         @media #{$desktop} {
             @include display-flex;
+            flex-wrap: wrap;
         }
     }
 
@@ -124,12 +110,6 @@
         }
     }
 
-    &__document-type-wrapper {
-        @extend %wrapper;
-        width: 100%;
-        height: 100%;
-    }
-
     &__document-number-container {
         @include margin(0 0 $margin-md 0);
         align-self: baseline;
@@ -142,40 +122,33 @@
     }
 
     &__document-number {
-        @include padding($padding-sm);
+        @include padding($font-sm);
     }
 
     &__document-number-wrapper {
-        @extend %wrapper;
+        display: block;
         width: 100%;
         height: 100%;
-
     }
 
     &__search-btn-container {
         @include margin(0 0 $margin-md 0);
 
         @media #{$desktop} {
-            flex: 1;
             @include padding(0 $padding-md 0 0);
         }
     }
 
     &__reset-btn-container {
-        @include margin-bottom(16px);
-        @include padding(8px 16px);
+        @include margin-bottom($margin-md);
+        @include padding($padding-sm $padding-md);
+        display: inline-block;
         background: $color-wild-sand;
-    }
-
-    &__document-number-wrapper {
-        @extend %wrapper;
-        display: block;
-        height: 100%;
     }
 
     &__submit-btn {
         @media #{$desktop} {
-            width: 100%
+            width: 100%;
         }
     }
 
@@ -188,10 +161,19 @@
         @include width(12px);
         @include font-size($font-sm);
         color: $color-boulder;
+        pointer-events: none;
     }
 
     .form-element,
     .form-control {
         height: 100%;
     }
+
+    .tpatom-error {
+        @include margin-bottom($margin-md);
+    }
+}
+
+.tp-card.tp-financials {
+    @include padding-bottom($padding-sm);
 }
