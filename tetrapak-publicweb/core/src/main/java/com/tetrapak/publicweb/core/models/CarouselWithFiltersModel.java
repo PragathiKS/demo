@@ -40,6 +40,9 @@ public class CarouselWithFiltersModel {
 	
 	@Inject
 	private String rootPath;
+	
+	@Inject
+	private String errorMessage;
 
 	@Inject
     private String pwTheme;
@@ -122,6 +125,10 @@ public class CarouselWithFiltersModel {
 
 	public String getRootPath() {
 		return rootPath;
+	}
+	
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 	
 }
