@@ -6,7 +6,7 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EVT_FINANCIAL_SUMMARY_RENDER } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 
 function _processFinancialStatementData(data) {
@@ -86,7 +86,7 @@ function _renderFilters() {
       if (!data.isError && Array.isArray(data.customerData)) {
         this.initPostCache();
         this.initializeCalendar();
-        this.root.trigger(this.cache.summaryRenderEvent);
+        this.root.trigger(EVT_FINANCIAL_SUMMARY_RENDER);
       }
     });
   });
@@ -143,7 +143,6 @@ class FinancialStatement {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
-    this.cache.summaryRenderEvent = 'financialSummary.render';
   }
   initPostCache() {
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
@@ -252,7 +251,7 @@ class FinancialStatement {
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
-    this.root.trigger(this.cache.summaryRenderEvent);
+    this.root.trigger(EVT_FINANCIAL_SUMMARY_RENDER);
   }
   init() {
     this.initCache();

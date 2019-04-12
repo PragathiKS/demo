@@ -1,5 +1,6 @@
 import { loader, isCallable } from '../common/common';
 import $ from 'jquery';
+import { ajaxMethods } from './constants';
 
 /**
  * Curry to resolve before send
@@ -105,7 +106,7 @@ export const ajaxWrapper = {
     var self = this,
       ajaxOptions = {},
       defaultOptions = {
-        method: 'POST',
+        method: ajaxMethods.POST,
         async: true,
         cache: false,
         url: '',

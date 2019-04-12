@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_SUMMARY_RENDER } from '../../../scripts/utils/constants';
 import deparam from 'jquerydeparam';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
@@ -151,7 +151,7 @@ class FinancialsStatementSummary {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
-    this.cache.$filtersRoot.on('financialSummary.render', this.renderTable);
+    this.cache.$filtersRoot.on(EVT_FINANCIAL_SUMMARY_RENDER, this.renderTable);
   }
   renderTable = () => {
     const filterParams = this.getFilters();
