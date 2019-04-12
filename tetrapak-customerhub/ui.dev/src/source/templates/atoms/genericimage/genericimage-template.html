@@ -1,0 +1,5 @@
+<sly data-sly-template.genericimage_template="${@ data, flag}">
+  <div class="x-img-responsive">
+    <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${lib.dynamicimage_template @imagePath=data.fileReference, altText=data.altText, className='img-responsive'"/>
+  </div>
+</sly>
