@@ -1,35 +1,116 @@
 <sly data-sly-template.softConversionForm_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-<p><input class="soft-conversion-form-init" type="submit" value="Get insights on mayonnaise production"></p><br/>
-<div id="soft-conversion-form">  
-    <h3>${data.titleI18n @ i18n}</h3><br/>
-    <p>${data.description}</p><br/>
-    <h4>${data.headline @ i18n}</h4><br/>
-
-    <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
-    
-        <input checked="checked" name="group" type="radio" value="Professional" /> Professional <br /> 
-        <input name="group" type="radio" value="Media Representative" /> Media Representative <br />  
-        <input name="group" type="radio" value="Student" /> Student <br /> 
-	    <br/>
-        ${data.firstNameLabel @ i18n}<br /> 
-        <input name="first-name" type="text" value="" /><br /> 
-        ${data.lastNameLabel @ i18n}<br /> 
-        <input name="last-name" type="text" value="" /><br /> 
-        ${data.emailAddressLabel @ i18n}<br /> 
-        <input name="email-address" type="text" value="" /><br /> 
-        ${data.companyLabel @ i18n}<br /> 
-        <input name="company" type="text" value="" /><br /> 
-        ${data.positionLabel @ i18n}<br /> 
-        <input name="position" type="text" value="" /><br /><br/>
-        <input type="submit" value="${data.nextButtonLabel @ i18n}"><br/><br/>
-    </form>
-</div>
-<br/>
-<div id="whitepaper-details">
-<h4>Thanks for your interest. Here are the whitepapers you want to see !</h4>
-<br/>
-</div>
-<sly data-sly-test="${!data.titleI18n}"
-       data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
-</sly>         
+  <div data-module="SoftConversionForm">
+    <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='modal', btnTarget='#softConversionModal', btnText='open modal'}" />
+    <!-- Modal -->
+    <div class="modal fade" id="softConversionModal" tabindex="-1" role="dialog" aria-labelledby="softConversionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="softConversionModalLabel">${data.titleI18n @ i18n}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
+              <div class="tab-content">
+                <div class="tab-pane active" role="tabpanel" id="step-0">
+                  <p>${data.description}</p>
+                  <h4>${data.headline @ i18n}</h4>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="group" id="professional" name="professional" checked="checked" value="Professional">
+                        <label class="form-check-label" for="professional">
+                          Professional
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="group" id="media" name="media" value="Media Representative">
+                        <label class="form-check-label" for="media">
+                          Media Representative
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="group" id="student" name="student" value="Student">
+                        <label class="form-check-label" for="studen">
+                          Student
+                        </label>
+                      </div>
+                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText='next step'}" />
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="step-1">
+                  <div class="row">
+                    <div class="col-8">
+                      <p>${data.description}</p>
+                      <div class="form-group">
+                        <label for="first-name">${data.firstNameLabel @ i18n}</label>
+                        <input type="text" name="first-name" class="form-control" id="first-name">
+                      </div>
+                      <div class="form-group">
+                        <label for="last-name">${data.lastNameLabel @ i18n}</label>
+                        <input type="text" name="last-name" class="form-control" id="last-name">
+                      </div>
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText='prev step'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText='next step'}" />
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="step-2">
+                  <div class="row">
+                    <div class="col-8">
+                      <p>${data.description}</p>
+                      <div class="form-group">
+                        <label for="email-address">${data.emailAddressLabel @ i18n}</label>
+                        <input type="text" name="email-address" class="form-control" id="email-address">
+                      </div>
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText='prev step'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText='next step'}" />
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="step-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <p>${data.description}</p>
+                      <div class="form-group">
+                        <label for="company">${data.companyLabel @ i18n}</label>
+                        <input type="text" name="company" class="form-control" id="company">
+                      </div>
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText='prev step'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-4', btnText='next step'}" />
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="step-4">
+                  <div class="row">
+                    <div class="col-8">
+                      <p>${data.description}</p>
+                      <div class="form-group">
+                        <label for="position">${data.positionLabel @ i18n}</label>
+                        <input type="text" name="position" class="form-control" id="position">
+                      </div>
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText='prev step'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText='next step'}" />
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="step-final">
+                  <h4>Thanks for your interest. Here are the whitepapers you want to see !</h4>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <sly data-sly-test="${!data.titleI18n}" data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+</sly>

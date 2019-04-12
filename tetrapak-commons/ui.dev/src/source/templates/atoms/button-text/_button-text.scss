@@ -48,6 +48,7 @@
         @include border-radius(0);
         @include padding(0);
         background-color: transparent;
+        color: $color-congress-blue;
         &:hover {
             background-color: transparent;
             color: $color-tundora;
