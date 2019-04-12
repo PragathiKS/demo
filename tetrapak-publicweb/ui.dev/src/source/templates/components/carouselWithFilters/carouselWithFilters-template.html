@@ -30,5 +30,15 @@
       </div>
     </div>
   </div>
+
+  <!--/* TODO : An example of how the iteration can be handled from the model for sub-categories 
+  <div data-sly-list="${data.tagsMap.keySet.iterator}">
+      <h4> ${item}</h4>
+       <ul data-sly-list.aem="${data.tagsMap[item].keySet.iterator}">
+           <li>${aem} ${data.tagsMap[item][aem]}</li>
+       </ul>
+  </div>
+   */-->
+
   <sly data-sly-test="${!data.prodType}" data-sly-call="${templates.placeholder @ isEmpty = !data.prodType}"></sly>
 </sly>
