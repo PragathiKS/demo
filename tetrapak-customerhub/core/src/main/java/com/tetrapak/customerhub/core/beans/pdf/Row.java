@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.beans.pdf;
 
+import org.apache.pdfbox.pdmodel.font.PDFont;
+
 /**
  * This is column class and is used to create columns inside a table object
  *
@@ -10,6 +12,7 @@ public class Row {
     private String content;
     private int fontSize;
     private int height;
+    private PDFont font;
 
     /**
      * Public constructor for this class
@@ -17,10 +20,11 @@ public class Row {
      * @param content  string content
      * @param fontSize font Size
      */
-    public Row(String content, int height, int fontSize) {
+    public Row(String content, int height, PDFont font, int fontSize) {
         this.content = content;
         this.fontSize = fontSize;
         this.height = height;
+        this.font = font;
     }
 
     public String getContent() {
@@ -46,5 +50,13 @@ public class Row {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public PDFont getFont() {
+        return font;
+    }
+
+    public void setFont(PDFont font) {
+        this.font = font;
     }
 }

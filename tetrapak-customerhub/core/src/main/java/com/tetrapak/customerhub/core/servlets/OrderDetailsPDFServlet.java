@@ -11,10 +11,10 @@ import com.tetrapak.customerhub.core.utils.PDFUtil;
 import com.tetrapak.customerhub.core.utils.TableBuilder;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -52,10 +52,13 @@ public class OrderDetailsPDFServlet extends SlingSafeMethodsServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServlet.class);
 
+    PDDocument document = new PDDocument();
+    PDFont muli_regular;
+    PDFont muli_bold;
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
-        PDDocument document = new PDDocument();
 
         final String orderNumber = request.getParameter("orderNumber");
         final String token = request.getParameter("token");
@@ -74,14 +77,20 @@ public class OrderDetailsPDFServlet extends SlingSafeMethodsServlet {
             try {
                 InputStream in = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
 
-                PDFont muli_regular = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
+                muli_regular = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
                 in = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
-                PDFont muli_bold = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
+                muli_bold = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
-                document = PDFUtil.writeContent(document, muli_regular, getHeadLines(orderNumber, orderDetails));
-                Table table = createTableContent(orderDetails, muli_regular, muli_bold);
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                document = PDFUtil.writeContent(document, 750, getHeadLines(orderNumber, orderDetails));
+
+                Table table = createOrderDetailTable(orderDetails);
                 PDFUtil.drawTableOnSamePage(document, table);
+
+                document = PDFUtil.writeContent(document, 600, getContactLines());
 
                 PDFUtil.writeOutput(response, document, orderNumber);
             } catch (IOException e) {
@@ -98,30 +107,38 @@ public class OrderDetailsPDFServlet extends SlingSafeMethodsServlet {
 
     private List<Row> getHeadLines(String orderNumber, OrderDetails orderDetails) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Order details: ", 20, 18));
-        rows.add(new Row("", 20, 12));
-        rows.add(new Row("Tetra Pak Order number: " + orderNumber + " - " + orderDetails.getStatus(), 20, 12));
-        rows.add(new Row("", 10, 12));
+        rows.add(new Row("Order details", 20, muli_regular, 18));
+        rows.add(new Row("", 30, muli_regular, 12));
+        rows.add(new Row("Tetra Pak Order number: " + orderNumber + " - " + orderDetails.getStatus(), 20, muli_regular, 11));
+        rows.add(new Row("", 10, muli_regular, 12));
         return rows;
     }
 
-    private Table createTableContent(OrderDetails orderDetails, PDFont muli_regular, PDFont muli_bold) {
+    private List<Row> getContactLines() {
+        List<Row> rows = new ArrayList<>();
+        rows.add(new Row("Customer support center", 10, muli_bold, 8));
+        rows.add(new Row("customersupporter@teatrapak.com", 10, muli_regular, 8));
+        rows.add(new Row("+4635123456", 10, muli_regular, 8));
+        return rows;
+    }
+
+    private Table createOrderDetailTable(OrderDetails orderDetails) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("Customer Name", 100, true));
-        columns.add(new Column(orderDetails.getCustomerName(), 100, false));
-        columns.add(new Column("Purchase Order No.", 115, true));
-        columns.add(new Column(orderDetails.getOrderNumber(), 80, false));
-        columns.add(new Column("Order date", 80, true));
-        columns.add(new Column(orderDetails.getPlacedOn(), 100, false));
+        columns.add(new Column("Customer name", 70, true));
+        columns.add(new Column(orderDetails.getCustomerName(), 90, false));
+        columns.add(new Column("Purchase order no.", 80, true));
+        columns.add(new Column(orderDetails.getOrderNumber(), 120, false));
+        columns.add(new Column("Order date", 60, true));
+        columns.add(new Column(orderDetails.getPlacedOn(), 80, false));
 
         String[][] content = {
-                {"Customer Number", orderDetails.getCustomerNumber().toString(), "Customer Reference", orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
+                {"Customer number", orderDetails.getCustomerNumber().toString(), "Customer reference", orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
         };
 
-        final float MARGIN = 55;
+        final float MARGIN = 65;
         final boolean IS_LANDSCAPE = false;
-        final float FONT_SIZE = 8;
+        final float FONT_SIZE = 7;
 
         final float ROW_HEIGHT = 15;
         final float CELL_MARGIN = 0;

@@ -5,7 +5,6 @@ import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.util.Matrix;
@@ -40,20 +39,18 @@ public class PDFUtil {
      * This method is used to print lines of string into a pdf file
      *
      * @param document document
-     * @param font     font
+     * @param height   height of row
      * @param rows     list of string lines to be printed on document
+     * @return
      */
-    public static PDDocument writeContent(PDDocument document, PDFont font, List<Row> rows) {
-        PDPage page = new PDPage();
-        document.addPage(page);
+    public static PDDocument writeContent(PDDocument document, int height, List<Row> rows) {
         try {
-            PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
-            int height = 750;
+            PDPageContentStream contentStream = new PDPageContentStream(document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
             for (Row row : rows) {
                 height -= row.getHeight();
                 contentStream.beginText();
-                contentStream.setFont(font, row.getFontSize());
-                contentStream.newLineAtOffset(60, height);
+                contentStream.setFont(row.getFont(), row.getFontSize());
+                contentStream.newLineAtOffset(65, height);
                 String[] message = {row.getContent()};
                 contentStream.showTextWithPositioning(message);
                 contentStream.endText();
@@ -159,7 +156,7 @@ public class PDFUtil {
         double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         // Calculate center alignment for text in cell considering font height
         double nextTextY = tableTopY - ((double) table.getRowHeight() / 2)
-                - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * (double) table.getFontSize()) / 4) - 80;
+                - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * (double) table.getFontSize()) / 4) - 60;
 
         // Write column headers
         writeContentLineWithFont(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY, table);
@@ -256,7 +253,7 @@ public class PDFUtil {
             String text = lineContent[i];
             contentStream.beginText();
             contentStream.newLineAtOffset((float) nextTextX, nextTextY);
-            contentStream.setFont(table.getColumns().get(i).isBold() ? table.getTextFontBold() : table.getTextFont(), 10);
+            contentStream.setFont(table.getColumns().get(i).isBold() ? table.getTextFontBold() : table.getTextFont(), table.getFontSize());
             contentStream.showText(null == text ? "" : text);
             contentStream.endText();
             nextTextX += table.getColumns().get(i).getWidth();
