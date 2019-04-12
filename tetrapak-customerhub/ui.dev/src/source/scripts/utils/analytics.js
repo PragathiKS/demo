@@ -13,7 +13,7 @@ export const trackAnalytics = (objectData, objectName, trackingKey, objectKey) =
     if (objectKey) {
       window.digitalData[objectName][objectKey.toLowerCase()] = objectData;
     } else {
-      window.digitalData[objectName] = $.extend(true, window.digitalData[objectName], objectData);
+      window.digitalData[objectName] = $.extend(window.digitalData[objectName], objectData);
     }
 
     if (window._satellite) {
@@ -34,7 +34,7 @@ export const trackParams = (ob, obKey, trackingKey) => {
     !$.isEmptyObject(ob)
     && typeof obKey === 'string'
   ) {
-    window.digitalData[obKey] = $.extend(true, window.digitalData[obKey], ob);
+    window.digitalData[obKey] = $.extend(window.digitalData[obKey], ob);
     if (window._satellite) {
       window._satellite.track(trackingKey);
     }
