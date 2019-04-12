@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
+import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_DETAIL_PARTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
@@ -12,7 +13,7 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetailSummary',
       url: {
-        path: `${apiHost}/${API_ORDER_DETAIL_PARTS}`
+        path: `${apiHost}/${$this.cache.apiUrl}`
       },
       target: '.js-order-detail__summary',
       ajaxConfig: {
@@ -56,6 +57,14 @@ class OrderDetail {
     } catch (e) {
       this.cache.i18nKeys = {};
       logger.error(e);
+    }
+
+    const { orderType } = deparam(window.location.search.replace('?', '').replace('&', ','));
+    this.cache.orderType = orderType;
+    if (orderType.toLowerCase() === 'packmat') {
+      this.cache.apiUrl = API_ORDER_DETAIL_PACKMAT;
+    } else {
+      this.cache.apiUrl = API_ORDER_DETAIL_PARTS;
     }
   }
   bindEvents() {
