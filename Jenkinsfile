@@ -144,11 +144,6 @@ pipeline {
 						echo "Installing New Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
 
-/* Added for testing by Simran */
-sh "exit 1;"
-
- 
-
 
 					}
 				)  
@@ -245,8 +240,7 @@ post {
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-      to : 'rajeev.duggal@publicissapient.com, harsimran.kaur@publicissapient.com'
-
+      to : 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
       }
 
 }
