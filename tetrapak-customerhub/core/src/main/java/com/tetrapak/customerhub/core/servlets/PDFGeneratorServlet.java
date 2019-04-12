@@ -1,8 +1,8 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.tetrapak.customerhub.core.pdf.Column;
-import com.tetrapak.customerhub.core.pdf.Table;
-import com.tetrapak.customerhub.core.pdf.TableBuilder;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.utils.TableBuilder;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
@@ -50,13 +50,13 @@ public class PDFGeneratorServlet extends SlingSafeMethodsServlet {
 
         String option = request.getParameter("q");
         if (StringUtils.equalsIgnoreCase(option, "1")) {
-            //Use method printTextPDF to print multiple lines
-            PDFUtil.printTextPDF(response, FILE_NAME, font, fontSize, lines);
+            //Use method writeContent to print multiple lines
+           // PDFUtil.writeContent(response, FILE_NAME, font, fontSize, lines);
         } else if (StringUtils.equalsIgnoreCase(option, "2")) {
             Table table = createTableContent();
 
             //Use method generateTablePDF to print table
-            PDFUtil.generateTablePDF(response, FILE_NAME, table);
+           // PDFUtil.generateTablePDF(response, FILE_NAME, table);
         }
     }
 
@@ -78,13 +78,13 @@ public class PDFGeneratorServlet extends SlingSafeMethodsServlet {
     private Table createTableContent() {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("TetraPak order No.", 100));
-        columns.add(new Column("Purchase Order No.", 100));
-        columns.add(new Column("Order date", 80));
-        columns.add(new Column("Request Delivery", 90));
-        columns.add(new Column("ETA", 100));
-        columns.add(new Column("Status", 90));
-        columns.add(new Column("Order type", 100));
+        columns.add(new Column("TetraPak order No.", 100, true));
+        columns.add(new Column("Purchase Order No.", 100, true));
+        columns.add(new Column("Order date", 80, true));
+        columns.add(new Column("Request Delivery", 90, true));
+        columns.add(new Column("ETA", 100, true));
+        columns.add(new Column("Status", 90, true));
+        columns.add(new Column("Order type", 100, true));
 
         String[][] content = {
                 {"12566676885654", "4444666768834", "2018-09-05", "2018-09-05", "2018-09-05", "Confirmed", "Packaging material"},

@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
