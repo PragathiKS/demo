@@ -16,6 +16,8 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -26,7 +28,10 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.imageio.ImageIO;
 import javax.servlet.Servlet;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -74,29 +79,48 @@ public class OrderDetailsPDFServlet extends SlingSafeMethodsServlet {
             Gson gson = new Gson();
             OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result), OrderDetailResponse.class);
             OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
+            InputStream in1 = null;
+            InputStream in2 = null;
+            InputStream image1 = null;
+            InputStream image2 = null;
             try {
-                InputStream in = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
+                in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
+                in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
 
-                muli_regular = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
-
-                in = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
-                muli_bold = PDTrueTypeFont.load(document, in, Encoding.getInstance(COSName.STANDARD_ENCODING));
+                muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
+                muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
                 PDPage page = new PDPage();
                 document.addPage(page);
 
-                document = PDFUtil.writeContent(document, 750, getHeadLines(orderNumber, orderDetails));
+                image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
+                image2 = getClass().getResourceAsStream("/images/small_logo.png");
+                BufferedImage bufferedImage1 = ImageIO.read(image1);
+                BufferedImage bufferedImage2 = ImageIO.read(image2);
 
-                Table table = createOrderDetailTable(orderDetails);
-                PDFUtil.drawTableOnSamePage(document, table);
+                PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
+                PDImageXObject img2 = LosslessFactory.createFromImage(document, bufferedImage2);
 
-                document = PDFUtil.writeContent(document, 600, getContactLines());
+                PDFUtil.drawImage(document, img1, 400, 700, 130, 50);
+                PDFUtil.drawImage(document, img2, 65, 570, 40, 40);
+
+                PDFUtil.writeContent(document, 65, 750, Color.DARK_GRAY, getHeadLines(orderNumber, orderDetails));
+                PDFUtil.writeContent(document, 110, 610, Color.DARK_GRAY, getContactLines());
+
+                PDFUtil.drawLine(document, 65, 625, Color.LIGHT_GRAY);
+
+                PDFUtil.drawTableOnSamePage(document, createOrderDetailTable(orderDetails));
+
 
                 PDFUtil.writeOutput(response, document, orderNumber);
             } catch (IOException e) {
                 LOGGER.error("IOException {}", e);
             } finally {
                 try {
+                    in1.close();
+                    in2.close();
+                    image1.close();
+                    image2.close();
                     document.close();
                 } catch (IOException e) {
                     LOGGER.error("IOException {}", e);
@@ -117,7 +141,7 @@ public class OrderDetailsPDFServlet extends SlingSafeMethodsServlet {
     private List<Row> getContactLines() {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row("Customer support center", 10, muli_bold, 8));
-        rows.add(new Row("customersupporter@teatrapak.com", 10, muli_regular, 8));
+        rows.add(new Row("customersupporter@teatrapak.com", 10, muli_regular, 7, true));
         rows.add(new Row("+4635123456", 10, muli_regular, 8));
         return rows;
     }

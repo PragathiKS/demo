@@ -5,13 +5,17 @@ import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.interactive.action.PDActionURI;
+import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationLink;
 import org.apache.pdfbox.util.Matrix;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -39,41 +43,75 @@ public class PDFUtil {
      * This method is used to print lines of string into a pdf file
      *
      * @param document document
+     * @param margin   margin
      * @param height   height of row
+     * @param color    color
      * @param rows     list of string lines to be printed on document
-     * @return
      */
-    public static PDDocument writeContent(PDDocument document, int height, List<Row> rows) {
+    public static void writeContent(PDDocument document, int margin, int height, Color color, List<Row> rows) {
         try {
             PDPageContentStream contentStream = new PDPageContentStream(document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
             for (Row row : rows) {
                 height -= row.getHeight();
                 contentStream.beginText();
                 contentStream.setFont(row.getFont(), row.getFontSize());
-                contentStream.newLineAtOffset(65, height);
-                String[] message = {row.getContent()};
-                contentStream.showTextWithPositioning(message);
+                contentStream.newLineAtOffset(margin, height);
+                String rowContent = row.getContent();
+                String[] message = {rowContent};
+                if (row.isHref()) {
+                    contentStream.setNonStrokingColor(Color.BLUE);
+                    contentStream.showTextWithPositioning(message);
+                    showTextWithLink(document.getPage(0), margin, height, rowContent, rowContent);
+                } else {
+                    contentStream.setNonStrokingColor(color);
+                    contentStream.showTextWithPositioning(message);
+                }
                 contentStream.endText();
                 contentStream.stroke();
+
             }
             // Make sure that the content stream is closed:
             contentStream.close();
         } catch (IOException e) {
             LOGGER.error("IOException in PDFUtil class {}", e);
         }
-        return document;
     }
 
-    public static void drawImage(PDDocument document, PDImageXObject logoImage) throws IOException {
+    private static void showTextWithLink(PDPage page, int margin, int height, String text, String link) throws IOException {
+        PDAnnotationLink txtLink = new PDAnnotationLink();
+        txtLink.setAnnotationName(text);
+
+        PDActionURI action = new PDActionURI();
+        action.setURI(link);
+        txtLink.setAction(action);
+        PDRectangle position = new PDRectangle();
+        position.setLowerLeftX(margin);
+        position.setLowerLeftY(height);
+        position.setUpperRightX(margin + 150);
+        position.setUpperRightY(height + 10);
+        txtLink.setRectangle(position);
+        page.getAnnotations().add(txtLink);
+    }
+
+    /**
+     * @param document document
+     * @param image    image
+     * @param x        x position
+     * @param y        y position
+     * @param width    width
+     * @param height   height
+     * @throws IOException IO Exception
+     */
+    public static void drawImage(PDDocument document, PDImageXObject image, int x, int y, int width, int height) throws IOException {
         PDPageContentStream contentStream = new PDPageContentStream(
                 document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
-        contentStream.drawImage(logoImage, 200, 750);
+        contentStream.drawImage(image, x, y, width, height);
         contentStream.close();
     }
 
     /**
      * @param response response
-     * @param document doc
+     * @param document document
      * @param fileName file name
      */
     public static void writeOutput(SlingHttpServletResponse response, PDDocument document, String fileName) {
@@ -317,4 +355,13 @@ public class PDFUtil {
         return contentStream;
     }
 
+    public static void drawLine(PDDocument document, int margin, int height, Color color) throws IOException {
+        PDPageContentStream contentStream = new PDPageContentStream(
+                document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
+        contentStream.setStrokingColor(color);
+        contentStream.moveTo(margin, height);
+        contentStream.lineTo(margin + 470, height);
+        contentStream.stroke();
+        contentStream.close();
+    }
 }
