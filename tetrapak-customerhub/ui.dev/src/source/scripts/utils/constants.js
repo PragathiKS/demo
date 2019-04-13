@@ -16,8 +16,6 @@ export const ajaxMethods = {
   PUT: 'PUT',
   DELETE: 'DELETE'
 };
-// CUSTOM EVENTS
-export const EVT_FINANCIAL_SUMMARY_RENDER = 'financialSummary.render';
 // API URLs
 export const API_TOKEN = 'bin/customerhub/token-generator';
 export const API_SEARCH = 'orders/summary';

@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { router, route } from 'jqueryrouter';
+import deparam from 'jquerydeparam';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
@@ -6,9 +8,14 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EVT_FINANCIAL_SUMMARY_RENDER } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 
+
+/**
+ * Processes financial data
+ * @param {object} data Financial data
+ */
 function _processFinancialStatementData(data) {
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
@@ -38,6 +45,9 @@ function _processFinancialStatementData(data) {
   return data;
 }
 
+/**
+ * Renders address details
+ */
 function _renderAddressDetail() {
   render.fn({
     template: 'financialAddressDetail',
@@ -46,6 +56,10 @@ function _renderAddressDetail() {
   });
 }
 
+/**
+ * Sets selected customer
+ * @param {string} key Key
+ */
 function _setSelectedCustomer(key) {
   this.cache.data.customerData.forEach(item => {
     if (item.key === key) {
@@ -55,6 +69,9 @@ function _setSelectedCustomer(key) {
   _renderAddressDetail.apply(this);
 }
 
+/**
+ * Renders filters
+ */
 function _renderFilters() {
   const $this = this;
   auth.getToken(({ data: authData }) => {
@@ -84,14 +101,27 @@ function _renderFilters() {
       }
     }, (data) => {
       if (!data.isError && Array.isArray(data.customerData)) {
+        const defaultQuery = {};
+        const [customerKey] = data.customerData;
+        const [defaultStatus] = data.status;
+        const [docType] = data.documentType;
+        defaultQuery.status = defaultStatus.key;
+        defaultQuery['document-type'] = docType.key;
+        defaultQuery['invoicedate-from'] = moment().format(DATE_FORMAT);
+        defaultQuery.customerkey = customerKey.key;
+        this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
         this.initializeCalendar();
-        this.root.trigger(EVT_FINANCIAL_SUMMARY_RENDER);
+        this.setRoute(true);
       }
     });
   });
 }
 
+/**
+ * Disables calendar next button
+ * @param {object} $this Class context
+ */
 function _disableCalendarNext($this) {
   // Check if current visible months contain current month
   const currentMonth = moment().month();
@@ -108,6 +138,11 @@ function _disableCalendarNext($this) {
   }
 }
 
+/**
+ * Sets date filter
+ * @param {string} status Status
+ * @param {string} selectedDate Selected date
+ */
 function _setDateFilter(status, selectedDate) {
   const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
   if (selectedDate) {
@@ -129,6 +164,58 @@ function _setDateFilter(status, selectedDate) {
   }
 }
 
+/**
+ * Backfills filter form with query data for consistency
+ * @param {object} query Query object
+ */
+function _syncFields(query) {
+  const { $filterForm, $findCustomer } = this.cache;
+  $findCustomer.val(query.customerkey).trigger('change');
+  $filterForm.find('.js-financial-statement__status').val(query.status).trigger('change');
+  $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
+  $filterForm.find('.js-financial-statement__document-number').val(query.search);
+}
+
+/**
+ * Gets current set filters
+ */
+function _getFilterQuery() {
+  const { $filterForm, $findCustomer } = this.cache;
+  const filters = $filterForm.serialize();
+  const filterProps = deparam(filters);
+  if (filterProps.daterange) {
+    const [orderdateFrom, orderdateTo] = filterProps.daterange.split(' - ');
+    filterProps['invoicedate-from'] = orderdateFrom.trim();
+    if (orderdateTo) {
+      filterProps['invoicedate-to'] = orderdateTo.trim();
+    }
+    delete filterProps.daterange;
+  }
+  filterProps.customerkey = $findCustomer.val();
+  Object.keys(filterProps).forEach(key => {
+    if (!filterProps[key]) {
+      delete filterProps[key];
+    }
+  });
+  const returnQueryString = `?${$.param(filterProps)}`;
+  return returnQueryString;
+}
+
+/**
+ * Sets current filter route
+ * @param {boolean} isInit Initialize flag
+ */
+function _setRoute(isInit = false) {
+  if (window.location.hash && isInit) {
+    router.init();
+  } else {
+    router.set({
+      route: '#/',
+      queryString: this.getFilterQuery()
+    }, isInit);
+  }
+}
+
 class FinancialStatement {
   constructor({ el }) {
     this.root = $(el);
@@ -145,6 +232,8 @@ class FinancialStatement {
     }
   }
   initPostCache() {
+    this.cache.$filterForm = this.root.find('.js-financial-statement__filters');
+    this.cache.$findCustomer = this.root.find('.js-financial-statement__find-customer');
     this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
@@ -211,6 +300,12 @@ class FinancialStatement {
     return _renderFilters.apply(this, arguments);
   }
   bindEvents() {
+    route((...args) => {
+      const [config, , query] = args;
+      if (config.hash) {
+        this.syncFields(query);
+      }
+    });
     this.root
       .on('change', '.js-financial-statement__find-customer', (e) => {
         this.setSelectedCustomer(e.target.value);
@@ -227,14 +322,8 @@ class FinancialStatement {
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
       .on('click', '.js-financial-statement__submit', this.populateResults)
-      .on('reset', '.js-financial-statement__filters', () => {
-        setTimeout(() => {
-          const { $status } = this.cache;
-          $status.find('option').each(function () {
-            $(this).removeData();
-          });
-          this.populateResults();
-        }, 0);
+      .on('click', '.js-financial-statement__reset', () => {
+        this.resetFilters();
       });
   }
   openDateSelector() {
@@ -244,14 +333,31 @@ class FinancialStatement {
     return _setDateFilter.apply(this, arguments);
   }
   setSelectedCustomer() {
-    $('.js-financial-statement__reset').trigger('click');
-    const { $dateRange, $rangeSelector } = this.cache;
-    $rangeSelector.val($dateRange.val());
-    this.initializeCalendar();
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
-    this.root.trigger(EVT_FINANCIAL_SUMMARY_RENDER);
+    this.setRoute();
+  }
+  getFilterQuery() {
+    return _getFilterQuery.apply(this, arguments);
+  }
+  setRoute() {
+    return _setRoute.apply(this, arguments);
+  }
+  syncFields() {
+    return _syncFields.apply(this, arguments);
+  }
+  resetFilters() {
+    const { $status, defaultQueryString } = this.cache;
+    logger.log(defaultQueryString);
+    $status.find('option').each(function () {
+      $(this).removeData();
+    });
+    this.syncFields(deparam(defaultQueryString));
+    router.set({
+      route: '#/',
+      queryString: defaultQueryString
+    });
   }
   init() {
     this.initCache();
