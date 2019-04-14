@@ -1,0 +1,32 @@
+<h3>{{orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h3>
+<div class="tp-order-detail__order-info">
+    <div class="row no-gutters">
+        <div class="col-lg">
+            <div class="tp-order-detail__order-info-table">
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=customerNameLabel data=orderDetails.customerName }}
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=customerNumberLabel data=orderDetails.customerNumber }}
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="tp-order-detail__order-info-table m-lg-auto">
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=purchaseOrderNumberLabel data=orderDetails.purchaseOrderNumber }}
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=customerReferenceLabel data=orderDetails.customerReference }}
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="tp-order-detail__order-info-table ml-lg-auto">
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=orderDateLabel data=orderDetails.placedOn }}
+                {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=webRefLabel data=orderDetails.webRefID }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tp-order-detail__cust-support row no-gutters">
+    <div class="tp-order-detail__support-center col-lg-6 text-center text-lg-left">
+        {{> molecules/supportCentre/supportCentre title=custSupCentreLabel supportEmail=customerSupportCenter.email supportContact=customerSupportCenter.mobile }}
+    </div>
+    <div class="tp-order-detail__btn-container col-lg-6 text-lg-right align-self-center">
+        {{> atoms/buttons/button/button text=createExcelLabel modifier="primary" className="tp-order-detail__create-excel" iconClass="icon-Excel" }}
+        {{> atoms/buttons/button/button text=createPdfLabel modifier="primary" className="tp-order-detail__create-pdf" iconClass="icon-PDF" }}
+    </div>
+</div>

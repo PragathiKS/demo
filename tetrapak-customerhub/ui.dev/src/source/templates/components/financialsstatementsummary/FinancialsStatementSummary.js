@@ -3,8 +3,8 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { apiHost, tableSort } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { apiHost, tableSort } from '../../../scripts/common/common';//eslint-disable-line
+import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants'; //eslint-disable-line
 import deparam from 'jquerydeparam';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
@@ -106,8 +106,8 @@ function _renderTable(filterParams) {
       template: 'financialsSummaryTable',
       target: '.js-financials-summary',
       url: {
-        path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        //path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
+        //path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
         data: filterParams
       },
       beforeRender(data) {
