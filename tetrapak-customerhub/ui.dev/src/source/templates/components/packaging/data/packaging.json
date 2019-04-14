@@ -1,0 +1,142 @@
+{
+  "orderDetails": {
+    "orderNumber": 1234,
+    "customerName": "Swedish Milk AB",
+    "customerNumber": 16000000,
+    "purchaseOrderNumber": 1000000,
+    "customerReference": 16000000,
+    "placedOn": "2018-09-05",
+    "webRefID": 100045677,
+    "status": "Partial Delivery"
+  },
+  "customerSupportCenter": {
+    "email": "customersupport@tetrapak.com",
+    "mobile": "+46 36 1000"
+  },
+  "deliveryList": [
+    {
+      "deliveryOrder": "1",
+      "deliveryNumber": "01234",
+      "ETD": "2019-02-20",
+      "deliveryAddress": {
+        "name": "Swedish Milk AB",
+        "name2": "Extra AB",
+        "city": "Malmö",
+        "state": "Skåne",
+        "postalcode": "11122",
+        "country": "Sweden"
+      },
+      "invoiceAddress": {
+        "name": "Swedish Milk AB",
+        "name2": "Extra AB",
+        "city": "Malmö",
+        "state": "Skåne",
+        "postalcode": "11122",
+        "country": "Sweden"
+      },
+      "products": [
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "23456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "23456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
+        }
+      ],
+      "deliveryStatus": "Partial Delivery",
+      "productPlace": "Text",
+      "requestedDelivery": "2018-10-15"
+    },
+    {
+      "deliveryOrder": "2",
+      "deliveryNumber": "01234",
+      "deliveryAddress": {
+        "name": "Swedish Milk AB",
+        "name2": "Extra AB",
+        "city": "Malmö",
+        "state": "Skåne",
+        "postalcode": "11122",
+        "country": "Sweden"
+      },
+      "invoiceAddress": {
+        "name": "Swedish Milk AB",
+        "name2": "Extra AB",
+        "city": "Malmö",
+        "state": "Skåne",
+        "postalcode": "11122",
+        "country": "Sweden"
+      },
+      "products": [
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "number",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "number",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "number",
+          "orderNumber": 1234
+        }
+      ],
+      "deliveryStatus": "Partial Delivery",
+      "productPlace": "Text",
+      "requestedDelivery": "2018-10-15",
+      "ETD": "2019-02-20"
+    }
+  ],
+  "orderSummary": [
+    {
+      "product": "100 tomato",
+      "orderQuantity": "100 KPK",
+      "deliveredQuantity": "50 KPK"
+    },
+    {
+      "product": "200tomato",
+      "orderQuantity": "200 KPK",
+      "deliveredQuantity": "50 KPK"
+    }
+  ]
+}

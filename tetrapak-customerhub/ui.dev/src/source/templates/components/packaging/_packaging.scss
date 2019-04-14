@@ -1,0 +1,7 @@
+.tp-packaging {
+    position: relative;
+
+    &__tablewrapper {
+        @include horizontal-scroll-touch;
+    }
+}
