@@ -8,6 +8,7 @@ import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
 import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetailResponse;
 import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.services.OrderDetailsService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
@@ -39,18 +40,18 @@ import java.util.List;
         })
 public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
-	private static final long serialVersionUID = 2323660841296799482L;
+    private static final long serialVersionUID = 2323660841296799482L;
 
-	@Reference
+    @Reference
     OrderDetailsService orderDetailsService;
 
     @Reference
     OrderDetailsPDFService generatePDF;
 
-    // @Reference
-    // OrderDetailsExcelService generateExcel;
+    @Reference
+    OrderDetailsExcelService generateExcel;
 
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
     @Override
@@ -82,7 +83,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             if ("pdf".equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(request, response, orderDetails, customerSupportCenter, deliveryList);
             } else if ("excel".equals(extension)) {
-                //		generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
+                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }

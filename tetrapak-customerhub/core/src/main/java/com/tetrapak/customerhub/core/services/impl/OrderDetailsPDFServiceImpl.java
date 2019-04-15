@@ -1,27 +1,6 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.pdf.*;
-import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
-import com.tetrapak.customerhub.core.utils.TableBuilder;
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
-import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-import org.osgi.service.component.annotations.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
 import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
@@ -34,6 +13,27 @@ import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import com.tetrapak.customerhub.core.utils.TableBuilder;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Impl class for Order Details PDF Service
@@ -45,15 +45,15 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServiceImpl.class);
 
-    PDDocument document = new PDDocument();
-    PDFont muli_regular;
-    PDFont muli_bold;
+    private PDDocument document = new PDDocument();
+    private PDFont muli_regular;
+    private PDFont muli_bold;
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
                                         OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
-       // InputStream in1 = null;
-       // InputStream in2 = null;
+        // InputStream in1 = null;
+        // InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
         PDPageContentStream contentStream;
@@ -63,14 +63,14 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             contentStream = new PDPageContentStream(
                     document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
 
-         //   in1 = getClass().getResourceAsStream("/fonts/muli-extralight-webfont.woff2");
-         //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.woff2");
+            //   in1 = getClass().getResourceAsStream("/fonts/muli-extralight-webfont.woff2");
+            //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.woff2");
 
-           // muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
-           // muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
+            // muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
+            // muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
-              muli_regular = PDType1Font.HELVETICA;
-              muli_bold = PDType1Font.HELVETICA_BOLD;
+            muli_regular = PDType1Font.HELVETICA;
+            muli_bold = PDType1Font.HELVETICA_BOLD;
 
 
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
@@ -105,9 +105,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
                 PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
             }
-            if (null != contentStream) {
-                contentStream.close();
-            }
+            contentStream.close();
             PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
@@ -223,7 +221,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][8] = products.get(i).getUnitPrice();
             content[i][9] = products.get(i).getPrice();
         }
-
         return getTable(columns, content);
     }
 
@@ -254,7 +251,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         double width = 8.5 * 72;
         double height = (double) 11 * 72;
 
-        Table table = new TableBuilder()
+        return new TableBuilder()
                 .setCellMargin(CELL_MARGIN)
                 .setColumns(columns)
                 .setContent(content)
@@ -269,6 +266,5 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 .setTextFontBold(muli_bold)
                 .setFontSize(FONT_SIZE)
                 .build();
-        return table;
     }
 }
