@@ -87,8 +87,8 @@ public class PDFUtil {
         PDRectangle position = new PDRectangle();
         position.setLowerLeftX(margin);
         position.setLowerLeftY(height);
-        position.setUpperRightX((float)margin + 150);
-        position.setUpperRightY((float)height + 10);
+        position.setUpperRightX((float) margin + 150);
+        position.setUpperRightY((float) height + 10);
         txtLink.setRectangle(position);
         page.getAnnotations().add(txtLink);
     }
@@ -225,7 +225,7 @@ public class PDFUtil {
     public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.moveTo(margin, height);
-        contentStream.lineTo(margin + length, (float)height);
+        contentStream.lineTo(margin + length, (float) height);
         contentStream.setLineWidth(thickness);
         contentStream.stroke();
     }

@@ -1,21 +1,19 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
+import com.tetrapak.customerhub.core.beans.pdf.*;
+import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
+import com.tetrapak.customerhub.core.utils.PDFUtil;
+import com.tetrapak.customerhub.core.utils.TableBuilder;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -24,18 +22,13 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.pdf.DeliveryAddress;
-import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
-import com.tetrapak.customerhub.core.beans.pdf.InvoiceAddress;
-import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
-import com.tetrapak.customerhub.core.beans.pdf.Product;
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
-import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
-import com.tetrapak.customerhub.core.utils.TableBuilder;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Impl class for Order Details PDF Service
@@ -53,7 +46,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
+                                        OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
        // InputStream in1 = null;
        // InputStream in2 = null;
         InputStream image1 = null;
@@ -65,14 +58,14 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             contentStream = new PDPageContentStream(
                     document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
 
-            //   in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
-            //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
+         //   in1 = getClass().getResourceAsStream("/fonts/muli-extralight-webfont.woff2");
+         //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.woff2");
 
-            //    muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
-            //   muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
+           // muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
+           // muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
-            muli_regular = PDType1Font.HELVETICA;
-            muli_bold = PDType1Font.HELVETICA_BOLD;
+              muli_regular = PDType1Font.HELVETICA;
+              muli_bold = PDType1Font.HELVETICA_BOLD;
 
 
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
@@ -187,7 +180,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
         String[][] content = {
                 {
-                        "Track order", deliveryList.getDeliveryOrder(), deliveryAddress.getName(),
+                        "Track order", deliveryList.getCarrierTrackingID(), deliveryAddress.getName(),
                         invoiceAddress.getName()},
                 {"", "", deliveryAddress.getCity(), invoiceAddress.getCity()},
                 {"", "", deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " "
@@ -214,7 +207,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         String[][] content = new String[products.size()][10];
 
         for (int i = 0; i < products.size(); i++) {
-            content[i][0] = Integer.toString(i+1);
+            content[i][0] = Integer.toString(i + 1);
             content[i][1] = products.get(i).getProductName();
             content[i][2] = products.get(i).getProductID();
             content[i][3] = products.get(i).getOrderQuantity();

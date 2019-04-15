@@ -8,11 +8,9 @@ import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
 import com.tetrapak.customerhub.core.beans.pdf.OrderDetailResponse;
 import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.services.OrderDetailsService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -24,9 +22,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 import javax.servlet.Servlet;
+import java.util.List;
 
 /**
  * PDF Generator Servlet
@@ -47,9 +44,9 @@ public class OrderDetailsDowloadFileServlet extends SlingSafeMethodsServlet {
 
     @Reference
     OrderDetailsPDFService generatePDF;
-    
-    @Reference
-    OrderDetailsExcelService generateExcel;
+
+    // @Reference
+    // OrderDetailsExcelService generateExcel;
 
     private static final long serialVersionUID = 2;
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDowloadFileServlet.class);
@@ -60,34 +57,34 @@ public class OrderDetailsDowloadFileServlet extends SlingSafeMethodsServlet {
 
         final String orderNumber = request.getParameter("orderNumber");
         final String token = request.getParameter("token");
-        
+
         final String[] selectors = request.getRequestPathInfo().getSelectors();
-        final String orderType = selectors.length>0 ? selectors[0] : StringUtils.EMPTY;
-        
+        final String orderType = selectors.length > 0 ? selectors[0] : StringUtils.EMPTY;
+
         final String extension = request.getRequestPathInfo().getExtension();
-        
+
         JsonObject jsonResponse = orderDetailsService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
-        
+
         if (!status.toString().equalsIgnoreCase("200")) {
-    		LOGGER.error("Unable to retrieve response from API");
+            LOGGER.error("Unable to retrieve response from API");
         } else {
-        	JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
-			Gson gson = new Gson();
-			OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
-					OrderDetailResponse.class);
-			OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
-			CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
-			List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
-             
-        	if ("pdf".equals(extension)) {
-        		generatePDF.generateOrderDetailsPDF(request, response, orderDetails, customerSupportCenter, deliveryList);
-        	} else if ("excel".equals(extension)){
-        		generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
-        	} else {
-        		LOGGER.error("File type not specified for the download operation.");
-        	}
-            
+            JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
+            Gson gson = new Gson();
+            OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
+                    OrderDetailResponse.class);
+            OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
+            CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
+            List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+
+            if ("pdf".equals(extension)) {
+                generatePDF.generateOrderDetailsPDF(request, response, orderDetails, customerSupportCenter, deliveryList);
+            } else if ("excel".equals(extension)) {
+                //		generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
+            } else {
+                LOGGER.error("File type not specified for the download operation.");
+            }
+
         }
     }
 }
