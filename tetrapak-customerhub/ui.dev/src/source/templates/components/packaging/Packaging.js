@@ -38,7 +38,6 @@ function _renderDeliveryDetails() {
       }
     }, (data) => {
       logger.log(data);
-      $this.renderCustomerDetail(data);
     });
   });
 
@@ -46,11 +45,12 @@ function _renderDeliveryDetails() {
 function _processTableData(data) {
   let deliveryTablekeys = [];
   data.tableHeadings = [];
+  debugger; //eslint-disable-line
   data.packagingDeliveryTable.map(item => {
-    deliveryTablekeys.push(item.columnName);
+    deliveryTablekeys.push(item);
     data.tableHeadings.push({
-      key: `${item.columnName}`,
-      i18nKey: `${item.columnNameI18n}`
+      key: `${item}`,
+      i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`
     });
   });
 
@@ -65,28 +65,7 @@ function _processTableData(data) {
       return deliveryList;
     });
   }
-  // data processing for product table
-  let productTablekeys = [];
-  data.packagingProductsTableHeadings = [];
-  data.packagingProductsTable.map(item => {
-    productTablekeys.push(item.columnName);
-    data.packagingProductsTableHeadings.push({
-      key: `${item.columnName}`,
-      i18nKey: `${item.columnNameI18n}`
-    });
-  });
-
-  if (Array.isArray(data.orderSummary)) {
-    data.orderSummary = data.orderSummary.map(order => tableSort.call(this, order, productTablekeys));
-  }
   this.cache.data = data;
-}
-function _renderCustomerDetail() {
-  render.fn({
-    template: 'customerDetail',
-    target: '.js-packaging__customer-detail',
-    data: this.cache.data
-  });
 }
 
 class Packaging {
@@ -96,12 +75,11 @@ class Packaging {
   cache = {};
   initCache() {
     this.cache.i18nKeys = this.root.find('.js-packaging__config').text();
-    this.cache.packagingDeliveryTable = this.root.find('.js-packaging__delivery-table-config').text();
-    this.cache.packagingProductsTable = this.root.find('.js-packaging__products-table-config').text();
+    this.cache.packagingDeliveryTableConfig = this.root.find('.js-packaging__delivery-table-config').text();
+    this.cache.packagingDeliveryTable = [];
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.i18nKeys);
-      this.cache.packagingDeliveryTable = JSON.parse(this.cache.packagingDeliveryTable);
-      this.cache.packagingProductsTable = JSON.parse(this.cache.packagingProductsTable);
+      this.cache.packagingDeliveryTable = this.cache.packagingDeliveryTableConfig.split(',');
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.packagingDeliveryTable = {};
@@ -115,9 +93,7 @@ class Packaging {
   renderDeliveryDetails() {
     return _renderDeliveryDetails.apply(this, arguments);
   }
-  renderCustomerDetail() {
-    return _renderCustomerDetail.apply(this, arguments);
-  }
+
   processTableData(data) {
     return _processTableData.apply(this, data);
   }

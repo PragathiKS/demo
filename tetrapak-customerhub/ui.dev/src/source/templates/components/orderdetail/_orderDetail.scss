@@ -14,8 +14,8 @@
             @include padding-bottom($padding-sm);
 
             @media #{$desktop} {
-                padding: 0;
                 display: table-row;
+                padding: 0;
             }
         }
 
