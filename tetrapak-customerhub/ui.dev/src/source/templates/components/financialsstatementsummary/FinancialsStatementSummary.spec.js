@@ -1,9 +1,9 @@
 import $ from 'jquery';
+import * as jqRouter from 'jqueryrouter';
 import FinancialsStatementSummary from './FinancialsStatementSummary';
 import financialsStatementSummaryData from './data/financialsStatementSummary.json';
 import financialStatementSummaryTemplate from '../../../test-templates-hbs/financialstatementsummary.hbs';
 import { render } from '../../../scripts/utils/render';
-import { logger } from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
@@ -26,7 +26,6 @@ describe('FinancialsStatementSummary', function () {
     this.initSpy = sinon.spy(this.financialsStatementSummary, "init");
     this.renderTableSpy = sinon.spy(this.financialsStatementSummary, "renderTable");
     this.processTableData = sinon.spy(this.financialsStatementSummary, "processTableData");
-    this.getFilters = sinon.spy(this.financialsStatementSummary, "getFilters");
     this.downloadInvoice = sinon.spy(this.financialsStatementSummary, "downloadInvoice");
     this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
@@ -40,21 +39,33 @@ describe('FinancialsStatementSummary', function () {
         token_type: "BearerToken"
       }
     });
+    this.routeStub = sinon.stub(jqRouter, 'route').callsArgWith(
+      0,
+      {
+        hash: true
+      },
+      undefined,
+      {
+        status: 123,
+        'document-type': 123,
+        'invoicedate-from': '2019-04-13',
+        customerkey: 123
+      }
+    );
     this.financialsStatementSummary.init();
-    $('.js-financial-statement').trigger('financialSummary.render');
   });
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderTableSpy.restore();
     this.processTableData.restore();
-    this.getFilters.restore();
     this.downloadInvoice.restore();
     this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
     this.tokenStub.restore();
+    this.routeStub.restore();
   })
   it('should initialize', function (done) {
     expect(this.financialsStatementSummary.init.called).to.be.true;
@@ -62,10 +73,6 @@ describe('FinancialsStatementSummary', function () {
   });
   it('should render component on page load', function (done) {
     expect(render.fn.called).to.be.true;
-    done();
-  });
-  it('should collect filters data before API call', function (done) {
-    expect(this.financialsStatementSummary.getFilters.called).to.be.true;
     done();
   });
   it('should render statement summary and documents sections', function (done) {

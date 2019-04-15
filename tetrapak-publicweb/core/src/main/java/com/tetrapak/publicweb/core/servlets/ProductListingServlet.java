@@ -38,7 +38,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
-import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
+import com.tetrapak.publicweb.core.beans.ProductInfoBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
@@ -49,27 +49,24 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  */
 @Component(service = Servlet.class,
 property = {
-        Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Carousel Listing service",
+        Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Product Listing service",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-        "sling.servlet.paths=" + "/bin/tetrapak/pw-carousellisting"
+        "sling.servlet.paths=" + "/bin/tetrapak/pw-productlisting"
 })
-@Designate(ocd = PracticeLineCarouselServlet.Config.class)
-public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
+@Designate(ocd = ProductListingServlet.Config.class)
+public class ProductListingServlet extends SlingSafeMethodsServlet {
 	
-	@ObjectClassDefinition(name = "Tetra Pak - Public Web Carousel Listing Servlet", description = "Tetra Pak - Public Web Carousel Listing servlet")
+	@ObjectClassDefinition(name = "Tetra Pak - Public Web Product Listing Servlet", description = "Tetra Pak - Public Web Product Listing servlet")
 	public static @interface Config {
 
-		@AttributeDefinition(name = "Product Type Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the product type.")
-		String product_type() default "productType";
+		@AttributeDefinition(name = "Product Category Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product category.")
+		String product_category() default "productCategory";
 		
-		@AttributeDefinition(name = "Sub Category Value Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the sub-category value.")
-		String subcategory_value() default "subCategoryVal";
+		@AttributeDefinition(name = "Product Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product root path.")
+		String product_rootpath() default "productRootPath";
 		
-		@AttributeDefinition(name = "Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the root path.")
-		String root_path() default "rootPath";
-		
-		@AttributeDefinition(name = "Best Practice Line Page Template Path", description = "Path for the Best Practice Line Page template.")
-		String bestpractice_template() default "/apps/publicweb/templates/bestpracticelinepage";
+		@AttributeDefinition(name = "Product Page Template Path", description = "Path for the Product Page template.")
+		String product_template() default "/apps/publicweb/templates/productpage";
 		
 		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
 		String system_user() default "writeService";
@@ -77,7 +74,7 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-    private static final Logger log = LoggerFactory.getLogger(PracticeLineCarouselServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductListingServlet.class);
 
 	@Reference
 	private ResourceResolverFactory resolverFactory;
@@ -88,11 +85,10 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
     private Session session; 
     private ResourceResolver resourceResolver;
     
-	private String PRODUCT_TYPE;
-	private String SUBCATEGORY_VALUE;
-	private String ROOT_PATH;
-	private String BESTPRACTICE_TEMPLATE;
-	private String SYSTEM_USER;
+    private String PRODUCT_CATEGORY;
+    private String PRODUCT_ROOT_PATH;
+    private String PRODUCT_TEMPLATE;
+    private String SYSTEM_USER;
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
@@ -103,18 +99,16 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 		queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 		
 		// get search arguments	    
-		String productType = request.getParameter(PRODUCT_TYPE);	
-		log.info("Product Type : {}", productType);
-		String subCategoryVal = request.getParameter(SUBCATEGORY_VALUE);
-		log.info("Sub Category Value : {}", subCategoryVal);
-		String rootPath = request.getParameter(ROOT_PATH);	
-		log.info("Root Path : {}", rootPath);
+		String productCategory = request.getParameter(PRODUCT_CATEGORY);	
+		String productRootPath = request.getParameter(PRODUCT_ROOT_PATH);	
+		log.info("Product category : " + productCategory);
+		
 		
 		Gson gson = new Gson();
 		String responseJSON = "not-set";
 		
 		// search for resources
-		List<BestPracticeLineBean> resources = getListOfPracticeLines(productType, subCategoryVal, rootPath);		
+		List<ProductInfoBean> resources = getListOfProducts(productCategory, productRootPath);		
 		if(resources != null) {
 			responseJSON = gson.toJson(resources);
 			log.info("Here is the JSON object : {}",  responseJSON);
@@ -138,27 +132,20 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 	 * @param searchRootPath
 	 * @return List<ProductInfoBean>
 	 */
-	public List<BestPracticeLineBean> getListOfPracticeLines(String productType, String subCategoryVal, String rootPath) {
-		Map<String, String> map = new HashMap<>();
+	public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
+		Map<String, String> map = new HashMap<String, String>();
 		
-		// Adding query parameters
-		map.put("path", rootPath);
+		map.put("path", productRootPath);
 		map.put("type", "cq:Page");
-		
-		// Page type is Practice Line page.
         map.put("1_property", "jcr:content/cq:template");
-        map.put("1_property.value", BESTPRACTICE_TEMPLATE);
+        map.put("1_property.value", PRODUCT_TEMPLATE);
         
-        // Parameter to look for product type as a tag on the page.
-		map.put("2_group.1_group.property", "jcr:content/cq:tags");
-        map.put("2_group.1_group.property.value", productType);
-        
-        // Parameter to look for sub category value as a tag on the page.
-		map.put("2_group.2_group.property", "jcr:content/cq:tags");
-        map.put("2_group.2_group.property.value", subCategoryVal);
-        
-        map.put("2_group.p.and", "true");
-        map.put("p.limit", "1");
+		if(!productCategory.equalsIgnoreCase("all")) {
+			map.put("2_property", "jcr:content/cq:tags");
+	        map.put("2_property.value", productCategory);
+		}
+		
+        map.put("p.limit", "9");
 		
 		log.info("Here is the query PredicateGroup : {} ",  PredicateGroup.create(map));			
 		
@@ -167,27 +154,27 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
                         
         // paging metadata
         log.info("Total number of results : {}", result.getTotalMatches());
-        List<BestPracticeLineBean> resources = new LinkedList<BestPracticeLineBean>();
+        List<ProductInfoBean> resources = new LinkedList<ProductInfoBean>();
 		if (result.getHits().size() == 0)
 			return resources;
 
 		// add all the items to the result list
 		for (Hit hit : query.getResult().getHits()) {
-			BestPracticeLineBean practiceItem = new BestPracticeLineBean();
+			ProductInfoBean productItem = new ProductInfoBean();
 			try {
 				log.info("Hit : {}", hit.getPath());
 				Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
 				ValueMap properties = res.adaptTo(ValueMap.class);
-				practiceItem.setPracticeTitle(properties.get("title", String.class)!=null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
-				practiceItem.setVanityDescription(properties.get("vanityDescription", String.class)!=null ? properties.get("vanityDescription", String.class) : "");
-				practiceItem.setPracticeImagePath(properties.get("practiceImagePath", String.class)!=null ? properties.get("practiceImagePath", String.class) : "");
-				practiceItem.setPracticeImageAltI18n(properties.get("practiceImageAltI18n", String.class)!=null ? properties.get("practiceImageAltI18n", String.class) : "");
-				practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class)!=null ? properties.get("ctaTexti18nKey", String.class) : "");
-				practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath()));				
+				productItem.setTitle(properties.get("title", String.class)!=null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
+				productItem.setDescription(properties.get("vanityDescription", String.class)!=null ? properties.get("vanityDescription", String.class) : "");
+				productItem.setProductImage(properties.get("productImagePath", String.class)!=null ? properties.get("productImagePath", String.class) : "");
+				productItem.setImageAltText(properties.get("productImageAltI18n", String.class)!=null ? properties.get("productImageAltI18n", String.class) : "");
+				productItem.setLinkText(properties.get("ctaTexti18nKey", String.class)!=null ? properties.get("ctaTexti18nKey", String.class) : "");
+				productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));				
 			} catch (RepositoryException e) {
 				log.error("[performSearch] There was an issue getting the resource {}", hit.toString());
 			}
-			resources.add(practiceItem);
+			resources.add(productItem);
 		}
 		
 		return resources;
@@ -213,22 +200,15 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 	
 	@Activate
 	protected void activate(final Config config) {
-		this.PRODUCT_TYPE = (String.valueOf(config.product_type()) != null) ? String.valueOf(config.product_type())
+		this.PRODUCT_CATEGORY = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
 				: null;
-		log.info("configure: PRODUCT_TYPE='{}'", this.PRODUCT_TYPE);
-		
-		this.SUBCATEGORY_VALUE = (String.valueOf(config.subcategory_value()) != null) ? String.valueOf(config.subcategory_value())
+		log.info("configure: PRODUCT_CATEGORY='{}'", this.PRODUCT_CATEGORY);
+		this.PRODUCT_ROOT_PATH = (String.valueOf(config.product_rootpath()) != null) ? String.valueOf(config.product_rootpath())
 				: null;
-		log.info("configure: SUBCATEGORY_VALUE='{}'", this.SUBCATEGORY_VALUE);
-		
-		this.ROOT_PATH = (String.valueOf(config.root_path()) != null) ? String.valueOf(config.root_path())
+		log.info("configure: PRODUCT_ROOT_PATH='{}'", this.PRODUCT_ROOT_PATH);
+		this.PRODUCT_TEMPLATE = (String.valueOf(config.product_template()) != null) ? String.valueOf(config.product_template())
 				: null;
-		log.info("configure: ROOT_PATH='{}'", this.ROOT_PATH);
-		
-		this.BESTPRACTICE_TEMPLATE = (String.valueOf(config.bestpractice_template()) != null) ? String.valueOf(config.bestpractice_template())
-				: null;
-		log.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.BESTPRACTICE_TEMPLATE);
-		
+		log.info("configure: PRODUCT_TEMPLATE='{}'", this.PRODUCT_TEMPLATE);
 		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
 				: null;
 		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
