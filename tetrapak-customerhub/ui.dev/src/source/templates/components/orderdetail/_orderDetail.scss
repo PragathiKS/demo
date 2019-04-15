@@ -40,6 +40,31 @@
         }
     }
 
+    &__summary__table {
+        @include margin-top($margin-l);
+
+        th,
+        td {
+            display: none;
+
+            &:first-child {
+                display: table-cell;
+            }
+        }
+
+        @media #{$desktop} {
+
+            th,
+            td {
+                display: table-cell;
+
+                &:first-child {
+                    width: 60%;
+                }
+            }
+        }
+    }
+
     &__cust-support {
         @include padding-top($padding-l);
         border-top: 1px solid $color-mercury;

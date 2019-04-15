@@ -30,3 +30,7 @@
         {{> atoms/buttons/button/button text=createPdfLabel modifier="primary" className="tp-order-detail__create-pdf" iconClass="icon-PDF" }}
     </div>
 </div>
+
+{{#if orderSummary}}
+    {{> molecules/table/table baseClass="tp-order-detail__summary" jsClass="" list=orderSummary headings=orderSummaryHeadings}}
+{{/if}}

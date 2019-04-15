@@ -3,10 +3,27 @@ import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, tableSort } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 
+function _processPackmatData(data) {
+  let keys = [];
+  if (Array.isArray(data.orderSummary)) {
+    data.orderSummary = data.orderSummary.map(summary => {
+      keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      return tableSort.call(this, summary, keys);
+    });
+    data.orderSummaryHeadings = keys.map(key => ({
+      key,
+      i18nKey: `cuhu.orderDetail.${key}`
+    }));
+  }
+}
+
+/**
+ * Renders Order Data
+ */
 function _renderOrderSummary() {
   const $this = this;
   auth.getToken(({ data: authData }) => {
@@ -33,6 +50,10 @@ function _renderOrderSummary() {
           };
         } else {
           data = $.extend(true, data, $this.cache.i18nKeys);
+
+          if ($this.cache.orderType === 'packmat') {
+            _processPackmatData(data);
+          }
         }
         //return _processFinancialStatementData.apply($this, [data]);
       }
@@ -60,8 +81,14 @@ class OrderDetail {
     }
 
     const { orderType } = deparam(window.location.search.replace('?', '').replace('&', ','));
-    this.cache.orderType = orderType;
-    if (orderType.toLowerCase() === 'packmat') {
+
+    if (orderType) {
+      this.cache.orderType = orderType.toLowerCase();
+    } else {
+      this.cache.orderType = orderType;
+    }
+
+    if (this.cache.orderType === 'packmat') {
       this.cache.apiUrl = API_ORDER_DETAIL_PACKMAT;
     } else {
       this.cache.apiUrl = API_ORDER_DETAIL_PARTS;
