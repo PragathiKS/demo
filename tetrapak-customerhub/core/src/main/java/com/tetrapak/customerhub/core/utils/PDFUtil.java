@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -12,9 +14,6 @@ import org.apache.pdfbox.util.Matrix;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
@@ -88,8 +87,8 @@ public class PDFUtil {
         PDRectangle position = new PDRectangle();
         position.setLowerLeftX(margin);
         position.setLowerLeftY(height);
-        position.setUpperRightX((float)margin + 150);
-        position.setUpperRightY((float)height + 10);
+        position.setUpperRightX((float) margin + 150);
+        position.setUpperRightY((float) height + 10);
         txtLink.setRectangle(position);
         page.getAnnotations().add(txtLink);
     }
@@ -226,7 +225,7 @@ public class PDFUtil {
     public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.moveTo(margin, height);
-        contentStream.lineTo(margin + length, (float)height);
+        contentStream.lineTo(margin + length, (float) height);
         contentStream.setLineWidth(thickness);
         contentStream.stroke();
     }
