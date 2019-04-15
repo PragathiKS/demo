@@ -45,56 +45,56 @@ public class OrderDetailsModelTest {
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTableCols()}.
 	 */
 	@Test
 	public void testGetPackagingDeliveryTable() {
-		assertTrue(orderDetailsModel.getPackagingDeliveryTable().contains("orderno"));
+		assertTrue(orderDetailsModel.getPackagingDeliveryTableCols().contains("orderno"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTableCols()}.
 	 */
 	@Test
 	public void testGetPackagingProductsTable() {
-		assertTrue(orderDetailsModel.getPackagingProductsTable().contains("orderno"));
+		assertTrue(orderDetailsModel.getPackagingProductsTableCols().contains("orderno"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTableCols()}.
 	 */
 	@Test
 	public void testGetPartsDeliveryTable() {
-		assertTrue(orderDetailsModel.getPartsDeliveryTable().contains("orderno"));
+		assertTrue(orderDetailsModel.getPartsDeliveryTableCols().contains("orderno"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTableCols()}.
 	 */
 	@Test
 	public void testGetPackagingDeliveryTableInvalidColumn() {
-		assertFalse(orderDetailsModel.getPackagingDeliveryTable().contains("orderno1"));
+		assertFalse(orderDetailsModel.getPackagingDeliveryTableCols().contains("orderno1"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTableCols()}.
 	 */
 	@Test
 	public void testGetPackagingProductsTableInvalidColumn() {
-		assertFalse(orderDetailsModel.getPackagingProductsTable().contains("orderno1"));
+		assertFalse(orderDetailsModel.getPackagingProductsTableCols().contains("orderno1"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTable()}.
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTableCols()}.
 	 */
 	@Test
 	public void testGetPartsDeliveryTableInvalidColumn() {
-		assertFalse(orderDetailsModel.getPartsDeliveryTable().contains("orderno1"));
+		assertFalse(orderDetailsModel.getPartsDeliveryTableCols().contains("orderno1"));
 	}
 
 	/**

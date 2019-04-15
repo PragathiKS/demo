@@ -254,12 +254,12 @@
                                 jcr:title="Parts Delivery Table"
                                 sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <partsDeliveryTable
+                                    <partsDeliveryTableCols
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldDescription="Enter the Parts Delivery table column names' ordered in a comma separated list. eg. sno,orderno,..."
                                         fieldLabel="Column List"
-                                        name="./partsDeliveryTable"
+                                        name="./partsDeliveryTableCols"
                                         required="true"/>
                                 </items>
                             </fieldset1>
@@ -268,12 +268,12 @@
                                 jcr:title="Packaging Delivery Table"
                                 sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <packagingDeliveryTable
+                                    <packagingDeliveryTableCols
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldDescription="Enter the Packaging Delivery table column names' ordered in a comma separated list eg. sno,orderno,..."
                                         fieldLabel="Column List"
-                                        name="./packagingDeliveryTable"
+                                        name="./packagingDeliveryTableCols"
                                         required="true"/>
                                 </items>
                             </fieldset2>
@@ -282,12 +282,12 @@
                                 jcr:title="Packaging Products Table"
                                 sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <packagingProductsTable
+                                    <packagingProductsTableCols
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldDescription="Enter the packaging products table column names' ordered in a comma separated list. eg. sno,orderno,..."
                                         fieldLabel="Column List"
-                                        name="./packagingProductsTable"
+                                        name="./packagingProductsTableCols"
                                         required="true"/>
                                 </items>
                             </fieldset3>

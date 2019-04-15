@@ -113,13 +113,13 @@ public class OrderDetailsModel {
 	private String orderNoLink;
 
 	@Inject
-	private String packagingDeliveryTable;
+	private String packagingDeliveryTableCols;
 
 	@Inject
-	private String packagingProductsTable;
+	private String packagingProductsTableCols;
 
 	@Inject
-	private String partsDeliveryTable;
+	private String partsDeliveryTableCols;
 
 	private String i18nKeys;
 
@@ -160,9 +160,9 @@ public class OrderDetailsModel {
 		i18KeyMap.put("orderNoLink", getOrderNoLink());
 		i18KeyMap.put("webReferenceLink", getWebReferenceLink());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		partsDeliveryTable = new Gson().toJson(getColumnNamesList(partsDeliveryTable));
-		packagingProductsTable = new Gson().toJson(getColumnNamesList(packagingProductsTable));
-		packagingDeliveryTable = new Gson().toJson(getColumnNamesList(packagingDeliveryTable));
+		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
+		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
+		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
 	}
 
 	/**
@@ -393,23 +393,23 @@ public class OrderDetailsModel {
 	}
 
 	/**
-	 * @return the packagingDeliveryTable
+	 * @return the packagingDeliveryTableCols
 	 */
-	public String getPackagingDeliveryTable() {
-		return packagingDeliveryTable;
+	public String getPackagingDeliveryTableCols() {
+		return packagingDeliveryTableCols;
 	}
 
 	/**
-	 * @return the packagingProductsTable
+	 * @return the packagingProductsTableCols
 	 */
-	public String getPackagingProductsTable() {
-		return packagingProductsTable;
+	public String getPackagingProductsTableCols() {
+		return packagingProductsTableCols;
 	}
 
 	/**
-	 * @return the partsDeliveryTable
+	 * @return the partsDeliveryTableCols
 	 */
-	public String getPartsDeliveryTable() {
-		return partsDeliveryTable;
+	public String getPartsDeliveryTableCols() {
+		return partsDeliveryTableCols;
 	}
 }
