@@ -6,12 +6,19 @@ import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '.
 import { apiHost, tableSort } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
-
+/**
+ * Process Order Data
+ */
 function _processPackmatData(data) {
   let keys = [];
   if (Array.isArray(data.orderSummary)) {
     data.orderSummary = data.orderSummary.map(summary => {
-      keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      if (data.packagingProductsTableCols) {
+        keys = (keys.length === 0) ? data.packagingProductsTableCols : keys;
+      } else {
+        keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      }
+
       return tableSort.call(this, summary, keys);
     });
     data.orderSummaryHeadings = keys.map(key => ({
@@ -51,15 +58,13 @@ function _renderOrderSummary() {
         } else {
           data = $.extend(true, data, $this.cache.i18nKeys);
 
+          if ($this.cache.packagingProductsTableCols.length > 0) {
+            data['packagingProductsTableCols'] = $this.cache.packagingProductsTableCols;
+          }
           if ($this.cache.orderType === 'packmat') {
-            _processPackmatData(data);
+            return $this.processTableData([data]);
           }
         }
-        //return _processFinancialStatementData.apply($this, [data]);
-      }
-    }, (data) => {
-      if (!data.isError) {
-        console.log(data); //eslint-disable-line
       }
     });
   });
@@ -79,6 +84,9 @@ class OrderDetail {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+
+    this.cache.packagingProductsTableCols = this.root.find('#packagingProductsTableCols').val();
+    this.cache.packagingProductsTableCols = this.cache.packagingProductsTableCols !== '' ? this.cache.packagingProductsTableCols.split(',') : [];
 
     const { orderType } = deparam(window.location.search.replace('?', '').replace('&', ','));
 
@@ -103,6 +111,9 @@ class OrderDetail {
      */
   }
   renderOrderSummary = () => _renderOrderSummary.call(this);
+  processTableData(data) {
+    return _processPackmatData.apply(this, data);
+  }
   init() {
     /* Mandatory method */
     this.initCache();
