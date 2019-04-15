@@ -30,16 +30,16 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     private APIGEEService apigeeService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsServiceImpl.class);
-
+  
     @Override
-    public JsonObject getOrderDetails(String orderNumber, String token) {
+    public JsonObject getOrderDetails(String orderNumber, String token, String orderType) {
         JsonObject jsonResponse = new JsonObject();
-        final String url = apigeeService.getApigeeServiceUrl() + "/orders/details/parts?order-number=" + orderNumber;
+        final String url = apigeeService.getApigeeServiceUrl() + "/orders/details/"+orderType+"?order-number=" + orderNumber;
 
         HttpGet getRequest = new HttpGet(url);
         getRequest.addHeader("Authorization", "Bearer " + token);
-
         HttpClient httpClient = HttpClientBuilder.create().build();
+        
         try {
             HttpResponse httpResponse = httpClient.execute(getRequest);
             LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
@@ -53,6 +53,4 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
         }
         return jsonResponse;
     }
-
-
 }

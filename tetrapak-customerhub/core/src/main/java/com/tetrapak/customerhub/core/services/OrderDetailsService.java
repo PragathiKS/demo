@@ -9,5 +9,5 @@ import com.google.gson.JsonObject;
 @FunctionalInterface
 public interface OrderDetailsService {
 
-    JsonObject getOrderDetails(String orderNumber, String token);
+    JsonObject getOrderDetails(String orderNumber, String token, String orderType);
 }
