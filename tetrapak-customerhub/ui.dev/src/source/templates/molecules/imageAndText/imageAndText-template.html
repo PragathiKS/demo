@@ -1,9 +1,7 @@
 <sly data-sly-template.imageAndText_template="${@ data,columns,className,flag}">
   <div class="tpmol-image-card tpmol-image-card__col--${columns}">
     <div class="tpmol-image-card__container">
-      <!-- <img src="${data.imagePath}" alt="${data.imageAltI18n @i18n}" /> -->
-      <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" 
-        data-sly-call="${lib.dynamicimage_template @imagePath=child.imagePath, altText=child.imageAltI18n }" />
+      <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @data=child}" />
       <div class="tpmol-image-card__text">
         <h4 class="tpmol-image-card__heading">${data.titleI18n @i18n}</h4>
         <sly data-sly-test.description="${data.descriptionI18n}">

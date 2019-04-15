@@ -90,9 +90,7 @@ function _processTableData(data) {
     data.noData = true;
   }
 
-  if (data.summaryHeadingI18n) {
-    data.summaryHeadingI18n = `${data.summaryHeadingI18n} : ${$('.js-financial-statement__date-range').val()}`;
-  }
+  data.dateRange = $('.js-financial-statement__date-range').val();
 }
 
 /**
