@@ -54,12 +54,11 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
 			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
-    	
-        InputStream in1 = null;
-        InputStream in2 = null;
+       // InputStream in1 = null;
+       // InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
-        PDPageContentStream contentStream = null;
+        PDPageContentStream contentStream;
         try {
             PDPage page = new PDPage();
             document.addPage(page);
@@ -96,14 +95,14 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             for (DeliveryList deliveryDetail : deliveryList) {
                 int count = deliveryList.indexOf(deliveryDetail) + 1;
-                int height = 790 - 230 * count; //565
+                int height = 800 - 240 * count; //565
                 PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
                 PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
                 PDFUtil.drawLine(document, contentStream, 65, 460, height - 105, Color.LIGHT_GRAY);
                 Table productTable = createProductTable(deliveryDetail.getProducts());
                 PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 850 - height);
                // PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),870 - height);
-                PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 910 - height);
+                PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
             }
             if (null != contentStream) {
                 contentStream.close();
@@ -113,12 +112,12 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             LOGGER.error("IOException {}", e);
         } finally {
             try {
-                if (null != in1) {
+              /*  if (null != in1) {
                     in1.close();
                 }
                 if (null != in2) {
                     in2.close();
-                }
+                }*/
                 if (null != image1) {
                     image1.close();
                 }
@@ -209,16 +208,16 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         columns.add(new Column("Unit Price", 45, false));
         columns.add(new Column("Price", 45, false));
 
-        String[][] content = new String[100][10];
+        String[][] content = new String[products.size()][10];
 
         for (int i = 0; i < products.size(); i++) {
-            content[i][0] = Integer.toString(i);
+            content[i][0] = Integer.toString(i+1);
             content[i][1] = products.get(i).getProductName();
             content[i][2] = products.get(i).getProductID();
             content[i][3] = products.get(i).getOrderQuantity();
             content[i][4] = products.get(i).getWeight();
-            content[i][5] = "1";
-            content[i][6] = "0";
+            content[i][5] = products.get(i).getDeliveredQuantity();
+            content[i][6] = products.get(i).getRemainingQuantity();
             content[i][7] = products.get(i).getETA();
             content[i][8] = products.get(i).getUnitPrice();
             content[i][9] = products.get(i).getPrice();
@@ -229,9 +228,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createProductSummaryTable(DeliveryList deliveryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("", 360, false));
-        columns.add(new Column("Total weight", 60, true));
-        columns.add(new Column(deliveryList.getTotalWeight(), 50, false));
+        columns.add(new Column("", 375, false));
+        columns.add(new Column("Total weight", 55, false));
+        columns.add(new Column(deliveryList.getTotalWeight(), 45, false));
 
         String[][] content = {
                 {"", "Total pre VAT", deliveryList.getTotalPricePreVAT()},
