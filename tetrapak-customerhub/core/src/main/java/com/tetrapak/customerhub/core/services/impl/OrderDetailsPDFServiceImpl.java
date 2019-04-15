@@ -89,7 +89,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
             PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY, getContactLines(customerSupportCenter));
 
-            PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY);
+            PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
             PDFUtil.drawTableOnSamePage(document, contentStream, createOrderDetailTable(orderDetails), 60);
 
@@ -97,11 +97,14 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 int count = deliveryList.indexOf(deliveryDetail) + 1;
                 int height = 800 - 240 * count; //565
                 PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
+                PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
+
                 PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                PDFUtil.drawLine(document, contentStream, 65, 460, height - 105, Color.LIGHT_GRAY);
+                PDFUtil.drawLine(document, contentStream, 65, 460, height - 128, Color.black, 0.01f);
+
                 Table productTable = createProductTable(deliveryDetail.getProducts());
-                PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 850 - height);
-               // PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),870 - height);
+                PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 840 - height);
+                //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
                 PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
             }
             if (null != contentStream) {
