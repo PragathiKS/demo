@@ -32,7 +32,7 @@ public class HttpUtil {
      * @throws IOException IO Exception
      */
     public static JsonObject setJsonResponse(JsonObject jsonResponse, HttpResponse httpResponse) throws IOException {
-        String responseString = EntityUtils.toString(httpResponse.getEntity());
+        String responseString = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
         jsonResponse.addProperty(CustomerHubConstants.RESULT, responseString);
         jsonResponse.addProperty("status", httpResponse.getStatusLine().getStatusCode());
         return jsonResponse;
