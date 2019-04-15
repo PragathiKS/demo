@@ -5,7 +5,7 @@ class SoftConversionForm {
   cache = {};
   initCache() {
     /* Initialize cache here */
-    this.cache.$selector = $('#softConversionModal');
+    this.cache.$modal = $('#softConversionModal');
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -18,18 +18,12 @@ class SoftConversionForm {
       const grandParentIdSelector = '#'+grandParentId;
 
       const $toggleBtns = $('[data-toggle="tab"]', grandParentIdSelector);
-
-      let selectedTarget = $(e.target).data('taget');
-      $toggleBtns.each(function() {
-        if ($(this).data('target') !== selectedTarget) {
-          $(this).removeClass('active show');
-        } else {
-          $(this).addClass('active show');
-        }
-      });
+      $toggleBtns.removeClass('active show');
+      let selectedTarget = $(e.target).data('target');
+      $('[data-target="'+selectedTarget+'"]').addClass('active show');
     });
 
-    this.cache.$selector.on('hidden.bs.modal', function () {
+    this.cache.$modal.on('hidden.bs.modal', function () {
       $('[data-toggle="tab"]', '#softConversionModal').removeClass('active show');
       $('.tab-pane', '#softConversionModal').removeClass('active');
       $('.tab-content .tab-pane:first', '#softConversionModal').addClass('active');

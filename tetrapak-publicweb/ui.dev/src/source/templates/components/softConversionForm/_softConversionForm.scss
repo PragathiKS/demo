@@ -2,4 +2,15 @@
     &.modal-dialog {
         max-width: 900px;
     }
+    .modal-content {
+        @include padding(34px);
+    }
+    .modal-header {
+        border-bottom: 0;
+        .close {
+            @include padding(10px);
+            @include margin(0);
+            @include font-size(16px);
+        }
+    }
 }
