@@ -57,6 +57,8 @@
                "productionPlace":"Production Place ",
                "errorMsg":"Error message",
                "orderNoLink":"#",
+               "deliveryProductsFilterCheckboxText":"Products Filter Checkbox",
+               "kpkPopUpCloseBtnText":"Close Button",
                "deliveryNumberLabel":"Delivery Number",
                "invoiceAddrLabel":"Invoice Address ",
                "deliveryAddrLabel":"Delivery Address ",
