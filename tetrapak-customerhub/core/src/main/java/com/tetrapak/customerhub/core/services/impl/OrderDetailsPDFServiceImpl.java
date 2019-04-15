@@ -12,6 +12,7 @@ import com.tetrapak.customerhub.core.utils.PDFUtil;
 import com.tetrapak.customerhub.core.utils.TableBuilder;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
@@ -58,9 +59,15 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
+        PDPageContentStream contentStream = null;
         try {
-            in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
-            in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
+            PDPage page = new PDPage();
+            document.addPage(page);
+            contentStream = new PDPageContentStream(
+                    document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+
+            //   in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
+            //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
 
             //    muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
             //   muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
@@ -68,8 +75,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             muli_regular = PDType1Font.HELVETICA;
             muli_bold = PDType1Font.HELVETICA_BOLD;
 
-            PDPage page = new PDPage();
-            document.addPage(page);
 
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
             image2 = getClass().getResourceAsStream("/images/small_logo.png");
@@ -79,34 +84,47 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
             PDImageXObject img2 = LosslessFactory.createFromImage(document, bufferedImage2);
 
-            PDFUtil.drawImage(document, img1, 405, 700, 130, 50);
-            PDFUtil.drawImage(document, img2, 60, 570, 40, 40);
+            PDFUtil.drawImage(document, contentStream, img1, 405, 700, 130, 50);
+            PDFUtil.drawImage(document, contentStream, img2, 60, 570, 40, 40);
 
-            PDFUtil.writeContent(document, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
-            PDFUtil.writeContent(document, 105, 610, Color.DARK_GRAY, getContactLines(customerSupportCenter));
+            PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
+            PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY, getContactLines(customerSupportCenter));
 
-            PDFUtil.drawLine(document, 65, 460, 625, Color.LIGHT_GRAY);
+            PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY);
 
-            PDFUtil.drawTableOnSamePage(document, createOrderDetailTable(orderDetails), 60);
+            PDFUtil.drawTableOnSamePage(document, contentStream, createOrderDetailTable(orderDetails), 60);
 
             for (DeliveryList deliveryDetail : deliveryList) {
                 int count = deliveryList.indexOf(deliveryDetail) + 1;
-                int height = 765 - 200 * count; //565
-                PDFUtil.writeContent(document, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
-                PDFUtil.drawTableOnSamePage(document, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                PDFUtil.drawLine(document, 65, 460, height - 105, Color.LIGHT_GRAY);
-                PDFUtil.drawTableOnSamePage(document, createProductTable(deliveryDetail.getProducts()), 850 - height);
-                PDFUtil.drawTableOnSamePage(document, createProductSummaryTable(deliveryDetail), 900 - height);
+                int height = 790 - 230 * count; //565
+                PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
+                PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
+                PDFUtil.drawLine(document, contentStream, 65, 460, height - 105, Color.LIGHT_GRAY);
+                Table productTable = createProductTable(deliveryDetail.getProducts());
+                PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 850 - height);
+               // PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),870 - height);
+                PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 910 - height);
+            }
+            if (null != contentStream) {
+                contentStream.close();
             }
             PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
         } finally {
             try {
-                in1.close();
-                in2.close();
-                image1.close();
-                image2.close();
+                if (null != in1) {
+                    in1.close();
+                }
+                if (null != in2) {
+                    in2.close();
+                }
+                if (null != image1) {
+                    image1.close();
+                }
+                if (null != image2) {
+                    image2.close();
+                }
                 document.close();
             } catch (IOException e) {
                 LOGGER.error("IOException {}", e);
@@ -208,15 +226,16 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
         return getTable(columns, content);
     }
+
     private Table createProductSummaryTable(DeliveryList deliveryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("", 600, false));
-        columns.add(new Column("Total weight", 70, true));
-        columns.add(new Column("deliveryList.getTotalWeight()", 50, false));
+        columns.add(new Column("", 360, false));
+        columns.add(new Column("Total weight", 60, true));
+        columns.add(new Column(deliveryList.getTotalWeight(), 50, false));
 
         String[][] content = {
-                {"","Total pre VAT", deliveryList.getTotalPricePreVAT()},
-                {"","VAT", deliveryList.getTotalVAT()}
+                {"", "Total pre VAT", deliveryList.getTotalPricePreVAT()},
+                {"", "VAT", deliveryList.getTotalVAT()}
         };
 
         return getTable(columns, content);

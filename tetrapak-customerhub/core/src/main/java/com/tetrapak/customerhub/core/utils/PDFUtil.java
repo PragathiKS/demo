@@ -48,9 +48,8 @@ public class PDFUtil {
      * @param color    color
      * @param rows     list of string lines to be printed on document
      */
-    public static void writeContent(PDDocument document, int margin, int height, Color color, List<Row> rows) {
+    public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height, Color color, List<Row> rows) {
         try {
-            PDPageContentStream contentStream = new PDPageContentStream(document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
             for (Row row : rows) {
                 height -= row.getHeight();
                 contentStream.beginText();
@@ -69,8 +68,6 @@ public class PDFUtil {
                 contentStream.stroke();
 
             }
-            // Make sure that the content stream is closed:
-            contentStream.close();
         } catch (IOException e) {
             LOGGER.error("IOException in PDFUtil class {}", e);
         }
@@ -105,11 +102,8 @@ public class PDFUtil {
      * @param height   height
      * @throws IOException IO Exception
      */
-    public static void drawImage(PDDocument document, PDImageXObject image, int x, int y, int width, int height) throws IOException {
-        PDPageContentStream contentStream = new PDPageContentStream(
-                document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
+    public static void drawImage(PDDocument document, PDPageContentStream contentStream, PDImageXObject image, int x, int y, int width, int height) throws IOException {
         contentStream.drawImage(image, x, y, width, height);
-        contentStream.close();
     }
 
     /**
@@ -144,7 +138,7 @@ public class PDFUtil {
         }
     }
 
-    public static void drawTableOnSamePage(PDDocument doc, Table table, int startY) {
+    public static void drawTableOnSamePage(PDDocument doc, PDPageContentStream contentStream, Table table, int startY) {
         // Calculate pagination
         double d1 = Math.floor((double) table.getHeight() / (double) table.getRowHeight());
         Integer rowsPerPage = (int) d1 - 1;
@@ -155,7 +149,6 @@ public class PDFUtil {
         // Generate each page, get the content and draw it
         for (int pageCount = 0; pageCount < numberOfPages; pageCount++) {
             try {
-                PDPageContentStream contentStream = generateContentStream(doc, doc.getPage(0), table);
                 String[][] currentPageContent = getContentForCurrentPage(table, rowsPerPage, pageCount);
                 drawOnSamePage(table, currentPageContent, contentStream, startY);
             } catch (IOException e) {
@@ -189,7 +182,6 @@ public class PDFUtil {
             nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         }
 
-        contentStream.close();
     }
 
     private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX, float nextTextY,
@@ -230,13 +222,26 @@ public class PDFUtil {
      * @param color    color
      * @throws IOException IO Exception
      */
-    public static void drawLine(PDDocument document, int margin, int length, int height, Color color) throws IOException {
-        PDPageContentStream contentStream = new PDPageContentStream(
-                document, document.getPage(0), PDPageContentStream.AppendMode.APPEND, true);
+    public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.moveTo(margin, height);
         contentStream.lineTo(margin + length, height);
         contentStream.stroke();
-        contentStream.close();
+    }
+
+    public static void drawTableGrid(PDDocument document, PDPageContentStream contentStream, Table table, String[][] currentPageContent, double tableTopY)
+            throws IOException {
+
+
+        double nextY = tableTopY;
+        for (int i = 0; i <= currentPageContent.length + 1; i++) {
+
+            contentStream.moveTo(table.getMargin(), (float) nextY);
+            double width = (double) table.getMargin() + (double) table.getWidth();
+            contentStream.lineTo((float) width, (float) nextY);
+            contentStream.stroke();
+
+            nextY -= table.getRowHeight();
+        }
     }
 }
