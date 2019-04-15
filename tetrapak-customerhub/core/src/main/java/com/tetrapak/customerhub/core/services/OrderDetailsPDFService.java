@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
-import com.tetrapak.customerhub.core.beans.pdf.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
-import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
 
 /**
  * Tetra Pak Order Detail Service

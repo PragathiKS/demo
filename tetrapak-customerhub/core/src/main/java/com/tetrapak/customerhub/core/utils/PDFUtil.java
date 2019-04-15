@@ -1,7 +1,5 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -14,6 +12,9 @@ import org.apache.pdfbox.util.Matrix;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.Row;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.Table;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
