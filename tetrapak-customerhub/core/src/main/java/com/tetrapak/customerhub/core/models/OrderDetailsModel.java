@@ -120,6 +120,12 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String partsDeliveryTableCols;
+	
+	@Inject
+	private String kpkPopUpCloseBtnText;
+	
+	@Inject
+	private String deliveryProductsFilterCheckboxText;
 
 	private String i18nKeys;
 
@@ -159,6 +165,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("errorMsg", getErrorMsg());
 		i18KeyMap.put("orderNoLink", getOrderNoLink());
 		i18KeyMap.put("webReferenceLink", getWebReferenceLink());
+		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
+		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
 		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
 		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
@@ -411,5 +419,18 @@ public class OrderDetailsModel {
 	 */
 	public String getPartsDeliveryTableCols() {
 		return partsDeliveryTableCols;
+	}
+	/**
+	 * @return the kpkPopUpCloseBtnText
+	 */
+	public String getKpkPopUpCloseBtnText() {
+		return kpkPopUpCloseBtnText;
+	}
+
+	/**
+	 * @return the deliveryProductsFilterCheckboxText
+	 */
+	public String getDeliveryProductsFilterCheckboxText() {
+		return deliveryProductsFilterCheckboxText;
 	}
 }
