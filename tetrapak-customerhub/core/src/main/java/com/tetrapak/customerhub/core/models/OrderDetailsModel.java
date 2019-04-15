@@ -3,11 +3,8 @@ package com.tetrapak.customerhub.core.models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -21,6 +18,9 @@ import com.google.gson.Gson;
 
 /**
  * Model class for Order Details component
+ * 
+ * @author swalamba
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
