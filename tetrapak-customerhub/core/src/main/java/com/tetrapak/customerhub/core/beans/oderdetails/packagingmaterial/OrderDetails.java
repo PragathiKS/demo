@@ -1,5 +1,4 @@
-
-package com.tetrapak.customerhub.core.beans.pdf;
+package com.tetrapak.customerhub.core.beans.oderdetails.packagingmaterial;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,7 +8,7 @@ public class OrderDetails {
 
     @SerializedName("orderNumber")
     @Expose
-    private String orderNumber;
+    private Integer orderNumber;
     @SerializedName("customerName")
     @Expose
     private String customerName;
@@ -32,11 +31,11 @@ public class OrderDetails {
     @Expose
     private String status;
 
-    public String getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 

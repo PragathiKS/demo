@@ -1,9 +1,10 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
+
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 
 import java.util.List;
 

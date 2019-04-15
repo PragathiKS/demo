@@ -22,13 +22,18 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.Product;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
+import com.tetrapak.customerhub.core.utils.PDFUtil;
+import com.tetrapak.customerhub.core.utils.TableBuilder;
 
 /**
  * Impl class for Order Details PDF Service

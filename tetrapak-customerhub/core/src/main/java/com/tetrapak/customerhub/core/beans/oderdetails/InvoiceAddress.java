@@ -1,5 +1,4 @@
-
-package com.tetrapak.customerhub.core.beans.pdf;
+package com.tetrapak.customerhub.core.beans.oderdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

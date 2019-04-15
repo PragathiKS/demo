@@ -1,9 +1,11 @@
 
-package com.tetrapak.customerhub.core.beans.pdf;
+package com.tetrapak.customerhub.core.beans.oderdetails.parts;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class OrderDetailResponse {

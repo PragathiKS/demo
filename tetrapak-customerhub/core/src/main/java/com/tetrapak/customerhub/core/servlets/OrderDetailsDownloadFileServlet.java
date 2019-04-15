@@ -3,10 +3,10 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.pdf.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
-import com.tetrapak.customerhub.core.beans.pdf.OrderDetailResponse;
-import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetailResponse;
+import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.services.OrderDetailsService;
@@ -37,9 +37,11 @@ import java.util.List;
                 "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
                 "sling.servlet.paths=" + "/bin/customerhub/order-detail-pdf"
         })
-public class OrderDetailsDowloadFileServlet extends SlingSafeMethodsServlet {
+public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
-    @Reference
+	private static final long serialVersionUID = 2323660841296799482L;
+
+	@Reference
     OrderDetailsService orderDetailsService;
 
     @Reference
@@ -48,8 +50,8 @@ public class OrderDetailsDowloadFileServlet extends SlingSafeMethodsServlet {
     // @Reference
     // OrderDetailsExcelService generateExcel;
 
-    private static final long serialVersionUID = 2;
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDowloadFileServlet.class);
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
