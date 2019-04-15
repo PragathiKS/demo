@@ -215,8 +215,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         columns.add(new Column("deliveryList.getTotalWeight()", 50, false));
 
         String[][] content = {
-                {"Total pre VAT", deliveryList.getTotalPricePreVAT()},
-                {"VAT", deliveryList.getTotalVAT()}
+                {"","Total pre VAT", deliveryList.getTotalPricePreVAT()},
+                {"","VAT", deliveryList.getTotalVAT()}
         };
 
         return getTable(columns, content);

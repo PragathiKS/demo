@@ -171,9 +171,6 @@ public class PDFUtil {
         double widthPortrait = (double) table.getPageSize().getHeight() - (double) table.getMargin();
         double tableTopY = table.isLandscape() ? widthLandscape : widthPortrait;
 
-        // Draws grid and borders
-        //drawTableGrid(table, currentPageContent, contentStream, tableTopY);
-
         // Position cursor to start drawing content
         double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         // Calculate center alignment for text in cell considering font height
