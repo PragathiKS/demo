@@ -1,8 +1,13 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.google.gson.JsonObject;
+import java.util.List;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+
+import com.tetrapak.customerhub.core.beans.pdf.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
+import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
 
 /**
  * Tetra Pak Order Detail Service
@@ -10,6 +15,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
  */
 @FunctionalInterface
 public interface OrderDetailsPDFService {
-
-    void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response, JsonObject jsonResponse);
+	
+	void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList);
 }

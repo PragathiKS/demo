@@ -34,4 +34,8 @@ public class CustomerHubConstants {
     public static final String RESULT = "result";
 
     public static final String STATUS = "status";
+    
+    public static final String PDF = "pdf";
+    
+    public static final String EXCEL = "excel";
 }

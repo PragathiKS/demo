@@ -1,15 +1,15 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.pdf.*;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.utils.HttpUtil;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
-import com.tetrapak.customerhub.core.utils.TableBuilder;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -24,13 +24,18 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.pdf.DeliveryAddress;
+import com.tetrapak.customerhub.core.beans.pdf.DeliveryList;
+import com.tetrapak.customerhub.core.beans.pdf.InvoiceAddress;
+import com.tetrapak.customerhub.core.beans.pdf.OrderDetails;
+import com.tetrapak.customerhub.core.beans.pdf.Product;
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
+import com.tetrapak.customerhub.core.utils.PDFUtil;
+import com.tetrapak.customerhub.core.utils.TableBuilder;
 
 /**
  * Impl class for Order Details PDF Service
@@ -47,14 +52,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     PDFont muli_bold;
 
     @Override
-    public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response, JsonObject jsonResponse) {
-        JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
-
-        Gson gson = new Gson();
-        OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result), OrderDetailResponse.class);
-        OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
-        CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
-        List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+    public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
        // InputStream in1 = null;
        // InputStream in2 = null;
         InputStream image1 = null;
