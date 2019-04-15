@@ -6,8 +6,8 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 
 /**
  * Service to create Excel file for order details.

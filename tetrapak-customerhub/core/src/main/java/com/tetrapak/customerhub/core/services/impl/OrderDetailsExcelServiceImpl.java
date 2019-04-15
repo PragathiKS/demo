@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 
 /**

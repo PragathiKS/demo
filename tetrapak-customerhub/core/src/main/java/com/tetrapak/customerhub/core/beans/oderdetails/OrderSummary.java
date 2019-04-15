@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.beans.oderdetails.packagingmaterial;
+package com.tetrapak.customerhub.core.beans.oderdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,10 +1,9 @@
 
-package com.tetrapak.customerhub.core.beans.oderdetails.parts;
+package com.tetrapak.customerhub.core.beans.oderdetails;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -19,7 +18,10 @@ public class OrderDetailResponse {
     @SerializedName("deliveryList")
     @Expose
     private List<DeliveryList> deliveryList = null;
-
+    @SerializedName("orderSummary")
+    @Expose
+    private List<OrderSummary> orderSummary = null;
+    
     public OrderDetails getOrderDetails() {
         return orderDetails;
     }
@@ -44,9 +46,17 @@ public class OrderDetailResponse {
         this.deliveryList = deliveryList;
     }
 
+    public List<OrderSummary> getOrderSummary() {
+        return orderSummary;
+    }
+
+    public void setOrderSummary(List<OrderSummary> orderSummary) {
+        this.orderSummary = orderSummary;
+    }
+    
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("orderDetails", orderDetails).append("customerSupportCenter", customerSupportCenter).append("deliveryList", deliveryList).toString();
+        return new ToStringBuilder(this).append("orderDetails", orderDetails).append("customerSupportCenter", customerSupportCenter).append("deliveryList", deliveryList).append("orderSummary", orderSummary).toString();
     }
 
 }

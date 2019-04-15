@@ -26,10 +26,10 @@ import org.slf4j.LoggerFactory;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
 import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.OrderDetails;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Product;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.Product;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;

@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.beans.oderdetails.packagingmaterial;
+package com.tetrapak.customerhub.core.beans.oderdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -21,15 +21,27 @@ public class Product {
     @SerializedName("remainingQuantity")
     @Expose
     private String remainingQuantity;
+    @SerializedName("orderNumber")
+    @Expose
+    private Integer orderNumber;
+    @SerializedName("productID")
+    @Expose
+    private String productID;
+    @SerializedName("weight")
+    @Expose
+    private String weight;
+    @SerializedName("ETA")
+    @Expose
+    private String eTA;
+    @SerializedName("unitPrice")
+    @Expose
+    private String unitPrice;
     @SerializedName("materialCode")
     @Expose
     private String materialCode;
     @SerializedName("SKU")
     @Expose
     private String sKU;
-    @SerializedName("orderNumber")
-    @Expose
-    private long orderNumber;
 
     public String getProductName() {
         return productName;
@@ -71,6 +83,46 @@ public class Product {
         this.remainingQuantity = remainingQuantity;
     }
 
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getETA() {
+        return eTA;
+    }
+
+    public void setETA(String eTA) {
+        this.eTA = eTA;
+    }
+
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+    
     public String getMaterialCode() {
         return materialCode;
     }
@@ -87,17 +139,9 @@ public class Product {
         this.sKU = sKU;
     }
 
-    public long getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("productName", productName).append("orderQuantity", orderQuantity).append("deliveredQuantity", deliveredQuantity).append("price", price).append("remainingQuantity", remainingQuantity).append("materialCode", materialCode).append("sKU", sKU).append("orderNumber", orderNumber).toString();
+        return new ToStringBuilder(this).append("productName", productName).append("orderQuantity", orderQuantity).append("deliveredQuantity", deliveredQuantity).append("price", price).append("remainingQuantity", remainingQuantity).append("orderNumber", orderNumber).append("productID", productID).append("weight", weight).append("eTA", eTA).append("unitPrice", unitPrice).append("materialCode", materialCode).append("sKU", sKU).toString();
     }
 
 }
