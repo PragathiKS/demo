@@ -1,11 +1,18 @@
 package com.tetrapak.customerhub.core.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -35,7 +42,7 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String customerNumberLabel;
-	
+
 	@Inject
 	private String webRefLabel;
 
@@ -53,7 +60,7 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String shippingLabel;
-	
+
 	@Inject
 	private String trackOrderLabel;
 
@@ -71,38 +78,54 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String totalVatLabel;
-	
+
 	@Inject
 	private String deliveryOrder;
-	
+
 	@Inject
 	private String deliveryNumber;
-	
+
 	@Inject
 	private String productionPlace;
-	
+
 	@Inject
 	private String requested;
-	
+
 	@Inject
 	private String etd;
-	
+
 	@Inject
 	private String kpkPopUpHeading;
-	
+
 	@Inject
 	private String kpkPopUpDescription;
-	
+
 	@Inject
 	private String noDataMsg;
-	
+
 	@Inject
 	private String errorMsg;
+
+	@Inject
+	private String customerReferenceLink;
+
+	@Inject
+	private String orderNoLink;
+
+	@Inject
+	private String packagingDeliveryTable;
+
+	@Inject
+	private String packagingProductsTable;
+
+	@Inject
+	private String partsDeliveryTable;
 
 	private String i18nKeys;
 
 	/**
-	 * Populating the i18n keys to a JSON object string getting values from the dialog
+	 * Populating the i18n keys to a JSON object string getting values from the
+	 * dialog
 	 */
 	@PostConstruct
 	protected void init() {
@@ -134,16 +157,38 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpDescription", getKpkPopUpDescription());
 		i18KeyMap.put("noDataMsg", getNoDataMsg());
 		i18KeyMap.put("errorMsg", getErrorMsg());
+		i18KeyMap.put("orderNoLink", getOrderNoLink());
+		i18KeyMap.put("customerReferenceLink", getCustomerReferenceLink());
 		i18nKeys = new Gson().toJson(i18KeyMap);
+		partsDeliveryTable = new Gson().toJson(getColumnNamesList(partsDeliveryTable));
+		packagingProductsTable = new Gson().toJson(getColumnNamesList(packagingProductsTable));
+		packagingDeliveryTable = new Gson().toJson(getColumnNamesList(packagingDeliveryTable));
 	}
-	
+
+	/**
+	 * 
+	 * Get the list of the columns from comma separated list in sequence
+	 * 
+	 * @param columnList
+	 * @return
+	 */
+	private List<String> getColumnNamesList(String columnList) {
+		List<String> columnNameList = new ArrayList<>();
+		if (!StringUtils.isBlank(columnList)) {
+			String[] columnArray = columnList.split(",");
+			columnArray = StringUtils.stripAll(columnArray);
+			columnNameList = Arrays.asList(columnArray);
+		}
+		return columnNameList;
+	}
+
 	/**
 	 * @return the i18nKeys
 	 */
 	public String getI18nKeys() {
 		return i18nKeys;
 	}
-	
+
 	/**
 	 * @return the backToOrderHistory
 	 */
@@ -318,7 +363,6 @@ public class OrderDetailsModel {
 	public String getKpkPopUpDescription() {
 		return kpkPopUpDescription;
 	}
-	
 
 	/**
 	 * @return the noDataMsg
@@ -334,4 +378,38 @@ public class OrderDetailsModel {
 		return errorMsg;
 	}
 
+	/**
+	 * @return the customerReferenceLink
+	 */
+	public String getCustomerReferenceLink() {
+		return customerReferenceLink;
+	}
+
+	/**
+	 * @return the orderNoLink
+	 */
+	public String getOrderNoLink() {
+		return orderNoLink;
+	}
+
+	/**
+	 * @return the packagingDeliveryTable
+	 */
+	public String getPackagingDeliveryTable() {
+		return packagingDeliveryTable;
+	}
+
+	/**
+	 * @return the packagingProductsTable
+	 */
+	public String getPackagingProductsTable() {
+		return packagingProductsTable;
+	}
+
+	/**
+	 * @return the partsDeliveryTable
+	 */
+	public String getPartsDeliveryTable() {
+		return partsDeliveryTable;
+	}
 }

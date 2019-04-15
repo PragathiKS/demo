@@ -21,18 +21,18 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class OrderDetailsModelTest {
 
 	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
-    private static final String RESOURCE_JSON = "order-detailspage.json";
+	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
+	private static final String RESOURCE_JSON = "order-detailspage.json";
 	private OrderDetailsModel orderDetailsModel;
-	
+
 	@Rule
 	public final AemContext aemContext = CuhuCoreAemContext.getAemContext(RESOURCE_JSON, CONTENT_ROOT);
 
-	 @Before
-	    public void setup() {
-	        Resource resource = aemContext.currentResource(COMPONENT_PATH);
-	         orderDetailsModel = resource.adaptTo(OrderDetailsModel.class);
-	    }
+	@Before
+	public void setup() {
+		Resource resource = aemContext.currentResource(COMPONENT_PATH);
+		orderDetailsModel = resource.adaptTo(OrderDetailsModel.class);
+	}
 
 	/**
 	 * Test method for
@@ -42,7 +42,61 @@ public class OrderDetailsModelTest {
 	public void testGetI18nKeysContainsValidKey() {
 		assertTrue(orderDetailsModel.getI18nKeys().contains("deliveryNumberLabel"));
 	}
-	
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTable()}.
+	 */
+	@Test
+	public void testGetPackagingDeliveryTable() {
+		assertTrue(orderDetailsModel.getPackagingDeliveryTable().contains("orderno"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTable()}.
+	 */
+	@Test
+	public void testGetPackagingProductsTable() {
+		assertTrue(orderDetailsModel.getPackagingProductsTable().contains("orderno"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTable()}.
+	 */
+	@Test
+	public void testGetPartsDeliveryTable() {
+		assertTrue(orderDetailsModel.getPartsDeliveryTable().contains("orderno"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingDeliveryTable()}.
+	 */
+	@Test
+	public void testGetPackagingDeliveryTableInvalidColumn() {
+		assertFalse(orderDetailsModel.getPackagingDeliveryTable().contains("orderno1"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPackagingProductsTable()}.
+	 */
+	@Test
+	public void testGetPackagingProductsTableInvalidColumn() {
+		assertFalse(orderDetailsModel.getPackagingProductsTable().contains("orderno1"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getPartsDeliveryTable()}.
+	 */
+	@Test
+	public void testGetPartsDeliveryTableInvalidColumn() {
+		assertFalse(orderDetailsModel.getPartsDeliveryTable().contains("orderno1"));
+	}
+
 	/**
 	 * Test method for
 	 * {@link com.tetrapak.customerhub.core.models.OrderDetailsModel#getI18nKeys()}.
