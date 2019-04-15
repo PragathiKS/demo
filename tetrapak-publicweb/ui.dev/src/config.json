@@ -113,7 +113,7 @@
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
-      "prod": "production"
+      "prod": "development"
     },
     "entry": {
       "global": "source/scripts/core/core.js"

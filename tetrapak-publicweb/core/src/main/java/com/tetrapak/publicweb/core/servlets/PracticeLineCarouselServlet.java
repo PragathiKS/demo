@@ -39,7 +39,6 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
 import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
-import com.tetrapak.publicweb.core.servlets.SubCategoryTagServlet.Config;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
@@ -201,8 +200,12 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 		try {
 			resourceResolver = resolverFactory
 					.getServiceResourceResolver(param);
-		} catch (LoginException e1) {
-			log.error("[Error getting the resource resolver");
+			if(resourceResolver == null) {
+				log.error("[Resource resolver from system user is null. Getting it from request now.");
+				resourceResolver = request.getResourceResolver();
+			}
+		} catch (LoginException e) {
+			log.error("[Error getting the resource resolver. {}", e);
 			resourceResolver = request.getResourceResolver();
 		}
 		return resourceResolver;

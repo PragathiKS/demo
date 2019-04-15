@@ -1,5 +1,6 @@
 .pw-banner {
     @include margin-bottom($margin-xxxl);
+
     $self: &;
     position: relative;
 
