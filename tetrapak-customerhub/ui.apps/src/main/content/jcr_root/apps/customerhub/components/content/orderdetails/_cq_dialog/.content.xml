@@ -79,12 +79,12 @@
                                 fieldLabel="Customer Reference Label"
                                 name="./customerReferenceLabel"
                                 required="true"/>
-                            <customerReferenceLink
+                            <webReferenceLink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter link on click of Customer reference Label.&#xa;Used on both Parts and Package order details page."
-                                fieldLabel="Customer Reference Link"
-                                name="./customerReferenceLink"
+                                fieldDescription="Enter link on click of Web reference Label.&#xa;Used on both Parts and Package order details page."
+                                fieldLabel="Web Reference Link"
+                                name="./webReferenceLink"
                                 required="false"/>
                             <webRefLabel
                                 jcr:primaryType="nt:unstructured"
@@ -257,7 +257,7 @@
                                     <partsDeliveryTable
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter the Parts Delivery table column names' ordered in a comma separated list. eg."
+                                        fieldDescription="Enter the Parts Delivery table column names' ordered in a comma separated list. eg. sno,orderno,..."
                                         fieldLabel="Column List"
                                         name="./partsDeliveryTable"
                                         required="true"/>
@@ -271,7 +271,7 @@
                                     <packagingDeliveryTable
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter the Packaging Delivery table column names' ordered in a comma separated list eg."
+                                        fieldDescription="Enter the Packaging Delivery table column names' ordered in a comma separated list eg. sno,orderno,..."
                                         fieldLabel="Column List"
                                         name="./packagingDeliveryTable"
                                         required="true"/>
@@ -285,7 +285,7 @@
                                     <packagingProductsTable
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter the packaging products table column names' ordered in a comma separated list. eg. "
+                                        fieldDescription="Enter the packaging products table column names' ordered in a comma separated list. eg. sno,orderno,..."
                                         fieldLabel="Column List"
                                         name="./packagingProductsTable"
                                         required="true"/>

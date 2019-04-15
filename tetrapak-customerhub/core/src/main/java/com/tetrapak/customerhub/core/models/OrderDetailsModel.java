@@ -107,7 +107,7 @@ public class OrderDetailsModel {
 	private String errorMsg;
 
 	@Inject
-	private String customerReferenceLink;
+	private String webReferenceLink;
 
 	@Inject
 	private String orderNoLink;
@@ -158,7 +158,7 @@ public class OrderDetailsModel {
 		i18KeyMap.put("noDataMsg", getNoDataMsg());
 		i18KeyMap.put("errorMsg", getErrorMsg());
 		i18KeyMap.put("orderNoLink", getOrderNoLink());
-		i18KeyMap.put("customerReferenceLink", getCustomerReferenceLink());
+		i18KeyMap.put("webReferenceLink", getWebReferenceLink());
 		i18nKeys = new Gson().toJson(i18KeyMap);
 		partsDeliveryTable = new Gson().toJson(getColumnNamesList(partsDeliveryTable));
 		packagingProductsTable = new Gson().toJson(getColumnNamesList(packagingProductsTable));
@@ -381,8 +381,8 @@ public class OrderDetailsModel {
 	/**
 	 * @return the customerReferenceLink
 	 */
-	public String getCustomerReferenceLink() {
-		return customerReferenceLink;
+	public String getWebReferenceLink() {
+		return webReferenceLink;
 	}
 
 	/**
