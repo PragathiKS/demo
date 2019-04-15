@@ -222,17 +222,16 @@ public class PDFUtil {
      * @param color    color
      * @throws IOException IO Exception
      */
-    public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color) throws IOException {
+    public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.moveTo(margin, height);
         contentStream.lineTo(margin + length, (float)height);
+        contentStream.setLineWidth(thickness);
         contentStream.stroke();
     }
 
     public static void drawTableGrid(PDDocument document, PDPageContentStream contentStream, Table table, String[][] currentPageContent, double tableTopY)
             throws IOException {
-
-
         double nextY = tableTopY;
         for (int i = 0; i <= currentPageContent.length + 1; i++) {
 
