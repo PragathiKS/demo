@@ -3,8 +3,8 @@ package com.tetrapak.customerhub.core.utils;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Column;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Table;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 
 import java.util.List;
 

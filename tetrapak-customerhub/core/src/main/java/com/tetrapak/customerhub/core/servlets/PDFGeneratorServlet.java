@@ -1,8 +1,8 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import com.tetrapak.customerhub.core.utils.TableBuilder;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Column;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Table;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;

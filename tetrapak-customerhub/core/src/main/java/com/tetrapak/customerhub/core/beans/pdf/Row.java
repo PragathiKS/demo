@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.beans.oderdetails.parts;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 import org.apache.pdfbox.pdmodel.font.PDFont;
 

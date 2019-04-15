@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.beans.oderdetails.parts;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 /**
  * This is column class and is used to create columns inside a table object

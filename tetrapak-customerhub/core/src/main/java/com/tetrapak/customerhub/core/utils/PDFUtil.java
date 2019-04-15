@@ -13,8 +13,8 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Row;
-import com.tetrapak.customerhub.core.beans.oderdetails.parts.Table;
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
