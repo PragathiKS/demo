@@ -1,7 +1,7 @@
 pipeline {
 	agent any
           triggers {
-          cron('30 10 * * *')
+          cron('30 10,15 * * *')
                    }
 
 	
@@ -66,8 +66,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -143,6 +143,8 @@ pipeline {
 						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+
+
 					}
 				)  
 			}
@@ -231,14 +233,14 @@ pipeline {
 post {
 
       success {
-      emailext subject: "STARTED: Job '${env.JOB_NAME}'",
+      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',      
       to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
+      to : 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
       }
 
 }
