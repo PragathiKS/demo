@@ -1,0 +1,27 @@
+.tp-order-detail-packaging {
+    &__tablewrapper {
+        @include horizontal-scroll-touch;
+        @include padding-top($padding-l);
+    }
+
+    &__icon-info {
+        @include padding($padding-sm);
+    }
+
+    &__modal-body {
+        @include padding($padding-l);
+        border-top: 1px solid $color-tundora;
+    }
+
+    &__modal-desc {
+        font-family: $font-bold;
+    }
+
+    .tpmol-modal-header {
+        @include padding($padding-md $padding-l)
+    }
+
+    .tp-modal-content {
+        border-radius: 0;
+    }
+}

@@ -12,11 +12,11 @@ function _renderDeliveryDetails() {
   const $this = this;
   auth.getToken(({ data: authData }) => {
     render.fn({
-      template: 'packaging',
+      template: 'packagingDeliveryDetail',
       url: {
         path: '/apps/settings/wcm/designs/customerhub/jsonData/packaging.json' //Mock JSON
       },
-      target: '.js-packaging__delivery',
+      target: '.js-packaging__delivery-detail',
       ajaxConfig: {
         method: ajaxMethods.GET,
         beforeSend(jqXHR) {
@@ -36,28 +36,35 @@ function _renderDeliveryDetails() {
         data = $.extend(true, data, $this.cache);
         return $this.processTableData([data]);
       }
-    }, (data) => {
-      logger.log(data);
     });
   });
 
 }
 function _processTableData(data) {
-  let deliveryTablekeys = [];
+  const { packagingDeliveryTableCols } = this.cache;
+  let deliveryTablekeys = packagingDeliveryTableCols.split(',');
   data.tableHeadings = [];
-  debugger; //eslint-disable-line
-  data.packagingDeliveryTable.map(item => {
-    deliveryTablekeys.push(item);
-    data.tableHeadings.push({
-      key: `${item}`,
-      i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`
-    });
+  deliveryTablekeys.map(item => {
+    if (item === 'quantityKPK') {
+      data.tableHeadings.push({
+        key: `${item}`,
+        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`,
+        iconClassName: 'icon-Info tp-order-detail-packaging__icon-info js-icon-Info'
+      });
+    }
+    else {
+      data.tableHeadings.push({
+        key: `${item}`,
+        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`
+      });
+    }
   });
 
   if (Array.isArray(data.deliveryList)) {
     data.deliveryList = data.deliveryList.map(deliveryList => {
       if (Array.isArray(deliveryList.products)) {
         deliveryList.products = deliveryList.products.map(product => {
+          deliveryTablekeys = (deliveryTablekeys.length === 0) ? Object.keys(product) : deliveryTablekeys;
           product.quantityKPK = `${product.orderQuantity}/${product.deliveredQuantity}/${product.remainingQuantity}`;
           return tableSort.call(this, product, deliveryTablekeys);
         });
@@ -65,31 +72,33 @@ function _processTableData(data) {
       return deliveryList;
     });
   }
-  this.cache.data = data;
+  this.cache = data;
 }
 
-class Packaging {
+function _openOverlay() {
+  this.root.find('.js-order-detail-packaging__modal').modal();
+}
+class Orderdetailpackaging {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
+    this.cache.packagingDeliveryTableCols = $('#packagingDeliveryTableCols').val();
     this.cache.i18nKeys = this.root.find('.js-packaging__config').text();
-    this.cache.packagingDeliveryTableConfig = this.root.find('.js-packaging__delivery-table-config').text();
-    this.cache.packagingDeliveryTable = [];
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.i18nKeys);
-      this.cache.packagingDeliveryTable = this.cache.packagingDeliveryTableConfig.split(',');
     } catch (e) {
       this.cache.i18nKeys = {};
-      this.cache.packagingDeliveryTable = {};
-      this.cache.packagingProductsTable = {};
       logger.error(e);
     }
   }
   bindEvents() {
-    // bind event
+    this.root
+      .on('click', '.js-icon-Info', this.openOverlay);
   }
+  openOverlay = (...args) => _openOverlay.apply(this, args);
+
   renderDeliveryDetails() {
     return _renderDeliveryDetails.apply(this, arguments);
   }
@@ -105,4 +114,4 @@ class Packaging {
   }
 }
 
-export default Packaging;
+export default Orderdetailpackaging;

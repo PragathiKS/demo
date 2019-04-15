@@ -1,0 +1,18 @@
+{{#each deliveryList}}
+        <div class="tp-card tp-order-detail-packaging">
+                {{> molecules/orderDetail/orderdeliverysummary/orderdeliverysummary  i18nKeys=../i18nKeys}}
+                <div class="tp-order-detail-packaging__tablewrapper js-packaging__tablewrapper">
+                        {{> molecules/table/table baseClass="tp-packaging" jsClass="js-packaging" list=products headings=../tableHeadings}}
+                </div>
+        </div>
+{{/each}}
+<div class="modal tp-modal tp-order-detail-packaging js-order-detail-packaging__modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
+                <div class="modal-content tp-modal-content">
+                        {{> molecules/modals/modalHeader/modalHeader title=i18nKeys.kpkPopUpHeading closeBtnText=i18nKeys.kpkPopUpCloseBtnText}}
+                        <div class="modal-body tp-modal-body tp-order-detail-packaging__modal-body">
+                                <div class="tp-order-detail-packaging__modal-desc">{{i18nKeys.kpkPopUpDescription}}</div>
+                        </div>
+                </div>
+        </div>
+</div>

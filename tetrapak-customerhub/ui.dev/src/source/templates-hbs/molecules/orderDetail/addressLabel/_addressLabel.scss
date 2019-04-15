@@ -1,8 +1,0 @@
-.addressLabel {
-    @include line-height($font-l, $font-baseline);
-    @include padding-bottom($padding-sm);
-
-    &__label {
-        font-family: $font-bold;
-    }
-}
