@@ -140,7 +140,13 @@ public class PDFUtil {
         }
     }
 
-    public static void drawTableOnSamePage(PDDocument doc, PDPageContentStream contentStream, Table table, int startY) {
+    /**
+     * @param doc document
+     * @param contentStream content stream
+     * @param table table
+     * @param startY start y position
+     */
+    public static void drawTable(PDDocument doc, PDPageContentStream contentStream, Table table, int startY) {
         // Calculate pagination
         double d1 = Math.floor((double) table.getHeight() / (double) table.getRowHeight());
         Integer rowsPerPage = (int) d1 - 1;
@@ -159,25 +165,20 @@ public class PDFUtil {
         }
     }
 
-    // Draws current page table grid and border lines and content
     private static void drawOnSamePage(Table table, String[][] currentPageContent, PDPageContentStream contentStream, int startY)
             throws IOException {
         double widthLandscape = (double) table.getPageSize().getWidth() - (double) table.getMargin();
         double widthPortrait = (double) table.getPageSize().getHeight() - (double) table.getMargin();
         double tableTopY = table.isLandscape() ? widthLandscape : widthPortrait;
 
-        // Position cursor to start drawing content
         double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
-        // Calculate center alignment for text in cell considering font height
         double nextTextY = tableTopY - ((double) table.getRowHeight() / 2)
                 - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * (double) table.getFontSize()) / 4) - startY;
 
-        // Write column headers
         writeContentLine(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY, table);
         nextTextY -= table.getRowHeight();
         nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
 
-        // Write content
         for (int i = 0; i < currentPageContent.length; i++) {
             writeContentLine(currentPageContent[i], contentStream, (float) nextTextX, (float) nextTextY, table);
             nextTextY -= (double) table.getRowHeight();
@@ -208,15 +209,6 @@ public class PDFUtil {
         return Arrays.copyOfRange(table.getContent(), startRange, endRange);
     }
 
-    private static PDPageContentStream generateContentStream(PDDocument doc, PDPage page, Table table) throws IOException {
-        PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, false);
-        if (table.isLandscape()) {
-            contentStream.transform(new Matrix(0, 1, -1, 0, table.getPageSize().getWidth(), 0));
-        }
-        contentStream.setFont(table.getTextFont(), table.getFontSize());
-        return contentStream;
-    }
-
     /**
      * @param document document
      * @param margin   margin
@@ -230,20 +222,6 @@ public class PDFUtil {
         contentStream.lineTo(margin + length, (float) height);
         contentStream.setLineWidth(thickness);
         contentStream.stroke();
-    }
-
-    public static void drawTableGrid(PDDocument document, PDPageContentStream contentStream, Table table, String[][] currentPageContent, double tableTopY)
-            throws IOException {
-        double nextY = tableTopY;
-        for (int i = 0; i <= currentPageContent.length + 1; i++) {
-
-            contentStream.moveTo(table.getMargin(), (float) nextY);
-            double width = (double) table.getMargin() + (double) table.getWidth();
-            contentStream.lineTo((float) width, (float) nextY);
-            contentStream.stroke();
-
-            nextY -= table.getRowHeight();
-        }
     }
 
     public static Table getTable(List<Column> columns, String[][] content, PDFont muli_regular, PDFont muli_bold) {

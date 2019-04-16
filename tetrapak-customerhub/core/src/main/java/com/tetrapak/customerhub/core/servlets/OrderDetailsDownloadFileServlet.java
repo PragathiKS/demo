@@ -25,14 +25,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * PDF Generator Servlet
+ * PDF and Excel Generator Servlet
  *
  * @author Nitin Kumar
  */
-@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF Generator Servlet",
-		"sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
-		"sling.servlet.paths=" + "/bin/customerhub/order-detail" })
+@Component(service = Servlet.class,
+        property = {
+                Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
+                "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+                "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
+                "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
+                "sling.servlet.paths=" + "/bin/customerhub/order-detail"
+        })
 public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = 2323660841296799482L;
@@ -81,14 +85,13 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 			List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
 			List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
-			if (CustomerHubConstants.PDF.equals(extension)) {
-				generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetails, customerSupportCenter,
-						deliveryList, orderSummaryList);
-			} else if (CustomerHubConstants.EXCEL.equals(extension)) {
-				generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
-			} else {
-				LOGGER.error("File type not specified for the download operation.");
-			}
+            if (CustomerHubConstants.PDF.equals(extension)) {
+                generatePDF.generateOrderDetailsPDF(response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
+            } else if (CustomerHubConstants.EXCEL.equals(extension)) {
+                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList, orderType);
+            } else {
+                LOGGER.error("File type not specified for the download operation.");
+            }
 
 		}
 	}
