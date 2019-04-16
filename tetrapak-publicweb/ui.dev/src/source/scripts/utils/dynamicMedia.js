@@ -8,15 +8,15 @@ import $ from 'jquery';
 import LazyLoad from 'vanilla-lazyload';
 
 function _processImageAttributes(container) {
-  $('.js-dynamic-media').each(function () {
+  $('.pw-dynamic-media').each(function () {
     const $this = $(this);
     let desktopSrc = $this.attr('data-src_desktop');
     let desktopL = $this.attr('data-src_desktopL');
     let desktopXL = $this.attr('data-src_desktopXL');
-    let tabletLandSrc = $this.attr('data-src_tabletl');
-    let tabletPortSrc = $this.attr('data-src_tabletp');
-    let mobileLandSrc = $this.attr('data-src_mobilel');
-    let mobilePortSrc = $this.attr('data-src_mobilep');
+    let tabletLandSrc = $this.attr('data-src_tabletL');
+    let tabletPortSrc = $this.attr('data-src_tabletP');
+    let mobileLandSrc = $this.attr('data-src_mobileL');
+    let mobilePortSrc = $this.attr('data-src_mobileP');
 
     if (typeof desktopSrc !== 'undefined') {
       if (typeof desktopL === 'undefined') {
@@ -65,11 +65,11 @@ function _processImageAttributes(container) {
   if (typeof container === 'string') {
     return new LazyLoad({
       container: document.querySelector(container),
-      elements_selector: '.js-dynamic-media[data-src]'
+      elements_selector: '.pw-dynamic-media[data-src]'
     });
   }
   return new LazyLoad({
-    elements_selector: '.js-dynamic-media[data-src]'
+    elements_selector: '.pw-dynamic-media[data-src]'
   });
 }
 
