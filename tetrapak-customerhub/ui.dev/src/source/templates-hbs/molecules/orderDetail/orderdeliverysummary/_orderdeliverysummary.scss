@@ -1,7 +1,43 @@
 .orderdeliverysummary {
+    border-bottom: 1px solid $color-mercury;
+
+    @media #{$desktop} {
+        @include padding-bottom($padding-l);
+
+    }
+
     &__heading {
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
-        @include margin-bottom($margin-l);
+        @include font-size($font-md);
+        @include line-height($font-l, $font-md);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @include margin-bottom($margin-l);
+        }
+
+    }
+
+    &__delivery-detail {
+        @include line-height($font-l, $font-baseline);
+        @include padding-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include padding-bottom($font-sm);
+        }
+    }
+
+    &__delivery-detail-label {
+        font-family: $font-bold;
+    }
+
+    &__address {
+        @include line-height($font-l, $font-baseline);
+        @include padding-bottom($padding-md);
+    }
+
+    &__address-label {
+        font-family: $font-bold;
     }
 }

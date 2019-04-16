@@ -1,8 +1,0 @@
-{{#each deliveryList}}
-        <div class="tp-card deliveryDetail">
-                {{> molecules/orderDetail/orderdeliverysummary/orderdeliverysummary  i18nKeys=../i18nKeys}}
-                <div class="tp-packaging__tablewrapper js-packaging__tablewrapper">
-                        {{> molecules/table/table baseClass="tp-packaging" jsClass="js-packaging" list=products headings=../tableHeadings}}
-                </div>
-        </div>
-{{/each}}
