@@ -101,7 +101,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 }
             } else {
                 PDFUtil.drawTable(document, contentStream, createOrderSummaryTable(orderSummaryList), 180);
-                PDFUtil.drawLine(document, contentStream, 65, 460, 190, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(document, contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
 
 
             }
@@ -242,7 +242,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createOrderSummaryTable(List<OrderSummary> orderSummaryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("Product", 330, false));
+        columns.add(new Column("Product", 325, false));
         columns.add(new Column("Order Quantity", 70, false));
         columns.add(new Column("Quantity delivered so far", 80, false));
 
