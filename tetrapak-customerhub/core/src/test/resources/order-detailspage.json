@@ -1,0 +1,71 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:createdBy":"admin",
+   "jcr:created":"Tue Apr 09 2019 16:09:05 GMT+0530",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "jcr:createdBy":"admin",
+      "jcr:title":"Parts Order Details",
+      "cq:template":"/conf/customerhub/settings/wcm/templates/landing-page",
+      "jcr:created":"Tue Apr 09 2019 16:09:05 GMT+0530",
+      "cq:lastModified":"Mon Apr 15 2019 10:52:06 GMT+0530",
+      "hideInNav":"true",
+      "sling:resourceType":"customerhub/components/structure/page",
+      "cq:lastModifiedBy":"admin",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid_622605362":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid"
+         },
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "orderdetails":{
+               "jcr:primaryType":"nt:unstructured",
+               "trackOrderLabel":"Track Order",
+               "jcr:createdBy":"admin",
+               "deliveryNumber":"Delivery Number",
+               "backToOrderHistory":"Back Link",
+               "orderNo":"Order Number",
+               "jcr:lastModifiedBy":"admin",
+               "totalVatLabel":"Total VAT",
+               "packagingProductsTableCols":"orderno,m,n,v",
+               "webReferenceLink":"#",
+               "totalPricePreVatLabel":"Total Price Pre-VAT",
+               "custSupCentreLabel":"Customer Support Centre",
+               "deliveryOrder":"Delivery Order",
+               "jcr:created":"Wed Apr 10 2019 15:27:26 GMT+0530",
+               "customerReferenceLabel":"Customer Reference ",
+               "customerNameLabel":"Customer Name ",
+               "etd":"ETD ",
+               "totalWeightLabel":"Total Weight",
+               "createPdfLabel":"Create Pdf ",
+               "purchaseOrderNumberLabel":"Purchase Order Number",
+               "customerNumberLabel":"Customer Number ",
+               "orderDateLabel":"Order Date",
+               "createExcelLabel":"Create Excel ",
+               "shippingLabel":"Shipping ",
+               "kpkPopUpHeading":"Kilo Pack Quantity ",
+               "requested":"Requested ",
+               "webRefLabel":"Web Reference",
+               "packagingDeliveryTableCols":"name  ,orderno  ,r  ",
+               "jcr:lastModified":"Mon Apr 15 2019 10:52:06 GMT+0530",
+               "sling:resourceType":"customerhub/components/content/orderdetails",
+               "partsDeliveryTableCols":"orderno,qwertyuiop",
+               "productionPlace":"Production Place ",
+               "errorMsg":"Error message",
+               "orderNoLink":"#",
+               "deliveryProductsFilterCheckboxText":"Products Filter Checkbox",
+               "kpkPopUpCloseBtnText":"Close Button",
+               "deliveryNumberLabel":"Delivery Number",
+               "invoiceAddrLabel":"Invoice Address ",
+               "deliveryAddrLabel":"Delivery Address ",
+               "noDataMsg":"No Data Error Message",
+               "kpkPopUpDescription":"Requested KPK"
+            }
+         }
+      }
+   }
+}

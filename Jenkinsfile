@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+          triggers {
+          cron('30 10,15 * * *')
+                   }
+
 	
 	parameters {
 		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
@@ -22,6 +26,18 @@ pipeline {
 	}
 
 	stages {
+
+               stage ('Checkout') {
+                 steps {
+                   git(
+                   poll: true,
+                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
+                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
+                   branch: 'develop'
+                      )
+                   }
+                 }
+
 		stage ('Initialize') {
 			steps {
 				sh '''
@@ -50,8 +66,8 @@ pipeline {
 					}
 					else
 					{
-						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
-						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/${params.CHOICE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CHOICE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+						sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
 					}
 				}
 			}
@@ -127,22 +143,17 @@ pipeline {
 						sh "curl -u admin:\\>Hd]HV7T -F name=${params.CHOICE}.complete -F file=@$workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
 						echo "Installing New Package on publish"
 						sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${params.CHOICE}.complete'"
+
+
 					}
 				)  
 			}
 		}
 		
-		stage ('Dispatcher Flush, Pa11y, Sitespeed, Zap Tools Execution') {
+		stage ('Pa11y, Sitespeed, Zap Tools Execution') {
 			steps {
 				script{
 					parallel (
-						"Dispatcher Flush" : {
-							echo "Cache Flush Started"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/home --header CQ-Page:/home 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/content --header CQ-Page:/content 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/etc --header CQ-Page:/etc 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/libs --header CQ-Page:/libs 'http://10.202.13.229/dispatcher/invalidate.cache'"
-						},
 						"karma" : {
 							echo "Publising karma Test Report"
 							sh 'echo "Karma Report"'
@@ -211,10 +222,24 @@ pipeline {
 				}
 			}
 		}
-		stage (sendemail) {
-			steps {
-				emailext attachLog: true, body: 'Build deployed on ENV', subject: 'Test Email', to: 'Tushar.Tushar@publicissapeint.com'
-			}
-		}
 	}
+post {
+
+      success {
+      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',      
+      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
+}
+      failure {
+      emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',
+      to : 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankit.mittal@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, ashish.saxena@publicissapient.com, deep.hazarika@publicissapient.com, gaurav.sharma3@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, miranda.boro@publicissapient.com, nitin.kumar1@publicissapient.com, rahul.azad@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.gupta1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vandana.gupta@publicissapient.com, vanessa.dsouza@publicissapient.com'
+      }
+
+ always {
+    build 'Tetra-SapDev-Dispatcher-Flush'   
+    }
+
+}
+
 }

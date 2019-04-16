@@ -89,4 +89,9 @@
             background-color: $color-white;
         }
     }
+
+    .tpatom-error {
+        @include margin-top($margin-sm);
+        @include margin-bottom($margin-md);
+    }
 }

@@ -21,6 +21,15 @@ public class FinancialStatementModel {
     private Resource resource;
 
     @Inject
+    private String selectDates;
+
+    @Inject
+    private String closeBtn;
+
+    @Inject
+    private String setDates;
+
+    @Inject
     private String statementOfAccount;
 
     @Inject
@@ -78,6 +87,9 @@ public class FinancialStatementModel {
     protected void init() {
    
         Map<String, Object> i18KeyMap = new HashMap<String, Object>();
+        i18KeyMap.put("selectDates", selectDates);
+        i18KeyMap.put("closeBtn", closeBtn);
+        i18KeyMap.put("setDates", setDates);
         i18KeyMap.put("statementOfAccount", statementOfAccount);
         i18KeyMap.put("findCustomer", findCustomer);
         i18KeyMap.put("accountNumber", accountNumber);

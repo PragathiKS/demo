@@ -27,6 +27,8 @@ describe('FinancialStatement', function () {
     this.dateRangeSpy = sinon.spy(this.financialstatement, 'openDateSelector');
     this.calendarSpy = sinon.spy(this.financialstatement, 'submitDateRange');
     this.navigateSpy = sinon.spy(this.financialstatement, 'navigateCalendar');
+    this.searchSpy = sinon.spy(this.financialstatement, 'populateResults');
+    this.resetSpy = sinon.spy(this.financialstatement, 'resetFilters');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialStatementData));
@@ -48,6 +50,8 @@ describe('FinancialStatement', function () {
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
     this.navigateSpy.restore();
+    this.searchSpy.restore();
+    this.resetSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -94,5 +98,15 @@ describe('FinancialStatement', function () {
   it('should select current date range and close modal', function () {
     $('.js-calendar').trigger('click');
     expect(this.calendarSpy.called).to.be.true;
+  });
+
+  it('should apply the filters on "Search Statements" button click', function () {
+    $('.js-financial-statement__submit').trigger('click');
+    expect(this.searchSpy.called).to.be.true;
+  });
+
+  it('should reset filters "Reset Search" button click', function () {
+    $('.js-financial-statement__reset').trigger('click');
+    expect(this.resetSpy.called).to.be.true;
   });
 });
