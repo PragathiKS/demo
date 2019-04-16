@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
@@ -66,6 +67,8 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
+        OrderDetailsModel orderDetailsModel = request.adaptTo(OrderDetailsModel.class);
+        
         if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             response.setStatus(Integer.parseInt(status.toString()));
             try {
@@ -83,7 +86,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             if (CustomerHubConstants.PDF.equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(response, orderType, orderDetailResponse);
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
-                generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
+                generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse, orderDetailsModel);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }

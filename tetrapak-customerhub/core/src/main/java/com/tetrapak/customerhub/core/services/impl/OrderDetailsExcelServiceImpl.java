@@ -5,6 +5,7 @@ import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
+import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
@@ -26,8 +27,8 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 
 	@Override
 	public void generateOrderDetailsExcel(SlingHttpServletResponse response, String orderType,
-			OrderDetailsData orderDetailData) {
-		getOrderDetailsSection(orderDetailData.getOrderDetails());
+			OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel) {
+		getOrderDetailsSection(orderDetailsModel, orderDetailData.getOrderDetails());
 		getOrderSummary(orderDetailData.getOrderSummary());
 		getDeliveryList(orderDetailData.getDeliveryList());
 
@@ -36,18 +37,28 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	/**
 	 * The first section of the excel having order details used in both parts and
 	 * packaging.
+	 * @param orderDetailsModel order detail model
 	 * 
 	 * @return the first section of the excel having order details
 	 */
-	private String[] getOrderDetailsSection(OrderDetails orderDetails) {
-		return null;
+	private String[] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
+		String[] orderDetailsSection = new String [10];
+		orderDetailsSection[0] = orderDetails.getOrderNumber();
+		orderDetailsSection[1] = orderDetails.getStatus();
+		orderDetailsSection[2] = orderDetails.getCustomerName();
+		orderDetailsSection[3] = orderDetails.getCustomerNumber().toString();
+		orderDetailsSection[4] = orderDetails.getPurchaseOrderNumber().toString();
+		orderDetailsSection[5] = orderDetails.getCustomerReference().toString();
+		orderDetailsSection[6] = orderDetails.getPlacedOn();
+		orderDetailsSection[7] = orderDetails.getWebRefID().toString();		
+		return orderDetailsSection;
 	};
 
 	/**
 	 * 
 	 * Only in packaging material excel
 	 * 
-	 * @return OrderSummary 2 d array
+	 * @return OrderSummary 2D array
 	 */
 	private String[][] getOrderSummary(List<OrderSummary> orderSummary) {
 		return null;
@@ -57,7 +68,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * 
 	 * Used in both parts and packaging material excel
 	 * 
-	 * @return DeliveryList 2 d array
+	 * @return DeliveryList 2D array
 	 */
 	private String[][] getDeliveryList(List<DeliveryList> deliveryList) {
 
