@@ -1,0 +1,7 @@
+.tp-address-detail {
+    @include line-height($font-l, $font-baseline);
+
+    &__addressLabel {
+        font-family: $font-bold;
+    }
+}

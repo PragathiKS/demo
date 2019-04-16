@@ -1,0 +1,23 @@
+<div class="orderdeliverysummary">
+    <h2 class="orderdeliverysummary__heading">{{i18n key=this.i18nKeys.deliveryOrder}}: {{this.deliveryNumber}} - {{this.deliveryStatus}}</h2>
+    <div class="row orderdeliverysummary__detail">
+        <div class="col-lg">
+            {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.deliveryOrder value=this.deliveryOrder}}
+            {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.productionPlace value=this.productPlace}}
+            {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.requested value=this.requestedDelivery}}
+            {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.etd value=this.ETD}}
+        </div>
+        <div class="col-lg"></div>
+        <div class="col-lg">
+            <div class="row">
+                <div class="col-lg">
+                 {{> molecules/orderDetail/addressDetail/addressDetail addressLabel=this.i18nKeys.deliveryAddrLabel data=this.deliveryAddress}}
+                 </div>
+                <div class="col-lg">
+                    {{> molecules/orderDetail/addressDetail/addressDetail addressLabel=this.i18nKeys.invoiceAddrLabel data=this.invoiceAddress}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

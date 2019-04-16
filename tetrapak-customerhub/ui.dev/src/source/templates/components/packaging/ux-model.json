@@ -1,0 +1,16 @@
+{
+  "i18nKeys": "{\r\n\t\"deliveryOrder\": \"Delivery Order\",\r\n\t\"deliveryNumber\": \"Delivery number\",\r\n\t\"productionPlace\": \"Production Place\",\r\n\t\"requested\": \"Requested\",\r\n\t\"etd\": \"ETD\",\r\n\t\"deliveryAddrLabel\": \"Delivery Address\",\r\n\t\"invoiceAddrLabel\": \"Invoice Address\",\r\n\t\"backToOrderHistory\": \"Back to order history\",\r\n\t\"orderNo\": \"Tetra Pak Order number\",\r\n\t\"customerNameLabel\": \"Customer Name\",\r\n\t\"purchaseOrderNumberLabel\": \"Purchase order no.\",\r\n\t\"orderDateLabel\": \"Order date\",\r\n\t\"customerNumberLabel\": \"Customer Number\",\r\n\t\"customerReferenceLabel\": \"Customer reference\",\r\n\t\"webRefLabel\": \"Web ref.\",\r\n\t\"custSupCentreLabel\": \"Customer support centre\",\r\n\t\"createExcelLabel\": \"Create Excel\",\r\n\t\"createPdfLabel\": \"Create PDF\",\r\n\t\"deliveryNumberLabel\": \"Delivery Number\",\r\n\t\"shippingLabel\": \"Shipping\",\r\n\t\"trackOrderLabel\": \"Track Order\",\r\n\t\"totalWeightLabel\": \"Total weight\",\r\n\t\"totalPricePreVatLabel\": \"Total pre VAT\",\r\n\t\"totalVatLabel\": \"VAT\"\r\n}",
+  "packagingDeliveryTable": [
+    "productName",
+    "materialCode",
+    "SKU",
+    "quantityKPK",
+    "price"
+  ],
+  "packagingProductsTable": [
+    "product",
+    "orderQuantity",
+    "deliveredQuantity"
+  ],
+  "partsDevileryTable": "[\r\n\t{\r\n      \"columnName\": \"product\",\r\n      \"columnNameI18n\": \"Product Name\"\r\n    },\r\n    {\r\n      \"columnName\": \"orderQuantity\",\r\n      \"columnNameI18n\": \"Order Quantity\"\r\n    },\r\n    {\r\n      \"columnName\": \"deliveredQuantity\",\r\n      \"columnNameI18n\": \"Quantity delivered so bar\"\r\n    }\r\n]"
+}
