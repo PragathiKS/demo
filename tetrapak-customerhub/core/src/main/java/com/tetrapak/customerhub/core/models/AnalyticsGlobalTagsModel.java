@@ -2,14 +2,6 @@ package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -22,6 +14,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.ArrayList;
@@ -30,14 +23,13 @@ import java.util.List;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
- *
  */
 @Model(adaptables = {SlingHttpServletRequest.class,
         Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AnalyticsGlobalTagsModel {
 
     @Inject
-	private Resource resource;
+    private Resource resource;
 
     @SlingObject
     private SlingHttpServletRequest request;
