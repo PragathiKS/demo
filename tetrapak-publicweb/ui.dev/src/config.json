@@ -147,7 +147,8 @@
         "source/templates/components/OrderStatus/",
         "source/templates/components/listContentImage/",
         "source/templates/components/carousel/",
-        "source/templates/components/carouselWithFilters/"
+        "source/templates/components/carouselWithFilters/",
+        "source/templates/components/dynamicMedia/"
       ]
     },
     "handlebars": {

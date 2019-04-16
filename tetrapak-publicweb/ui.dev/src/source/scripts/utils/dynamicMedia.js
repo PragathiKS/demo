@@ -13,10 +13,10 @@ function _processImageAttributes(container) {
     let desktopSrc = $this.attr('data-src_desktop');
     let desktopL = $this.attr('data-src_desktopL');
     let desktopXL = $this.attr('data-src_desktopXL');
-    let tabletLandSrc = $this.attr('data-src_tabletL');
-    let tabletPortSrc = $this.attr('data-src_tabletP');
-    let mobileLandSrc = $this.attr('data-src_mobileL');
-    let mobilePortSrc = $this.attr('data-src_mobileP');
+    let tabletLandSrc = $this.attr('data-src_tabletl');
+    let tabletPortSrc = $this.attr('data-src_tabletp');
+    let mobileLandSrc = $this.attr('data-src_mobilel');
+    let mobilePortSrc = $this.attr('data-src_mobilep');
 
     if (typeof desktopSrc !== 'undefined') {
       if (typeof desktopL === 'undefined') {
