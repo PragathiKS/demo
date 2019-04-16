@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.services;
 
 import org.apache.sling.api.SlingHttpServletResponse;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailResponse;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 
 /**
  * Service to create Excel file for order details.
@@ -18,5 +18,5 @@ public interface OrderDetailsExcelService {
 	 * @param orderType Order Type
 	 * @param orderDetailData
 	 */
-	void generateOrderDetailsExcel(SlingHttpServletResponse response,String orderType, OrderDetailResponse orderDetailData);
+	void generateOrderDetailsExcel(SlingHttpServletResponse response,String orderType, OrderDetailsData orderDetailData);
 }

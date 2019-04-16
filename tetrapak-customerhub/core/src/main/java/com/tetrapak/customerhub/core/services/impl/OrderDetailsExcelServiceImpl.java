@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailResponse;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
@@ -27,7 +27,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 
 	@Override
 	public void generateOrderDetailsExcel(SlingHttpServletResponse response, String orderType,
-			OrderDetailResponse orderDetailData) {
+			OrderDetailsData orderDetailData) {
 		getOrderDetailsSection(orderDetailData.getOrderDetails());
 		getOrderSummary(orderDetailData.getOrderSummary());
 		getDeliveryList(orderDetailData.getDeliveryList());

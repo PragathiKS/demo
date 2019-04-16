@@ -74,8 +74,8 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 		} else {
 			JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
 			Gson gson = new Gson();
-			OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
-					OrderDetailResponse.class);
+			OrderDetailsData orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
+					OrderDetailsData.class);
 			OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
 			CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
 			List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
