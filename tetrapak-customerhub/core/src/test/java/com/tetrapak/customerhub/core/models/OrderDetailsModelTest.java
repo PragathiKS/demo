@@ -108,7 +108,7 @@ public class OrderDetailsModelTest {
 	
 	@Test
 	public void testDownloadOrderDetailsServletUrl() {
-	assertTrue(orderDetailsModel.getDownloadDetailsUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"));
+	assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"));
 	}
 
 }

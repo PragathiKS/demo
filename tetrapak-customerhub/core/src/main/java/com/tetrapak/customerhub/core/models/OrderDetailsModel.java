@@ -133,7 +133,7 @@ public class OrderDetailsModel {
 
 	private String i18nKeys;
 	
-	private String downloadOrderDetailsServletUrl;
+	private String downloadPdfExcelServletUrl;
 
 	/**
 	 * Populating the i18n keys to a JSON object string getting values from the
@@ -177,7 +177,7 @@ public class OrderDetailsModel {
 		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
 		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
 		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
-		downloadOrderDetailsServletUrl = resource.getPath();
+		downloadPdfExcelServletUrl = resource.getPath();
 	}
 
 	/**
@@ -444,8 +444,8 @@ public class OrderDetailsModel {
 	/**
 	 * @return the downloadOrderDetailsServletUrl
 	 */
-	public String getDownloadOrderDetailsServletUrl() {
-		return downloadOrderDetailsServletUrl;
+	public String getDownloadPdfExcelServletUrl() {
+		return downloadPdfExcelServletUrl;
 	}
 
 }
