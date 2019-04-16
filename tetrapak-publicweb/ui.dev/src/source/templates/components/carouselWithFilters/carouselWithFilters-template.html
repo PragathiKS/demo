@@ -1,5 +1,5 @@
 <sly data-sly-template.carouselWithFilters_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.prodType}" class="pw-carousel pw-carouselwfilters pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" id="pw-carousel-${data.carouselId}" data-module="CarouselWithFilters" data-locator="carousel-with-filters" data-prodtype="${data.prodType}" data-rootpath="${data.rootPath}" data-buttontheme="${data.pwButtonTheme}">
+  <div data-sly-test="${data.prodType}" class="pw-carousel pw-carouselwfilters pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" id="pw-carousel-${data.carouselId}" data-module="CarouselWithFilters" data-locator="carousel-with-filters" data-prodtype="${data.prodType}" data-rootpath="${data.rootPath}" data-buttontheme="${data.pwButtonTheme}" data-categories="${data.tagsMap['tetra-pak:public-web/product/category/beverages']}">
     <div class="pw-carousel__title ${data.titleAlignment}">
       <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
       data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
@@ -10,17 +10,20 @@
         <button class="btn dropdown-toggle pw-carousel__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </button>
         <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-category" data-sly-list.categoryTag="${data.categoryTagsMap}">
-          <a href="#" class="dropdown-item ${categoryTagList.first? 'active': ''}" data-category="${categoryTag}">
+          <a href="#" class="dropdown-item ${categoryTagList.first? 'active' : ''}" data-category="${categoryTag}">
             ${data.categoryTagsMap[categoryTag]}
           </a>
         </div>
       </div>
       <div class="pw-carousel__dropdown dropdown d-lg-inline-block text-left">
         <label class="d-block">${'Subcategory' @ i18n}</label>
-        <button class="btn dropdown-toggle pw-carousel__dropdown__toggle subcategory__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        </button>
-        <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-subcategory">
-          <!--/* Subcategories renders here */-->
+        <button class="btn dropdown-toggle pw-carousel__dropdown__toggle subcategory__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu pw-carousel__dropdown__menu js-filter-subcategory" data-sly-list="${data.tagsMap.keySet.iterator}">
+          <div data-category="${item}" class="dropdown-category-wrapper" data-sly-list.subcats="${data.tagsMap[item].keySet.iterator}">
+            <a href="#" class="dropdown-item" data-category="${data.tagsMap[item][subcats]}">
+              ${subcats}
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -30,15 +33,5 @@
       </div>
     </div>
   </div>
-
-  <!--/* TODO : An example of how the iteration can be handled from the model for sub-categories 
-  <div data-sly-list="${data.tagsMap.keySet.iterator}">
-      <h4> ${item}</h4>
-       <ul data-sly-list.aem="${data.tagsMap[item].keySet.iterator}">
-           <li>${aem} ${data.tagsMap[item][aem]}</li>
-       </ul>
-  </div>
-   */-->
-
   <sly data-sly-test="${!data.prodType}" data-sly-call="${templates.placeholder @ isEmpty = !data.prodType}"></sly>
 </sly>
