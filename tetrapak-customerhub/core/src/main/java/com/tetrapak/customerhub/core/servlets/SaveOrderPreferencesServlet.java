@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -22,7 +23,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
  * 
@@ -117,6 +117,6 @@ public class SaveOrderPreferencesServlet extends SlingAllMethodsServlet {
 	private void writeJsonResponse(SlingHttpServletResponse resp, String status) throws IOException {
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty("status", status);
-		GlobalUtil.writeJsonResponse(resp, jsonResponse);
+		HttpUtil.writeJsonResponse(resp, jsonResponse);
 	}
 }
