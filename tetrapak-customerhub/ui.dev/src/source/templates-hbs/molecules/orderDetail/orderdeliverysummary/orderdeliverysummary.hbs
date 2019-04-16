@@ -1,11 +1,25 @@
 <div class="orderdeliverysummary">
-    <h2 class="orderdeliverysummary__heading">{{i18n key=this.i18nKeys.deliveryOrder}}: {{this.deliveryNumber}} - {{this.deliveryStatus}}</h2>
+    <h2 class="orderdeliverysummary__heading">{{i18n key=this.i18nKeys.deliveryOrder}}: {{this.deliveryNumber}}{{#if this.deliveryStatus}} - {{this.deliveryStatus}}{{/if}}</h2>
     <div class="row">
         <div class="col-lg">
-            {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.deliveryOrder value=this.deliveryOrder}}
-            {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.productionPlace value=this.productPlace}}
-            {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.requested value=this.requestedDelivery}}
-            {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.etd value=this.ETD}}
+            {{#if this.deliveryOrder}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.deliveryOrder value=this.deliveryOrder}}
+            {{/if}}
+            {{#if this.productPlace}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.productionPlace value=this.productPlace}}
+            {{/if}}
+            {{#if this.requestedDelivery}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.requested value=this.requestedDelivery}}
+            {{/if}}
+            {{#if this.ETD}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.etd value=this.ETD}}
+            {{/if}}
+            {{#if this.carrier}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.shippingLabel value=this.carrier}}
+            {{/if}}
+            {{#if this.carrierTrackingID}}
+                {{> molecules/orderDetail/addressLabel  label=this.i18nKeys.trackOrderLabel value=this.carrierTrackingID}}
+            {{/if}}
         </div>
         <div class="col-lg"></div>
         <div class="col-lg">

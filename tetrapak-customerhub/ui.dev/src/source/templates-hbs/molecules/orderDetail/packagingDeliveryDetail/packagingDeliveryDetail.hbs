@@ -4,6 +4,9 @@
                 <div class="tp-order-detail-packaging__tablewrapper js-packaging__tablewrapper">
                         {{> molecules/table/table baseClass="tp-packaging" jsClass="js-packaging" list=products headings=../tableHeadings}}
                 </div>
+                {{#if ../parts}}
+                        parts
+                {{/if}}
         </div>
 {{/each}}
 <div class="modal tp-modal tp-order-detail-packaging js-order-detail-packaging__modal fade" tabindex="-1" role="dialog">

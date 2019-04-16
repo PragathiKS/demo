@@ -58,11 +58,7 @@ describe('OrderDetail', function () {
     done();
   });
   it('should process data before rendering order detail summary section', function (done) {
-    if (this.orderDetail.cache.orderType === 'packmat') {
-      expect(this.orderDetail.processTableData.called).to.be.true;
-    } else {
-      expect(this.orderDetail.processTableData.called).to.be.false;
-    }
+    expect(this.orderDetail.processTableData.called).to.be.true;
     done();
   });
   it('should render order detail summary section', function (done) {

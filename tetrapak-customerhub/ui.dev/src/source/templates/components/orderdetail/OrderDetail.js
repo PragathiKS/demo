@@ -26,6 +26,67 @@ function _processPackmatData(data) {
       i18nKey: `cuhu.orderDetail.${key}`
     }));
   }
+
+  const { packagingDeliveryTableCols } = this.cache;
+  let deliveryTablekeys = packagingDeliveryTableCols.split(',');
+  data.tableHeadings = [];
+  deliveryTablekeys.map(item => {
+    if (item === 'quantityKPK') {
+      data.tableHeadings.push({
+        key: `${item}`,
+        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`,
+        iconClassName: 'icon-Info tp-order-detail-packaging__icon-info js-icon-Info'
+      });
+    }
+    else {
+      data.tableHeadings.push({
+        key: `${item}`,
+        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`
+      });
+    }
+  });
+
+  if (Array.isArray(data.deliveryList)) {
+    data.deliveryList = data.deliveryList.map(deliveryList => {
+      if (Array.isArray(deliveryList.products)) {
+        deliveryList.products = deliveryList.products.map(product => {
+          deliveryTablekeys = (deliveryTablekeys.length === 0) ? Object.keys(product) : deliveryTablekeys;
+          product.quantityKPK = `${product.orderQuantity}/${product.deliveredQuantity}/${product.remainingQuantity}`;
+          return tableSort.call(this, product, deliveryTablekeys);
+        });
+      }
+      return deliveryList;
+    });
+  }
+
+  debugger; //eslint-disable-line
+}
+
+/**
+ * Process Parts Data
+ */
+function _processPartsData(data) {
+  let keys = [];
+  if (Array.isArray(data.deliveryList)) {
+    data.deliveryList.forEach(function (delivery) {
+      delete delivery.deliveryOrder;
+      delete delivery.ETD;
+      delivery.products = delivery.products.map((product, index) => {
+        product['#'] = index + 1;
+        if (data.partsDeliveryTableCols) {
+          keys = (keys.length === 0) ? data.partsDeliveryTableCols : keys;
+        } else {
+          keys = (keys.length === 0) ? Object.keys(product) : keys;
+        }
+
+        return tableSort.call(this, product, keys);
+      });
+      data.tableHeadings = keys.map(key => ({
+        key,
+        i18nKey: `cuhu.orderDetail.${key}`
+      }));
+    });
+  }
 }
 
 /**
@@ -56,14 +117,23 @@ function _renderOrderSummary() {
             isError: true
           };
         } else {
-          data = $.extend(true, data, $this.cache.i18nKeys);
+          data['i18nKeys'] = $this.cache.i18nKeys;
 
           if ($this.cache.packagingProductsTableCols.length > 0) {
             data['packagingProductsTableCols'] = $this.cache.packagingProductsTableCols;
           }
-          if ($this.cache.orderType === 'packmat') {
-            return $this.processTableData([data]);
+
+          if ($this.cache.partsDeliveryTableCols.length > 0) {
+            data['partsDeliveryTableCols'] = $this.cache.partsDeliveryTableCols;
           }
+
+          if ($this.cache.orderType === 'packmat') {
+            data['packmat'] = true;
+          } else {
+            data['parts'] = true;
+          }
+
+          return $this.processTableData([data]);
         }
       }
     });
@@ -85,8 +155,11 @@ class OrderDetail {
       logger.error(e);
     }
 
+    this.cache.partsDeliveryTableCols = this.root.find('#partsDeliveryTableCols').val();
+    this.cache.partsDeliveryTableCols = this.cache.partsDeliveryTableCols !== '' ? this.cache.partsDeliveryTableCols.split(',') : [];
     this.cache.packagingProductsTableCols = this.root.find('#packagingProductsTableCols').val();
     this.cache.packagingProductsTableCols = this.cache.packagingProductsTableCols !== '' ? this.cache.packagingProductsTableCols.split(',') : [];
+    this.cache.packagingDeliveryTableCols = this.root.find('#packagingDeliveryTableCols').val();
 
     const { orderType } = deparam(window.location.search.replace('?', '').replace('&', ','));
 
@@ -112,7 +185,11 @@ class OrderDetail {
   }
   renderOrderSummary = () => _renderOrderSummary.call(this);
   processTableData(data) {
-    return _processPackmatData.apply(this, data);
+    if (this.cache.orderType === 'packmat') {
+      return _processPackmatData.apply(this, data);
+    } else {
+      return _processPartsData.apply(this, data);
+    }
   }
   init() {
     /* Mandatory method */
