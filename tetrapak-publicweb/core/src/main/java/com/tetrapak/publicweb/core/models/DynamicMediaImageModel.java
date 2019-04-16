@@ -165,6 +165,8 @@ public class DynamicMediaImageModel {
             final String imageConfiguration = dynamicMediaConfiguration.get(key.toString());
             if (StringUtils.isNotEmpty(imageConfiguration)) {
                 url = createUrl(imagePath, imageConfiguration);
+            } else {
+            	return imagePath;
             }
         }
         return url;
