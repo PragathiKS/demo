@@ -25,14 +25,15 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * PDF Generator Servlet
+ * PDF and Excel Generator Servlet
  *
  * @author Nitin Kumar
  */
 @Component(service = Servlet.class,
         property = {
-                Constants.SERVICE_DESCRIPTION + "=PDF Generator Servlet",
+                Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+                "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
                 "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
                 "sling.servlet.paths=" + "/bin/customerhub/order-detail"
         })
@@ -85,7 +86,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
             if (CustomerHubConstants.PDF.equals(extension)) {
-                generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
+                generatePDF.generateOrderDetailsPDF(response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
                 generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList, orderType);
             } else {

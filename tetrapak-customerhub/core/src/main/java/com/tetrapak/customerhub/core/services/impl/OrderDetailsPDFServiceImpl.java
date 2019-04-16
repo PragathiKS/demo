@@ -15,7 +15,6 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -44,7 +43,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     PDFont muli_bold;
 
     @Override
-    public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+    public void generateOrderDetailsPDF(SlingHttpServletResponse response,
                                         String orderType, OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList, List<OrderSummary> orderSummaryList) {
         // InputStream in1 = null;
         // InputStream in2 = null;
@@ -83,25 +82,28 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
-            if (StringUtils.equalsIgnoreCase("parts", orderType)) {
-                PDFUtil.drawTableOnSamePage(document, contentStream, createOrderDetailTable(orderDetails), 60);
+            PDFUtil.drawTable(document, contentStream, createOrderDetailTable(orderDetails), 60);
 
+            if (StringUtils.equalsIgnoreCase("parts", orderType)) {
                 for (DeliveryList deliveryDetail : deliveryList) {
                     int count = deliveryList.indexOf(deliveryDetail) + 1;
                     int height = 800 - 240 * count; //565
                     PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
                     PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
 
-                    PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
+                    PDFUtil.drawTable(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
                     PDFUtil.drawLine(document, contentStream, 65, 460, height - 128, Color.black, 0.01f);
 
                     Table productTable = createProductTable(deliveryDetail.getProducts());
-                    PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 840 - height);
+                    PDFUtil.drawTable(document, contentStream, productTable, 840 - height);
                     //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
-                    PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
+                    PDFUtil.drawTable(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
                 }
             } else {
-                //tables for pakmat goes here
+                PDFUtil.drawTable(document, contentStream, createOrderSummaryTable(orderSummaryList), 180);
+                PDFUtil.drawLine(document, contentStream, 65, 460, 190, Color.LIGHT_GRAY, 0.01f);
+
+
             }
 
             contentStream.close();
@@ -147,9 +149,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private List<Row> getContactLines(CustomerSupportCenter customerSupportCenter) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Customer support center", 10, muli_bold, 8));
-        rows.add(new Row(customerSupportCenter.getEmail(), 10, muli_regular, 6, true));
-        rows.add(new Row(customerSupportCenter.getMobile(), 10, muli_regular, 6));
+        rows.add(new Row("Customer support center", 9, muli_bold, 7));
+        rows.add(new Row(customerSupportCenter.getEmail(), 9, muli_regular, 6, true));
+        rows.add(new Row(customerSupportCenter.getMobile(), 9, muli_regular, 6));
         return rows;
     }
 
@@ -234,6 +236,23 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 {"", "Total pre VAT", deliveryList.getTotalPricePreVAT()},
                 {"", "VAT", deliveryList.getTotalVAT()}
         };
+
+        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+    }
+
+    private Table createOrderSummaryTable(List<OrderSummary> orderSummaryList) {
+        List<Column> columns = new ArrayList<>();
+        columns.add(new Column("Product", 330, false));
+        columns.add(new Column("Order Quantity", 70, false));
+        columns.add(new Column("Quantity delivered so far", 80, false));
+
+        String[][] content = new String[orderSummaryList.size()][10];
+
+        for (int i = 0; i < orderSummaryList.size(); i++) {
+            content[i][0] = orderSummaryList.get(i).getProduct();
+            content[i][1] = orderSummaryList.get(i).getOrderQuantity();
+            content[i][2] = orderSummaryList.get(i).getDeliveredQuantity();
+        }
 
         return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
     }
