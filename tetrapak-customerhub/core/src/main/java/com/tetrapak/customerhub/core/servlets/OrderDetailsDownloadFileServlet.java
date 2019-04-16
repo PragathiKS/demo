@@ -66,7 +66,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        if (!status.toString().equalsIgnoreCase("200")) {
+        if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             response.setStatus(Integer.parseInt(status.toString()));
             try {
                 HttpUtil.writeJsonResponse(response, jsonResponse);
@@ -84,10 +84,10 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
             List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
-            if ("pdf".equals(extension)) {
+            if (CustomerHubConstants.PDF.equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
-            } else if ("excel".equals(extension)) {
-                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
+            } else if (CustomerHubConstants.EXCEL.equals(extension)) {
+                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList, orderType);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }

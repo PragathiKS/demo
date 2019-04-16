@@ -16,7 +16,17 @@ import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
  */
 @FunctionalInterface
 public interface OrderDetailsExcelService {
-
-    void generateOrderDetailsExcel(SlingHttpServletRequest request, SlingHttpServletResponse response,
-			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList);
+	/**
+	 * Method to generate the excel file for the order details page.
+	 * 
+	 * @param request Request
+	 * @param response Response
+	 * @param orderDetails Order Details
+	 * @param customerSupportCenter Customer Support Center
+	 * @param deliveryList Delivery List
+	 * @param orderType Order Type
+	 */
+	void generateOrderDetailsExcel(SlingHttpServletRequest request, SlingHttpServletResponse response,
+			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList,
+			String orderType);
 }
