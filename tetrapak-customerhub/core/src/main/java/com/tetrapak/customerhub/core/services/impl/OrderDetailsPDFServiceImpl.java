@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,9 +38,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServiceImpl.class);
 
-    PDDocument document = new PDDocument();
-    PDFont muli_regular;
-    PDFont muli_bold;
+    private PDDocument document = new PDDocument();
+    private PDFont muliRegular;
+    private PDFont muliBold;
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletResponse response,
@@ -61,11 +61,11 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             //   in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
             //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
 
-            //    muli_regular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
-            //   muli_bold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
+            //    muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
+            //   muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
 
-            muli_regular = PDType1Font.HELVETICA;
-            muli_bold = PDType1Font.HELVETICA_BOLD;
+            muliRegular = PDType1Font.HELVETICA;
+            muliBold = PDType1Font.HELVETICA_BOLD;
 
 
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
@@ -80,7 +80,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawImage(document, contentStream, img2, 60, 570, 40, 40);
 
             PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
-            PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY, getContactLines(orderDetailResponse.getCustomerSupportCenter()));
+            PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY,
+                    getContactLines(orderDetailResponse.getCustomerSupportCenter()));
 
             PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
@@ -90,7 +91,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 for (DeliveryList deliveryDetail : deliveryList) {
                     int count = deliveryList.indexOf(deliveryDetail) + 1;
                     int height = 800 - 240 * count; //565
-                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
+                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
+                            getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
                     PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
 
                     PDFUtil.drawTable(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
@@ -98,7 +100,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
                     Table productTable = createProductTable(deliveryDetail.getProducts());
                     PDFUtil.drawTable(document, contentStream, productTable, 840 - height);
-                    //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
                     PDFUtil.drawTable(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
                 }
             } else {
@@ -135,25 +136,26 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private List<Row> getDeliveryDetailHeader(String deliveryNumber) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Delivery number: " + deliveryNumber, 20, muli_regular, 11));
-        rows.add(new Row("", 30, muli_regular, 12));
+        rows.add(new Row("Delivery number: " + deliveryNumber, 20, muliRegular, 11));
+        rows.add(new Row("", 30, muliRegular, 12));
         return rows;
     }
 
     private List<Row> getHeadLines(OrderDetails orderDetails) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Order details", 20, muli_regular, 18));
-        rows.add(new Row("", 30, muli_regular, 12));
-        rows.add(new Row("Tetra Pak Order number: " + orderDetails.getOrderNumber() + " - " + orderDetails.getStatus(), 20, muli_regular, 11));
-        rows.add(new Row("", 10, muli_regular, 12));
+        rows.add(new Row("Order details", 20, muliRegular, 18));
+        rows.add(new Row("", 30, muliRegular, 12));
+        rows.add(new Row("Tetra Pak Order number: " + orderDetails.getOrderNumber() + " - " +
+                orderDetails.getStatus(), 20, muliRegular, 11));
+        rows.add(new Row("", 10, muliRegular, 12));
         return rows;
     }
 
     private List<Row> getContactLines(CustomerSupportCenter customerSupportCenter) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Customer support center", 9, muli_bold, 7));
-        rows.add(new Row(customerSupportCenter.getEmail(), 9, muli_regular, 6, true));
-        rows.add(new Row(customerSupportCenter.getMobile(), 9, muli_regular, 6));
+        rows.add(new Row("Customer support center", 9, muliBold, 7));
+        rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true));
+        rows.add(new Row(customerSupportCenter.getMobile(), 9, muliRegular, 6));
         return rows;
     }
 
@@ -167,10 +169,11 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         columns.add(new Column(orderDetails.getPlacedOn(), 80, false));
 
         String[][] content = {
-                {"Customer number", orderDetails.getCustomerNumber().toString(), "Customer reference", orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
+                {"Customer number", orderDetails.getCustomerNumber().toString(), "Customer reference",
+                        orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
         };
 
-        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
     }
 
     private Table createDeliveryDetailTable(DeliveryList deliveryList) {
@@ -194,7 +197,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                         + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()}
         };
 
-        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
     }
 
     private Table createProductTable(List<Product> products) {
@@ -225,7 +228,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][9] = products.get(i).getPrice();
         }
 
-        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
     }
 
     private Table createProductSummaryTable(DeliveryList deliveryList) {
@@ -239,7 +242,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 {"", "VAT", deliveryList.getTotalVAT()}
         };
 
-        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
     }
 
     private Table createOrderSummaryTable(List<OrderSummary> orderSummaryList) {
@@ -256,6 +259,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][2] = orderSummaryList.get(i).getDeliveredQuantity();
         }
 
-        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
+        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
     }
 }

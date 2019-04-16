@@ -71,7 +71,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             try {
                 HttpUtil.writeJsonResponse(response, jsonResponse);
             } catch (IOException e) {
-                LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e.getMessage());
+                LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e);
             }
             LOGGER.error("Unable to retrieve response from API");
         } else {

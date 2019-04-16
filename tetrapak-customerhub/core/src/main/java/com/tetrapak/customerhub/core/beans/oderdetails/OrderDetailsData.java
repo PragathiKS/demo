@@ -7,6 +7,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
+/**
+ * Bean class for order details data json response
+ */
 public class OrderDetailsData {
 
     @SerializedName("orderDetails")

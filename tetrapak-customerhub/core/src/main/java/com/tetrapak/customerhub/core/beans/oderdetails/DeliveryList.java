@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * Bean class for delivery list json response
+ */
 public class DeliveryList {
 
     @SerializedName("deliveryOrder")
