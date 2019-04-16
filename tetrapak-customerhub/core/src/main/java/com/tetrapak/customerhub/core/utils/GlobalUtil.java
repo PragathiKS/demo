@@ -74,18 +74,6 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to write json response
-     *
-     * @param resp         Http response
-     * @param jsonResponse json response
-     * @throws IOException IO Exception
-     */
-    public static void writeJsonResponse(SlingHttpServletResponse resp, JsonObject jsonResponse) throws IOException {
-        resp.setContentType("application/json");
-        resp.getWriter().write(jsonResponse.toString());
-    }
-
-    /**
      * Method to check the run mode development to execute the launch js for development environment -r dev
      *
      * @return boolean

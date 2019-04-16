@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
@@ -22,6 +22,7 @@ public class Table {
 
     // font attributes
     private PDFont textFont;
+    private PDFont textFontBold;
     private float fontSize;
 
     // Content attributes
@@ -68,6 +69,14 @@ public class Table {
 
     public void setTextFont(PDFont textFont) {
         this.textFont = textFont;
+    }
+
+    public PDFont getTextFontBold() {
+        return textFontBold;
+    }
+
+    public void setTextFontBold(PDFont textFontBold) {
+        this.textFontBold = textFontBold;
     }
 
     public float getFontSize() {
