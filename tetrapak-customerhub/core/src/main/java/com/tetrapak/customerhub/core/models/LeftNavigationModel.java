@@ -6,7 +6,6 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -40,7 +39,7 @@ public class LeftNavigationModel {
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getResourceResolver().getResource(
-        		GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
+                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
             Resource globalConfigResource = getGlobalConfigurationResource(childResource);
             if (null != globalConfigResource) {
@@ -81,7 +80,7 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
-            if(isCurrentPage(subPage)){
+            if (isCurrentPage(subPage)) {
                 leftNavigationBean.setExpanded(true);
             }
             ValueMap vMap = subPage.getContentResource().getValueMap();
@@ -162,7 +161,7 @@ public class LeftNavigationModel {
     }
 
     public List<LeftNavigationBean> getLeftNavItems() {
-        return leftNavItems;
+        return new ArrayList<>(this.leftNavItems);
     }
 
     public String getNavHeading() {

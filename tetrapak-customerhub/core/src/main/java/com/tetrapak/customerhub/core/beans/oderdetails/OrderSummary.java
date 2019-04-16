@@ -45,7 +45,8 @@ public class OrderSummary {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("product", product).append("orderQuantity", orderQuantity).append("deliveredQuantity", deliveredQuantity).toString();
+        return new ToStringBuilder(this).append("product", product).append("orderQuantity", orderQuantity)
+                .append("deliveredQuantity", deliveredQuantity).toString();
     }
 
 }
