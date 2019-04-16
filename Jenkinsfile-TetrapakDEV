@@ -27,7 +27,7 @@ pipeline {
    
 	stages {
 
- stage ('Checkout') {
+		stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
