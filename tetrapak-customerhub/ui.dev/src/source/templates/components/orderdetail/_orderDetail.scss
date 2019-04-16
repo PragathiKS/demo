@@ -1,4 +1,12 @@
 .tp-order-detail {
+    h2 {
+        @include font-size($font-md);
+
+        @media #{$desktop} {
+            @include font-size($font-l);
+        }
+    }
+
     &__order-info {
         @include margin-top($margin-l);
         @include margin-bottom($margin-l);
@@ -41,26 +49,37 @@
     }
 
     &__summary__table {
-        @include margin-top($margin-l);
-
-        th,
-        td {
-            display: none;
-
-            &:first-child {
-                display: table-cell;
-            }
-        }
-
         @media #{$desktop} {
 
             th,
             td {
-                display: table-cell;
-
                 &:first-child {
                     width: 60%;
                 }
+            }
+        }
+    }
+
+    &__table {
+
+        th,
+        td {
+            &:last-child {
+                padding-right: 0;
+                text-align: right;
+            }
+        }
+    }
+
+    &__product-summary {
+        @include margin-top($margin-l);
+        width: auto;
+
+        td {
+            text-align: right;
+
+            &:first-child {
+                @include padding($padding-xs $padding-l $padding-xs 0);
             }
         }
     }
@@ -74,11 +93,40 @@
         @include margin-right($margin-md);
     }
 
+    &__tablewrapper {
+        @include horizontal-scroll-touch;
+        @include padding-top($padding-l);
+    }
+
+    &__packaging-modal {
+        &-body {
+            @include padding($padding-l);
+            border-top: 1px solid $color-tundora;
+        }
+
+        &-desc {
+            font-family: $font-bold;
+        }
+
+    }
+
+    &__icon-info {
+        @include padding($padding-sm);
+    }
+
     .tpatom-btn {
         @include margin-top($padding-md);
 
         @media #{$desktop} {
             margin-top: 0;
         }
+    }
+
+    .tpmol-modal-header {
+        @include padding($padding-md $padding-l)
+    }
+
+    .tp-modal-content {
+        border-radius: 0;
     }
 }

@@ -6,7 +6,7 @@
     {{/if}}
 {{else}}
     <div class="tp-card">
-        <h3>{{i18n key=i18nKeys.orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h3>
+        <h2>{{i18n key=i18nKeys.orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h2>
         <div class="tp-order-detail__order-info">
             <div class="row no-gutters">
                 <div class="col-lg">
@@ -40,7 +40,9 @@
         </div>
 
         {{#if orderSummary}}
-            {{> molecules/table/table baseClass="tp-order-detail__summary" jsClass="" list=orderSummary headings=orderSummaryHeadings}}
+            <div class="tp-order-detail__tablewrapper">
+                {{> molecules/table/table baseClass="tp-order-detail__summary" jsClass="" list=orderSummary headings=orderSummaryHeadings}}
+            </div>
         {{/if}}
     </div>
 

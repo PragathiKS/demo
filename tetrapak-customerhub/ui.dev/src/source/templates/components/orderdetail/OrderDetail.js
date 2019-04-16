@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
@@ -35,7 +36,7 @@ function _processPackmatData(data) {
       data.tableHeadings.push({
         key: `${item}`,
         i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`,
-        iconClassName: 'icon-Info tp-order-detail-packaging__icon-info js-icon-Info'
+        iconClassName: 'icon-Info tp-order-detail__icon-info js-icon-Info'
       });
     }
     else {
@@ -58,8 +59,6 @@ function _processPackmatData(data) {
       return deliveryList;
     });
   }
-
-  debugger; //eslint-disable-line
 }
 
 /**
@@ -140,6 +139,10 @@ function _renderOrderSummary() {
   });
 }
 
+function _openOverlay() {
+  this.root.find('.js-order-detail__packaging-modal').modal();
+}
+
 class OrderDetail {
   constructor({ el }) {
     this.root = $(el);
@@ -177,12 +180,10 @@ class OrderDetail {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.root
+      .on('click', '.js-icon-Info', this.openOverlay);
   }
+  openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
   processTableData(data) {
     if (this.cache.orderType === 'packmat') {
