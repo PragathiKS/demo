@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import OrderDetail from './OrderDetail';
-import orderDetail from '../../../test-templates-hbs/orderDetail.hbs';
+import orderDetailTemplate from '../../../test-templates-hbs/orderDetail.hbs';
+import orderdetailpackagingData from './data/orderdetailpackaging.json';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -12,7 +13,6 @@ describe('OrderDetail', function () {
       // Dummy method
     }
   };
-  const dummyAjaxResponse = {};
   function ajaxResponse(response) {
     const pr = $.Deferred();
     pr.resolve(response, 'success', jqRef);
@@ -22,14 +22,14 @@ describe('OrderDetail', function () {
     this.orderDetail = new OrderDetail({
       el: document.body
     });
-    $(document.body).empty().html(orderDetail());
+    $(document.body).empty().html(orderDetailTemplate());
     this.initSpy = sinon.spy(this.orderDetail, "init");
     this.renderOrderSummarySpy = sinon.spy(this.orderDetail, "renderOrderSummary");
     this.processTableDataSpy = sinon.spy(this.orderDetail, "processTableData");
     this.openOverlaySpy = sinon.spy(this.orderDetail, 'openOverlay');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(dummyAjaxResponse));
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderdetailpackagingData));
     this.openStub = sinon.stub(window, 'open');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
