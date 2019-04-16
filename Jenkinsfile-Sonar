@@ -20,7 +20,18 @@ pipeline {
 		karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
 	}
    
-	stages {
+	stages {		
+		stage ('Checkout') {
+			steps {
+				git(
+					poll: true,
+					url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
+					credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
+					branch: 'develop'
+				)
+			}
+		}
+				 
 		stage ('Initialize') {
 			steps {
 				sh 	'''
@@ -29,6 +40,19 @@ pipeline {
 					'''
             }
         }
+		
+		stage ('Build') {
+			steps {
+				sh "rm -rf $workspace/tetrapak-commons/ui.dev/src/node_modules/"
+				sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+				sh "rm -rf $workspace/${params.CHOICE}/ui.dev/src/node_modules/"
+				sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+				sh "cp $workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"				 
+			}
+		}
 		
 		stage ('Sonar_JS') {    
 			steps {

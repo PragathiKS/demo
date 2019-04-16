@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
 
@@ -23,6 +24,9 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
+	
+	@Self
+	Resource resource;
 
     @Inject
     private String backToOrderHistory;
@@ -122,6 +126,8 @@ public class OrderDetailsModel {
 
     @Inject
     private String kpkPopUpCloseBtnText;
+	
+	private String downloadPdfExcelServletUrl;
 
     @Inject
     private String deliveryProductsFilterCheckboxText;
@@ -432,4 +438,12 @@ public class OrderDetailsModel {
     public String getDeliveryProductsFilterCheckboxText() {
         return deliveryProductsFilterCheckboxText;
     }
+	
+	/**
+	 * @return the downloadOrderDetailsServletUrl
+	 */
+	public String getDownloadPdfExcelServletUrl() {
+		return downloadPdfExcelServletUrl;
+	}
+
 }
