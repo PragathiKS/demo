@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
 
@@ -24,6 +25,9 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
+	
+	@Self
+	Resource resource;
 
 	@Inject
 	private String backToOrderHistory;
@@ -128,6 +132,8 @@ public class OrderDetailsModel {
 	private String deliveryProductsFilterCheckboxText;
 
 	private String i18nKeys;
+	
+	private String downloadOrderDetailsServletUrl;
 
 	/**
 	 * Populating the i18n keys to a JSON object string getting values from the
@@ -171,6 +177,7 @@ public class OrderDetailsModel {
 		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
 		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
 		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
+		downloadOrderDetailsServletUrl = resource.getPath();
 	}
 
 	/**
@@ -433,4 +440,12 @@ public class OrderDetailsModel {
 	public String getDeliveryProductsFilterCheckboxText() {
 		return deliveryProductsFilterCheckboxText;
 	}
+	
+	/**
+	 * @return the downloadOrderDetailsServletUrl
+	 */
+	public String getDownloadOrderDetailsServletUrl() {
+		return downloadOrderDetailsServletUrl;
+	}
+
 }

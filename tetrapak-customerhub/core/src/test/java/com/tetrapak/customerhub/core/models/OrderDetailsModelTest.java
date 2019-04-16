@@ -105,5 +105,10 @@ public class OrderDetailsModelTest {
 	public void testGetI18nKeysDoesntContainKey() {
 		assertFalse(orderDetailsModel.getI18nKeys().contains("deliveryNumberLabel1"));
 	}
+	
+	@Test
+	public void testDownloadOrderDetailsServletUrl() {
+	assertTrue(orderDetailsModel.getDownloadDetailsUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"));
+	}
 
 }
