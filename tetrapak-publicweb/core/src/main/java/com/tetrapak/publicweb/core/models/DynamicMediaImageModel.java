@@ -44,20 +44,19 @@ public class DynamicMediaImageModel {
     private static final String TABLETPORTRAIT = "tabletP";
     private static final String MOBILELANDSCAPE = "mobileL";
     private static final String MOBILEPORTRAIT = "mobileP";
-    private static final String PUBLICWEB_DAM_ROOTPATH  = "/content/dam/publicweb";
     private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
     
     @PostConstruct
     protected void postConstruct() {
-    	String dynamicMediaUrl = getImageServiceURL();
+    	String dynamicMediaServiceUrl = getImageServiceURL();
         String rootPath = getRootPath();
         
         if (StringUtils.isNotEmpty(imagePath)) {
-        	imagePath = StringUtils.substringBeforeLast(imagePath, ".").replace(PUBLICWEB_DAM_ROOTPATH, rootPath);
+        	imagePath = StringUtils.substringAfterLast(StringUtils.substringBeforeLast(imagePath, "."), "/");
         }
-        
-        if (null != dynamicMediaUrl) {
-            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + imagePath;
+        String dynamicMediaUrl = null;
+        if (null != dynamicMediaServiceUrl) {
+            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaServiceUrl, "/") + rootPath + "/" + imagePath;
         }
         
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
@@ -65,8 +64,8 @@ public class DynamicMediaImageModel {
             tabletPortraitUrl = createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl);
             tabletLandscapeUrl = createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl);
             if (StringUtils.isNotBlank(mobileImagePath)) {
-            	mobileImagePath = StringUtils.substringBeforeLast(mobileImagePath, ".").replace(PUBLICWEB_DAM_ROOTPATH, rootPath);
-            	dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + mobileImagePath;
+            	mobileImagePath = StringUtils.substringAfterLast(StringUtils.substringBeforeLast(mobileImagePath, "."), "/");
+            	dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaServiceUrl, "/") + rootPath + "/" + mobileImagePath;
             } 
             mobilePortraitUrl = createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl);
         	mobileLandscapeUrl = createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl);
