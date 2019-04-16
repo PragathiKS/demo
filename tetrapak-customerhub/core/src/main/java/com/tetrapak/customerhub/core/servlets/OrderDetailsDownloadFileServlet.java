@@ -39,51 +39,51 @@ import java.util.List;
         })
 public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
-    private static final long serialVersionUID = 2323660841296799482L;
+	private static final long serialVersionUID = 2323660841296799482L;
 
-    @Reference
-    private OrderDetailsApiService orderDetailsApiService;
+	@Reference
+	private OrderDetailsApiService orderDetailsApiService;
 
-    @Reference
-    private OrderDetailsPDFService generatePDF;
+	@Reference
+	private OrderDetailsPDFService generatePDF;
 
-    @Reference
-    private OrderDetailsExcelService generateExcel;
+	@Reference
+	private OrderDetailsExcelService generateExcel;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
-    @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
+	@Override
+	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+		LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
 
-        final String orderNumber = request.getParameter("orderNumber");
-        final String token = request.getParameter("token");
+		final String orderNumber = request.getParameter("orderNumber");
+		final String token = request.getParameter("token");
 
-        final String[] selectors = request.getRequestPathInfo().getSelectors();
-        final String orderType = selectors.length > 0 ? selectors[0] : StringUtils.EMPTY;
+		final String[] selectors = request.getRequestPathInfo().getSelectors();
+		final String orderType = selectors.length > 0 ? selectors[0] : StringUtils.EMPTY;
 
-        final String extension = request.getRequestPathInfo().getExtension();
+		final String extension = request.getRequestPathInfo().getExtension();
 
-        JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
-        JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
+		JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
+		JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
-            response.setStatus(Integer.parseInt(status.toString()));
-            try {
-                HttpUtil.writeJsonResponse(response, jsonResponse);
-            } catch (IOException e) {
-                LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e.getMessage());
-            }
-            LOGGER.error("Unable to retrieve response from API");
-        } else {
-            JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
-            Gson gson = new Gson();
-            OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
-                    OrderDetailResponse.class);
-            OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
-            CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
-            List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
-            List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
+		if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
+			response.setStatus(Integer.parseInt(status.toString()));
+			try {
+				HttpUtil.writeJsonResponse(response, jsonResponse);
+			} catch (IOException e) {
+				LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e.getMessage());
+			}
+			LOGGER.error("Unable to retrieve response from API");
+		} else {
+			JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
+			Gson gson = new Gson();
+			OrderDetailResponse orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
+					OrderDetailResponse.class);
+			OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
+			CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
+			List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+			List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
             if (CustomerHubConstants.PDF.equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
@@ -93,6 +93,6 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
                 LOGGER.error("File type not specified for the download operation.");
             }
 
-        }
-    }
+		}
+	}
 }
