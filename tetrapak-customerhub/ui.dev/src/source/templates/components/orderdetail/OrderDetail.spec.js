@@ -26,6 +26,7 @@ describe('OrderDetail', function () {
     this.initSpy = sinon.spy(this.orderDetail, "init");
     this.renderOrderSummarySpy = sinon.spy(this.orderDetail, "renderOrderSummary");
     this.processTableDataSpy = sinon.spy(this.orderDetail, "processTableData");
+    this.openOverlaySpy = sinon.spy(this.orderDetail, 'openOverlay');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(dummyAjaxResponse));
@@ -44,6 +45,7 @@ describe('OrderDetail', function () {
     this.initSpy.restore();
     this.renderOrderSummarySpy.restore();
     this.processTableDataSpy.restore();
+    this.openOverlaySpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -61,8 +63,18 @@ describe('OrderDetail', function () {
     expect(this.orderDetail.processTableData.called).to.be.true;
     done();
   });
+  it('should process `packmat` data before rendering order detail if order type is `packmat`', function (done) {
+    this.orderDetail.cache.orderType = 'packmat';
+    this.orderDetail.renderOrderSummary();
+    expect(this.orderDetail.processTableData.called).to.be.true;
+    done();
+  });
   it('should render order detail summary section', function (done) {
     expect(this.orderDetail.renderOrderSummary.called).to.be.true;
     done();
+  });
+  it('should open overlay when info icon clicked', function () {
+    $('.js-icon-Info').trigger('click');
+    expect(this.orderDetail.openOverlay.called).to.be.true;
   });
 });
