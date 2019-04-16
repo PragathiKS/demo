@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
  * @author Nitin Kumar
  */
 @FunctionalInterface
-public interface OrderDetailsService {
+public interface OrderDetailsApiService {
 
     JsonObject getOrderDetails(String orderNumber, String token, String orderType);
 }

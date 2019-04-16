@@ -3,14 +3,11 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailResponse;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.*;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.services.OrderDetailsService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -24,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,21 +34,20 @@ import java.util.List;
                 Constants.SERVICE_DESCRIPTION + "=PDF Generator Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
                 "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
-                "sling.servlet.paths=" + "/bin/customerhub/order-detail-pdf"
+                "sling.servlet.paths=" + "/bin/customerhub/order-detail"
         })
 public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    OrderDetailsService orderDetailsService;
+    private OrderDetailsApiService orderDetailsApiService;
 
     @Reference
-    OrderDetailsPDFService generatePDF;
+    private OrderDetailsPDFService generatePDF;
 
     @Reference
-    OrderDetailsExcelService generateExcel;
-
+    private OrderDetailsExcelService generateExcel;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
@@ -66,10 +63,16 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
         final String extension = request.getRequestPathInfo().getExtension();
 
-        JsonObject jsonResponse = orderDetailsService.getOrderDetails(orderNumber, token, orderType);
+        JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
         if (!status.toString().equalsIgnoreCase("200")) {
+            response.setStatus(Integer.parseInt(status.toString()));
+            try {
+                HttpUtil.writeJsonResponse(response, jsonResponse);
+            } catch (IOException e) {
+                LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e.getMessage());
+            }
             LOGGER.error("Unable to retrieve response from API");
         } else {
             JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
@@ -79,9 +82,10 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
             CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
             List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+            List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
             if ("pdf".equals(extension)) {
-                generatePDF.generateOrderDetailsPDF(request, response, orderDetails, customerSupportCenter, deliveryList);
+                generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
             } else if ("excel".equals(extension)) {
                 generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
             } else {

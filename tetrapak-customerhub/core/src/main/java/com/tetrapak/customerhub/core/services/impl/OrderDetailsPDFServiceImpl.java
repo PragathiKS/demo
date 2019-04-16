@@ -1,19 +1,16 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
+import com.tetrapak.customerhub.core.beans.oderdetails.*;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
+import com.tetrapak.customerhub.core.utils.PDFUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
@@ -24,18 +21,13 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
-import com.tetrapak.customerhub.core.beans.oderdetails.Product;
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
-import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
-import com.tetrapak.customerhub.core.utils.TableBuilder;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Impl class for Order Details PDF Service
@@ -53,9 +45,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList) {
-       // InputStream in1 = null;
-       // InputStream in2 = null;
+                                        String orderType, OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList, List<OrderSummary> orderSummaryList) {
+        // InputStream in1 = null;
+        // InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
         PDPageContentStream contentStream;
@@ -91,25 +83,28 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
-            PDFUtil.drawTableOnSamePage(document, contentStream, createOrderDetailTable(orderDetails), 60);
+            if (StringUtils.equalsIgnoreCase("parts", orderType)) {
+                PDFUtil.drawTableOnSamePage(document, contentStream, createOrderDetailTable(orderDetails), 60);
 
-            for (DeliveryList deliveryDetail : deliveryList) {
-                int count = deliveryList.indexOf(deliveryDetail) + 1;
-                int height = 800 - 240 * count; //565
-                PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
-                PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
+                for (DeliveryList deliveryDetail : deliveryList) {
+                    int count = deliveryList.indexOf(deliveryDetail) + 1;
+                    int height = 800 - 240 * count; //565
+                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
+                    PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
 
-                PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                PDFUtil.drawLine(document, contentStream, 65, 460, height - 128, Color.black, 0.01f);
+                    PDFUtil.drawTableOnSamePage(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
+                    PDFUtil.drawLine(document, contentStream, 65, 460, height - 128, Color.black, 0.01f);
 
-                Table productTable = createProductTable(deliveryDetail.getProducts());
-                PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 840 - height);
-                //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
-                PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
+                    Table productTable = createProductTable(deliveryDetail.getProducts());
+                    PDFUtil.drawTableOnSamePage(document, contentStream, productTable, 840 - height);
+                    //PDFUtil.drawTableGrid(document, contentStream , productTable, productTable.getContent(),750 - height);
+                    PDFUtil.drawTableOnSamePage(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
+                }
+            } else {
+                //tables for pakmat goes here
             }
-            if (null != contentStream) {
-                contentStream.close();
-            }
+
+            contentStream.close();
             PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
@@ -171,7 +166,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 {"Customer number", orderDetails.getCustomerNumber().toString(), "Customer reference", orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
         };
 
-        return getTable(columns, content);
+        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
     }
 
     private Table createDeliveryDetailTable(DeliveryList deliveryList) {
@@ -195,7 +190,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                         + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()}
         };
 
-        return getTable(columns, content);
+        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
     }
 
     private Table createProductTable(List<Product> products) {
@@ -214,7 +209,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         String[][] content = new String[products.size()][10];
 
         for (int i = 0; i < products.size(); i++) {
-            content[i][0] = Integer.toString(i+1);
+            content[i][0] = Integer.toString(i + 1);
             content[i][1] = products.get(i).getProductName();
             content[i][2] = products.get(i).getProductID();
             content[i][3] = products.get(i).getOrderQuantity();
@@ -226,7 +221,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][9] = products.get(i).getPrice();
         }
 
-        return getTable(columns, content);
+        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
     }
 
     private Table createProductSummaryTable(DeliveryList deliveryList) {
@@ -240,37 +235,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 {"", "VAT", deliveryList.getTotalVAT()}
         };
 
-        return getTable(columns, content);
-    }
-
-    private Table getTable(List<Column> columns, String[][] content) {
-        final float MARGIN = 65;
-        final boolean IS_LANDSCAPE = false;
-        final float FONT_SIZE = 7;
-
-        final float ROW_HEIGHT = 15;
-        final float CELL_MARGIN = 0;
-
-        float tableHeight = 500;
-
-        double width = 8.5 * 72;
-        double height = (double) 11 * 72;
-
-        Table table = new TableBuilder()
-                .setCellMargin(CELL_MARGIN)
-                .setColumns(columns)
-                .setContent(content)
-                .setHeight(tableHeight)
-                .setNumberOfRows(content.length)
-                .setRowHeight(ROW_HEIGHT)
-                .setMargin(MARGIN)
-                .setPageSize(new PDRectangle((float) width,
-                        (float) height))
-                .setLandscape(IS_LANDSCAPE)
-                .setTextFont(muli_regular)
-                .setTextFontBold(muli_bold)
-                .setFontSize(FONT_SIZE)
-                .build();
-        return table;
+        return PDFUtil.getTable(columns, content, muli_regular, muli_bold);
     }
 }

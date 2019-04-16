@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.OrderDetailsService;
+import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,23 +23,23 @@ import java.io.IOException;
  *
  * @author Nitin Kumar
  */
-@Component(immediate = true, service = OrderDetailsService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-public class OrderDetailsServiceImpl implements OrderDetailsService {
+@Component(immediate = true, service = OrderDetailsApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
+public class OrderDetailsApiServiceImpl implements OrderDetailsApiService {
 
     @Reference
     private APIGEEService apigeeService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsServiceImpl.class);
-  
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsApiServiceImpl.class);
+
     @Override
     public JsonObject getOrderDetails(String orderNumber, String token, String orderType) {
         JsonObject jsonResponse = new JsonObject();
-        final String url = apigeeService.getApigeeServiceUrl() + "/orders/details/"+orderType+"?order-number=" + orderNumber;
+        final String url = apigeeService.getApigeeServiceUrl() + "/orders/details/" + orderType + "?order-number=" + orderNumber;
 
         HttpGet getRequest = new HttpGet(url);
         getRequest.addHeader("Authorization", "Bearer " + token);
         HttpClient httpClient = HttpClientBuilder.create().build();
-        
+
         try {
             HttpResponse httpResponse = httpClient.execute(getRequest);
             LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
@@ -47,9 +47,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
 
         } catch (ClientProtocolException e) {
-            LOGGER.error("ClientProtocolException in OrderDetailsServiceImpl {}", e);
+            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl {}", e);
         } catch (IOException e) {
-            LOGGER.error("IOException in OrderDetailsServiceImpl {}", e);
+            LOGGER.error("IOException in OrderDetailsApiServiceImpl {}", e);
         }
         return jsonResponse;
     }

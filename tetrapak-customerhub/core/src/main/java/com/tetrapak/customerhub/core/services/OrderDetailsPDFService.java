@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.services;
 
 import java.util.List;
 
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
@@ -17,5 +18,5 @@ import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 public interface OrderDetailsPDFService {
 	
 	void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-			OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList);
+                                 String orderType, OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList, List<OrderSummary> orderSummaryList);
 }

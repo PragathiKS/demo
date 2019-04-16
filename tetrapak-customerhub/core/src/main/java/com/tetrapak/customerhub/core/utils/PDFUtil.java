@@ -1,11 +1,13 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.interactive.action.PDActionURI;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationLink;
@@ -242,5 +244,36 @@ public class PDFUtil {
 
             nextY -= table.getRowHeight();
         }
+    }
+
+    public static Table getTable(List<Column> columns, String[][] content, PDFont muli_regular, PDFont muli_bold) {
+        final float MARGIN = 65;
+        final boolean IS_LANDSCAPE = false;
+        final float FONT_SIZE = 7;
+
+        final float ROW_HEIGHT = 15;
+        final float CELL_MARGIN = 0;
+
+        float tableHeight = 500;
+
+        double width = 8.5 * 72;
+        double height = (double) 11 * 72;
+
+        Table table = new TableBuilder()
+                .setCellMargin(CELL_MARGIN)
+                .setColumns(columns)
+                .setContent(content)
+                .setHeight(tableHeight)
+                .setNumberOfRows(content.length)
+                .setRowHeight(ROW_HEIGHT)
+                .setMargin(MARGIN)
+                .setPageSize(new PDRectangle((float) width,
+                        (float) height))
+                .setLandscape(IS_LANDSCAPE)
+                .setTextFont(muli_regular)
+                .setTextFontBold(muli_bold)
+                .setFontSize(FONT_SIZE)
+                .build();
+        return table;
     }
 }
