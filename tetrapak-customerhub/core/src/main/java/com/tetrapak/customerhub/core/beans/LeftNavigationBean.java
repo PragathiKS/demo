@@ -56,7 +56,7 @@ public class LeftNavigationBean {
     }
 
     public List<LeftNavigationBean> getSubMenuList() {
-        return new ArrayList<>(subMenuList);
+        return subMenuList;
     }
 
     public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
