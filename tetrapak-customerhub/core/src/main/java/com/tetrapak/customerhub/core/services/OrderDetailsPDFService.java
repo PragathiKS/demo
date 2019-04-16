@@ -11,6 +11,11 @@ import org.apache.sling.api.SlingHttpServletResponse;
 @FunctionalInterface
 public interface OrderDetailsPDFService {
 
+    /** Method to generate order details pdf
+     * @param response response
+     * @param orderType order type
+     * @param orderDetailResponse order detail response
+     */
     void generateOrderDetailsPDF(SlingHttpServletResponse response,
                                  String orderType, OrderDetailsData orderDetailResponse);
 }
