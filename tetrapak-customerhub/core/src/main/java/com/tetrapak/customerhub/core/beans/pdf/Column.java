@@ -11,9 +11,11 @@ public class Column {
     private float width;
     private boolean isBold;
 
-    /**Public constructor for this class
-     * @param name  string name
-     * @param width float width
+    /**
+     * Public constructor for this class
+     *
+     * @param name   string name
+     * @param width  float width
      * @param isBold boolean isBold
      */
     public Column(String name, float width, boolean isBold) {

@@ -1,10 +1,11 @@
 package com.tetrapak.customerhub.core.beans.oderdetails;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Bean class for delivery list json response
@@ -28,7 +29,7 @@ public class DeliveryList {
     private InvoiceAddress invoiceAddress;
     @SerializedName("products")
     @Expose
-    private List<Product> products = null;
+    private List<Product> products;
     @SerializedName("totalProductsForQuery")
     @Expose
     private String totalProductsForQuery;
@@ -50,7 +51,7 @@ public class DeliveryList {
     @SerializedName("totalVAT")
     @Expose
     private String totalVAT;
-	@SerializedName("deliveryStatus")
+    @SerializedName("deliveryStatus")
     @Expose
     private String deliveryStatus;
     @SerializedName("productPlace")
@@ -59,7 +60,7 @@ public class DeliveryList {
     @SerializedName("requestedDelivery")
     @Expose
     private String requestedDelivery;
-	
+
     public String getDeliveryOrder() {
         return deliveryOrder;
     }
@@ -109,11 +110,11 @@ public class DeliveryList {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return new ArrayList<>(products);
     }
 
     public void setProducts(List<Product> products) {
-        this.products = products;
+        this.products = new ArrayList<>(products);
     }
 
     public String getOrderNumber() {
@@ -163,7 +164,7 @@ public class DeliveryList {
     public void setTotalVAT(String totalVAT) {
         this.totalVAT = totalVAT;
     }
-    
+
     public String getDeliveryStatus() {
         return deliveryStatus;
     }
@@ -190,14 +191,14 @@ public class DeliveryList {
 
     @Override
     public String toString() {
-		return new ToStringBuilder(this).append("deliveryOrder", deliveryOrder).append("deliveryNumber", deliveryNumber)
-				.append("eTD", eTD).append("deliveryAddress", deliveryAddress).append("invoiceAddress", invoiceAddress)
-				.append("totalProductsForQuery", totalProductsForQuery).append("products", products)
-				.append("orderNumber", orderNumber).append("carrier", carrier)
-				.append("carrierTrackingID", carrierTrackingID).append("totalWeight", totalWeight)
-				.append("totalPricePreVAT", totalPricePreVAT).append("totalVAT", totalVAT)
-				.append("deliveryStatus", deliveryStatus).append("productPlace", productPlace)
-				.append("requestedDelivery", requestedDelivery).toString();
+        return new ToStringBuilder(this).append("deliveryOrder", deliveryOrder).append("deliveryNumber", deliveryNumber)
+                .append("eTD", eTD).append("deliveryAddress", deliveryAddress).append("invoiceAddress", invoiceAddress)
+                .append("totalProductsForQuery", totalProductsForQuery).append("products", products)
+                .append("orderNumber", orderNumber).append("carrier", carrier)
+                .append("carrierTrackingID", carrierTrackingID).append("totalWeight", totalWeight)
+                .append("totalPricePreVAT", totalPricePreVAT).append("totalVAT", totalVAT)
+                .append("deliveryStatus", deliveryStatus).append("productPlace", productPlace)
+                .append("requestedDelivery", requestedDelivery).toString();
     }
 
 }

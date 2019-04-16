@@ -78,7 +78,9 @@ public class DeliveryAddress {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("name", name).append("name2", name2).append("city", city).append("state", state).append("postalcode", postalcode).append("country", country).toString();
+        return new ToStringBuilder(this).append("name", name).append("name2", name2)
+                .append("city", city).append("state", state).append("postalcode", postalcode)
+                .append("country", country).toString();
     }
 
 }
