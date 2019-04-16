@@ -1,0 +1,11 @@
+<sly data-sly-template.orderdetail_template="${@ data, flag}">
+  <div class="tp-order-detail tp-card" data-module="OrderDetail">
+    <code class="d-none js-order-detail__config">
+              ${data.i18nKeys}
+    </code>
+    <input type="hidden" id="packagingProductsTableCols" value="${data.packagingProductsTableCols}" />
+    <div class="tp-order-detail__summary js-order-detail__summary" aria-live="polite">
+
+    </div>
+  </div>
+</sly>

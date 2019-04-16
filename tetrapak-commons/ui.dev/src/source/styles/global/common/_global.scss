@@ -172,6 +172,11 @@ td {
     .row {
         @include margin-left(-15px);
         @include margin-right(-15px);
+
+        &.no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
     }
 
     .row {

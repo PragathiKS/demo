@@ -42,7 +42,6 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String customerNumberLabel;
-
 	@Inject
 	private String webRefLabel;
 
@@ -60,7 +59,6 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String shippingLabel;
-
 	@Inject
 	private String trackOrderLabel;
 
@@ -196,7 +194,6 @@ public class OrderDetailsModel {
 	public String getI18nKeys() {
 		return i18nKeys;
 	}
-
 	/**
 	 * @return the backToOrderHistory
 	 */

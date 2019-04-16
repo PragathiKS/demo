@@ -1,0 +1,10 @@
+{
+  "i18nKeys": "{\"backToOrderHistory\":\"Back to order history\",\"orderNo\":\"Tetra Pak Order number\",\"customerNameLabel\":\"Customer Name\",\"purchaseOrderNumberLabel\":\"Purchase order no.\",\"orderDateLabel\":\"Order date\",\"customerNumberLabel\":\"Customer Number\",\"customerReferenceLabel\":\"Customer reference\",\"webRefLabel\":\"Web ref.\",\"custSupCentreLabel\":\"Customer support centre\",\"createExcelLabel\":\"Create Excel\",\"createPdfLabel\":\"Create PDF\",\"deliveryNumberLabel\":\"Delivery Number\",\"shippingLabel\":\"Shipping\",\"trackOrderLabel\":\"Track Order\",\"deliveryAddrLabel\":\"Delivery address\",\"invoiceAddrLabel\":\"Invoice address\",\"totalWeightLabel\":\"Total weight\",\"totalPricePreVatLabel\":\"Total pre VAT\",\"totalVatLabel\":\"VAT\",\"noDataMsg\":\"No data found\",\"errorMsg\":\"Error message incase any other error on the component\"}",
+  "partsDeliveryTableCols": [],
+  "packagingProductsTableCols": [
+    "product",
+    "orderQuantity",
+    "deliveredQuantity"
+  ],
+  "packagingDeliveryTableCols": []
+}

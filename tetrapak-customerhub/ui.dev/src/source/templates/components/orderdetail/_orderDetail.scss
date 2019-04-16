@@ -1,0 +1,84 @@
+.tp-order-detail {
+    &__order-info {
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-l);
+
+        &-table {
+            @media #{$desktop} {
+                display: table;
+            }
+        }
+
+        &-data {
+            @include padding-top($padding-xs);
+            @include padding-bottom($padding-sm);
+
+            @media #{$desktop} {
+                display: table-row;
+                padding: 0;
+            }
+        }
+
+        &-title {
+            @include padding-right($margin-l);
+            font-family: $font-semi-bold;
+            vertical-align: top;
+
+            @media #{$desktop} {
+                @include padding-top($padding-xs);
+                @include padding-bottom($padding-sm);
+                display: table-cell;
+            }
+        }
+
+        &-text {
+            @media #{$desktop} {
+                @include padding-top($padding-xs);
+                @include padding-bottom($padding-sm);
+                display: table-cell;
+            }
+        }
+    }
+
+    &__summary__table {
+        @include margin-top($margin-l);
+
+        th,
+        td {
+            display: none;
+
+            &:first-child {
+                display: table-cell;
+            }
+        }
+
+        @media #{$desktop} {
+
+            th,
+            td {
+                display: table-cell;
+
+                &:first-child {
+                    width: 60%;
+                }
+            }
+        }
+    }
+
+    &__cust-support {
+        @include padding-top($padding-l);
+        border-top: 1px solid $color-mercury;
+    }
+
+    &__create-excel {
+        @include margin-right($margin-md);
+    }
+
+    .tpatom-btn {
+        @include margin-top($padding-md);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+    }
+}
