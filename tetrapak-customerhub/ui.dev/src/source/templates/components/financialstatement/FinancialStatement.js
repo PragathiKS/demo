@@ -10,7 +10,14 @@ import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+
+function _trackAnalytics() {
+  const analyticsData = {};
+  analyticsData['findcustomer'] = this.cache.data.selectedCustomerData.desc;
+  trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+}
 
 /**
  * Processes financial data
@@ -309,6 +316,7 @@ class FinancialStatement {
     this.root
       .on('change', '.js-financial-statement__find-customer', (e) => {
         this.setSelectedCustomer(e.target.value);
+        this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
@@ -359,6 +367,8 @@ class FinancialStatement {
       queryString: defaultQueryString
     });
   }
+  trackAnalytics = () => _trackAnalytics.call(this);
+
   init() {
     this.initCache();
     this.bindEvents();

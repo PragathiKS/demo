@@ -2,10 +2,8 @@ package com.tetrapak.customerhub.core.utils;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -16,7 +14,6 @@ import org.osgi.framework.FrameworkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
@@ -71,18 +68,6 @@ public class GlobalUtil {
             }
         }
         return resourceResolver;
-    }
-
-    /**
-     * Method to write json response
-     *
-     * @param resp         Http response
-     * @param jsonResponse json response
-     * @throws IOException IO Exception
-     */
-    public static void writeJsonResponse(SlingHttpServletResponse resp, JsonObject jsonResponse) throws IOException {
-        resp.setContentType("application/json");
-        resp.getWriter().write(jsonResponse.toString());
     }
 
     /**
@@ -176,9 +161,10 @@ public class GlobalUtil {
     public static Page getCustomerhubConfigPage(Resource contentPageResource) {
         PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
         Page customerhubConfigPage = null;
+        final int DEPTH =3;
         if (null != contentPageResource && null != pageManager) {
             Page contentPage = pageManager.getContainingPage(contentPageResource);
-            customerhubConfigPage = contentPage.getAbsoluteParent(3);
+            customerhubConfigPage = contentPage.getAbsoluteParent(DEPTH);
         }
         return customerhubConfigPage;
     }

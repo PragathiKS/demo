@@ -27,7 +27,7 @@ pipeline {
    
 	stages {
 
- stage ('Checkout') {
+		stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -162,17 +162,10 @@ pipeline {
 			}
 		}
 		
-		stage ('Dispatcher Flush, karma, Pa11y, Sitespeed, Zap Tools Execution') {
+		stage ( 'karma, Pa11y, Sitespeed, Zap Tools Execution') {
 			steps {
 				script {
 					parallel (
-						"Dispatcher Flush" : {
-							echo "Cache Flush Started"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/home --header CQ-Page:/home 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/content --header CQ-Page:/content 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/etc --header CQ-Page:/etc 'http://10.202.13.229/dispatcher/invalidate.cache'"
-							sh "curl -X POST --header 'CQ-Action: Delete' --header CQ-Handle:/libs --header CQ-Page:/libs 'http://10.202.13.229/dispatcher/invalidate.cache'"
-						},
 						"karma" : {
 							echo "Publising karma Test Report"
 							sh 'echo "Karma Report"'
