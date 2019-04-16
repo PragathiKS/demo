@@ -38,4 +38,6 @@ public class CustomerHubConstants {
     public static final String PDF = "pdf";
     
     public static final String EXCEL = "excel";
+    
+    public static final String RESPONSE_STATUS_OK = "200";
 }

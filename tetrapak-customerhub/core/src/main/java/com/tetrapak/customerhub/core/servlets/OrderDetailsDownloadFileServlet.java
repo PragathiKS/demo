@@ -43,13 +43,13 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    OrderDetailsService orderDetailsService;
+    private OrderDetailsService orderDetailsService;
 
     @Reference
-    OrderDetailsPDFService generatePDF;
+    private OrderDetailsPDFService generatePDF;
 
     @Reference
-    OrderDetailsExcelService generateExcel;
+    private OrderDetailsExcelService generateExcel;
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
@@ -69,7 +69,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonObject jsonResponse = orderDetailsService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        if (!status.toString().equalsIgnoreCase("200")) {
+        if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             LOGGER.error("Unable to retrieve response from API");
         } else {
             JsonElement result = jsonResponse.get(CustomerHubConstants.RESULT);
@@ -80,10 +80,10 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
             List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
 
-            if ("pdf".equals(extension)) {
+            if (CustomerHubConstants.PDF.equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(request, response, orderDetails, customerSupportCenter, deliveryList);
-            } else if ("excel".equals(extension)) {
-                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList);
+            } else if (CustomerHubConstants.EXCEL.equals(extension)) {
+                generateExcel.generateOrderDetailsExcel(request, response, orderDetails, customerSupportCenter, deliveryList, orderType);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }
