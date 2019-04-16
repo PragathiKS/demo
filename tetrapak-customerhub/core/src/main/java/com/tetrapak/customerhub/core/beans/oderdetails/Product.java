@@ -125,7 +125,7 @@ public class Product {
     public void setUnitPrice(String unitPrice) {
         this.unitPrice = unitPrice;
     }
-    
+
     public String getMaterialCode() {
         return materialCode;
     }
@@ -144,7 +144,12 @@ public class Product {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("productName", productName).append("orderQuantity", orderQuantity).append("deliveredQuantity", deliveredQuantity).append("price", price).append("remainingQuantity", remainingQuantity).append("orderNumber", orderNumber).append("productID", productID).append("weight", weight).append("eTA", eTA).append("unitPrice", unitPrice).append("materialCode", materialCode).append("sKU", sKU).toString();
+        return new ToStringBuilder(this).append("productName", productName)
+                .append("orderQuantity", orderQuantity).append("deliveredQuantity", deliveredQuantity)
+                .append("price", price).append("remainingQuantity", remainingQuantity)
+                .append("orderNumber", orderNumber).append("productID", productID)
+                .append("weight", weight).append("eTA", eTA).append("unitPrice", unitPrice)
+                .append("materialCode", materialCode).append("sKU", sKU).toString();
     }
 
 }

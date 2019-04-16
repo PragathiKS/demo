@@ -100,7 +100,10 @@ public class OrderDetails {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("orderNumber", orderNumber).append("customerName", customerName).append("customerNumber", customerNumber).append("purchaseOrderNumber", purchaseOrderNumber).append("customerReference", customerReference).append("placedOn", placedOn).append("webRefID", webRefID).append("status", status).toString();
+        return new ToStringBuilder(this).append("orderNumber", orderNumber)
+                .append("customerName", customerName).append("customerNumber", customerNumber)
+                .append("purchaseOrderNumber", purchaseOrderNumber).append("customerReference", customerReference)
+                .append("placedOn", placedOn).append("webRefID", webRefID).append("status", status).toString();
     }
 
 }

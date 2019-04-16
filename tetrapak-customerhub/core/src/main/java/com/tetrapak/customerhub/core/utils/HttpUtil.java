@@ -15,7 +15,7 @@ import java.io.IOException;
  *
  * @author Nitin Kumar
  */
-public class HttpUtil {
+public final class HttpUtil {
 
     /**
      * private constructor
@@ -26,6 +26,8 @@ public class HttpUtil {
 
 
     /**
+     * Method to set json response with data from API
+     *
      * @param jsonResponse json response
      * @param httpResponse http response
      * @return jsonResponse json response
@@ -51,6 +53,8 @@ public class HttpUtil {
     }
 
     /**
+     * Method to get String data without escape characters \n and \
+     *
      * @param result json element
      * @return result string
      */

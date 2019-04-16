@@ -28,17 +28,14 @@ import java.util.Objects;
 
 /**
  * Model class for page content hierarchy reference
- */
-
-/**
- * @author Tetrapak-customerhub
  *
+ * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageContentHierarchyReferencesModel {
 
     @Self
-    Resource resource;
+    private Resource resource;
 
     @ValueMapValue
     private String pageContentPath;
@@ -50,7 +47,7 @@ public class PageContentHierarchyReferencesModel {
     private ResourceResolver resourceResolver;
 
 
-    List<String> componentsReference = new LinkedList<>();
+    private List<String> componentsReference = new LinkedList<>();
     private String locale;
     private static final String PAGE_REFERENCE_RESOURCE_TYPE = "customerhub/components/content/pagereference";
     private static final String PAGE_REFERENCE_NODE = "pagereference";
@@ -66,13 +63,16 @@ public class PageContentHierarchyReferencesModel {
             locale = StringUtils.isNotBlank(locale) ? locale : "en";
             String pagePath = String.valueOf(pageContentPath);
             pagePath = pagePath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
-            String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.ROOT_NODE + CustomerHubConstants.PATH_SEPARATOR +
+            String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR
+                    + CustomerHubConstants.ROOT_NODE + CustomerHubConstants.PATH_SEPARATOR +
                     CustomerHubConstants.RESPONSIVE_GRID_NODE;
-            String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent : CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
+            String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent :
+                    CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
             pagePath = pagePath + resGridPath;
             pageReferenceComponents(pagePath);
-            if (Objects.nonNull(includeSubPages) && includeSubPages.equalsIgnoreCase("true")) {
-                pageContentPath = pageContentPath.replace(CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT, CustomerHubConstants.EMPTY_STRING);
+            if (Objects.nonNull(includeSubPages) && ("true").equalsIgnoreCase(includeSubPages)) {
+                pageContentPath = pageContentPath.replace(CustomerHubConstants.PATH_SEPARATOR
+                        + JcrConstants.JCR_CONTENT, CustomerHubConstants.EMPTY_STRING);
                 clonePageContentHierachy(pageContentPath, locale);
             }
         }
@@ -86,7 +86,7 @@ public class PageContentHierarchyReferencesModel {
             if (Objects.nonNull(pageManager)) {
                 Page currentPage = pageManager.getContainingPage(resource);
                 Page srcParentPage = pageManager.getPage(pageContentHierachy);
-                createPageContentHierachy(resourceResolver, pageManager, currentPage, srcParentPage, locale);
+                createPageContentHierarchy(resourceResolver, pageManager, currentPage, srcParentPage, locale);
             }
             if (Objects.nonNull(session)) {
                 session.save();
@@ -98,73 +98,82 @@ public class PageContentHierarchyReferencesModel {
         }
     }
 
-    private void createPageContentHierachy(ResourceResolver resourceResolver, PageManager pageManager, Page currentPage,
-                                           Page srcParentPage, String locale)
+    private void createPageContentHierarchy(ResourceResolver resourceResolver, PageManager pageManager, Page currentPage,
+                                            Page srcParentPage, String locale)
             throws RepositoryException, WCMException {
-        String currentPagepath = currentPage.getPath();
-        if (Objects.nonNull(currentPagepath)) {
-            currentPagepath = currentPagepath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
+        String currentPagePath = currentPage.getPath();
+        if (Objects.nonNull(currentPagePath)) {
+            currentPagePath = currentPagePath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
         }
-        Page srcChildrenPage = null;
-        Node sourceJcrContent = null;
+        Page srcChildrenPage;
         Iterator<Page> sourceChildrenPageIterator = srcParentPage.listChildren();
         while (sourceChildrenPageIterator.hasNext()) {
             srcChildrenPage = sourceChildrenPageIterator.next();
-            sourceJcrContent = srcChildrenPage.getContentResource().adaptTo(Node.class);
-            Page destChildrenPage = null;
-            destChildrenPage = getOrCreatePage(resourceResolver, pageManager, currentPagepath, srcChildrenPage);
-            Node childrenJcrContent = null;
-            if (Objects.nonNull(destChildrenPage)) {
-                childrenJcrContent = destChildrenPage.getContentResource().adaptTo(Node.class);
-            }
-            Node srcRoot = null;
-            if (Objects.nonNull(sourceJcrContent)) {
-                srcRoot = sourceJcrContent.getNode(CustomerHubConstants.ROOT_NODE);
-            }
-            Node destRootNode = null;
-            Node srcResponsiveGrid = null;
-            Node destResponsiveGrid = null;
-            if (Objects.nonNull(srcRoot)) {
-                if (Objects.nonNull(childrenJcrContent)) {
-                    destRootNode = addNode(childrenJcrContent, srcRoot.getName());
-                }
-                if (Objects.nonNull(destRootNode)) {
-                    destRootNode.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, srcRoot.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getValue().getString());
-                    srcResponsiveGrid = srcRoot.getNode(CustomerHubConstants.RESPONSIVE_GRID_NODE);
-                    if (Objects.nonNull(srcResponsiveGrid)) {
-                        destResponsiveGrid = addNode(destRootNode, srcResponsiveGrid.getName());
-                    }
-                }
-            }
-            Node destPageReference = null;
-            if (Objects.nonNull(destResponsiveGrid)) {
-                destResponsiveGrid.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, srcResponsiveGrid.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getValue().getString());
-                destPageReference = addNode(destResponsiveGrid, PAGE_REFERENCE_NODE);
-            }
-            if (Objects.nonNull(destPageReference)) {
-                destPageReference.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, PAGE_REFERENCE_RESOURCE_TYPE);
-                String srcChildrenPath = srcChildrenPage.getPath();
-                srcChildrenPath = srcChildrenPath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
-                destPageReference.setProperty(PATH_REFERENCE_NAME, srcChildrenPath);
-            }
-            createPageContentHierachy(resourceResolver, pageManager, destChildrenPage, srcChildrenPage, locale);
+            createHierarchy(resourceResolver, pageManager, locale, currentPagePath, srcChildrenPage);
         }
+    }
+
+    private void createHierarchy(ResourceResolver resourceResolver, PageManager pageManager, String locale,
+                                 String currentpagepath, Page srcChildrenPage) throws RepositoryException, WCMException {
+        Node sourceJcrContent;
+        sourceJcrContent = srcChildrenPage.getContentResource().adaptTo(Node.class);
+        Page destinationChildrenPage;
+        destinationChildrenPage = getOrCreatePage(resourceResolver, pageManager, currentpagepath, srcChildrenPage);
+        Node childrenJcrContent = null;
+        if (Objects.nonNull(destinationChildrenPage)) {
+            childrenJcrContent = destinationChildrenPage.getContentResource().adaptTo(Node.class);
+        }
+        Node srcRoot = null;
+        if (Objects.nonNull(sourceJcrContent)) {
+            srcRoot = sourceJcrContent.getNode(CustomerHubConstants.ROOT_NODE);
+        }
+        Node destinationRootNode = null;
+        Node srcResponsiveGrid = null;
+        Node destinationResponsiveGrid = null;
+        if (Objects.nonNull(srcRoot)) {
+            if (Objects.nonNull(childrenJcrContent)) {
+                destinationRootNode = addNode(childrenJcrContent, srcRoot.getName());
+            }
+            if (Objects.nonNull(destinationRootNode)) {
+                destinationRootNode.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY,
+                        srcRoot.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getValue().getString());
+                srcResponsiveGrid = srcRoot.getNode(CustomerHubConstants.RESPONSIVE_GRID_NODE);
+                if (Objects.nonNull(srcResponsiveGrid)) {
+                    destinationResponsiveGrid = addNode(destinationRootNode, srcResponsiveGrid.getName());
+                }
+            }
+        }
+        Node destinationPageReference = null;
+        if (Objects.nonNull(destinationResponsiveGrid)) {
+            destinationResponsiveGrid.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY,
+                    srcResponsiveGrid.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getValue().getString());
+            destinationPageReference = addNode(destinationResponsiveGrid, PAGE_REFERENCE_NODE);
+        }
+        if (Objects.nonNull(destinationPageReference)) {
+            destinationPageReference.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, PAGE_REFERENCE_RESOURCE_TYPE);
+            String srcChildrenPath = srcChildrenPage.getPath();
+            srcChildrenPath = srcChildrenPath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
+            destinationPageReference.setProperty(PATH_REFERENCE_NAME, srcChildrenPath);
+        }
+        createPageContentHierarchy(resourceResolver, pageManager, destinationChildrenPage, srcChildrenPage, locale);
     }
 
     private Page getOrCreatePage(ResourceResolver resourceResolver, PageManager pageManager, String currentPagepath,
                                  Page srcChildrenPage) throws RepositoryException, WCMException {
 
-        Page destChildrenPage = null;
+        Page destinationChildrenPage = null;
         if (isPageExist(resourceResolver, currentPagepath + CustomerHubConstants.PATH_SEPARATOR + srcChildrenPage.getName())) {
-            destChildrenPage = pageManager.getPage(currentPagepath + CustomerHubConstants.PATH_SEPARATOR + srcChildrenPage.getName());
-            Node destJcrContent = destChildrenPage.getContentResource().adaptTo(Node.class);
-            if (Objects.nonNull(destJcrContent)) {
-                destJcrContent.setProperty(JcrConstants.JCR_TITLE, srcChildrenPage.getTitle());
+            destinationChildrenPage = pageManager.getPage(
+                    currentPagepath + CustomerHubConstants.PATH_SEPARATOR + srcChildrenPage.getName());
+            Node destinationJcrContent = destinationChildrenPage.getContentResource().adaptTo(Node.class);
+            if (Objects.nonNull(destinationJcrContent)) {
+                destinationJcrContent.setProperty(JcrConstants.JCR_TITLE, srcChildrenPage.getTitle());
             }
         } else {
-            destChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(), srcChildrenPage.getProperties().get(CustomerHubConstants.CQ_TEMPLATE, String.class), srcChildrenPage.getTitle());
+            destinationChildrenPage = pageManager.create(currentPagepath, srcChildrenPage.getName(),
+                    srcChildrenPage.getProperties().get(CustomerHubConstants.CQ_TEMPLATE, String.class), srcChildrenPage.getTitle());
         }
-        return destChildrenPage;
+        return destinationChildrenPage;
     }
 
     private boolean isPageExist(ResourceResolver resourceResolver, String pagePath) {
@@ -187,7 +196,7 @@ public class PageContentHierarchyReferencesModel {
     }
 
     private Node addNode(Node node, String nodeName) throws RepositoryException {
-        Node childNode = null;
+        Node childNode;
         if (node.hasNode(nodeName)) {
             childNode = node.getNode(nodeName);
         } else {
@@ -197,7 +206,7 @@ public class PageContentHierarchyReferencesModel {
     }
 
     public List<String> getComponentsReference() {
-        return componentsReference;
+        return new LinkedList<>(componentsReference);
     }
 
     public String getPageContentPath() {

@@ -83,16 +83,16 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
             PDImageXObject img2 = LosslessFactory.createFromImage(document, bufferedImage2);
 
-            PDFUtil.drawImage(document, contentStream, img1, 405, 700, 130, 50);
-            PDFUtil.drawImage(document, contentStream, img2, 60, 570, 40, 40);
+            PDFUtil.drawImage(contentStream, img1, 405, 700, 130, 50);
+            PDFUtil.drawImage(contentStream, img2, 60, 570, 40, 40);
 
             PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
             PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY,
                     getContactLines(orderDetailResponse.getCustomerSupportCenter()));
 
-            PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
-            PDFUtil.drawTable(document, contentStream, createOrderDetailTable(orderDetails), 60);
+            PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 60);
 
             if (StringUtils.equalsIgnoreCase("parts", orderType)) {
                 for (DeliveryList deliveryDetail : deliveryList) {
@@ -100,18 +100,18 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                     int height = 800 - 240 * count; //565
                     PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
                             getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
-                    PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
+                    PDFUtil.drawLine(contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
 
-                    PDFUtil.drawTable(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                    PDFUtil.drawLine(document, contentStream, 65, 460, height - 128, Color.black, 0.01f);
+                    PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
+                    PDFUtil.drawLine(contentStream, 65, 460, height - 128, Color.black, 0.01f);
 
                     Table productTable = createProductTable(deliveryDetail.getProducts());
-                    PDFUtil.drawTable(document, contentStream, productTable, 840 - height);
-                    PDFUtil.drawTable(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
+                    PDFUtil.drawTable(contentStream, productTable, 840 - height);
+                    PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
                 }
             } else {
-                PDFUtil.drawTable(document, contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 180);
-                PDFUtil.drawLine(document, contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
+                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 180);
+                PDFUtil.drawLine(contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
 
 
             }

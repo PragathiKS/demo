@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.beans.pdf;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,11 +97,11 @@ public class Table {
     }
 
     public List<Column> getColumns() {
-        return columns;
+        return new ArrayList<>(columns);
     }
 
     public void setColumns(List<Column> columns) {
-        this.columns = columns;
+        this.columns = new ArrayList<>(columns);
     }
 
     public Integer getNumberOfRows() {
@@ -128,11 +129,11 @@ public class Table {
     }
 
     public String[][] getContent() {
-        return content;
+        return content.clone();
     }
 
     public void setContent(String[][] content) {
-        this.content = content;
+        this.content = content.clone();
     }
 
     public float getCellMargin() {
