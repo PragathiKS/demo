@@ -14,11 +14,12 @@ import { apiHost } from '../../../scripts/common/common';
  */
 function _trackAnalytics() {
   // Get selected preferences
-  const analyticsData = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+  const analyticsData = {};
+  analyticsData['ordersettings'] = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
     return $.trim($(el).parent().text());
   }).join('|');
 
-  trackAnalytics(analyticsData, 'settings', 'ordersettings', 'ordersettings');
+  trackAnalytics(analyticsData, 'settings', 'ordersettings');
 }
 
 /**
