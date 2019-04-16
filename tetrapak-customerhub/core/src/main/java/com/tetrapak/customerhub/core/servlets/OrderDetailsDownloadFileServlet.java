@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.oderdetails.*;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * PDF and Excel Generator Servlet
@@ -80,13 +79,9 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             Gson gson = new Gson();
             OrderDetailsData orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
                     OrderDetailsData.class);
-            OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
-            CustomerSupportCenter customerSupportCenter = orderDetailResponse.getCustomerSupportCenter();
-            List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
-            List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
 
             if (CustomerHubConstants.PDF.equals(extension)) {
-                generatePDF.generateOrderDetailsPDF(response, orderType, orderDetails, customerSupportCenter, deliveryList, orderSummaryList);
+                generatePDF.generateOrderDetailsPDF(response, orderType, orderDetailResponse);
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
                 generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
             } else {

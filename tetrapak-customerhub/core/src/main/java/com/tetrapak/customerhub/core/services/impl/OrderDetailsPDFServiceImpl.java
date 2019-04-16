@@ -44,7 +44,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletResponse response,
-                                        String orderType, OrderDetails orderDetails, CustomerSupportCenter customerSupportCenter, List<DeliveryList> deliveryList, List<OrderSummary> orderSummaryList) {
+                                        String orderType, OrderDetailsData orderDetailResponse) {
+        OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
+        List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
         // InputStream in1 = null;
         // InputStream in2 = null;
         InputStream image1 = null;
@@ -78,7 +80,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawImage(document, contentStream, img2, 60, 570, 40, 40);
 
             PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(orderDetails));
-            PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY, getContactLines(customerSupportCenter));
+            PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY, getContactLines(orderDetailResponse.getCustomerSupportCenter()));
 
             PDFUtil.drawLine(document, contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
@@ -88,7 +90,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 for (DeliveryList deliveryDetail : deliveryList) {
                     int count = deliveryList.indexOf(deliveryDetail) + 1;
                     int height = 800 - 240 * count; //565
-                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryList.indexOf(deliveryDetail)));
+                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY, getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
                     PDFUtil.drawLine(document, contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
 
                     PDFUtil.drawTable(document, contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
@@ -100,7 +102,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                     PDFUtil.drawTable(document, contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
                 }
             } else {
-                PDFUtil.drawTable(document, contentStream, createOrderSummaryTable(orderSummaryList), 180);
+                PDFUtil.drawTable(document, contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 180);
                 PDFUtil.drawLine(document, contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
 
 
