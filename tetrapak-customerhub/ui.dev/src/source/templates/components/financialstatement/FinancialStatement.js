@@ -18,7 +18,7 @@ function _trackAnalytics(type) {
   const analyticsData = {};
   switch (type) {
     case 'reset': {
-      analyticsData['resetsearch'] = true;
+      analyticsData.resetsearch = true;
       trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
       break;
     }
@@ -27,12 +27,12 @@ function _trackAnalytics(type) {
       const status = $filterForm.find('.js-financial-statement__status option:selected').text();
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-      analyticsData['searchstatement'] = `${status}|dates choosen|${docType}|${docNumber}`;
+      analyticsData.searchstatement = `${status}|dates choosen|${docType}|${docNumber}`;
       trackAnalytics(analyticsData, 'financial', 'SearchStatement');
       break;
     }
     default: {
-      analyticsData['findcustomer'] = this.cache.data.selectedCustomerData.desc;
+      analyticsData.findcustomer = this.cache.data.selectedCustomerData.desc;
       trackAnalytics(analyticsData, 'financial', 'FindCustomer');
     }
   }

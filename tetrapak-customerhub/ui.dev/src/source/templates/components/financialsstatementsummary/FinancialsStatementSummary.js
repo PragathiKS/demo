@@ -17,21 +17,21 @@ function _trackAnalytics(type) {
   const analyticsData = {};
   switch (type) {
     case 'downloadPdf': {
-      analyticsData['customername'] = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData['createPDF'] = 'true';
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createPDF = 'true';
       trackAnalytics(analyticsData, 'financial', 'statementinvoice');
       break;
     }
     case 'downloadExcel': {
-      analyticsData['customername'] = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData['createExcel'] = 'true';
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createExcel = 'true';
       trackAnalytics(analyticsData, 'financial', 'statementinvoice');
       break;
     }
     default: {
       const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
-      analyticsData['statementheader'] = $.trim(statementHeader);
-      analyticsData['statementnumber'] = $.trim($this.find('[data-key=documentNumber]').text());
+      analyticsData.statementheader = $.trim(statementHeader);
+      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
       trackAnalytics(analyticsData, 'financial', 'statementinvoice');
     }
   }
