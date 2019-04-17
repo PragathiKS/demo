@@ -5,9 +5,8 @@
  */
 
 import $ from 'jquery';
-import LazyLoad from 'vanilla-lazyload';
 
-function _processImageAttributes(container) {
+function _processImageAttributes() {
   $('.pw-dynamic-media').each(function () {
     const $this = $(this);
     let desktopSrc = $this.attr('data-src_desktop');
@@ -61,22 +60,23 @@ function _processImageAttributes(container) {
       //desktop xtra large
       $this.attr('data-src', desktopXL);
     }
+    $this.attr('src', $this.attr('data-src'));
   });
-  if (typeof container === 'string') {
-    return new LazyLoad({
-      container: document.querySelector(container),
-      elements_selector: '.pw-dynamic-media[data-src]'
-    });
-  }
-  return new LazyLoad({
-    elements_selector: '.pw-dynamic-media[data-src]'
-  });
+    
+//  if (typeof container === 'string') {
+//    return new LazyLoad({
+//      container: document.querySelector(container),
+//      elements_selector: '.pw-dynamic-media[data-src]'
+//    });
+//  }
+//  return new LazyLoad({
+//    elements_selector: '.pw-dynamic-media[data-src]'
+//  });
 }
 
 export default {
   bindEvents() {
     $(window).on('resize orientationchange', () => {
-        debugger; //eslint-disable-line
       this.processImageAttributes();
     });
   },
