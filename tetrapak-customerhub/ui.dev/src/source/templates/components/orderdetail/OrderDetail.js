@@ -65,7 +65,7 @@ function _processPartsData(data) {
       delete delivery.deliveryOrder;
       delete delivery.ETD;
       delivery.products = delivery.products.map((product, index) => {
-        product['#'] = index + 1;
+        product.serialNo = index + 1;
         const productColList = data.partsDeliveryTableCols || Object.keys(product);
         keys = keys.length === 0 ? productColList : keys;
 
