@@ -7,16 +7,14 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +40,7 @@ public class ExcelUtil {
 	 * 
 	 */
 	public static Workbook getExcelWorkBook() {
-		return new HSSFWorkbook();
+		return new XSSFWorkbook();
 	}
 
 	/**
@@ -59,9 +57,10 @@ public class ExcelUtil {
 		}
 		return sheet;
 	}
-	
+
 	/**
 	 * Generates the font provided a workbook
+	 * 
 	 * @param workBook wb
 	 * @return Font font
 	 */
@@ -71,7 +70,7 @@ public class ExcelUtil {
 		if (Objects.nonNull(workBook)) {
 			font = workBook.createFont();
 		}
-		return font;	
+		return font;
 	}
 
 	/**
@@ -164,20 +163,20 @@ public class ExcelUtil {
 	/**
 	 * Generate the excel file using the below parameters
 	 * 
-	 * @param response Response
+	 * @param response        Response
 	 * @param excelReportData Excel Bean Data
 	 */
 	public static void generateExcelReport(SlingHttpServletResponse response, ExcelFileData excelReportData) {
 		try {
 			Workbook workBook = getExcelWorkBook();
 			Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
-			Font headerFont = getFontStylingForHeader(workBook, excelReportData);			
+			Font headerFont = getFontStylingForHeader(workBook, excelReportData);
 			CellStyle headerCellStyle = getHeaderCellStyle(workBook, headerFont);
-			Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());			
+			Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());
 			if (Objects.nonNull(excelReportData)) {
 				prepareReportData(sheet, headerRow, excelReportData.getData(), excelReportData);
 			}
-			resizeCellToFitContent(sheet, excelReportData.getColumns().size());	
+			resizeCellToFitContent(sheet, excelReportData.getColumns().size());
 			downloadExcel(response, workBook, excelReportData);
 		} catch (IOException e) {
 			LOGGER.error("\nA run-time exception occured while generating excel report.");
@@ -189,7 +188,7 @@ public class ExcelUtil {
 	/**
 	 * @param sheet
 	 * @param row
-	 * @param       String[][] reportData
+	 * @param String[][] reportData
 	 * 
 	 */
 	private static void prepareReportData(Sheet sheet, Row row, String[][] reportData, ExcelFileData ed) {
@@ -201,11 +200,15 @@ public class ExcelUtil {
 			if (Objects.nonNull(row)) {
 				for (String field : data) {
 					Cell cell = row.createCell(columnCount++);
-					XSSFRichTextString richText = new XSSFRichTextString(field);
-					Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
-					f.setBold(true);
-					richText.applyFont(f);
-					cell.setCellValue(richText);
+					
+					if (null != field) {
+						XSSFRichTextString richText = new XSSFRichTextString(field);
+						Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
+						f.setBold(true);
+						richText.applyFont(0, field.lastIndexOf(":"), f);
+						//richText.applyFont(f);
+						cell.setCellValue(richText);
+					}
 				}
 			}
 			++rowCount;

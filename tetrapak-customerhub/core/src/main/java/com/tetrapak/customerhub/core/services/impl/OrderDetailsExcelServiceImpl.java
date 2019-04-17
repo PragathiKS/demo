@@ -5,17 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.i18n.I18n;
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
@@ -65,18 +63,21 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		Font bold = ExcelUtil.getFont();
 		bold.setBold(true);
 		CellStyle style = ExcelUtil.getExcelWorkBook().createCellStyle();
-		
+		style.setBottomBorderColor((short)0);
 		String[][] orderDetailsSection = new String [10][10];
-		RichTextString rt = new HSSFRichTextString(orderDetailsModel.getOrderNo()+": "+orderDetails.getOrderNumber());
+		RichTextString rt = new XSSFRichTextString("Order Number: "+orderDetails.getOrderNumber());
 		rt.applyFont(0, rt.toString().lastIndexOf(":"), bold);
-		orderDetailsSection[0][0] = rt.toString()+orderDetails.getOrderNumber();
-		orderDetailsSection[0][1] = "Status: "+orderDetails.getStatus();
-		orderDetailsSection[0][2] = orderDetailsModel.getCustomerNameLabel()+": "+orderDetails.getCustomerName();
-		orderDetailsSection[0][3] = orderDetailsModel.getCustomerNumberLabel()+": "+orderDetails.getCustomerNumber().toString();
-		orderDetailsSection[0][4] = orderDetailsModel.getPurchaseOrderNumberLabel()+": "+orderDetails.getPurchaseOrderNumber().toString();
-		orderDetailsSection[0][5] = "Customer Reference: "+orderDetails.getCustomerReference().toString();
-		orderDetailsSection[0][6] = orderDetailsModel.getOrderDateLabel()+": "+orderDetails.getPlacedOn();
-		orderDetailsSection[0][7] = orderDetailsModel.getWebRefLabel()+": "+orderDetails.getWebRefID().toString();		
+//		orderDetailsSection[0][0] = rt.toString()+orderDetails.getOrderNumber();
+//		orderDetailsSection[0][1] = "Status: "+orderDetails.getStatus();
+//		orderDetailsSection[0][2] = orderDetailsModel.getCustomerNameLabel()+": "+orderDetails.getCustomerName();
+//		orderDetailsSection[0][3] = orderDetailsModel.getCustomerNumberLabel()+": "+orderDetails.getCustomerNumber().toString();
+//		orderDetailsSection[0][4] = orderDetailsModel.getPurchaseOrderNumberLabel()+": "+orderDetails.getPurchaseOrderNumber().toString();
+//		orderDetailsSection[0][5] = "Customer Reference: "+orderDetails.getCustomerReference().toString();
+//		orderDetailsSection[0][6] = orderDetailsModel.getOrderDateLabel()+": "+orderDetails.getPlacedOn();
+//		orderDetailsSection[0][7] = orderDetailsModel.getWebRefLabel()+": "+orderDetails.getWebRefID().toString();	
+		
+		orderDetailsSection[0][0] = rt.toString();
+		
 		return orderDetailsSection;
 	}
 	
