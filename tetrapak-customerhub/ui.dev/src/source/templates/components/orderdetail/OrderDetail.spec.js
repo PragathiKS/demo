@@ -3,7 +3,6 @@ import OrderDetail from './OrderDetail';
 import orderDetailTemplate from '../../../test-templates-hbs/orderDetail.hbs';
 import orderdetailpackagingData from './data/orderdetailpackaging.json';
 import { render } from '../../../scripts/utils/render';
-import { logger } from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
@@ -27,6 +26,7 @@ describe('OrderDetail', function () {
     this.renderOrderSummarySpy = sinon.spy(this.orderDetail, "renderOrderSummary");
     this.processTableDataSpy = sinon.spy(this.orderDetail, "processTableData");
     this.openOverlaySpy = sinon.spy(this.orderDetail, 'openOverlay');
+    this.downloadSpy = sinon.spy(this.orderDetail, 'downloadContent');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderdetailpackagingData));
@@ -46,6 +46,7 @@ describe('OrderDetail', function () {
     this.renderOrderSummarySpy.restore();
     this.processTableDataSpy.restore();
     this.openOverlaySpy.restore();
+    this.downloadSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -76,5 +77,9 @@ describe('OrderDetail', function () {
   it('should open overlay when info icon clicked', function () {
     $('.js-icon-Info').trigger('click');
     expect(this.orderDetail.openOverlay.called).to.be.true;
+  });
+  it('should download excel on click of "download excel" button', function () {
+    $('.js-create-excel').trigger('click');
+    expect(this.downloadSpy.called).to.be.true;
   });
 });

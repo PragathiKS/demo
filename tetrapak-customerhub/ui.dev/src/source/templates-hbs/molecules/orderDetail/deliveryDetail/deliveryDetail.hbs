@@ -4,7 +4,7 @@
                 <div class="tp-order-detail__table-wrapper">
                         {{> molecules/table/table baseClass="tp-order-detail" jsClass="js-order-detail" list=products headings=../tableHeadings}}
                 </div>
-                {{#if ../parts}}
+                {{#unless ../isPackmat}}
                         <table class="tp-order-detail__product-summary ml-auto">
                                 <tr>
                                         <td>{{../i18nKeys.totalWeightLabel}}</td>
@@ -19,7 +19,7 @@
                                         <td>{{totalVAT}}</td>
                                 </tr>
                         </table>
-                {{/if}}
+                {{/unless}}
         </div>
 {{/each}}
 
