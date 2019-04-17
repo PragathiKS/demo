@@ -75,10 +75,8 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             response.setStatus(statusCode);
             LOGGER.debug("Http Post request status code: {}", statusCode);
 
-            String result = HttpUtil.setJsonResponse(jsonResponse, httpResponse).toString();
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
 
-            jsonResponse.addProperty(CustomerHubConstants.RESULT, result);
-            jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
             HttpUtil.writeJsonResponse(response, jsonResponse);
         } catch (FileNotFoundException e) {
             LOGGER.error("Unable to connect to the url {}", apiURL, e);
