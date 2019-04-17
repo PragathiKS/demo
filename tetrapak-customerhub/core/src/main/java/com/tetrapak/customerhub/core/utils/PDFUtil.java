@@ -3,6 +3,8 @@ package com.tetrapak.customerhub.core.utils;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -29,7 +31,9 @@ import java.util.List;
  *
  * @author Nitin Kumar
  */
-public class PDFUtil {
+public final class PDFUtil {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PDFUtil.class);
 
     /**
      * private constructor
@@ -37,8 +41,6 @@ public class PDFUtil {
     private PDFUtil() {
         //adding private constructor
     }
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PDFUtil.class);
 
     /**
      * This method is used to print lines of string into a pdf file
@@ -50,7 +52,8 @@ public class PDFUtil {
      * @param color         color
      * @param rows          list of string lines to be printed on document
      */
-    public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height, Color color, List<Row> rows) {
+    public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height,
+                                    Color color, List<Row> rows) {
         try {
             for (Row row : rows) {
                 height -= row.getHeight();
@@ -89,8 +92,10 @@ public class PDFUtil {
         PDRectangle position = new PDRectangle();
         position.setLowerLeftX(margin);
         position.setLowerLeftY(height);
-        position.setUpperRightX((float) margin + 150);
-        position.setUpperRightY((float) height + 10);
+        double finalMargin = (double) margin + 150;
+        double finalHeight = (double) height + 150;
+        position.setUpperRightX((float) finalMargin);
+        position.setUpperRightY((float) finalHeight);
         txtLink.setRectangle(position);
         page.getAnnotations().add(txtLink);
     }
@@ -128,8 +133,7 @@ public class PDFUtil {
             response.setContentType("application/pdf");
 
             //use 'inline' to open pdf in browser, use 'attachment' to download pdf into the system
-             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
-            //response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
 
             int read;
             OutputStream os = response.getOutputStream();
@@ -179,7 +183,8 @@ public class PDFUtil {
 
         double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
         double nextTextY = tableTopY - ((double) table.getRowHeight() / 2)
-                - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * (double) table.getFontSize()) / 4) - startY;
+                - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight()
+                / 1000 * (double) table.getFontSize()) / 4) - startY;
 
         writeContentLine(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY, table);
         nextTextY -= table.getRowHeight();
@@ -197,10 +202,12 @@ public class PDFUtil {
                                          Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
+            boolean isBold = text.startsWith(CustomerHubConstants.BOLD_IDENTIFIER);
             contentStream.beginText();
             contentStream.newLineAtOffset((float) nextTextX, nextTextY);
-            contentStream.setFont(table.getColumns().get(i).isBold() ? table.getTextFontBold() : table.getTextFont(), table.getFontSize());
-            contentStream.showText(null == text ? "" : text);
+            contentStream.setFont(isBold ? table.getTextFontBold() : table.getTextFont(), table.getFontSize());
+            contentStream.showText(null == text ? "" : isBold ?
+                    StringUtils.substringAfter(text, CustomerHubConstants.BOLD_IDENTIFIER) : text);
             contentStream.endText();
             nextTextX += table.getColumns().get(i).getWidth();
         }
@@ -229,9 +236,33 @@ public class PDFUtil {
     public static void drawLine(PDPageContentStream contentStream,
                                 int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
-        contentStream.moveTo(margin, height);
-        contentStream.lineTo(margin + (float) length, (float) height);
         contentStream.setLineWidth(thickness);
+        contentStream.setLineDashPattern(new float[]{0, 0}, 0);
+        contentStream.moveTo(margin, height);
+        double finalMargin = (double) margin + (double) length;
+        contentStream.lineTo((float) finalMargin, (float) height);
+        contentStream.stroke();
+    }
+
+    /**
+     * Method to draw a line
+     *
+     * @param contentStream content stream
+     * @param margin        margin
+     * @param length        length
+     * @param height        height
+     * @param color         color
+     * @param thickness     thickness
+     * @throws IOException IO Exception
+     */
+    public static void drawDashedLine(PDPageContentStream contentStream,
+                                      int margin, int length, int height, Color color, float thickness) throws IOException {
+        contentStream.setStrokingColor(color);
+        contentStream.setLineWidth(thickness);
+        contentStream.setLineDashPattern(new float[]{2, 1}, 0);
+        contentStream.moveTo(margin, height);
+        double finalMargin = (double) margin + (double) length;
+        contentStream.lineTo((float) finalMargin, (float) height);
         contentStream.stroke();
     }
 
@@ -240,16 +271,18 @@ public class PDFUtil {
      *
      * @param columns     columns
      * @param content     content
+     * @param rowHeight   row height
      * @param muliRegular regular font
      * @param muliBold    bold font
      * @return table
      */
-    public static Table getTable(List<Column> columns, String[][] content, PDFont muliRegular, PDFont muliBold) {
+    public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
+                                 PDFont muliRegular, PDFont muliBold, double fontSize) {
         final float MARGIN = 65;
         final boolean IS_LANDSCAPE = false;
-        final float FONT_SIZE = 7;
+        final float FONT_SIZE = (float) fontSize;
 
-        final float ROW_HEIGHT = 15;
+        final float ROW_HEIGHT = (float) rowHeight;
         final float CELL_MARGIN = 0;
 
         float tableHeight = 500;

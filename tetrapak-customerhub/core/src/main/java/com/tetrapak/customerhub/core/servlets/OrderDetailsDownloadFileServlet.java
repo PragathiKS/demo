@@ -55,8 +55,8 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
 
-        final String orderNumber = request.getParameter("orderNumber");
-        final String token = request.getParameter("token");
+        final String orderNumber = request.getParameter(CustomerHubConstants.ORDER_NUMBER);
+        final String token = request.getParameter(CustomerHubConstants.TOKEN);
 
         final String[] selectors = request.getRequestPathInfo().getSelectors();
         final String orderType = selectors.length > 0 ? selectors[0] : StringUtils.EMPTY;

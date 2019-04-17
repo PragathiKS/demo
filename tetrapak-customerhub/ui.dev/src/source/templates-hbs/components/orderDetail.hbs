@@ -1,0 +1,61 @@
+{{#if isError}}
+    {{#if i18nKeys.errorMsg}}
+        {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+    {{else}}
+        {{> atoms/error/error error=true message="cuhu.error.message"}}
+    {{/if}}
+{{else}}
+    <div class="tp-card">
+        <h2>{{i18n key=i18nKeys.orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h2>
+        <div class="tp-order-detail__order-info">
+            <div class="row no-gutters">
+                <div class="col-lg">
+                    <div class="tp-order-detail__order-info-table">
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerNameLabel data=orderDetails.customerName }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerNumberLabel data=orderDetails.customerNumber }}
+                    </div>
+                </div>
+                <div class="col-lg">
+                    <div class="tp-order-detail__order-info-table m-lg-auto">
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.purchaseOrderNumberLabel data=orderDetails.purchaseOrderNumber }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerReferenceLabel data=orderDetails.customerReference }}
+                    </div>
+                </div>
+                <div class="col-lg">
+                    <div class="tp-order-detail__order-info-table ml-lg-auto">
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-order-detail__cust-support row no-gutters">
+            <div class="tp-order-detail__support-center col-lg-6 text-center text-lg-left">
+                {{> molecules/supportCentre/supportCentre title=i18nKeys.custSupCentreLabel supportEmail=customerSupportCenter.email supportContact=customerSupportCenter.mobile }}
+            </div>
+            <div class="tp-order-detail__btn-container col-lg-6 text-lg-right align-self-center">
+                {{> atoms/buttons/button/button text=i18nKeys.createExcelLabel modifier="primary" className="tp-order-detail__create-excel js-create-excel" iconClass="icon-Excel" data-servlet-url=servletUrl data-order-type=orderType data-order-number=orderDetails.orderNumber data-extn-type="excel" }}
+                {{> atoms/buttons/button/button text=i18nKeys.createPdfLabel modifier="primary" className="tp-order-detail__create-pdf js-create-pdf" iconClass="icon-PDF" data-servlet-url=servletUrl data-order-type=orderType data-order-number=orderDetails.orderNumber data-extn-type="pdf" }}
+            </div>
+        </div>
+
+        {{#if orderSummary}}
+            <div class="tp-order-detail__table-wrapper">
+                {{> molecules/table/table baseClass="tp-order-detail__summary" list=orderSummary headings=orderSummaryHeadings}}
+            </div>
+        {{/if}}
+    </div>
+    {{#if noData}}
+        <div class="tp-card">
+            {{#if i18nKeys.noDataMsg}}
+                {{> atoms/error/error message=i18nKeys.noDataMsg}}
+            {{else}}
+                {{> atoms/error/error message="cuhu.nodata.message"}}
+            {{/if}}
+        </div>
+    {{else}}
+        {{> molecules/orderDetail/deliveryDetail/deliveryDetail this }}
+    {{/if}}
+{{/if}}
+
+

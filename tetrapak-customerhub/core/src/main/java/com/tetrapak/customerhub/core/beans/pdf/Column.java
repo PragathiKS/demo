@@ -9,19 +9,16 @@ public class Column {
 
     private String name;
     private float width;
-    private boolean isBold;
 
     /**
      * Public constructor for this class
      *
-     * @param name   string name
-     * @param width  float width
-     * @param isBold boolean isBold
+     * @param name  string name
+     * @param width float width
      */
-    public Column(String name, float width, boolean isBold) {
+    public Column(String name, float width) {
         this.name = name;
         this.width = width;
-        this.isBold = isBold;
     }
 
     public String getName() {
@@ -40,11 +37,4 @@ public class Column {
         this.width = width;
     }
 
-    public boolean isBold() {
-        return isBold;
-    }
-
-    public void setBold(boolean bold) {
-        isBold = bold;
-    }
 }

@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 public class OrderDetailsModel {
 
 	@Self
-	Resource resource;
+	private Resource resource;
 
 	@Inject
 	private String backToOrderHistory;

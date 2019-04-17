@@ -1,0 +1,36 @@
+<div class="tpmol-order-delivery-summary">
+    <h2 class="tpmol-order-delivery-summary__heading">{{i18n key=this.i18nKeys.deliveryOrder}}: {{this.deliveryNumber}}{{#if this.deliveryStatus}} - {{this.deliveryStatus}}{{/if}}</h2>
+    <div class="row">
+        <div class="col-lg">
+            {{#if this.deliveryOrder}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.deliveryOrder value=this.deliveryOrder}}
+            {{/if}}
+            {{#if this.productPlace}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.productionPlace value=this.productPlace}}
+            {{/if}}
+            {{#if this.requestedDelivery}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.requested value=this.requestedDelivery}}
+            {{/if}}
+            {{#if this.ETD}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.etd value=this.ETD}}
+            {{/if}}
+            {{#if this.carrier}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.shippingLabel value=this.carrier}}
+            {{/if}}
+            {{#if this.carrierTrackingID}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.trackOrderLabel value=this.carrierTrackingID}}
+            {{/if}}
+        </div>
+        <div class="col-lg offset-lg-4">
+            <div class="row">
+                <div class="col-lg">
+                 {{> molecules/orderDetail/addressDetail/addressDetail addressLabel=this.i18nKeys.deliveryAddrLabel data=this.deliveryAddress}}
+                 </div>
+                <div class="col-lg">
+                    {{> molecules/orderDetail/addressDetail/addressDetail addressLabel=this.i18nKeys.invoiceAddrLabel data=this.invoiceAddress}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
