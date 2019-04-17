@@ -13,10 +13,29 @@ import { apiHost } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
-function _trackAnalytics() {
+function _trackAnalytics(type) {
+  const $this = this;
   const analyticsData = {};
-  analyticsData['findcustomer'] = this.cache.data.selectedCustomerData.desc;
-  trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+  switch (type) {
+    case 'reset': {
+      analyticsData['resetsearch'] = true;
+      trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
+      break;
+    }
+    case 'search': {
+      const { $filterForm } = $this.cache;
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text();
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
+      analyticsData['searchstatement'] = `${status}|dates choosen|${docType}|${docNumber}`;
+      trackAnalytics(analyticsData, 'financial', 'SearchStatement');
+      break;
+    }
+    default: {
+      analyticsData['findcustomer'] = this.cache.data.selectedCustomerData.desc;
+      trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+    }
+  }
 }
 
 /**
@@ -341,6 +360,7 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__submit', this.populateResults)
       .on('click', '.js-financial-statement__reset', () => {
         this.resetFilters();
+        this.trackAnalytics('reset');
       });
   }
   openDateSelector() {
@@ -353,6 +373,7 @@ class FinancialStatement {
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
+    this.trackAnalytics('search');
     this.setRoute();
   }
   getFilterQuery() {
@@ -376,7 +397,7 @@ class FinancialStatement {
       queryString: defaultQueryString
     });
   }
-  trackAnalytics = () => _trackAnalytics.call(this);
+  trackAnalytics = (type) => _trackAnalytics.call(this, type);
 
   init() {
     this.initCache();
