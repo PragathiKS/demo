@@ -128,8 +128,8 @@ public class PDFUtil {
             response.setContentType("application/pdf");
 
             //use 'inline' to open pdf in browser, use 'attachment' to download pdf into the system
-            // response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
-            response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
+             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            //response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
 
             int read;
             OutputStream os = response.getOutputStream();
@@ -257,7 +257,7 @@ public class PDFUtil {
         double width = 8.5 * 72;
         double height = (double) 11 * 72;
 
-        Table table = new TableBuilder()
+        return new TableBuilder()
                 .setCellMargin(CELL_MARGIN)
                 .setColumns(columns)
                 .setContent(content)
@@ -272,6 +272,5 @@ public class PDFUtil {
                 .setTextFontBold(muliBold)
                 .setFontSize(FONT_SIZE)
                 .build();
-        return table;
     }
 }
