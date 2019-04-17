@@ -1,0 +1,82 @@
+.pw-office-locator {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
+
+    background-color: $color-white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    @media #{$desktop} {
+        @include height(540px);
+        @include padding($padding-zero);
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+    }
+
+    &__controls {
+        @include padding($padding-md);
+
+        @media #{$desktop} {
+            @include padding-left($padding-xxxl);
+            @include padding-right(60px);
+        }
+    }
+
+    &__menu {
+        order: 1;
+
+        @media #{$desktop} {
+            order: 0;
+            overflow-y: scroll;
+        }
+    }
+
+    &__title {
+        @include margin-bottom($margin-md);
+        @include padding($padding-md $padding-md 0);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+            @include padding($padding-xxl 60px 0 $padding-xxl);
+
+        }
+    }
+
+    &__offices-list {
+        li {
+            @include padding($padding-md);
+            border-top: 1px solid $color-mercury;
+            @media #{$desktop} {
+                @include padding($padding-md 60px $padding-md $padding-xxxl);
+            }
+        }
+    }
+
+    &__offices-link {
+        color: $color-tundora;
+        position: relative;
+
+        @media #{$desktop} {
+            @include padding-right($padding-xl);
+        }
+
+        &__icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__map {
+
+        #map {
+            @include height(330px);
+
+            @media #{$desktop} {
+                @include height(540px);
+            }
+        }
+    }
+}

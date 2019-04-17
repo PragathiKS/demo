@@ -1,0 +1,70 @@
+<sly data-sly-template.officeLocator_template="${@ data, flag}">
+  <div class="pw-office-locator pw-theme--${data.pwTheme}" data-locator="office-locator" data-module="OfficeLocator">
+    <div class="pw-office-locator__menu">
+      <div class="pw-office-locator__title d-none d-lg-block">
+        <sly data-sly-test="${data.title}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.title}"/>
+      </div>
+      <div class="pw-office-locator__controls">
+        <label for="gmaps-search">Country or city</label>
+        <input class="form-control" id="gmaps-search" type="text">
+        <a href="#">Filter office by type</a>
+      </div>
+      <ul class="pw-office-locator__offices-list">
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industrial Avanue strial AvanuAlbion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industristrial Avanual Avanue Albion, MI 4922anual Avanue anual Avanue anual Avanue  <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industrial Avanue Albion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Indstrial Avanustrial Avanuustrial Avanue Albion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industrial Avanue Albion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industrial Avanue Albion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+        <li>
+          <a class="pw-office-locator__offices-link" href="#"><span class="pw-office-locator__offices-link__office-title"><b>TetraPak Inc.</b></span> <br>
+            1104 Industrial Avanue Albion, MI 4922 <i class="pw-office-locator__offices-link__icon icon-Chevron_Right"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="pw-office-locator__map">
+      <div class="pw-office-locator__title d-lg-none">
+        <sly data-sly-test="${data.title}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.title}"/>
+      </div>
+      <div id="map">
+
+      </div>
+      <script>
+        var map;
+
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            disableDefaultUI: true,
+            zoom: 8
+          });
+        }
+      </script>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC6bZHia8GCcaxfWVYSoq6HFnNB17PbxQ&callback=initMap"
+            async defer></script>
+  </div>
+</sly>
