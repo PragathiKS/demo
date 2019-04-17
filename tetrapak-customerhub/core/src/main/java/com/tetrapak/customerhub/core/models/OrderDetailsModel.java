@@ -181,9 +181,6 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
 		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		partsDeliveryTableCols = new Gson().toJson(partsDeliveryTableCols);
-		packagingProductsTableCols = new Gson().toJson(packagingProductsTableCols);
-		packagingDeliveryTableCols = new Gson().toJson(packagingDeliveryTableCols);
 		downloadPdfExcelServletUrl = resource.getPath();
 	}
 
