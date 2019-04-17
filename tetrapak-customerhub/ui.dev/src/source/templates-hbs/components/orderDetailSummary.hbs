@@ -11,20 +11,20 @@
             <div class="row no-gutters">
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table">
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.customerNameLabel data=orderDetails.customerName }}
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.customerNumberLabel data=orderDetails.customerNumber }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerNameLabel data=orderDetails.customerName }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerNumberLabel data=orderDetails.customerNumber }}
                     </div>
                 </div>
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table m-lg-auto">
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.purchaseOrderNumberLabel data=orderDetails.purchaseOrderNumber }}
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.customerReferenceLabel data=orderDetails.customerReference }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.purchaseOrderNumberLabel data=orderDetails.purchaseOrderNumber }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.customerReferenceLabel data=orderDetails.customerReference }}
                     </div>
                 </div>
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table ml-lg-auto">
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
-                        {{> atoms/infoPair/infoPair baseClass="tp-order-detail__order" label=i18nKeys.webRefLabel data=orderDetails.webRefID }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID }}
                     </div>
                 </div>
             </div>

@@ -16,35 +16,35 @@
                 display: table;
             }
         }
+    }
 
-        &-data {
+    &__info-data {
+        @include padding-top($padding-xs);
+        @include padding-bottom($padding-sm);
+
+        @media #{$desktop} {
+            display: table-row;
+            padding: 0;
+        }
+    }
+
+    &__info-title {
+        @include padding-right($margin-l);
+        font-family: $font-semi-bold;
+        vertical-align: top;
+
+        @media #{$desktop} {
             @include padding-top($padding-xs);
             @include padding-bottom($padding-sm);
-
-            @media #{$desktop} {
-                display: table-row;
-                padding: 0;
-            }
+            display: table-cell;
         }
+    }
 
-        &-title {
-            @include padding-right($margin-l);
-            font-family: $font-semi-bold;
-            vertical-align: top;
-
-            @media #{$desktop} {
-                @include padding-top($padding-xs);
-                @include padding-bottom($padding-sm);
-                display: table-cell;
-            }
-        }
-
-        &-text {
-            @media #{$desktop} {
-                @include padding-top($padding-xs);
-                @include padding-bottom($padding-sm);
-                display: table-cell;
-            }
+    &__info-text {
+        @media #{$desktop} {
+            @include padding-top($padding-xs);
+            @include padding-bottom($padding-sm);
+            display: table-cell;
         }
     }
 
