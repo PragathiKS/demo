@@ -166,7 +166,7 @@ pipeline {
 							}
 							else
 							{
-								echo "Starting pa11y test Run"
+								echo "Starting pa11y test Run on CustomerHub Urls"
                                                                 sh 'chmod 777 PallyReporting.sh'
                                                                 sh './PallyReporting.sh'
 		                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
