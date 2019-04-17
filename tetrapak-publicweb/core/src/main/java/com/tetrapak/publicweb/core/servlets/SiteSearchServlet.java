@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -61,8 +60,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 		@AttributeDefinition(name = "Full Text Search Term Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the full text search term.")
 		String fulltext_searchterm() default "fulltextSearchTerm";
 		
-		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
-		String system_user() default "writeService";
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -80,15 +77,14 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     
     private String SEARCH_ROOT_PATH;
     private String FULLTEXT_SEARCH_TERM;
-    private String SYSTEM_USER;
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-
+		log.info("Executing doGet method.");
 		try {
 
 			// get resource resolver, session and queryBuilder objects.
-			resourceResolver = getResourceResolver(request);
+			resourceResolver = request.getResourceResolver();
 			session = resourceResolver.adaptTo(Session.class);
 			queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 
@@ -134,6 +130,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 	 * @return List<SearchResultBean>
 	 */
 	public List<SearchResultBean> getSearchResultItems(String fulltextSearchTerm, String searchRootPath) {
+		log.info("Executing getSearchResultItems method.");
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("path", searchRootPath);
@@ -172,23 +169,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 		return resources;
 	}
 	
-	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, SYSTEM_USER);
-		ResourceResolver resourceResolver = null;
-		try {
-			resourceResolver = resolverFactory.getServiceResourceResolver(param);
-			if(resourceResolver == null) {
-				log.error("[Resource resolver from system user is null. Getting it from request now.");
-				resourceResolver = request.getResourceResolver();
-			}
-		} catch (LoginException e) {
-			log.error("[Error getting the resource resolver. {}", e);
-			resourceResolver = request.getResourceResolver();
-		}
-		return resourceResolver;
-	}
-	
 	@Activate
 	protected void activate(final Config config) {
 		this.SEARCH_ROOT_PATH = (String.valueOf(config.search_rootpath()) != null) ? String.valueOf(config.search_rootpath())
@@ -197,8 +177,5 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 		this.FULLTEXT_SEARCH_TERM = (String.valueOf(config.fulltext_searchterm()) != null) ? String.valueOf(config.fulltext_searchterm())
 				: null;
 		log.info("configure: FULLTEXT_SEARCH_TERM='{}'", this.FULLTEXT_SEARCH_TERM);
-		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
-				: null;
-		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
 	}
 }

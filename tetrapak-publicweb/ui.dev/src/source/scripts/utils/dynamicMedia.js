@@ -76,6 +76,7 @@ function _processImageAttributes(container) {
 export default {
   bindEvents() {
     $(window).on('resize orientationchange', () => {
+        debugger; //eslint-disable-line
       this.processImageAttributes();
     });
   },

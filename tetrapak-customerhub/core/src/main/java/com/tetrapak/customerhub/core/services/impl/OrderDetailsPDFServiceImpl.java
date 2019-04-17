@@ -1,25 +1,20 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
-import com.tetrapak.customerhub.core.beans.oderdetails.Product;
+import com.tetrapak.customerhub.core.beans.oderdetails.*;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
+import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -28,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +40,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServiceImpl.class);
 
-    private PDDocument document = new PDDocument();
     private PDFont muliRegular;
     private PDFont muliBold;
 
@@ -54,26 +48,23 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                                         String orderType, OrderDetailsData orderDetailResponse) {
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
-        // InputStream in1 = null;
-        // InputStream in2 = null;
+        InputStream in1 = null;
+        InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
         PDPageContentStream contentStream;
+        PDDocument document = new PDDocument();
         try {
             PDPage page = new PDPage();
             document.addPage(page);
             contentStream = new PDPageContentStream(
                     document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
 
-            //   in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
-            //   in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
+            in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
+            in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
 
-            //    muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.STANDARD_ENCODING));
-            //   muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.STANDARD_ENCODING));
-
-            muliRegular = PDType1Font.HELVETICA;
-            muliBold = PDType1Font.HELVETICA_BOLD;
-
+            muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
+            muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
 
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
             image2 = getClass().getResourceAsStream("/images/small_logo.png");
@@ -122,12 +113,12 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             LOGGER.error("IOException {}", e);
         } finally {
             try {
-              /*  if (null != in1) {
+                if (null != in1) {
                     in1.close();
                 }
                 if (null != in2) {
                     in2.close();
-                }*/
+                }
                 if (null != image1) {
                     image1.close();
                 }

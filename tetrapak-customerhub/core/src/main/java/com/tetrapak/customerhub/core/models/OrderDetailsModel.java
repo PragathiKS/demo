@@ -25,7 +25,7 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
-	
+
 	@Self
 	Resource resource;
 
@@ -124,15 +124,21 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String partsDeliveryTableCols;
-	
+
 	@Inject
 	private String kpkPopUpCloseBtnText;
-	
+
 	@Inject
 	private String deliveryProductsFilterCheckboxText;
 
+	@Inject
+	private String customerReferenceLabel;
+
+	@Inject
+	private String orderStatus;
+
 	private String i18nKeys;
-	
+
 	private String downloadPdfExcelServletUrl;
 
 	/**
@@ -148,6 +154,7 @@ public class OrderDetailsModel {
 		i18KeyMap.put("purchaseOrderNumberLabel", getPurchaseOrderNumberLabel());
 		i18KeyMap.put("orderDateLabel", getOrderDateLabel());
 		i18KeyMap.put("customerNumberLabel", getCustomerNumberLabel());
+		i18KeyMap.put("customerReferenceLabel", getCustomerReferenceLabel());
 		i18KeyMap.put("webRefLabel", getWebRefLabel());
 		i18KeyMap.put("custSupCentreLabel", getCustSupCentreLabel());
 		i18KeyMap.put("createExcelLabel", getCreateExcelLabel());
@@ -427,6 +434,7 @@ public class OrderDetailsModel {
 	public String getPartsDeliveryTableCols() {
 		return partsDeliveryTableCols;
 	}
+
 	/**
 	 * @return the kpkPopUpCloseBtnText
 	 */
@@ -440,12 +448,26 @@ public class OrderDetailsModel {
 	public String getDeliveryProductsFilterCheckboxText() {
 		return deliveryProductsFilterCheckboxText;
 	}
-	
+
 	/**
 	 * @return the downloadOrderDetailsServletUrl
 	 */
 	public String getDownloadPdfExcelServletUrl() {
 		return downloadPdfExcelServletUrl;
+	}
+
+	/**
+	 * @return the customerReferenceLabel
+	 */
+	public String getCustomerReferenceLabel() {
+		return customerReferenceLabel;
+	}
+
+	/**
+	 * @return the orderStatus
+	 */
+	public String getOrderStatus() {
+		return orderStatus;
 	}
 
 }

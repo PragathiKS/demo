@@ -80,7 +80,13 @@
                                 fieldLabel="Practice Line Pages Root Path"
                                 required="{Boolean}true"
                                 name="./rootPath"
-                                rootPath="/content"/>                         
+                                rootPath="/content"/>
+                            <errorMessage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter error message to be displayed on page when no results found."
+                                fieldLabel="Error Message"
+                                name="./errorMessage"/>                      
                         </items>
                     </column>
                 </items>

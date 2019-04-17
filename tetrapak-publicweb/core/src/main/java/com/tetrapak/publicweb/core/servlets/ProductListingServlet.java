@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -68,8 +67,6 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		@AttributeDefinition(name = "Product Page Template Path", description = "Path for the Product Page template.")
 		String product_template() default "/apps/publicweb/templates/productpage";
 		
-		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
-		String system_user() default "writeService";
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -88,13 +85,12 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     private String PRODUCT_CATEGORY;
     private String PRODUCT_ROOT_PATH;
     private String PRODUCT_TEMPLATE;
-    private String SYSTEM_USER;
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-		
+		log.info("Executing doGet method.");
 		// get resource resolver, session and queryBuilder objects.
-		resourceResolver = getResourceResolver(request);
+		resourceResolver = request.getResourceResolver();
 		session = resourceResolver.adaptTo(Session.class);
 		queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 		
@@ -133,6 +129,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	 * @return List<ProductInfoBean>
 	 */
 	public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
+		log.info("Executing getListOfProducts method.");
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("path", productRootPath);
@@ -180,24 +177,6 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		return resources;
 	}
 	
-	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, SYSTEM_USER);
-		ResourceResolver resourceResolver = null;
-		try {
-			resourceResolver = resolverFactory
-					.getServiceResourceResolver(param);
-			if(resourceResolver == null) {
-				log.error("[Resource resolver from system user is null. Getting it from request now.");
-				resourceResolver = request.getResourceResolver();
-			}
-		} catch (LoginException e) {
-			log.error("[Error getting the resource resolver. {}", e);
-			resourceResolver = request.getResourceResolver();
-		}
-		return resourceResolver;
-	}
-	
 	@Activate
 	protected void activate(final Config config) {
 		this.PRODUCT_CATEGORY = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
@@ -209,8 +188,5 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		this.PRODUCT_TEMPLATE = (String.valueOf(config.product_template()) != null) ? String.valueOf(config.product_template())
 				: null;
 		log.info("configure: PRODUCT_TEMPLATE='{}'", this.PRODUCT_TEMPLATE);
-		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
-				: null;
-		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
 	}
 }
