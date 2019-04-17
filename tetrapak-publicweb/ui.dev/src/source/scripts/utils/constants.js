@@ -13,5 +13,4 @@ export const ajaxMethods = {
 };
 // API URLs
 export const API_PRODUCT_LISTING = '/bin/tetrapak/pw-productlisting';
-export const GET_SUBCATEGORIES = '/bin/tetrapak/pw-subcategorytag';
 export const GET_CAROUSEL_ITEM = '/bin/tetrapak/pw-carousellisting';

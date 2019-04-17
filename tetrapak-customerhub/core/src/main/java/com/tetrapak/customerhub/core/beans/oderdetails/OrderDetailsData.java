@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,10 +21,10 @@ public class OrderDetailsData {
     private CustomerSupportCenter customerSupportCenter;
     @SerializedName("deliveryList")
     @Expose
-    private List<DeliveryList> deliveryList = null;
+    private List<DeliveryList> deliveryList;
     @SerializedName("orderSummary")
     @Expose
-    private List<OrderSummary> orderSummary = null;
+    private List<OrderSummary> orderSummary;
 
     public OrderDetails getOrderDetails() {
         return orderDetails;
@@ -42,24 +43,26 @@ public class OrderDetailsData {
     }
 
     public List<DeliveryList> getDeliveryList() {
-        return deliveryList;
+        return new ArrayList<>(deliveryList);
     }
 
     public void setDeliveryList(List<DeliveryList> deliveryList) {
-        this.deliveryList = deliveryList;
+        this.deliveryList = new ArrayList<>(deliveryList);
     }
 
     public List<OrderSummary> getOrderSummary() {
-        return orderSummary;
+        return new ArrayList<>(orderSummary);
     }
 
     public void setOrderSummary(List<OrderSummary> orderSummary) {
-        this.orderSummary = orderSummary;
+        this.orderSummary = new ArrayList<>(orderSummary);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("orderDetails", orderDetails).append("customerSupportCenter", customerSupportCenter).append("deliveryList", deliveryList).append("orderSummary", orderSummary).toString();
+        return new ToStringBuilder(this).append("orderDetails", orderDetails)
+                .append("customerSupportCenter", customerSupportCenter).append("deliveryList", deliveryList)
+                .append("orderSummary", orderSummary).toString();
     }
 
 }

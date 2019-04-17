@@ -5,13 +5,10 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 
 /**
@@ -29,6 +26,7 @@ public class IntroScreenModel extends GetStartedModel {
     @Inject
     private String getStartedBtnI18n;
 
+    @Override
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");

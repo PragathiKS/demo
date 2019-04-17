@@ -10,7 +10,14 @@ import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+
+function _trackAnalytics() {
+  const analyticsData = {};
+  analyticsData['findcustomer'] = this.cache.data.selectedCustomerData.desc;
+  trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+}
 
 /**
  * Processes financial data
@@ -67,6 +74,7 @@ function _setSelectedCustomer(key) {
     }
   });
   _renderAddressDetail.apply(this);
+  this.resetFilters();
 }
 
 /**
@@ -169,8 +177,7 @@ function _setDateFilter(status, selectedDate) {
  * @param {object} query Query object
  */
 function _syncFields(query) {
-  const { $filterForm, $findCustomer } = this.cache;
-  $findCustomer.val(query.customerkey).trigger('change');
+  const { $filterForm } = this.cache;
   $filterForm.find('.js-financial-statement__status').val(query.status).trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query.search);
@@ -214,6 +221,14 @@ function _setRoute(isInit = false) {
       queryString: this.getFilterQuery()
     }, isInit);
   }
+}
+
+function _getDefaultQueryString() {
+  const { defaultQueryString, $findCustomer } = this.cache;
+  const queryObject = deparam(defaultQueryString);
+  // Retain current customer address selection
+  queryObject.customerkey = $findCustomer.val();
+  return $.param(queryObject);
 }
 
 class FinancialStatement {
@@ -300,6 +315,7 @@ class FinancialStatement {
     return _renderFilters.apply(this, arguments);
   }
   bindEvents() {
+    const $this = this;
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
@@ -307,8 +323,9 @@ class FinancialStatement {
       }
     });
     this.root
-      .on('change', '.js-financial-statement__find-customer', (e) => {
-        this.setSelectedCustomer(e.target.value);
+      .on('change', '.js-financial-statement__find-customer', function () {
+        $this.setSelectedCustomer($(this).val());
+        $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
@@ -348,8 +365,8 @@ class FinancialStatement {
     return _syncFields.apply(this, arguments);
   }
   resetFilters() {
-    const { $status, defaultQueryString } = this.cache;
-    logger.log(defaultQueryString);
+    const { $status } = this.cache;
+    const defaultQueryString = _getDefaultQueryString.apply(this);
     $status.find('option').each(function () {
       $(this).removeData();
     });
@@ -359,6 +376,8 @@ class FinancialStatement {
       queryString: defaultQueryString
     });
   }
+  trackAnalytics = () => _trackAnalytics.call(this);
+
   init() {
     this.initCache();
     this.bindEvents();

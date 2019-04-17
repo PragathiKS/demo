@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.constants;
 /**
  * The CustomerHubConstants class
  */
-public class CustomerHubConstants {
+public final class CustomerHubConstants {
 
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");

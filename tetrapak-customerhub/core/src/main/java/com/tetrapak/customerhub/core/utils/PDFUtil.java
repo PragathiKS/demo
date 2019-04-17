@@ -12,12 +12,11 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.interactive.action.PDActionURI;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationLink;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDBorderStyleDictionary;
-import org.apache.pdfbox.util.Matrix;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,11 +43,12 @@ public class PDFUtil {
     /**
      * This method is used to print lines of string into a pdf file
      *
-     * @param document document
-     * @param margin   margin
-     * @param height   height of row
-     * @param color    color
-     * @param rows     list of string lines to be printed on document
+     * @param document      document
+     * @param contentStream content stream
+     * @param margin        margin
+     * @param height        height of row
+     * @param color         color
+     * @param rows          list of string lines to be printed on document
      */
     public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height, Color color, List<Row> rows) {
         try {
@@ -96,19 +96,24 @@ public class PDFUtil {
     }
 
     /**
-     * @param document document
-     * @param image    image
-     * @param x        x position
-     * @param y        y position
-     * @param width    width
-     * @param height   height
+     * Method to draw image
+     *
+     * @param contentStream content stream
+     * @param image         image
+     * @param x             x position
+     * @param y             y position
+     * @param width         width
+     * @param height        height
      * @throws IOException IO Exception
      */
-    public static void drawImage(PDDocument document, PDPageContentStream contentStream, PDImageXObject image, int x, int y, int width, int height) throws IOException {
+    public static void drawImage(PDPageContentStream contentStream,
+                                 PDImageXObject image, int x, int y, int width, int height) throws IOException {
         contentStream.drawImage(image, x, y, width, height);
     }
 
     /**
+     * Method to write output to page
+     *
      * @param response response
      * @param document document
      * @param fileName file name
@@ -122,9 +127,9 @@ public class PDFUtil {
 
             response.setContentType("application/pdf");
 
-            //use inline to open pdf in browser //use attachment to download pdf into the system
-            response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
-            // response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            //use 'inline' to open pdf in browser, use 'attachment' to download pdf into the system
+             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            //response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
 
             int read;
             OutputStream os = response.getOutputStream();
@@ -141,12 +146,13 @@ public class PDFUtil {
     }
 
     /**
-     * @param doc document
+     * Method to draw table
+     *
      * @param contentStream content stream
-     * @param table table
-     * @param startY start y position
+     * @param table         table
+     * @param startY        start y position
      */
-    public static void drawTable(PDDocument doc, PDPageContentStream contentStream, Table table, int startY) {
+    public static void drawTable(PDPageContentStream contentStream, Table table, int startY) {
         // Calculate pagination
         double d1 = Math.floor((double) table.getHeight() / (double) table.getRowHeight());
         Integer rowsPerPage = (int) d1 - 1;
@@ -210,21 +216,35 @@ public class PDFUtil {
     }
 
     /**
-     * @param document document
-     * @param margin   margin
-     * @param height   height
-     * @param color    color
+     * Method to draw a line
+     *
+     * @param contentStream content stream
+     * @param margin        margin
+     * @param length        length
+     * @param height        height
+     * @param color         color
+     * @param thickness     thickness
      * @throws IOException IO Exception
      */
-    public static void drawLine(PDDocument document, PDPageContentStream contentStream, int margin, int length, int height, Color color, float thickness) throws IOException {
+    public static void drawLine(PDPageContentStream contentStream,
+                                int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.moveTo(margin, height);
-        contentStream.lineTo(margin + length, (float) height);
+        contentStream.lineTo(margin + (float) length, (float) height);
         contentStream.setLineWidth(thickness);
         contentStream.stroke();
     }
 
-    public static Table getTable(List<Column> columns, String[][] content, PDFont muli_regular, PDFont muli_bold) {
+    /**
+     * Method to create table
+     *
+     * @param columns     columns
+     * @param content     content
+     * @param muliRegular regular font
+     * @param muliBold    bold font
+     * @return table
+     */
+    public static Table getTable(List<Column> columns, String[][] content, PDFont muliRegular, PDFont muliBold) {
         final float MARGIN = 65;
         final boolean IS_LANDSCAPE = false;
         final float FONT_SIZE = 7;
@@ -237,7 +257,7 @@ public class PDFUtil {
         double width = 8.5 * 72;
         double height = (double) 11 * 72;
 
-        Table table = new TableBuilder()
+        return new TableBuilder()
                 .setCellMargin(CELL_MARGIN)
                 .setColumns(columns)
                 .setContent(content)
@@ -248,10 +268,9 @@ public class PDFUtil {
                 .setPageSize(new PDRectangle((float) width,
                         (float) height))
                 .setLandscape(IS_LANDSCAPE)
-                .setTextFont(muli_regular)
-                .setTextFontBold(muli_bold)
+                .setTextFont(muliRegular)
+                .setTextFontBold(muliBold)
                 .setFontSize(FONT_SIZE)
                 .build();
-        return table;
     }
 }
