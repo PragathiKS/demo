@@ -125,7 +125,7 @@ function _renderOrderSummary() {
           data.servletUrl = downloadPdfExcelServletUrl;
           data.orderType = orderType;
 
-          return $this.processTableData([data]);
+          return $this.processTableData(data);
         }
       }
     });
@@ -188,11 +188,11 @@ class OrderDetail {
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
-  processTableData(data) {
+  processTableData() {
     if (this.cache.orderType === 'packmat') {
-      return _processPackmatData.apply(this, data);
+      return _processPackmatData.apply(this, arguments);
     } else {
-      return _processPartsData.apply(this, data);
+      return _processPartsData.apply(this, arguments);
     }
   }
   init() {
