@@ -4,7 +4,7 @@ import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
-import { apiHost, tableSort } from '../../../scripts/common/common';
+import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 /**
@@ -110,21 +110,20 @@ function _renderOrderSummary() {
             isError: true
           };
         } else {
-          data.i18nKeys = $this.cache.i18nKeys;
+          const { i18nKeys, downloadPdfExcelServletUrl, orderType, packagingProductsTableCols, partsDeliveryTableCols } = $this.cache;
+          data.i18nKeys = i18nKeys;
 
-          if ($this.cache.packagingProductsTableCols.length > 0) {
-            data.packagingProductsTableCols = $this.cache.packagingProductsTableCols;
+          if (packagingProductsTableCols.length > 0) {
+            data.packagingProductsTableCols = packagingProductsTableCols;
           }
 
-          if ($this.cache.partsDeliveryTableCols.length > 0) {
-            data.partsDeliveryTableCols = $this.cache.partsDeliveryTableCols;
+          if (partsDeliveryTableCols.length > 0) {
+            data.partsDeliveryTableCols = partsDeliveryTableCols;
           }
 
-          if ($this.cache.orderType === 'packmat') {
-            data.packmat = true;
-          } else {
-            data.parts = true;
-          }
+          data.isPackmat = orderType === 'packmat';
+          data.servletUrl = downloadPdfExcelServletUrl;
+          data.orderType = orderType;
 
           return $this.processTableData([data]);
         }
@@ -135,6 +134,21 @@ function _renderOrderSummary() {
 
 function _openOverlay() {
   this.root.find('.js-order-detail__packaging-modal').modal();
+}
+
+/**
+ * Downloads Excel or PDF content
+ */
+function _downloadContent() {
+  const self = $(this);
+  const data = self.data();
+  self.attr('disabled', 'disabled');
+  auth.getToken(({ data: authData }) => {
+    self.removeAttr('disabled');
+    data.token = authData.access_token;
+    const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
+    window.open(pdfExcelUrl, '_self');
+  });
 }
 
 class OrderDetail {
@@ -157,6 +171,7 @@ class OrderDetail {
     this.cache.packagingProductsTableCols = this.root.find('#packagingProductsTableCols').val();
     this.cache.packagingProductsTableCols = this.cache.packagingProductsTableCols !== '' ? this.cache.packagingProductsTableCols.split(',') : [];
     this.cache.packagingDeliveryTableCols = this.root.find('#packagingDeliveryTableCols').val();
+    this.cache.downloadPdfExcelServletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
 
     const { orderType } = deparam();
     this.cache.orderType = typeof orderType === 'string' ? orderType.toLowerCase() : orderType;
@@ -165,7 +180,11 @@ class OrderDetail {
   bindEvents() {
     /* Bind jQuery events here */
     this.root
-      .on('click', '.js-icon-Info', this.openOverlay);
+      .on('click', '.js-icon-Info', this.openOverlay)
+      .on('click', '.js-create-excel, .js-create-pdf', this.downloadContent);
+  }
+  downloadContent() {
+    return _downloadContent.apply(this, arguments);
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
