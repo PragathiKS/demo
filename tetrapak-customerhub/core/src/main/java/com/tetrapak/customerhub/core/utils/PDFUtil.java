@@ -133,7 +133,7 @@ public final class PDFUtil {
             response.setContentType("application/pdf");
 
             //use 'inline' to open pdf in browser, use 'attachment' to download pdf into the system
-            response.addHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
 
             int read;
             OutputStream os = response.getOutputStream();
