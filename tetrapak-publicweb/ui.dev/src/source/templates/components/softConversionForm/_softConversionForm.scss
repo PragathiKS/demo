@@ -13,4 +13,32 @@
             @include font-size(16px);
         }
     }
+    .edit-box {
+        @include border-radius($border-radius);
+        @include padding(24px);
+        background-color: $color-wild-sand;
+        height: 100%;
+    }
+    .info-group {
+        @include padding(0 12px 0 0);
+        display: none;
+        position: relative;
+        width: 100%;
+        &.show {
+            display: block;
+        }
+        label {
+            font-family: $font-bold;
+        }
+    }
+    .edit-step {
+        @include font-size(12px);
+        color: $color-tundora;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        &:hover {
+            color: $color-mercury;
+        }
+    }
 }

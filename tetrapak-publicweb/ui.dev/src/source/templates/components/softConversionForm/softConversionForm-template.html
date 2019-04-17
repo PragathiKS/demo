@@ -7,7 +7,6 @@
       <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <!--h3 class="modal-title" id="softConversionModalLabel">${data.titleI18n @ i18n}</h3-->
             <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -24,19 +23,19 @@
                   <div class="row mt-4">
                     <div class="col">
                       <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="group" id="professional" name="professional" checked="checked" value="Professional">
+                        <input class="form-check-input" type="radio" name="group" checked="checked" value="Professional">
                         <label class="form-check-label" for="professional">
                           Professional
                         </label>
                       </div>
                       <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="group" id="media" name="media" value="Media Representative">
+                        <input class="form-check-input" type="radio" name="group" value="Media Representative">
                         <label class="form-check-label" for="media">
                           Media Representative
                         </label>
                       </div>
                       <div class="form-check mb-4">
-                        <input class="form-check-input" type="radio" name="group" id="student" name="student" value="Student">
+                        <input class="form-check-input" type="radio" name="group" value="Student">
                         <label class="form-check-label" for="studen">
                           Student
                         </label>
@@ -60,7 +59,30 @@
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
-                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="edit-box d-flex flex-column">
+                        <div class="info-group mb-3 first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="first-name"></p>
+                        </div>
+                        <div class="info-group mb-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="last-name"></p>
+                        </div>
+                        <div class="info-group mb-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="email-address"></p>
+                        </div>
+                        <div class="info-group company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="company"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step-2">
@@ -74,7 +96,30 @@
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
-                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="edit-box d-flex flex-column">
+                        <div class="info-group mb-3 first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="first-name"></p>
+                        </div>
+                        <div class="info-group mb-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="last-name"></p>
+                        </div>
+                        <div class="info-group mb-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="email-address"></p>
+                        </div>
+                        <div class="info-group company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="company"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step-3">
@@ -88,7 +133,30 @@
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-4', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
-                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="edit-box d-flex flex-column">
+                        <div class="info-group mb-3 first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="first-name"></p>
+                        </div>
+                        <div class="info-group mb-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="last-name"></p>
+                        </div>
+                        <div class="info-group mb-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="email-address"></p>
+                        </div>
+                        <div class="info-group company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="company"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step-4">
@@ -102,10 +170,38 @@
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
-                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="edit-box d-flex flex-column">
+                        <div class="info-group mb-3 first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="first-name"></p>
+                        </div>
+                        <div class="info-group mb-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="last-name"></p>
+                        </div>
+                        <div class="info-group mb-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="email-address"></p>
+                        </div>
+                        <div class="info-group company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
+                          <p class="company"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step-final">
+                  <div class="images mb-4 row">
+                    <div class="col"><img src="https://picsum.photos/250/140"></div>
+                    <div class="col"><img src="https://picsum.photos/249/140"></div>
+                    <div class="col"><img src="https://picsum.photos/251/140"></div>
+                  </div>
                   <h4>Thanks for your interest. Here are the whitepapers you want to see !</h4>
                 </div>
               </div>

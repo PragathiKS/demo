@@ -6,6 +6,7 @@ class SoftConversionForm {
   initCache() {
     /* Initialize cache here */
     this.cache.$modal = $('#softConversionModal');
+    this.cache.$field = $('#softConversionModal input[type="text"]');
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -28,6 +29,16 @@ class SoftConversionForm {
       $('.tab-pane', '#softConversionModal').removeClass('active');
       $('.tab-content .tab-pane:first', '#softConversionModal').addClass('active');
     });
+    this.cache.$field.change(function() {
+      let fieldName = $(this).attr('name');
+      if ($(this).val().length){
+        $('p.'+fieldName).text($(this).val());
+        $('.info-group.'+fieldName).addClass('show');
+      } else {
+        $('.info-group.'+fieldName).removeClass('show');
+      }
+    });
+
   }
   init() {
     /* Mandatory method */
