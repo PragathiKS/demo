@@ -7,7 +7,9 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -62,9 +64,12 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
 		Font bold = ExcelUtil.getFont();
 		bold.setBold(true);
+		CellStyle style = ExcelUtil.getExcelWorkBook().createCellStyle();
 		
 		String[][] orderDetailsSection = new String [10][10];
-		orderDetailsSection[0][0] = orderDetailsModel.getOrderNo()+": "+orderDetails.getOrderNumber();
+		RichTextString rt = new HSSFRichTextString(orderDetailsModel.getOrderNo()+": "+orderDetails.getOrderNumber());
+		rt.applyFont(0, rt.toString().lastIndexOf(":"), bold);
+		orderDetailsSection[0][0] = rt.toString()+orderDetails.getOrderNumber();
 		orderDetailsSection[0][1] = "Status: "+orderDetails.getStatus();
 		orderDetailsSection[0][2] = orderDetailsModel.getCustomerNameLabel()+": "+orderDetails.getCustomerName();
 		orderDetailsSection[0][3] = orderDetailsModel.getCustomerNumberLabel()+": "+orderDetails.getCustomerNumber().toString();

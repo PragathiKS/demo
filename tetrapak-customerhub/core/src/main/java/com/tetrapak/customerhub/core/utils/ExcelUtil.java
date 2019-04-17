@@ -41,7 +41,7 @@ public class ExcelUtil {
 	 * @return Workbook
 	 * 
 	 */
-	private static Workbook getExcelWorkBook() {
+	public static Workbook getExcelWorkBook() {
 		return new HSSFWorkbook();
 	}
 
