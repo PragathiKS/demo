@@ -1,4 +1,4 @@
-.orderdeliverysummary {
+.tpmol-order-delivery-summary {
     border-bottom: 1px solid $color-mercury;
 
     @media #{$desktop} {
@@ -26,18 +26,18 @@
         @media #{$desktop} {
             @include padding-bottom($font-sm);
         }
-    }
 
-    &__delivery-detail-label {
-        font-family: $font-bold;
+        &-label {
+            font-family: $font-bold;
+        }
     }
 
     &__address {
         @include line-height($font-l, $font-baseline);
         @include padding-bottom($padding-md);
-    }
 
-    &__address-label {
-        font-family: $font-bold;
+        &-label {
+            font-family: $font-bold;
+        }
     }
 }

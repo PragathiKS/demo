@@ -23,5 +23,9 @@
             @include line-height(24px, $font-baseline);
             font-family: $font-semi-bold;
         }
+
+        &-contact {
+            color: $color-tundora;
+        }
     }
 }

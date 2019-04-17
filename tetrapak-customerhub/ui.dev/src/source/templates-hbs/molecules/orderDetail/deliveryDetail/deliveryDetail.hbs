@@ -1,7 +1,7 @@
 {{#each deliveryList}}
         <div class="tp-card">
                 {{> molecules/orderDetail/orderdeliverysummary/orderdeliverysummary  i18nKeys=../i18nKeys}}
-                <div class="tp-order-detail__tablewrapper js-order-detail__tablewrapper">
+                <div class="tp-order-detail__table-wrapper">
                         {{> molecules/table/table baseClass="tp-order-detail" jsClass="js-order-detail" list=products headings=../tableHeadings}}
                 </div>
                 {{#if ../parts}}

@@ -14,17 +14,14 @@ function _processPackmatData(data) {
   let keys = [];
   if (Array.isArray(data.orderSummary)) {
     data.orderSummary = data.orderSummary.map(summary => {
-      if (data.packagingProductsTableCols) {
-        keys = (keys.length === 0) ? data.packagingProductsTableCols : keys;
-      } else {
-        keys = (keys.length === 0) ? Object.keys(summary) : keys;
-      }
+      const productColList = data.packagingProductsTableCols || Object.keys(summary);
+      keys = keys.length === 0 ? productColList : keys;
 
       return tableSort.call(this, summary, keys);
     });
     data.orderSummaryHeadings = keys.map(key => ({
       key,
-      i18nKey: `cuhu.orderDetail.${key}`
+      i18nKey: `cuhu.orderdetail.${key}`
     }));
   }
 
@@ -72,11 +69,8 @@ function _processPartsData(data) {
       delete delivery.ETD;
       delivery.products = delivery.products.map((product, index) => {
         product['#'] = index + 1;
-        if (data.partsDeliveryTableCols) {
-          keys = (keys.length === 0) ? data.partsDeliveryTableCols : keys;
-        } else {
-          keys = (keys.length === 0) ? Object.keys(product) : keys;
-        }
+        const productColList = data.partsDeliveryTableCols || Object.keys(product);
+        keys = keys.length === 0 ? productColList : keys;
 
         return tableSort.call(this, product, keys);
       });
@@ -116,20 +110,20 @@ function _renderOrderSummary() {
             isError: true
           };
         } else {
-          data['i18nKeys'] = $this.cache.i18nKeys;
+          data.i18nKeys = $this.cache.i18nKeys;
 
           if ($this.cache.packagingProductsTableCols.length > 0) {
-            data['packagingProductsTableCols'] = $this.cache.packagingProductsTableCols;
+            data.packagingProductsTableCols = $this.cache.packagingProductsTableCols;
           }
 
           if ($this.cache.partsDeliveryTableCols.length > 0) {
-            data['partsDeliveryTableCols'] = $this.cache.partsDeliveryTableCols;
+            data.partsDeliveryTableCols = $this.cache.partsDeliveryTableCols;
           }
 
           if ($this.cache.orderType === 'packmat') {
-            data['packmat'] = true;
+            data.packmat = true;
           } else {
-            data['parts'] = true;
+            data.parts = true;
           }
 
           return $this.processTableData([data]);
@@ -164,19 +158,9 @@ class OrderDetail {
     this.cache.packagingProductsTableCols = this.cache.packagingProductsTableCols !== '' ? this.cache.packagingProductsTableCols.split(',') : [];
     this.cache.packagingDeliveryTableCols = this.root.find('#packagingDeliveryTableCols').val();
 
-    const { orderType } = deparam(window.location.search.replace('?', '').replace('&', ','));
-
-    if (orderType) {
-      this.cache.orderType = orderType.toLowerCase();
-    } else {
-      this.cache.orderType = orderType;
-    }
-
-    if (this.cache.orderType === 'packmat') {
-      this.cache.apiUrl = API_ORDER_DETAIL_PACKMAT;
-    } else {
-      this.cache.apiUrl = API_ORDER_DETAIL_PARTS;
-    }
+    const { orderType } = deparam();
+    this.cache.orderType = typeof orderType === 'string' ? orderType.toLowerCase() : orderType;
+    this.cache.apiUrl = this.cache.orderType === 'packmat' ? API_ORDER_DETAIL_PACKMAT : API_ORDER_DETAIL_PARTS;
   }
   bindEvents() {
     /* Bind jQuery events here */

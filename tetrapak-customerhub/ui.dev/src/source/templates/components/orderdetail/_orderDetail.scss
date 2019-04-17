@@ -93,7 +93,7 @@
         @include margin-right($margin-md);
     }
 
-    &__tablewrapper {
+    &__table-wrapper {
         @include horizontal-scroll-touch;
         @include padding-top($padding-l);
     }
@@ -124,9 +124,5 @@
 
     .tpmol-modal-header {
         @include padding($padding-md $padding-l)
-    }
-
-    .tp-modal-content {
-        border-radius: 0;
     }
 }
