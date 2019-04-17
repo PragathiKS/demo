@@ -6,18 +6,25 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
+
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
+
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
+import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 
 /**
  * @author dhitiwar
@@ -60,6 +67,7 @@ public class ExcelUtil {
 	 */
 	private static Font getFontStylingForHeader(Workbook workBook,  ExcelFileData excelReportData) {
 	    Font headerFont = null;
+	    RichTextString rt = new HSSFRichTextString();
 		 if(Objects.nonNull(workBook) && Objects.nonNull(excelReportData)) {
 		     headerFont = workBook.createFont();
 	         headerFont.setBold(true);
@@ -150,7 +158,7 @@ public class ExcelUtil {
             Font headerFont = getFontStylingForHeader(workBook, excelReportData);
             CellStyle headerCellStyle = getHeaderCellStyle(workBook, headerFont);
             Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());
-            prepareReportData(sheet, headerRow, excelReportData.getData());
+            prepareReportData(sheet, headerRow, excelReportData.getData(), excelReportData);
             resizeCellToFitContent(sheet, excelReportData.getColumns().size());
             downloadExcel(response, workBook, excelReportData);
         } catch (Exception e) {
@@ -164,16 +172,20 @@ public class ExcelUtil {
 	     * @param String[][] reportData
 	     * 
 	     */
-	 private static void prepareReportData(Sheet sheet, Row row, String[][] reportData ) {
+	 private static void prepareReportData(Sheet sheet, Row row, String[][] reportData, ExcelFileData ed ) {
 	     int rowCount = row.getRowNum();
+	     
 	     for (String[] data : reportData) {
 	            row  = getRow(sheet, rowCount);
 	            int columnCount = 0;
 	            if(Objects.nonNull(row)) {
 	                for (String field : data) {
 	                    Cell cell = row.createCell(columnCount++);
-	                    cell.setCellValue(field);
-	                }   
+	                    XSSFRichTextString richText = new XSSFRichTextString(field);
+	                    Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
+	                    f.setBold(true);
+	                    richText.applyFont(f);
+	                    cell.setCellValue(richText);	                }   
 	            }
 	          ++rowCount;  
 	        }

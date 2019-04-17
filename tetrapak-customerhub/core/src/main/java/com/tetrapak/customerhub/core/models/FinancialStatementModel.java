@@ -1,7 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -109,9 +113,14 @@ public class FinancialStatementModel {
         i18KeyMap.put("createExcelBtnI18n", createExcelBtnI18n);
         i18KeyMap.put("createPdfBtnI18n", createPdfBtnI18n);
         
-        
-        Gson gson = new Gson();
-        i18nKeys = gson.toJson(i18KeyMap);
+        try {
+        	//NOSONAR
+        	JSONObject  json=new JSONObject ();
+        	json.put("i18nKeys", i18KeyMap);
+        	i18nKeys=json.getString("i18nKeys");
+        } catch (Exception e) {
+        	e.printStackTrace();;
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -91,6 +92,14 @@ public class OrderSearchModel {
         
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
+        try {
+	        //NOSONAR
+	    	JSONObject  json=new JSONObject ();
+	    	json.put(config, i18KeyMap);
+	    	config = json.getString(config);
+        }catch (Exception exp) {
+        	exp.getMessage();
+        }
     }
 
     public String getConfig() {
