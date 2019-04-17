@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import OrderDetail from './OrderDetail';
+import OrderDetail from './OrderDetails';
 import orderDetailTemplate from '../../../test-templates-hbs/orderDetail.hbs';
 import orderdetailpackagingData from './data/orderdetailpackaging.json';
 import { render } from '../../../scripts/utils/render';
