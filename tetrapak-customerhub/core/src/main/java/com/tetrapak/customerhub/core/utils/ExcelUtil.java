@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -39,7 +40,7 @@ public class ExcelUtil {
 	 * @return Workbook
 	 * 
 	 */
-	public static Workbook getExcelWorkBook() {
+	private static Workbook getExcelWorkBook() {
 		return new XSSFWorkbook();
 	}
 
@@ -174,7 +175,7 @@ public class ExcelUtil {
 			CellStyle headerCellStyle = getHeaderCellStyle(workBook, headerFont);
 			Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());
 			if (Objects.nonNull(excelReportData)) {
-				prepareReportData(sheet, headerRow, excelReportData.getData(), excelReportData);
+				prepareReportData(workBook, sheet, headerRow, excelReportData.getData(), excelReportData);
 			}
 			resizeCellToFitContent(sheet, excelReportData.getColumns().size());
 			downloadExcel(response, workBook, excelReportData);
@@ -186,12 +187,13 @@ public class ExcelUtil {
 	}
 
 	/**
+	 * @param workBook 
 	 * @param sheet
 	 * @param row
 	 * @param String[][] reportData
 	 * 
 	 */
-	private static void prepareReportData(Sheet sheet, Row row, String[][] reportData, ExcelFileData ed) {
+	private static void prepareReportData(Workbook workBook, Sheet sheet, Row row, String[][] reportData, ExcelFileData ed) {
 		int rowCount = row.getRowNum();
 
 		for (String[] data : reportData) {
@@ -200,14 +202,22 @@ public class ExcelUtil {
 			if (Objects.nonNull(row)) {
 				for (String field : data) {
 					Cell cell = row.createCell(columnCount++);
-					
+					CellStyle style = workBook.createCellStyle();
+					style.setBottomBorderColor((short) 0);
+					Font regularFont = workBook.createFont();
+					regularFont.setFontHeightInPoints((short) 30);
+					regularFont.setFontName("IMPACT");
+					regularFont.setItalic(true);
+					//style.setFont(regularFont);
+					style.setBorderBottom(BorderStyle.DOUBLE);
 					if (null != field) {
 						XSSFRichTextString richText = new XSSFRichTextString(field);
 						Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
 						f.setBold(true);
+						
 						richText.applyFont(0, field.lastIndexOf(":"), f);
-						//richText.applyFont(f);
 						cell.setCellValue(richText);
+						cell.setCellStyle(style);
 					}
 				}
 			}
@@ -239,6 +249,22 @@ public class ExcelUtil {
 		os.close();
 		closeWorkbook(workBook);
 
+	}
+
+	private XSSFRichTextString getStyledRichText(String text, Cell cell) {
+
+		Font blankText = getBlankTextFont();
+		if (text.contains("<blank>")) {
+
+		}
+		return null;
+	}
+
+	private Font getBlankTextFont() {
+		Font blankTextFont = null;
+		blankTextFont = getExcelWorkBook().createFont();
+		// blankTextFont.set
+		return blankTextFont;
 	}
 
 }

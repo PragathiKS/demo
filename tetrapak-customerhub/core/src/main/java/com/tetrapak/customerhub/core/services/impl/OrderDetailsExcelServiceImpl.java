@@ -62,21 +62,15 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
 		Font bold = ExcelUtil.getFont();
 		bold.setBold(true);
-		CellStyle style = ExcelUtil.getExcelWorkBook().createCellStyle();
-		style.setBottomBorderColor((short)0);
 		String[][] orderDetailsSection = new String [10][10];
-		RichTextString rt = new XSSFRichTextString("Order Number: "+orderDetails.getOrderNumber());
-		rt.applyFont(0, rt.toString().lastIndexOf(":"), bold);
-//		orderDetailsSection[0][0] = rt.toString()+orderDetails.getOrderNumber();
+		orderDetailsSection[0][0] = "Order Number: "+orderDetails.getOrderNumber();
 //		orderDetailsSection[0][1] = "Status: "+orderDetails.getStatus();
 //		orderDetailsSection[0][2] = orderDetailsModel.getCustomerNameLabel()+": "+orderDetails.getCustomerName();
 //		orderDetailsSection[0][3] = orderDetailsModel.getCustomerNumberLabel()+": "+orderDetails.getCustomerNumber().toString();
 //		orderDetailsSection[0][4] = orderDetailsModel.getPurchaseOrderNumberLabel()+": "+orderDetails.getPurchaseOrderNumber().toString();
 //		orderDetailsSection[0][5] = "Customer Reference: "+orderDetails.getCustomerReference().toString();
 //		orderDetailsSection[0][6] = orderDetailsModel.getOrderDateLabel()+": "+orderDetails.getPlacedOn();
-//		orderDetailsSection[0][7] = orderDetailsModel.getWebRefLabel()+": "+orderDetails.getWebRefID().toString();	
-		
-		orderDetailsSection[0][0] = rt.toString();
+//		orderDetailsSection[0][7] = orderDetailsModel.getWebRefLabel()+": "+orderDetails.getWebRefID().toString();
 		
 		return orderDetailsSection;
 	}
