@@ -25,7 +25,7 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
-	
+
 	@Self
 	Resource resource;
 
@@ -124,21 +124,21 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String partsDeliveryTableCols;
-	
+
 	@Inject
 	private String kpkPopUpCloseBtnText;
-	
+
 	@Inject
 	private String deliveryProductsFilterCheckboxText;
-	
-	@Inject 
+
+	@Inject
 	private String customerReferenceLabel;
-	
+
 	@Inject
 	private String orderStatus;
 
 	private String i18nKeys;
-	
+
 	private String downloadPdfExcelServletUrl;
 
 	/**
@@ -434,6 +434,7 @@ public class OrderDetailsModel {
 	public String getPartsDeliveryTableCols() {
 		return partsDeliveryTableCols;
 	}
+
 	/**
 	 * @return the kpkPopUpCloseBtnText
 	 */
@@ -447,14 +448,14 @@ public class OrderDetailsModel {
 	public String getDeliveryProductsFilterCheckboxText() {
 		return deliveryProductsFilterCheckboxText;
 	}
-	
+
 	/**
 	 * @return the downloadOrderDetailsServletUrl
 	 */
 	public String getDownloadPdfExcelServletUrl() {
 		return downloadPdfExcelServletUrl;
 	}
-	
+
 	/**
 	 * @return the customerReferenceLabel
 	 */
@@ -468,6 +469,5 @@ public class OrderDetailsModel {
 	public String getOrderStatus() {
 		return orderStatus;
 	}
-
 
 }

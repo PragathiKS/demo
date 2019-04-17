@@ -102,6 +102,6 @@ public class OrderSearchModel {
     }
 
     public Set<String> getDisabledFields() {
-        return disabledFields;
+        return new LinkedHashSet<>(disabledFields);
     }
 }

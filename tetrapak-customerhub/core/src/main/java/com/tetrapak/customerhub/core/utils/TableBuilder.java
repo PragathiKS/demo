@@ -1,7 +1,10 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.utils;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
+
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
 
 import java.util.List;
 
@@ -61,6 +64,11 @@ public class TableBuilder {
 
     public TableBuilder setTextFont(PDFont textFont) {
         table.setTextFont(textFont);
+        return this;
+    }
+
+    public TableBuilder setTextFontBold(PDFont textFontBold){
+        table.setTextFontBold(textFontBold);
         return this;
     }
 

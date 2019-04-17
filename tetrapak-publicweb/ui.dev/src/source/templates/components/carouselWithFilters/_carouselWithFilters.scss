@@ -13,4 +13,10 @@
             width: 100%;
         }
     }
+    .dropdown-category-wrapper {
+        display: none;
+        &.show {
+            display: block;
+        }
+    }
 }
