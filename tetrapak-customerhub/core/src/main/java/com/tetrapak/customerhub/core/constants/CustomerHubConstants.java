@@ -40,4 +40,6 @@ public final class CustomerHubConstants {
     public static final String EXCEL = "excel";
     
     public static final String RESPONSE_STATUS_OK = "200";
+
+    public static final String BOLD_IDENTIFIER = "<b>";
 }
