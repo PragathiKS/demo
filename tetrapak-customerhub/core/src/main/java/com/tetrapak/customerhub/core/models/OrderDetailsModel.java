@@ -181,27 +181,10 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
 		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
-		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
-		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
+		partsDeliveryTableCols = new Gson().toJson(partsDeliveryTableCols);
+		packagingProductsTableCols = new Gson().toJson(packagingProductsTableCols);
+		packagingDeliveryTableCols = new Gson().toJson(packagingDeliveryTableCols);
 		downloadPdfExcelServletUrl = resource.getPath();
-	}
-
-	/**
-	 * 
-	 * Get the list of the columns from comma separated list in sequence
-	 * 
-	 * @param columnList
-	 * @return
-	 */
-	private List<String> getColumnNamesList(String columnList) {
-		List<String> columnNameList = new ArrayList<>();
-		if (!StringUtils.isBlank(columnList)) {
-			String[] columnArray = columnList.split(",");
-			columnArray = StringUtils.stripAll(columnArray);
-			columnNameList = Arrays.asList(columnArray);
-		}
-		return columnNameList;
 	}
 
 	/**
