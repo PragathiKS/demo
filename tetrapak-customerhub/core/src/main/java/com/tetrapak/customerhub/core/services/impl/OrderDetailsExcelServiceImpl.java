@@ -5,11 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.i18n.I18n;
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
@@ -33,9 +37,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	public void generateOrderDetailsExcel(SlingHttpServletResponse response, String orderType,
 			OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel) {
 		String[][] data = null;
-		getOrderDetailsSection(orderDetailsModel, orderDetailData.getOrderDetails());
+		data = getOrderDetailsSection(orderDetailsModel, orderDetailData.getOrderDetails());
 		
-		data = getOrderSummary(orderDetailData.getOrderSummary());
+		//data = getOrderSummary(orderDetailData.getOrderSummary());
 		
 		getDeliveryList(orderDetailData.getDeliveryList());
 		
@@ -55,16 +59,19 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * 
 	 * @return the first section of the excel having order details
 	 */
-	private String[] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
-		String[] orderDetailsSection = new String [10];
-		orderDetailsSection[0] = orderDetails.getOrderNumber();
-		orderDetailsSection[1] = orderDetails.getStatus();
-		orderDetailsSection[2] = orderDetails.getCustomerName();
-		orderDetailsSection[3] = orderDetails.getCustomerNumber().toString();
-		orderDetailsSection[4] = orderDetails.getPurchaseOrderNumber().toString();
-		orderDetailsSection[5] = orderDetails.getCustomerReference().toString();
-		orderDetailsSection[6] = orderDetails.getPlacedOn();
-		orderDetailsSection[7] = orderDetails.getWebRefID().toString();		
+	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
+		Font bold = ExcelUtil.getFont();
+		bold.setBold(true);
+		
+		String[][] orderDetailsSection = new String [10][10];
+		orderDetailsSection[0][0] = orderDetailsModel.getOrderNo()+": "+orderDetails.getOrderNumber();
+		orderDetailsSection[0][1] = "Status: "+orderDetails.getStatus();
+		orderDetailsSection[0][2] = orderDetailsModel.getCustomerNameLabel()+": "+orderDetails.getCustomerName();
+		orderDetailsSection[0][3] = orderDetailsModel.getCustomerNumberLabel()+": "+orderDetails.getCustomerNumber().toString();
+		orderDetailsSection[0][4] = orderDetailsModel.getPurchaseOrderNumberLabel()+": "+orderDetails.getPurchaseOrderNumber().toString();
+		orderDetailsSection[0][5] = "Customer Reference: "+orderDetails.getCustomerReference().toString();
+		orderDetailsSection[0][6] = orderDetailsModel.getOrderDateLabel()+": "+orderDetails.getPlacedOn();
+		orderDetailsSection[0][7] = orderDetailsModel.getWebRefLabel()+": "+orderDetails.getWebRefID().toString();		
 		return orderDetailsSection;
 	}
 	

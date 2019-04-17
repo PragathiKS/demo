@@ -9,12 +9,13 @@ import java.util.List;
  *
  */
 public class ExcelFileData {
-   private String excelSheetName;
-   private short fontHeight;
-   private short fontColor;
-   private String fileName;
-   List<String> columns = new ArrayList<>();
-   private String[][] data;
+	private String excelSheetName;
+	private String font;
+	private short fontHeight;
+	private short fontColor;
+	private String fileName;
+	private List<String> columns = new ArrayList<>();
+	private String[][] data;
    
     public String getExcelSheetName() {
         return excelSheetName;
@@ -22,6 +23,12 @@ public class ExcelFileData {
     public void setExcelSheetName(String excelSheetName) {
         this.excelSheetName = excelSheetName;
     }
+    public String getFont() {
+    	return font;
+    }
+    public void setFont(String font) {
+    	this.font = font;
+    }   
     public short getFontHeight() {
         return fontHeight;
     }
