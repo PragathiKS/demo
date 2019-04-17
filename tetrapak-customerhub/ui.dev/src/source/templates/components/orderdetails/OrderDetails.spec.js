@@ -1,12 +1,12 @@
 import $ from 'jquery';
-import OrderDetail from './OrderDetails';
+import OrderDetails from './OrderDetails';
 import orderDetailTemplate from '../../../test-templates-hbs/orderDetail.hbs';
 import orderdetailpackagingData from './data/orderdetailpackaging.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
-describe('OrderDetail', function () {
+describe('OrderDetails', function () {
   const jqRef = {
     setRequestHeader() {
       // Dummy method
@@ -18,15 +18,15 @@ describe('OrderDetail', function () {
     return pr.promise();
   };
   before(function () {
-    this.orderDetail = new OrderDetail({
+    this.orderDetails = new OrderDetails({
       el: document.body
     });
     $(document.body).empty().html(orderDetailTemplate());
-    this.initSpy = sinon.spy(this.orderDetail, "init");
-    this.renderOrderSummarySpy = sinon.spy(this.orderDetail, "renderOrderSummary");
-    this.processTableDataSpy = sinon.spy(this.orderDetail, "processTableData");
-    this.openOverlaySpy = sinon.spy(this.orderDetail, 'openOverlay');
-    this.downloadSpy = sinon.spy(this.orderDetail, 'downloadContent');
+    this.initSpy = sinon.spy(this.orderDetails, "init");
+    this.renderOrderSummarySpy = sinon.spy(this.orderDetails, "renderOrderSummary");
+    this.processTableDataSpy = sinon.spy(this.orderDetails, "processTableData");
+    this.openOverlaySpy = sinon.spy(this.orderDetails, 'openOverlay');
+    this.downloadSpy = sinon.spy(this.orderDetails, 'downloadContent');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderdetailpackagingData));
@@ -38,7 +38,7 @@ describe('OrderDetail', function () {
         token_type: "BearerToken"
       }
     });
-    this.orderDetail.init();
+    this.orderDetails.init();
   });
   after(function () {
     $(document.body).empty();
@@ -53,7 +53,7 @@ describe('OrderDetail', function () {
     this.tokenStub.restore();
   });
   it('should initialize', function (done) {
-    expect(this.orderDetail.init.called).to.be.true;
+    expect(this.orderDetails.init.called).to.be.true;
     done();
   });
   it('should render component on page load', function (done) {
@@ -61,22 +61,22 @@ describe('OrderDetail', function () {
     done();
   });
   it('should process data before rendering order detail summary section', function (done) {
-    expect(this.orderDetail.processTableData.called).to.be.true;
+    expect(this.orderDetails.processTableData.called).to.be.true;
     done();
   });
   it('should process `packmat` data before rendering order detail if order type is `packmat`', function (done) {
-    this.orderDetail.cache.orderType = 'packmat';
-    this.orderDetail.renderOrderSummary();
-    expect(this.orderDetail.processTableData.called).to.be.true;
+    this.orderDetails.cache.orderType = 'packmat';
+    this.orderDetails.renderOrderSummary();
+    expect(this.orderDetails.processTableData.called).to.be.true;
     done();
   });
   it('should render order detail summary section', function (done) {
-    expect(this.orderDetail.renderOrderSummary.called).to.be.true;
+    expect(this.orderDetails.renderOrderSummary.called).to.be.true;
     done();
   });
   it('should open overlay when info icon clicked', function () {
     $('.js-icon-Info').trigger('click');
-    expect(this.orderDetail.openOverlay.called).to.be.true;
+    expect(this.orderDetails.openOverlay.called).to.be.true;
   });
   it('should download excel on click of "download excel" button', function () {
     $('.js-create-excel').trigger('click');

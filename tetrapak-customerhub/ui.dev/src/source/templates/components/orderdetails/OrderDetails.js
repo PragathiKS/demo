@@ -157,7 +157,7 @@ function _downloadContent() {
   });
 }
 
-class OrderDetail {
+class OrderDetails {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -211,4 +211,4 @@ class OrderDetail {
   }
 }
 
-export default OrderDetail;
+export default OrderDetails;
