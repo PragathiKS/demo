@@ -1,21 +1,20 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.google.gson.Gson;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Model class for Order Details component
@@ -26,7 +25,7 @@ import com.google.gson.Gson;
 public class OrderDetailsModel {
 
     @Self
-    Resource resource;
+    private Resource resource;
 
     @Inject
     private String backToOrderHistory;
@@ -176,7 +175,8 @@ public class OrderDetailsModel {
         partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
         packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
         packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
-        downloadPdfExcelServletUrl = resource.getPath();
+        downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}?"
+                + CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}";
     }
 
     /**

@@ -42,4 +42,8 @@ public final class CustomerHubConstants {
     public static final String RESPONSE_STATUS_OK = "200";
 
     public static final String BOLD_IDENTIFIER = "<b>";
+
+    public static final String ORDER_NUMBER= "orderNumber";
+
+    public static final String TOKEN= "token";
 }
