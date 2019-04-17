@@ -54,9 +54,9 @@ public class OrderDetailsDownloadFileServletTest {
 
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
 
-        GenericServiceType<OrderDetailsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
-        apigeeServiceGenericServiceType.setClazzType(OrderDetailsApiService.class);
-        apigeeServiceGenericServiceType.set(new MockOrderDetailsApiServiceImpl());
+        GenericServiceType<OrderDetailsApiService> orderDetailsApiServiceGenericServiceType = new GenericServiceType<>();
+        orderDetailsApiServiceGenericServiceType.setClazzType(OrderDetailsApiService.class);
+        orderDetailsApiServiceGenericServiceType.set(new MockOrderDetailsApiServiceImpl());
 
         GenericServiceType<OrderDetailsPDFService> orderDetailsPDFServiceGenericServiceType = new GenericServiceType<>();
         orderDetailsPDFServiceGenericServiceType.setClazzType(OrderDetailsPDFService.class);
@@ -71,7 +71,7 @@ public class OrderDetailsDownloadFileServletTest {
         orderDetailsDownloadFileServletGenericServiceType.set(new OrderDetailsDownloadFileServlet());
 
         List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
-        serviceTypes.add((GenericServiceType<T>) orderDetailsExcelServiceGenericServiceType);
+        serviceTypes.add((GenericServiceType<T>) orderDetailsApiServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) orderDetailsPDFServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) orderDetailsExcelServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) orderDetailsDownloadFileServletGenericServiceType);
