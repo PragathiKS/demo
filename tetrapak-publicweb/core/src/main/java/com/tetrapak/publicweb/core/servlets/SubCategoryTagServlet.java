@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -50,8 +49,6 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 		@AttributeDefinition(name = "Category Tag Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the category tag.")
 		String category_tag() default "categoryTag";
 		
-		@AttributeDefinition(name = "System User Name", description = "The system user name from user mapping that is used to access Resource resolver object.")
-		String system_user() default "writeService";
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -64,21 +61,21 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 	private ResourceResolver resourceResolver;
 	
 	private String CATEGORY_TAG;
-	private String SYSTEM_USER;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+		log.info("Executing doGet method.");
 		try {
 			// get resource resolver, tagManager objects.
-			resourceResolver = getResourceResolver(request);
+			resourceResolver = request.getResourceResolver();
 			TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 
 			Map<String, String> subCategoryTagsMap = new HashMap<>();
 
 			if (tagManager != null) {
 				String categoryTagId = request.getParameter(CATEGORY_TAG);
-				Tag categoryTag = tagManager.resolve(categoryTagId);
-				log.info("Category Tag path : {}", categoryTag.getPath());
+				log.info("** Category Tag : {}", categoryTagId);				
+				Tag categoryTag = tagManager.resolve(categoryTagId);				
 
 				Iterator<Tag> subCategoryTags = categoryTag.listChildren();
 				if (subCategoryTags != null) {
@@ -108,30 +105,10 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 
 	}
 
-	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, SYSTEM_USER);
-		ResourceResolver resourceResolver = null;
-		try {
-			resourceResolver = resolverFactory.getServiceResourceResolver(param);
-			if(resourceResolver == null) {
-				log.error("[Resource resolver from system user is null. Getting it from request now.");
-				resourceResolver = request.getResourceResolver();
-			}
-		} catch (LoginException e) {
-			log.error("[Error getting the resource resolver. {}", e);
-			resourceResolver = request.getResourceResolver();
-		}
-		return resourceResolver;
-	}
-	
 	@Activate
 	protected void activate(final Config config) {
 		this.CATEGORY_TAG = (String.valueOf(config.category_tag()) != null) ? String.valueOf(config.category_tag())
 				: null;
 		log.info("configure: CATEGORY_TAG='{}'", this.CATEGORY_TAG);
-		this.SYSTEM_USER = (String.valueOf(config.system_user()) != null) ? String.valueOf(config.system_user())
-				: null;
-		log.info("configure: SYSTEM_USER='{}'", this.SYSTEM_USER);
 	}
 }

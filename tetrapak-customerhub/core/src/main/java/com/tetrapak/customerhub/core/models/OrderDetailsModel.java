@@ -24,9 +24,9 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
-	
-	@Self
-	Resource resource;
+
+    @Self
+    Resource resource;
 
     @Inject
     private String backToOrderHistory;
@@ -126,8 +126,8 @@ public class OrderDetailsModel {
 
     @Inject
     private String kpkPopUpCloseBtnText;
-	
-	private String downloadPdfExcelServletUrl;
+
+    private String downloadPdfExcelServletUrl;
 
     @Inject
     private String deliveryProductsFilterCheckboxText;
@@ -176,6 +176,7 @@ public class OrderDetailsModel {
         partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
         packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
         packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
+        downloadPdfExcelServletUrl = resource.getPath();
     }
 
     /**
@@ -438,12 +439,12 @@ public class OrderDetailsModel {
     public String getDeliveryProductsFilterCheckboxText() {
         return deliveryProductsFilterCheckboxText;
     }
-	
-	/**
-	 * @return the downloadOrderDetailsServletUrl
-	 */
-	public String getDownloadPdfExcelServletUrl() {
-		return downloadPdfExcelServletUrl;
-	}
+
+    /**
+     * @return the downloadOrderDetailsServletUrl
+     */
+    public String getDownloadPdfExcelServletUrl() {
+        return downloadPdfExcelServletUrl;
+    }
 
 }
