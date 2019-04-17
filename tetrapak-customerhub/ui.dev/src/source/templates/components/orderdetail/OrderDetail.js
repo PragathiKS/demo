@@ -89,7 +89,7 @@ function _renderOrderSummary() {
   const $this = this;
   auth.getToken(({ data: authData }) => {
     render.fn({
-      template: 'orderDetailSummary',
+      template: 'orderDetail',
       url: {
         path: `${apiHost}/${$this.cache.apiUrl}`
       },
