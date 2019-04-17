@@ -133,7 +133,7 @@ function _renderOrderSummary() {
 }
 
 function _openOverlay() {
-  this.root.find('.js-order-detail__packaging-modal').modal();
+  this.root.find('.js-order-detail__info-modal').modal();
 }
 
 /**

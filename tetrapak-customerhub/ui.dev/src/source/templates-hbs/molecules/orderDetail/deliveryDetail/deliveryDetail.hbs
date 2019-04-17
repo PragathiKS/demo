@@ -22,13 +22,5 @@
                 {{/unless}}
         </div>
 {{/each}}
-<div class="modal tp-modal tp-order-detail__packaging-modal js-order-detail__packaging-modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
-                <div class="modal-content tp-modal-content">
-                        {{> molecules/modals/modalHeader/modalHeader title=i18nKeys.kpkPopUpHeading closeBtnText=i18nKeys.kpkPopUpCloseBtnText}}
-                        <div class="modal-body tp-modal-body tp-order-detail__packaging-modal-body">
-                                <div class="tp-order-detail__packaging-modal-desc">{{i18nKeys.kpkPopUpDescription}}</div>
-                        </div>
-                </div>
-        </div>
-</div>
+
+{{> components/infoModal baseClass="tp-order-detail-packaging" jsClass="js-order-detail" }}
