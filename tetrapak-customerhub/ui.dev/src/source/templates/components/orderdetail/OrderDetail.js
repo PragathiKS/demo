@@ -25,35 +25,32 @@ function _processPackmatData(data) {
     }));
   }
 
-  const { packagingDeliveryTableCols } = this.cache;
-  let deliveryTablekeys = packagingDeliveryTableCols.split(',');
-  data.tableHeadings = [];
-  deliveryTablekeys.map(item => {
-    if (item === 'quantityKPK') {
-      data.tableHeadings.push({
-        key: `${item}`,
-        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`,
-        iconClassName: 'icon-Info tp-order-detail__icon-info js-icon-Info'
-      });
-    }
-    else {
-      data.tableHeadings.push({
-        key: `${item}`,
-        i18nKey: `cuhu.orderdetail.packaging.delivery.${item}`
-      });
-    }
-  });
-
   if (Array.isArray(data.deliveryList)) {
-    data.deliveryList = data.deliveryList.map(deliveryList => {
-      if (Array.isArray(deliveryList.products)) {
-        deliveryList.products = deliveryList.products.map(product => {
-          deliveryTablekeys = (deliveryTablekeys.length === 0) ? Object.keys(product) : deliveryTablekeys;
+    keys.length = 0;
+
+    data.deliveryList.forEach(function (delivery) {
+      if (Array.isArray(delivery.products)) {
+        delivery.products = delivery.products.map((product) => {
+          const productColList = data.packagingDeliveryTableCols || Object.keys(product);
+          keys = keys.length === 0 ? productColList : keys;
           product.quantityKPK = `${product.orderQuantity}/${product.deliveredQuantity}/${product.remainingQuantity}`;
-          return tableSort.call(this, product, deliveryTablekeys);
+          return tableSort.call(this, product, keys);
+        });
+        data.tableHeadings = keys.map(key => {
+          if (key === 'quantityKPK') {
+            return ({
+              key,
+              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`,
+              iconClassName: 'icon-Info tp-order-detail__icon-info js-icon-Info'
+            });
+          } else {
+            return ({
+              key,
+              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`
+            });
+          }
         });
       }
-      return deliveryList;
     });
   }
 }
@@ -79,6 +76,8 @@ function _processPartsData(data) {
         i18nKey: `cuhu.orderDetail.${key}`
       }));
     });
+  } else {
+    data.noData = true;
   }
 }
 
@@ -110,11 +109,15 @@ function _renderOrderSummary() {
             isError: true
           };
         } else {
-          const { i18nKeys, downloadPdfExcelServletUrl, orderType, packagingProductsTableCols, partsDeliveryTableCols } = $this.cache;
+          const { i18nKeys, downloadPdfExcelServletUrl, orderType, packagingProductsTableCols, packagingDeliveryTableCols, partsDeliveryTableCols } = $this.cache;
           data.i18nKeys = i18nKeys;
 
           if (packagingProductsTableCols.length > 0) {
             data.packagingProductsTableCols = packagingProductsTableCols;
+          }
+
+          if (packagingDeliveryTableCols.length > 0) {
+            data.packagingDeliveryTableCols = packagingDeliveryTableCols;
           }
 
           if (partsDeliveryTableCols.length > 0) {
@@ -171,6 +174,7 @@ class OrderDetail {
     this.cache.packagingProductsTableCols = this.root.find('#packagingProductsTableCols').val();
     this.cache.packagingProductsTableCols = this.cache.packagingProductsTableCols !== '' ? this.cache.packagingProductsTableCols.split(',') : [];
     this.cache.packagingDeliveryTableCols = this.root.find('#packagingDeliveryTableCols').val();
+    this.cache.packagingDeliveryTableCols = this.cache.packagingDeliveryTableCols !== '' ? this.cache.packagingDeliveryTableCols.split(',') : [];
     this.cache.downloadPdfExcelServletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
 
     const { orderType } = deparam();

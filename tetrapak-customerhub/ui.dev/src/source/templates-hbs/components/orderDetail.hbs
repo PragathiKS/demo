@@ -1,6 +1,6 @@
 {{#if isError}}
-    {{#if errorMsg}}
-        {{> atoms/error/error error=true message=errorMsg}}
+    {{#if i18nKeys.errorMsg}}
+        {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
     {{else}}
         {{> atoms/error/error error=true message="cuhu.error.message"}}
     {{/if}}
@@ -45,8 +45,17 @@
             </div>
         {{/if}}
     </div>
-
-    {{> molecules/orderDetail/deliveryDetail/deliveryDetail this }}
+    {{#if noData}}
+        <div class="tp-card">
+            {{#if i18nKeys.noDataMsg}}
+                {{> atoms/error/error message=i18nKeys.noDataMsg}}
+            {{else}}
+                {{> atoms/error/error message="cuhu.nodata.message"}}
+            {{/if}}
+        </div>
+    {{else}}
+        {{> molecules/orderDetail/deliveryDetail/deliveryDetail this }}
+    {{/if}}
 {{/if}}
 
 
