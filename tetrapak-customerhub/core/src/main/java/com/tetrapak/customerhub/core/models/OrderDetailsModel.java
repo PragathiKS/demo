@@ -130,6 +130,12 @@ public class OrderDetailsModel {
 	
 	@Inject
 	private String deliveryProductsFilterCheckboxText;
+	
+	@Inject 
+	private String customerReferenceLabel;
+	
+	@Inject
+	private String orderStatus;
 
 	private String i18nKeys;
 	
@@ -148,6 +154,7 @@ public class OrderDetailsModel {
 		i18KeyMap.put("purchaseOrderNumberLabel", getPurchaseOrderNumberLabel());
 		i18KeyMap.put("orderDateLabel", getOrderDateLabel());
 		i18KeyMap.put("customerNumberLabel", getCustomerNumberLabel());
+		i18KeyMap.put("customerReferenceLabel", getCustomerReferenceLabel());
 		i18KeyMap.put("webRefLabel", getWebRefLabel());
 		i18KeyMap.put("custSupCentreLabel", getCustSupCentreLabel());
 		i18KeyMap.put("createExcelLabel", getCreateExcelLabel());
@@ -447,5 +454,20 @@ public class OrderDetailsModel {
 	public String getDownloadPdfExcelServletUrl() {
 		return downloadPdfExcelServletUrl;
 	}
+	
+	/**
+	 * @return the customerReferenceLabel
+	 */
+	public String getCustomerReferenceLabel() {
+		return customerReferenceLabel;
+	}
+
+	/**
+	 * @return the orderStatus
+	 */
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
 
 }
