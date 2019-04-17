@@ -90,7 +90,10 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetail',
       url: {
-        path: `${apiHost}/${$this.cache.apiUrl}`
+        path: `${apiHost}/${$this.cache.apiUrl}`,
+        data: {
+          'order-number': $this.cache.orderNumber
+        }
       },
       target: '.js-order-detail__summary',
       ajaxConfig: {
@@ -177,9 +180,10 @@ class OrderDetail {
     this.cache.packagingDeliveryTableCols = this.cache.packagingDeliveryTableCols !== '' ? this.cache.packagingDeliveryTableCols.split(',') : [];
     this.cache.downloadPdfExcelServletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
 
-    const { orderType } = deparam();
+    const { orderType, q } = deparam();
     this.cache.orderType = typeof orderType === 'string' ? orderType.toLowerCase() : orderType;
     this.cache.apiUrl = this.cache.orderType === 'packmat' ? API_ORDER_DETAIL_PACKMAT : API_ORDER_DETAIL_PARTS;
+    this.cache.orderNumber = q;
   }
   bindEvents() {
     /* Bind jQuery events here */
