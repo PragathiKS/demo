@@ -12,29 +12,30 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  *
  * @param {string} type
  */
-function _trackAnalytics(type) {
+function _trackAnalytics(obj, type) {
+  const orderType = (obj.cache.orderType === 'packmat') ? 'packaging' : 'parts';
   const analyticsData = {};
   const self = $(this);
   type = type || self.data('extnType');
-  const orderType = 'Packaging';
+
   switch (type) {
     case 'excel': {
       analyticsData.header = orderType;
       analyticsData.createexcel = 'true';
-      trackAnalytics(analyticsData, 'packaging', 'orderdetailsexcel');
+      trackAnalytics(analyticsData, orderType, 'orderdetailsexcel');
       break;
     }
     case 'pdf': {
       analyticsData.header = orderType;
       analyticsData.createpdf = 'true';
-      trackAnalytics(analyticsData, 'packaging', 'orderdetailsPDF');
+      trackAnalytics(analyticsData, orderType, 'orderdetailsPDF');
       break;
     }
     case 'webRef': {
       const webRef = this.innerText;
       analyticsData.header = orderType;
       analyticsData.webreferencenumber = webRef;
-      trackAnalytics(analyticsData, 'packaging', 'orderdetailswebref');
+      trackAnalytics(analyticsData, orderType, 'orderdetailswebref');
       break;
     }
     case 'trackOrder': {
@@ -42,13 +43,13 @@ function _trackAnalytics(type) {
       analyticsData.header = orderType;
       analyticsData.deliverynumber = deliverynumber;
       analyticsData.trackorder = 'trackorderclicked';
-      trackAnalytics(analyticsData, 'packaging', 'orderdetailstrackorder');
+      trackAnalytics(analyticsData, orderType, 'orderdetailstrackorder');
       break;
     }
     case 'customercontactsupport': {
       analyticsData.header = orderType;
       analyticsData.customercontactsupport = 'true';
-      trackAnalytics(analyticsData, 'packaging', 'orderdetailscontact');
+      trackAnalytics(analyticsData, orderType, 'orderdetailscontact');
       break;
     }
     default: {
@@ -241,15 +242,15 @@ class OrderDetails {
       .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
       .on('click', '.js-order-detail__webRef', this, function (e) {
         const $this = e.data;
-        $this.trackAnalytics.call(this, 'webRef');
+        $this.trackAnalytics.call(this, $this, 'webRef');
       })
       .on('click', '.js-order-delivery-summary-track-order', this, function (e) {
         const $this = e.data;
-        $this.trackAnalytics.call(this, 'trackOrder');
+        $this.trackAnalytics.call(this, $this, 'trackOrder');
       })
       .on('click', '.js-support-center-email', this, function (e) {
         const $this = e.data;
-        $this.trackAnalytics.call(this, 'customercontactsupport');
+        $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
         window.history.back();
@@ -257,7 +258,7 @@ class OrderDetails {
   }
   downloadContent(e) {
     const $this = e.data;
-    $this.trackAnalytics.call(this);
+    $this.trackAnalytics.call(this, $this);
     return _downloadContent.apply(this, arguments);
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
@@ -270,8 +271,8 @@ class OrderDetails {
     }
   }
 
-  trackAnalytics(type) {
-    _trackAnalytics.call(this, type);
+  trackAnalytics(obj, type) {
+    _trackAnalytics.call(this, obj, type);
   }
 
   init() {
