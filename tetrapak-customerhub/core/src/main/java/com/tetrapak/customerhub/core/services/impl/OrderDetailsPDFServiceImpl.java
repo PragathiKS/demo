@@ -1,10 +1,18 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.*;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
+import com.tetrapak.customerhub.core.beans.oderdetails.Product;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,11 +56,12 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                                         String orderType, OrderDetailsData orderDetailResponse) {
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+
         InputStream in1 = null;
         InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
-        PDPageContentStream contentStream;
+        PDPageContentStream contentStream = null;
         PDDocument document = new PDDocument();
         try {
             PDPage page = new PDPage();
@@ -83,36 +92,23 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawLine(contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
 
-            PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 60);
+            PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 665);
 
             if (StringUtils.equalsIgnoreCase("parts", orderType)) {
-                for (DeliveryList deliveryDetail : deliveryList) {
-                    int count = deliveryList.indexOf(deliveryDetail) + 1;
-                    int height = 800 - 240 * count; //565
-                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
-                            getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
-                    PDFUtil.drawLine(contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
-
-                    PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                    PDFUtil.drawLine(contentStream, 65, 460, height - 128, Color.black, 0.01f);
-
-                    Table productTable = createProductTable(deliveryDetail.getProducts());
-                    PDFUtil.drawTable(contentStream, productTable, 840 - height);
-                    PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
-                }
+                contentStream = printDeliveryDetails(document, contentStream, deliveryList);
             } else {
-                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 180);
+                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 500);
                 PDFUtil.drawLine(contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
-
-
             }
-
             contentStream.close();
             PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
         } finally {
             try {
+                if (null != contentStream) {
+                    contentStream.close();
+                }
                 if (null != in1) {
                     in1.close();
                 }
@@ -125,11 +121,43 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 if (null != image2) {
                     image2.close();
                 }
-                document.close();
             } catch (IOException e) {
                 LOGGER.error("IOException {}", e);
             }
         }
+    }
+
+    private PDPageContentStream printDeliveryDetails(PDDocument document, PDPageContentStream contentStream,
+                                                     List<DeliveryList> deliveryList) throws IOException {
+        int height = 815;
+        for (DeliveryList deliveryDetail : deliveryList) {
+            int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts());
+            height = height - nextTableHeight;
+            if (height < nextTableHeight) {
+                height = 750;
+                PDPage page = new PDPage();
+                document.addPage(page);
+                contentStream.close();
+                contentStream = new PDPageContentStream(
+                        document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+            }
+            PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
+                    getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
+            PDFUtil.drawLine(contentStream, 65, 460, height - 95, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, 65, 460, height - 125, Color.black, 0.01f);
+
+            PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), height - 30);
+
+            PDFUtil.drawTable(contentStream, createProductTable(deliveryDetail.getProducts()), height - 110);
+
+            PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
+            PDFUtil.drawDashedLine(contentStream, 65, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
+        }
+        return contentStream;
+    }
+
+    private int getNextTableHeight(List<Product> deliveryDetail) {
+        return deliveryDetail.size() * 30 + 160;
     }
 
     private List<Row> getDeliveryDetailHeader(String deliveryNumber) {
@@ -159,57 +187,66 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createOrderDetailTable(OrderDetails orderDetails) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("Customer name", 70, true));
-        columns.add(new Column(orderDetails.getCustomerName(), 90, false));
-        columns.add(new Column("Purchase order no.", 80, true));
-        columns.add(new Column(orderDetails.getOrderNumber(), 120, false));
-        columns.add(new Column("Order date", 60, true));
-        columns.add(new Column(orderDetails.getPlacedOn(), 80, false));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Customer name", 70));
+        columns.add(new Column(orderDetails.getCustomerName(), 90));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Purchase order no.", 80));
+        columns.add(new Column(orderDetails.getOrderNumber(), 120));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Order date", 60));
+        columns.add(new Column(orderDetails.getPlacedOn(), 80));
 
         String[][] content = {
-                {"Customer number", orderDetails.getCustomerNumber().toString(), "Customer reference",
-                        orderDetails.getCustomerReference().toString(), "Web ref.", orderDetails.getWebRefID().toString()}
+                {CustomerHubConstants.BOLD_IDENTIFIER + "Customer number",
+                        orderDetails.getCustomerNumber().toString(),
+                        CustomerHubConstants.BOLD_IDENTIFIER + "Customer reference",
+                        orderDetails.getCustomerReference().toString(),
+                        CustomerHubConstants.BOLD_IDENTIFIER + "Web ref.",
+                        orderDetails.getWebRefID().toString()}
         };
 
-        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 
     private Table createDeliveryDetailTable(DeliveryList deliveryList) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("Shipping", 70, true));
-        columns.add(new Column(deliveryList.getCarrier(), 240, false));
-        columns.add(new Column("Delivery address:", 80, false));
-        columns.add(new Column("Invoice address:", 120, false));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Shipping", 70));
+        columns.add(new Column(deliveryList.getCarrier(), 240));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Delivery address:", 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Invoice address:", 120));
 
         DeliveryAddress deliveryAddress = deliveryList.getDeliveryAddress();
         InvoiceAddress invoiceAddress = deliveryList.getInvoiceAddress();
 
         String[][] content = {
                 {
-                        "Track order", deliveryList.getDeliveryOrder(), deliveryAddress.getName(),
-                        invoiceAddress.getName()},
-                {"", "", deliveryAddress.getCity(), invoiceAddress.getCity()},
-                {"", "", deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " "
-                        + deliveryAddress.getCountry(), invoiceAddress.getState() + ", "
-                        + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()}
+                        CustomerHubConstants.BOLD_IDENTIFIER + "Track order", deliveryList.getCarrierTrackingID(),
+                        deliveryAddress.getName(), invoiceAddress.getName()
+                },
+                {
+                        "", "", deliveryAddress.getCity(), invoiceAddress.getCity()
+                },
+                {
+                        "", "", deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " "
+                        + deliveryAddress.getCountry(),
+                        invoiceAddress.getState() + ", " + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()
+                }
         };
 
-        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
     }
 
     private Table createProductTable(List<Product> products) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("#", 10, false));
-        columns.add(new Column("Product", 120, false));
-        columns.add(new Column("Product ID", 40, false));
-        columns.add(new Column("Quantity", 40, false));
-        columns.add(new Column("Weight", 40, false));
-        columns.add(new Column("Sent", 40, false));
-        columns.add(new Column("Open", 40, false));
-        columns.add(new Column("ETA", 45, false));
-        columns.add(new Column("Unit Price", 45, false));
-        columns.add(new Column("Price", 45, false));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "#", 10));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Product", 120));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Product ID", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Quantity", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Weight", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Sent", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Open", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "ETA", 45));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Unit Price", 45));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Price", 45));
 
         String[][] content = new String[products.size()][10];
 
@@ -226,28 +263,28 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][9] = products.get(i).getPrice();
         }
 
-        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
     }
 
     private Table createProductSummaryTable(DeliveryList deliveryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("", 375, false));
-        columns.add(new Column("Total weight", 55, false));
-        columns.add(new Column(deliveryList.getTotalWeight(), 45, false));
+        columns.add(new Column("", 375));
+        columns.add(new Column("  Total weight", 55));
+        columns.add(new Column(deliveryList.getTotalWeight(), 45));
 
         String[][] content = {
                 {"", "Total pre VAT", deliveryList.getTotalPricePreVAT()},
-                {"", "VAT", deliveryList.getTotalVAT()}
+                {"", CustomerHubConstants.BOLD_IDENTIFIER + "                VAT", deliveryList.getTotalVAT()}
         };
 
-        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
     }
 
     private Table createOrderSummaryTable(List<OrderSummary> orderSummaryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column("Product", 325, false));
-        columns.add(new Column("Order Quantity", 70, false));
-        columns.add(new Column("Quantity delivered so far", 80, false));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Product", 325));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Order Quantity", 70));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Quantity delivered so far", 80));
 
         String[][] content = new String[orderSummaryList.size()][10];
 
@@ -257,6 +294,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             content[i][2] = orderSummaryList.get(i).getDeliveredQuantity();
         }
 
-        return PDFUtil.getTable(columns, content, muliRegular, muliBold);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 }
