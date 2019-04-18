@@ -1,9 +1,12 @@
+{{> atoms/buttons/button/button text=i18nKeys.backToOrderHistory className="tp-order-detail__back-btn" jsClass="js-order-detail__back-btn" preIconClass="icon-Circle_Arrow_Left"}}
 {{#if isError}}
-    {{#if i18nKeys.errorMsg}}
-        {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
-    {{else}}
-        {{> atoms/error/error error=true message="cuhu.error.message"}}
-    {{/if}}
+    <div class="tp-card">
+        {{#if i18nKeys.errorMsg}}
+            {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+        {{else}}
+            {{> atoms/error/error error=true message="cuhu.error.message"}}
+        {{/if}}
+    </div>
 {{else}}
     <div class="tp-card">
         <h2>{{i18n key=i18nKeys.orderNo}}: {{orderDetails.orderNumber}} - {{orderDetails.status}}</h2>
@@ -24,7 +27,7 @@
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table ml-lg-auto">
                         {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
-                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID }}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID link=true linkUrl="https://www.tetrapak.com/" }} {{!-- TODO : Need to replace hardcoded link later --}}
                     </div>
                 </div>
             </div>

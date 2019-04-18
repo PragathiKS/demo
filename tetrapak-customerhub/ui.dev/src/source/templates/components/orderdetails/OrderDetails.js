@@ -189,7 +189,10 @@ class OrderDetails {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
-      .on('click', '.js-create-excel, .js-create-pdf', this.downloadContent);
+      .on('click', '.js-create-excel, .js-create-pdf', this.downloadContent)
+      .on('click', '.js-order-detail__back-btn', () => {
+        window.history.back();
+      });
   }
   downloadContent() {
     return _downloadContent.apply(this, arguments);
