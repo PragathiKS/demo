@@ -242,7 +242,6 @@ post {
 
  always {
     build 'Tetra-SapDev-Dispatcher-Flush'   
-    build 'Tetra-Cucumber-Tests'
     }
 
 }

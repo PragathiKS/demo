@@ -255,7 +255,6 @@ post {
 
  always {
     build 'Tetra-Dev-Dispatcher-Flush'
-   build 'Tetra-Cucumber-Tests'
     }
 
 }
