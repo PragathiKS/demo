@@ -153,7 +153,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawTable(contentStream, createProductTable(deliveryDetail.getProducts()), height - 110);
 
             PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
-            PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.GRAY, 0.01f);
         }
         return contentStream;
     }
