@@ -88,7 +88,8 @@ public class OrderSearchModel {
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("disabledFields", disabledFields);
-        
+        i18KeyMap.put("orderDetailLink", orderDetailLink);
+
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
     }
