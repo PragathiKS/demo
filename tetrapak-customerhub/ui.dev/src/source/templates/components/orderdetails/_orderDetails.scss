@@ -115,8 +115,8 @@
 
         .tpatom-checkbox__icon {
             @include margin-top($margin-xs);
-            @include width(14px);
-            @include height(14px);
+            @include width($spacing-baseline);
+            @include height($spacing-baseline);
 
             &::before {
                 @include font-size($font-xxs);
