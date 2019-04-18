@@ -1,7 +1,14 @@
 
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.*;
+import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
+import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
+import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
+import com.tetrapak.customerhub.core.beans.oderdetails.Product;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
@@ -24,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +56,6 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                                         String orderType, OrderDetailsData orderDetailResponse) {
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
-        deliveryList.addAll(deliveryList);
 
         InputStream in1 = null;
         InputStream in2 = null;
@@ -85,37 +91,13 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                     getContactLines(orderDetailResponse.getCustomerSupportCenter()));
 
             PDFUtil.drawLine(contentStream, 65, 460, 625, Color.LIGHT_GRAY, 0.01f);
-            PDFUtil.drawDashedLine(contentStream, 65, 460, 620, Color.LIGHT_GRAY, 0.01f);
 
-            PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 60);
+            PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 665);
 
-            int height = 800;
             if (StringUtils.equalsIgnoreCase("parts", orderType)) {
-                for (DeliveryList deliveryDetail : deliveryList) {
-                    int count = deliveryList.indexOf(deliveryDetail) + 1;
-                    int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts());
-                    height = height - 240 * count; //565
-                    if (height < nextTableHeight) {
-                        height = 750;
-                        page = new PDPage();
-                        document.addPage(page);
-                        contentStream.close();
-                        contentStream = new PDPageContentStream(
-                                document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
-                    }
-                    PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
-                            getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
-                    PDFUtil.drawLine(contentStream, 65, 460, height - 110, Color.LIGHT_GRAY, 0.01f);
-
-                    PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), 765 - height);
-                    PDFUtil.drawLine(contentStream, 65, 460, height - 128, Color.black, 0.01f);
-
-                    Table productTable = createProductTable(deliveryDetail.getProducts());
-                    PDFUtil.drawTable(contentStream, productTable, 840 - height);
-                    PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), 920 - height);
-                }
+                contentStream = printDeliveryDetails(document, contentStream, deliveryList);
             } else {
-                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 180);
+                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 500);
                 PDFUtil.drawLine(contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
             }
             contentStream.close();
@@ -124,6 +106,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             LOGGER.error("IOException {}", e);
         } finally {
             try {
+                if (null != contentStream) {
+                    contentStream.close();
+                }
                 if (null != in1) {
                     in1.close();
                 }
@@ -142,8 +127,37 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         }
     }
 
+    private PDPageContentStream printDeliveryDetails(PDDocument document, PDPageContentStream contentStream,
+                                                     List<DeliveryList> deliveryList) throws IOException {
+        int height = 815;
+        for (DeliveryList deliveryDetail : deliveryList) {
+            int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts());
+            height = height - nextTableHeight;
+            if (height < nextTableHeight) {
+                height = 750;
+                PDPage page = new PDPage();
+                document.addPage(page);
+                contentStream.close();
+                contentStream = new PDPageContentStream(
+                        document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+            }
+            PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
+                    getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
+            PDFUtil.drawLine(contentStream, 65, 460, height - 95, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, 65, 460, height - 125, Color.black, 0.01f);
+
+            PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), height - 30);
+
+            PDFUtil.drawTable(contentStream, createProductTable(deliveryDetail.getProducts()), height - 110);
+
+            PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
+            PDFUtil.drawDashedLine(contentStream, 65, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
+        }
+        return contentStream;
+    }
+
     private int getNextTableHeight(List<Product> deliveryDetail) {
-        return deliveryDetail.size() * 15 + 100;
+        return deliveryDetail.size() * 30 + 160;
     }
 
     private List<Row> getDeliveryDetailHeader(String deliveryNumber) {

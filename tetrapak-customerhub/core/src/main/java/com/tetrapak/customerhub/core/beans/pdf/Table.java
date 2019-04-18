@@ -16,9 +16,7 @@ public class Table {
 
     // Table attributes
     private float margin;
-    private float height;
     private PDRectangle pageSize;
-    private boolean isLandscape;
     private float rowHeight;
 
     // font attributes
@@ -112,14 +110,6 @@ public class Table {
         this.numberOfRows = numberOfRows;
     }
 
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-    }
-
     public float getRowHeight() {
         return rowHeight;
     }
@@ -142,13 +132,5 @@ public class Table {
 
     public void setCellMargin(float cellMargin) {
         this.cellMargin = cellMargin;
-    }
-
-    public boolean isLandscape() {
-        return isLandscape;
-    }
-
-    public void setLandscape(boolean isLandscape) {
-        this.isLandscape = isLandscape;
     }
 }
