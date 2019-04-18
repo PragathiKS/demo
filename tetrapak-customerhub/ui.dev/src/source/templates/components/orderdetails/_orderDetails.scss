@@ -7,6 +7,14 @@
         }
     }
 
+    &__back-btn {
+        color: $color-text-link;
+
+        .icon {
+            @include font-size($font-normal);
+        }
+    }
+
     &__order-info {
         @include margin-top($margin-l);
         @include margin-bottom($margin-l);
@@ -124,5 +132,9 @@
 
     .tpmol-modal-header {
         @include padding($padding-md $padding-l)
+    }
+
+    .icon-External_Link {
+        @include margin-left($margin-xs);
     }
 }
