@@ -14,7 +14,10 @@
     {{/if}}
     {{#eachData this}}
         {{@key}}="{{this}}"
-    {{/eachData}}>
+    {{/eachData}}
+    {{#if target}}
+    target={{target}}
+    {{/if}}>
         <span class="tpatom-link__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>
         {{#if iconClass}}
             <i class="icon {{iconClass}}"></i>
