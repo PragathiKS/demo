@@ -21,6 +21,11 @@
         opacity: $opacity-disabled;
     }
 
+    &__text,
+    .icon {
+        vertical-align: middle;
+    }
+
     &--primary {
         @extend %default-btn;
         border-radius: $border-radius;
