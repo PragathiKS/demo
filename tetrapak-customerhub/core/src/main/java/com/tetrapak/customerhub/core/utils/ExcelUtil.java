@@ -4,7 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,8 +24,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -33,6 +35,7 @@ import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 
 /**
  * @author dhitiwar
+ * @author swalamba
  *
  */
 public class ExcelUtil {
@@ -42,15 +45,6 @@ public class ExcelUtil {
 
 	private ExcelUtil() {
 		// Disallowed to create Object out of class
-	}
-
-	/**
-	 * 
-	 * @return Workbook
-	 * 
-	 */
-	private static Workbook getExcelWorkBook() {
-		return new XSSFWorkbook();
 	}
 
 	/**
@@ -66,74 +60,6 @@ public class ExcelUtil {
 			sheet = workBook.createSheet(sheetName);
 		}
 		return sheet;
-	}
-
-	/**
-	 * Generates the font provided a workbook
-	 * 
-	 * @param workBook wb
-	 * @return Font font
-	 */
-	public static Font getFont() {
-		Workbook workBook = getExcelWorkBook();
-		Font font = null;
-		if (Objects.nonNull(workBook)) {
-			font = workBook.createFont();
-		}
-		return font;
-	}
-
-	/**
-	 * @param workBook
-	 * @param excelReportData
-	 * @return
-	 */
-	private static Font getFontStylingForHeader(Workbook workBook, ExcelFileData excelReportData) {
-		Font headerFont = null;
-		if (Objects.nonNull(workBook) && Objects.nonNull(excelReportData)) {
-			headerFont = workBook.createFont();
-			headerFont.setBold(true);
-			headerFont.setFontHeightInPoints(excelReportData.getFontHeight());
-			headerFont.setColor(excelReportData.getFontColor());
-		}
-		return headerFont;
-	}
-
-	/**
-	 * @param workBook
-	 * @param headerFont
-	 * @return CellStyle
-	 */
-	private static CellStyle getHeaderCellStyle(Workbook workBook, Font headerFont) {
-		CellStyle headerCellStyle = null;
-		if (Objects.nonNull(workBook) && Objects.nonNull(headerFont)) {
-			headerCellStyle = workBook.createCellStyle();
-			headerCellStyle.setFont(headerFont);
-		}
-		return headerCellStyle;
-	}
-
-	/**
-	 * @param sheet
-	 * @param headerCellStyle
-	 * @param headerColumnLabels
-	 * @return Row
-	 */
-	private static Row getHeaderLabels(Sheet sheet, CellStyle headerCellStyle, List<String> headerColumnLabels) {
-		Row headerRow = null;
-		if (Objects.nonNull(sheet) && Objects.nonNull(headerCellStyle) && Objects.nonNull(headerColumnLabels)) {
-			headerRow = getRow(sheet, 0);
-			// Create cells
-			if (Objects.nonNull(headerRow)) {
-				for (int i = 0; i < headerColumnLabels.size(); i++) {
-					Cell cell = headerRow.createCell(i);
-					cell.setCellValue(headerColumnLabels.get(i));
-					cell.setCellStyle(headerCellStyle);
-				}
-			}
-		}
-
-		return headerRow;
 	}
 
 	/**
@@ -177,99 +103,143 @@ public class ExcelUtil {
 	 * @param excelReportData Excel Bean Data
 	 */
 	public static void generateExcelReport(SlingHttpServletResponse response, ExcelFileData excelReportData) {
-		try {
-			Workbook workBook = getExcelWorkBook();
-			Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
-			if (Objects.nonNull(sheet)) {
-				sheet.autoSizeColumn(33);
-				sheet.setDisplayGridlines(false);
+		if (Objects.nonNull(excelReportData)) {
+			try {
+				XSSFWorkbook workBook = new XSSFWorkbook();
+				Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
+				if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
+					sheet.setDisplayGridlines(false);
+					prepareReportData(workBook, sheet, excelReportData.getData());
+					resizeCellToFitContent(sheet, 10);
+				}
+				downloadExcel(response, workBook, excelReportData);
+			} catch (IOException e) {
+				LOGGER.error("\nA run-time exception occured while generating excel report.");
+				throw new ExcelReportRuntimeException(
+						"Something went wrong while generateExcelReport in ExcelUtil class", e);
 			}
-			Font headerFont = getFontStylingForHeader(workBook, excelReportData);
-			CellStyle headerCellStyle = getHeaderCellStyle(workBook, headerFont);
-			Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());
-			if (Objects.nonNull(excelReportData)) {
-				prepareReportData(workBook, sheet, headerRow, excelReportData.getData(), excelReportData);
-			}
-			resizeCellToFitContent(sheet, 10);
-			downloadExcel(response, workBook, excelReportData);
-		} catch (IOException e) {
-			LOGGER.error("\nA run-time exception occured while generating excel report.");
-			throw new ExcelReportRuntimeException("Something went wrong while generateExcelReport in ExcelUtil class",
-					e);
+		} else {
+			LOGGER.warn("ExcelReportData is null!!");
 		}
+
 	}
 
 	/**
-	 * @param workBook 
+	 * @param workBook
 	 * @param sheet
 	 * @param row
 	 * @param String[][] reportData
 	 * 
 	 */
-	private static void prepareReportData(Workbook workBook, Sheet sheet, Row row, String[][] reportData, ExcelFileData ed) {
-		int rowCount = row.getRowNum();
-		CellRangeAddress region = CellRangeAddress.valueOf("A1:J44");
-		RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
-		RegionUtil.setBorderTop(BorderStyle.THIN, region, sheet);
-		RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
-		RegionUtil.setBorderRight(BorderStyle.THIN, region, sheet);
+	private static void prepareReportData(Workbook workBook, Sheet sheet, String[][] reportData) {
+		int rowCount = 0;
+		CellRangeAddress topRegion = new CellRangeAddress(0, 0, 0, reportData[0].length);
+		CellRangeAddress rightRegion = new CellRangeAddress(0, 10, 10, 10);
+		CellRangeAddress leftRegion = new CellRangeAddress(0, 10, 0, 0);
+		CellRangeAddress bottomRegion = new CellRangeAddress(10, 10, 0, 10);
+
+		RegionUtil.setBorderBottom(BorderStyle.MEDIUM, bottomRegion, sheet);
+		RegionUtil.setBorderTop(BorderStyle.MEDIUM, topRegion, sheet);
+		RegionUtil.setBorderLeft(BorderStyle.MEDIUM, leftRegion, sheet);
+		RegionUtil.setBorderRight(BorderStyle.MEDIUM, rightRegion, sheet);
+
+		Map<String, CellStyle> cellStyles = getCellStyleMap(workBook);
+
 		for (String[] data : reportData) {
-			row = getRow(sheet, rowCount);
+			Row row = getRow(sheet, rowCount);
 			int columnCount = 0;
 			if (Objects.nonNull(row)) {
 				for (String field : data) {
 					Cell cell = row.createCell(columnCount++);
-					CellStyle style = workBook.createCellStyle();
-					style.setBorderLeft(BorderStyle.THIN);
-					style.setBorderRight(BorderStyle.THIN);
-					style.setBorderTop(BorderStyle.THIN);
-					style.setBorderBottom(BorderStyle.THIN);
-					//style.setWrapText(true);
-					Font regularFont = workBook.createFont();
-					//regularFont.setFontHeightInPoints((short) 30);
-					//regularFont.setFontName("IMPACT");
-					//regularFont.setItalic(true);
-					//style.setFont(regularFont);
+
 					if (StringUtils.isNotBlank(field)) {
-						field = stripTags(field);
-						XSSFRichTextString richText = new XSSFRichTextString(field);
-						Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
-						f.setBold(true);
-						//add proper index
-						//richText.applyFont(0, 2, f);
+
+						List<String> tags = getTagsFromField(field);
+						XSSFRichTextString richText = applyCustomStyles(field, tags, workBook);
+						
+						if (tags.contains("<mergerow>")) {
+							sheet.addMergedRegion(new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(),
+									cell.getColumnIndex(), reportData[0].length));
+						}
+						
+						if (tags.contains("<lightGreyBG>")) {
+							cell.setCellStyle(cellStyles.get("lightGreyBackgroudStyle"));
+						} else if (tags.contains("<aligncenter>")) {
+							cell.setCellStyle(cellStyles.get("regularCenterStyle"));
+						} else if (tags.contains("<darkGreyBG>")) {
+							cell.setCellStyle(cellStyles.get("darkGreyBackgroudStyle"));
+						} else {
+							cell.setCellStyle(cellStyles.get("regularStyle"));
+						}
+						
 						cell.setCellValue(richText);
-						cell.setCellStyle(style);
+					} else {
+						cell.setCellStyle(cellStyles.get("emptyCellStyle"));
 					}
+
 				}
 			}
 			++rowCount;
 		}
-		sheet.getLastRowNum();
-		sheet.getRow(0).getLastCellNum();
 	}
 
-	private static String applyCustomStyles(String field, Cell cell, CellStyle style) {
-		if (field.contains("<b>")) {
-			field = stripTags(field);
-			XSSFRichTextString richTextString = new XSSFRichTextString(field);
-			Font customFont = getExcelWorkBook().createFont();
-			customFont.setBold(true);
-			customFont.setFontHeightInPoints((short)16);
-			cell.setCellValue(richTextString);
-			cell.setCellStyle(style);	
-		} else if (field.contains("<w>")) {
-			field = stripTags(field);
-			XSSFRichTextString richTextString = new XSSFRichTextString(field);
-			Font customFont = getExcelWorkBook().createFont();
-			customFont.setColor(IndexedColors.WHITE.index);
-			customFont.setFontHeightInPoints((short)9);
-			cell.setCellValue(richTextString);
-			cell.setCellStyle(style);
-		}
-		
-		return field;
+	/**
+	 * get list of CellStyles in form a map
+	 * 
+	 * @param workBook
+	 * @return getCellStyleMap
+	 */
+	private static Map<String, CellStyle> getCellStyleMap(Workbook workBook) {
+		Map<String, CellStyle> cellStyles = new HashMap<String, CellStyle>();
+
+		CellStyle borderStyle = workBook.createCellStyle();
+		borderStyle.setBorderLeft(BorderStyle.THIN);
+		borderStyle.setBorderRight(BorderStyle.THIN);
+		borderStyle.setBorderTop(BorderStyle.THIN);
+		borderStyle.setBorderBottom(BorderStyle.THIN);
+		cellStyles.put("regularStyle", borderStyle);
+
+		CellStyle emptyCellStyle = workBook.createCellStyle();
+		emptyCellStyle.setBorderLeft(BorderStyle.NONE);
+		emptyCellStyle.setBorderRight(BorderStyle.NONE);
+		emptyCellStyle.setBorderTop(BorderStyle.NONE);
+		emptyCellStyle.setBorderBottom(BorderStyle.NONE);
+		cellStyles.put("emptyCellStyle", emptyCellStyle);
+
+		CellStyle regularCenterStyle = workBook.createCellStyle();
+		regularCenterStyle.setBorderLeft(BorderStyle.THIN);
+		regularCenterStyle.setBorderRight(BorderStyle.THIN);
+		regularCenterStyle.setBorderTop(BorderStyle.THIN);
+		regularCenterStyle.setBorderBottom(BorderStyle.THIN);
+		regularCenterStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyles.put("regularCenterStyle", regularCenterStyle);
+
+		CellStyle lightGreyBackgroudStyle = workBook.createCellStyle();
+		lightGreyBackgroudStyle.setBorderLeft(BorderStyle.THIN);
+		lightGreyBackgroudStyle.setBorderRight(BorderStyle.THIN);
+		lightGreyBackgroudStyle.setBorderTop(BorderStyle.THIN);
+		lightGreyBackgroudStyle.setBorderBottom(BorderStyle.THIN);
+		lightGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
+		lightGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		lightGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyles.put("lightGreyBackgroudStyle", lightGreyBackgroudStyle);
+
+		CellStyle darkGreyBackgroudStyle = workBook.createCellStyle();
+		Font whiteFont = workBook.createFont();
+		whiteFont.setColor(IndexedColors.WHITE.index);
+		darkGreyBackgroudStyle.setFont(whiteFont);
+		darkGreyBackgroudStyle.setBorderLeft(BorderStyle.THIN);
+		darkGreyBackgroudStyle.setBorderRight(BorderStyle.THIN);
+		darkGreyBackgroudStyle.setBorderTop(BorderStyle.THIN);
+		darkGreyBackgroudStyle.setBorderBottom(BorderStyle.THIN);
+		darkGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
+		darkGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		darkGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyles.put("darkGreyBackgroudStyle", darkGreyBackgroudStyle);
+
+		return cellStyles;
 	}
-	
+
 	/**
 	 * @param response
 	 * @param workBook
@@ -295,29 +265,83 @@ public class ExcelUtil {
 		closeWorkbook(workBook);
 
 	}
-	
+
+	/**
+	 * Remove all the custom tags
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private static String stripTags(String string) {
-	    if (StringUtils.isBlank(string)) {
-	        return string;
-	    }
-	    Matcher m = REMOVE_TAGS.matcher(string);
-	    return m.replaceAll("");
-	}
-	
-	private XSSFRichTextString getStyledRichText(String text, Cell cell) {
-
-		Font blankText = getBlankTextFont();
-		if (text.contains("<blank>")) {
-
+		if (StringUtils.isBlank(string)) {
+			return string;
 		}
-		return null;
+		Matcher m = REMOVE_TAGS.matcher(string);
+		return m.replaceAll("");
 	}
 
-	private Font getBlankTextFont() {
-		Font blankTextFont = null;
-		blankTextFont = getExcelWorkBook().createFont();
-		// blankTextFont.set
-		return blankTextFont;
+	private static XSSFRichTextString applyCustomStyles(String field, List<String> tags, Workbook workBook) {
+		field = stripTags(field);
+		XSSFRichTextString richTextString = new XSSFRichTextString(field);
+		if (!tags.isEmpty()) {
+			Font customFont = workBook.createFont();
+			if (field.contains("<whiteFontColor>")) {
+				customFont.setColor(IndexedColors.WHITE.index);
+			}
+
+			if (tags.contains("<bold>")) {
+				customFont.setBold(true);
+			}
+
+			customFont.setFontHeightInPoints((short) 9);
+			richTextString.applyFont(customFont);
+
+			if (tags.contains("<halfBold>")) {
+				customFont.setBold(true);
+				int index = 0;
+				if (field.contains(":")) {
+					index = field.indexOf(":");
+				} else {
+					index = field.length() - 1;
+				}
+				richTextString.applyFont(0, index, customFont);
+			}
+		}
+
+		return richTextString;
+	}
+
+	/**
+	 * 
+	 * get the tags set in the field and return as a list
+	 * 
+	 * @param field
+	 * @return
+	 */
+	private static List<String> getTagsFromField(String field) {
+		List<String> tagList = new ArrayList<>();
+		if (field.contains("<bold>")) {
+			tagList.add("<bold>");
+		}
+		if (field.contains("<whiteFontColor>")) {
+			tagList.add("<whiteFontColor>");
+		}
+		if (field.contains("<lightGreyBG>")) {
+			tagList.add("<lightGreyBG>");
+		}
+		if (field.contains("<halfBold>")) {
+			tagList.add("<halfBold>");
+		}
+		if (field.contains("<darkGreyBG>")) {
+			tagList.add("<darkGreyBG>");
+		}
+		if (field.contains("<mergerow>")) {
+			tagList.add("<mergerow>");
+		}
+		if (field.contains("<aligncenter>")) {
+			tagList.add("<aligncenter>");
+		}
+		return tagList;
 	}
 
 }

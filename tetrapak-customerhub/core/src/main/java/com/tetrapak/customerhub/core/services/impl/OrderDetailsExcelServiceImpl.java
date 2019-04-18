@@ -4,14 +4,9 @@ package com.tetrapak.customerhub.core.services.impl;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.lang.reflect.Field;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.RichTextString;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -28,7 +23,7 @@ import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.utils.ExcelUtil;
 
 /**
- * Implemention class for Odrder Details Excel Service
+ * Implemention class for Order Details Excel Service
  *
  * @author Tushar
  */
@@ -48,12 +43,13 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		}
 
 		if (Objects.nonNull(orderDetailData.getDeliveryList())) {
-			data = ArrayUtils.addAll(data, getDeliverySection(orderDetailsModel, orderDetailData.getDeliveryList()));
+			data = ArrayUtils.addAll(data,
+					getDeliverySection(orderType, orderDetailsModel, orderDetailData.getDeliveryList()));
 		}
 
 		ExcelFileData excelReportData = new ExcelFileData();
 		excelReportData
-				.setFileName(orderType+" Order Details_Excel_" + orderDetailData.getOrderDetails().getOrderNumber());
+				.setFileName(orderType + " Order Details_Excel_" + orderDetailData.getOrderDetails().getOrderNumber());
 		excelReportData.setExcelSheetName("Order Details");
 		excelReportData.setData(data);
 		ExcelUtil.generateExcelReport(response, excelReportData);
@@ -68,23 +64,22 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * @return the first section of the excel having order details
 	 */
 	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
-		Font bold = ExcelUtil.getFont();
-		bold.setBold(true);
-		String[][] orderDetailsSection = new String[9][10];
-		orderDetailsSection[0][0] = "Tetra Pak Order Number:" + orderDetails.getOrderNumber();
-		orderDetailsSection[1][0] = "Status: " + orderDetails.getStatus();
-		orderDetailsSection[2][0] = "Customer Name: " + orderDetails.getCustomerName();
-		orderDetailsSection[3][0] = "Customer Number" + orderDetails.getCustomerNumber();
-		orderDetailsSection[4][0] = "Purchasse Order: " + orderDetails.getPurchaseOrderNumber();
-		orderDetailsSection[5][0] = "Customer Reference: " + orderDetails.getCustomerReference().toString();
-		orderDetailsSection[6][0] = "Order Date" + orderDetails.getPlacedOn();
-		orderDetailsSection[7][0] = "Web Refrence " + orderDetails.getWebRefID();
+		String[][] orderDetailsSection = new String[11][10];
+		orderDetailsSection[0][0] = "<halfBold>Tetra Pak Order Number:" + orderDetails.getOrderNumber();
+		orderDetailsSection[1][0] = "<halfBold>Status: " + orderDetails.getStatus();
+		orderDetailsSection[2][0] = StringUtils.EMPTY;
+		orderDetailsSection[3][0] = "<bold>Order Details<lightGreyBG>";
+		orderDetailsSection[4][0] = "<halfBold>Customer Name: " + orderDetails.getCustomerName();
+		orderDetailsSection[5][0] = "<halfBold>Customer Number" + orderDetails.getCustomerNumber();
+		orderDetailsSection[6][0] = "<halfBold>Purchasse Order: " + orderDetails.getPurchaseOrderNumber();
+		orderDetailsSection[7][0] = "<halfBold>Customer Reference: " + orderDetails.getCustomerReference().toString();
+		orderDetailsSection[8][0] = "<halfBold>Order Date : " + orderDetails.getPlacedOn();
+		orderDetailsSection[9][0] = "<halfBold>Web Reference :" + orderDetails.getWebRefID();
+		orderDetailsSection[10][0] = StringUtils.EMPTY;
 
-		for (int row = 0; row < 9; row++) {
-			for (int col = 0; col < 10; col++) {
-				if (col != 0) {
-					orderDetailsSection[row][col] = StringUtils.EMPTY;
-				}
+		for (int row = 0; row < 11; row++) {
+			for (int col = 1; col < 10; col++) {
+				orderDetailsSection[row][col] = StringUtils.EMPTY;
 			}
 		}
 
@@ -97,11 +92,11 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * @return OrderSummary 2 d array
 	 */
 	private String[][] getOrderSummary(List<OrderSummary> orderSummary) {
-		String[][] data = new String[4][4];
+		String[][] data = new String[5][4];
 		data[0][0] = StringUtils.EMPTY;
-		data[0][1] = "Product<b>";
-		data[0][2] = "Order Quantity<b>";
-		data[0][3] = "Quantity Delivered so far<b>";
+		data[0][1] = "<bold>Product<aligncenter>";
+		data[0][2] = "<bold>Order Quantity<aligncenter>";
+		data[0][3] = "<bold>Quantity Delivered so far<aligncenter>";
 		int counter = 1;
 		Iterator<OrderSummary> itr = orderSummary.iterator();
 		while (itr.hasNext()) {
@@ -111,7 +106,8 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			data[counter][3] = summaryRow.getDeliveredQuantity();
 			counter++;
 		}
-		data[3][0] = "Only show above items in the deliverables : YES/NO (from api)";
+		data[3][0] = "<halfbold>Only show above items in the deliverables : YES/NO (from api)";
+		data[4][0] = StringUtils.EMPTY;
 		return data;
 	}
 
@@ -119,16 +115,20 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * 
 	 * Used in both parts and packaging material excel
 	 * 
+	 * @param orderType
+	 * 
 	 * @param DeliveryList 2D array
 	 * @return
 	 */
-	private String[][] getDeliverySection(OrderDetailsModel orderDetailsModel, List<DeliveryList> deliveryList) {
+	private String[][] getDeliverySection(String orderType, OrderDetailsModel orderDetailsModel,
+			List<DeliveryList> deliveryList) {
 
 		String[][] deliveryDetails = null;
 		Iterator<DeliveryList> deliveryListIterator = deliveryList.iterator();
 		while (deliveryListIterator.hasNext()) {
 			DeliveryList deliveryItem = deliveryListIterator.next();
-			deliveryDetails = ArrayUtils.addAll(deliveryDetails, getDeliveryDetails(orderDetailsModel, deliveryItem));
+			deliveryDetails = ArrayUtils.addAll(deliveryDetails,
+					getDeliveryDetails(orderType, orderDetailsModel, deliveryItem));
 		}
 		return deliveryDetails;
 	}
@@ -137,26 +137,29 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * 
 	 * All the delivery details
 	 * 
+	 * @param orderType
+	 * 
 	 * @param deliveryList
 	 * @return
 	 */
-	private String[][] getDeliveryDetails(OrderDetailsModel orderDetailsModel, DeliveryList deliveryList) {
+	private String[][] getDeliveryDetails(String orderType, OrderDetailsModel orderDetailsModel,
+			DeliveryList deliveryList) {
 		String[][] deliveryDetails = new String[9][10];
 
-		deliveryDetails[0][0] = "Delivery number: " + deliveryList.getDeliveryOrder();
-		deliveryDetails[1][0] = "Shipping: " + deliveryList.getCarrier();
-		deliveryDetails[2][0] = "Track Order: " + deliveryList.getCarrierTrackingID();
-		deliveryDetails[3][0] = "Delivery Address<b>";
+		deliveryDetails[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: " + deliveryList.getDeliveryOrder();
+		deliveryDetails[1][0] = "<halfbold>Shipping: " + deliveryList.getCarrier();
+		deliveryDetails[2][0] = "<halfbold>Track Order: " + deliveryList.getCarrierTrackingID();
+		deliveryDetails[3][0] = "<bold>Delivery Address";
 		deliveryDetails[4][0] = deliveryList.getDeliveryAddress().getName() + " "
 				+ deliveryList.getDeliveryAddress().getName2() + ", " + deliveryList.getDeliveryAddress().getCity()
 				+ ", " + deliveryList.getDeliveryAddress().getState() + ", "
 				+ deliveryList.getDeliveryAddress().getPostalcode() + deliveryList.getDeliveryAddress().getCountry();
 		deliveryDetails[5][0] = StringUtils.EMPTY;
-		deliveryDetails[6][0] = "Invoice Address<b>";
+		deliveryDetails[6][0] = "<bold>Invoice Address";
 		deliveryDetails[7][0] = deliveryList.getInvoiceAddress().getName() + " "
-				+ deliveryList.getInvoiceAddress().getName2() + ", " + deliveryList.getInvoiceAddress().getCity()
-				+ ", " + deliveryList.getInvoiceAddress().getState() + ", "
-				+ deliveryList.getInvoiceAddress().getPostalcode() + deliveryList.getInvoiceAddress().getCountry();
+				+ deliveryList.getInvoiceAddress().getName2() + ", " + deliveryList.getInvoiceAddress().getCity() + ", "
+				+ deliveryList.getInvoiceAddress().getState() + ", " + deliveryList.getInvoiceAddress().getPostalcode()
+				+ deliveryList.getInvoiceAddress().getCountry();
 		deliveryDetails[8][0] = StringUtils.EMPTY;
 
 		for (int row = 0; row < 9; row++) {
@@ -167,29 +170,29 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			}
 		}
 
-		String[][] productDetails = getProductDetails(orderDetailsModel, deliveryList);
+		String[][] productDetails = getProductDetails(orderType, orderDetailsModel, deliveryList);
 
 		deliveryDetails = ArrayUtils.addAll(deliveryDetails, productDetails);
 		return deliveryDetails;
 	}
 
-	private String[][] getProductDetails(OrderDetailsModel orderDetailsModel, DeliveryList deliveryList) {
+	private String[][] getProductDetails(String orderType, OrderDetailsModel orderDetailsModel,
+			DeliveryList deliveryList) {
 		List<Product> products = deliveryList.getProducts();
 		String[][] productDetails = null;
 		if (null != products) {
-			// int columns = Product.class.getDeclaredFields().length;
 			int rows = products.size();
 			productDetails = new String[rows + 5][10];
-			productDetails[0][0] = "#<w>";
-			productDetails[0][1] = "Product<w>";
-			productDetails[0][2] = "Product ID<w>";
-			productDetails[0][3] = "Quantity<w>";
-			productDetails[0][4] = "Weight<w>";
-			productDetails[0][5] = "Sent<w>";
-			productDetails[0][6] = "Open<w>";
-			productDetails[0][7] = "ETA<w>";
-			productDetails[0][8] = "Unit Price<w>";
-			productDetails[0][9] = "Price<w>";
+			productDetails[0][0] = "#<whiteFontColor><darkGreyBG>";
+			productDetails[0][1] = "Product<whiteFontColor><darkGreyBG>";
+			productDetails[0][2] = "Product ID<whiteFontColor><darkGreyBG>";
+			productDetails[0][3] = "Quantity<whiteFontColor><darkGreyBG>";
+			productDetails[0][4] = "Weight<whiteFontColor><darkGreyBG>";
+			productDetails[0][5] = "Sent<whiteFontColor><darkGreyBG>";
+			productDetails[0][6] = "Open<whiteFontColor><darkGreyBG>";
+			productDetails[0][7] = "ETA<whiteFontColor><darkGreyBG>";
+			productDetails[0][8] = "Unit Price<whiteFontColor><darkGreyBG>";
+			productDetails[0][9] = "Price<whiteFontColor><darkGreyBG>";
 
 			Iterator<Product> productsIterator = products.iterator();
 			int counter = 1;
@@ -205,29 +208,18 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				productDetails[counter][7] = product.getETA();
 				productDetails[counter][8] = product.getUnitPrice();
 				productDetails[counter][9] = product.getPrice();
-
-				productDetails[counter + 1][8] = "Total Weight<b>";
-				productDetails[counter + 1][9] = deliveryList.getTotalWeight();
-				productDetails[counter + 2][8] = "Total Pre VAT<b>";
-				productDetails[counter + 2][9] = deliveryList.getTotalPricePreVAT();
-				productDetails[counter + 3][8] = "VAT<b>";
-				productDetails[counter + 3][9] = deliveryList.getTotalVAT();
-
+				if (!orderType.equalsIgnoreCase("packmat")) {
+					productDetails[counter + 1][8] = "<bold>Total Weight";
+					productDetails[counter + 1][9] = deliveryList.getTotalWeight();
+					productDetails[counter + 2][8] = "<bold>Total Pre VAT";
+					productDetails[counter + 2][9] = deliveryList.getTotalPricePreVAT();
+					productDetails[counter + 3][8] = "<bold>VAT";
+					productDetails[counter + 3][9] = deliveryList.getTotalVAT();
+				}
 				counter++;
 			}
 		}
 		return productDetails;
-	}
-
-	private int getActualFieldsCount(Object obj) {
-		for (Field field : obj.getClass().getDeclaredFields()) {
-			try {
-				obj.getClass().getField(field.getName());
-			} catch (NoSuchFieldException | SecurityException e) {
-				e.printStackTrace();
-			}
-		}
-		return 0;
 	}
 
 }
