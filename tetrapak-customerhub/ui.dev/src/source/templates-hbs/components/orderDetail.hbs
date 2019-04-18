@@ -27,7 +27,7 @@
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table ml-lg-auto">
                         {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
-                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID link=true linkUrl="https://www.tetrapak.com/" }} {{!-- TODO : Need to replace hardcoded link later --}}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID link=true linkUrl="https://www.tetrapak.com/" linkTarget="_blank" }} {{!-- TODO : Need to replace hardcoded link later --}}
                     </div>
                 </div>
             </div>
@@ -46,6 +46,7 @@
             <div class="tp-order-detail__table-wrapper">
                 {{> molecules/table/table baseClass="tp-order-detail__summary" list=orderSummary headings=orderSummaryHeadings}}
             </div>
+            {{> atoms/checkbox/checkbox text=i18nKeys.deliveryProductsFilterCheckboxText baseClass="tp-order-detail__filter-checkbox" }}
         {{/if}}
     </div>
     {{#if noData}}

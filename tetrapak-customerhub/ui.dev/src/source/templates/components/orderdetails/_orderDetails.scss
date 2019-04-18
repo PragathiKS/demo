@@ -106,6 +106,24 @@
         @include padding-top($padding-l);
     }
 
+    &__filter-checkbox {
+        @include margin-top($margin-l);
+
+        .tpatom-checkbox__label {
+            margin: 0;
+        }
+
+        .tpatom-checkbox__icon {
+            @include margin-top($margin-xs);
+            @include width(14px);
+            @include height(14px);
+
+            &::before {
+                @include font-size($font-xxs);
+            }
+        }
+    }
+
     &__packaging-modal {
         &-body {
             @include padding($padding-l);
