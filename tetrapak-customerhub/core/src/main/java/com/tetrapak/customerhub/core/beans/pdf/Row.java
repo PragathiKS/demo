@@ -14,6 +14,7 @@ public class Row {
     private int height;
     private PDFont font;
     private boolean isHref;
+    private String link;
 
     /**
      * Public constructor for this class
@@ -39,12 +40,13 @@ public class Row {
      * @param fontSize int Size
      * @param isHref boolean isHref
      */
-    public Row(String content, int height, PDFont font, int fontSize, boolean isHref) {
+    public Row(String content, int height, PDFont font, int fontSize, boolean isHref, String link) {
         this.content = content;
         this.fontSize = fontSize;
         this.height = height;
         this.font = font;
         this.isHref = isHref;
+        this.link = link;
     }
 
     public String getContent() {
@@ -54,7 +56,6 @@ public class Row {
     public void setContent(String content) {
         this.content = content;
     }
-
 
     public int getFontSize() {
         return fontSize;
@@ -88,4 +89,11 @@ public class Row {
         isHref = href;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 }
