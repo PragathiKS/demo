@@ -5,6 +5,7 @@ package com.tetrapak.customerhub.core.models;
 
 import static org.junit.Assert.*;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -108,7 +109,8 @@ public class OrderDetailsModelTest {
 	
 	@Test
 	public void testDownloadOrderDetailsServletUrl() {
-	assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"));
+	assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"+ ".{orderType}.{extnType}?"
+			+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}"));
 	}
 
 }
