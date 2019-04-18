@@ -169,7 +169,8 @@
         "source/templates/components/orderingcard/"
       ],
       "orders": [
-        "source/templates/components/ordersearch/"
+        "source/templates/components/ordersearch/",
+        "source/templates/components/orderdetails/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
