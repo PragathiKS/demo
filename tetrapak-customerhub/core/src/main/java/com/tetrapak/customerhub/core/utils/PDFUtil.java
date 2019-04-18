@@ -64,7 +64,7 @@ public final class PDFUtil {
                 String[] message = {rowContent};
                 if (row.isHref()) {
                     contentStream.setNonStrokingColor(Color.BLUE);
-                    setTextWithLink(document.getPage(0), margin, height, rowContent, rowContent);
+                    setTextWithLink(document.getPage(0), margin, height, rowContent, row.getLink());
                 } else {
                     contentStream.setNonStrokingColor(color);
                 }
@@ -92,8 +92,8 @@ public final class PDFUtil {
         PDRectangle position = new PDRectangle();
         position.setLowerLeftX(margin);
         position.setLowerLeftY(height);
-        double finalMargin = (double) margin + 150;
-        double finalHeight = (double) height + 150;
+        double finalMargin = (double) margin + 100;
+        double finalHeight = (double) height + 10;
         position.setUpperRightX((float) finalMargin);
         position.setUpperRightY((float) finalHeight);
         txtLink.setRectangle(position);

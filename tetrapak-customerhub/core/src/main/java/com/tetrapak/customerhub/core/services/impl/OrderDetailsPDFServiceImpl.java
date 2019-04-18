@@ -50,6 +50,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private PDFont muliRegular;
     private PDFont muliBold;
+    final int MARGIN = 65;
 
     @Override
     public void generateOrderDetailsPDF(SlingHttpServletResponse response,
@@ -63,6 +64,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         InputStream image2 = null;
         PDPageContentStream contentStream = null;
         PDDocument document = new PDDocument();
+
         try {
             PDPage page = new PDPage();
             document.addPage(page);
@@ -98,7 +100,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = printDeliveryDetails(document, contentStream, deliveryList);
             } else {
                 PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 500);
-                PDFUtil.drawLine(contentStream, 65, 460, 550, Color.DARK_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, 550, Color.DARK_GRAY, 0.01f);
             }
             contentStream.close();
             PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
@@ -141,17 +143,17 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = new PDPageContentStream(
                         document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             }
-            PDFUtil.writeContent(document, contentStream, 65, height, Color.DARK_GRAY,
+            PDFUtil.writeContent(document, contentStream, MARGIN, height, Color.DARK_GRAY,
                     getDeliveryDetailHeader("" + deliveryDetail.getDeliveryNumber()));
-            PDFUtil.drawLine(contentStream, 65, 460, height - 95, Color.LIGHT_GRAY, 0.01f);
-            PDFUtil.drawLine(contentStream, 65, 460, height - 125, Color.black, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 460, height - 95, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 460, height - 125, Color.black, 0.01f);
 
             PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), height - 30);
 
             PDFUtil.drawTable(contentStream, createProductTable(deliveryDetail.getProducts()), height - 110);
 
             PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
-            PDFUtil.drawDashedLine(contentStream, 65, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
         }
         return contentStream;
     }
@@ -180,7 +182,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     private List<Row> getContactLines(CustomerSupportCenter customerSupportCenter) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row("Customer support center", 9, muliBold, 7));
-        rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true));
+        rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true, "mailto:" + customerSupportCenter.getEmail()));
         rows.add(new Row(customerSupportCenter.getMobile(), 9, muliRegular, 6));
         return rows;
     }

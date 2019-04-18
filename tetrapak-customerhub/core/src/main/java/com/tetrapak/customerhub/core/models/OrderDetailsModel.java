@@ -181,7 +181,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
 		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		downloadPdfExcelServletUrl = resource.getPath();
+		downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}?"
+				+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}";
 	}
 
 	/**
