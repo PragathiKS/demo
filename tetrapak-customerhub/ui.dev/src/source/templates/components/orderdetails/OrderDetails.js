@@ -6,7 +6,56 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
 import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+/**
+ *
+ * @param {string} type
+ */
+function _trackAnalytics(type) {
+  const analyticsData = {};
+  const self = $(this);
+  type = type || self.data('extnType');
+  const orderType = 'Packaging';
+  switch (type) {
+    case 'excel': {
+      analyticsData.header = orderType;
+      analyticsData.createexcel = 'true';
+      trackAnalytics(analyticsData, 'packaging', 'orderdetailsexcel');
+      break;
+    }
+    case 'pdf': {
+      analyticsData.header = orderType;
+      analyticsData.createpdf = 'true';
+      trackAnalytics(analyticsData, 'packaging', 'orderdetailsPDF');
+      break;
+    }
+    case 'webRef': {
+      const webRef = this.innerText;
+      analyticsData.header = orderType;
+      analyticsData.webreferencenumber = webRef;
+      trackAnalytics(analyticsData, 'packaging', 'orderdetailswebref');
+      break;
+    }
+    case 'trackOrder': {
+      const deliverynumber = self.data('deliveryNumber');
+      analyticsData.header = orderType;
+      analyticsData.deliverynumber = deliverynumber;
+      analyticsData.trackorder = 'trackorderclicked';
+      trackAnalytics(analyticsData, 'packaging', 'orderdetailstrackorder');
+      break;
+    }
+    case 'customercontactsupport': {
+      analyticsData.header = orderType;
+      analyticsData.customercontactsupport = 'true';
+      trackAnalytics(analyticsData, 'packaging', 'orderdetailscontact');
+      break;
+    }
+    default: {
+      logger.error('Nothing matched for analytics type');
+    }
+  }
+}
 /**
  * Process Order Data
  */
@@ -189,12 +238,26 @@ class OrderDetails {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
-      .on('click', '.js-create-excel, .js-create-pdf', this.downloadContent)
+      .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
+      .on('click', '.js-order-detail__webRef', this, function (e) {
+        const $this = e.data;
+        $this.trackAnalytics.call(this, 'webRef');
+      })
+      .on('click', '.js-order-delivery-summary-track-order', this, function (e) {
+        const $this = e.data;
+        $this.trackAnalytics.call(this, 'trackOrder');
+      })
+      .on('click', '.js-support-center-email', this, function (e) {
+        const $this = e.data;
+        $this.trackAnalytics.call(this, 'customercontactsupport');
+      })
       .on('click', '.js-order-detail__back-btn', () => {
         window.history.back();
       });
   }
-  downloadContent() {
+  downloadContent(e) {
+    const $this = e.data;
+    $this.trackAnalytics.call(this);
     return _downloadContent.apply(this, arguments);
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
@@ -206,6 +269,11 @@ class OrderDetails {
       return _processPartsData.apply(this, arguments);
     }
   }
+
+  trackAnalytics(type) {
+    _trackAnalytics.call(this, type);
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();

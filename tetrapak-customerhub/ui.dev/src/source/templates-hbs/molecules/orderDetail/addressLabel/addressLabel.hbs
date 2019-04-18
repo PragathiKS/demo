@@ -2,7 +2,7 @@
     <div class="tpmol-order-delivery-summary__delivery-detail-label col-lg">{{i18n key=label}}</div>
     <div class="col-lg">
         {{#if link}}
-            {{> atoms/links/link/link text=value href=linkUrl iconClass="icon-External_Link" target=linkTarget }}
+            {{> atoms/links/link/link text=value href=linkUrl iconClass="icon-External_Link" isExternal=true jsClass=linkJsClass data-attribute=data-attribute data-value=data-value }}
         {{else}}
             {{value}}
         {{/if}}
