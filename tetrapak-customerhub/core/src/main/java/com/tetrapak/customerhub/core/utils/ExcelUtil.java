@@ -6,14 +6,22 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -30,6 +38,7 @@ import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 public class ExcelUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
+	private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
 
 	private ExcelUtil() {
 		// Disallowed to create Object out of class
@@ -171,13 +180,17 @@ public class ExcelUtil {
 		try {
 			Workbook workBook = getExcelWorkBook();
 			Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
+			if (Objects.nonNull(sheet)) {
+				sheet.autoSizeColumn(33);
+				sheet.setDisplayGridlines(false);
+			}
 			Font headerFont = getFontStylingForHeader(workBook, excelReportData);
 			CellStyle headerCellStyle = getHeaderCellStyle(workBook, headerFont);
 			Row headerRow = getHeaderLabels(sheet, headerCellStyle, excelReportData.getColumns());
 			if (Objects.nonNull(excelReportData)) {
 				prepareReportData(workBook, sheet, headerRow, excelReportData.getData(), excelReportData);
 			}
-			resizeCellToFitContent(sheet, excelReportData.getColumns().size());
+			resizeCellToFitContent(sheet, 10);
 			downloadExcel(response, workBook, excelReportData);
 		} catch (IOException e) {
 			LOGGER.error("\nA run-time exception occured while generating excel report.");
@@ -195,7 +208,11 @@ public class ExcelUtil {
 	 */
 	private static void prepareReportData(Workbook workBook, Sheet sheet, Row row, String[][] reportData, ExcelFileData ed) {
 		int rowCount = row.getRowNum();
-
+		CellRangeAddress region = CellRangeAddress.valueOf("A1:J44");
+		RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderTop(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderRight(BorderStyle.THIN, region, sheet);
 		for (String[] data : reportData) {
 			row = getRow(sheet, rowCount);
 			int columnCount = 0;
@@ -203,19 +220,23 @@ public class ExcelUtil {
 				for (String field : data) {
 					Cell cell = row.createCell(columnCount++);
 					CellStyle style = workBook.createCellStyle();
-					style.setBottomBorderColor((short) 0);
+					style.setBorderLeft(BorderStyle.THIN);
+					style.setBorderRight(BorderStyle.THIN);
+					style.setBorderTop(BorderStyle.THIN);
+					style.setBorderBottom(BorderStyle.THIN);
+					//style.setWrapText(true);
 					Font regularFont = workBook.createFont();
-					regularFont.setFontHeightInPoints((short) 30);
-					regularFont.setFontName("IMPACT");
-					regularFont.setItalic(true);
+					//regularFont.setFontHeightInPoints((short) 30);
+					//regularFont.setFontName("IMPACT");
+					//regularFont.setItalic(true);
 					//style.setFont(regularFont);
-					style.setBorderBottom(BorderStyle.DOUBLE);
-					if (null != field) {
+					if (StringUtils.isNotBlank(field)) {
+						field = stripTags(field);
 						XSSFRichTextString richText = new XSSFRichTextString(field);
 						Font f = getFontStylingForHeader(getExcelWorkBook(), ed);
 						f.setBold(true);
-						
-						richText.applyFont(0, field.lastIndexOf(":"), f);
+						//add proper index
+						//richText.applyFont(0, 2, f);
 						cell.setCellValue(richText);
 						cell.setCellStyle(style);
 					}
@@ -223,8 +244,32 @@ public class ExcelUtil {
 			}
 			++rowCount;
 		}
+		sheet.getLastRowNum();
+		sheet.getRow(0).getLastCellNum();
 	}
 
+	private static String applyCustomStyles(String field, Cell cell, CellStyle style) {
+		if (field.contains("<b>")) {
+			field = stripTags(field);
+			XSSFRichTextString richTextString = new XSSFRichTextString(field);
+			Font customFont = getExcelWorkBook().createFont();
+			customFont.setBold(true);
+			customFont.setFontHeightInPoints((short)16);
+			cell.setCellValue(richTextString);
+			cell.setCellStyle(style);	
+		} else if (field.contains("<w>")) {
+			field = stripTags(field);
+			XSSFRichTextString richTextString = new XSSFRichTextString(field);
+			Font customFont = getExcelWorkBook().createFont();
+			customFont.setColor(IndexedColors.WHITE.index);
+			customFont.setFontHeightInPoints((short)9);
+			cell.setCellValue(richTextString);
+			cell.setCellStyle(style);
+		}
+		
+		return field;
+	}
+	
 	/**
 	 * @param response
 	 * @param workBook
@@ -250,7 +295,15 @@ public class ExcelUtil {
 		closeWorkbook(workBook);
 
 	}
-
+	
+	private static String stripTags(String string) {
+	    if (StringUtils.isBlank(string)) {
+	        return string;
+	    }
+	    Matcher m = REMOVE_TAGS.matcher(string);
+	    return m.replaceAll("");
+	}
+	
 	private XSSFRichTextString getStyledRichText(String text, Cell cell) {
 
 		Font blankText = getBlankTextFont();
