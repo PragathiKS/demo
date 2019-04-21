@@ -55,6 +55,9 @@ public class ImageTextBannerModel {
     @Inject
     private String bannerCtaTooltipI18n;
 
+    @Inject
+    private String targetSoftConversion;
+
     private Boolean isHeaderBanner = false;
 
     @PostConstruct
@@ -121,6 +124,10 @@ public class ImageTextBannerModel {
 
     public Boolean getIsHeaderBanner() {
         return isHeaderBanner;
+    }
+
+    public String getTargetSoftConversion() {
+        return targetSoftConversion;
     }
 
 }

@@ -19,7 +19,10 @@
              data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
       </div>
       <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
-      <sly data-sly-test="${data.bannerCtaPath != '#'}"
+      <sly data-sly-test="${data.targetSoftConversion}"
+           data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html"
+           data-sly-call="${modalButton.togglebutton_template @ btnToggle='modal', btnTarget='#softConversionModal', btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, variant='shift'}" />
+      <sly data-sly-test="${data.bannerCtaPath != '#' && !data.targetSoftConversion}"
            data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
            data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank, variant='shift'}" />
     </div>
