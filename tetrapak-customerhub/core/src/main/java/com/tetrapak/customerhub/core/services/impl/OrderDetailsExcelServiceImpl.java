@@ -65,16 +65,19 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
 		String[][] orderDetailsSection = new String[11][10];
-		orderDetailsSection[0][0] = "<halfBold>Tetra Pak Order Number:" + orderDetails.getOrderNumber();
-		orderDetailsSection[1][0] = "<halfBold>Status: " + orderDetails.getStatus();
+		orderDetailsSection[0][0] = "<halfBold>Tetra Pak Order Number:"
+				+ getProcessedValue(orderDetails.getOrderNumber());
+		orderDetailsSection[1][0] = "<halfBold>Status: " + getProcessedValue(orderDetails.getStatus());
 		orderDetailsSection[2][0] = StringUtils.EMPTY;
 		orderDetailsSection[3][0] = "<bold>Order Details<lightGreyBG>";
-		orderDetailsSection[4][0] = "<halfBold>Customer Name: " + orderDetails.getCustomerName();
-		orderDetailsSection[5][0] = "<halfBold>Customer Number" + orderDetails.getCustomerNumber();
-		orderDetailsSection[6][0] = "<halfBold>Purchasse Order: " + orderDetails.getPurchaseOrderNumber();
-		orderDetailsSection[7][0] = "<halfBold>Customer Reference: " + orderDetails.getCustomerReference().toString();
-		orderDetailsSection[8][0] = "<halfBold>Order Date : " + orderDetails.getPlacedOn();
-		orderDetailsSection[9][0] = "<halfBold>Web Reference :" + orderDetails.getWebRefID();
+		orderDetailsSection[4][0] = "<halfBold>Customer Name: " + getProcessedValue(orderDetails.getCustomerName());
+		orderDetailsSection[5][0] = "<halfBold>Customer Number" + getProcessedValue(orderDetails.getCustomerNumber());
+		orderDetailsSection[6][0] = "<halfBold>Purchasse Order: "
+				+ getProcessedValue(orderDetails.getPurchaseOrderNumber());
+		orderDetailsSection[7][0] = "<halfBold>Customer Reference: "
+				+ getProcessedValue(orderDetails.getCustomerReference());
+		orderDetailsSection[8][0] = "<halfBold>Order Date : " + getProcessedValue(orderDetails.getPlacedOn());
+		orderDetailsSection[9][0] = "<halfBold>Web Reference :" + getProcessedValue(orderDetails.getWebRefID());
 		orderDetailsSection[10][0] = StringUtils.EMPTY;
 
 		for (int row = 0; row < 11; row++) {
@@ -101,12 +104,12 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		Iterator<OrderSummary> itr = orderSummary.iterator();
 		while (itr.hasNext()) {
 			OrderSummary summaryRow = itr.next();
-			data[counter][1] = summaryRow.getProduct();
-			data[counter][2] = summaryRow.getOrderQuantity();
-			data[counter][3] = summaryRow.getDeliveredQuantity();
+			data[counter][1] = getProcessedValue(summaryRow.getProduct());
+			data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
+			data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
 			counter++;
 		}
-		data[3][0] = "<halfbold>Only show above items in the deliverables : YES/NO (from api)";
+		data[3][0] = "<halfBold>Only show above items in the deliverables : YES/NO (from api)";
 		data[4][0] = StringUtils.EMPTY;
 		return data;
 	}
@@ -146,20 +149,25 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			DeliveryList deliveryList) {
 		String[][] deliveryDetails = new String[9][10];
 
-		deliveryDetails[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: " + deliveryList.getDeliveryOrder();
-		deliveryDetails[1][0] = "<halfbold>Shipping: " + deliveryList.getCarrier();
-		deliveryDetails[2][0] = "<halfbold>Track Order: " + deliveryList.getCarrierTrackingID();
+		deliveryDetails[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: "
+				+ getProcessedValue(deliveryList.getDeliveryOrder());
+		deliveryDetails[1][0] = "<halfBold>Shipping: " + getProcessedValue(deliveryList.getCarrier());
+		deliveryDetails[2][0] = "<halfBold>Track Order: " + getProcessedValue(deliveryList.getCarrierTrackingID());
 		deliveryDetails[3][0] = "<bold>Delivery Address";
-		deliveryDetails[4][0] = deliveryList.getDeliveryAddress().getName() + " "
-				+ deliveryList.getDeliveryAddress().getName2() + ", " + deliveryList.getDeliveryAddress().getCity()
-				+ ", " + deliveryList.getDeliveryAddress().getState() + ", "
-				+ deliveryList.getDeliveryAddress().getPostalcode() + deliveryList.getDeliveryAddress().getCountry();
+		deliveryDetails[4][0] = getProcessedValue(deliveryList.getDeliveryAddress().getName()) + " "
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + ", "
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + ", "
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + ", "
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode())
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getCountry());
 		deliveryDetails[5][0] = StringUtils.EMPTY;
 		deliveryDetails[6][0] = "<bold>Invoice Address";
-		deliveryDetails[7][0] = deliveryList.getInvoiceAddress().getName() + " "
-				+ deliveryList.getInvoiceAddress().getName2() + ", " + deliveryList.getInvoiceAddress().getCity() + ", "
-				+ deliveryList.getInvoiceAddress().getState() + ", " + deliveryList.getInvoiceAddress().getPostalcode()
-				+ deliveryList.getInvoiceAddress().getCountry();
+		deliveryDetails[7][0] = getProcessedValue(deliveryList.getInvoiceAddress().getName()) + " "
+				+ deliveryList.getInvoiceAddress().getName2() + ", "
+				+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + ", "
+				+ deliveryList.getInvoiceAddress().getState() + ", "
+				+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode())
+				+ getProcessedValue((deliveryList.getInvoiceAddress().getCountry()));
 		deliveryDetails[8][0] = StringUtils.EMPTY;
 
 		for (int row = 0; row < 9; row++) {
@@ -235,6 +243,22 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		String processedData = StringUtils.EMPTY;
 		if (!StringUtils.isBlank(rawData)) {
 			processedData = rawData;
+		}
+		return processedData;
+	}
+
+	/**
+	 * 
+	 * if the integer parameter is null then return empty string otherwise the
+	 * original integer as string
+	 * 
+	 * @param rawData
+	 * @return
+	 */
+	private String getProcessedValue(Integer rawData) {
+		String processedData = StringUtils.EMPTY;
+		if (null != rawData) {
+			processedData = rawData.toString();
 		}
 		return processedData;
 	}
