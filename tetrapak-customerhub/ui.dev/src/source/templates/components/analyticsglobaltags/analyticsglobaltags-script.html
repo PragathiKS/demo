@@ -10,13 +10,24 @@
     pageName += digitalData.pageinfo['siteName'];
   </sly>
 
+  <sly data-sly-test="${data.siteCountry}">
+    digitalData.pageinfo['siteCountry'] = "${data.siteCountry}";
+    pageName += ":" + digitalData.pageinfo['siteCountry'];
+  </sly>
+
+  <sly data-sly-test="${data.siteLanguage}">
+    digitalData.pageinfo['siteLanguage'] = "${data.siteLanguage}";
+    pageName += "-" + digitalData.pageinfo['siteLanguage'];
+
+  </sly>
+
   if(window.location.pathname.slice(1) !== "") {
     var siteSections = window.location.pathname.slice(1).split("/");
     digitalData.pageinfo['channel'] = siteSections[0];
+    pageName += ":" + siteSections[0];
 
     siteSections.forEach(function (siteSection, index) {
       digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
-      pageName += ":" + siteSection;
     });
   }
 
@@ -30,13 +41,6 @@
   }
   digitalData.pageinfo['pageName'] = pageName;
 
-  <sly data-sly-test="${data.siteCountry}">
-    digitalData.pageinfo['siteCountry'] = "${data.siteCountry}";
-  </sly>
-
-  <sly data-sly-test="${data.siteLanguage}">
-    digitalData.pageinfo['siteLanguage'] = "${data.siteLanguage}";
-  </sly>
 
   <sly data-sly-test="${data.logInStatus}">
     digitalData.userinfo['logInStatus'] = "${data.logInStatus}";
@@ -64,5 +68,5 @@
 	<sly data-sly-test="${data.errorMessage}">
 	  digitalData.error['errortype'] = "${data.errorMessage}";
 	</sly>
-  </sly>  
+  </sly>
 </sly>
