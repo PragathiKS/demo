@@ -1,7 +1,6 @@
 <sly data-sly-template.softConversionForm_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-module="SoftConversionForm">
-    <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='modal', btnTarget='#softConversionModal', btnText=data.buttonLabel, variant='secondary'}" />
     <!-- Modal -->
     <div class="modal fade" id="softConversionModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
@@ -22,24 +21,14 @@
                     data-sly-call="${heading.heading_h4_template @ headingText=data.headline, variant='small'}"/>
                   <div class="row mt-4">
                     <div class="col">
-                      <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="group" checked="checked" value="Professional">
-                        <label class="form-check-label" for="professional">
-                          Professional
-                        </label>
-                      </div>
-                      <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="group" value="Media Representative">
-                        <label class="form-check-label" for="media">
-                          Media Representative
-                        </label>
-                      </div>
-                      <div class="form-check mb-4">
-                        <input class="form-check-input" type="radio" name="group" value="Student">
-                        <label class="form-check-label" for="studen">
-                          Student
-                        </label>
-                      </div>
+                    	<sly data-sly-list="${data.radioButtonGroups}">
+                    		<div class="form-check mb-3">
+                    			<input class="form-check-input" type="radio" name="group" checked="checked" value="${item}">
+                    				<label class="form-check-label" for="${item}">
+                    					${item}
+                    				</label>
+                    		</div>	
+                    	</sly>
                        <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
                   </div>
@@ -211,5 +200,5 @@
       </div>
     </div>
   </div>
-  <sly data-sly-test="${!data.titleI18n}" data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+  <sly data-sly-call="${templates.placeholder @ isEmpty = 'configure'}"></sly>
 </sly>

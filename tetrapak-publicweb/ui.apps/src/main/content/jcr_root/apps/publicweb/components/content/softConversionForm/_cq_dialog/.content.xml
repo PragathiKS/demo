@@ -45,12 +45,6 @@
                                 fieldDescription="Enter headline for form"
                                 fieldLabel="Form Headline"
                                 name="./headline"/>
-                            <buttonlabel
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter label for button"
-                                fieldLabel="Button Label"
-                                name="./buttonLabel"/>
                             <radiobuttons
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/form/multifield"
@@ -59,7 +53,7 @@
                                     <field
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset"
-                                        acs-commons-nested="NODE_STORE"
+                                        acs-commons-nested=""
                                         name="./radioButtonGroups">
                                         <layout
                                             jcr:primaryType="nt:unstructured"
