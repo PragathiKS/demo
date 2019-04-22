@@ -84,6 +84,14 @@ public class ExcelUtil {
 		for (int i = 0; i < cloumnCount; i++) {
 			sheet.autoSizeColumn(i);
 		}
+		
+		List<CellRangeAddress> regionList = sheet.getMergedRegions();
+		for (CellRangeAddress cellRangeAddress : regionList) {
+			RegionUtil.setBorderBottom(BorderStyle.THIN, cellRangeAddress, sheet);
+			RegionUtil.setBorderTop(BorderStyle.THIN, cellRangeAddress, sheet);
+			RegionUtil.setBorderLeft(BorderStyle.THIN, cellRangeAddress, sheet);
+			RegionUtil.setBorderRight(BorderStyle.THIN, cellRangeAddress, sheet);
+		}
 	}
 
 	/**
@@ -286,7 +294,7 @@ public class ExcelUtil {
 		if (!tags.isEmpty()) {
 			Font customFont = workBook.createFont();
 			if (field.contains("<whiteFontColor>")) {
-				customFont.setColor(IndexedColors.WHITE.index);
+				customFont.setColor(IndexedColors.BLUE.index);
 			}
 
 			if (tags.contains("<bold>")) {
@@ -298,7 +306,7 @@ public class ExcelUtil {
 
 			if (tags.contains("<halfBold>")) {
 				customFont.setBold(true);
-				int index = 0;
+				int index = 1;
 				if (field.contains(":")) {
 					index = field.indexOf(":");
 				} else {

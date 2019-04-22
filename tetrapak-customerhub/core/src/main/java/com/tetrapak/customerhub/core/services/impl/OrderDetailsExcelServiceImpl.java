@@ -198,28 +198,45 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			int counter = 1;
 			while (productsIterator.hasNext()) {
 				Product product = productsIterator.next();
-				productDetails[counter][0] = Integer.toString(counter);
-				productDetails[counter][1] = product.getProductName();
-				productDetails[counter][2] = product.getProductID();
-				productDetails[counter][3] = product.getOrderQuantity();
-				productDetails[counter][4] = product.getWeight();
-				productDetails[counter][5] = product.getDeliveredQuantity();
-				productDetails[counter][6] = product.getRemainingQuantity();
-				productDetails[counter][7] = product.getETA();
-				productDetails[counter][8] = product.getUnitPrice();
-				productDetails[counter][9] = product.getPrice();
+				productDetails[counter][0] = "<aligncenter>" + Integer.toString(counter);
+				productDetails[counter][1] = "<aligncenter>" + getProcessedValue(product.getProductName());
+				productDetails[counter][2] = "<aligncenter>" + getProcessedValue(product.getProductID());
+				productDetails[counter][3] = "<aligncenter>" + getProcessedValue(product.getOrderQuantity());
+				productDetails[counter][4] = "<aligncenter>" + getProcessedValue(product.getWeight());
+				productDetails[counter][5] = "<aligncenter>" + getProcessedValue(product.getDeliveredQuantity());
+				productDetails[counter][6] = "<aligncenter>" + getProcessedValue(product.getRemainingQuantity());
+				productDetails[counter][7] = "<aligncenter>" + getProcessedValue(product.getETA());
+				productDetails[counter][8] = "<aligncenter>" + getProcessedValue(product.getUnitPrice());
+				productDetails[counter][9] = "<aligncenter>" + getProcessedValue(product.getPrice());
 				if (!orderType.equalsIgnoreCase("packmat")) {
-					productDetails[counter + 1][8] = "<bold>Total Weight";
-					productDetails[counter + 1][9] = deliveryList.getTotalWeight();
-					productDetails[counter + 2][8] = "<bold>Total Pre VAT";
-					productDetails[counter + 2][9] = deliveryList.getTotalPricePreVAT();
-					productDetails[counter + 3][8] = "<bold>VAT";
-					productDetails[counter + 3][9] = deliveryList.getTotalVAT();
+					productDetails[counter + 1][8] = "<bold><aligncenter>Total Weight";
+					productDetails[counter + 1][9] = "<aligncenter>" + getProcessedValue(deliveryList.getTotalWeight());
+					productDetails[counter + 2][8] = "<bold><aligncenter>Total Pre VAT";
+					productDetails[counter + 2][9] = "<aligncenter>"
+							+ getProcessedValue(deliveryList.getTotalPricePreVAT());
+					productDetails[counter + 3][8] = "<bold><aligncenter>VAT";
+					productDetails[counter + 3][9] = "<aligncenter>" + getProcessedValue(deliveryList.getTotalVAT());
 				}
 				counter++;
 			}
 		}
 		return productDetails;
+	}
+
+	/**
+	 * 
+	 * if the string parameter is null then return empty string otherwise the
+	 * original string
+	 * 
+	 * @param rawData
+	 * @return
+	 */
+	private String getProcessedValue(String rawData) {
+		String processedData = StringUtils.EMPTY;
+		if (!StringUtils.isBlank(rawData)) {
+			processedData = rawData;
+		}
+		return processedData;
 	}
 
 }
