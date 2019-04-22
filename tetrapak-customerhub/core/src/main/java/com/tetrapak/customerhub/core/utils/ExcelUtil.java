@@ -70,7 +70,7 @@ public class ExcelUtil {
 	private static Row getRow(Sheet sheet, int rowNum) {
 		Row row = null;
 		if (Objects.nonNull(sheet)) {
-			row = sheet.createRow(++rowNum);
+			row = sheet.createRow(rowNum++);
 		}
 		return row;
 	}
@@ -84,7 +84,6 @@ public class ExcelUtil {
 		for (int i = 0; i < cloumnCount; i++) {
 			sheet.autoSizeColumn(i);
 		}
-		
 		List<CellRangeAddress> regionList = sheet.getMergedRegions();
 		for (CellRangeAddress cellRangeAddress : regionList) {
 			RegionUtil.setBorderBottom(BorderStyle.THIN, cellRangeAddress, sheet);
@@ -115,9 +114,10 @@ public class ExcelUtil {
 			try {
 				XSSFWorkbook workBook = new XSSFWorkbook();
 				Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
-				if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
+				if (Objects.nonNull(excelReportData.getData())) {
 					sheet.setDisplayGridlines(false);
 					prepareReportData(workBook, sheet, excelReportData.getData());
+					setMarginsToSheet(sheet);
 					resizeCellToFitContent(sheet, 10);
 				}
 				downloadExcel(response, workBook, excelReportData);
@@ -132,6 +132,19 @@ public class ExcelUtil {
 
 	}
 
+	private static void setMarginsToSheet(Sheet sheet) {
+		int rowCount = sheet.getLastRowNum();
+		int columnCount = sheet.getRow(0).getLastCellNum();
+
+		CellRangeAddress region = new CellRangeAddress(0, rowCount, 0, columnCount);
+
+		RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderTop(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
+		RegionUtil.setBorderRight(BorderStyle.THIN, region, sheet);
+
+	}
+
 	/**
 	 * @param workBook
 	 * @param sheet
@@ -141,16 +154,6 @@ public class ExcelUtil {
 	 */
 	private static void prepareReportData(Workbook workBook, Sheet sheet, String[][] reportData) {
 		int rowCount = 0;
-		CellRangeAddress topRegion = new CellRangeAddress(0, 0, 0, reportData[0].length);
-		CellRangeAddress rightRegion = new CellRangeAddress(0, 10, 10, 10);
-		CellRangeAddress leftRegion = new CellRangeAddress(0, 10, 0, 0);
-		CellRangeAddress bottomRegion = new CellRangeAddress(10, 10, 0, 10);
-
-		RegionUtil.setBorderBottom(BorderStyle.MEDIUM, bottomRegion, sheet);
-		RegionUtil.setBorderTop(BorderStyle.MEDIUM, topRegion, sheet);
-		RegionUtil.setBorderLeft(BorderStyle.MEDIUM, leftRegion, sheet);
-		RegionUtil.setBorderRight(BorderStyle.MEDIUM, rightRegion, sheet);
-
 		Map<String, CellStyle> cellStyles = getCellStyleMap(workBook);
 
 		for (String[] data : reportData) {
@@ -158,18 +161,21 @@ public class ExcelUtil {
 			int columnCount = 0;
 			if (Objects.nonNull(row)) {
 				for (String field : data) {
+
 					Cell cell = row.createCell(columnCount++);
 
 					if (StringUtils.isNotBlank(field)) {
-
+						if (field.contains("\n")) {
+							row.setHeightInPoints(3 * sheet.getDefaultRowHeightInPoints());
+						}
 						List<String> tags = getTagsFromField(field);
 						XSSFRichTextString richText = applyCustomStyles(field, tags, workBook);
-						
+
 						if (tags.contains("<mergerow>")) {
 							sheet.addMergedRegion(new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(),
 									cell.getColumnIndex(), reportData[0].length));
 						}
-						
+
 						if (tags.contains("<lightGreyBG>")) {
 							cell.setCellStyle(cellStyles.get("lightGreyBackgroudStyle"));
 						} else if (tags.contains("<aligncenter>")) {
@@ -179,7 +185,7 @@ public class ExcelUtil {
 						} else {
 							cell.setCellStyle(cellStyles.get("regularStyle"));
 						}
-						
+
 						cell.setCellValue(richText);
 					} else {
 						cell.setCellStyle(cellStyles.get("emptyCellStyle"));
@@ -205,6 +211,7 @@ public class ExcelUtil {
 		borderStyle.setBorderRight(BorderStyle.THIN);
 		borderStyle.setBorderTop(BorderStyle.THIN);
 		borderStyle.setBorderBottom(BorderStyle.THIN);
+		borderStyle.setWrapText(true);
 		cellStyles.put("regularStyle", borderStyle);
 
 		CellStyle emptyCellStyle = workBook.createCellStyle();
@@ -212,6 +219,7 @@ public class ExcelUtil {
 		emptyCellStyle.setBorderRight(BorderStyle.NONE);
 		emptyCellStyle.setBorderTop(BorderStyle.NONE);
 		emptyCellStyle.setBorderBottom(BorderStyle.NONE);
+		emptyCellStyle.setWrapText(true);
 		cellStyles.put("emptyCellStyle", emptyCellStyle);
 
 		CellStyle regularCenterStyle = workBook.createCellStyle();
@@ -220,6 +228,7 @@ public class ExcelUtil {
 		regularCenterStyle.setBorderTop(BorderStyle.THIN);
 		regularCenterStyle.setBorderBottom(BorderStyle.THIN);
 		regularCenterStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		regularCenterStyle.setWrapText(true);
 		cellStyles.put("regularCenterStyle", regularCenterStyle);
 
 		CellStyle lightGreyBackgroudStyle = workBook.createCellStyle();
@@ -230,6 +239,7 @@ public class ExcelUtil {
 		lightGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 		lightGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		lightGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		lightGreyBackgroudStyle.setWrapText(true);
 		cellStyles.put("lightGreyBackgroudStyle", lightGreyBackgroudStyle);
 
 		CellStyle darkGreyBackgroudStyle = workBook.createCellStyle();
@@ -243,6 +253,7 @@ public class ExcelUtil {
 		darkGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
 		darkGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		darkGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		darkGreyBackgroudStyle.setWrapText(true);
 		cellStyles.put("darkGreyBackgroudStyle", darkGreyBackgroudStyle);
 
 		return cellStyles;

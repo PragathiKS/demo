@@ -155,18 +155,18 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		deliveryDetails[2][0] = "<halfBold>Track Order: " + getProcessedValue(deliveryList.getCarrierTrackingID());
 		deliveryDetails[3][0] = "<bold>Delivery Address";
 		deliveryDetails[4][0] = getProcessedValue(deliveryList.getDeliveryAddress().getName()) + " "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + ", "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + ", "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + ", "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode())
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + "\r\n"
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + "\r\n"
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + " , "
+				+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode()) + " "
 				+ getProcessedValue(deliveryList.getDeliveryAddress().getCountry());
 		deliveryDetails[5][0] = StringUtils.EMPTY;
 		deliveryDetails[6][0] = "<bold>Invoice Address";
 		deliveryDetails[7][0] = getProcessedValue(deliveryList.getInvoiceAddress().getName()) + " "
-				+ deliveryList.getInvoiceAddress().getName2() + ", "
-				+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + ", "
-				+ deliveryList.getInvoiceAddress().getState() + ", "
-				+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode())
+				+ deliveryList.getInvoiceAddress().getName2() + "\n"
+				+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + "\n"
+				+ deliveryList.getInvoiceAddress().getState() + " , "
+				+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode()) + "  "
 				+ getProcessedValue((deliveryList.getInvoiceAddress().getCountry()));
 		deliveryDetails[8][0] = StringUtils.EMPTY;
 
@@ -225,6 +225,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 					productDetails[counter + 3][8] = "<bold><aligncenter>VAT";
 					productDetails[counter + 3][9] = "<aligncenter>" + getProcessedValue(deliveryList.getTotalVAT());
 				}
+//				for (int count = 9; count < 0; count--) {
+//					productDetails[counter][]
+//				}
 				counter++;
 			}
 		}
