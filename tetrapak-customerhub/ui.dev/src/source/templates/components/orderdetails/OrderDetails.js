@@ -15,47 +15,44 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 function _trackAnalytics(obj, type) {
   const orderType = (obj.cache.orderType === 'packmat') ? 'packaging' : 'parts';
   const analyticsData = {};
+  analyticsData.header = orderType;
+  let trackId = '';
   const self = $(this);
   type = type || self.data('extnType');
-
   switch (type) {
     case 'excel': {
-      analyticsData.header = orderType;
       analyticsData.createexcel = 'true';
-      trackAnalytics(analyticsData, orderType, 'orderdetailsexcel');
+      trackId = 'orderdetailsexcel';
       break;
     }
     case 'pdf': {
-      analyticsData.header = orderType;
       analyticsData.createpdf = 'true';
-      trackAnalytics(analyticsData, orderType, 'orderdetailsPDF');
+      trackId = 'orderdetailsPDF';
       break;
     }
     case 'webRef': {
       const webRef = this.innerText;
-      analyticsData.header = orderType;
       analyticsData.webreferencenumber = webRef;
-      trackAnalytics(analyticsData, orderType, 'orderdetailswebref');
+      trackId = 'orderdetailswebref';
       break;
     }
     case 'trackOrder': {
       const deliverynumber = self.data('deliveryNumber');
-      analyticsData.header = orderType;
       analyticsData.deliverynumber = deliverynumber;
       analyticsData.trackorder = 'trackorderclicked';
-      trackAnalytics(analyticsData, orderType, 'orderdetailstrackorder');
+      trackId = 'orderdetailstrackorder';
       break;
     }
     case 'customercontactsupport': {
-      analyticsData.header = orderType;
       analyticsData.customercontactsupport = 'true';
-      trackAnalytics(analyticsData, orderType, 'orderdetailscontact');
+      trackId = 'orderdetailscontact';
       break;
     }
     default: {
-      logger.error('Nothing matched for analytics type');
+      break;
     }
   }
+  trackAnalytics(analyticsData, orderType, trackId);
 }
 /**
  * Process Order Data
