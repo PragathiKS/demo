@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.adobe.cq.sightly.WCMBindings;
+import com.day.cq.wcm.api.Page;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.mock.MockOrderDetailsApiServiceImpl;
@@ -11,35 +12,62 @@ import com.tetrapak.customerhub.core.services.impl.OrderDetailsExcelServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.OrderDetailsPDFServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
+import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.i18n.ResourceBundleProvider;
+import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderDetailsDownloadFileServletTest {
 
-    private static final String SERVLET_RESOURCE_PATH = "/bin/customerhub/order-detail.parts." + CustomerHubConstants.PDF + "?orderNumber=123&token=213123123";
-    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
+    @Mock
+    private Page mockPage;
+
+    @Mock
+    private ResourceBundleProvider mockResourceBundleProvider;
+
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
+    private static final String RESOURCE_JSON = "order-detailspage.json";
+    private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";
+    private static final String I18_RESOURCE_JSON = "/orderDetailsI18n.json";
 
     @Rule
-    public final AemContext aemContext = CuhuCoreAemContext.getAemContext(SERVLET_RESOURCE_JSON, SERVLET_RESOURCE_PATH, getMultipleMockedService());
+    public final AemContext aemContext = CuhuCoreAemContext.getAemContext(RESOURCE_JSON, CONTENT_ROOT, getMultipleMockedService());
 
     @Before
-    public void setup() {
-        aemContext.currentResource(SERVLET_RESOURCE_PATH);
-        aemContext.request().setServletPath(SERVLET_RESOURCE_PATH);
+    public void setup() throws IOException {
+        ResourceBundle resourceBundle = new PropertyResourceBundle(this.getClass().getResourceAsStream("/i18n.properties"));
+        aemContext.registerService(ResourceBundleProvider.class, mockResourceBundleProvider);
+        when(mockResourceBundleProvider.getResourceBundle(any(), any())).thenReturn(resourceBundle);
+        aemContext.load().json(I18_RESOURCE_JSON, I18_RESOURCE);
+
+        aemContext.currentResource(COMPONENT_PATH);
+        aemContext.request().setServletPath(COMPONENT_PATH);
         aemContext.request().setMethod(HttpConstants.METHOD_GET);
+        MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+        requestPathInfo.setSelectorString("parts");
+        requestPathInfo.setExtension("pdf");
+        requestPathInfo.setSuffix("orderNumber=1234&token=9KK12diCgjVCmJF8MzeAt1IauZOq");
     }
 
     @Test

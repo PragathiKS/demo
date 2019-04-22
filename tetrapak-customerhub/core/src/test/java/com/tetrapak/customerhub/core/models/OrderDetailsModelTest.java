@@ -68,7 +68,7 @@ public class OrderDetailsModelTest {
 	 */
 	@Test
 	public void testGetPartsDeliveryTable() {
-		assertTrue(orderDetailsModel.getPartsDeliveryTableCols().contains("orderno"));
+		assertTrue(orderDetailsModel.getPartsDeliveryTableCols().contains("productName"));
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class OrderDetailsModelTest {
 	 */
 	@Test
 	public void testGetPackagingDeliveryTableInvalidColumn() {
-		assertFalse(orderDetailsModel.getPackagingDeliveryTableCols().contains("orderno1"));
+		assertFalse(orderDetailsModel.getPackagingDeliveryTableCols().contains("productName"));
 	}
 
 	/**

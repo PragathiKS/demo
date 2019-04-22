@@ -53,7 +53,7 @@
                "packagingDeliveryTableCols": "name  ,orderno  ,r  ",
                "jcr:lastModified": "Mon Apr 15 2019 10:52:06 GMT+0530",
                "sling:resourceType": "customerhub/components/content/orderdetails",
-               "partsDeliveryTableCols": "orderno,qwertyuiop",
+               "partsDeliveryTableCols": "productName,orderQuantity,deliveredQuantity,price,remainingQuantity,orderNumber,productID,weight,ETA,unitPrice",
                "productionPlace": "Production Place ",
                "errorMsg": "Error message",
                "orderNoLink": "#",

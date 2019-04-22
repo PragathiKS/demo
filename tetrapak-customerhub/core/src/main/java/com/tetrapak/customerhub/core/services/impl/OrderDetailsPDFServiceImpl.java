@@ -13,6 +13,7 @@ import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,7 @@ import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -36,7 +38,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Impl class for Order Details PDF Service
@@ -50,13 +54,25 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private PDFont muliRegular;
     private PDFont muliBold;
-    final int MARGIN = 65;
+    private static final int MARGIN = 65;
+    String[] columnArray;
 
+    /**
+     * @param request             request
+     * @param response            response
+     * @param orderType           order type
+     * @param orderDetailResponse order detail response
+     */
     @Override
-    public void generateOrderDetailsPDF(SlingHttpServletResponse response,
+    public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
                                         String orderType, OrderDetailsData orderDetailResponse) {
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
+
+        OrderDetailsModel orderDetailsModel = request.getResource().adaptTo(OrderDetailsModel.class);
+        String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
+        columnArray = partsDeliveryColumnString.split(",");
+
 
         InputStream in1 = null;
         InputStream in2 = null;
@@ -97,9 +113,11 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawTable(contentStream, createOrderDetailTable(orderDetails), 665);
 
             if (StringUtils.equalsIgnoreCase("parts", orderType)) {
-                contentStream = printDeliveryDetails(document, contentStream, deliveryList);
+                contentStream = printDeliveryDetails(request, document, contentStream, deliveryList);
             } else {
-                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderDetailResponse.getOrderSummary()), 500);
+                List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
+                contentStream = printDeliveryDetails(request, document, contentStream, deliveryList);
+                PDFUtil.drawTable(contentStream, createOrderSummaryTable(orderSummaryList), 500);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, 550, Color.DARK_GRAY, 0.01f);
             }
             contentStream.close();
@@ -129,8 +147,9 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         }
     }
 
-    private PDPageContentStream printDeliveryDetails(PDDocument document, PDPageContentStream contentStream,
-                                                     List<DeliveryList> deliveryList) throws IOException {
+    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+                                                     PDPageContentStream contentStream, List<DeliveryList> deliveryList)
+            throws IOException {
         int height = 815;
         for (DeliveryList deliveryDetail : deliveryList) {
             int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts());
@@ -150,7 +169,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawTable(contentStream, createDeliveryDetailTable(deliveryDetail), height - 30);
 
-            PDFUtil.drawTable(contentStream, createProductTable(deliveryDetail.getProducts()), height - 110);
+            PDFUtil.drawTable(contentStream, createProductTable(request, deliveryDetail.getProducts()), height - 110);
 
             PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
             PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.01f);
@@ -237,35 +256,50 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
     }
 
-    private Table createProductTable(List<Product> products) {
+    private Table createProductTable(SlingHttpServletRequest request, List<Product> products) {
+
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "#", 10));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Product", 120));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Product ID", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Quantity", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Weight", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Sent", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Open", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "ETA", 45));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Unit Price", 45));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Price", 45));
+        for (String columnName : columnArray) {
+            int width = 40;
+            if (StringUtils.equalsIgnoreCase(columnName,"productName")) {
+                width = 120;
+            }
+            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, "cuhu.orderDetail.", columnName),
+                    width));
+        }
 
-        String[][] content = new String[products.size()][10];
+        String[][] content = new String[products.size()][columnArray.length + 1];
 
         for (int i = 0; i < products.size(); i++) {
-            content[i][0] = Integer.toString(i + 1);
-            content[i][1] = products.get(i).getProductName();
-            content[i][2] = products.get(i).getProductID();
-            content[i][3] = products.get(i).getOrderQuantity();
-            content[i][4] = products.get(i).getWeight();
-            content[i][5] = products.get(i).getDeliveredQuantity();
-            content[i][6] = products.get(i).getRemainingQuantity();
-            content[i][7] = products.get(i).getETA();
-            content[i][8] = products.get(i).getUnitPrice();
-            content[i][9] = products.get(i).getPrice();
+            int j = 0;
+            content[i][j] = Integer.toString(i + 1);
+            for (String columnName : columnArray) {
+                j++;
+                content[i][j] = getProductValueForTheHeader(products.get(i), columnName);
+            }
         }
 
         return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
+    }
+
+    private String getProductValueForTheHeader(Product product, String columnName) {
+        Map<String, String> map = new HashMap<>();
+        map.put("productName", product.getProductName());
+        map.put("orderQuantity", product.getOrderQuantity());
+        map.put("deliveredQuantity", product.getDeliveredQuantity());
+        map.put("price", product.getPrice());
+        map.put("remainingQuantity", product.getRemainingQuantity());
+        map.put("orderNumber", product.getOrderNumber().toString());
+        map.put("productID", product.getProductID());
+        map.put("weight", product.getWeight());
+        map.put("ETA", product.getETA());
+        map.put("unitPrice", product.getUnitPrice());
+
+        if (map.containsKey(columnName)) {
+            return map.get(columnName);
+        }
+        return "";
     }
 
     private Table createProductSummaryTable(DeliveryList deliveryList) {
