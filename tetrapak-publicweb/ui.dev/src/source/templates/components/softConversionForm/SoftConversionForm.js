@@ -7,6 +7,7 @@ class SoftConversionForm {
     /* Initialize cache here */
     this.cache.$modal = $('#softConversionModal');
     this.cache.$field = $('#softConversionModal input[type="text"]');
+    this.cache.$submitBtn = $('#softConversionModal .form-submit');
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -38,7 +39,9 @@ class SoftConversionForm {
         $('.info-group.'+fieldName).removeClass('show');
       }
     });
-
+    this.cache.$submitBtn.click(function() {
+      $(this).closest('form').submit();
+    });
   }
   init() {
     /* Mandatory method */
