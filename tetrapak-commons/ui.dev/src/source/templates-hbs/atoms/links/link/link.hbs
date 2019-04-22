@@ -13,10 +13,7 @@
     disabled
     {{/if}}
     {{#if isExternal}}
-    target="_blank" rel="noopener"
-    {{/if}}
-    {{#if data-attribute}}
-    data-{{data-attribute}}={{data-value}}
+    target="_blank" rel="noopener noreferrer"
     {{/if}}
     {{#eachData this}}
         {{@key}}="{{this}}"
