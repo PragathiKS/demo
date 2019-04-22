@@ -68,7 +68,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		orderDetailsSection[0][0] = "<halfBold>Tetra Pak Order Number:"
 				+ getProcessedValue(orderDetails.getOrderNumber());
 		orderDetailsSection[1][0] = "<halfBold>Status: " + getProcessedValue(orderDetails.getStatus());
-		orderDetailsSection[2][0] = StringUtils.EMPTY;
+		orderDetailsSection[2][0] = StringUtils.EMPTY + "<regularStyle>";
 		orderDetailsSection[3][0] = "<bold>Order Details<lightGreyBG>";
 		orderDetailsSection[4][0] = "<halfBold>Customer Name: " + getProcessedValue(orderDetails.getCustomerName());
 		orderDetailsSection[5][0] = "<halfBold>Customer Number" + getProcessedValue(orderDetails.getCustomerNumber());
@@ -78,13 +78,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				+ getProcessedValue(orderDetails.getCustomerReference());
 		orderDetailsSection[8][0] = "<halfBold>Order Date : " + getProcessedValue(orderDetails.getPlacedOn());
 		orderDetailsSection[9][0] = "<halfBold>Web Reference :" + getProcessedValue(orderDetails.getWebRefID());
-		orderDetailsSection[10][0] = StringUtils.EMPTY;
-
-		for (int row = 0; row < 11; row++) {
-			for (int col = 1; col < 10; col++) {
-				orderDetailsSection[row][col] = StringUtils.EMPTY;
-			}
-		}
+		orderDetailsSection[10][0] = StringUtils.EMPTY + "<regularStyle>";
 
 		return orderDetailsSection;
 	}
@@ -96,7 +90,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private String[][] getOrderSummary(List<OrderSummary> orderSummary) {
 		String[][] data = new String[5][4];
-		data[0][0] = StringUtils.EMPTY;
+		data[0][0] = StringUtils.EMPTY + "<regularStyle>";
 		data[0][1] = "<bold>Product<aligncenter>";
 		data[0][2] = "<bold>Order Quantity<aligncenter>";
 		data[0][3] = "<bold>Quantity Delivered so far<aligncenter>";
@@ -104,13 +98,14 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		Iterator<OrderSummary> itr = orderSummary.iterator();
 		while (itr.hasNext()) {
 			OrderSummary summaryRow = itr.next();
+			data[counter][1] = StringUtils.EMPTY + "<regularStyle>";
 			data[counter][1] = getProcessedValue(summaryRow.getProduct());
 			data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
 			data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
 			counter++;
 		}
 		data[3][0] = "<halfBold>Only show above items in the deliverables : YES/NO (from api)";
-		data[4][0] = StringUtils.EMPTY;
+		data[4][0] = StringUtils.EMPTY + "<regularStyle>";
 		return data;
 	}
 
@@ -147,41 +142,72 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private String[][] getDeliveryDetails(String orderType, OrderDetailsModel orderDetailsModel,
 			DeliveryList deliveryList) {
-		String[][] deliveryDetails = new String[9][10];
-
-		deliveryDetails[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: "
-				+ getProcessedValue(deliveryList.getDeliveryOrder());
-		deliveryDetails[1][0] = "<halfBold>Shipping: " + getProcessedValue(deliveryList.getCarrier());
-		deliveryDetails[2][0] = "<halfBold>Track Order: " + getProcessedValue(deliveryList.getCarrierTrackingID());
-		deliveryDetails[3][0] = "<bold>Delivery Address";
-		deliveryDetails[4][0] = getProcessedValue(deliveryList.getDeliveryAddress().getName()) + " "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + "\r\n"
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + "\r\n"
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + " , "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode()) + " "
-				+ getProcessedValue(deliveryList.getDeliveryAddress().getCountry());
-		deliveryDetails[5][0] = StringUtils.EMPTY;
-		deliveryDetails[6][0] = "<bold>Invoice Address";
-		deliveryDetails[7][0] = getProcessedValue(deliveryList.getInvoiceAddress().getName()) + " "
-				+ deliveryList.getInvoiceAddress().getName2() + "\n"
-				+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + "\n"
-				+ deliveryList.getInvoiceAddress().getState() + " , "
-				+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode()) + "  "
-				+ getProcessedValue((deliveryList.getInvoiceAddress().getCountry()));
-		deliveryDetails[8][0] = StringUtils.EMPTY;
-
-		for (int row = 0; row < 9; row++) {
-			for (int col = 0; col < 10; col++) {
-				if (col != 0) {
-					deliveryDetails[row][col] = StringUtils.EMPTY;
-				}
-			}
-		}
-
+		String[][] deliveryDetailsSection1 = getDeliveryDetailsInitialSection(orderType, deliveryList);
 		String[][] productDetails = getProductDetails(orderType, orderDetailsModel, deliveryList);
 
-		deliveryDetails = ArrayUtils.addAll(deliveryDetails, productDetails);
+		String[][] deliveryDetails = ArrayUtils.addAll(deliveryDetailsSection1, productDetails);
 		return deliveryDetails;
+	}
+
+	/**
+	 * DeliveryDetails data based on the orderType
+	 * 
+	 * @param orderType
+	 * @param deliveryList
+	 * @return
+	 */
+	private String[][] getDeliveryDetailsInitialSection(String orderType, DeliveryList deliveryList) {
+		String[][] deliveryDetailsSection;
+		if (orderType.equalsIgnoreCase("parts")) {
+			deliveryDetailsSection = new String[9][10];
+			deliveryDetailsSection[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: "
+					+ getProcessedValue(deliveryList.getDeliveryOrder());
+			deliveryDetailsSection[1][0] = "<halfBold>Shipping: " + getProcessedValue(deliveryList.getCarrier());
+			deliveryDetailsSection[2][0] = "<halfBold>Track Order: "
+					+ getProcessedValue(deliveryList.getCarrierTrackingID());
+			deliveryDetailsSection[3][0] = "<bold>Delivery Address";
+			deliveryDetailsSection[4][0] = getProcessedValue(deliveryList.getDeliveryAddress().getName()) + " "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + "\n"
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + "\n"
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + " , "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode()) + " "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getCountry());
+			deliveryDetailsSection[5][0] = StringUtils.EMPTY + "<regularStyle>";
+			deliveryDetailsSection[6][0] = "<bold>Invoice Address";
+			deliveryDetailsSection[7][0] = getProcessedValue(deliveryList.getInvoiceAddress().getName()) + " "
+					+ deliveryList.getInvoiceAddress().getName2() + "\n"
+					+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + "\n"
+					+ deliveryList.getInvoiceAddress().getState() + " , "
+					+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode()) + "  "
+					+ getProcessedValue((deliveryList.getInvoiceAddress().getCountry()));
+			deliveryDetailsSection[8][0] = StringUtils.EMPTY + "<regularStyle>";
+		} else {
+			deliveryDetailsSection = new String[11][10];
+			deliveryDetailsSection[0][0] = "<bold><mergerow><lightGreyBG>Delivery number: "
+					+ getProcessedValue(deliveryList.getDeliveryOrder()) + "-Status";
+			deliveryDetailsSection[1][0] = "<halfBold>Delivery Order: " + getProcessedValue(deliveryList.getDeliveryOrder());
+			deliveryDetailsSection[2][0] = "<halfBold>Production Place: "
+					+ getProcessedValue(deliveryList.getProductPlace());
+			deliveryDetailsSection[3][0] = "<halfBold>Requested: " + getProcessedValue(deliveryList.getDeliveryOrder());
+			deliveryDetailsSection[4][0] = "<halfBold>ETD: " + getProcessedValue(deliveryList.getDeliveryOrder());
+			deliveryDetailsSection[5][0] = "<bold>Delivery Address";
+			deliveryDetailsSection[6][0] = getProcessedValue(deliveryList.getDeliveryAddress().getName()) + " "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getName2()) + "\n"
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getCity()) + "\n"
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getState()) + " , "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getPostalcode()) + " "
+					+ getProcessedValue(deliveryList.getDeliveryAddress().getCountry());
+			deliveryDetailsSection[7][0] = StringUtils.EMPTY + "<regularStyle>";
+			deliveryDetailsSection[8][0] = "<bold>Invoice Address";
+			deliveryDetailsSection[9][0] = getProcessedValue(deliveryList.getInvoiceAddress().getName()) + " "
+					+ deliveryList.getInvoiceAddress().getName2() + "\n"
+					+ getProcessedValue(deliveryList.getInvoiceAddress().getCity()) + "\n"
+					+ deliveryList.getInvoiceAddress().getState() + " , "
+					+ getProcessedValue(deliveryList.getInvoiceAddress().getPostalcode()) + "  "
+					+ getProcessedValue((deliveryList.getInvoiceAddress().getCountry()));
+			deliveryDetailsSection[10][0] = StringUtils.EMPTY + "<regularStyle>";
+		}
+		return deliveryDetailsSection;
 	}
 
 	private String[][] getProductDetails(String orderType, OrderDetailsModel orderDetailsModel,
@@ -225,11 +251,18 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 					productDetails[counter + 3][8] = "<bold><aligncenter>VAT";
 					productDetails[counter + 3][9] = "<aligncenter>" + getProcessedValue(deliveryList.getTotalVAT());
 				}
-//				for (int count = 9; count < 0; count--) {
-//					productDetails[counter][]
-//				}
 				counter++;
 			}
+
+			while (counter < (rows + 5)) {
+				for (int col = 0; col < 10; col++) {
+					if (StringUtils.isBlank(productDetails[counter][col])) {
+						productDetails[counter][col] = "<regularStyle>";
+					}
+				}
+				counter++;
+			}
+
 		}
 		return productDetails;
 	}
@@ -247,7 +280,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (!StringUtils.isBlank(rawData)) {
 			processedData = rawData;
 		}
-		return processedData;
+		return processedData + "<regularStyle>";
 	}
 
 	/**
@@ -263,7 +296,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (null != rawData) {
 			processedData = rawData.toString();
 		}
-		return processedData;
+		return processedData + "<regularStyle>";
 	}
 
 }
