@@ -1,0 +1,26 @@
+{{#each deliveryList}}
+        <div class="tp-card">
+                {{> molecules/orderDetail/orderdeliverysummary/orderdeliverysummary  i18nKeys=../i18nKeys}}
+                <div class="tp-order-detail__table-wrapper">
+                        {{> molecules/table/table baseClass="tp-order-detail" jsClass="js-order-detail" list=products headings=../tableHeadings}}
+                </div>
+                {{#unless ../isPackmat}}
+                        <table class="tp-order-detail__product-summary ml-auto">
+                                <tr>
+                                        <td>{{../i18nKeys.totalWeightLabel}}</td>
+                                        <td>{{totalWeight}}</td>
+                                </tr>
+                                <tr>
+                                        <td>{{../i18nKeys.totalPricePreVatLabel}}</td>
+                                        <td>{{totalPricePreVAT}}</td>
+                                </tr>
+                                <tr>
+                                        <td class="semi-bold">{{../i18nKeys.totalVatLabel}}</td>
+                                        <td>{{totalVAT}}</td>
+                                </tr>
+                        </table>
+                {{/unless}}
+        </div>
+{{/each}}
+
+{{> components/infoModal baseClass="tp-order-detail-packaging" jsClass="js-order-detail" }}

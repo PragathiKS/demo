@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -27,7 +28,7 @@ import com.google.gson.Gson;
 public class OrderDetailsModel {
 
 	@Self
-	Resource resource;
+	private Resource resource;
 
 	@Inject
 	private String backToOrderHistory;
@@ -181,27 +182,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
 		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
-		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
-		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
-		downloadPdfExcelServletUrl = resource.getPath();
-	}
-
-	/**
-	 * 
-	 * Get the list of the columns from comma separated list in sequence
-	 * 
-	 * @param columnList
-	 * @return
-	 */
-	private List<String> getColumnNamesList(String columnList) {
-		List<String> columnNameList = new ArrayList<>();
-		if (!StringUtils.isBlank(columnList)) {
-			String[] columnArray = columnList.split(",");
-			columnArray = StringUtils.stripAll(columnArray);
-			columnNameList = Arrays.asList(columnArray);
-		}
-		return columnNameList;
+		downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}?"
+				+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}";
 	}
 
 	/**

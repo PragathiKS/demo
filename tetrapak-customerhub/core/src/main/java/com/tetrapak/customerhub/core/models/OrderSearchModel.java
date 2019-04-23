@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -89,7 +90,8 @@ public class OrderSearchModel {
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("disabledFields", disabledFields);
-        
+        i18KeyMap.put("orderDetailLink", orderDetailLink + CustomerHubConstants.HTML_EXTENSION);
+
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
         try {
@@ -107,7 +109,7 @@ public class OrderSearchModel {
     }
 
     public String getOrderDetailLink() {
-        return orderDetailLink;
+        return orderDetailLink  + CustomerHubConstants.HTML_EXTENSION;
     }
 
     public Set<String> getDisabledFields() {

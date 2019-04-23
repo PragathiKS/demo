@@ -63,7 +63,7 @@ function _processContacts(contacts) {
  */
 function _tableSort(order, keys, orderDetailLink) {
   const dataObject = {
-    rowLink: `${orderDetailLink}?q=${order['orderNumber']}`,
+    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
     row: []
   };
   keys.forEach((key, index) => {
@@ -91,7 +91,6 @@ function _processTableData(data) {
     data.orderHeadings = keys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
-      isSortable: ['orderDate'].includes(key),
       sortOrder: 'desc'
     }));
   }
@@ -329,7 +328,6 @@ class OrderSearch {
       })
       .on('click', '.js-order-search__reset', () => {
         this.resetSearch();
-        this.trackAnalytics(this.cache.defaultParams);
       })
       .on('click', '.js-order-search__date-range', () => {
         this.openRangeSelector();
