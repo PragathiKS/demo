@@ -35,6 +35,9 @@ import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 
 /**
+ * 
+ * This utility is used to generate and download an excel file based on the 2D String array provided as a parameter
+ * 
  * @author dhitiwar
  * @author swalamba
  *
@@ -52,7 +55,7 @@ public class ExcelUtil {
 	public static final String DARK_GREY_BG_TAG = "<darkGreyBG>";
 	public static final String ALIGN_CENTER_TAG = "<aligncenter>";
 	public static final String HALF_BOLD_IDENTIFIER = ":";
-	private static final String NEW_LINE_DETECTOR = "\n";
+	public static final String NEW_LINE_DETECTOR = "\n";
 	private static final String DEFAULT_FONT_NAME = "Microsoft Sans Serif";
 	private static final short DEFAULT_FONT_HEIGHT = (short) 9;
 	private static final String LIGHT_GREY_BG_CELL_STYLE = "lightGreyBackgroudStyle";
@@ -92,18 +95,19 @@ public class ExcelUtil {
 	private static Row getRow(Sheet sheet, int rowNum) {
 		Row row = null;
 		if (Objects.nonNull(sheet)) {
-			row = sheet.createRow(rowNum++);
+			row = sheet.createRow(rowNum);
+			rowNum++;
 		}
 		return row;
 	}
 
 	/**
 	 * @param sheet
-	 * @param cloumnCount
 	 */
-	private static void resizeCellToFitContent(Sheet sheet, int cloumnCount) {
+	private static void resizeCellToFitContent(Sheet sheet) {
+		short columnCount = sheet.getRow(0).getLastCellNum();
 		// Resize all columns to fit the content size
-		for (int i = 0; i < cloumnCount; i++) {
+		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
 		}
 		List<CellRangeAddress> regionList = sheet.getMergedRegions();
@@ -140,7 +144,7 @@ public class ExcelUtil {
 					sheet.setDisplayGridlines(false);
 					prepareReportData(workBook, sheet, excelReportData.getData());
 					setMarginsToSheet(sheet);
-					resizeCellToFitContent(sheet, 10);
+					resizeCellToFitContent(sheet);
 				}
 				downloadExcel(response, workBook, excelReportData);
 			} catch (IOException e) {
@@ -158,7 +162,6 @@ public class ExcelUtil {
 		int columnCount = sheet.getRow(0).getLastCellNum();
 
 		CellRangeAddress region = new CellRangeAddress(0, rowCount, 0, columnCount);
-
 		RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
 		RegionUtil.setBorderTop(BorderStyle.THIN, region, sheet);
 		RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
@@ -175,46 +178,68 @@ public class ExcelUtil {
 	 */
 	private static void prepareReportData(Workbook workBook, Sheet sheet, String[][] reportData) {
 		int rowCount = 0;
-		Map<String, CellStyle> cellStyles = getCellStyleMap(workBook);
 
 		for (String[] data : reportData) {
 			Row row = getRow(sheet, rowCount);
 			int columnCount = 0;
 			if (Objects.nonNull(row)) {
 				for (String field : data) {
-
-					Cell cell = row.createCell(columnCount++);
-
-					if (StringUtils.isNotBlank(field)) {
-
-						setRowHeight(row, field, sheet.getDefaultRowHeightInPoints());
-
-						List<String> tags = getTagsFromField(field);
-						XSSFRichTextString richText = applyCustomStyles(field, tags, workBook);
-
-						if (tags.contains(MERGE_ROW_TAG)) {
-							sheet.addMergedRegion(new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(),
-									cell.getColumnIndex(), reportData[0].length));
-						}
-
-						if (tags.contains(LIGHT_GREY_BG_TAG)) {
-							cell.setCellStyle(cellStyles.get(LIGHT_GREY_BG_CELL_STYLE));
-						} else if (tags.contains(ALIGN_CENTER_TAG)) {
-							cell.setCellStyle(cellStyles.get(REGULAR_CENTER_CELL_STYLE));
-						} else if (tags.contains(DARK_GREY_BG_TAG)) {
-							cell.setCellStyle(cellStyles.get(DARK_GREY_BG_CELL_STYLE));
-						} else {
-							cell.setCellStyle(cellStyles.get(REGULAR_CELL_STYLE));
-						}
-						cell.setCellValue(richText);
-					} else {
-						cell.setCellStyle(cellStyles.get(EMPTY_CELL_STYLE));
-					}
-
+					Cell cell = row.createCell(columnCount);
+					columnCount++;
+					setRowHeight(row, field, sheet.getDefaultRowHeightInPoints());
+					processFieldToCellValue(sheet, cell, field, getCellStyleMap(workBook), reportData[0].length,
+							workBook.createFont());
 				}
 			}
 			++rowCount;
 		}
+	}
+
+	/**
+	 * @param workBook
+	 * @param sheet
+	 * @param cell
+	 * @param field
+	 * @param row
+	 * @param cellStyles
+	 * @param length
+	 */
+	private static void processFieldToCellValue(Sheet sheet, Cell cell, String field, Map<String, CellStyle> cellStyles,
+			int length, Font customFont) {
+
+		if (StringUtils.isNotBlank(field)) {
+
+			List<String> tags = getTagsFromField(field);
+			XSSFRichTextString richText = applyCustomStyles(field, tags, customFont);
+
+			if (tags.contains(MERGE_ROW_TAG)) {
+				sheet.addMergedRegion(
+						new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(), cell.getColumnIndex(), length));
+			}
+
+			applyCellStyling(cell, tags, cellStyles);
+			cell.setCellValue(richText);
+		} else {
+			cell.setCellStyle(cellStyles.get(EMPTY_CELL_STYLE));
+		}
+	}
+
+	/**
+	 * @param cell
+	 * @param tags
+	 * @param cellStyles
+	 */
+	private static void applyCellStyling(Cell cell, List<String> tags, Map<String, CellStyle> cellStyles) {
+		if (tags.contains(LIGHT_GREY_BG_TAG)) {
+			cell.setCellStyle(cellStyles.get(LIGHT_GREY_BG_CELL_STYLE));
+		} else if (tags.contains(ALIGN_CENTER_TAG)) {
+			cell.setCellStyle(cellStyles.get(REGULAR_CENTER_CELL_STYLE));
+		} else if (tags.contains(DARK_GREY_BG_TAG)) {
+			cell.setCellStyle(cellStyles.get(DARK_GREY_BG_CELL_STYLE));
+		} else {
+			cell.setCellStyle(cellStyles.get(REGULAR_CELL_STYLE));
+		}
+
 	}
 
 	/**
@@ -225,9 +250,9 @@ public class ExcelUtil {
 	 * @param field
 	 * @param defaultHeight
 	 */
-	private static void setRowHeight(Row row, String field, float defaultHeight) {
-		if (field.contains(NEW_LINE_DETECTOR)) {
-			row.setHeightInPoints(3 * defaultHeight);
+	private static void setRowHeight(Row row, String field, double defaultHeight) {
+		if (!StringUtils.isBlank(field) && field.contains(NEW_LINE_DETECTOR)) {
+			row.setHeightInPoints(3 * (float)defaultHeight);
 		}
 	}
 
@@ -339,10 +364,9 @@ public class ExcelUtil {
 	 * @param workBook : the workbook object to create a customfont
 	 * @return manipulated richTextString from the string data to be put in the cell
 	 */
-	private static XSSFRichTextString applyCustomStyles(String field, List<String> tags, Workbook workBook) {
+	private static XSSFRichTextString applyCustomStyles(String field, List<String> tags, Font customFont) {
 		field = stripTags(field);
 		XSSFRichTextString richTextString = new XSSFRichTextString(field);
-		Font customFont = workBook.createFont();
 		customFont.setFontName(DEFAULT_FONT_NAME);
 		customFont.setFontHeightInPoints(DEFAULT_FONT_HEIGHT);
 		if (!tags.isEmpty()) {
