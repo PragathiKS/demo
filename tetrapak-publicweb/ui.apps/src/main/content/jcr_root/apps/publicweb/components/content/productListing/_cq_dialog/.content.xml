@@ -77,7 +77,7 @@
                                                     sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
                                                     fieldLabel="Product Category Tag"
                                                     name="./categoryTag"
-                                                    rootPath="/content/cq:tags/tetra-pak/public-web"/>
+                                                    rootPath="/content/cq:tags"/>
                                             </items>
                                         </column>
                                     </items>
