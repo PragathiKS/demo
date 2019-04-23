@@ -9,9 +9,9 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 function _trackAnalytics(type) {
   const $this = this;
@@ -260,8 +260,10 @@ class FinancialStatement {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
+      this.cache.servletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
     } catch (e) {
       this.cache.i18nKeys = {};
+      this.cache.servletUrl = '';
       logger.error(e);
     }
   }
@@ -362,9 +364,60 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
+    $body.on('downloadFinancialPdfExcel', (e, type) => {
+      logger.log(e);
+      this.downloadPdfExcel(type);
+    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
+  }
+  downloadPdfExcel(type) {
+    const $this = this;
+    const paramsData = {};
+    const { $filterForm } = $this.cache;
+    const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
+    const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
+    const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
+    const docTypeKey = $filterForm.find('.js-financial-statement__document-type option:selected').val();
+    const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
+
+    paramsData.customerData = $this.cache.data.selectedCustomerData;
+    paramsData.startDate = '2019-02-01';
+    paramsData.endDate = '2019-02-01';
+    paramsData.status = {
+      'key': statusKey,
+      'desc': statusDesc
+    };
+    paramsData.documentType = {
+      'key': docTypeKey,
+      'desc': docTypeDesc
+    };
+    paramsData.documentNumber = docNumber;
+    auth.getToken(({ data: authData }) => {
+      const requestBody = {};
+      requestBody.params = JSON.stringify(paramsData);
+      requestBody.token = authData.access_token;
+      const url = resolveQuery($this.cache.servletUrl, { extnType: type });
+      let form = $('<form/>', {
+        action: url,
+        method: 'POST'
+      });
+      form = form.append(
+        $('<input/>', {
+          type: 'text',
+          name: 'params',
+          val: requestBody.params
+        }));
+      form = form.append(
+        $('<input/>', {
+          type: 'text',
+          name: 'token',
+          val: requestBody.token
+        }));
+      $body.append(form);
+      form.submit();
+    });
   }
   setDateFilter() {
     return _setDateFilter.apply(this, arguments);

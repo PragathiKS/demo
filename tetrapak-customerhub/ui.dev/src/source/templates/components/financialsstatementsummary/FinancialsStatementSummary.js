@@ -7,6 +7,7 @@ import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
  * Fire analytics on Invoice Download
@@ -148,9 +149,11 @@ class FinancialsStatementSummary {
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
     this.root.on('click', '.js-financials-summary__create-pdf', () => {
       this.trackAnalytics(this, 'downloadPdf');
+      this.downloadPdfExcel('pdf');
     });
     this.root.on('click', '.js-financials-summary__create-excel', () => {
       this.trackAnalytics(this, 'downloadExcel');
+      this.downloadPdfExcel('excel');
     });
 
     route((...args) => {
@@ -172,6 +175,10 @@ class FinancialsStatementSummary {
     _downloadInvoice.call(this);
     $this.trackAnalytics(this);
   }
+  downloadPdfExcel(type) {
+    $body.trigger('downloadFinancialPdfExcel', [type]);
+  }
+
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
   init() {
     /* Mandatory method */
