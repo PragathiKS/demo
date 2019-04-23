@@ -1,10 +1,16 @@
 .tpatom-button {
     @include border-radius($border-radius);
-    @include font-size($font-baseline);
-    @include line-height($font-l, $font-baseline);
-    @include padding($padding-sm $padding-md 10px);
+    @include font-size($font-normal);
+    @include line-height(20px, $font-normal);
+    @include padding(18px $padding-md 14px);
 
-    &__icon {
+    @media #{$desktop} {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding(9px $padding-md 8px);
+    }
+
+        &__icon {
         @include padding-left($padding-xs);
     }
 
@@ -61,6 +67,7 @@
     &--link {
         @include border-radius(0);
         @include padding(0);
+        @include line-height($font-l, $font-normal);
         background-color: transparent;
         color: $color-congress-blue;
         &:hover {
