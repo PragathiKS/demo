@@ -81,7 +81,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
                     OrderDetailsData.class);
 
             if (CustomerHubConstants.PDF.equals(extension)) {
-                generatePDF.generateOrderDetailsPDF(response, orderType, orderDetailResponse);
+                generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse);
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
                 generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
             } else {
