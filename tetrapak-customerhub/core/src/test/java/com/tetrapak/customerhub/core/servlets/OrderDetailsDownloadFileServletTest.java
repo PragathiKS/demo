@@ -1,18 +1,16 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.adobe.cq.sightly.WCMBindings;
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockOrderDetailsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
-import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
-import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.services.impl.OrderDetailsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.OrderDetailsPDFServiceImpl;
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+
 import org.apache.http.HttpStatus;
-import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
 import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
@@ -25,16 +23,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.mock.MockOrderDetailsApiServiceImpl;
+import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
+import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
+import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
+import com.tetrapak.customerhub.core.services.impl.OrderDetailsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.OrderDetailsPDFServiceImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import io.wcm.testing.mock.aem.junit.AemContext;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderDetailsDownloadFileServletTest {
