@@ -1,0 +1,10 @@
+<div class="{{#if baseClass}}{{baseClass}}__info-data{{/if}}">
+    <div class="{{#if baseClass}}{{baseClass}}__info-title{{/if}}"> {{i18n key=label}} </div>
+    <div class="{{#if baseClass}}{{baseClass}}__info-text{{/if}}">
+    {{#if link}}
+        {{> atoms/links/link/link text=data href=linkUrl isExternal=true jsClass=linkJsClass iconClass="icon-External_Link"}}
+    {{else}}
+        {{data}}
+    {{/if}}
+    </div>
+</div>

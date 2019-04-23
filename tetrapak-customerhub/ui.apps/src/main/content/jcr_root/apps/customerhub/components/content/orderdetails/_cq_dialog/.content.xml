@@ -180,8 +180,8 @@
                             <deliveryNumber
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter Delivery Number Label&#xa;Used on Package order details page."
-                                fieldLabel="Delivery Number Label"
+                                fieldDescription="Enter Delivery Number&#xa;Used on Package order details page."
+                                fieldLabel="Delivery Number"
                                 name="./deliveryNumber"
                                 required="true"/>
                             <productionPlace
@@ -219,7 +219,7 @@
                                 fieldLabel="Requested KPK Label"
                                 name="./kpkPopUpDescription"
                                 required="true"/>
-                            <kpkPopUpCloseBtnText
+							<kpkPopUpCloseBtnText
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Kilo Pack PopUp Close Button Text Used on Package order details page."
@@ -247,13 +247,6 @@
                                 fieldLabel="No Data Error Message"
                                 name="./noDataMsg"
                                 required="false"/>
-                            <orderStatus
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter order status label. Used on both Parts and Package order details excel generation."
-                                fieldLabel="Status Label"
-                                name="./orderStatus"
-                                required="true"/>
                         </items>
                     </column>
                 </items>

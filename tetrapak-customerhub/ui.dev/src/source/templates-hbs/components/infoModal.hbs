@@ -1,0 +1,10 @@
+<div class="tp-modal modal{{#if baseClass}} {{baseClass}}__info-modal{{/if}}{{#if jsClass}} {{jsClass}}__info-modal{{/if}} fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
+        <div class="modal-content tp-modal-content">
+            {{> molecules/modals/modalHeader/modalHeader title=i18nKeys.kpkPopUpHeading closeBtnText=i18nKeys.kpkPopUpCloseBtnText}}
+            <div class="modal-body tp-modal-body{{#if baseClass}} {{baseClass}}__info-modal-body{{/if}}">
+                <div class="{{#if baseClass}} {{baseClass}}__info-modal-desc{{/if}}">{{i18nKeys.kpkPopUpDescription}}</div>
+            </div>
+        </div>
+    </div>
+</div>

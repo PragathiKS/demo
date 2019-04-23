@@ -31,7 +31,7 @@ class CarouselWithFilters {
       },
       target: '#'+parentId+' .js-carouselfiltered-item',
       beforeRender(data) {
-        if (data.length) {
+        if (data && data.length) {
           this.data = data[0];
           this.data.variant = btnVariant;
         }
