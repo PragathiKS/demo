@@ -185,7 +185,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private List<Row> getDeliveryDetailHeader(SlingHttpServletRequest request, String deliveryNumber) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row(PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        rows.add(new Row(PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getDeliveryOrder()) + ": " + deliveryNumber, 20, muliRegular, 11));
         rows.add(new Row("", 30, muliRegular, 12));
         return rows;
@@ -195,7 +195,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row("Order details", 20, muliRegular, 18));
         rows.add(new Row("", 30, muliRegular, 12));
-        rows.add(new Row(PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        rows.add(new Row(PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getOrderNo()) + orderDetails.getOrderNumber() + " - " +
                 orderDetails.getStatus(), 20, muliRegular, 11));
         rows.add(new Row("", 10, muliRegular, 12));
@@ -204,7 +204,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private List<Row> getContactLines(SlingHttpServletRequest request, CustomerSupportCenter customerSupportCenter) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row(PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        rows.add(new Row(PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getCustSupCentreLabel()), 9, muliBold, 7));
         rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true, "mailto:" + customerSupportCenter.getEmail()));
         rows.add(new Row(customerSupportCenter.getMobile(), 9, muliRegular, 6));
@@ -213,24 +213,24 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createOrderDetailTable(SlingHttpServletRequest request, OrderDetails orderDetails) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getCustomerNameLabel()), 70));
         columns.add(new Column(orderDetails.getCustomerName(), 90));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getPurchaseOrderNumberLabel()), 80));
         columns.add(new Column(orderDetails.getOrderNumber(), 120));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                 orderDetailsModel.getOrderDateLabel()), 60));
         columns.add(new Column(orderDetails.getPlacedOn(), 80));
 
         String[][] content = {
                 {CustomerHubConstants.BOLD_IDENTIFIER +
-                        PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, orderDetailsModel.getCustomerNumberLabel()),
+                        PDFUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerNumberLabel()),
                         orderDetails.getCustomerNumber().toString(),
-                        CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+                        CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                                 orderDetailsModel.getCustomerReferenceLabel()),
                         orderDetails.getCustomerReference().toString(),
-                        CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX,
+                        CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request, StringUtils.EMPTY,
                                 orderDetailsModel.getWebRefLabel()), orderDetails.getWebRefID().toString()}
         };
 
@@ -241,12 +241,12 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, orderDetailsModel.getShippingLabel()), 70));
+                PDFUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getShippingLabel()), 70));
         columns.add(new Column(deliveryList.getCarrier(), 240));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, orderDetailsModel.getDeliveryAddrLabel()), 80));
+                PDFUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryAddrLabel()), 80));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, orderDetailsModel.getInvoiceAddrLabel()), 120));
+                PDFUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getInvoiceAddrLabel()), 120));
 
         DeliveryAddress deliveryAddress = deliveryList.getDeliveryAddress();
         InvoiceAddress invoiceAddress = deliveryList.getInvoiceAddress();
@@ -254,7 +254,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         String[][] content = {
                 {
                         CustomerHubConstants.BOLD_IDENTIFIER + PDFUtil.getI18nValue(request,
-                                ORDER_DETAIL_I18_PREFIX, orderDetailsModel.getTrackOrderLabel()), deliveryList.getCarrierTrackingID(),
+                                StringUtils.EMPTY, orderDetailsModel.getTrackOrderLabel()), deliveryList.getCarrierTrackingID(),
                         deliveryAddress.getName(), invoiceAddress.getName()
                 },
                 {
