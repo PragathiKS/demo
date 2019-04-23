@@ -67,7 +67,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        OrderDetailsModel orderDetailsModel = request.adaptTo(OrderDetailsModel.class);
+        OrderDetailsModel orderDetailsModel = request.getResource().adaptTo(OrderDetailsModel.class);
         
         if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             response.setStatus(Integer.parseInt(status.toString()));
