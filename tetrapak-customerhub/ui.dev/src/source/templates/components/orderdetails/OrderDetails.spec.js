@@ -24,6 +24,7 @@ describe('OrderDetails', function () {
     $(document.body).empty().html(orderDetailTemplate());
     this.initSpy = sinon.spy(this.orderDetails, "init");
     this.renderOrderSummarySpy = sinon.spy(this.orderDetails, "renderOrderSummary");
+    this.renderPaginateDataSpy = sinon.spy(this.orderDetails, "renderPaginateData");
     this.processTableDataSpy = sinon.spy(this.orderDetails, "processTableData");
     this.openOverlaySpy = sinon.spy(this.orderDetails, 'openOverlay');
     this.downloadSpy = sinon.spy(this.orderDetails, 'downloadContent');
@@ -44,6 +45,7 @@ describe('OrderDetails', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderOrderSummarySpy.restore();
+    this.renderPaginateDataSpy.restore();
     this.processTableDataSpy.restore();
     this.openOverlaySpy.restore();
     this.downloadSpy.restore();

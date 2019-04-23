@@ -3,7 +3,7 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
 import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common'; //eslint-disable-line
 import { logger } from '../../../scripts/utils/logger';
 
@@ -70,13 +70,13 @@ function _processPartsData(data, deliveryNo, pageIndex) {
       delete delivery.deliveryOrder;
       delete delivery.ETD;
 
-      if (delivery.totalProductsForQuery > 10) {
-        delivery.totalPages = Math.ceil(delivery.totalProductsForQuery / 10);
+      if (delivery.totalProductsForQuery > ORDER_DETAILS_ROWS_PER_PAGE) {
+        delivery.totalPages = Math.ceil(delivery.totalProductsForQuery / ORDER_DETAILS_ROWS_PER_PAGE);
       }
 
       delivery.products = delivery.products.map((product, index) => {
         if (pageIndex) {
-          product.serialNo = (pageIndex * 10) + index + 1;
+          product.serialNo = (pageIndex * ORDER_DETAILS_ROWS_PER_PAGE) + index + 1;
         } else {
           product.serialNo = index + 1;
         }
