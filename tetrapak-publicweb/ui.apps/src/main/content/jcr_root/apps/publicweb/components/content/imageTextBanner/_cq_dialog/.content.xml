@@ -123,6 +123,12 @@
                                 fieldDescription="Enter Link Text"
                                 fieldLabel="Link Text"
                                 name="./bannerCtaTextI18n"/>
+                            <targetSoftConversion
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                text="Target Soft Conversion Modal?"
+                                fieldDescription="Check if on button click you want to open Soft Conversion Modal"
+                                name="./targetSoftConversion" />
                             <ctapath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

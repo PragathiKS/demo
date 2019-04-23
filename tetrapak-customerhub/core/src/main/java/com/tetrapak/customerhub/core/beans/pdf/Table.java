@@ -1,8 +1,9 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,13 +16,12 @@ public class Table {
 
     // Table attributes
     private float margin;
-    private float height;
     private PDRectangle pageSize;
-    private boolean isLandscape;
     private float rowHeight;
 
     // font attributes
     private PDFont textFont;
+    private PDFont textFontBold;
     private float fontSize;
 
     // Content attributes
@@ -70,6 +70,14 @@ public class Table {
         this.textFont = textFont;
     }
 
+    public PDFont getTextFontBold() {
+        return textFontBold;
+    }
+
+    public void setTextFontBold(PDFont textFontBold) {
+        this.textFontBold = textFontBold;
+    }
+
     public float getFontSize() {
         return fontSize;
     }
@@ -87,11 +95,11 @@ public class Table {
     }
 
     public List<Column> getColumns() {
-        return columns;
+        return new ArrayList<>(columns);
     }
 
     public void setColumns(List<Column> columns) {
-        this.columns = columns;
+        this.columns = new ArrayList<>(columns);
     }
 
     public Integer getNumberOfRows() {
@@ -100,14 +108,6 @@ public class Table {
 
     public void setNumberOfRows(Integer numberOfRows) {
         this.numberOfRows = numberOfRows;
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
     }
 
     public float getRowHeight() {
@@ -119,11 +119,11 @@ public class Table {
     }
 
     public String[][] getContent() {
-        return content;
+        return content.clone();
     }
 
     public void setContent(String[][] content) {
-        this.content = content;
+        this.content = content.clone();
     }
 
     public float getCellMargin() {
@@ -132,13 +132,5 @@ public class Table {
 
     public void setCellMargin(float cellMargin) {
         this.cellMargin = cellMargin;
-    }
-
-    public boolean isLandscape() {
-        return isLandscape;
-    }
-
-    public void setLandscape(boolean isLandscape) {
-        this.isLandscape = isLandscape;
     }
 }

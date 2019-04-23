@@ -234,5 +234,44 @@
             jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
             jcr:primaryType="nt:folder"
             sling:message="Set Dates"/>
-               
+    <cuhu.orderDetail.productName
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Product Name"/>
+    <cuhu.orderDetail.orderQuantity
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Ordered Quantity"/>
+    <cuhu.orderDetail.deliveredQuantity
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Delivered Quanity"/>
+    <cuhu.orderDetail.price
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Price"/>
+    <cuhu.orderDetail.remainingQuantity
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Remaining Quantity"/>
+    <cuhu.orderDetail.orderNumber
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Order Number"/>
+    <cuhu.orderDetail.productID
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Product ID"/>
+    <cuhu.orderDetail.weight
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Weight"/>
+    <cuhu.orderDetail.ETA
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="ETA"/>
+    <cuhu.orderDetail.unitPrice
+            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Unit Price"/>
 </jcr:root>

@@ -1,5 +1,6 @@
 <sly data-sly-template.listcontentimage_template="${@ data, flag}"
   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <sly data-sly-test.showEdit="${wcmmode.edit ? 'd-block' : 'd-none'}" />
     <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''} pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-module="ListContentImage">
     <div class="row">
         <div class="col-lg-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''}">
@@ -31,7 +32,7 @@
                     <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}">
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
     </div>
     <sly data-sly-test="${!data.tabLinks}" data-sly-call="${templates.placeholder @ isEmpty = !data.tabLinks}"></sly>

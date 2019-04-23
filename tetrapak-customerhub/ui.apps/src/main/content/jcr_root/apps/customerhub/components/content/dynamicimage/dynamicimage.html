@@ -1,10 +1,8 @@
-<template data-sly-template.dynamicimage_template="${@ imagePath,altText} ">
+<template data-sly-template.dynamicimage_template="${@ imagePath,altText,className} ">
 <sly data-sly-use.dynamicImageModel="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=imagePath , altText=altText}"/>
-<img src="${dynamicImageModel.desktopUrl}" data-object-fit="${dataObjectView}"
+<img src="${dynamicImageModel.desktopUrl}" data-object-fit="${dataObjectView}" class="img-responsive ${className}"
 	itemprop="image" alt="${dynamicImageModel.altText}"
 	data-src_desktop="${dynamicImageModel.desktopUrl}"
 	data-src_desktopL="${dynamicImageModel.desktopLargeUrl}"
 	data-src_mobileP="${dynamicImageModel.mobilePortraitUrl}"
-	data-src_mobileL="${dynamicImageModel.mobileLandscapeUrl}"
-	data-src_tabletP="${dynamicImageModel.tabletPortraitUrl}"
-	data-src_tabletL="${dynamicImageModel.tabletLandscapeUrl}" />
+	data-src_mobileL="${dynamicImageModel.mobileLandscapeUrl}" />

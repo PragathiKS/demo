@@ -14,7 +14,8 @@ import { apiHost } from '../../../scripts/common/common';
  */
 function _trackAnalytics() {
   // Get selected preferences
-  const analyticsData = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+  const analyticsData = {};
+  analyticsData['ordersettings'] = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
     return $.trim($(el).parent().text());
   }).join('|');
 
@@ -60,8 +61,9 @@ function _processContacts(contacts) {
  * @param {string} orderDetailLink Order Detail link
  */
 function _tableSort(order, activeKeys, orderDetailLink) {
+  logger.log(order);
   const dataObject = {
-    rowLink: `${orderDetailLink}?q=${order['orderNumber']}`,
+    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
     row: []
   };
   activeKeys.forEach((key, index) => {
@@ -95,26 +97,18 @@ function _processTableData(data) {
     let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
     activeKeys = activeKeys.filter(key => key && !disabledFieldList.includes(key));
     data.orders = data.orders.map(order => {
-      const processedOrder = {};
       const orderKeys = Object.keys(order);
       if (availableKeys.length === 0) {
         _setAvailableKeys.call(this, availableKeys, orderKeys);
       }
       if (activeKeys.length === 0) {
         activeKeys.push(...orderKeys);
-        return _tableSort.call(this, order, activeKeys, orderDetailLink);
       }
-      orderKeys.forEach(key => {
-        if (activeKeys.includes(key)) {
-          processedOrder[key] = order[key];
-        }
-      });
-      return _tableSort.call(this, processedOrder, activeKeys, orderDetailLink);
+      return _tableSort.call(this, order, activeKeys, orderDetailLink);
     });
     data.orderHeadings = activeKeys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
-      isSortable: ['orderDate'].includes(key),
       sortOrder: 'desc'
     }));
     data.settingOptions = availableKeys.map(key => ({

@@ -1,22 +1,34 @@
 package com.tetrapak.customerhub.core.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
 
 /**
  * Model class for Order Details component
+ * 
+ * @author swalamba
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
+
+	@Self
+	private Resource resource;
 
 	@Inject
 	private String backToOrderHistory;
@@ -35,7 +47,7 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String customerNumberLabel;
-	
+
 	@Inject
 	private String webRefLabel;
 
@@ -53,7 +65,7 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String shippingLabel;
-	
+
 	@Inject
 	private String trackOrderLabel;
 
@@ -71,38 +83,68 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String totalVatLabel;
-	
+
 	@Inject
 	private String deliveryOrder;
-	
+
 	@Inject
 	private String deliveryNumber;
-	
+
 	@Inject
 	private String productionPlace;
-	
+
 	@Inject
 	private String requested;
-	
+
 	@Inject
 	private String etd;
-	
+
 	@Inject
 	private String kpkPopUpHeading;
-	
+
 	@Inject
 	private String kpkPopUpDescription;
-	
+
 	@Inject
 	private String noDataMsg;
-	
+
 	@Inject
 	private String errorMsg;
 
+	@Inject
+	private String webReferenceLink;
+
+	@Inject
+	private String orderNoLink;
+
+	@Inject
+	private String packagingDeliveryTableCols;
+
+	@Inject
+	private String packagingProductsTableCols;
+
+	@Inject
+	private String partsDeliveryTableCols;
+
+	@Inject
+	private String kpkPopUpCloseBtnText;
+
+	@Inject
+	private String deliveryProductsFilterCheckboxText;
+
+	@Inject
+	private String customerReferenceLabel;
+
+	@Inject
+	private String orderStatus;
+
 	private String i18nKeys;
 
+	private String downloadPdfExcelServletUrl;
+
 	/**
-	 * Populating the i18n keys to a JSON object string getting values from the dialog
+	 * Populating the i18n keys to a JSON object string getting values from the
+	 * dialog
 	 */
 	@PostConstruct
 	protected void init() {
@@ -113,6 +155,7 @@ public class OrderDetailsModel {
 		i18KeyMap.put("purchaseOrderNumberLabel", getPurchaseOrderNumberLabel());
 		i18KeyMap.put("orderDateLabel", getOrderDateLabel());
 		i18KeyMap.put("customerNumberLabel", getCustomerNumberLabel());
+		i18KeyMap.put("customerReferenceLabel", getCustomerReferenceLabel());
 		i18KeyMap.put("webRefLabel", getWebRefLabel());
 		i18KeyMap.put("custSupCentreLabel", getCustSupCentreLabel());
 		i18KeyMap.put("createExcelLabel", getCreateExcelLabel());
@@ -134,16 +177,22 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpDescription", getKpkPopUpDescription());
 		i18KeyMap.put("noDataMsg", getNoDataMsg());
 		i18KeyMap.put("errorMsg", getErrorMsg());
+		i18KeyMap.put("orderNoLink", getOrderNoLink());
+		i18KeyMap.put("webReferenceLink", getWebReferenceLink());
+		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
+		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
+		downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}?"
+				+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}";
 	}
-	
+
 	/**
 	 * @return the i18nKeys
 	 */
 	public String getI18nKeys() {
 		return i18nKeys;
 	}
-	
+
 	/**
 	 * @return the backToOrderHistory
 	 */
@@ -318,7 +367,6 @@ public class OrderDetailsModel {
 	public String getKpkPopUpDescription() {
 		return kpkPopUpDescription;
 	}
-	
 
 	/**
 	 * @return the noDataMsg
@@ -332,6 +380,76 @@ public class OrderDetailsModel {
 	 */
 	public String getErrorMsg() {
 		return errorMsg;
+	}
+
+	/**
+	 * @return the customerReferenceLink
+	 */
+	public String getWebReferenceLink() {
+		return webReferenceLink;
+	}
+
+	/**
+	 * @return the orderNoLink
+	 */
+	public String getOrderNoLink() {
+		return orderNoLink;
+	}
+
+	/**
+	 * @return the packagingDeliveryTableCols
+	 */
+	public String getPackagingDeliveryTableCols() {
+		return packagingDeliveryTableCols;
+	}
+
+	/**
+	 * @return the packagingProductsTableCols
+	 */
+	public String getPackagingProductsTableCols() {
+		return packagingProductsTableCols;
+	}
+
+	/**
+	 * @return the partsDeliveryTableCols
+	 */
+	public String getPartsDeliveryTableCols() {
+		return partsDeliveryTableCols;
+	}
+
+	/**
+	 * @return the kpkPopUpCloseBtnText
+	 */
+	public String getKpkPopUpCloseBtnText() {
+		return kpkPopUpCloseBtnText;
+	}
+
+	/**
+	 * @return the deliveryProductsFilterCheckboxText
+	 */
+	public String getDeliveryProductsFilterCheckboxText() {
+		return deliveryProductsFilterCheckboxText;
+	}
+
+	/**
+	 * @return the downloadOrderDetailsServletUrl
+	 */
+	public String getDownloadPdfExcelServletUrl() {
+		return downloadPdfExcelServletUrl;
+	}
+
+	/**
+	 * @return the customerReferenceLabel
+	 */
+	public String getCustomerReferenceLabel() {
+		return customerReferenceLabel;
+	}
+
+	/**
+	 * @return the orderStatus
+	 */
+	public String getOrderStatus() {
+		return orderStatus;
 	}
 
 }

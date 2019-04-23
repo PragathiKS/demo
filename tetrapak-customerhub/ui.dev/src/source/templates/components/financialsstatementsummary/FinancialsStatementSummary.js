@@ -1,25 +1,40 @@
 import $ from 'jquery';
+import { route } from 'jqueryrouter';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
-import deparam from 'jquerydeparam';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Fire analytics on Invoice Download
  */
-function _trackAnalytics() {
+function _trackAnalytics(type) {
   // Get selected preferences
   const $this = $(this);
-  const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
   const analyticsData = {};
-  analyticsData['statementheader'] = $.trim(statementHeader);
-  analyticsData['statementnumber'] = $.trim($this.find('[data-key=documentNumber]').text());
-
-  trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+  switch (type) {
+    case 'downloadPdf': {
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createPDF = 'true';
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
+    }
+    case 'downloadExcel': {
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createExcel = 'true';
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
+    }
+    default: {
+      const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
+      analyticsData.statementheader = $.trim(statementHeader);
+      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+    }
+  }
 }
 
 /**
@@ -29,33 +44,9 @@ function _downloadInvoice() {
   window.open($(this).attr('href'), '_blank');
 }
 
-/**
- * Get filters data
- */
-function _getFilters() {
-  const filters = $('.js-financial-statement__filters').serialize();
-  const filterProp = deparam(filters);
-  if (filterProp.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
-    filterProp['invoicedate-from'] = orderdateFrom.trim();
-    if (orderdateTo) {
-      filterProp['invoicedate-to'] = orderdateTo.trim();
-    }
-    delete filterProp.daterange;
-  }
-  filterProp['customerkey'] = $('.js-financial-statement__find-customer').val();
-
-  Object.keys(filterProp).forEach(key => {
-    if (!filterProp[key]) {
-      delete filterProp[key];
-    }
-  });
-
-  return $.param(filterProp);
-}
-
 function _processTableData(data) {
   let keys = [];
+  const { $filtersRoot } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
@@ -66,7 +57,6 @@ function _processTableData(data) {
       i18nKey: `cuhu.financials.${key}`
     }));
   }
-
   if (Array.isArray(data.documents) && data.documents.length > 0) {
     keys.length = 0;
     data.documents.forEach((doc, index) => {
@@ -89,8 +79,7 @@ function _processTableData(data) {
   } else {
     data.noData = true;
   }
-
-  data.dateRange = $('.js-financial-statement__date-range').val();
+  data.dateRange = $filtersRoot.find('.js-financial-statement__date-range').val();
 }
 
 /**
@@ -115,7 +104,7 @@ function _renderTable(filterParams) {
           };
         }
         data = $.extend(true, data, $this.cache.i18nKeys);
-        return $this.processTableData([data]);
+        return $this.processTableData(data);
       },
       ajaxConfig: {
         beforeSend(jqXHR) {
@@ -126,6 +115,11 @@ function _renderTable(filterParams) {
         cache: true,
         showLoader: true,
         cancellable: true
+      }
+    }, (data) => {
+      if (!data.isError) {
+        const { $filtersRoot } = this.cache;
+        $filtersRoot.find('.js-financial-statement__filter-section').removeClass('d-none');
       }
     });
   });
@@ -138,8 +132,9 @@ class FinancialsStatementSummary {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    this.cache.configJson = $('.js-financial-statement__config').text();
-    this.cache.$filtersRoot = $('.js-financial-statement');
+    this.cache.$filtersRoot = this.root.parent().find('.js-financial-statement');
+    this.cache.$findCustomer = this.root.parent().find('.js-financial-statement__select-customer-dropdown');
+    this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -151,14 +146,25 @@ class FinancialsStatementSummary {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
-    this.cache.$filtersRoot.on('financialSummary.render', this.renderTable);
+    this.root.on('click', '.js-financials-summary__create-pdf', () => {
+      this.trackAnalytics(this, 'downloadPdf');
+    });
+    this.root.on('click', '.js-financials-summary__create-excel', () => {
+      this.trackAnalytics(this, 'downloadExcel');
+    });
+
+    route((...args) => {
+      const [config, , query] = args;
+      if (config.hash) {
+        this.renderTable(query);
+      }
+    });
   }
-  renderTable = () => {
-    const filterParams = this.getFilters();
-    _renderTable.apply(this, [filterParams]);
+  renderTable() {
+    _renderTable.apply(this, arguments);
   }
-  processTableData(data) {
-    return _processTableData.apply(this, data);
+  processTableData() {
+    return _processTableData.apply(this, arguments);
   }
   downloadInvoice(e) {
     const $this = e.data;
@@ -166,8 +172,7 @@ class FinancialsStatementSummary {
     _downloadInvoice.call(this);
     $this.trackAnalytics(this);
   }
-  getFilters = () => _getFilters.apply(this);
-  trackAnalytics = (obj) => _trackAnalytics.call(obj);
+  trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
   init() {
     /* Mandatory method */
     this.initCache();

@@ -159,6 +159,16 @@ td {
     flex: 1;
 }
 
+// Font weight classes
+
+.semi-bold {
+    font-family: $font-semi-bold;
+}
+
+.bold {
+    font-family: $font-bold;
+}
+
 // Custom classes for layout
 .tp-container {
     @include padding(0 15px);
@@ -172,6 +182,11 @@ td {
     .row {
         @include margin-left(-15px);
         @include margin-right(-15px);
+
+        &.no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
     }
 
     .row {
