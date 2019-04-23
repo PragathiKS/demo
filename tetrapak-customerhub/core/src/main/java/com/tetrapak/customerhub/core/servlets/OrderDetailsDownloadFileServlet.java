@@ -86,7 +86,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             if (CustomerHubConstants.PDF.equals(extension)) {
                 generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse);
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
-                generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse, orderDetailsModel);
+                generateExcel.generateOrderDetailsExcel(request, response, orderType, orderDetailResponse, orderDetailsModel);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }

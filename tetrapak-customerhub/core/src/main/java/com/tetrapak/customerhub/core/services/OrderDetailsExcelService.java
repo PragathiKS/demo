@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
 /**
@@ -14,13 +15,14 @@ import org.apache.sling.api.SlingHttpServletResponse;
 public interface OrderDetailsExcelService {
 	/**
 	 * Method to generate the excel file for the order details page.
+	 * @param request 
 	 *
 	 * @param response          Response
 	 * @param orderType         Order Type
 	 * @param orderDetailData   order details data
 	 * @param orderDetailsModel order details model
 	 */
-	void generateOrderDetailsExcel(SlingHttpServletResponse response, String orderType,
+	void generateOrderDetailsExcel(SlingHttpServletRequest request, SlingHttpServletResponse response, String orderType,
 			OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel);
 
 }

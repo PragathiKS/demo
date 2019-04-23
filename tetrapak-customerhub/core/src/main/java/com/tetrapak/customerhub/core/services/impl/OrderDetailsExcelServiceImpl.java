@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import com.tetrapak.customerhub.core.beans.oderdetails.Product;
 import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.utils.ExcelUtil;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
  * Implemention class for Order Details Excel Service
@@ -38,11 +40,14 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private static final String SHEET_NAME = "Order Details";
 	private static final String PARTS_ORDER_TYPE = "parts";
 	private static final String PACKMAT_ORDER_TYPE = "packmat";
+	private static final String COLON_SPACE = ": ";
+	private SlingHttpServletRequest request = null;
 
 	@Override
-	public void generateOrderDetailsExcel(SlingHttpServletResponse response, String orderType,
-			OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel) {
-		if (Objects.nonNull(orderDetailData) && !StringUtils.isBlank(orderType)) {
+	public void generateOrderDetailsExcel(SlingHttpServletRequest servletRequest, SlingHttpServletResponse response,
+			String orderType, OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel) {
+		if (Objects.nonNull(orderDetailData) && Objects.nonNull(orderDetailsModel) && !StringUtils.isBlank(orderType)) {
+			request = servletRequest;
 			String[][] data = null;
 			data = getOrderDetailsSection(orderDetailsModel, orderDetailData.getOrderDetails());
 			LOGGER.debug("Order Details Section data added to the array..");
@@ -78,33 +83,48 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private String[][] getOrderDetailsSection(OrderDetailsModel orderDetailsModel, OrderDetails orderDetails) {
 		String[][] orderDetailsSection = new String[11][10];
-		orderDetailsSection[0][0] = addTagToContent(
-				"Tetra Pak Order Number:" + getProcessedValue(orderDetails.getOrderNumber()),
-				new String[] { ExcelUtil.HALF_BOLD_TAG });
-		orderDetailsSection[1][0] = addTagToContent("Status: " + getProcessedValue(orderDetails.getStatus()),
+		orderDetailsSection[0][0] = addTagToContent(getI18nVal(orderDetailsModel.getOrderNo()) + COLON_SPACE
+				+ getProcessedValue(orderDetails.getOrderNumber()), new String[] { ExcelUtil.HALF_BOLD_TAG });
+		orderDetailsSection[1][0] = addTagToContent(
+				getI18nVal(orderDetailsModel.getOrderStatus()) + COLON_SPACE + getProcessedValue(orderDetails.getStatus()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
 		orderDetailsSection[2][0] = addTagToContent(StringUtils.EMPTY, new String[] { ExcelUtil.REGULAR_STYLE_TAG });
 		orderDetailsSection[3][0] = addTagToContent("Order Details",
 				new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.LIGHT_GREY_BG_TAG });
 		orderDetailsSection[4][0] = addTagToContent(
-				"Customer Name: " + getProcessedValue(orderDetails.getCustomerName()),
+				getI18nVal(orderDetailsModel.getCustomerNameLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getCustomerName()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
 		orderDetailsSection[5][0] = addTagToContent(
-				"Customer Number: " + getProcessedValue(orderDetails.getCustomerNumber()),
+				getI18nVal(orderDetailsModel.getCustomerNumberLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getCustomerNumber()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
 		orderDetailsSection[6][0] = addTagToContent(
-				"Purchase Order: " + getProcessedValue(orderDetails.getPurchaseOrderNumber()),
+				getI18nVal(orderDetailsModel.getPurchaseOrderNumberLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getPurchaseOrderNumber()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
 		orderDetailsSection[7][0] = addTagToContent(
-				"Customer Reference: " + getProcessedValue(orderDetails.getCustomerReference()),
+				getI18nVal(orderDetailsModel.getCustomerReferenceLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getCustomerReference()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
-		orderDetailsSection[8][0] = addTagToContent("Order Date : " + getProcessedValue(orderDetails.getPlacedOn()),
+		orderDetailsSection[8][0] = addTagToContent(
+				getI18nVal(orderDetailsModel.getOrderDateLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getPlacedOn()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
-		orderDetailsSection[9][0] = addTagToContent("Web Reference :" + getProcessedValue(orderDetails.getWebRefID()),
+		orderDetailsSection[9][0] = addTagToContent(
+				getI18nVal(orderDetailsModel.getWebRefLabel()) + COLON_SPACE + getProcessedValue(orderDetails.getWebRefID()),
 				new String[] { ExcelUtil.HALF_BOLD_TAG });
 		orderDetailsSection[10][0] = addTagToContent(StringUtils.EMPTY, new String[] { ExcelUtil.REGULAR_STYLE_TAG });
 
 		return orderDetailsSection;
+	}
+
+	/**
+	 * getI18nVal
+	 * 
+	 * @param value
+	 * @return
+	 */
+	private String getI18nVal(String value) {
+		if (null != request && !StringUtils.isBlank(value)) {
+			value = GlobalUtil.getI18nValue(request, StringUtils.EMPTY, value);
+		}
+		return value;
 	}
 
 	/**
@@ -123,7 +143,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		Iterator<OrderSummary> itr = orderSummary.iterator();
 		while (itr.hasNext()) {
 			OrderSummary summaryRow = itr.next();
-			data[counter][1] = addTagToContent(StringUtils.EMPTY, new String[] { ExcelUtil.REGULAR_STYLE_TAG });
+			data[counter][0] = addTagToContent(StringUtils.EMPTY, new String[] { ExcelUtil.REGULAR_STYLE_TAG });
 			data[counter][1] = getProcessedValue(summaryRow.getProduct());
 			data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
 			data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
@@ -168,7 +188,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private String[][] getDeliveryDetails(String orderType, OrderDetailsModel orderDetailsModel,
 			DeliveryList deliveryList) {
-		String[][] deliveryDetailsSection1 = getDeliveryDetailsInitialSection(orderType, deliveryList);
+		String[][] deliveryDetailsSection1 = getDeliveryDetailsInitialSection(orderDetailsModel,orderType, deliveryList);
 		String[][] productDetails = getProductDetails(orderType, orderDetailsModel, deliveryList);
 
 		return ArrayUtils.addAll(deliveryDetailsSection1, productDetails);
@@ -176,52 +196,60 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 
 	/**
 	 * DeliveryDetails data based on the orderType
+	 * @param orderDetailsModel 
 	 * 
 	 * @param orderType
 	 * @param deliveryList
 	 * @return
 	 */
-	private String[][] getDeliveryDetailsInitialSection(String orderType, DeliveryList deliveryList) {
+	private String[][] getDeliveryDetailsInitialSection(OrderDetailsModel orderDetailsModel, String orderType, DeliveryList deliveryList) {
 		String[][] deliveryDetailsSection;
 		if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
 			deliveryDetailsSection = new String[9][10];
 			deliveryDetailsSection[0][0] = addTagToContent(
-					"Delivery number: " + getProcessedValue(deliveryList.getDeliveryOrder()),
+					getI18nVal(orderDetailsModel.getDeliveryNumber()) + COLON_SPACE + getProcessedValue(deliveryList.getDeliveryOrder()),
 					new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.MERGE_ROW_TAG, ExcelUtil.LIGHT_GREY_BG_TAG });
-			deliveryDetailsSection[1][0] = addTagToContent("Shipping: " + getProcessedValue(deliveryList.getCarrier()),
+			deliveryDetailsSection[1][0] = addTagToContent(
+					getI18nVal(orderDetailsModel.getShippingLabel())+ COLON_SPACE + getProcessedValue(deliveryList.getCarrier()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
 			deliveryDetailsSection[2][0] = addTagToContent(
-					"Track Order: " + getProcessedValue(deliveryList.getCarrierTrackingID()),
+					getI18nVal(orderDetailsModel.getTrackOrderLabel()) + COLON_SPACE + getProcessedValue(deliveryList.getCarrierTrackingID()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
-			deliveryDetailsSection[3][0] = addTagToContent("Delivery Address", new String[] { ExcelUtil.BOLD_TAG });
+			deliveryDetailsSection[3][0] = addTagToContent(getI18nVal(orderDetailsModel.getDeliveryAddrLabel()),
+					new String[] { ExcelUtil.BOLD_TAG });
 			deliveryDetailsSection[4][0] = getDeliveryAddress(deliveryList.getDeliveryAddress());
 			deliveryDetailsSection[5][0] = addTagToContent(StringUtils.EMPTY,
 					new String[] { ExcelUtil.REGULAR_STYLE_TAG });
-			deliveryDetailsSection[6][0] = addTagToContent("Invoice Address", new String[] { ExcelUtil.BOLD_TAG });
+			deliveryDetailsSection[6][0] = addTagToContent(getI18nVal(orderDetailsModel.getInvoiceAddrLabel()),
+					new String[] { ExcelUtil.BOLD_TAG });
 			deliveryDetailsSection[7][0] = getInvoiceAddress(deliveryList.getInvoiceAddress());
 			deliveryDetailsSection[8][0] = addTagToContent(StringUtils.EMPTY,
 					new String[] { ExcelUtil.REGULAR_STYLE_TAG });
 		} else {
 			deliveryDetailsSection = new String[11][10];
 			deliveryDetailsSection[0][0] = addTagToContent(
-					"Delivery number: " + getProcessedValue(deliveryList.getDeliveryOrder()) + "-Status",
+					getI18nVal(orderDetailsModel.getDeliveryNumber()) + COLON_SPACE + getProcessedValue(deliveryList.getDeliveryOrder())
+							+ "-" + getI18nVal(orderDetailsModel.getOrderStatus()),
 					new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.MERGE_ROW_TAG, ExcelUtil.LIGHT_GREY_BG_TAG });
 			deliveryDetailsSection[1][0] = addTagToContent(
-					"Delivery Order: " + getProcessedValue(deliveryList.getDeliveryOrder()),
+					getI18nVal(orderDetailsModel.getDeliveryOrder()) + COLON_SPACE + getProcessedValue(deliveryList.getDeliveryOrder()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
 			deliveryDetailsSection[2][0] = addTagToContent(
-					"Production Place: " + getProcessedValue(deliveryList.getProductPlace()),
+					getI18nVal(orderDetailsModel.getProductionPlace()) + COLON_SPACE + getProcessedValue(deliveryList.getProductPlace()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
 			deliveryDetailsSection[3][0] = addTagToContent(
-					"Requested: " + getProcessedValue(deliveryList.getDeliveryOrder()),
+					getI18nVal(orderDetailsModel.getRequested()) + COLON_SPACE + getProcessedValue(deliveryList.getDeliveryOrder()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
-			deliveryDetailsSection[4][0] = addTagToContent("ETD: " + getProcessedValue(deliveryList.getDeliveryOrder()),
+			deliveryDetailsSection[4][0] = addTagToContent(
+					getI18nVal(orderDetailsModel.getEtd()) + COLON_SPACE + getProcessedValue(deliveryList.getDeliveryOrder()),
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
-			deliveryDetailsSection[5][0] = addTagToContent("Delivery Address", new String[] { ExcelUtil.BOLD_TAG });
+			deliveryDetailsSection[5][0] = addTagToContent(getI18nVal(orderDetailsModel.getDeliveryAddrLabel()),
+					new String[] { ExcelUtil.BOLD_TAG });
 			deliveryDetailsSection[6][0] = getDeliveryAddress(deliveryList.getDeliveryAddress());
 			deliveryDetailsSection[7][0] = addTagToContent(StringUtils.EMPTY,
 					new String[] { ExcelUtil.REGULAR_STYLE_TAG });
-			deliveryDetailsSection[8][0] = addTagToContent("Invoice Address", new String[] { ExcelUtil.BOLD_TAG });
+			deliveryDetailsSection[8][0] = addTagToContent(getI18nVal(orderDetailsModel.getInvoiceAddrLabel()),
+					new String[] { ExcelUtil.BOLD_TAG });
 			deliveryDetailsSection[9][0] = getInvoiceAddress(deliveryList.getInvoiceAddress());
 			deliveryDetailsSection[10][0] = addTagToContent(StringUtils.EMPTY,
 					new String[] { ExcelUtil.REGULAR_STYLE_TAG });
@@ -234,8 +262,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * @return
 	 */
 	private String getInvoiceAddress(InvoiceAddress invoiceAddress) {
-		return getProcessedValue(invoiceAddress.getName()) + " " + invoiceAddress.getName2() + "\n"
-				+ getProcessedValue(invoiceAddress.getCity()) + "\n" + invoiceAddress.getState() + " , "
+		return getProcessedValue(invoiceAddress.getName()) + " " + invoiceAddress.getName2()
+				+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(invoiceAddress.getCity())
+				+ ExcelUtil.NEW_LINE_DETECTOR + invoiceAddress.getState() + " , "
 				+ getProcessedValue(invoiceAddress.getPostalcode()) + "  "
 				+ getProcessedValue((invoiceAddress.getCountry()));
 	}
@@ -319,16 +348,16 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				productDetails[counter][9] = addTagToContent(getProcessedValue(product.getPrice()),
 						new String[] { ExcelUtil.ALIGN_CENTER_TAG });
 				if (!orderType.equalsIgnoreCase(PACKMAT_ORDER_TYPE)) {
-					productDetails[counter + 1][8] = addTagToContent("Total Weight",
+					productDetails[counter + 1][8] = addTagToContent(getI18nVal(orderDetailsModel.getTotalWeightLabel()),
 							new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG });
 					productDetails[counter + 1][9] = addTagToContent(getProcessedValue(deliveryList.getTotalWeight()),
 							new String[] { ExcelUtil.ALIGN_CENTER_TAG });
-					productDetails[counter + 2][8] = addTagToContent("Total Pre VAT",
+					productDetails[counter + 2][8] = addTagToContent(getI18nVal(orderDetailsModel.getTotalPricePreVatLabel()),
 							new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG });
 					productDetails[counter + 2][9] = addTagToContent(
 							getProcessedValue(deliveryList.getTotalPricePreVAT()),
 							new String[] { ExcelUtil.ALIGN_CENTER_TAG });
-					productDetails[counter + 3][8] = addTagToContent("VAT",
+					productDetails[counter + 3][8] = addTagToContent(getI18nVal(orderDetailsModel.getTotalVatLabel()),
 							new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG });
 					productDetails[counter + 3][9] = addTagToContent(getProcessedValue(deliveryList.getTotalVAT()),
 							new String[] { ExcelUtil.ALIGN_CENTER_TAG });
