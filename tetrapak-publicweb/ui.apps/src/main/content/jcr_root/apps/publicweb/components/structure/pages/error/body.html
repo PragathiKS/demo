@@ -1,0 +1,24 @@
+<div class="pw-error-page ${wcmmode.edit ? 'wcmmode-edit': ''}"
+     style="background-image: url('${properties.imagePath @ context='styleString'}')">
+  <div class="tp-container">
+    <div class="pw-error-page__logo">
+      <sly data-sly-resource="${'logo' @ resourceType='publicweb/components/content/logo'}"/>
+    </div>
+    <div class="pw-error-page__text-content">
+      <sly data-sly-test="${properties.textContrastLayer}"
+           data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html"
+           data-sly-call="${contrastLayer.contrastLayer_template @ variant='flat'}"/>
+      <div data-sly-test="${properties.errorTitle}" class="pw-error-page__title">
+        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h1_template @ headingText=properties.errorTitle, variant='hero'}"/>
+      </div>
+      <div data-sly-test="${properties.errorSubtitle}" class="pw-error-page__subtitle">
+        <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${subheading.heading_h4_template @ headingText=properties.errorSubtitle, variant='small'}"/>
+      </div>
+      <div data-sly-test="${properties.errorDescription}" class="pw-error-page__description">
+        <p>${properties.errorDescription @ context='html'}</p>
+      </div>
+    </div>
+  </div>
+</div>

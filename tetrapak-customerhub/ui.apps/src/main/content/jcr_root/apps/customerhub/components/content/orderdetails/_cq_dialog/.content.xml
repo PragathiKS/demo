@@ -180,8 +180,8 @@
                             <deliveryNumber
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter Delivery Number Label&#xa;Used on Package order details page."
-                                fieldLabel="Delivery Number Label"
+                                fieldDescription="Enter Delivery Number&#xa;Used on Package order details page."
+                                fieldLabel="Delivery Number"
                                 name="./deliveryNumber"
                                 required="true"/>
                             <productionPlace

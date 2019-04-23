@@ -1,5 +1,4 @@
 // Molecules scss imports goes here
-@import '~tpCommon/templates/molecules/imageAndText/imageAndText';
 @import '~tpCommon/templates/molecules/nestedListItem/nestedListItem';
 @import '~tpCommon/templates-hbs/molecules/table/table';
 @import '~tpCommon/templates-hbs/molecules/modals/modalHeader/modalHeader';
@@ -7,3 +6,7 @@
 @import '~tpCommon/templates-hbs/molecules/toast/toast';
 @import '../../../../templates-hbs/molecules/contactList/contactList';
 @import '../../../../templates-hbs/molecules/accordianTitle/accordianTitle';
+@import '../../../../templates/molecules/imageAndText/imageAndText';
+@import '../../../../templates-hbs/molecules/orderDetail/orderdeliverysummary/orderdeliverysummary';
+@import '../../../../templates-hbs/molecules/orderDetail/deliveryDetail/deliveryDetail';
+@import '../../../../templates-hbs/molecules/supportCentre/supportCentre';

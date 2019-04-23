@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
@@ -13,11 +13,6 @@ import java.util.List;
 public class TableBuilder {
 
     private Table table = new Table();
-
-    public TableBuilder setHeight(float height) {
-        table.setHeight(height);
-        return this;
-    }
 
     public TableBuilder setNumberOfRows(Integer numberOfRows) {
         table.setNumberOfRows(numberOfRows);
@@ -54,13 +49,13 @@ public class TableBuilder {
         return this;
     }
 
-    public TableBuilder setLandscape(boolean landscape) {
-        table.setLandscape(landscape);
+    public TableBuilder setTextFont(PDFont textFont) {
+        table.setTextFont(textFont);
         return this;
     }
 
-    public TableBuilder setTextFont(PDFont textFont) {
-        table.setTextFont(textFont);
+    public TableBuilder setTextFontBold(PDFont textFontBold) {
+        table.setTextFontBold(textFontBold);
         return this;
     }
 

@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.pdf;
+package com.tetrapak.customerhub.core.beans.pdf;
 
 /**
  * This is column class and is used to create columns inside a table object
@@ -10,7 +10,9 @@ public class Column {
     private String name;
     private float width;
 
-    /**Public constructor for this class
+    /**
+     * Public constructor for this class
+     *
      * @param name  string name
      * @param width float width
      */
@@ -34,4 +36,5 @@ public class Column {
     public void setWidth(float width) {
         this.width = width;
     }
+
 }

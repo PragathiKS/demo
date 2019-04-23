@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { GET_SUBCATEGORIES, GET_CAROUSEL_ITEM } from '../../../scripts/utils/constants';
+import { GET_CAROUSEL_ITEM } from '../../../scripts/utils/constants';
 
 class CarouselWithFilters {
   constructor({ el }) {
@@ -11,6 +11,8 @@ class CarouselWithFilters {
   initCache() {
     let parentId = this.root.attr('id');
     this.cache.$catFilterItem = $('.pw-carousel__filters .js-filter-category .dropdown-item', '#'+parentId);
+    this.cache.$subcatFilterItem = $('.pw-carousel__filters .js-filter-subcategory .dropdown-item', '#'+parentId);
+    this.cache.categoriesMap = this.root.data('categories');
   }
   renderPractice (parentId, catId) {
     let productType = $('#'+parentId).data('prodtype');
@@ -29,47 +31,21 @@ class CarouselWithFilters {
       },
       target: '#'+parentId+' .js-carouselfiltered-item',
       beforeRender(data) {
-        if (data.length) {
+        if (data && data.length) {
           this.data = data[0];
           this.data.variant = btnVariant;
         }
       }
     });
   }
-  bindSubcategories(parentId) {
-    $('.js-filter-subcategory .dropdown-item', '#'+parentId).click( e => {
-      e.preventDefault();
-      let parent = e.target.closest('.pw-carousel');
-      let pId = $(parent).attr('id');
-      let catId = $(e.target).data('category');
-      let catLabel = e.target.innerText;
-      $('.subcategory__toggle', '#'+parentId).text(catLabel);
-      $('.js-filter-subcategory .active', '#'+parentId).removeClass('active');
-      $(e.target).addClass('active');
-      this.renderPractice(pId, catId);
-    });
-  }
   renderSubcategories (parentId, catId) {
-    render.fn({
-      template: 'dropdownItems',
-      url: GET_SUBCATEGORIES,
-      ajaxConfig: {
-        method: 'GET',
-        dataType: 'text',
-        data: {
-          categoryTag: catId
-        }
-      },
-      target: '#'+parentId+' .pw-carousel__filters .js-filter-subcategory'
-    },
-    () => {
-      // Callback function executed post rendering
-      let catLabel = $('.pw-carousel__filters .js-filter-subcategory .active', '#'+parentId).text();
-      $('.subcategory__toggle', '#'+parentId).text(catLabel);
-      let subcatId = $('.pw-carousel__filters .js-filter-subcategory .active', '#'+parentId).attr('data-category');
-      this.renderPractice(parentId, subcatId);
-      this.bindSubcategories(parentId);
-    });
+    $('.dropdown-category-wrapper', '#'+parentId).removeClass('show');
+    $('.dropdown-category-wrapper .dropdown-item', '#'+parentId).removeClass('active');
+    $('.dropdown-category-wrapper[data-category="'+catId+'"]', '#'+parentId).addClass('show');
+    let $selectedSubcat = $('.dropdown-category-wrapper[data-category="'+catId+'"] .dropdown-item:first', '#'+parentId);
+    $selectedSubcat.addClass('active');
+    $('.subcategory__toggle', '#'+parentId).text($selectedSubcat.text());
+    this.renderPractice(parentId, $selectedSubcat.data('category'));
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -83,6 +59,18 @@ class CarouselWithFilters {
       $('.js-filter-category .active', '#'+parentId).removeClass('active');
       $(e.target).addClass('active');
       this.renderSubcategories(parentId, catId);
+    });
+
+    this.cache.$subcatFilterItem.click( e => {
+      e.preventDefault();
+      let parent = e.target.closest('.pw-carousel');
+      let parentId = $(parent).attr('id');
+      let catId = $(e.target).data('category');
+      let catLabel = e.target.innerText;
+      $('.subcategory__toggle', '#'+parentId).text(catLabel);
+      $('.js-filter-subcategory .active', '#'+parentId).removeClass('active');
+      $(e.target).addClass('active');
+      this.renderPractice(parentId, catId);
     });
   }
   initFilters() {

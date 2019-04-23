@@ -9,10 +9,12 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
 
@@ -24,6 +26,9 @@ import com.google.gson.Gson;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class OrderDetailsModel {
+
+	@Self
+	private Resource resource;
 
 	@Inject
 	private String backToOrderHistory;
@@ -120,14 +125,22 @@ public class OrderDetailsModel {
 
 	@Inject
 	private String partsDeliveryTableCols;
-	
+
 	@Inject
 	private String kpkPopUpCloseBtnText;
-	
+
 	@Inject
 	private String deliveryProductsFilterCheckboxText;
 
+	@Inject
+	private String customerReferenceLabel;
+
+	@Inject
+	private String orderStatus;
+
 	private String i18nKeys;
+
+	private String downloadPdfExcelServletUrl;
 
 	/**
 	 * Populating the i18n keys to a JSON object string getting values from the
@@ -142,6 +155,7 @@ public class OrderDetailsModel {
 		i18KeyMap.put("purchaseOrderNumberLabel", getPurchaseOrderNumberLabel());
 		i18KeyMap.put("orderDateLabel", getOrderDateLabel());
 		i18KeyMap.put("customerNumberLabel", getCustomerNumberLabel());
+		i18KeyMap.put("customerReferenceLabel", getCustomerReferenceLabel());
 		i18KeyMap.put("webRefLabel", getWebRefLabel());
 		i18KeyMap.put("custSupCentreLabel", getCustSupCentreLabel());
 		i18KeyMap.put("createExcelLabel", getCreateExcelLabel());
@@ -168,26 +182,8 @@ public class OrderDetailsModel {
 		i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
 		i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
 		i18nKeys = new Gson().toJson(i18KeyMap);
-		partsDeliveryTableCols = new Gson().toJson(getColumnNamesList(partsDeliveryTableCols));
-		packagingProductsTableCols = new Gson().toJson(getColumnNamesList(packagingProductsTableCols));
-		packagingDeliveryTableCols = new Gson().toJson(getColumnNamesList(packagingDeliveryTableCols));
-	}
-
-	/**
-	 * 
-	 * Get the list of the columns from comma separated list in sequence
-	 * 
-	 * @param columnList
-	 * @return
-	 */
-	private List<String> getColumnNamesList(String columnList) {
-		List<String> columnNameList = new ArrayList<>();
-		if (!StringUtils.isBlank(columnList)) {
-			String[] columnArray = columnList.split(",");
-			columnArray = StringUtils.stripAll(columnArray);
-			columnNameList = Arrays.asList(columnArray);
-		}
-		return columnNameList;
+		downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}?"
+				+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}";
 	}
 
 	/**
@@ -420,6 +416,7 @@ public class OrderDetailsModel {
 	public String getPartsDeliveryTableCols() {
 		return partsDeliveryTableCols;
 	}
+
 	/**
 	 * @return the kpkPopUpCloseBtnText
 	 */
@@ -433,4 +430,26 @@ public class OrderDetailsModel {
 	public String getDeliveryProductsFilterCheckboxText() {
 		return deliveryProductsFilterCheckboxText;
 	}
+
+	/**
+	 * @return the downloadOrderDetailsServletUrl
+	 */
+	public String getDownloadPdfExcelServletUrl() {
+		return downloadPdfExcelServletUrl;
+	}
+
+	/**
+	 * @return the customerReferenceLabel
+	 */
+	public String getCustomerReferenceLabel() {
+		return customerReferenceLabel;
+	}
+
+	/**
+	 * @return the orderStatus
+	 */
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
 }

@@ -10,7 +10,33 @@ import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+
+function _trackAnalytics(type) {
+  const $this = this;
+  const analyticsData = {};
+  switch (type) {
+    case 'reset': {
+      analyticsData.resetsearch = true;
+      trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
+      break;
+    }
+    case 'search': {
+      const { $filterForm } = $this.cache;
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text();
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
+      analyticsData.searchstatement = `${status}|dates choosen|${docType}|${docNumber}`;
+      trackAnalytics(analyticsData, 'financial', 'SearchStatement');
+      break;
+    }
+    default: {
+      analyticsData.findcustomer = this.cache.data.selectedCustomerData.desc;
+      trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+    }
+  }
+}
 
 /**
  * Processes financial data
@@ -67,6 +93,7 @@ function _setSelectedCustomer(key) {
     }
   });
   _renderAddressDetail.apply(this);
+  this.resetFilters();
 }
 
 /**
@@ -169,8 +196,7 @@ function _setDateFilter(status, selectedDate) {
  * @param {object} query Query object
  */
 function _syncFields(query) {
-  const { $filterForm, $findCustomer } = this.cache;
-  $findCustomer.val(query.customerkey).trigger('change');
+  const { $filterForm } = this.cache;
   $filterForm.find('.js-financial-statement__status').val(query.status).trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query.search);
@@ -214,6 +240,14 @@ function _setRoute(isInit = false) {
       queryString: this.getFilterQuery()
     }, isInit);
   }
+}
+
+function _getDefaultQueryString() {
+  const { defaultQueryString, $findCustomer } = this.cache;
+  const queryObject = deparam(defaultQueryString);
+  // Retain current customer address selection
+  queryObject.customerkey = $findCustomer.val();
+  return $.param(queryObject);
 }
 
 class FinancialStatement {
@@ -300,6 +334,7 @@ class FinancialStatement {
     return _renderFilters.apply(this, arguments);
   }
   bindEvents() {
+    const $this = this;
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
@@ -307,8 +342,9 @@ class FinancialStatement {
       }
     });
     this.root
-      .on('change', '.js-financial-statement__find-customer', (e) => {
-        this.setSelectedCustomer(e.target.value);
+      .on('change', '.js-financial-statement__find-customer', function () {
+        $this.setSelectedCustomer($(this).val());
+        $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
@@ -324,6 +360,7 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__submit', this.populateResults)
       .on('click', '.js-financial-statement__reset', () => {
         this.resetFilters();
+        this.trackAnalytics('reset');
       });
   }
   openDateSelector() {
@@ -336,6 +373,7 @@ class FinancialStatement {
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
+    this.trackAnalytics('search');
     this.setRoute();
   }
   getFilterQuery() {
@@ -348,8 +386,8 @@ class FinancialStatement {
     return _syncFields.apply(this, arguments);
   }
   resetFilters() {
-    const { $status, defaultQueryString } = this.cache;
-    logger.log(defaultQueryString);
+    const { $status } = this.cache;
+    const defaultQueryString = _getDefaultQueryString.apply(this);
     $status.find('option').each(function () {
       $(this).removeData();
     });
@@ -359,6 +397,8 @@ class FinancialStatement {
       queryString: defaultQueryString
     });
   }
+  trackAnalytics = (type) => _trackAnalytics.call(this, type);
+
   init() {
     this.initCache();
     this.bindEvents();

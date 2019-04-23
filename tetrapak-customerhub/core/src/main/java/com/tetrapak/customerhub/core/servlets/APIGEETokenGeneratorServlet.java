@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -25,13 +25,12 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.Servlet;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Base64;
 
 /**
  * API GEE Token Generator Servlet
+ *
  * @author Nitin Kumar
  */
 @Component(service = Servlet.class,
@@ -76,25 +75,14 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             response.setStatus(statusCode);
             LOGGER.debug("Http Post request status code: {}", statusCode);
 
-            InputStream is = httpResponse.getEntity().getContent();
-
-            InputStreamReader isr = new InputStreamReader(is);
-            int numCharsRead;
-            char[] charArray = new char[1024];
-            StringBuilder sb = new StringBuilder();
-            while ((numCharsRead = isr.read(charArray)) > 0) {
-                sb.append(charArray, 0, numCharsRead);
-            }
-            String result = sb.toString();
-
-            jsonResponse.addProperty("result", result);
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
-            GlobalUtil.writeJsonResponse(response, jsonResponse);
+            HttpUtil.writeJsonResponse(response, jsonResponse);
         } catch (FileNotFoundException e) {
             LOGGER.error("Unable to connect to the url {}", apiURL, e);
             response.setStatus(statusCode);
             jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_FAILURE);
-            GlobalUtil.writeJsonResponse(response, jsonResponse);
+            HttpUtil.writeJsonResponse(response, jsonResponse);
         }
     }
 }

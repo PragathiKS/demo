@@ -1,22 +1,22 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * class for dynamic image model
+ */
 @Model(adaptables = {
         SlingHttpServletRequest.class
 }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -49,13 +49,7 @@ public class DynamicImageModel {
     
     /** The mobile landscape url. */
     private String mobileLandscapeUrl;
-    
-    /** The tablet url. */
-    private String tabletPortraitUrl;
-    
-    /** The tablet landscape url. */
-    private String tabletLandscapeUrl;
-    
+
     /** The default image url. */
     private String defaultImageUrl;
     
@@ -120,8 +114,6 @@ public class DynamicImageModel {
             setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
             setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
             setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
-            setTabletPortraitUrl(createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl));
-            setTabletLandscapeUrl(createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl));
         }
         setDefaultImage();
     }
@@ -284,14 +276,6 @@ public class DynamicImageModel {
         return mobilePortraitUrl;
     }
     
-    public String getTabletLandscapeUrl() {
-        return tabletLandscapeUrl;
-    }
-    
-    public String getTabletPortraitUrl() {
-        return tabletPortraitUrl;
-    }
-    
     /**
      * Sets the default image.
      */
@@ -323,14 +307,6 @@ public class DynamicImageModel {
     
     public void setMobilePortraitUrl(final String mobilePortraitUrl) {
         this.mobilePortraitUrl = mobilePortraitUrl;
-    }
-    
-    public void setTabletLandscapeUrl(final String tabletLandscapeUrl) {
-        this.tabletLandscapeUrl = tabletLandscapeUrl;
-    }
-    
-    public void setTabletPortraitUrl(final String tabletPortraitUrl) {
-        this.tabletPortraitUrl = tabletPortraitUrl;
     }
     
 }
