@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -42,6 +43,27 @@ public class ExcelUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
 	private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
+
+	public static final String MERGE_ROW_TAG = "<mergerow>";
+	public static final String REGULAR_STYLE_TAG = "<regularStyle>";
+	public static final String LIGHT_GREY_BG_TAG = "<lightGreyBG>";
+	public static final String BOLD_TAG = "<bold>";
+	public static final String HALF_BOLD_TAG = "<halfBold>";
+	public static final String DARK_GREY_BG_TAG = "<darkGreyBG>";
+	public static final String ALIGN_CENTER_TAG = "<aligncenter>";
+	public static final String HALF_BOLD_IDENTIFIER = ":";
+	private static final String NEW_LINE_DETECTOR = "\n";
+	private static final String DEFAULT_FONT_NAME = "Microsoft Sans Serif";
+	private static final short DEFAULT_FONT_HEIGHT = (short) 9;
+	private static final String LIGHT_GREY_BG_CELL_STYLE = "lightGreyBackgroudStyle";
+	private static final String REGULAR_CELL_STYLE = "regularStyle";
+	private static final String EMPTY_CELL_STYLE = "emptyCellStyle";
+	private static final String REGULAR_CENTER_CELL_STYLE = "regularCenterStyle";
+	private static final String DARK_GREY_BG_CELL_STYLE = "darkGreyBackgroudStyle";
+	private static final String CONTENT_TYPE = "application/x-ms-excel";
+	private static final String CONTENT_DISPOSITION = "Content-Disposition";
+	private static final String FILE_EXTENSION = ".xlsx";
+	private static final String RESP_HEADER_DATA = "attachment; filename=";
 
 	private ExcelUtil() {
 		// Disallowed to create Object out of class
@@ -114,7 +136,7 @@ public class ExcelUtil {
 			try {
 				XSSFWorkbook workBook = new XSSFWorkbook();
 				Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
-				if (Objects.nonNull(excelReportData.getData())) {
+				if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
 					sheet.setDisplayGridlines(false);
 					prepareReportData(workBook, sheet, excelReportData.getData());
 					setMarginsToSheet(sheet);
@@ -123,8 +145,7 @@ public class ExcelUtil {
 				downloadExcel(response, workBook, excelReportData);
 			} catch (IOException e) {
 				LOGGER.error("\nA run-time exception occured while generating excel report.");
-				throw new ExcelReportRuntimeException(
-						"Something went wrong while generateExcelReport in ExcelUtil class", e);
+				throw new ExcelReportRuntimeException("Something went wrong while generating Excel Report", e);
 			}
 		} else {
 			LOGGER.warn("ExcelReportData is null!!");
@@ -165,30 +186,29 @@ public class ExcelUtil {
 					Cell cell = row.createCell(columnCount++);
 
 					if (StringUtils.isNotBlank(field)) {
-						if (field.contains("\n")) {
-							row.setHeightInPoints(3 * sheet.getDefaultRowHeightInPoints());
-						}
+
+						setRowHeight(row, field, sheet.getDefaultRowHeightInPoints());
+
 						List<String> tags = getTagsFromField(field);
 						XSSFRichTextString richText = applyCustomStyles(field, tags, workBook);
 
-						if (tags.contains("<mergerow>")) {
+						if (tags.contains(MERGE_ROW_TAG)) {
 							sheet.addMergedRegion(new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(),
 									cell.getColumnIndex(), reportData[0].length));
 						}
 
-						if (tags.contains("<lightGreyBG>")) {
-							cell.setCellStyle(cellStyles.get("lightGreyBackgroudStyle"));
-						} else if (tags.contains("<aligncenter>")) {
-							cell.setCellStyle(cellStyles.get("regularCenterStyle"));
-						} else if (tags.contains("<darkGreyBG>")) {
-							cell.setCellStyle(cellStyles.get("darkGreyBackgroudStyle"));
+						if (tags.contains(LIGHT_GREY_BG_TAG)) {
+							cell.setCellStyle(cellStyles.get(LIGHT_GREY_BG_CELL_STYLE));
+						} else if (tags.contains(ALIGN_CENTER_TAG)) {
+							cell.setCellStyle(cellStyles.get(REGULAR_CENTER_CELL_STYLE));
+						} else if (tags.contains(DARK_GREY_BG_TAG)) {
+							cell.setCellStyle(cellStyles.get(DARK_GREY_BG_CELL_STYLE));
 						} else {
-							cell.setCellStyle(cellStyles.get("regularStyle"));
+							cell.setCellStyle(cellStyles.get(REGULAR_CELL_STYLE));
 						}
-
 						cell.setCellValue(richText);
 					} else {
-						cell.setCellStyle(cellStyles.get("emptyCellStyle"));
+						cell.setCellStyle(cellStyles.get(EMPTY_CELL_STYLE));
 					}
 
 				}
@@ -198,13 +218,27 @@ public class ExcelUtil {
 	}
 
 	/**
-	 * get list of CellStyles in form a map
+	 * 
+	 * Setting the row height if the new line is present
+	 * 
+	 * @param row
+	 * @param field
+	 * @param defaultHeight
+	 */
+	private static void setRowHeight(Row row, String field, float defaultHeight) {
+		if (field.contains(NEW_LINE_DETECTOR)) {
+			row.setHeightInPoints(3 * defaultHeight);
+		}
+	}
+
+	/**
+	 * Get list of CellStyles in form a map
 	 * 
 	 * @param workBook
 	 * @return getCellStyleMap
 	 */
 	private static Map<String, CellStyle> getCellStyleMap(Workbook workBook) {
-		Map<String, CellStyle> cellStyles = new HashMap<String, CellStyle>();
+		Map<String, CellStyle> cellStyles = new HashMap<>();
 
 		CellStyle borderStyle = workBook.createCellStyle();
 		borderStyle.setBorderLeft(BorderStyle.THIN);
@@ -212,7 +246,7 @@ public class ExcelUtil {
 		borderStyle.setBorderTop(BorderStyle.THIN);
 		borderStyle.setBorderBottom(BorderStyle.THIN);
 		borderStyle.setWrapText(true);
-		cellStyles.put("regularStyle", borderStyle);
+		cellStyles.put(REGULAR_CELL_STYLE, borderStyle);
 
 		CellStyle emptyCellStyle = workBook.createCellStyle();
 		emptyCellStyle.setBorderLeft(BorderStyle.NONE);
@@ -220,16 +254,16 @@ public class ExcelUtil {
 		emptyCellStyle.setBorderTop(BorderStyle.NONE);
 		emptyCellStyle.setBorderBottom(BorderStyle.NONE);
 		emptyCellStyle.setWrapText(true);
-		cellStyles.put("emptyCellStyle", emptyCellStyle);
+		cellStyles.put(EMPTY_CELL_STYLE, emptyCellStyle);
 
 		CellStyle regularCenterStyle = workBook.createCellStyle();
 		regularCenterStyle.setBorderLeft(BorderStyle.THIN);
 		regularCenterStyle.setBorderRight(BorderStyle.THIN);
 		regularCenterStyle.setBorderTop(BorderStyle.THIN);
 		regularCenterStyle.setBorderBottom(BorderStyle.THIN);
-		regularCenterStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		regularCenterStyle.setAlignment(HorizontalAlignment.CENTER);
 		regularCenterStyle.setWrapText(true);
-		cellStyles.put("regularCenterStyle", regularCenterStyle);
+		cellStyles.put(REGULAR_CENTER_CELL_STYLE, regularCenterStyle);
 
 		CellStyle lightGreyBackgroudStyle = workBook.createCellStyle();
 		lightGreyBackgroudStyle.setBorderLeft(BorderStyle.THIN);
@@ -238,23 +272,20 @@ public class ExcelUtil {
 		lightGreyBackgroudStyle.setBorderBottom(BorderStyle.THIN);
 		lightGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 		lightGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		lightGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		lightGreyBackgroudStyle.setAlignment(HorizontalAlignment.CENTER);
 		lightGreyBackgroudStyle.setWrapText(true);
-		cellStyles.put("lightGreyBackgroudStyle", lightGreyBackgroudStyle);
+		cellStyles.put(LIGHT_GREY_BG_CELL_STYLE, lightGreyBackgroudStyle);
 
 		CellStyle darkGreyBackgroudStyle = workBook.createCellStyle();
-		Font whiteFont = workBook.createFont();
-		whiteFont.setColor(IndexedColors.WHITE.index);
-		darkGreyBackgroudStyle.setFont(whiteFont);
 		darkGreyBackgroudStyle.setBorderLeft(BorderStyle.THIN);
 		darkGreyBackgroudStyle.setBorderRight(BorderStyle.THIN);
 		darkGreyBackgroudStyle.setBorderTop(BorderStyle.THIN);
 		darkGreyBackgroudStyle.setBorderBottom(BorderStyle.THIN);
 		darkGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
 		darkGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		darkGreyBackgroudStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		darkGreyBackgroudStyle.setAlignment(HorizontalAlignment.CENTER);
 		darkGreyBackgroudStyle.setWrapText(true);
-		cellStyles.put("darkGreyBackgroudStyle", darkGreyBackgroudStyle);
+		cellStyles.put(DARK_GREY_BG_CELL_STYLE, darkGreyBackgroudStyle);
 
 		return cellStyles;
 	}
@@ -272,8 +303,8 @@ public class ExcelUtil {
 		workBook.write(out);
 		byte[] docBytes = out.toByteArray();
 		ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
-		response.setContentType("application/x-ms-excel");
-		response.setHeader("Content-Disposition", "attachment; filename=" + excelReportData.getFileName() + ".xlsx");
+		response.setContentType(CONTENT_TYPE);
+		response.setHeader(CONTENT_DISPOSITION, RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION);
 		int read;
 		OutputStream os = response.getOutputStream();
 		while ((read = in.read(docBytes)) != -1) {
@@ -296,35 +327,41 @@ public class ExcelUtil {
 			return string;
 		}
 		Matcher m = REMOVE_TAGS.matcher(string);
-		return m.replaceAll("");
+		return m.replaceAll(StringUtils.EMPTY);
 	}
 
+	/**
+	 * 
+	 * Apply custom font styling to the richtextString based on the list of tags
+	 * 
+	 * @param field    : raw data to be set in the cell
+	 * @param tags     : list of tags based on which the manipulation would be done
+	 * @param workBook : the workbook object to create a customfont
+	 * @return manipulated richTextString from the string data to be put in the cell
+	 */
 	private static XSSFRichTextString applyCustomStyles(String field, List<String> tags, Workbook workBook) {
 		field = stripTags(field);
 		XSSFRichTextString richTextString = new XSSFRichTextString(field);
+		Font customFont = workBook.createFont();
+		customFont.setFontName(DEFAULT_FONT_NAME);
+		customFont.setFontHeightInPoints(DEFAULT_FONT_HEIGHT);
 		if (!tags.isEmpty()) {
-			Font customFont = workBook.createFont();
-			if (field.contains("<whiteFontColor>")) {
-				customFont.setColor(IndexedColors.BLUE.index);
-			}
-
-			if (tags.contains("<bold>")) {
+			if (tags.contains(BOLD_TAG)) {
 				customFont.setBold(true);
 			}
-
-			customFont.setFontHeightInPoints((short) 9);
 			richTextString.applyFont(customFont);
-
-			if (tags.contains("<halfBold>")) {
+			if (tags.contains(HALF_BOLD_TAG)) {
 				customFont.setBold(true);
 				int index = 1;
-				if (field.contains(":")) {
-					index = field.indexOf(":");
+				if (field.contains(HALF_BOLD_IDENTIFIER)) {
+					index = field.indexOf(HALF_BOLD_IDENTIFIER);
 				} else {
 					index = field.length() - 1;
 				}
 				richTextString.applyFont(0, index, customFont);
 			}
+		} else {
+			richTextString.applyFont(customFont);
 		}
 
 		return richTextString;
@@ -339,26 +376,23 @@ public class ExcelUtil {
 	 */
 	private static List<String> getTagsFromField(String field) {
 		List<String> tagList = new ArrayList<>();
-		if (field.contains("<bold>")) {
-			tagList.add("<bold>");
+		if (field.contains(BOLD_TAG)) {
+			tagList.add(BOLD_TAG);
 		}
-		if (field.contains("<whiteFontColor>")) {
-			tagList.add("<whiteFontColor>");
+		if (field.contains(LIGHT_GREY_BG_TAG)) {
+			tagList.add(LIGHT_GREY_BG_TAG);
 		}
-		if (field.contains("<lightGreyBG>")) {
-			tagList.add("<lightGreyBG>");
+		if (field.contains(HALF_BOLD_TAG)) {
+			tagList.add(HALF_BOLD_TAG);
 		}
-		if (field.contains("<halfBold>")) {
-			tagList.add("<halfBold>");
+		if (field.contains(DARK_GREY_BG_TAG)) {
+			tagList.add(DARK_GREY_BG_TAG);
 		}
-		if (field.contains("<darkGreyBG>")) {
-			tagList.add("<darkGreyBG>");
+		if (field.contains(MERGE_ROW_TAG)) {
+			tagList.add(MERGE_ROW_TAG);
 		}
-		if (field.contains("<mergerow>")) {
-			tagList.add("<mergerow>");
-		}
-		if (field.contains("<aligncenter>")) {
-			tagList.add("<aligncenter>");
+		if (field.contains(ALIGN_CENTER_TAG)) {
+			tagList.add(ALIGN_CENTER_TAG);
 		}
 		return tagList;
 	}
