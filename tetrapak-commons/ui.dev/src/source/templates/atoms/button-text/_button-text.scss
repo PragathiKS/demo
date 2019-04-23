@@ -10,7 +10,7 @@
         @include padding(9px $padding-md 8px);
     }
 
-        &__icon {
+    &__icon {
         @include padding-left($padding-xs);
     }
 
@@ -58,7 +58,7 @@
             color: $color-white;
             background-color: $color-congress-blue;
         }
-        
+
         i {
             display: none;
         }
