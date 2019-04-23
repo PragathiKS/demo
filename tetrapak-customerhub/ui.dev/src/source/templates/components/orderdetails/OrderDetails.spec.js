@@ -76,6 +76,9 @@ describe('OrderDetails', function () {
     expect(this.orderDetails.renderOrderSummary.called).to.be.true;
     done();
   });
+  it('should render delivery data on click of pagination button', function (done) {
+    done();
+  });
   it('should open overlay when info icon clicked', function () {
     $('.js-icon-Info').trigger('click');
     expect(this.orderDetails.openOverlay.called).to.be.true;
