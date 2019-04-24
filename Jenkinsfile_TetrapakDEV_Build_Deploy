@@ -2,7 +2,7 @@ pipeline {
     agent any	
 	parameters {
     choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
-	booleanParam defaultValue: true, description: 'Please uncheck to run test', name: 'Skip_Test'
+	booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Test'
                 }
     tools {
         maven 'maven'
