@@ -1,8 +1,5 @@
 pipeline {
 	agent any
-          triggers {
-          cron('30 10,15 * * *')
-                   }
 
 	
 	parameters {
