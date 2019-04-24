@@ -68,7 +68,7 @@ function _processPackmatData(data) {
     });
     data.orderSummaryHeadings = keys.map(key => ({
       key,
-      i18nKey: `cuhu.orderdetail.${key}`
+      i18nKey: `cuhu.orderDetail.orderSummary.${key}`
     }));
   }
 
@@ -87,13 +87,13 @@ function _processPackmatData(data) {
           if (key === 'quantityKPK') {
             return ({
               key,
-              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`,
+              i18nKey: `cuhu.orderDetail.deliveryList.products.${key}`,
               iconClassName: 'icon-Info tp-order-detail__icon-info js-icon-Info'
             });
           } else {
             return ({
               key,
-              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`
+              i18nKey: `cuhu.orderDetail.deliveryList.products.${key}`
             });
           }
         });
