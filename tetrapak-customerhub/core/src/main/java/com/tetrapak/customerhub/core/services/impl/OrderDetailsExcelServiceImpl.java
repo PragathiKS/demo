@@ -348,18 +348,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (null != products) {
 			int rows = products.size();
 			String[] darkGreyStyleTags = new String[] { ExcelUtil.DARK_GREY_BG_TAG };
-			String[] columnArray = null;
-			if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
-				String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
-				if (!StringUtils.isBlank(partsDeliveryColumnString)) {
-					columnArray = partsDeliveryColumnString.split(",");
-				}
-			} else {
-				String packMatDeliveryColStr = orderDetailsModel.getPackagingProductsTableCols();
-				if (!StringUtils.isBlank(packMatDeliveryColStr)) {
-					columnArray = packMatDeliveryColStr.split(",");
-				}
-			}
+			String[] columnArray = getColumnData(orderType, orderDetailsModel);
 
 			if (Objects.nonNull((columnArray))) {
 				int cols = columnArray.length + 1;
@@ -367,12 +356,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				productDetails = new String[rows + 5][cols];
 				productDetails[0][0] = addTagToContent("#", darkGreyStyleTags);
 				for (int col = 1; col < cols; col++) {
-					String prefix = ORDER_DETAIL_I18_PREFIX;
-					if (orderType.equalsIgnoreCase(PACKMAT_ORDER_TYPE)) {
-						prefix += "deliveryList.products.";
-					}
-					productDetails[0][col] = addTagToContent(getI18nVal(prefix + columnArray[col - 1]),
-							darkGreyStyleTags);
+
+					productDetails[0][col] = addTagToContent(
+							getI18nVal(setPrefixBasedOnOrderType(orderType) + columnArray[col - 1]), darkGreyStyleTags);
 				}
 
 				Iterator<Product> productsIterator = products.iterator();
@@ -381,32 +367,80 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				while (productsIterator.hasNext()) {
 					Product product = productsIterator.next();
 					productDetails[counter][0] = addTagToContent(Integer.toString(counter), alignCenterStyleTags);
-					for (int i = 0; i < columnArray.length; i++) {
-						productDetails[counter][i + 1] = addTagToContent(
-								getProcessedValue(getDeliveryTableRowData(product, columnArray[i])),
-								alignCenterStyleTags);
-					}
+					setProdDetails(productDetails, product, counter, columnArray, alignCenterStyleTags);
 					counter++;
 				}
 				if (!orderType.equalsIgnoreCase(PACKMAT_ORDER_TYPE)) {
 					String[] boldCenterStyleTag = new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG };
-					productDetails[counter][cols-2] = addTagToContent(
+					productDetails[counter][cols - 2] = addTagToContent(
 							getI18nVal(orderDetailsModel.getTotalWeightLabel()), boldCenterStyleTag);
-					productDetails[counter][cols-1] = addTagToContent(getProcessedValue(deliveryList.getTotalWeight()),
-							alignCenterStyleTags);
-					productDetails[counter + 1][cols-2] = addTagToContent(
+					productDetails[counter][cols - 1] = addTagToContent(
+							getProcessedValue(deliveryList.getTotalWeight()), alignCenterStyleTags);
+					productDetails[counter + 1][cols - 2] = addTagToContent(
 							getI18nVal(orderDetailsModel.getTotalPricePreVatLabel()), boldCenterStyleTag);
-					productDetails[counter + 1][cols-1] = addTagToContent(
+					productDetails[counter + 1][cols - 1] = addTagToContent(
 							getProcessedValue(deliveryList.getTotalPricePreVAT()), alignCenterStyleTags);
-					productDetails[counter + 2][cols-2] = addTagToContent(getI18nVal(orderDetailsModel.getTotalVatLabel()),
-							boldCenterStyleTag);
-					productDetails[counter + 2][cols-1] = addTagToContent(getProcessedValue(deliveryList.getTotalVAT()),
-							alignCenterStyleTags);
+					productDetails[counter + 2][cols - 2] = addTagToContent(
+							getI18nVal(orderDetailsModel.getTotalVatLabel()), boldCenterStyleTag);
+					productDetails[counter + 2][cols - 1] = addTagToContent(
+							getProcessedValue(deliveryList.getTotalVAT()), alignCenterStyleTags);
 				}
 				applyRegularStyleToLastFourRows(counter, rows, productDetails);
 			}
 		}
 		return productDetails;
+	}
+
+	/**
+	 * @param orderType
+	 * @return
+	 */
+	private String setPrefixBasedOnOrderType(String orderType) {
+		String prefix = ORDER_DETAIL_I18_PREFIX;
+		if (orderType.equalsIgnoreCase(PACKMAT_ORDER_TYPE)) {
+			prefix = "deliveryList.products.";
+		}
+		return prefix;
+	}
+
+	/**
+	 * @param productDetails
+	 * @param product
+	 * @param row
+	 * @param columnArray
+	 * @param alignCenterStyleTags
+	 */
+	private void setProdDetails(String[][] productDetails, Product product, int row, String[] columnArray,
+			String[] alignCenterStyleTags) {
+		for (int i = 0; i < columnArray.length; i++) {
+			productDetails[row][i + 1] = addTagToContent(
+					getProcessedValue(getDeliveryTableRowData(product, columnArray[i])), alignCenterStyleTags);
+		}
+	}
+
+	/**
+	 * 
+	 * Get the authored column data as a string array based on the ordertype
+	 * 
+	 * @param orderType         parts or packMat
+	 * @param orderDetailsModel to get the authored column names comma separated
+	 *                          list
+	 * @return delivery table column data
+	 */
+	private String[] getColumnData(String orderType, OrderDetailsModel orderDetailsModel) {
+		String[] columnArray = null;
+		if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
+			String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
+			if (!StringUtils.isBlank(partsDeliveryColumnString)) {
+				columnArray = partsDeliveryColumnString.split(",");
+			}
+		} else {
+			String packMatDeliveryColStr = orderDetailsModel.getPackagingProductsTableCols();
+			if (!StringUtils.isBlank(packMatDeliveryColStr)) {
+				columnArray = packMatDeliveryColStr.split(",");
+			}
+		}
+		return columnArray;
 	}
 
 	/**
