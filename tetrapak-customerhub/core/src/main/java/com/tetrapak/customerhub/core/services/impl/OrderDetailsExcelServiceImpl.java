@@ -45,6 +45,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private static final String COLON_SPACE = ": ";
 	private SlingHttpServletRequest request = null;
 	private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
+	private static final String S_NO = "serialNo";
+	private static final String DOUBLE_COMMA = ",,";
+	private static final String SINGLE_COMMA = ",";
 
 	/**
 	 * to generate the excel
@@ -385,7 +388,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 					productDetails[counter + 2][cols - 1] = addTagToContent(
 							getProcessedValue(deliveryList.getTotalVAT()), alignCenterStyleTags);
 				}
-				applyRegularStyleToLastFourRows(counter, rows, productDetails);
+				applyRegularStyleToLastFourRows(counter, rows, cols, productDetails);
 			}
 		}
 		return productDetails;
@@ -432,15 +435,34 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
 			String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
 			if (!StringUtils.isBlank(partsDeliveryColumnString)) {
+				partsDeliveryColumnString = handleSNoInString(partsDeliveryColumnString);
 				columnArray = partsDeliveryColumnString.split(",");
 			}
 		} else {
-			String packMatDeliveryColStr = orderDetailsModel.getPackagingProductsTableCols();
+			String packMatDeliveryColStr = orderDetailsModel.getPackagingDeliveryTableCols();
 			if (!StringUtils.isBlank(packMatDeliveryColStr)) {
 				columnArray = packMatDeliveryColStr.split(",");
 			}
 		}
 		return columnArray;
+	}
+
+	/**
+	 * @param partsDeliveryColumnString without serialnumber
+	 */
+	private String handleSNoInString(String data) {
+		if (data.contains(S_NO)) {
+			data = data.replace(S_NO, StringUtils.EMPTY);
+			data = data.trim();
+			if (data.contains(DOUBLE_COMMA)) {
+				data = data.replace(DOUBLE_COMMA, SINGLE_COMMA);
+			} else if (data.startsWith(SINGLE_COMMA)) {
+				data = data.replaceFirst(SINGLE_COMMA, StringUtils.EMPTY);
+			} else if (data.endsWith(SINGLE_COMMA)) {
+				data = data.substring(0, data.length() - 1);
+			}
+		}
+		return data;
 	}
 
 	/**
@@ -472,11 +494,12 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	/**
 	 * @param counter
 	 * @param rows
+	 * @param cols
 	 * @param productDetails
 	 */
-	private void applyRegularStyleToLastFourRows(int counter, int rows, String[][] productDetails) {
+	private void applyRegularStyleToLastFourRows(int counter, int rows, int cols, String[][] productDetails) {
 		while (counter < (rows + 5)) {
-			for (int col = 0; col < 10; col++) {
+			for (int col = 0; col < cols; col++) {
 				if (StringUtils.isBlank(productDetails[counter][col])) {
 					productDetails[counter][col] = ExcelUtil.REGULAR_STYLE_TAG;
 				}
