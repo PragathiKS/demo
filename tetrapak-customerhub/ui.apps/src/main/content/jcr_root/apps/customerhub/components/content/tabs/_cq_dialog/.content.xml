@@ -41,7 +41,8 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                             fieldDescription="Select Page URL"
                                             fieldLabel="Page URL"
-                                            name="./pageUrl"/>
+                                            name="./pageUrl"
+                                            rootPath="/content/tetrapak/customerhub"/>
                                         <label
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

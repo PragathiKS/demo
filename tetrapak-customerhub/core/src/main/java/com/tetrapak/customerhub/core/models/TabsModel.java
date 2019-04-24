@@ -47,4 +47,12 @@ public class TabsModel {
             }
         }
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public List<TabBean> getTabsList() {
+        return tabsList;
+    }
 }
