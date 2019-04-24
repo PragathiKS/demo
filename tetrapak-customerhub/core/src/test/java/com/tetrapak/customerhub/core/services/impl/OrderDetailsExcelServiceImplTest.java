@@ -56,7 +56,7 @@ public class OrderDetailsExcelServiceImplTest {
 		Mockito.when(orderDetailsModel.getDeliveryAddrLabel()).thenReturn("DeliveryAddrLabel");
 		Mockito.when(orderDetailsModel.getInvoiceAddrLabel()).thenReturn("InvoiceAddrLabel");
 		Mockito.when(orderDetailsModel.getOrderStatus()).thenReturn("OrderStatus");
-		Mockito.when(orderDetailsModel.getTotalWeightLabel()).thenReturn("TotalWeightLabel");
+		//Mockito.when(orderDetailsModel.getTotalWeightLabel()).thenReturn("TotalWeightLabel");
 	}
 
 	@Test
