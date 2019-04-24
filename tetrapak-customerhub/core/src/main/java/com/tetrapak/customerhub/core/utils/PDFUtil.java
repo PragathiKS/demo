@@ -133,8 +133,6 @@ public final class PDFUtil {
             ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
 
             response.setContentType("application/pdf");
-
-            //use 'inline' to open pdf in browser, use 'attachment' to download pdf into the system
             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
 
             int read;

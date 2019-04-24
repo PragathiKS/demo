@@ -57,9 +57,11 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     private static final int MARGIN = 65;
     private OrderDetailsModel orderDetailsModel;
     private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
+    private static final String ORDER_DETAIL_SUMMARY_PREFIX = "cuhu.orderDetail.orderSummary.";
+    private static final String ORDER_DETAIL_DELIVERY_PREFIX = "cuhu.orderDetail.deliveryList.products.";
     private String[] partsDeliveryColumn;
     private String[] packMatDeliveryColumn;
-    private String[] packMatColumn;
+    private String[] packMatColumns;
 
     /**
      * @param request             request
@@ -68,8 +70,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
      * @param orderDetailResponse order detail response
      */
     @Override
-    public void generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-                                        String orderType, OrderDetailsData orderDetailResponse) {
+    public boolean generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+                                           String orderType, OrderDetailsData orderDetailResponse) {
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
 
@@ -82,7 +84,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         packMatDeliveryColumn = packMatDeliveryColumnString.split(",");
 
         String packMatColumnString = orderDetailsModel.getPackagingProductsTableCols();
-        packMatColumn = packMatColumnString.split(",");
+        packMatColumns = packMatColumnString.split(",");
 
 
         InputStream in1 = null;
@@ -129,14 +131,16 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
                 PDFUtil.drawTable(contentStream, createOrderSummaryTable(request, orderSummaryList), 550);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, 535, Color.DARK_GRAY, 0.1f);
-                PDFUtil.drawDashedLine(contentStream, MARGIN, 460, 535 - (15 * orderSummaryList.size()), Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, 535 - (15 * orderSummaryList.size()), Color.LIGHT_GRAY, 0.1f);
 
                 contentStream = printPackMatDeliveryDetails(request, document, contentStream, orderDetailResponse.getDeliveryList());
             }
             contentStream.close();
-            PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
+            PDFUtil.writeOutput(response, document, "Tetra Pak Order "+orderDetails.getOrderNumber());
+            return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
+            return false;
         } finally {
             try {
                 if (null != contentStream) {
@@ -185,7 +189,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawTable(contentStream, createProductTable(request, deliveryDetail.getProducts()), height - 110);
 
             PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
-            PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.1f);
+            PDFUtil.drawLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.1f);
         }
         return contentStream;
     }
@@ -214,7 +218,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawTable(contentStream, createPackMatProductTable(request, deliveryDetail.getProducts()), height - 110);
 
-            PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - nextTableHeight + 40, Color.LIGHT_GRAY, 0.1f);
+            PDFUtil.drawLine(contentStream, MARGIN, 460, height - nextTableHeight + 40, Color.LIGHT_GRAY, 0.1f);
         }
         return contentStream;
     }
@@ -386,15 +390,15 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         for (String packMatColumn : packMatDeliveryColumn) {
             int width = 120;
             columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                    PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, packMatColumn), width));
+                    PDFUtil.getI18nValue(request, ORDER_DETAIL_DELIVERY_PREFIX, packMatColumn), width));
         }
 
         String[][] content = new String[products.size()][packMatDeliveryColumn.length];
 
         for (int i = 0; i < products.size(); i++) {
             int j = 0;
-            for (String packMatColumn : packMatDeliveryColumn) {
-                content[i][j] = getProductValueForTheHeader(products.get(i), packMatColumn);
+            for (String packmatcolumn : packMatDeliveryColumn) {
+                content[i][j] = getProductValueForTheHeader(products.get(i), packmatcolumn);
                 j++;
             }
         }
@@ -439,20 +443,20 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createOrderSummaryTable(SlingHttpServletRequest request, List<OrderSummary> orderSummaryList) {
         List<Column> columns = new ArrayList<>();
-        for (String packMatColumnName : packMatColumn) {
+        for (String packMatColumnName : packMatColumns) {
             int width = 70;
             if (StringUtils.equalsIgnoreCase(packMatColumnName, "product")) {
                 width = 325;
             }
             columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                    PDFUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, packMatColumnName), width));
+                    PDFUtil.getI18nValue(request, ORDER_DETAIL_SUMMARY_PREFIX, packMatColumnName), width));
         }
 
-        String[][] content = new String[orderSummaryList.size()][packMatColumn.length];
+        String[][] content = new String[orderSummaryList.size()][packMatColumns.length];
 
         for (int i = 0; i < orderSummaryList.size(); i++) {
             int j = 0;
-            for (String packMatColumnName : packMatColumn) {
+            for (String packMatColumnName : packMatColumns) {
                 content[i][j] = getOrderSummaryValueForTheHeader(orderSummaryList.get(i), packMatColumnName);
                 j++;
             }
