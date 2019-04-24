@@ -241,6 +241,58 @@ function _setRoute(isInit = false) {
     }, isInit);
   }
 }
+function _downloadPdfExcel(...args) {
+  const [type] = args;
+  const $this = this;
+  const paramsData = {};
+  const { $filterForm, $dateRange, data } = $this.cache;
+  const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
+  const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
+  const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
+  const docTypeKey = $filterForm.find('.js-financial-statement__document-type option:selected').val();
+  const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
+  const dateRangeArray = $dateRange.val().split(' - ');
+  paramsData.startDate = dateRangeArray[0];
+
+  if (dateRangeArray.length > 1) {
+    paramsData.endDate = dateRangeArray[1];
+  }
+  paramsData.customerData = data.selectedCustomerData;
+  paramsData.status = {
+    'key': statusKey,
+    'desc': statusDesc
+  };
+  paramsData.documentType = {
+    'key': docTypeKey,
+    'desc': docTypeDesc
+  };
+  paramsData.documentNumber = docNumber;
+  auth.getToken(({ data: authData }) => {
+    const requestBody = {};
+    requestBody.params = JSON.stringify(paramsData);
+    requestBody.token = authData.access_token;
+    const url = resolveQuery($this.cache.servletUrl, { extnType: type });
+    let form = $('<form/>', {
+      action: url,
+      method: 'POST'
+    });
+    form.append(
+      $('<input/>', {
+        type: 'text',
+        name: 'params',
+        val: requestBody.params
+      }));
+    form.append(
+      $('<input/>', {
+        type: 'text',
+        name: 'token',
+        val: requestBody.token
+      }));
+    $body.append(form);
+    form.submit();
+    form.remove();
+  });
+}
 
 function _getDefaultQueryString() {
   const { defaultQueryString, $findCustomer } = this.cache;
@@ -364,60 +416,14 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
-    $body.on('downloadFinancialPdfExcel', (e, type) => {
-      logger.log(e);
-      this.downloadPdfExcel(type);
-    });
+    this.root.parents('.js-financials').on('downloadFinancialPdfExcel', this, this.downloadPdfExcel);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
   }
-  downloadPdfExcel(type) {
-    const $this = this;
-    const paramsData = {};
-    const { $filterForm } = $this.cache;
-    const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
-    const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
-    const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
-    const docTypeKey = $filterForm.find('.js-financial-statement__document-type option:selected').val();
-    const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-
-    paramsData.customerData = $this.cache.data.selectedCustomerData;
-    paramsData.startDate = '2019-02-01';
-    paramsData.endDate = '2019-02-01';
-    paramsData.status = {
-      'key': statusKey,
-      'desc': statusDesc
-    };
-    paramsData.documentType = {
-      'key': docTypeKey,
-      'desc': docTypeDesc
-    };
-    paramsData.documentNumber = docNumber;
-    auth.getToken(({ data: authData }) => {
-      const requestBody = {};
-      requestBody.params = JSON.stringify(paramsData);
-      requestBody.token = authData.access_token;
-      const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-      let form = $('<form/>', {
-        action: url,
-        method: 'POST'
-      });
-      form = form.append(
-        $('<input/>', {
-          type: 'text',
-          name: 'params',
-          val: requestBody.params
-        }));
-      form = form.append(
-        $('<input/>', {
-          type: 'text',
-          name: 'token',
-          val: requestBody.token
-        }));
-      $body.append(form);
-      form.submit();
-    });
+  downloadPdfExcel(...args) {
+    const [e] = args;
+    _downloadPdfExcel.apply(e.data, args);
   }
   setDateFilter() {
     return _setDateFilter.apply(this, arguments);

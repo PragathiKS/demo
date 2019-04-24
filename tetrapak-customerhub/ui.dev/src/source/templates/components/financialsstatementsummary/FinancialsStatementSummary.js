@@ -7,7 +7,6 @@ import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
  * Fire analytics on Invoice Download
@@ -95,7 +94,6 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        //path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
         data: filterParams
       },
       beforeRender(data) {
@@ -176,7 +174,7 @@ class FinancialsStatementSummary {
     $this.trackAnalytics(this);
   }
   downloadPdfExcel(type) {
-    $body.trigger('downloadFinancialPdfExcel', [type]);
+    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);
   }
 
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
