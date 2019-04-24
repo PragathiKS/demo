@@ -254,6 +254,16 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 
  always {
     build 'Tetra-Dev-Dispatcher-Flush'
+   build (
+job: 'Tetra-Cucumber-CHROME',
+parameters: [
+    [
+      $class: 'StringParameterValue',
+      name: 'ENV',
+      value: "DEV",
+    ]
+   ],
+)
     }
 
 }
