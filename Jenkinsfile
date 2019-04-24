@@ -231,13 +231,14 @@ post {
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',      
-      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com'
+
+to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com, sumrin.kaur@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com'
 
+to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com, sumrin.kaur@publicissapient.com'
       }
 
  always {
