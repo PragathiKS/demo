@@ -272,7 +272,7 @@ function _downloadPdfExcel(...args) {
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
     const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-    let form = $('<form/>', {
+    let form = $('<form class="d-noen"/>', {
       action: url,
       method: 'POST'
     });
