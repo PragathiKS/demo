@@ -4,7 +4,7 @@ import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
-import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common'; //eslint-disable-line
+import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 /**
@@ -70,9 +70,8 @@ function _processPartsData(data, deliveryNo, pageIndex) {
       delete delivery.deliveryOrder;
       delete delivery.ETD;
 
-      if (delivery.totalProductsForQuery > ORDER_DETAILS_ROWS_PER_PAGE) {
-        delivery.totalPages = Math.ceil(delivery.totalProductsForQuery / ORDER_DETAILS_ROWS_PER_PAGE);
-      }
+      delivery.totalPages = delivery.totalProductsForQuery > ORDER_DETAILS_ROWS_PER_PAGE ?
+        Math.ceil(delivery.totalProductsForQuery / ORDER_DETAILS_ROWS_PER_PAGE) : false;
 
       delivery.products = delivery.products.map((product, index) => {
         if (pageIndex) {
@@ -105,8 +104,7 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetail',
       url: {
-        //path: `${apiHost}/${$this.cache.apiUrl}`,
-        path: '/apps/settings/wcm/designs/customerhub/jsonData/orderDetailsParts.json',
+        path: `${apiHost}/${$this.cache.apiUrl}`,
         data: {
           'order-number': $this.cache.orderNumber
         }
@@ -168,19 +166,18 @@ function _renderOrderSummary() {
  */
 function _renderPaginateData() {
   const $this = this;
-  const [paginationData, data] = arguments[0];
+  const [paginationData, data] = arguments;
   const { pageNumber, pageIndex } = paginationData;
   const { deliveryNo, target } = data;
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'deliveryDetail',
       url: {
-        //path: `${apiHost}/${$this.cache.apiUrl}`,
-        path: '/apps/settings/wcm/designs/customerhub/jsonData/orderDetailsParts.json',
+        path: `${apiHost}/${$this.cache.apiUrl}`,
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,
-          'skip': pageIndex * 10
+          'skip': pageIndex * ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target,
@@ -211,9 +208,12 @@ function _renderPaginateData() {
           data.isPackmat = orderType === 'packmat';
           data.servletUrl = downloadPdfExcelServletUrl;
           data.orderType = orderType;
-          data.paginateData = true;
-
-          return $this.processTableData(data, deliveryNo, pageIndex);
+          $this.processTableData(data, deliveryNo, pageIndex);
+          this.data = $.extend({}, data.deliveryList[0], {
+            parent: data
+          });
+          delete data.deliveryList;
+          logger.log(this.data);
         }
       }
     }, (data) => {
@@ -293,7 +293,7 @@ class OrderDetails {
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
-  renderPaginateData = (...args) => _renderPaginateData.call(this, args);
+  renderPaginateData = (...args) => _renderPaginateData.apply(this, args);
   processTableData() {
     if (this.cache.orderType === 'packmat') {
       return _processPackmatData.apply(this, arguments);

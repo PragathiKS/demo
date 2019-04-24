@@ -77,6 +77,14 @@ describe('OrderDetails', function () {
     done();
   });
   it('should render delivery data on click of pagination button', function (done) {
+    this.orderDetails.cache.orderType = 'parts';
+    this.orderDetails.renderOrderSummary();
+    $('.js-pagination-multiple:first').trigger("orderdetail.pagenav", [{
+      pageNumber: 1,
+      pageIndex: 0
+    }]);
+    expect(this.orderDetails.renderPaginateData.called).to.be.true;
+    console.log($(document.body).html());
     done();
   });
   it('should open overlay when info icon clicked', function () {

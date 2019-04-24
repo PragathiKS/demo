@@ -58,7 +58,11 @@
             {{/if}}
         </div>
     {{else}}
-        {{> molecules/orderDetail/deliveryDetail/deliveryDetail this }}
+        {{#each deliveryList}}
+            <div class="tp-card js-delivery-{{this.deliveryNumber}}">
+                {{> molecules/orderDetail/deliveryDetail/deliveryDetail this parent=../this }}
+            </div>
+        {{/each}}
         {{> components/infoModal baseClass="tp-order-detail-packaging" jsClass="js-order-detail" }}
     {{/if}}
 {{/if}}
