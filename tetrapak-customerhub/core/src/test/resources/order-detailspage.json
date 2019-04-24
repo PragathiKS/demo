@@ -33,7 +33,7 @@
                "totalVatLabel": "TotalVAT",
                "packagingProductsTableCols": "orderno,m,n,v",
                "webReferenceLink": "#",
-               "totalPricePreVatLabel": "Total Price Pre-VAT",
+               "totalPricePreVatLabel": "totalPricePreVatLabel",
                "custSupCentreLabel": "CustomerSupportCentre",
                "deliveryOrder": "DeliveryOrder",
                "jcr:created": "Wed Apr 10 2019 15:27:26 GMT+0530",

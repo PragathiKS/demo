@@ -1,9 +1,11 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -167,6 +169,17 @@ public class GlobalUtil {
             customerhubConfigPage = contentPage.getAbsoluteParent(DEPTH);
         }
         return customerhubConfigPage;
+    }
+    
+    /**
+     * @param request
+     * @param prefix
+     * @param key
+     * @return
+     */
+    public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key){
+        I18n i18n = new I18n(request);
+        return i18n.get(prefix+key);
     }
 
 }
