@@ -44,6 +44,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private static final String PACKMAT_ORDER_TYPE = "packmat";
 	private static final String COLON_SPACE = ": ";
 	private SlingHttpServletRequest request = null;
+	private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
 
 	/**
 	 * to generate the excel
@@ -151,45 +152,43 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			data[0][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
 
 			for (int col = 1; col <= colList.length; col++) {
-				data[0][col] = addTagToContent(colList[col - 1], boldCenterStyleTags);
+				data[0][col] = addTagToContent(getI18nVal(ORDER_DETAIL_I18_PREFIX +"orderSummary."+ colList[col - 1]),
+						boldCenterStyleTags);
 			}
 
 			int counter = 1;
 			Iterator<OrderSummary> itr = orderSummary.iterator();
 			while (itr.hasNext()) {
 				OrderSummary summaryRow = itr.next();
-
-				data[counter][1] = getProcessedValue(summaryRow.getProduct());
-				data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
-				data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
+				for (int i = 0; i < colList.length; i++) {
+					data[counter][i + 1] = getProcessedValue(getSummaryTableHeader(summaryRow, colList[i]));
+				}
 				counter++;
 			}
-			while (itr.hasNext()) {
-				OrderSummary summaryRow = itr.next();
-				data[counter][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
-				
-				data[counter][1] = getProcessedValue(summaryRow.getProduct());
-				data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
-				data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
-				counter++;
-			}
-
-			data[3][0] = addTagToContent("Only show above items in the deliverables : YES/NO (from api)",
+			data[counter][0] = addTagToContent(
+					"Only show above items in the deliverables : YES/NO (from api)",
 					new String[] { ExcelUtil.HALF_BOLD_TAG });
-			data[4][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
+			data[counter + 1][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
 		}
 		return data;
 	}
 
+	/**
+	 * Get column data from the summary table data
+	 * 
+	 * @param summaryRow
+	 * @param columnName
+	 * @return
+	 */
 	private String getSummaryTableHeader(OrderSummary summaryRow, String columnName) {
 		Map<String, String> map = new HashMap<>();
-		map.put("productName", summaryRow.getProduct());
+		map.put("product", summaryRow.getProduct());
 		map.put("orderQuantity", summaryRow.getOrderQuantity());
 		map.put("deliveredQuantity", summaryRow.getDeliveredQuantity());
 		if (map.containsKey(columnName)) {
 			return map.get(columnName);
 		}
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	/**
