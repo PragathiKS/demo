@@ -24,6 +24,7 @@ describe('OrderDetails', function () {
     $(document.body).empty().html(orderDetailTemplate());
     this.initSpy = sinon.spy(this.orderDetails, "init");
     this.renderOrderSummarySpy = sinon.spy(this.orderDetails, "renderOrderSummary");
+    this.renderPaginateDataSpy = sinon.spy(this.orderDetails, "renderPaginateData");
     this.processTableDataSpy = sinon.spy(this.orderDetails, "processTableData");
     this.openOverlaySpy = sinon.spy(this.orderDetails, 'openOverlay');
     this.downloadSpy = sinon.spy(this.orderDetails, 'downloadContent');
@@ -44,6 +45,7 @@ describe('OrderDetails', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderOrderSummarySpy.restore();
+    this.renderPaginateDataSpy.restore();
     this.processTableDataSpy.restore();
     this.openOverlaySpy.restore();
     this.downloadSpy.restore();
@@ -72,6 +74,16 @@ describe('OrderDetails', function () {
   });
   it('should render order detail summary section', function (done) {
     expect(this.orderDetails.renderOrderSummary.called).to.be.true;
+    done();
+  });
+  it('should render delivery data on click of pagination button', function (done) {
+    this.orderDetails.cache.orderType = 'parts';
+    this.orderDetails.renderOrderSummary();
+    $('.js-pagination-multiple:first').trigger("orderdetail.pagenav", [{
+      pageNumber: 1,
+      pageIndex: 0
+    }]);
+    expect(this.orderDetails.renderPaginateData.called).to.be.true;
     done();
   });
   it('should open overlay when info icon clicked', function () {

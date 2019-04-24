@@ -34,6 +34,7 @@
         "postalcode": "11122",
         "country": "Sweden"
       },
+      "totalProductsForQuery": "13",
       "products": [
         {
           "productName": "string",
@@ -72,7 +73,7 @@
     },
     {
       "deliveryOrder": "2",
-      "deliveryNumber": "01234",
+      "deliveryNumber": "05678",
       "deliveryAddress": {
         "name": "Swedish Milk AB",
         "name2": "Extra AB",
@@ -89,6 +90,7 @@
         "postalcode": "11122",
         "country": "Sweden"
       },
+      "totalProductsForQuery": "21",
       "products": [
         {
           "productName": "string",
