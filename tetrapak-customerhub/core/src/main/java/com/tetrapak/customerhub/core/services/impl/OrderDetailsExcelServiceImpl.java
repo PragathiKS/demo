@@ -398,7 +398,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String setPrefixBasedOnOrderType(String orderType) {
 		String prefix = ORDER_DETAIL_I18_PREFIX;
 		if (orderType.equalsIgnoreCase(PACKMAT_ORDER_TYPE)) {
-			prefix = "deliveryList.products.";
+			prefix += "deliveryList.products.";
 		}
 		return prefix;
 	}
@@ -453,8 +453,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String getDeliveryTableRowData(Product product, String columnName) {
 		Map<String, String> map = new HashMap<>();
 		map.put("productName", product.getProductName());
-		map.put("orderQuantity", product.getProductID());
-		map.put("deliveredQuantity", product.getOrderQuantity());
+		map.put("productID", product.getProductID());
 		map.put("weight", product.getWeight());
 		map.put("deliveredQuantity", product.getDeliveredQuantity());
 		map.put("remainingQuantity", product.getRemainingQuantity());
