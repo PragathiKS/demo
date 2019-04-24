@@ -255,7 +255,7 @@ public class ExcelUtil {
 	 */
 	private static void setRowHeight(Row row, String field, double defaultHeight) {
 		if (!StringUtils.isBlank(field) && field.contains(NEW_LINE_DETECTOR)) {
-			row.setHeightInPoints(3 * (float) defaultHeight);
+			row.setHeightInPoints((float) (3 * defaultHeight));
 		}
 	}
 
@@ -348,15 +348,13 @@ public class ExcelUtil {
 					os.flush();
 					os.close();
 				} catch (IOException e) {
-					LOGGER.error("IOException occured while flushing/closing the stream.");
-					throw new ExcelReportRuntimeException("IOException occured while flushing/closing the stream.", e);
+					LOGGER.error("IOException occured while closing the stream.", e);
 				}
 			}
 			try {
 				closeWorkbook(workBook);
 			} catch (IOException e) {
-				LOGGER.error("IOException occured while closing the workbook.");
-				throw new ExcelReportRuntimeException("IOException occured while closing the workbook.", e);
+				LOGGER.error("IOException occured while closing the workbook.", e);
 			}
 		}
 	}

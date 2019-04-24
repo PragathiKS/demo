@@ -45,6 +45,10 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private static final String COLON_SPACE = ": ";
 	private SlingHttpServletRequest request = null;
 
+	/**
+	 * to generate the excel
+	 *
+	 */
 	@Override
 	public boolean generateOrderDetailsExcel(SlingHttpServletRequest servletRequest, SlingHttpServletResponse response,
 			String orderType, OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel) {
@@ -163,6 +167,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			while (itr.hasNext()) {
 				OrderSummary summaryRow = itr.next();
 				data[counter][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
+				
 				data[counter][1] = getProcessedValue(summaryRow.getProduct());
 				data[counter][2] = getProcessedValue(summaryRow.getOrderQuantity());
 				data[counter][3] = getProcessedValue(summaryRow.getDeliveredQuantity());
