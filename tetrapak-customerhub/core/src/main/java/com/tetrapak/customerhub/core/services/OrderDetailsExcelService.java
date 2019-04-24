@@ -15,14 +15,15 @@ import org.apache.sling.api.SlingHttpServletResponse;
 public interface OrderDetailsExcelService {
 	/**
 	 * Method to generate the excel file for the order details page.
-	 * @param request 
-	 *
-	 * @param response          Response
-	 * @param orderType         Order Type
-	 * @param orderDetailData   order details data
-	 * @param orderDetailsModel order details model
+	 * 
+	 * @param request
+	 * @param response
+	 * @param orderType
+	 * @param orderDetailData
+	 * @param orderDetailsModel
+	 * @return true if successful generation otherwise false
 	 */
-	void generateOrderDetailsExcel(SlingHttpServletRequest request, SlingHttpServletResponse response, String orderType,
-			OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel);
+	boolean generateOrderDetailsExcel(SlingHttpServletRequest request, SlingHttpServletResponse response,
+			String orderType, OrderDetailsData orderDetailData, OrderDetailsModel orderDetailsModel);
 
 }

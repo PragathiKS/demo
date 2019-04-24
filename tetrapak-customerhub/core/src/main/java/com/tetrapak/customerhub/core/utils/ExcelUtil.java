@@ -36,7 +36,8 @@ import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 
 /**
  * 
- * This utility is used to generate and download an excel file based on the 2D String array provided as a parameter
+ * This utility is used to generate and download an excel file based on the 2D
+ * String array provided as a parameter
  * 
  * @author dhitiwar
  * @author swalamba
@@ -135,25 +136,27 @@ public class ExcelUtil {
 	 * @param response        Response
 	 * @param excelReportData Excel Bean Data
 	 */
-	public static void generateExcelReport(SlingHttpServletResponse response, ExcelFileData excelReportData) {
+	public static boolean generateExcelReport(SlingHttpServletResponse response, ExcelFileData excelReportData) {
+
 		if (Objects.nonNull(excelReportData)) {
+			XSSFWorkbook workBook = new XSSFWorkbook();
+			Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
+			if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
+				sheet.setDisplayGridlines(false);
+				prepareReportData(workBook, sheet, excelReportData.getData());
+				setMarginsToSheet(sheet);
+				resizeCellToFitContent(sheet);
+			}
 			try {
-				XSSFWorkbook workBook = new XSSFWorkbook();
-				Sheet sheet = getExcelSheet(workBook, excelReportData.getExcelSheetName());
-				if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
-					sheet.setDisplayGridlines(false);
-					prepareReportData(workBook, sheet, excelReportData.getData());
-					setMarginsToSheet(sheet);
-					resizeCellToFitContent(sheet);
-				}
 				downloadExcel(response, workBook, excelReportData);
-			} catch (IOException e) {
-				LOGGER.error("\nA run-time exception occured while generating excel report.");
-				throw new ExcelReportRuntimeException("Something went wrong while generating Excel Report", e);
+				return true;
+			} catch (ExcelReportRuntimeException e) {
+				LOGGER.error("ExcelReportRuntimeException", e);
 			}
 		} else {
 			LOGGER.warn("ExcelReportData is null!!");
 		}
+		return false;
 
 	}
 
@@ -252,7 +255,7 @@ public class ExcelUtil {
 	 */
 	private static void setRowHeight(Row row, String field, double defaultHeight) {
 		if (!StringUtils.isBlank(field) && field.contains(NEW_LINE_DETECTOR)) {
-			row.setHeightInPoints(3 * (float)defaultHeight);
+			row.setHeightInPoints(3 * (float) defaultHeight);
 		}
 	}
 
@@ -322,23 +325,40 @@ public class ExcelUtil {
 	 * 
 	 */
 	private static void downloadExcel(SlingHttpServletResponse response, Workbook workBook,
-			ExcelFileData excelReportData) throws IOException {
-
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		workBook.write(out);
-		byte[] docBytes = out.toByteArray();
-		ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
-		response.setContentType(CONTENT_TYPE);
-		response.setHeader(CONTENT_DISPOSITION, RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION);
-		int read;
-		OutputStream os = response.getOutputStream();
-		while ((read = in.read(docBytes)) != -1) {
-			os.write(docBytes, 0, read);
+			ExcelFileData excelReportData) throws ExcelReportRuntimeException {
+		OutputStream os = null;
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			workBook.write(out);
+			byte[] docBytes = out.toByteArray();
+			ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
+			response.setContentType(CONTENT_TYPE);
+			response.setHeader(CONTENT_DISPOSITION, RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION);
+			int read;
+			os = response.getOutputStream();
+			while ((read = in.read(docBytes)) != -1) {
+				os.write(docBytes, 0, read);
+			}
+		} catch (IOException e) {
+			LOGGER.error("\nA run-time exception occured while generating excel report.");
+			throw new ExcelReportRuntimeException("Something went wrong while generating Excel Report", e);
+		} finally {
+			if (Objects.nonNull(os)) {
+				try {
+					os.flush();
+					os.close();
+				} catch (IOException e) {
+					LOGGER.error("IOException occured while flushing/closing the stream.");
+					throw new ExcelReportRuntimeException("IOException occured while flushing/closing the stream.", e);
+				}
+			}
+			try {
+				closeWorkbook(workBook);
+			} catch (IOException e) {
+				LOGGER.error("IOException occured while closing the workbook.");
+				throw new ExcelReportRuntimeException("IOException occured while closing the workbook.", e);
+			}
 		}
-		os.flush();
-		os.close();
-		closeWorkbook(workBook);
-
 	}
 
 	/**
