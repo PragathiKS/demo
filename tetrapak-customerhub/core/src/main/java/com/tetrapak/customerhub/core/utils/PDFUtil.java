@@ -252,8 +252,4 @@ public final class PDFUtil {
                 .setFontSize(FONT_SIZE)
                 .build();
     }
-    public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key){
-        I18n i18n = new I18n(request);
-        return i18n.get(prefix+key);
-    }
 }
