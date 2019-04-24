@@ -212,29 +212,6 @@ public final class PDFUtil {
                                 int margin, int length, int height, Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.setLineWidth(thickness);
-        contentStream.setLineDashPattern(new float[]{0, 0}, 0);
-        contentStream.moveTo(margin, height);
-        double finalMargin = (double) margin + (double) length;
-        contentStream.lineTo((float) finalMargin, (float) height);
-        contentStream.stroke();
-    }
-
-    /**
-     * Method to draw a line
-     *
-     * @param contentStream content stream
-     * @param margin        margin
-     * @param length        length
-     * @param height        height
-     * @param color         color
-     * @param thickness     thickness
-     * @throws IOException IO Exception
-     */
-    public static void drawDashedLine(PDPageContentStream contentStream,
-                                      int margin, int length, int height, Color color, float thickness) throws IOException {
-        contentStream.setStrokingColor(color);
-        contentStream.setLineWidth(thickness);
-        contentStream.setLineDashPattern(new float[]{2, 1}, 0);
         contentStream.moveTo(margin, height);
         double finalMargin = (double) margin + (double) length;
         contentStream.lineTo((float) finalMargin, (float) height);
