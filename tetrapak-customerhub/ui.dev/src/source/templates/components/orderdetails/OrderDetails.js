@@ -213,7 +213,6 @@ function _renderPaginateData() {
             parent: data
           });
           delete data.deliveryList;
-          logger.log(this.data);
         }
       }
     }, (data) => {

@@ -84,7 +84,6 @@ describe('OrderDetails', function () {
       pageIndex: 0
     }]);
     expect(this.orderDetails.renderPaginateData.called).to.be.true;
-    console.log($(document.body).html());
     done();
   });
   it('should open overlay when info icon clicked', function () {
