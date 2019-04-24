@@ -82,6 +82,21 @@ public class OrderDetailsDownloadFileServletTest {
 	}
 
 	@Test
+	public void doGetForPdfPackMat() {
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setSelectorString("packmat");
+		requestPathInfo.setExtension("pdf");
+		requestPathInfo.setSuffix("orderNumber=1234&token=9KK12diCgjVCmJF8MzeAt1IauZOq");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		OrderDetailsDownloadFileServlet orderDetailsDownloadFileServlet = aemContext
+				.getService(OrderDetailsDownloadFileServlet.class);
+		aemContext.registerInjectActivateService(orderDetailsDownloadFileServlet);
+		orderDetailsDownloadFileServlet.doGet(request, response);
+		assertEquals(HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
 	public void doGetForExcelParts() {
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setSelectorString("parts");

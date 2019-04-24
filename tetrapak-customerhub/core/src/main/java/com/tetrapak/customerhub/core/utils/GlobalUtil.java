@@ -170,12 +170,12 @@ public class GlobalUtil {
         }
         return customerhubConfigPage;
     }
-    
+
     /**
-     * @param request
-     * @param prefix
-     * @param key
-     * @return
+     * @param request request
+     * @param prefix prefix
+     * @param key key
+     * @return value
      */
     public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key){
         I18n i18n = new I18n(request);
