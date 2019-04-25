@@ -27,6 +27,7 @@ describe('FinancialsStatementSummary', function () {
     this.renderTableSpy = sinon.spy(this.financialsStatementSummary, "renderTable");
     this.processTableData = sinon.spy(this.financialsStatementSummary, "processTableData");
     this.downloadInvoice = sinon.spy(this.financialsStatementSummary, "downloadInvoice");
+    this.downloadPdfExcel = sinon.spy(this.financialsStatementSummary, "downloadPdfExcel");
     this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -60,6 +61,7 @@ describe('FinancialsStatementSummary', function () {
     this.renderTableSpy.restore();
     this.processTableData.restore();
     this.downloadInvoice.restore();
+    this.downloadPdfExcel.restore();
     this.analyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
@@ -91,6 +93,11 @@ describe('FinancialsStatementSummary', function () {
   it('should fire analytics on invoice download', function (done) {
     $('.js-financials-summary__documents__row').trigger('click');
     expect(this.financialsStatementSummary.trackAnalytics.called).to.be.true;
+    done();
+  });
+  it('downloadPdfExcel should be called on download excel btn click', function (done) {
+    $('.js-financials-summary__create-pdf').trigger('click');
+    expect(this.financialsStatementSummary.downloadPdfExcel.called).to.be.true;
     done();
   });
 });

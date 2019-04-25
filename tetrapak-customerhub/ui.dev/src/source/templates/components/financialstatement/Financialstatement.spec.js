@@ -19,7 +19,7 @@ describe('FinancialStatement', function () {
   }
   before(function () {
     $(document.body).empty().html(financialStatementTemplate());
-    this.financialstatement = new FinancialStatement({ el: document.body });
+    this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
@@ -28,6 +28,8 @@ describe('FinancialStatement', function () {
     this.calendarSpy = sinon.spy(this.financialstatement, 'submitDateRange');
     this.navigateSpy = sinon.spy(this.financialstatement, 'navigateCalendar');
     this.searchSpy = sinon.spy(this.financialstatement, 'populateResults');
+    this.downloadPdfExcelSpy = sinon.spy(this.financialstatement, 'downloadPdfExcel');
+    this.submitStub = sinon.stub($.fn, 'submit');
     this.resetSpy = sinon.spy(this.financialstatement, 'resetFilters');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -49,12 +51,14 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
+    this.downloadPdfExcelSpy.restore();
     this.navigateSpy.restore();
     this.searchSpy.restore();
     this.resetSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
+    this.submitStub.restore();
   });
 
   it('should initialize', function (done) {
@@ -108,5 +112,10 @@ describe('FinancialStatement', function () {
   it('should reset filters "Reset Search" button click', function () {
     $('.js-financial-statement__reset').trigger('click');
     expect(this.resetSpy.called).to.be.true;
+  });
+
+  it('should call downloadPdfExcel', function () {
+    $('.js-financials').trigger('downloadFinancialPdfExcel', ['excel']);
+    expect(this.downloadPdfExcelSpy.called).to.be.true;
   });
 });

@@ -1,17 +1,17 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.Gson;
 
 /**
  * Model class for financial statement component

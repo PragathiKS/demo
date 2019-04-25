@@ -18,7 +18,7 @@
                 {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.shippingLabel value=this.carrier}}
             {{/if}}
             {{#if this.carrierTrackingID}}
-                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.trackOrderLabel value=this.carrierTrackingID link=true linkUrl="https://www.tetrapak.com/" linkTarget="_blank" }}  {{!-- TODO : Need to replace hardcoded link later --}}
+                {{> molecules/orderDetail/addressLabel/addressLabel  label=this.i18nKeys.trackOrderLabel value=this.carrierTrackingID link=true linkUrl="https://www.tetrapak.com/" linkJsClass="js-order-delivery-summary-track-order" data-delivery-number=this.deliveryNumber}}  {{!-- TODO : Need to replace hardcoded link later --}}
             {{/if}}
         </div>
         <div class="col-lg offset-lg-4">

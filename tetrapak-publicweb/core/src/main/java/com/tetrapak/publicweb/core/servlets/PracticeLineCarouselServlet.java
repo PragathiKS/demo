@@ -92,14 +92,16 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 		log.info("Root Path : {}", rootPath);
 		
 		Gson gson = new Gson();
-		String responseJSON = "not-set";
+		String responseJSON = "";
 		
 		// search for resources
-		List<BestPracticeLineBean> resources = bestPracticeLineService.getListOfPracticeLines(resourceResolver, productType, subCategoryVal, rootPath);		
-		if(resources != null) {
-			responseJSON = gson.toJson(resources);
-			log.info("Here is the JSON object : {}",  responseJSON);
-		}
+		if(productType != null && subCategoryVal != null) { 
+			List<BestPracticeLineBean> resources = bestPracticeLineService.getListOfPracticeLines(resourceResolver, productType, subCategoryVal, rootPath);		
+			if(resources != null) {
+				responseJSON = gson.toJson(resources);
+				log.info("Here is the JSON object : {}",  responseJSON);
+			}
+		}		
 		
 		// set the response type
 		response.setContentType("application/json");		

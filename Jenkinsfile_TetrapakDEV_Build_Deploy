@@ -2,7 +2,7 @@ pipeline {
     agent any	
 	parameters {
     choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
-	booleanParam defaultValue: true, description: 'Please uncheck to run test', name: 'Skip_Test'
+	booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Test'
                 }
     tools {
         maven 'maven'
@@ -33,8 +33,8 @@ pipeline {
 				sh "rm -rf /var/lib/jenkins/workspace/Tetrapak/tetrapak-commons/ui.dev/src/node_modules/"
 			    sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
 			    sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
-				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -PautoInstallMinify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -PautoInstallMinify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 				sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 				sh "cp $workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 				 
