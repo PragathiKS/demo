@@ -7,18 +7,19 @@ import com.tetrapak.customerhub.core.beans.financials.results.RequestParams;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 
 /**
- * Tetra Pak Order Detail Service
+ * Tetra Pak Financials Results Service
  *
  * @author Ruhee Sharma
  */
 @FunctionalInterface
 public interface FinancialsResultsPDFService {
 
-    /** Method to generate order details pdf
-     * @param response response
-     * @param orderType order type
-     * @param orderDetailResponse order detail response
+    /** Method to generate financials results pdf
+     * @param response SlingHttpServletResponse
+     * @param resultsResponse Results 
+     * @param paramRequest RequestParams
+     * @return 
      */
-    void generateFinancialsResultsPDF(SlingHttpServletResponse response,
+    boolean generateFinancialsResultsPDF(SlingHttpServletResponse response,
                                   Results resultsResponse,RequestParams paramRequest);
 }

@@ -3,16 +3,18 @@ package com.tetrapak.customerhub.core.services;
 import com.google.gson.JsonObject;
 
 /**
- * Tetra Pak Order Detail Service
+ * Tetra Pak Financials Reults Service
  * @author Ruhee Sharma
  */
 @FunctionalInterface
 public interface FinancialsResultsApiService {
 
-    /** Method to get order details from TETRA PAK API
-     * @param orderNumber order number
+    /** Method to get Financials Results from TETRA PAK API
+     * @param status status
+     * @param documentType documenttype
+     * @param invoiceDateFrom invoicedatefrom
+     * @param customerkey customerkey
      * @param token token
-     * @param orderType order type
      * @return json object
      */
     JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,String customerkey, String token);

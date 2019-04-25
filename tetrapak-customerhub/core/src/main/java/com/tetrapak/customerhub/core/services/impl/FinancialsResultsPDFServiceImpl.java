@@ -45,9 +45,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Impl class for Order Details PDF Service
+ * Impl class for Financials Results PDF Service
  *
- * @author Nitin Kumar
  */
 @Component(immediate = true, service = FinancialsResultsPDFService.class)
 public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFService {
@@ -58,20 +57,20 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     private PDFont muliBold;
     final int MARGIN = 20;
 
-   
+    /**
+     * @param response         SlingHttpServletResponse
+     * @param resultsResponse  Results
+     * @param paramRequest     RequestParams
+     */ 
     @Override
-    public void generateFinancialsResultsPDF(SlingHttpServletResponse response, Results resultsResponse,
-            RequestParams paramRequest) {
-     
-     List<Summary> summary = resultsResponse.getSummary();
+    public boolean generateFinancialsResultsPDF(SlingHttpServletResponse response, Results resultsResponse,
+            RequestParams paramRequest) {     
      List<Document> documents = resultsResponse.getDocuments();
      
-     String accountNo = paramRequest.getParams().getCustomerData().getInfo().getAcountNo();
-     
+     String accountNo = paramRequest.getParams().getCustomerData().getInfo().getAcountNo();     
      InputStream in1 = null;
      InputStream in2 = null;
      InputStream image1 = null;
-     InputStream image2 = null;
      PDPageContentStream contentStream = null;
      PDDocument document = new PDDocument();
     
@@ -106,12 +105,28 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             
             contentStream.close();
             PDFUtil.writeOutput(response, document,accountNo);
-
+            return true;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOGGER.error("IOException {}", e);
+            return false;
+        } finally {
+            try {
+                if (null != contentStream) {
+                    contentStream.close();
+                }
+                if (null != in1) {
+                    in1.close();
+                }
+                if (null != in2) {
+                    in2.close();
+                }
+                if (null != image1) {
+                    image1.close();
+                }
+            } catch (IOException e) {
+                LOGGER.error("IOException {}", e);
+            }
         }
-     
     }
     
     private List<Row> getDocumentName() {
@@ -260,14 +275,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     private int getNextTableHeight(List<Record> documentDetail) {
         return documentDetail.size() * 10 + 30;
     }
-    
-    private List<Row> getDeliveryDetailHeader(String deliveryNumber) {
-        List<Row> rows = new ArrayList<>();
-        rows.add(new Row("Documents " + deliveryNumber, 20, muliRegular, 11));
-        rows.add(new Row("", 30, muliRegular, 12));
-        return rows;
-    }
-    
+        
     private Table createDeliveryDetailTable(Document documentList) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();

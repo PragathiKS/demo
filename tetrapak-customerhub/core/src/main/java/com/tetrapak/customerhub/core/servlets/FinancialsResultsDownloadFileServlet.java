@@ -27,6 +27,7 @@ import javax.json.Json;
 import javax.json.JsonReader;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -35,7 +36,7 @@ import java.util.Map;
 
 /**
  * PDF and Excel Generator Servlet
- *
+ * @author ruhsharm
  */
 @Component(service = Servlet.class,
         property = {
@@ -88,13 +89,14 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
             try {
                 HttpUtil.writeJsonResponse(response, jsonResponse);
             } catch (IOException e) {
-                LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e);
+                LOGGER.error("IOException in FinancialsResultsDownloadFileServlet {}", e);
             }
             LOGGER.error("Unable to retrieve response from API");
         } else {
             JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
             Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse),
                     Results.class);
+        boolean flag = false;  
         if (CustomerHubConstants.PDF.equals(extension)) {
             generatePDF.generateFinancialsResultsPDF(response, results, paramsRequest);
         }
@@ -103,6 +105,19 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
         }*/else {
             LOGGER.error("File type not specified for the download operation.");
         }
+        if (!flag) {
+            sendErrorMessage(response);
+        }
     }
   }
+    private void sendErrorMessage(SlingHttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        try {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
+            HttpUtil.writeJsonResponse(response, obj);
+        } catch (IOException e) {
+            LOGGER.error("IOException in FinancialsResultsDownloadFileServlet {}", e);
+        }
+    }
 }
