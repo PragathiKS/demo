@@ -22,12 +22,15 @@ import java.util.List;
 public class TabsModel {
 
     @Self
-    protected Resource resource;
+    private Resource resource;
 
     @Inject
-    protected String imagePath;
+    private String imagePath;
 
-    protected List<TabBean> tabsList = new ArrayList<>();
+    @Inject
+    private String imageAltText;
+
+    private List<TabBean> tabsList = new ArrayList<>();
 
     @PostConstruct
     protected void init() {
@@ -50,6 +53,10 @@ public class TabsModel {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public String getImageAltText() {
+        return imageAltText;
     }
 
     public List<TabBean> getTabsList() {

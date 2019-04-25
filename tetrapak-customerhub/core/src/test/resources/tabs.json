@@ -40,6 +40,7 @@
           "jcr:createdBy": "admin",
           "jcr:lastModifiedBy": "admin",
           "imagePath": "/content/dam/customerhub/asset.jpg",
+          "imageAltText": "asset.jpg",
           "jcr:created": "Wed Apr 24 2019 22:20:41 GMT+0530",
           "jcr:lastModified": "Wed Apr 24 2019 22:23:16 GMT+0530",
           "sling:resourceType": "customerhub/components/content/tabs",

@@ -30,6 +30,7 @@ public class TabsModelTest {
     @Test
     public void testGetStartedMessage() {
         Assert.assertEquals("/content/dam/customerhub/asset.jpg", tabsModel.getImagePath());
+        Assert.assertEquals("asset.jpg", tabsModel.getImageAltText());
         List<TabBean> list = tabsModel.getTabsList();
         TabBean bean = list.get(0);
         Assert.assertEquals("icon-document", bean.getIconClass());
