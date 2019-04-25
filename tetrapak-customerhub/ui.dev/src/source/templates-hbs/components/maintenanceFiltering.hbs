@@ -1,0 +1,23 @@
+{{#if isError}}
+    <div class="tp-card">
+        {{#if i18nKeys.errorMsg}}
+            {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+        {{else}}
+            {{> atoms/error/error error=true message="cuhu.error.message"}}
+        {{/if}}
+    </div>
+{{else}}
+    <div class="row no-gutters">
+        <div class="col-lg">
+            <label>{{i18nKeys.siteFilterLabel}}</label>
+            {{> atoms/dropdown/dropdown options=sites name="site" label="" eleClasses="tp-maintenance-filtering__site js-maintenance-filtering__site" dataLocator="" }}
+            <label>{{i18nKeys.lineFilterLabel}}</label>
+            {{> atoms/dropdown/dropdown defaultValue=i18nKeys.allOptionText options="" name="line" label="" eleClasses="tp-maintenance-filtering__line js-maintenance-filtering__line" dataLocator="" }}
+            <label>{{i18nKeys.equipmentFilterLabel}}</label>
+            {{> atoms/dropdown/dropdown defaultValue=i18nKeys.allOptionText options="" name="equipment" label="" eleClasses="tp-maintenance-filtering__equipment js-maintenance-filtering__equipment" dataLocator="" }}
+        </div>
+        <div class="col-lg">
+            Address
+        </div>
+    </div>
+{{/if}}
