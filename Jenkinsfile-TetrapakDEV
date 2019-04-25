@@ -20,7 +20,8 @@ pipeline {
 		author_url = "http://13.69.79.81:4502"
 		publish_url = "http://13.69.73.197:4503"
 		package_name = "tetrapak-complete-package"
-		test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/financials.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/training.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/projects.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/contact.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/about-my-tetra-pak.html"
+test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 
+http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/financials.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/training.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/projects.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/contact.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
 		test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
 		karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
 	}
@@ -254,49 +255,6 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 
  always {
     build 'Tetra-Dev-Dispatcher-Flush'
-build (
-job: 'Tetra-Cucumber-CHROME',
-propagate: false,
-parameters: [
-    [
-      $class: 'StringParameterValue',
-      name: 'ENV',
-      value: "DEV",
-      propagate: false,
-    ],
-    ]
-)
-
-build (
-job: 'Tetra-Cucumber-ANDROID',
-propagate: false,
-parameters: [
-    [
-      $class: 'StringParameterValue',
-      name: 'ENV',
-      value: "DEV",
-      propagate: false,
-    ],
-    ]
-)
-
-build (
-job: 'Tetra-Cucumber-IOS',
-propagate: false,
-parameters: [
-    [
-      $class: 'StringParameterValue',
-      name: 'ENV',
-      value: "DEV",
-      propagate: false,
-    ],
-    ]
-)
-
-
-
-
-
     }
 
 }

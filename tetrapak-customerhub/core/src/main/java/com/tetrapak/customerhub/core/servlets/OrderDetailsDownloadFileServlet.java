@@ -67,8 +67,10 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
         OrderDetailsModel orderDetailsModel = request.getResource().adaptTo(OrderDetailsModel.class);
-
-        if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
+        boolean flag = false;
+        if (null == orderDetailsModel) {
+            LOGGER.error("Order Details Model is null");
+        } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             response.setStatus(Integer.parseInt(status.toString()));
             try {
                 HttpUtil.writeJsonResponse(response, jsonResponse);
@@ -82,9 +84,8 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             OrderDetailsData orderDetailResponse = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(result),
                     OrderDetailsData.class);
 
-            boolean flag = false;
             if (CustomerHubConstants.PDF.equals(extension)) {
-                flag = generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse);
+                flag = generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse, orderDetailsModel);
 
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
                 flag = generateExcel.generateOrderDetailsExcel(request, response, orderType, orderDetailResponse,
@@ -92,9 +93,9 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }
-            if (!flag) {
-                sendErrorMessage(response);
-            }
+        }
+        if (!flag) {
+            sendErrorMessage(response);
         }
     }
 

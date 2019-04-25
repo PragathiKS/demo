@@ -289,8 +289,7 @@ function _downloadPdfExcel(...args) {
         val: requestBody.token
       }));
     $body.append(form);
-    form.submit();
-    form.remove();
+    $this.submitTempForm(form);
   });
 }
 
@@ -456,8 +455,13 @@ class FinancialStatement {
       queryString: defaultQueryString
     });
   }
+  submitTempForm(formEl) {
+    if (formEl instanceof $) {
+      formEl.submit();
+      formEl.remove();
+    }
+  }
   trackAnalytics = (type) => _trackAnalytics.call(this, type);
-
   init() {
     this.initCache();
     this.bindEvents();

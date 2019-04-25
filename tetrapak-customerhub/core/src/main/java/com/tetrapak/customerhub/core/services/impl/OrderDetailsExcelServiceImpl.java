@@ -46,7 +46,6 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private SlingHttpServletRequest request = null;
 	private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
 	private static final String S_NO = "serialNo";
-	private static final String DOUBLE_COMMA = ",,";
 	private static final String SINGLE_COMMA = ",";
 
 	/**
@@ -148,7 +147,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String[][] getOrderSummary(List<OrderSummary> orderSummary, String columns) {
 		String[][] data = null;
 		if (!StringUtils.isBlank(columns)) {
-			String[] colList = columns.split(",");
+			String[] colList = columns.split(SINGLE_COMMA);
 			data = new String[orderSummary.size() + 3][colList.length + 1];
 			String[] boldCenterStyleTags = new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG };
 			String[] regularStyleTag = new String[] { ExcelUtil.REGULAR_STYLE_TAG };
@@ -354,14 +353,12 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			String[] columnArray = getColumnData(orderType, orderDetailsModel);
 
 			if (Objects.nonNull((columnArray))) {
-				int cols = columnArray.length + 1;
+				int cols = columnArray.length;
 
 				productDetails = new String[rows + 5][cols];
-				productDetails[0][0] = addTagToContent("#", darkGreyStyleTags);
-				for (int col = 1; col < cols; col++) {
-
+				for (int col = 0; col < cols; col++) {
 					productDetails[0][col] = addTagToContent(
-							getI18nVal(setPrefixBasedOnOrderType(orderType) + columnArray[col - 1]), darkGreyStyleTags);
+							getI18nVal(setPrefixBasedOnOrderType(orderType) + columnArray[col]), darkGreyStyleTags);
 				}
 
 				Iterator<Product> productsIterator = products.iterator();
@@ -369,7 +366,6 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				String[] alignCenterStyleTags = new String[] { ExcelUtil.ALIGN_CENTER_TAG };
 				while (productsIterator.hasNext()) {
 					Product product = productsIterator.next();
-					productDetails[counter][0] = addTagToContent(Integer.toString(counter), alignCenterStyleTags);
 					setProdDetails(productDetails, product, counter, columnArray, alignCenterStyleTags);
 					counter++;
 				}
@@ -415,9 +411,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 */
 	private void setProdDetails(String[][] productDetails, Product product, int row, String[] columnArray,
 			String[] alignCenterStyleTags) {
-		for (int i = 0; i < columnArray.length; i++) {
-			productDetails[row][i + 1] = addTagToContent(
-					getProcessedValue(getDeliveryTableRowData(product, columnArray[i])), alignCenterStyleTags);
+		for (int col = 0; col < columnArray.length; col++) {
+			productDetails[row][col] = addTagToContent(
+					getProcessedValue(getDeliveryTableRowData(product, columnArray[col], row)), alignCenterStyleTags);
 		}
 	}
 
@@ -435,34 +431,15 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
 			String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
 			if (!StringUtils.isBlank(partsDeliveryColumnString)) {
-				partsDeliveryColumnString = handleSNoInString(partsDeliveryColumnString);
-				columnArray = partsDeliveryColumnString.split(",");
+				columnArray = partsDeliveryColumnString.split(SINGLE_COMMA);
 			}
 		} else {
 			String packMatDeliveryColStr = orderDetailsModel.getPackagingDeliveryTableCols();
 			if (!StringUtils.isBlank(packMatDeliveryColStr)) {
-				columnArray = packMatDeliveryColStr.split(",");
+				columnArray = packMatDeliveryColStr.split(SINGLE_COMMA);
 			}
 		}
 		return columnArray;
-	}
-
-	/**
-	 * @param partsDeliveryColumnString without serialnumber
-	 */
-	private String handleSNoInString(String data) {
-		if (data.contains(S_NO)) {
-			data = data.replace(S_NO, StringUtils.EMPTY);
-			data = data.trim();
-			if (data.contains(DOUBLE_COMMA)) {
-				data = data.replace(DOUBLE_COMMA, SINGLE_COMMA);
-			} else if (data.startsWith(SINGLE_COMMA)) {
-				data = data.replaceFirst(SINGLE_COMMA, StringUtils.EMPTY);
-			} else if (data.endsWith(SINGLE_COMMA)) {
-				data = data.substring(0, data.length() - 1);
-			}
-		}
-		return data;
 	}
 
 	/**
@@ -470,14 +447,18 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	 * 
 	 * @param summaryRow
 	 * @param columnName
+	 * @param counter
 	 * @return
 	 */
-	private String getDeliveryTableRowData(Product product, String columnName) {
+	private String getDeliveryTableRowData(Product product, String columnName, Integer counter) {
 		Map<String, String> map = new HashMap<>();
 		map.put("productName", product.getProductName());
 		map.put("productID", product.getProductID());
 		map.put("weight", product.getWeight());
+		map.put("orderQuantity", product.getOrderQuantity());
 		map.put("deliveredQuantity", product.getDeliveredQuantity());
+		map.put("quantityKPK", product.getOrderQuantity() + "/" + product.getRemainingQuantity() + "/"
+				+ product.getDeliveredQuantity());
 		map.put("remainingQuantity", product.getRemainingQuantity());
 		map.put("ETA", product.getETA());
 		map.put("unitPrice", product.getUnitPrice());
@@ -485,6 +466,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		map.put("materialCode", product.getMaterialCode());
 		map.put("SKU", product.getMaterialCode());
 		map.put("orderNumber", product.getOrderNumber().toString());
+		map.put(S_NO, counter.toString());
 		if (map.containsKey(columnName)) {
 			return map.get(columnName);
 		}
