@@ -46,7 +46,6 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private SlingHttpServletRequest request = null;
 	private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
 	private static final String S_NO = "serialNo";
-	private static final String DOUBLE_COMMA = ",,";
 	private static final String SINGLE_COMMA = ",";
 
 	/**
@@ -148,7 +147,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String[][] getOrderSummary(List<OrderSummary> orderSummary, String columns) {
 		String[][] data = null;
 		if (!StringUtils.isBlank(columns)) {
-			String[] colList = columns.split(",");
+			String[] colList = columns.split(SINGLE_COMMA);
 			data = new String[orderSummary.size() + 3][colList.length + 1];
 			String[] boldCenterStyleTags = new String[] { ExcelUtil.BOLD_TAG, ExcelUtil.ALIGN_CENTER_TAG };
 			String[] regularStyleTag = new String[] { ExcelUtil.REGULAR_STYLE_TAG };
@@ -414,7 +413,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			String[] alignCenterStyleTags) {
 		for (int col = 0; col < columnArray.length; col++) {
 			productDetails[row][col] = addTagToContent(
-					getProcessedValue(getDeliveryTableRowData(product, columnArray[col], col + 1)), alignCenterStyleTags);
+					getProcessedValue(getDeliveryTableRowData(product, columnArray[col], row)), alignCenterStyleTags);
 		}
 	}
 
@@ -432,12 +431,12 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		if (orderType.equalsIgnoreCase(PARTS_ORDER_TYPE)) {
 			String partsDeliveryColumnString = orderDetailsModel.getPartsDeliveryTableCols();
 			if (!StringUtils.isBlank(partsDeliveryColumnString)) {
-				columnArray = partsDeliveryColumnString.split(",");
+				columnArray = partsDeliveryColumnString.split(SINGLE_COMMA);
 			}
 		} else {
 			String packMatDeliveryColStr = orderDetailsModel.getPackagingDeliveryTableCols();
 			if (!StringUtils.isBlank(packMatDeliveryColStr)) {
-				columnArray = packMatDeliveryColStr.split(",");
+				columnArray = packMatDeliveryColStr.split(SINGLE_COMMA);
 			}
 		}
 		return columnArray;
