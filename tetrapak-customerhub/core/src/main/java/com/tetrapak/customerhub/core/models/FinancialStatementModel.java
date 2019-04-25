@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -79,6 +81,8 @@ public class FinancialStatementModel {
     
     private String i18nKeys;
     
+    private String downloadPdfExcelServletUrl;
+    
     /**
      * init method
      * @return config 
@@ -110,6 +114,8 @@ public class FinancialStatementModel {
         
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        downloadPdfExcelServletUrl = resource.getPath() + ".{extnType}";
+       
     }
 
     /**

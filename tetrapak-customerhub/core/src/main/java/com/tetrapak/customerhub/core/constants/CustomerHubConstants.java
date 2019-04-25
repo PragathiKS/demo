@@ -46,4 +46,10 @@ public final class CustomerHubConstants {
     public static final String ORDER_NUMBER= "orderNumber";
 
     public static final String TOKEN= "token";
+    
+    public static final String DocumentType = "documentType";
+    
+    public static final String InvoiceDateFrom = "invoiceDateFrom";
+    
+    public static final String CustomerKey = "customerkey";
 }

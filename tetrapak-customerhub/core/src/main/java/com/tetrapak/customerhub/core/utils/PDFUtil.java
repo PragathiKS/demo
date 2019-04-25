@@ -230,6 +230,23 @@ public final class PDFUtil {
     public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
                                  PDFont muliRegular, PDFont muliBold, double fontSize) {
         final float MARGIN = 65;
+        return getTable(columns, content, rowHeight, muliRegular, muliBold, fontSize, MARGIN);
+    }
+    
+    /**
+     * Method to create table
+     *
+     * @param columns     columns
+     * @param content     content
+     * @param rowHeight   row height
+     * @param muliRegular regular font
+     * @param muliBold    bold font
+     * @param fontSize    font size
+     * @return table table
+     */
+    public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
+                                 PDFont muliRegular, PDFont muliBold, double fontSize, float margin) {
+        final float MARGIN = margin;
         final float FONT_SIZE = (float) fontSize;
 
         final float ROW_HEIGHT = (float) rowHeight;
