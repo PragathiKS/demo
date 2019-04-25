@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.Locale;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -80,15 +81,14 @@ public class PageLoadAnalyticsModel {
         breadcrumb = breadcrumbBuilder.toString();
     
         if (slingSettingsService != null) {
-	        if(slingSettingsService.getRunModes().contains("prod")) {
+        	Set<String> runModes = slingSettingsService.getRunModes();
+	        if(runModes.contains("prod")) {
 	        	production = true;
-	        } else if(slingSettingsService.getRunModes().contains("stage")) {
+	        } else if(runModes.contains("stage")) {
 	        	staging = true;
-	        } else if(slingSettingsService.getRunModes().contains("dev")) {
+	        } else if(runModes.contains("dev") || runModes.contains("qa")) {
 	        	development = true;
-	        } else if(slingSettingsService.getRunModes().contains("local")) {
-	        	local = true;
-	        } 
+	        }
         }
 
         digitalData = buildDigitalDataJson();
