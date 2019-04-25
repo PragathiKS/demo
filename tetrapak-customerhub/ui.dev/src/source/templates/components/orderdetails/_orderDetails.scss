@@ -79,6 +79,10 @@
         }
     }
 
+    &__product-footer {
+        position: relative;
+    }
+
     &__product-summary {
         @include margin-top($margin-l);
         width: auto;
@@ -89,6 +93,16 @@
             &:first-child {
                 @include padding($padding-xs $padding-l $padding-xs 0);
             }
+        }
+    }
+
+    &__pagination {
+        @include margin-top($margin-l);
+
+        @media #{$desktop} {
+            position: absolute;
+            margin-top: 0;
+            top: 0;
         }
     }
 

@@ -27,14 +27,14 @@
                 <div class="col-lg">
                     <div class="tp-order-detail__order-info-table ml-lg-auto">
                         {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.orderDateLabel data=orderDetails.placedOn }}
-                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID link=true linkUrl="https://www.tetrapak.com/" linkTarget="_blank" }} {{!-- TODO : Need to replace hardcoded link later --}}
+                        {{> components/infoPair baseClass="tp-order-detail" label=i18nKeys.webRefLabel data=orderDetails.webRefID linkJsClass='js-order-detail__webRef' link=true linkUrl="https://www.tetrapak.com/" }} {{!-- TODO : Need to replace hardcoded link later --}}
                     </div>
                 </div>
             </div>
         </div>
         <div class="tp-order-detail__cust-support row no-gutters">
             <div class="tp-order-detail__support-center col-lg-6 text-center text-lg-left">
-                {{> molecules/supportCentre/supportCentre title=i18nKeys.custSupCentreLabel supportEmail=customerSupportCenter.email supportContact=customerSupportCenter.mobile }}
+                {{> molecules/supportCentre/supportCentre title=i18nKeys.custSupCentreLabel supportEmail=customerSupportCenter.email supportContact=customerSupportCenter.mobile jsClassForEmail="js-support-center-email" }}
             </div>
             <div class="tp-order-detail__btn-container col-lg-6 text-lg-right align-self-center">
                 {{> atoms/buttons/button/button text=i18nKeys.createExcelLabel modifier="primary" className="tp-order-detail__create-excel js-create-excel" iconClass="icon-Excel" data-servlet-url=servletUrl data-order-type=orderType data-order-number=orderDetails.orderNumber data-extn-type="excel" }}
@@ -58,7 +58,12 @@
             {{/if}}
         </div>
     {{else}}
-        {{> molecules/orderDetail/deliveryDetail/deliveryDetail this }}
+        {{#each deliveryList}}
+            <div class="tp-card js-delivery-{{this.deliveryNumber}}">
+                {{> molecules/orderDetail/deliveryDetail/deliveryDetail this parent=../this }}
+            </div>
+        {{/each}}
+        {{> components/infoModal baseClass="tp-order-detail-packaging" jsClass="js-order-detail" }}
     {{/if}}
 {{/if}}
 
