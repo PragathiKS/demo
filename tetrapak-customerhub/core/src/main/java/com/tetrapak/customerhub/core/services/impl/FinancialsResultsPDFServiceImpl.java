@@ -56,7 +56,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
 
     private PDFont muliRegular;
     private PDFont muliBold;
-    final int MARGIN = 65;
+    final int MARGIN = 20;
 
    
     @Override
@@ -94,14 +94,14 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
 
             PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
-            PDFUtil.writeContent(document, contentStream, 30, 700, Color.DARK_GRAY, getHeadLines(paramRequest));            
+            PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY, getHeadLines(paramRequest));            
             PDFUtil.drawTable(contentStream, createAccountServicetable(paramRequest), 570);
-            PDFUtil.writeContent(document, contentStream, 30, 510, Color.DARK_GRAY, getstatementSummary(paramRequest));
+            PDFUtil.writeContent(document, contentStream, MARGIN, 510, Color.DARK_GRAY, getstatementSummary(paramRequest));
             PDFUtil.drawTable(contentStream, createSummaryTable(resultsResponse.getSummary()), 490);
-            PDFUtil.drawLine(contentStream, 30, 520, 475, Color.DARK_GRAY, 0.01f);
-            PDFUtil.drawLine(contentStream, 30, 520, 450, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 500, 475, Color.DARK_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 500, 450, Color.LIGHT_GRAY, 0.01f);
                       
-            PDFUtil.writeContent(document, contentStream, 30, 420, Color.DARK_GRAY, getDocumentName());
+            PDFUtil.writeContent(document, contentStream, MARGIN, 420, Color.DARK_GRAY, getDocumentName());
             contentStream = printDeliveryDetails(document, contentStream, documents);
             
             contentStream.close();
@@ -143,7 +143,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         else{
             rows.add(new Row("Statement Summary:"+ paramRequest.getParams().getEndDate(), 10, muliRegular, 12));
         }
-        rows.add(new Row("", 20, muliRegular, 12));
+        rows.add(new Row("", 20, muliRegular, 8));
         return rows;
     }
     
@@ -164,7 +164,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             }
         };
 
-        return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 11, 30);
+        return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 8, MARGIN);
     }
     
     private Table createSummaryTable(List<Summary> summary) {
@@ -193,12 +193,12 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             
         }
 
-        return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 11, 30);
+        return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
     
     private PDPageContentStream printDeliveryDetails(PDDocument document, PDPageContentStream contentStream,
             List<Document> documents) throws IOException {
-        int height = 470;
+        int height = 480;
         for (Document documentDetail : documents) {
             int nextTableHeight = getNextTableHeight(documentDetail.getRecords());
             height = height - nextTableHeight;
@@ -210,11 +210,13 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
                         true);
             }
-            PDFUtil.drawLine(contentStream, 30, 520, 300, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 560, height-66, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 560, height - 78, Color.LIGHT_GRAY, 0.01f);
             
-            PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height-10);
+            PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height-54);
             
-            PDFUtil.drawTable(contentStream, createRecordTable(documentDetail.getRecords()), height-30);
+            PDFUtil.drawTable(contentStream, createRecordTable(documentDetail.getRecords()), height-68);
+            
         } 
         return contentStream;
     }
@@ -222,13 +224,13 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
 
     private Table createRecordTable(List<Record> records) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document No.", 50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "LocalData", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Description", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Invoice Reference", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "PO Number", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document date", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Due date", 40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document No.", 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "LocalData", 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Description", 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Invoice Reference", 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "PO Number", 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document date", 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Due date", 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Currency", 40));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Original amount", 10));
 
@@ -252,12 +254,11 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
 
                     
         }
-
-        return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 6, 30);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold,8, MARGIN);
     }
 
     private int getNextTableHeight(List<Record> documentDetail) {
-        return documentDetail.size() * 30 + 30;
+        return documentDetail.size() * 10 + 30;
     }
     
     private List<Row> getDeliveryDetailHeader(String deliveryNumber) {
@@ -270,16 +271,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     private Table createDeliveryDetailTable(Document documentList) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + documentList.getSalesOffice(), 70));
-        String[][] content = {
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + documentList.getTotalAmount()
-                }
-                
-        };
-
-        return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 11, 30);
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + documentList.getSalesOffice() , 500));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + documentList.getTotalAmount(), 40));
+        String[][] content = new String[0][0];
+        return PDFUtil.getTable(columns,content, 14, muliRegular, muliBold, 8, MARGIN);
     }
-   
-    
 }
