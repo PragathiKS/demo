@@ -197,7 +197,14 @@ function _setDateFilter(status, selectedDate) {
  */
 function _syncFields(query) {
   const { $filterForm } = this.cache;
-  $filterForm.find('.js-financial-statement__status').val(query.status).trigger('change');
+  const $statusField = $filterForm.find('.js-financial-statement__status');
+  let dateRange = query['invoicedate-from'];
+  if (query['invoicedate-to']) {
+    dateRange += ` - ${query['invoicedate-to']}`;
+  }
+  $statusField.val(query.status);
+  $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query.search);
 }
