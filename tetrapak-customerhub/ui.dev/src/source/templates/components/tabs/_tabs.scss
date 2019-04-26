@@ -34,6 +34,7 @@
         @media #{$desktop} {
             @include border-radius($border-radius $border-radius 0 0);
             background-color: $color-congress-blue;
+            display: block;
         }
     }
 
@@ -48,6 +49,7 @@
         @media #{$desktop} {
             @include padding($padding-md);
             @include border-radius($border-radius $border-radius 0 0);
+            display: inline-block;
             color: $color-white;
             background-color: $color-tory-blue;
         }
