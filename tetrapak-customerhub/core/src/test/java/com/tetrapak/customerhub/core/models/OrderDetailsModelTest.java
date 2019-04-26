@@ -5,6 +5,7 @@ package com.tetrapak.customerhub.core.models;
 
 import static org.junit.Assert.*;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -67,7 +68,7 @@ public class OrderDetailsModelTest {
 	 */
 	@Test
 	public void testGetPartsDeliveryTable() {
-		assertTrue(orderDetailsModel.getPartsDeliveryTableCols().contains("orderno"));
+		assertTrue(orderDetailsModel.getPartsDeliveryTableCols().contains("productName"));
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class OrderDetailsModelTest {
 	 */
 	@Test
 	public void testGetPackagingDeliveryTableInvalidColumn() {
-		assertFalse(orderDetailsModel.getPackagingDeliveryTableCols().contains("orderno1"));
+		assertFalse(orderDetailsModel.getPackagingDeliveryTableCols().contains("productName"));
 	}
 
 	/**
@@ -104,6 +105,12 @@ public class OrderDetailsModelTest {
 	@Test
 	public void testGetI18nKeysDoesntContainKey() {
 		assertFalse(orderDetailsModel.getI18nKeys().contains("deliveryNumberLabel1"));
+	}
+	
+	@Test
+	public void testDownloadOrderDetailsServletUrl() {
+	assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails"+ ".{orderType}.{extnType}?"
+			+ CustomerHubConstants.ORDER_NUMBER + "={orderNumber}&" + CustomerHubConstants.TOKEN + "={token}"));
 	}
 
 }

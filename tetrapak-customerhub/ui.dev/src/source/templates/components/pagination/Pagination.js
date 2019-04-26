@@ -18,17 +18,23 @@ function _getPage(pageNumber, currentPage) {
  * @param  {...any} args Arguments
  */
 function _rendePagination(...args) {
-  const [, data] = args;
-  const paginationData = this.calculatePages(data);
+  const [e, data] = args;
+  const $this = e.data;
+  const { config } = $this.cache;
+  let currentTarget = $this.root;
+  if (config.delegate) {
+    currentTarget = $(this);
+  }
+  const paginationData = $this.calculatePages(data);
   if (paginationData.totalPages > 1) {
-    this.root.removeClass('d-none');
+    currentTarget.removeClass('d-none');
     render.fn({
       template: 'pagination',
       data: paginationData,
-      target: this.root
+      target: currentTarget
     });
   } else {
-    this.root.addClass('d-none');
+    currentTarget.addClass('d-none');
   }
 }
 
@@ -39,10 +45,14 @@ function _rendePagination(...args) {
 function _selectPage(event) {
   const { data: $this } = event;
   const self = $(this);
-  const { customEvent } = $this.cache.config;
+  const { customEvent, delegate } = $this.cache.config;
   const pageNumber = self.data('pageNumber');
+  let currentRoot = $this.root;
+  if (delegate) {
+    currentRoot = self.parents('.js-pagination-multiple');
+  }
   if (!self.hasClass('active')) {
-    $this.root
+    currentRoot
       .find('.js-page-number').attr('disabled', 'disabled').end()
       .trigger(customEvent ? `${customEvent}.pagenav` : 'pagenav', [{
         pageNumber,
@@ -116,16 +126,33 @@ class Pagination {
   }
   bindEvents() {
     const { config } = this.cache;
+    const $this = this;
+    const customEventParams = [
+      (config.customEvent ? `${config.customEvent}.paginate` : 'paginate'),
+      this,
+      this.renderPagination
+    ];
+    const disableParams = [
+      (config.customEvent ? `${config.customEvent}.pagedisabled` : 'pagedisabled'),
+      function () {
+        const { config } = $this.cache;
+        let currentRoot = $this.root;
+        if (config.delegate) {
+          currentRoot = $(this);
+        }
+        currentRoot.find('.js-page-number').attr('disabled', 'disabled');
+      }
+    ];
+    if (config.delegate) {
+      customEventParams.splice(1, 0, '.js-pagination-multiple');
+      disableParams.splice(1, 0, '.js-pagination-multiple');
+    }
     this.root
       .on(
-        (config.customEvent ? `${config.customEvent}.paginate` : 'paginate'),
-        this.renderPagination
+        ...customEventParams
       )
       .on(
-        (config.customEvent ? `${config.customEvent}.pagedisabled` : 'pagedisabled'),
-        () => {
-          this.root.find('.js-page-number').attr('disabled', 'disabled');
-        }
+        ...disableParams
       )
       .on('click', '.js-page-number', this, this.selectPage);
 
@@ -133,7 +160,9 @@ class Pagination {
   calculatePages() {
     return _calculatePages.apply(this, arguments);
   }
-  renderPagination = (...args) => _rendePagination.apply(this, args);
+  renderPagination(...args) {
+    return _rendePagination.apply(this, args);
+  }
   selectPage() {
     return _selectPage.apply(this, arguments);
   }

@@ -1,17 +1,17 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import com.google.gson.Gson;
 
 /**
  * Model class for financial statement component
@@ -108,7 +108,6 @@ public class FinancialStatementModel {
         i18KeyMap.put("documentHeadingI18n", documentHeadingI18n);
         i18KeyMap.put("createExcelBtnI18n", createExcelBtnI18n);
         i18KeyMap.put("createPdfBtnI18n", createPdfBtnI18n);
-        
         
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);

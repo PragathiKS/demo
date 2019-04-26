@@ -1,0 +1,26 @@
+{{> molecules/orderDetail/orderdeliverysummary/orderdeliverysummary  i18nKeys=parent.i18nKeys}}
+<div class="tp-order-detail__table-wrapper">
+        {{> molecules/table/table baseClass="tp-order-detail" jsClass="js-order-detail" list=products headings=parent.tableHeadings}}
+</div>
+{{#unless parent.isPackmat}}
+        <div class="tp-order-detail__product-footer">
+                <table class="tp-order-detail__product-summary ml-auto">
+                        <tr>
+                                <td>{{parent.i18nKeys.totalWeightLabel}}</td>
+                                <td>{{totalWeight}}</td>
+                        </tr>
+                        <tr>
+                                <td>{{parent.i18nKeys.totalPricePreVatLabel}}</td>
+                                <td>{{totalPricePreVAT}}</td>
+                        </tr>
+                        <tr>
+                                <td class="semi-bold">{{parent.i18nKeys.totalVatLabel}}</td>
+                                <td>{{totalVAT}}</td>
+                        </tr>
+                </table>
+                {{#if totalPages}}
+                        <div class="tp-pagination tp-order-detail__pagination js-pagination-multiple js-pagination-{{deliveryNumber}}" data-current-page="{{#if parent.pageNumber}}{{parent.pageNumber}}{{else}}1{{/if}}" data-total-pages="{{totalPages}}" data-delivery-no="{{deliveryNumber}}" data-target=".js-delivery-{{deliveryNumber}}" aria-live="polite">
+                        </div>
+                {{/if}}
+        </div>
+{{/unless}}

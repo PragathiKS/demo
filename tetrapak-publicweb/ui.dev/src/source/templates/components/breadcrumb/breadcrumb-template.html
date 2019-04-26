@@ -1,13 +1,18 @@
-<sly data-sly-template.breadcrumb_template="${@ data, flag}">
-  <div class="tp_pw-breadcrumb text-small">
-    <a class="tp_pw-breadcrumb__link" href="${data.breadcrumbHomePath}">${data.breadcrumbHomeLabelI18n}</a>
-    <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
-    	<sly data-sly-test="${!subpagesList.last}">
-    		<a class="tp_pw-breadcrumb__link" href="${subpages.subpageLinkPath}"><i class="icon-Chevron_Right tp_icon"></i>${subpages.subpageTitleI18n}</a>
-    	</sly>
-    	<sly data-sly-test="${subpagesList.last}">
-    		<i class="icon-Chevron_Right tp_icon"></i> <span>${subpages.subpageTitleI18n}</span>
-    	</sly>
+<sly data-sly-template.breadcrumb_template="${@ data, flag}"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <sly data-sly-test="${data.breadcrumbSubpages}">
+        <div class="tp_pw-breadcrumb text-small">
+            <a class="tp_pw-breadcrumb__link" href="${data.breadcrumbHomePath}">${data.breadcrumbHomeLabelI18n @ i18n}</a>
+            <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
+            	<sly data-sly-test="${!subpagesList.last}">
+            		<a class="tp_pw-breadcrumb__link" href="${subpages.subpageLinkPath}"><i class="icon-Chevron_Right tp_icon"></i>${subpages.subpageTitleI18n  @ i18n}</a>
+            	</sly>
+            	<sly data-sly-test="${subpagesList.last}">
+            		<i class="icon-Chevron_Right tp_icon"></i> <span>${subpages.subpageTitleI18n  @ i18n}</span>
+            	</sly>
+            </sly>
+    	</div>
     </sly>
-	</div>
+    <sly data-sly-test="${!data.breadcrumbSubpages}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.breadcrumbSubpages}"></sly>
 </sly>

@@ -1,23 +1,23 @@
-<div class="tp-financial-statement">
-    <code class="d-none js-financial-statement__config">
-        {
-            "selectDates": "Select Dates",
-            "closeBtn": "Close",
-            "setDates": "Set Dates",
-            "statementOfAccount":"Statement of account",
-            "findCustomer":"Find customer",
-            "accountNumber":"Account Number",
-            "accountService":"Account service",
-            "selectStatus":"Select Status",
-            "selectDaterange":"Select date range",
-            "selectDocType":"Select doc type",
-            "selectStatus":"Select Status",
-            "placeholderForDocumentNo":"Document No"
-        }
-    </code>
-    <div class="tp-financial-statement__select-customer-dropdown js-financial-statement__select-customer-dropdown form-group" aria-live="polite">
-        <select class="js-financial-statement__find-customer">
-            <option>1</option>
-        </select>
+<div class="js-financials">
+    <div class="tp-financial-statement js-financial-statement">
+        <code class="d-none js-financial-statement__config">
+            {
+                "selectDates": "Select Dates",
+                "closeBtn": "Close",
+                "setDates": "Set Dates",
+                "statementOfAccount":"Statement of account",
+                "findCustomer":"Find customer",
+                "accountNumber":"Account Number",
+                "accountService":"Account service",
+                "selectStatus":"Select Status",
+                "selectDaterange":"Select date range",
+                "selectDocType":"Select doc type",
+                "selectStatus":"Select Status",
+                "placeholderForDocumentNo":"Document No"
+            }
+        </code>
+        <input type="hidden" id="downloadPdfExcelServletUrl" name="downloadPdfExcelServletUrl" value="pathToServlet.{extnType}" />
+        <div class="tp-financial-statement__select-customer-dropdown js-financial-statement__select-customer-dropdown form-group" aria-live="polite">
+        </div>
     </div>
 </div>

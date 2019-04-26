@@ -1,8 +1,9 @@
 <sly data-sly-template.articleItem_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.vanityDescription}" class="pw-article">
-    <img data-sly-test="${data.articleImagePath && data.showImage}" class="pw-article__image"
-         src="${data.articleImagePath}" alt="${data.articleImageAltI18n @ i18n}"/>
+    <sly data-sly-test="${data.showImage}">
+      <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.articleImagePath, altText=data.articleImageAltI18n, className='pw-article__image'}" />
+    </sly>
     <div data-sly-test="${data.articleTitle}" class="pw-article__title">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
            data-sly-call="${heading.heading_h4_template @ headingText=data.articleTitle, variant='small'}"/>

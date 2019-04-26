@@ -11,15 +11,30 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 /**
  * Fire analytics on Invoice Download
  */
-function _trackAnalytics() {
+function _trackAnalytics(type) {
   // Get selected preferences
   const $this = $(this);
-  const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
   const analyticsData = {};
-  analyticsData['statementheader'] = $.trim(statementHeader);
-  analyticsData['statementnumber'] = $.trim($this.find('[data-key=documentNumber]').text());
-
-  trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+  switch (type) {
+    case 'downloadPdf': {
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createPDF = 'true';
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
+    }
+    case 'downloadExcel': {
+      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
+      analyticsData.createExcel = 'true';
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
+    }
+    default: {
+      const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
+      analyticsData.statementheader = $.trim(statementHeader);
+      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
+      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+    }
+  }
 }
 
 /**
@@ -79,7 +94,6 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        //path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
         data: filterParams
       },
       beforeRender(data) {
@@ -118,6 +132,7 @@ class FinancialsStatementSummary {
   initCache() {
     /* Initialize selector cache here */
     this.cache.$filtersRoot = this.root.parent().find('.js-financial-statement');
+    this.cache.$findCustomer = this.root.parent().find('.js-financial-statement__select-customer-dropdown');
     this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -130,6 +145,15 @@ class FinancialsStatementSummary {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
+    this.root.on('click', '.js-financials-summary__create-pdf', () => {
+      this.trackAnalytics(this, 'downloadPdf');
+      this.downloadPdfExcel('pdf');
+    });
+    this.root.on('click', '.js-financials-summary__create-excel', () => {
+      this.trackAnalytics(this, 'downloadExcel');
+      this.downloadPdfExcel('excel');
+    });
+
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
@@ -149,7 +173,11 @@ class FinancialsStatementSummary {
     _downloadInvoice.call(this);
     $this.trackAnalytics(this);
   }
-  trackAnalytics = (obj) => _trackAnalytics.call(obj);
+  downloadPdfExcel(type) {
+    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);
+  }
+
+  trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
   init() {
     /* Mandatory method */
     this.initCache();

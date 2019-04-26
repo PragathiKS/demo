@@ -3,5 +3,5 @@
     jcr:primaryType="sling:OsgiConfig"
 	rootPath="/tetrapak"
     imageServiceUrl="http://s7g10.scene7.com/is/image"
-    dynamicMediaConfMap="[getstarted-desktop=1440\,300,getstarted-tabletL=1024\,214,getstarted-tabletP=991\,206,getstarted-mobileL=414\,259\,0.333\,0\,0.333\,1,getstarted-mobileP=414\,259\,0.333\,0\,0.333\,1]"/>
+    dynamicMediaConfMap="[getstarted-desktop=684\,290,getstarted-mobileL=1918\,815,getstarted-mobileP=700\,297,recommendedforyoucard-desktop=700\,297,recommendedforyoucard-mobileL=1918\,815,recommendedforyoucard-mobileP=700\,297,introscreen-desktop=1396\,593,introscreen-mobileL=1944\,826,introscreen-mobileP=726\,308]"/>
 

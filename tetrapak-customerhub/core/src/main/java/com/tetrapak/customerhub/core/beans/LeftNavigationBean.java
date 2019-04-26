@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class LeftNavigationBean {
     }
 
     public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
-        this.subMenuList = subMenuList;
+        this.subMenuList = new ArrayList<>(subMenuList);
     }
 
     public boolean isExpanded() {

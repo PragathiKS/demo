@@ -525,7 +525,7 @@
             </build>
         </profile>
 		<profile>
-            <id>autoInstallMinify</id>
+            <id>minify</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -554,21 +554,6 @@
                                     <goals>
                                         <goal>package</goal>
                                     </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                        <plugin>
-                            <groupId>com.day.jcr.vault</groupId>
-                            <artifactId>content-package-maven-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <id>install-package</id>
-                                    <goals>
-                                        <goal>install</goal>
-                                    </goals>
-                                    <configuration>
-                                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
-                                    </configuration>
                                 </execution>
                             </executions>
                         </plugin>

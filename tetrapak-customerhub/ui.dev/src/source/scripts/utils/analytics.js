@@ -3,19 +3,20 @@ import $ from 'jquery';
 /**
  * Fire analytics
  */
-export const trackAnalytics = (objectData, objectName, objectKey) => {
+export const trackAnalytics = (objectData, objectName, trackingKey, objectKey) => {
   window.digitalData = window.digitalData || {};
 
   if (objectName) {
     objectName = objectName.toLowerCase();
     window.digitalData[objectName] = window.digitalData[objectName] || {};
-
     if (objectKey) {
       window.digitalData[objectName][objectKey.toLowerCase()] = objectData;
+    } else {
+      window.digitalData[objectName] = objectData;
+    }
 
-      if (window._satellite) {
-        window._satellite.track(objectKey);
-      }
+    if (window._satellite) {
+      window._satellite.track(trackingKey);
     }
   }
 };

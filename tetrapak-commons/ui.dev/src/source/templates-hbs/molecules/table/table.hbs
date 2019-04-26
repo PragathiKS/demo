@@ -11,6 +11,9 @@
                 </button>
                 {{else}}
                 {{i18n key=i18nKey}}
+                 {{#if iconClassName}}
+                    <i class="icon {{iconClassName}}"></i>
+                 {{/if}}
                 {{/if}}
             </th>
             {{/each}}
