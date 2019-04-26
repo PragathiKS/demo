@@ -80,7 +80,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
 				Cookie cookie = new Cookie("softConvUserExists", "true");
 				cookie.setPath("/");
-				cookie.setMaxAge(60 * 60 * 24);
+				cookie.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(cookie);
 			}
 
