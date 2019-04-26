@@ -1,17 +1,25 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ImageTextBannerModel {
+	
+	private static final Logger log = LoggerFactory.getLogger(ImageTextBannerModel.class);
 
     @Self
     private Resource resource;
@@ -57,6 +65,21 @@ public class ImageTextBannerModel {
 
     @Inject
     private String targetSoftConversion;
+    
+	@Inject
+	private String softConversionTitle;
+
+	@Inject
+	private String softConversionDescription;
+
+	@Inject
+	private String softConversionHeadline;
+
+	@Inject
+	private String[] radioButtonGroups;
+	
+	@Inject
+	private String softConversionDocPath;
 
     private Boolean isHeaderBanner = false;
 
@@ -129,5 +152,54 @@ public class ImageTextBannerModel {
     public String getTargetSoftConversion() {
         return targetSoftConversion;
     }
+    
+	public String getSoftConversionTitle() {
+		return softConversionTitle;
+	}
+
+	public String getSoftConversionDescription() {
+		return softConversionDescription;
+	}
+
+	public String getSoftConversionHeadline() {
+		return softConversionHeadline;
+	}
+
+	public List<String> getRadioButtonGroups() {
+		return getRadioButtonGroups(radioButtonGroups);
+	}
+
+	public String getSoftConversionDocPath() {
+		return softConversionDocPath;
+	}
+
+	/**
+	 * Method to get the tab link text from the multifield property saved in CRX for
+	 * each of the radio button groups.
+	 *
+	 * @param tabLinks String[]
+	 * @return List<String>
+	 */
+	public static List<String> getRadioButtonGroups(String[] radioButtonGroups) {
+		@SuppressWarnings("deprecation")
+		List<String> radioButtons = new ArrayList<String>();
+		JSONObject jObj;
+		try {
+			if (radioButtonGroups == null) {
+				log.error("Radio Button Groups value is NULL");
+			} else {
+				for (int i = 0; i < radioButtonGroups.length; i++) {
+					jObj = new JSONObject(radioButtonGroups[i]);
+
+					if (jObj.has("radiobuttonTitle")) {
+						radioButtons.add(jObj.getString("radiobuttonTitle"));
+					}
+				}
+			}
+		} catch (Exception e) {
+			log.error("Exception while Multifield data {}", e.getMessage(), e);
+		}
+		return radioButtons;
+	}
 
 }
