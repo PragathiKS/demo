@@ -9,11 +9,10 @@ export const trackAnalytics = (objectData, objectName, trackingKey, objectKey) =
   if (objectName) {
     objectName = objectName.toLowerCase();
     window.digitalData[objectName] = window.digitalData[objectName] || {};
-
     if (objectKey) {
       window.digitalData[objectName][objectKey.toLowerCase()] = objectData;
     } else {
-      window.digitalData[objectName] = $.extend(window.digitalData[objectName], objectData);
+      window.digitalData[objectName] = objectData;
     }
 
     if (window._satellite) {

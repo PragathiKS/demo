@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
@@ -21,21 +22,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * PDF and Excel Generator Servlet
  *
  * @author Nitin Kumar
+ * @author Swati Lamba
  */
-@Component(service = Servlet.class,
-        property = {
-                Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
-                "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
-                "sling.servlet.paths=" + "/bin/customerhub/order-detail"
-        })
+@Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+        "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
+        "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
+        "sling.servlet.paths=" + "/bin/customerhub/order-detail"})
 public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
@@ -66,7 +66,11 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
         JsonObject jsonResponse = orderDetailsApiService.getOrderDetails(orderNumber, token, orderType);
         JsonElement status = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
+        OrderDetailsModel orderDetailsModel = request.getResource().adaptTo(OrderDetailsModel.class);
+        boolean flag = false;
+        if (null == orderDetailsModel) {
+            LOGGER.error("Order Details Model is null");
+        } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(status.toString())) {
             response.setStatus(Integer.parseInt(status.toString()));
             try {
                 HttpUtil.writeJsonResponse(response, jsonResponse);
@@ -81,12 +85,28 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
                     OrderDetailsData.class);
 
             if (CustomerHubConstants.PDF.equals(extension)) {
-                generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse);
+                flag = generatePDF.generateOrderDetailsPDF(request, response, orderType, orderDetailResponse, orderDetailsModel);
+
             } else if (CustomerHubConstants.EXCEL.equals(extension)) {
-                generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
+                flag = generateExcel.generateOrderDetailsExcel(request, response, orderType, orderDetailResponse,
+                        orderDetailsModel);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }
+        }
+        if (!flag) {
+            sendErrorMessage(response);
+        }
+    }
+
+    private void sendErrorMessage(SlingHttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        try {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
+            HttpUtil.writeJsonResponse(response, obj);
+        } catch (IOException e) {
+            LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e);
         }
     }
 }

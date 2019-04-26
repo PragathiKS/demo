@@ -1,159 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-    cq:lastReplicatedBy="sapient-tarun"
-    cq:lastReplicationAction="Activate"
     jcr:language="en"
     jcr:mixinTypes="[cq:ReplicationStatus,mix:language]"
     jcr:primaryType="nt:folder">
     <About_GetStarted_Desc1
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
     <About_GetStarted_Desc2
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work."/>
     <About_GetStarted_Desc3
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
     <About_GetStarted_Desc4
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
     <About_GetStarted_Heading
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Get Started now"/>
     <About_GetStarted_Image1_altText
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.784Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Image1_alt"/>
     <About_GetStarted_Img2_altText
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="alt2"/>
     <About_GetStarted_Img3_altText
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.784Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Image3_alt"/>
     <About_GetStarted_Img4_altText
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="ImageAlt4"/>
     <About_GetStarted_title1
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="One place for your business"/>
     <About_GetStarted_title2
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Notifications that you need"/>
     <About_GetStarted_title3
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your experience"/>
     <About_GetStarted_title4
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your new experience"/>
-    <Intro_screen_Closebutton
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+    <cuhu.error.message
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Close"/>
-    <Intro_Screen_description5
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Something Went Wrong"/>
+    <cuhu.financial.AccountNo
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
-    <Intro_screen_GetStarted
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Account Number"/>
+    <cuhu.financial.AccountServ
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Get Started"/>
-    <Intro_Screen_Heading
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Account Service"/>
+    <cuhu.financial.closeButton
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Introduction"/>
-    <Intro_Screen_Img5_altText
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.003Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Close Button"/>
+    <cuhu.financial.CreateExcel
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="ImageAlt5"/>
-    <Intro_Screen_NextCaption
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Create Excel"/>
+    <cuhu.financial.Createpdf
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Next"/>
-    <Intro_Screen_title5
-        cq:lastReplicated="{Date}2019-02-25T12:52:52.342Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
+        sling:message="Create Pdf"/>
+    <cuhu.financial.Customer
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Customise your experience"/>
-    <cuhu.calendar.prev
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Previous"/>
-    <cuhu.calendar.next
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Next"/>
+        sling:message="Select Customer"/>
+    <cuhu.financial.DateRange
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Date Range"/>
+    <cuhu.financial.DocumentNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document Number"/>
+    <cuhu.financial.Documents
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Documents"/>
+    <cuhu.financial.DocumentType
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document Type"/>
+    <cuhu.financial.FindCustomer
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Find Customer"/>
+    <cuhu.financial.InputLabel
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Input Label"/>
+    <cuhu.financial.Reset
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Reset"/>
+    <cuhu.financial.Search
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search"/>
+    <cuhu.financial.searchBtn
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search Statement"/>
+    <cuhu.financial.selectDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Select Date"/>
+    <cuhu.financial.setDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Set Date"/>
+    <cuhu.financial.Staetementaccount
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Statement Of Account"/>
+    <cuhu.financial.Status
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.financial.Summary
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Summary"/>
     <cuhu.financials.currency
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -161,117 +146,337 @@
     <cuhu.financials.current
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Current"/>        
-    <cuhu.financials.overdue
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="Total overdue"/>        
-    <cuhu.financials.thirty
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="1 - 30"/>    
-    <cuhu.financials.sixty
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="31 - 60"/>    
-    <cuhu.financials.ninty
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="61 - 90"/>    
-    <cuhu.financials.nintyPlus
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message=">90"/>    
-    <cuhu.financials.total
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="Statement Total"/>    
-    <cuhu.financials.documentNumber
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="Document No."/>    
+        sling:message="Current"/>
     <cuhu.financials.desc
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Description"/>    
-    <cuhu.financials.invoiceReference
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="Invoice reference"/>    
-    <cuhu.financials.PONumber
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="PO Number"/>    
+        sling:message="Description"/>
     <cuhu.financials.docDate
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Document date"/>    
+        sling:message="Document date"/>
+    <cuhu.financials.documentNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document No."/>
     <cuhu.financials.dueDate
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Due date"/>    
+        sling:message="Due date"/>
+    <cuhu.financials.invoiceReference
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invoice reference"/>
+    <cuhu.financials.ninty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="61 - 90"/>
+    <cuhu.financials.nintyPlus
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message=">90"/>
     <cuhu.financials.orgAmount
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Original amount"/> 
-    <cuhu.error.message
+        sling:message="Original amount"/>
+    <cuhu.financials.overdue
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Something went wrong"/>  
-    <cuhu.nodata.message
+        sling:message="Total overdue"/>
+    <cuhu.financials.PONumber
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="No data found"/>
-    <cuhu.orderingcard.pref.Close
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Close"/>
-    <cuhu.orderingHistory.SelectDates
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Select Dates"/>
-    <cuhu.orderingHistory.SetDate
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Set Dates"/>
-    <cuhu.orderDetail.productName
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Product Name"/>
-    <cuhu.orderDetail.orderQuantity
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Ordered Quantity"/>
+        sling:message="PO Number"/>
+    <cuhu.financials.PONumber0
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.poNumber"
+        sling:message="PO Number"/>
+    <cuhu.financials.salesLocalData
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Local Data"/>
+    <cuhu.financials.sixty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="31 - 60"/>
+    <cuhu.financials.thirty
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="1 - 30"/>
+    <cuhu.financials.total
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Statement Total"/>
     <cuhu.orderDetail.deliveredQuantity
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Delivered Quanity"/>
-    <cuhu.orderDetail.price
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Price"/>
-    <cuhu.orderDetail.remainingQuantity
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Remaining Quantity"/>
-    <cuhu.orderDetail.orderNumber
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Order Number"/>
-    <cuhu.orderDetail.productID
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Product ID"/>
-    <cuhu.orderDetail.weight
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Weight"/>
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sent"/>
     <cuhu.orderDetail.ETA
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="ETA"/>
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETA"/>
+    <cuhu.orderDetail.orderQuantity
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity"/>
+    <cuhu.orderdetail.packaging.checkbox.text
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Only show above items in the deliveries"/>
+    <cuhu.orderdetail.packaging.delivery.materialCode
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Material code"/>
+    <cuhu.orderdetail.packaging.delivery.price
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Net price"/>
+    <cuhu.orderdetail.packaging.delivery.productName
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderdetail.packaging.delivery.productName0
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.productName&#x9;"
+        sling:message="Product"/>
+    <cuhu.orderdetail.packaging.delivery.quantityKPK
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity KPK"/>
+    <cuhu.orderdetail.packaging.delivery.SKU
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SKU"/>
+    <cuhu.orderdetail.packaging.error.msg
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="An Error occurred.."/>
+    <cuhu.orderdetail.packaging.ETD
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETD"/>
+    <cuhu.orderdetail.packaging.kilo.pack.quantity
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Kilo Pack Quantity"/>
+    <cuhu.orderdetail.packaging.kilo.pack.requested.kpk
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label"
+        sling:message="Total order KPK/ Requested KPK / Delivered KPK"/>
+    <cuhu.orderdetail.packaging.kilo.popup.close
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Kilo PopUp Close"/>
+    <cuhu.orderdetail.packaging.no.data
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No Data Available"/>
+    <cuhu.orderdetail.packaging.production.place
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Production place"/>
+    <cuhu.orderdetail.packaging.requested
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Requested"/>
+    <cuhu.orderDetail.Price
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Price"/>
+    <cuhu.orderDetail.Price0
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.price"
+        sling:message="Price"/>
+    <cuhu.orderdetail.product
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderDetail.productID
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product ID"/>
+    <cuhu.orderDetail.productName
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderDetail.remainingQuantity
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Open"/>
+    <cuhu.orderDetail.serialNo
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="#"/>
     <cuhu.orderDetail.unitPrice
-            jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:message="Unit Price"/>
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Unit price"/>
+    <cuhu.orderDetail.weight
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Weight"/>
+    <cuhu.ordering.contact
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Contact"/>
+    <cuhu.ordering.customerNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Tetra Pak Customer No."/>
+    <cuhu.ordering.ETA
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETA"/>
+    <cuhu.ordering.orderDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order date"/>
+    <cuhu.ordering.orderNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Tetra Pak Order No."/>
+    <cuhu.ordering.orderType
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order Type"/>
+    <cuhu.ordering.poNumber
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Purchase Order No."/>
+    <cuhu.ordering.requestedDelivery
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Requested delivery"/>
+    <cuhu.ordering.salesOrg
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sales Organization"/>
+    <cuhu.ordering.status
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.orderingcard.another.Order
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search for another order"/>
+    <cuhu.orderingcard.ButtonKey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Button"/>
+    <cuhu.orderingcard.dataError
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Data error"/>
+    <cuhu.orderingcard.Errorkey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Error in saving"/>
+    <cuhu.orderingcard.no.data
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No Data Available"/>
+    <cuhu.orderingcard.pref.Close
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close"/>
+    <cuhu.orderingcard.pref.Save
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Save"/>
+    <cuhu.orderingcard.Preferences.Desc
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Description"/>
+    <cuhu.orderingcard.Preferences.title
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Preferences"/>
+    <cuhu.orderingcard.titlekey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Orders"/>
+    <cuhu.orderingHistory.Addresskey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="All delivery address"/>
+    <cuhu.orderingHistory.CloseButton
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close Button"/>
+    <cuhu.orderingHistory.DateRange
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="2018-12-20 - 2018-12-28"/>
+    <cuhu.orderingHistory.DeliveryAddress
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ddddd"/>
+    <cuhu.orderingHistory.OrderStatus
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.orderingHistory.Placeholderkey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Purchase Order No. / Tetra Pak order No."/>
+    <cuhu.orderingHistory.Reset
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Reset"/>
+    <cuhu.orderingHistory.Reset1
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="RESET1"/>
+    <cuhu.orderingHistory.SearchBtnKey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search orders"/>
+    <cuhu.orderingHistory.SearchInput
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SearchInput"/>
+    <cuhu.orderingHistory.SelectDates
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Select Dates"/>
+    <cuhu.orderingHistory.SetDate
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Set Date"/>
+    <cuhu.orderingHistory.StatusBtnkey
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="All Statuses"/>
+    <Intro_screen_Closebutton
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close"/>
+    <Intro_Screen_description5
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
+    <Intro_screen_GetStarted
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get Started"/>
+    <Intro_Screen_Heading
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Introduction"/>
+    <Intro_Screen_Img5_altText
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ImageAlt5"/>
+    <Intro_Screen_NextCaption
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Next"/>
+    <Intro_Screen_title5
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customise your experience"/>
 </jcr:root>

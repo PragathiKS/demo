@@ -94,7 +94,6 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
-        //path: '/apps/settings/wcm/designs/customerhub/jsonData/financialsStatementSummary.json', //Mock JSON
         data: filterParams
       },
       beforeRender(data) {
@@ -148,9 +147,11 @@ class FinancialsStatementSummary {
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
     this.root.on('click', '.js-financials-summary__create-pdf', () => {
       this.trackAnalytics(this, 'downloadPdf');
+      this.downloadPdfExcel('pdf');
     });
     this.root.on('click', '.js-financials-summary__create-excel', () => {
       this.trackAnalytics(this, 'downloadExcel');
+      this.downloadPdfExcel('excel');
     });
 
     route((...args) => {
@@ -172,6 +173,10 @@ class FinancialsStatementSummary {
     _downloadInvoice.call(this);
     $this.trackAnalytics(this);
   }
+  downloadPdfExcel(type) {
+    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);
+  }
+
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
   init() {
     /* Mandatory method */

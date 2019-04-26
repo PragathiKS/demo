@@ -51,7 +51,11 @@ public class OrderDetailsData {
     }
 
     public List<OrderSummary> getOrderSummary() {
-        return new ArrayList<>(orderSummary);
+    	if (null != orderSummary) {
+    		return new ArrayList<>(orderSummary);
+    	} else {
+    		return orderSummary;
+    	}
     }
 
     public void setOrderSummary(List<OrderSummary> orderSummary) {

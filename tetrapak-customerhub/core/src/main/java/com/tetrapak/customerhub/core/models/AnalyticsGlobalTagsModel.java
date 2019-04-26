@@ -1,7 +1,13 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -14,12 +20,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
@@ -39,7 +40,7 @@ public class AnalyticsGlobalTagsModel {
     /**
      * Get Site Name.
      *
-     * @return customerhub
+     * @return String customerhub
      */
     public String getSiteName() {
         return "customerhub";
@@ -51,15 +52,7 @@ public class AnalyticsGlobalTagsModel {
      * @return pageType, if successful
      */
     public String getPageType() {
-        if (null == resource) {
-            return "";
-        }
-        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
-        if (null == pageManager) {
-            return "";
-        }
-        Page currentPage = pageManager.getContainingPage(resource.getPath());
-        return currentPage.getTitle();
+        return GlobalUtil.getPageTitle(resource);
     }
 
     /**
@@ -169,6 +162,16 @@ public class AnalyticsGlobalTagsModel {
         String errorStatusMessage = (String) request.getAttribute("javax.servlet.error.message");
         String errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":") + 1);
         return errorMessage.trim();
+    }
+    
+    /**
+     * This method returns the channel for a particular page
+     * 
+     * @return String channel
+     */
+    public String getChannel() {
+    	final int DEPTH = 4;
+        return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
     }
 
 }

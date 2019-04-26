@@ -1,18 +1,20 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 /**
  * Model class for order search component
