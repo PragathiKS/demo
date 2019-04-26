@@ -67,6 +67,6 @@ public class TabsModel {
     }
 
     public List<TabBean> getTabsList() {
-        return tabsList;
+        return new ArrayList<>(tabsList);
     }
 }
