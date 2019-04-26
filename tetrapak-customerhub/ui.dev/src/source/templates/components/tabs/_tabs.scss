@@ -19,7 +19,7 @@
         }
     }
 
-    &__tabsContainer {
+    &__tabs-container {
         @media #{$desktop} {
             @include left($spacing-big);
             position: absolute;
