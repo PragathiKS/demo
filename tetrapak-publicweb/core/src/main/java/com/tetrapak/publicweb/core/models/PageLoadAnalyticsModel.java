@@ -8,13 +8,14 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
+import org.apache.sling.api.resource.Resource;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +29,9 @@ public class PageLoadAnalyticsModel {
 
     @Inject
     private Page currentPage;
+    
+    @Inject
+    private ResourceResolver resolver;
     
     @Inject
     private SlingSettingsService slingSettingsService;
@@ -52,7 +56,11 @@ public class PageLoadAnalyticsModel {
         
         serverName = request.getServerName();
         
-        pageType = currentPage.getTemplate().getTitle();
+        String templatePath = currentPage.getProperties().get("cq:template", String.class);
+        Resource template = resolver.getResource(templatePath);
+        if (template != null) {
+        	pageType = template.getValueMap().get("jcr:title", String.class);
+        }
         
         Locale pageLocale = currentPage.getLanguage(false);
         if (pageLocale != null) {
