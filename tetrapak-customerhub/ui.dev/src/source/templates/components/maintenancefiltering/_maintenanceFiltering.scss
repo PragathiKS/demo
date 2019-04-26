@@ -8,12 +8,12 @@
         }
 
         &-icon {
-            @include margin-right($margin-l);
             @include padding(12px 20px $padding-md);
             @include font-size($font-l);
             display: inline-block;
+            border: 1px solid $color-mercury;
             color: $color-congress-blue;
-            background-color: $color-wild-sand;
+            background-color: $color-white;
             border-radius: 50%;
         }
     }
