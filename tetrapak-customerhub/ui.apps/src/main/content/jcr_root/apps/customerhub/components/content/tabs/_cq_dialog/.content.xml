@@ -74,10 +74,10 @@
                                                       value=""/>
                                                 <Dashboard jcr:primaryType="nt:unstructured"
                                                            text="Documents"
-                                                           value="icon-document"/>
+                                                           value="icon-Document"/>
                                                 <TetraPak jcr:primaryType="nt:unstructured"
                                                           text="Maintenance"
-                                                          value="icon-maintenance"/>
+                                                          value="icon-Maintenance"/>
                                             </items>
                                         </iconClass>
                                     </items>
