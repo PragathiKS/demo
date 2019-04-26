@@ -126,4 +126,11 @@ public class FinancialStatementModel {
         return i18nKeys;
     }
 
+    /**
+     * @return the downloadPdfExcelServletUrl
+     */
+    public String getDownloadPdfExcelServletUrl() {
+        return downloadPdfExcelServletUrl;
+    }
+
 }

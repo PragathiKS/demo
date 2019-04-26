@@ -2,6 +2,7 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.RequestParams;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -64,10 +65,10 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
      */ 
     @Override
     public boolean generateFinancialsResultsPDF(SlingHttpServletResponse response, Results resultsResponse,
-            RequestParams paramRequest) {     
+            Params paramRequest) {     
      List<Document> documents = resultsResponse.getDocuments();
      
-     String accountNo = paramRequest.getParams().getCustomerData().getInfo().getAcountNo();     
+     String accountNo = paramRequest.getCustomerData().getInfo().getAcountNo();     
      InputStream in1 = null;
      InputStream in2 = null;
      InputStream image1 = null;
@@ -104,7 +105,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             contentStream = printDeliveryDetails(document, contentStream, documents);
             
             contentStream.close();
-            PDFUtil.writeOutput(response, document,accountNo);
+            PDFUtil.writeOutput(response, document,"SOA_"+accountNo);
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
@@ -135,47 +136,47 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return rows;
     }
 
-    private List<Row> getHeadLines(RequestParams paramRequest) {
+    private List<Row> getHeadLines(Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row("Statement of accounts", 10, muliRegular, 12));
         rows.add(new Row("", 20, muliRegular, 12));
-        rows.add(new Row("Account Number: " + paramRequest.getParams().getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
+        rows.add(new Row("Account Number: " + paramRequest.getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getParams().getCustomerData().getInfo().getTitle(), 10, muliBold, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getTitle(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getParams().getCustomerData().getInfo().getAddress(), 10, muliRegular, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getAddress(), 10, muliRegular, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row("Account Service", 10, muliRegular, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         return rows;
     }
     
-    private List<Row> getstatementSummary(RequestParams paramRequest) {
+    private List<Row> getstatementSummary(Params paramRequest) {
         List<Row> rows = new ArrayList<>();
-        if(paramRequest.getParams().getStartDate()!= null) {
-        rows.add(new Row("Statement Summary:"+ " "+ paramRequest.getParams().getEndDate() + "-" + paramRequest.getParams().getStartDate(), 10, muliRegular, 12));
+        if(paramRequest.getStartDate()!= null) {
+        rows.add(new Row("Statement Summary:"+ " "+ paramRequest.getEndDate() + "-" + paramRequest.getStartDate(), 10, muliRegular, 12));
         }
         else{
-            rows.add(new Row("Statement Summary:"+ paramRequest.getParams().getEndDate(), 10, muliRegular, 12));
+            rows.add(new Row("Statement Summary:"+ paramRequest.getEndDate(), 10, muliRegular, 12));
         }
         rows.add(new Row("", 20, muliRegular, 8));
         return rows;
     }
     
-    private Table createAccountServicetable(RequestParams paramRequest) {
+    private Table createAccountServicetable(Params paramRequest) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(paramRequest.getParams().getStatus().getDesc(), 90));
-        if(paramRequest.getParams().getStartDate()!= null) {
-        columns.add(new Column(paramRequest.getParams().getEndDate() + "-" + paramRequest.getParams().getStartDate() , 60));
+        columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
+        if(paramRequest.getStartDate()!= null) {
+        columns.add(new Column(paramRequest.getEndDate() + "-" + paramRequest.getStartDate() , 60));
         }else 
         {
-            columns.add(new Column(paramRequest.getParams().getEndDate(), 60));  
+            columns.add(new Column(paramRequest.getEndDate(), 60));  
         }
         String[][] content = {
                 {CustomerHubConstants.BOLD_IDENTIFIER + "Document Type" ,
-                        paramRequest.getParams().getDocumentType().getDesc(),
+                        paramRequest.getDocumentType().getDesc(),
                 },     
-                {  CustomerHubConstants.BOLD_IDENTIFIER + "Document Number", paramRequest.getParams().getDocumentNumber()
+                {  CustomerHubConstants.BOLD_IDENTIFIER + "Document Number", paramRequest.getDocumentNumber()
             }
         };
 

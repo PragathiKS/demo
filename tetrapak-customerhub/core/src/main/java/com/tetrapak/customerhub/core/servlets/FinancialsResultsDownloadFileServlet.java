@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
@@ -13,10 +14,13 @@ import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 
+import org.apache.http.client.methods.HttpPost;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.tika.io.IOUtils;
+import org.json.JSONObject;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -67,17 +71,19 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
     }
 
     @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-      
-        final String extension = request.getRequestPathInfo().getExtension();          
-        Gson gson = new Gson();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:\\Users\\ruhsharm\\Documents\\Tetrapak-code\\tetrapak\\tetrapak-customerhub\\core\\src\\test\\resources\\data.json"));
-        RequestParams paramsRequest= gson.fromJson(bufferedReader,RequestParams.class);
-        final String status = paramsRequest.getParams().getStatus().getKey();
-        final String documentType = paramsRequest.getParams().getDocumentType().getKey();
-        final String invoiceDateFrom = paramsRequest.getParams().getEndDate();
-        final String customerkey = paramsRequest.getParams().getCustomerData().getKey();
-        final String token = paramsRequest.getToken();
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response ) throws IOException {
+        final String extension = request.getRequestPathInfo().getExtension();   
+        String params = request.getParameter("params"); 
+        
+        GsonBuilder builder = new GsonBuilder();
+         Gson gson = builder.create();
+     
+        Params paramsRequest= gson.fromJson(params,Params.class);
+        final String status = paramsRequest.getStatus().getKey();
+        final String documentType = paramsRequest.getDocumentType().getKey();
+        final String invoiceDateFrom = paramsRequest.getEndDate();
+        final String customerkey = paramsRequest.getCustomerData().getKey();
+        final String token = request.getParameter("token");  
   
         JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(
                 status, documentType,invoiceDateFrom, customerkey, token);
@@ -101,7 +107,7 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
             generatePDF.generateFinancialsResultsPDF(response, results, paramsRequest);
         }
         /* else if (CustomerHubConstants.EXCEL.equals(extension)) {
-            generateExcel.generateOrderDetailsExcel(response, orderType, orderDetailResponse);
+            
         }*/else {
             LOGGER.error("File type not specified for the download operation.");
         }

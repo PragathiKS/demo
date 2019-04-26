@@ -1,9 +1,9 @@
 package com.tetrapak.customerhub.core.services;
 
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import com.tetrapak.customerhub.core.beans.financials.results.RequestParams;
+
+import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 
 /**
@@ -21,5 +21,5 @@ public interface FinancialsResultsPDFService {
      * @return 
      */
     boolean generateFinancialsResultsPDF(SlingHttpServletResponse response,
-                                  Results resultsResponse,RequestParams paramRequest);
+                                  Results resultsResponse,Params paramRequest);
 }
