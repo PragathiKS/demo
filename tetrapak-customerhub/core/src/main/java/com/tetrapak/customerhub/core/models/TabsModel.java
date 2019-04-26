@@ -30,6 +30,9 @@ public class TabsModel {
     @Inject
     private String imageAltText;
 
+    @Inject
+    private String componentClasses;
+
     private List<TabBean> tabsList = new ArrayList<>();
 
     @PostConstruct
@@ -57,6 +60,10 @@ public class TabsModel {
 
     public String getImageAltText() {
         return imageAltText;
+    }
+
+    public String getComponentClasses() {
+        return componentClasses;
     }
 
     public List<TabBean> getTabsList() {
