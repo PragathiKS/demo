@@ -5,6 +5,9 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Bean class for Document response json
+ */
 public class Document {
 
     @SerializedName("salesOffice")
@@ -15,7 +18,7 @@ public class Document {
     private String totalAmount;
     @SerializedName("records")
     @Expose
-    private List<Record> records = null;
+    private List<Record> records;
 
     public String getSalesOffice() {
         return salesOffice;

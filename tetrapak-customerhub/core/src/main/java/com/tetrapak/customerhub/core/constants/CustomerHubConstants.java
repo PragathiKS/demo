@@ -47,9 +47,11 @@ public final class CustomerHubConstants {
 
     public static final String TOKEN= "token";
     
-    public static final String DocumentType = "documentType";
+    public static final String DOCUMENTTYPE = "documentType";
     
-    public static final String InvoiceDateFrom = "invoiceDateFrom";
+    public static final String INVOICEDATEFROM = "invoiceDateFrom";
     
-    public static final String CustomerKey = "customerkey";
+    public static final String CUSTOMERKEY = "customerkey";
+    
+    public static final String TEST_TOKEN= "J9ZGhxxIm5uvGgSBIPNqwCV3siBq";
 }

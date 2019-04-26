@@ -4,6 +4,9 @@ package com.tetrapak.customerhub.core.beans.financials.results;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Bean class for Document Type response json
+ */
 public class DocumentType {
 
     @SerializedName("key")

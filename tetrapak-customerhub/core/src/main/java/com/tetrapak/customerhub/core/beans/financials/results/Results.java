@@ -5,14 +5,17 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Bean class for Results response json
+ */
 public class Results {
 
     @SerializedName("summary")
     @Expose
-    private List<Summary> summary = null;
+    private List<Summary> summary;
     @SerializedName("documents")
     @Expose
-    private List<Document> documents = null;
+    private List<Document> documents;
 
     public List<Summary> getSummary() {
         return summary;

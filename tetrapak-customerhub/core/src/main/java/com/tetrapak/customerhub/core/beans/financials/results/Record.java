@@ -4,6 +4,9 @@ package com.tetrapak.customerhub.core.beans.financials.results;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Bean class for Record response json
+ */
 public class Record {
 
     @SerializedName("documentNumber")

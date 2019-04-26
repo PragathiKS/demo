@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 
 /**
  * Tetra Pak Financials Reults Service
- * @author Ruhee Sharma
+ * @author ruhsharm
  */
 @FunctionalInterface
 public interface FinancialsResultsApiService {
