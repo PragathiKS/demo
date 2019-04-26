@@ -2,7 +2,7 @@
   <div class="tp-card ${data.componentClasses}">
     <div class="tp-tabs">
         <img class="tp-tabs__image d-none d-lg-block d-xl-block" src="${data.imagePath}" alt="${data.imageAltText}"/>
-        <div class="tp-tabs__tabsContainer">
+        <div class="tp-tabs__tabs-container">
           <ul class="tp-tabs_ul" data-sly-list.child=${data.tabsList}>
             <li class="tp-tabs__tab ${child.isActive ? 'active' : ''}">
               <a class="tp-tabs__tab-link" href="${child.pageUrl}">
