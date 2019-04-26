@@ -14,80 +14,10 @@
             type="nav"/>
         <items
             jcr:primaryType="nt:unstructured"
-            sling:hideChildren="[column]">
+            sling:hideChildren="[column]">            
             <properties
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Properties"
-                sling:resourceType="granite/ui/components/foundation/section">
-                <layout
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                    margin="{Boolean}false"/>
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <title
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter title"
-                                fieldLabel="Title"
-                                name="./titleI18n"/>
-                            <description
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldLabel="Description"
-                                name="./description"/>
-                            <headline
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter headline for form"
-                                fieldLabel="Form Headline"
-                                name="./headline"/>
-                            <radiobuttons
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/form/multifield"
-                                fieldLabel="Groups - Radio Buttons"
-                                class="full-width">
-                                    <field
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/fieldset"
-                                        acs-commons-nested=""
-                                        name="./radioButtonGroups">
-                                        <layout
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                                            method="absolute"/>
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <column
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/container">
-                                                <items jcr:primaryType="nt:unstructured">                                                    
-                                                    <title
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                        fieldLabel="Radio Button Title"
-                                                        name="./radiobuttonTitle"/>
-                                                </items>
-                                            </column>
-                                        </items>
-                                    </field>
-                            </radiobuttons>
-                            <documentpath
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldDescription="Select Whitepaper document"
-                                fieldLabel="Whitepaper Document Path"
-                                name="./documentPath"
-                                rootPath="/content/dam/publicweb"/>
-                        </items>
-                    </column>
-                </items>
-            </properties>
-            <formlabels
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Form Labels"
                 sling:resourceType="granite/ui/components/foundation/section">
                 <layout
                     jcr:primaryType="nt:unstructured"
@@ -152,7 +82,7 @@
                         </items>
                     </column>
                 </items>
-            </formlabels>          
+            </properties>          
         </items>
     </content>
 </jcr:root>

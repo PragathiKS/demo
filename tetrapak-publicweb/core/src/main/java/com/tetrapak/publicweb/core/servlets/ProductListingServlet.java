@@ -58,6 +58,9 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	@ObjectClassDefinition(name = "Tetra Pak - Public Web Product Listing Servlet", description = "Tetra Pak - Public Web Product Listing servlet")
 	public static @interface Config {
 
+		@AttributeDefinition(name = "Total number of results", description = "Total number of products that need to be shown on the listing.")
+		String total_results() default "9";		
+		
 		@AttributeDefinition(name = "Product Category Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product category.")
 		String product_category() default "productCategory";
 		
@@ -82,6 +85,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     private Session session; 
     private ResourceResolver resourceResolver;
     
+    private String TOTAL_RESULTS;
     private String PRODUCT_CATEGORY;
     private String PRODUCT_ROOT_PATH;
     private String PRODUCT_TEMPLATE;
@@ -142,7 +146,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	        map.put("2_property.value", productCategory);
 		}
 		
-        map.put("p.limit", "9");
+        map.put("p.limit", TOTAL_RESULTS);
 		
 		log.info("Here is the query PredicateGroup : {} ",  PredicateGroup.create(map));			
 		
@@ -179,6 +183,9 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	
 	@Activate
 	protected void activate(final Config config) {
+		this.TOTAL_RESULTS = (String.valueOf(config.total_results()) != null) ? String.valueOf(config.total_results())
+				: null;
+		log.info("configure: TOTAL_RESULTS='{}'", this.TOTAL_RESULTS);
 		this.PRODUCT_CATEGORY = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
 				: null;
 		log.info("configure: PRODUCT_CATEGORY='{}'", this.PRODUCT_CATEGORY);

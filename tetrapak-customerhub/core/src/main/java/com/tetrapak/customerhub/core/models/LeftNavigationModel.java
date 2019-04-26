@@ -2,11 +2,10 @@ package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
-import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import org.apache.commons.lang.StringUtils;
+import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -80,7 +79,7 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
-            if (isCurrentPage(subPage)) {
+            if (PageUtil.isCurrentPage(subPage, resource)) {
                 leftNavigationBean.setExpanded(true);
             }
             ValueMap vMap = subPage.getContentResource().getValueMap();
@@ -109,17 +108,8 @@ public class LeftNavigationModel {
         bean.setExternalLink(isExternalLink(valueMap));
         bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setHref(getResolvedPagePath(childPage));
-        bean.setActive(isCurrentPage(childPage));
+        bean.setActive(PageUtil.isCurrentPage(childPage, resource));
         return bean;
-    }
-
-    private boolean isCurrentPage(Page childPage) {
-        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
-        if (null != pageManager) {
-            Page currentPage = pageManager.getContainingPage(resource);
-            return StringUtils.equalsIgnoreCase(childPage.getPath(), currentPage.getPath());
-        }
-        return false;
     }
 
     private String getResolvedPagePath(Page childPage) {

@@ -27,6 +27,13 @@
            data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank, variant='shift'}" />
     </div>
   </div>
+  <!-- Example of how model will return values for soft conversion dialog fields moved to imagetext banner
+      <p>${data.softConversionTitle @ i18n} </p>
+      <p>${data.softConversionDescription} </p>
+      <p>${data.softConversionHeadline  @ i18n} </p>
+      <p>${data.radioButtonGroups} </p>
+      <p>${data.softConversionDocPath} </p>
+  -->
   <sly data-sly-test="${!data.desktopImage}"
        data-sly-call="${templates.placeholder @ isEmpty = !data.desktopImage}"></sly>
 </sly>
