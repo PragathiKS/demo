@@ -255,18 +255,6 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 
  always {
     build 'Tetra-Dev-Dispatcher-Flush'
-build (
-job: 'Tetra-Cucumber-CHROME',
-propagate: false,
-parameters: [
-    [
-      $class: 'StringParameterValue',
-      name: 'ENV',
-      value: "DEV",
-      propagate: false,
-    ],
-    ]
-)
     }
 
 }
