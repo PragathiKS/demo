@@ -18,7 +18,6 @@ function _processFiltersData(data) {
   } else {
     data.noData = true;
   }
-  console.log(data); //eslint-disable-line
 }
 
 /**
@@ -55,13 +54,55 @@ function _renderMaintenanceFilters() {
           data.i18nKeys = i18nKeys;
 
           $this.processFiltersData(data);
+          $this.cache.data = data;
         }
       }
     }, (data) => {
       if (!data.isError) {
-        logger.log(data);
+        $this.initPostCache();
+        $this.renderMaintenanceContact();
       }
     });
+  });
+}
+
+/**
+ * Renders contact Addresses
+ */
+function _renderMaintenanceContact() {
+  const siteVal = this.cache.$site.val();
+  let data = this.cache.data;
+  if (Array.isArray(data.installations)) {
+    data = data.installations.filter((site) => site.customerNumber === siteVal);
+    if (data.length > 0) {
+      data = data[0];
+      if (Array.isArray(data.lines)) {
+        data.linesRecords = {};
+        //data.linesRecords.options = [{ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText }];
+        data.linesRecords.options = data.lines.map((line) => ({
+          'key': line.lineNumber,
+          'desc': line.lineDesc
+        }));
+        data.linesRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
+
+        render.fn({
+          template: 'options',
+          data: data.linesRecords,
+          target: '.js-maintenance-filtering__line'
+        });
+      }
+    } else {
+      data = {};
+    }
+  }
+
+  render.fn({
+    template: 'maintenanceContact',
+    data,
+    target: '.js-maintenance-filtering__contact',
+    beforeRender(data) {
+      logger.log(data);
+    }
   });
 }
 
@@ -80,16 +121,19 @@ class MaintenanceFiltering {
       logger.error(e);
     }
   }
+  initPostCache() {
+    this.cache.$site = this.root.find('.js-maintenance-filtering__site');
+  }
   bindEvents() {
     /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.root
+      .on('change', '.js-maintenance-filtering__site', () => {
+        this.renderMaintenanceContact();
+      });
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processFiltersData = (...arg) => _processFiltersData.apply(this, arg);
+  renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   init() {
     /* Mandatory method */
     this.initCache();

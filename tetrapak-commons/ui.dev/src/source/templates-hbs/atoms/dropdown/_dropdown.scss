@@ -1,10 +1,14 @@
 .tpatom-dropdown {
     position: relative;
 
+    label {
+        display: block;
+    }
+
     &__select-box {
         @include border-xs($color-tundora);
         @include border-radius($border-radius);
-        @include padding($padding-sm);
+        @include padding($padding-sm $padding-xl $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;
@@ -13,7 +17,7 @@
     &__icon {
         @include right(12px);
         position: absolute;
-        top: 50%;
+        bottom: 0;
         transform: translateY(-50%);
         pointer-events: none;
 

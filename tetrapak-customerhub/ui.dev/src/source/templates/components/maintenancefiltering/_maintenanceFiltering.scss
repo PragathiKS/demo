@@ -1,0 +1,38 @@
+.tp-maintenance-filtering {
+    &__contact {
+        @include border-radius($border-radius);
+        background-color: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include margin-left($margin-l);
+        }
+
+        &-icon {
+            @include margin-right($margin-l);
+            @include padding(12px 20px $padding-md);
+            @include font-size($font-l);
+            display: inline-block;
+            color: $color-congress-blue;
+            background-color: $color-wild-sand;
+            border-radius: 50%;
+        }
+    }
+
+    &__contact-inner {
+        @include padding($padding-l);
+
+        .col-lg-6 {
+            @include margin-top($margin-md);
+
+            &:first-child+.col-lg-6 {
+                @media #{$desktop} {
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+
+    .tpatom-dropdown {
+        @include margin-bottom($margin-md);
+    }
+}

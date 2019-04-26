@@ -1,11 +1,14 @@
 <div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
-    <select name="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
-        {{#if defaultValue}}
-            <option value="">{{i18n key=defaultValue}}</option>
-        {{/if}}
-        {{#each options}}
-            <option value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>
-        {{/each}}
-    </select>
-    <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
+    <label>
+        {{#if labelText}}<span class="tpatom-dropdown__text">{{labelText}}</span>{{/if}}
+        <select name="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
+            {{#if defaultValue}}
+                <option value="">{{i18n key=defaultValue}}</option>
+            {{/if}}
+            {{#each options}}
+                <option value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>
+            {{/each}}
+        </select>
+        <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
+    </label>
 </div>
