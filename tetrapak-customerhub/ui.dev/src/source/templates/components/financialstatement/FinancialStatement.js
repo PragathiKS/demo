@@ -86,14 +86,16 @@ function _renderAddressDetail() {
  * Sets selected customer
  * @param {string} key Key
  */
-function _setSelectedCustomer(key) {
+function _setSelectedCustomer(key, noReset) {
   this.cache.data.customerData.forEach(item => {
     if (item.key === key) {
       this.cache.data.selectedCustomerData = item;
     }
   });
   _renderAddressDetail.apply(this);
-  this.resetFilters();
+  if (!noReset) {
+    this.resetFilters();
+  }
 }
 
 /**
@@ -196,8 +198,16 @@ function _setDateFilter(status, selectedDate) {
  * @param {object} query Query object
  */
 function _syncFields(query) {
-  const { $filterForm } = this.cache;
-  $filterForm.find('.js-financial-statement__status').val(query.status).trigger('change');
+  const { $filterForm, $findCustomer } = this.cache;
+  const $statusField = $filterForm.find('.js-financial-statement__status');
+  let dateRange = query['invoicedate-from'];
+  if (query['invoicedate-to']) {
+    dateRange += ` - ${query['invoicedate-to']}`;
+  }
+  $findCustomer.val(query.customerkey).trigger('change', [true]);
+  $statusField.val(query.status);
+  $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query.search);
 }
@@ -396,7 +406,8 @@ class FinancialStatement {
     });
     this.root
       .on('change', '.js-financial-statement__find-customer', function () {
-        $this.setSelectedCustomer($(this).val());
+        const [, noReset] = arguments;
+        $this.setSelectedCustomer($(this).val(), noReset);
         $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
