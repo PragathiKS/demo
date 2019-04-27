@@ -8,6 +8,7 @@ class SoftConversionForm {
     this.cache.$modal = $('#softConversionModal');
     this.cache.$field = $('#softConversionModal input[type="text"]');
     this.cache.$submitBtn = $('#softConversionModal .form-submit');
+    this.cache.$tabtoggle = $('#softConversionModal [data-toggle="tab"]');
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -35,12 +36,23 @@ class SoftConversionForm {
       if ($(this).val().length){
         $('p.'+fieldName).text($(this).val());
         $('.info-group.'+fieldName).addClass('show');
+        $(this).removeClass('hasError');
       } else {
         $('.info-group.'+fieldName).removeClass('show');
       }
     });
     this.cache.$submitBtn.click(function() {
       $(this).closest('form').submit();
+    });
+    this.cache.$tabtoggle.click(function(e) {
+      let parentTab = e.target.closest('.tab-pane');
+      $('input', parentTab).each(function(){
+        if ($(this).prop('required') && $(this).val() === '') {
+          e.preventDefault();
+          e.stopPropagation();
+          $(this).addClass('hasError');
+        }
+      });
     });
   }
   init() {

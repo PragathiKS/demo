@@ -2,43 +2,123 @@
     &.modal-dialog {
         max-width: 900px;
     }
+
     .modal-content {
         @include padding(34px);
     }
+
     .modal-header {
         border-bottom: 0;
+
         .close {
             @include padding(10px);
             @include margin(0);
             @include font-size(16px);
         }
     }
+
     .edit-box {
         @include border-radius($border-radius);
         @include padding(24px);
         background-color: $color-wild-sand;
         height: 100%;
     }
+
     .info-group {
         @include padding(0 12px 0 0);
         display: none;
         position: relative;
         width: 100%;
+
         &.show {
             display: block;
         }
+
         label {
             font-family: $font-bold;
         }
     }
+    .form-group {
+        .hasError {
+            border-color: $color-alert;
+        }
+    }
+
     .edit-step {
         @include font-size(12px);
         color: $color-tundora;
         position: absolute;
         right: 0;
         top: 5px;
+
         &:hover {
             color: $color-mercury;
         }
     }
+
+    &__prevbtn {
+        i.tpatom-button__icon {
+            @include padding(0 $padding-sm 0 0);
+            &::before {
+                content: '\f112';
+            }
+        }
+    }
 }
+
+.pw-progress {
+    $self: &;
+    &__barwrapper {
+        @include border-radius($border-radius);
+        background-color: $color-mercury;
+        position: relative;
+        width: 100%;
+        height: $font-xl;
+    }
+    &__bar {
+        background-color: $color-white;
+        position: absolute;
+        width: calc(100% - #{convert-to-rem($padding-l*2)});
+        height: 1px;
+        left: $padding-l;
+        top: 50%;
+        transform: translateY(-50%);
+        &--blue {
+            background-color: $color-congress-blue;
+        }
+        &--25 {
+            width: calc(25% - #{convert-to-rem($padding-l)});
+        }
+        &--50 {
+            width: calc(50% - #{convert-to-rem($padding-l)});
+        }
+        &--75 {
+            width: calc(75% - #{convert-to-rem($padding-l)});
+        }
+    }
+    &__point {
+        background-color: $color-white;
+        border-radius: 100%;
+        position: absolute;
+        width: $font-sm;
+        height: $font-sm;
+        left: -#{convert-to-rem($font-sm/2)};
+        top: 50%;
+        transform: translateY(-50%);
+        &--blue {
+            background-color: $color-congress-blue;
+        }
+        &--100 {
+            left: calc(100% - #{convert-to-rem($font-sm/2)});
+        }
+        &--big {
+            width: $font-normal;
+            height: $font-normal;
+            left: calc(100% - #{convert-to-rem($font-normal/2)});
+        }
+    }
+    & #{ $self }__info {
+        @include padding(0 0 0 $padding-md)
+    }
+}
+

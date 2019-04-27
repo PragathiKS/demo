@@ -6,8 +6,9 @@
       <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-              data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
+            <!--sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+              data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/-->
+            <h3 class="softc-title-js"></h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="icon-Close"></i>
             </button>
@@ -16,9 +17,11 @@
             <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
               <div class="tab-content">
                 <div class="tab-pane active" role="tabpanel" id="step-0">
-                  <p class="mb-4">${data.description}</p>
-                  <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                    data-sly-call="${heading.heading_h4_template @ headingText=data.headline, variant='small'}"/>
+                  <!--p class="mb-4">${data.description}</p-->
+                  <p class="mb-4 softc-desc-js"></p>
+                  <!--sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                    data-sly-call="${heading.heading_h4_template @ headingText=data.headline, variant='small'}"/-->
+                  <h4 class="softc-head-js"></h4>
                   <div class="row mt-4">
                     <div class="col">
                     	<sly data-sly-list="${data.radioButtonGroups}">
@@ -29,45 +32,57 @@
                     				</label>
                     		</div>
                     	</sly>
-                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary'}" />
+                      <input type="hidden" name="docpath" class="softc-doc-js">
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary'}" />
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step-1">
                   <div class="row">
                     <div class="col-8">
-                      <p class="mb-4">${data.description}</p>
+                      <!--p class="mb-4">${data.description}</p-->
+                      <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="first-name">${data.firstNameLabel @ i18n}</label>
-                        <input type="text" name="first-name" class="form-control" id="first-name">
+                        <input type="text" name="first-name" class="form-control" id="first-name" required>
                       </div>
                       <div class="form-group">
                         <label for="last-name">${data.lastNameLabel @ i18n}</label>
-                        <input type="text" name="last-name" class="form-control" id="last-name">
+                        <input type="text" name="last-name" class="form-control" id="last-name" required>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.nextButtonLabel, variant='secondary'}" />
+                      <div class="pw-progress row no-gutters mt-4">
+                        <div class="pw-progress__barwrapper col-7">
+                          <div class="pw-progress__bar">
+                            <div class="pw-progress__point pw-progress__point--100"></div>
+                          </div>
+                          <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--25">
+                            <div class="pw-progress__point pw-progress__point--blue"></div>
+                            <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                          </div>
+                        </div>
+                        <div class="pw-progress__info col-5">
+                          ${'Step' @ i18} 1 ${'of' @ i18} 4
+                        </div>
+                      </div>
                     </div>
                     <div class="col-4">
                       <div class="edit-box d-flex flex-column">
                         <div class="info-group mb-3 first-name">
                           <label>${data.firstNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="first-name"></p>
                         </div>
                         <div class="info-group mb-3 last-name">
                           <label>${data.lastNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="last-name"></p>
                         </div>
                         <div class="info-group mb-3 email-address">
                           <label>${data.emailAddressLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="email-address"></p>
                         </div>
                         <div class="info-group company">
                           <label>${data.companyLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="company"></p>
                         </div>
                       </div>
@@ -77,34 +92,45 @@
                 <div class="tab-pane" role="tabpanel" id="step-2">
                   <div class="row">
                     <div class="col-8">
-                      <p class="mb-4">${data.description}</p>
+                      <!--p class="mb-4">${data.description}</p-->
+                      <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="email-address">${data.emailAddressLabel @ i18n}</label>
-                        <input type="text" name="email-address" class="form-control" id="email-address">
+                        <input type="text" name="email-address" class="form-control" id="email-address" required>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.nextButtonLabel, variant='secondary'}" />
+                      <div class="pw-progress row no-gutters mt-4">
+                        <div class="pw-progress__barwrapper col-7">
+                          <div class="pw-progress__bar">
+                            <div class="pw-progress__point pw-progress__point--100"></div>
+                          </div>
+                          <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--50">
+                            <div class="pw-progress__point pw-progress__point--blue"></div>
+                            <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                          </div>
+                        </div>
+                        <div class="pw-progress__info col-5">
+                          ${'Step' @ i18} 2 ${'of' @ i18} 4
+                        </div>
+                      </div>
                     </div>
                     <div class="col-4">
                       <div class="edit-box d-flex flex-column">
                         <div class="info-group mb-3 first-name">
                           <label>${data.firstNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="first-name"></p>
                         </div>
                         <div class="info-group mb-3 last-name">
                           <label>${data.lastNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="last-name"></p>
                         </div>
                         <div class="info-group mb-3 email-address">
                           <label>${data.emailAddressLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="email-address"></p>
                         </div>
                         <div class="info-group company">
                           <label>${data.companyLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="company"></p>
                         </div>
                       </div>
@@ -114,34 +140,45 @@
                 <div class="tab-pane" role="tabpanel" id="step-3">
                   <div class="row">
                     <div class="col-8">
-                      <p class="mb-4">${data.description}</p>
+                      <!--p class="mb-4">${data.description}</p-->
+                      <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="company">${data.companyLabel @ i18n}</label>
-                        <input type="text" name="company" class="form-control" id="company">
+                        <input type="text" name="company" class="form-control" id="company" required>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-4', btnText=data.nextButtonLabel, variant='secondary'}" />
+                      <div class="pw-progress row no-gutters mt-4">
+                        <div class="pw-progress__barwrapper col-7">
+                          <div class="pw-progress__bar">
+                            <div class="pw-progress__point pw-progress__point--100"></div>
+                          </div>
+                          <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--75">
+                            <div class="pw-progress__point pw-progress__point--blue"></div>
+                            <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                          </div>
+                        </div>
+                        <div class="pw-progress__info col-5">
+                          ${'Step' @ i18} 3 ${'of' @ i18} 4
+                        </div>
+                      </div>
                     </div>
                     <div class="col-4">
                       <div class="edit-box d-flex flex-column">
                         <div class="info-group mb-3 first-name">
                           <label>${data.firstNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="first-name"></p>
                         </div>
                         <div class="info-group mb-3 last-name">
                           <label>${data.lastNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="last-name"></p>
                         </div>
                         <div class="info-group mb-3 email-address">
                           <label>${data.emailAddressLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="email-address"></p>
                         </div>
                         <div class="info-group company">
                           <label>${data.companyLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="company"></p>
                         </div>
                       </div>
@@ -151,34 +188,45 @@
                 <div class="tab-pane" role="tabpanel" id="step-4">
                   <div class="row">
                     <div class="col-8">
-                      <p class="mb-4">${data.description}</p>
+                      <!--p class="mb-4">${data.description}</p-->
+                      <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="position">${data.positionLabel @ i18n}</label>
-                        <input type="text" name="position" class="form-control" id="position">
+                        <input type="text" name="position" class="form-control" id="position" required>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel}" />
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.nextButtonLabel, variant='secondary', customClasses='form-submit'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit'}" />
+                      <div class="pw-progress row no-gutters mt-4">
+                        <div class="pw-progress__barwrapper col-7">
+                          <div class="pw-progress__bar">
+                            <div class="pw-progress__point pw-progress__point--100"></div>
+                          </div>
+                          <div class="pw-progress__bar pw-progress__bar--blue">
+                            <div class="pw-progress__point pw-progress__point--blue"></div>
+                            <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                          </div>
+                        </div>
+                        <div class="pw-progress__info col-5">
+                          ${'Step' @ i18} 4 ${'of' @ i18} 4
+                        </div>
+                      </div>
                     </div>
                     <div class="col-4">
                       <div class="edit-box d-flex flex-column">
                         <div class="info-group mb-3 first-name">
                           <label>${data.firstNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="first-name"></p>
                         </div>
                         <div class="info-group mb-3 last-name">
                           <label>${data.lastNameLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-1" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="last-name"></p>
                         </div>
                         <div class="info-group mb-3 email-address">
                           <label>${data.emailAddressLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-2" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="email-address"></p>
                         </div>
                         <div class="info-group company">
                           <label>${data.companyLabel @ i18n}</label>
-                          <a class="edit-step" href="#" data-target="#step-3" data-toggle="tab"><i class="icon-Edit"></i></a>
                           <p class="company"></p>
                         </div>
                       </div>
