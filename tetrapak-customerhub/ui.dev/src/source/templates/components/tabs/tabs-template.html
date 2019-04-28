@@ -1,0 +1,17 @@
+<sly data-sly-template.tabs_template="${@ data, flag}">
+  <div class="tp-card ${data.componentClasses}">
+    <div class="tp-tabs">
+        <img class="tp-tabs__image d-none d-lg-block d-xl-block" src="${data.imagePath}" alt="${data.imageAltText}"/>
+        <div class="tp-tabs__tabs-container">
+          <ul class="tp-tabs_ul" data-sly-list.child=${data.tabsList}>
+            <li class="tp-tabs__tab ${child.isActive ? 'active' : ''}">
+              <a class="tp-tabs__tab-link" href="${child.pageUrl}">
+                <i class="icon d-none d-lg-block d-xl-block tp-tabs__tab-icon ${child.iconClass}"></i>
+                <p class="tp-tabs__tab-label">${child.labelI18n}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</sly>
