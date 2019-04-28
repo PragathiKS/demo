@@ -7,10 +7,15 @@ export const TEMPLATE_MISSING = 'Target template is missing';
 export const INVALID_URL = 'URL is invalid';
 export const INIT_FAILED = 'One or more components were not initialized';
 export const RESULTS_EMPTY = 'Empty results';
+export const FILENAME_EMPTY = 'Invalid File Name';
+export const INVALID_CONFIG = 'Invalid configuration';
+export const INVALID_STREAM = 'Stream is invalid';
 export const DATE_FORMAT = 'YYYY-MM-DD';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
+export const EXT_PDF = 'pdf';
+export const EXT_EXCEL = 'xlsx';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',

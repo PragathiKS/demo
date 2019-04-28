@@ -24,5 +24,5 @@
     "quantityKPK",
     "price"
   ],
-  "downloadPdfExcelServletUrl": "/content/tetrapak/customerhub/en/ordering/order-history/order-details/jcr:content/root/responsivegrid/orderDetails.{orderType}.{extnType}?orderNumber={orderNumber}&token={token}"
+  "downloadPdfExcelServletUrl": "/content/tetrapak/customerhub/en/ordering/order-history/order-details/jcr:content/root/responsivegrid/orderDetails.{orderType}.{extnType}"
 }
