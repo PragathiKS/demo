@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.services;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
+import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
@@ -19,8 +20,9 @@ public interface OrderDetailsPDFService {
      * @param response            response
      * @param orderType           order type
      * @param orderDetailResponse order detail response
+     * @param orderDetailsModel   order details model
      * @return true if successful
      */
     boolean generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-                                    String orderType, OrderDetailsData orderDetailResponse);
+                                    String orderType, OrderDetailsData orderDetailResponse, OrderDetailsModel orderDetailsModel);
 }

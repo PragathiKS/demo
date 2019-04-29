@@ -1,0 +1,5 @@
+<sly data-sly-template.dynamicMediaImage_template="${@ imagePath,altText,className} ">
+    <sly data-sly-use.dynamicMediaImageModel="${'com.tetrapak.publicweb.core.models.DynamicMediaImageModel' @ imagePath=imagePath , altText=altText}">
+        <img class="${className} js-dynamic-media" data-src="${dynamicMediaImageModel.desktopUrl}" data-src_mobilep="${dynamicMediaImageModel.mobilePortraitUrl}" data-src_mobilel="${dynamicMediaImageModel.mobileLandscapeUrl}" data-src_tabletp="${dynamicMediaImageModel.tabletPortraitUrl}" data-src_tabletl="${dynamicMediaImageModel.tabletLandscapeUrl}" data-src_desktop="${dynamicMediaImageModel.desktopUrl}" alt="${altText}"/>
+    </sly>
+</sly>
