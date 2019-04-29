@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
@@ -87,8 +88,9 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
             Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
             
             boolean flag = false;
+            FinancialStatementModel financialStatementModel = request.getResource().adaptTo(FinancialStatementModel.class); 
             if (CustomerHubConstants.PDF.equals(extension)) {
-                flag = generatePDF.generateFinancialsResultsPDF(request, response, results, paramsRequest);
+                flag = generatePDF.generateFinancialsResultsPDF(request, response, results, paramsRequest, financialStatementModel);
             }else {
                 LOGGER.error("File type not specified for the download operation.");
             }
