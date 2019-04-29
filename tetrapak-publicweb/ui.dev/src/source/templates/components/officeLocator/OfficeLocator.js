@@ -124,8 +124,8 @@ class OfficeLocator {
   };
 
   normalizeData = (offices) => {
-    let latRegex = /!2d(.*?)!/;
-    let lngRegex = /!3d(.*?)!/;
+    let latRegex = /!3d(.*?)!/;
+    let lngRegex = /!2d(.*?)!/;
     return offices.map((obj, i) => {
       if (obj['Google Maps Url'].length > 0) {
         obj.lat = parseFloat(obj['Google Maps Url'].match(latRegex)[1] || 0);
