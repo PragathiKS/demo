@@ -14,12 +14,13 @@ import { $body } from './commonSelectors';
  * @param {string} filename Name of downloaded file
  * @param {*} config AJAX config
  */
-export const fileWrapper = (filename, config) => {
+export const fileWrapper = (config) => {
   $.extend(config, {
     xhrFields: {
       responseType: 'blob'
     }
   });
+  const { filename } = config;
   return new Promise(function (resolve, reject) {
     if (!filename || typeof filename !== 'string') {
       logger.log(FILENAME_EMPTY);
