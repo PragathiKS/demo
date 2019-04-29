@@ -30,7 +30,9 @@ export const fileWrapper = (config) => {
       reject(INVALID_CONFIG);
     } else {
       ajaxWrapper.getXhrObj(config)
-        .done((data) => {
+        .done((...args) => {
+          const [data, , xhr] = args;
+          logger.log(xhr.getResponseHeader('Content-Disposition'));
           if (!data) {
             logger.log(INVALID_STREAM);
             reject(INVALID_STREAM);
