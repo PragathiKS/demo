@@ -2,7 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           jcr:primaryType="nt:unstructured"
-          jcr:title="Maintenance Filtering Component"
+          jcr:title="Maintenance Component"
           sling:resourceType="cq/gui/components/authoring/dialog">
     <content
             jcr:primaryType="nt:unstructured"
@@ -14,7 +14,7 @@
         <items jcr:primaryType="nt:unstructured">
             <section
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Maintenance Filtering i18n keys"
+                    jcr:title="Maintenance i18n keys"
                     sling:resourceType="granite/ui/components/foundation/section">
                 <layout
                         jcr:primaryType="nt:unstructured"
