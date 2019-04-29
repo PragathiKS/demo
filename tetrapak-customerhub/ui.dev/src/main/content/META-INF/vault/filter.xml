@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/apps/customerhub/components" mode="merge"/>
+    <filter root="/apps/customerhub/components" mode="update">
+        <include pattern=".*\*template.html"/>
+    </filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="replace"/>
 </workspaceFilter>
