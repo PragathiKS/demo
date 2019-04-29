@@ -6,9 +6,7 @@
       <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <!--sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-              data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/-->
-            <h3 class="softc-title-js"></h3>
+            <h4 class="tpatom-heading tpatom-heading--regular softc-title-js"></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="icon-Close"></i>
             </button>
@@ -17,16 +15,19 @@
             <form accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET" target="_blank">
               <div class="tab-content">
                 <div class="tab-pane active" role="tabpanel" id="step-0">
-                  <!--p class="mb-4">${data.description}</p-->
                   <p class="mb-4 softc-desc-js"></p>
-                  <!--sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                    data-sly-call="${heading.heading_h4_template @ headingText=data.headline, variant='small'}"/-->
-                  <h4 class="softc-head-js"></h4>
+                  <h4 class="tpatom-heading tpatom-heading--small softc-head-js"></h4>
                   <div class="row mt-4">
                     <div class="col">
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="group" checked="checked" value="Professional">
+                          <label class="form-check-label" for="Professional">
+                            ${'Professional' @ i18n}
+                          </label>
+                      </div>
                     	<sly data-sly-list="${data.radioButtonGroups}">
                     		<div class="form-check mb-3">
-                    			<input class="form-check-input" type="radio" name="group" checked="checked" value="${item}">
+                    			<input class="form-check-input" type="radio" name="group" value="${item}">
                     				<label class="form-check-label" for="${item}">
                     					${item}
                     				</label>
@@ -40,15 +41,16 @@
                 <div class="tab-pane" role="tabpanel" id="step-1">
                   <div class="row">
                     <div class="col-8">
-                      <!--p class="mb-4">${data.description}</p-->
                       <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="first-name">${data.firstNameLabel @ i18n}</label>
                         <input type="text" name="first-name" class="form-control" id="first-name" required>
+                        <div class="error-msg">Error, input needed.</div>
                       </div>
                       <div class="form-group">
                         <label for="last-name">${data.lastNameLabel @ i18n}</label>
                         <input type="text" name="last-name" class="form-control" id="last-name" required>
+                        <div class="error-msg">Error, input needed.</div>
                       </div>
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.nextButtonLabel, variant='secondary'}" />
@@ -92,11 +94,11 @@
                 <div class="tab-pane" role="tabpanel" id="step-2">
                   <div class="row">
                     <div class="col-8">
-                      <!--p class="mb-4">${data.description}</p-->
                       <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="email-address">${data.emailAddressLabel @ i18n}</label>
                         <input type="text" name="email-address" class="form-control" id="email-address" required>
+                        <div class="error-msg">Error, input needed.</div>
                       </div>
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.nextButtonLabel, variant='secondary'}" />
@@ -140,11 +142,11 @@
                 <div class="tab-pane" role="tabpanel" id="step-3">
                   <div class="row">
                     <div class="col-8">
-                      <!--p class="mb-4">${data.description}</p-->
                       <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="company">${data.companyLabel @ i18n}</label>
                         <input type="text" name="company" class="form-control" id="company" required>
+                        <div class="error-msg">Error, input needed.</div>
                       </div>
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-4', btnText=data.nextButtonLabel, variant='secondary'}" />
@@ -188,11 +190,11 @@
                 <div class="tab-pane" role="tabpanel" id="step-4">
                   <div class="row">
                     <div class="col-8">
-                      <!--p class="mb-4">${data.description}</p-->
                       <p class="mb-4 softc-desc-js"></p>
                       <div class="form-group">
                         <label for="position">${data.positionLabel @ i18n}</label>
                         <input type="text" name="position" class="form-control" id="position" required>
+                        <div class="error-msg">Error, input needed.</div>
                       </div>
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel, customClasses='pw-modal__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit'}" />

@@ -39,8 +39,17 @@
         }
     }
     .form-group {
-        .hasError {
-            border-color: $color-alert;
+        .error-msg {
+            display: none;
+            color: $color-alert;
+        }
+        &.hasError {
+            input {
+                border-color: $color-alert;
+            }
+            .error-msg {
+                display: block;
+            }
         }
     }
 
