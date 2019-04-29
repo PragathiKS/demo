@@ -104,7 +104,7 @@
             max-height: none;
 
             @media #{$desktop} {
-                max-height: #{convert-to-rem($font-xxxl*2)};
+                max-height: #{convert-to-rem(140px)};
             }
         }
         &--right {

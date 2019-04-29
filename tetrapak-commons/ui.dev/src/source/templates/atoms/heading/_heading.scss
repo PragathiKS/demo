@@ -19,7 +19,7 @@
 
         @media #{$desktop} {
             @include font-size($font-xxxl);
-            @include line-height($font-xxxl, $font-xxxl);
+            @include line-height(70px, $font-xxxl);
         }
     }
 

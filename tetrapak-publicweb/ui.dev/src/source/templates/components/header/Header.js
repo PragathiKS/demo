@@ -58,7 +58,6 @@ class Header {
   };
   movePointer = () => {
     let secNavWidth = this.cache.secondaryNav.width();
-    console.log(this.cache.pointedElement[0].offsetLeft, secNavWidth); //eslint-disable-line
     $('.js-tp-pw-search-box__pointer').css('right', secNavWidth + 10 + 'px');
   };
 

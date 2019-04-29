@@ -50,7 +50,10 @@
         &__description {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
-            max-height: $font-l*5;
+
+            @media #{$desktop} {
+                max-height: $font-l*5;
+            }
         }
     }
     &--right {
