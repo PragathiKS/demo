@@ -7,17 +7,92 @@ import { logger } from '../../../scripts/utils/logger';
 
 
 /**
- * Process Parts Data
+ * Process Sites Data
  */
-function _processFiltersData(data) {
+function _processSiteData(data) {
   if (Array.isArray(data.installations)) {
-    data.sites = data.installations.map((site) => ({
+    data.sites = data.installations.map(site => ({
       'key': site.customerNumber,
       'desc': site.customerName
     }));
   } else {
     data.noData = true;
   }
+}
+
+/**
+ * Renders contact Addresses
+ */
+function _renderMaintenanceContact() {
+  const siteVal = this.cache.$site.val();
+  let data = this.cache.data;
+  if (Array.isArray(data.installations)) {
+    data = data.installations.filter(site => site.customerNumber === siteVal);
+    if (data.length > 0) {
+      data = this.cache.filteredData = data[0];
+      this.renderLineFilter(data);
+    } else {
+      data = {};
+    }
+  }
+
+  render.fn({
+    template: 'maintenanceContact',
+    data,
+    target: '.js-maintenance-filtering__contact'
+  });
+}
+
+/**
+ * Renders Line Filter
+ */
+function _renderLineFilter(data = this.cache.filteredData) {
+  if (Array.isArray(data.lines)) {
+    data.linesRecords = {};
+    data.linesRecords.options = data.lines.map((line) => ({
+      'key': line.lineNumber,
+      'desc': line.lineDesc
+    }));
+    data.linesRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
+
+    render.fn({
+      template: 'options',
+      data: data.linesRecords,
+      target: '.js-maintenance-filtering__line'
+    });
+
+    this.renderEquipmentFilter(data);
+  }
+}
+
+/**
+ * Renders Equipment Filter
+ */
+function _renderEquipmentFilter(data = this.cache.filteredData) {
+  let lineVal = this.cache.$line.val(),
+    equipmentRecords;
+  data.equipmentRecords = {};
+  data.equipmentRecords.options = [];
+  if (lineVal === '') {
+    equipmentRecords = data.lines;
+  } else {
+    equipmentRecords = data.lines.filter(line => line.lineNumber === lineVal);
+  }
+
+  equipmentRecords.forEach(equipment => {
+    data.equipmentRecords.options = data.equipmentRecords.options.concat(equipment.equipments.map(equipment => ({
+      'key': equipment.equipmentNumber,
+      'desc': equipment.equipmentName
+    })));
+  });
+
+  data.equipmentRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
+
+  render.fn({
+    template: 'options',
+    data: data.equipmentRecords,
+    target: '.js-maintenance-filtering__equipment'
+  });
 }
 
 /**
@@ -53,56 +128,16 @@ function _renderMaintenanceFilters() {
           const { i18nKeys } = $this.cache;
           data.i18nKeys = i18nKeys;
 
-          $this.processFiltersData(data);
+          $this.processSiteData(data);
           $this.cache.data = data;
         }
       }
     }, (data) => {
-      if (!data.isError) {
+      if (!data.isError && !data.noData) {
         $this.initPostCache();
         $this.renderMaintenanceContact();
       }
     });
-  });
-}
-
-/**
- * Renders contact Addresses
- */
-function _renderMaintenanceContact() {
-  const siteVal = this.cache.$site.val();
-  let data = this.cache.data;
-  if (Array.isArray(data.installations)) {
-    data = data.installations.filter((site) => site.customerNumber === siteVal);
-    if (data.length > 0) {
-      data = data[0];
-      if (Array.isArray(data.lines)) {
-        data.linesRecords = {};
-        //data.linesRecords.options = [{ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText }];
-        data.linesRecords.options = data.lines.map((line) => ({
-          'key': line.lineNumber,
-          'desc': line.lineDesc
-        }));
-        data.linesRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
-
-        render.fn({
-          template: 'options',
-          data: data.linesRecords,
-          target: '.js-maintenance-filtering__line'
-        });
-      }
-    } else {
-      data = {};
-    }
-  }
-
-  render.fn({
-    template: 'maintenanceContact',
-    data,
-    target: '.js-maintenance-filtering__contact',
-    beforeRender(data) {
-      logger.log(data);
-    }
   });
 }
 
@@ -123,17 +158,24 @@ class MaintenanceFiltering {
   }
   initPostCache() {
     this.cache.$site = this.root.find('.js-maintenance-filtering__site');
+    this.cache.$line = this.root.find('.js-maintenance-filtering__line');
+    this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
   bindEvents() {
     /* Bind jQuery events here */
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
+      })
+      .on('change', '.js-maintenance-filtering__line', () => {
+        this.renderEquipmentFilter();
       });
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
-  processFiltersData = (...arg) => _processFiltersData.apply(this, arg);
+  processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
+  renderLineFilter = (data) => _renderLineFilter.call(this, data);
+  renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
   init() {
     /* Mandatory method */
     this.initCache();

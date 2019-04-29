@@ -1,6 +1,8 @@
 .tp-maintenance-filtering {
     &__contact {
+        @include font-size($font-sm);
         @include border-radius($border-radius);
+        @include line-height(20px, $font-sm);
         background-color: $color-wild-sand;
 
         @media #{$desktop} {
@@ -8,10 +10,11 @@
         }
 
         &-icon {
-            @include padding(12px 20px $padding-md);
+            @include margin-bottom($margin-sm);
+            @include padding(12px 20px);
             @include font-size($font-l);
-            display: inline-block;
             border: 1px solid $color-mercury;
+            display: inline-block;
             color: $color-congress-blue;
             background-color: $color-white;
             border-radius: 50%;
