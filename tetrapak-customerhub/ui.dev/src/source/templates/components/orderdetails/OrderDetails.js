@@ -295,9 +295,8 @@ function _downloadContent() {
   auth.getToken(({ data: authData }) => {
     data.token = authData.access_token;
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
-    const filename = `${data.orderNumber}.${_getExtension(data.extnType)}`;
     fileWrapper({
-      filename,
+      extension: `${_getExtension(data.extnType)}`,
       url: pdfExcelUrl,
       data: {
         orderNumber: data.orderNumber,

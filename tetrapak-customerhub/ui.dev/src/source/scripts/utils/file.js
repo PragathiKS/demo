@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { FILENAME_EMPTY, INVALID_CONFIG, INVALID_STREAM } from './constants';
+import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY } from './constants';
 import { logger } from './logger';
 import { $body } from './commonSelectors';
 
@@ -20,11 +20,11 @@ export const fileWrapper = (config) => {
       responseType: 'blob'
     }
   });
-  const { filename } = config;
+  const { extension } = config;
   return new Promise(function (resolve, reject) {
-    if (!filename || typeof filename !== 'string') {
-      logger.log(FILENAME_EMPTY);
-      reject(FILENAME_EMPTY);
+    if (!extension || typeof extension !== 'string') {
+      logger.log(FILEEXT_EMPTY);
+      reject(FILEEXT_EMPTY);
     } else if (!config || (config && typeof config !== 'object')) {
       logger.log(INVALID_CONFIG);
       reject(INVALID_CONFIG);
@@ -32,30 +32,43 @@ export const fileWrapper = (config) => {
       ajaxWrapper.getXhrObj(config)
         .done((...args) => {
           const [data, , xhr] = args;
-          logger.log(xhr.getResponseHeader('Content-Disposition'));
+          const contentDisposition = xhr.getResponseHeader('Content-Disposition');
+          const fileNameVar = 'filename=';
+          const fileVarIndex = contentDisposition.indexOf(fileNameVar);
+          let contentFileName = '';
+          if (fileVarIndex > -1) {
+            contentFileName = contentDisposition.substring(
+              fileVarIndex + fileNameVar.length,
+              contentDisposition.indexOf(`.${extension}`)
+            );
+          }
+          if (!contentFileName) {
+            contentFileName = `${Date.now()}`;
+          }
           if (!data) {
             logger.log(INVALID_STREAM);
             reject(INVALID_STREAM);
           } else if (window.navigator.msSaveOrOpenBlob) {
             // Handle IE and Edge
-            window.navigator.msSaveOrOpenBlob(data, filename);
-            resolve({ data, filename });
+            window.navigator.msSaveOrOpenBlob(data, `${contentFileName}.${extension}`);
+            resolve({ data, filename: contentFileName, extension });
           } else {
             // Handle other browsers
             const anchor = $('<a class="d-none"></a>');
             const href = window.URL.createObjectURL(data);
             anchor.attr({
               href,
-              download: filename
+              download: `${contentFileName}.${extension}`
             });
             $body.append(anchor); // Firefox does not react to in-memory elements
-            anchor.trigger('click'); // Triggers file download
+            anchor[0].click(); // Triggers file download
             window.URL.revokeObjectURL(href); // Clears in-memory file data
             anchor.remove();
-            resolve({ data, filename });
+            resolve({ data, filename: contentFileName, extension });
           }
         })
         .fail((...args) => {
+          logger.log(args);
           reject(args);
         });
     }
