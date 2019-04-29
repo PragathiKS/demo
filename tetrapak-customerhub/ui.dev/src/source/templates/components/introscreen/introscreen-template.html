@@ -12,7 +12,7 @@
                     <div class="slider single-item intro-slider js-intro-slider">
                         <sly data-sly-list.getStartedItem="${data.getStartedList}">
                             <div class="intro-slider__slide">
-                            <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @data=getStartedItem,className='intro-slider__slider-image'}" />
+                              <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=${getStartedItem.imagePath},imageAltI18n=${getStartedItem.imageAltI18n},className='intro-slider__slider-image'}" />
                                 <div class="intro-slider__description">
                                     <h3 class="intro-slider__title">${getStartedItem.titleI18n @i18n}</h3>
                                     <p>${getStartedItem.descriptionI18n @i18n}</p>
