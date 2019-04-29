@@ -35,11 +35,15 @@ export const fileWrapper = (config) => {
           const contentDisposition = xhr.getResponseHeader('Content-Disposition');
           const fileNameVar = 'filename=';
           const fileVarIndex = contentDisposition.indexOf(fileNameVar);
+          const extensionIndex = contentDisposition.indexOf(`.${extension}`);
           let contentFileName = '';
-          if (fileVarIndex > -1) {
+          if (
+            fileVarIndex > -1
+            && extensionIndex > fileVarIndex
+          ) {
             contentFileName = contentDisposition.substring(
               fileVarIndex + fileNameVar.length,
-              contentDisposition.indexOf(`.${extension}`)
+              extensionIndex
             );
           }
           if (!contentFileName) {
