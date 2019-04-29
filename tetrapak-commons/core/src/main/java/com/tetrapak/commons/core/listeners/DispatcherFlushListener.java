@@ -44,7 +44,7 @@ public class DispatcherFlushListener implements ResourceChangeListener, External
             if (ArrayUtils.isNotEmpty(config.getPaths())) {
                 for (String path : config.getPaths()) {
                     LOGGER.info("Event: {} triggered at: {}", change.getType(), path);
-                    if(path.contains("i18")){
+                    if(path.contains("i18n")){
                         dispatcherFlush.flush("/libs/cq/i18n");
                     }else {
                         dispatcherFlush.flush(path);
