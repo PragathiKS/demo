@@ -304,9 +304,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String getInvoiceAddress(InvoiceAddress invoiceAddress) {
 		String address = StringUtils.EMPTY;
 		if (null != invoiceAddress) {
-			address = getProcessedValue(invoiceAddress.getName()) + " " + invoiceAddress.getName2()
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(invoiceAddress.getCity())
-					+ ExcelUtil.NEW_LINE_DETECTOR + invoiceAddress.getState() + " , "
+			address = getProcessedValue(invoiceAddress.getName()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ invoiceAddress.getName2() + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(invoiceAddress.getCity()) + " , "
 					+ getProcessedValue(invoiceAddress.getPostalcode()) + "  "
 					+ getProcessedValue((invoiceAddress.getCountry()));
 		}
@@ -320,9 +320,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String getDeliveryAddress(DeliveryAddress deliveryAddress) {
 		String address = StringUtils.EMPTY;
 		if (null != deliveryAddress) {
-			address = getProcessedValue(deliveryAddress.getName()) + " " + getProcessedValue(deliveryAddress.getName2())
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(deliveryAddress.getCity())
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(deliveryAddress.getState()) + " , "
+			address = getProcessedValue(deliveryAddress.getName()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(deliveryAddress.getName2()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(deliveryAddress.getCity()) + " , "
 					+ getProcessedValue(deliveryAddress.getPostalcode()) + " "
 					+ getProcessedValue(deliveryAddress.getCountry());
 		}
