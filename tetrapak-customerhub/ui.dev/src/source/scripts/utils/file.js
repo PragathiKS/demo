@@ -16,8 +16,11 @@ import { $body } from './commonSelectors';
  */
 export const fileWrapper = (config) => {
   $.extend(config, {
-    xhrFields: {
-      responseType: 'blob'
+    beforeSend(xhr) {
+      xhr.responseType = 'blob';
+      if (config.beforeSend) {
+        config.beforeSend(xhr);
+      }
     }
   });
   const { filename } = config;
