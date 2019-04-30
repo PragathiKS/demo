@@ -111,7 +111,6 @@ export const ajaxWrapper = {
         cache: false,
         url: '',
         data: {},
-        dataType: 'json',
         loaderRef: null,
         // By default allow multiple request on one URL
         cancellable: false,

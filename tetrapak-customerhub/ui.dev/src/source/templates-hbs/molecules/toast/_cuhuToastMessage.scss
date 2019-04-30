@@ -1,0 +1,20 @@
+.tp-toast-message {
+    @include width(288px);
+    @include top(100px);
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: $zindex-top;
+
+    .icon {
+        &::before {
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            position: absolute;
+            top: 1px;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+}

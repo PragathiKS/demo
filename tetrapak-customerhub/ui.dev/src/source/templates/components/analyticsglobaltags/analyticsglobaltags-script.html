@@ -21,15 +21,17 @@
 
   </sly>
 
-  if(window.location.pathname.slice(1) !== "") {
-    var siteSections = window.location.pathname.slice(1).split("/");
-    digitalData.pageinfo['channel'] = siteSections[0];
-    pageName += ":" + siteSections[0];
+  <sly data-sly-test="${data.channel}">
+    digitalData.pageinfo['channel'] = "${data.channel}";
+    pageName += ":" + digitalData.pageinfo['channel'];
 
-    siteSections.forEach(function (siteSection, index) {
-      digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
-    });
-  }
+    if(window.location.pathname.slice(1) !== "") {
+      var siteSections = window.location.pathname.slice(1).split("/");
+      siteSections.forEach(function (siteSection, index) {
+        digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
+      });
+    }
+  </sly>
 
   <sly data-sly-test="${data.pageType}">
     digitalData.pageinfo['pageType'] = "${data.pageType}";
