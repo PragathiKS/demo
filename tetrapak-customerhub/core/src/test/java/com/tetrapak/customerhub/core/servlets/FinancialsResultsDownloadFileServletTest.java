@@ -34,7 +34,9 @@ import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
 
 
@@ -95,6 +97,24 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
+    
+    @Test
+    public void doPostForExcel() throws IOException {
+        MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+        requestPathInfo.setExtension("excel");
+        MockSlingHttpServletRequest request = aemContext.request();
+        MockSlingHttpServletResponse response = aemContext.response();        
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
+        parameters.put("params", "{\"startDate\":\"2019-04-25\",\"customerData\":{\"key\":\"123\",\"desc\":\"John - Malmo\",\"info\":{\"acountNo\":\"12345\",\"title\":\"California Aseptic Beverages\",\"address\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
+        request.setParameterMap(parameters);
+
+        FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
+                .getService(FinancialsResultsDownloadFileServlet.class);
+        aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
+        financialsResultsDownloadFileServlet.doPost(request, response);
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
+    }
    
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
 
@@ -106,6 +126,10 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialsResultsPDFService.class);
         financialsResultsPDFServiceGenericServiceType.set(new FinancialsResultsPDFServiceImpl());
 
+        GenericServiceType<FinancialsResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
+        excelServiceGenericServiceType.setClazzType(FinancialsResultsExcelService.class);
+        excelServiceGenericServiceType.set(new FinancialsResultsExcelServiceImpl());
+        
         GenericServiceType<FinancialsResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
         financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialsResultsDownloadFileServlet.class);
         financialsResultsDownloadFileServletGenericServiceType.set(new FinancialsResultsDownloadFileServlet());
@@ -114,6 +138,7 @@ public class FinancialsResultsDownloadFileServletTest {
         serviceTypes.add((GenericServiceType<T>) apigeeServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) financialsResultsPDFServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) financialsResultsDownloadFileServletGenericServiceType);
+        serviceTypes.add((GenericServiceType<T>) excelServiceGenericServiceType);
         return serviceTypes;
     }
 
