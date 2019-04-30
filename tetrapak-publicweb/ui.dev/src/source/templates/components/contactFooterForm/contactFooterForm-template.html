@@ -1,0 +1,29 @@
+<sly data-sly-template.contactFooterForm_template="${@ data, flag}"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+    <p>Title : ${data.titleI18n @ i18n}</p>
+    <p>Description : ${data.description}</p>
+    <p>Image : ${data.image}</p>
+    <p>Image Alt Text : ${data.imageAltI18n @ i18n}</p>
+    <p>Help Text : ${data.helpText}</p>
+    <p>Privacy Policy Text : ${data.privacyPolicyText}</p>
+    <p>Thank You Headline : ${data.thankYouHeadline}</p>
+    <p>Thank You Message : ${data.thankYouMessage}</p>
+    <p>Link Text : ${data.linkTextI18n  @ i18n}</p>
+    <p>Link Path : ${data.linkPath}</p>
+    <p>First Name Label : ${data.firstNameLabel  @ i18n}</p>
+    <p>Last Name Label : ${data.lastNameLabel  @ i18n}</p>
+    <p>Phone Number Label : ${data.phoneNumberLabel  @ i18n}</p>
+    <p>Email Address Label : ${data.emailAddressLabel  @ i18n}</p>
+    <p>Position Label : ${data.positionLabel  @ i18n}</p>
+    <p>Company Label : ${data.companyLabel  @ i18n}</p>
+    <p>Contact Us Label : ${data.contactUsLabel  @ i18n}</p>
+    <p>Message Label : ${data.messageLabel  @ i18n}</p>
+    <p>Previous Button Label : ${data.previousButtonLabel  @ i18n}</p>
+    <p>Next Button Label : ${data.nextButtonLabel  @ i18n}</p>
+    <p>Submit Button Label : ${data.submitButtonLabel  @ i18n}</p>
+    <p>Step Label : ${data.stepLabel  @ i18n}</p>
+
+	<sly data-sly-test="${!data.titleI18n}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+</sly>
