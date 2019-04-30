@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
+    <filter root="/apps/customerhub/components" mode="merge">
+        <exclude pattern=".*\*template.html"/>
+        <exclude pattern=".*\*script.html"/>
+        <include pattern=".*\*.xml"/>
+    </filter>
     <filter root="/apps/customerhub/components" mode="update">
+        <exclude pattern=".*\*.xml"/>
         <include pattern=".*\*template.html"/>
+        <include pattern=".*\*script.html"/>
     </filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/clientlibs" mode="replace"/>
 </workspaceFilter>
