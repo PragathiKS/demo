@@ -111,6 +111,7 @@ public final class ExcelUtil {
 	 */
 	private static void resizeCellToFitContent(Sheet sheet, int borderColor) {
 		short columnCount = sheet.getRow(0).getLastCellNum();
+
 		// Resize all columns to fit the content size
 		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
@@ -125,6 +126,10 @@ public final class ExcelUtil {
 			RegionUtil.setLeftBorderColor(borderColor, cellRangeAddress, sheet);
 			RegionUtil.setRightBorderColor(borderColor, cellRangeAddress, sheet);
 			RegionUtil.setTopBorderColor(borderColor, cellRangeAddress, sheet);
+		}
+
+		if (sheet.getColumnWidth(0) < 2600) {
+			sheet.setColumnWidth(0, 2600);
 		}
 	}
 
@@ -359,7 +364,7 @@ public final class ExcelUtil {
 	private static void downloadExcel(SlingHttpServletResponse response, Workbook workBook,
 			ExcelFileData excelReportData) {
 		OutputStream os = null;
-		try(ByteArrayOutputStream out = new ByteArrayOutputStream();) {
+		try (ByteArrayOutputStream out = new ByteArrayOutputStream();) {
 			workBook.write(out);
 			byte[] docBytes = out.toByteArray();
 			ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
