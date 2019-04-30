@@ -11,8 +11,8 @@
 
         &-icon {
             @include margin-bottom($margin-sm);
-            @include padding(12px 20px);
-            @include font-size($font-l);
+            @include padding(6px $padding-md);
+            @include font-size($font-xl);
             border: 1px solid $color-mercury;
             display: inline-block;
             color: $color-congress-blue;
