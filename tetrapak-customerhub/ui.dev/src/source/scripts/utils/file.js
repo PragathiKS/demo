@@ -20,7 +20,7 @@ export const fileWrapper = (config) => {
       responseType: 'blob'
     }
   });
-  const { extension } = config;
+  const { extension, filename } = config;
   return new Promise(function (resolve, reject) {
     if (!extension || typeof extension !== 'string') {
       logger.log(FILEEXT_EMPTY);
@@ -32,7 +32,7 @@ export const fileWrapper = (config) => {
       ajaxWrapper.getXhrObj(config)
         .done((...args) => {
           const [data, , xhr] = args;
-          const contentDisposition = xhr.getResponseHeader('Content-Disposition');
+          const contentDisposition = xhr.getResponseHeader('Content-Disposition') || '';
           const fileNameVar = 'filename=';
           const fileVarIndex = contentDisposition.indexOf(fileNameVar);
           const extensionIndex = contentDisposition.indexOf(`.${extension}`);
@@ -47,7 +47,7 @@ export const fileWrapper = (config) => {
             );
           }
           if (!contentFileName) {
-            contentFileName = `${Date.now()}`;
+            contentFileName = filename ? filename : `${Date.now()}`;
           }
           if (!data) {
             logger.log(INVALID_STREAM);
