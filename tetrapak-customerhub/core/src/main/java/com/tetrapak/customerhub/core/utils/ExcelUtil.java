@@ -18,12 +18,10 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.FontFamily;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
@@ -103,7 +101,6 @@ public final class ExcelUtil {
 		Row row = null;
 		if (Objects.nonNull(sheet)) {
 			row = sheet.createRow(rowNum);
-			rowNum++;
 		}
 		return row;
 	}
@@ -360,10 +357,9 @@ public final class ExcelUtil {
 	 * @throws ExcelReportRuntimeException
 	 */
 	private static void downloadExcel(SlingHttpServletResponse response, Workbook workBook,
-			ExcelFileData excelReportData) throws ExcelReportRuntimeException {
+			ExcelFileData excelReportData) {
 		OutputStream os = null;
-		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try(ByteArrayOutputStream out = new ByteArrayOutputStream();) {
 			workBook.write(out);
 			byte[] docBytes = out.toByteArray();
 			ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
