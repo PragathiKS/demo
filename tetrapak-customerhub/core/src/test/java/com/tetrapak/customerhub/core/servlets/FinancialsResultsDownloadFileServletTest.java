@@ -34,7 +34,9 @@ import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
 
 
@@ -102,6 +104,10 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialsResultsPDFService.class);
         financialsResultsPDFServiceGenericServiceType.set(new FinancialsResultsPDFServiceImpl());
 
+        GenericServiceType<FinancialsResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
+        excelServiceGenericServiceType.setClazzType(FinancialsResultsExcelService.class);
+        excelServiceGenericServiceType.set(new FinancialsResultsExcelServiceImpl());
+        
         GenericServiceType<FinancialsResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
         financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialsResultsDownloadFileServlet.class);
         financialsResultsDownloadFileServletGenericServiceType.set(new FinancialsResultsDownloadFileServlet());
@@ -110,6 +116,7 @@ public class FinancialsResultsDownloadFileServletTest {
         serviceTypes.add((GenericServiceType<T>) apigeeServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) financialsResultsPDFServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) financialsResultsDownloadFileServletGenericServiceType);
+        serviceTypes.add((GenericServiceType<T>) excelServiceGenericServiceType);
         return serviceTypes;
     }
 
