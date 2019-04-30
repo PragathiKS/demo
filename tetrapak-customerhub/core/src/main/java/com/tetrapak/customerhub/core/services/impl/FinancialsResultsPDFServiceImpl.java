@@ -48,30 +48,34 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     
     private PDFont muliRegular;
     private PDFont muliBold;
-    final int MARGIN = 20;
+    private static final int MARGIN = 20;
     private FinancialStatementModel financialStatementModel;
+    private boolean newPage = false;
+    
     /**
+     * @param request  SlingHttpServletRequest 
      * @param response SlingHttpServletResponse
      * @param resultsResponse Results
      * @param paramRequest RequestParams
+     * @param financialStatement FinancialStatementModel
      */
     @Override
     public boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
             Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
-        financialStatementModel=financialStatement;
-        List<Document> documents = resultsResponse.getDocuments();             
-        String accountNo = paramRequest.getCustomerData().getInfo().getAcountNo();
+        financialStatementModel = financialStatement;
+        List<Document> documents = resultsResponse.getDocuments();
+        String customerName = paramRequest.getCustomerData().getInfo().getTitle();
+        String startDate = paramRequest.getStartDate();
         InputStream in1 = null;
         InputStream in2 = null;
         InputStream image1 = null;
         PDPageContentStream contentStream = null;
-        PDDocument document = new PDDocument();
-        
+        PDDocument document = new PDDocument();        
         PDPage page = new PDPage();
         document.addPage(page);
         try {
             contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
-                    true);            
+                    true);
             in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
             in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
             
@@ -90,21 +94,25 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDFUtil.drawTable(contentStream, createAccountServicetable(request, paramRequest), 570);
             PDFUtil.writeContent(document, contentStream, MARGIN, 510, Color.DARK_GRAY,
                     getstatementSummary(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createSummaryTable(resultsResponse.getSummary()), 490);
+            PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 490);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 475, Color.DARK_GRAY, 0.01f);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 450, Color.LIGHT_GRAY, 0.01f);
             
             PDFUtil.writeContent(document, contentStream, MARGIN, 420, Color.DARK_GRAY, getDocumentName(request));
-            contentStream = printDeliveryDetails(document, contentStream, documents);
-            
-            contentStream.close();
-            PDFUtil.writeOutput(response, document, "SOA_" + accountNo);
+            contentStream = printDeliveryDetails(request, document, contentStream, documents);                       
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
             return false;
         } finally {
             try {
+                if(null != contentStream) {
+                    contentStream.close(); 
+                    PDFUtil.writeOutput(response, document, "Financials-" + customerName+ "-" +startDate);
+                }
+                if(null != document) {
+                    document.close();
+                }
                 if (null != contentStream) {
                     contentStream.close();
                 }
@@ -116,7 +124,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 }
                 if (null != image1) {
                     image1.close();
-                }
+                }                
             } catch (IOException e) {
                 LOGGER.error("IOException {}", e);
             }
@@ -200,16 +208,31 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 8, MARGIN);
     }
     
-    private Table createSummaryTable(List<Summary> summary) {
+    private Table createSummaryTable(SlingHttpServletRequest request, List<Summary> summary) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Currency", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Current", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Total Overdue", 100));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "1-30", 50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "31-60", 50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "61-90", 50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + ">90", 70));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "StatementTotal", 10));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "currency"),
+                60));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "current"),
+                60));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "overdue"),
+                100));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "thirty"),
+                50));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "sixty"),
+                50));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "ninty"),
+                50));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "nintyPlus"), 70));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "total"),
+                10));
         
         String[][] content = new String[summary.size()][8];
         
@@ -228,63 +251,93 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
     
-    private PDPageContentStream printDeliveryDetails(PDDocument document, PDPageContentStream contentStream,
-            List<Document> documents) throws IOException {
-        int height = 850;
+    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+            PDPageContentStream contentStream, List<Document> documents) throws IOException {
+        int height = 480;
+        int newPageheight = 720;
+        int pageSize1 = 0;
+        int pageSize2 = 0;
+        int spaceIndex = 35;
+        int endIndex = 30;
+        
         for (Document documentDetail : documents) {
             int nextTableHeight = getNextTableHeight(documentDetail.getRecords());
-            height = height - nextTableHeight; 
-           /* if(nextTableHeight<410)
-            {
-                height = 20;
-            }*/
-            if (height < nextTableHeight) {                
-              contentStream = getNewPageTable (document, contentStream, height, nextTableHeight, documentDetail);
-            }else {
-            PDFUtil.drawLine(contentStream, MARGIN, 560, height - 66, Color.LIGHT_GRAY, 0.01f);
-            PDFUtil.drawLine(contentStream, MARGIN, 560, height - 78, Color.LIGHT_GRAY, 0.01f);
-            
-             PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height - 54);  
-             PDFUtil.drawTable(contentStream, createRecordTable(documentDetail.getRecords()), height - 68);
-                       
+            int size = documentDetail.getRecords().size() * 10;
+            if (newPage) {
+                if (size == height || size > height) {
+                    pageSize1 = (((newPageheight - height) / 10) - 2);
+                    pageSize2 = documentDetail.getRecords().size() - pageSize1;
+                } else {
+                    pageSize1 = documentDetail.getRecords().size();
+                }
+            } else {
+                if (size / 10 > 28) {
+                    pageSize1 = 28;
+                    pageSize2 = documentDetail.getRecords().size() - pageSize1;
+                    height = height - 50;
+                } else {
+                    height = height - nextTableHeight;
+                    pageSize1 = documentDetail.getRecords().size();
+                }
             }
-            PDPage page = new PDPage();
-           float heightX = page.getMediaBox().getHeight();
-           float widthY = page.getMediaBox().getWidth();
-           
-            if(documentDetail.getRecords().size() > 28 ) {
+            if (newPage == true) {
+                contentStream = getNewPageTable(request, contentStream, height, documentDetail, pageSize1);                
+                height = ((height - 42) - pageSize1 * 10) - spaceIndex;
+            } else if (newPage == false) {
+                PDFUtil.drawLine(contentStream, MARGIN, 560, height - 66, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 560, height - 78, Color.LIGHT_GRAY, 0.01f);
                 
-               contentStream = getNewPageRecordsTable(document, contentStream, height, nextTableHeight, documentDetail);
-            }               
-           
+                PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height - 54);
+                
+                PDFUtil.drawTable(contentStream, createRecordTable(request, documentDetail.getRecords(), pageSize1),
+                        height - 68);
+                
+            }
+            if (documentDetail.getRecords().size() > pageSize1 && pageSize2 > 0) {
+                
+                contentStream = getNewPageRecordsTable(request, document, contentStream, newPageheight, documentDetail,
+                        pageSize2);
+                height = (newPageheight - pageSize2 * 10) - endIndex;
+            }
+            
         }
         return contentStream;
     }
     
-    private Table createRecordTable(List<Record> records) {
+    private Table createRecordTable(SlingHttpServletRequest request, List<Record> records, int pageSize1) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document No.", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "LocalData", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Description", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Invoice Reference", 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "PO Number", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Document date", 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Due date", 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Currency", 40));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + "Original amount", 10));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "documentNumber"), 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "salesLocalData"), 60));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "desc"),
+                60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "invoiceReference"), 80));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "poNumber"),
+                60));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "docDate"),
+                80));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "dueDate"),
+                60));
+        columns.add(new Column(
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "currency"),
+                40));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "orgAmount"), 10));
         
-        String[][] content = new String[records.size()][9];
+        String[][] content = new String[pageSize1][9];
         
-        for (int i = 0; i < records.size(); i++) {
+        for (int i = 0; i < pageSize1; i++) {
             content[i][0] = records.get(i).getDocumentNumber();
             content[i][1] = records.get(i).getSalesLocalData();
             content[i][2] = records.get(i).getDesc();
             content[i][3] = records.get(i).getInvoiceReference();
-            if (records.get(i).getPoNumber() != null) {
-                content[i][4] = records.get(i).getPoNumber();
-            } else if (records.get(i).getPONumber() != null) {
-                content[i][4] = records.get(i).getPONumber();
-            }
+            content[i][4] = records.get(i).getPoNumber();
             content[i][5] = records.get(i).getDocDate();
             content[i][6] = records.get(i).getDueDate();
             content[i][7] = records.get(i).getCurrency();
@@ -295,7 +348,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     }
     
     private int getNextTableHeight(List<Record> documentDetail) {
-        return documentDetail.size() * 10 + 10;
+        return documentDetail.size() * 10 + 30;
     }
     
     private Table createDeliveryDetailTable(Document documentList) {
@@ -307,28 +360,28 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
     }
     
-    private PDPageContentStream getNewPageTable(PDDocument document, PDPageContentStream contentStream, int height, int nextTableHeight, Document documentDetail) throws IOException
-    {
+    private PDPageContentStream getNewPageTable(SlingHttpServletRequest request,
+            PDPageContentStream contentStream, int height, Document documentDetail, int pageSize1) throws IOException {
+        PDFUtil.drawLine(contentStream, MARGIN, 560, height - 30, Color.LIGHT_GRAY, 0.01f);
+        PDFUtil.drawLine(contentStream, MARGIN, 560, height - 40, Color.LIGHT_GRAY, 0.01f);
+        PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height - 20);
+        PDFUtil.drawTable(contentStream, createRecordTable(request, documentDetail.getRecords(), pageSize1),
+                height - 30);
+        return contentStream;
+    }
+    
+    private PDPageContentStream getNewPageRecordsTable(SlingHttpServletRequest request, PDDocument document,
+            PDPageContentStream contentStream, int newPageheight, Document documentDetail, int pageSize2)
+            throws IOException {
         PDPage page = new PDPage();
         document.addPage(page);
         contentStream.close();
-        contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
-                true);
-        PDFUtil.drawLine(contentStream, MARGIN, 560, height+530, Color.LIGHT_GRAY, 0.01f); 
-        PDFUtil.drawLine(contentStream, MARGIN, 560, height +460, Color.LIGHT_GRAY, 0.01f);
-        PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 520);                
-        PDFUtil.drawTable(contentStream, createRecordTable(documentDetail.getRecords()), height +480);
+        contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
+        PDFUtil.drawTable(contentStream, createRecordTable(request, documentDetail.getRecords(), pageSize2),
+                newPageheight);
+        PDFUtil.drawLine(contentStream, MARGIN, 560, newPageheight - 12, Color.LIGHT_GRAY, 0.01f);
+        newPage = true;
         return contentStream;
     }
-    private PDPageContentStream getNewPageRecordsTable(PDDocument document, PDPageContentStream contentStream, int height, int nextTableHeight,Document documentDetail) throws IOException
-    {
-        PDPage page = new PDPage();  
-        document.addPage(page);
-        contentStream.close();
-        contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true,
-                true);         
-        PDFUtil.drawTable(contentStream, createRecordTable(documentDetail.getRecords()), height +280);
-        return contentStream;
-    }
-   
+    
 }

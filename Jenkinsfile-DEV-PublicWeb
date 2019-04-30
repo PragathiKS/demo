@@ -1,8 +1,8 @@
 pipeline {
 	agent any
-/*  triggers {
+  triggers {
           cron('30 10,15 * * *')
-                   } */
+                   } 
 
 	
 	parameters {
@@ -244,14 +244,14 @@ post {
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',     
-to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com'
+to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
  
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
 
-to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com'
+to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
 }
 
  always {

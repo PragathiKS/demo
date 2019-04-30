@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/commons" mode="replace"/>
     <filter root="/apps/sling/servlet/errorhandler" mode="merge"/>
 	<filter root="/apps/settings/wcm/designs/commons" mode="replace"/>
+	<filter root="/apps/commons/components" mode="update"/>
+    <filter root="/apps/commons/config" mode="update"/>
+	<filter root="/apps/commons/config.author" mode="update"/>
+	<filter root="/apps/commons/config.publish" mode="update"/>
+	<filter root="/apps/commons/config.dev.publish" mode="update"/>
+	<filter root="/apps/commons/config.prod.author" mode="update"/>
+	<filter root="/apps/commons/config.prod.publish" mode="update"/>
+	<filter root="/apps/commons/config.qa.author" mode="update"/>
+	<filter root="/apps/commons/config.qa.publish" mode="update"/>
+	<filter root="/apps/commons/config.sapedev.author" mode="update"/>
+	<filter root="/apps/commons/config.sapedev.publish" mode="update"/>
+	<filter root="/apps/commons/config.stage.author" mode="update"/>
+	<filter root="/apps/commons/config.stage.publish" mode="update"/>
+	<filter root="/apps/commons/install" mode="update"/>
+	<filter root="/apps/commons/clientlibs" mode="update"/>
+	<filter root="/apps/commons/i18n">
+		<exclude pattern="/apps/commons/i18n(/.*)?"/>
+	</filter>
 </workspaceFilter>
