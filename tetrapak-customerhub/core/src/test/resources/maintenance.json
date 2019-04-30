@@ -49,7 +49,7 @@
             "jcr:primaryType": "nt:unstructured"
           }
         },
-        "maintenancefiltering": {
+        "maintenance": {
           "jcr:primaryType": "nt:unstructured",
           "jcr:createdBy": "admin",
           "serviceOrderLabel": "Service order",
@@ -65,7 +65,7 @@
           "allOptionText": "All",
           "jcr:lastModified": "Mon Apr 29 2019 14:26:22 GMT+0530",
           "lineFilterLabel": "line",
-          "sling:resourceType": "customerhub/components/content/maintenancefiltering",
+          "sling:resourceType": "customerhub/components/content/maintenance",
           "siteFilterLabel": "Site",
           "equipmentFilterLabel": "Equipment",
           "operationShortTextLabel": "Operation short text",
