@@ -34,6 +34,55 @@ public class FinancialStatementModel {
     @Inject
     private String statementOfAccount;
 
+    /**
+     * @return the statementOfAccount
+     */
+    public String getStatementOfAccount() {
+        return statementOfAccount;
+    }
+
+    /**
+     * @return the accountNumber
+     */
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    /**
+     * @return the accountService
+     */
+    public String getAccountService() {
+        return accountService;
+    }
+
+    /**
+     * @return the selectDocumentTypeLabel
+     */
+    public String getSelectDocumentTypeLabel() {
+        return selectDocumentTypeLabel;
+    }
+
+    /**
+     * @return the placeholderForDocumentNumber
+     */
+    public String getPlaceholderForDocumentNumber() {
+        return placeholderForDocumentNumber;
+    }
+
+    /**
+     * @return the summaryHeadingI18n
+     */
+    public String getSummaryHeadingI18n() {
+        return summaryHeadingI18n;
+    }
+
+    /**
+     * @return the documentHeadingI18n
+     */
+    public String getDocumentHeadingI18n() {
+        return documentHeadingI18n;
+    }
+
     @Inject
     private String findCustomer;
 
@@ -81,6 +130,8 @@ public class FinancialStatementModel {
     
     private String i18nKeys;
     
+    private String downloadPdfExcelServletUrl;
+    
     /**
      * init method
      * @return config 
@@ -109,8 +160,11 @@ public class FinancialStatementModel {
         i18KeyMap.put("createExcelBtnI18n", createExcelBtnI18n);
         i18KeyMap.put("createPdfBtnI18n", createPdfBtnI18n);
         
+        
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        downloadPdfExcelServletUrl = resource.getPath() + ".{extnType}";
+       
     }
 
     /**
@@ -119,6 +173,13 @@ public class FinancialStatementModel {
      */   
     public String getI18nKeys() {
         return i18nKeys;
+    }
+
+    /**
+     * @return the downloadPdfExcelServletUrl
+     */
+    public String getDownloadPdfExcelServletUrl() {
+        return downloadPdfExcelServletUrl;
     }
 
 }
