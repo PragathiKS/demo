@@ -130,6 +130,12 @@ public class OrderDetailsModel {
     @Inject
     private String orderStatus;
 
+    @Inject
+    private String fileDownloadErrorText;
+
+    @Inject
+    private String fileDownloadErrorClose;
+
     private String i18nKeys;
 
     private String downloadPdfExcelServletUrl;
@@ -173,6 +179,8 @@ public class OrderDetailsModel {
         i18KeyMap.put("webReferenceLink", getWebReferenceLink());
         i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
         i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
+        i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
+        i18KeyMap.put("fileDownloadErrorClose", getFileDownloadErrorClose());
         i18nKeys = new Gson().toJson(i18KeyMap);
         downloadPdfExcelServletUrl = resource.getPath() + ".{orderType}.{extnType}";
     }
@@ -443,4 +451,17 @@ public class OrderDetailsModel {
         return orderStatus;
     }
 
+    /**
+     * @return the file download error text
+     */
+    public String getFileDownloadErrorText() {
+        return fileDownloadErrorText;
+    }
+
+    /**
+     * @return the close button text
+     */
+    public String getFileDownloadErrorClose() {
+        return fileDownloadErrorClose;
+    }
 }
