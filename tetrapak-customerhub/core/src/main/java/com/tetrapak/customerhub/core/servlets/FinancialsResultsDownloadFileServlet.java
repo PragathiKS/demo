@@ -11,6 +11,7 @@ import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -34,8 +35,7 @@ import java.io.IOException;
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
 		"sling.servlet.resourceTypes=" + "customerhub/components/content/financialstatement",
-		"sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
-		"sling.servlet.paths=" + "/bin/customerhub/financialsresults" })
+		"sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]" })
 public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 2323660841296799482L;
@@ -96,21 +96,11 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
 				LOGGER.error("File type not specified for the download operation.");
 			}
 		}
-		
+
 		if (!flag) {
 			LOGGER.error("Financial results file download failed!");
-			sendErrorMessage(response);
+			HttpUtil.sendErrorMessage(response);
 		}
 	}
 
-	private void sendErrorMessage(SlingHttpServletResponse response) {
-		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		try {
-			JsonObject obj = new JsonObject();
-			obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
-			HttpUtil.writeJsonResponse(response, obj);
-		} catch (IOException e) {
-			LOGGER.error("IOException in FinancialsResultsDownloadFileServlet {}", e);
-		}
-	}
 }

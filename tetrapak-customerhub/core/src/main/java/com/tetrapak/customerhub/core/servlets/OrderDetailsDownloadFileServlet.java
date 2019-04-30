@@ -1,5 +1,18 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import javax.servlet.Servlet;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,21 +23,6 @@ import com.tetrapak.customerhub.core.services.OrderDetailsApiService;
 import com.tetrapak.customerhub.core.services.OrderDetailsExcelService;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.api.servlets.SlingAllMethodsServlet;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.osgi.framework.Constants;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * PDF and Excel Generator Servlet
@@ -32,9 +30,9 @@ import java.io.IOException;
  * @author Nitin Kumar
  * @author Swati Lamba
  */
-@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
+@Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
+        "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
         "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]"})
 public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 
@@ -91,18 +89,9 @@ public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 
 		if (!flag) {
 			LOGGER.error("Order details file download failed!");
-			sendErrorMessage(response);
+			HttpUtil.sendErrorMessage(response);
 		}
 	}
 
-	private void sendErrorMessage(SlingHttpServletResponse response) {
-		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		try {
-			JsonObject obj = new JsonObject();
-			obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
-			HttpUtil.writeJsonResponse(response, obj);
-		} catch (IOException e) {
-			LOGGER.error("IOException in OrderDetailsDownloadFileServlet {}", e);
-		}
-	}
+	
 }

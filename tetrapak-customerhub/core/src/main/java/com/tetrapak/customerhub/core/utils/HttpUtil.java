@@ -7,8 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Utility class for http methods
@@ -17,6 +21,8 @@ import java.io.IOException;
  */
 public final class HttpUtil {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
+	
     /**
      * private constructor
      */
@@ -66,4 +72,15 @@ public final class HttpUtil {
         resultString = StringUtils.substringBeforeLast(resultString, "\"");
         return resultString;
     }
+    
+    public static void sendErrorMessage(SlingHttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+		try {
+			JsonObject obj = new JsonObject();
+			obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
+			HttpUtil.writeJsonResponse(response, obj);
+		} catch (IOException e) {
+			LOGGER.error("IOException: {}", e);
+		}
+	}
 }
