@@ -20,9 +20,8 @@ pipeline {
 		author_url = "http://13.69.79.81:4502"
 		publish_url = "http://13.69.73.197:4503"
 		package_name = "tetrapak-complete-package"
-test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/financials.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/training.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/projects.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/contact.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html"		
-
-test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
+test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"		
+/* test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html" */
 		karmapath =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 	}
    
@@ -179,12 +178,10 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 							}
 							else
 							{
-							       echo "Starting pa11y test Run on CustomerHub Urls"
-                                                               sh 'chmod 777 PallyReporting.sh'
-                                                               sh './PallyReporting.sh'
-		                                               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
-
-
+                                                               echo "Starting pa11y test Run on PublicWeb Urls"
+                                                                sh 'chmod 777 PallyReportPubWeb.sh'
+                                                                sh './PallyReportPubWeb.sh'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReportPubWeb.html', reportName: 'Pally Report', reportTitles: ''])
 							}
 						},
 						"sitespeed_Desktop" : {
@@ -225,12 +222,14 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 							}
 							else
 							{
-								echo "Starting Zap Test Run"
-								sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
-								sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
-								sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
-								sh 'zap-cli --api-key 12345 shutdown'
-								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/var/lib/jenkins/workspace/Tetrapak_DEV', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
+                            sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
+                            sh 'chmod 777 Zap-PublicWeb.sh'
+                            sh './Zap-PublicWeb.sh'
+                            sh 'zap-cli --api-key 12345 report -f html -o "Zap-PublicWeb.html"'
+                            sh 'zap-cli --api-key 12345 shutdown'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'Zap-PublicWeb.html', reportName: 'zap Report- Public Web', reportTitles: ''])
+
+
 							}
 						}
 					)		
@@ -255,7 +254,7 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 }
 
  always {
-    build 'Tetra-Dev-Dispatcher-Flush'
+    build 'Tetra_Dev_Clear_httpd_Cache'
     }
 
 }

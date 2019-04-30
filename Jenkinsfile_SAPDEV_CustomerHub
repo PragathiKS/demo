@@ -239,7 +239,7 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 */
 
  always {
-    build 'Tetra-SapDev-Dispatcher-Flush'   
+    build 'Tetra_Dev_Clear_httpd_Cache'   
     }
 
 }
