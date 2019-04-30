@@ -39,9 +39,6 @@ public class Record {
     @SerializedName("salesLocalData")
     @Expose
     private String salesLocalData;
-    @SerializedName("PONumber")
-    @Expose
-    private String pONumber;
 
     public String getDocumentNumber() {
         return documentNumber;
@@ -121,14 +118,6 @@ public class Record {
 
     public void setSalesLocalData(String salesLocalData) {
         this.salesLocalData = salesLocalData;
-    }
-
-    public String getPONumber() {
-        return pONumber;
-    }
-
-    public void setPONumber(String pONumber) {
-        this.pONumber = pONumber;
     }
 
 }
