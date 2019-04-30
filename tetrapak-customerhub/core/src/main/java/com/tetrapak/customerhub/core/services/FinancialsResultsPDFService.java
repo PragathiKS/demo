@@ -17,11 +17,12 @@ import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 public interface FinancialsResultsPDFService {
 
     /** Method to generate financials results pdf
+     * @param request SlingHttpServletRequest
      * @param response SlingHttpServletResponse
      * @param resultsResponse Results 
      * @param paramRequest RequestParams
-     * @param financialStatementModel 
-     * @return 
+     * @param financialStatementModel FinancialStatementModel
+     * @return true or false
      */
     boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
                                   Results resultsResponse,Params paramRequest, FinancialStatementModel financialStatementModel);

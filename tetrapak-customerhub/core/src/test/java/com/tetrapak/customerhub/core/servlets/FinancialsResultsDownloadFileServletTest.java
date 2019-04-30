@@ -40,6 +40,10 @@ import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceIm
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
+/**
+ * Test class for Financials Results Service
+ * @author ruhsharm
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class FinancialsResultsDownloadFileServletTest {
     

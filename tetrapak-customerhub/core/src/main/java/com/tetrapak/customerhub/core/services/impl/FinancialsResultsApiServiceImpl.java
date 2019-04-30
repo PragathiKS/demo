@@ -34,16 +34,17 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
     public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
             String customerkey, String token) {
         JsonObject jsonResponse = new JsonObject();
-        final String url = apigeeService.getApigeeServiceUrl() + "/financials/results" + "?status=" + status
+        final String url = apigeeService.getApigeeServiceUrl() + "/financials/results?status=" + status
                 + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&customerkey="
                 + customerkey;
+        
         HttpGet getRequest = new HttpGet(url);
         getRequest.addHeader("Authorization", "Bearer " + token);
         HttpClient httpClient = HttpClientBuilder.create().build();
         try {
             HttpResponse httpResponse = httpClient.execute(getRequest);
-            LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());            
-            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);            
+            LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
         } catch (ClientProtocolException e) {
             LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl {}", e);
         } catch (IOException e) {
