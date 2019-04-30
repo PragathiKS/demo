@@ -12,8 +12,8 @@ import { logger } from '../../../scripts/utils/logger';
 function _processSiteData(data) {
   if (Array.isArray(data.installations)) {
     data.sites = data.installations.map(site => ({
-      'key': site.customerNumber,
-      'desc': site.customerName
+      key: site.customerNumber,
+      desc: site.customerName
     }));
   } else {
     data.noData = true;
@@ -25,12 +25,12 @@ function _processSiteData(data) {
  */
 function _renderMaintenanceContact() {
   const siteVal = this.cache.$site.val();
-  let data = this.cache.data;
+  let { data } = this.cache;
   if (Array.isArray(data.installations)) {
-    data = data.installations.filter(site => site.customerNumber === siteVal);
-    if (data.length > 0) {
-      data = this.cache.filteredData = data[0];
-      this.renderLineFilter(data);
+    const [filteredData] = data.installations.filter(site => site.customerNumber === siteVal);
+    if (filteredData) {
+      data = this.cache.filteredData = filteredData;
+      this.renderLineFilter(filteredData);
     } else {
       data = {};
     }
@@ -50,8 +50,8 @@ function _renderLineFilter(data = this.cache.filteredData) {
   if (Array.isArray(data.lines)) {
     data.linesRecords = {};
     data.linesRecords.options = data.lines.map((line) => ({
-      'key': line.lineNumber,
-      'desc': line.lineDesc
+      key: line.lineNumber,
+      desc: line.lineDesc
     }));
     data.linesRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
 
@@ -80,9 +80,9 @@ function _renderEquipmentFilter(data = this.cache.filteredData) {
   }
 
   equipmentRecords.forEach(equipment => {
-    data.equipmentRecords.options = data.equipmentRecords.options.concat(equipment.equipments.map(equipment => ({
-      'key': equipment.equipmentNumber,
-      'desc': equipment.equipmentName
+    data.equipmentRecords.options.push(...equipment.equipments.map(equipment => ({
+      key: equipment.equipmentNumber,
+      desc: equipment.equipmentName
     })));
   });
 
