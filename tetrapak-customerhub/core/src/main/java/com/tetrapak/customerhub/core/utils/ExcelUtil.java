@@ -156,7 +156,9 @@ public final class ExcelUtil {
 			if (Objects.nonNull(sheet) && Objects.nonNull(excelReportData.getData())) {
 				sheet.setDisplayGridlines(false);
 				prepareReportData(workBook, sheet, excelReportData.getData(), excelReportData.getCellBorderColor());
-				setMarginsToSheet(sheet, excelReportData.getCellBorderColor());
+				if (excelReportData.isHasMargin()) {
+					setMarginsToSheet(sheet, excelReportData.getCellBorderColor());
+				}
 				resizeCellToFitContent(sheet, excelReportData.getCellBorderColor());
 			}
 			try {
@@ -420,7 +422,7 @@ public final class ExcelUtil {
 		XSSFRichTextString richTextString = new XSSFRichTextString(field);
 		customFont.setFontName(DEFAULT_FONT_NAME);
 		customFont.setFontHeightInPoints(DEFAULT_FONT_HEIGHT);
-		if (!tags.isEmpty()) {			
+		if (!tags.isEmpty()) {
 			if (tags.contains(BOLD_TAG)) {
 				customFont.setBold(true);
 			}

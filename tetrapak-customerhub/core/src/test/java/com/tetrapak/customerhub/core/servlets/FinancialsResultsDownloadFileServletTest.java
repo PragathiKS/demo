@@ -93,6 +93,24 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
+    
+    @Test
+    public void doPostForExcel() throws IOException {
+        MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+        requestPathInfo.setExtension("excel");
+        MockSlingHttpServletRequest request = aemContext.request();
+        MockSlingHttpServletResponse response = aemContext.response();        
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
+        parameters.put("params", "{\"startDate\":\"2019-04-25\",\"customerData\":{\"key\":\"123\",\"desc\":\"John - Malmo\",\"info\":{\"acountNo\":\"12345\",\"title\":\"California Aseptic Beverages\",\"address\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
+        request.setParameterMap(parameters);
+
+        FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
+                .getService(FinancialsResultsDownloadFileServlet.class);
+        aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
+        financialsResultsDownloadFileServlet.doPost(request, response);
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
+    }
    
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
 
