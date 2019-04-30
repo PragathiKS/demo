@@ -3,5 +3,5 @@
     cq:isContainer="true"
     jcr:description="Maintenance Component"
     jcr:primaryType="cq:Component"
-    jcr:title="Maintenance"
+    jcr:title="Maintenance Component"
     componentGroup="tetrapak-customerhub"/>

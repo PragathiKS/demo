@@ -17,7 +17,7 @@ import java.util.Map;
  * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MaintenanceFilteringModel {
+public class MaintenanceModel {
 
     @Self
     private Resource resource;
