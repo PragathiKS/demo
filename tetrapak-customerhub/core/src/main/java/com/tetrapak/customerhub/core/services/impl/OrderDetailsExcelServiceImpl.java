@@ -71,8 +71,11 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 						getDeliverySection(orderType, orderDetailsModel, orderDetailData.getDeliveryList()));
 				LOGGER.debug("Delivery Section data added to the array..");
 			}
-			LOGGER.debug("Raw Data for the Excel sheet has been formed having rows: {} and columns: {}", data.length,
-					data[0].length);
+			if (null != data && data.length > 0) {
+				LOGGER.debug("Raw Data for the Excel sheet has been formed having rows: {} and columns: {}",
+						data.length, data[0].length);
+			}
+			
 			ExcelFileData excelReportData = new ExcelFileData();
 			excelReportData.setFileName(orderDetailData.getOrderDetails().getOrderNumber());
 			excelReportData.setExcelSheetName(SHEET_NAME);
