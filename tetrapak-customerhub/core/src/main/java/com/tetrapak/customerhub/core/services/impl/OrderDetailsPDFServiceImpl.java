@@ -60,8 +60,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
     private static final String ORDER_DETAIL_SUMMARY_PREFIX = "cuhu.orderDetail.orderSummary.";
     private static final String ORDER_DETAIL_DELIVERY_PREFIX = "cuhu.orderDetail.deliveryList.products.";
-    private static final String ORDER_QUANTITY= "orderQuantity";
-    private static final String DELIVERED_QUANTITY= "deliveredQuantity";
+    private static final String ORDER_QUANTITY = "orderQuantity";
+    private static final String DELIVERED_QUANTITY = "deliveredQuantity";
     private String[] partsDeliveryColumn;
     private String[] packMatDeliveryColumn;
     private String[] packMatColumns;
@@ -137,7 +137,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = printPackMatDeliveryDetails(request, document, contentStream, orderDetailResponse.getDeliveryList());
             }
             contentStream.close();
-            PDFUtil.writeOutput(response, document, "Tetra Pak Order " + orderDetails.getOrderNumber());
+            PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
@@ -365,13 +365,13 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             int width = 40;
             if (StringUtils.equalsIgnoreCase(columnName, "productName")) {
                 width = 110;
-            }else if(StringUtils.equalsIgnoreCase(columnName, "serialNo")){
+            } else if (StringUtils.equalsIgnoreCase(columnName, "serialNo")) {
                 width = 10;
-            }else if(StringUtils.equalsIgnoreCase(columnName, "price")){
+            } else if (StringUtils.equalsIgnoreCase(columnName, "price")) {
                 width = 45;
-            }else if(StringUtils.equalsIgnoreCase(columnName, ORDER_QUANTITY) ||
+            } else if (StringUtils.equalsIgnoreCase(columnName, ORDER_QUANTITY) ||
                     StringUtils.equalsIgnoreCase(columnName, DELIVERED_QUANTITY) ||
-                    StringUtils.equalsIgnoreCase(columnName, "remainingQuantity") ){
+                    StringUtils.equalsIgnoreCase(columnName, "remainingQuantity")) {
                 width = 35;
             }
             columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +

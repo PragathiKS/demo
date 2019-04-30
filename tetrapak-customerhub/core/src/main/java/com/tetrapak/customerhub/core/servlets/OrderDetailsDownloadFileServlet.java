@@ -14,7 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -32,11 +32,10 @@ import java.io.IOException;
  * @author Swati Lamba
  */
 @Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
-        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+        "sling.servlet.methods=" + HttpConstants.METHOD_POST,
         "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
-        "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]",
-        "sling.servlet.paths=" + "/bin/customerhub/order-detail"})
-public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
+        "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]"})
+public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
 
@@ -52,7 +51,7 @@ public class OrderDetailsDownloadFileServlet extends SlingSafeMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
 
         final String orderNumber = request.getParameter(CustomerHubConstants.ORDER_NUMBER);
