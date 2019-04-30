@@ -1,5 +1,5 @@
 
-cat PallyUrls-PublicWeb.txt | while read LINE; do
+cat PallyUrlsPublicWeb.txt | while read LINE; do
 
 
 if [[ -z $LINE ]]
@@ -9,5 +9,5 @@ fi
 echo "url to test : $LINE"
 
 zap-cli --api-key 12345 spider "$LINE":
- done
+done
 
