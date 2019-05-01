@@ -31,3 +31,4 @@ export const API_FINANCIAL_SUMMARY = 'financials/summary';
 export const API_FINANCIALS_STATEMENTS = 'financials/results';
 export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
 export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
+export const API_MAINTENANCE_FILTERS = 'materials/equipments/installations';
