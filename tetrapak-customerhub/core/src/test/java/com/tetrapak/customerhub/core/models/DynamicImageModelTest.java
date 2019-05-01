@@ -43,11 +43,11 @@ public class DynamicImageModelTest {
         String rootPath = dynamicImageModel.getRootPath();
         String imageServiceUrl = dynamicImageModel.getImageServiceURL();
         String dynamicImage = dynamicImageModel.getAltText();
-        String imagePath = dynamicImageModel.getImagePath();
+        String finalPath = dynamicImageModel.getFinalPath();
         Assert.assertEquals("Image1 alt", dynamicImage);
         assertNotNull(rootPath);
         assertNotNull(imageServiceUrl);
-        Assert.assertEquals("/tetrapak/p2", imagePath);
+        Assert.assertEquals("/tetrapak/p2", finalPath);
         Assert.assertEquals(rootPath, "/tetrapak");
         Assert.assertEquals(imageServiceUrl, "http://s7g10.scene7.com/is/image");        
         String[] dynamicMediaConfMap = dynamicImageModel.getDynamicMediaConfiguration();
