@@ -10,7 +10,9 @@ class SoftConversionForm {
     this.cache.$form = $('#softConversionModal form');
     this.cache.$field = $('#softConversionModal input[type="text"]');
     this.cache.$submitBtn = $('#softConversionModal .form-submit');
-    this.cache.$tabtoggle = $('#softConversionModal [data-toggle="tab"]');
+    this.cache.$tabtoggle = $('#softConversionModal .pw-model__nextbtn[data-toggle="tab"]');
+    this.cache.$radiobtns = $('#softConversionModal input:radio');
+    this.cache.$questionBtn = $('#softConversionModal .questionBtn');
   }
   storageFormData() {
     let formData = this.cache.$form.serializeArray();
@@ -72,19 +74,42 @@ class SoftConversionForm {
       if (isvalid) {
         self.storageFormData();
         $(this).closest('form').submit();
+        let docpath = $('#softConversionModal input[name="docpath"]').val();
+        window.open(docpath, '_blank');
+        $('#softConversionModal').data('form-filled', true);
+        $('#softConversionModal .softc-title-js').addClass('d-none');
+        $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
       }
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
+      let targetTab = $(this).data('target');
+      console.log(targetTab); // eslint-disable-line no-console
       $('input', parentTab).each(function(){
-        console.log($(this)); // eslint-disable-line no-console
-        //if ($(this).prop('required') && ($(this).val() === '') || ($(this).is(':radio') && !$('input[name="group"]:checked').val())) {
         if ($(this).prop('required') && $(this).val() === '') {
           e.preventDefault();
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
         }
       });
+    });
+    this.cache.$radiobtns.click(function() {
+      if ($(this).val() !== 'Professional') {
+        $('#softConversionModal .isPro').addClass('d-none');
+        $('#softConversionModal .isNotPro').removeClass('d-none');
+      } else {
+        $('#softConversionModal .isPro').removeClass('d-none');
+        $('#softConversionModal .isNotPro').addClass('d-none');
+      }
+    });
+    this.cache.$questionBtn.click(function(e) {
+      e.preventDefault();
+      let target = $(this).data('target');
+      if($(target).length) {
+        $('html, body').animate({
+          scrollTop: parseInt($(target).offset().top, 10)
+        }, 1000);
+      }
     });
   }
   init() {
@@ -93,6 +118,7 @@ class SoftConversionForm {
     this.initCache();
     if(softConversionData) {
       this.setFormData(softConversionData);
+      $('#softConversionModal').data('form-filled', true);
     }
     this.bindEvents();
   }
