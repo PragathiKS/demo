@@ -19,12 +19,12 @@
             background-color: $color-white;
             border-radius: 50%;
         }
-    }
 
-    &__contact-inner {
-        @include padding($padding-l);
+        &-inner {
+            @include padding($padding-l);
+        }
 
-        .col-lg-6 {
+        &-col {
             @include margin-top($margin-md);
 
             &:first-child+.col-lg-6 {

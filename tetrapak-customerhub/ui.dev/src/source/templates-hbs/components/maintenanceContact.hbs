@@ -1,11 +1,11 @@
 {{#each contacts}}
-    <div class="col-lg-6 text-center">
+    <div class="tp-maintenance-filtering__contact-col col-lg-6 text-center">
         <div class="tp-maintenance-filtering__contact-icon">
             <i class="icon-TetraPak"></i>
-        </div> <br>
-        <span class="tp-maintenance-filtering__contact-name semi-bold">{{firstName}} {{lastName}}</span> <br>
-        {{type}} <br>
-        <a href="mailTo:{{email}}">{{email}}</a> <br>
-        <a href="tel:{{phone}}">{{phone}}</a>
+        </div>
+        <div class="tp-maintenance-filtering__contact-name semi-bold">{{firstName}} {{lastName}}</div>
+        <div>{{type}}</div>
+        <div><a href="mailTo:{{email}}">{{email}}</a></div>
+        <div><a href="tel:{{phone}}">{{phone}}</a></div>
     </div>
 {{/each}}

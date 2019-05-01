@@ -8,6 +8,7 @@ import { logger } from '../../../scripts/utils/logger';
 
 /**
  * Process Sites Data
+ * @param {object} data JSON data object
  */
 function _processSiteData(data) {
   if (Array.isArray(data.installations)) {
@@ -45,6 +46,7 @@ function _renderMaintenanceContact() {
 
 /**
  * Renders Line Filter
+ * @param {object} data JSON data object for selected site
  */
 function _renderLineFilter(data = this.cache.filteredData) {
   if (Array.isArray(data.lines)) {
@@ -53,7 +55,9 @@ function _renderLineFilter(data = this.cache.filteredData) {
       key: line.lineNumber,
       desc: line.lineDesc
     }));
-    data.linesRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
+
+    const { i18nKeys } = this.cache.data;
+    data.linesRecords.options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
 
     render.fn({
       template: 'options',
@@ -67,6 +71,7 @@ function _renderLineFilter(data = this.cache.filteredData) {
 
 /**
  * Renders Equipment Filter
+ * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilter(data = this.cache.filteredData) {
   let lineVal = this.cache.$line.val(),
@@ -86,7 +91,8 @@ function _renderEquipmentFilter(data = this.cache.filteredData) {
     })));
   });
 
-  data.equipmentRecords.options.unshift({ 'key': '', 'desc': this.cache.data.i18nKeys.allOptionText });
+  const { i18nKeys } = this.cache.data;
+  data.equipmentRecords.options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
 
   render.fn({
     template: 'options',
@@ -104,9 +110,7 @@ function _renderMaintenanceFilters() {
     render.fn({
       template: 'maintenanceFiltering',
       url: {
-        path: `${apiHost}/${API_MAINTENANCE_FILTERS}`,
-        data: {
-        }
+        path: `${apiHost}/${API_MAINTENANCE_FILTERS}`
       },
       target: '.js-maintenance-filtering__filters',
       ajaxConfig: {
@@ -146,8 +150,10 @@ class MaintenanceFiltering {
     this.root = $(el);
   }
   cache = {};
+  /**
+  * Initialize selector cache on component load
+  */
   initCache() {
-    /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-maintenance-filtering__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -156,13 +162,15 @@ class MaintenanceFiltering {
       logger.error(e);
     }
   }
+  /**
+  * Initialize selector cache after filters rendering
+  */
   initPostCache() {
     this.cache.$site = this.root.find('.js-maintenance-filtering__site');
     this.cache.$line = this.root.find('.js-maintenance-filtering__line');
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
   bindEvents() {
-    /* Bind jQuery events here */
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
@@ -177,7 +185,6 @@ class MaintenanceFiltering {
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
