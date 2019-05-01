@@ -1,6 +1,6 @@
 package com.tetrapak.commons.core.services.config;
 
-import org.apache.sling.api.resource.observation.ResourceChangeListener;
+import org.osgi.service.event.EventConstants;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -15,17 +15,24 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface DispatcherFlushConfig {
 
     @AttributeDefinition(
-            name = ResourceChangeListener.PATHS,
-            description = "Configurable paths for event listener",
+            name = EventConstants.EVENT_TOPIC,
+            description = "event.topics",
             type = AttributeType.STRING
     )
-    String[] getPaths();
+    String[] getEvents();
 
     @AttributeDefinition(
-            name = ResourceChangeListener.CHANGES,
-            description = "Event types",
+            name = EventConstants.EVENT_FILTER,
+            description = "event.filter",
             type = AttributeType.STRING
     )
-    String[] getEventTypes();
+    String[] getEventFilter();
+
+    @AttributeDefinition(
+            name = "dispatcherPath",
+            description = "dispatcher Path",
+            type = AttributeType.STRING
+    )
+    String getDispatcherPath();
 
 }
