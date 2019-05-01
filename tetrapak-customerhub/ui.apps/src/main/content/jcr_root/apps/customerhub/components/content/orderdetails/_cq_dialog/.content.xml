@@ -247,6 +247,27 @@
                                 fieldLabel="No Data Error Message"
                                 name="./noDataMsg"
                                 required="false"/>
+							<orderStatus
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter order status label used in the excel generation.&#xa;Used on both Parts and Package order details page excel."
+                                fieldLabel="Order Status Label"
+                                name="./orderStatus"
+                                required="true"/>
+                            <fileDownloadErrorText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter File download error message i18n key"
+                                    fieldLabel="File download error message i18n key"
+                                    name="./fileDownloadErrorText"
+                                    required="true"/>
+                            <fileDownloadErrorClose
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter File download error close button i18n key"
+                                    fieldLabel="File download error close button i18n key"
+                                    name="./fileDownloadErrorClose"
+                                    required="true"/>
                         </items>
                     </column>
                 </items>

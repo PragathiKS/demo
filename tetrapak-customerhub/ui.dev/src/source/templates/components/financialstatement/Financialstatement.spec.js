@@ -19,7 +19,7 @@ describe('FinancialStatement', function () {
   }
   before(function () {
     $(document.body).empty().html(financialStatementTemplate());
-    this.financialstatement = new FinancialStatement({ el: document.body });
+    this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
@@ -28,6 +28,7 @@ describe('FinancialStatement', function () {
     this.calendarSpy = sinon.spy(this.financialstatement, 'submitDateRange');
     this.navigateSpy = sinon.spy(this.financialstatement, 'navigateCalendar');
     this.searchSpy = sinon.spy(this.financialstatement, 'populateResults');
+    this.downloadPdfExcelSpy = sinon.spy(this.financialstatement, 'downloadPdfExcel');
     this.resetSpy = sinon.spy(this.financialstatement, 'resetFilters');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -39,6 +40,7 @@ describe('FinancialStatement', function () {
         token_type: "BearerToken"
       }
     });
+    this.submitStub = sinon.stub(this.financialstatement, 'submitTempForm');
     this.financialstatement.init();
   });
   after(function () {
@@ -49,12 +51,14 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
+    this.downloadPdfExcelSpy.restore();
     this.navigateSpy.restore();
     this.searchSpy.restore();
     this.resetSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
+    this.submitStub.restore();
   });
 
   it('should initialize', function (done) {
@@ -75,38 +79,51 @@ describe('FinancialStatement', function () {
     done();
   });
 
-  it('should set new customer by calling setCustomer when changed from dropdown', function () {
+  it('should set new customer by calling setCustomer when changed from dropdown', function (done) {
     $('.js-financial-statement__find-customer').trigger('change');
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
+    done();
   });
 
-  it('should change date selector on status change', function () {
+  it('should change date selector on status change', function (done) {
     $('.js-financial-statement__status').trigger('change');
     expect(this.statusSpy.called).to.be.true;
+    done();
   });
 
-  it('should open date picker modal on click of date range selector', function () {
+  it('should open date picker modal on click of date range selector', function (done) {
     $('.js-financial-statement__date-range').trigger('click');
     expect(this.dateRangeSpy.called).to.be.true;
+    done();
   });
 
-  it('should navigate calendar on click of calendar navigation buttons', function () {
+  it('should navigate calendar on click of calendar navigation buttons', function (done) {
     $('.js-calendar-prev').trigger('click');
     expect(this.navigateSpy.called).to.be.true;
+    done();
   });
 
-  it('should select current date range and close modal', function () {
+  it('should select current date range and close modal', function (done) {
     $('.js-calendar').trigger('click');
     expect(this.calendarSpy.called).to.be.true;
+    done();
   });
 
-  it('should apply the filters on "Search Statements" button click', function () {
+  it('should apply the filters on "Search Statements" button click', function (done) {
     $('.js-financial-statement__submit').trigger('click');
     expect(this.searchSpy.called).to.be.true;
+    done();
   });
 
-  it('should reset filters "Reset Search" button click', function () {
+  it('should reset filters "Reset Search" button click', function (done) {
     $('.js-financial-statement__reset').trigger('click');
     expect(this.resetSpy.called).to.be.true;
+    done();
+  });
+
+  it('should download PDF/Excel file on click of create Excel/PDF button', function (done) {
+    $('.js-financials').trigger('downloadFinancialPdfExcel', ['excel']);
+    expect(this.downloadPdfExcelSpy.called).to.be.true;
+    done();
   });
 });

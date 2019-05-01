@@ -61,7 +61,6 @@ function _processContacts(contacts) {
  * @param {string} orderDetailLink Order Detail link
  */
 function _tableSort(order, activeKeys, orderDetailLink) {
-  logger.log(order);
   const dataObject = {
     rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
     row: []

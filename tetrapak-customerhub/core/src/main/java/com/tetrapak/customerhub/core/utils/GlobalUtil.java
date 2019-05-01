@@ -1,9 +1,11 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -159,14 +161,56 @@ public class GlobalUtil {
      * @return Page global config
      */
     public static Page getCustomerhubConfigPage(Resource contentPageResource) {
-        PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
-        Page customerhubConfigPage = null;
-        final int DEPTH =3;
+    	final int DEPTH = 3;
+        return getPageFromResource(contentPageResource, DEPTH);
+    }
+    
+    /**
+     * The method provides the page provided the following parameters.
+     * 
+     * @param contentPageResource content resource
+     * @param depth calculated from 'content' node
+     * @return Page content page
+     */
+    public static Page getPageFromResource(Resource contentPageResource, int depth) {
+    	PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
+        Page contentPage = null;
         if (null != contentPageResource && null != pageManager) {
-            Page contentPage = pageManager.getContainingPage(contentPageResource);
-            customerhubConfigPage = contentPage.getAbsoluteParent(DEPTH);
+            Page currentPage = pageManager.getContainingPage(contentPageResource);
+            contentPage = currentPage.getAbsoluteParent(depth);
         }
-        return customerhubConfigPage;
+        return contentPage;
+    }
+
+    /**
+     * The method provides the i18n value provided the following parameters.
+     * 
+     * @param request request
+     * @param prefix prefix
+     * @param key key
+     * @return value
+     */
+    public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key){
+        I18n i18n = new I18n(request);
+        return i18n.get(prefix+key);
+    }
+    
+    /**
+     * The method returns title of the page provided the resource.
+     * 
+     * @param resource Resource
+     * @return String page title
+     */
+    public static String getPageTitle(Resource resource) {
+    	if (null == resource) {
+            return "";
+        }
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if (null == pageManager) {
+            return "";
+        }
+        Page currentPage = pageManager.getContainingPage(resource.getPath());
+        return currentPage.getTitle();
     }
 
 }

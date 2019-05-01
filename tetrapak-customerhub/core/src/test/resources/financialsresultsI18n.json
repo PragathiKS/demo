@@ -1,0 +1,1578 @@
+
+{
+  "jcr:primaryType": "nt:folder",
+  "jcr:mixinTypes": [
+    "cq:ReplicationStatus",
+    "mix:language"
+  ],
+  "jcr:createdBy": "admin",
+  "cq:lastReplicationAction": "Activate",
+  "cq:lastReplicatedBy": "sapient-tarun",
+  "jcr:language": "en",
+  "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+  "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000",
+  "Intro_screen_Closebutton": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Close",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderingcard.pref.Close": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Close",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.kilo.pack.quantity": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Kilo Pack Quantity",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.SKU": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "SKU",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financial.InputLabel": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Input Label",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financials.total": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Statement Total",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderDetail.productName": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Product",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financial.setDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Set Date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderDetail.Price0": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Price",
+    "sling:key": "cuhu.orderDetail.price",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderingHistory.SetDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Set Date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.ordering.status": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Status",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financial.selectDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Select Date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financials.invoiceReference": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Invoice reference",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.ordering.orderDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Order date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "About_GetStarted_title2": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Notifications that you need",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financial.Status": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Status",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.orderingHistory.Reset": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Reset",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "cuhu.financial.Search": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Search",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:53 GMT+0000"
+  },
+  "Intro_Screen_Img5_altText": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ImageAlt5",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financials.desc": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Description",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderDetail.unitPrice": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Unit price",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderingcard.Preferences.title": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Preferences",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financial.DocumentNumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Document Number",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.ordering.customerNumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Tetra Pak Customer No.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financials.orgAmount": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Original amount",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.ordering.poNumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Purchase Order No.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financials.PONumber0": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "PO Number",
+    "sling:key": "cuhu.financials.poNumber",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "About_GetStarted_Img2_altText": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "alt2",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.ordering.orderNumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Tetra Pak Order No.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financials.overdue": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Total overdue",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderingHistory.SearchBtnKey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Search orders",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.productName0": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Product",
+    "sling:key": "cuhu.orderdetail.packaging.delivery.productName\t",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.financial.Documents": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Documents",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.productName": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Product",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.requested": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Requested",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderingHistory.StatusBtnkey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "All Statuses",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderingcard.titlekey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Orders",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "cuhu.orderDetail.remainingQuantity": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Open",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:54 GMT+0000"
+  },
+  "About_GetStarted_title3": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Customise your experience",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingHistory.Reset1": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "RESET1",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingHistory.CloseButton": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Close Button",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.no.data": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "No Data Available",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.price": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Net price",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingHistory.DateRange": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "2018-12-20 - 2018-12-28",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.error.msg": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "An Error occurred..",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.checkbox.text": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Only show above items in the deliveries",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.kilo.popup.close": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Kilo PopUp Close",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financial.Reset": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Reset",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingHistory.DeliveryAddress": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ddddd",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.quantityKPK": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Quantity KPK",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderDetail.deliveredQuantity": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Sent",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financials.currency": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Currency",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "About_GetStarted_Img4_altText": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ImageAlt4",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financials.current": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Current",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financials.salesLocalData": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Local Data",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingcard.no.data": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "No Data Available",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderDetail.Price": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Price",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingcard.Preferences.Desc": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Description",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "Intro_screen_GetStarted": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Get Started",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financial.Customer": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Select Customer",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingcard.another.Order": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Search for another order",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.financial.Createpdf": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Create Pdf",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.ordering.salesOrg": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Sales Organization",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "About_GetStarted_title1": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "One place for your business",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "About_GetStarted_Desc3": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.ordering.contact": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Contact",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.ordering.ETA": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ETA",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "cuhu.orderingHistory.SearchInput": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "SearchInput",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:55 GMT+0000"
+  },
+  "About_GetStarted_Heading": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Get Started now",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderDetail.ETA": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ETA",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.delivery.materialCode": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Material code",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financial.FindCustomer": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Find Customer",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financial.AccountNo": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Account Number",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderingcard.Errorkey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Error in saving",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financials.thirty": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "1 - 30",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderingHistory.Placeholderkey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Purchase Order No. / Tetra Pak order No.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "About_GetStarted_Desc1": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.ETD": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "ETD",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderingHistory.SelectDates": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Select Dates",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financial.searchBtn": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Search Statement",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "About_GetStarted_Desc4": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "test1": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "test1",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.ordering.requestedDelivery": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Requested delivery",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financial.DocumentType": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Document Type",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.orderingcard.ButtonKey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Button",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financials.dueDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Due date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "Intro_Screen_title5": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Customise your experience",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "About_GetStarted_Desc2": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:56 GMT+0000"
+  },
+  "cuhu.financial.AccountServ": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Account Service",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderDetail.orderQuantity": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Quantity",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financial.DateRange": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Date Range",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "test": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "test",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "Statement": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Statement Of Account",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financial.closeButton": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Close Button",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderDetail.serialNo": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "#",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderDetail.productID": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Product ID",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financials.sixty": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "31 - 60",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "Intro_Screen_Heading": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Introduction",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financial.CreateExcel": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Create Excel",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.error.message": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Something Went Wrong",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financials.nintyPlus": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": ">90",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.ordering.orderType": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Order Type",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financials.documentNumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Document No.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderDetail.weight": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Weight",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financials.ninty": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "61 - 90",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderingHistory.Addresskey": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "All delivery address",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.kilo.pack.requested.kpk": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Total order KPK/ Requested KPK / Delivered KPK",
+    "sling:key": "cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "About_GetStarted_title4": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Customise your new experience",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:57 GMT+0000"
+  },
+  "cuhu.financials.docDate": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Document date",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "Intro_Screen_description5": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business.",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.orderingcard.pref.Save": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Save",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "Intro_Screen_NextCaption": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Next",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.orderingHistory.OrderStatus": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Status",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.orderdetail.product": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Product",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.orderdetail.packaging.production.place": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Production place",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.orderingcard.dataError": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Data error",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.financials.PONumber": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "PO Number",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "About_GetStarted_Img3_altText": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Image3_alt",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "About_GetStarted_Image1_altText": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Image1_alt",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  },
+  "cuhu.financial.Summary": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus",
+      "sling:Message"
+    ],
+    "jcr:createdBy": "admin",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "sling:message": "Summary",
+    "jcr:created": "Fri Apr 26 2019 11:11:26 GMT+0530",
+    "cq:lastReplicated": "Tue Apr 23 2019 10:25:58 GMT+0000"
+  }
+}
