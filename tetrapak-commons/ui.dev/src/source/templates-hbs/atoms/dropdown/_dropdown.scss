@@ -1,10 +1,6 @@
 .tpatom-dropdown {
     position: relative;
 
-    label {
-        display: block;
-    }
-
     &__select-box {
         @include border-xs($color-tundora);
         @include border-radius($border-radius);
