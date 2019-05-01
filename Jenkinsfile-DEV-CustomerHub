@@ -237,7 +237,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 								sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
 								sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
 								sh 'zap-cli --api-key 12345 shutdown'
-								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])							                                                  sh 'cp -r $workspace/zap.html /app/splunk-output/zap'
+
+								publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])							                                                  sh 'cp -r $workspace/zap.html /app/splunk-output/zap/customerhub'
 
 }
 						}
