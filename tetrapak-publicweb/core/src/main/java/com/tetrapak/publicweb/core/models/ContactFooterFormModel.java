@@ -1,14 +1,25 @@
 package com.tetrapak.publicweb.core.models;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.day.cq.wcm.api.Page;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactFooterFormModel {
+	
+	private static final Logger log = LoggerFactory.getLogger(ContactFooterFormModel.class);
 
+	@Self
+    private Resource resource;
+	
 	@Inject
 	private String titleI18n;
 
@@ -74,6 +85,23 @@ public class ContactFooterFormModel {
 	
 	@Inject
 	private String stepLabel;
+	
+	@Inject
+    private Page currentPage;
+	
+	private Boolean hideContactFooterForm;
+
+    @PostConstruct
+    protected void init() {
+    	currentPage = resource.getParent().getParent().adaptTo(Page.class);
+    	log.info("Current Page path : {}", currentPage.getPath());
+        if (currentPage != null) {
+            Resource jcrContentResource = currentPage.getContentResource();
+            BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
+            hideContactFooterForm = basePageModel.getPageContent().getHideContactFooterForm();
+            log.info("Value of hideContactFooterForm : {}", hideContactFooterForm);
+        }
+    }
 
 	public String getTitleI18n() {
 		return titleI18n;
@@ -162,5 +190,9 @@ public class ContactFooterFormModel {
 	public String getStepLabel() {
 		return stepLabel;
 	}	
+	
+    public Boolean getHideContactFooterForm() {
+    	return hideContactFooterForm;
+    }
 
 }
