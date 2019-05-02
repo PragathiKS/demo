@@ -7,7 +7,7 @@
 
     @media #{$desktop} {
         @include margin($spacing-big 0);
-	}
+    }
 
     &__link {
         @include font-size(16px);
@@ -30,10 +30,11 @@
     span {
         @include font-size(16px);
         @include line-height(28px, 16px);
+        color: $color-tundora;
         font-weight: bold;
         @media #{$tablet} {
             @include font-size(14px);
             @include line-height(24px, 14px);
-        }        color: $color-tundora;
+        }
     }
 }
