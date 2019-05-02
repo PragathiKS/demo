@@ -242,7 +242,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 														  }
 														  )
 														  
-														  } } }
+														  } } 
 
 post {
 
@@ -267,4 +267,4 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 }
 
 }
-
+}

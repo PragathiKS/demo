@@ -247,7 +247,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                             }
                                                             }
 														 )
-														 } } }
+														 } } 
 
 
 		
@@ -273,4 +273,4 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 
 }
 }
-
+}
