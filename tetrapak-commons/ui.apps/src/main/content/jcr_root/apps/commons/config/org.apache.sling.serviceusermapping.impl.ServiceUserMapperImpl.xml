@@ -3,4 +3,4 @@
           jcr:primaryType="sling:OsgiConfig"
 		  user.enable.default.mapping="true"
 		  user.default=""
-          user.mapping="[tetrapak.customerhub.core:customerhubUser\=customer-hub-user-manager]"/>
+          user.mapping="[tetrapak.customerhub.core:customerhubUser\=customer-hub-user-manager,tetrapak.commons.core:readService\=customer-hub-user-manager]"/>
