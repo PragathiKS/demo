@@ -12,27 +12,45 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
-  // Get selected preferences
-  const $this = $(this);
-  const analyticsData = {};
   switch (type) {
     case 'downloadPdf': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createPDF = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      const obKey = 'linkClick';
+      const ob = {
+        linkType: 'internal',
+        linkSection: 'financials',
+        linkParentTitle: 'statement of accounts',
+        linkName: 'create pdf'
+      };
+      const trackingKey = 'linkClicked';
+      trackAnalytics(ob, obKey, trackingKey);
+      break;
+    }
+    case 'downloadInvoice': {
+      const obKey = 'linkClick';
+      const ob = {
+        linkType: 'internal',
+        linkSection: 'financials',
+        linkParentTitle: 'packaging',
+        linkName: 'invoice download'
+      };
+      const trackingKey = 'linkClicked';
+      trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     case 'downloadExcel': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createExcel = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      const obKey = 'linkClick';
+      const ob = {
+        linkType: 'internal',
+        linkSection: 'financials',
+        linkParentTitle: 'statement of accounts',
+        linkName: 'create excel'
+      };
+      const trackingKey = 'linkClicked';
+      trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     default: {
-      const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
-      analyticsData.statementheader = $.trim(statementHeader);
-      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
     }
   }
 }
@@ -171,7 +189,7 @@ class FinancialsStatementSummary {
     const $this = e.data;
 
     _downloadInvoice.call(this);
-    $this.trackAnalytics(this);
+    $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type) {
     this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);

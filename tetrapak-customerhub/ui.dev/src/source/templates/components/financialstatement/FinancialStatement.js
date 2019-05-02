@@ -15,25 +15,39 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 
 function _trackAnalytics(type) {
   const $this = this;
-  const analyticsData = {};
+  let ob = {};
   switch (type) {
     case 'reset': {
-      analyticsData.resetsearch = true;
-      trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
+      const obKey = 'linkClick';
+      ob = {
+        linkType: 'internal',
+        linkSection: 'financials',
+        linkParentTitle: 'statement of accounts',
+        linkName: 'reset search'
+      };
+      const trackingKey = 'linkClicked';
+      trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     case 'search': {
       const { $filterForm } = $this.cache;
-      const status = $filterForm.find('.js-financial-statement__status option:selected').text();
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
-      const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-      analyticsData.searchstatement = `${status}|dates choosen|${docType}|${docNumber}`;
-      trackAnalytics(analyticsData, 'financial', 'SearchStatement');
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase();
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase();
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase();
+      const obKey = 'linkClick';
+      ob = {
+        linkType: 'internal',
+        linkSection: 'financials',
+        linkParentTitle: 'statement of accounts',
+        linkName: 'search statment',
+        linkSelection: `customer name|${status}|dates choosen| ${docType}|${docNumber}`
+      };
+      const trackingKey = 'linkClicked';
+      trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     default: {
-      analyticsData.findcustomer = this.cache.data.selectedCustomerData.desc;
-      trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+      break;
     }
   }
 }
