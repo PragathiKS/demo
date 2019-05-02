@@ -1,4 +1,8 @@
 .tp-maintenance-filtering {
+    &__filters {
+        @include margin-bottom($margin-md);
+    }
+
     &__contact {
         @include font-size($font-sm);
         @include border-radius($border-radius);
@@ -37,5 +41,54 @@
 
     .tpatom-dropdown {
         @include margin-bottom($margin-md);
+    }
+
+
+    &__calendar-heading {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__calendar-wrapper {
+        .lightpick {
+            position: relative;
+            top: -$spacing-big;
+        }
+
+        .lightpick__days {
+            div {
+                @media #{$desktop} {
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+        }
+
+        .lightpick__day,
+        .lightpick__day-of-the-week {
+            @media #{$desktop} {
+                height: 30px;
+                width: 30px;
+                padding: 0;
+            }
+        }
+
+        .lightpick__months {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lightpick__month {
+
+            @media #{$desktop} {
+                @include margin-right($margin-md);
+                @include margin-bottom($margin-md);
+                width: 230px;
+            }
+        }
     }
 }

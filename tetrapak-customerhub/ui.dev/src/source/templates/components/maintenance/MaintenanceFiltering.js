@@ -4,6 +4,8 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import Lightpick from 'lightpick';
+import { DATE_FORMAT } from '../../../scripts/utils/constants';
 
 
 /**
@@ -178,6 +180,37 @@ class MaintenanceFiltering {
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
       });
+    this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
+  }
+  bindLightpick() {
+    render.fn({
+      template: 'maintenanceCalendar',
+      target: '.tp-maintenance-filtering__calendar-wrapper',
+      data: this.cache.i18nKeys
+    });
+    const maintenancecalendar = this.root.find('.js-range-selector');
+    const picker = maintenancecalendar[0];
+    this.cache.picker = new Lightpick({
+      field: picker,
+      singleDate: false,
+      numberOfMonths: 4,
+      numberOfColumns: 2,
+      inline: true,
+      dropdowns: false,
+      format: DATE_FORMAT,
+      separator: ' - ',
+      selectForward: true
+    });
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
+    }
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
@@ -188,6 +221,7 @@ class MaintenanceFiltering {
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
+    this.bindLightpick();
   }
 }
 
