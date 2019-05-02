@@ -34,6 +34,9 @@ public class DynamicImageModel {
     @Inject
     private String altText;
     
+    @Inject
+    private String finalPath;
+    
     /** The configuration service. */
     @OSGiService
     private DynamicMediaService dynamicMediaService;
@@ -86,12 +89,6 @@ public class DynamicImageModel {
     /** The Constant DESKTOP. */
     private static final String DESKTOP_LARGE = "desktopL";
     
-    /** The Constant TABLETLANDSCAPE. */
-    private static final String TABLETLANDSCAPE = "tabletL";
-    
-    /** The Constant TABLETPORTRAIT. */
-    private static final String TABLETPORTRAIT = "tabletP";
-    
     /** The Constant MOBILELANDSCAPE. */
     private static final String MOBILELANDSCAPE = "mobileL";
     
@@ -102,11 +99,24 @@ public class DynamicImageModel {
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
         String rootPath = getRootPath();
+        String damPath = null;
+        String assetName = null;
         if (imagePath != null) {
-            imagePath = StringUtils.substringBeforeLast(imagePath, ".").replace("/content/dam/customerhub", rootPath);
+            String subString;
+            int iend = imagePath.indexOf("."); 
+            if (iend != -1) 
+            {
+                subString= imagePath.substring(0 , iend);
+                imagePath = StringUtils.substringBeforeLast(subString, "/");
+                assetName = StringUtils.substringAfterLast(subString, "/");
+                damPath = imagePath.replace(imagePath, rootPath);
+                finalPath = damPath + "/" + assetName;
+               
+            }            
+            
         }
         if (null != dynamicMediaUrl) {
-            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + imagePath;
+            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, "/") + finalPath;
         }
         
         if (StringUtils.isNotBlank(dynamicMediaUrl) && StringUtils.isNotBlank(altText)) {
@@ -308,5 +318,10 @@ public class DynamicImageModel {
     public void setMobilePortraitUrl(final String mobilePortraitUrl) {
         this.mobilePortraitUrl = mobilePortraitUrl;
     }
+
+    public String getFinalPath() {
+        return finalPath;
+    }
+
     
 }

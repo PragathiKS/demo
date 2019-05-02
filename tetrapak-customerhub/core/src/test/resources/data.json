@@ -1,0 +1,25 @@
+{
+   "params": {
+      "customerData": {
+         "key": "123",
+         "desc": "John - Malmo",
+         "info": {
+            "acountNo": "12345",
+            "title": "California Aseptic Beverages",
+            "address": "Street 1A"
+         }
+      },
+      "startDate": "2019-03-10",
+      "endDate": "2019-04-24",
+      "status": {
+         "key": "1",
+         "desc": "Open"
+      },
+      "documentType": {
+         "key": "1",
+         "desc": "Confirmed"
+      },
+      "documentNumber": ""
+   },
+   "token": "QU920L03shKqA00m9sYGKKmfAPgP"
+}
