@@ -12,40 +12,38 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
+  let ob = {};
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'downloadPdf': {
-      const obKey = 'linkClick';
-      const ob = {
+      ob = {
         linkType: 'internal',
         linkSection: 'financials',
         linkParentTitle: 'statement of accounts',
         linkName: 'create pdf'
       };
-      const trackingKey = 'linkClicked';
+
       trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     case 'downloadInvoice': {
-      const obKey = 'linkClick';
-      const ob = {
+      ob = {
         linkType: 'internal',
         linkSection: 'financials',
         linkParentTitle: 'packaging',
         linkName: 'invoice download'
       };
-      const trackingKey = 'linkClicked';
       trackAnalytics(ob, obKey, trackingKey);
       break;
     }
     case 'downloadExcel': {
-      const obKey = 'linkClick';
       const ob = {
         linkType: 'internal',
         linkSection: 'financials',
         linkParentTitle: 'statement of accounts',
         linkName: 'create excel'
       };
-      const trackingKey = 'linkClicked';
       trackAnalytics(ob, obKey, trackingKey);
       break;
     }

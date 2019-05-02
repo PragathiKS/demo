@@ -16,16 +16,16 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 function _trackAnalytics(type) {
   const $this = this;
   let ob = {};
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      const obKey = 'linkClick';
       ob = {
         linkType: 'internal',
         linkSection: 'financials',
         linkParentTitle: 'statement of accounts',
         linkName: 'reset search'
       };
-      const trackingKey = 'linkClicked';
       trackAnalytics(ob, obKey, trackingKey);
       break;
     }
@@ -34,7 +34,6 @@ function _trackAnalytics(type) {
       const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase();
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase();
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase();
-      const obKey = 'linkClick';
       ob = {
         linkType: 'internal',
         linkSection: 'financials',
@@ -42,7 +41,6 @@ function _trackAnalytics(type) {
         linkName: 'search statment',
         linkSelection: `customer name|${status}|dates choosen| ${docType}|${docNumber}`
       };
-      const trackingKey = 'linkClicked';
       trackAnalytics(ob, obKey, trackingKey);
       break;
     }
