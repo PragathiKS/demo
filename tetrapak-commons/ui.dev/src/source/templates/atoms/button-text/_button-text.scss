@@ -11,11 +11,12 @@
     }
 
     &__icon {
-        @include padding-left($padding-xs);
+        @include padding-left($padding-sm);
     }
 
     &--primary {
         background-color: $color-wild-sand;
+        color: $color-congress-blue;
 
         &:hover {
             background-color: $color-mercury;
