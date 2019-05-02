@@ -1,6 +1,5 @@
 package com.tetrapak.commons.core.services.config;
 
-import org.osgi.service.event.EventConstants;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -15,24 +14,16 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface DispatcherFlushConfig {
 
     @AttributeDefinition(
-            name = EventConstants.EVENT_TOPIC,
+            name = "absPath",
             description = "event.topics",
             type = AttributeType.STRING
     )
-    String[] getEvents();
-
-    @AttributeDefinition(
-            name = EventConstants.EVENT_FILTER,
-            description = "event.filter",
-            type = AttributeType.STRING
-    )
-    String[] getEventFilter();
+    String absPath();
 
     @AttributeDefinition(
             name = "dispatcherPath",
-            description = "dispatcher Path",
+            description = "dispatcher Path for which cache needs to be cleared",
             type = AttributeType.STRING
     )
-    String getDispatcherPath();
-
+    String dispatcherPath();
 }

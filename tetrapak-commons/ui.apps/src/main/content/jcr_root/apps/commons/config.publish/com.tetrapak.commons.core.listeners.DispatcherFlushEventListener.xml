@@ -2,6 +2,5 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
-          getEvents="[org/apache/sling/api/resource/Resource/ADDED,org/apache/sling/api/resource/Resource/REMOVED,org/apache/sling/api/resource/Resource/CHANGED]"
-          getEventFilter="[path=/apps/customerhub/i18n]"
-          getDispatcherPath="/libs/cq/i18n"/>
+          absPath="/apps/customerhub/i18n"
+          dispatcherPath="/libs/cq/i18n"/>
