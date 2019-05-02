@@ -5,8 +5,10 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, API_FINANCIALS_INVOICE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { fileWrapper } from '../../../scripts/utils/file';
+import { toast } from '../../../scripts/utils/toast';
 
 /**
  * Fire analytics on Invoice Download
@@ -40,8 +42,25 @@ function _trackAnalytics(type) {
 /**
  * Download Invoice
  */
-function _downloadInvoice() {
-  window.open($(this).attr('href'), '_blank');
+function _downloadInvoice($this) {
+  const documentNumber = $.trim($(this).find('[data-key="documentNumber"]').text());
+  auth.getToken(({ data: authData }) => {
+    fileWrapper({
+      extension: 'pdf',
+      filename: `${documentNumber}`,
+      url: `${apiHost}/${API_FINANCIALS_INVOICE}/${documentNumber}`,
+      method: ajaxMethods.GET,
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+      }
+    }).catch(() => {
+      const { i18nKeys } = $this.cache;
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+    });
+  });
 }
 
 function _processTableData(data) {
@@ -170,7 +189,7 @@ class FinancialsStatementSummary {
   downloadInvoice(e) {
     const $this = e.data;
 
-    _downloadInvoice.call(this);
+    _downloadInvoice.call(this, $this);
     $this.trackAnalytics(this);
   }
   downloadPdfExcel(type) {
