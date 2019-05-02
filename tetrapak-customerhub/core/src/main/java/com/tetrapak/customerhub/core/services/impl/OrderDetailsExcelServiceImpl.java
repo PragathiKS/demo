@@ -71,8 +71,11 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 						getDeliverySection(orderType, orderDetailsModel, orderDetailData.getDeliveryList()));
 				LOGGER.debug("Delivery Section data added to the array..");
 			}
-			LOGGER.debug("Raw Data for the Excel sheet has been formed having rows: {} and columns: {}", data.length,
-					data[0].length);
+			if (null != data && data.length > 0) {
+				LOGGER.debug("Raw Data for the Excel sheet has been formed having rows: {} and columns: {}",
+						data.length, data[0].length);
+			}
+			
 			ExcelFileData excelReportData = new ExcelFileData();
 			excelReportData.setFileName(orderDetailData.getOrderDetails().getOrderNumber());
 			excelReportData.setExcelSheetName(SHEET_NAME);
@@ -304,9 +307,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String getInvoiceAddress(InvoiceAddress invoiceAddress) {
 		String address = StringUtils.EMPTY;
 		if (null != invoiceAddress) {
-			address = getProcessedValue(invoiceAddress.getName()) + " " + invoiceAddress.getName2()
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(invoiceAddress.getCity())
-					+ ExcelUtil.NEW_LINE_DETECTOR + invoiceAddress.getState() + " , "
+			address = getProcessedValue(invoiceAddress.getName()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ invoiceAddress.getName2() + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(invoiceAddress.getCity()) + " , "
 					+ getProcessedValue(invoiceAddress.getPostalcode()) + "  "
 					+ getProcessedValue((invoiceAddress.getCountry()));
 		}
@@ -320,9 +323,9 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 	private String getDeliveryAddress(DeliveryAddress deliveryAddress) {
 		String address = StringUtils.EMPTY;
 		if (null != deliveryAddress) {
-			address = getProcessedValue(deliveryAddress.getName()) + " " + getProcessedValue(deliveryAddress.getName2())
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(deliveryAddress.getCity())
-					+ ExcelUtil.NEW_LINE_DETECTOR + getProcessedValue(deliveryAddress.getState()) + " , "
+			address = getProcessedValue(deliveryAddress.getName()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(deliveryAddress.getName2()) + ExcelUtil.NEW_LINE_DETECTOR
+					+ getProcessedValue(deliveryAddress.getCity()) + " , "
 					+ getProcessedValue(deliveryAddress.getPostalcode()) + " "
 					+ getProcessedValue(deliveryAddress.getCountry());
 		}

@@ -1,6 +1,5 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.day.cq.i18n.I18n;
 import com.tetrapak.customerhub.core.beans.pdf.Column;
 import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
@@ -16,7 +15,6 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.interactive.action.PDActionURI;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationLink;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDBorderStyleDictionary;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -230,6 +228,23 @@ public final class PDFUtil {
     public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
                                  PDFont muliRegular, PDFont muliBold, double fontSize) {
         final float MARGIN = 65;
+        return getTable(columns, content, rowHeight, muliRegular, muliBold, fontSize, MARGIN);
+    }
+    
+    /**
+     * Method to create table
+     *
+     * @param columns     columns
+     * @param content     content
+     * @param rowHeight   row height
+     * @param muliRegular regular font
+     * @param muliBold    bold font
+     * @param fontSize    font size
+     * @return table table
+     */
+    public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
+                                 PDFont muliRegular, PDFont muliBold, double fontSize, float margin) {
+        final float MARGIN = margin;
         final float FONT_SIZE = (float) fontSize;
 
         final float ROW_HEIGHT = (float) rowHeight;

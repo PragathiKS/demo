@@ -33,16 +33,16 @@
 
         @media #{$desktop} {
             @include border-radius($border-radius $border-radius 0 0);
-            background-color: $color-congress-blue;
             display: block;
+            background-color: $color-congress-blue;
         }
     }
 
     &__tab {
         @include padding($padding-sm);
         @include border-radius($border-radius);
-        flex: 1;
         color: $color-tundora;
+        flex: 1;
         text-align: center;
         background: $color-wild-sand;
 

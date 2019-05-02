@@ -1,4 +1,7 @@
-<div class="pw-error-page ${wcmmode.edit ? 'wcmmode-edit': ''}"
+<div data-sly-test="${properties.showHeader}">
+  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
+</div>
+<div class="${properties.showHeader ? 'pw-error-page pw-error-page--underneath': 'pw-error-page'}  ${wcmmode.edit ? 'wcmmode-edit': ''}"
      style="background-image: url('${properties.imagePath @ context='styleString'}')">
   <div class="tp-container">
     <div class="pw-error-page__logo">
@@ -21,4 +24,7 @@
       </div>
     </div>
   </div>
+</div>
+<div data-sly-test="${properties.showFooter}">
+  <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
 </div>

@@ -1,0 +1,41 @@
+.tp-maintenance-filtering {
+    &__contact {
+        @include font-size($font-sm);
+        @include border-radius($border-radius);
+        @include line-height(20px, $font-sm);
+        background-color: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include margin-left($margin-l);
+        }
+
+        &-icon {
+            @include margin-bottom($margin-sm);
+            @include padding(6px $padding-md);
+            @include font-size($font-xl);
+            border: 1px solid $color-mercury;
+            display: inline-block;
+            color: $color-congress-blue;
+            background-color: $color-white;
+            border-radius: 50%;
+        }
+
+        &-inner {
+            @include padding($padding-l);
+        }
+
+        &-col {
+            @include margin-top($margin-md);
+
+            &:first-child+.col-lg-6 {
+                @media #{$desktop} {
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+
+    .tpatom-dropdown {
+        @include margin-bottom($margin-md);
+    }
+}

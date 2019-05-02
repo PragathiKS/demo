@@ -3,10 +3,12 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
 import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { fileWrapper } from '../../../scripts/utils/file';
+import { toast } from '../../../scripts/utils/toast';
 
 /**
  *
@@ -277,18 +279,40 @@ function _openOverlay() {
   this.root.find('.js-order-detail__info-modal').modal();
 }
 
+function _getExtension(extnType) {
+  if (extnType === 'excel') {
+    return EXT_EXCEL;
+  }
+  return EXT_PDF;
+}
+
 /**
  * Downloads Excel or PDF content
  */
-function _downloadContent() {
+function _downloadContent($this) {
   const self = $(this);
   const data = self.data();
   self.attr('disabled', 'disabled');
   auth.getToken(({ data: authData }) => {
-    self.removeAttr('disabled');
     data.token = authData.access_token;
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
-    window.open(pdfExcelUrl, '_self');
+    fileWrapper({
+      extension: `${_getExtension(data.extnType)}`,
+      url: pdfExcelUrl,
+      data: {
+        orderNumber: data.orderNumber,
+        token: data.token
+      }
+    }).then(() => {
+      self.removeAttr('disabled');
+    }).catch(() => {
+      const { i18nKeys } = $this.cache;
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+      self.removeAttr('disabled');
+    });
   });
 }
 
@@ -349,7 +373,7 @@ class OrderDetails {
   downloadContent(e) {
     const $this = e.data;
     $this.trackAnalytics.call(this, $this);
-    return _downloadContent.apply(this, arguments);
+    return _downloadContent.apply(this, [$this, ...arguments]);
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
