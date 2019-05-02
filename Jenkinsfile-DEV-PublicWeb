@@ -216,7 +216,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                                      echo "Starting Sitespeed-Desktop Test Run"
                                                                      sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
                                                                      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
-                                                                     sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+                                                                     sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop-pw'
                                                             }
                                                            },
 					            "sitespeed_Mobile" : {
@@ -229,7 +229,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                           echo "Starting Sitespeed-Mobile Test Run"
                                                           sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
-                                                          sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
+                                                          sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile-pw'
                                                                }
 							                              },
 														  "sitespeed_IPad" : {
@@ -243,7 +243,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 																
                                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
 																
-                                                       sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
+                                                       sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad-pw'
                                                             }
                                                             }
 														    )
