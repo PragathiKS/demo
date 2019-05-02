@@ -67,7 +67,7 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
     private void flushDispatcher(HttpClient httpClient, String dispatcherHandle, String dispatcherHostURL) {
         HttpPost httpPost = new HttpPost();
         try {
-            httpPost.setURI(new URI(dispatcherHandle));
+            httpPost.setURI(new URI(dispatcherHostURL));
             httpPost.setHeader("CQ-Action", CQ_ACTION_DELETE);
             httpPost.setHeader("CQ-Handle", dispatcherHandle);
             httpPost.setHeader("CQ-Action-Scope", RESOURCE_ONLY);

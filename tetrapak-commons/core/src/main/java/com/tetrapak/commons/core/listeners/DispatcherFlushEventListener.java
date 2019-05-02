@@ -6,7 +6,6 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,12 +61,11 @@ public class DispatcherFlushEventListener implements EventListener {
         while (events.hasNext()) {
             Event event = events.nextEvent();
             try {
-                LOGGER.info("********INSIDE TRY ***** {}", event.getPath());
+                LOGGER.info("event triggered at path: {}", event.getPath());
+                dispatcherFlush.flush("/libs/cq/i18n");
             } catch (RepositoryException e) {
                 LOGGER.error("RepositoryException in DispatcherFlushEventListener {}", e);
             }
-            dispatcherFlush.flush("/libs/cq/i18n");
-
         }
     }
 }
