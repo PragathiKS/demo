@@ -16,16 +16,15 @@
         }
 
     }
-
-    &__column {
-        @media #{$desktop} {
-            flex: 1;
+    &__wrapper {
+        @media #{$tablet} {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: convert-to-rem(20px);
         }
 
-        & + #{$self}__column {
-            @media #{$desktop} {
-                @include margin-left($margin-l);
-            }
+        @media #{$tablet-large} {
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 }
