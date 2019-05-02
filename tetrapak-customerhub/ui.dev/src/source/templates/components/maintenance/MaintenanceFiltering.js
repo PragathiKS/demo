@@ -56,8 +56,12 @@ function _renderLineFilter(data = this.cache.filteredData) {
       desc: line.lineDesc
     }));
 
-    const { i18nKeys } = this.cache.data;
-    data.linesRecords.options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
+    const { options } = data.linesRecords;
+
+    if (options.length > 1) {
+      const { i18nKeys } = this.cache.data;
+      options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
+    }
 
     render.fn({
       template: 'options',
@@ -78,6 +82,7 @@ function _renderEquipmentFilter(data = this.cache.filteredData) {
     equipmentRecords;
   data.equipmentRecords = {};
   data.equipmentRecords.options = [];
+
   if (lineVal === '') {
     equipmentRecords = data.lines;
   } else {
@@ -91,8 +96,12 @@ function _renderEquipmentFilter(data = this.cache.filteredData) {
     })));
   });
 
-  const { i18nKeys } = this.cache.data;
-  data.equipmentRecords.options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
+  const { options } = data.equipmentRecords;
+
+  if (options.length > 1) {
+    const { i18nKeys } = this.cache.data;
+    options.unshift({ 'key': '', 'desc': i18nKeys.allOptionText });
+  }
 
   render.fn({
     template: 'options',
