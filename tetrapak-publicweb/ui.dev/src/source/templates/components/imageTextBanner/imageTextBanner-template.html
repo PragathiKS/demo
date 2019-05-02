@@ -16,7 +16,7 @@
         <sly data-sly-test="${data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
              data-sly-call="${heading.heading_h1_template @ headingText=data.titleI18n, variant='hero'}"/>
         <sly data-sly-test="${!data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-             data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
+             data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
       </div>
       <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
       <sly data-sly-test="${data.targetSoftConversion}"

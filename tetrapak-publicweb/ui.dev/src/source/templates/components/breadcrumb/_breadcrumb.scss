@@ -10,8 +10,13 @@
 	}
 
     &__link {
-        @include font-size(12px);
+        @include font-size(16px);
+        @include line-height(28px, 16px);
         color: $color-boulder;
+        @media #{$tablet} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }
     }
 
     .tp_icon {
@@ -23,8 +28,12 @@
     }
 
     span {
-        @include font-size(12px);
-        color: $color-tundora;
+        @include font-size(16px);
+        @include line-height(28px, 16px);
         font-weight: bold;
+        @media #{$tablet} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }        color: $color-tundora;
     }
 }
