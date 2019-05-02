@@ -172,7 +172,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                   steps {
                                          script {
                                   
-										                if (params.Skip_Tool_Execution) {
+			                                     if (params.Skip_Tool_Execution) {
                                                                 echo "Skipping TOOLS Execution"
 																 }
                                                         else
@@ -202,31 +202,50 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 														}
 														}}}
                                                        
-													stage ( 'SiteSPeed Execution on all platforms in Parallel') {
-													steps {
-														script {
-															parallel (
-                                                           "sitespeed_Desktop" : {
-                                                           echo "Starting Sitespeed-Desktop Test Run"
-                                                           sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
-                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
-                                                           sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+							stage ( 'SiteSPeed Execution on all platforms in Parallel') {
+							steps {
+							script {
+								parallel (
+                                                                  "sitespeed_Desktop" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                        echo "Skipping Sitespeed Execution for Desktop"
+                                                        }
+                                                        else {
+
+
+                                                                     echo "Starting Sitespeed-Desktop Test Run"
+                                                                     sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
+                                                                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
+                                                                     sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+                                                            }
                                                            },
-														   "sitespeed_Mobile" : {
+					            "sitespeed_Mobile" : {
+
+                                                        if (params.Skip_Tool_Execution) {
+                                                        echo "Skipping Sitespeed Execution for Desktop"
+                                                        }
+                                                        else {
+
                                                           echo "Starting Sitespeed-Mobile Test Run"
                                                           sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
                                                           sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
-														  },
+                                                               }
+							    },
 														  "sitespeed_IPad" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                        echo "Skipping Sitespeed Execution for Desktop"
+                                                        }
+                                                        else {
                                                                echo "Starting Sitespeed-Ipad Test Run"
 															   
                                                                 sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url} -b firefox --outputFolder sitespeed_ipad'
 																
                                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
 																
-                                                               sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
-                                                         }
+                                                       sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
+                                                            }
+                                                            }
 														 )
 														 } } }
 
