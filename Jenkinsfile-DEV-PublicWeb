@@ -231,7 +231,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
                                                           sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
                                                                }
-							    },
+							                              },
 														  "sitespeed_IPad" : {
                                                         if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
@@ -246,8 +246,8 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                        sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
                                                             }
                                                             }
-														 )
-														 } } 
+														    )
+														  } } } } 
 
 
 		
@@ -271,6 +271,4 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 
 } 
 
-}
-}
 }
