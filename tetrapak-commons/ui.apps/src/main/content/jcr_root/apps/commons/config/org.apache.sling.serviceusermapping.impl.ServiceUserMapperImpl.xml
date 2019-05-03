@@ -2,5 +2,5 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
 		  user.enable.default.mapping="true"
-		  user.default=""
-          user.mapping="[tetrapak.customerhub.core:customerhubUser\=customer-hub-user-manager,tetrapak.commons.core:readService\=customer-hub-user-manager]"/>
+		  user.default="tetrapak-system-user"
+          user.mapping="[tetrapak.customerhub.core:customerhubUser\=tetrapak-system-user,tetrapak.commons.core:readService\=tetrapak-system-user]"/>
