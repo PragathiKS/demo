@@ -132,6 +132,7 @@ public final class PDFUtil {
 
             response.setContentType("application/pdf");
             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Length", Integer.toString(in.available()));
 
             int read;
             OutputStream os = response.getOutputStream();
