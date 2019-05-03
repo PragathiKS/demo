@@ -12,29 +12,33 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
-  // Get selected preferences
-  const $this = $(this);
-  const analyticsData = {};
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials'
+  };
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'downloadPdf': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createPDF = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create pdf';
+      break;
+    }
+    case 'downloadInvoice': {
+      ob.linkParentTitle = 'packaging';
+      ob.linkName = 'invoice download';
       break;
     }
     case 'downloadExcel': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createExcel = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create excel';
       break;
     }
     default: {
-      const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
-      analyticsData.statementheader = $.trim(statementHeader);
-      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey);
 }
 
 /**
@@ -171,7 +175,7 @@ class FinancialsStatementSummary {
     const $this = e.data;
 
     _downloadInvoice.call(this);
-    $this.trackAnalytics(this);
+    $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type) {
     this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);
