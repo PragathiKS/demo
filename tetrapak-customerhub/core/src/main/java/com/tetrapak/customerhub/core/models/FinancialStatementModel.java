@@ -132,6 +132,12 @@ public class FinancialStatementModel {
     
     private String downloadPdfExcelServletUrl;
     
+    @Inject
+    private String fileDownloadErrorText;
+    
+    @Inject
+    private String fileDownloadErrorClose;
+        
     /**
      * init method
      * @return config 
@@ -159,6 +165,8 @@ public class FinancialStatementModel {
         i18KeyMap.put("documentHeadingI18n", documentHeadingI18n);
         i18KeyMap.put("createExcelBtnI18n", createExcelBtnI18n);
         i18KeyMap.put("createPdfBtnI18n", createPdfBtnI18n);
+        i18KeyMap.put("fileDownloadErrorText", fileDownloadErrorText);
+        i18KeyMap.put("fileDownloadErrorClose", fileDownloadErrorClose);
         
         
         Gson gson = new Gson();
