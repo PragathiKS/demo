@@ -54,15 +54,15 @@
 
     &__calendar-wrapper {
         .lightpick {
+            @include top(-$spacing-big);
             position: relative;
-            top: -$spacing-big;
         }
 
         .lightpick__days {
             div {
                 @media #{$desktop} {
-                    height: 30px;
-                    width: 30px;
+                    @include height(30px);
+                    @include width(30px);
                 }
             }
         }
@@ -70,14 +70,14 @@
         .lightpick__day,
         .lightpick__day-of-the-week {
             @media #{$desktop} {
-                height: 30px;
-                width: 30px;
+                @include height(30px);
+                @include width(30px);
                 padding: 0;
             }
         }
 
         .lightpick__months {
-            display: flex;
+            @include display-flex;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -87,7 +87,7 @@
             @media #{$desktop} {
                 @include margin-right($margin-md);
                 @include margin-bottom($margin-md);
-                width: 230px;
+                @include width(230px);
             }
         }
     }

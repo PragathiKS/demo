@@ -2,7 +2,7 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import Lightpick from 'lightpick';
 import { DATE_FORMAT } from '../../../scripts/utils/constants';
@@ -191,10 +191,10 @@ class MaintenanceFiltering {
       });
     this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
   }
-  bindLightpick() {
+  bindCalendar() {
     render.fn({
       template: 'maintenanceCalendar',
-      target: '.tp-maintenance-filtering__calendar-wrapper',
+      target: '.js-maintenance-filtering__calendar-wrapper',
       data: this.cache.i18nKeys
     });
     const maintenancecalendar = this.root.find('.js-range-selector');
@@ -210,6 +210,18 @@ class MaintenanceFiltering {
       separator: ' - ',
       selectForward: true
     });
+    const calendarMonthsCont = this.root.find('.lightpick__months');
+    if (
+      isDesktopMode()
+      && calendarMonthsCont.length
+    ) {
+      const months = calendarMonthsCont.find('section.lightpick__month');
+      if (months.length === 4) {
+        const leftContainer = $('<div></div>').append($(months[0])).append(months[1]);
+        const rightContainer = $('<div></div>').append($(months[2])).append(months[3]);
+        calendarMonthsCont.append(leftContainer).append(rightContainer);
+      }
+    }
   }
   navigateCalendar(e) {
     const $this = e.data;
@@ -230,7 +242,7 @@ class MaintenanceFiltering {
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
-    this.bindLightpick();
+    this.bindCalendar();
   }
 }
 
