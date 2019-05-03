@@ -217,9 +217,10 @@ class MaintenanceFiltering {
     ) {
       const months = calendarMonthsCont.find('section.lightpick__month');
       if (months.length === 4) {
-        const leftContainer = $('<div></div>').append($(months[0])).append(months[1]);
-        const rightContainer = $('<div></div>').append($(months[2])).append(months[3]);
-        calendarMonthsCont.append(leftContainer).append(rightContainer);
+        const leftMonthsContainer = $(months[0]).add(months[1]);
+        const rightMonthsContainer = $(months[2]).add(months[3]);
+        leftMonthsContainer.wrapAll('<div></div>');
+        rightMonthsContainer.wrapAll('<div></div>');
       }
     }
   }
