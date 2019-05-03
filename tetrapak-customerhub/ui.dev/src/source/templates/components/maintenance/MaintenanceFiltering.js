@@ -10,21 +10,21 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on Packaging, Processing
  * mail/contact link click
  */
-function _trackAnalytics(type) {
+function _trackAnalytics(type, name) {
   const analyticsData = {
     linkType:'internal',
     linkSection:'installed equipment-maintenance',
     linkParentTitle:'tetrapak contact'
   };
-
-  if (type === 'Packaging') {
-    analyticsData.linkName = 'packaging-phone';
-  } else {
-    analyticsData.linkName = 'processing-phone';
+  
+  // TODO: need to discuss this once
+  if (type) {
+    type = type.toLowerCase();
   }
-  // TODO: need approval on passing undefined/null for "objectKey" and
-  // passing an extra flag for acheiving camelCase key.
-  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, 'UpperCaseKey');
+  // creating linkName as per the name or type received
+  analyticsData.linkName = `${type}-${name}`;
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, true);
 }
 
 /**
@@ -209,10 +209,10 @@ class MaintenanceFiltering {
         this.renderEquipmentFilter();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', (el) => {
-        this.trackAnalytics(el.target.dataset.type);
+        this.trackAnalytics(el.target.dataset.type, 'email');
       })
       .on('click', '.js-maintenance-filtering__contact-phone', (el) => {
-        this.trackAnalytics(el.target.dataset.type);
+        this.trackAnalytics(el.target.dataset.type, 'phone');
       });
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
@@ -220,7 +220,7 @@ class MaintenanceFiltering {
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
-  trackAnalytics = (type) => _trackAnalytics.call(this, type);
+  trackAnalytics = (type, name) => _trackAnalytics.call(this, type, name);
   init() {
     this.initCache();
     this.bindEvents();
