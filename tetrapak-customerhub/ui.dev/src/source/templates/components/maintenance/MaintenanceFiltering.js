@@ -39,8 +39,8 @@ function _renderMaintenanceContact() {
 
   render.fn({
     template: 'maintenanceContact',
-    data,
-    target: '.js-maintenance-filtering__contact'
+    target: '.js-maintenance-filtering__contact',
+    data
   });
 }
 
@@ -78,8 +78,9 @@ function _renderLineFilter(data = this.cache.filteredData) {
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilter(data = this.cache.filteredData) {
-  let lineVal = this.cache.$line.val(),
-    equipmentRecords;
+  const lineVal = this.cache.$line.val();
+  let equipmentRecords;
+
   data.equipmentRecords = {};
   data.equipmentRecords.options = [];
 
