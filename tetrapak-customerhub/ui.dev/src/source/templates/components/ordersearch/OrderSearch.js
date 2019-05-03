@@ -379,7 +379,6 @@ class OrderSearch {
         dropdowns: false,
         format: DATE_FORMAT,
         separator: ' - ',
-        selectForward: true,
         onSelectStart() {
           $this.root.find('.js-calendar').attr('disabled', 'disabled');
         },

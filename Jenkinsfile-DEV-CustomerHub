@@ -259,7 +259,8 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 }
 
  always {
-    build 'Tetra-Dev-Dispatcher-Flush'
+    build 'Tetra_Dev_Clear_httpd_Cache'
+	build 'Sonar-Splunk'
     }
 	}
 
