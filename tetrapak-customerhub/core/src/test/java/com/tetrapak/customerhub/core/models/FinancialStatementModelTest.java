@@ -8,6 +8,11 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+/**
+ * Test class for Financial Model
+ * @author ruhsharm
+ *
+ */
 public class FinancialStatementModelTest {
 
     private FinancialStatementModel financialStatementModel = null;

@@ -34,6 +34,63 @@ public class FinancialStatementModel {
     @Inject
     private String statementOfAccount;
 
+    @Inject
+    private String findCustomer;
+
+    @Inject
+    private String accountNumber;
+
+    @Inject
+    private String accountService;
+    
+    @Inject
+    private String selectCustomerLabel;
+
+    @Inject
+    private String selectStatusLabel;
+
+    @Inject
+    private String selectDateRangeLabel;
+    
+    @Inject
+    private String selectDocumentTypeLabel;
+
+    @Inject
+    private String placeholderForDocumentNumber;
+    
+    @Inject
+    private String searchInputLabel;
+    
+    @Inject
+    private String resetButtonText;
+
+    @Inject
+    private String searchButtonText;
+    
+    @Inject
+    private String summaryHeadingI18n;
+    
+
+    @Inject
+    private String documentHeadingI18n;
+    
+    @Inject
+    private String createExcelBtnI18n;
+    
+    @Inject
+    private String createPdfBtnI18n;
+    
+    private String i18nKeys;
+    
+    private String downloadPdfExcelServletUrl;
+    
+    @Inject
+    private String fileDownloadErrorText;
+    
+    @Inject
+    private String fileDownloadErrorClose;
+        
+
     /**
      * @return the statementOfAccount
      */
@@ -81,44 +138,7 @@ public class FinancialStatementModel {
      */
     public String getDocumentHeadingI18n() {
         return documentHeadingI18n;
-    }
-
-    @Inject
-    private String findCustomer;
-
-    @Inject
-    private String accountNumber;
-
-    @Inject
-    private String accountService;
-    
-    @Inject
-    private String selectCustomerLabel;
-
-    @Inject
-    private String selectStatusLabel;
-
-    @Inject
-    private String selectDateRangeLabel;
-    
-    @Inject
-    private String selectDocumentTypeLabel;
-
-    @Inject
-    private String placeholderForDocumentNumber;
-    
-    @Inject
-    private String searchInputLabel;
-    
-    @Inject
-    private String resetButtonText;
-
-    @Inject
-    private String searchButtonText;
-    
-    @Inject
-    private String summaryHeadingI18n;
-    
+    }    
     /**
      * @return the selectDates
      */
@@ -216,26 +236,22 @@ public class FinancialStatementModel {
     public String getFileDownloadErrorClose() {
         return fileDownloadErrorClose;
     }
+    
+    /**
+     * Get i18nkeys method.
+     * @return i18nkeys 
+     */   
+    public String getI18nKeys() {
+        return i18nKeys;
+    }
 
-    @Inject
-    private String documentHeadingI18n;
-    
-    @Inject
-    private String createExcelBtnI18n;
-    
-    @Inject
-    private String createPdfBtnI18n;
-    
-    private String i18nKeys;
-    
-    private String downloadPdfExcelServletUrl;
-    
-    @Inject
-    private String fileDownloadErrorText;
-    
-    @Inject
-    private String fileDownloadErrorClose;
-        
+    /**
+     * @return the downloadPdfExcelServletUrl
+     */
+    public String getDownloadPdfExcelServletUrl() {
+        return downloadPdfExcelServletUrl;
+    }
+
     /**
      * init method
      * @return config 
@@ -271,21 +287,6 @@ public class FinancialStatementModel {
         i18nKeys = gson.toJson(i18KeyMap);
         downloadPdfExcelServletUrl = resource.getPath() + ".{extnType}";
        
-    }
-
-    /**
-     * Get i18nkeys method.
-     * @return i18nkeys 
-     */   
-    public String getI18nKeys() {
-        return i18nKeys;
-    }
-
-    /**
-     * @return the downloadPdfExcelServletUrl
-     */
-    public String getDownloadPdfExcelServletUrl() {
-        return downloadPdfExcelServletUrl;
     }
 
 }
