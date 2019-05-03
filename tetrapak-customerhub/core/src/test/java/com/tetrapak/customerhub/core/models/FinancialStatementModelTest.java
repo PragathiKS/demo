@@ -33,5 +33,8 @@ public class FinancialStatementModelTest {
         Assert.assertTrue(config.contains("Find customer"));
         Assert.assertTrue(config.contains("Document Number"));  
         Assert.assertTrue(config.contains("Create PDF"));
+        String url = financialStatementModel.getDownloadPdfExcelServletUrl();
+        Assert.assertEquals("/content/tetrapak/customerhub/en/financials/jcr:content/root/responsivegrid/financialstatement.{extnType}", url);
+        
     }
 }
