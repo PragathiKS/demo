@@ -22,6 +22,8 @@ function _trackAnalytics(type) {
   } else {
     analyticsData.linkName = 'processing-phone';
   }
+  // TODO: need approval on passing undefined/null for "objectKey" and
+  // passing an extra flag for acheiving camelCase key.
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, 'UpperCaseKey');
 }
 
