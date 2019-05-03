@@ -16,8 +16,7 @@ function _trackAnalytics(type, name) {
     linkSection:'installed equipment-maintenance',
     linkParentTitle:'tetrapak contact'
   };
-  
-  // TODO: need to discuss this once
+
   if (type) {
     type = type.toLowerCase();
   }
