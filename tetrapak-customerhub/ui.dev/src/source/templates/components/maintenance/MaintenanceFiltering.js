@@ -7,21 +7,22 @@ import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
- * TODO: working on this
+ * Fire analytics on Packaging, Processing 
+ * mail/contact link click
  */
 function _trackAnalytics(type) {
   const analyticsData = {
-    linktype:'internal',
-    linksection:'installed equipment',
-    linkparenttitle:'tetrapak contact'
+    linkType:'internal',
+    linkSection:'installed equipment',
+    linkParentTitle:'tetrapak contact'
   };
 
-  if(type === 'Packaging') {
+  if (type === 'Packaging') {
     analyticsData.linkname = 'packaging-phone';
   } else {
     analyticsData.linkname = 'processing-phone';
   }
-  trackAnalytics(analyticsData, 'linkclick', 'linkClicked');
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked');
 }
 
 /**
