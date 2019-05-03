@@ -8,12 +8,10 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
-import org.apache.sling.api.resource.Resource;
 
 import com.day.cq.wcm.api.Page;
 import com.google.gson.FieldNamingPolicy;
@@ -29,9 +27,6 @@ public class PageLoadAnalyticsModel {
 
     @Inject
     private Page currentPage;
-    
-    @Inject
-    private ResourceResolver resolver;
     
     @Inject
     private SlingSettingsService slingSettingsService;
@@ -50,10 +45,11 @@ public class PageLoadAnalyticsModel {
 	private boolean production;
 	private boolean staging;
 	private boolean development;
-	private String siteSection1 = StringUtils.EMPTY;;
-	private String siteSection2 = StringUtils.EMPTY;;
-	private String siteSection3 = StringUtils.EMPTY;;
-	private String siteSection4 = StringUtils.EMPTY;;
+	private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
+	private StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
+	private StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
+	private StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
+	
     
     @PostConstruct
     public void initModel() {
@@ -104,61 +100,28 @@ public class PageLoadAnalyticsModel {
 	        breadcrumb = breadcrumbBuilder.toString();
         }
     }
-    /*
-    private void updateSiteSections() {
-    	int siteSectionIndex = 5;
-        int currentPageIndex = currentPage.getDepth() - 1;
-        if (siteSectionIndex < currentPageIndex) {
-	        Page siteSection1Page = currentPage.getAbsoluteParent(siteSectionIndex);
-	        if (siteSection1Page != null) {
-	        	siteSection1 = siteSection1Page.getName();
-	        	siteSectionIndex++;
-	        	if (siteSectionIndex < currentPageIndex) {
-	    	        Page siteSection2Page = currentPage.getAbsoluteParent(siteSectionIndex);
-	    	        if (siteSection2Page != null) {
-	    	        	siteSection2 = siteSection1Page.getName();
-	    	        	siteSectionIndex++;
-	    	        	if (siteSectionIndex < currentPageIndex) {
-	    	    	        Page siteSection3Page = currentPage.getAbsoluteParent(siteSectionIndex);
-	    	    	        if (siteSection3Page != null) {
-	    	    	        	siteSection3 = siteSection1Page.getName();
-	    	    	        	siteSectionIndex++;
-	    	    	        	if (siteSectionIndex < currentPageIndex) {
-	    	    	    	        Page siteSection4Page = currentPage.getAbsoluteParent(siteSectionIndex);
-	    	    	    	        if (siteSection4Page != null) {
-	    	    	    	        	siteSection4 = siteSection1Page.getName();
-	    	    	    	        }
-	    	    	            }
-	    	    	        }
-	    	            }
-	    	        }
-	            }
-	        }
-        }
-    }
-    */
     
     private void updateSiteSections() {
     	int siteSectionIndex = 5;
         int currentPageIndex = currentPage.getDepth() - 1;
         if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection1)) {
-        	channel = siteSection1;
-        	currentPageIndex++;
+        	channel = siteSection1.toString();
+        	siteSectionIndex++;
         	if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection2)) {
-            	currentPageIndex++;
+        		siteSectionIndex++;
             	if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
-                	currentPageIndex++;
+            		siteSectionIndex++;
                 	updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
                 }
             }
         }
     }
     
-    private boolean updateSectionName(int siteSectionIndex, int currentPageIndex, String siteSection) {
+    private boolean updateSectionName(int siteSectionIndex, int currentPageIndex, StringBuilder siteSection) {
     	if (siteSectionIndex < currentPageIndex) {
 	        Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
 	        if (siteSectionPage != null) {
-	        	siteSection = siteSectionPage.getName();
+	        	siteSection.append(siteSectionPage.getName());
 	        	return true;
 	        }
         }
@@ -187,10 +150,10 @@ public class PageLoadAnalyticsModel {
     	pageInfo.addProperty("pageType", pageType);
     	pageInfo.addProperty("pageName", pageName);
     	pageInfo.addProperty("breadCrumb", breadcrumb);
-    	pageInfo.addProperty("siteSection1", siteSection1);
-    	pageInfo.addProperty("siteSection2", siteSection2);
-    	pageInfo.addProperty("siteSection3", siteSection3);
-    	pageInfo.addProperty("siteSection4", siteSection4);
+    	pageInfo.addProperty("siteSection1", siteSection1.toString());
+    	pageInfo.addProperty("siteSection2", siteSection2.toString());
+    	pageInfo.addProperty("siteSection3", siteSection3.toString());
+    	pageInfo.addProperty("siteSection4", siteSection4.toString());
     	pageInfo.addProperty("siteCountry", siteCountry);
     	pageInfo.addProperty("siteLanguage", siteLanguage);
     	pageInfo.addProperty("siteName", SITE_NAME);
