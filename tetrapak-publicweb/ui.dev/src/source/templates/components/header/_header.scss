@@ -160,6 +160,12 @@
         border: 0;
         width: calc(100% - #{convert-to-rem($margin-xxxl*2)});
 
+        &::-ms-clear {
+            display: none;
+            height: 0;
+            width: 0;
+        }
+
         &:focus {
             outline: none;
         }

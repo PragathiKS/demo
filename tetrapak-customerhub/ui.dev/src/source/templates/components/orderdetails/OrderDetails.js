@@ -3,10 +3,12 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
 import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { fileWrapper } from '../../../scripts/utils/file';
+import { toast } from '../../../scripts/utils/toast';
 
 /**
  *
@@ -68,7 +70,7 @@ function _processPackmatData(data) {
     });
     data.orderSummaryHeadings = keys.map(key => ({
       key,
-      i18nKey: `cuhu.orderdetail.${key}`
+      i18nKey: `cuhu.orderDetail.orderSummary.${key}`
     }));
   }
 
@@ -87,32 +89,46 @@ function _processPackmatData(data) {
           if (key === 'quantityKPK') {
             return ({
               key,
-              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`,
+              i18nKey: `cuhu.orderDetail.deliveryList.products.${key}`,
               iconClassName: 'icon-Info tp-order-detail__icon-info js-icon-Info'
             });
           } else {
             return ({
               key,
-              i18nKey: `cuhu.orderdetail.packaging.delivery.${key}`
+              i18nKey: `cuhu.orderDetail.deliveryList.products.${key}`
             });
           }
         });
       }
     });
+  } else {
+    data.noData = true;
   }
 }
 
 /**
  * Process Parts Data
  */
-function _processPartsData(data) {
+function _processPartsData(data, deliveryNo, pageIndex) {
   let keys = [];
   if (Array.isArray(data.deliveryList)) {
+    if (deliveryNo) {
+      data.deliveryList = data.deliveryList.filter((delivery) => delivery.deliveryNumber === deliveryNo);
+    }
     data.deliveryList.forEach(function (delivery) {
       delete delivery.deliveryOrder;
       delete delivery.ETD;
+
+      delivery.totalPages = delivery.totalProductsForQuery > ORDER_DETAILS_ROWS_PER_PAGE ?
+        Math.ceil(delivery.totalProductsForQuery / ORDER_DETAILS_ROWS_PER_PAGE) : false;
+
       delivery.products = delivery.products.map((product, index) => {
-        product.serialNo = index + 1;
+        if (pageIndex) {
+          product.serialNo = (pageIndex * ORDER_DETAILS_ROWS_PER_PAGE) + index + 1;
+        } else {
+          product.serialNo = index + 1;
+        }
+
         const productColList = data.partsDeliveryTableCols || Object.keys(product);
         keys = keys.length === 0 ? productColList : keys;
 
@@ -181,6 +197,82 @@ function _renderOrderSummary() {
           return $this.processTableData(data);
         }
       }
+    }, (data) => {
+      if (!data.isError) {
+        this.root.find('.js-pagination-multiple').each(function () {
+          const $this = $(this);
+          $this.trigger('orderdetail.paginate', [
+            $this.data()
+          ]);
+        });
+      }
+    });
+  });
+}
+
+/**
+ * Renders Paginate Data
+ */
+function _renderPaginateData() {
+  const $this = this;
+  const [paginationData, data] = arguments;
+  const { pageNumber, pageIndex } = paginationData;
+  const { deliveryNo, target } = data;
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'deliveryDetail',
+      url: {
+        path: `${apiHost}/${$this.cache.apiUrl}`,
+        data: {
+          'order-number': $this.cache.orderNumber,
+          'delivery-number': deliveryNo,
+          'skip': pageIndex * ORDER_DETAILS_ROWS_PER_PAGE
+        }
+      },
+      target,
+      ajaxConfig: {
+        method: ajaxMethods.GET,
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        cache: true,
+        showLoader: true,
+        cancellable: true
+      },
+      beforeRender(data) {
+        const { i18nKeys } = $this.cache;
+        if (!data) {
+          this.data = data = {
+            isError: true,
+            i18nKeys
+          };
+        } else {
+          const { downloadPdfExcelServletUrl, orderType, partsDeliveryTableCols } = $this.cache;
+          data.i18nKeys = i18nKeys;
+          data.pageNumber = pageNumber;
+
+          if (partsDeliveryTableCols.length > 0) {
+            data.partsDeliveryTableCols = partsDeliveryTableCols;
+          }
+
+          data.isPackmat = orderType === 'packmat';
+          data.servletUrl = downloadPdfExcelServletUrl;
+          data.orderType = orderType;
+          $this.processTableData(data, deliveryNo, pageIndex);
+          this.data = $.extend({}, data.deliveryList[0], {
+            parent: data
+          });
+          delete data.deliveryList;
+        }
+      }
+    }, (data) => {
+      if (!data.isError) {
+        const $currentTarget = $(target).find('.js-pagination-multiple');
+        $currentTarget.trigger('orderdetail.paginate', [
+          $currentTarget.data()
+        ]);
+      }
     });
   });
 }
@@ -189,18 +281,40 @@ function _openOverlay() {
   this.root.find('.js-order-detail__info-modal').modal();
 }
 
+function _getExtension(extnType) {
+  if (extnType === 'excel') {
+    return EXT_EXCEL;
+  }
+  return EXT_PDF;
+}
+
 /**
  * Downloads Excel or PDF content
  */
-function _downloadContent() {
+function _downloadContent($this) {
   const self = $(this);
   const data = self.data();
   self.attr('disabled', 'disabled');
   auth.getToken(({ data: authData }) => {
-    self.removeAttr('disabled');
     data.token = authData.access_token;
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
-    window.open(pdfExcelUrl, '_self');
+    fileWrapper({
+      extension: `${_getExtension(data.extnType)}`,
+      url: pdfExcelUrl,
+      data: {
+        orderNumber: data.orderNumber,
+        token: data.token
+      }
+    }).then(() => {
+      self.removeAttr('disabled');
+    }).catch(() => {
+      const { i18nKeys } = $this.cache;
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+      self.removeAttr('disabled');
+    });
   });
 }
 
@@ -234,6 +348,7 @@ class OrderDetails {
   }
   bindEvents() {
     /* Bind jQuery events here */
+    const $this = this;
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
       .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
@@ -250,16 +365,24 @@ class OrderDetails {
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
-        window.history.back();
+        const [, , prevPageQuery] = location.search.split('&');
+        const [, url] = prevPageQuery.split('=');
+        const decodeUrl = decodeURIComponent(url);
+        window.open(decodeUrl, '_self');
+      })
+      .on('orderdetail.pagenav', '.js-pagination-multiple', function (...args) {
+        const [, paginationData] = args;
+        $this.renderPaginateData(paginationData, $(this).data());
       });
   }
   downloadContent(e) {
     const $this = e.data;
     $this.trackAnalytics.call(this, $this);
-    return _downloadContent.apply(this, arguments);
+    return _downloadContent.apply(this, [$this, ...arguments]);
   }
   openOverlay = (...args) => _openOverlay.apply(this, args);
   renderOrderSummary = () => _renderOrderSummary.call(this);
+  renderPaginateData = (...args) => _renderPaginateData.apply(this, args);
   processTableData() {
     if (this.cache.orderType === 'packmat') {
       return _processPackmatData.apply(this, arguments);

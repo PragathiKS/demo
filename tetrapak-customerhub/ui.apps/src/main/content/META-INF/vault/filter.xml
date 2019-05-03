@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 	<filter root="/apps/customerhub/components" mode="update"/>
-    <filter root="/apps/customerhub/config" mode="update"/>
-	<filter root="/apps/customerhub/config.author" mode="update"/>
-	<filter root="/apps/customerhub/config.dev.publish" mode="update"/>
-	<filter root="/apps/customerhub/config.prod.author" mode="update"/>
-	<filter root="/apps/customerhub/config.prod.publish" mode="update"/>
-	<filter root="/apps/customerhub/config.qa.author" mode="update"/>
-	<filter root="/apps/customerhub/config.qa.publish" mode="update"/>
-	<filter root="/apps/customerhub/config.sapedev.author" mode="update"/>
-	<filter root="/apps/customerhub/config.sapedev.publish" mode="update"/>
-	<filter root="/apps/customerhub/config.stage.author" mode="update"/>
-	<filter root="/apps/customerhub/config.stage.publish" mode="update"/>
+    <filter root="/apps/customerhub/config" mode="replace"/>
+	<filter root="/apps/customerhub/config.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.dev.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.prod.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.prod.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.qa.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.qa.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.sapedev.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.sapedev.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.stage.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.stage.publish" mode="replace"/>
 	<filter root="/apps/customerhub/install" mode="update"/>
 	<filter root="/apps/customerhub/clientlibs" mode="update"/>
 	<filter root="/apps/customerhub/i18n">

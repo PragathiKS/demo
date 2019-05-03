@@ -1,13 +1,10 @@
 pipeline {
 	agent any
-          triggers {
-          cron('30 10,15 * * *')
-                   }
 
 	
 	parameters {
 		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
-		booleanParam defaultValue: true, description: 'Please uncheck in case you want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
+		booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
 	}
 	
 	tools {
@@ -20,14 +17,14 @@ pipeline {
 		author_url = "http://10.202.13.228:4502"
 		publish_url = "http://10.202.13.229:4503"
 		package_name = "tetrapak-complete-package"
-		test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak.sapient.com/content/tetrapak/customerhub/global/financials.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/training.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/projects.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/about-my-tetra-pak.html"
+test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak.sapient.com/content/tetrapak/customerhub/en/financials.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/training.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/projects.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
 		test_url_pally_zap = "http://tetrapak.sapient.com"	 
 		karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
 	}
 
 	stages {
 
-               stage ('Checkout') {
+               /* stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -35,8 +32,9 @@ pipeline {
                    credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
                    branch: 'develop'
                       )
-                   }
-                 }
+                   } 
+				   
+                 }*/
 
 		stage ('Initialize') {
 			steps {
@@ -53,8 +51,8 @@ pipeline {
 				sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
 				sh "rm -rf $workspace/${params.CHOICE}/ui.dev/src/node_modules/"
 				sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
-				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -PautoInstallMinify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -PautoInstallMinify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 			}  
 		}
 
@@ -231,13 +229,14 @@ post {
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',      
-      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com'
+
+to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com, sumrin.kaur@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-      to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, sunil.kumar8@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com'
 
+to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com, sumrin.kaur@publicissapient.com'
       }
 
  always {

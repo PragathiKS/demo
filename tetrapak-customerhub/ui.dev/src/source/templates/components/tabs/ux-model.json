@@ -1,0 +1,18 @@
+{
+  "imagePath": "https://cleantechnica.com/files/2016/06/TetraPak-containers.jpg",
+  "imageAltText": "Maintenance tab image",
+  "componentClasses": "tp-equipment",
+  "tabsList": [
+    {
+      "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment.html",
+      "labelI18n": "Documents",
+      "iconClass": "icon-Document"
+    },
+    {
+      "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment.html",
+      "labelI18n": "Maintenance",
+      "isActive": "true",
+      "iconClass": "icon-Maintenance"
+    }
+  ]
+}

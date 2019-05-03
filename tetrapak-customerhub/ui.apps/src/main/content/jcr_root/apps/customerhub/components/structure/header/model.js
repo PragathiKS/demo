@@ -1,6 +1,6 @@
 use(function() {
  var data = {
-    "logoUrl": "/content/dam/customerhub/TetraPakLogo.png",
+    "logoUrl": "/content/dam/customerhub/english/common/TetraPakLogo.png",
     "logoTextI18n": "cuhu.logotext.text",
     "getUserInfoI18n": "Charlie Svensson",
     "logoDisplay": true,

@@ -1,31 +1,7 @@
 {
   "title": "Find a Tetra Pak Office",
-  "offices": [
-    {
-      "address": "1104 Industrial Avanue Albion, MI 4922",
-      "name": "Tetra Pak Inc."
-    },
-    {
-      "address": "122255 Ensign Avanue N Champlin, MN55316",
-      "name": "Filtration Engineering"
-    },
-    {
-      "address": "1104 Industrial Avanue Albion, MI 4922",
-      "name": "Tetra Pak cheese and powder system Inc."
-    },
-    {
-      "address": "1104 Industrial Avanue Albion, MI 4922",
-      "name": "Engineering"
-    },
-    {
-      "address": "1104 Industrial Avanue Albion, MI 4922",
-      "name": "Tetra"
-    },
-    {
-      "address": "1104 Industrial Avanue Albion, MI 4922",
-      "name": "Pak"
-    }
-  ],
+  "filterLabel": "Filter office by type",
+  "cityInputLabel": "Country or city",
   "pwButtonTheme": "link",
   "pwPadding": "regular"
 }

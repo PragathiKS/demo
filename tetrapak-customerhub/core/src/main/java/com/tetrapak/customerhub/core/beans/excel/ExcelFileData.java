@@ -1,66 +1,59 @@
 package com.tetrapak.customerhub.core.beans.excel;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 /**
  * Bean class for excel file data
- *
+ * 
  * @author Tushar
+ * @author swalamba
+ *
  */
 public class ExcelFileData {
-    private static String excelSheetName;
-    private short fontHeight;
-    private short fontColor;
-    private String fileName;
-    private List<String> columns = new ArrayList<>();
-    private String[][] data;
+	private String excelSheetName;
+	private short cellBorderColor = IndexedColors.BLACK.index;
+	private String fileName;
+	private String[][] data;
+	private boolean hasMargin = true;
 
-    public String getExcelSheetName() {
-        return excelSheetName;
-    }
+	public String getExcelSheetName() {
+		return excelSheetName;
+	}
 
-    public void setExcelSheetName(String excelSheetName) {
-        ExcelFileData.excelSheetName = excelSheetName;
-    }
+	public void setExcelSheetName(String excelSheetName) {
+		this.excelSheetName = excelSheetName;
+	}
 
-    public short getFontHeight() {
-        return fontHeight;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void setFontHeight(short fontHeight) {
-        this.fontHeight = fontHeight;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public short getFontColor() {
-        return fontColor;
-    }
+	public String[][] getData() {
+		return data;
+	}
 
-    public void setFontColor(short fontColor) {
-        this.fontColor = fontColor;
-    }
+	public void setData(String[][] data) {
+		this.data = data;
+	}
 
-    public List<String> getColumns() {
-        return new ArrayList<>(columns);
-    }
+	public short getCellBorderColor() {
+		return cellBorderColor;
+	}
 
-    public String getFileName() {
-        return fileName;
-    }
+	public void setCellBorderColor(short cellBorderColor) {
+		this.cellBorderColor = cellBorderColor;
+	}
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	public boolean isHasMargin() {
+		return hasMargin;
+	}
 
-    public void setColumns(List<String> columns) {
-        this.columns = new ArrayList<>(columns);
-    }
+	public void setHasMargin(boolean hasMargin) {
+		this.hasMargin = hasMargin;
+	}
 
-    public String[][] getData() {
-        return data.clone();
-    }
-
-    public void setData(String[][] data) {
-        this.data = data.clone();
-    }
 }

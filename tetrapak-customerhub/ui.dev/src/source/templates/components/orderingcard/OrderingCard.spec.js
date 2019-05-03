@@ -86,7 +86,7 @@ describe('OrderingCard', function () {
     const rowLink = $('.js-ordering-card__row').first();
     if (rowLink.length) {
       rowLink.trigger('click');
-      expect(this.orderingCard.openOrderDetails.called).to.be.true;
+      expect(this.orderDetailSpy.called).to.be.true;
     }
   });
   it('should open default calling or email app depending upon device', function () {
