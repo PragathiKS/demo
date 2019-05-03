@@ -15,6 +15,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 
 /**
  * Model class for order search component
@@ -90,8 +91,9 @@ public class OrderSearchModel {
         i18KeyMap.put("orderStatusLabelI18n", orderStatusLabelI18n);
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
-        i18KeyMap.put("disabledFields", disabledFields);
-        i18KeyMap.put("orderDetailLink", orderDetailLink + CustomerHubConstants.HTML_EXTENSION);
+        i18KeyMap.put("disabledFields", disabledFields);        
+        i18KeyMap.put("orderDetailLink",  LinkUtil.getValidLink(resource, orderDetailLink));
+       
 
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
