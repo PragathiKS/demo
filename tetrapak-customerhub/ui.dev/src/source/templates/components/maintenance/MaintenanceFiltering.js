@@ -4,7 +4,25 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+/**
+ * TODO: working on this
+ */
+function _trackAnalytics(type) {
+  const analyticsData = {
+    linktype:'internal',
+    linksection:'installed equipment',
+    linkparenttitle:'tetrapak contact'
+  };
+
+  if(type === 'Packaging') {
+    analyticsData.linkname = 'packaging-phone';
+  } else {
+    analyticsData.linkname = 'processing-phone';
+  }
+  trackAnalytics(analyticsData, 'linkclick', 'linkClicked');
+}
 
 /**
  * Process Sites Data
@@ -186,13 +204,22 @@ class MaintenanceFiltering {
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
-      });
+      })
+      .on('click', '.js-maintenance-filtering__contact-mail', (el) => {
+        this.trackAnalytics(el.target.dataset.type);
+        logger.log('anchor mail clicked!', el);
+      })
+      .on('click', '.js-maintenance-filtering__contact-phone', (el) => {
+        this.trackAnalytics(el.target.dataset.type);
+        logger.log('anchor contact clicked!', el);
+      });   
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
+  trackAnalytics = (type) => _trackAnalytics.call(this, type);
   init() {
     this.initCache();
     this.bindEvents();

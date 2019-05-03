@@ -28,6 +28,7 @@ describe('MaintenanceFiltering', function () {
     this.renderMaintenanceContactSpy = sinon.spy(this.maintenanceFiltering, "renderMaintenanceContact");
     this.renderLineFilterSpy = sinon.spy(this.maintenanceFiltering, "renderLineFilter");
     this.renderEquipmentFilterSpy = sinon.spy(this.maintenanceFiltering, "renderEquipmentFilter");
+    this.trackAnalyticsSpy = sinon.spy(this.maintenanceFiltering, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
@@ -49,6 +50,7 @@ describe('MaintenanceFiltering', function () {
     this.renderMaintenanceContactSpy.restore();
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
+    this.trackAnalyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -87,5 +89,13 @@ describe('MaintenanceFiltering', function () {
     $('.js-maintenance-filtering__line').trigger('change');
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
     done();
+  });  
+  it('should call track analytics for maintenance on click of "contact email" link', function () {
+    $('.js-maintenance-filtering__contact-mail').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics for maintenance on click of "contact phone" link', function () {
+    $('.js-maintenance-filtering__contact-phone').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
   });
 });
