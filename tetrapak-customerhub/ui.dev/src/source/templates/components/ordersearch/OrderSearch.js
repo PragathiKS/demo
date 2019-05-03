@@ -63,7 +63,7 @@ function _processContacts(contacts) {
  */
 function _tableSort(order, keys, orderDetailLink) {
   const dataObject = {
-    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
+    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}&p=${encodeURIComponent(window.location.href)}`,
     row: []
   };
   keys.forEach((key, index) => {
