@@ -363,7 +363,10 @@ class OrderDetails {
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
-        window.history.back();
+        const [, , prevPageQuery] = location.search.split('&');
+        const [, url] = prevPageQuery.split('=');
+        const decodeUrl = decodeURIComponent(url);
+        window.open(decodeUrl, '_self');
       })
       .on('orderdetail.pagenav', '.js-pagination-multiple', function (...args) {
         const [, paginationData] = args;
