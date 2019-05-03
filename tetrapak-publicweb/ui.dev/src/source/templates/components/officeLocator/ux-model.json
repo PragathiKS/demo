@@ -1,6 +1,6 @@
 {
   "title": "Find a Tetra Pak Office",
-  "filterLabel": "Filter office by type",
+  "filtersLabel": "Filter office by type",
   "cityInputLabel": "Country or city",
   "pwButtonTheme": "link",
   "pwPadding": "regular"

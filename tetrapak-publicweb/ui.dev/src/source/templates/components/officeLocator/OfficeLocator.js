@@ -36,7 +36,7 @@ class OfficeLocator {
   initMap = (position) => {
     let currentLat = position.coords.latitude || 55.6998089;
     let currentLng = position.coords.longitude || 13.1676404;
-    this.cache.map = new this.cache.googleMaps.Map(document.getElementById('map'), {//eslint-disable-line
+    this.cache.map = new this.cache.googleMaps.Map(document.querySelector('.js-pw-office-locator__map__canvas'), {//eslint-disable-line
       center: {lat: currentLat, lng: currentLng},
       disableDefaultUI: true,
       zoom: 5
@@ -87,7 +87,6 @@ class OfficeLocator {
   };
 
   renderOfficeDetailsPanel = (office) => {
-    console.log(office);//eslint-disable-line
     render.fn({
       template: 'officeDetailsPanel',
       data: office,
@@ -99,7 +98,7 @@ class OfficeLocator {
   };
 
   renderVisibleOffices = () => {
-    let bounds = this.cache.map.getBounds(),//eslint-disable-line
+    let bounds = this.cache.map.getBounds(),
       officesToRender = [];
 
     for (let i = 0; i < this.cache.normalizedData.length; i++) {

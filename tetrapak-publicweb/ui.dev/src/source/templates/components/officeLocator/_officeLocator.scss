@@ -135,7 +135,7 @@
     }
 
     &__map {
-        #map {
+        &__canvas {
             @include height(330px);
 
             @media #{$tablet} {

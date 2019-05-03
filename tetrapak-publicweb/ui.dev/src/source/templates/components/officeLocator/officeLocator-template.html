@@ -9,7 +9,7 @@
       <div class="pw-office-locator__controls">
         <label for="gmaps-search">${data.cityInputLabel @ i18n}</label>
         <input class="form-control js-gmaps-search" id="gmaps-search" type="text">
-        <a href="#">${data.filterLabel @ i18n}</a>
+        <a href="#">${data.filtersLabel @ i18n}</a>
       </div>
       <div class="pw-office-locator__office-details-panel js-pw-office-locator__office-details-panel hidden">
 
@@ -24,10 +24,10 @@
         <sly data-sly-test="${data.title}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
              data-sly-call="${heading.heading_h4_template @ headingText=data.title}"/>
       </div>
-      <div id="map">
+      <div class="pw-office-locator__map__canvas js-pw-office-locator__map__canvas">
       </div>
     </div>
   </div>
   <sly data-sly-test="${!data.title}"
-       data-sly-call="${templates.title @ isEmpty = !data.title}"></sly>
+       data-sly-call="${templates.placeholder @ isEmpty = !data.title}"></sly>
 </sly>

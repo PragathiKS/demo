@@ -36,11 +36,11 @@ public class OfficeLocatorModel {
     }
 
     public String getTitle() {
-        return cityInputLabel;
+        return title;
     }
 
     public String getCityInputLabel() {
-        return title;
+        return cityInputLabel;
     }
 
     public String getFiltersLabel() {
