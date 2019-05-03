@@ -15,25 +15,7 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SoftConversionFormModel {
 
-	private static final Logger log = LoggerFactory.getLogger(SoftConversionFormModel.class);
-
-	@Inject
-	private String titleI18n;
-
-	@Inject
-	private String description;
-
-	@Inject
-	private String headline;
-
-	@Inject
-	private String buttonLabel;
-
-	@Inject
-	private String[] radioButtonGroups;
-	
-	@Inject
-	private String documentPath;
+	private static final Logger log = LoggerFactory.getLogger(ImageTextBannerModel.class);
 
 	@Inject
 	private String firstNameLabel;
@@ -59,25 +41,8 @@ public class SoftConversionFormModel {
 	@Inject
 	private String submitButtonLabel;
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public String getButtonLabel() {
-		return buttonLabel;
-	}
-
-	public List<String> getRadioButtonGroups() {
-		return getRadioButtonGroups(radioButtonGroups);
-	}
+	@Inject
+	private String[] radioButtonGroups;
 
 	public String getFirstNameLabel() {
 		return firstNameLabel!=null ? firstNameLabel : "First Name";
@@ -107,12 +72,12 @@ public class SoftConversionFormModel {
 		return nextButtonLabel;
 	}
 
-	public String getDocumentPath() {
-		return documentPath;
-	}
-
 	public String getSubmitButtonLabel() {
 		return submitButtonLabel;
+	}
+
+	public List<String> getRadioButtonGroups() {
+		return getRadioButtonGroups(radioButtonGroups);
 	}
 
 	/**

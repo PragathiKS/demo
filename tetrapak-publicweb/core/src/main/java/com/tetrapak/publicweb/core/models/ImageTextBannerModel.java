@@ -57,6 +57,21 @@ public class ImageTextBannerModel {
 
     @Inject
     private String targetSoftConversion;
+    
+	@Inject
+	private String softConversionTitle;
+
+	@Inject
+	private String softConversionDescription;
+
+	@Inject
+	private String softConversionHeadline;
+
+    @Inject
+    private String softConversionLastStep;
+	
+	@Inject
+	private String softConversionDocPath;
 
     private Boolean isHeaderBanner = false;
 
@@ -129,5 +144,25 @@ public class ImageTextBannerModel {
     public String getTargetSoftConversion() {
         return targetSoftConversion;
     }
+    
+	public String getSoftConversionTitle() {
+		return softConversionTitle;
+	}
+
+	public String getSoftConversionDescription() {
+		return softConversionDescription;
+	}
+
+	public String getSoftConversionHeadline() {
+		return softConversionHeadline;
+	}
+
+    public String getSoftConversionLastStep() {
+        return softConversionLastStep;
+    }
+
+	public String getSoftConversionDocPath() {
+		return softConversionDocPath;
+	}
 
 }
