@@ -41,7 +41,7 @@ function _trackAnalytics(type) {
       break;
     }
   }
-  trackAnalytics(ob, obKey, trackingKey);
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**

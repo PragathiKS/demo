@@ -241,12 +241,14 @@ function _renderPaginateData() {
         cancellable: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
           this.data = data = {
-            isError: true
+            isError: true,
+            i18nKeys
           };
         } else {
-          const { i18nKeys, downloadPdfExcelServletUrl, orderType, partsDeliveryTableCols } = $this.cache;
+          const { downloadPdfExcelServletUrl, orderType, partsDeliveryTableCols } = $this.cache;
           data.i18nKeys = i18nKeys;
           data.pageNumber = pageNumber;
 
