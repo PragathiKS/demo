@@ -35,6 +35,7 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
     private String[] hostArray = ArrayUtils.EMPTY_STRING_ARRAY;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherFlushServiceImpl.class);
+    private static final String CQ_ACTION_DELETE = "Delete";
 
     @Override
     public void flush(String dispatcherHandle) {
@@ -66,10 +67,9 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
         HttpPost httpPost = new HttpPost();
         try {
             httpPost.setURI(new URI(dispatcherHostURL));
-            httpPost.setHeader("CQ-Action", "DELETE");
-            httpPost.setHeader("CQ-Handle", dispatcherHandle);
-            httpPost.setHeader("CQ-Action-Scope", "ResourceOnly");
-            httpPost.setHeader("Content-Length", "0");
+            httpPost.setHeader("CQ-Action:", CQ_ACTION_DELETE);
+            httpPost.setHeader("CQ-Handle:", dispatcherHandle);
+            httpPost.setHeader("CQ-Path:", dispatcherHandle);
 
             LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
             HttpResponse httpResponse = httpClient.execute(httpPost);
