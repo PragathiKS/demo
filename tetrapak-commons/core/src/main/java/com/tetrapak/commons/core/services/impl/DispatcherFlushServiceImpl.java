@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Service to flush the content from Dispatcher
- * Takes handler[page]; Fetches Configured Dispatcher_hosts at run time.
+ * Takes handler Fetches Configured Dispatcher_hosts at run time.
  *
  * @author Nitin Kumar
  */

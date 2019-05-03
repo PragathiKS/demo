@@ -20,6 +20,10 @@ import javax.jcr.observation.EventIterator;
 import javax.jcr.observation.EventListener;
 import javax.jcr.observation.ObservationManager;
 
+/**
+ * Event Listener | adds an event listener as per the configured path and clear cache for the configured path
+ * @author Nitin Kumar
+ */
 @Component(immediate = true, service = EventListener.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = DispatcherFlushConfig.class, factory = true)
 public class DispatcherFlushEventListener implements EventListener {

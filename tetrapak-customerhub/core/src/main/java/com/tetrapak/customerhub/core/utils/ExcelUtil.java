@@ -327,6 +327,7 @@ public final class ExcelUtil {
             ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
             response.setContentType(CONTENT_TYPE);
             response.setHeader(CONTENT_DISPOSITION, RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION);
+            response.addHeader("Content-Length", Integer.toString(in.available()));
             int read;
             os = response.getOutputStream();
             while ((read = in.read(docBytes)) != -1) {
