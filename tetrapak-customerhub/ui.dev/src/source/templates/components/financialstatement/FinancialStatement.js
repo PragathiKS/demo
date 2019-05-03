@@ -15,39 +15,33 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 
 function _trackAnalytics(type) {
   const $this = this;
-  let ob = {};
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials',
+    linkParentTitle: 'statement of accounts'
+  };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      ob = {
-        linkType: 'internal',
-        linkSection: 'financials',
-        linkParentTitle: 'statement of accounts',
-        linkName: 'reset search'
-      };
-      trackAnalytics(ob, obKey, trackingKey);
+      ob.linkName = 'reset search';
       break;
     }
     case 'search': {
       const { $filterForm } = $this.cache;
-      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase();
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase();
-      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase();
-      ob = {
-        linkType: 'internal',
-        linkSection: 'financials',
-        linkParentTitle: 'statement of accounts',
-        linkName: 'search statment',
-        linkSelection: `customer name|${status}|dates choosen| ${docType}|${docNumber}`
-      };
-      trackAnalytics(ob, obKey, trackingKey);
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
+
+      ob.linkName = 'reset search';
+      ob.linkSelection = `customer name|${status}|dates choosen| ${docType}|${docNumber}`;
       break;
     }
     default: {
       break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey);
 }
 
 /**

@@ -12,45 +12,33 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
-  let ob = {};
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials'
+  };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
   switch (type) {
     case 'downloadPdf': {
-      ob = {
-        linkType: 'internal',
-        linkSection: 'financials',
-        linkParentTitle: 'statement of accounts',
-        linkName: 'create pdf'
-      };
-
-      trackAnalytics(ob, obKey, trackingKey);
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create pdf';
       break;
     }
     case 'downloadInvoice': {
-      ob = {
-        linkType: 'internal',
-        linkSection: 'financials',
-        linkParentTitle: 'packaging',
-        linkName: 'invoice download'
-      };
-      trackAnalytics(ob, obKey, trackingKey);
+      ob.linkParentTitle = 'packaging';
+      ob.linkName = 'invoice download';
       break;
     }
     case 'downloadExcel': {
-      const ob = {
-        linkType: 'internal',
-        linkSection: 'financials',
-        linkParentTitle: 'statement of accounts',
-        linkName: 'create excel'
-      };
-      trackAnalytics(ob, obKey, trackingKey);
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create excel';
       break;
     }
     default: {
       break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey);
 }
 
 /**
