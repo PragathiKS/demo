@@ -2,9 +2,11 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import Lightpick from 'lightpick';
+import { DATE_FORMAT } from '../../../scripts/utils/constants';
 
 /**
  * Fire analytics on Packaging, Processing
@@ -59,8 +61,8 @@ function _renderMaintenanceContact() {
 
   render.fn({
     template: 'maintenanceContact',
-    data,
-    target: '.js-maintenance-filtering__contact'
+    target: '.js-maintenance-filtering__contact',
+    data
   });
 }
 
@@ -98,8 +100,9 @@ function _renderLineFilter(data = this.cache.filteredData) {
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilter(data = this.cache.filteredData) {
-  let lineVal = this.cache.$line.val(),
-    equipmentRecords;
+  const lineVal = this.cache.$line.val();
+  let equipmentRecords;
+
   data.equipmentRecords = {};
   data.equipmentRecords.options = [];
 
@@ -213,6 +216,50 @@ class MaintenanceFiltering {
       .on('click', '.js-maintenance-filtering__contact-phone', (el) => {
         this.trackAnalytics(el.target.dataset.type, 'phone');
       });
+    this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
+  }
+  bindCalendar() {
+    render.fn({
+      template: 'maintenanceCalendar',
+      target: '.js-maintenance-filtering__calendar-wrapper',
+      data: this.cache.i18nKeys
+    });
+    const maintenancecalendar = this.root.find('.js-range-selector');
+    const picker = maintenancecalendar[0];
+    this.cache.picker = new Lightpick({
+      field: picker,
+      singleDate: false,
+      numberOfMonths: 4,
+      numberOfColumns: 2,
+      inline: true,
+      dropdowns: false,
+      format: DATE_FORMAT,
+      separator: ' - ',
+      selectForward: true
+    });
+    const calendarMonthsCont = this.root.find('.lightpick__months');
+    if (
+      isDesktopMode()
+      && calendarMonthsCont.length
+    ) {
+      const months = calendarMonthsCont.find('section.lightpick__month');
+      if (months.length === 4) {
+        const leftMonthsContainer = $(months[0]).add(months[1]);
+        const rightMonthsContainer = $(months[2]).add(months[3]);
+        leftMonthsContainer.wrapAll('<div></div>');
+        rightMonthsContainer.wrapAll('<div></div>');
+      }
+    }
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
+    }
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
@@ -224,6 +271,7 @@ class MaintenanceFiltering {
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
+    this.bindCalendar();
   }
 }
 

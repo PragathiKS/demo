@@ -29,6 +29,7 @@ describe('MaintenanceFiltering', function () {
     this.renderLineFilterSpy = sinon.spy(this.maintenanceFiltering, "renderLineFilter");
     this.renderEquipmentFilterSpy = sinon.spy(this.maintenanceFiltering, "renderEquipmentFilter");
     this.trackAnalyticsSpy = sinon.spy(this.maintenanceFiltering, 'trackAnalytics');
+    this.navigateSpy = sinon.spy(this.maintenanceFiltering, 'navigateCalendar');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
@@ -51,6 +52,7 @@ describe('MaintenanceFiltering', function () {
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
     this.trackAnalyticsSpy.restore();
+    this.navigateSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -97,5 +99,9 @@ describe('MaintenanceFiltering', function () {
   it('should call track analytics for maintenance on click of "contact phone" link', function () {
     $('.js-maintenance-filtering__contact-phone').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should navigate calendar of click of calendar navigation buttons', function () {
+    $('.js-calendar-nav').eq(0).trigger('click');
+    expect(this.navigateSpy.called).to.be.true;
   });
 });
