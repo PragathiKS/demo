@@ -102,8 +102,6 @@ public class ContactFooterFormModel {
         previousButtonLabel = inheritanceValueMap1.getInherited("previousButtonLabel", String.class);
         nextButtonLabel = inheritanceValueMap1.getInherited("nextButtonLabel", String.class);
         submitButtonLabel = inheritanceValueMap1.getInherited("submitButtonLabel", String.class);
-        stepLabel = inheritanceValueMap1.getInherited("stepLabel", String.class);
-        
     }
 
 	public String getTitleI18n() {
@@ -189,10 +187,6 @@ public class ContactFooterFormModel {
 	public String getSubmitButtonLabel() {
 		return submitButtonLabel;
 	}
-
-	public String getStepLabel() {
-		return stepLabel;
-	}	
 	
     public Boolean getHideContactFooterForm() {
     	return hideContactFooterForm;

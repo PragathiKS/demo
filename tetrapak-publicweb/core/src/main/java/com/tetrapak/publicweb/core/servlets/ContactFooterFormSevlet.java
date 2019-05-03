@@ -81,14 +81,15 @@ public class ContactFooterFormSevlet extends SlingSafeMethodsServlet {
 			}
 
 			// set the response type
-			response.setContentType("text/html");
+			/*response.setContentType("text/html");
 			response.setStatus(HttpServletResponse.SC_OK);
 			PrintWriter writer = response.getWriter();
 			writer.flush();
-			writer.close();
+			writer.close();*/
+			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
-		} catch (IOException e) {
-			log.error("Error occurred while writing the response object. {}", e);
+		/*} catch (IOException e) {
+			log.error("Error occurred while writing the response object. {}", e);*/
 		} catch (PathNotFoundException e1) {
 			log.error("Error finding the path. {}", e1);
 		} catch (RepositoryException e2) {
