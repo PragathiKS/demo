@@ -35,18 +35,21 @@ public class PageLoadAnalyticsModel {
     
     @Inject
     private SlingSettingsService slingSettingsService;
-
-	private String serverName;
-	private String pageName;
-	private String language;
-	private String country;
-	private String breadcrumb;
-	private String pageType;
+    
+    private String channel = StringUtils.EMPTY;
+	private String pageName = StringUtils.EMPTY;;
+	private String siteLanguage = StringUtils.EMPTY;;
+	private String siteCountry = StringUtils.EMPTY;;
+	private String breadcrumb = StringUtils.EMPTY;;
+	private String pageType = StringUtils.EMPTY;;
 	private String digitalData;
 	private boolean production;
 	private boolean staging;
 	private boolean development;
-	private boolean local;
+	private String siteSection1 = StringUtils.EMPTY;;
+	private String siteSection2 = StringUtils.EMPTY;;
+	private String siteSection3 = StringUtils.EMPTY;;
+	private String siteSection4 = StringUtils.EMPTY;;
     
     @PostConstruct
     public void initModel() {
@@ -54,40 +57,58 @@ public class PageLoadAnalyticsModel {
         pageName = StringUtils.substringAfter(currentPagePath, currentPage.getAbsoluteParent(1).getPath() + "/");
         pageName = StringUtils.replace(pageName, "/", ":");
         
-        serverName = request.getServerName();
-        
+        /*
         String templatePath = currentPage.getProperties().get("cq:template", String.class);
         Resource template = resolver.getResource(templatePath);
         if (template != null) {
         	pageType = template.getValueMap().get("jcr:title", String.class);
         }
+        */
         
         Locale pageLocale = currentPage.getLanguage(false);
         if (pageLocale != null) {
-	        language = pageLocale.getLanguage();
-	        country = pageLocale.getCountry();
+	        siteLanguage = pageLocale.getLanguage();
+	        siteCountry = pageLocale.getCountry();
         }
         
-        StringBuilder breadcrumbBuilder = new StringBuilder("Home");
-        Page homePage = currentPage.getAbsoluteParent(4);
-
-        if (homePage != null) {
-        	int pageLevel = homePage.getDepth();
-        	int currentPageLevel = currentPage.getDepth();
-        	while (pageLevel < currentPageLevel) {
-        		Page page = currentPage.getAbsoluteParent((int) pageLevel);
-        		if (page == null) {
-        			break;
-        		}
-        		pageLevel++;
-        		if (!page.isHideInNav()) {
-        			String pageNavigationTitle = StringUtils.isNotBlank(page.getNavigationTitle()) ? page.getNavigationTitle() : page.getTitle();
-        			breadcrumbBuilder.append(":").append(pageNavigationTitle);
-        		}
-        	}
+        if (!currentPage.isHideInNav()) {
+	        StringBuilder breadcrumbBuilder = new StringBuilder("Home");
+	        Page homePage = currentPage.getAbsoluteParent(4);
+	        if (homePage != null) {
+	        	int pageLevel = homePage.getDepth();
+	        	int currentPageLevel = currentPage.getDepth();
+	        	while (pageLevel < currentPageLevel) {
+	        		Page page = currentPage.getAbsoluteParent((int) pageLevel);
+	        		if (page == null) {
+	        			break;
+	        		}
+	        		pageLevel++;
+	        		if (!page.isHideInNav()) {
+	        			String pageNavigationTitle = StringUtils.isNotBlank(page.getNavigationTitle()) ? page.getNavigationTitle() : page.getTitle();
+	        			breadcrumbBuilder.append(":").append(pageNavigationTitle);
+	        		}
+	        	}
+	        }
+	        breadcrumb = breadcrumbBuilder.toString();
         }
-        breadcrumb = breadcrumbBuilder.toString();
-    
+        
+        int siteSectionIndex = 5;
+        int currentPageIndex = currentPage.getDepth() - 1;
+        if (siteSectionIndex < currentPageIndex) {
+	        Page siteSection1Page = currentPage.getAbsoluteParent(siteSectionIndex);
+	        if (siteSection1Page != null) {
+	        	siteSection1 = siteSection1Page.getName();
+	        	siteSectionIndex++;
+	        	if (siteSectionIndex < currentPageIndex) {
+	    	        Page siteSection2Page = currentPage.getAbsoluteParent(siteSectionIndex);
+	    	        if (siteSection2Page != null) {
+	    	        	siteSection2 = siteSection1Page.getName();
+	    	        	siteSectionIndex++;
+	    	        }
+	            }
+	        }
+        }
+        
         if (slingSettingsService != null) {
         	Set<String> runModes = slingSettingsService.getRunModes();
 	        if(runModes.contains("prod")) {
@@ -114,10 +135,19 @@ public class PageLoadAnalyticsModel {
     	pageInfo.addProperty("siteCountry", country);
     	pageInfo.addProperty("siteLanguageNew", language);
     	
+    	JsonObject conentInfo = new JsonObject();
+    	conentInfo.addProperty("contentCategory", "");
+    	
+    	
     	JsonObject userInfo = new JsonObject();
-    	userInfo.addProperty("loggedIn", "guest");
+    	userInfo.addProperty("loginStatus", "guest");
+    	userInfo.addProperty("salesForceId", "");
+    	userInfo.addProperty("userRoles", "");
+    	userInfo.addProperty("userCountryCode", "");
+    	userInfo.addProperty("userLanguage", "");
     	
     	digitalData.add("pageinfo", pageInfo);
+    	digitalData.add("conentInfo", conentInfo);
     	digitalData.add("userinfo", userInfo);
         
     	Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
