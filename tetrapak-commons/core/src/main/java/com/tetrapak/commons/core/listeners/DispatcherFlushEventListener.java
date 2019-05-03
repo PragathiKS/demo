@@ -7,6 +7,7 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
@@ -36,17 +37,22 @@ public class DispatcherFlushEventListener implements EventListener {
     private ObservationManager observationManager;
 
     @Activate
-    protected void activate(ComponentContext context, DispatcherFlushConfig config) throws Exception {
+    protected void activate(ComponentContext context, DispatcherFlushConfig config) {
         dispatcherFlushConfig = config;
-        session = repository.loginService("readService", null);
-        observationManager = session.getWorkspace().getObservationManager();
-        observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED, dispatcherFlushConfig.absPath(), true, null,
-                null, true);
+        try {
+            session = repository.loginService("readService", null);
+            observationManager = session.getWorkspace().getObservationManager();
+            observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED, dispatcherFlushConfig.absPath(), true, null,
+                    null, true);
 
-        LOGGER.info("*************added JCR event listener");
+            LOGGER.info("*************added JCR event listener");
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException while adding listener {}", e);
+        }
     }
 
-    protected void deactivate(ComponentContext componentContext) {
+    @Deactivate
+    protected void deactivate() {
         try {
             if (observationManager != null) {
                 observationManager.removeEventListener(this);
