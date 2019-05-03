@@ -376,7 +376,6 @@ class FinancialStatement {
           singleDate: false,
           numberOfMonths: 2,
           separator: ' - ',
-          selectForward: true,
           onSelectStart() {
             $this.root.find('.js-calendar').attr('disabled', 'disabled');
           },
