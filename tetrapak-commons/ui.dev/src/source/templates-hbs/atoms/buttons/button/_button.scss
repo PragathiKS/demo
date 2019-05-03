@@ -93,6 +93,7 @@
         @include line-height(24px, $font-baseline);
         @include border-radius($border-radius);
         @include min-width(24px);
+        color: $color-congress-blue;
         transition: background-color $anim-speed-quick ease;
 
         &:hover:not([disabled]),
