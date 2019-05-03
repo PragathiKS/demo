@@ -123,12 +123,6 @@
                                 fieldDescription="Enter Link Text"
                                 fieldLabel="Link Text"
                                 name="./bannerCtaTextI18n"/>
-                            <targetSoftConversion
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                text="Target Soft Conversion Modal?"
-                                fieldDescription="Check if on button click you want to open Soft Conversion Modal"
-                                name="./targetSoftConversion" />
                             <ctapath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -152,6 +146,60 @@
                     </column>
                 </items>
             </properties>
+            <softconversion
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Soft Conversion"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <targetSoftConversion
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                text="Target Soft Conversion Modal?"
+                                fieldDescription="Check if on button click you want to open Soft Conversion Modal"
+                                name="./targetSoftConversion" 
+                                value="true"/>
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter title"
+                                fieldLabel="Title"
+                                name="./softConversionTitle"/>
+                            <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="Description"
+                                name="./softConversionDescription"/>
+                            <headline
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter headline for form"
+                                fieldLabel="Form Headline"
+                                name="./softConversionHeadline"/>
+                            <laststep
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Last Step  for form"
+                                fieldLabel="Form Last Step Message"
+                                name="./softConversionLastStep"/>
+                            <documentpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Select Whitepaper document"
+                                fieldLabel="Whitepaper Document Path"
+                                name="./softConversionDocPath"
+                                rootPath="/content/dam/publicweb"/>
+                        </items>
+                    </column>
+                </items>
+            </softconversion>
         </items>
     </content>
 </jcr:root>
