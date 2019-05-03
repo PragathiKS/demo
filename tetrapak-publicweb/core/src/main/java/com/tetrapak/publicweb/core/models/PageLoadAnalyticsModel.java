@@ -36,12 +36,16 @@ public class PageLoadAnalyticsModel {
     @Inject
     private SlingSettingsService slingSettingsService;
     
+    private static final String SITE_NAME = "publicweb";
+    private static final String PAGE_LOAD_EVENT = "content-load";
+    
     private String channel = StringUtils.EMPTY;
 	private String pageName = StringUtils.EMPTY;;
 	private String siteLanguage = StringUtils.EMPTY;;
 	private String siteCountry = StringUtils.EMPTY;;
 	private String breadcrumb = StringUtils.EMPTY;;
 	private String pageType = StringUtils.EMPTY;;
+	private String contentName = StringUtils.EMPTY;;
 	private String digitalData;
 	private boolean production;
 	private boolean staging;
@@ -71,7 +75,15 @@ public class PageLoadAnalyticsModel {
 	        siteCountry = pageLocale.getCountry();
         }
         
-        if (!currentPage.isHideInNav()) {
+        updateBreadcrumb();
+        updateRunMode();
+        updateSiteSections();
+        contentName = currentPage.getName();
+        digitalData = buildDigitalDataJson();
+    }
+    
+    private void updateBreadcrumb() {
+    	if (!currentPage.isHideInNav()) {
 	        StringBuilder breadcrumbBuilder = new StringBuilder("Home");
 	        Page homePage = currentPage.getAbsoluteParent(4);
 	        if (homePage != null) {
@@ -91,8 +103,10 @@ public class PageLoadAnalyticsModel {
 	        }
 	        breadcrumb = breadcrumbBuilder.toString();
         }
-        
-        int siteSectionIndex = 5;
+    }
+    /*
+    private void updateSiteSections() {
+    	int siteSectionIndex = 5;
         int currentPageIndex = currentPage.getDepth() - 1;
         if (siteSectionIndex < currentPageIndex) {
 	        Page siteSection1Page = currentPage.getAbsoluteParent(siteSectionIndex);
@@ -104,12 +118,55 @@ public class PageLoadAnalyticsModel {
 	    	        if (siteSection2Page != null) {
 	    	        	siteSection2 = siteSection1Page.getName();
 	    	        	siteSectionIndex++;
+	    	        	if (siteSectionIndex < currentPageIndex) {
+	    	    	        Page siteSection3Page = currentPage.getAbsoluteParent(siteSectionIndex);
+	    	    	        if (siteSection3Page != null) {
+	    	    	        	siteSection3 = siteSection1Page.getName();
+	    	    	        	siteSectionIndex++;
+	    	    	        	if (siteSectionIndex < currentPageIndex) {
+	    	    	    	        Page siteSection4Page = currentPage.getAbsoluteParent(siteSectionIndex);
+	    	    	    	        if (siteSection4Page != null) {
+	    	    	    	        	siteSection4 = siteSection1Page.getName();
+	    	    	    	        }
+	    	    	            }
+	    	    	        }
+	    	            }
 	    	        }
 	            }
 	        }
         }
-        
-        if (slingSettingsService != null) {
+    }
+    */
+    
+    private void updateSiteSections() {
+    	int siteSectionIndex = 5;
+        int currentPageIndex = currentPage.getDepth() - 1;
+        if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection1)) {
+        	channel = siteSection1;
+        	currentPageIndex++;
+        	if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection2)) {
+            	currentPageIndex++;
+            	if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
+                	currentPageIndex++;
+                	updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
+                }
+            }
+        }
+    }
+    
+    private boolean updateSectionName(int siteSectionIndex, int currentPageIndex, String siteSection) {
+    	if (siteSectionIndex < currentPageIndex) {
+	        Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
+	        if (siteSectionPage != null) {
+	        	siteSection = siteSectionPage.getName();
+	        	return true;
+	        }
+        }
+    	return false;
+    }
+    
+    private void updateRunMode() {
+    	if (slingSettingsService != null) {
         	Set<String> runModes = slingSettingsService.getRunModes();
 	        if(runModes.contains("prod")) {
 	        	production = true;
@@ -119,8 +176,6 @@ public class PageLoadAnalyticsModel {
 	        	development = true;
 	        }
         }
-
-        digitalData = buildDigitalDataJson();
     }
     
     private String buildDigitalDataJson() {
@@ -128,16 +183,21 @@ public class PageLoadAnalyticsModel {
     	JsonObject digitalData = new JsonObject();
     	
     	JsonObject pageInfo = new JsonObject();
-    	pageInfo.addProperty("server", serverName);
+    	pageInfo.addProperty("channel", channel);
     	pageInfo.addProperty("pageType", pageType);
     	pageInfo.addProperty("pageName", pageName);
     	pageInfo.addProperty("breadCrumb", breadcrumb);
-    	pageInfo.addProperty("siteCountry", country);
-    	pageInfo.addProperty("siteLanguageNew", language);
+    	pageInfo.addProperty("siteSection1", siteSection1);
+    	pageInfo.addProperty("siteSection2", siteSection2);
+    	pageInfo.addProperty("siteSection3", siteSection3);
+    	pageInfo.addProperty("siteSection4", siteSection4);
+    	pageInfo.addProperty("siteCountry", siteCountry);
+    	pageInfo.addProperty("siteLanguage", siteLanguage);
+    	pageInfo.addProperty("siteName", SITE_NAME);
+    	pageInfo.addProperty("event", PAGE_LOAD_EVENT);
     	
     	JsonObject conentInfo = new JsonObject();
-    	conentInfo.addProperty("contentCategory", "");
-    	
+    	conentInfo.addProperty("contentName", contentName);
     	
     	JsonObject userInfo = new JsonObject();
     	userInfo.addProperty("loginStatus", "guest");
@@ -165,10 +225,6 @@ public class PageLoadAnalyticsModel {
 
 	public boolean isDevelopment() {
 		return development;
-	}
-	
-	public boolean isLocal() {
-		return local;
 	}
 	
 	public String getDigitalData() {
