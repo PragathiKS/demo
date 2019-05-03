@@ -137,7 +137,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = printPackMatDeliveryDetails(request, document, contentStream, orderDetailResponse.getDeliveryList());
             }
             contentStream.close();
-            PDFUtil.writeOutput(response, document, "Tetra Pak Order " + orderDetails.getOrderNumber());
+            PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);

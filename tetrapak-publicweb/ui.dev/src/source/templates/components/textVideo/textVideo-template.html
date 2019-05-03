@@ -6,7 +6,7 @@
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
         <div class="pw-text-video__title">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${title.heading_h4_template @ headingText=data.title}"/>
+               data-sly-call="${title.heading_h4_template @ headingText=data.title, variant='regular'}"/>
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">

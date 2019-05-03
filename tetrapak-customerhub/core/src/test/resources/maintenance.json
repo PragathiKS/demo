@@ -1,0 +1,81 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Tue Apr 02 2019 10:10:30 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Installed Equipment",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "9e0fb87f-5734-453a-86ec-460d8dd1d2d5",
+    "iconClass": "icon-Install",
+    "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "jcr:predecessors": [
+      "9403dceb-931d-4bc5-907b-fa8a88802e99"
+    ],
+    "jcr:created": "Tue Apr 02 2019 10:10:30 GMT+0530",
+    "cq:lastReplicated": "Fri Mar 22 2019 10:19:07 GMT+0000",
+    "cq:lastModified": "Mon Apr 29 2019 14:26:22 GMT+0530",
+    "jcr:baseVersion": "9403dceb-931d-4bc5-907b-fa8a88802e99",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "71d788a7-71d2-4baf-b1ac-6ad746466ee1",
+    "sling:resourceType": "customerhub/components/structure/page",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid_622605362": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+      },
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "tabs": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "jcr:lastModifiedBy": "admin",
+          "componentClasses": "tp-equipment",
+          "imagePath": "/content/dam/customerhub/p1.PNG",
+          "jcr:created": "Wed Apr 24 2019 22:20:41 GMT+0530",
+          "imageAltText": "asset.PNG",
+          "jcr:lastModified": "Fri Apr 26 2019 11:05:38 GMT+0530",
+          "sling:resourceType": "customerhub/components/content/tabs",
+          "tabsList": {
+            "jcr:primaryType": "nt:unstructured"
+          }
+        },
+        "maintenance": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "serviceOrderLabel": "Service order",
+          "scheduleHeading": "Maintenance Schedule",
+          "lineLabel": "Line",
+          "jcr:lastModifiedBy": "admin",
+          "plannedFinishedLabel": "Planned finished",
+          "eventsHeading": "Maintenance events",
+          "statusLabel": "Status",
+          "jcr:created": "Mon Apr 29 2019 12:03:04 GMT+0530",
+          "contactsHeading": "tetra pak contact",
+          "plannedDurationLabel": "Planned duration",
+          "allOptionText": "All",
+          "jcr:lastModified": "Mon Apr 29 2019 14:26:22 GMT+0530",
+          "lineFilterLabel": "line",
+          "sling:resourceType": "customerhub/components/content/maintenance",
+          "siteFilterLabel": "Site",
+          "equipmentFilterLabel": "Equipment",
+          "operationShortTextLabel": "Operation short text",
+          "errorMsg": "error",
+          "plannedStartLabel": "Planned start",
+          "noDataMsg": "no data",
+          "equipmentLabel": "Equipment",
+          "serviceAgreementLabel": "Service agreement"
+        }
+      }
+    }
+  }
+}

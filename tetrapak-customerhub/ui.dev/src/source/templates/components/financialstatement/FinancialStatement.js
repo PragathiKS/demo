@@ -15,27 +15,33 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 
 function _trackAnalytics(type) {
   const $this = this;
-  const analyticsData = {};
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials',
+    linkParentTitle: 'statement of accounts'
+  };
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      analyticsData.resetsearch = true;
-      trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
+      ob.linkName = 'reset search';
       break;
     }
     case 'search': {
       const { $filterForm } = $this.cache;
-      const status = $filterForm.find('.js-financial-statement__status option:selected').text();
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
-      const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-      analyticsData.searchstatement = `${status}|dates choosen|${docType}|${docNumber}`;
-      trackAnalytics(analyticsData, 'financial', 'SearchStatement');
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
+
+      ob.linkName = 'reset search';
+      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
     default: {
-      analyticsData.findcustomer = this.cache.data.selectedCustomerData.desc;
-      trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+      break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey);
 }
 
 /**
@@ -252,7 +258,7 @@ function _setRoute(isInit = false) {
   }
 }
 function _downloadPdfExcel(...args) {
-  const [type] = args;
+  const [, type] = args;
   const $this = this;
   const paramsData = {};
   const { $filterForm, $dateRange, data } = $this.cache;
@@ -282,10 +288,7 @@ function _downloadPdfExcel(...args) {
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
     const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-    let form = $('<form class="d-none"/>', {
-      action: url,
-      method: 'POST'
-    });
+    let form = $('<form class="done" method="POST" action=' + url + '/>');
     form.append(
       $('<input/>', {
         type: 'text',
@@ -373,7 +376,6 @@ class FinancialStatement {
           singleDate: false,
           numberOfMonths: 2,
           separator: ' - ',
-          selectForward: true,
           onSelectStart() {
             $this.root.find('.js-calendar').attr('disabled', 'disabled');
           },

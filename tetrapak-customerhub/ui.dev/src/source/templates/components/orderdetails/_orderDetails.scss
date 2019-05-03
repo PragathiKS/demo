@@ -154,6 +154,10 @@
         @include padding($padding-sm);
     }
 
+    [data-key='unitPrice'] {
+        text-align: right;
+    }
+
     .tpatom-btn {
         @include margin-top($padding-md);
 

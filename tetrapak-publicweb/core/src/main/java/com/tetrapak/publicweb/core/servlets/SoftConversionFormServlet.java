@@ -1,10 +1,5 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
@@ -16,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -53,9 +47,10 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+		log.info("Inside doGet method.");
 		try {
 			// get resource resolver, tagManager objects.
-			resourceResolver = getResourceResolver(request);
+			resourceResolver = request.getResourceResolver();
 			Session session = resourceResolver.adaptTo(Session.class);
 
 			String group = request.getParameter("group");
@@ -68,7 +63,8 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 			if (session != null) {
 				Node rootNode = session.getNode(UGC_CONTENT_PATH);
 				Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
-				Node itemNode = JcrUtils.getOrAddNode(pwNode, emailAddress);
+				Node softConvNode = JcrUtils.getOrAddNode(pwNode, "soft-conversion");
+				Node itemNode = JcrUtils.getOrAddNode(softConvNode, emailAddress);
 				itemNode.setProperty("group", group);
 				itemNode.setProperty("firstName", firstName);
 				itemNode.setProperty("lastName", lastName);
@@ -77,23 +73,15 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 				itemNode.setProperty("position", position);
 
 				session.save();
-
-				Cookie cookie = new Cookie("softConvUserExists", "true");
-				cookie.setPath("/");
-				cookie.setMaxAge(60 * 60 * 24);
-				response.addCookie(cookie);
+				log.info("Saved user data at path : {}", itemNode.getPath());
+				
+				setCookie(response);
+				
 			}
 
 			// set the response type
-			response.setContentType("text/html");
-			response.setStatus(HttpServletResponse.SC_OK);
-			PrintWriter writer = response.getWriter();
-			writer.println("Thanks for your interest. Here are the whitepapers you want to see !");
-			writer.flush();
-			writer.close();
+			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
-		} catch (IOException e) {
-			log.error("Error occurred while writing the response object. {}", e);
 		} catch (PathNotFoundException e1) {
 			log.error("Error finding the path. {}", e1);
 		} catch (RepositoryException e2) {
@@ -102,16 +90,12 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
 	}
 
-	private ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, "writeService");
-		ResourceResolver resourceResolver = null;
-		try {
-			resourceResolver = resolverFactory.getServiceResourceResolver(param);
-		} catch (LoginException e1) {
-			log.error("[Error getting the resource resolver");
-			resourceResolver = request.getResourceResolver();
-		}
-		return resourceResolver;
+	private void setCookie(SlingHttpServletResponse response) {
+		Cookie cookie = new Cookie("softConvUserExists", "true");
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(cookie);
+		log.info("Cookie added.");
+		
 	}
 }

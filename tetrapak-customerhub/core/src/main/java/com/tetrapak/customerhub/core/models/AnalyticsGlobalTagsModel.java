@@ -46,13 +46,13 @@ public class AnalyticsGlobalTagsModel {
         return "customerhub";
     }
 
-    /**
-     * Get Page Type.
-     *
-     * @return pageType, if successful
-     */
-    public String getPageType() {
-        return GlobalUtil.getPageTitle(resource);
+	/**
+	 * Get Page Type.
+	 *
+	 * @return page title in lower case as page type, if successful
+	 */
+	public String getPageType() {
+        return GlobalUtil.getPageTitle(resource).toLowerCase();
     }
 
     /**

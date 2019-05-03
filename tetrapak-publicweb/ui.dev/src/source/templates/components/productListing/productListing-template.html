@@ -4,7 +4,7 @@
        data-module="ProductListing" data-product-root-path="${data.productRootPath}">
     <div class="pw-product-listing__title">
       <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
+           data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
     </div>
     <div class="pw-product-listing__navigation">
       <div class="d-lg-none">

@@ -1,5 +1,5 @@
-<sly data-sly-template.genericimage_template="${@ data, className}">
+<sly data-sly-template.genericimage_template="${@ imagePath, imageAltI18n, className}">
   <div class="x-img-responsive">
-    <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${lib.dynamicimage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className=className}"/>
+    <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${lib.dynamicimage_template @imagePath=imagePath, altText=imageAltI18n, className=className}"/>
   </div>
 </sly>
