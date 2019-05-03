@@ -7,22 +7,22 @@ import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
- * Fire analytics on Packaging, Processing 
+ * Fire analytics on Packaging, Processing
  * mail/contact link click
  */
 function _trackAnalytics(type) {
   const analyticsData = {
     linkType:'internal',
-    linkSection:'installed equipment',
+    linkSection:'installed equipment-maintenance',
     linkParentTitle:'tetrapak contact'
   };
 
   if (type === 'Packaging') {
-    analyticsData.linkname = 'packaging-phone';
+    analyticsData.linkName = 'packaging-phone';
   } else {
-    analyticsData.linkname = 'processing-phone';
+    analyticsData.linkName = 'processing-phone';
   }
-  trackAnalytics(analyticsData, 'linkClick', 'linkClicked');
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, 'UpperCaseKey');
 }
 
 /**
@@ -208,12 +208,10 @@ class MaintenanceFiltering {
       })
       .on('click', '.js-maintenance-filtering__contact-mail', (el) => {
         this.trackAnalytics(el.target.dataset.type);
-        logger.log('anchor mail clicked!', el);
       })
       .on('click', '.js-maintenance-filtering__contact-phone', (el) => {
         this.trackAnalytics(el.target.dataset.type);
-        logger.log('anchor contact clicked!', el);
-      });   
+      });
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);

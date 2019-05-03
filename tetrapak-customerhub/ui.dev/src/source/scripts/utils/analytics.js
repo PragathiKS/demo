@@ -3,11 +3,13 @@ import $ from 'jquery';
 /**
  * Fire analytics
  */
-export const trackAnalytics = (objectData, objectName, trackingKey, objectKey) => {
+export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, keyCase) => {
   window.digitalData = window.digitalData || {};
 
   if (objectName) {
-    objectName = objectName.toLowerCase();
+    if (keyCase !== 'UpperCaseKey') {
+      objectName = objectName.toLowerCase();
+    }
     window.digitalData[objectName] = window.digitalData[objectName] || {};
     if (objectKey) {
       window.digitalData[objectName][objectKey.toLowerCase()] = objectData;
