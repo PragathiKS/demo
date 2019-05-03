@@ -24,7 +24,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
 
 	stages {
 
-               stage ('Checkout') {
+               /* stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -32,8 +32,9 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                    credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
                    branch: 'develop'
                       )
-                   }
-                 }
+                   } 
+				   
+                 }*/
 
 		stage ('Initialize') {
 			steps {
