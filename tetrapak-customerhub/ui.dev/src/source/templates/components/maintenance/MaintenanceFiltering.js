@@ -24,7 +24,7 @@ function _trackAnalytics(type, name) {
   // creating linkName as per the name or type received
   analyticsData.linkName = `${type}-${name}`;
 
-  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, true);
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
 
 /**
