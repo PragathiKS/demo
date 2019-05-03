@@ -34,7 +34,7 @@ function _trackAnalytics(type) {
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
 
       ob.linkName = 'reset search';
-      ob.linkSelection = `customer name|${status}|dates choosen| ${docType}|${docNumber}`;
+      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
     default: {
