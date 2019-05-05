@@ -19,9 +19,6 @@ function _trackAnalytics(type, name) {
     linkParentTitle:'tetrapak contact'
   };
 
-  if (type) {
-    type = type.toLowerCase();
-  }
   // creating linkName as per the name or type received
   analyticsData.linkName = `${type}-${name}`;
 
@@ -203,6 +200,7 @@ class MaintenanceFiltering {
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
   bindEvents() {
+    const self = this;
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
@@ -210,11 +208,11 @@ class MaintenanceFiltering {
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
       })
-      .on('click', '.js-maintenance-filtering__contact-mail', (el) => {
-        this.trackAnalytics(el.target.dataset.type, 'email');
+      .on('click', '.js-maintenance-filtering__contact-mail', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'email');
       })
-      .on('click', '.js-maintenance-filtering__contact-phone', (el) => {
-        this.trackAnalytics(el.target.dataset.type, 'phone');
+      .on('click', '.js-maintenance-filtering__contact-phone', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'phone');
       });
     this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
   }
