@@ -252,7 +252,7 @@ function _setRoute(isInit = false) {
   }
 }
 function _downloadPdfExcel(...args) {
-  const [type] = args;
+  const [, type] = args;
   const $this = this;
   const paramsData = {};
   const { $filterForm, $dateRange, data } = $this.cache;
@@ -282,10 +282,7 @@ function _downloadPdfExcel(...args) {
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
     const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-    let form = $('<form class="d-none"/>', {
-      action: url,
-      method: 'POST'
-    });
+    let form = $('<form class="done" method="POST" action=' + url + '/>');
     form.append(
       $('<input/>', {
         type: 'text',

@@ -5,6 +5,7 @@ import orderdetailpackagingData from './data/orderdetailpackaging.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
+import * as fileObject from '../../../scripts/utils/file';
 
 describe('OrderDetails', function () {
   const jqRef = {
@@ -40,6 +41,7 @@ describe('OrderDetails', function () {
         token_type: "BearerToken"
       }
     });
+    this.fileStub = sinon.stub(fileObject, 'fileWrapper').resolves({ filename: 'sample' });
     this.orderDetails.init();
   });
   after(function () {
@@ -55,6 +57,7 @@ describe('OrderDetails', function () {
     this.ajaxStub.restore();
     this.openStub.restore();
     this.tokenStub.restore();
+    this.fileStub.restore();
   });
   it('should initialize', function (done) {
     expect(this.orderDetails.init.called).to.be.true;

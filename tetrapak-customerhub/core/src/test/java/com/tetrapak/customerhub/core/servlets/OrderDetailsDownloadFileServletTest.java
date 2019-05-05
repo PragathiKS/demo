@@ -63,11 +63,11 @@ public class OrderDetailsDownloadFileServletTest {
 		aemContext.load().json(I18_RESOURCE_JSON, I18_RESOURCE);
 		aemContext.currentResource(COMPONENT_PATH);
 		aemContext.request().setServletPath(COMPONENT_PATH);
-		aemContext.request().setMethod(HttpConstants.METHOD_GET);
+		aemContext.request().setMethod(HttpConstants.METHOD_POST);
 	}
 
 	@Test
-	public void doGetForPdfParts() {
+	public void doPostForPdfParts() {
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setSelectorString("parts");
 		requestPathInfo.setExtension("pdf");
@@ -77,12 +77,12 @@ public class OrderDetailsDownloadFileServletTest {
 		OrderDetailsDownloadFileServlet orderDetailsDownloadFileServlet = aemContext
 				.getService(OrderDetailsDownloadFileServlet.class);
 		aemContext.registerInjectActivateService(orderDetailsDownloadFileServlet);
-		orderDetailsDownloadFileServlet.doGet(request, response);
+		orderDetailsDownloadFileServlet.doPost(request, response);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 	}
 
 	@Test
-	public void doGetForPdfPackMat() {
+	public void doPostForPdfPackMat() {
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setSelectorString("packmat");
 		requestPathInfo.setExtension("pdf");
@@ -92,12 +92,12 @@ public class OrderDetailsDownloadFileServletTest {
 		OrderDetailsDownloadFileServlet orderDetailsDownloadFileServlet = aemContext
 				.getService(OrderDetailsDownloadFileServlet.class);
 		aemContext.registerInjectActivateService(orderDetailsDownloadFileServlet);
-		orderDetailsDownloadFileServlet.doGet(request, response);
+		orderDetailsDownloadFileServlet.doPost(request, response);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 	}
 
 	@Test
-	public void doGetForExcelParts() {
+	public void doPostForExcelParts() {
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setSelectorString("parts");
 		requestPathInfo.setExtension("excel");
@@ -107,8 +107,23 @@ public class OrderDetailsDownloadFileServletTest {
 		OrderDetailsDownloadFileServlet orderDetailsDownloadFileServlet = aemContext
 				.getService(OrderDetailsDownloadFileServlet.class);
 		aemContext.registerInjectActivateService(orderDetailsDownloadFileServlet);
-		orderDetailsDownloadFileServlet.doGet(request, response);
+		orderDetailsDownloadFileServlet.doPost(request, response);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
+	public void doPostForErrors() {
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setSelectorString("parts");
+		requestPathInfo.setExtension("error");
+		requestPathInfo.setSuffix("orderNumber=1234&token=9KK12diCgjVCmJF8MzeAt1IauZOq");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		OrderDetailsDownloadFileServlet orderDetailsDownloadFileServlet = aemContext
+				.getService(OrderDetailsDownloadFileServlet.class);
+		aemContext.registerInjectActivateService(orderDetailsDownloadFileServlet);
+		orderDetailsDownloadFileServlet.doPost(request, response);
+		assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, response.getStatus());
 	}
 
 	public <T> List<GenericServiceType<T>> getMultipleMockedService() {

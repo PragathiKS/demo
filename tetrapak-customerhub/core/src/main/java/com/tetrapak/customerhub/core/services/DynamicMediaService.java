@@ -1,5 +1,8 @@
 package com.tetrapak.customerhub.core.services;
 
+/**
+ * Dynamic Media Service class
+ */
 public interface DynamicMediaService {
 
     String[] getDynamicMediaConfMap();

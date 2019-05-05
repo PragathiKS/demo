@@ -19,7 +19,7 @@
         @include padding($padding-l+4px $padding-md $padding-l);
         background-color: $color-white;
 
-        @media #{$desktop} {
+        @media #{$tablet} {
             @include margin-top(0);
             color: $color-white;
             background-color: transparent;
@@ -42,21 +42,25 @@
         }
 
         &__title {
-            max-height: $font-xl*2;
+            @include max-height(64px);
             @media #{$desktop} {
-                max-height: 40px*2;
+                max-height: convert-to-rem(140px);
             }
         }
         &__description {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            max-height: $font-l*5;
+            @include font-size(16px);
+            @include line-height(28px, 16px);
+            @media #{$tablet} {
+                @include font-size(14px);
+                @include line-height(24px, 14px);
+                max-height: convert-to-rem(120px);
+            }
         }
     }
     &--right {
         #{ $self }__content {
+            @include right($margin-xxl);
             left: auto;
-            right: $margin-xxl;
         }
     }
 }

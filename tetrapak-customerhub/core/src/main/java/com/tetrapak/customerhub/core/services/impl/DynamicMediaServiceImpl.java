@@ -8,12 +8,20 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 
+/**
+ * Impl class for Dynamic Media Service
+ * @author Ruhee Sharma
+ */
 @Component(immediate = true, service = DynamicMediaService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = DynamicMediaServiceConfig.class)
 public class DynamicMediaServiceImpl implements DynamicMediaService {
 
     private DynamicMediaServiceConfig config;
 
+    /**
+     * activate method
+     * @param config Dynamic Media Service configuration
+     */
     @Activate
     public void activate(DynamicMediaServiceConfig config) {
 

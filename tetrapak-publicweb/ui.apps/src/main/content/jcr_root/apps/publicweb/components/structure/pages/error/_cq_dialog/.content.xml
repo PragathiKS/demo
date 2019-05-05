@@ -161,6 +161,20 @@
                                                 fieldLabel="Full Screen Image Path"
                                                 name="./imagePath"
                                                 rootPath="/content/dam/publicweb"/>
+                                            <showHeader
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Show header on the page ?"
+                                                text="Show Header"
+                                                name="./showHeader"
+                                                value="true"/>
+                                            <showFooter
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Show footer on the page ?"
+                                                text="Show Footer"
+                                                name="./showFooter"
+                                                value="true"/>
                                             <textContrastLayer
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

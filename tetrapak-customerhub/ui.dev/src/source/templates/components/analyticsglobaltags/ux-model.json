@@ -1,6 +1,7 @@
 {
   "siteName": "customerhub",
   "pageType": "dashboard",
+  "channel": "orderdetail",
   "siteCountry": "uk",
   "siteLanguage": "en",
   "logInStatus": "logged-in",

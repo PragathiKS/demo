@@ -1,64 +1,59 @@
 package com.tetrapak.customerhub.core.beans.excel;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 /**
  * Bean class for excel file data
+ * 
  * @author Tushar
+ * @author swalamba
  *
  */
 public class ExcelFileData {
 	private String excelSheetName;
-	private String font;
-	private short fontHeight;
-	private short fontColor;
+	private short cellBorderColor = IndexedColors.BLACK.index;
 	private String fileName;
-	private List<String> columns = new ArrayList<>();
 	private String[][] data;
-   
-    public String getExcelSheetName() {
-        return excelSheetName;
-    }
-    public void setExcelSheetName(String excelSheetName) {
-        this.excelSheetName = excelSheetName;
-    }
-    public String getFont() {
-    	return font;
-    }
-    public void setFont(String font) {
-    	this.font = font;
-    }   
-    public short getFontHeight() {
-        return fontHeight;
-    }
-    public void setFontHeight(short fontHeight) {
-        this.fontHeight = fontHeight;
-    }
-    public short getFontColor() {
-        return fontColor;
-    }
-    public void setFontColor(short fontColor) {
-        this.fontColor = fontColor;
-    }
-    public List<String> getColumns() {
-        return columns;
-    }
-    
-    public String getFileName() {
-        return fileName;
-    }
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-    public void setColumns(List<String> columns) {
-        this.columns = columns;
-    }
-    public String[][] getData() {
-        return data;
-    }
-    public void setData(String[][] data) {
-        this.data = data;
-    }        
-}
+	private boolean hasMargin = true;
 
+	public String getExcelSheetName() {
+		return excelSheetName;
+	}
+
+	public void setExcelSheetName(String excelSheetName) {
+		this.excelSheetName = excelSheetName;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String[][] getData() {
+		return data;
+	}
+
+	public void setData(String[][] data) {
+		this.data = data;
+	}
+
+	public short getCellBorderColor() {
+		return cellBorderColor;
+	}
+
+	public void setCellBorderColor(short cellBorderColor) {
+		this.cellBorderColor = cellBorderColor;
+	}
+
+	public boolean isHasMargin() {
+		return hasMargin;
+	}
+
+	public void setHasMargin(boolean hasMargin) {
+		this.hasMargin = hasMargin;
+	}
+
+}
