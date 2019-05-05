@@ -28,6 +28,7 @@ describe('MaintenanceFiltering', function () {
     this.renderMaintenanceContactSpy = sinon.spy(this.maintenanceFiltering, "renderMaintenanceContact");
     this.renderLineFilterSpy = sinon.spy(this.maintenanceFiltering, "renderLineFilter");
     this.renderEquipmentFilterSpy = sinon.spy(this.maintenanceFiltering, "renderEquipmentFilter");
+    this.navigateSpy = sinon.spy(this.maintenanceFiltering, 'navigateCalendar');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
@@ -49,6 +50,7 @@ describe('MaintenanceFiltering', function () {
     this.renderMaintenanceContactSpy.restore();
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
+    this.navigateSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -87,5 +89,9 @@ describe('MaintenanceFiltering', function () {
     $('.js-maintenance-filtering__line').trigger('change');
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
     done();
+  });
+  it('should navigate calendar of click of calendar navigation buttons', function () {
+    $('.js-calendar-nav').eq(0).trigger('click');
+    expect(this.navigateSpy.called).to.be.true;
   });
 });

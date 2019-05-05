@@ -129,6 +129,18 @@
                             fieldDescription="Enter Create Pdf Button i18 Key"
                             fieldLabel="Create Pdf Button Key" name="./createPdfBtnI18n"
                             required="true"/>
+                    <fileDownloadErrorText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter File Download Error Text i18 Key"
+                            fieldLabel="File Download Error Text Key" name="./fileDownloadErrorText"
+                            required="true"/>
+                    <fileDownloadErrorClose
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter File Download Error Close i18 Key"
+                            fieldLabel="File Download Error Close Key" name="./fileDownloadErrorClose"
+                            required="true"/>                
                 </items>
             </column>
         </items>

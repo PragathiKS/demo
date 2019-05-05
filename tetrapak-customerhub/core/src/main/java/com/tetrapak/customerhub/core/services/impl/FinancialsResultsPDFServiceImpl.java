@@ -188,7 +188,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             columns.add(new Column(paramRequest.getEndDate() + "-" + paramRequest.getStartDate(), 60));
         }
-        if (paramRequest.getStartDate() != null) {
+        else if (paramRequest.getStartDate() != null) {
             columns.add(new Column(paramRequest.getStartDate(), 60));
         } else {
             columns.add(new Column(paramRequest.getEndDate(), 60));

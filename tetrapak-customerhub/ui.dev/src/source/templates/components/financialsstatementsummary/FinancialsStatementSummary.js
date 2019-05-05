@@ -5,43 +5,66 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { apiHost, tableSort } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, API_FINANCIALS_INVOICE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { fileWrapper } from '../../../scripts/utils/file';
+import { toast } from '../../../scripts/utils/toast';
 
 /**
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
-  // Get selected preferences
-  const $this = $(this);
-  const analyticsData = {};
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials'
+  };
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'downloadPdf': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createPDF = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create pdf';
+      break;
+    }
+    case 'downloadInvoice': {
+      ob.linkParentTitle = 'packaging';
+      ob.linkName = 'invoice download';
       break;
     }
     case 'downloadExcel': {
-      analyticsData.customername = this.cache.$findCustomer.find('.js-financial-statement__find-customer option:selected').text();
-      analyticsData.createExcel = 'true';
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      ob.linkParentTitle = 'statement of accounts';
+      ob.linkName = 'create excel';
       break;
     }
     default: {
-      const [statementHeader] = $('[data-target="#' + $this.parents('.js-financials-summary__table').attr('id') + '"]').find('.js-financials-summary__accordion__text').text().split('(');
-      analyticsData.statementheader = $.trim(statementHeader);
-      analyticsData.statementnumber = $.trim($this.find('[data-key=documentNumber]').text());
-      trackAnalytics(analyticsData, 'financial', 'statementinvoice');
+      break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
  * Download Invoice
  */
-function _downloadInvoice() {
-  window.open($(this).attr('href'), '_blank');
+function _downloadInvoice($this) {
+  const documentNumber = $.trim($(this).find('[data-key="documentNumber"]').text());
+  auth.getToken(({ data: authData }) => {
+    fileWrapper({
+      extension: 'pdf',
+      filename: `${documentNumber}`,
+      url: `${apiHost}/${API_FINANCIALS_INVOICE}/${documentNumber}`,
+      method: ajaxMethods.GET,
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+      }
+    }).catch(() => {
+      const { i18nKeys } = $this.cache;
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+    });
+  });
 }
 
 function _processTableData(data) {
@@ -171,7 +194,7 @@ class FinancialsStatementSummary {
     const $this = e.data;
 
     _downloadInvoice.call(this);
-    $this.trackAnalytics(this);
+    $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type) {
     this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);

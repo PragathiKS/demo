@@ -37,30 +37,12 @@ export const isDesktop = () => !(isMobile() || isTablet());
 /**
  * Checks if current screen mode is mobile
  */
-export const isMobileMode = () => ($(window).outerWidth() < 768);
-
-/**
- * Checks if current screen mode is tablet
- */
-export const isTabletMode = () => {
-  const outerWidth = $(window).outerWidth();
-  return outerWidth >= 768 && outerWidth < 992;
-};
-
-/**
- * Checks if current screen mode is mobile or tablet
- */
-export const isMobileOrTabletMode = () => (isMobileMode() || isTabletMode());
+export const isMobileMode = () => ($(window).outerWidth() < 1024);
 
 /**
  * Checks if current screen mode is desktop
  */
-export const isDesktopMode = () => !isMobileOrTabletMode();
-
-/**
- * Checks if current screen mode is tablet or desktop
- */
-export const isTabletOrDesktopMode = () => (isTabletMode() || isDesktopMode());
+export const isDesktopMode = () => !isMobileMode();
 
 /**
  * Checks if author mode is enabled

@@ -61,37 +61,26 @@
             color: $color-mercury;
         }
     }
-
-    &__prevbtn {
-        i.tpatom-button__icon {
-            @include padding(0 $padding-sm 0 0);
-            &::before {
-                content: '\f112';
-            }
-        }
-    }
 }
 
 // Progress bar
 $progress-units: (
     '10': 10%,
-    '14': 14%,
+    '15': 15%,
     '20': 20%,
-    '28': 28%,
     '25': 25%,
     '30': 30%,
     '33': 33%,
     '40': 40%,
-    '43': 43%,
+    '45': 45%,
     '50': 50%,
-    '57': 57%,
+    '55': 55%,
     '60': 60%,
     '66': 66%,
     '70': 70%,
-    '71': 71%,
     '75': 75%,
     '80': 80%,
-    '86': 86%,
+    '85': 85%,
     '90': 90%,
     '100': 100%
 );
@@ -160,7 +149,7 @@ $progress-units: (
             font-size: $font-xs;
         }
         &.hasError {
-            input {
+            .form-control {
                 border-color: $color-alert;
             }
             .error-msg {
@@ -173,6 +162,10 @@ $progress-units: (
         color: $color-tundora;
         height: convert-to-rem(40px);
         padding: $padding-sm $padding-md;
+    }
+    textarea.form-control {
+        height: auto;
+        resize: none;
     }
     .form-check {
         padding-left: 0;
@@ -210,6 +203,17 @@ $progress-units: (
                 top: 5px;
                 left: 5px;
                 margin: auto;
+            }
+        }
+    }
+    &__smalltext {
+        font-size: $font-xs;
+    }
+    &__prevbtn {
+        i.tpatom-button__icon {
+            @include padding(0 $padding-sm 0 0);
+            &::before {
+                content: '\f112';
             }
         }
     }

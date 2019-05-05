@@ -4,12 +4,12 @@
   "componentClasses": "tp-equipment",
   "tabsList": [
     {
-      "pageUrl": "https://www.tetrapak.com",
+      "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment.html",
       "labelI18n": "Documents",
       "iconClass": "icon-Document"
     },
     {
-      "pageUrl": "https://www.tetrapak.com",
+      "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment.html",
       "labelI18n": "Maintenance",
       "isActive": "true",
       "iconClass": "icon-Maintenance"

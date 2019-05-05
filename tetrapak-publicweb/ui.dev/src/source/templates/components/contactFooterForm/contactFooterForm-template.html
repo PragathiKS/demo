@@ -1,0 +1,504 @@
+<sly data-sly-template.contactFooterForm_template="${@ data, flag}"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div class="tp-container mb-5" data-sly-test="${data.titleI18n}">
+    <div class="pw-contact-form pw-theme--grayscale-white pw-padding--regular"
+         data-module="ContactFooterForm" data-sly-test="${!data.hideContactFooterForm}">
+      <div class="tab-content">
+        <div class="tab-pane active" role="tabpanel" id="cf-form-steps">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4 mb-4 text-center">
+                  <img class="img-fluid" src="${data.image}" alt="${data.imageAltI18n @ i18n}">
+                </div>
+                <div class="col-md-8 mb-4">
+                  <sly data-sly-test="${data.titleI18n}"
+                       data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                       data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}"/>
+                  <p>${data.description}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-contactfooter" autocomplete="off" method="GET">
+                <div class="tab-content tab-content-steps">
+                  <div class="tab-pane active" role="tabpanel" id="cf-step-1">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md">
+                        <div class="form-group">
+                          <label for="first-name">${data.firstNameLabel @ i18n}</label>
+                          <input type="text" name="first-name" class="form-control" id="first-name" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="form-group">
+                          <label for="last-name">${data.lastNameLabel @ i18n}</label>
+                          <input type="text" name="last-name" class="form-control" id="last-name" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-2', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--15">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 1 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-2">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="phone-number">${data.phoneNumberLabel @ i18n}</label>
+                          <input type="text" name="phone-number" class="form-control" id="phone-number" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-1', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-3', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--30">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 2 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-3">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="email-address">${data.emailAddressLabel @ i18n}</label>
+                          <input type="text" name="email-address" class="form-control" id="email-address" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-2', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-4', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--45">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 3 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-4">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="position">${data.positionLabel @ i18n}</label>
+                          <input type="text" name="position" class="form-control" id="position" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-3', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-5', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--60">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 4 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-5">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="company">${data.companyLabel @ i18n}</label>
+                          <input type="text" name="company" class="form-control" id="company" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-4', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-6', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--70">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 5 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-6">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="contact-in">${data.contactUsLabel @ i18n}</label>
+                          <input type="text" name="contact-in" class="form-control" id="contact-in" required>
+                          <div class="error-msg">Error, input needed.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-5', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-7', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue pw-progress__bar--85">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 6 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="cf-step-7">
+                    <div class="row no-gutters">
+                      <div class="info-box w-100 d-none">
+                        <div class="info-group first-name">
+                          <label>${data.firstNameLabel @ i18n}</label>
+                          <p class="first-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 last-name">
+                          <label>${data.lastNameLabel @ i18n}</label>
+                          <p class="last-name d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 phone-number">
+                          <label>${data.phoneNumberLabel @ i18n}</label>
+                          <p class="phone-number d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 email-address">
+                          <label>${data.emailAddressLabel @ i18n}</label>
+                          <p class="email-address d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 position">
+                          <label>${data.positionLabel @ i18n}</label>
+                          <p class="position d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 company">
+                          <label>${data.companyLabel @ i18n}</label>
+                          <p class="company d-inline-block"></p>
+                        </div>
+                        <div class="info-group mt-3 contact-in">
+                          <label>${data.contactUsLabel @ i18n}</label>
+                          <p class="contact-in d-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="message">${data.messageLabel @ i18n}</label>
+                          <textarea class="form-control" name="message" id="message" rows="3" required></textarea>
+                          <div class="error-msg">Error, input needed.</div>
+                          <div class="privacy-policy pw-form__smalltext">
+                            ${data.privacyPolicyText @ context="html"}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row no-gutters">
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-6', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit'}" />
+                    </div>
+                    <div class="row no-gutters pw-progress">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        ${'Step' @ i18} 7 ${'of' @ i18} 7
+                      </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                      ${data.helpText @ context='html'}
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" role="tabpanel" id="cf-step-final">
+          <div class="row tab-pane thankyou">
+            <div class="col text-center">
+              <h4 class="tpatom-heading mb-3">
+                ${'Thank you' @ i18n}&nbsp;<span class="first-name"></span>&nbsp;<span class="last-name"></span>
+              </h4>
+              <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                   data-sly-call="${heading.heading_h4_template @ headingText=data.thankYouMessage, variant='small'}"/>
+              <a href="${data.linkPath}" class="tpatom-button tpatom-button--primary mt-3">${data.linkTextI18n}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	<sly data-sly-test="${!data.titleI18n}"
+	     data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+</sly>

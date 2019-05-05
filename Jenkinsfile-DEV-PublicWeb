@@ -3,7 +3,7 @@ pipeline {
         agent any
   
  triggers {
-          cron('30 10,15 * * *')
+          cron('30 6 * * *')
                    } 
 
 
@@ -267,6 +267,7 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'
+	build 'Tetra-Splunk-All-Tools'
     }
 
 } 

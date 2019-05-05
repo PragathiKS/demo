@@ -84,6 +84,10 @@ public class PageContentModel {
     @Inject
     @Default
     protected Boolean hideContactAnchorLink;
+    
+    @Inject
+    @Default
+    protected Boolean hideContactFooterForm;
 
     private ValueMap jcrMap;
 
@@ -175,5 +179,9 @@ public class PageContentModel {
     
     public Boolean getHideContactAnchorLink() {
     	return hideContactAnchorLink;
+    }
+    
+    public Boolean getHideContactFooterForm() {
+    	return hideContactFooterForm;
     }
 }

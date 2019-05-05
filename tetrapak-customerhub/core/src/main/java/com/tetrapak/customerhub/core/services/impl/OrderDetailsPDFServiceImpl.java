@@ -431,7 +431,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         map.put("unitPrice", product.getUnitPrice());
         map.put("materialCode", product.getMaterialCode());
         map.put("SKU", product.getSKU());
-        map.put("serialNo", Integer.toString(i));
+        map.put("serialNo", Integer.toString(i + 1));
         map.put("quantityKPK", product.getOrderQuantity() + CustomerHubConstants.PATH_SEPARATOR + product.getRemainingQuantity()
                 + CustomerHubConstants.PATH_SEPARATOR + product.getDeliveredQuantity());
 
