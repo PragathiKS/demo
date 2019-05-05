@@ -37,6 +37,7 @@ public class DynamicMediaImageModel {
     private String tabletPortraitUrl;
     private String tabletLandscapeUrl;
     private String desktopUrl;
+    private boolean transparentImage;
     
     
     private static final String DESKTOP = "desktop";
@@ -52,6 +53,9 @@ public class DynamicMediaImageModel {
         String rootPath = getRootPath();
         
         if (StringUtils.isNotEmpty(imagePath)) {
+        	if(StringUtils.contains(imagePath, ".png") || StringUtils.contains(imagePath, ".svg")) {
+        		transparentImage = true;
+        	}
         	imagePath = StringUtils.substringAfterLast(StringUtils.substringBeforeLast(imagePath, "."), "/");
         }
         String dynamicMediaUrl = null;
@@ -121,15 +125,11 @@ public class DynamicMediaImageModel {
         return url;
     }
     
-    private static boolean checkImageTransparency(final String paramUrl) {
-        return StringUtils.contains(paramUrl, ".png") || StringUtils.contains(paramUrl, ".svg");
-    }
-    
     private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
         return url.append(appendingString).append(FMT_PNG_ALPHA);
     }
     
-    private static String getUrl(final String paramUrl, final String width, final String height, final String crop) {
+    private String getUrl(final String paramUrl, final String width, final String height, final String crop) {
         boolean queryFlag = false;
         StringBuilder url = new StringBuilder(paramUrl);
         if (StringUtils.isNotEmpty(width)) {
@@ -147,7 +147,7 @@ public class DynamicMediaImageModel {
             queryFlag = true;
         }
         
-        if (checkImageTransparency(paramUrl)) {
+        if (transparentImage) {
             url = queryFlag ? appendTransparency(url, "&") : appendTransparency(url, "?");
         }
         
