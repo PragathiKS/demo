@@ -10,6 +10,10 @@
         <meta name="template" content="demoTemplate">
         <meta name="pageType" content="GenericPageType">
         <title>{{fsdId}} Component | UpFront</title>
+        <sly
+            data-sly-use.analyticsModel="/apps/customerhub/components/content/analyticsglobaltags/ux-model.js"
+            data-sly-use.analyticsLib="/apps/customerhub/components/content/analyticsglobaltags/analyticsglobaltags-template.html"
+            data-sly-call="${analyticsLib.analyticsglobaltags_template @ data=analyticsModel}" />
         <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.vendor'}" />
         <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.default.en'}" />
     </head>
@@ -33,7 +37,7 @@
             </div>
             <div class="col-lg-10 tp-column__content">
                 {{!-- Main content goes here --}}
-                {{#if_notin "header,leftnavigation" fsdId}}
+                {{#if_notin "header,leftnavigation,analyticsglobaltags" fsdId}}
                     {{> body}}
                 {{/if_notin}}
             </div>
