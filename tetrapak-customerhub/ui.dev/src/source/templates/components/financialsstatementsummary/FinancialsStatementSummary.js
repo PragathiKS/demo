@@ -14,6 +14,9 @@ import { toast } from '../../../scripts/utils/toast';
  * Fire analytics on Invoice Download
  */
 function _trackAnalytics(type) {
+  logger.log('data test');
+  const $this = this;
+  logger.log('$this', $this.cache);
   let ob = {
     linkType: 'internal',
     linkSection: 'financials'

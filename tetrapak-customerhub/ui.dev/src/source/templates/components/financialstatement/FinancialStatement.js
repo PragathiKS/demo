@@ -14,11 +14,15 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { $body } from '../../../scripts/utils/commonSelectors';
 
 function _trackAnalytics(type) {
+
   const $this = this;
+  const { $filterForm } = $this.cache;
+  const statementOfAcc = $this.cache.data.statementOfAccount.toLowerCase();
+
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: 'statement of accounts'
+    linkParentTitle: `${statementOfAcc}`
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
@@ -28,12 +32,11 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const { $filterForm } = $this.cache;
       const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
 
-      ob.linkName = 'reset search';
+      ob.linkName = 'search statment';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
@@ -41,6 +44,7 @@ function _trackAnalytics(type) {
       break;
     }
   }
+  logger.log('ob', ob, trackingKey);
   trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
