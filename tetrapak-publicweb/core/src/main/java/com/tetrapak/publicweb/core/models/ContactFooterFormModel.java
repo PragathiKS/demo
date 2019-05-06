@@ -1,17 +1,23 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.acs.commons.genericlists.GenericList;
+import com.adobe.acs.commons.genericlists.GenericList.Item;
 import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
 import com.day.cq.commons.inherit.InheritanceValueMap;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactFooterFormModel {
@@ -61,19 +67,21 @@ public class ContactFooterFormModel {
 
 	private String nextButtonLabel;
 	
-	private String submitButtonLabel;
-	
-	private String stepLabel;
-	
-    private Page currentPage;
+	private String submitButtonLabel;	
 	
 	private Boolean hideContactFooterForm;
+	
+	private List<Item> countryList;
 
     @PostConstruct
     protected void init() {
-    	currentPage = resource.getParent().getParent().adaptTo(Page.class);
-    	log.info("Current Page path : {}", currentPage.getPath());
+    	log.info("Inside init() method." );
+    	ResourceResolver resourceResolver = resource.getResourceResolver();
+    	PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+    	String rootPagePath = resource.getParent().getParent().getParent().getPath();
+    	Page currentPage = pageManager.getPage(rootPagePath);      	
         if (currentPage != null) {
+        	log.info("Current Page path : {}", currentPage.getPath());
             Resource jcrContentResource = currentPage.getContentResource();
             BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
             hideContactFooterForm = basePageModel.getPageContent().getHideContactFooterForm();
@@ -102,7 +110,15 @@ public class ContactFooterFormModel {
         previousButtonLabel = inheritanceValueMap1.getInherited("previousButtonLabel", String.class);
         nextButtonLabel = inheritanceValueMap1.getInherited("nextButtonLabel", String.class);
         submitButtonLabel = inheritanceValueMap1.getInherited("submitButtonLabel", String.class);
+        
+        getCountriesList(pageManager);
     }
+
+	private void getCountriesList(PageManager pageManager) {				
+	    Page listPage = pageManager.getPage("/etc/acs-commons/lists/countries");
+	    GenericList list = listPage.adaptTo(GenericList.class);
+	    countryList = list.getItems();
+	}
 
 	public String getTitleI18n() {
 		return titleI18n;
@@ -191,5 +207,9 @@ public class ContactFooterFormModel {
     public Boolean getHideContactFooterForm() {
     	return hideContactFooterForm;
     }
+
+	public List<Item> getCountryList() {
+		return countryList;
+	}
 
 }

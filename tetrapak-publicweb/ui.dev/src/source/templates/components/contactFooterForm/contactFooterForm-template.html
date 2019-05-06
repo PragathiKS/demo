@@ -499,6 +499,11 @@
       </div>
     </div>
   </div>
+  <!-- Example of country list iteration.
+  <sly data-sly-list=${data.countryList}>
+  	<p>  Title : ${item.title} == Value : ${item.value}</p>
+  </sly>
+  -->
 	<sly data-sly-test="${!data.titleI18n}"
 	     data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
 </sly>
