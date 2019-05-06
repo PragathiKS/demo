@@ -10,7 +10,7 @@ class SoftConversionForm {
     this.cache.$form = $('#softConversionModal form');
     this.cache.$field = $('#softConversionModal input[type="text"]');
     this.cache.$submitBtn = $('#softConversionModal .form-submit');
-    this.cache.$tabtoggle = $('#softConversionModal .pw-model__nextbtn[data-toggle="tab"]');
+    this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
     this.cache.$radiobtns = $('#softConversionModal input:radio');
     this.cache.$questionBtn = $('#softConversionModal .questionBtn');
   }

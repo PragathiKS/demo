@@ -135,7 +135,9 @@ function _renderTable(filterParams) {
       target: '.js-order-search__table',
       url: {
         path: `${apiHost}/${API_ORDER_HISTORY}`,
-        data: filterParams
+        data: $.extend(filterParams, {
+          top: ORDER_HISTORY_ROWS_PER_PAGE
+        })
       },
       beforeRender(data) {
         if (!data) {

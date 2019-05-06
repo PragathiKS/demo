@@ -1,0 +1,29 @@
+.pw-contact-form {
+    @include border-radius($border-radius);
+    .info-box {
+        @include padding($padding-md 0);
+        @include margin-bottom($margin-md);
+        border-bottom: 1px solid $color-mercury;
+        height: auto;
+        @media #{$tablet} {
+            @include padding($padding-l 0);
+            @include margin-bottom($margin-l);
+            height: 100%;
+        }
+    }
+
+    .info-group {
+        display: none;
+        position: relative;
+        width: 100%;
+
+        &.show {
+            display: block;
+        }
+
+        label {
+            @include margin(0 $margin-sm 0 0);
+            font-family: $font-bold;
+        }
+    }
+}
