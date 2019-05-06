@@ -320,7 +320,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 }
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createPackMatDeliveryDetailTable(SlingHttpServletRequest request, DeliveryList deliveryDetail) {
@@ -355,7 +355,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 }
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createProductTable(SlingHttpServletRequest request, List<Product> products) {
@@ -388,7 +388,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             }
         }
 
-        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 
     private Table createPackMatProductTable(SlingHttpServletRequest request, List<Product> products) {
@@ -414,7 +414,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             }
         }
 
-        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 
     private String getProductValueForTheHeader(Product product, String columnName, int i) {
@@ -452,7 +452,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 {StringUtils.EMPTY, CustomerHubConstants.BOLD_IDENTIFIER + "                VAT", deliveryList.getTotalVAT()}
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createOrderSummaryTable(SlingHttpServletRequest request, List<OrderSummary> orderSummaryList) {
