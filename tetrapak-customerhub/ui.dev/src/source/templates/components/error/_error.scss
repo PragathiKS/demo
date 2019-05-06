@@ -1,0 +1,13 @@
+.tp-error-heading {
+    @include font-size(32px);
+    color: $color-text;
+  
+}
+.tp-error-code {
+    @include font-size(16px);
+
+}
+.tp-error-des {
+    @include font-size(16px);
+ 
+}
