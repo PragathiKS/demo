@@ -5,8 +5,9 @@
  */
 
 import $ from 'jquery';
+import LazyLoad from 'vanilla-lazyload';
 
-function _processImageAttributes() {
+function _processImageAttributes(container) {
   $('.js-dynamic-media').each(function () {
     const $this = $(this);
     let desktopSrc = $this.attr('data-src_desktop');
@@ -60,7 +61,15 @@ function _processImageAttributes() {
       //desktop xtra large
       $this.attr('data-src', desktopXL);
     }
-    $this.attr('src', $this.attr('data-src'));
+  });
+  if (typeof container === 'string') {
+    return new LazyLoad({
+      container: document.querySelector(container),
+      elements_selector: '.js-dynamic-media[data-src]'
+    });
+  }
+  return new LazyLoad({
+    elements_selector: '.js-dynamic-media[data-src]'
   });
 }
 

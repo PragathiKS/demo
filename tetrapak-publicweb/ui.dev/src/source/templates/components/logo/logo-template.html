@@ -1,7 +1,7 @@
 <sly data-sly-template.logo_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <a data-sly-test="${data.imagePath}" href="${data.imageLink}" data-sly-unwrap="${!data.imageLink}">
-    <img class="tp-pw-logo" src="${data.imagePath}" alt="${data.imageAltI18n}">
+    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className='tp-pw-logo'}" />
   </a>
   <sly data-sly-call="${templates.placeholder @ isEmpty = !data.imagePath}"></sly>
 </sly>
