@@ -11,9 +11,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
  *
  * @author Ruhee sharma
  */
-public class LinkUtil {
-    
-    private static String path;
+public final class LinkUtil {
     
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
@@ -24,7 +22,7 @@ public class LinkUtil {
      *
      * @param resource Resource
      * @param pathField String
-     * @return String
+     * @return String path
      */
     public static String getValidLink(Resource resource, String pathField) {       
         ResourceResolver resolver = resource.getResourceResolver();
@@ -35,7 +33,7 @@ public class LinkUtil {
             String resolvedPath = resolver.map(pathField);
             return resolvedPath + CustomerHubConstants.HTML_EXTENSION;
         } else {
-            return path;
+            return pathField;
         }
     }
     
