@@ -141,6 +141,7 @@
     &__packaging-modal {
         &-body {
             @include padding($padding-l);
+            border-top: 1px solid $color-tundora;
         }
 
         &-desc {
