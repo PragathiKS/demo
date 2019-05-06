@@ -250,7 +250,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         rows.add(new Row("Order details", 20, muliRegular, 18));
         rows.add(new Row(StringUtils.EMPTY, 30, muliRegular, 12));
         rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getOrderNo()) + orderDetails.getOrderNumber() + " - " +
+                orderDetailsModel.getOrderNo()) + ": " + orderDetails.getOrderNumber() + " - " +
                 orderDetails.getStatus(), 20, muliRegular, 11));
         rows.add(new Row(StringUtils.EMPTY, 10, muliRegular, 12));
         return rows;
@@ -460,7 +460,7 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         for (String packMatColumnName : packMatColumns) {
             int width = 70;
             if (StringUtils.equalsIgnoreCase(packMatColumnName, "product")) {
-                width = 325;
+                width = 300;
             }
             columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
                     GlobalUtil.getI18nValue(request, ORDER_DETAIL_SUMMARY_PREFIX, packMatColumnName), width));
