@@ -75,9 +75,10 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 				LOGGER.debug("Raw Data for the Excel sheet has been formed having rows: {} and columns: {}",
 						data.length, data[0].length);
 			}
-			
+
 			ExcelFileData excelReportData = new ExcelFileData();
-			excelReportData.setFileName(orderDetailData.getOrderDetails().getOrderNumber());
+			excelReportData.setFileName(getI18nVal(orderDetailsModel.getOrderNo()) + ":"
+					+ orderDetailData.getOrderDetails().getOrderNumber());
 			excelReportData.setExcelSheetName(SHEET_NAME);
 			excelReportData.setData(data);
 			if (ExcelUtil.generateExcelReport(response, excelReportData)) {

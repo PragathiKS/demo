@@ -137,7 +137,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = printPackMatDeliveryDetails(request, document, contentStream, orderDetailResponse.getDeliveryList());
             }
             contentStream.close();
-            PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
+            PDFUtil.writeOutput(response, document, GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getOrderNo()) + ":"
+					+ orderDetails.getOrderNumber());
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
