@@ -92,7 +92,7 @@ public class OrderSearchModel {
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("disabledFields", disabledFields);        
-        i18KeyMap.put("orderDetailLink",  LinkUtil.getValidLink(resource, orderDetailLink));
+        i18KeyMap.put("orderDetailLink", getOrderDetailLink()) ;
        
 
         Gson gson = new Gson();
@@ -104,7 +104,7 @@ public class OrderSearchModel {
     }
 
     public String getOrderDetailLink() {
-        return orderDetailLink  + CustomerHubConstants.HTML_EXTENSION;
+        return LinkUtil.getValidLink(resource, orderDetailLink);
     }
 
     public Set<String> getDisabledFields() {
