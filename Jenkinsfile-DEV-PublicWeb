@@ -2,9 +2,9 @@
 pipeline {
         agent any
   
- triggers {
-          cron('30 6 * * *')
-                   } 
+# triggers {
+ #         cron('30 6 * * *')
+  #                 } 
 
 
         parameters {
