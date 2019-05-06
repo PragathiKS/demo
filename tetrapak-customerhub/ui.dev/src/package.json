@@ -4,7 +4,7 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "core-js": "^3.0.0-beta.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "jquerydeparam": "^1.1.2",
     "jqueryrouter": "^2.1.0",
     "lightpick": "git+https://github.com/scssyworks/Lightpick.git#v1.4.2",

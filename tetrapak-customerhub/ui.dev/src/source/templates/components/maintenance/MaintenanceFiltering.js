@@ -2,9 +2,28 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import Lightpick from 'lightpick';
+import { DATE_FORMAT } from '../../../scripts/utils/constants';
 
+/**
+ * Fire analytics on Packaging, Processing
+ * mail/contact link click
+ */
+function _trackAnalytics(type, name) {
+  const analyticsData = {
+    linkType:'internal',
+    linkSection:'installed equipment-maintenance',
+    linkParentTitle:'tetrapak contact'
+  };
+
+  // creating linkName as per the name or type received
+  analyticsData.linkName = `${type}-${name}`;
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 /**
  * Process Sites Data
@@ -39,8 +58,8 @@ function _renderMaintenanceContact() {
 
   render.fn({
     template: 'maintenanceContact',
-    data,
-    target: '.js-maintenance-filtering__contact'
+    target: '.js-maintenance-filtering__contact',
+    data
   });
 }
 
@@ -78,8 +97,9 @@ function _renderLineFilter(data = this.cache.filteredData) {
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilter(data = this.cache.filteredData) {
-  let lineVal = this.cache.$line.val(),
-    equipmentRecords;
+  const lineVal = this.cache.$line.val();
+  let equipmentRecords;
+
   data.equipmentRecords = {};
   data.equipmentRecords.options = [];
 
@@ -180,23 +200,76 @@ class MaintenanceFiltering {
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
   bindEvents() {
+    const self = this;
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
+      })
+      .on('click', '.js-maintenance-filtering__contact-mail', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'email');
+      })
+      .on('click', '.js-maintenance-filtering__contact-phone', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'phone');
       });
+    this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
+  }
+  bindCalendar() {
+    render.fn({
+      template: 'maintenanceCalendar',
+      target: '.js-maintenance-filtering__calendar-wrapper',
+      data: this.cache.i18nKeys
+    });
+    const maintenancecalendar = this.root.find('.js-range-selector');
+    const picker = maintenancecalendar[0];
+    this.cache.picker = new Lightpick({
+      field: picker,
+      singleDate: false,
+      numberOfMonths: 4,
+      numberOfColumns: 2,
+      inline: true,
+      dropdowns: false,
+      format: DATE_FORMAT,
+      separator: ' - ',
+      selectForward: true
+    });
+    const calendarMonthsCont = this.root.find('.lightpick__months');
+    if (
+      isDesktopMode()
+      && calendarMonthsCont.length
+    ) {
+      const months = calendarMonthsCont.find('section.lightpick__month');
+      if (months.length === 4) {
+        const leftMonthsContainer = $(months[0]).add(months[1]);
+        const rightMonthsContainer = $(months[2]).add(months[3]);
+        leftMonthsContainer.wrapAll('<div></div>');
+        rightMonthsContainer.wrapAll('<div></div>');
+      }
+    }
+  }
+  navigateCalendar(e) {
+    const $this = e.data;
+    const action = $(this).data('action');
+    const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+    if ($defaultCalendarNavBtn.length) {
+      let evt = document.createEvent('MouseEvents');
+      evt.initEvent('mousedown', true, true);
+      $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
+    }
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
+  trackAnalytics = (type, name) => _trackAnalytics.call(this, type, name);
   init() {
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
+    this.bindCalendar();
   }
 }
 

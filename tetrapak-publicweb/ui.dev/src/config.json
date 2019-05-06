@@ -94,7 +94,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/publicweb/jsonData"
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/publicweb/jsonData"
       }
     ]
   },
@@ -148,7 +148,8 @@
         "source/templates/components/listContentImage/",
         "source/templates/components/carousel/",
         "source/templates/components/carouselWithFilters/",
-        "source/templates/components/softConversionForm"
+        "source/templates/components/softConversionForm",
+        "source/templates/components/contactFooterForm"
       ]
     },
     "handlebars": {
@@ -195,6 +196,7 @@
     },
     "static": {
       "files": [
+        "<%= config.source %>/templates-hbs/**/*.hbs",
         "<%= config.source %>/scripts/**/*.js",
         "<%= config.source %>/templates/**/*.js",
         "<%= config.source %>/styles/*.scss",

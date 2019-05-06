@@ -241,12 +241,14 @@ function _renderPaginateData() {
         cancellable: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
           this.data = data = {
-            isError: true
+            isError: true,
+            i18nKeys
           };
         } else {
-          const { i18nKeys, downloadPdfExcelServletUrl, orderType, partsDeliveryTableCols } = $this.cache;
+          const { downloadPdfExcelServletUrl, orderType, partsDeliveryTableCols } = $this.cache;
           data.i18nKeys = i18nKeys;
           data.pageNumber = pageNumber;
 
@@ -363,7 +365,10 @@ class OrderDetails {
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
-        window.history.back();
+        const [, , prevPageQuery] = location.search.split('&');
+        const [, url] = prevPageQuery.split('=');
+        const decodeUrl = decodeURIComponent(url);
+        window.open(decodeUrl, '_self');
       })
       .on('orderdetail.pagenav', '.js-pagination-multiple', function (...args) {
         const [, paginationData] = args;

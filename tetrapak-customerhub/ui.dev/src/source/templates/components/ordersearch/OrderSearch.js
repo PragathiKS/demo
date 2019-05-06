@@ -63,7 +63,7 @@ function _processContacts(contacts) {
  */
 function _tableSort(order, keys, orderDetailLink) {
   const dataObject = {
-    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
+    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}&p=${encodeURIComponent(window.location.href)}`,
     row: []
   };
   keys.forEach((key, index) => {
@@ -135,7 +135,9 @@ function _renderTable(filterParams) {
       target: '.js-order-search__table',
       url: {
         path: `${apiHost}/${API_ORDER_HISTORY}`,
-        data: filterParams
+        data: $.extend(filterParams, {
+          top: ORDER_HISTORY_ROWS_PER_PAGE
+        })
       },
       beforeRender(data) {
         if (!data) {

@@ -34,7 +34,7 @@
         &__title,
         &__description {
             @include margin-bottom($padding-md);
-            overflow: hidden;
+            //overflow: hidden; demo fix
 
             @media #{$desktop} {
                 @include margin-bottom($padding-l);
