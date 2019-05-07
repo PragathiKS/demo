@@ -44,7 +44,6 @@ function _trackAnalytics(type) {
       break;
     }
   }
-  logger.log('ob', ob, trackingKey);
   trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
@@ -414,6 +413,8 @@ class FinancialStatement {
       .on('change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).val(), noReset);
+      })
+      .on('click', '.js-financial-statement__find-customer', function () {
         $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {

@@ -1,6 +1,4 @@
 import $ from 'jquery';
-import { logger } from 'handlebars';
-
 /**
  * Fire analytics
  */
