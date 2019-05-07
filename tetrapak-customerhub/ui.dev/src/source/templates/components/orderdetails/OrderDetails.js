@@ -404,7 +404,6 @@ class OrderDetails {
     this.initCache();
     this.bindEvents();
     this.renderOrderSummary();
-
   }
 }
 
