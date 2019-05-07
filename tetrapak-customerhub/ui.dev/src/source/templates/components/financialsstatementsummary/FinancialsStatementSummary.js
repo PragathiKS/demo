@@ -168,13 +168,15 @@ class FinancialsStatementSummary {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
-    this.root.on('click', '.js-financials-summary__create-pdf', () => {
-      this.trackAnalytics(this, 'downloadPdf');
-      this.downloadPdfExcel('pdf');
+    this.root.on('click', '.js-financials-summary__create-pdf', this, function (e) {
+      const $this = e.data;
+      $this.trackAnalytics($this, 'downloadPdf');
+      $this.downloadPdfExcel('pdf', this);
     });
-    this.root.on('click', '.js-financials-summary__create-excel', () => {
-      this.trackAnalytics(this, 'downloadExcel');
-      this.downloadPdfExcel('excel');
+    this.root.on('click', '.js-financials-summary__create-excel', this, function (e) {
+      const $this = e.data;
+      $this.trackAnalytics($this, 'downloadExcel');
+      $this.downloadPdfExcel('excel', this);
     });
 
     route((...args) => {
@@ -196,8 +198,8 @@ class FinancialsStatementSummary {
     _downloadInvoice.call(this);
     $this.trackAnalytics(this, 'downloadInvoice');
   }
-  downloadPdfExcel(type) {
-    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type]);
+  downloadPdfExcel(type, el) {
+    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type, el]);
   }
 
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);

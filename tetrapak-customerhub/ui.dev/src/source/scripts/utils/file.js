@@ -54,21 +54,31 @@ export const fileWrapper = (config) => {
             reject(INVALID_STREAM);
           } else if (window.navigator.msSaveOrOpenBlob) {
             // Handle IE and Edge
-            window.navigator.msSaveOrOpenBlob(data, `${contentFileName}.${extension}`);
-            resolve({ data, filename: contentFileName, extension });
+            try {
+              window.navigator.msSaveOrOpenBlob(data, `${contentFileName}.${extension}`);
+              resolve({ data, filename: contentFileName, extension });
+            } catch (e) {
+              logger.error(e);
+              reject(e.message);
+            }
           } else {
             // Handle other browsers
-            const anchor = $('<a class="d-none"></a>');
-            const href = window.URL.createObjectURL(data);
-            anchor.attr({
-              href,
-              download: `${contentFileName}.${extension}`
-            });
-            $body.append(anchor); // Firefox does not react to in-memory elements
-            anchor[0].click(); // Triggers file download
-            window.URL.revokeObjectURL(href); // Clears in-memory file data
-            anchor.remove();
-            resolve({ data, filename: contentFileName, extension });
+            try {
+              const anchor = $('<a class="d-none"></a>');
+              const href = window.URL.createObjectURL(data);
+              anchor.attr({
+                href,
+                download: `${contentFileName}.${extension}`
+              });
+              $body.append(anchor); // Firefox does not react to in-memory elements
+              anchor[0].click(); // Triggers file download
+              window.URL.revokeObjectURL(href); // Clears in-memory file data
+              anchor.remove();
+              resolve({ data, filename: contentFileName, extension });
+            } catch (e) {
+              logger.log(e);
+              reject(e.message);
+            }
           }
         })
         .fail((...args) => {

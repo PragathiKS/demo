@@ -40,7 +40,6 @@ describe('FinancialStatement', function () {
         token_type: "BearerToken"
       }
     });
-    this.submitStub = sinon.stub(this.financialstatement, 'submitTempForm');
     this.financialstatement.init();
   });
   after(function () {
@@ -58,7 +57,6 @@ describe('FinancialStatement', function () {
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
-    this.submitStub.restore();
   });
 
   it('should initialize', function (done) {
