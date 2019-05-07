@@ -369,10 +369,8 @@ class OrderDetails {
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
-        const [, , prevPageQuery] = location.search.split('&');
-        const [, url] = prevPageQuery.split('=');
-        const decodeUrl = decodeURIComponent(url);
-        window.open(decodeUrl, '_self');
+        const { p } = deparam();
+        window.open(p, '_self');
       })
       .on('orderdetail.pagenav', '.js-pagination-multiple', function (...args) {
         const [, paginationData] = args;
