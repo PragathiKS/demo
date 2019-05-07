@@ -1,0 +1,9 @@
+.tp-documents {
+    &__filters {
+        @include margin-bottom($margin-md);
+    }
+
+    .tpatom-dropdown {
+        @include margin-bottom($margin-md);
+    }
+}
