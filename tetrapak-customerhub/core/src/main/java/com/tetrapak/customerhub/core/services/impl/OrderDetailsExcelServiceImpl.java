@@ -77,7 +77,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 			}
 
 			ExcelFileData excelReportData = new ExcelFileData();
-			excelReportData.setFileName(getI18nVal(orderDetailsModel.getOrderNo()) + ":"
+			excelReportData.setFileName(getI18nVal(orderDetailsModel.getOrderNo()) + " "
 					+ orderDetailData.getOrderDetails().getOrderNumber());
 			excelReportData.setExcelSheetName(SHEET_NAME);
 			excelReportData.setData(data);
