@@ -1,8 +1,7 @@
 .tp-order-detail-packaging {
     &__info-modal {
         &-body {
-            @include padding($padding-l);
-            border-top: 1px solid $color-tundora;
+            @include padding(0 $padding-l $padding-l);
         }
 
         &-desc {

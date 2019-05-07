@@ -155,7 +155,8 @@ function _renderOrderSummary() {
       url: {
         path: `${apiHost}/${$this.cache.apiUrl}`,
         data: {
-          'order-number': $this.cache.orderNumber
+          'order-number': $this.cache.orderNumber,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target: '.js-order-detail__summary',
@@ -228,7 +229,8 @@ function _renderPaginateData() {
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,
-          'skip': pageIndex * ORDER_DETAILS_ROWS_PER_PAGE
+          skip: pageIndex * ORDER_DETAILS_ROWS_PER_PAGE,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target,
