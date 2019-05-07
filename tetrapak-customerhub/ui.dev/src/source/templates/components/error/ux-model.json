@@ -1,7 +1,7 @@
 {
-    "errorTitle": "Ooops... Page not found",
-    "errorCode": "Error 404",
-    "errorDescription": "Either you do not have access to this page, or you mistyped the URL. You can always go to your dashboard.",
-    "imageLink": "/content/dam/Error_CuHu.png",
-    "imageName": "Error_CuHu.png"
+  "errorTitle": "Ooops... Page not found",
+  "errorCode": "Error 404",
+  "errorDescription": "Either you do not have access to this page, or you mistyped the URL. You can always go to your dashboard.",
+  "imagePath": "/content/dam/Error_CuHu.png",
+  "imageAltText": "Error Page"
 }

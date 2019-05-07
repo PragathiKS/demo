@@ -1,13 +1,25 @@
-.tp-error-heading {
-    @include font-size(32px);
-    color: $color-text;
-  
-}
-.tp-error-code {
-    @include font-size(16px);
+.tp-error {
+    &__heading {
+        @include margin-bottom($margin-l);
+        color: $color-text;
+    }
 
-}
-.tp-error-des {
-    @include font-size(16px);
- 
+    &__code {
+        @include margin-bottom($margin-l);
+        color: $color-text;
+        font-family: $font-semi-bold;
+    }
+
+    &__des {
+        color: $color-text;
+        font-family: $font-semi-bold;
+    }
+
+    &__img {
+        display: none;
+
+        @media #{$desktop} {
+            display: block;
+        }
+    }
 }
