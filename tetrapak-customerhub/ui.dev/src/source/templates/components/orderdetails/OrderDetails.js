@@ -246,7 +246,6 @@ function _renderPaginateData() {
       },
       beforeRender(data) {
         const { i18nKeys } = $this.cache;
-        logger.log('i18nKeys', i18nKeys);
         if (!data) {
           this.data = data = {
             isError: true,
@@ -405,9 +404,7 @@ class OrderDetails {
     this.initCache();
     this.bindEvents();
     this.renderOrderSummary();
-    // eslint-disable-next-line no-debugger
-    debugger;
-    logger.log('test');
+
   }
 }
 
