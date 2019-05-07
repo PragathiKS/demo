@@ -5,10 +5,14 @@
  */
 import dynamicMedia from './dynamicMedia';
 import { toast } from './toast';
+import { $body } from './commonSelectors';
 
 export default {
   init() {
     dynamicMedia.init();
     toast.init();
+    $body.on('click', 'js-prevent-default', (e) => {
+      e.preventDefault();
+    });
   }
 };
