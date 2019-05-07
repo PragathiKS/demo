@@ -1,6 +1,4 @@
 
-#This is to test something by simran ##
-
 
 # Sample AEM project template
 
