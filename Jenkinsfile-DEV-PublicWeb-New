@@ -6,7 +6,6 @@ pipeline {
           cron('30 6 * * *')
   */                 } 
 
-
         parameters {
 
                 booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
@@ -51,41 +50,80 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 
                stage ('Build') {
                         steps {
+						
+						script {
+                          BUILD_COMMONS = sh (
+				          script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+				          returnStatus: true ) == 0
+					
+					      if ("${BUILD_COMMONS}" == 'true')
+                              {
+							    echo "Build Commons"
                                 sh "rm -rf $workspace/tetrapak-commons/ui.dev/src/node_modules/"
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+							}
+							 }
+							 }
+							 }
+								stage ('Build-PublicWeb') {
+                                steps {
+								echo "Build CustomerHub"
                                 sh "rm -rf $workspace/tetrapak-publicweb/ui.dev/src/node_modules/"
                                 sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+								 sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
                                 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
                                 sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
                         }
                 }  
 
                 stage ('Sonar_JS') {
-                        steps {
-                                script {
+                                  steps {
+                                      script {
                                         if (params.Skip_Tool_Execution) {
                                                 echo "Skipping Sonar execution for JS profile"
-                                        }
+                                                                       }
                                         else {
+										
+												BUILD_COMMONS = sh (
+												script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+												returnStatus: true ) == 0
+					
+												if ("${BUILD_COMMONS}" == 'true')
+												{
+												echo "Running Sonar for JS profile on Project - Commons"
+										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+										        }
+										        echo "Running Sonar for JS profile on Project - PublicWeb"
                                                 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
-                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+
                                         }
                                 }
                         }
                 } 
                 
 
-                stage ('Sonar_CSS') {
+                   stage ('Sonar_CSS') {
                         steps {
                                 script {
                                         if (params.Skip_Tool_Execution) {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
                                         else{
+											    BUILD_COMMONS = sh (
+												script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+												returnStatus: true ) == 0
+					
+												if ("${BUILD_COMMONS}" == 'true')
+												{
+										        echo "Running Sonar for CSS profile on Project - Commons"
+										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+										        }
+												echo "Running Sonar for CSS profile on Project - PublicWeb"
                                                 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
-                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+                                                
                                         }
                                 }
                         }
@@ -99,8 +137,19 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                         }
                                         else
                                         {
+										
+											BUILD_COMMONS = sh (
+												script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+												returnStatus: true ) == 0
+					
+												if ("${BUILD_COMMONS}" == 'true')
+												{
+												echo "Running Sonar for JAVA profile on Project - Commons"
+										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+										        }
+										       echo "Running Sonar for JAVA profile on Project - PublicWeb"
                                                 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
-                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+
                                         }
                                 }
                         }
@@ -111,7 +160,16 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                         steps {
                                 parallel (
                                         "Author Deployment" : {
-                                                echo "Uninstalling Old Commons Package on author"
+										
+										        script {
+												BUILD_COMMONS = sh (
+												script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+												returnStatus: true ) == 0
+					
+												if ("${BUILD_COMMONS}" == 'true')
+												{
+												
+                                                echo "Uninstalling Old Package on author -- Commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Commons Package on author"
@@ -123,8 +181,8 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
-
-                                                echo "Uninstalling Old Package on author"
+                                                } }
+                                                echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Package on author"
@@ -137,7 +195,15 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
                                         },
                                         "Publish_Deployment" : {
-                                                echo "Uninstalling Old Commons Package on publish"
+										        script {
+												BUILD_COMMONS = sh (
+												script: "git diff --name-only $GIT_PREVIOUS_COMMIT | grep tetrapak-commons",
+												returnStatus: true ) == 0
+					
+												if ("${BUILD_COMMONS}" == 'true')
+												{
+												
+                                                echo "Uninstalling Old Package on publish -- Commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Commons Package  on publish"
@@ -149,8 +215,8 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 echo "Installing New Commons Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
-
-                                                echo "Uninstalling Old Package on publish"
+												} }
+                                                echo "Uninstalling Old Package on publish -- PublicWeb"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Package on publish"
@@ -166,8 +232,6 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                         }
                 }
 
-				
-				
                       stage ( 'karma, Pa11y, Zap Tools Execution in Sequence') {
                                   steps {
                                          script {
@@ -203,10 +267,10 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 														}}}
                                                        
 							stage ( 'SiteSPeed Execution on all platforms in Parallel') {
-							steps {
-							script {
-								parallel (
-                                                                  "sitespeed_Desktop" : {
+							  steps {
+							     script {
+								     parallel (
+                                                        "sitespeed_Desktop" : {
                                                         if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
                                                         }
@@ -219,7 +283,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                                      sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop-pw'
                                                             }
                                                            },
-					            "sitespeed_Mobile" : {
+					                                    "sitespeed_Mobile" : {
 
                                                         if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
