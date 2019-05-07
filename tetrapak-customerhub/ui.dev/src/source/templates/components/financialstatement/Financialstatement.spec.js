@@ -22,6 +22,7 @@ describe('FinancialStatement', function () {
     this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
+    this.analyticsSpy = sinon.spy(this.financialstatement, 'trackAnalytics');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
     this.dateRangeSpy = sinon.spy(this.financialstatement, 'openDateSelector');
@@ -51,6 +52,7 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
+    this.analyticsSpy.restore();
     this.downloadPdfExcelSpy.restore();
     this.navigateSpy.restore();
     this.searchSpy.restore();
@@ -82,6 +84,12 @@ describe('FinancialStatement', function () {
   it('should set new customer by calling setCustomer when changed from dropdown', function (done) {
     $('.js-financial-statement__find-customer').trigger('change');
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
+    done();
+  });
+
+  it('should fire analytics by calling setCustomer when click from dropdown', function (done) {
+    $('.js-financial-statement__find-customer').trigger('click');
+    expect(this.financialstatement.trackAnalytics.called).to.be.true;
     done();
   });
 
