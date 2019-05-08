@@ -32,4 +32,4 @@ export const API_FINANCIALS_STATEMENTS = 'financials/results';
 export const API_FINANCIALS_INVOICE = 'demo/cfe/invoices';
 export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
 export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
-export const API_MAINTENANCE_FILTERS = 'materials/equipments/installations';
+export const API_MAINTENANCE_FILTERS = 'mock/materials/equipments/installations';
