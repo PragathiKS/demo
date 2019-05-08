@@ -15,11 +15,15 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 
 function _trackAnalytics(type) {
+
   const $this = this;
+  const { $filterForm } = $this.cache;
+  const { statementOfAccount = '' } = $this.cache.i18nKeys;
+
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: 'statement of accounts'
+    linkParentTitle: statementOfAccount.toLowerCase()
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
@@ -29,12 +33,11 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const { $filterForm } = $this.cache;
       const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
 
-      ob.linkName = 'reset search';
+      ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
@@ -425,6 +428,8 @@ class FinancialStatement {
       .on('change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).val(), noReset);
+      })
+      .on('click', '.js-financial-statement__find-customer', () => {
         $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {

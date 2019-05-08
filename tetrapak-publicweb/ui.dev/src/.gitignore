@@ -2,5 +2,6 @@ app
 node_modules
 coverage
 TESTS-PhantomJS*
+TESTS-HeadlessChrome*
 sass-lint-report.html
 eslint-report.html

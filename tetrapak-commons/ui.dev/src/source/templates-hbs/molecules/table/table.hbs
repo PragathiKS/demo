@@ -1,4 +1,8 @@
-<table class="tpmol-table{{#if baseClass}} {{baseClass}}__table{{/if}}{{#if jsClass}} {{jsClass}}__table{{/if}}">
+<table
+    class="tpmol-table{{#if baseClass}} {{baseClass}}__table{{/if}}{{#if jsClass}} {{jsClass}}__table{{/if}}"
+    {{#eachData this}}
+        {{@key}}="{{this}}"
+    {{/eachData}}>
     {{#if headings}}
     <thead class="tpmol-table__head{{#if baseClass}} {{baseClass}}__head{{/if}}{{#if jsClass}} {{jsClass}}__head{{/if}}">
         <tr class="tpmol-table__rowheading{{#if baseClass}} {{baseClass}}__row {{baseClass}}__rowheading{{/if}}{{#if jsClass}} {{jsClass}}__rowheading{{/if}}">
