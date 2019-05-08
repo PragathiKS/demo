@@ -214,9 +214,9 @@ import java.util.Map;
 
                     contentStream = PDFUtil.getNewPage(document, contentStream);
                     height = PDFUtil.drawTable(contentStream,
-                            createPartialProductTable(request, deliveryDetail.getProducts(), start, end - 1), 750);
-                    PDFUtil.drawLine(contentStream, MARGIN, 460, 765, Color.LIGHT_GRAY, 0.1f);
-                    PDFUtil.drawLine(contentStream, MARGIN, 460, 735, Color.black, 0.1f);
+                            createPartialProductTable(request, deliveryDetail.getProducts(), start, end - 1), 730);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 745, Color.LIGHT_GRAY, 0.1f);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
                 }
                 PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height - 10);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
@@ -268,9 +268,11 @@ import java.util.Map;
 
                     contentStream = PDFUtil.getNewPage(document, contentStream);
                     height = PDFUtil.drawTable(contentStream,
-                            createPartialPackMatProductTable(request, deliveryDetail.getProducts(), start, end - 1), 750);
+                            createPartialPackMatProductTable(request, deliveryDetail.getProducts(), start, end - 1), 730);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 745, Color.LIGHT_GRAY, 0.1f);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
                 }
-                PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5 , Color.LIGHT_GRAY, 0.1f);
                 height -= 20;
             }
         }
