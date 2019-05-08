@@ -155,7 +155,8 @@ function _renderOrderSummary() {
       url: {
         path: `${apiHost}/${$this.cache.apiUrl}`,
         data: {
-          'order-number': $this.cache.orderNumber
+          'order-number': $this.cache.orderNumber,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target: '.js-order-detail__summary',
@@ -170,12 +171,14 @@ function _renderOrderSummary() {
         cancellable: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
           this.data = data = {
-            isError: true
+            isError: true,
+            i18nKeys
           };
         } else {
-          const { i18nKeys, downloadPdfExcelServletUrl, orderType, packagingProductsTableCols, packagingDeliveryTableCols, partsDeliveryTableCols } = $this.cache;
+          const { downloadPdfExcelServletUrl, orderType, packagingProductsTableCols, packagingDeliveryTableCols, partsDeliveryTableCols } = $this.cache;
           data.i18nKeys = i18nKeys;
 
           if (packagingProductsTableCols.length > 0) {
@@ -226,7 +229,8 @@ function _renderPaginateData() {
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,
-          'skip': pageIndex * ORDER_DETAILS_ROWS_PER_PAGE
+          skip: pageIndex * ORDER_DETAILS_ROWS_PER_PAGE,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target,
@@ -365,10 +369,8 @@ class OrderDetails {
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })
       .on('click', '.js-order-detail__back-btn', () => {
-        const [, , prevPageQuery] = location.search.split('&');
-        const [, url] = prevPageQuery.split('=');
-        const decodeUrl = decodeURIComponent(url);
-        window.open(decodeUrl, '_self');
+        const { p } = deparam();
+        window.open(p, '_self');
       })
       .on('orderdetail.pagenav', '.js-pagination-multiple', function (...args) {
         const [, paginationData] = args;

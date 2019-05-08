@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -144,14 +146,14 @@ public class OrderingCardModel {
      * @return allOrdersLink
      */
     public String getAllOrdersLink() {
-        return allOrdersLink;
+        return LinkUtil.getValidLink(resource, allOrdersLink);
     }
 
     /**
      * @return orderDetailLink
      */
     public String getOrderDetailLink() {
-        return orderDetailLink;
+        return LinkUtil.getValidLink(resource, orderDetailLink);
     }
 
     /**

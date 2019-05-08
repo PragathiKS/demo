@@ -4,9 +4,26 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
 import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Lightpick from 'lightpick';
 import { DATE_FORMAT } from '../../../scripts/utils/constants';
 
+/**
+ * Fire analytics on Packaging, Processing
+ * mail/contact link click
+ */
+function _trackAnalytics(type, name) {
+  const analyticsData = {
+    linkType:'internal',
+    linkSection:'installed equipment-maintenance',
+    linkParentTitle:'tetrapak contact'
+  };
+
+  // creating linkName as per the name or type received
+  analyticsData.linkName = `${type}-${name}`;
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 /**
  * Process Sites Data
@@ -183,12 +200,19 @@ class MaintenanceFiltering {
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
   bindEvents() {
+    const self = this;
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
+      })
+      .on('click', '.js-maintenance-filtering__contact-mail', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'email');
+      })
+      .on('click', '.js-maintenance-filtering__contact-phone', function () {
+        self.trackAnalytics($(this).data('type').toLowerCase(), 'phone');
       });
     this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
   }
@@ -240,6 +264,7 @@ class MaintenanceFiltering {
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
+  trackAnalytics = (type, name) => _trackAnalytics.call(this, type, name);
   init() {
     this.initCache();
     this.bindEvents();

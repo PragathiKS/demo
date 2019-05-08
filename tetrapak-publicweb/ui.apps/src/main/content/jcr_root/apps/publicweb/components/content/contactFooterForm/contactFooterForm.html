@@ -1,3 +1,3 @@
-<div class="pw-contactFooterForm p-7 text-center" style="background-color: red; color: white;">
-	<h2>Contact footer form placeholder</h2>
-</div>
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.ContactFooterFormModel"
+     data-sly-use.lib="contactFooterForm-template.html"
+     data-sly-call="${lib.contactFooterForm_template @ data=model}" />

@@ -18,6 +18,8 @@ import java.util.List;
 
 /**
  * Model class for left navigation component
+ *
+ * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class)
 public class LeftNavigationModel {
@@ -79,8 +81,9 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
-            if (PageUtil.isCurrentPage(subPage, resource)) {
+            if (PageUtil.isCurrentPage(subPage, resource) || isChildPageActive(subPage, resource)) {
                 leftNavigationBean.setExpanded(true);
+                leftNavigationBean.setActive(true);
             }
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
@@ -93,6 +96,22 @@ public class LeftNavigationModel {
             }
         }
         return leftNavigationBean;
+    }
+
+    private boolean isChildPageActive(Page subPage, Resource resource) {
+        boolean flag = false;
+
+        if (subPage.listChildren(new PageFilter()).hasNext()) {
+            Iterator<Page> itr = subPage.listChildren(new PageFilter());
+            while (itr.hasNext()) {
+                Page childPage = itr.next();
+                if (PageUtil.isCurrentPage(childPage, resource)) {
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        return flag;
     }
 
     private void setLogoListItem(ValueMap valueMap) {
@@ -108,7 +127,7 @@ public class LeftNavigationModel {
         bean.setExternalLink(isExternalLink(valueMap));
         bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setHref(getResolvedPagePath(childPage));
-        bean.setActive(PageUtil.isCurrentPage(childPage, resource));
+        bean.setActive(PageUtil.isCurrentPage(childPage, resource) || isChildPageActive(childPage, resource));
         return bean;
     }
 

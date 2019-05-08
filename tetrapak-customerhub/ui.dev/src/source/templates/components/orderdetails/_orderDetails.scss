@@ -152,6 +152,7 @@
 
     &__icon-info {
         @include padding($padding-sm);
+        cursor: pointer;
     }
 
     [data-key='unitPrice'] {
@@ -164,10 +165,6 @@
         @media #{$desktop} {
             margin-top: 0;
         }
-    }
-
-    .tpmol-modal-header {
-        @include padding($padding-md $padding-l)
     }
 
     .icon-External_Link {

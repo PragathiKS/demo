@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -214,7 +214,12 @@ class OrderingCard {
     if (typeof config === 'undefined') {
       config = {
         template: 'orderingCard',
-        url: `${apiHost}/${API_ORDER_HISTORY}`,
+        url: {
+          path: `${apiHost}/${API_ORDER_HISTORY}`,
+          data: {
+            top: ORDER_HISTORY_ROWS_PER_PAGE
+          }
+        },
         ajaxConfig: {
           method: ajaxMethods.GET,
           showLoader: true,

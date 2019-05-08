@@ -24,7 +24,7 @@
     <div class="pw-carousel__tabContent tab-content" data-sly-list.tabItem="${data.tabs}">
       <div class="pw-carousel__tabPane tab-pane fade ${tabItemList.first? 'show active' : ''}" id="pills-${tabItemList.index}-${data.carouselId}" role="tabpanel">
         <div class="pw-carousel__tabPane__img d-flex">
-          <img src="${tabItem.practiceImagePath}" alt="${tabItem.practiceImageAltI18n}">
+            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tabItem.practiceImagePath, altText=tabItem.practiceImageAltI18n}" />
         </div>
         <div class="pw-carousel__tabPane__text">
           <h3>${tabItem.practiceTitle}</h3>

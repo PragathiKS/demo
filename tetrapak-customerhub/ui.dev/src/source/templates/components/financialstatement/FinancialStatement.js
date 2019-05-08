@@ -7,11 +7,12 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
+import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost, resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { $body } from '../../../scripts/utils/commonSelectors';
+import { toast } from '../../../scripts/utils/toast';
 
 function _trackAnalytics(type) {
   const $this = this;
@@ -83,7 +84,7 @@ function _processFinancialStatementData(data) {
 function _renderAddressDetail() {
   render.fn({
     template: 'financialAddressDetail',
-    target: '.tp-financial-statement__customer-detail',
+    target: '.js-financial-statement__customer-detail',
     data: this.cache.data
   });
 }
@@ -243,6 +244,13 @@ function _getFilterQuery() {
   return returnQueryString;
 }
 
+function _getExtension(type) {
+  if (type === 'excel') {
+    return 'xlsx';
+  }
+  return 'pdf';
+}
+
 /**
  * Sets current filter route
  * @param {boolean} isInit Initialize flag
@@ -258,10 +266,12 @@ function _setRoute(isInit = false) {
   }
 }
 function _downloadPdfExcel(...args) {
-  const [, type] = args;
+  const [, type, el] = args;
+  const $el = $(el);
+  $el.attr('disabled', 'disabled');
   const $this = this;
   const paramsData = {};
-  const { $filterForm, $dateRange, data } = $this.cache;
+  const { $filterForm, $dateRange, data, i18nKeys } = $this.cache;
   const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
   const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
   const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
@@ -288,21 +298,22 @@ function _downloadPdfExcel(...args) {
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
     const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-    let form = $('<form class="done" method="POST" action=' + url + '/>');
-    form.append(
-      $('<input/>', {
-        type: 'text',
-        name: 'params',
-        val: requestBody.params
-      }));
-    form.append(
-      $('<input/>', {
-        type: 'text',
-        name: 'token',
-        val: requestBody.token
-      }));
-    $body.append(form);
-    $this.submitTempForm(form);
+    fileWrapper({
+      url,
+      data: {
+        params: JSON.stringify(paramsData),
+        token: authData.access_token
+      },
+      extension: _getExtension(type)
+    }).then(() => {
+      $el.removeAttr('disabled');
+    }).catch(() => {
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+      $el.removeAttr('disabled');
+    });
   });
 }
 
@@ -467,12 +478,6 @@ class FinancialStatement {
       route: '#/',
       queryString: defaultQueryString
     });
-  }
-  submitTempForm(formEl) {
-    if (formEl instanceof $) {
-      formEl.submit();
-      formEl.remove();
-    }
   }
   trackAnalytics = (type) => _trackAnalytics.call(this, type);
   init() {
