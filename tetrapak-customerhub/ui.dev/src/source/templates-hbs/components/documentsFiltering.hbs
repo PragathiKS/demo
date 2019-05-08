@@ -19,13 +19,15 @@
                         {{> atoms/dropdown/dropdown options=sites name="site" labelText=i18nKeys.siteFilterLabel eleClasses="tp-documents-filtering__site js-documents-filtering__site" dataLocator="" }}
                     </div>
                     <div class="col-lg-4">
-                        {{> atoms/dropdown/dropdown defaultValue="Line" labelText=i18nKeys.lineFilterLabel options="" name="line" label="" eleClasses="tp-documents-filtering__line js-documents-filtering__line" dataLocator="" }}
+                        {{> atoms/dropdown/dropdown options="" name="line" labelText=i18nKeys.lineFilterLabel eleClasses="tp-documents-filtering__line js-documents-filtering__line" dataLocator="" }}
                     </div>
                 </div>
             </div>
-            <div class="tp-documents__equipment-listing col-lg-12">
-                Hello from Tanvi!
+            <div class="tp-documents__equipments js-documents__equipments col-lg-12">
+                {{!-- TODO: need to convert it into i18Config value --}}
+                <h4>Documents</h4>
             </div>
         </div>
     {{/if}}
 {{/if}}
+

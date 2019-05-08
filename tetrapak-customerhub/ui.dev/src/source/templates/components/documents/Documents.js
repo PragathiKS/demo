@@ -7,11 +7,78 @@ import { apiHost } from '../../../scripts/common/common';
 
 
 /**
+ * Renders Equipment Filter
+ * @param {object} data JSON data object for selected site
+ */
+function _renderEquipmentFilter(data = this.cache.filteredData) {
+  const lineVal = this.cache.$line.val();
+  let equipmentRecords;
+
+  data.equipmentRecords = {};
+  data.equipmentRecords.options = [];
+
+  if (lineVal === '') {
+    equipmentRecords = data.lines;
+  } else {
+    equipmentRecords = data.lines.filter(line => line.lineNumber === lineVal);
+  }
+
+  equipmentRecords.forEach(equipment => {
+    data.equipmentRecords.options.push(...equipment.equipments.map((equipment,index) => ({
+      key: equipment.equipmentNumber,
+      desc: equipment.equipmentName,
+      docId: `#document${index}`
+    })));
+  });
+
+  render.fn({
+    template: 'documentsFilteringTable',
+    data: data.equipmentRecords,
+    target: '.js-documents__equipments'
+  });
+}
+/**
+ * Filter the line values
+ */
+function _processLineData() {
+  const siteVal = this.cache.$site.val();
+  let { data } = this.cache;
+  if (Array.isArray(data.installations)) {
+    const [filteredData] = data.installations.filter(site => site.customerNumber === siteVal);
+    if (filteredData) {
+      data = this.cache.filteredData = filteredData;
+      this.renderLineFilter(filteredData);
+    } else {
+      data = {};
+    }
+  }
+}
+/**
+ * Renders Line Filter
+ * @param {object} data JSON data object for selected site
+ */
+function _renderLineFilter(data = this.cache.filteredData) {
+  if (Array.isArray(data.lines)) {
+    data.linesRecords = {};
+    data.linesRecords.options = data.lines.map((line) => ({
+      key: line.lineNumber,
+      desc: line.lineDesc
+    }));
+
+    render.fn({
+      template: 'options',
+      data: data.linesRecords,
+      target: '.js-documents-filtering__line'
+    });
+
+    this.renderEquipmentFilter(data);
+  }
+}
+/**
  * Process Sites Data
  * @param {object} data JSON data object
  */
 function _processSiteData(data) {
-  logger.log('installation data: ', data);
   if (Array.isArray(data.installations)) {
     data.sites = data.installations.map(site => ({
       key: site.customerNumber,
@@ -59,6 +126,8 @@ function _renderSiteFilters() {
     }, (data) => {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
+        $this.processLineData();
+        $this.renderEquipmentFilter();
       }
     });
   });
@@ -74,6 +143,8 @@ class Documents {
   */
   initPostCache() {
     this.cache.$site = this.root.find('.js-documents-filtering__site');
+    this.cache.$line = this.root.find('.js-documents-filtering__line');
+    this.cache.$equipment = this.root.find('.js-documents-filtering__equipment');
   }
   /**
   * Initialize selector cache on component load
@@ -92,9 +163,15 @@ class Documents {
     /* Bind jQuery events here */
     this.root
       .on('change', '.js-documents-filtering__site', () => {
-        this.renderSiteFilters();
+        this.processLineData();
+      })
+      .on('change', '.js-documents-filtering__line', () => {
+        this.renderEquipmentFilter();
       });
   }
+  renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
+  processLineData = () => _processLineData.call(this);
+  renderLineFilter = (data) => _renderLineFilter.call(this, data);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
   init() {
