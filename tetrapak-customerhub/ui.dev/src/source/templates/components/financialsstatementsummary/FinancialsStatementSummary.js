@@ -13,26 +13,29 @@ import { toast } from '../../../scripts/utils/toast';
 /**
  * Fire analytics on Invoice Download
  */
-function _trackAnalytics(type) {
+function _trackAnalytics(self, type) {
+  const $this = self;
   let ob = {
     linkType: 'internal',
     linkSection: 'financials'
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
+  const { statementOfAccount = '' } = $this.cache.i18nKeys;
+
   switch (type) {
     case 'downloadPdf': {
-      ob.linkParentTitle = 'statement of accounts';
+      ob.linkParentTitle = statementOfAccount.toLowerCase();
       ob.linkName = 'create pdf';
       break;
     }
     case 'downloadInvoice': {
-      ob.linkParentTitle = 'packaging';
+      ob.linkParentTitle = $(this).parents('table').data('salesOffice').toLowerCase();
       ob.linkName = 'invoice download';
       break;
     }
     case 'downloadExcel': {
-      ob.linkParentTitle = 'statement of accounts';
+      ob.linkParentTitle = statementOfAccount.toLowerCase();
       ob.linkName = 'create excel';
       break;
     }
@@ -202,7 +205,7 @@ class FinancialsStatementSummary {
     this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type, el]);
   }
 
-  trackAnalytics = (obj, type) => _trackAnalytics.call(obj, type);
+  trackAnalytics = (obj, type) => _trackAnalytics.call(obj, this, type);
   init() {
     /* Mandatory method */
     this.initCache();
