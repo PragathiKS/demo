@@ -7,6 +7,9 @@ import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Lightpick from 'lightpick';
 import { DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { getDatesBetweenDateRange, getFormattedDate } from '../../../scripts/utils/dateUtils';
+
 
 /**
  * Fire analytics on Packaging, Processing
@@ -14,9 +17,9 @@ import { DATE_FORMAT } from '../../../scripts/utils/constants';
  */
 function _trackAnalytics(type, name) {
   const analyticsData = {
-    linkType:'internal',
-    linkSection:'installed equipment-maintenance',
-    linkParentTitle:'tetrapak contact'
+    linkType: 'internal',
+    linkSection: 'installed equipment-maintenance',
+    linkParentTitle: 'tetrapak contact'
   };
 
   // creating linkName as per the name or type received
@@ -130,6 +133,7 @@ function _renderEquipmentFilter(data = this.cache.filteredData) {
   });
 }
 
+
 /**
  * Renders Maintenance Filters
  */
@@ -169,7 +173,58 @@ function _renderMaintenanceFilters() {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
         $this.renderMaintenanceContact();
+        this.renderCalendar();
+        $this.renderCalendarEventsDot();
       }
+    });
+  });
+}
+/**
+ * Render Dots on Calendar
+ */
+function _renderCalendarEventsDot() {
+  const siteVal = this.cache.$site.val();
+  const dateRange = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  let startDate = getFormattedDate(new Date($(dateRange).first().data('time')));
+  let endDate = getFormattedDate(new Date($(dateRange).last().data('time')));
+  let eventsDateArrayFinal = [];
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper.getXhrObj({
+      url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
+      //url: '/apps/settings/wcm/designs/customerhub/jsonData/maintenanceEvents.json', //Mock JSON
+      method: ajaxMethods.GET,
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      },
+      data: {
+        'sitenumber': siteVal,
+        'from-date': startDate,
+        'to-date': endDate
+      }
+    }).done((data) => {
+      let eventsDateArray = [];
+      data.events.forEach(function (item) {
+        let start = new Date(item.plannedStart);
+        let end = new Date(item.plannedFinish);
+        let datearray = getDatesBetweenDateRange(start, end);
+        eventsDateArray = [...eventsDateArray, ...datearray];
+      });
+      eventsDateArray.forEach(function (date) {
+        let formattedDate = getFormattedDate(date);
+        if (!eventsDateArrayFinal.includes(formattedDate)) {
+          eventsDateArrayFinal.push(formattedDate);
+        }
+      });
+      const detachedMonths = this.root.find('.lightpick__months').detach();
+      const allDays = $(detachedMonths).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+      allDays.each((i) => {
+        const date = getFormattedDate(new Date($(allDays[i]).data('time')));
+        if (eventsDateArrayFinal.includes(date)) {
+          $(allDays[i]).append('<span class=\'lightpick__dot\'></span>');
+        }
+      });
+      this.root.find('.lightpick__inner').append(detachedMonths);
     });
   });
 }
@@ -214,27 +269,33 @@ class MaintenanceFiltering {
       .on('click', '.js-maintenance-filtering__contact-phone', function () {
         self.trackAnalytics($(this).data('type').toLowerCase(), 'phone');
       });
-    this.root.on('click', '.js-calendar-nav', this, this.navigateCalendar);
+    this.root.on('click', '.js-maintenance-filtering__calendar-wrapper .js-calendar-nav', this, this.navigateCalendar);
   }
-  bindCalendar() {
+  renderCalendar() {
     render.fn({
       template: 'maintenanceCalendar',
       target: '.js-maintenance-filtering__calendar-wrapper',
       data: this.cache.i18nKeys
     });
     const maintenancecalendar = this.root.find('.js-range-selector');
-    const picker = maintenancecalendar[0];
+    const calendarField = maintenancecalendar[0];
+    const { picker } = this.cache;
+    if (picker) {
+      picker.destroy();
+    }
     this.cache.picker = new Lightpick({
-      field: picker,
+      field: calendarField,
       singleDate: false,
       numberOfMonths: 4,
       numberOfColumns: 2,
       inline: true,
       dropdowns: false,
       format: DATE_FORMAT,
-      separator: ' - ',
-      selectForward: true
+      separator: ' - '
     });
+    this.wrapCalendar();
+  }
+  wrapCalendar() {
     const calendarMonthsCont = this.root.find('.lightpick__months');
     if (
       isDesktopMode()
@@ -258,8 +319,11 @@ class MaintenanceFiltering {
       evt.initEvent('mousedown', true, true);
       $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
     }
+    $this.wrapCalendar();
+    $this.renderCalendarEventsDot();
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
+  renderCalendarEventsDot = () => _renderCalendarEventsDot.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
@@ -269,7 +333,6 @@ class MaintenanceFiltering {
     this.initCache();
     this.bindEvents();
     this.renderMaintenanceFilters();
-    this.bindCalendar();
   }
 }
 
