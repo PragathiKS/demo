@@ -21,9 +21,11 @@ function _trackAnalytics(self, type) {
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
+  const { statementOfAccount } = $this.cache.i18nKeys;
+
   switch (type) {
     case 'downloadPdf': {
-      ob.linkParentTitle = $this.cache.i18nKeys.statementOfAccount.toLowerCase();
+      ob.linkParentTitle = statementOfAccount.toLowerCase();
       ob.linkName = 'create pdf';
       break;
     }
@@ -33,7 +35,7 @@ function _trackAnalytics(self, type) {
       break;
     }
     case 'downloadExcel': {
-      ob.linkParentTitle = $this.cache.i18nKeys.statementOfAccount.toLowerCase();
+      ob.linkParentTitle = statementOfAccount.toLowerCase();
       ob.linkName = 'create excel';
       break;
     }
