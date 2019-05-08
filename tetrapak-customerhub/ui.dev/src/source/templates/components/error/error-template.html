@@ -4,12 +4,11 @@
             <div class="col-lg">
                 <h1 class="tp-error__heading">${data.errorTitle}</h1>
                 <p class="tp-error__code">${data.errorCode}</p>
-                <p class="tp-error__des">${data.errorDescription}</p>
+                <p class="tp-error__description">${data.errorDescription}</p>
             </div>
             <div class="col-lg offset-lg tp-error__img">
                 <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltText}" />
                 </sly>
-                <!-- <img src="${data.imagePath}" alt="${data.imageAltText}"> -->
             </div>
         </div>
     </div>

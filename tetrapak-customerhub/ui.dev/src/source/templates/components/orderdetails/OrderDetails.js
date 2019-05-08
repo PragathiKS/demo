@@ -155,7 +155,8 @@ function _renderOrderSummary() {
       url: {
         path: `${apiHost}/${$this.cache.apiUrl}`,
         data: {
-          'order-number': $this.cache.orderNumber
+          'order-number': $this.cache.orderNumber,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target: '.js-order-detail__summary',
@@ -228,7 +229,8 @@ function _renderPaginateData() {
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,
-          'skip': pageIndex * ORDER_DETAILS_ROWS_PER_PAGE
+          skip: pageIndex * ORDER_DETAILS_ROWS_PER_PAGE,
+          top: ORDER_DETAILS_ROWS_PER_PAGE
         }
       },
       target,
@@ -244,7 +246,6 @@ function _renderPaginateData() {
       },
       beforeRender(data) {
         const { i18nKeys } = $this.cache;
-        logger.log('i18nKeys', i18nKeys);
         if (!data) {
           this.data = data = {
             isError: true,
@@ -403,9 +404,6 @@ class OrderDetails {
     this.initCache();
     this.bindEvents();
     this.renderOrderSummary();
-    // eslint-disable-next-line no-debugger
-    debugger;
-    logger.log('test');
   }
 }
 
