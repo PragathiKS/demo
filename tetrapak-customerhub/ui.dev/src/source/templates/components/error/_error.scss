@@ -10,16 +10,9 @@
         font-family: $font-semi-bold;
     }
 
-    &__des {
+    &__description {
         @include margin-bottom($margin-l);
         color: $color-text;
         font-family: $font-semi-bold;
     }
-
-    // &__img {
-    //     //     display: none;
-    //     //     @media #{$desktop} {
-    //     //         display: block;
-    //     //}
-    // }
 }
