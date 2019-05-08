@@ -476,9 +476,6 @@ class OrderSearch {
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
-  // trackAnalytics() {
-  //   return _trackAnalytics.apply(this, arguments);
-  // }
 
   trackAnalytics = (type) => _trackAnalytics.call(this, type);
 
