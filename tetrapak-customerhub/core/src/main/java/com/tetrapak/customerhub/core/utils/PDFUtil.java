@@ -155,13 +155,13 @@ public final class PDFUtil {
      * @param table         table
      * @param startY        start y position
      */
-    public static void drawTable(PDPageContentStream contentStream, Table table, int startY) {
-
+    public static int drawTable(PDPageContentStream contentStream, Table table, int startY) {
+        double nextTextY = 0;
         try {
             String[][] currentPageContent = table.getContent();
 
             double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
-            double nextTextY = startY - ((double) table.getRowHeight() / 2)
+            nextTextY = startY - ((double) table.getRowHeight() / 2)
                     - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight()
                     / 1000 * (double) table.getFontSize()) / 4);
 
@@ -177,6 +177,7 @@ public final class PDFUtil {
         } catch (IOException e) {
             LOGGER.error("IOException in PDF Util class while printing table {}", e);
         }
+        return (int)nextTextY;
     }
 
     private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX, float nextTextY,
@@ -267,5 +268,13 @@ public final class PDFUtil {
                 .setTextFontBold(muliBold)
                 .setFontSize(FONT_SIZE)
                 .build();
+    }
+
+    public static PDPageContentStream getNewPage(PDDocument document, PDPageContentStream contentStream) throws IOException {
+        PDPage page = new PDPage();
+        document.addPage(page);
+        contentStream.close();
+        contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+        return contentStream;
     }
 }
