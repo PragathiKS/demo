@@ -44,13 +44,12 @@ function _renderSiteFilters() {
         cancellable: true
       },
       beforeRender(data) {
-        const { i18nKeys } = $this.cache;
         if (!data) {
           this.data = data = {
-            isError: true,
-            i18nKeys
+            isError: true
           };
         } else {
+          const { i18nKeys } = $this.cache;
           data.i18nKeys = i18nKeys;
 
           $this.processSiteData(data);
@@ -60,7 +59,6 @@ function _renderSiteFilters() {
     }, (data) => {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
-        $this.renderMaintenanceContact();
       }
     });
   });
@@ -71,6 +69,12 @@ class Documents {
     this.root = $(el);
   }
   cache = {};
+  /**
+  * Initialize selector cache after filters rendering
+  */
+  initPostCache() {
+    this.cache.$site = this.root.find('.js-documents-filtering__site');
+  }
   /**
   * Initialize selector cache on component load
   */
@@ -86,11 +90,6 @@ class Documents {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
     this.root
       .on('change', '.js-documents-filtering__site', () => {
         this.renderSiteFilters();
