@@ -244,7 +244,7 @@ import java.util.Map;
                 height = PDFUtil.drawTable(contentStream, createPackMatProductTable(request, deliveryDetail.getProducts()),
                         height - 110);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5, Color.LIGHT_GRAY, 0.1f);
-                height -= 20;
+                height -= 30;
             } else {
                 int totalRows = deliveryDetail.getProducts().size();
                 int rowsForCurrentPage = (height - 190) / 15;
@@ -273,7 +273,7 @@ import java.util.Map;
                     PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
                 }
                 PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5 , Color.LIGHT_GRAY, 0.1f);
-                height -= 20;
+                height -= 30;
             }
         }
         return contentStream;
