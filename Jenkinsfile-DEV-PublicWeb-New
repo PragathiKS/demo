@@ -69,7 +69,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 							 }
 								stage ('Build-PublicWeb') {
                                 steps {
-								echo "Build Publicwebi"
+								echo "Build Publicweb"
                                 sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 
