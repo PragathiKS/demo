@@ -13,13 +13,16 @@ import { apiHost } from '../../../scripts/common/common';
  * Fire analytics on search submit
  */
 function _trackAnalytics() {
-  // Get selected preferences
-  const analyticsData = {};
-  analyticsData['ordersettings'] = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
-    return $.trim($(el).parent().text());
-  }).join('|');
-
-  trackAnalytics(analyticsData, 'settings', 'ordersettings');
+  const { title = '' } = this.cache.i18nKeys;
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'dashboard',
+    linkParentTitle: title.toLowerCase(),
+    linkName: 'order list item'
+  };
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
@@ -59,10 +62,11 @@ function _processContacts(contacts) {
  * @param {object} order Data object
  * @param {string[]} activeKeys Headings
  * @param {string} orderDetailLink Order Detail link
+ * @param {string} viewAllOrders
  */
-function _tableSort(order, activeKeys, orderDetailLink) {
+function _tableSort(order, activeKeys, orderDetailLink, viewAllOrders) {
   const dataObject = {
-    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}`,
+    rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}&p=${encodeURIComponent(`${viewAllOrders}`)}`,
     row: []
   };
   activeKeys.forEach((key, index) => {
@@ -103,7 +107,7 @@ function _processTableData(data) {
       if (activeKeys.length === 0) {
         activeKeys.push(...orderKeys);
       }
-      return _tableSort.call(this, order, activeKeys, orderDetailLink);
+      return _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders);
     });
     data.orderHeadings = activeKeys.map(key => ({
       key,
@@ -171,9 +175,6 @@ function _saveSettings() {
   }).fail(() => {
     this.root.find('.js-ordering-card__save-error').removeClass('d-none');
   });
-
-  // Fire Analytics
-  this.trackAnalytics();
 }
 
 class OrderingCard {
@@ -206,8 +207,13 @@ class OrderingCard {
     this.root
       .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
       .on('click', '.js-ordering-card__modal-save', this.saveSettings)
-      .on('click', '.js-ordering-card__row', this.openOrderDetails)
+      .on('click', '.js-ordering-card__row', this, function (e) {
+        const $this = e.data;
+        $this.openOrderDetails.apply(this, arguments);
+        $this.trackAnalytics();
+      })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
+    // Fire Analytics
   }
   renderTable(config) {
     const $this = this;
