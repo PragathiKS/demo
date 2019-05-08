@@ -804,5 +804,59 @@
             }
          }
       }
-   }
+   },
+ "error-404" : {
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Error 404",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "250de795-57da-440f-9871-0be51a57a46b",
+    "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:predecessors": [
+      "cdda510d-8066-4c85-bb53-bb3020b8fa87"
+    ],
+    "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
+    "cq:lastReplicated": "Wed May 08 2019 10:57:19 GMT+0530",
+    "cq:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
+    "jcr:baseVersion": "cdda510d-8066-4c85-bb53-bb3020b8fa87",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "a6fd9c51-a2af-478b-be75-73c58e033fc9",
+    "sling:resourceType": "customerhub/components/structure/page",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid_622605362": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+      },
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "error": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "jcr:lastModifiedBy": "admin",
+          "imagePath": "/content/dam/customerhub/english/common/Error_CuHu.png",
+          "jcr:created": "Wed May 08 2019 10:55:05 GMT+0530",
+          "imageAltText": "Error Cuhu",
+          "errorCode": "Error 404",
+          "jcr:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
+          "sling:resourceType": "customerhub/components/content/error",
+          "textIsRich": "true",
+          "errorTitle": "Oops... Page Not found",
+          "errorDescription": "<p>Either you do not have the access to this page or yoy mistyped the URL.</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/en/dashboard.html\">dashboard</a>.</p>\r\n"
+        }
+      }
+    }
+  }
+}
 }
