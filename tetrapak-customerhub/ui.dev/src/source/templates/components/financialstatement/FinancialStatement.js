@@ -18,7 +18,7 @@ function _trackAnalytics(type) {
 
   const $this = this;
   const { $filterForm } = $this.cache;
-  const { statementOfAccount } = $this.cache.i18nKeys;
+  const { statementOfAccount } = $this.cache.i18nKeys || '';
 
   let ob = {
     linkType: 'internal',

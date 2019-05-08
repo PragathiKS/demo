@@ -21,7 +21,7 @@ function _trackAnalytics(self, type) {
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
-  const { statementOfAccount } = $this.cache.i18nKeys;
+  const { statementOfAccount } = $this.cache.i18nKeys || '';
 
   switch (type) {
     case 'downloadPdf': {
