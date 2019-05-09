@@ -100,8 +100,9 @@
 }
 
 .lightpick__dot {
-    @include width(4px);
-    @include height(4px);
+    // Keeping fix height width for dot only
+    width: 4px;
+    height: 4px;
     display: block;
     border-radius: 50%;
     text-align: center;

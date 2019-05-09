@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_MAINTENANCE_FILTERS, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
