@@ -36,6 +36,7 @@ public class AnalyticsGlobalTagsModel {
     private SlingHttpServletRequest request;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
+    private static final int subPageThreshold = 5;
 
     /**
      * Get Site Name.
@@ -172,6 +173,18 @@ public class AnalyticsGlobalTagsModel {
     public String getChannel() {
     	final int DEPTH = 4;
         return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
+    }
+    
+    /**
+     * This method returns is a page is sub second level page in site hirarchy
+     * @return true if sub page
+     */
+    public boolean isSubPage() {
+    	boolean isSubPage =  false;
+    	if (GlobalUtil.getPageDepth(resource) > subPageThreshold) {
+    		isSubPage = true;
+    	}
+    	return isSubPage;
     }
 
 }
