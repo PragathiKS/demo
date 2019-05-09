@@ -7,8 +7,10 @@
 
         <div class="col-lg-${currentPage.template.shortTitle == 'dashboard'? '7' : '10'} tp-column__content">
             <div>
-                <h1 class="tp-page-title" data-sly-test.isI18ValuePresent="${properties.iconLabel}">${properties.iconLabel @i18n}</h1>
+			   <sly data-sly-test="${(properties.jcr:title != '404') && (properties.jcr:title != '500')}"> 
+                <h1 class="tp-page-title" data-sly-test.isI18ValuePresent="${properties.iconLabel}">${properties.iconLabel @i18n}</h1>                
                 <h1 class="tp-page-title" data-sly-test=${!isI18ValuePresent}>${properties.jcr:title}</h1>
+                </sly>
             </div>
             <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
                  data-sly-repeat.child="${templatedContainer.structureResources}"
