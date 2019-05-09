@@ -13,6 +13,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
         description = "TetraPak Dispatcher Flush Service Configuration")
 public @interface DispatcherFlushConfig {
 
+    /**
+     * @return abs path
+     */
     @AttributeDefinition(
             name = "absPath",
             description = "event.topics",
@@ -20,6 +23,9 @@ public @interface DispatcherFlushConfig {
     )
     String absPath();
 
+    /**
+     * @return dispatcher path
+     */
     @AttributeDefinition(
             name = "dispatcherPath",
             description = "dispatcher Path for which cache needs to be cleared",
