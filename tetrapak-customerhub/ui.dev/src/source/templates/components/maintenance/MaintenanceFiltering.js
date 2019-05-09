@@ -1,14 +1,14 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_MAINTENANCE_FILTERS, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_MAINTENANCE_FILTERS, API_MAINTENANCE_EVENTS, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { apiHost, isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Lightpick from 'lightpick';
-import { DATE_FORMAT } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { getDatesBetweenDateRange, getFormattedDate } from '../../../scripts/utils/dateUtils';
+import { getDatesBetweenDateRange } from '../../../scripts/utils/dateUtils';
+import moment from 'moment';
 
 
 /**
@@ -185,13 +185,12 @@ function _renderMaintenanceFilters() {
 function _renderCalendarEventsDot() {
   const siteVal = this.cache.$site.val();
   const dateRange = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  let startDate = getFormattedDate(new Date($(dateRange).first().data('time')));
-  let endDate = getFormattedDate(new Date($(dateRange).last().data('time')));
+  let startDate = moment(new Date($(dateRange).first().data('time'))).format(DATE_FORMAT);
+  let endDate = moment(new Date($(dateRange).last().data('time'))).format(DATE_FORMAT);
   let eventsDateArrayFinal = [];
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
       url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
-      //url: '/apps/settings/wcm/designs/customerhub/jsonData/maintenanceEvents.json', //Mock JSON
       method: ajaxMethods.GET,
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
@@ -211,20 +210,20 @@ function _renderCalendarEventsDot() {
         eventsDateArray = [...eventsDateArray, ...datearray];
       });
       eventsDateArray.forEach(function (date) {
-        let formattedDate = getFormattedDate(date);
+        let formattedDate = moment(date).format(DATE_FORMAT);
         if (!eventsDateArrayFinal.includes(formattedDate)) {
           eventsDateArrayFinal.push(formattedDate);
         }
       });
       const detachedMonths = this.root.find('.lightpick__months').detach();
       const allDays = $(detachedMonths).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-      allDays.each((i) => {
-        const date = getFormattedDate(new Date($(allDays[i]).data('time')));
+      allDays.each(function () {
+        const date = moment(new Date($(this).data('time'))).format(DATE_FORMAT);
         if (eventsDateArrayFinal.includes(date)) {
-          $(allDays[i]).append('<span class=\'lightpick__dot\'></span>');
+          $(this).append(`<span class='lightpick__dot'></span>`);
         }
       });
-      this.root.find('.lightpick__inner').append(detachedMonths);
+      this.root.find('.lightpick__inner .lightpick__toolbar').after(detachedMonths);
     });
   });
 }
