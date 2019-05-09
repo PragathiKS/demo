@@ -1,3 +1,3 @@
 {
-  "i18nKeys": "{\"siteFilterLabel\": \"Site\",\"lineFilterLabel\": \"Line / Area\", \"documentHeading\": \"DocumentI18n\", \"documentTypeLabel\": \"Document Type\"}"
+  "i18nKeys": "{\"siteFilterLabel\": \"Site\",\"lineFilterLabel\": \"Line / Area\", \"documentHeading\": \"Documents for {0} in {1}\", \"documentTypeLabel\": \"Document Type\"}"
 }

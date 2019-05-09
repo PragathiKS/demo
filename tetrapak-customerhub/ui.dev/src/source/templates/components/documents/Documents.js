@@ -13,21 +13,22 @@ import { apiHost } from '../../../scripts/common/common';
 function _renderEquipmentFilters(data = this.cache.filteredData) {
   const { i18nKeys, $line } = this.cache;
   const lineVal = $line.val();
-  let equipmentRecords = [];
+  let equipmentData = [];
 
-  data.equipmentRecords = {};
-  data.equipmentRecords.options = [];
+  data.equipmentData = {};
+  data.equipmentData.options = [];
 
   if (lineVal === '') {
-    equipmentRecords = data.lines;
+    equipmentData = data.lines;
   } else {
-    equipmentRecords = data.lines.filter(line => line.lineNumber === lineVal);
+    equipmentData = data.lines.filter(line => line.lineNumber === lineVal);
   }
 
-  data.equipmentRecords.i18nKeys = i18nKeys;
-  data.equipmentRecords.seletedFilter = `site,line`;
-  equipmentRecords.forEach(equipment => {
-    data.equipmentRecords.options.push(...equipment.equipments.map((equipment, index) => ({
+  data.equipmentData.i18nKeys = i18nKeys;
+
+  data.equipmentData.selectedFilter = `${this.selectedSite},${this.selectedLine}`;
+  equipmentData.forEach(equipment => {
+    data.equipmentData.options.push(...equipment.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
       desc: equipment.equipmentName,
       docId: `#document${index}`
@@ -36,7 +37,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
 
   render.fn({
     template: 'documentsFilteringTable',
-    data: data.equipmentRecords,
+    data: data.equipmentData,
     target: '.js-documents__equipments'
   });
 }
@@ -130,6 +131,10 @@ function _renderSiteFilters() {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
         $this.processLineData();
+        // fetching the default selected site and line
+        $this.selectedSite = $this.cache.filteredData.customerName;
+        $this.selectedLine = $this.cache.filteredData.lines[0].lineDesc;
+
         $this.renderEquipmentFilters();
       }
     });
@@ -162,14 +167,29 @@ class Documents {
     }
   }
   bindEvents() {
+    const self = this;
     /* Bind jQuery events here */
     this.root
-      .on('change', '.js-documents-filtering__site', () => {
-        logger.log('site', $(this));
-        this.processLineData();
+      .on('change', '.js-documents-filtering__site', function () {
+
+        const siteAndLineRecords = self.cache.data;
+
+        const matchedSite = siteAndLineRecords.sites.filter(site => site.key === $(this).val());
+        self.selectedSite = matchedSite[0].desc;
+
+        const matchedLine = siteAndLineRecords.installations.filter(site => site.customerNumber === $(this).val());
+        self.selectedLine = matchedLine[0].lines[0].lineDesc;
+
+        self.processLineData();
       })
-      .on('change', '.js-documents-filtering__line', () => {
-        this.renderEquipmentFilters();
+      .on('change', '.js-documents-filtering__line', function () {
+
+        const filteredLines = self.cache.filteredData.lines;
+
+        const matchedLine = filteredLines.filter(line => line.lineNumber === $(this).val());
+        self.selectedLine = matchedLine[0].lineDesc;
+
+        self.renderEquipmentFilters();
       });
   }
   renderEquipmentFilters = (data) => _renderEquipmentFilters.call(this, data);
