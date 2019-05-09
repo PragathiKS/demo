@@ -117,11 +117,17 @@ sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-p
 												if ("${BUILD_COMMONS}" == 'true')
 												{
 										        echo "Running Sonar for CSS profile on Project - Commons"
-										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
-										        }
+										        
+sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+
+
+}
 												echo "Running Sonar for CSS profile on Project - PublicWeb"
-                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
-                                                
+                                               
+
+sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+
+ 
                                         }
                                 }
                         }
@@ -315,7 +321,7 @@ sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-p
 		
  post {
 
-  /*    success {
+      success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
 to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
@@ -325,7 +331,7 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
       body: '''${DEFAULT_CONTENT}''',
 
 to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
-} */
+} 
 
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'

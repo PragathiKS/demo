@@ -48,7 +48,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
             }
         }
 
-                stage ('Build-	') {
+                stage ('Build-Commons') {
                         steps {
 						script {
                           BUILD_COMMONS = sh (
@@ -111,11 +111,16 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 												returnStatus: true ) == 0
 												if ("${BUILD_COMMONS}" == 'true')
 												{
-                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+
+
 												}
 												echo "Running Sonar for CSS profile on Project - Customerhub"
-                                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-customerhub -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+
+sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-customerhub -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+
                                         }
+
                                 }
                         }
                 }
