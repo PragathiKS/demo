@@ -10,7 +10,7 @@ import { apiHost } from '../../../scripts/common/common';
  * Renders Equipment Filter
  * @param {object} data JSON data object for selected site
  */
-function _renderEquipmentFilter(data = this.cache.filteredData) {
+function _renderEquipmentFilters(data = this.cache.filteredData) {
   const lineVal = this.cache.$line.val();
   let equipmentRecords;
 
@@ -47,7 +47,7 @@ function _processLineData() {
     const [filteredData] = data.installations.filter(site => site.customerNumber === siteVal);
     if (filteredData) {
       data = this.cache.filteredData = filteredData;
-      this.renderLineFilter(filteredData);
+      this.renderLineFilters(filteredData);
     } else {
       data = {};
     }
@@ -57,7 +57,7 @@ function _processLineData() {
  * Renders Line Filter
  * @param {object} data JSON data object for selected site
  */
-function _renderLineFilter(data = this.cache.filteredData) {
+function _renderLineFilters(data = this.cache.filteredData) {
   if (Array.isArray(data.lines)) {
     data.linesRecords = {};
     data.linesRecords.options = data.lines.map((line) => ({
@@ -71,7 +71,7 @@ function _renderLineFilter(data = this.cache.filteredData) {
       target: '.js-documents-filtering__line'
     });
 
-    this.renderEquipmentFilter(data);
+    this.renderEquipmentFilters(data);
   }
 }
 /**
@@ -89,7 +89,7 @@ function _processSiteData(data) {
   }
 }
 /**
- * To fetch the all the sites
+ * To fetch all the sites
  */
 function _renderSiteFilters() {
   const $this = this;
@@ -127,7 +127,7 @@ function _renderSiteFilters() {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
         $this.processLineData();
-        $this.renderEquipmentFilter();
+        $this.renderEquipmentFilters();
       }
     });
   });
@@ -166,12 +166,12 @@ class Documents {
         this.processLineData();
       })
       .on('change', '.js-documents-filtering__line', () => {
-        this.renderEquipmentFilter();
+        this.renderEquipmentFilters();
       });
   }
-  renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
+  renderEquipmentFilters = (data) => _renderEquipmentFilters.call(this, data);
   processLineData = () => _processLineData.call(this);
-  renderLineFilter = (data) => _renderLineFilter.call(this, data);
+  renderLineFilters = (data) => _renderLineFilters.call(this, data);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
   init() {
