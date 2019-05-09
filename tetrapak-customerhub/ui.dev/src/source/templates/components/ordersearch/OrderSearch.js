@@ -211,21 +211,52 @@ function _setFilters(isModifiedSearch) {
 /**
  * Fire analytics on search submit
  */
-function _trackAnalytics(defaultParam) {
-  const formData = defaultParam || deparam(this.cache.$filters.serialize());
-  if (!formData.daterange) {
-    formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
+function _trackAnalytics(type) {
+  const $this = this;
+  const pageNo = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
+  const { resetButtonTextI18n = '', searchButtonTextI18n = '' } = $this.cache.config;
+
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'order history'
+  };
+
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
+  switch (type) {
+    case 'reset': {
+      ob.linkParentTitle = '';
+      ob.linkName = resetButtonTextI18n.toLowerCase();
+      break;
+    }
+    case 'pagination': {
+      ob.linkParentTitle = 'order history';
+      ob.linkName = 'ordersSearchResultClick';
+      ob.linkselection = `tetrapak order number|${pageNo}`;
+      break;
+    }
+    case 'search': {
+      const formData = deparam(this.cache.$filters.serialize());
+      if (!formData.daterange) {
+        formData.daterange = `${formData['orderdate-from']} - ${formData['orderdate-to']}`;
+      }
+      const deliveryAddressChoosen = formData.deliveryaddress ? 'deliveryaddresschoosen' : '';
+      let orderStatusText = '';
+      if (formData.orderstatus) {
+        orderStatusText = this.cache.$orderStatus.find('option').filter(`[value="${formData.orderstatus}"]`).text();
+      } else {
+        orderStatusText = '';
+      }
+      ob.linkParentTitle = '';
+      ob.linkName = searchButtonTextI18n.toLowerCase();
+      ob.linkSelection = `DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`;
+      break;
+    }
+    default: {
+      break;
+    }
   }
-  const deliveryAddressChoosen = formData.deliveryaddress ? 'deliveryaddresschoosen' : '';
-  let orderStatusText = '';
-  if (formData.orderstatus) {
-    orderStatusText = this.cache.$orderStatus.find('option').filter(`[value="${formData.orderstatus}"]`).text();
-  } else {
-    orderStatusText = '';
-  }
-  const analyticsData = {};
-  analyticsData['searchorders'] = `DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`;
-  trackAnalytics(analyticsData, 'orders', 'SearchOrders');
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
@@ -326,10 +357,11 @@ class OrderSearch {
     this.root
       .on('click', '.js-order-search__submit', () => {
         this.setFilters(true);
-        this.trackAnalytics();
+        this.trackAnalytics('search');
       })
       .on('click', '.js-order-search__reset', () => {
         this.resetSearch();
+        this.trackAnalytics('reset');
       })
       .on('click', '.js-order-search__date-range', () => {
         this.openRangeSelector();
@@ -338,7 +370,11 @@ class OrderSearch {
         this.submitDateRange();
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
-      .on('click', '.js-ordering-card__row', this, this.openOrderDetails)
+      .on('click', '.js-ordering-card__row', this, function (e) {
+        const $this = e.data;
+        $this.openOrderDetails.apply(this, arguments);
+        $this.trackAnalytics('pagination');
+      })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
@@ -440,9 +476,11 @@ class OrderSearch {
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
+
   trackAnalytics() {
     return _trackAnalytics.apply(this, arguments);
   }
+
   init() {
     this.initCache();
     this.bindEvents();
