@@ -1,6 +1,6 @@
 import $ from'jquery';
 import Documents from './Documents';
-import documentsTemplate from '../../../test-templates-hbs/document.hbs';
+import documentsTemplate from '../../../test-templates-hbs/documents.hbs';
 import { maintenanceFilteringData as documentsFilteringData } from '../maintenance/data/maintenanceFiltering.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
