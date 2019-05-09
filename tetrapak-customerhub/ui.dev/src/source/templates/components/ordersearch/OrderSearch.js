@@ -214,7 +214,7 @@ function _setFilters(isModifiedSearch) {
 function _trackAnalytics(type) {
   const $this = this;
   const pageNo = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
-  const { resetButtonTextI18n, searchButtonTextI18n } = $this.cache.config;
+  const { resetButtonTextI18n = '', searchButtonTextI18n = '' } = $this.cache.config;
 
   let ob = {
     linkType: 'internal',
@@ -477,8 +477,9 @@ class OrderSearch {
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
   }
 
-  trackAnalytics = (type) => _trackAnalytics.call(this, type);
-
+  trackAnalytics() {
+    return _trackAnalytics.apply(this, arguments);
+  }
 
   init() {
     this.initCache();
