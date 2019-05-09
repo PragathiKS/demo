@@ -26,7 +26,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
 
   data.equipmentData.i18nKeys = i18nKeys;
 
-  data.equipmentData.selectedFilter = `${this.selectedSite},${this.selectedLine}`;
+  data.equipmentData.selectedFilter = `${this.selectedLine},${this.selectedSite}`;
   equipmentData.forEach(equipment => {
     data.equipmentData.options.push(...equipment.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
