@@ -1,0 +1,203 @@
+// Progress bar
+$progress-units: (
+    '10': 10%,
+    '15': 15%,
+    '20': 20%,
+    '25': 25%,
+    '30': 30%,
+    '33': 33%,
+    '40': 40%,
+    '45': 45%,
+    '50': 50%,
+    '55': 55%,
+    '60': 60%,
+    '66': 66%,
+    '70': 70%,
+    '75': 75%,
+    '80': 80%,
+    '85': 85%,
+    '90': 90%,
+    '100': 100%
+);
+
+.pw-progress {
+    $self: &;
+    &__barwrapper {
+        @include border-radius($border-radius);
+        background-color: $color-mercury;
+        position: relative;
+        width: 100%;
+        height: $font-xl;
+    }
+    &__bar {
+        background-color: $color-white;
+        position: absolute;
+        width: calc(100% - #{convert-to-rem($padding-l*2)});
+        height: 1px;
+        left: $padding-l;
+        top: 50%;
+        transform: translateY(-50%);
+        &--blue {
+            background-color: $color-congress-blue;
+        }
+    }
+    @each $key, $value in $progress-units {
+        #{ $self }__bar--#{ $key } {
+            width: calc(#{ $value } - #{convert-to-rem($padding-l)});
+        }
+    }
+    &__point {
+        background-color: $color-white;
+        border-radius: 100%;
+        position: absolute;
+        width: $font-sm;
+        height: $font-sm;
+        left: -#{convert-to-rem($font-sm/2)};
+        top: 50%;
+        transform: translateY(-50%);
+        &--blue {
+            background-color: $color-congress-blue;
+        }
+        &--100 {
+            left: calc(100% - #{convert-to-rem($font-sm/2)});
+        }
+        &--big {
+            width: $font-normal;
+            height: $font-normal;
+            left: calc(100% - #{convert-to-rem($font-normal/2)});
+        }
+    }
+    & #{ $self }__info {
+        @include padding(0);
+        @media #{$tablet} {
+            @include padding(0 0 0 $padding-md);
+        }
+    }
+}
+
+// Form styles
+.pw-form {
+    .form-group {
+        .error-msg {
+            display: none;
+            color: $color-alert;
+            font-size: $font-xs;
+        }
+        &.hasError {
+            .form-control {
+                border-color: $color-alert;
+            }
+            .error-msg {
+                display: block;
+            }
+            .pw-form__dropdown__toggle {
+                border-color: $color-alert;
+            }
+        }
+    }
+    .form-control {
+        border: 1px solid $color-boulder;
+        color: $color-tundora;
+        height: convert-to-rem(40px);
+        padding: $padding-sm $padding-md;
+    }
+    textarea.form-control {
+        height: auto;
+        resize: none;
+    }
+    .form-check {
+        padding-left: 0;
+        &-input {
+            visibility: hidden;
+            &:checked ~ .form-check-radio {
+                &::before { //sass-lint:disable-line nesting-depth
+                    background: $color-boulder;
+                }
+            }
+        }
+        &-label {
+            @include padding-left($padding-l);
+            position: relative;
+            z-index: 9;
+        }
+        &-radio {
+            border: 1px solid $color-boulder;
+            display: block;
+            border-radius: 100%;
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            top: 0;
+            left: 0;
+            z-index: 5;
+
+            &::before {
+                display: block;
+                position: absolute;
+                content: '';
+                border-radius: 100%;
+                height: 8px;
+                width: 8px;
+                top: 5px;
+                left: 5px;
+                margin: auto;
+            }
+        }
+    }
+    &__smalltext {
+        font-size: $font-xs;
+    }
+    &__prevbtn {
+        i.tpatom-button__icon {
+            @include padding(0 $padding-sm 0 0);
+            &::before {
+                content: '\f112';
+            }
+        }
+    }
+    &__dropdown__toggle {
+        @include padding(0 30px 0 8px);
+        @include line-height(40px, 40px);
+        height: convert-to-rem(40px);
+        background-color: $color-white;
+        border-color: $color-boulder;
+        width: 100%;
+
+        &::after {
+            @include margin(0);
+            border: 0;
+            font-family: 'tp-icons';
+            content: '\f111';
+            position: absolute;
+            right: 8px;
+        }
+    }
+
+    &__dropdown__menu {
+        @include padding(0);
+        border: 0;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: scroll;
+        .dropdown-item {
+            @include border-xs($color-boulder);
+            @include padding(0 21px);
+            font-family: $font-light;
+            line-height: convert-to-rem(40px);
+            height: convert-to-rem(40px);
+            &:not(:last-child) {
+                border-bottom: 0;
+            }
+            &:hover {
+                background-color: ($color-mercury);
+            }
+        }
+        .active {
+            @include border-xs($color-text-link);
+            background-color: $color-text-link;
+            &:hover {
+                background-color: $color-text-link;
+            }
+        }
+    }
+}

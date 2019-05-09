@@ -385,7 +385,17 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="contact-in">${data.contactUsLabel @ i18n}</label>
-                          <input type="text" name="contact-in" class="form-control" id="contact-in" required>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button class="btn dropdown-toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              ${'select an option' @ i18n}
+                            </button>
+                            <div class="dropdown-menu pw-form__dropdown__menu" data-sly-list="${data.countryList}">
+                              <a href="#" class="dropdown-item ${itemList.first? 'active' : ''}" data-country="${item.value}">
+                                ${item.title}
+                              </a>
+                            </div>
+                            <input type="hidden" name="contact-in" class="form-control" id="contact-in" required>
+                          </div>
                           <div class="error-msg">Error, input needed.</div>
                         </div>
                       </div>
@@ -492,18 +502,15 @@
               </h4>
               <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                    data-sly-call="${heading.heading_h4_template @ headingText=data.thankYouMessage, variant='small'}"/>
-              <a href="${data.linkPath}" class="tpatom-button tpatom-button--primary mt-3">${data.linkTextI18n}</a>
+              <a data-sly-test="${linkTextI18n}" href="${data.linkPath}" class="tpatom-button tpatom-button--primary mt-3">
+                ${data.linkTextI18n}
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Example of country list iteration.
-  <sly data-sly-list=${data.countryList}>
-  	<p>  Title : ${item.title} == Value : ${item.value}</p>
-  </sly>
-  -->
 	<sly data-sly-test="${!data.titleI18n}"
 	     data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
 </sly>
