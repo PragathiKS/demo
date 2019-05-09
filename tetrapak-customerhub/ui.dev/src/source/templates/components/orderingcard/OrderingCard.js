@@ -213,7 +213,6 @@ class OrderingCard {
         $this.trackAnalytics();
       })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
-    // Fire Analytics
   }
   renderTable(config) {
     const $this = this;
