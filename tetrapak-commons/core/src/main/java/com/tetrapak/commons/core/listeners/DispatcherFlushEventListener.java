@@ -32,7 +32,7 @@ public class DispatcherFlushEventListener implements EventListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventListener.class);
 
     @Reference
-    DispatcherFlushService dispatcherFlush;
+    private DispatcherFlushService dispatcherFlush;
 
     @Reference
     private SlingRepository repository;
