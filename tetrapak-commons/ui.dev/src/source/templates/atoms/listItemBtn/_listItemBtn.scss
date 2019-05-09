@@ -2,69 +2,79 @@
     &.active {
         background: $color-denim;
     }
+
     &:hover {
         background: $color-tory-blue;
     }
+
     &__link {
         @include padding($padding-md);
         width: 100%;
         display: block;
         position: relative;
         color: $color-white;
+
         @media #{$desktop} {
             @include padding($padding-md $padding-l);
         }
+
         &:hover,
         &:visited {
             color: $color-white;
         }
+
         &--customBackground {
             background: $color-white;
             color: $color-black;
             font-weight: bold;
+
             &:hover,
             &:visited {
                 color: $color-black;
             }
+
             @media #{$desktop} {
                 display: none;
             }
+
             &.translated {
                 transform: translateX(0);
             }
         }
     }
+
     &__btn {
         @include padding($padding-md);
         color: $color-white;
         position: relative;
         width: 100%;
+
+
         @media #{$desktop} {
             @include padding($padding-md $padding-l);
         }
     }
-    &__checkbox {
-        position: absolute;
-        top: 0;
-        cursor: pointer;
-        height: 53px; // TODO- Height to be changed
-        width: 100%;
-        z-index: 1;
-        opacity: 0;
-        &:hover {
-            background: $color-tory-blue;
-        }
-        &:checked~.tpmol-list-item__sublist {
-            max-height: 0;
-            opacity: 0;
-        }
-        &:checked~.tpatom-list-item__btn>.tpatom-list-item__arrow-down {
-            opacity: 1;
-        }
-        &:checked~.tpatom-list-item__btn>.tpatom-list-item__arrow-up {
-            opacity: 0;
-        }
-    }
+
+
+    &__btn[aria-expanded="false"]~.tpmol-list-item__sublist {
+    max-height: 0;
+    opacity: 0;
+}
+
+&__btn[aria-expanded="true"]~.tpmol-list-item__sublist {
+    opacity: 1;
+}
+
+&__btn[aria-expanded="false"]>.tpatom-list-item__arrow-down {
+    opacity: 1;
+}
+
+&__btn[aria-expanded="false"]>.tpatom-list-item__arrow-up {
+    opacity: 0;
+}
+
+
+
     &__icon {
         @include font-size($padding-md);
         @include width($spacing-small);
@@ -73,16 +83,20 @@
         top: 50%;
         left: $font-normal;
         transform: translateY(-50%);
+
         @media #{$desktop} {
             @include left($spacing-big);
         }
+
         &::before {
             vertical-align: top;
         }
+
         .tpmol-list-item__sublist &~.tpatom-list-item__label {
             @include padding-left(24px);
         }
     }
+
     &__label {
         @include padding(0 $padding-md 0 $padding-l);
         @include font-size($font-sm);
@@ -91,12 +105,14 @@
         font-family: $font-light;
         display: inline-block;
         width: 100%;
+
         .tpmol-list-item__sublist & {
             @include padding(0 $padding-md 0 $padding-sm);
             font-family: $font-extraLight;
             font-weight: normal;
         }
     }
+
     &__external-link,
     &__arrow-down,
     &__arrow-up {
@@ -105,17 +121,21 @@
         top: 50%;
         @include right($spacing-small);
         transform: translateY(-50%);
+
         @media #{$desktop} {
             @include right($spacing-big);
         }
+
         &:hover,
         &:visited {
             color: $color-white;
         }
     }
+
     &__arrow-down {
         opacity: 0;
     }
+
     &__arrow-up {
         opacity: 1;
     }
