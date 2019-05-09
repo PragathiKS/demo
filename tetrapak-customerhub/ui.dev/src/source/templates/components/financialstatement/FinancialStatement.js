@@ -29,7 +29,7 @@ function _trackAnalytics(type) {
   const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      ob.linkName = 'reset search';
+      ob.linkName = 'reset';
       break;
     }
     case 'search': {
@@ -428,9 +428,6 @@ class FinancialStatement {
       .on('change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).val(), noReset);
-      })
-      .on('click', '.js-financial-statement__find-customer', () => {
-        $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
