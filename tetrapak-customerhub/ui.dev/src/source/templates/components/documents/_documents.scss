@@ -1,6 +1,6 @@
 .tp-documents {
     &__filters {
-        @include margin-bottom($margin-md);
+        @include margin-bottom($margin-l);
     }
 
     &__table {
@@ -15,15 +15,21 @@
         }
     }
 
+    &__equipments {
+        @include line-height($font-l, $font-baseline);
+    }
+
+    &__equipment-heading {
+        @include margin-bottom($margin-l);
+        @include line-height($font-l, $font-xl);
+    }
+
     &__accordion {
+        font-family: $font-bold;
         background-color: $color-wild-sand;
 
         &.collapsed {
             background-color: $color-white;
         }
-    }
-
-    .tpatom-dropdown {
-        @include margin-bottom($margin-md);
     }
 }

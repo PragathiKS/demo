@@ -11,8 +11,9 @@ import { apiHost } from '../../../scripts/common/common';
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilters(data = this.cache.filteredData) {
-  const lineVal = this.cache.$line.val();
-  let equipmentRecords;
+  const { i18nKeys, $line } = this.cache;
+  const lineVal = $line.val();
+  let equipmentRecords = [];
 
   data.equipmentRecords = {};
   data.equipmentRecords.options = [];
@@ -23,8 +24,10 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
     equipmentRecords = data.lines.filter(line => line.lineNumber === lineVal);
   }
 
+  data.equipmentRecords.i18nKeys = i18nKeys;
+  data.equipmentRecords.seletedFilter = `site,line`;
   equipmentRecords.forEach(equipment => {
-    data.equipmentRecords.options.push(...equipment.equipments.map((equipment,index) => ({
+    data.equipmentRecords.options.push(...equipment.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
       desc: equipment.equipmentName,
       docId: `#document${index}`
@@ -144,7 +147,6 @@ class Documents {
   initPostCache() {
     this.cache.$site = this.root.find('.js-documents-filtering__site');
     this.cache.$line = this.root.find('.js-documents-filtering__line');
-    this.cache.$equipment = this.root.find('.js-documents-filtering__equipment');
   }
   /**
   * Initialize selector cache on component load
@@ -163,6 +165,7 @@ class Documents {
     /* Bind jQuery events here */
     this.root
       .on('change', '.js-documents-filtering__site', () => {
+        logger.log('site', $(this));
         this.processLineData();
       })
       .on('change', '.js-documents-filtering__line', () => {
