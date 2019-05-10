@@ -69,6 +69,7 @@ $progress-units: (
     }
     & #{ $self }__info {
         @include padding(0);
+        @include line-height(32px, 32px);
         @media #{$tablet} {
             @include padding(0 0 0 $padding-md);
         }
@@ -146,14 +147,6 @@ $progress-units: (
     }
     &__smalltext {
         font-size: $font-xs;
-    }
-    &__prevbtn {
-        i.tpatom-button__icon {
-            @include padding(0 $padding-sm 0 0);
-            &::before {
-                content: '\f112';
-            }
-        }
     }
     &__dropdown__toggle {
         @include padding(0 30px 0 8px);
