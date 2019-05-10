@@ -6,35 +6,53 @@ class LeftNavigation {
   constructor({ el }) {
     this.root = $(el);
   }
-  init() {
-    this.root.find('.js-close-btn').on('click', this.closeSideNav);
-    this.root.find('.js-left-nav__overlay').on('click', this.closeSideNav);
-    this.root.find('.tpatom-list-item__btn').on('click', this.openSubMenu);
-    this.root.find('.tpmol-list-item', 'tpatom-list-item').on('click', (e) => {
+  cache = {};
+  initCache() {
+    this.cache.$container = this.root.find('.tp-left-nav__container');
+    this.cache.$sticky = this.root.find('.tpatom-list-item__link--sticky');
+    this.cache.$orderBtn = this.root.find('.tpatom-list-item__btn');
+    this.cache.$closeBtn = this.root.find('.js-close-btn');
+    this.cache.$navOverlay = this.root.find('.js-left-nav__overlay');
+    this.cache.$mainHeading = this.root.find('.tp-left-nav__main-heading');
+    this.cache.$listItem = this.root.find('.tpmol-list-item', 'tpatom-list-item');
+  }
+  bindEvents() {
+    const { $orderBtn, $closeBtn, $navOverlay, $mainHeading, $listItem } = this.cache;
+    $closeBtn.on('click', this.closeSideNav);
+    $navOverlay.on('click', this.closeSideNav);
+    $orderBtn.on('click', this.openSubMenu);
+    $listItem.on('click', (e) => {
       e.stopPropagation();
     });
-    this.root.find('.tp-left-nav__main-heading').on('click', (e) => {
+    $mainHeading.on('click', (e) => {
       e.stopPropagation();
     });
     $body.on('showLeftNav', this.openSideNav);
   }
 
   closeSideNav = () => {
-    this.root.find('.tp-left-nav__container').removeClass('translated');
-    this.root.find('.tp-left-nav__overlay').removeClass('color-transform');
-    this.root.find('.tpatom-list-item__link--sticky').removeClass('translated');
+    const { $container, $navOverlay, $sticky } = this.cache;
+    $container.removeClass('translated');
+    $navOverlay.removeClass('color-transform');
+    $sticky.removeClass('translated');
   }
   openSideNav = () => {
-    this.root.find('.tp-left-nav__container').addClass('translated');
-    this.root.find('.tp-left-nav__overlay').addClass('color-transform');
-    this.root.find('.tpatom-list-item__link--sticky').addClass('translated');
+    const { $container, $navOverlay, $sticky } = this.cache;
+    $container.addClass('translated');
+    $navOverlay.addClass('color-transform');
+    $sticky.addClass('translated');
   }
   openSubMenu = () => {
-    if (this.root.find('.tpatom-list-item__btn').attr('aria-expanded') === 'false') {
-      this.root.find('.tpatom-list-item__btn').attr('aria-expanded', 'true');
+    const { $orderBtn } = this.cache;
+    if ($orderBtn.attr('aria-expanded') === 'false') {
+      $orderBtn.attr('aria-expanded', 'true');
     } else {
-      this.root.find('.tpatom-list-item__btn').attr('aria-expanded', 'false');
+      $orderBtn.attr('aria-expanded', 'false');
     }
+  }
+  init() {
+    this.initCache();
+    this.bindEvents();
   }
 }
 export default LeftNavigation;
