@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
-import { logger } from '../../../scripts/utils/logger';
 
 
 class LeftNavigation {
@@ -31,10 +30,6 @@ class LeftNavigation {
     this.root.find('.tpatom-list-item__link--sticky').addClass('translated');
   }
   openSubMenu = () => {
-    // eslint-disable-next-line no-debugger
-    debugger;
-    // eslint-disable-next-line no-undef
-    logger.log('thisss', this);
     if (this.root.find('.tpatom-list-item__btn').attr('aria-expanded') === 'false') {
       this.root.find('.tpatom-list-item__btn').attr('aria-expanded', 'true');
     } else {
