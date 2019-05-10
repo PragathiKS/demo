@@ -115,12 +115,13 @@ function _renderSiteFilters() {
         cancellable: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
+
         if (!data) {
           this.data = data = {
             isError: true
           };
         } else {
-          const { i18nKeys } = $this.cache;
           data.i18nKeys = i18nKeys;
 
           $this.processSiteData(data);

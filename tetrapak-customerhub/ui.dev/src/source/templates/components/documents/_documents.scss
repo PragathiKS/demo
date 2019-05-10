@@ -15,10 +15,6 @@
         }
     }
 
-    &__equipments {
-        @include line-height(24px, $font-baseline);
-    }
-
     &__equipment-heading {
         @include margin-bottom($margin-l);
     }
