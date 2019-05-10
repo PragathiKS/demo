@@ -1,7 +1,27 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
+import { logger } from '../../../scripts/utils/logger';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+
+/**
+ * Fire analytics on Packaging, Processing
+ * mail/contact link click
+ */
+function _trackAnalytics(title, name) {
+  const analyticsData = {
+    linkType: 'internal',
+    linkSection: 'intro modal'
+  };
+
+  // creating linkParentTitle and linkName as per the title received
+  analyticsData.linkParentTitle = title;
+  analyticsData.linkName = name;
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 class introscreen {
   constructor({ templates, el }) {
@@ -36,9 +56,14 @@ class introscreen {
       }
     });
 
-    this.root.find('.js-close-btn').on('click', () => {
-      this.closeCarousel();
-    });
+    this.root.find('.js-close-btn')
+      .on('click', () => {
+        const sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
+
+        logger.log('on close icon click', sliderTitle);
+        this.trackAnalytics(sliderTitle, 'close');
+        this.closeCarousel();
+      });
   }
 
   init() {
@@ -66,6 +91,8 @@ class introscreen {
     this.root.modal('hide');
     storageUtil.set('introScreen', true);
   }
+
+  trackAnalytics = (title, name) => _trackAnalytics.call(this, title, name);
 }
 
 export default introscreen;
