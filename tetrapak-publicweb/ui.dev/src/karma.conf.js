@@ -4,10 +4,10 @@ const webpackConfig = require('./config').webpack;
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJSCustom'],
+    browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
-      PhantomJSCustom: {
-        base: 'PhantomJS',
+      ChromeHeadlessCustom: {
+        base: 'ChromeHeadless',
         //debug: true,
         options: {
           windowName: 'my-window',

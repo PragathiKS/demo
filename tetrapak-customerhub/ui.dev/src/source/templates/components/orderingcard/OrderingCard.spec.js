@@ -78,16 +78,16 @@ describe('OrderingCard', function () {
     $('.js-ordering-card__modal-save').trigger('click');
     expect($('.js-ordering-card__save-error').hasClass('d-none')).to.be.false;
   });
-  it('should set Analytics tags on click of save settings button', function () {
-    $('.js-ordering-card__modal-save').trigger('click');
-    expect(this.orderingCard.trackAnalytics.called).to.be.true;
-  });
   it('should redirect to order detail page on click of order summary row', function () {
     const rowLink = $('.js-ordering-card__row').first();
     if (rowLink.length) {
       rowLink.trigger('click');
       expect(this.orderDetailSpy.called).to.be.true;
     }
+  });
+  it('should set Analytics tags on click of order summary row', function () {
+    $('.js-ordering-card__row').trigger('click');
+    expect(this.orderingCard.trackAnalytics.called).to.be.true;
   });
   it('should open default calling or email app depending upon device', function () {
     const tableLink = $('.js-ordering-card__row').first().find('a').first();

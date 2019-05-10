@@ -95,8 +95,19 @@ describe('OrderSearch', function () {
     done();
   });
   it('should set analytics tags on click of search button', function (done) {
+    $('.js-order-search__submit').trigger('click');
     expect(this.orderSearch.trackAnalytics.called).to.be.true;
     done();
+  });
+
+  it('should set analytics tags on click of reset button', function (done) {
+    $('.js-order-search__reset').trigger('click');
+    expect(this.orderSearch.trackAnalytics.called).to.be.true;
+    done();
+  });
+  it('should set Analytics tags on click of order row', function () {
+    $('.js-ordering-card__row').trigger('click');
+    expect(this.orderSearch.trackAnalytics.called).to.be.true;
   });
   it('should reset search filters and table on click of "reset" button', function (done) {
     this.routeStub.yield(

@@ -9,32 +9,35 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
 import { apiHost, resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 
 function _trackAnalytics(type) {
+
   const $this = this;
+  const { $filterForm } = $this.cache;
+  const { statementOfAccount = '' } = $this.cache.i18nKeys;
+
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: 'statement of accounts'
+    linkParentTitle: statementOfAccount.toLowerCase()
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      ob.linkName = 'reset search';
+      ob.linkName = 'reset';
       break;
     }
     case 'search': {
-      const { $filterForm } = $this.cache;
       const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
       const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
 
-      ob.linkName = 'reset search';
+      ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
@@ -244,11 +247,15 @@ function _getFilterQuery() {
   return returnQueryString;
 }
 
+/**
+ * Returns extension based on file type
+ * @param {string} type File type
+ */
 function _getExtension(type) {
   if (type === 'excel') {
-    return 'xlsx';
+    return EXT_EXCEL;
   }
-  return 'pdf';
+  return EXT_PDF;
 }
 
 /**
@@ -421,7 +428,6 @@ class FinancialStatement {
       .on('change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).val(), noReset);
-        $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
