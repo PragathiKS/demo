@@ -53,6 +53,7 @@ class introscreen {
 
       this.cache.$introScreenCarousel.slick({
         dots: true,
+        speed: 500,
         infinite: false,
         appendDots: this.root.find('.slider-dots'),
         prevArrow: false,

@@ -3,17 +3,20 @@
     border-bottom: 1px solid $color-denim;
     position: relative;
     background-color: $color-congress-blue;
+
     &.active,
     &:hover {
         background: $color-tory-blue;
     }
+
     .tpmol-list-item__sublist & {
         background-color: $color-tory-blue;
         border-bottom: 1px solid $color-denim;
-        transition: all $anim-speed-normal ease;
+        transition: all $anim-speed-quick ease;
         overflow: hidden;
         opacity: 1;
         height: auto;
+
         &.active,
         &:hover {
             background: $color-denim;
