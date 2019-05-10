@@ -16,12 +16,11 @@
     }
 
     &__equipments {
-        @include line-height($font-l, $font-baseline);
+        @include line-height(24px, $font-baseline);
     }
 
     &__equipment-heading {
         @include margin-bottom($margin-l);
-        @include line-height($font-l, $font-xl);
     }
 
     &__accordion {
