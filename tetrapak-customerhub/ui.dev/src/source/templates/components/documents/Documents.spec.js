@@ -82,4 +82,14 @@ describe('Documents', function () {
     expect(this.documents.renderEquipmentFilters.called).to.be.true;
     done();
   });
+  it('should render line filter on change of `site` filter', function (done) {
+    $('.js-documents-filtering__site').trigger('change');
+    expect(this.documents.processLineData.called).to.be.true;
+    done();
+  });
+  it('should render equipment filter on change of `line` filter', function (done) {
+    $('.js-documents-filtering__line').trigger('change');
+    expect(this.documents.renderEquipmentFilters.called).to.be.true;
+    done();
+  });
 });
