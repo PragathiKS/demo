@@ -1,6 +1,6 @@
 pipeline {
         agent any
-  triggers {
+   triggers {
           cron('30 10,15 * * *')
                    } 
 
@@ -49,9 +49,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/cust
 
                 stage ('Build') {
                         steps {
-                                sh "rm -rf $workspace/tetrapak-commons/ui.dev/src/node_modules/"
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
-                                sh "rm -rf $workspace/tetrapak-customerhub/ui.dev/src/node_modules/"
                                 sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
                                 sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                 sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
@@ -259,7 +257,8 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 }
 
  always {
-    build 'Tetra-Dev-Dispatcher-Flush'
+    build 'Tetra_Dev_Clear_httpd_Cache'
+	build 'Tetra-Splunk-All-Tools'
     }
 	}
 

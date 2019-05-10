@@ -1,6 +1,5 @@
 package com.tetrapak.commons.core.services.config;
 
-import org.apache.sling.api.resource.observation.ResourceChangeListener;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -14,18 +13,23 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
         description = "TetraPak Dispatcher Flush Service Configuration")
 public @interface DispatcherFlushConfig {
 
+    /**
+     * @return abs path
+     */
     @AttributeDefinition(
-            name = ResourceChangeListener.PATHS,
-            description = "Configurable paths for event listener",
+            name = "absPath",
+            description = "event.topics",
             type = AttributeType.STRING
     )
-    String[] getPaths();
+    String absPath();
 
+    /**
+     * @return dispatcher path
+     */
     @AttributeDefinition(
-            name = ResourceChangeListener.CHANGES,
-            description = "Event types",
+            name = "dispatcherPath",
+            description = "dispatcher Path for which cache needs to be cleared",
             type = AttributeType.STRING
     )
-    String[] getEventTypes();
-
+    String dispatcherPath();
 }

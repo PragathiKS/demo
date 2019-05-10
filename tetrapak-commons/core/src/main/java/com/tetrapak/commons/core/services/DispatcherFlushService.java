@@ -5,6 +5,10 @@ package com.tetrapak.commons.core.services;
  *
  * @author Nitin Kumar
  */
+@FunctionalInterface
 public interface DispatcherFlushService {
-    public void flush(String dispatcherHandle);
+    /**
+     * @param dispatcherHandle path to flush cache
+     */
+    void flush(String dispatcherHandle);
 }

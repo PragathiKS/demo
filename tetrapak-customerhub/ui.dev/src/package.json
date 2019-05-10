@@ -4,10 +4,10 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "core-js": "^3.0.0-beta.3",
-    "jquery": "^3.3.1",
-    "jquerydeparam": "^1.1.2",
+    "jquery": "^3.4.1",
+    "jquerydeparam": "^1.1.5",
     "jqueryrouter": "^2.1.0",
-    "lightpick": "https://github.com/scssyworks/Lightpick/tarball/master",
+    "lightpick": "git+https://github.com/scssyworks/Lightpick.git#v1.4.3",
     "lzstorage": "^1.0.8",
     "moment": "^2.24.0",
     "popper.js": "^1.14.7",

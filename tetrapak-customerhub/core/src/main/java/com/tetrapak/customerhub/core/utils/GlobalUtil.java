@@ -209,8 +209,23 @@ public class GlobalUtil {
         if (null == pageManager) {
             return "";
         }
-        Page currentPage = pageManager.getContainingPage(resource.getPath());
+        Page currentPage = pageManager.getContainingPage(resource);
         return currentPage.getTitle();
+    }
+    
+    /**
+     * The method returns page depth of the page provided the resource.
+     * 
+     * @param res Resource
+     * @return depth
+     */
+    public static int getPageDepth(Resource res) {
+    	PageManager pageMgr = res.getResourceResolver().adaptTo(PageManager.class);
+    	if (null == pageMgr) {
+    		return 0;
+    	}
+    	Page currentPage = pageMgr.getContainingPage(res);
+    	return currentPage.getDepth();
     }
 
 }

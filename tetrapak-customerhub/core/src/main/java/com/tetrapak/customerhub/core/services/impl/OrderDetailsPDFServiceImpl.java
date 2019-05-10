@@ -1,4 +1,3 @@
-
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
@@ -48,8 +47,8 @@ import java.util.Map;
  *
  * @author Nitin Kumar
  */
-@Component(immediate = true, service = OrderDetailsPDFService.class)
-public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
+@Component(immediate = true, service = OrderDetailsPDFService.class) public class OrderDetailsPDFServiceImpl
+        implements OrderDetailsPDFService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServiceImpl.class);
 
@@ -72,9 +71,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
      * @param orderType           order type
      * @param orderDetailResponse order detail response
      */
-    @Override
-    public boolean generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-                                           String orderType, OrderDetailsData orderDetailResponse, OrderDetailsModel orderDetailsModel) {
+    @Override public boolean generateOrderDetailsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+            String orderType, OrderDetailsData orderDetailResponse, OrderDetailsModel orderDetailsModel) {
         this.orderDetailsModel = orderDetailsModel;
         OrderDetails orderDetails = orderDetailResponse.getOrderDetails();
         List<DeliveryList> deliveryList = orderDetailResponse.getDeliveryList();
@@ -98,8 +96,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         try {
             PDPage page = new PDPage();
             document.addPage(page);
-            contentStream = new PDPageContentStream(
-                    document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+            contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
+                    true);
 
             in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
             in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
@@ -118,7 +116,8 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
             PDFUtil.drawImage(contentStream, img1, 405, 710, 130, 50);
             PDFUtil.drawImage(contentStream, img2, 60, 570, 40, 40);
 
-            PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY, getHeadLines(request, orderDetails));
+            PDFUtil.writeContent(document, contentStream, 65, 750, Color.DARK_GRAY,
+                    getHeadLines(request, orderDetails));
             PDFUtil.writeContent(document, contentStream, 105, 610, Color.DARK_GRAY,
                     getContactLines(request, orderDetailResponse.getCustomerSupportCenter()));
 
@@ -130,14 +129,18 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
                 contentStream = printPartsDeliveryDetails(request, document, contentStream, deliveryList);
             } else {
                 List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
-                PDFUtil.drawTable(contentStream, createOrderSummaryTable(request, orderSummaryList), 550);
+                int height = PDFUtil.drawTable(contentStream, createOrderSummaryTable(request, orderSummaryList), 550);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, 535, Color.DARK_GRAY, 0.1f);
-                PDFUtil.drawLine(contentStream, MARGIN, 460, 535 - (15 * orderSummaryList.size()), Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5, Color.LIGHT_GRAY,
+                        0.1f);
 
-                contentStream = printPackMatDeliveryDetails(request, document, contentStream, orderDetailResponse.getDeliveryList());
+                contentStream = printPackMatDeliveryDetails(request, document, contentStream,
+                        orderDetailResponse.getDeliveryList(), height - 20);
             }
             contentStream.close();
-            PDFUtil.writeOutput(response, document, orderDetails.getOrderNumber());
+            PDFUtil.writeOutput(response, document,
+                    GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getOrderNo()) + " "
+                            + orderDetails.getOrderNumber());
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
@@ -166,19 +169,12 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
     }
 
     private PDPageContentStream printPartsDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
-                                                          PDPageContentStream contentStream, List<DeliveryList> deliveryList)
-            throws IOException {
-        int height = 895;
+            PDPageContentStream contentStream, List<DeliveryList> deliveryList) throws IOException {
+        int height = 560;
         for (DeliveryList deliveryDetail : deliveryList) {
-            int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts()) + 200;
-            height = height - nextTableHeight;
-            if (height < nextTableHeight) {
+            if (height < 200) {
                 height = 750;
-                PDPage page = new PDPage();
-                document.addPage(page);
-                contentStream.close();
-                contentStream = new PDPageContentStream(
-                        document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+                contentStream = PDFUtil.getNewPage(document, contentStream);
             }
             PDFUtil.writeContent(document, contentStream, MARGIN, height, Color.DARK_GRAY,
                     getDeliveryDetailHeader(request, deliveryDetail.getDeliveryNumber()));
@@ -187,28 +183,55 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawTable(contentStream, createDeliveryDetailTable(request, deliveryDetail), height - 30);
 
-            PDFUtil.drawTable(contentStream, createProductTable(request, deliveryDetail.getProducts()), height - 110);
+            if (height < 750 - getNextTableHeight(deliveryDetail.getProducts())) {
+                PDFUtil.drawTable(contentStream, createProductTable(request, deliveryDetail.getProducts()),
+                        height - 110);
+                height = height - 130 - getNextTableHeight(deliveryDetail.getProducts());
 
-            PDFUtil.drawTable(contentStream, createProductSummaryTable(deliveryDetail), height - nextTableHeight + 60);
-            PDFUtil.drawLine(contentStream, MARGIN, 460, height - nextTableHeight + 20, Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height - 40, Color.LIGHT_GRAY, 0.1f);
+            } else {
+                int totalRows = deliveryDetail.getProducts().size();
+                int rowsForCurrentPage = (height - 190) / 15;
+                if (rowsForCurrentPage > totalRows) {
+                    rowsForCurrentPage = totalRows;
+                }
+                height = PDFUtil.drawTable(contentStream,
+                        createPartialProductTable(request, deliveryDetail.getProducts(), 0, rowsForCurrentPage - 1),
+                        height - 110);
+
+                if (rowsForCurrentPage == totalRows) {
+                    PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height - 10);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
+                    continue;
+                }
+
+                for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
+                    int end = start + 39;
+                    if (end > totalRows) {
+                        end = totalRows;
+                    }
+
+                    contentStream = PDFUtil.getNewPage(document, contentStream);
+                    height = PDFUtil.drawTable(contentStream,
+                            createPartialProductTable(request, deliveryDetail.getProducts(), start, end - 1), 730);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 745, Color.LIGHT_GRAY, 0.1f);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
+                }
+                PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height - 10);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
+                height -= 80;
+            }
         }
         return contentStream;
     }
 
-    private PDPageContentStream printPackMatDeliveryDetails(
-            SlingHttpServletRequest request, PDDocument document, PDPageContentStream contentStream,
-            List<DeliveryList> deliveryList) throws IOException {
-        int height = 710;
+    private PDPageContentStream printPackMatDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+            PDPageContentStream contentStream, List<DeliveryList> deliveryList, int height) throws IOException {
         for (DeliveryList deliveryDetail : deliveryList) {
-            int nextTableHeight = getNextTableHeight(deliveryDetail.getProducts()) + 200;
-            height = height - nextTableHeight;
-            if (height < nextTableHeight) {
+            if (height < 200) {
                 height = 750;
-                PDPage page = new PDPage();
-                document.addPage(page);
-                contentStream.close();
-                contentStream = new PDPageContentStream(
-                        document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+                contentStream = PDFUtil.getNewPage(document, contentStream);
             }
             PDFUtil.writeContent(document, contentStream, MARGIN, height, Color.DARK_GRAY,
                     getPackMatDeliveryDetailHeader(request, deliveryDetail));
@@ -217,9 +240,41 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
             PDFUtil.drawTable(contentStream, createPackMatDeliveryDetailTable(request, deliveryDetail), height - 30);
 
-            PDFUtil.drawTable(contentStream, createPackMatProductTable(request, deliveryDetail.getProducts()), height - 110);
+            if (height < 750 - getNextTableHeight(deliveryDetail.getProducts())) {
+                height = PDFUtil.drawTable(contentStream, createPackMatProductTable(request, deliveryDetail.getProducts()),
+                        height - 110);
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5, Color.LIGHT_GRAY, 0.1f);
+                height -= 30;
+            } else {
+                int totalRows = deliveryDetail.getProducts().size();
+                int rowsForCurrentPage = (height - 190) / 15;
+                if (rowsForCurrentPage > totalRows) {
+                    rowsForCurrentPage = totalRows;
+                }
+                height = PDFUtil.drawTable(contentStream,
+                        createPartialPackMatProductTable(request, deliveryDetail.getProducts(), 0, rowsForCurrentPage - 1),
+                        height - 110);
 
-            PDFUtil.drawLine(contentStream, MARGIN, 460, height - nextTableHeight + 40, Color.LIGHT_GRAY, 0.1f);
+                if (rowsForCurrentPage == totalRows) {
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, height - 10, Color.LIGHT_GRAY, 0.1f);
+                    continue;
+                }
+
+                for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
+                    int end = start + 39;
+                    if (end > totalRows) {
+                        end = totalRows;
+                    }
+
+                    contentStream = PDFUtil.getNewPage(document, contentStream);
+                    height = PDFUtil.drawTable(contentStream,
+                            createPartialPackMatProductTable(request, deliveryDetail.getProducts(), start, end - 1), 730);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 745, Color.LIGHT_GRAY, 0.1f);
+                    PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
+                }
+                PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5 , Color.LIGHT_GRAY, 0.1f);
+                height -= 30;
+            }
         }
         return contentStream;
     }
@@ -230,17 +285,19 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private List<Row> getDeliveryDetailHeader(SlingHttpServletRequest request, String deliveryNumber) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getDeliveryOrder()) + ": " + deliveryNumber, 20, muliRegular, 11));
+        rows.add(
+                new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryOrder()) + ": "
+                        + deliveryNumber, 20, muliRegular, 11));
         rows.add(new Row(StringUtils.EMPTY, 30, muliRegular, 12));
         return rows;
     }
 
     private List<Row> getPackMatDeliveryDetailHeader(SlingHttpServletRequest request, DeliveryList deliveryDetail) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getDeliveryOrder()) + ": " + deliveryDetail.getDeliveryNumber() + " - " +
-                deliveryDetail.getDeliveryStatus(), 20, muliRegular, 11));
+        rows.add(
+                new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryOrder()) + ": "
+                        + deliveryDetail.getDeliveryNumber() + " - " + deliveryDetail.getDeliveryStatus(), 20,
+                        muliRegular, 11));
         rows.add(new Row(StringUtils.EMPTY, 30, muliRegular, 12));
         return rows;
     }
@@ -249,43 +306,42 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row("Order details", 20, muliRegular, 18));
         rows.add(new Row(StringUtils.EMPTY, 30, muliRegular, 12));
-        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getOrderNo()) + orderDetails.getOrderNumber() + " - " +
-                orderDetails.getStatus(), 20, muliRegular, 11));
+        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getOrderNo()) + ": "
+                + orderDetails.getOrderNumber() + " - " + orderDetails.getStatus(), 20, muliRegular, 11));
         rows.add(new Row(StringUtils.EMPTY, 10, muliRegular, 12));
         return rows;
     }
 
     private List<Row> getContactLines(SlingHttpServletRequest request, CustomerSupportCenter customerSupportCenter) {
         List<Row> rows = new ArrayList<>();
-        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getCustSupCentreLabel()), 9, muliBold, 7));
-        rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true, "mailto:" + customerSupportCenter.getEmail()));
+        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustSupCentreLabel()),
+                9, muliBold, 7));
+        rows.add(new Row(customerSupportCenter.getEmail(), 9, muliRegular, 6, true,
+                "mailto:" + customerSupportCenter.getEmail()));
         rows.add(new Row(customerSupportCenter.getMobile(), 9, muliRegular, 6));
         return rows;
     }
 
     private Table createOrderDetailTable(SlingHttpServletRequest request, OrderDetails orderDetails) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getCustomerNameLabel()), 70));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerNameLabel()), 70));
         columns.add(new Column(orderDetails.getCustomerName(), 90));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getPurchaseOrderNumberLabel()), 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getPurchaseOrderNumberLabel()), 80));
         columns.add(new Column(orderDetails.getOrderNumber(), 120));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                orderDetailsModel.getOrderDateLabel()), 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getOrderDateLabel()), 60));
         columns.add(new Column(orderDetails.getPlacedOn(), 80));
 
-        String[][] content = {
-                {CustomerHubConstants.BOLD_IDENTIFIER +
-                        GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerNumberLabel()),
-                        orderDetails.getCustomerNumber().toString(),
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                                orderDetailsModel.getCustomerReferenceLabel()),
-                        orderDetails.getCustomerReference().toString(),
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                                orderDetailsModel.getWebRefLabel()), orderDetails.getWebRefID().toString()}
+        String[][] content = { { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerNumberLabel()),
+                orderDetails.getCustomerNumber().toString(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerReferenceLabel()),
+                orderDetails.getCustomerReference().toString(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getWebRefLabel()),
+                orderDetails.getWebRefID().toString()
+        }
         };
 
         return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
@@ -293,128 +349,123 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
 
     private Table createDeliveryDetailTable(SlingHttpServletRequest request, DeliveryList deliveryList) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getShippingLabel()), 70));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getShippingLabel()), 70));
         columns.add(new Column(deliveryList.getCarrier(), 240));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryAddrLabel()), 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getInvoiceAddrLabel()), 120));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryAddrLabel()), 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getInvoiceAddrLabel()), 120));
 
         DeliveryAddress deliveryAddress = deliveryList.getDeliveryAddress();
         InvoiceAddress invoiceAddress = deliveryList.getInvoiceAddress();
 
-        String[][] content = {
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request,
-                                StringUtils.EMPTY, orderDetailsModel.getTrackOrderLabel()), deliveryList.getCarrierTrackingID(),
-                        deliveryAddress.getName(), invoiceAddress.getName()
-                },
-                {
-                        StringUtils.EMPTY, StringUtils.EMPTY, deliveryAddress.getCity(), invoiceAddress.getCity()
-                },
-                {
-                        StringUtils.EMPTY, StringUtils.EMPTY, deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " "
-                        + deliveryAddress.getCountry(),
-                        invoiceAddress.getState() + ", " + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()
-                }
+        String[][] content = { { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getTrackOrderLabel()),
+                deliveryList.getCarrierTrackingID(), deliveryAddress.getName(), invoiceAddress.getName()
+        }, { StringUtils.EMPTY, StringUtils.EMPTY, deliveryAddress.getCity(), invoiceAddress.getCity()
+        }, { StringUtils.EMPTY, StringUtils.EMPTY,
+                deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " " + deliveryAddress
+                        .getCountry(),
+                invoiceAddress.getState() + ", " + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()
+        }
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createPackMatDeliveryDetailTable(SlingHttpServletRequest request, DeliveryList deliveryDetail) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryOrder()), 70));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryOrder()), 70));
         columns.add(new Column(deliveryDetail.getDeliveryOrder(), 240));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryAddrLabel()), 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getInvoiceAddrLabel()), 120));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getDeliveryAddrLabel()), 80));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getInvoiceAddrLabel()), 120));
 
         DeliveryAddress deliveryAddress = deliveryDetail.getDeliveryAddress();
         InvoiceAddress invoiceAddress = deliveryDetail.getInvoiceAddress();
 
-        String[][] content = {
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request,
-                                StringUtils.EMPTY, orderDetailsModel.getProductionPlace()), deliveryDetail.getProductPlace(),
-                        deliveryAddress.getName(), invoiceAddress.getName()
-                },
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request,
-                                StringUtils.EMPTY, orderDetailsModel.getRequested()), deliveryDetail.getRequestedDelivery(),
-                        deliveryAddress.getCity(), invoiceAddress.getCity()
-                },
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request,
-                                StringUtils.EMPTY, orderDetailsModel.getEtd()), deliveryDetail.getETD(),
-                        deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " " + deliveryAddress.getCountry(),
-                        invoiceAddress.getState() + ", " + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()
-                }
+        String[][] content = { { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getProductionPlace()),
+                deliveryDetail.getProductPlace(), deliveryAddress.getName(), invoiceAddress.getName()
+        }, { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getRequested()),
+                deliveryDetail.getRequestedDelivery(), deliveryAddress.getCity(), invoiceAddress.getCity()
+        }, { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getEtd()), deliveryDetail.getETD(),
+                deliveryAddress.getState() + ", " + deliveryAddress.getPostalcode() + " " + deliveryAddress
+                        .getCountry(),
+                invoiceAddress.getState() + ", " + invoiceAddress.getPostalcode() + " " + invoiceAddress.getCountry()
+        }
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createProductTable(SlingHttpServletRequest request, List<Product> products) {
+        return createPartialProductTable(request, products, 0, products.size() - 1);
+    }
+
+    private Table createPartialProductTable(SlingHttpServletRequest request, List<Product> products, int start,
+            int end) {
 
         List<Column> columns = new ArrayList<>();
         for (String columnName : partsDeliveryColumn) {
-            int width = 40;
+            int width = 35;
             if (StringUtils.equalsIgnoreCase(columnName, "productName")) {
-                width = 110;
+                width = 100;
             } else if (StringUtils.equalsIgnoreCase(columnName, "serialNo")) {
-                width = 10;
-            } else if (StringUtils.equalsIgnoreCase(columnName, "price")) {
-                width = 45;
-            } else if (StringUtils.equalsIgnoreCase(columnName, ORDER_QUANTITY) ||
-                    StringUtils.equalsIgnoreCase(columnName, DELIVERED_QUANTITY) ||
-                    StringUtils.equalsIgnoreCase(columnName, "remainingQuantity")) {
-                width = 35;
+                width = 15;
+            } else if (StringUtils.equalsIgnoreCase(columnName, "price") || StringUtils
+                    .equalsIgnoreCase(columnName, "orderNumber")) {
+                width = 50;
             }
-            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                    GlobalUtil.getI18nValue(request, ORDER_DETAIL_I18_PREFIX, columnName), width));
+            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                    .getI18nValue(request, ORDER_DETAIL_I18_PREFIX, columnName), width));
         }
 
-        String[][] content = new String[products.size()][partsDeliveryColumn.length];
+        String[][] content = new String[end - start + 1][partsDeliveryColumn.length];
 
-        for (int i = 0; i < products.size(); i++) {
+        for (int i = 0; i <= end - start; i++) {
             int j = 0;
             for (String columnName : partsDeliveryColumn) {
-                content[i][j] = getProductValueForTheHeader(products.get(i), columnName, i);
+                content[i][j] = getProductValueForTheHeader(products.get(i + start), columnName, i + start);
                 j++;
             }
         }
-
-        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 
     private Table createPackMatProductTable(SlingHttpServletRequest request, List<Product> products) {
+        return createPartialPackMatProductTable(request, products, 0, products.size() - 1);
+    }
+
+    private Table createPartialPackMatProductTable(SlingHttpServletRequest request, List<Product> products, int start,
+            int end) {
 
         List<Column> columns = new ArrayList<>();
         for (String packMatColumn : packMatDeliveryColumn) {
             int width = 120;
-            if (StringUtils.equalsIgnoreCase(packMatColumn, "SKU") ||
-                    StringUtils.equalsIgnoreCase(packMatColumn, "quantityKPK")) {
+            if (StringUtils.equalsIgnoreCase(packMatColumn, "SKU") || StringUtils
+                    .equalsIgnoreCase(packMatColumn, "quantityKPK")) {
                 width = 80;
             }
-            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                    GlobalUtil.getI18nValue(request, ORDER_DETAIL_DELIVERY_PREFIX, packMatColumn), width));
+            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                    .getI18nValue(request, ORDER_DETAIL_DELIVERY_PREFIX, packMatColumn), width));
         }
 
-        String[][] content = new String[products.size()][packMatDeliveryColumn.length];
+        String[][] content = new String[end - start + 1][packMatDeliveryColumn.length];
 
-        for (int i = 0; i < products.size(); i++) {
+        for (int i = 0; i <= end - start; i++) {
             int j = 0;
             for (String packmatcolumn : packMatDeliveryColumn) {
-                content[i][j] = getProductValueForTheHeader(products.get(i), packmatcolumn, i);
+                content[i][j] = getProductValueForTheHeader(products.get(i + start), packmatcolumn, i + start);
                 j++;
             }
         }
-
-        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
     }
 
     private String getProductValueForTheHeader(Product product, String columnName, int i) {
@@ -431,9 +482,10 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         map.put("unitPrice", product.getUnitPrice());
         map.put("materialCode", product.getMaterialCode());
         map.put("SKU", product.getSKU());
-        map.put("serialNo", Integer.toString(i));
-        map.put("quantityKPK", product.getOrderQuantity() + CustomerHubConstants.PATH_SEPARATOR + product.getRemainingQuantity()
-                + CustomerHubConstants.PATH_SEPARATOR + product.getDeliveredQuantity());
+        map.put("serialNo", Integer.toString(i + 1));
+        map.put("quantityKPK",
+                product.getOrderQuantity() + CustomerHubConstants.PATH_SEPARATOR + product.getRemainingQuantity()
+                        + CustomerHubConstants.PATH_SEPARATOR + product.getDeliveredQuantity());
 
         if (map.containsKey(columnName)) {
             return map.get(columnName);
@@ -441,18 +493,24 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         return StringUtils.EMPTY;
     }
 
-    private Table createProductSummaryTable(DeliveryList deliveryList) {
+    private Table createProductSummaryTable(SlingHttpServletRequest request, DeliveryList deliveryList) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(StringUtils.EMPTY, 375));
-        columns.add(new Column("  Total weight", 55));
+        columns.add(new Column(
+                "  " + GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getTotalWeightLabel()),
+                55));
         columns.add(new Column(deliveryList.getTotalWeight(), 45));
 
-        String[][] content = {
-                {StringUtils.EMPTY, "Total pre VAT", deliveryList.getTotalPricePreVAT()},
-                {StringUtils.EMPTY, CustomerHubConstants.BOLD_IDENTIFIER + "                VAT", deliveryList.getTotalVAT()}
+        String[][] content = { { StringUtils.EMPTY,
+                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getTotalPricePreVatLabel()),
+                deliveryList.getTotalPricePreVAT()
+        }, { StringUtils.EMPTY, CustomerHubConstants.BOLD_IDENTIFIER + "                " + GlobalUtil
+                .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getTotalVatLabel()),
+                deliveryList.getTotalVAT()
+        }
         };
 
-        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 6);
+        return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
 
     private Table createOrderSummaryTable(SlingHttpServletRequest request, List<OrderSummary> orderSummaryList) {
@@ -460,10 +518,10 @@ public class OrderDetailsPDFServiceImpl implements OrderDetailsPDFService {
         for (String packMatColumnName : packMatColumns) {
             int width = 70;
             if (StringUtils.equalsIgnoreCase(packMatColumnName, "product")) {
-                width = 325;
+                width = 300;
             }
-            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER +
-                    GlobalUtil.getI18nValue(request, ORDER_DETAIL_SUMMARY_PREFIX, packMatColumnName), width));
+            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                    .getI18nValue(request, ORDER_DETAIL_SUMMARY_PREFIX, packMatColumnName), width));
         }
 
         String[][] content = new String[orderSummaryList.size()][packMatColumns.length];

@@ -1,4 +1,8 @@
 .tp-maintenance-filtering {
+    &__filters {
+        @include margin-bottom($margin-md);
+    }
+
     &__contact {
         @include font-size($font-sm);
         @include border-radius($border-radius);
@@ -38,4 +42,87 @@
     .tpatom-dropdown {
         @include margin-bottom($margin-md);
     }
+
+
+    &__calendar-heading {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__calendar-wrapper {
+        .lightpick {
+            @include top(-$spacing-big);
+            position: relative;
+        }
+
+        .lightpick__days {
+
+            div {
+                @media #{$desktop} {
+                    @include height(30px);
+                    @include width(30px);
+                }
+            }
+        }
+
+        .lightpick__day,
+        .lightpick__day-of-the-week {
+            @media #{$desktop} {
+                @include height(30px);
+                @include width(30px);
+                padding: 0;
+            }
+        }
+
+        .lightpick__day {
+            position: relative;
+
+        }
+
+        .lightpick__months {
+            @include display-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lightpick__month {
+
+            @media #{$desktop} {
+                @include margin-right($margin-md);
+                @include margin-bottom($margin-md);
+                @include width(230px);
+            }
+        }
+    }
+}
+
+.lightpick__dot {
+    // Keeping fix height width for dot only
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    text-align: center;
+    background: $color-jordy-blue;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+
+    .is-in-range & {
+        background: $color-congress-blue;
+    }
+
+    .is-start-date & {
+        background: $color-white;
+    }
+
+    .is-end-date & {
+        background: $color-white;
+    }
+
+
 }

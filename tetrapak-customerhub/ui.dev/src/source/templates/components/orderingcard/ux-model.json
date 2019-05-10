@@ -15,7 +15,7 @@
   "disabledFields": [
     "contact"
   ],
-  "allOrdersLink": "/content/tetrapak/customerhub/global/ordering/order-history.html",
-  "orderDetailLink": "/content/customerhub-ux/orderdetail.ux-preview.html",
+  "allOrdersLink": "/content/customerhub-ux/ordersearch.ux-preview.html",
+  "orderDetailLink": "/content/customerhub-ux/orderdetails.ux-preview.html",
   "i18nKeys": "{\"title\":\"cuhu.ordering.title\",\"preferencesTitle\":\"cuhu.ordering.preferencestitle\",\"preferencesDescription\":\"cuhu.ordering.preferencesdescription\",\"allOrders\":\"cuhu.ordering.allorders\",\"saveSettings\":\"cuhu.ordering.save\",\"closeBtn\":\"cuhu.ordering.close\",\"preferencesBtn\":\"cuhu.ordering.preferences\",\"saveError\":\"cuhu.ordering.saveerror\",\"noData\":\"cuhu.ordering.nodata\",\"dataError\":\"cuhu.ordering.dataerror\"}"
 }

@@ -34,7 +34,7 @@
         &__title,
         &__description {
             @include margin-bottom($padding-md);
-            overflow: hidden;
+            //overflow: hidden; demo fix
 
             @media #{$desktop} {
                 @include margin-bottom($padding-l);
@@ -48,9 +48,11 @@
             }
         }
         &__description {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            @media #{$desktop} {
+            @include font-size(16px);
+            @include line-height(28px, 16px);
+            @media #{$tablet} {
+                @include font-size(14px);
+                @include line-height(24px, 14px);
                 max-height: convert-to-rem(120px);
             }
         }

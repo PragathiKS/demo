@@ -17,8 +17,12 @@
     }
 
     &__description {
-        @include font-size(14px);
-        @include line-height(24px, 14px);
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        @media #{$tablet} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }
     }
 
     &__link {
@@ -29,4 +33,7 @@
         }
     }
 
+    &__image {
+        width: 100%;
+    }
 }

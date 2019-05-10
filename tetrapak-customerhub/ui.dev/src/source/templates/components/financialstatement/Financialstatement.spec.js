@@ -22,6 +22,7 @@ describe('FinancialStatement', function () {
     this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
+    this.analyticsSpy = sinon.spy(this.financialstatement, 'trackAnalytics');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
     this.dateRangeSpy = sinon.spy(this.financialstatement, 'openDateSelector');
@@ -40,7 +41,6 @@ describe('FinancialStatement', function () {
         token_type: "BearerToken"
       }
     });
-    this.submitStub = sinon.stub(this.financialstatement, 'submitTempForm');
     this.financialstatement.init();
   });
   after(function () {
@@ -51,6 +51,7 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
+    this.analyticsSpy.restore();
     this.downloadPdfExcelSpy.restore();
     this.navigateSpy.restore();
     this.searchSpy.restore();
@@ -58,7 +59,6 @@ describe('FinancialStatement', function () {
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
-    this.submitStub.restore();
   });
 
   it('should initialize', function (done) {

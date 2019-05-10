@@ -53,7 +53,7 @@ public final class PDFUtil {
      * @param rows          list of string lines to be printed on document
      */
     public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height,
-                                    Color color, List<Row> rows) {
+            Color color, List<Row> rows) {
         try {
             for (Row row : rows) {
                 height -= row.getHeight();
@@ -61,7 +61,7 @@ public final class PDFUtil {
                 contentStream.setFont(row.getFont(), row.getFontSize());
                 contentStream.newLineAtOffset(margin, height);
                 String rowContent = row.getContent();
-                String[] message = {rowContent};
+                String[] message = { rowContent };
                 if (row.isHref()) {
                     contentStream.setNonStrokingColor(Color.BLUE);
                     setTextWithLink(document.getPage(0), margin, height, rowContent, row.getLink());
@@ -78,7 +78,8 @@ public final class PDFUtil {
         }
     }
 
-    private static void setTextWithLink(PDPage page, int margin, int height, String text, String link) throws IOException {
+    private static void setTextWithLink(PDPage page, int margin, int height, String text, String link)
+            throws IOException {
         PDAnnotationLink txtLink = new PDAnnotationLink();
         txtLink.setAnnotationName(text);
         PDBorderStyleDictionary borderULine = new PDBorderStyleDictionary();
@@ -111,8 +112,8 @@ public final class PDFUtil {
      * @param height        height
      * @throws IOException IO Exception
      */
-    public static void drawImage(PDPageContentStream contentStream,
-                                 PDImageXObject image, int x, int y, int width, int height) throws IOException {
+    public static void drawImage(PDPageContentStream contentStream, PDImageXObject image, int x, int y, int width,
+            int height) throws IOException {
         contentStream.drawImage(image, x, y, width, height);
     }
 
@@ -132,6 +133,7 @@ public final class PDFUtil {
 
             response.setContentType("application/pdf");
             response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Length", Integer.toString(in.available()));
 
             int read;
             OutputStream os = response.getOutputStream();
@@ -153,18 +155,20 @@ public final class PDFUtil {
      * @param contentStream content stream
      * @param table         table
      * @param startY        start y position
+     * @return int height
      */
-    public static void drawTable(PDPageContentStream contentStream, Table table, int startY) {
-
+    public static int drawTable(PDPageContentStream contentStream, Table table, int startY) {
+        double nextTextY = 0;
         try {
             String[][] currentPageContent = table.getContent();
 
             double nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
-            double nextTextY = startY - ((double) table.getRowHeight() / 2)
-                    - (((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight()
-                    / 1000 * (double) table.getFontSize()) / 4);
+            nextTextY = startY - ((double) table.getRowHeight() / 2) - (
+                    ((double) table.getTextFont().getFontDescriptor().getFontBoundingBox().getHeight() / 1000
+                            * (double) table.getFontSize()) / 4);
 
-            writeContentLine(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY, table);
+            writeContentLine(table.getColumnsNamesAsArray(), contentStream, (float) nextTextX, (float) nextTextY,
+                    table);
             nextTextY -= table.getRowHeight();
             nextTextX = (double) table.getMargin() + (double) table.getCellMargin();
 
@@ -176,18 +180,19 @@ public final class PDFUtil {
         } catch (IOException e) {
             LOGGER.error("IOException in PDF Util class while printing table {}", e);
         }
+        return (int) nextTextY;
     }
 
-    private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX, float nextTextY,
-                                         Table table) throws IOException {
+    private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX,
+            float nextTextY, Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
             boolean isBold = text.startsWith(CustomerHubConstants.BOLD_IDENTIFIER);
             contentStream.beginText();
             contentStream.newLineAtOffset((float) nextTextX, nextTextY);
             contentStream.setFont(isBold ? table.getTextFontBold() : table.getTextFont(), table.getFontSize());
-            contentStream.showText(isBold ?
-                    StringUtils.substringAfter(text, CustomerHubConstants.BOLD_IDENTIFIER) : text);
+            contentStream
+                    .showText(isBold ? StringUtils.substringAfter(text, CustomerHubConstants.BOLD_IDENTIFIER) : text);
             contentStream.endText();
             nextTextX += table.getColumns().get(i).getWidth();
         }
@@ -204,8 +209,8 @@ public final class PDFUtil {
      * @param thickness     thickness
      * @throws IOException IO Exception
      */
-    public static void drawLine(PDPageContentStream contentStream,
-                                int margin, int length, int height, Color color, float thickness) throws IOException {
+    public static void drawLine(PDPageContentStream contentStream, int margin, int length, int height, Color color,
+            float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.setLineWidth(thickness);
         contentStream.moveTo(margin, height);
@@ -225,12 +230,12 @@ public final class PDFUtil {
      * @param fontSize    font size
      * @return table table
      */
-    public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
-                                 PDFont muliRegular, PDFont muliBold, double fontSize) {
+    public static Table getTable(List<Column> columns, String[][] content, double rowHeight, PDFont muliRegular,
+            PDFont muliBold, double fontSize) {
         final float MARGIN = 65;
         return getTable(columns, content, rowHeight, muliRegular, muliBold, fontSize, MARGIN);
     }
-    
+
     /**
      * Method to create table
      *
@@ -240,10 +245,11 @@ public final class PDFUtil {
      * @param muliRegular regular font
      * @param muliBold    bold font
      * @param fontSize    font size
+     * @param margin      margin
      * @return table table
      */
-    public static Table getTable(List<Column> columns, String[][] content, double rowHeight,
-                                 PDFont muliRegular, PDFont muliBold, double fontSize, float margin) {
+    public static Table getTable(List<Column> columns, String[][] content, double rowHeight, PDFont muliRegular,
+            PDFont muliBold, double fontSize, float margin) {
         final float MARGIN = margin;
         final float FONT_SIZE = (float) fontSize;
 
@@ -253,18 +259,27 @@ public final class PDFUtil {
         double width = 8.5 * 72;
         double height = (double) 11 * 72;
 
-        return new TableBuilder()
-                .setCellMargin(CELL_MARGIN)
-                .setColumns(columns)
-                .setContent(content)
-                .setNumberOfRows(content.length)
-                .setRowHeight(ROW_HEIGHT)
-                .setMargin(MARGIN)
-                .setPageSize(new PDRectangle((float) width,
-                        (float) height))
-                .setTextFont(muliRegular)
-                .setTextFontBold(muliBold)
-                .setFontSize(FONT_SIZE)
-                .build();
+        return new TableBuilder().setCellMargin(CELL_MARGIN).setColumns(columns).setContent(content)
+                .setNumberOfRows(content.length).setRowHeight(ROW_HEIGHT).setMargin(MARGIN)
+                .setPageSize(new PDRectangle((float) width, (float) height)).setTextFont(muliRegular)
+                .setTextFontBold(muliBold).setFontSize(FONT_SIZE).build();
+    }
+
+    /**
+     * Method to get a new page on a PDF document. It closes current content stream and opens
+     * a new one and returns
+     *
+     * @param document      document
+     * @param contentStream content stream
+     * @return content stream
+     * @throws IOException IO Exception
+     */
+    public static PDPageContentStream getNewPage(PDDocument document, PDPageContentStream contentStream)
+            throws IOException {
+        PDPage page = new PDPage();
+        document.addPage(page);
+        contentStream.close();
+        contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
+        return contentStream;
     }
 }

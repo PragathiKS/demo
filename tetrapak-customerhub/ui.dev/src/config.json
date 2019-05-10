@@ -149,6 +149,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "maintenance": {
+        "testMultiple": true,
+        "name": "maintenance",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -163,7 +169,8 @@
         "source/templates/components/introscreen/",
         "source/templates/components/leftnavigation/",
         "source/templates/components/header/",
-        "source/templates/components/pagination/"
+        "source/templates/components/pagination/",
+        "source/templates/components/tabs/"
       ],
       "dashboard": [
         "source/templates/components/orderingcard/"
@@ -175,6 +182,10 @@
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
+      ],
+      "maintenance": [
+        "source/templates/components/maintenance/",
+        "source/templates/components/documents/"
       ]
     },
     "handlebars": {

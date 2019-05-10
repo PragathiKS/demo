@@ -7,35 +7,45 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
+import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
 import { apiHost, resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { $body } from '../../../scripts/utils/commonSelectors';
+import { toast } from '../../../scripts/utils/toast';
 
 function _trackAnalytics(type) {
+
   const $this = this;
-  const analyticsData = {};
+  const { $filterForm } = $this.cache;
+  const { statementOfAccount = '' } = $this.cache.i18nKeys;
+
+  let ob = {
+    linkType: 'internal',
+    linkSection: 'financials',
+    linkParentTitle: statementOfAccount.toLowerCase()
+  };
+  const obKey = 'linkClick';
+  const trackingKey = 'linkClicked';
   switch (type) {
     case 'reset': {
-      analyticsData.resetsearch = true;
-      trackAnalytics(analyticsData, 'financial', 'FinancialResetSearch');
+      ob.linkName = 'reset';
       break;
     }
     case 'search': {
-      const { $filterForm } = $this.cache;
-      const status = $filterForm.find('.js-financial-statement__status option:selected').text();
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text();
-      const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-      analyticsData.searchstatement = `${status}|dates choosen|${docType}|${docNumber}`;
-      trackAnalytics(analyticsData, 'financial', 'SearchStatement');
+      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
+      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
+      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
+
+      ob.linkName = 'search statement';
+      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
       break;
     }
     default: {
-      analyticsData.findcustomer = this.cache.data.selectedCustomerData.desc;
-      trackAnalytics(analyticsData, 'financial', 'FindCustomer');
+      break;
     }
   }
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
@@ -77,7 +87,7 @@ function _processFinancialStatementData(data) {
 function _renderAddressDetail() {
   render.fn({
     template: 'financialAddressDetail',
-    target: '.tp-financial-statement__customer-detail',
+    target: '.js-financial-statement__customer-detail',
     data: this.cache.data
   });
 }
@@ -238,6 +248,17 @@ function _getFilterQuery() {
 }
 
 /**
+ * Returns extension based on file type
+ * @param {string} type File type
+ */
+function _getExtension(type) {
+  if (type === 'excel') {
+    return EXT_EXCEL;
+  }
+  return EXT_PDF;
+}
+
+/**
  * Sets current filter route
  * @param {boolean} isInit Initialize flag
  */
@@ -252,10 +273,12 @@ function _setRoute(isInit = false) {
   }
 }
 function _downloadPdfExcel(...args) {
-  const [, type] = args;
+  const [, type, el] = args;
+  const $el = $(el);
+  $el.attr('disabled', 'disabled');
   const $this = this;
   const paramsData = {};
-  const { $filterForm, $dateRange, data } = $this.cache;
+  const { $filterForm, $dateRange, data, i18nKeys } = $this.cache;
   const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
   const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
   const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
@@ -282,21 +305,22 @@ function _downloadPdfExcel(...args) {
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
     const url = resolveQuery($this.cache.servletUrl, { extnType: type });
-    let form = $('<form class="done" method="POST" action=' + url + '/>');
-    form.append(
-      $('<input/>', {
-        type: 'text',
-        name: 'params',
-        val: requestBody.params
-      }));
-    form.append(
-      $('<input/>', {
-        type: 'text',
-        name: 'token',
-        val: requestBody.token
-      }));
-    $body.append(form);
-    $this.submitTempForm(form);
+    fileWrapper({
+      url,
+      data: {
+        params: JSON.stringify(paramsData),
+        token: authData.access_token
+      },
+      extension: _getExtension(type)
+    }).then(() => {
+      $el.removeAttr('disabled');
+    }).catch(() => {
+      toast.render(
+        i18nKeys.fileDownloadErrorText,
+        i18nKeys.fileDownloadErrorClose
+      );
+      $el.removeAttr('disabled');
+    });
   });
 }
 
@@ -370,7 +394,6 @@ class FinancialStatement {
           singleDate: false,
           numberOfMonths: 2,
           separator: ' - ',
-          selectForward: true,
           onSelectStart() {
             $this.root.find('.js-calendar').attr('disabled', 'disabled');
           },
@@ -405,7 +428,6 @@ class FinancialStatement {
       .on('change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).val(), noReset);
-        $this.trackAnalytics();
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
@@ -462,12 +484,6 @@ class FinancialStatement {
       route: '#/',
       queryString: defaultQueryString
     });
-  }
-  submitTempForm(formEl) {
-    if (formEl instanceof $) {
-      formEl.submit();
-      formEl.remove();
-    }
   }
   trackAnalytics = (type) => _trackAnalytics.call(this, type);
   init() {
