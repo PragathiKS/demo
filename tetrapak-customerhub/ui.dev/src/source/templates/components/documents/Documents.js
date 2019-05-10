@@ -13,22 +13,22 @@ import { apiHost } from '../../../scripts/common/common';
 function _renderEquipmentFilters(data = this.cache.filteredData) {
   const { i18nKeys, $line } = this.cache;
   const lineVal = $line.val();
-  let equipmentData = [];
+  let lines = [];
 
   data.equipmentData = {};
   data.equipmentData.options = [];
 
   if (lineVal === '') {
-    equipmentData = data.lines;
+    lines = data.lines;
   } else {
-    equipmentData = data.lines.filter(line => line.lineNumber === lineVal);
+    lines = data.lines.filter(line => line.lineNumber === lineVal);
   }
 
   data.equipmentData.i18nKeys = i18nKeys;
-
   data.equipmentData.selectedFilter = `${this.selectedLine},${this.selectedSite}`;
-  equipmentData.forEach(equipment => {
-    data.equipmentData.options.push(...equipment.equipments.map((equipment, index) => ({
+
+  lines.forEach(line => {
+    data.equipmentData.options.push(...line.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
       desc: equipment.equipmentName,
       docId: `#document${index}`
