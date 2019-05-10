@@ -7,6 +7,12 @@
         @include horizontal-scroll-touch;
     }
 
+    .icon-Chevron_Up {
+        &::before {
+            transition: transform $anim-speed-quick $anim-ease;
+        }
+    }
+
     .collapsed {
         .icon-Chevron_Up {
             &::before {
@@ -22,6 +28,7 @@
     &__accordion {
         font-family: $font-bold;
         background-color: $color-wild-sand;
+        transition: background-color $anim-speed-quick $anim-ease;
 
         &.collapsed {
             background-color: $color-white;
