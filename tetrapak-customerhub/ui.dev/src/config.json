@@ -184,7 +184,8 @@
         "source/templates/components/financialsstatementsummary/"
       ],
       "maintenance": [
-        "source/templates/components/maintenance/"
+        "source/templates/components/maintenance/",
+        "source/templates/components/documents/"
       ]
     },
     "handlebars": {

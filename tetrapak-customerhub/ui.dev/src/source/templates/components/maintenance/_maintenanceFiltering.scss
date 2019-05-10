@@ -101,9 +101,9 @@
 
 .lightpick__dot {
     // Keeping fix height width for dot only
+    display: block;
     width: 4px;
     height: 4px;
-    display: block;
     border-radius: 50%;
     text-align: center;
     background: $color-jordy-blue;
