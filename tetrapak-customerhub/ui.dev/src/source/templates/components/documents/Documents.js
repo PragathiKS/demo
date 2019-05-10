@@ -119,7 +119,8 @@ function _renderSiteFilters() {
 
         if (!data) {
           this.data = data = {
-            isError: true
+            isError: true,
+            i18nKeys
           };
         } else {
           data.i18nKeys = i18nKeys;
