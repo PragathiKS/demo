@@ -15,14 +15,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        transition: z-index $anim-speed-normal;
-        transition-delay: $anim-speed-normal;
+        transition: z-index $anim-speed-quick ease-out $anim-speed-quick, background-color $anim-speed-quick;
         z-index: $zindex-hide;
 
         &.color-transform {
             z-index: $zindex-nav;
             background-color: rgba($color-black, 0.5);
-            transition: z-index 0s, background-color 0s;
+            transition: z-index 0s ease-out 0s, background-color $anim-speed-quick;
         }
 
         @media #{$desktop} {
@@ -42,7 +41,8 @@
         width: 90%;
         height: 100%;
         transform: translateX(-100%);
-        transition: transform $anim-speed-normal;
+        transition: transform $anim-speed-quick ease-out;
+        will-change: transform;
 
         &.translated {
             transform: translateX(0);
@@ -59,7 +59,8 @@
         @include vertical-scroll-touch;
         padding: 0;
         height: 100%;
-        transition: transform $anim-speed-normal;
+        transition: transform $anim-speed-quick ease-out;
+        will-change: transform;
 
         @media #{$desktop} {
             width: 100%;
