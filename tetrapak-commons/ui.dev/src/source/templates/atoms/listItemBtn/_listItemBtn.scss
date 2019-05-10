@@ -53,25 +53,27 @@
         @media #{$desktop} {
             @include padding($padding-md $padding-l);
         }
+
+        [aria-expanded="false"]~.tpmol-list-item__sublist {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        [aria-expanded="true"]~.tpmol-list-item__sublist {
+            opacity: 1;
+        }
+
+        [aria-expanded="false"]>.tpatom-list-item__arrow-down {
+            opacity: 1;
+        }
+
+        [aria-expanded="false"]>.tpatom-list-item__arrow-up {
+            opacity: 0;
+        }
     }
 
 
-    &__btn[aria-expanded="false"]~.tpmol-list-item__sublist {
-    max-height: 0;
-    opacity: 0;
-}
 
-&__btn[aria-expanded="true"]~.tpmol-list-item__sublist {
-    opacity: 1;
-}
-
-&__btn[aria-expanded="false"]>.tpatom-list-item__arrow-down {
-    opacity: 1;
-}
-
-&__btn[aria-expanded="false"]>.tpatom-list-item__arrow-up {
-    opacity: 0;
-}
 
 
 
