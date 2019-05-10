@@ -1,0 +1,32 @@
+{{#if isError}}
+    {{#if i18nKeys.errorMsg}}
+        {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+    {{else}}
+        {{> atoms/error/error error=true message="cuhu.error.message"}}
+    {{/if}}
+{{else}}
+    {{#if noData}}
+        {{#if i18nKeys.noDocumentsMsg}}
+            {{> atoms/error/error message=i18nKeys.noDocumentsMsg}}
+        {{else}}
+            {{> atoms/error/error message="cuhu.nodata.message"}}
+        {{/if}}
+    {{else}}
+        <div class="row no-gutters">
+            <div class="tp-documents__filters col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{> atoms/dropdown/dropdown options=sites name="site" labelText=i18nKeys.siteFilterLabel eleClasses="tp-documents-filtering__site js-documents-filtering__site" }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{> atoms/dropdown/dropdown options="" name="line" labelText=i18nKeys.lineFilterLabel eleClasses="tp-documents-filtering__line js-documents-filtering__line" }}
+                    </div>
+                </div>
+            </div>
+            <div class="tp-documents__equipments js-documents__equipments col-lg-12">
+
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+

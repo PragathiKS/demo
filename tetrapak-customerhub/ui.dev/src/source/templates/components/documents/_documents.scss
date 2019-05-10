@@ -1,0 +1,30 @@
+.tp-documents {
+    &__filters {
+        @include margin-bottom($margin-l);
+    }
+
+    &__table {
+        @include horizontal-scroll-touch;
+    }
+
+    .collapsed {
+        .icon-Chevron_Up {
+            &::before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__equipment-heading {
+        @include margin-bottom($margin-l);
+    }
+
+    &__accordion {
+        font-family: $font-bold;
+        background-color: $color-wild-sand;
+
+        &.collapsed {
+            background-color: $color-white;
+        }
+    }
+}
