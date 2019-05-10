@@ -1,6 +1,8 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +15,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 
+import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -33,14 +36,17 @@ public class PageLoadAnalyticsModel {
     
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
+    private static final String PRODUCT_PAGE_LOAD_EVENT = "pdp-load";
+    private static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
+    private static final String PRODUCT_PAGE_TEMPLATE_PATH = "/apps/publicweb/templates/productpage";
     
     private String channel = StringUtils.EMPTY;
-	private String pageName = StringUtils.EMPTY;;
-	private String siteLanguage = StringUtils.EMPTY;;
-	private String siteCountry = StringUtils.EMPTY;;
-	private String breadcrumb = StringUtils.EMPTY;;
-	private String pageType = StringUtils.EMPTY;;
-	private String contentName = StringUtils.EMPTY;;
+	private String pageName = StringUtils.EMPTY;
+	private String siteLanguage = StringUtils.EMPTY;
+	private String siteCountry = StringUtils.EMPTY;
+	private String breadcrumb = StringUtils.EMPTY;
+	private String pageType = StringUtils.EMPTY;
+	private String contentName = StringUtils.EMPTY;
 	private String digitalData;
 	private boolean production;
 	private boolean staging;
@@ -49,13 +55,21 @@ public class PageLoadAnalyticsModel {
 	private StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
 	private StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
 	private StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-	
+	private Map<String, String> tagsMap = new HashMap<String, String>();
+	private boolean productPage;
+	private String productTitle = StringUtils.EMPTY;
     
     @PostConstruct
     public void initModel() {
         String currentPagePath = currentPage.getPath();
         pageName = StringUtils.substringAfter(currentPagePath, currentPage.getAbsoluteParent(1).getPath() + "/");
         pageName = StringUtils.replace(pageName, "/", ":");
+        
+        String templatePath = currentPage.getProperties().get("cq:template", String.class);
+        if (StringUtils.equals(templatePath, PRODUCT_PAGE_TEMPLATE_PATH)) {
+        	productPage = true;
+        	productTitle = currentPage.getProperties().get("title", String.class);
+        }
         
         /*
         String templatePath = currentPage.getProperties().get("cq:template", String.class);
@@ -74,11 +88,13 @@ public class PageLoadAnalyticsModel {
         updateBreadcrumb();
         updateRunMode();
         updateSiteSections();
+        updateTagsMap();
+        
         contentName = currentPage.getName();
         digitalData = buildDigitalDataJson();
     }
-    
-    private void updateBreadcrumb() {
+
+	private void updateBreadcrumb() {
     	if (!currentPage.isHideInNav()) {
 	        StringBuilder breadcrumbBuilder = new StringBuilder("Home");
 	        Page homePage = currentPage.getAbsoluteParent(4);
@@ -116,6 +132,22 @@ public class PageLoadAnalyticsModel {
             }
         }
     }
+    
+    private void updateTagsMap() {
+    	Tag[] pageTags = currentPage.getTags();
+        for (Tag tag: pageTags) {
+        	String tagPath = tag.getPath();
+        	if(tagPath.startsWith(TETRAPAK_TAGS_ROOT_PATH)) {
+        		tagPath = StringUtils.substringAfter(tagPath, TETRAPAK_TAGS_ROOT_PATH);
+        		String contentAttribute = StringUtils.substringBefore(tagPath, "/");
+        		String contentValue = StringUtils.substringAfter(tagPath, "/");
+        		if (StringUtils.isNoneBlank(contentValue)) {
+        			contentValue = StringUtils.replace(contentValue, "/", ":");
+        			tagsMap.put(contentAttribute, contentValue);
+        		}
+        	}
+        }
+	}
     
     private boolean updateSectionName(int siteSectionIndex, int currentPageIndex, StringBuilder siteSection) {
     	if (siteSectionIndex < currentPageIndex) {
@@ -157,10 +189,21 @@ public class PageLoadAnalyticsModel {
     	pageInfo.addProperty("siteCountry", siteCountry);
     	pageInfo.addProperty("siteLanguage", siteLanguage);
     	pageInfo.addProperty("siteName", SITE_NAME);
-    	pageInfo.addProperty("event", PAGE_LOAD_EVENT);
+    	
+    	if (productPage) {
+    		pageInfo.addProperty("event", PRODUCT_PAGE_LOAD_EVENT);
+    		pageInfo.addProperty("productName", productTitle);
+    	} else {
+    		pageInfo.addProperty("event", PAGE_LOAD_EVENT);
+    	}
     	
     	JsonObject conentInfo = new JsonObject();
     	conentInfo.addProperty("contentName", contentName);
+    	if(!tagsMap.isEmpty()) {
+    		for (Map.Entry<String, String> entry : tagsMap.entrySet()) {
+    			conentInfo.addProperty(entry.getKey(), entry.getValue());
+    		}
+    	}
     	
     	JsonObject userInfo = new JsonObject();
     	userInfo.addProperty("loginStatus", "guest");
@@ -169,9 +212,14 @@ public class PageLoadAnalyticsModel {
     	userInfo.addProperty("userCountryCode", "");
     	userInfo.addProperty("userLanguage", "");
     	
+    	JsonObject errorInfo = new JsonObject();
+    	errorInfo.addProperty("errorcode", "");
+    	errorInfo.addProperty("errortype", "");
+    	
     	digitalData.add("pageinfo", pageInfo);
     	digitalData.add("conentInfo", conentInfo);
     	digitalData.add("userinfo", userInfo);
+    	digitalData.add("error", errorInfo);
         
     	Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         return gson.toJson(digitalData);

@@ -55,6 +55,13 @@ class ContactFooterForm {
         $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
         $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
         $(this).closest('form').submit();
+        if (digitalData) { //eslint-disable-line
+            digitalData.formInfo = {}; //eslint-disable-line
+            digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
+            digitalData.formInfo.stepName = 'thank you'; //eslint-disable-line
+            digitalData.formInfo.totalSteps = 7; //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
       }
     });
     this.cache.$tabtoggle.click(function(e) {
@@ -66,6 +73,17 @@ class ContactFooterForm {
           $(this).closest('.form-group').addClass('hasError');
         }
       });
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      console.log("Test - " + stepNumber + "***" + stepName) //eslint-disable-line
+      if (digitalData) { //eslint-disable-line
+        digitalData.formInfo = {}; //eslint-disable-line
+        digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
+        digitalData.formInfo.stepName = stepName; //eslint-disable-line
+        digitalData.formInfo.stepNo = stepNumber; //eslint-disable-line
+        digitalData.formInfo.totalSteps = 7; //eslint-disable-line
+        _satellite.track('form_tracking'); //eslint-disable-line
+      }
     });
   }
   init() {

@@ -28,3 +28,9 @@
 <div data-sly-test="${properties.showFooter}">
   <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
 </div>
+<script>
+    if(digitalData) {
+        digitalData.error.errorcode = "404";
+        digitalData.error.errortype = "page not found";
+    }
+</script>
