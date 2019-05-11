@@ -42,12 +42,12 @@ class LeftNavigation {
     $navOverlay.addClass('color-transform');
     $sticky.addClass('translated');
   }
-  openSubMenu = () => {
-    const { $orderBtn } = this.cache;
-    if ($orderBtn.attr('aria-expanded') === 'false') {
-      $orderBtn.attr('aria-expanded', 'true');
+  openSubMenu = (event) => {
+    const subMenuBtn = $(event.target).parent();
+    if (subMenuBtn.attr('aria-expanded') === 'false') {
+      subMenuBtn.attr('aria-expanded', 'true');
     } else {
-      $orderBtn.attr('aria-expanded', 'false');
+      subMenuBtn.attr('aria-expanded', 'false');
     }
   }
   init() {
