@@ -42,10 +42,11 @@ class LeftNavigation {
     $sticky.addClass('translated');
   }
   openSubMenu() {
-    if ($(this).attr('aria-expanded') === 'false') {
-      $(this).attr('aria-expanded', 'true');
+    const self = $(this);
+    if (self.attr('aria-expanded') === 'false') {
+      self.attr('aria-expanded', 'true');
     } else {
-      $(this).attr('aria-expanded', 'false');
+      self.attr('aria-expanded', 'false');
     }
   }
   init() {
