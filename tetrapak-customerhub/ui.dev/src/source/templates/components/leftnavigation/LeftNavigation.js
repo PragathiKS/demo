@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
+import { logger } from '../../../scripts/utils/logger';
 
 
 class LeftNavigation {
@@ -42,12 +43,11 @@ class LeftNavigation {
     $navOverlay.addClass('color-transform');
     $sticky.addClass('translated');
   }
-  openSubMenu = (event) => {
-    const subMenuBtn = $(event.target).parent();
-    if (subMenuBtn.attr('aria-expanded') === 'false') {
-      subMenuBtn.attr('aria-expanded', 'true');
+  openSubMenu() {
+    if ($(this).attr('aria-expanded') === 'false') {
+      $(this).attr('aria-expanded', 'true');
     } else {
-      subMenuBtn.attr('aria-expanded', 'false');
+      $(this).attr('aria-expanded', 'false');
     }
   }
   init() {
