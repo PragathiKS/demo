@@ -37,12 +37,14 @@ class introscreen {
   }
 
   bindEvents() {
+    this.sliderIndex = 1;
     /* Bind jQuery events here */
     this.cache.$carouselNextBtn.on('click', () => {
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
-
+      this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
+      this.sliderIndex = this.root.find('.slick-active').data().slickIndex + 1;
       this.cache.$introScreenCarousel.slick('slickNext');
     });
 
@@ -58,12 +60,24 @@ class introscreen {
 
     this.root.find('.js-close-btn')
       .on('click', () => {
-        const sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
-
-        logger.log('on close icon click', sliderTitle);
-        this.trackAnalytics(sliderTitle, 'close');
+        logger.log('on close icon click', this.sliderTitle);
+        this.trackAnalytics(this.sliderTitle, 'close');
         this.closeCarousel();
       });
+
+    this.root.find('.js-slick-next')
+      .on('click', () => {
+        const nextButton = this.root.find('.js-slick-next .tp-next-btn__text').text();
+        this.trackAnalytics(this.sliderTitle, nextButton + this.sliderIndex);
+      });
+
+    this.root.find('.slider-dots')
+      .on('click', () => {
+        this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
+        this.sliderIndex = this.root.find('.slick-active').data().slickIndex + 1;
+        this.trackAnalytics(this.sliderTitle, 'slider' + this.sliderIndex);
+      });
+
   }
 
   init() {
