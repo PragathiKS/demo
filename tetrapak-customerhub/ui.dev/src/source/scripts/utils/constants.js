@@ -10,6 +10,7 @@ export const RESULTS_EMPTY = 'Empty results';
 export const FILEEXT_EMPTY = 'File extension is required';
 export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
+export const INVALID_BROWSER = 'Unsupported browser';
 export const DATE_FORMAT = 'YYYY-MM-DD';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
