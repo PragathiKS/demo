@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
-import { logger } from '../../../scripts/utils/logger';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
@@ -37,7 +36,6 @@ class introscreen {
   }
 
   bindEvents() {
-    this.sliderIndex = 1;
     /* Bind jQuery events here */
     this.cache.$carouselNextBtn.on('click', () => {
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
@@ -60,7 +58,6 @@ class introscreen {
 
     this.root.find('.js-close-btn')
       .on('click', () => {
-        logger.log('on close icon click', this.sliderTitle);
         this.trackAnalytics(this.sliderTitle, 'close');
         this.closeCarousel();
       });
