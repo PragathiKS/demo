@@ -45,8 +45,10 @@ class LeftNavigation {
     const self = $(this);
     if (self.attr('aria-expanded') === 'false') {
       self.attr('aria-expanded', 'true');
+      self.next().attr('aria-hidden', 'false');
     } else {
       self.attr('aria-expanded', 'false');
+      self.next().attr('aria-hidden', 'true');
     }
   }
   init() {
