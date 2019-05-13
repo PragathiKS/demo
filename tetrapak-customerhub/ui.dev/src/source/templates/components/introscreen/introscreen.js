@@ -36,14 +36,19 @@ class introscreen {
   }
 
   bindEvents() {
+
     /* Bind jQuery events here */
     this.cache.$carouselNextBtn.on('click', () => {
+      const nextButtonText = this.root.find('.js-slick-next .tp-next-btn__text').text();
+      const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+      const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
+
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
-      this.sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
-      this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
       this.cache.$introScreenCarousel.slick('slickNext');
+
+      this.trackAnalytics(sliderTitle, nextButtonText.trim() + sliderIndex);
     });
 
     this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
@@ -58,21 +63,16 @@ class introscreen {
 
     this.root.find('.js-close-btn')
       .on('click', () => {
-        this.trackAnalytics(this.sliderTitle, 'close');
+        const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+        this.trackAnalytics(sliderTitle, 'close');
         this.closeCarousel();
-      });
-
-    this.root.find('.js-slick-next')
-      .on('click', () => {
-        const nextButton = this.root.find('.js-slick-next .tp-next-btn__text').text();
-        this.trackAnalytics(this.sliderTitle, nextButton + this.sliderIndex);
       });
 
     this.root.find('.js-slider-dots')
       .on('click', () => {
-        this.sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
-        this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
-        this.trackAnalytics(this.sliderTitle, 'slider' + this.sliderIndex);
+        const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+        const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
+        this.trackAnalytics(sliderTitle, 'slider' + sliderIndex);
       });
 
   }
