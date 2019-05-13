@@ -3,4 +3,4 @@
           xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="sling:OsgiConfig"
           configurationRanking="200"
           cugEnabled="true"
-          cugSupportedPaths="[]"/>
+          cugSupportedPaths="[/content/tetrapak/customerhub]"/>
