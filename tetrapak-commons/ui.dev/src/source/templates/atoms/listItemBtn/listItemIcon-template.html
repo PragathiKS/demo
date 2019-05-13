@@ -2,12 +2,13 @@
   <sly data-sly-test="${data.iconClass}">
     <i class="tpatom-list-item__icon ${data.iconClass}"></i>
   </sly>
-  <span class="tpatom-list-item__label">${data.iconLabel @i18n}</span>
-  <sly data-sly-test="${data.isExternalLink}">
-    <i class="tpatom-list-item__external-link icon-External_Link"></i>
-  </sly>
-  <sly data-sly-test="${data.subMenuList}">
-    <i class="tpatom-list-item__arrow-down icon-Chevron_Down"></i>
-    <i class="tpatom-list-item__arrow-up icon-Chevron_Up"></i>
-  </sly>
+  <span class="tpatom-list-item__label">
+    ${data.iconLabel @i18n}
+    <sly data-sly-test="${data.isExternalLink}">
+      <i class="tpatom-list-item__external-link icon-External_Link"></i>
+    </sly>
+    <sly data-sly-test="${data.subMenuList}">
+      <i class="tpatom-list-item__arrow-down icon-Chevron_Down"></i>
+    </sly>
+  </span>
 </sly>
