@@ -7,8 +7,8 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
 /**
- * Fire analytics on Packaging, Processing
- * mail/contact link click
+ * Fire analytics on close, next and slider
+ * button click
  */
 function _trackAnalytics(title, name) {
   const analyticsData = {
@@ -16,7 +16,7 @@ function _trackAnalytics(title, name) {
     linkSection: 'intro modal'
   };
 
-  // creating linkParentTitle and linkName as per the title received
+  // creating linkParentTitle/linkName as per the title/name received
   analyticsData.linkParentTitle = title;
   analyticsData.linkName = name;
 
