@@ -17,7 +17,16 @@
       "href": "/content/customerhub-ux/getstarted.ux-preview.html",
       "iconClass": "icon-Install",
       "iconLabel": "Installed equipment",
-      "isExternalLink": "false"
+      "isExternalLink": "false",
+      "isExpanded": "true",
+      "subMenuList": [
+        {
+          "href": "/content/tetrapak/customerhub/en/installed-equipment/Maintenance.html",
+          "iconLabel": "Maintenance",
+          "isExternalLink": "false",
+          "isActive": "true"
+        }
+      ]
     },
     {
       "href": "https://www.tetrapak.com",
