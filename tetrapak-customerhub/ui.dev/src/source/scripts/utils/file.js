@@ -1,9 +1,10 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY } from './constants';
+import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY, ajaxMethods } from './constants';
 import { logger } from './logger';
 import { $body } from './commonSelectors';
+import { isIOS } from './browserDetect';
 
 /**
  * Handles file downloads via AJAX
@@ -61,18 +62,32 @@ export const fileWrapper = (config) => {
               logger.error(e);
               reject(e.message);
             }
+          } else if (isIOS()) {
+            resolve({ data, filename: contentFileName, extension });
+            // Workaround as IOS browsers does not consistently handle file downloads of different file type
+            const formData = $.extend({}, config.data);
+            const currentMethod = config.method || ajaxMethods.POST;
+            $body.append(`
+              <form class="js-file-download" action="${config.url}" method="${currentMethod}">
+                ${Object.keys(formData).map(key => `<input type="hidden" name="${key}" value="${formData[key]}" />`)}
+              </form>
+            `);
+            const $form = $body.find('.js-file-download');
+            $form.submit();
+            $form.remove();
           } else {
             // Handle other browsers
             try {
               const anchor = $('<a class="d-none"></a>');
-              const href = window.URL.createObjectURL(data);
+              const $urlRef = window.URL || window.webkitURL;
+              const href = $urlRef.createObjectURL(data);
               anchor.attr({
                 href,
                 download: `${contentFileName}.${extension}`
               });
               $body.append(anchor); // Firefox does not react to in-memory elements
               anchor[0].click(); // Triggers file download
-              window.URL.revokeObjectURL(href); // Clears in-memory file data
+              $urlRef.revokeObjectURL(href); // Clears in-memory file data
               anchor.remove();
               resolve({ data, filename: contentFileName, extension });
             } catch (e) {
