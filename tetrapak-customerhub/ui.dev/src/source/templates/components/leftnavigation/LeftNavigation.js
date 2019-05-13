@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
-import { logger } from '../../../scripts/utils/logger';
-
 
 class LeftNavigation {
   constructor({ el }) {
