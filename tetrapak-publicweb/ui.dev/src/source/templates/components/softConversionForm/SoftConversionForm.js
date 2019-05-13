@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil} from '../../../scripts/common/common';
+import { storageUtil } from '../../../scripts/common/common';
 
 class SoftConversionForm {
   cache = {};
@@ -17,6 +17,10 @@ class SoftConversionForm {
   storageFormData() {
     let formData = this.cache.$form.serializeArray();
     storageUtil.set('softConversionData', formData);
+  }
+  validEmail(email) {
+    let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(email);
   }
   setFormData(data) {
     for (var i = 0; i < data.length; i++) {
@@ -51,20 +55,16 @@ class SoftConversionForm {
       $('.tab-content .tab-pane:first', '#softConversionModal').addClass('active');
     });
     this.cache.$field.change(function() {
-      let fieldName = $(this).attr('name');
       if ($(this).val().length){
-        $('p.'+fieldName).text($(this).val());
-        $('.info-group.'+fieldName).addClass('show');
         $(this).closest('.form-group').removeClass('hasError');
-      } else {
-        $('.info-group.'+fieldName).removeClass('show');
       }
     });
     this.cache.$submitBtn.click(function(e) {
       let isvalid = true;
       let parentTab = e.target.closest('.tab-pane');
       $('input', parentTab).each(function(){
-        if ($(this).prop('required') && $(this).val() === '') {
+        let fieldName = $(this).attr('name');
+        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
           isvalid = false;
           e.preventDefault();
           e.stopPropagation();
@@ -83,13 +83,17 @@ class SoftConversionForm {
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
-      let targetTab = $(this).data('target');
-      console.log(targetTab); // eslint-disable-line no-console
       $('input', parentTab).each(function(){
-        if ($(this).prop('required') && $(this).val() === '') {
+        let fieldName = $(this).attr('name');
+        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
           e.preventDefault();
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
+          $('.info-group.'+fieldName).removeClass('show');
+        } else {
+          $('p.'+fieldName).text($(this).val());
+          $('.info-group.'+fieldName).addClass('show');
+          $(this).closest('.form-group').removeClass('hasError');
         }
       });
     });
