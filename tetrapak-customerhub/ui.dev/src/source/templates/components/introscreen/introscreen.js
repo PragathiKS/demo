@@ -41,7 +41,7 @@ class introscreen {
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
-      this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
+      this.sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
       this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
       this.cache.$introScreenCarousel.slick('slickNext');
     });
@@ -68,9 +68,9 @@ class introscreen {
         this.trackAnalytics(this.sliderTitle, nextButton + this.sliderIndex);
       });
 
-    this.root.find('.slider-dots')
+    this.root.find('.js-slider-dots')
       .on('click', () => {
-        this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
+        this.sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
         this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
         this.trackAnalytics(this.sliderTitle, 'slider' + this.sliderIndex);
       });
