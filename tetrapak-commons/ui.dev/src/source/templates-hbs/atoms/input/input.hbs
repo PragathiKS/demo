@@ -6,7 +6,9 @@
         {{#if readonly}}
             readonly="readonly"
         {{/if}}
-        value="{{#if defaultValue}}{{i18n key=defaultValue}}{{/if}}"
+        {{#if defaultValue}}
+            value="{{i18n key=defaultValue}}"
+        {{/if}}
         {{#if label}}
             aria-label="{{i18n key=label}}"
         {{/if}}
