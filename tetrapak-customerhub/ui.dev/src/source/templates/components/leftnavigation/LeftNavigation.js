@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
 
-
 class LeftNavigation {
   constructor({ el }) {
     this.root = $(el);
@@ -42,12 +41,12 @@ class LeftNavigation {
     $navOverlay.addClass('color-transform');
     $sticky.addClass('translated');
   }
-  openSubMenu = () => {
-    const { $orderBtn } = this.cache;
-    if ($orderBtn.attr('aria-expanded') === 'false') {
-      $orderBtn.attr('aria-expanded', 'true');
+  openSubMenu() {
+    const self = $(this);
+    if (self.attr('aria-expanded') === 'false') {
+      self.attr('aria-expanded', 'true');
     } else {
-      $orderBtn.attr('aria-expanded', 'false');
+      self.attr('aria-expanded', 'false');
     }
   }
   init() {
