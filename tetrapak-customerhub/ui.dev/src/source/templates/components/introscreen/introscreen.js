@@ -42,7 +42,7 @@ class introscreen {
         this.closeCarousel();
       }
       this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
-      this.sliderIndex = this.root.find('.slick-active').data().slickIndex + 1;
+      this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
       this.cache.$introScreenCarousel.slick('slickNext');
     });
 
@@ -71,7 +71,7 @@ class introscreen {
     this.root.find('.slider-dots')
       .on('click', () => {
         this.sliderTitle = this.root.find('.slick-active .intro-slider__title').text();
-        this.sliderIndex = this.root.find('.slick-active').data().slickIndex + 1;
+        this.sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
         this.trackAnalytics(this.sliderTitle, 'slider' + this.sliderIndex);
       });
 
