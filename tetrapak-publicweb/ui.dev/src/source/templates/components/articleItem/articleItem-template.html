@@ -1,6 +1,9 @@
 <sly data-sly-template.articleItem_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.vanityDescription}" class="pw-article">
+  <div data-sly-test="${data.vanityDescription}" class="pw-article"
+       data-articleItem-contentName="${data.articleTitle}"
+       data-articleItem-linkName="${data.ctaTexti18nKey @ i18n}"
+       data-articleItem-linkType="${data.linkType}">
     <sly data-sly-test="${data.showImage}">
       <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.articleImagePath, altText=data.articleImageAltI18n, className='pw-article__image'}" />
     </sly>
@@ -11,7 +14,7 @@
     <p class="pw-article__description">${data.vanityDescription}</p>
     <div class="pw-article__link" data-sly-test="${data.articlePath}">
       <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-            data-sly-call="${pwButton.button_template @ btnPath=data.articlePath, btnText=data.ctaTexti18nKey, btnTooltip=data.ctaTexti18nKey, variant=data.pwButtonTheme}" />
+            data-sly-call="${pwButton.button_template @ btnPath=data.articlePath, btnText=data.ctaTexti18nKey, btnTooltip=data.ctaTexti18nKey, variant=data.pwButtonTheme, customClasses='articleItemLink'}" />
     </div>
   </div>
   <sly data-sly-test="${!data.vanityDescription}"

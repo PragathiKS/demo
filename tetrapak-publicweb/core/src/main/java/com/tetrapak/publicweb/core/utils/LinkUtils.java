@@ -28,6 +28,16 @@ public class LinkUtils extends WCMUsePojo{
         }
         return link;
     }
+    
+    public static String linkType(String linkPath) {
+        if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
+        	return "download";
+        } else if (StringUtils.startsWith(linkPath, "/content/")) {
+        	return "internal";
+        } else {
+        	return "external";
+        }
+    }
 
 	@Override
 	public void activate() throws Exception {

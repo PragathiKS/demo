@@ -72,6 +72,13 @@ class SoftConversionForm {
         }
       });
       if (isvalid) {
+        digitalData.formInfo.stepName = "thank you"; //eslint-disable-line
+        if (digitalData.formInfo.stepNo) { //eslint-disable-line
+            delete digitalData.formInfo.stepNo; //eslint-disable-line
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
         self.storageFormData();
         $(this).closest('form').submit();
         let docpath = $('#softConversionModal input[name="docpath"]').val();
@@ -85,6 +92,8 @@ class SoftConversionForm {
       let parentTab = e.target.closest('.tab-pane');
       let targetTab = $(this).data('target');
       console.log(targetTab); // eslint-disable-line no-console
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
       $('input', parentTab).each(function(){
         if ($(this).prop('required') && $(this).val() === '') {
           e.preventDefault();
@@ -92,6 +101,19 @@ class SoftConversionForm {
           $(this).closest('.form-group').addClass('hasError');
         }
       });
+      if (digitalData) { //eslint-disable-line
+        digitalData.formInfo.stepName = stepName; //eslint-disable-line
+        digitalData.formInfo.stepNo = stepNumber; //eslint-disable-line
+        if (stepNumber === '0') {
+            const userRole = $("input[name='group']:checked").val(); //eslint-disable-line
+            digitalData.formInfo.userRoleSelected = userRole; //eslint-disable-line
+        } else if (stepNumber === '1') {
+            delete digitalData.formInfo.userRoleSelected; //eslint-disable-line
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
     });
     this.cache.$radiobtns.click(function() {
       if ($(this).val() !== 'Professional') {

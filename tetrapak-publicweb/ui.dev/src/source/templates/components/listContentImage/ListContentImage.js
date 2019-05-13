@@ -37,6 +37,17 @@ class ListContentImage {
       const $this = $( this );
       let tabID   = $this.data( 'tab-id' );
 
+      if (digitalData) { // eslint-disable-line
+        digitalData.linkClick = {}; //eslint-disable-line
+        digitalData.linkClick.linkType = 'internal'; //eslint-disable-line
+        digitalData.linkClick.linkSection = 'listContentImage'; //eslint-disable-line
+        digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' ); //eslint-disable-line
+        digitalData.linkClick.linkName = $this.data( 'link-name' ); //eslint-disable-line
+        digitalData.linkClick.linkListPos = $this.data( 'tab-count' ); //eslint-disable-line  
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('linkClicked'); //eslint-disable-line
+        }
+      }
       // Get this organism grandparent class version name
       let grandParentClassNamesArr = $this.closest( '.pw-listContentImage' ).attr('class').match(/\S+/gi);
       let specificGrandParentClassVersion = grandParentClassNamesArr[grandParentClassNamesArr.length - 1];

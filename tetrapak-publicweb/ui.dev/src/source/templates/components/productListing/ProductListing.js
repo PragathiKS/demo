@@ -26,6 +26,16 @@ class ProductListing {
       this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
       this.renderCards(category);
       $this.addClass('tpatom-button--group-item--active');
+      if (digitalData) { // eslint-disable-line
+        digitalData.linkClick = {}; //eslint-disable-line
+        digitalData.linkClick.linkType = 'internal'; //eslint-disable-line
+        digitalData.linkClick.linkSection = 'product category filter'; //eslint-disable-line
+        digitalData.linkClick.linkParentTitle = ''; //eslint-disable-line
+        digitalData.linkClick.linkName = $this.text(); //eslint-disable-line
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('linkClicked'); //eslint-disable-line
+        }
+      }
     });
 
     this.cache.dropDown.on('change', (e) => {

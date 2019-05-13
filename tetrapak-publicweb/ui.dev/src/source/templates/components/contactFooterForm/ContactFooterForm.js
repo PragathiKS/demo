@@ -60,7 +60,9 @@ class ContactFooterForm {
             digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
             digitalData.formInfo.stepName = 'thank you'; //eslint-disable-line
             digitalData.formInfo.totalSteps = 7; //eslint-disable-line
-            _satellite.track('form_tracking'); //eslint-disable-line
+            if (typeof _satellite !== 'undefined') { //eslint-disable-line
+                _satellite.track('form_tracking'); //eslint-disable-line
+            }
         }
       }
     });
@@ -75,14 +77,15 @@ class ContactFooterForm {
       });
       const stepNumber = parentTab.getAttribute('data-stepNumber');
       const stepName = parentTab.getAttribute('data-stepName');
-      console.log("Test - " + stepNumber + "***" + stepName) //eslint-disable-line
       if (digitalData) { //eslint-disable-line
         digitalData.formInfo = {}; //eslint-disable-line
         digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
         digitalData.formInfo.stepName = stepName; //eslint-disable-line
         digitalData.formInfo.stepNo = stepNumber; //eslint-disable-line
         digitalData.formInfo.totalSteps = 7; //eslint-disable-line
-        _satellite.track('form_tracking'); //eslint-disable-line
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
       }
     });
   }
