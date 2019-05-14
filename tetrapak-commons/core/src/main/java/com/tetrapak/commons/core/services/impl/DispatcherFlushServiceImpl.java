@@ -8,7 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -63,19 +63,21 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
     }
 
     private void flushDispatcher(HttpClient httpClient, String dispatcherHandle, String dispatcherHostURL) {
-        HttpPost httpPost = new HttpPost();
+        HttpGet httpGet = new HttpGet();
         try {
-            httpPost.setURI(new URI(dispatcherHostURL));
-            httpPost.setHeader("CQ-Action", "Activate");
-            httpPost.setHeader("CQ-Handle", dispatcherHandle);
+            httpGet.setURI(new URI(dispatcherHostURL));
+            httpGet.setHeader("CQ-Action", "Activate");
+            httpGet.setHeader("CQ-Handle", dispatcherHandle);
+            httpGet.setHeader("CQ-Path", dispatcherHandle);
+            httpGet.setHeader("Host", "flush");
 
             LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
-            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpResponse httpResponse = httpClient.execute(httpGet);
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
-                LOGGER.debug("Dispatcher Cache flushed successfully. {}", dispatcherHostURL);
+                LOGGER.debug("Dispatcher Cache flushed successfully. {} for the path {}", dispatcherHostURL, dispatcherHandle);
             } else {
-                LOGGER.warn("Dispatcher Cache could not be flushed. {}", dispatcherHostURL);
+                LOGGER.warn("Dispatcher Cache could not be flushed. {} for the path {}", dispatcherHostURL, dispatcherHandle);
             }
         } catch (URISyntaxException e) {
             LOGGER.error("DispatcherFlushServiceImpl | URISyntaxException: {}", e);
@@ -84,7 +86,7 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
         } catch (IOException e) {
             LOGGER.error("IOException in DispatcherFlushServiceImpl {}", e);
         } finally {
-            httpPost.releaseConnection();
+            httpGet.releaseConnection();
         }
     }
 }
