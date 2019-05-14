@@ -1,10 +1,10 @@
 <sly data-sly-template.nestedListItem_template="${@ data, flag}">
-   <li class="tpmol-list-item  ${data.isExpanded ? 'active' : ''}">
+   <li class="tpmol-list-item${data.isExpanded ? ' active' : ''}">
       <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
             data-sly-call="${listItemBtn.listItemBtn_template @data=data}">
       </sly>
       <sly data-sly-test="${data.subMenuList}">
-        <ul class="tpmol-list-item__sublist js-list-item__sublist">
+        <ul class="tpmol-list-item__sublist js-list-item__sublist collapsible${data.isExpanded ? ' active' : ''}">
           <sly data-sly-list.child=${data.subMenuList}>
             <li class="tpmol-list-item ${child.isActive ? 'active' : ''}">
               <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
