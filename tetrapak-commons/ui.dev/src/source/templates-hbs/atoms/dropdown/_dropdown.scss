@@ -8,7 +8,7 @@
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;
-        @include font-size(12px);
+        @include font-size($font-sm);
     }
 
     &__icon {
@@ -17,7 +17,7 @@
         bottom: 0;
         transform: translateY(-50%);
         pointer-events: none;
-        @include line-height(18px, $font-baseline);
+        @include line-height(14px, $font-sm);
 
     }
 }
