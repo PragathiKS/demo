@@ -65,6 +65,56 @@
           "materialCode": "9045-03715",
           "SKU": "2345678909876523456789098765",
           "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
+        },
+        {
+          "productName": "string",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "100$",
+          "remainingQuantity": "50",
+          "materialCode": "9045-03715",
+          "SKU": "2345678909876523456789098765",
+          "orderNumber": 1234
         }
       ],
       "deliveryStatus": "Partial Delivery",
