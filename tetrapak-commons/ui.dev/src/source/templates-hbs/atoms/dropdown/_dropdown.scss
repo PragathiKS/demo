@@ -8,6 +8,7 @@
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;
+        @include font-size(12px);
     }
 
     &__icon {
