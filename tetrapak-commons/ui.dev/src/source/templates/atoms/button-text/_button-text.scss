@@ -1,8 +1,8 @@
 .tpatom-button {
     @include border-radius($border-radius);
-    @include font-size($font-normal);
-    @include line-height(20px, $font-normal);
-    @include padding(18px $padding-md 14px);
+    @include font-size($font-baseline);
+    @include line-height(18px, $font-baseline);
+    @include padding(12px $padding-md);
 
     @media #{$desktop} {
         @include font-size($font-baseline);
@@ -11,7 +11,8 @@
     }
 
     &__icon {
-        @include padding-left($padding-sm);
+        @include padding-left($padding-xs);
+        @include font-size($font-sm);
     }
 
     &--primary {
@@ -74,6 +75,14 @@
         &:hover {
             background-color: transparent;
             color: $color-tundora;
+        }
+    }
+    &--prevbtn {
+        .tpatom-button__icon {
+            @include padding(0 $padding-sm 0 0);
+            &::before {
+                content: '\f112';
+            }
         }
     }
 }

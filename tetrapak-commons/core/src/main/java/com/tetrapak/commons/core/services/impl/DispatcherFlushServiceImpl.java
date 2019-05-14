@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -68,9 +69,14 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
             httpPost.setURI(new URI(dispatcherHostURL));
             httpPost.setHeader("CQ-Action", "Activate");
             httpPost.setHeader("CQ-Handle", dispatcherHandle);
+            httpPost.setHeader("Content-Length", "0");
 
             LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
             HttpResponse httpResponse = httpClient.execute(httpPost);
+
+            String responseString = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+            LOGGER.debug("Response for the flush request : \n {}",responseString);
+
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
                 LOGGER.debug("Dispatcher Cache flushed successfully. {}", dispatcherHostURL);

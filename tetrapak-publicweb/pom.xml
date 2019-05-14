@@ -674,7 +674,12 @@
 			    <version>3.8.1</version>
 			    <scope>provided</scope>
 			</dependency>
-        </dependencies>
+   			<dependency>
+			    <groupId>com.adobe.acs</groupId>
+			    <artifactId>acs-aem-commons-bundle</artifactId>
+			    <version>3.17.4</version>
+			</dependency>
+		</dependencies>        
     </dependencyManagement>
 
 </project>

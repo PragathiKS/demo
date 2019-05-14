@@ -1,6 +1,48 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
+import { TRANSITION_END } from '../../../scripts/utils/constants';
 
+/**
+ * Handles submenu events
+ * @param {object} $this Class reference
+ */
+function _openSubMenu($this) {
+  const self = $(this);
+  if ($this.cache.anim) {
+    return;
+  }
+  const section = self.next('.collapsible');
+  if (self.attr('aria-expanded') === 'false') {
+    self.attr('aria-expanded', 'true');
+    section
+      .attr('aria-hidden', 'false')
+      .removeClass('collapsible').addClass('animating')
+      .css('height', 0);
+    const scrollHeight = section[0].scrollHeight;
+    section.one(TRANSITION_END, () => {
+      section.removeClass('animating');
+      section.addClass('collapsible active');
+      section.css('height', '');
+      $this.cache.anim = false;
+    });
+    section.css('height', `${scrollHeight}px`);
+    $this.cache.anim = true;
+  } else {
+    section.css('height', `${section.outerHeight()}px`);
+    $this.reflow(section[0]);
+    self.attr('aria-expanded', 'false');
+    section
+      .attr('aria-hidden', 'true');
+    section.addClass('animating').removeClass('collapsible').removeClass('active');
+    section.one(TRANSITION_END, () => {
+      section.removeClass('animating');
+      section.addClass('collapsible');
+      $this.cache.anim = false;
+    });
+    section.css('height', '');
+    $this.cache.anim = true;
+  }
+}
 
 class LeftNavigation {
   constructor({ el }) {
@@ -10,17 +52,20 @@ class LeftNavigation {
   initCache() {
     this.cache.$container = this.root.find('.tp-left-nav__container');
     this.cache.$sticky = this.root.find('.tpatom-list-item__link--sticky');
-    this.cache.$orderBtn = this.root.find('.tpatom-list-item__btn');
+    this.cache.$submenuSections = this.root.find('.tpatom-list-item__btn');
     this.cache.$closeBtn = this.root.find('.js-close-btn');
     this.cache.$navOverlay = this.root.find('.js-left-nav__overlay');
     this.cache.$mainHeading = this.root.find('.tp-left-nav__main-heading');
     this.cache.$listItem = this.root.find('.tpmol-list-item', 'tpatom-list-item');
   }
   bindEvents() {
-    const { $orderBtn, $closeBtn, $navOverlay, $mainHeading, $listItem } = this.cache;
+    const { $submenuSections, $closeBtn, $navOverlay, $mainHeading, $listItem } = this.cache;
+    const $this = this;
     $closeBtn.on('click', this.closeSideNav);
     $navOverlay.on('click', this.closeSideNav);
-    $orderBtn.on('click', this.openSubMenu);
+    $submenuSections.on('click', function () {
+      return $this.openSubMenu.apply(this, [$this, ...arguments]);
+    });
     $listItem.on('click', (e) => {
       e.stopPropagation();
     });
@@ -42,13 +87,9 @@ class LeftNavigation {
     $navOverlay.addClass('color-transform');
     $sticky.addClass('translated');
   }
-  openSubMenu = () => {
-    const { $orderBtn } = this.cache;
-    if ($orderBtn.attr('aria-expanded') === 'false') {
-      $orderBtn.attr('aria-expanded', 'true');
-    } else {
-      $orderBtn.attr('aria-expanded', 'false');
-    }
+  reflow = (el) => el && el.offsetHeight;
+  openSubMenu() {
+    return _openSubMenu.apply(this, arguments);
   }
   init() {
     this.initCache();

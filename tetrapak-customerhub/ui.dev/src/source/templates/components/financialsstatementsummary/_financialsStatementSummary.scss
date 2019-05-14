@@ -74,6 +74,12 @@
         @include margin-right($margin-md);
     }
 
+    .icon-Chevron_Up {
+        &::before {
+            transition: transform $anim-speed-quick $anim-ease;
+        }
+    }
+
     .collapsed {
         .icon-Chevron_Up {
             &::before {
@@ -84,6 +90,7 @@
 
     &__accordion {
         background-color: $color-wild-sand;
+        transition: background-color $anim-speed-quick $anim-ease;
 
         &.collapsed {
             background-color: $color-white;

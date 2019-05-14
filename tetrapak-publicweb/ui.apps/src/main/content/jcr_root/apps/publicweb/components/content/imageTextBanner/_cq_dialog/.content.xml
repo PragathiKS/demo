@@ -135,6 +135,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Open link in a new window ?"
                                 text="New Window"
+                                value="true"
                                 name="./targetBlank"/>
                             <ctatooltip
                                 jcr:primaryType="nt:unstructured"
