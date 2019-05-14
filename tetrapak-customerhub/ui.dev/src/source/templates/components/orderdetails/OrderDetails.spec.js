@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import OrderDetails from './OrderDetails';
 import orderDetailTemplate from '../../../test-templates-hbs/orderDetail.hbs';
-import orderdetailpackagingData from './data/orderdetailpackaging.json';
+import orderDetailsPartsData from './data/orderDetailsParts.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
@@ -32,7 +32,7 @@ describe('OrderDetails', function () {
     this.trackAnalyticsSpy = sinon.spy(this.orderDetails, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderdetailpackagingData));
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(orderDetailsPartsData));
     this.openStub = sinon.stub(window, 'open');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
