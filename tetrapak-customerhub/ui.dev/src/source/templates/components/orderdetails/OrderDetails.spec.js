@@ -115,4 +115,8 @@ describe('OrderDetails', function () {
     $('.js-support-center-email').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;
   });
+  it('should call track analytics for customer support on click of "contact " link', function () {
+    $('.js-support-center-contact').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
 });
