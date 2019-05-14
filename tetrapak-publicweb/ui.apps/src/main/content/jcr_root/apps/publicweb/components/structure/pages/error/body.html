@@ -33,3 +33,9 @@
     <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
   </div>
 </div>
+<script>
+    if(digitalData) {
+      digitalData.error.errorcode = "${properties.analyticsErrorCode @ context='scriptString'}";
+      digitalData.error.errortype = "${properties.analyticsErrorTypeText @ context='scriptString'}";
+    }
+</script>

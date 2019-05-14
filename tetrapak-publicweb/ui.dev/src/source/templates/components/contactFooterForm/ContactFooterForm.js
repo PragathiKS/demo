@@ -12,6 +12,7 @@ class ContactFooterForm {
     this.cache.$submitBtn = $('.form-submit', this.root);
     this.cache.$tabtoggle = $('.pw-form__nextbtn[data-toggle="tab"]', this.root);
     this.cache.$toggleBtns = $('.tpatom-button[data-toggle="tab"]', this.root);
+    this.cache.digitalData = digitalData; //eslint-disable-line
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
   }
   validEmail(email) {
@@ -50,6 +51,15 @@ class ContactFooterForm {
         $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
         $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
         $(this).closest('form').submit();
+        if (self.cache.digitalData) {
+          self.cache.digitalData.formInfo = {};
+          self.cache.digitalData.formInfo.formName = 'contact us';
+          self.cache.digitalData.formInfo.stepName = 'thank you';
+          self.cache.digitalData.formInfo.totalSteps = 7;
+          if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+          }
+        }
       }
     });
     this.cache.$tabtoggle.click(function(e) {
@@ -72,6 +82,18 @@ class ContactFooterForm {
           $('.info-box', self.root).addClass('d-none');
         }
       });
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo = {};
+        self.cache.digitalData.formInfo.formName = 'contact us';
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        self.cache.digitalData.formInfo.totalSteps = 7;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
     });
     this.cache.$dropItem.click(function(e) {
       e.preventDefault();

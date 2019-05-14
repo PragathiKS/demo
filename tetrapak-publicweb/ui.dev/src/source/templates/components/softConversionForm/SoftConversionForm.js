@@ -13,6 +13,7 @@ class SoftConversionForm {
     this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
     this.cache.$radiobtns = $('#softConversionModal input:radio');
     this.cache.$questionBtn = $('#softConversionModal .questionBtn');
+    this.cache.digitalData = digitalData; //eslint-disable-line
   }
   storageFormData() {
     let formData = this.cache.$form.serializeArray();
@@ -72,6 +73,13 @@ class SoftConversionForm {
         }
       });
       if (isvalid) {
+        self.cache.digitalData.formInfo.stepName = 'thank you';
+        if (self.cache.digitalData.formInfo.stepNo) {
+          delete self.cache.digitalData.formInfo.stepNo;
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
+        }
         self.storageFormData();
         $(this).closest('form').submit();
         let docpath = $('#softConversionModal input[name="docpath"]').val();
@@ -83,6 +91,8 @@ class SoftConversionForm {
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
       $('input', parentTab).each(function(){
         let fieldName = $(this).attr('name');
         if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
@@ -96,6 +106,19 @@ class SoftConversionForm {
           $(this).closest('.form-group').removeClass('hasError');
         }
       });
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        if (stepNumber === '0') {
+          const userRole = $("input[name='group']:checked").val();  //eslint-disable-line
+          self.cache.digitalData.formInfo.userRoleSelected = userRole;
+        } else if (stepNumber === '1') {
+          delete self.cache.digitalData.formInfo.userRoleSelected;
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
     });
     this.cache.$radiobtns.click(function() {
       if ($(this).val() !== 'Professional') {
