@@ -6,7 +6,7 @@
           <li class="tp-left-nav__main-heading">
             <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n}</span>
             <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
-              data-sly-call="${closeButton.closeButton_template @data=data,closeBtnText='${data.closeBtnText}',btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
+              data-sly-call="${closeButton.closeButton_template @data=data,closeBtnText=closeBtnText,btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
             </sly>
           </li>
           <sly data-sly-list.child=${data.leftNavItems}>

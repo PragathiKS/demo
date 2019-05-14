@@ -13,6 +13,12 @@ class ContactFooterForm {
     this.cache.$tabtoggle = $('.pw-form__nextbtn[data-toggle="tab"]', this.root);
     this.cache.$toggleBtns = $('.tpatom-button[data-toggle="tab"]', this.root);
     this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+  }
+  validEmail(email) {
+    let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(email);
+>>>>>>> develop
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -27,18 +33,8 @@ class ContactFooterForm {
       $('[data-target="'+selectedTarget+'"]').addClass('active show');
     });
     this.cache.$field.change(function() {
-      let fieldName = $(this).attr('name');
       if ($(this).val().length){
-        $('p.'+fieldName, self.root).text($(this).val());
-        $('.info-group.'+fieldName, self.root).addClass('show');
         $(this).closest('.form-group').removeClass('hasError');
-      } else {
-        $('.info-group.'+fieldName, self.root).removeClass('show');
-      }
-      if($('.info-group.show', self.root).length) {
-        $('.info-box', self.root).removeClass('d-none');
-      } else {
-        $('.info-box', self.root).addClass('d-none');
       }
     });
     this.cache.$submitBtn.click(function(e) {
@@ -70,10 +66,21 @@ class ContactFooterForm {
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
       $('input', parentTab).each(function(){
-        if ($(this).prop('required') && $(this).val() === '') {
+        let fieldName = $(this).attr('name');
+        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
           e.preventDefault();
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
+          $('.info-group.'+fieldName).removeClass('show');
+        } else {
+          $('p.'+fieldName).text($(this).val());
+          $('.info-group.'+fieldName).addClass('show');
+          $(this).closest('.form-group').removeClass('hasError');
+        }
+        if($('.info-group.show', self.root).length) {
+          $('.info-box', self.root).removeClass('d-none');
+        } else {
+          $('.info-box', self.root).addClass('d-none');
         }
       });
       const stepNumber = parentTab.getAttribute('data-stepNumber');
@@ -88,6 +95,15 @@ class ContactFooterForm {
             _satellite.track('form_tracking'); //eslint-disable-line
         }
       }
+    });
+    this.cache.$dropItem.click(function(e) {
+      e.preventDefault();
+      let country = $(this).data('country');
+      let parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle', parentDrop).text(country);
+      $('input', parentDrop).val(country);
+      self.cache.$dropItem.removeClass('active');
+      $(this).addClass('active');
     });
   }
   init() {

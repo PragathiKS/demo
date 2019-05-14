@@ -10,5 +10,6 @@
   "userCountryCode": "gb",
   "userLanguage": "en",
   "errorcode": "404",
-  "errortype": "page not found"
+  "errortype": "page not found",
+  "subPage": false
 }

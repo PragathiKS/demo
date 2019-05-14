@@ -79,6 +79,9 @@ function _processPackmatData(data) {
 
     data.deliveryList.forEach(function (delivery) {
       if (Array.isArray(delivery.products)) {
+        delivery.totalPages = delivery.totalProductsForQuery > ORDER_DETAILS_ROWS_PER_PAGE ?
+          Math.ceil(delivery.totalProductsForQuery / ORDER_DETAILS_ROWS_PER_PAGE) : false;
+
         delivery.products = delivery.products.map((product) => {
           const productColList = data.packagingDeliveryTableCols || Object.keys(product);
           keys = keys.length === 0 ? productColList : keys;

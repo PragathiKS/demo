@@ -55,7 +55,7 @@
                         <input type="text" name="last-name" class="form-control" id="last-name" required>
                         <div class="error-msg">Error, input needed.</div>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-0', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                       <div class="pw-progress row no-gutters">
                         <div class="pw-progress__barwrapper col-md-7 mt-3">
@@ -126,7 +126,7 @@
                         <input type="text" name="email-address" class="form-control" id="email-address" required>
                         <div class="error-msg">Error, input needed.</div>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn isPro'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit isNotPro d-none'}" />
                       <div class="pw-progress row no-gutters">
@@ -198,7 +198,7 @@
                         <input type="text" name="company" class="form-control" id="company" required>
                         <div class="error-msg">Error, input needed.</div>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-2', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-4', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                       <div class="pw-progress row no-gutters">
                         <div class="pw-progress__barwrapper col-md-7 mt-3">
@@ -264,7 +264,7 @@
                         <input type="text" name="position" class="form-control" id="position" required>
                         <div class="error-msg">Error, input needed.</div>
                       </div>
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-3', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit'}" />
                       <div class="pw-progress row no-gutters">
                         <div class="pw-progress__barwrapper col-md-7 mt-3">
@@ -306,9 +306,27 @@
                 <div class="tab-pane" role="tabpanel" id="step-final">
                   <h4 class="tpatom-heading tpatom-heading--small softc-last-js mb-4"></h4>
                   <div class="images row">
-                    <div class="col-md text-center mb-4"><img class="img-fluid" src="https://picsum.photos/250/140"></div>
-                    <div class="col-md text-center mb-4"><img class="img-fluid" src="https://picsum.photos/249/140"></div>
-                    <div class="col-md text-center mb-4"><img class="img-fluid" src="https://picsum.photos/251/140"></div>
+                    <div class="col-md text-center mb-4">
+                      <img class="img-fluid" src="https://picsum.photos/250/140">
+                      <div class="text-left mt-3">
+                        <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor</h4>
+                        <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                      </div>
+                    </div>
+                    <div class="col-md text-center mb-4">
+                      <img class="img-fluid" src="https://picsum.photos/249/140">
+                      <div class="text-left mt-3">
+                        <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
+                        <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                      </div>
+                    </div>
+                    <div class="col-md text-center mb-4">
+                      <img class="img-fluid" src="https://picsum.photos/251/140">
+                      <div class="text-left mt-3">
+                        <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor</h4>
+                        <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-12">

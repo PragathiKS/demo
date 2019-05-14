@@ -35,6 +35,9 @@
 
   <sly data-sly-test="${data.pageType}">
     digitalData.pageinfo['pageType'] = "${data.pageType}";
+  </sly>
+
+   <sly data-sly-test="${data.subPage}">
     pageName += ":"+digitalData.pageinfo['pageType'];
   </sly>
 

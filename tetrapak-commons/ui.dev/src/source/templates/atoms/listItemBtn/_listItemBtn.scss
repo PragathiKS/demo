@@ -54,21 +54,10 @@
             @include padding($padding-md $padding-l);
         }
 
-        &[aria-expanded="false"]~.tpmol-list-item__sublist {
-            max-height: 0;
-            opacity: 0;
-        }
-
-        &[aria-expanded="true"]~.tpmol-list-item__sublist {
-            opacity: 1;
-        }
-
-        &[aria-expanded="false"]>.tpatom-list-item__arrow-down {
-            opacity: 1;
-        }
-
-        &[aria-expanded="false"]>.tpatom-list-item__arrow-up {
-            opacity: 0;
+        &[aria-expanded="true"] {
+            .icon-Chevron_Down {
+                transform: rotate(-180deg);
+            }
         }
     }
 
@@ -101,6 +90,7 @@
         @include letter-spacing($letter-spacing-sm);
         font-family: $font-light;
         display: inline-block;
+        position: relative;
         width: 100%;
 
         .tpmol-list-item__sublist & {
@@ -111,17 +101,15 @@
     }
 
     &__external-link,
-    &__arrow-down,
-    &__arrow-up {
+    &__arrow-down {
         @include font-size($font-xxs);
+        @include width($spacing-small-half);
+        @include height($spacing-small-half);
+        @include margin-top(-3px);
         position: absolute;
         top: 50%;
-        @include right($spacing-small);
+        right: 0;
         transform: translateY(-50%);
-
-        @media #{$desktop} {
-            @include right($spacing-big);
-        }
 
         &:hover,
         &:visited {
@@ -130,10 +118,6 @@
     }
 
     &__arrow-down {
-        opacity: 0;
-    }
-
-    &__arrow-up {
-        opacity: 1;
+        transition: transform $anim-speed-quick $anim-ease;
     }
 }
