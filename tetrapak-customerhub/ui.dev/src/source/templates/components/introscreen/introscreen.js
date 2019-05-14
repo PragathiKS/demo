@@ -2,6 +2,25 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
 import { storageUtil, getI18n } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+
+/**
+ * Fire analytics on close, next and slider
+ * button click
+ */
+function _trackAnalytics(title, name) {
+  const analyticsData = {
+    linkType: 'internal',
+    linkSection: 'intro modal'
+  };
+
+  // creating linkParentTitle/linkName as per the title/name received
+  analyticsData.linkParentTitle = title;
+  analyticsData.linkName = name;
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 class introscreen {
   constructor({ templates, el }) {
@@ -17,13 +36,19 @@ class introscreen {
   }
 
   bindEvents() {
+
     /* Bind jQuery events here */
     this.cache.$carouselNextBtn.on('click', () => {
+      const nextButtonText = this.root.find('.js-slick-next .tp-next-btn__text').text();
+      const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+      const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
+
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
-
       this.cache.$introScreenCarousel.slick('slickNext');
+
+      this.trackAnalytics(sliderTitle, nextButtonText.trim() + sliderIndex);
     });
 
     this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
@@ -36,9 +61,20 @@ class introscreen {
       }
     });
 
-    this.root.find('.js-close-btn').on('click', () => {
-      this.closeCarousel();
-    });
+    this.root.find('.js-close-btn')
+      .on('click', () => {
+        const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+        this.trackAnalytics(sliderTitle, 'close');
+        this.closeCarousel();
+      });
+
+    this.root.find('.js-slider-dots')
+      .on('click', () => {
+        const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
+        const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
+        this.trackAnalytics(sliderTitle, 'slider' + sliderIndex);
+      });
+
   }
 
   init() {
@@ -67,6 +103,8 @@ class introscreen {
     this.root.modal('hide');
     storageUtil.set('introScreen', true);
   }
+
+  trackAnalytics = (title, name) => _trackAnalytics.call(this, title, name);
 }
 
 export default introscreen;
