@@ -66,9 +66,11 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
     private void flushDispatcher(HttpClient httpClient, String dispatcherHandle, String dispatcherHostURL) {
         HttpPost httpPost = new HttpPost();
         try {
-            httpPost.setURI(new URI(dispatcherHostURL));
-            httpPost.setHeader("CQ-Action", "Activate");
-            httpPost.setHeader("CQ-Handle", dispatcherHandle);
+            httpGet.setURI(new URI(dispatcherHostURL));
+            httpGet.setHeader("CQ-Action", "Activate");
+            httpGet.setHeader("CQ-Handle", dispatcherHandle);
+            httpGet.setHeader("CQ-Path", dispatcherHandle);
+            httpGet.setHeader("Host", "dispflush");
 
             LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
             HttpResponse httpResponse = httpClient.execute(httpPost);
