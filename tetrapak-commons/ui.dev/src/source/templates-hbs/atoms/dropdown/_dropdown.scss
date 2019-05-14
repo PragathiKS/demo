@@ -16,6 +16,7 @@
         bottom: 0;
         transform: translateY(-50%);
         pointer-events: none;
+        @include line-height(18px, $font-baseline);
 
     }
 }
