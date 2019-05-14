@@ -14,5 +14,5 @@ export const ajaxMethods = {
 // API URLs
 
 export const API_PRODUCT_LISTING = '/bin/tetrapak/pw-productlisting';
-export const API_SHAREPOINT_OFFICES = '../../apps/settings/wcm/designs/publicweb/jsonData/tp-offices.json';
+export const API_SHAREPOINT_OFFICES = '/apps/settings/wcm/designs/publicweb/jsonData/tp-offices.json';
 export const GET_CAROUSEL_ITEM = '/bin/tetrapak/pw-carousellisting';

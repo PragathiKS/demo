@@ -36,7 +36,7 @@
                                     <errorFieldsProperties
                                         jcr:primaryType="nt:unstructured"
                                         jcr:title="Error Properties"
-                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        sling:resourceType="granite/ui/components/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
                                             <heading
                                                 jcr:primaryType="nt:unstructured"
