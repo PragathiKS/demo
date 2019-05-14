@@ -34,78 +34,13 @@
         "postalcode": "11122",
         "country": "Sweden"
       },
-      "totalProductsForQuery": "3",
+      "totalProductsForQuery": "13",
       "products": [
         {
           "productName": "Product 1",
           "orderQuantity": "100",
           "deliveredQuantity": "50",
           "price": "150000$",
-          "remainingQuantity": "50",
-          "orderNumber": 116078378,
-          "productID": "1",
-          "weight": "5 kg",
-          "ETA": "2017-12-23",
-          "unitPrice": "$1500.00"
-        },
-        {
-          "productName": "Product 2",
-          "orderQuantity": "100",
-          "deliveredQuantity": "50",
-          "price": "$1500000.00",
-          "remainingQuantity": "50",
-          "orderNumber": 116078378,
-          "productID": "2",
-          "weight": "5 kg",
-          "ETA": "2017-12-23",
-          "unitPrice": "$1500.00"
-        },
-        {
-          "productName": "Product 3",
-          "orderQuantity": "100",
-          "deliveredQuantity": "50",
-          "price": "$1500000.00",
-          "remainingQuantity": "50",
-          "orderNumber": 116078378,
-          "productID": "3",
-          "weight": "5 kg",
-          "ETA": "2017-12-23",
-          "unitPrice": "$1500.00"
-        }
-      ],
-      "orderNumber": "116078378",
-      "carrier": "DHL",
-      "carrierTrackingID": "1239858674",
-      "totalWeight": "100kg",
-      "totalPricePreVAT": "30000€",
-      "totalVAT": "1500€"
-    },
-    {
-      "deliveryOrder": "2",
-      "deliveryNumber": "05678",
-      "deliveryAddress": {
-        "name": "Swedish Milk AB",
-        "name2": "Extra AB",
-        "city": "Malmö",
-        "state": "Skåne",
-        "postalcode": "11122",
-        "country": "Sweden"
-      },
-      "invoiceAddress": {
-        "name": "Swedish Milk AB",
-        "name2": "Extra AB",
-        "city": "Malmö",
-        "state": "Skåne",
-        "postalcode": "11122",
-        "country": "Sweden"
-      },
-      "totalProductsForQuery": "21",
-      "products": [
-        {
-          "productName": "Product 1",
-          "orderQuantity": "100",
-          "deliveredQuantity": "50",
-          "price": "$1500000.00",
           "remainingQuantity": "50",
           "orderNumber": 116078378,
           "productID": "1",
@@ -211,6 +146,42 @@
         },
         {
           "productName": "Product 10",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "$1500000.00",
+          "remainingQuantity": "50",
+          "orderNumber": 116078378,
+          "productID": "3",
+          "weight": "5 kg",
+          "ETA": "2017-12-23",
+          "unitPrice": "$1500.00"
+        },
+        {
+          "productName": "Product 11",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "150000$",
+          "remainingQuantity": "50",
+          "orderNumber": 116078378,
+          "productID": "1",
+          "weight": "5 kg",
+          "ETA": "2017-12-23",
+          "unitPrice": "$1500.00"
+        },
+        {
+          "productName": "Product 12",
+          "orderQuantity": "100",
+          "deliveredQuantity": "50",
+          "price": "$1500000.00",
+          "remainingQuantity": "50",
+          "orderNumber": 116078378,
+          "productID": "2",
+          "weight": "5 kg",
+          "ETA": "2017-12-23",
+          "unitPrice": "$1500.00"
+        },
+        {
+          "productName": "Product 13",
           "orderQuantity": "100",
           "deliveredQuantity": "50",
           "price": "$1500000.00",
