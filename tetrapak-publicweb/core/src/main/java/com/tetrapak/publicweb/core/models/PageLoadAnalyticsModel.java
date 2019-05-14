@@ -37,7 +37,7 @@ public class PageLoadAnalyticsModel {
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
     private static final String PRODUCT_PAGE_LOAD_EVENT = "pdp-load";
-    private static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
+    public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
     private static final String PRODUCT_PAGE_TEMPLATE_PATH = "/apps/publicweb/templates/productpage";
     
     private String channel = StringUtils.EMPTY;
@@ -65,19 +65,12 @@ public class PageLoadAnalyticsModel {
         pageName = StringUtils.substringAfter(currentPagePath, currentPage.getAbsoluteParent(1).getPath() + "/");
         pageName = StringUtils.replace(pageName, "/", ":");
         
-        String templatePath = currentPage.getProperties().get("cq:template", String.class);
+        String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
         if (StringUtils.equals(templatePath, PRODUCT_PAGE_TEMPLATE_PATH)) {
         	productPage = true;
         	productTitle = currentPage.getProperties().get("title", String.class);
         }
-        
-        /*
-        String templatePath = currentPage.getProperties().get("cq:template", String.class);
-        Resource template = resolver.getResource(templatePath);
-        if (template != null) {
-        	pageType = template.getValueMap().get("jcr:title", String.class);
-        }
-        */
+        pageType = StringUtils.substringAfterLast(templatePath, "/");
         
         Locale pageLocale = currentPage.getLanguage(false);
         if (pageLocale != null) {

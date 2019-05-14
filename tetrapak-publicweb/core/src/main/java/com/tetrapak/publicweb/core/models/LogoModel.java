@@ -21,6 +21,8 @@ public class LogoModel {
     private String imagePath;
     private String imageAltI18n;
     private String imageLink;
+    
+    private String cType;
 
     @PostConstruct
     protected void init() {
@@ -28,6 +30,7 @@ public class LogoModel {
         imagePath = inheritanceValueMap1.getInherited("imagePath", String.class);
         imageAltI18n = inheritanceValueMap1.getInherited("imageAltI18n", String.class);
         imageLink = inheritanceValueMap1.getInherited("imageLink", String.class);
+        cType = resource.getParent().getName();
 
     }
 
@@ -45,5 +48,13 @@ public class LogoModel {
 
     public String getImageLink() {
         return LinkUtils.sanitizeLink(imageLink);
+    }
+    
+    public String getLinkType() {
+        return LinkUtils.linkType(imageLink);
+    }
+    
+    public String getCType() {
+        return cType;
     }
 }

@@ -1,7 +1,7 @@
 <sly data-sly-template.imageTextButton_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.title || data.imagePath}" class="pw-image-text-button pw-theme--${data.pwTheme}" 
-       data-locator="image-text-button"
+       data-locator="image-text-button" data-module="ImageTextButton"
        data-imageButton-title="${data.title}"
        data-imageButton-linkName="${data.ctaLinkTextI18n @ i18n}"
        data-imageButton-linkType="${data.linkType}">

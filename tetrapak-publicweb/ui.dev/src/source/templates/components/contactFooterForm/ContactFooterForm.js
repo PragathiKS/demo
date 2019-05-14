@@ -12,6 +12,7 @@ class ContactFooterForm {
     this.cache.$submitBtn = $('.form-submit', this.root);
     this.cache.$tabtoggle = $('.pw-form__nextbtn[data-toggle="tab"]', this.root);
     this.cache.$toggleBtns = $('.tpatom-button[data-toggle="tab"]', this.root);
+    this.cache.digitalData = digitalData; //eslint-disable-line
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -55,14 +56,14 @@ class ContactFooterForm {
         $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
         $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
         $(this).closest('form').submit();
-        if (digitalData) { //eslint-disable-line
-            digitalData.formInfo = {}; //eslint-disable-line
-            digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
-            digitalData.formInfo.stepName = 'thank you'; //eslint-disable-line
-            digitalData.formInfo.totalSteps = 7; //eslint-disable-line
-            if (typeof _satellite !== 'undefined') { //eslint-disable-line
-                _satellite.track('form_tracking'); //eslint-disable-line
-            }
+        if (self.cache.digitalData) {
+          self.cache.digitalData.formInfo = {};
+          self.cache.digitalData.formInfo.formName = 'contact us';
+          self.cache.digitalData.formInfo.stepName = 'thank you';
+          self.cache.digitalData.formInfo.totalSteps = 7;
+          if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+          }
         }
       }
     });
@@ -77,12 +78,12 @@ class ContactFooterForm {
       });
       const stepNumber = parentTab.getAttribute('data-stepNumber');
       const stepName = parentTab.getAttribute('data-stepName');
-      if (digitalData) { //eslint-disable-line
-        digitalData.formInfo = {}; //eslint-disable-line
-        digitalData.formInfo.formName = 'contact us'; //eslint-disable-line
-        digitalData.formInfo.stepName = stepName; //eslint-disable-line
-        digitalData.formInfo.stepNo = stepNumber; //eslint-disable-line
-        digitalData.formInfo.totalSteps = 7; //eslint-disable-line
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo = {};
+        self.cache.digitalData.formInfo.formName = 'contact us';
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        self.cache.digitalData.formInfo.totalSteps = 7;
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
             _satellite.track('form_tracking'); //eslint-disable-line
         }

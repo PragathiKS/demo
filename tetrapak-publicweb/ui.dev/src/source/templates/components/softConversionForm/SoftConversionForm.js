@@ -13,6 +13,7 @@ class SoftConversionForm {
     this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
     this.cache.$radiobtns = $('#softConversionModal input:radio');
     this.cache.$questionBtn = $('#softConversionModal .questionBtn');
+    this.cache.digitalData = digitalData; //eslint-disable-line
   }
   storageFormData() {
     let formData = this.cache.$form.serializeArray();
@@ -72,12 +73,12 @@ class SoftConversionForm {
         }
       });
       if (isvalid) {
-        digitalData.formInfo.stepName = "thank you"; //eslint-disable-line
-        if (digitalData.formInfo.stepNo) { //eslint-disable-line
-            delete digitalData.formInfo.stepNo; //eslint-disable-line
+        self.cache.digitalData.formInfo.stepName = 'thank you';
+        if (self.cache.digitalData.formInfo.stepNo) {
+          delete self.cache.digitalData.formInfo.stepNo;
         }
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
-            _satellite.track('form_tracking'); //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
         }
         self.storageFormData();
         $(this).closest('form').submit();
@@ -101,17 +102,17 @@ class SoftConversionForm {
           $(this).closest('.form-group').addClass('hasError');
         }
       });
-      if (digitalData) { //eslint-disable-line
-        digitalData.formInfo.stepName = stepName; //eslint-disable-line
-        digitalData.formInfo.stepNo = stepNumber; //eslint-disable-line
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
         if (stepNumber === '0') {
-            const userRole = $("input[name='group']:checked").val(); //eslint-disable-line
-            digitalData.formInfo.userRoleSelected = userRole; //eslint-disable-line
+          const userRole = $("input[name='group']:checked").val();  //eslint-disable-line
+          self.cache.digitalData.formInfo.userRoleSelected = userRole;
         } else if (stepNumber === '1') {
-            delete digitalData.formInfo.userRoleSelected; //eslint-disable-line
+          delete self.cache.digitalData.formInfo.userRoleSelected;
         }
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
-            _satellite.track('form_tracking'); //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
         }
       }
     });

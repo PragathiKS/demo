@@ -11,6 +11,7 @@ class ListContentImage {
     const $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', this.root );
     const $editTabItem = $('.pw-listContentImage__editTab', this.root);
     const $contentWrapper = $( '.pw-listContentImage__contentWrapper', this.root );
+    this.cache.digitalData = digitalData; //eslint-disable-line
 
     // Add Version Name to each instance
     $('.pw-listContentImage').each(function(index){
@@ -32,18 +33,18 @@ class ListContentImage {
     });
   }
   bindEvents() {
+    const self = this;
     this.cache.$tabMenuItemLink.click(function(e) {
       e.preventDefault();
       const $this = $( this );
       let tabID   = $this.data( 'tab-id' );
-
-      if (digitalData) { // eslint-disable-line
-        digitalData.linkClick = {}; //eslint-disable-line
-        digitalData.linkClick.linkType = 'internal'; //eslint-disable-line
-        digitalData.linkClick.linkSection = 'listContentImage'; //eslint-disable-line
-        digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' ); //eslint-disable-line
-        digitalData.linkClick.linkName = $this.data( 'link-name' ); //eslint-disable-line
-        digitalData.linkClick.linkListPos = $this.data( 'tab-count' ); //eslint-disable-line  
+      if (self.cache.digitalData) {
+        self.cache.digitalData.linkClick = {};
+        self.cache.digitalData.linkClick.linkType = 'internal';
+        self.cache.digitalData.linkClick.linkSection = 'listContentImage';
+        self.cache.digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' );
+        self.cache.digitalData.linkClick.linkName = $this.data( 'link-name' );
+        self.cache.digitalData.linkClick.linkListPos = $this.data( 'tab-count' );
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
           _satellite.track('linkClicked'); //eslint-disable-line
         }

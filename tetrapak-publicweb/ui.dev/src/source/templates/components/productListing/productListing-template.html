@@ -23,6 +23,7 @@
              data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
              data-sly-call="${pwButton.button_template @ btnPath='#', btnText=data.firstTabLinkTextI18n, btnTooltip=data.firstTabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab tpatom-button--group-item--active', customData='all'}"/>
         <sly data-sly-list.tabItem="${data.tabs}">
+          <input type="hidden" class="analytics-subcomponent-category-tag" value="${tabItem.categoryTagAnalyticsPath}"/>
           <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
                data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.tabLinkTextI18n, btnTooltip=tabItem.tabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab', customData=tabItem.categoryTag}"/>
         </sly>

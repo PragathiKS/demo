@@ -30,7 +30,7 @@
 </div>
 <script>
     if(digitalData) {
-        digitalData.error.errorcode = "404";
-        digitalData.error.errortype = "page not found";
+      digitalData.error.errorcode = "${properties.analyticsErrorCode @ context='scriptString'}";
+      digitalData.error.errortype = "${properties.analyticsErrorTypeText @ context='scriptString'}";
     }
 </script>
