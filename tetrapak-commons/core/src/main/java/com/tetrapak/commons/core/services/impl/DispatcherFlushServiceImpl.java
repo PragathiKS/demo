@@ -69,7 +69,6 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
             httpPost.setURI(new URI(dispatcherHostURL));
             httpPost.setHeader("CQ-Action", "Activate");
             httpPost.setHeader("CQ-Handle", dispatcherHandle);
-            httpPost.setHeader("Content-Length", "0");
 
             LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
             HttpResponse httpResponse = httpClient.execute(httpPost);
