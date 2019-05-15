@@ -226,7 +226,7 @@ function _trackAnalytics(type) {
   switch (type) {
     case 'reset': {
       ob.linkParentTitle = '';
-      ob.linkName = getI18n(resetButtonTextI18n.toLowerCase());
+      ob.linkName = getI18n(resetButtonTextI18n).toLowerCase();
       break;
     }
     case 'orderList': {
@@ -249,7 +249,7 @@ function _trackAnalytics(type) {
       }
 
       ob.linkParentTitle = '';
-      ob.linkName = getI18n(searchButtonTextI18n.toLowerCase());
+      ob.linkName = getI18n(searchButtonTextI18n).toLowerCase();
       ob.linkSelection = `DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`;
       break;
     }
