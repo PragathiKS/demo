@@ -131,7 +131,7 @@ import java.util.Map;
                 List<OrderSummary> orderSummaryList = orderDetailResponse.getOrderSummary();
                 int height = PDFUtil.drawTable(contentStream, createOrderSummaryTable(request, orderSummaryList), 550);
                 PDFUtil.drawLine(contentStream, MARGIN, 460, 535, Color.DARK_GRAY, 0.1f);
-                PDFUtil.drawLine(contentStream, MARGIN, 460, height + 5, Color.LIGHT_GRAY,
+                PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height + 5, Color.LIGHT_GRAY,
                         0.1f);
 
                 contentStream = printPackMatDeliveryDetails(request, document, contentStream,
@@ -189,7 +189,7 @@ import java.util.Map;
                 height = height - 130 - getNextTableHeight(deliveryDetail.getProducts());
 
                 PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height);
-                PDFUtil.drawLine(contentStream, MARGIN, 460, height - 40, Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - 40, Color.LIGHT_GRAY, 0.1f);
             } else {
                 int totalRows = deliveryDetail.getProducts().size();
                 int rowsForCurrentPage = (height - 190) / 15;
@@ -202,7 +202,7 @@ import java.util.Map;
 
                 if (rowsForCurrentPage == totalRows) {
                     PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height - 10);
-                    PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
+                    PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
                     continue;
                 }
 
@@ -219,7 +219,7 @@ import java.util.Map;
                     PDFUtil.drawLine(contentStream, MARGIN, 460, 715, Color.black, 0.1f);
                 }
                 PDFUtil.drawTable(contentStream, createProductSummaryTable(request, deliveryDetail), height - 10);
-                PDFUtil.drawLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
+                PDFUtil.drawDashedLine(contentStream, MARGIN, 460, height - 50, Color.LIGHT_GRAY, 0.1f);
                 height -= 80;
             }
         }
