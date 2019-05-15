@@ -6,7 +6,9 @@ public class NavigationLinkBean {
 	
 	private String linkTooltipI18n;
 	
-	private String linkPath; 
+	private String linkPath;
+	
+	private String linkType;
 
     private String targetBlank;
 
@@ -32,6 +34,14 @@ public class NavigationLinkBean {
 
 	public void setLinkPath(String linkPath) {
 		this.linkPath = linkPath;
+	}
+	
+	public String getLinkType() {
+		return linkType;
+	}
+
+	public void setLinkType(String linkType) {
+		this.linkType = linkType;
 	}
 
 	public String getTargetBlank() {

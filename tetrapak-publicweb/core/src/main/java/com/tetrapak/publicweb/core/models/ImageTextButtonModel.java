@@ -71,6 +71,10 @@ public class ImageTextButtonModel {
         return ctaLinkURL;
     }
     
+    public String getLinkType() {
+        return LinkUtils.linkType(ctaLinkURL);
+    }
+    
     public Boolean getOpenLinkInNewWindow() {
     	return openLinkInNewWindow;
     }

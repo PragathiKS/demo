@@ -12,6 +12,12 @@ class ContactFooterForm {
     this.cache.$submitBtn = $('.form-submit', this.root);
     this.cache.$tabtoggle = $('.pw-form__nextbtn[data-toggle="tab"]', this.root);
     this.cache.$toggleBtns = $('.tpatom-button[data-toggle="tab"]', this.root);
+    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+  }
+  validEmail(email) {
+    let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(email);
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -26,18 +32,8 @@ class ContactFooterForm {
       $('[data-target="'+selectedTarget+'"]').addClass('active show');
     });
     this.cache.$field.change(function() {
-      let fieldName = $(this).attr('name');
       if ($(this).val().length){
-        $('p.'+fieldName, self.root).text($(this).val());
-        $('.info-group.'+fieldName, self.root).addClass('show');
         $(this).closest('.form-group').removeClass('hasError');
-      } else {
-        $('.info-group.'+fieldName, self.root).removeClass('show');
-      }
-      if($('.info-group.show', self.root).length) {
-        $('.info-box', self.root).removeClass('d-none');
-      } else {
-        $('.info-box', self.root).addClass('d-none');
       }
     });
     this.cache.$submitBtn.click(function(e) {
@@ -55,17 +51,58 @@ class ContactFooterForm {
         $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
         $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
         $(this).closest('form').submit();
+        if (self.cache.digitalData) {
+          self.cache.digitalData.formInfo = {};
+          self.cache.digitalData.formInfo.formName = 'contact us';
+          self.cache.digitalData.formInfo.stepName = 'thank you';
+          self.cache.digitalData.formInfo.totalSteps = 7;
+          if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+          }
+        }
       }
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
       $('input', parentTab).each(function(){
-        if ($(this).prop('required') && $(this).val() === '') {
+        let fieldName = $(this).attr('name');
+        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
           e.preventDefault();
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
+          $('.info-group.'+fieldName).removeClass('show');
+        } else {
+          $('p.'+fieldName).text($(this).val());
+          $('.info-group.'+fieldName).addClass('show');
+          $(this).closest('.form-group').removeClass('hasError');
+        }
+        if($('.info-group.show', self.root).length) {
+          $('.info-box', self.root).removeClass('d-none');
+        } else {
+          $('.info-box', self.root).addClass('d-none');
         }
       });
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo = {};
+        self.cache.digitalData.formInfo.formName = 'contact us';
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        self.cache.digitalData.formInfo.totalSteps = 7;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
+    });
+    this.cache.$dropItem.click(function(e) {
+      e.preventDefault();
+      let country = $(this).data('country');
+      let parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle', parentDrop).text(country);
+      $('input', parentDrop).val(country);
+      self.cache.$dropItem.removeClass('active');
+      $(this).addClass('active');
     });
   }
   init() {

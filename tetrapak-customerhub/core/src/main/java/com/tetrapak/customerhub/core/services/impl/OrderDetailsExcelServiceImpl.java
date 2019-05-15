@@ -482,7 +482,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		map.put("price", product.getPrice());
 		map.put("materialCode", product.getMaterialCode());
 		map.put("SKU", product.getMaterialCode());
-		map.put("orderNumber", product.getOrderNumber().toString());
+		map.put("orderNumber", product.getOrderNumber());
 		map.put(S_NO, counter.toString());
 		if (map.containsKey(columnName)) {
 			return map.get(columnName);
@@ -522,21 +522,4 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
 		}
 		return processedData + ExcelUtil.REGULAR_STYLE_TAG;
 	}
-
-	/**
-	 * 
-	 * if the integer parameter is null then return empty string otherwise the
-	 * original integer as string
-	 * 
-	 * @param rawData
-	 * @return
-	 */
-	private String getProcessedValue(Integer rawData) {
-		String processedData = StringUtils.EMPTY;
-		if (null != rawData) {
-			processedData = rawData.toString();
-		}
-		return processedData + ExcelUtil.REGULAR_STYLE_TAG;
-	}
-
 }

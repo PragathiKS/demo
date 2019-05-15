@@ -68,6 +68,7 @@ public class FooterModel {
 
                     bean.setSocialMediaLinkPath(socialMediaLinkPath);
                     bean.setSocialMediaIconClass("icon-" + socialMedia);
+                    bean.setSocialMediaName(socialMedia);
                     footerSocialLinks.add(bean);
 
                 }

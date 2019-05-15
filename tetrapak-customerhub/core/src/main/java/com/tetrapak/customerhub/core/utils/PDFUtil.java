@@ -187,6 +187,9 @@ public final class PDFUtil {
             float nextTextY, Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
+            if(null == text){
+                text = StringUtils.EMPTY;
+            }
             boolean isBold = text.startsWith(CustomerHubConstants.BOLD_IDENTIFIER);
             contentStream.beginText();
             contentStream.newLineAtOffset((float) nextTextX, nextTextY);

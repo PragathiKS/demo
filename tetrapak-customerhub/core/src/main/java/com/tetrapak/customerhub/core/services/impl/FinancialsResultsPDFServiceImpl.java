@@ -64,8 +64,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
         financialStatementModel = financialStatement;
         List<Document> documents = resultsResponse.getDocuments();
-        String customerName = paramRequest.getCustomerData().getInfo().getTitle();
+        String customerName = paramRequest.getCustomerData().getDesc();
         String startDate = paramRequest.getStartDate();
+        String endDate = paramRequest.getEndDate();
         InputStream in1 = null;
         InputStream in2 = null;
         InputStream image1 = null;
@@ -108,7 +109,14 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             try {
                 if(null != contentStream) {
                     contentStream.close(); 
-                    PDFUtil.writeOutput(response, document, "Financials-" + customerName+ "-" +startDate);
+                    if (paramRequest.getStartDate() != null && endDate != null) {
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING + startDate + CustomerHubConstants.HYPHEN_STRING + endDate);
+                    }
+                    else if (paramRequest.getStartDate() != null) {
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING +startDate);
+                    } else {
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING +endDate);
+                    }                    
                 }
                 if(null != document) {
                     document.close();
@@ -165,7 +173,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             rows.add(new Row(
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " + paramRequest.getEndDate() + "-" + paramRequest.getStartDate(),
+                            + ":" + " " + paramRequest.getEndDate() + CustomerHubConstants.HYPHEN_STRING + paramRequest.getStartDate(),
                     10, muliRegular, 12));
         } else if (paramRequest.getEndDate() != null) {
             rows.add(new Row(
@@ -186,7 +194,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
-            columns.add(new Column(paramRequest.getEndDate() + "-" + paramRequest.getStartDate(), 60));
+            columns.add(new Column(paramRequest.getEndDate() + CustomerHubConstants.HYPHEN_STRING + paramRequest.getStartDate(), 60));
         }
         else if (paramRequest.getStartDate() != null) {
             columns.add(new Column(paramRequest.getStartDate(), 60));
