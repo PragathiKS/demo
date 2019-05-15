@@ -54,4 +54,9 @@ public final class CustomerHubConstants {
     public static final String CUSTOMERKEY = "customerkey";
     
     public static final String TEST_TOKEN= "J9ZGhxxIm5uvGgSBIPNqwCV3siBq";
+   
+    public static final String FINANCIALS = "Financials-";
+    
+    public static final String HYPHEN_STRING = "-";
+    
 }
