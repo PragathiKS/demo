@@ -272,9 +272,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
 														stage ( 'Sitespeed Execution on all platforms in Parallel - CustomerHub') {
 													    steps {
 														script {
-														parallel (
-
-                                                        "SiteSpeed_Desktop" : {
+														
 														if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
                                                         }
@@ -287,26 +285,17 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
 
                                                         sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
-														 }
-                                                            },
-														"sitespeed_Mobile" : {
-														if (params.Skip_Tool_Execution) {
-                                                        echo "Skipping Sitespeed Execution for Desktop"
-                                                        }
-                                                        else {
+														 
+                                                            
+														
 
                                                          echo "Starting Sitespeed-Mobile Test Run"
                                                          sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
 														 
                                                          sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
-														 }
-                                                           },
-														  "sitespeed_IPad" : {
-														  if (params.Skip_Tool_Execution) {
-                                                          echo "Skipping Sitespeed Execution for Desktop"
-                                                          }
-                                                          else {
+														
+														
                                                           echo "Starting Sitespeed-IPAD Test Run"
                                                           sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url} -b firefox --outputFolder sitespeed_ipad'
 														  
@@ -315,7 +304,8 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                           sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 														  }
 														  }
-														  )
+														  }
+														  }
 														  
 														  } } } } 
 
