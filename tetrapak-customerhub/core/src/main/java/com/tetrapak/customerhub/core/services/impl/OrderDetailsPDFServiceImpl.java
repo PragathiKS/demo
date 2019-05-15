@@ -415,12 +415,15 @@ import java.util.Map;
         for (String columnName : partsDeliveryColumn) {
             int width = 35;
             if (StringUtils.equalsIgnoreCase(columnName, "productName")) {
-                width = 100;
+                width = 90;
             } else if (StringUtils.equalsIgnoreCase(columnName, "serialNo")) {
                 width = 15;
             } else if (StringUtils.equalsIgnoreCase(columnName, "price") || StringUtils
+                    .equalsIgnoreCase(columnName, "unitPrice")|| StringUtils
                     .equalsIgnoreCase(columnName, "orderNumber")) {
                 width = 50;
+            } else if (StringUtils.equalsIgnoreCase(columnName, "ETA")) {
+                width = 45;
             }
             columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
                     .getI18nValue(request, ORDER_DETAIL_I18_PREFIX, columnName), width));
