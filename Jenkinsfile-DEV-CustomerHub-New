@@ -254,7 +254,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                           sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
                                                          -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 \
                                                           -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true \
-                                                          -config api.disablekey=true"'
+                                                          -config api.disablekey=true'
 														  
                                                           sh 'docker exec zap zap-cli spider ${test_url_pally_zap}'
                                                           sh 'docker exec zap zap-cli report -f html -o "zap.html"'
@@ -319,6 +319,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
 
 post {
 
+/*
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
@@ -330,6 +331,8 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 
 to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, arivazhagan.tamilselvan@publicissapient.com, harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, kanchan.mitharwal@publicissapient.com, lalit.mahori@publicissapient.com, manoj.varma@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, ruhee.sharma@publicissapient.com, sachin.singh1@publicissapient.com, sumrin.kaur@publicissapient.com, swati.lamba@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, vanessa.dsouza@publicissapient.com, sumrin.kaur@publicissapient.com'
 }
+
+*/
 
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'
