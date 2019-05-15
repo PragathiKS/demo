@@ -270,6 +270,9 @@ sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.lang
 														
 														sh 'docker exec zap zap-cli report -f html -o "Zap-PublicWeb.html"'
 														 sh 'docker cp zap:zap/Zap-PublicWeb.html .'
+														 sh 'docker stop zap'
+														 sh 'docker rm zap'
+                                                         
 														 
 														publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'Zap-PublicWeb.html', reportName: 'zap Report- Public Web', reportTitles: ''])
 														

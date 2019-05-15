@@ -259,6 +259,8 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                           sh 'docker exec zap zap-cli spider ${test_url_pally_zap}'
                                                           sh 'docker exec zap zap-cli report -f html -o "zap.html"'
 														  sh 'docker cp zap:zap/zap.html .'
+														  sh 'docker stop zap'
+														  sh 'docker rm zap'
                                                          
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])            
   
