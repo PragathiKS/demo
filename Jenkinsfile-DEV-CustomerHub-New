@@ -20,9 +20,9 @@ pipeline {
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
-test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/financials.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/training.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/projects.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/contact.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
+test_url = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/financials.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/training.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/projects.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/contact.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
 
-test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
+test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
@@ -247,14 +247,19 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                          echo "Starting pa11y test Run on CustomerHub Urls"
                                                          sh 'chmod 777 PallyReporting.sh'
                                                          sh './PallyReporting.sh'
+														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
 
 														 echo "Starting Zap Test Run- CustomerHub"
-                                                          sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
-                                                          sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
-                                                          sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
-                                                          sh 'zap-cli --api-key 12345 shutdown'
-
+                                                          sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
+                                                         -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 \
+                                                          -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true \
+                                                          -config api.disablekey=true"'
+														  
+                                                          sh 'docker exec zap zap-cli spider ${test_url_pally_zap}'
+                                                          sh 'docker exec zap zap-cli report -f html -o "zap.html"'
+														  sh 'docker cp zap:zap/zap.html .'
+                                                         
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])            
   
 														  sh 'cp -r ./zap.html /app/splunk-output/zap/customerhub'
@@ -274,10 +279,12 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                         else {
 
                                                          echo "Starting Sitespeed-Desktop Test Run"
+														 
                                                          sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
+														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
 
-                                                       sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+                                                        sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
 														 }
                                                             },
 														"sitespeed_Mobile" : {
@@ -300,6 +307,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
                                                           else {
                                                           echo "Starting Sitespeed-IPAD Test Run"
                                                           sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url} -b firefox --outputFolder sitespeed_ipad'
+														  
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
 														  
                                                           sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
