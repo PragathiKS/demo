@@ -18,12 +18,12 @@ import moment from 'moment';
 function _trackAnalytics(type, name) {
   const analyticsData = {
     linkType: 'internal',
-    linkSection: 'installed equipment-maintenance',
-    linkParentTitle: 'tetrapak contact'
+    linkSection: 'installed equipment-maintenance'
   };
 
-  // creating linkName as per the name or type received
-  analyticsData.linkName = `${type}-${name}`;
+  // creating linkParentTitle/linkName as per the name or type received
+  analyticsData.linkParentTitle = `contact-${type}`;
+  analyticsData.linkName = `${name}`;
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
