@@ -276,6 +276,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
 														if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
                                                         }
+														
                                                         else {
 
                                                          echo "Starting Sitespeed-Desktop Test Run"
@@ -286,14 +287,11 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
 
                                                         sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
 														 
-                                                            
-														
 
                                                          echo "Starting Sitespeed-Mobile Test Run"
                                                          sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
-														 
-                                                         sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
+														 sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
 														
 														
                                                           echo "Starting Sitespeed-IPAD Test Run"
@@ -307,7 +305,7 @@ sh "mvn -f $workspace/tetrapak-customerhub/pom.xml -e -B sonar:sonar  -Dsonar.la
 														  }
 														  }
 														  
-														  } } } } 
+														  }
 
 post {
 
