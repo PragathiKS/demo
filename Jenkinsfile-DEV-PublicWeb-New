@@ -328,6 +328,7 @@ sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.lang
 		
  post {
 
+ /*
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
@@ -339,6 +340,7 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 
 to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
 } 
+*/
 
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'
