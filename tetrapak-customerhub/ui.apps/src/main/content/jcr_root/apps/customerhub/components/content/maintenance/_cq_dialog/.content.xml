@@ -150,6 +150,13 @@
                                     fieldLabel="Error Message i18n key"
                                     name="./errorMsg"
                                     required="true"/>
+                            <noEventMsg
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter No Event Message i18n key"
+                                    fieldLabel="No Event Message i18n key"
+                                    name="./noEventMsg"
+                                    required="true"/>
                         </items>
                     </column>
                 </items>
