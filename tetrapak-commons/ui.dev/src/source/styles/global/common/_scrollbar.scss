@@ -1,0 +1,61 @@
+.custom-scrollbar {
+    @media #{$desktop} {
+        overflow: hidden;
+
+        &:hover {
+            overflow: auto;
+        }
+    }
+
+    &,
+    &-horizontal,
+    &-vertical {
+        @media #{$desktop} {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        &:not(.native) {
+            @media #{$desktop} {
+                &::-webkit-scrollbar {
+                    @include width($spacing-small-half);
+                }
+
+                &::-webkit-scrollbar-track {
+                    background-color: $color-mercury;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: $color-light-gray;
+                }
+            }
+        }
+    }
+
+    @media #{$desktop} {
+
+        &-horizontal,
+        &-vertical {
+            overflow: hidden;
+        }
+
+        &-horizontal:hover {
+            overflow-x: auto;
+        }
+
+        &-vertical:hover {
+            overflow-y: auto;
+        }
+    }
+}
+
+.custom-scrollbar-content {
+    @media #{$desktop} {
+        @include margin-right(-$spacing-small-half);
+    }
+
+    .native:not(.tablet) & {
+        @media #{$desktop} {
+            margin-right: -17px; // Native scrollbar is 17px
+        }
+    }
+}
