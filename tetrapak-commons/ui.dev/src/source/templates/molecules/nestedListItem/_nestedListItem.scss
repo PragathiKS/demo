@@ -9,7 +9,20 @@
         background: $color-tory-blue;
     }
 
-    .tpmol-list-item__sublist & {
+    &__sublist {
+        &.collapsible:not(.active) {
+            display: none;
+        }
+
+        &.animating {
+            position: relative;
+            height: 0;
+            overflow: hidden;
+            transition: height $anim-speed-quick $anim-ease-out;
+        }
+    }
+
+    &__sublist & {
         background-color: $color-tory-blue;
         border-bottom: 1px solid $color-denim;
         transition: all $anim-speed-quick ease;

@@ -223,7 +223,7 @@ function _renderCalendarEventsDot() {
           $(this).append(`<span class='lightpick__dot'></span>`);
         }
       });
-      this.root.find('.lightpick__inner .lightpick__toolbar').after(detachedMonths);
+      this.root.find('.lightpick__inner').append(detachedMonths);
     });
   });
 }
@@ -275,24 +275,25 @@ class MaintenanceFiltering {
       template: 'maintenanceCalendar',
       target: '.js-maintenance-filtering__calendar-wrapper',
       data: this.cache.i18nKeys
+    }, () => {
+      const maintenancecalendar = this.root.find('.js-range-selector');
+      const calendarField = maintenancecalendar[0];
+      const { picker } = this.cache;
+      if (picker) {
+        picker.destroy();
+      }
+      this.cache.picker = new Lightpick({
+        field: calendarField,
+        singleDate: false,
+        numberOfMonths: 4,
+        numberOfColumns: 2,
+        inline: true,
+        dropdowns: false,
+        format: DATE_FORMAT,
+        separator: ' - '
+      });
+      this.wrapCalendar();
     });
-    const maintenancecalendar = this.root.find('.js-range-selector');
-    const calendarField = maintenancecalendar[0];
-    const { picker } = this.cache;
-    if (picker) {
-      picker.destroy();
-    }
-    this.cache.picker = new Lightpick({
-      field: calendarField,
-      singleDate: false,
-      numberOfMonths: 4,
-      numberOfColumns: 2,
-      inline: true,
-      dropdowns: false,
-      format: DATE_FORMAT,
-      separator: ' - '
-    });
-    this.wrapCalendar();
   }
   wrapCalendar() {
     const calendarMonthsCont = this.root.find('.lightpick__months');

@@ -1,13 +1,18 @@
-<div data-sly-test="${properties.showHeader}">
-  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
-</div>
-<div class="${properties.showHeader ? 'pw-error-page pw-error-page--underneath': 'pw-error-page'}  ${wcmmode.edit ? 'wcmmode-edit': ''}"
-     style="background-image: url('${properties.imagePath @ context='styleString'}')">
-  <div class="tp-container">
-    <div class="pw-error-page__logo">
+<div class="${(properties.showHeader && !wcmmode.edit) ? 'pw-error-page pw-error-page--underneath': 'pw-error-page'}  ${wcmmode.edit ? 'wcmmode-edit': ''}"
+     style="background-image: url('${properties.imagePath @ context='styleString'}')" data-module="ErrorPage">
+  <style>
+    html, body {
+      min-height: 100%;
+    }
+  </style>
+  <div data-sly-test="${properties.showHeader}" data-sly-unwrap="${!wcmmode.edit}">
+    <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
+  </div>
+  <div class="tp-container js-tp-container">
+    <div data-sly-test="${!properties.showHeader}" class="pw-error-page__logo">
       <sly data-sly-resource="${'logo' @ resourceType='publicweb/components/content/logo'}"/>
     </div>
-    <div class="pw-error-page__text-content">
+    <div class="pw-error-page__text-content js-pw-error-page__text-content">
       <sly data-sly-test="${properties.textContrastLayer}"
            data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html"
            data-sly-call="${contrastLayer.contrastLayer_template @ variant='flat'}"/>
@@ -24,7 +29,13 @@
       </div>
     </div>
   </div>
+  <div data-sly-test="${properties.showFooter}">
+    <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
+  </div>
 </div>
-<div data-sly-test="${properties.showFooter}">
-  <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
-</div>
+<script>
+    if(digitalData) {
+      digitalData.error.errorcode = "${properties.analyticsErrorCode @ context='scriptString'}";
+      digitalData.error.errortype = "${properties.analyticsErrorTypeText @ context='scriptString'}";
+    }
+</script>

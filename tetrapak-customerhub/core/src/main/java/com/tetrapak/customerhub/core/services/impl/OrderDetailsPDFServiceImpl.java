@@ -336,11 +336,11 @@ import java.util.Map;
 
         String[][] content = { { CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
                 .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerNumberLabel()),
-                orderDetails.getCustomerNumber().toString(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                orderDetails.getCustomerNumber(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
                 .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getCustomerReferenceLabel()),
-                orderDetails.getCustomerReference().toString(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
+                orderDetails.getCustomerReference(), CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil
                 .getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getWebRefLabel()),
-                orderDetails.getWebRefID().toString()
+                orderDetails.getWebRefID()
         }
         };
 
@@ -475,7 +475,7 @@ import java.util.Map;
         map.put(DELIVERED_QUANTITY, product.getDeliveredQuantity());
         map.put("price", product.getPrice());
         map.put("remainingQuantity", product.getRemainingQuantity());
-        map.put("orderNumber", product.getOrderNumber().toString());
+        map.put("orderNumber", product.getOrderNumber());
         map.put("productID", product.getProductID());
         map.put("weight", product.getWeight());
         map.put("ETA", product.getETA());

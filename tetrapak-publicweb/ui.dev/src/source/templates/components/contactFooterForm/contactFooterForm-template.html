@@ -22,7 +22,7 @@
             <div class="col-md-6">
               <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-contactfooter" autocomplete="off" method="GET">
                 <div class="tab-content tab-content-steps">
-                  <div class="tab-pane active" role="tabpanel" id="cf-step-1">
+                  <div class="tab-pane active" data-stepNumber="1" data-stepName="name" role="tabpanel" id="cf-step-1">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -92,7 +92,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-2">
+                  <div class="tab-pane" data-stepNumber="2" data-stepName="phone no" role="tabpanel" id="cf-step-2">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -135,7 +135,7 @@
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-1', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-1', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-3', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -156,7 +156,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-3">
+                  <div class="tab-pane" data-stepNumber="3" data-stepName="email" role="tabpanel" id="cf-step-3">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -199,7 +199,7 @@
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-2', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-2', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-4', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -220,7 +220,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-4">
+                  <div class="tab-pane" data-stepNumber="4" data-stepName="position" role="tabpanel" id="cf-step-4">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -263,7 +263,7 @@
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-3', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-3', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-5', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -284,7 +284,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-5">
+                  <div class="tab-pane" data-stepNumber="5" data-stepName="company" role="tabpanel" id="cf-step-5">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -327,7 +327,7 @@
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-4', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-4', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-6', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -348,7 +348,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-6">
+                  <div class="tab-pane" data-stepNumber="6" data-stepName="location" role="tabpanel" id="cf-step-6">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -385,13 +385,23 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="contact-in">${data.contactUsLabel @ i18n}</label>
-                          <input type="text" name="contact-in" class="form-control" id="contact-in" required>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button class="btn dropdown-toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              ${'select an option' @ i18n}
+                            </button>
+                            <div class="dropdown-menu pw-form__dropdown__menu" data-sly-list="${data.countryList}">
+                              <a href="#" class="dropdown-item ${itemList.first? 'active' : ''}" data-country="${item.value}">
+                                ${item.title}
+                              </a>
+                            </div>
+                            <input type="hidden" name="contact-in" class="form-control" id="contact-in" required>
+                          </div>
                           <div class="error-msg">Error, input needed.</div>
                         </div>
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-5', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-5', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-7', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -412,7 +422,7 @@
                       ${data.helpText @ context='html'}
                     </div>
                   </div>
-                  <div class="tab-pane" role="tabpanel" id="cf-step-7">
+                  <div class="tab-pane" data-stepNumber="7" data-stepName="terms condition" role="tabpanel" id="cf-step-7">
                     <div class="row no-gutters">
                       <div class="info-box w-100 d-none">
                         <div class="info-group first-name">
@@ -458,7 +468,7 @@
                       </div>
                     </div>
                     <div class="row no-gutters">
-                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-6', btnText=data.previousButtonLabel, customClasses='pw-form__prevbtn d-inline-flex flex-row-reverse mr-2'}" />
+                      <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-6', btnText=data.previousButtonLabel, customClasses='tpatom-button--prevBtn d-inline-flex flex-row-reverse mr-2'}" />
                       <sly data-sly-use.formButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${formButton.togglebutton_template @ btnToggle='tab', btnTarget='#cf-step-final', btnText=data.submitButtonLabel, variant='secondary', customClasses='form-submit'}" />
                     </div>
                     <div class="row no-gutters pw-progress">
@@ -492,7 +502,9 @@
               </h4>
               <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                    data-sly-call="${heading.heading_h4_template @ headingText=data.thankYouMessage, variant='small'}"/>
-              <a href="${data.linkPath}" class="tpatom-button tpatom-button--primary mt-3">${data.linkTextI18n}</a>
+              <a data-sly-test="${linkTextI18n}" href="${data.linkPath}" class="tpatom-button tpatom-button--primary mt-3">
+                ${data.linkTextI18n}
+              </a>
             </div>
           </div>
         </div>

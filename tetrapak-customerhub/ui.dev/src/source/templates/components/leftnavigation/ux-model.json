@@ -18,7 +18,7 @@
       "iconClass": "icon-Install",
       "iconLabel": "Installed equipment",
       "isExternalLink": "false",
-      "isExpanded": "true",
+      "isExpanded": "false",
       "subMenuList": [
         {
           "href": "/content/tetrapak/customerhub/en/installed-equipment/Maintenance.html",

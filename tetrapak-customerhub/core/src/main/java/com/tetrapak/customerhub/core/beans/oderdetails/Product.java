@@ -26,7 +26,7 @@ public class Product {
     private String remainingQuantity;
     @SerializedName("orderNumber")
     @Expose
-    private Integer orderNumber;
+    private String orderNumber;
     @SerializedName("productID")
     @Expose
     private String productID;
@@ -86,11 +86,11 @@ public class Product {
         this.remainingQuantity = remainingQuantity;
     }
 
-    public Integer getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
