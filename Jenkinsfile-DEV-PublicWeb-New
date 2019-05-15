@@ -257,13 +257,20 @@ sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.lang
                                                          echo "Starting PALLY test Run on PublicWeb Urls"
                                                          sh 'chmod 777 PallyReportPubWeb.sh'
                                                          sh './PallyReportPubWeb.sh'
+														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
 														 
-														sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
+														sh 'docker run --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
+                                                         -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 \
+                                                          -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true \
+                                                          -config api.disablekey=true'
+														 
 														sh 'chmod 777 Zap-PublicWeb.sh'
 														sh './Zap-PublicWeb.sh'
-														sh 'zap-cli --api-key 12345 report -f html -o "Zap-PublicWeb.html"'
-														sh 'zap-cli --api-key 12345 shutdown'
+														
+														sh 'docker exec zap zap-cli report -f html -o "Zap-PublicWeb.html"'
+														 sh 'docker cp zap:zap/Zap-PublicWeb.html .'
+														 
 														publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'Zap-PublicWeb.html', reportName: 'zap Report- Public Web', reportTitles: ''])
 														
 														sh 'cp -r ./Zap-PublicWeb.html /app/splunk-output/publicweb'
