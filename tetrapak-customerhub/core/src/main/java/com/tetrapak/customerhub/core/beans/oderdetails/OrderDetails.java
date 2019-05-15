@@ -17,19 +17,19 @@ public class OrderDetails {
     private String customerName;
     @SerializedName("customerNumber")
     @Expose
-    private Integer customerNumber;
+    private String customerNumber;
     @SerializedName("purchaseOrderNumber")
     @Expose
-    private Integer purchaseOrderNumber;
+    private String purchaseOrderNumber;
     @SerializedName("customerReference")
     @Expose
-    private Integer customerReference;
+    private String customerReference;
     @SerializedName("placedOn")
     @Expose
     private String placedOn;
     @SerializedName("webRefID")
     @Expose
-    private Integer webRefID;
+    private String webRefID;
     @SerializedName("status")
     @Expose
     private String status;
@@ -50,27 +50,27 @@ public class OrderDetails {
         this.customerName = customerName;
     }
 
-    public Integer getCustomerNumber() {
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(Integer customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public Integer getPurchaseOrderNumber() {
+    public String getPurchaseOrderNumber() {
         return purchaseOrderNumber;
     }
 
-    public void setPurchaseOrderNumber(Integer purchaseOrderNumber) {
+    public void setPurchaseOrderNumber(String purchaseOrderNumber) {
         this.purchaseOrderNumber = purchaseOrderNumber;
     }
 
-    public Integer getCustomerReference() {
+    public String getCustomerReference() {
         return customerReference;
     }
 
-    public void setCustomerReference(Integer customerReference) {
+    public void setCustomerReference(String customerReference) {
         this.customerReference = customerReference;
     }
 
@@ -82,11 +82,11 @@ public class OrderDetails {
         this.placedOn = placedOn;
     }
 
-    public Integer getWebRefID() {
+    public String getWebRefID() {
         return webRefID;
     }
 
-    public void setWebRefID(Integer webRefID) {
+    public void setWebRefID(String webRefID) {
         this.webRefID = webRefID;
     }
 

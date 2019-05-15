@@ -7,15 +7,15 @@
         {{#unless parent.isPackmat}}
                 <table class="tp-order-detail__product-summary ml-auto">
                         <tr>
-                                <td>{{parent.i18nKeys.totalWeightLabel}}</td>
+                                <td>{{i18n key=parent.i18nKeys.totalWeightLabel}}</td>
                                 <td>{{totalWeight}}</td>
                         </tr>
                         <tr>
-                                <td>{{parent.i18nKeys.totalPricePreVatLabel}}</td>
+                                <td>{{i18n key=parent.i18nKeys.totalPricePreVatLabel}}</td>
                                 <td>{{totalPricePreVAT}}</td>
                         </tr>
                         <tr>
-                                <td class="semi-bold">{{parent.i18nKeys.totalVatLabel}}</td>
+                                <td class="semi-bold">{{i18n key=parent.i18nKeys.totalVatLabel}}</td>
                                 <td>{{totalVAT}}</td>
                         </tr>
                 </table>
