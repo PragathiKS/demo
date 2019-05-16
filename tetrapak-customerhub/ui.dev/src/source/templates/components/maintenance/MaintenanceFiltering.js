@@ -35,6 +35,7 @@ function _trackAnalytics(name, type) {
       analyticsData.linkName = 'maintenance tab selection';
       analyticsData.linkSelection = name;
       analyticsData.linkParentTitle = 'Maintenance tab';
+      analyticsData.maintenanceresultscount = this.cache.data.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
