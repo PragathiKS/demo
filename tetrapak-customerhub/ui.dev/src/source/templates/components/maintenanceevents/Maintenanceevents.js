@@ -70,6 +70,8 @@ function _renderMaintenanceEvents() {
         template: 'maintenanceevents',
         target: '.js-maintenance__events',
         data: $this.cache
+      }, () => {
+        $this.trackEventAnalytics($this.cache.filterSelected);
       });
     });
   });
@@ -92,6 +94,7 @@ class Maintenanceevents {
   }
   renderMaintenanceEvents(...args) {
     this.cache = args[1];
+    this.trackEventAnalytics = args[2];
     _renderMaintenanceEvents.call(this);
   }
 
