@@ -232,7 +232,7 @@ function _trackAnalytics(type) {
     case 'orderList': {
       ob.linkParentTitle = 'order history';
       ob.linkName = 'ordersSearchResultClick';
-      ob.linkselection = `tetrapak order number|${pageNo}`;
+      ob.linkSelection = `tetrapak order number|${pageNo}`;
       break;
     }
     case 'search': {
