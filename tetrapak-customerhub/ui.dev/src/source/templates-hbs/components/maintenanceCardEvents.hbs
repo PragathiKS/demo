@@ -1,0 +1,11 @@
+{{#each events}}
+    <div class="tp-maintenance-card__event{{#if @first}} active{{/if}}">
+        <div class="tp-maintenance-card__event-title bold">{{title}} - {{plannedStart}}</div>
+        <div class="tp-maintenance-card__event-line">{{lineName}}</div>
+        <div class="tp-maintenance-card__event-euipment">{{euipmentName}}</div>
+    </div>
+
+    <div class="tp-maintenance-card__event-detail">
+    Event detail 1
+    </div>
+{{/each}}

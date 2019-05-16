@@ -1,0 +1,10 @@
+.tp-maintenance-card {
+    &__event {
+        @include padding($padding-sm $padding-md);
+
+        &.active {
+            @include border-radius($border-radius);
+            background-color: $color-wild-sand;
+        }
+    }
+}
