@@ -317,6 +317,7 @@ class MaintenanceFiltering {
       target: '.js-maintenance-filtering__calendar-wrapper',
       data: this.cache.i18nKeys
     }, () => {
+      this.cache.$calendarNav = this.root.find('.js-calendar-nav');
       const maintenancecalendar = this.root.find('.js-events-date-range-selector');
       const calendarField = maintenancecalendar[0];
       const { picker } = this.cache;
@@ -333,11 +334,11 @@ class MaintenanceFiltering {
         format: DATE_FORMAT,
         separator: ' - ',
         onSelectStart() {
-          $this.root.find('.js-calendar-nav').parent().addClass('js-disable-data-call');
+          $this.cache.$calendarNav.parent().addClass('js-disable-data-call');
         },
         onSelectEnd() {
           $this.cache.filterSelected = 'dates choosen';
-          $this.root.find('.js-calendar-nav').parent().removeClass('js-disable-data-call');
+          $this.cache.$calendarNav.parent().removeClass('js-disable-data-call');
           $this.triggerMaintenanceEvents();
         }
       });
