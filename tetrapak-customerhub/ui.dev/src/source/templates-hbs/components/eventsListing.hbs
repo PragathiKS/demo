@@ -1,4 +1,4 @@
-<h4 class="tp-maintenance-events__heading">{{i18n key=i18nKeys.eventsHeading}}</h4>
+<h3 class="tp-maintenance-events__heading">{{i18n key=i18nKeys.eventsHeading}}</h3>
 {{#if isEventDataError}}
    <div class="tp-card">
         <i class="icon-Info"></i>
@@ -13,9 +13,9 @@
     {{else}}
         {{#each data.events}}
             <div class="tp-card tp-maintenance-events__wrapper">
-                <h3 class="tp-maintenance-events__event-heading">{{type}}</h3>
+                <h4 class="tp-maintenance-events__event-heading">{{type}}</h4>
                 <div class="tp-maintenance-events__event-detail-wrapper">
-                    <div class="tp-maintenance-events__event-detail-left-container">
+                    <div class="tp-maintenance-events__event-detail-left-container float-lg-left">
                         {{> components/infoPair baseClass="left" label=../i18nKeys.statusLabel data=status }}
                         {{> components/infoPair baseClass="left" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
                         {{> components/infoPair baseClass="left" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}

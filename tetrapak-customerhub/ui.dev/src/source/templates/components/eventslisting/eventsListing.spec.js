@@ -1,6 +1,6 @@
-import Maintenanceevents from './Maintenanceevents';
+import EventsListing from './EventsListing';
 import $ from 'jquery';
-import maintenanceEventsTemplate from '../../../test-templates-hbs/maintenanceEvents.hbs';
+import eventsListingTemplate from '../../../test-templates-hbs/eventsListing.hbs';
 import maintenanceEventsData from './data/maintenanceEvents.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -19,8 +19,8 @@ describe('Maintenanceevents', function () {
   };
 
   before(function () {
-    $(document.body).empty().html(maintenanceEventsTemplate());
-    this.maintenanceevents = new Maintenanceevents({ el: $('.js-maintenance__events') });
+    $(document.body).empty().html(eventsListingTemplate());
+    this.maintenanceevents = new EventsListing({ el: $('.js-maintenance__events') });
     this.initSpy = sinon.spy(this.maintenanceevents, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "renderMaintenanceEvents");
     this.renderSpy = sinon.spy(render, 'fn');

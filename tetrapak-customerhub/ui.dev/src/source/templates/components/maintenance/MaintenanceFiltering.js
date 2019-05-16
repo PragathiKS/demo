@@ -302,7 +302,11 @@ class MaintenanceFiltering {
         dropdowns: false,
         format: DATE_FORMAT,
         separator: ' - ',
+        onSelectStart() {
+          $this.root.find('.js-calendar-nav').parent().addClass('js-disable-data-call');
+        },
         onSelectEnd() {
+          $this.root.find('.js-calendar-nav').parent().removeClass('js-disable-data-call');
           $this.triggerMaintenanceEvents();
         }
       });
@@ -336,7 +340,9 @@ class MaintenanceFiltering {
     }
     $this.wrapCalendar();
     $this.renderCalendarEventsDot();
-    $this.triggerMaintenanceEvents();
+    if ($this.root.find('.js-disable-data-call').length === 0) {
+      $this.triggerMaintenanceEvents();
+    }
   }
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   renderCalendarEventsDot = () => _renderCalendarEventsDot.call(this);
