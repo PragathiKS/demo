@@ -33,8 +33,9 @@ function _renderMaintenanceEvents() {
             isError: true
           };
         } else {
-          const { i18nKeys } = $this.cache;
+          const { i18nKeys, viewAllLink } = $this.cache;
           data.i18nKeys = i18nKeys;
+          data.viewAllLink = viewAllLink;
 
           //$this.processSiteData(data);
           //$this.cache.data = data;
@@ -65,6 +66,7 @@ class MaintenanceCard {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.viewAllLink = this.root.find('.js-viewAllLink').val();
   }
   bindEvents() {
     /* Bind jQuery events here */

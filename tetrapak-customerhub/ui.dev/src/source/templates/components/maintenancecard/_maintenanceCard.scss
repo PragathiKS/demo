@@ -1,10 +1,55 @@
 .tp-maintenance-card {
     &__event {
         @include padding($padding-sm $padding-md);
+        @include line-height(24px, $font-baseline);
+        position: relative;
+        border-bottom: 1px solid $color-mercury;
+
+        &:first-child {
+            @include margin-top($margin-md);
+        }
 
         &.active {
             @include border-radius($border-radius);
+            border: 1px solid $color-boulder;
             background-color: $color-wild-sand;
         }
+
+        &.active+&-detail {
+            display: block;
+        }
+
+        &-detail {
+            @include margin-top($margin-md);
+            @include padding($padding-sm $padding-md);
+            @include border-radius($border-radius);
+            display: none;
+            background-color: $color-wild-sand;
+        }
+
+        .icon-Chevron_Down {
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__info-title {
+        @include padding($padding-sm 0);
+        display: inline-block;
+        width: 50%;
+        font-family: $font-bold;
+    }
+
+    &__info-text {
+        @include padding($padding-sm 0);
+        display: inline-block;
+        width: 49%;
+        text-align: right;
+    }
+
+    &__all-link {
+        @include margin-top($margin-md);
     }
 }
