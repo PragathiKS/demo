@@ -175,8 +175,7 @@ function _renderMaintenanceFilters() {
         $this.renderMaintenanceContact();
         this.renderCalendar();
         $this.renderCalendarEventsDot();
-        $this.renderMaintenanceEvents();
-
+        $this.triggerMaintenanceEvents();
       }
     });
   });
@@ -230,68 +229,7 @@ function _renderCalendarEventsDot() {
   });
 }
 
-function _renderMaintenanceEvents() {
-  const $this = this;
-  const data = {
-    top: 12
-  };
-  const monthsSelector = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  const todaySelector = this.root.find('.is-today');
-  let fromDate = moment(new Date($(todaySelector).data('time'))).format(DATE_FORMAT);
-  let toDate = moment(new Date($(monthsSelector).last().data('time'))).format(DATE_FORMAT);
-  const sitenumber = this.cache.$site.val() ? this.cache.$site.val() : null;
-  const linenumber = this.cache.$line.val() ? this.cache.$line.val() : null;
-  const equipmentnumber = this.cache.$equipment.val() ? this.cache.$equipment.val() : null;
-  const dateRangeSelector = this.root.find('.js-events-date-range-selector');
-  const dateRangeArray = dateRangeSelector.val() ? dateRangeSelector.val() : null;
-  if (dateRangeArray) {
-    const dateRange = dateRangeArray.split(' - ');
-    fromDate = moment(dateRange[1]) < moment(dateRange[0]) ? dateRange[1] : dateRange[0];
-    toDate = moment(dateRange[1]) > moment(dateRange[0]) ? dateRange[1] : dateRange[0];
-  }
-  if (sitenumber) {
-    data.sitenumber = sitenumber;
-  }
-  if (linenumber) {
-    data.linenumber = linenumber;
-  }
-  if (equipmentnumber) {
-    data.equipmentnumber = equipmentnumber;
-  }
-  if (fromDate) {
-    data['from-date'] = fromDate;
-  }
-  if (toDate) {
-    data['to-date'] = toDate;
-  }
 
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper.getXhrObj({
-      url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
-      method: ajaxMethods.GET,
-      beforeSend(jqXHR) {
-        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      },
-      data: data
-    }).done((data) => {
-      if (!data) {
-        this.cache.isEventDataError = true;
-      }
-      else {
-        if (data.events.length === 0) {
-          $this.cache.isEventNoData = true;
-        }
-        $this.cache.data = data;
-      }
-      render.fn({
-        template: 'maintenanceevents',
-        target: '.js-maintenance__events',
-        data: $this.cache
-      });
-    });
-  });
-}
 class MaintenanceFiltering {
   constructor({ el }) {
     this.root = $(el);
@@ -317,19 +255,22 @@ class MaintenanceFiltering {
     this.cache.$line = this.root.find('.js-maintenance-filtering__line');
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
+  triggerMaintenanceEvents() {
+    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache]);
+  }
   bindEvents() {
     const self = this;
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
-        this.renderMaintenanceEvents();
+        this.triggerMaintenanceEvents();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
-        this.renderMaintenanceEvents();
+        this.triggerMaintenanceEvents();
       })
       .on('change', '.js-maintenance-filtering__equipment', () => {
-        this.renderMaintenanceEvents();
+        this.triggerMaintenanceEvents();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
         self.trackAnalytics($(this).data('type').toLowerCase(), 'email');
@@ -362,7 +303,7 @@ class MaintenanceFiltering {
         format: DATE_FORMAT,
         separator: ' - ',
         onSelectEnd() {
-          $this.renderMaintenanceEvents();
+          $this.triggerMaintenanceEvents();
         }
       });
       this.wrapCalendar();
@@ -395,8 +336,8 @@ class MaintenanceFiltering {
     }
     $this.wrapCalendar();
     $this.renderCalendarEventsDot();
+    $this.triggerMaintenanceEvents();
   }
-  renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);
   renderMaintenanceFilters = () => _renderMaintenanceFilters.call(this);
   renderCalendarEventsDot = () => _renderCalendarEventsDot.call(this);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);

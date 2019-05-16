@@ -7,7 +7,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
-describe.only('MaintenanceFiltering', function () {
+describe('MaintenanceFiltering', function () {
   const jqRef = {
     setRequestHeader() {
       // Dummy method
@@ -93,17 +93,17 @@ describe.only('MaintenanceFiltering', function () {
     expect(this.maintenanceFiltering.renderLineFilter.called).to.be.true;
     done();
   });
-  // it('should render Equipment filter on change of `line` filter', function (done) {
-  //   $('.js-maintenance-filtering__line').trigger('change');
-  //   expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
-  //   done();
-  // });
-  // it('should call track analytics for maintenance on click of "contact email" link', function () {
-  //   $('.js-maintenance-filtering__contact-mail').trigger('click');
-  //   expect(this.trackAnalyticsSpy.called).to.be.true;
-  // });
-  // it('should call track analytics for maintenance on click of "contact phone" link', function () {
-  //   $('.js-maintenance-filtering__contact-phone').trigger('click');
-  //   expect(this.trackAnalyticsSpy.called).to.be.true;
-  // });
+  it('should render Equipment filter on change of `line` filter', function (done) {
+    $('.js-maintenance-filtering__line').trigger('change');
+    expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
+    done();
+  });
+  it('should call track analytics for maintenance on click of "contact email" link', function () {
+    $('.js-maintenance-filtering__contact-mail').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics for maintenance on click of "contact phone" link', function () {
+    $('.js-maintenance-filtering__contact-phone').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
 });
