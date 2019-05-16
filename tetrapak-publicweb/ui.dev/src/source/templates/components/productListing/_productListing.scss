@@ -55,6 +55,10 @@
         }
 
         &__link {
+            color: $color-congress-blue;
+            &:hover {
+                color: $color-tundora;
+            }
             @media #{$desktop} {
                 @include margin-bottom(0);
             }
