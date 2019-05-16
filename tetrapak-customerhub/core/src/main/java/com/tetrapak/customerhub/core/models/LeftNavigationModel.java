@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.PageFilter;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -115,7 +116,7 @@ public class LeftNavigationModel {
     }
 
     private void setLogoListItem(ValueMap valueMap) {
-        tpLogoListItem.setHref((String) valueMap.get("stickyHref"));
+        tpLogoListItem.setHref(LinkUtil.getValidLink(resource,(String)valueMap.get("stickyHref")));
         tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
         tpLogoListItem.setExternalLink(true);
         tpLogoListItem.setIconLabel((String) valueMap.get("stickyLabel"));
