@@ -1,6 +1,6 @@
 <div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
     <label class="d-block">
-        {{#if labelText}}<span class="tpatom-dropdown__text">{{labelText}}</span>{{/if}}
+        {{#if labelText}}<span class="tpatom-dropdown__text">{{i18n key=labelText}}</span>{{/if}}
         <select name="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
             {{#if defaultValue}}
                 <option value="">{{i18n key=defaultValue}}</option>
