@@ -14,6 +14,7 @@ class ProductListing {
     this.cache.tabButtons = $('.js-product-listng-tab', this.root);
     this.cache.dropDown = $('.js-pw-product-listing__navigation__dropdown', this.root);
     this.cache.productRootPath = this.root.data('productRootPath');
+    this.cache.digitalData = digitalData; //eslint-disable-line
   }
 
   bindEvents() {
@@ -26,6 +27,23 @@ class ProductListing {
       this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
       this.renderCards(category);
       $this.addClass('tpatom-button--group-item--active');
+      if (this.cache.digitalData) {
+        this.cache.digitalData.linkClick = {};
+        this.cache.digitalData.compContentInfo = {};
+        this.cache.digitalData.linkClick.linkType = 'internal';
+        this.cache.digitalData.linkClick.linkSection = 'product category filter';
+        this.cache.digitalData.linkClick.linkParentTitle = $this.closest('.pw-product-listing__navigation').prev().text().trim();
+        this.cache.digitalData.linkClick.linkName = $this.text();
+        if ($this.prev('.analytics-subcomponent-category-tag').val() !== undefined) {
+          const temp = $this.prev('.analytics-subcomponent-category-tag').val().split(':');
+          if (temp[0] && temp.length > 1) {
+            this.cache.digitalData.compContentInfo[temp[0]] = temp.slice(1).join(':');
+          }
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('linkClicked'); //eslint-disable-line
+        }
+      }
     });
 
     this.cache.dropDown.on('change', (e) => {

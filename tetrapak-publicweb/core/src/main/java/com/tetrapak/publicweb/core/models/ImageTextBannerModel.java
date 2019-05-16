@@ -1,8 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
+import javax.annotation.PostConstruct; 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -74,15 +75,21 @@ public class ImageTextBannerModel {
 	private String softConversionDocPath;
 
     private Boolean isHeaderBanner = false;
+    
+    private String analyticsLinkSection;
 
     @PostConstruct
     protected void init() {
 
-        String parentName = resource.getParent().getName();
-        if (parentName.equalsIgnoreCase("header")) {
+        String parentName = resource.getParent() != null ? resource.getParent().getName() : StringUtils.EMPTY;
+        if ("header".equalsIgnoreCase(parentName)) {
             isHeaderBanner = true;
+            analyticsLinkSection = "heroBanner";
+        } else if ("pw-banner".equals(contentAlignment)) {
+        	analyticsLinkSection = "imageTextBannerLeft";
+        } else {
+        	analyticsLinkSection = "imageTextBannerRight";
         }
-
     }
 
     public String getBannerSubtitleI18n() {
@@ -116,6 +123,10 @@ public class ImageTextBannerModel {
     public String getContentAlignment() {
         return contentAlignment;
     }
+    
+    public String getAnalyticsLinkSection() {
+    	return analyticsLinkSection;
+    }
 
     public String getContrastLayer() {
         return contrastLayer;
@@ -127,6 +138,10 @@ public class ImageTextBannerModel {
 
     public String getBannerCtaPath() {
         return LinkUtils.sanitizeLink(bannerCtaPath);
+    }
+    
+    public String getLinkType() {
+        return LinkUtils.linkType(bannerCtaPath);
     }
 
     public String getTargetBlank() {

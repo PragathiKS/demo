@@ -187,6 +187,9 @@ public final class PDFUtil {
             float nextTextY, Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
+            if(null == text){
+                text = StringUtils.EMPTY;
+            }
             boolean isBold = text.startsWith(CustomerHubConstants.BOLD_IDENTIFIER);
             contentStream.beginText();
             contentStream.newLineAtOffset((float) nextTextX, nextTextY);
@@ -211,10 +214,33 @@ public final class PDFUtil {
      */
     public static void drawLine(PDPageContentStream contentStream, int margin, int length, int height, Color color,
             float thickness) throws IOException {
+        contentStream.setLineDashPattern(new float[]{}, 0.0f);
+        drawSelectedLine(contentStream, margin, length, height, color, thickness);
+    }
+
+    /**
+     * Method to draw a line
+     *
+     * @param contentStream content stream
+     * @param margin        margin
+     * @param length        length
+     * @param height        height
+     * @param color         color
+     * @param thickness     thickness
+     * @throws IOException IO Exception
+     */
+    public static void drawDashedLine(PDPageContentStream contentStream, int margin, int length, int height, Color color,
+                                float thickness) throws IOException {
+        contentStream.setLineDashPattern(new float[]{2.0f}, 0.0f);
+        drawSelectedLine(contentStream, margin, length, height, color, thickness);
+    }
+
+    private static void drawSelectedLine(PDPageContentStream contentStream, int margin, double length, int height,
+                                         Color color, float thickness) throws IOException {
         contentStream.setStrokingColor(color);
         contentStream.setLineWidth(thickness);
         contentStream.moveTo(margin, height);
-        double finalMargin = (double) margin + (double) length;
+        double finalMargin = (double) margin + length;
         contentStream.lineTo((float) finalMargin, (float) height);
         contentStream.stroke();
     }

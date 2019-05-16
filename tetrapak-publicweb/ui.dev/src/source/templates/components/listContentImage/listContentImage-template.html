@@ -8,7 +8,7 @@
             <div class="pw-listContentImage__tabMenu">
                 <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
                     <li class="pw-listContentImage__tabMenuListItem">
-                        <a href="#" data-tab-id="${itemList.index}" class="pw-listContentImage__tabMenuListItem__link d-block ${itemList.first? 'active' : ''}">
+                        <a href="#" data-tab-id="${itemList.index}" data-tab-count="${itemList.count}" data-parent-title="${data.titleI18n  @ i18n}" data-link-name="${item}" class="pw-listContentImage__tabMenuListItem__link d-block ${itemList.first? 'active' : ''}">
                             ${item}
                             <i class="icon-Chevron_Right tp-icon"></i>
                         </a>

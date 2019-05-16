@@ -14,8 +14,8 @@
                             <div class="intro-slider__slide">
                               <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=getStartedItem.imagePath,imageAltI18n=getStartedItem.imageAltI18n,className='intro-slider__slider-image'}" />
                                 <div class="intro-slider__description">
-                                    <h3 class="intro-slider__title">${getStartedItem.titleI18n @i18n}</h3>
-                                    <p>${getStartedItem.descriptionI18n @i18n}</p>
+                                  <h3 class="intro-slider__title js-intro-slider__title">${getStartedItem.titleI18n @i18n}</h3>
+                                  <p>${getStartedItem.descriptionI18n @i18n}</p>
                                 </div>
                             </div>
                         </sly>
@@ -27,7 +27,7 @@
                         <sly data-sly-use.nextButton="/apps/commons/components/atoms/nextButton/nextButton-template.html"
                             data-sly-call="${nextButton.nextButton_template @nextBtnText=nextBtnText, btnClasses='js-slick-next', btnTextIcon='icon-Circle_Arrow_Right'}" />
                     </div>
-                    <div class="slider-dots"></div>
+                    <div class="slider-dots js-slider-dots"></div>
                     <input type="hidden" id="getStartedBtnI18n" name="getStartedBtnI18n" value="${data.getStartedBtnI18n}" />
                     <input type="hidden" id="nextBtnI18n" name="nextBtnI18n" value="${data.nextBtnI18n}" />
                 </div>

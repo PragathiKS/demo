@@ -100,9 +100,11 @@
         @include margin-top($margin-l);
 
         @media #{$desktop} {
-            position: absolute;
-            margin-top: 0;
-            top: 0;
+            &--parts {
+                position: absolute;
+                margin-top: 0;
+                top: 0;
+            }
         }
     }
 

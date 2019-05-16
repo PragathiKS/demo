@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 
 import org.apache.sling.models.annotations.Model;
@@ -21,6 +22,8 @@ public class LogoModel {
     private String imagePath;
     private String imageAltI18n;
     private String imageLink;
+    
+    private String cType = StringUtils.EMPTY;
 
     @PostConstruct
     protected void init() {
@@ -28,7 +31,11 @@ public class LogoModel {
         imagePath = inheritanceValueMap1.getInherited("imagePath", String.class);
         imageAltI18n = inheritanceValueMap1.getInherited("imageAltI18n", String.class);
         imageLink = inheritanceValueMap1.getInherited("imageLink", String.class);
-
+        if (resource.getPath().contains("/header/")) {
+        	cType = "header";
+        } else if (resource.getPath().contains("/footer/")) {
+        	cType = "footer";
+        }
     }
 
     public Resource getResource() {
@@ -45,5 +52,13 @@ public class LogoModel {
 
     public String getImageLink() {
         return LinkUtils.sanitizeLink(imageLink);
+    }
+    
+    public String getLinkType() {
+        return LinkUtils.linkType(imageLink);
+    }
+    
+    public String getCType() {
+        return cType;
     }
 }

@@ -8,8 +8,8 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
-import { trackAnalytics, trackParams } from '../../../scripts/utils/analytics';
-import { sanitize, apiHost } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { sanitize, apiHost, getI18n } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
 
 /**
@@ -226,13 +226,13 @@ function _trackAnalytics(type) {
   switch (type) {
     case 'reset': {
       ob.linkParentTitle = '';
-      ob.linkName = resetButtonTextI18n.toLowerCase();
+      ob.linkName = getI18n(resetButtonTextI18n).toLowerCase();
       break;
     }
-    case 'pagination': {
+    case 'orderList': {
       ob.linkParentTitle = 'order history';
       ob.linkName = 'ordersSearchResultClick';
-      ob.linkselection = `tetrapak order number|${pageNo}`;
+      ob.linkSelection = `tetrapak order number|${pageNo}`;
       break;
     }
     case 'search': {
@@ -247,8 +247,9 @@ function _trackAnalytics(type) {
       } else {
         orderStatusText = '';
       }
+
       ob.linkParentTitle = '';
-      ob.linkName = searchButtonTextI18n.toLowerCase();
+      ob.linkName = getI18n(searchButtonTextI18n).toLowerCase();
       ob.linkSelection = `DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`;
       break;
     }
@@ -299,28 +300,11 @@ function _sanitizeQuery(query) {
 }
 
 /**
- * Sets pagination analytics parameters
- */
-function _setPaginationAnalyticsParameters($this) {
-  const $tpOrderNumber = $.grep($(this).find('td'), ref => ['orderNumber'].includes($(ref).data('key')))[0];
-  if ($tpOrderNumber) {
-    const tpOrderNumber = $.trim($($tpOrderNumber).text());
-    const currentPage = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
-    trackParams({
-      searchresultclicks: tpOrderNumber,
-      pagination: currentPage
-    }, 'orders', 'SearchResultClick');
-  }
-}
-
-/**
  * Opens order detail page for current order
  */
-function _openOrderDetails(e) {
-  const $this = e.data;
+function _openOrderDetails() {
   const currentTarget = $(this);
   window.open(currentTarget.attr('href'), '_self');
-  _setPaginationAnalyticsParameters.apply(this, [$this]);
 }
 
 /**
@@ -373,7 +357,7 @@ class OrderSearch {
       .on('click', '.js-ordering-card__row', this, function (e) {
         const $this = e.data;
         $this.openOrderDetails.apply(this, arguments);
-        $this.trackAnalytics('pagination');
+        $this.trackAnalytics('orderList');
       })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
