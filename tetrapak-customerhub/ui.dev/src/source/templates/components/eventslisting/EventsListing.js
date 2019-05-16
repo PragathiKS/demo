@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_MAINTENANCE_EVENTS, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_MAINTENANCE_EVENTS, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
@@ -9,21 +9,20 @@ import moment from 'moment';
 function _renderMaintenanceEvents() {
   const $this = this;
   const data = {
-    top: 12
+    top: NO_OF_EVENTS_PER_PAGE
   };
   const monthsSelector = $(this).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
   const todaySelector = $(this).find('.is-today');
   let fromDate;
   if (todaySelector.length === 0) {
     fromDate = moment(new Date($(monthsSelector).first().data('time'))).format(DATE_FORMAT);
-  }
-  else {
+  } else {
     fromDate = moment(new Date($(todaySelector).data('time'))).format(DATE_FORMAT);
   }
   let toDate = moment(new Date($(monthsSelector).last().data('time'))).format(DATE_FORMAT);
-  const sitenumber = this.cache.$site.val() ? this.cache.$site.val() : null;
-  const linenumber = this.cache.$line.val() ? this.cache.$line.val() : null;
-  const equipmentnumber = this.cache.$equipment.val() ? this.cache.$equipment.val() : null;
+  const sitenumber = this.cache.$site.val();
+  const linenumber = this.cache.$line.val();
+  const equipmentnumber = this.cache.$equipment.val();
   const dateRangeSelector = $(this).find('.js-events-date-range-selector');
   const dateRangeArray = dateRangeSelector.val() ? dateRangeSelector.val() : null;
   if (dateRangeArray) {
@@ -62,12 +61,12 @@ function _renderMaintenanceEvents() {
       }
       else {
         if (data.events.length === 0) {
-          $this.cache.isEventNoData = true;
+          this.cache.isEventNoData = true;
         }
-        $this.cache.data = data;
+        this.cache.data = data;
       }
       render.fn({
-        template: 'maintenanceevents',
+        template: 'eventsListing',
         target: '.js-maintenance__events',
         data: $this.cache
       }, () => {
@@ -76,19 +75,12 @@ function _renderMaintenanceEvents() {
     });
   });
 }
-class Maintenanceevents {
+class EventsListing {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
-  initCache() {
-    /* Initialize selector cache here */
-    /**
-     * If component is added more than once please use "this.root" hook to prevent overlap issues.
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
-  }
+
   bindEvents() {
     this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
   }
@@ -99,10 +91,8 @@ class Maintenanceevents {
   }
 
   init() {
-    /* Mandatory method */
-    this.initCache();
     this.bindEvents();
   }
 }
 
-export default Maintenanceevents;
+export default EventsListing;

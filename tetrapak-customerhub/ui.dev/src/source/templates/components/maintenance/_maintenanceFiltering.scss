@@ -167,7 +167,6 @@
         @media #{$desktop} {
             @include padding(0 $padding-l 0 0);
             width: 33%;
-            float: left;
             border-right: 1px solid $color-mercury;
             border-bottom: 0;
         }
