@@ -1,8 +1,10 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,7 +18,10 @@ import org.osgi.framework.FrameworkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -161,19 +166,19 @@ public class GlobalUtil {
      * @return Page global config
      */
     public static Page getCustomerhubConfigPage(Resource contentPageResource) {
-    	final int DEPTH = 3;
+        final int DEPTH = 3;
         return getPageFromResource(contentPageResource, DEPTH);
     }
-    
+
     /**
      * The method provides the page provided the following parameters.
-     * 
+     *
      * @param contentPageResource content resource
-     * @param depth calculated from 'content' node
+     * @param depth               calculated from 'content' node
      * @return Page content page
      */
     public static Page getPageFromResource(Resource contentPageResource, int depth) {
-    	PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
+        PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
         Page contentPage = null;
         if (null != contentPageResource && null != pageManager) {
             Page currentPage = pageManager.getContainingPage(contentPageResource);
@@ -184,25 +189,25 @@ public class GlobalUtil {
 
     /**
      * The method provides the i18n value provided the following parameters.
-     * 
+     *
      * @param request request
-     * @param prefix prefix
-     * @param key key
+     * @param prefix  prefix
+     * @param key     key
      * @return value
      */
-    public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key){
+    public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key) {
         I18n i18n = new I18n(request);
-        return i18n.get(prefix+key);
+        return i18n.get(prefix + key);
     }
-    
+
     /**
      * The method returns title of the page provided the resource.
-     * 
+     *
      * @param resource Resource
      * @return String page title
      */
     public static String getPageTitle(Resource resource) {
-    	if (null == resource) {
+        if (null == resource) {
             return "";
         }
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
@@ -212,20 +217,59 @@ public class GlobalUtil {
         Page currentPage = pageManager.getContainingPage(resource);
         return currentPage.getTitle();
     }
-    
+
     /**
      * The method returns page depth of the page provided the resource.
-     * 
+     *
      * @param res Resource
      * @return depth
      */
     public static int getPageDepth(Resource res) {
-    	PageManager pageMgr = res.getResourceResolver().adaptTo(PageManager.class);
-    	if (null == pageMgr) {
-    		return 0;
-    	}
-    	Page currentPage = pageMgr.getContainingPage(res);
-    	return currentPage.getDepth();
+        PageManager pageMgr = res.getResourceResolver().adaptTo(PageManager.class);
+        if (null == pageMgr) {
+            return 0;
+        }
+        Page currentPage = pageMgr.getContainingPage(res);
+        return currentPage.getDepth();
+    }
+
+    /**
+     * Method to set page reference
+     *
+     * @param resourceResolver    resource resolver
+     * @param componentsReference component reference
+     * @param locale              locale
+     * @param pageContentPath     page component path
+     */
+    public static void setPageReferences(ResourceResolver resourceResolver, List<String> componentsReference,
+                                         String locale, String pageContentPath) {
+        locale = StringUtils.isNotBlank(locale) ? locale : "en";
+        String pagePath = String.valueOf(pageContentPath);
+        pagePath = pagePath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
+        String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR
+                + CustomerHubConstants.ROOT_NODE + CustomerHubConstants.PATH_SEPARATOR +
+                CustomerHubConstants.RESPONSIVE_GRID_NODE;
+        String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent :
+                CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
+        pagePath = pagePath + resGridPath;
+        GlobalUtil.pageReferenceComponents(resourceResolver, componentsReference, pagePath);
+    }
+
+    /**
+     * Method to set component references
+     *
+     * @param resourceResolver    resource resolver
+     * @param componentsReference component reference
+     * @param path                path
+     */
+    public static void pageReferenceComponents(ResourceResolver resourceResolver, List<String> componentsReference, String path) {
+        Resource componentResources = resourceResolver.getResource(path);
+        if (Objects.nonNull(componentResources)) {
+            Iterator<Resource> iterators = componentResources.listChildren();
+            while (iterators.hasNext()) {
+                componentsReference.add(iterators.next().getPath());
+            }
+        }
     }
 
 }

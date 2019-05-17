@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +35,7 @@ public class AnalyticsGlobalTagsModel {
     private SlingHttpServletRequest request;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
-    private static final int subPageThreshold = 5;
+    private static final int SUB_PAGE_THRESHOLD = 5;
 
     /**
      * Get Site Name.
@@ -152,7 +153,8 @@ public class AnalyticsGlobalTagsModel {
         try {
             return (Integer) request.getAttribute("javax.servlet.error.status_code");
         } catch (Exception e) {
-            return 500;
+            LOGGER.error("Exception in getting error code {}", e);
+            return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
         }
     }
 
@@ -164,7 +166,7 @@ public class AnalyticsGlobalTagsModel {
     public String getErrorMessage() {
         String errorStatusMessage = (String) request.getAttribute("javax.servlet.error.message");
         String errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":") + 1);
-        return errorMessage.trim();
+        return errorMessage.trim().toLowerCase();
     }
 
     /**
@@ -184,7 +186,7 @@ public class AnalyticsGlobalTagsModel {
      */
     public boolean isSubPage() {
         boolean isSubPage = false;
-        if (GlobalUtil.getPageDepth(resource) > subPageThreshold) {
+        if (GlobalUtil.getPageDepth(resource) > SUB_PAGE_THRESHOLD) {
             isSubPage = true;
         }
         return isSubPage;
