@@ -66,6 +66,34 @@
                                     fieldDescription="Enter Alt Text for mobile image"
                                     fieldLabel="Mobile Image Alt Text"
                                     name="./mobileImageAltI18n"/>
+                            <mobileCroppingOption
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                defaultValue="none"
+                                fieldLabel="Mobile Cropping Option"
+                                name="./mobileCroppingOption">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <none
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="None"
+                                        value="none"/>
+                                    <left
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Left"
+                                        value="left"/>
+                                    <center
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Center"
+                                        value="center"/>
+                                    <right
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Right"
+                                        value="right"/>
+                                </items>
+                            </mobileCroppingOption>
                             <description
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"

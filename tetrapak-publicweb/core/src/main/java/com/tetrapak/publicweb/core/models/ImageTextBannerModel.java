@@ -34,6 +34,9 @@ public class ImageTextBannerModel {
 
     @Inject
     private String mobileImageAltI18n;
+    
+    @Inject
+	private String mobileCroppingOption;
 
     @Inject
     private String bannerDescriptionI18n;
@@ -114,6 +117,10 @@ public class ImageTextBannerModel {
 
     public String getMobileImageAltI18n() {
         return mobileImageAltI18n;
+    }
+    
+    public String getMobileCroppingOption() {
+        return mobileCroppingOption;
     }
 
     public String getBannerDescriptionI18n() {
