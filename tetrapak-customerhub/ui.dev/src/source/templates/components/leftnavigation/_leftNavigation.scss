@@ -41,7 +41,6 @@
         transform: translateX(-100%);
         transition: transform $anim-speed-quick $anim-ease-out;
         will-change: transform;
-        border-bottom: 1px solid $color-denim;
         background-color: $color-congress-blue;
 
         &.translated {
@@ -55,17 +54,18 @@
         }
     }
 
-    &__ullist {
-        @include vertical-scroll-touch;
-        padding: 0;
+    &__menu-wrapper {
         height: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    &__ullist {
+        padding: 0;
+        flex: 2;
         transition: transform $anim-speed-quick $anim-ease-out;
         will-change: transform;
-
-        @media #{$desktop} {
-            width: 100%;
-            overflow: initial;
-        }
     }
 
     &__main-heading {

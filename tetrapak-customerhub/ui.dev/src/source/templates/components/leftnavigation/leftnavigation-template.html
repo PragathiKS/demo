@@ -1,26 +1,30 @@
 <sly data-sly-template.leftnavigation_template="${@ data, flag}">
    <div class="tp-left-nav" data-module="LeftNavigation">
-    <aside class="tp-left-nav__overlay custom-scrollbar-vertical js-left-nav__overlay d-none d-lg-block" >
-      <nav class="tp-left-nav__container custom-scrollbar-content js-left-nav__container">
-        <ul class="tp-left-nav__ullist">
-          <li class="tp-left-nav__main-heading">
-            <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n}</span>
-            <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
-              data-sly-call="${closeButton.closeButton_template @data=data,closeBtnText=closeBtnText,btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
+    <aside class="tp-left-nav__overlay  js-left-nav__overlay d-none d-lg-block" >
+      <nav class="tp-left-nav__container  js-left-nav__container">
+        <div class="tp-left-nav__menu-wrapper custom-scrollbar-vertical">
+          <ul class="tp-left-nav__ullist custom-scrollbar-content">
+            <li class="tp-left-nav__main-heading">
+              <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n}</span>
+              <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
+                data-sly-call="${closeButton.closeButton_template @data=data,closeBtnText=closeBtnText,btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
+              </sly>
+            </li>
+            <sly data-sly-list.child=${data.leftNavItems}>
+                <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"
+                      data-sly-call="${nestedListItem.nestedListItem_template @data=child}">
+                </sly>
+                <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
+                      data-sly-call="${listItem.listItem_template @data=child}">
+                </sly>
             </sly>
-          </li>
-          <sly data-sly-list.child=${data.leftNavItems}>
-              <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"
-                    data-sly-call="${nestedListItem.nestedListItem_template @data=child}">
-              </sly>
-              <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
-                    data-sly-call="${listItem.listItem_template @data=child}">
-              </sly>
+          </ul>
+          <div>
+            <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
+              data-sly-call="${listItemBtn.listItemBtn_template @data=data.tpLogoListItem,flag='',identifier='tpatom-list-item__link--customBackground'}">
           </sly>
-          <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
-            data-sly-call="${listItemBtn.listItemBtn_template @data=data.tpLogoListItem,flag='',identifier='tpatom-list-item__link--customBackground'}">
-        </sly>
-        </ul>
+          </div>
+        </div>
       </nav>
     </aside>
   </div>
