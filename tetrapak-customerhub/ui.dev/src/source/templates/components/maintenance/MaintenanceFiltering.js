@@ -12,8 +12,8 @@ import moment from 'moment';
 
 
 /**
- * Fire analytics on Packaging, Processing
- * mail/contact link click
+ * Fire analytics on click of
+ * filters, contact and calender
  */
 function _trackAnalytics(name, type) {
   const analyticsData = {

@@ -5,6 +5,7 @@ import { ajaxMethods, API_MAINTENANCE_EVENTS, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
+import { logger } from '../../../scripts/utils/logger';
 
 function _renderMaintenanceEvents() {
   const $this = this;
@@ -85,8 +86,10 @@ class EventsListing {
     this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
   }
   renderMaintenanceEvents(...args) {
-    this.cache = args[1];
-    this.trackEventAnalytics = args[2];
+    const [ , cache, trackAnalytics] = args;
+    this.cache = $.extend(true, this.cache, cache);
+    this.trackEventAnalytics = trackAnalytics;
+    logger.log('destructured data: ', this.cache, this.trackEventAnalytics);
     _renderMaintenanceEvents.call(this);
   }
 
