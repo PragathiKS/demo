@@ -1,7 +1,6 @@
 import LeftNavigation from './LeftNavigation';
 import $ from 'jquery';
 import leftNavigationTemplate from '../../../test-templates-hbs/leftnavigation.hbs';
-import { $body } from '../../../scripts/utils/commonSelectors';
 
 describe('LeftNavigation', function () {
   before(function () {
