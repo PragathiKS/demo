@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -149,10 +150,13 @@ public class AnalyticsGlobalTagsModel {
      * @return errorCode, if successful
      */
     public Integer getErrorCode() {
+        int status;
         try {
-            return (Integer) request.getAttribute("javax.servlet.error.status_code");
+            status = (Integer) request.getAttribute("javax.servlet.error.status_code");
+            return status;
         } catch (Exception e) {
-            return 500;
+            LOGGER.error("Exception in getting error code {}", e);
+            return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
         }
     }
 
@@ -164,7 +168,7 @@ public class AnalyticsGlobalTagsModel {
     public String getErrorMessage() {
         String errorStatusMessage = (String) request.getAttribute("javax.servlet.error.message");
         String errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":") + 1);
-        return errorMessage.trim();
+        return errorMessage.trim().toLowerCase();
     }
 
     /**
