@@ -1,13 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -20,7 +13,12 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import javax.inject.Inject;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
@@ -47,12 +45,12 @@ public class AnalyticsGlobalTagsModel {
         return "customerhub";
     }
 
-	/**
-	 * Get Page Type.
-	 *
-	 * @return page title in lower case as page type, if successful
-	 */
-	public String getPageType() {
+    /**
+     * Get Page Type.
+     *
+     * @return page title in lower case as page type, if successful
+     */
+    public String getPageType() {
         return GlobalUtil.getPageTitle(resource).toLowerCase();
     }
 
@@ -151,7 +149,11 @@ public class AnalyticsGlobalTagsModel {
      * @return errorCode, if successful
      */
     public Integer getErrorCode() {
-        return (Integer) request.getAttribute("javax.servlet.error.status_code");
+        try {
+            return (Integer) request.getAttribute("javax.servlet.error.status_code");
+        } catch (Exception e) {
+            return 500;
+        }
     }
 
     /**
@@ -164,27 +166,28 @@ public class AnalyticsGlobalTagsModel {
         String errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":") + 1);
         return errorMessage.trim();
     }
-    
+
     /**
      * This method returns the channel for a particular page
-     * 
+     *
      * @return String channel
      */
     public String getChannel() {
-    	final int DEPTH = 4;
+        final int DEPTH = 4;
         return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
     }
-    
+
     /**
      * This method returns is a page is sub second level page in site hirarchy
+     *
      * @return true if sub page
      */
     public boolean isSubPage() {
-    	boolean isSubPage =  false;
-    	if (GlobalUtil.getPageDepth(resource) > subPageThreshold) {
-    		isSubPage = true;
-    	}
-    	return isSubPage;
+        boolean isSubPage = false;
+        if (GlobalUtil.getPageDepth(resource) > subPageThreshold) {
+            isSubPage = true;
+        }
+        return isSubPage;
     }
 
 }
