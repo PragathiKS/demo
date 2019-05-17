@@ -67,8 +67,8 @@ public class DynamicMediaImageModel {
         
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
             desktopUrl = createDynamicMediaUrl(DESKTOP, dynamicMediaUrl, true);
-            tabletPortraitUrl = createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl, false);
-            tabletLandscapeUrl = createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl, false);
+            tabletPortraitUrl = createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl, true);
+            tabletLandscapeUrl = createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl, true);
             mobilePortraitUrl = createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl, false);
         	mobileLandscapeUrl = createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl, false);
         }
@@ -110,7 +110,7 @@ public class DynamicMediaImageModel {
             
             if (heightIndex > -1) {
                 height = imageConfiguration.substring(widthIndex + 1, heightIndex);
-                // cropping option mentioned on the component takes precedence over OSGi config
+                // cropping option mentioned on the component takes precedence over OSGi config for mobile device
                 if (!isDesktop && StringUtils.isNotEmpty(mobileCroppingParams)) {
                 	crop = mobileCroppingParams;
                 } else {
