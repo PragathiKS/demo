@@ -6,13 +6,20 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
 
-function _renderMaintenanceEvents() {
-  const $this = this;
+function _renderMaintenanceEvents(...eventsData) {
+  let siteFilter = '';
+  let lineFilter = '';
+  let equipmentFilter = '';
+  let selectedFilter = '';
+  let $this = $(this);
+
+  const [cache, trackAnalytics, onPageLoad] = eventsData;
+
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
   };
-  const $monthsSelector = $(this).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  const $todaySelector = $(this).find('.is-today');
+  const $monthsSelector = $this.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  const $todaySelector = $this.find('.is-today');
   let fromDate;
   if ($todaySelector.length === 0) {
     fromDate = moment(new Date($monthsSelector.first().data('time'))).format(DATE_FORMAT);
@@ -20,25 +27,34 @@ function _renderMaintenanceEvents() {
     fromDate = moment(new Date($todaySelector.data('time'))).format(DATE_FORMAT);
   }
   let toDate = moment(new Date($monthsSelector.last().data('time'))).format(DATE_FORMAT);
-  const sitenumber = this.cache.$site.val();
-  const linenumber = this.cache.$line.val();
-  const equipmentnumber = this.cache.$equipment.val();
-  const $dateRangeSelector = $(this).find('.js-events-date-range-selector');
+  const sitenumber = cache.$site.val();
+  const linenumber = cache.$line.val();
+  const equipmentnumber = cache.$equipment.val();
+  const $dateRangeSelector = $this.find('.js-events-date-range-selector');
   const dateRangeArray = $dateRangeSelector.val();
   if (dateRangeArray) {
     const dateRange = dateRangeArray.split(' - ');
     fromDate = moment(dateRange[1]) < moment(dateRange[0]) ? dateRange[1] : dateRange[0];
     toDate = moment(dateRange[1]) > moment(dateRange[0]) ? dateRange[1] : dateRange[0];
   }
+
   if (sitenumber) {
     data.sitenumber = sitenumber;
+    siteFilter = 'site';
   }
+
   if (linenumber) {
     data.linenumber = linenumber;
+    lineFilter = 'line/area';
   }
+
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
+    equipmentFilter = 'equipment/unit';
   }
+
+  selectedFilter = [siteFilter, lineFilter, equipmentFilter, 'dateschoosen'].join('|');
+
   if (fromDate) {
     data['from-date'] = fromDate;
   }
@@ -58,18 +74,25 @@ function _renderMaintenanceEvents() {
       data: data
     }).done((data) => {
       if (!data) {
-        this.cache.isEventDataError = true;
+        cache.isEventDataError = true;
       }
       else {
         if (data.events.length === 0) {
-          this.cache.isEventNoData = true;
+          cache.isEventNoData = true;
         }
-        this.cache.eventsData = data;
+        cache.eventsData = data;
       }
       render.fn({
         template: 'eventsListing',
         target: '.js-maintenance__events',
-        data: $this.cache
+        data: cache
+      }, () => {
+        if (!onPageLoad) {
+          cache.selectedFilter = selectedFilter;
+          const name = cache.navigationSelected ?
+            cache.navigationSelected : 'maintenance tab selection';
+          trackAnalytics(name);
+        }
       });
     });
   });
@@ -78,16 +101,13 @@ class EventsListing {
   constructor({ el }) {
     this.root = $(el);
   }
-  cache = {};
 
   bindEvents() {
-    this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
+    this.root.parents('.js-maintenance').on('renderMaintenance', this.renderMaintenanceEvents);
   }
   renderMaintenanceEvents(...args) {
-    this.cache = args[1];
-    _renderMaintenanceEvents.call(this);
+    return _renderMaintenanceEvents.apply(this, args.slice(1));
   }
-
   init() {
     this.bindEvents();
   }
