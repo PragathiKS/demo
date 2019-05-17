@@ -27,6 +27,9 @@ public class DynamicMediaImageModel {
     private String imagePath;
     
     @Inject
+    private String mobileImagePath;
+    
+    @Inject
     private String mobileCroppingOption;
     
     @OSGiService
@@ -66,11 +69,15 @@ public class DynamicMediaImageModel {
         mobileCroppingParams = getMobileCroppingParams();
         
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
-            desktopUrl = createDynamicMediaUrl(DESKTOP, dynamicMediaUrl, true);
-            tabletPortraitUrl = createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl, true);
-            tabletLandscapeUrl = createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl, true);
-            mobilePortraitUrl = createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl, false);
-        	mobileLandscapeUrl = createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl, false);
+            desktopUrl = createDynamicMediaUrl(DESKTOP, dynamicMediaUrl, false);
+            tabletPortraitUrl = createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl, false);
+            tabletLandscapeUrl = createDynamicMediaUrl(TABLETLANDSCAPE, dynamicMediaUrl, false);
+            if (StringUtils.isNotBlank(mobileImagePath)) {
+            	mobileImagePath = StringUtils.substringAfterLast(StringUtils.substringBeforeLast(mobileImagePath, "."), "/");
+            	dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaServiceUrl, "/") + rootPath + "/" + mobileImagePath;
+            } 
+            mobilePortraitUrl = createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl, true);
+        	mobileLandscapeUrl = createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl, true);
         }
     }
     
@@ -98,7 +105,7 @@ public class DynamicMediaImageModel {
         return StringUtils.substringAfterLast(resource.getResourceType(), "/");
     }
     
-    private String createUrl(final String paramUrl, final String imageConfiguration, final boolean isDesktop) {
+    private String createUrl(final String paramUrl, final String imageConfiguration, final boolean isMobile) {
         final int widthIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 1);
         final int heightIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 2);
         String width = null;
@@ -111,7 +118,7 @@ public class DynamicMediaImageModel {
             if (heightIndex > -1) {
                 height = imageConfiguration.substring(widthIndex + 1, heightIndex);
                 // cropping option mentioned on the component takes precedence over OSGi config for mobile device
-                if (!isDesktop && StringUtils.isNotEmpty(mobileCroppingParams)) {
+                if (isMobile && StringUtils.isNotEmpty(mobileCroppingParams)) {
                 	crop = mobileCroppingParams;
                 } else {
                 	crop = imageConfiguration.substring(heightIndex + 1);
@@ -121,7 +128,7 @@ public class DynamicMediaImageModel {
             }
         } else {
             width = imageConfiguration;
-            if (!isDesktop && StringUtils.isNotEmpty(mobileCroppingParams)) {
+            if (isMobile && StringUtils.isNotEmpty(mobileCroppingParams)) {
             	crop = mobileCroppingParams;
             }
         }
@@ -171,7 +178,7 @@ public class DynamicMediaImageModel {
         return url.toString();
     }
     
-    private String createDynamicMediaUrl(final String deviceType, final String imagePath, boolean isDesktop) {
+    private String createDynamicMediaUrl(final String deviceType, final String imagePath, boolean isMobile) {
         
         String url = "";
         final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
@@ -181,10 +188,10 @@ public class DynamicMediaImageModel {
             
             final String imageConfiguration = dynamicMediaConfiguration.get(key.toString());
             if (StringUtils.isNotEmpty(imageConfiguration)) {
-                url = createUrl(imagePath, imageConfiguration, isDesktop);
-            } else if (!isDesktop && StringUtils.isNotEmpty(mobileCroppingParams)) {
+                url = createUrl(imagePath, imageConfiguration, isMobile);
+            } else if (isMobile && StringUtils.isNotEmpty(mobileCroppingParams)) {
             	// handles the case where cropping option is mentioned on the component but OSGi config doesn't exist
-            	url = createUrl(imagePath, ",," + mobileCroppingParams, isDesktop);
+            	url = createUrl(imagePath, ",," + mobileCroppingParams, isMobile);
             } else {
             	return imagePath;
             }

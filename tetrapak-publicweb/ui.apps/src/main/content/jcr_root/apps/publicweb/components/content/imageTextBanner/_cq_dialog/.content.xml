@@ -59,13 +59,7 @@
                                     fieldDescription="Select Image Path for mobile"
                                     fieldLabel="Mobile Image Path"
                                     name="./mobileImage"
-                                    rootPath="/content/dam/publicweb"/>   
-                            <mobileimagealt
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Enter Alt Text for mobile image"
-                                    fieldLabel="Mobile Image Alt Text"
-                                    name="./mobileImageAltI18n"/>
+                                    rootPath="/content/dam/publicweb"/>
                             <mobileCroppingOption
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/form/select"
