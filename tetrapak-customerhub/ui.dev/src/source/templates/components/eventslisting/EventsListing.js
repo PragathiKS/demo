@@ -87,7 +87,7 @@ class EventsListing {
   }
   renderMaintenanceEvents(...args) {
     const [ , cache, trackAnalytics] = args;
-    this.cache = $.extend(true, this.cache, cache);
+    this.cache = $.extend(this.cache, cache);
     this.trackEventAnalytics = trackAnalytics;
     logger.log('destructured data: ', this.cache, this.trackEventAnalytics);
     _renderMaintenanceEvents.call(this);
