@@ -1,19 +1,18 @@
 import $ from 'jquery';
-import { $html } from '../../../scripts/utils/commonSelectors';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Method to set analytics parameters
  */
 function _setAnalyticsParameters() {
-  let { currentPageTitle } = this.cache;
-  if (typeof currentPageTitle === 'string') {
-    currentPageTitle = currentPageTitle.trim().toLowerCase();
+  let tabTitle = $(this).text();
+  if (typeof tabTitle === 'string') {
+    tabTitle = tabTitle.trim().toLowerCase();
     trackAnalytics({
       linkType: 'internal',
-      linkSection: `installed equipments-${currentPageTitle}`,
-      linkParentTitle: `${currentPageTitle} tab`,
-      linkName: currentPageTitle
+      linkSection: `installed equipments-${tabTitle}`,
+      linkParentTitle: `${tabTitle} tab`,
+      linkName: tabTitle
     }, 'linkClick', 'linkClicked', undefined, false);
   }
 }
@@ -25,15 +24,15 @@ class Tabs {
   cache = {};
   initCache() {
     this.cache.$tabs = this.root.find('.js-tabs__tab-link');
-    this.cache.currentPageTitle = $.trim($html.find('title').text());
   }
   setAnalyticsParameters() {
     return _setAnalyticsParameters.apply(this, arguments);
   }
   bindEvents() {
     const { $tabs } = this.cache;
-    $tabs.on('click', () => {
-      this.setAnalyticsParameters();
+    const self = this;
+    $tabs.on('click', function () {
+      self.setAnalyticsParameters.apply(this);
     });
   }
   init() {
