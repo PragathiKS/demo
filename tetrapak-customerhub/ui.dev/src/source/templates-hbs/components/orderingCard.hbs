@@ -1,5 +1,5 @@
 <div class="tp-ordering-card__orders">
-    <div class="tp-ordering-card__title">{{i18n key=labels.title}}</div>
+    <h3 class="tp-ordering-card__title">{{i18n key=labels.title}}</h3>
     {{#unless isError}}
         {{#if orders}}
             {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}

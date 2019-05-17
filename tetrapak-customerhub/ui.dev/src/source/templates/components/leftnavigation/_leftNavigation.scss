@@ -14,12 +14,12 @@
         width: 100%;
         height: 100%;
         transition: z-index $anim-speed-quick $anim-ease-out $anim-speed-quick, background-color $anim-speed-quick;
-        z-index: $zindex-hide;
+        z-index: $zindex-nav;
 
         &.color-transform {
             z-index: $zindex-nav;
             background-color: rgba($color-black, 0.5);
-            transition: z-index 0s $anim-ease-out 0s, background-color $anim-speed-quick;
+            transition: background-color $anim-speed-quick;
         }
 
         @media #{$desktop} {
@@ -41,6 +41,8 @@
         transform: translateX(-100%);
         transition: transform $anim-speed-quick $anim-ease-out;
         will-change: transform;
+        border-bottom: 1px solid $color-denim;
+        background-color: $color-congress-blue;
 
         &.translated {
             transform: translateX(0);

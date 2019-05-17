@@ -62,7 +62,9 @@ class LeftNavigation {
     const { $submenuSections, $closeBtn, $navOverlay, $mainHeading, $listItem } = this.cache;
     const $this = this;
     $closeBtn.on('click', this.closeSideNav);
-    $navOverlay.on('click', this.closeSideNav);
+    $navOverlay
+      .on('click', this.closeSideNav)
+      .on(TRANSITION_END, this.hideAside);
     $submenuSections.on('click', function () {
       return $this.openSubMenu.apply(this, [$this, ...arguments]);
     });
@@ -77,6 +79,8 @@ class LeftNavigation {
 
   closeSideNav = () => {
     const { $container, $navOverlay, $sticky } = this.cache;
+    $navOverlay.removeClass('d-none d-lg-block');
+    this.reflow($navOverlay[0]);
     $container.removeClass('translated');
     $navOverlay.removeClass('color-transform');
     $sticky.removeClass('translated');
@@ -90,6 +94,12 @@ class LeftNavigation {
   reflow = (el) => el && el.offsetHeight;
   openSubMenu() {
     return _openSubMenu.apply(this, arguments);
+  }
+  hideAside() {
+    const $this = $(this);
+    if (!$this.hasClass('color-transform')) {
+      $this.addClass('d-none d-lg-block');
+    }
   }
   init() {
     this.initCache();
