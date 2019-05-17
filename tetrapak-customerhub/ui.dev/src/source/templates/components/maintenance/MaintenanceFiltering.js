@@ -21,6 +21,7 @@ function _trackAnalytics(name, type) {
     linkSection: 'installed equipment-maintenance',
     linkName: name
   };
+  const { selectedFilter, eventsData } = this.cache;
 
   switch (name) {
     case 'email':
@@ -29,14 +30,14 @@ function _trackAnalytics(name, type) {
       break;
     }
     case 'maintenance tab selection': {
-      analyticsData.linkSelection = this.cache.selectedFilter;
+      analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceresultscount = this.cache.data.totalRecordsForQuery;
+      analyticsData.maintenanceresultscount = eventsData.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
     case 'right arrow': {
-      analyticsData.linkSelection = this.cache.selectedFilter;
+      analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
       break;
     }
