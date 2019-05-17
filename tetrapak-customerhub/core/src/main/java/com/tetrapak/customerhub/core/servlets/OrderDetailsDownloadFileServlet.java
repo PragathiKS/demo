@@ -33,7 +33,10 @@ import com.tetrapak.customerhub.core.utils.HttpUtil;
 @Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_POST,
         "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
-        "sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]"})
+		"sling.servlet.selectors=" + "parts",
+		"sling.servlet.selectors=" + "packmat",
+		"sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
+        "sling.servlet.extensions=" + CustomerHubConstants.PDF })
 public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 2323660841296799482L;

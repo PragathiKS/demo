@@ -66,10 +66,10 @@ describe('MaintenanceFiltering', function () {
     done();
   });
   it('should render maintenance filters', function (done) {
-    expect(this.maintenanceFiltering.renderMaintenanceFilters.called).to.be.true;
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
+    expect(this.maintenanceFiltering.renderMaintenanceFilters.called).to.be.true;
     done();
   });
   it('should process site filter data before rendering maintenance filters', function (done) {

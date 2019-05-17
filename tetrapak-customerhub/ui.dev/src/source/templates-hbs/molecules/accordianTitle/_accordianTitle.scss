@@ -1,6 +1,5 @@
 .tpmol-accordian-title {
-    @include padding-top(10px);
-    @include padding-bottom(10px);
+    @include padding(10px $padding-sm);
     display: block;
     width: 100%;
     border-bottom: 1px solid $color-tundora;
@@ -9,5 +8,6 @@
 
     .icon {
         @include margin-right($margin-xs);
+        @include font-size($font-sm);
     }
 }
