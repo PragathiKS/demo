@@ -185,6 +185,7 @@
       ],
       "maintenance": [
         "source/templates/components/maintenance/",
+        "source/templates/components/eventslisting/",
         "source/templates/components/documents/"
       ]
     },

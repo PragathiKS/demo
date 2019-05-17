@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<sly
+    data-sly-use.tabsModel="/apps/customerhub/components/content/tabs/ux-model.js"
+    data-sly-use.tabsLib="/apps/customerhub/components/content/tabs/tabs-template.html"
+    data-sly-use.maintenanceModel="/apps/customerhub/components/content/maintenance/ux-model.js"
+    data-sly-use.maintenanceLib="/apps/customerhub/components/content/maintenance/maintenance-template.html"
+    />
+<head>
+    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="template" content="demoTemplate">
+    <meta name="pageType" content="GenericPageType">
+    <title>Installed equipment Component | UpFront</title>
+    <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.vendor'}" />
+    <sly data-sly-call="${clientLib.css @ categories='tp.customerhub.default.en'}" />
+</head>
+
+<body>
+    {{!-- Body --}}
+    <input type="hidden" id="isDummyLayout" value="true" />
+    <input type="hidden" id="apiHost" value="https://api-mig.tetrapak.com" />
+    <div class="tp-container">
+        {{!-- Header component --}}
+        <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
+             data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
+             data-sly-call="${headerLibs.header_template @data=headerModel}" />
+        <div class="row">
+            {{!-- Navigation component --}}
+            <div class="col-lg-2 tp-column__sidenav">
+                <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
+                     data-sly-use.leftnavigationLib="/apps/customerhub/components/content/leftnavigation/leftnavigation-template.html"
+                     data-sly-call="${leftnavigationLib.leftnavigation_template @data=leftnavigationModel}" />
+            </div>
+            <div class="col-lg-10 tp-column__content">
+                {{!-- Main content goes here --}}
+                {{> body}}
+                <sly data-sly-call="${tabsLib.tabs_template @data=tabsModel}" />
+                <sly data-sly-call="${maintenanceLib.maintenance_template @data=maintenanceModel}" />
+            </div>
+        </div>
+    </div>
+
+    <sly data-sly-call="${clientLib.js @ categories='tp.customerhub.vendor'}" />
+    <sly data-sly-call="${clientLib.js @ categories='tp.customerhub.global'}" />
+</body>
+</html>

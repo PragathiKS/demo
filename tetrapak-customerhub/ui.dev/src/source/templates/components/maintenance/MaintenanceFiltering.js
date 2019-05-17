@@ -12,18 +12,39 @@ import moment from 'moment';
 
 
 /**
- * Fire analytics on Packaging, Processing
- * mail/contact link click
+ * Fire analytics on click of
+ * filters, contact and calender
  */
-function _trackAnalytics(type, name) {
+function _trackAnalytics(name, type) {
   const analyticsData = {
     linkType: 'internal',
     linkSection: 'installed equipment-maintenance',
-    linkParentTitle: 'tetrapak contact'
+    linkName: name
   };
+  const { selectedFilter, eventsData } = this.cache;
 
-  // creating linkName as per the name or type received
-  analyticsData.linkName = `${type}-${name}`;
+  switch (name) {
+    case 'email':
+    case 'phone': {
+      analyticsData.linkParentTitle = `contact-${type}`;
+      break;
+    }
+    case 'maintenance tab selection': {
+      analyticsData.linkSelection = selectedFilter;
+      analyticsData.linkParentTitle = 'maintenance tab';
+      analyticsData.maintenanceresultscount = eventsData.totalRecordsForQuery;
+      break;
+    }
+    case 'left arrow':
+    case 'right arrow': {
+      analyticsData.linkSelection = selectedFilter;
+      analyticsData.linkParentTitle = 'maintenance schedule';
+      break;
+    }
+    default: {
+      break;
+    }
+  }
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
@@ -175,7 +196,7 @@ function _renderMaintenanceFilters() {
         $this.renderMaintenanceContact();
         this.renderCalendar();
         $this.renderCalendarEventsDot();
-        $this.triggerMaintenanceEvents();
+        $this.triggerMaintenanceEvents(true);
       }
     });
   });
@@ -256,8 +277,8 @@ class MaintenanceFiltering {
     this.cache.$line = this.root.find('.js-maintenance-filtering__line');
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
-  triggerMaintenanceEvents() {
-    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache]);
+  triggerMaintenanceEvents(onPageLoad) {
+    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache, this.trackAnalytics, onPageLoad]);
   }
   bindEvents() {
     const self = this;
@@ -274,12 +295,12 @@ class MaintenanceFiltering {
         this.triggerMaintenanceEvents();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
-        self.trackAnalytics($(this).data('type').toLowerCase(), 'email');
+        self.trackAnalytics('email', $(this).data('type').toLowerCase());
       })
       .on('click', '.js-maintenance-filtering__contact-phone', function () {
-        self.trackAnalytics($(this).data('type').toLowerCase(), 'phone');
-      });
-    this.root.on('click', '.js-maintenance-filtering__calendar-wrapper .js-calendar-nav', this, this.navigateCalendar);
+        self.trackAnalytics('phone', $(this).data('type').toLowerCase());
+      })
+      .on('click', '.js-maintenance-filtering__calendar-wrapper .js-calendar-nav', this, this.navigateCalendar);
   }
   renderCalendar() {
     const $this = this;
@@ -335,6 +356,9 @@ class MaintenanceFiltering {
     const $this = e.data;
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
+
+    $this.cache.navigationSelected = (action === 'previous-action') ? 'left arrow' : 'right arrow';
+
     if ($defaultCalendarNavBtn.length) {
       let evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
@@ -352,7 +376,7 @@ class MaintenanceFiltering {
   renderMaintenanceContact = () => _renderMaintenanceContact.call(this);
   renderLineFilter = (data) => _renderLineFilter.call(this, data);
   renderEquipmentFilter = (data) => _renderEquipmentFilter.call(this, data);
-  trackAnalytics = (type, name) => _trackAnalytics.call(this, type, name);
+  trackAnalytics = (name, type) => _trackAnalytics.call(this, name, type);
   init() {
     this.initCache();
     this.bindEvents();

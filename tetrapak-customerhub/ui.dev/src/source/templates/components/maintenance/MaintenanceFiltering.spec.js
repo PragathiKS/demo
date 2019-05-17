@@ -32,6 +32,7 @@ describe('MaintenanceFiltering', function () {
     this.trackAnalyticsSpy = sinon.spy(this.maintenanceFiltering, 'trackAnalytics');
     this.navigateSpy = sinon.spy(this.maintenanceFiltering, 'navigateCalendar');
     this.renderCalendarEventsDotSpy = sinon.spy(this.maintenanceFiltering, 'renderCalendarEventsDot');
+    this.triggerMaintenanceEventsSpy = sinon.spy(this.maintenanceFiltering, 'triggerMaintenanceEvents');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
@@ -54,6 +55,7 @@ describe('MaintenanceFiltering', function () {
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
     this.renderCalendarEventsDotSpy.restore();
+    this.triggerMaintenanceEventsSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.navigateSpy.restore();
     this.renderSpy.restore();
@@ -88,6 +90,14 @@ describe('MaintenanceFiltering', function () {
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
     done();
   });
+  it('should call track analytics for maintenance on click of "contact email" link', function () {
+    $('.js-maintenance-filtering__contact-mail').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics for maintenance on click of "contact phone" link', function () {
+    $('.js-maintenance-filtering__contact-phone').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
   it('should render line filter on change of `site` filter', function (done) {
     $('.js-maintenance-filtering__site').trigger('change');
     expect(this.maintenanceFiltering.renderLineFilter.called).to.be.true;
@@ -98,12 +108,17 @@ describe('MaintenanceFiltering', function () {
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
     done();
   });
-  it('should call track analytics for maintenance on click of "contact email" link', function () {
-    $('.js-maintenance-filtering__contact-mail').trigger('click');
-    expect(this.trackAnalyticsSpy.called).to.be.true;
+  it('should render maintenance events on change of `equipmemt` filter', function (done) {
+    $('.js-maintenance-filtering__equipment').trigger('change');
+    expect(this.maintenanceFiltering.triggerMaintenanceEvents.called).to.be.true;
+    done();
   });
-  it('should call track analytics for maintenance on click of "contact phone" link', function () {
-    $('.js-maintenance-filtering__contact-phone').trigger('click');
-    expect(this.trackAnalyticsSpy.called).to.be.true;
+  it('should navigate calendar on click of forward or back arrow buttons', function (done) {
+    this.ajaxStub.restore();
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
+    $('.js-maintenance-filtering__calendar-wrapper .js-calendar-nav').first().trigger('click');
+    expect(this.navigateSpy.called).to.be.true;
+    done();
   });
 });
