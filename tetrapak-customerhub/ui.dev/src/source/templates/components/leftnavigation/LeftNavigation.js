@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { TRANSITION_END } from '../../../scripts/utils/constants';
-import { logger } from '../../../scripts/utils/logger';
 /**
  * Handles submenu events
  * @param {object} $this Class reference
@@ -78,14 +77,12 @@ class LeftNavigation {
   }
 
   closeSideNav = () => {
-    logger.log('click1');
     const { $container, $navOverlay, $sticky } = this.cache;
     $container.removeClass('translated');
     $navOverlay.removeClass('color-transform');
     $sticky.removeClass('translated');
   }
   openSideNav = () => {
-    logger.log('click1 2');
     const { $container, $navOverlay, $sticky } = this.cache;
     $navOverlay.removeClass('d-none d-lg-block');
     this.reflow($navOverlay[0]);
@@ -98,7 +95,6 @@ class LeftNavigation {
     return _openSubMenu.apply(this, arguments);
   }
   hideAside() {
-    logger.log('click1 3');
     const $this = $(this);
     if (!$this.hasClass('color-transform')) {
       $this.addClass('d-none d-lg-block');
