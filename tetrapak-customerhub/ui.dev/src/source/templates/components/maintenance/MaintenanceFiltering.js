@@ -195,7 +195,7 @@ function _renderMaintenanceFilters() {
         $this.renderMaintenanceContact();
         this.renderCalendar();
         $this.renderCalendarEventsDot();
-        $this.triggerMaintenanceEvents();
+        $this.triggerMaintenanceEvents(true);
       }
     });
   });
@@ -276,8 +276,8 @@ class MaintenanceFiltering {
     this.cache.$line = this.root.find('.js-maintenance-filtering__line');
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
-  triggerMaintenanceEvents() {
-    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache, this.trackAnalytics]);
+  triggerMaintenanceEvents(onPageLoad) {
+    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache, this.trackAnalytics, onPageLoad]);
   }
   bindEvents() {
     const self = this;

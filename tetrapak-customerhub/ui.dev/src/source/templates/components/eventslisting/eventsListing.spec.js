@@ -12,6 +12,7 @@ describe('Maintenanceevents', function () {
       // Dummy method
     }
   };
+
   function ajaxResponse(response) {
     const pr = $.Deferred();
     pr.resolve(response, 'success', jqRef);
@@ -23,6 +24,7 @@ describe('Maintenanceevents', function () {
     this.maintenanceevents = new EventsListing({ el: $('.js-maintenance__events') });
     this.initSpy = sinon.spy(this.maintenanceevents, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "renderMaintenanceEvents");
+
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
@@ -52,7 +54,7 @@ describe('Maintenanceevents', function () {
       $site: $('.js-maintenance-filtering__site'),
       $line: $('.js-maintenance-filtering__line'),
       $equipment: $('.js-maintenance-filtering__equipment')
-    }]);
+    }, sinon.stub()]);
     expect(this.renderMaintenanceEventsSpy.called).to.be.true;
     done();
   });

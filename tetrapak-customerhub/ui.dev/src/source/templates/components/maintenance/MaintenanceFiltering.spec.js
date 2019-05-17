@@ -32,6 +32,7 @@ describe('MaintenanceFiltering', function () {
     this.trackAnalyticsSpy = sinon.spy(this.maintenanceFiltering, 'trackAnalytics');
     this.navigateSpy = sinon.spy(this.maintenanceFiltering, 'navigateCalendar');
     this.renderCalendarEventsDotSpy = sinon.spy(this.maintenanceFiltering, 'renderCalendarEventsDot');
+    this.triggerMaintenanceEventsSpy = sinon.spy(this.maintenanceFiltering, 'triggerMaintenanceEvents');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
@@ -54,6 +55,7 @@ describe('MaintenanceFiltering', function () {
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
     this.renderCalendarEventsDotSpy.restore();
+    this.triggerMaintenanceEventsSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.navigateSpy.restore();
     this.renderSpy.restore();
@@ -96,6 +98,11 @@ describe('MaintenanceFiltering', function () {
   it('should render Equipment filter on change of `line` filter', function (done) {
     $('.js-maintenance-filtering__line').trigger('change');
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
+    done();
+  });
+  it('should render maintenance events on change of `equipmemt` filter', function (done) {
+    $('.js-maintenance-filtering__equipment').trigger('change');
+    expect(this.maintenanceFiltering.triggerMaintenanceEvents.called).to.be.true;
     done();
   });
   it('should call track analytics for maintenance on click of "contact email" link', function () {

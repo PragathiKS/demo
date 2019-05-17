@@ -6,26 +6,32 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
 
-function _renderMaintenanceEvents() {
+function _renderMaintenanceEvents(...eventsData) {
+  let siteFilter, lineFilter, equipmentFilter;
   let selectedFilter = '';
-  const $this = this;
+
+  const [cache, trackAnalytics, onPageLoad] = eventsData;
+
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
   };
-  const $monthsSelector = $(this).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  const $todaySelector = $(this).find('.is-today');
+  const monthsSelector = $(this).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  const todaySelector = $(this).find('.is-today');
   let fromDate;
-  if ($todaySelector.length === 0) {
-    fromDate = moment(new Date($monthsSelector.first().data('time'))).format(DATE_FORMAT);
+
+  if (todaySelector.length === 0) {
+    fromDate = moment(new Date($(monthsSelector).first().data('time'))).format(DATE_FORMAT);
   } else {
-    fromDate = moment(new Date($todaySelector.data('time'))).format(DATE_FORMAT);
+    fromDate = moment(new Date($(todaySelector).data('time'))).format(DATE_FORMAT);
   }
-  let toDate = moment(new Date($monthsSelector.last().data('time'))).format(DATE_FORMAT);
-  const sitenumber = this.cache.$site.val();
-  const linenumber = this.cache.$line.val();
-  const equipmentnumber = this.cache.$equipment.val();
-  const $dateRangeSelector = $(this).find('.js-events-date-range-selector');
-  const dateRangeArray = $dateRangeSelector.val();
+
+  let toDate = moment(new Date($(monthsSelector).last().data('time'))).format(DATE_FORMAT);
+  const sitenumber = cache.$site.val();
+  const linenumber = cache.$line.val();
+  const equipmentnumber = cache.$equipment.val();
+  const dateRangeSelector = $(this).find('.js-events-date-range-selector');
+  const dateRangeArray = dateRangeSelector.val() ? dateRangeSelector.val() : null;
+
   if (dateRangeArray) {
     const dateRange = dateRangeArray.split(' - ');
     fromDate = moment(dateRange[1]) < moment(dateRange[0]) ? dateRange[1] : dateRange[0];
@@ -34,26 +40,21 @@ function _renderMaintenanceEvents() {
 
   if (sitenumber) {
     data.sitenumber = sitenumber;
-    selectedFilter = selectedFilter + 'site|';
-  } else {
-    selectedFilter = selectedFilter + '|';
   }
 
   if (linenumber) {
     data.linenumber = linenumber;
-    selectedFilter = selectedFilter + 'line/area|';
-  } else {
-    selectedFilter = selectedFilter + '|';
   }
 
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
-    selectedFilter = selectedFilter + 'equipment/unit|';
-  } else {
-    selectedFilter = selectedFilter + '|';
   }
 
-  selectedFilter = selectedFilter + 'dateschoosen';
+  siteFilter = sitenumber ? 'site' : '';
+  lineFilter = linenumber ? 'line/area' : '';
+  equipmentFilter = equipmentnumber ? 'equipment/unit' : '';
+
+  selectedFilter = [siteFilter, lineFilter, equipmentFilter, 'dateschoosen'].join('|');
 
   if (fromDate) {
     data['from-date'] = fromDate;
@@ -70,27 +71,28 @@ function _renderMaintenanceEvents() {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
         jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       },
-      cache: true,
       data: data
     }).done((data) => {
       if (!data) {
-        this.cache.isEventDataError = true;
+        cache.isEventDataError = true;
       }
       else {
         if (data.events.length === 0) {
-          this.cache.isEventNoData = true;
+          cache.isEventNoData = true;
         }
-        this.cache.eventsData = data;
+        cache.data = data;
       }
       render.fn({
         template: 'eventsListing',
         target: '.js-maintenance__events',
-        data: $this.cache
+        data: cache
       }, () => {
-        $this.cache.selectedFilter = selectedFilter;
-        const name = $this.cache.navigationSelected ?
-          $this.cache.navigationSelected : 'maintenance tab selection';
-        $this.trackEventAnalytics(name);
+        if (!onPageLoad) {
+          cache.selectedFilter = selectedFilter;
+          const name = cache.navigationSelected ?
+            cache.navigationSelected : 'maintenance tab selection';
+          trackAnalytics(name);
+        }
       });
     });
   });
@@ -99,18 +101,11 @@ class EventsListing {
   constructor({ el }) {
     this.root = $(el);
   }
-  cache = {};
 
   bindEvents() {
-    this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
+    this.root.parents('.js-maintenance').on('renderMaintenance', this.renderMaintenanceEvents);
   }
-  renderMaintenanceEvents(...args) {
-    const [{ data: self }, cache, trackAnalytics] = args;
-    self.cache = cache;
-    self.trackEventAnalytics = trackAnalytics;
-    _renderMaintenanceEvents.call(self);
-  }
-
+  renderMaintenanceEvents = (...args) => _renderMaintenanceEvents.apply(this, args.slice(1));
   init() {
     this.bindEvents();
   }
