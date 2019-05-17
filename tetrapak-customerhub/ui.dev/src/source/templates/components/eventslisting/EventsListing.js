@@ -7,16 +7,19 @@ import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
 
 function _renderMaintenanceEvents(...eventsData) {
-  let siteFilter, lineFilter, equipmentFilter;
+  let siteFilter = '';
+  let lineFilter = '';
+  let equipmentFilter = '';
   let selectedFilter = '';
+  let $this = $(this);
 
   const [cache, trackAnalytics, onPageLoad] = eventsData;
 
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
   };
-  const $monthsSelector = $(this).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  const $todaySelector = $(this).find('.is-today');
+  const $monthsSelector = $this.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  const $todaySelector = $this.find('.is-today');
   let fromDate;
   if ($todaySelector.length === 0) {
     fromDate = moment(new Date($monthsSelector.first().data('time'))).format(DATE_FORMAT);
@@ -27,7 +30,7 @@ function _renderMaintenanceEvents(...eventsData) {
   const sitenumber = cache.$site.val();
   const linenumber = cache.$line.val();
   const equipmentnumber = cache.$equipment.val();
-  const $dateRangeSelector = $(this).find('.js-events-date-range-selector');
+  const $dateRangeSelector = $this.find('.js-events-date-range-selector');
   const dateRangeArray = $dateRangeSelector.val();
   if (dateRangeArray) {
     const dateRange = dateRangeArray.split(' - ');
@@ -37,19 +40,18 @@ function _renderMaintenanceEvents(...eventsData) {
 
   if (sitenumber) {
     data.sitenumber = sitenumber;
+    siteFilter = 'site';
   }
 
   if (linenumber) {
     data.linenumber = linenumber;
+    lineFilter = 'line/area';
   }
 
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
+    equipmentFilter = 'equipment/unit';
   }
-
-  siteFilter = sitenumber ? 'site' : '';
-  lineFilter = linenumber ? 'line/area' : '';
-  equipmentFilter = equipmentnumber ? 'equipment/unit' : '';
 
   selectedFilter = [siteFilter, lineFilter, equipmentFilter, 'dateschoosen'].join('|');
 
@@ -103,7 +105,9 @@ class EventsListing {
   bindEvents() {
     this.root.parents('.js-maintenance').on('renderMaintenance', this.renderMaintenanceEvents);
   }
-  renderMaintenanceEvents = (...args) => _renderMaintenanceEvents.apply(this, args.slice(1));
+  renderMaintenanceEvents(...args) {
+    return _renderMaintenanceEvents.apply(this, args.slice(1));
+  }
   init() {
     this.bindEvents();
   }
