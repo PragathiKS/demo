@@ -24,7 +24,7 @@ function _renderMaintenanceEvents() {
   const linenumber = this.cache.$line.val();
   const equipmentnumber = this.cache.$equipment.val();
   const $dateRangeSelector = $(this).find('.js-events-date-range-selector');
-  const dateRangeArray = $dateRangeSelector.val() ? $dateRangeSelector.val() : null;
+  const dateRangeArray = $dateRangeSelector.val();
   if (dateRangeArray) {
     const dateRange = dateRangeArray.split(' - ');
     fromDate = moment(dateRange[1]) < moment(dateRange[0]) ? dateRange[1] : dateRange[0];
