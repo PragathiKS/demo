@@ -150,8 +150,10 @@ public class AnalyticsGlobalTagsModel {
      * @return errorCode, if successful
      */
     public Integer getErrorCode() {
+        int status;
         try {
-            return (Integer) request.getAttribute("javax.servlet.error.status_code");
+            status = (Integer) request.getAttribute("javax.servlet.error.status_code");
+            return status;
         } catch (Exception e) {
             LOGGER.error("Exception in getting error code {}", e);
             return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
