@@ -285,7 +285,7 @@ public class FinancialStatementModel {
         
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
-        downloadPdfExcelServletUrl = resource.getPath() + ".{extnType}";
+        downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";
        
     }
 

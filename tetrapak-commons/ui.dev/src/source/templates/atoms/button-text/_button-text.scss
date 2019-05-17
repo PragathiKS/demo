@@ -77,9 +77,14 @@
             color: $color-tundora;
         }
     }
-    &--prevbtn {
+    &--prevBtn {
         .tpatom-button__icon {
-            @include padding(0 $padding-sm 0 0);
+            @include line-height(18px, $font-sm);
+            @media #{$desktop} {
+                @include line-height($font-l, $font-sm);
+            }
+            @include padding(0 $padding-xs 0 0);
+            display: inline;
             &::before {
                 content: '\f112';
             }

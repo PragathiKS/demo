@@ -13,7 +13,7 @@ class ImageTextBanner {
   }
   bindEvents() {
     /* Bind jQuery events here */
-    this.cache.$modalBtn.click((e) => {
+    this.cache.$modalBtn.click(() => {
       $('.softc-title-js', '#softConversionModal').text(this.root.data('softc-title'));
       $('.softc-desc-js', '#softConversionModal').text(this.root.data('softc-desc'));
       $('.softc-head-js', '#softConversionModal').text(this.root.data('softc-head'));
@@ -28,11 +28,6 @@ class ImageTextBanner {
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
             _satellite.track('signup_form_tracking');  //eslint-disable-line
         }
-      }
-      if ($('#softConversionModal').data('form-filled')) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.open(this.root.data('softc-doc'), '_blank');
       }
     });
     this.cache.itbLink.click((e) => {

@@ -205,9 +205,9 @@ function _renderMaintenanceFilters() {
  */
 function _renderCalendarEventsDot() {
   const siteVal = this.cache.$site.val();
-  const dateRange = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  let startDate = moment(new Date($(dateRange).first().data('time'))).format(DATE_FORMAT);
-  let endDate = moment(new Date($(dateRange).last().data('time'))).format(DATE_FORMAT);
+  const $dateRange = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  let startDate = moment(new Date($dateRange.first().data('time'))).format(DATE_FORMAT);
+  let endDate = moment(new Date($dateRange.last().data('time'))).format(DATE_FORMAT);
   let eventsDateArrayFinal = [];
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
@@ -217,6 +217,7 @@ function _renderCalendarEventsDot() {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
         jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       },
+      cache: true,
       data: {
         'sitenumber': siteVal,
         'from-date': startDate,
@@ -237,8 +238,8 @@ function _renderCalendarEventsDot() {
         }
       });
       const detachedMonths = this.root.find('.lightpick__months').detach();
-      const allDays = $(detachedMonths).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-      allDays.each(function () {
+      const $allDays = $(detachedMonths).find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+      $allDays.each(function () {
         const date = moment(new Date($(this).data('time'))).format(DATE_FORMAT);
         if (eventsDateArrayFinal.includes(date)) {
           $(this).append(`<span class='lightpick__dot'></span>`);
@@ -307,9 +308,9 @@ class MaintenanceFiltering {
       target: '.js-maintenance-filtering__calendar-wrapper',
       data: this.cache.i18nKeys
     }, () => {
-      this.cache.$calendarNav = this.root.find('.js-calendar-nav');
-      const maintenancecalendar = this.root.find('.js-events-date-range-selector');
-      const calendarField = maintenancecalendar[0];
+      this.cache.$calendarNavCont = this.root.find('.js-cal-cont__calendar-nav');
+      const $maintenancecalendar = this.root.find('.js-events-date-range-selector');
+      const calendarField = $maintenancecalendar[0];
       const { picker } = this.cache;
       if (picker) {
         picker.destroy();
@@ -324,10 +325,10 @@ class MaintenanceFiltering {
         format: DATE_FORMAT,
         separator: ' - ',
         onSelectStart() {
-          $this.cache.$calendarNav.parent().addClass('js-disable-data-call');
+          $this.cache.$calendarNavCont.addClass('js-disable-data-call');
         },
         onSelectEnd() {
-          $this.cache.$calendarNav.parent().removeClass('js-disable-data-call');
+          $this.cache.$calendarNavCont.removeClass('js-disable-data-call');
           $this.triggerMaintenanceEvents();
         }
       });
@@ -336,15 +337,15 @@ class MaintenanceFiltering {
 
   }
   wrapCalendar() {
-    const calendarMonthsCont = this.root.find('.lightpick__months');
+    const $calendarMonthsCont = this.root.find('.lightpick__months');
     if (
       isDesktopMode()
-      && calendarMonthsCont.length
+      && $calendarMonthsCont.length
     ) {
-      const months = calendarMonthsCont.find('section.lightpick__month');
-      if (months.length === 4) {
-        const leftMonthsContainer = $(months[0]).add(months[1]);
-        const rightMonthsContainer = $(months[2]).add(months[3]);
+      const $months = $calendarMonthsCont.find('section.lightpick__month');
+      if ($months.length === 4) {
+        const leftMonthsContainer = $($months[0]).add($months[1]);
+        const rightMonthsContainer = $($months[2]).add($months[3]);
         leftMonthsContainer.wrapAll('<div></div>');
         rightMonthsContainer.wrapAll('<div></div>');
       }

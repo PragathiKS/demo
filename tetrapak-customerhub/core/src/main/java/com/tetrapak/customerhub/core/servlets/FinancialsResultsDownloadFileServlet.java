@@ -35,7 +35,9 @@ import java.io.IOException;
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
 		"sling.servlet.resourceTypes=" + "customerhub/components/content/financialstatement",
-		"sling.servlet.extension=[" + CustomerHubConstants.PDF + "," + CustomerHubConstants.EXCEL + "]" })
+		"sling.servlet.selectors=" + "download",
+		"sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
+		"sling.servlet.extensions=" + CustomerHubConstants.PDF })
 public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 2323660841296799482L;
