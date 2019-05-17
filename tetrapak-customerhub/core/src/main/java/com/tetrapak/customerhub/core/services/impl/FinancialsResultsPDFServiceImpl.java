@@ -42,25 +42,26 @@ import java.util.List;
  */
 @Component(immediate = true, service = FinancialsResultsPDFService.class)
 public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFService {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsPDFServiceImpl.class);
-    
+
     private PDFont muliRegular;
     private PDFont muliBold;
     private static final int MARGIN = 20;
     private FinancialStatementModel financialStatementModel;
     private boolean newPage = false;
-    
+    private static final String CUHU_FINANCIAL_PREFIX = "cuhu.financials.";
+
     /**
-     * @param request  SlingHttpServletRequest 
-     * @param response SlingHttpServletResponse
-     * @param resultsResponse Results
-     * @param paramRequest RequestParams
+     * @param request            SlingHttpServletRequest
+     * @param response           SlingHttpServletResponse
+     * @param resultsResponse    Results
+     * @param paramRequest       RequestParams
      * @param financialStatement FinancialStatementModel
      */
     @Override
     public boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-            Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
+                                                Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
         financialStatementModel = financialStatement;
         List<Document> documents = resultsResponse.getDocuments();
         String customerName = paramRequest.getCustomerData().getDesc();
@@ -70,7 +71,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         InputStream in2 = null;
         InputStream image1 = null;
         PDPageContentStream contentStream = null;
-        PDDocument document = new PDDocument();        
+        PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
         try {
@@ -78,16 +79,16 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     true);
             in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
             in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
-            
+
             muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
             muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
-            
+
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
-            
+
             BufferedImage bufferedImage1 = ImageIO.read(image1);
-            
+
             PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
-            
+
             PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
             PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY,
                     getHeadLines(request, paramRequest));
@@ -97,27 +98,29 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 490);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 475, Color.DARK_GRAY, 0.01f);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 450, Color.LIGHT_GRAY, 0.01f);
-            
+
             PDFUtil.writeContent(document, contentStream, MARGIN, 430, Color.DARK_GRAY, getDocumentName(request));
-            contentStream = printDeliveryDetails(request, document, contentStream, documents);                       
+            contentStream = printDeliveryDetails(request, document, contentStream, documents);
             return true;
         } catch (IOException e) {
             LOGGER.error("IOException {}", e);
             return false;
         } finally {
             try {
-                if(null != contentStream) {
-                    contentStream.close(); 
+                if (null != contentStream) {
+                    contentStream.close();
                     if (paramRequest.getStartDate() != null && endDate != null) {
-                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING + startDate + " "+CustomerHubConstants.HYPHEN_STRING + " "+endDate);
-                    }
-                    else if (paramRequest.getStartDate() != null) {
-                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING +startDate);
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName +
+                                CustomerHubConstants.HYPHEN_STRING + startDate + " " + CustomerHubConstants.HYPHEN_STRING + " " + endDate);
+                    } else if (paramRequest.getStartDate() != null) {
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName +
+                                CustomerHubConstants.HYPHEN_STRING + startDate);
                     } else {
-                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName+ CustomerHubConstants.HYPHEN_STRING +endDate);
-                    }                    
+                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName +
+                                CustomerHubConstants.HYPHEN_STRING + endDate);
+                    }
                 }
-                if(null != document) {
+                if (null != document) {
                     document.close();
                 }
                 if (null != contentStream) {
@@ -131,13 +134,13 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 }
                 if (null != image1) {
                     image1.close();
-                }                
+                }
             } catch (IOException e) {
                 LOGGER.error("IOException {}", e);
             }
         }
     }
-    
+
     private List<Row> getDocumentName(SlingHttpServletRequest request) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row(
@@ -145,7 +148,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 10, muliRegular, 12));
         return rows;
     }
-    
+
     private List<Row> getHeadLines(SlingHttpServletRequest request, Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row(
@@ -154,7 +157,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 10, muliRegular, 12));
         rows.add(new Row("", 20, muliRegular, 12));
         rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountNumber())
-                + ":" +" "+ paramRequest.getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
+                + ":" + " " + paramRequest.getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(paramRequest.getCustomerData().getInfo().getTitle(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
@@ -166,36 +169,37 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         rows.add(new Row("", 15, muliRegular, 12));
         return rows;
     }
-    
+
     private List<Row> getstatementSummary(SlingHttpServletRequest request, Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             rows.add(new Row(
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " +" "+ paramRequest.getEndDate() + " "+ CustomerHubConstants.HYPHEN_STRING + " "+paramRequest.getStartDate(),
+                            + ":" + " " + " " + paramRequest.getEndDate() + " " + CustomerHubConstants.HYPHEN_STRING + " " +
+                            paramRequest.getStartDate(),
                     10, muliRegular, 12));
         } else if (paramRequest.getEndDate() != null) {
             rows.add(new Row(
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " "+" "+ paramRequest.getEndDate(),
+                            + ":" + " " + " " + paramRequest.getEndDate(),
                     10, muliRegular, 12));
         } else {
             rows.add(new Row(
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " +" " + paramRequest.getStartDate(),
+                            + ":" + " " + " " + paramRequest.getStartDate(),
                     10, muliRegular, 12));
         }
         rows.add(new Row("", 20, muliRegular, 8));
         return rows;
     }
-    
+
     private Table createAccountServicetable(SlingHttpServletRequest request, Params paramRequest) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
-            columns.add(new Column(paramRequest.getEndDate() + " "+ CustomerHubConstants.HYPHEN_STRING + " " +paramRequest.getStartDate(), 60));
-        }
-        else if (paramRequest.getStartDate() != null) {
+            columns.add(new Column(paramRequest.getEndDate() + " " + CustomerHubConstants.HYPHEN_STRING + " " +
+                    paramRequest.getStartDate(), 60));
+        } else if (paramRequest.getStartDate() != null) {
             columns.add(new Column(paramRequest.getStartDate(), 60));
         } else {
             columns.add(new Column(paramRequest.getEndDate(), 60));
@@ -206,43 +210,43 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                                 financialStatementModel.getSelectDocumentTypeLabel()),
                         paramRequest.getDocumentType().getDesc(),
                 }, {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                                financialStatementModel.getPlaceholderForDocumentNumber()),
-                        paramRequest.getDocumentNumber()
-                }
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
+                        financialStatementModel.getPlaceholderForDocumentNumber()),
+                paramRequest.getDocumentNumber()
+        }
         };
-        
+
         return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private Table createSummaryTable(SlingHttpServletRequest request, List<Summary> summary) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "currency"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"),
                 60));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "current"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "current"),
                 60));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "overdue"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "overdue"),
                 100));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "thirty"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "thirty"),
                 50));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "sixty"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "sixty"),
                 50));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "ninty"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "ninty"),
                 50));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "nintyPlus"), 70));
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "nintyPlus"), 70));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "total"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "total"),
                 10));
-        
+
         String[][] content = new String[summary.size()][8];
-        
+
         for (int i = 0; i < summary.size(); i++) {
             content[i][0] = summary.get(i).getCurrency();
             content[i][1] = summary.get(i).getCurrent();
@@ -252,21 +256,21 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             content[i][5] = summary.get(i).getNinty();
             content[i][6] = summary.get(i).getNintyPlus();
             content[i][7] = summary.get(i).getTotal();
-            
+
         }
-        
+
         return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
-            PDPageContentStream contentStream, List<Document> documents) throws IOException {
+                                                     PDPageContentStream contentStream, List<Document> documents) throws IOException {
         int height = 510;
         int newPageheight = 720;
         int pageSize1 = 0;
         int pageSize2 = 0;
         int spaceIndex = 35;
         int endIndex = 30;
-        
+
         for (Document documentDetail : documents) {
             int nextTableHeight = getNextTableHeight(documentDetail.getRecords());
             int size = documentDetail.getRecords().size() * 10;
@@ -287,58 +291,58 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     pageSize1 = documentDetail.getRecords().size();
                 }
             }
-            if (newPage == true) {
-                contentStream = getNewPageTable(request, contentStream, height, documentDetail, pageSize1);                
+            if (newPage) {
+                contentStream = getNewPageTable(request, contentStream, height, documentDetail, pageSize1);
                 height = ((height - 42) - pageSize1 * 10) - spaceIndex;
-            } else if (newPage == false) {
+            } else {
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 74, Color.LIGHT_GRAY, 0.01f);
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 82, Color.LIGHT_GRAY, 0.01f);
-                
+
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height - 60);
-                
+
                 PDFUtil.drawTable(contentStream, createRecordTable(request, documentDetail.getRecords(), pageSize1),
                         height - 72);
-                
+
             }
             if (documentDetail.getRecords().size() > pageSize1 && pageSize2 > 0) {
-                
+
                 contentStream = getNewPageRecordsTable(request, document, contentStream, newPageheight, documentDetail,
                         pageSize2);
                 height = (newPageheight - pageSize2 * 10) - endIndex;
             }
-            
+
         }
         return contentStream;
     }
-    
+
     private Table createRecordTable(SlingHttpServletRequest request, List<Record> records, int pageSize1) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "documentNumber"), 60));       
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "documentNumber"), 60));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "desc"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "desc"),
                 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "invoiceReference"), 80));
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "invoiceReference"), 80));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "poNumber"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "poNumber"),
                 60));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "docDate"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "docDate"),
                 80));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "dueDate"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "dueDate"),
                 60));
         columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, "cuhu.financials.", "currency"),
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"),
                 50));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "salesLocalData"), 60));
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "salesLocalData"), 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, "cuhu.financials.", "orgAmount"), 10));
-        
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "orgAmount"), 10));
+
         String[][] content = new String[pageSize1][9];
-        
+
         for (int i = 0; i < pageSize1; i++) {
             content[i][0] = records.get(i).getDocumentNumber();
             content[i][1] = records.get(i).getDesc();
@@ -349,15 +353,15 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             content[i][6] = records.get(i).getCurrency();
             content[i][7] = records.get(i).getSalesLocalData();
             content[i][8] = records.get(i).getOrgAmount();
-            
+
         }
         return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private int getNextTableHeight(List<Record> documentDetail) {
         return documentDetail.size() * 10 + 30;
     }
-    
+
     private Table createDeliveryDetailTable(Document documentList) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
@@ -366,9 +370,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         String[][] content = new String[0][0];
         return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
     }
-    
-    private PDPageContentStream getNewPageTable(SlingHttpServletRequest request,
-            PDPageContentStream contentStream, int height, Document documentDetail, int pageSize1) throws IOException {
+
+    private PDPageContentStream getNewPageTable(SlingHttpServletRequest request, PDPageContentStream contentStream,
+                                                int height, Document documentDetail, int pageSize1) throws IOException {
         PDFUtil.drawLine(contentStream, MARGIN, 560, height - 30, Color.LIGHT_GRAY, 0.01f);
         PDFUtil.drawLine(contentStream, MARGIN, 560, height - 40, Color.LIGHT_GRAY, 0.01f);
         PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height - 20);
@@ -376,9 +380,10 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 height - 30);
         return contentStream;
     }
-    
+
     private PDPageContentStream getNewPageRecordsTable(SlingHttpServletRequest request, PDDocument document,
-            PDPageContentStream contentStream, int newPageheight, Document documentDetail, int pageSize2)
+                                                       PDPageContentStream contentStream, int newPageheight,
+                                                       Document documentDetail, int pageSize2)
             throws IOException {
         PDPage page = new PDPage();
         document.addPage(page);
@@ -390,5 +395,5 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         newPage = true;
         return contentStream;
     }
-    
+
 }
