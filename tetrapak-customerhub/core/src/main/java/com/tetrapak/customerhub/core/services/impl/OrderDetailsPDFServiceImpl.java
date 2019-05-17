@@ -210,9 +210,7 @@ public class OrderDetailsPDFServiceImpl
 
                 for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
                     int end = start + 39;
-                    if (end > totalRows) {
-                        end = totalRows;
-                    }
+                    end = getEnd(totalRows, end, end > totalRows);
 
                     contentStream = PDFUtil.getNewPage(document, contentStream);
                     height = PDFUtil.drawTable(contentStream,
@@ -264,9 +262,7 @@ public class OrderDetailsPDFServiceImpl
 
                 for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
                     int end = start + 39;
-                    if (end > totalRows) {
-                        end = totalRows;
-                    }
+                    end = getEnd(totalRows, end, end > totalRows);
 
                     contentStream = PDFUtil.getNewPage(document, contentStream);
                     height = PDFUtil.drawTable(contentStream,
@@ -279,6 +275,13 @@ public class OrderDetailsPDFServiceImpl
             }
         }
         return contentStream;
+    }
+
+    private int getEnd(int totalRows, int end, boolean b) {
+        if (b) {
+            end = totalRows;
+        }
+        return end;
     }
 
     private int getNextTableHeight(List<Product> deliveryDetail) {

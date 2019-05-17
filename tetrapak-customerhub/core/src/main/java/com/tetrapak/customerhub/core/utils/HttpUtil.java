@@ -5,14 +5,17 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Utility class for http methods
@@ -21,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class HttpUtil {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
-	
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
+
     /**
      * private constructor
      */
@@ -72,15 +75,48 @@ public final class HttpUtil {
         resultString = StringUtils.substringBeforeLast(resultString, "\"");
         return resultString;
     }
-    
+
+    /**
+     * Method to return send error message
+     *
+     * @param response response
+     */
     public static void sendErrorMessage(SlingHttpServletResponse response) {
-		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		try {
-			JsonObject obj = new JsonObject();
-			obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
-			HttpUtil.writeJsonResponse(response, obj);
-		} catch (IOException e) {
-			LOGGER.error("IOException: {}", e);
-		}
-	}
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        try {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
+            HttpUtil.writeJsonResponse(response, obj);
+        } catch (IOException e) {
+            LOGGER.error("IOException: {}", e);
+        }
+    }
+
+    /**
+     * Method to return json object
+     *
+     * @param token        token
+     * @param jsonResponse json response
+     * @param url          url
+     * @return json object
+     */
+    public static JsonObject getJsonObject(String token, JsonObject jsonResponse, String url) {
+        HttpGet getRequest = new HttpGet(url);
+        getRequest.addHeader("Authorization", "Bearer " + token);
+        HttpClient httpClient = HttpClientBuilder.create().build();
+
+        try {
+            HttpResponse httpResponse = httpClient.execute(getRequest);
+            LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
+
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
+
+        } catch (ClientProtocolException e) {
+            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl {}", e);
+        } catch (IOException e) {
+            LOGGER.error("IOException in OrderDetailsApiServiceImpl {}", e);
+        }
+        return jsonResponse;
+    }
+
 }
