@@ -1,8 +1,8 @@
 <sly data-sly-template.contactFooterForm_template="${@ data, flag}"
 	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div class="tp-pw-footer mb-5" data-sly-test="${data.titleI18n}">
-    <div class="pw-contact-form pw-theme--grayscale-white pw-padding--regular"
-         data-module="ContactFooterForm" data-sly-test="${!data.hideContactFooterForm}">
+  <div data-sly-test="${!data.hideContactFooterForm && data.titleI18n}" class="tp-pw-footer mb-5">
+    <div class="pw-contact-form pw-theme--grayscale-white pw-padding--regular" id="pw-contactFooterForm"
+         data-module="ContactFooterForm">
       <div class="tab-content">
         <div class="tab-pane active" role="tabpanel" id="cf-form-steps">
           <div class="row">
@@ -511,6 +511,6 @@
       </div>
     </div>
   </div>
-	<sly data-sly-test="${!data.titleI18n}"
-	     data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n}"></sly>
+	<sly data-sly-test="${!data.titleI18n || data.hideContactFooterForm}"
+	     data-sly-call="${templates.placeholder @ isEmpty = !data.titleI18n || data.hideContactFooterForm}"></sly>
 </sly>

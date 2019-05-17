@@ -1,5 +1,4 @@
 .pw-contact-form {
-    @include border-radius($border-radius);
     .info-box {
         @include padding($padding-md 0);
         @include margin-bottom($margin-md);

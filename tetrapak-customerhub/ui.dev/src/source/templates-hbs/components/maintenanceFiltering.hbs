@@ -14,7 +14,7 @@
     {{else}}
         <div class="row no-gutters">
             <div class="tp-maintenance-filtering__filters col-lg">
-                {{> atoms/dropdown/dropdown options=sites name="site" labelText=i18nKeys.siteFilterLabel eleClasses="tp-maintenance-filtering__site js-maintenance-filtering__site" dataLocator="" }}
+                {{> atoms/dropdown/dropdown options=sites name="site" labelText=i18nKeys.siteFilterLabel eleClasses="tp-maintenance-filtering__site js-maintenance-filtering__site js-maintenance-filtering__event-site" dataLocator="" }}
                 {{> atoms/dropdown/dropdown defaultValue=i18nKeys.allOptionText labelText=i18nKeys.lineFilterLabel options="" name="line" label="" eleClasses="tp-maintenance-filtering__line js-maintenance-filtering__line" dataLocator="" }}
                 {{> atoms/dropdown/dropdown defaultValue=i18nKeys.allOptionText labelText=i18nKeys.equipmentFilterLabel options="" name="equipment" label="" eleClasses="tp-maintenance-filtering__equipment js-maintenance-filtering__equipment" dataLocator="" }}
             </div>

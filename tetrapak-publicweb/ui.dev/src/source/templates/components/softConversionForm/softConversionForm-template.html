@@ -37,7 +37,7 @@
                     		</div>
                     	</sly>
                       <input type="hidden" name="docpath" class="softc-doc-js">
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn mt-2'}" />
                     </div>
                   </div>
                 </div>
@@ -329,9 +329,6 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-12">
-                      <button class="tpatom-button tpatom-button--secondary questionBtn mb-3" data-dismiss="modal" data-target=".pw-contactFooterForm">${'got a question?' @ i18n}</button>
-                    </div>
                     <div class="col-12">
                       <button class="tpatom-button tpatom-button--link" data-dismiss="modal">${'Close' @ i18n}</button>
                     </div>

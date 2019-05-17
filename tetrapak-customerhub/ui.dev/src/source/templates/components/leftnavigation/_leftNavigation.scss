@@ -1,6 +1,4 @@
 .tp-left-nav {
-    background-color: $color-congress-blue;
-
     @media #{$desktop} {
         @include width(224px);
         @include top(88px);
