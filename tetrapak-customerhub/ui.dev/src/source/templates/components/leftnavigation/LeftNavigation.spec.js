@@ -1,7 +1,7 @@
 import LeftNavigation from './LeftNavigation';
 import $ from 'jquery';
 import leftNavigationTemplate from '../../../test-templates-hbs/leftnavigation.hbs';
-import { TRANSITION_END } from '../../../scripts/utils/constants';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 describe('LeftNavigation', function () {
   before(function () {
@@ -42,10 +42,9 @@ describe('LeftNavigation', function () {
     expect(this.subsectionSpy.called).to.be.true;
   });
 
-  it('should hide aside', function () {
-    $('.js-left-nav__overlay').trigger(TRANSITION_END);
+  it('should hide aside section', function () {
+    $('.js-left-nav__overlay').trigger('transitionend');
     expect(this.leftNavigation.hideAside.called).to.be.true;
   });
-
 
 });
