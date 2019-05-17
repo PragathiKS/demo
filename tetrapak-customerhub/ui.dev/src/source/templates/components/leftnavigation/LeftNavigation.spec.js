@@ -1,6 +1,7 @@
 import LeftNavigation from './LeftNavigation';
 import $ from 'jquery';
 import leftNavigationTemplate from '../../../test-templates-hbs/leftnavigation.hbs';
+import { TRANSITION_END } from '../../../scripts/utils/constants';
 
 describe('LeftNavigation', function () {
   before(function () {
@@ -9,6 +10,7 @@ describe('LeftNavigation', function () {
     this.initSpy = sinon.spy(this.leftNavigation, 'init');
     this.closeSideNavSpy = sinon.spy(this.leftNavigation, 'closeSideNav');
     this.subsectionSpy = sinon.spy(this.leftNavigation, 'openSubMenu');
+    this.hideAsideSpy = sinon.spy(this.leftNavigation, 'hideAside');
     this.eventOneStub = sinon.stub($.fn, 'one').callsArg(1);
     this.leftNavigation.init();
   });
@@ -16,6 +18,7 @@ describe('LeftNavigation', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.closeSideNavSpy.restore();
+    this.hideAsideSpy.restore();
     this.subsectionSpy.restore();
     this.eventOneStub.restore();
   });
@@ -38,4 +41,11 @@ describe('LeftNavigation', function () {
     $('.tpatom-list-item__btn').first().trigger('click'); // Closed state
     expect(this.subsectionSpy.called).to.be.true;
   });
+
+  it('should hide aside', function () {
+    $('.js-left-nav__overlay').trigger(TRANSITION_END);
+    expect(this.leftNavigation.hideAside.called).to.be.true;
+  });
+
+
 });
