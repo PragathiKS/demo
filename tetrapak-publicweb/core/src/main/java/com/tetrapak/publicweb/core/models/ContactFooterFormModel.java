@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -69,7 +70,7 @@ public class ContactFooterFormModel {
 	
 	private String submitButtonLabel;	
 	
-	private Boolean hideContactFooterForm;
+	private Boolean hideContactFooterForm = false;
 	
 	private List<Item> countryList;
 
@@ -78,38 +79,35 @@ public class ContactFooterFormModel {
     	log.info("Inside init() method." );
     	ResourceResolver resourceResolver = resource.getResourceResolver();
     	PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-    	String rootPagePath = resource.getParent().getParent().getParent().getPath();
-    	Page currentPage = pageManager.getPage(rootPagePath);      	
+    	Page currentPage = pageManager.getContainingPage(resource);      	
         if (currentPage != null) {
         	log.info("Current Page path : {}", currentPage.getPath());
-            Resource jcrContentResource = currentPage.getContentResource();
-            BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
-            hideContactFooterForm = basePageModel.getPageContent().getHideContactFooterForm();
-            log.info("Value of hideContactFooterForm : {}", hideContactFooterForm);
+        	ValueMap currentPageProps = currentPage.getContentResource().getValueMap();
+        	hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
         }
         
-        InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
-        titleI18n = inheritanceValueMap1.getInherited("titleI18n", String.class);
-        description = inheritanceValueMap1.getInherited("description", String.class);
-        image = inheritanceValueMap1.getInherited("image", String.class);
-        imageAltI18n = inheritanceValueMap1.getInherited("imageAltI18n", String.class);
-        helpText = inheritanceValueMap1.getInherited("helpText", String.class);
-        privacyPolicyText = inheritanceValueMap1.getInherited("privacyPolicyText", String.class);
-        thankYouHeadline = inheritanceValueMap1.getInherited("thankYouHeadline", String.class);
-        thankYouMessage = inheritanceValueMap1.getInherited("thankYouMessage", String.class);
-        linkTextI18n = inheritanceValueMap1.getInherited("linkTextI18n", String.class);
-        linkPath = inheritanceValueMap1.getInherited("linkPath", String.class);
-        firstNameLabel = inheritanceValueMap1.getInherited("firstNameLabel", String.class);
-        lastNameLabel = inheritanceValueMap1.getInherited("lastNameLabel", String.class);
-        phoneNumberLabel = inheritanceValueMap1.getInherited("phoneNumberLabel", String.class);
-        emailAddressLabel = inheritanceValueMap1.getInherited("emailAddressLabel", String.class);
-        positionLabel = inheritanceValueMap1.getInherited("positionLabel", String.class);
-        companyLabel = inheritanceValueMap1.getInherited("companyLabel", String.class);
-        contactUsLabel = inheritanceValueMap1.getInherited("contactUsLabel", String.class);
-        messageLabel = inheritanceValueMap1.getInherited("messageLabel", String.class);
-        previousButtonLabel = inheritanceValueMap1.getInherited("previousButtonLabel", String.class);
-        nextButtonLabel = inheritanceValueMap1.getInherited("nextButtonLabel", String.class);
-        submitButtonLabel = inheritanceValueMap1.getInherited("submitButtonLabel", String.class);
+        InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
+        titleI18n = inheritanceValueMap.getInherited("titleI18n", String.class);
+        description = inheritanceValueMap.getInherited("description", String.class);
+        image = inheritanceValueMap.getInherited("image", String.class);
+        imageAltI18n = inheritanceValueMap.getInherited("imageAltI18n", String.class);
+        helpText = inheritanceValueMap.getInherited("helpText", String.class);
+        privacyPolicyText = inheritanceValueMap.getInherited("privacyPolicyText", String.class);
+        thankYouHeadline = inheritanceValueMap.getInherited("thankYouHeadline", String.class);
+        thankYouMessage = inheritanceValueMap.getInherited("thankYouMessage", String.class);
+        linkTextI18n = inheritanceValueMap.getInherited("linkTextI18n", String.class);
+        linkPath = inheritanceValueMap.getInherited("linkPath", String.class);
+        firstNameLabel = inheritanceValueMap.getInherited("firstNameLabel", String.class);
+        lastNameLabel = inheritanceValueMap.getInherited("lastNameLabel", String.class);
+        phoneNumberLabel = inheritanceValueMap.getInherited("phoneNumberLabel", String.class);
+        emailAddressLabel = inheritanceValueMap.getInherited("emailAddressLabel", String.class);
+        positionLabel = inheritanceValueMap.getInherited("positionLabel", String.class);
+        companyLabel = inheritanceValueMap.getInherited("companyLabel", String.class);
+        contactUsLabel = inheritanceValueMap.getInherited("contactUsLabel", String.class);
+        messageLabel = inheritanceValueMap.getInherited("messageLabel", String.class);
+        previousButtonLabel = inheritanceValueMap.getInherited("previousButtonLabel", String.class);
+        nextButtonLabel = inheritanceValueMap.getInherited("nextButtonLabel", String.class);
+        submitButtonLabel = inheritanceValueMap.getInherited("submitButtonLabel", String.class);
         
         getCountriesList(pageManager);
     }
