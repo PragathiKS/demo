@@ -5,7 +5,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import org.apache.commons.lang.StringUtils;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
@@ -60,16 +60,7 @@ public class PageContentHierarchyReferencesModel {
     @PostConstruct
     protected void init() {
         if (Objects.nonNull(pageContentPath)) {
-            locale = StringUtils.isNotBlank(locale) ? locale : "en";
-            String pagePath = String.valueOf(pageContentPath);
-            pagePath = pagePath.replace("/en", CustomerHubConstants.PATH_SEPARATOR + locale);
-            String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR
-                    + CustomerHubConstants.ROOT_NODE + CustomerHubConstants.PATH_SEPARATOR +
-                    CustomerHubConstants.RESPONSIVE_GRID_NODE;
-            String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent :
-                    CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
-            pagePath = pagePath + resGridPath;
-            pageReferenceComponents(pagePath);
+            GlobalUtil.setPageReferences(resourceResolver, componentsReference, locale, pageContentPath);
             if (Objects.nonNull(includeSubPages) && ("true").equalsIgnoreCase(includeSubPages)) {
                 pageContentPath = pageContentPath.replace(CustomerHubConstants.PATH_SEPARATOR
                         + JcrConstants.JCR_CONTENT, CustomerHubConstants.EMPTY_STRING);
@@ -183,16 +174,6 @@ public class PageContentHierarchyReferencesModel {
             pageExit = true;
         }
         return pageExit;
-    }
-
-    private void pageReferenceComponents(String path) {
-        Resource componentResources = resourceResolver.getResource(path);
-        if (Objects.nonNull(componentResources)) {
-            Iterator<Resource> iterators = componentResources.listChildren();
-            while (iterators.hasNext()) {
-                componentsReference.add(iterators.next().getPath());
-            }
-        }
     }
 
     private Node addNode(Node node, String nodeName) throws RepositoryException {
