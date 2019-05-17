@@ -197,6 +197,7 @@ function _renderCalendarEventsDot() {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
         jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       },
+      cache: true,
       data: {
         'sitenumber': siteVal,
         'from-date': startDate,

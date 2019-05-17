@@ -54,6 +54,7 @@ function _renderMaintenanceEvents() {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
         jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       },
+      cache: true,
       data: data
     }).done((data) => {
       if (!data) {
@@ -63,7 +64,7 @@ function _renderMaintenanceEvents() {
         if (data.events.length === 0) {
           this.cache.isEventNoData = true;
         }
-        this.cache.data = data;
+        this.cache.eventsData = data;
       }
       render.fn({
         template: 'eventsListing',

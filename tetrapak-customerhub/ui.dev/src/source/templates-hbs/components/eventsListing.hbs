@@ -11,7 +11,7 @@
             <span class="tp-maintenance-events__no-data">{{i18n key=i18nKeys.noEventMsg}}</span>
         </div>
     {{else}}
-        {{#each data.events}}
+        {{#each eventsData.events}}
             <div class="tp-card tp-maintenance-events__wrapper">
                 <h4 class="tp-maintenance-events__event-heading">{{type}}</h4>
                 <div class="tp-maintenance-events__event-detail-wrapper">
