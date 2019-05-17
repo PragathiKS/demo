@@ -7,6 +7,7 @@ import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
 
 function _renderMaintenanceEvents() {
+  let selectedFilter = '';
   const $this = this;
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
@@ -30,15 +31,30 @@ function _renderMaintenanceEvents() {
     fromDate = moment(dateRange[1]) < moment(dateRange[0]) ? dateRange[1] : dateRange[0];
     toDate = moment(dateRange[1]) > moment(dateRange[0]) ? dateRange[1] : dateRange[0];
   }
+
   if (sitenumber) {
     data.sitenumber = sitenumber;
+    selectedFilter = selectedFilter + 'site|';
+  } else {
+    selectedFilter = selectedFilter + '|';
   }
+
   if (linenumber) {
     data.linenumber = linenumber;
+    selectedFilter = selectedFilter + 'line/area|';
+  } else {
+    selectedFilter = selectedFilter + '|';
   }
+
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
+    selectedFilter = selectedFilter + 'equipment/unit|';
+  } else {
+    selectedFilter = selectedFilter + '|';
   }
+
+  selectedFilter = selectedFilter + 'dateschoosen';
+
   if (fromDate) {
     data['from-date'] = fromDate;
   }
@@ -70,7 +86,10 @@ function _renderMaintenanceEvents() {
         target: '.js-maintenance__events',
         data: $this.cache
       }, () => {
-        $this.trackEventAnalytics($this.cache.filterSelected);
+        $this.cache.selectedFilter = selectedFilter;
+        const name = $this.cache.navigationSelected ?
+          $this.cache.navigationSelected : 'maintenance tab selection';
+        $this.trackEventAnalytics(name);
       });
     });
   });
@@ -85,10 +104,10 @@ class EventsListing {
     this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
   }
   renderMaintenanceEvents(...args) {
-    const [ , cache, trackAnalytics] = args;
-    this.cache = $.extend(this.cache, cache);
-    this.trackEventAnalytics = trackAnalytics;
-    _renderMaintenanceEvents.call(this);
+    const [{ data: self }, cache, trackAnalytics] = args;
+    self.cache = cache;
+    self.trackEventAnalytics = trackAnalytics;
+    _renderMaintenanceEvents.call(self);
   }
 
   init() {

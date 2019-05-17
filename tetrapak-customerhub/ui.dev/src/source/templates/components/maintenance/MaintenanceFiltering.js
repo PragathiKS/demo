@@ -18,29 +18,25 @@ import moment from 'moment';
 function _trackAnalytics(name, type) {
   const analyticsData = {
     linkType: 'internal',
-    linkSection: 'installed equipment-maintenance'
+    linkSection: 'installed equipment-maintenance',
+    linkName: name
   };
 
   switch (name) {
     case 'email':
     case 'phone': {
-      analyticsData.linkName = name;
       analyticsData.linkParentTitle = `contact-${type}`;
       break;
     }
-    case 'site':
-    case 'line/area':
-    case 'equipment/unit':
-    case 'dates choosen': {
-      analyticsData.linkName = 'maintenance tab selection';
-      analyticsData.linkSelection = name;
-      analyticsData.linkParentTitle = 'Maintenance tab';
+    case 'maintenance tab selection': {
+      analyticsData.linkSelection = this.cache.selectedFilter;
+      analyticsData.linkParentTitle = 'maintenance tab';
       analyticsData.maintenanceresultscount = this.cache.data.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
     case 'right arrow': {
-      analyticsData.linkName = name;
+      analyticsData.linkSelection = this.cache.selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
       break;
     }
@@ -286,20 +282,14 @@ class MaintenanceFiltering {
     const self = this;
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
-        this.cache.filterSelected = 'site';
-
         this.renderMaintenanceContact();
         this.triggerMaintenanceEvents();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
-        this.cache.filterSelected = 'line/area';
-
         this.renderEquipmentFilter();
         this.triggerMaintenanceEvents();
       })
       .on('change', '.js-maintenance-filtering__equipment', () => {
-        this.cache.filterSelected = 'equipment/unit';
-
         this.triggerMaintenanceEvents();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
@@ -337,7 +327,6 @@ class MaintenanceFiltering {
           $this.cache.$calendarNav.parent().addClass('js-disable-data-call');
         },
         onSelectEnd() {
-          $this.cache.filterSelected = 'dates choosen';
           $this.cache.$calendarNav.parent().removeClass('js-disable-data-call');
           $this.triggerMaintenanceEvents();
         }
@@ -366,7 +355,7 @@ class MaintenanceFiltering {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
 
-    $this.cache.filterSelected = (action === 'previous-action') ? 'left arrow' : 'right arrow';
+    $this.cache.navigationSelected = (action === 'previous-action') ? 'left arrow' : 'right arrow';
 
     if ($defaultCalendarNavBtn.length) {
       let evt = document.createEvent('MouseEvents');

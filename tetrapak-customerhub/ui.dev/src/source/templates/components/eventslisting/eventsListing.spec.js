@@ -47,13 +47,13 @@ describe('Maintenanceevents', function () {
     expect(this.maintenanceevents.init.called).to.be.true;
     done();
   });
-  // it('should render events on trigger of renderMaintenanceEvents event', function (done) {
-  //   $('.js-maintenance').trigger('renderMaintenance', [{
-  //     $site: $('.js-maintenance-filtering__site'),
-  //     $line: $('.js-maintenance-filtering__line'),
-  //     $equipment: $('.js-maintenance-filtering__equipment')
-  //   }]);
-  //   expect(this.renderMaintenanceEventsSpy.called).to.be.true;
-  //   done();
-  // });
+  it('should render events on trigger of renderMaintenanceEvents event', function (done) {
+    $('.js-maintenance').trigger('renderMaintenance', [{
+      $site: $('.js-maintenance-filtering__site'),
+      $line: $('.js-maintenance-filtering__line'),
+      $equipment: $('.js-maintenance-filtering__equipment')
+    }]);
+    expect(this.renderMaintenanceEventsSpy.called).to.be.true;
+    done();
+  });
 });
