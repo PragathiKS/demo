@@ -141,7 +141,10 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                         steps {
                                 parallel (
                                         "Author Deployment" : {
+										        
+												script {
 										        if (params.Build_Commons)
+										     
 												{
 												
                                                 echo "Uninstalling Old Commons Package on author for Commons"
@@ -157,8 +160,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
 												
                                                 sleep 20
-												} }
-	
+												}
+                                                else {											
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -170,7 +173,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-                                        },
+												}
+                                        }},
                                         "Publish_Deployment" : {
 										script {
 										if (params.Build_Commons)
@@ -188,8 +192,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
 												}
-												}
-												
+												else {
+
                                                 echo "Uninstalling Old Package on publish for customerhub"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -201,9 +205,9 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sleep 10
                                                 echo "Installing New Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-                                        }
-                                )
-                        }
+                                                    }}}
+                                          )
+                                   }
                 }
                     stage ( 'Karma, Pa11y, Zap Tools Execution for CustomerHub') {
                         steps {
