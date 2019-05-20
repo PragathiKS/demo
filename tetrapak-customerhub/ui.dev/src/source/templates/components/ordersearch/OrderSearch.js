@@ -133,7 +133,7 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { $filters } = this.cache;
+  const { $filters, config } = this.cache;
   const $this = this;
   this.setSearchFields(filterParams);
   this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
@@ -153,6 +153,12 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
+        $.extend(data, {
+          labels: {
+            dataError: config.dataErrorI18n,
+            noData: config.noDataI18n
+          }
+        });
         return _processTableData.apply($this, [data]);
       },
       ajaxConfig: {
@@ -166,7 +172,11 @@ function _renderTable(filterParams) {
         cancellable: true
       }
     }, (data) => {
-      if ($filters && $filters.length) {
+      if (
+        $filters
+        && $filters.length
+        && !data.isError
+      ) {
         $filters.removeClass('d-none');
       }
       if (filterParams && !data.isError && data.totalOrdersForQuery) {

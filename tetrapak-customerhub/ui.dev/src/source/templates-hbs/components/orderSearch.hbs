@@ -1,8 +1,8 @@
 {{> molecules/calendar/calendarModal this}}
 {{#if isError}}
     <div class="js-order-search__filters d-none">
-        {{#if noDataErrorI18n}}
-            {{> atoms/error/error error=true message=noDataErrorI18n}}
+        {{#if dataErrorI18n}}
+            {{> atoms/error/error error=true message=dataErrorI18n}}
         {{else}}
             {{> atoms/error/error error=true message="cuhu.error.message"}}
         {{/if}}
