@@ -1,13 +1,13 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE, MOCK_URL } from '../../../scripts/utils/constants'; // eslint-disable-line
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost } from '../../../scripts/common/common'; // eslint-disable-line
 
 /**
  * Fire analytics on search submit
@@ -23,25 +23,6 @@ function _trackAnalytics() {
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
   trackAnalytics(ob, obKey, trackingKey, undefined, false);
-}
-
-/**
- * Caches available keys from data
- * @param {string[]} availableKeys Available keys
- * @param {string[]} orderKeys Order keys
- */
-function _setAvailableKeys(availableKeys, orderKeys) {
-  const { disabledFieldList } = this.cache;
-  if (availableKeys.length === 0) {
-    orderKeys.forEach(key => {
-      if (
-        !disabledFieldList.includes(key)
-        && !availableKeys.includes(key)
-      ) {
-        availableKeys.push(key);
-      }
-    });
-  }
 }
 
 /**
@@ -91,34 +72,42 @@ function _tableSort(order, activeKeys, orderDetailLink, viewAllOrders) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields, disabledFieldList } = this.cache;
-  this.cache.availableKeys = availableKeys;
+  const {
+    i18nKeys,
+    savedPreferences,
+    viewAllOrders,
+    orderDetailLink,
+    defaultFields,
+    enabledFieldList
+  } = this.cache;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
-    let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
-    activeKeys = activeKeys.filter(key => key && !disabledFieldList.includes(key));
-    data.orders = data.orders.map(order => {
-      const orderKeys = Object.keys(order);
-      if (availableKeys.length === 0) {
-        _setAvailableKeys.call(this, availableKeys, orderKeys);
+    const preferenceList = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
+    const defaultFieldList = typeof defaultFields === 'string' ? defaultFields.split(',') : [];
+    defaultFieldList.forEach(key => {
+      if (!preferenceList.includes(key)) {
+        preferenceList.push(key);
       }
-      if (activeKeys.length === 0) {
-        activeKeys.push(...orderKeys);
-      }
-      return _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders);
     });
+    const activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
+    let allUnchecked = false;
+    if (activeKeys.length === 0) {
+      allUnchecked = true;
+      activeKeys.push(...enabledFieldList);
+    }
+    data.orders = data.orders.map(order => _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders));
     data.orderHeadings = activeKeys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
       sortOrder: 'desc'
     }));
-    data.settingOptions = availableKeys.map(key => ({
+    data.settingOptions = enabledFieldList.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`,
-      isChecked: activeKeys.includes(key),
-      isMandatory: defaultFields.split(',').includes(key)
+      isChecked: (activeKeys.includes(key) && !allUnchecked),
+      isMandatory: defaultFieldList.includes(key)
     }));
   }
   data.viewAllOrders = viewAllOrders;
@@ -150,9 +139,16 @@ function _stopEvtProp(e) {
 
 function _saveSettings() {
   // Get selected preferences
-  const selectedFields = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+  const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
+  let selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
     return $(el).val();
   });
+  if (selectedFields.length === 0) {
+    // Assume all fields were selected
+    selectedFields = $.map($modalPreference.find('input'), function (el) {
+      return $(el).val();
+    });
+  }
   ajaxWrapper.getXhrObj({
     url: this.cache.preferencesUrl,
     data: {
@@ -188,10 +184,10 @@ class OrderingCard {
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
     this.cache.defaultFields = $('#ordDefaultFields').val();
-    this.cache.disabledFields = $('#ordDisabledFields').val();
+    this.cache.enabledFields = $('#ordEnabledFields').val();
     this.cache.disabledFieldList = [];
-    if (typeof this.cache.disabledFields === 'string') {
-      this.cache.disabledFieldList = this.cache.disabledFields.split(',');
+    if (typeof this.cache.enabledFields === 'string') {
+      this.cache.enabledFieldList = this.cache.enabledFields.split(',');
     }
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
@@ -220,7 +216,8 @@ class OrderingCard {
       config = {
         template: 'orderingCard',
         url: {
-          path: `${apiHost}/${API_ORDER_HISTORY}`,
+          //path: `${apiHost}/${API_ORDER_HISTORY}`,
+          path: `${MOCK_URL}/orderingCardData.json`,
           data: {
             top: ORDER_HISTORY_ROWS_PER_PAGE
           }
