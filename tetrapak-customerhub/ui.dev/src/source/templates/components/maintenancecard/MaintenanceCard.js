@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
@@ -33,24 +34,21 @@ function _renderMaintenanceEvents() {
             isError: true
           };
         } else {
+          if (!Array.isArray(data.events) || data.events.length === 0) {
+            data.noData = true;
+          }
+
           const { i18nKeys, viewAllLink } = $this.cache;
           data.i18nKeys = i18nKeys;
           data.viewAllLink = viewAllLink;
-
-          //$this.processSiteData(data);
-          //$this.cache.data = data;
         }
       }
     }, (data) => {
       if (!data.isError && !data.noData) {
-        //$this.initPostCache();
-        //$this.renderMaintenanceContact();
-        //this.renderCalendar();
-        //$this.renderCalendarEventsDot();
+        $('.js-maintenance-card__events-detail').html($('#Event0').html());
       }
     });
   });
-  debugger; //eslint-disable-line
 }
 
 class MaintenanceCard {
@@ -69,12 +67,10 @@ class MaintenanceCard {
     this.cache.viewAllLink = this.root.find('.js-viewAllLink').val();
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.root.on('click', '.js-maintenance-card__event', function () {
+      let detailTargetEle = $(this).data('target');
+      $('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
+    });
   }
   renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);
   init() {
