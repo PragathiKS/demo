@@ -8,9 +8,11 @@
     <div class="tp-ordering-card__tablewrapper js-ordering-card__tablewrapper">
         {{> components/orderingTable this}}
     </div>
-    <div class="tp-ordering-card__viewmore-wrapper">
-        {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" text=labels.allOrders modifier="secondary"}}
-    </div>
+    {{#unless isError}}
+        <div class="tp-ordering-card__viewmore-wrapper">
+            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" text=labels.allOrders modifier="secondary"}}
+        </div>
+    {{/unless}}
     {{!-- Settings overlay --}}
     <div class="modal tp-modal js-ordering-card__modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
