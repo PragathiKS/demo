@@ -1,9 +1,9 @@
 pipeline {
         agent any
-
+/*
  triggers {
           cron('30 10,15 * * *')
-                   }  
+                   }  */
 
         parameters {
 
@@ -28,7 +28,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 
         stages {
 
-                stage ('Checkout') {
+               /* stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -37,7 +37,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                    branch: 'develop'
                       )
                    }
-                 }
+                 } */
 
                 stage ('Initialize') {
                         steps {
@@ -290,7 +290,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 														  }
 														  
 														  }
-/*
+
 post {
 
 
@@ -313,6 +313,6 @@ to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur
 	build 'Tetra-Splunk-All-Tools'
     } 
 	
-	} */
+	} 
 
 	}
