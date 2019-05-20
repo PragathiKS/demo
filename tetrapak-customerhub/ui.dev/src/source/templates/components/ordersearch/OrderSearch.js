@@ -36,10 +36,18 @@ function _disableCalendarNext($this) {
  * Processes data before rendering
  * @param {object} data JSON data object
  */
-function _processOrderSearchData(data) {
-  data = $.extend(true, data, this.cache.config);
-  const { filterStartDate, filterEndDate } = data.summary;
-  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+function _processOrderSearchData(self, data) {
+  if (!data) {
+    data = {
+      isError: true
+    };
+  }
+  data = $.extend(true, data, self.cache.config);
+  if (!data.isError) {
+    const { filterStartDate, filterEndDate } = data.summary;
+    data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+  }
+  this.data = data;
   return data;
 }
 
@@ -264,6 +272,7 @@ function _trackAnalytics(type) {
  * Renders filter section
  */
 function _renderFilters() {
+  const self = this;
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
@@ -279,7 +288,9 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+      beforeRender(...args) {
+        return _processOrderSearchData.apply(this, [self, ...args]);
+      }
     }, () => {
       this.initPostCache();
       this.setFilters();
