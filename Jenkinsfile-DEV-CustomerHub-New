@@ -179,8 +179,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 												
                                         }},
                                         "Publish_Deployment" : {
-										script {
-										if (params.Build_Commons)
+										    script {
+										    if (params.Build_Commons)
 												{
                                                 echo "Uninstalling Old Commons Package on publish for commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
@@ -207,9 +207,10 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sleep 10
                                                 echo "Installing New Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-                                                    }}
-                                          )
-                                   }
+                                            } 
+									    }
+                                )
+                        }
                 }
                     stage ( 'Karma, Pa11y, Zap Tools Execution for CustomerHub') {
                         steps {
