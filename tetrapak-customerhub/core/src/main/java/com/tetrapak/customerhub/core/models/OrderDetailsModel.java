@@ -41,9 +41,6 @@ public class OrderDetailsModel {
     private String customerNumberLabel;
 
     @Inject
-    private String webRefLabel;
-
-    @Inject
     private String custSupCentreLabel;
 
     @Inject
@@ -104,9 +101,6 @@ public class OrderDetailsModel {
     private String errorMsg;
 
     @Inject
-    private String webReferenceLink;
-
-    @Inject
     private String orderNoLink;
 
     @Inject
@@ -154,7 +148,6 @@ public class OrderDetailsModel {
         i18KeyMap.put("orderDateLabel", getOrderDateLabel());
         i18KeyMap.put("customerNumberLabel", getCustomerNumberLabel());
         i18KeyMap.put("customerReferenceLabel", getCustomerReferenceLabel());
-        i18KeyMap.put("webRefLabel", getWebRefLabel());
         i18KeyMap.put("custSupCentreLabel", getCustSupCentreLabel());
         i18KeyMap.put("createExcelLabel", getCreateExcelLabel());
         i18KeyMap.put("createPdfLabel", getCreatePdfLabel());
@@ -176,7 +169,6 @@ public class OrderDetailsModel {
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
         i18KeyMap.put("orderNoLink", getOrderNoLink());
-        i18KeyMap.put("webReferenceLink", getWebReferenceLink());
         i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
         i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
         i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
@@ -232,13 +224,6 @@ public class OrderDetailsModel {
      */
     public String getCustomerNumberLabel() {
         return customerNumberLabel;
-    }
-
-    /**
-     * @return the webRefLabel
-     */
-    public String getWebRefLabel() {
-        return webRefLabel;
     }
 
     /**
@@ -381,12 +366,6 @@ public class OrderDetailsModel {
         return errorMsg;
     }
 
-    /**
-     * @return the customerReferenceLink
-     */
-    public String getWebReferenceLink() {
-        return webReferenceLink;
-    }
 
     /**
      * @return the orderNoLink
