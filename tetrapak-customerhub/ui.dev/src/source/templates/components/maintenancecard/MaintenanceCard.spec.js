@@ -24,6 +24,7 @@ describe('MaintenanceCard', function () {
     $(document.body).empty().html(maintenanceCardTemplate());
     this.initSpy = sinon.spy(this.maintenanceCard, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceCard, "renderMaintenanceEvents");
+    this.trackAnalyticsSpy = sinon.spy(this.maintenanceCard, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceCardData));
@@ -39,6 +40,7 @@ describe('MaintenanceCard', function () {
   after(function () {
     this.initSpy.restore();
     this.renderMaintenanceEventsSpy.restore();
+    this.trackAnalyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -50,5 +52,17 @@ describe('MaintenanceCard', function () {
   it('should render maintenance events', function (done) {
     expect(this.maintenanceCard.renderMaintenanceEvents.called).to.be.true;
     done();
+  });
+  it('should call track analytics on click of maintenace event', function () {
+    $('.js-maintenance-card__event').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics on click of "contact email" link', function () {
+    $('.js-maintenance-card__contact-mail').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics on click of "contact phone" link', function () {
+    $('.js-maintenance-card__contact-phone').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
   });
 });

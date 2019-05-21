@@ -32,13 +32,14 @@ function _trackAnalytics(name, type) {
     case 'maintenance tab selection': {
       analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceresultscount = eventsData.totalRecordsForQuery;
+      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
     case 'right arrow': {
       analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
+      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
       break;
     }
     default: {
