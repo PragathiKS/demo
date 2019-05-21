@@ -45,7 +45,7 @@ function _renderMaintenanceEvents() {
       }
     }, (data) => {
       if (!data.isError && !data.noData) {
-        $('.js-maintenance-card__events-detail').html($('#Event0').html());
+        $this.root.find('.js-maintenance-card__events-detail').html($('#Event0').html());
       }
     });
   });
@@ -64,12 +64,13 @@ class MaintenanceCard {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
-    this.cache.viewAllLink = this.root.find('.js-viewAllLink').val();
+    this.cache.viewAllLink = this.root.find('.js-view-all-link').val();
   }
   bindEvents() {
+    const $this = this;
     this.root.on('click', '.js-maintenance-card__event', function () {
       let detailTargetEle = $(this).data('target');
-      $('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
+      $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
     });
   }
   renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);

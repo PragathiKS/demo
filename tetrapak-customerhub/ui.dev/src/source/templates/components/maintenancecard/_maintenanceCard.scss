@@ -63,10 +63,6 @@
             @include border-radius($border-radius);
             background-color: $color-wild-sand;
 
-            @media #{$desktop} {
-                display: none;
-            }
-
             &.show+.tp-maintenance-card__event {
                 border-top: 1px solid $color-mercury;
 

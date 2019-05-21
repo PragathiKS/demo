@@ -23,7 +23,7 @@
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
 
-                <div class="tp-maintenance-card__event-detail collapse{{#if @first}} show{{/if}}" id="Event{{@index}}" data-parent="#tp-maintenance-card__events">
+                <div class="tp-maintenance-card__event-detail d-lg-none collapse{{#if @first}} show{{/if}}" id="Event{{@index}}" data-parent="#tp-maintenance-card__events">
                     {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.statusLabel data=status }}
                     {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
                     {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}
