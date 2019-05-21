@@ -54,5 +54,6 @@ public class MaintenanceModelTest {
         assertEquals("There should be operation hort text label", "Operation short text", maintenanceModelModel.getOperationShortTextLabel());
         assertEquals("There should be no data message", "no data", maintenanceModelModel.getNoDataMsg());
         assertEquals("There should be error message", "error", maintenanceModelModel.getErrorMsg());
+        assertEquals("There should be no event message", "No Event", maintenanceModelModel.getNoEventMsg());
     }
 }
