@@ -92,23 +92,20 @@ function _processTableData(data) {
       }
     });
     const activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
-    let allUnchecked = false;
-    if (activeKeys.length === 0) {
-      allUnchecked = true;
-      activeKeys.push(...enabledFieldList);
-    }
     data.orders = data.orders.map(order => _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders));
     data.orderHeadings = activeKeys.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
-    data.settingOptions = enabledFieldList.map(key => ({
-      key,
-      i18nKey: `cuhu.ordering.${key}`,
-      isChecked: (activeKeys.includes(key) && !allUnchecked),
-      isMandatory: defaultFieldList.includes(key)
-    }));
+    data.settingOptions = enabledFieldList.map(key => {
+      const isMandatory = defaultFieldList.includes(key);
+      return {
+        key,
+        i18nKey: `cuhu.ordering.${key}`,
+        isChecked: (isMandatory || activeKeys.includes(key)),
+        isMandatory
+      };
+    });
   }
   data.viewAllOrders = viewAllOrders;
   return data;
@@ -143,12 +140,6 @@ function _saveSettings() {
   let selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
     return $(el).val();
   });
-  if (selectedFields.length === 0) {
-    // Assume all fields were selected
-    selectedFields = $.map($modalPreference.find('input'), function (el) {
-      return $(el).val();
-    });
-  }
   ajaxWrapper.getXhrObj({
     url: this.cache.preferencesUrl,
     data: {
