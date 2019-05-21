@@ -444,6 +444,9 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__reset', () => {
         this.resetFilters();
         this.trackAnalytics('reset');
+      })
+      .on('submit', '.js-prevent-default', (e) => {
+        e.preventDefault();
       });
     this.root.parents('.js-financials').on('downloadFinancialPdfExcel', this, this.downloadPdfExcel);
   }

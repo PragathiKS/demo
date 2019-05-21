@@ -380,6 +380,9 @@ class OrderSearch {
         $this.openOrderDetails.apply(this, arguments);
         $this.trackAnalytics('orderList');
       })
+      .on('submit', '.js-prevent-default', (e) => {
+        e.preventDefault();
+      })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {
         const [, data] = args;
