@@ -5,7 +5,7 @@
             <sly data-sly-resource="${'navigation' @ resourceType='customerhub/components/structure/navigation'}"/>
         </div>
 
-        <div class="col-lg-${currentPage.template.shortTitle == 'dashboard'? '7' : '10'} tp-column__content">
+        <div class="col-lg-10 tp-column__content">
             <div>
 			   <sly data-sly-test="${(properties.jcr:title != '404') && (properties.jcr:title != '500')}"> 
                 <h1 class="tp-page-title" data-sly-test.isI18ValuePresent="${properties.iconLabel}">${properties.iconLabel @i18n}</h1>                
@@ -15,9 +15,6 @@
             <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
                  data-sly-repeat.child="${templatedContainer.structureResources}"
                  data-sly-resource="${child.path @ resourceType=child.resourceType}"></sly>
-        </div>
-        <div data-sly-test="${currentPage.template.shortTitle == 'dashboard'}" class="col-lg-3 tp-column__notif">
-            <sly data-sly-resource="${'notification' @ resourceType='customerhub/components/content/notification'}"/>
         </div>
     </div>
     <sly data-sly-use.model="com.tetrapak.customerhub.core.models.APIGEEModel">
