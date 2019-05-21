@@ -108,8 +108,9 @@
         @include line-height(20px, $font-sm);
         border-top: 1px solid $color-mercury;
 
-        h4 {
+        h3 {
             @include margin($margin-md 0);
+            @include font-size($font-md);
         }
 
         &-icon {
