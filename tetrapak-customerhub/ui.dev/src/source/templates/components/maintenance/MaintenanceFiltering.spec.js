@@ -2,6 +2,7 @@ import $ from 'jquery';
 import MaintenanceFiltering from './MaintenanceFiltering';
 import maintenanceFilteringTemplate from '../../../test-templates-hbs/maintenanceFiltering.hbs';
 import maintenanceFilteringData from './data/maintenanceFiltering.json';
+import maintenanceEventsData from './data/maintenanceEvents.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
@@ -30,9 +31,10 @@ describe('MaintenanceFiltering', function () {
     this.renderEquipmentFilterSpy = sinon.spy(this.maintenanceFiltering, "renderEquipmentFilter");
     this.trackAnalyticsSpy = sinon.spy(this.maintenanceFiltering, 'trackAnalytics');
     this.navigateSpy = sinon.spy(this.maintenanceFiltering, 'navigateCalendar');
+    this.renderCalendarEventsDotSpy = sinon.spy(this.maintenanceFiltering, 'renderCalendarEventsDot');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
     this.openStub = sinon.stub(window, 'open');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
@@ -51,6 +53,7 @@ describe('MaintenanceFiltering', function () {
     this.renderMaintenanceContactSpy.restore();
     this.renderLineFilterSpy.restore();
     this.renderEquipmentFilterSpy.restore();
+    this.renderCalendarEventsDotSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.navigateSpy.restore();
     this.renderSpy.restore();
@@ -63,6 +66,9 @@ describe('MaintenanceFiltering', function () {
     done();
   });
   it('should render maintenance filters', function (done) {
+    this.ajaxStub.restore();
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceFilteringData));
     expect(this.maintenanceFiltering.renderMaintenanceFilters.called).to.be.true;
     done();
   });
@@ -91,7 +97,7 @@ describe('MaintenanceFiltering', function () {
     $('.js-maintenance-filtering__line').trigger('change');
     expect(this.maintenanceFiltering.renderEquipmentFilter.called).to.be.true;
     done();
-  });  
+  });
   it('should call track analytics for maintenance on click of "contact email" link', function () {
     $('.js-maintenance-filtering__contact-mail').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;
@@ -99,9 +105,5 @@ describe('MaintenanceFiltering', function () {
   it('should call track analytics for maintenance on click of "contact phone" link', function () {
     $('.js-maintenance-filtering__contact-phone').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;
-  });
-  it('should navigate calendar of click of calendar navigation buttons', function () {
-    $('.js-calendar-nav').eq(0).trigger('click');
-    expect(this.navigateSpy.called).to.be.true;
   });
 });

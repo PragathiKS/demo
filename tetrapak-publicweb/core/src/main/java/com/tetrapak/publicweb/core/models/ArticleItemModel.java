@@ -100,6 +100,10 @@ public class ArticleItemModel {
     public String getArticlePath() {
         return LinkUtils.sanitizeLink(articlePath);
     }
+    
+    public String getLinkType() {
+        return LinkUtils.linkType(articlePath);
+    }
 
     public Boolean getOpenInNewWindow() {
         return openInNewWindow;

@@ -1,4 +1,6 @@
+@import '~tpCommon/templates-hbs/atoms/loader/tpLoader';
+
 .tpatom-loader {
-    @include padding(20px);
+    @include padding($padding-md);
     text-align: center;
 }

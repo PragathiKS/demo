@@ -42,7 +42,7 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                     fieldDescription="Select Public Web Home Page Path"
                                     fieldLabel="Public Web Home Page"
-                                    rootPath="/content/tetrapak/public-web"
+                                    rootPath="/content/tetrapak/customerhub"
                                     name="./stickyHref"/>
                             <title
                                     jcr:primaryType="nt:unstructured"

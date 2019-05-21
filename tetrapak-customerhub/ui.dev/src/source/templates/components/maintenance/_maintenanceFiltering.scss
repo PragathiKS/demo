@@ -59,6 +59,7 @@
         }
 
         .lightpick__days {
+
             div {
                 @media #{$desktop} {
                     @include height(30px);
@@ -76,6 +77,11 @@
             }
         }
 
+        .lightpick__day {
+            position: relative;
+
+        }
+
         .lightpick__months {
             @include display-flex;
             flex-wrap: wrap;
@@ -91,4 +97,145 @@
             }
         }
     }
+}
+
+.lightpick__dot {
+    // Keeping fix height width for dot only
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    text-align: center;
+    background: $color-jordy-blue;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+
+    .is-in-range & {
+        background: $color-congress-blue;
+    }
+
+    .is-start-date & {
+        background: $color-white;
+    }
+
+    .is-end-date & {
+        background: $color-white;
+    }
+
+
+}
+
+.tp-maintenance-events {
+
+    &__no-data {
+        @include padding-left($padding-sm);
+        @include line-height($font-l, $font-md);
+        @include font-size($font-md);
+        color: $color-tundora;
+    }
+
+    &__heading {
+        @include font-size($font-md);
+        @include line-height($font-l, $font-md);
+
+        @media #{$desktop} {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+        }
+
+    }
+
+    &__event-heading {
+        @include font-size($font-md);
+        @include line-height($font-l, $font-md);
+        @include margin-bottom($margin-md);
+    }
+
+    &__event-detail-wrapper {
+        overflow: auto;
+    }
+
+    &__event-detail-left-container {
+        @include padding(0 0 $padding-md 0);
+        @include line-height($font-l, $font-baseline);
+        width: 100%;
+        border-bottom: 1px solid $color-mercury;
+
+
+        @media #{$desktop} {
+            @include padding(0 $padding-l 0 0);
+            width: 33%;
+            border-right: 1px solid $color-mercury;
+            border-bottom: 0;
+        }
+
+        .left__info-title {
+            float: left;
+            width: 50%;
+            font-family: $font-bold;
+        }
+
+        .left__info-text {
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+        }
+
+        .left__info-data {
+            @include padding-bottom($padding-md);
+            overflow: auto;
+
+            &:last-child {
+                padding: 0;
+            }
+        }
+    }
+
+    &__event-detail-right-container {
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-md 0 0 0);
+        display: inline-block;
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 0 0 $padding-l);
+            width: 66%;
+        }
+
+        .right__info-title {
+            width: 100%;
+            font-family: $font-bold;
+
+            @media #{$desktop} {
+                float: left;
+                width: 25%;
+            }
+        }
+
+        .right__info-text {
+            display: block;
+            width: 100%;
+
+            @media #{$desktop} {
+                display: inline-block;
+                width: 75%;
+            }
+        }
+
+        .right__info-data {
+            @include padding(0 0 $padding-md 0);
+            width: 100%;
+
+            @media #{$desktop} {
+                @include padding(0 0 $padding-sm 0);
+            }
+
+            &:last-child {
+                padding: 0;
+            }
+        }
+    }
+
 }

@@ -10,12 +10,15 @@ export const RESULTS_EMPTY = 'Empty results';
 export const FILEEXT_EMPTY = 'File extension is required';
 export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
+export const INVALID_BROWSER = 'Unsupported browser';
 export const DATE_FORMAT = 'YYYY-MM-DD';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
+export const NO_OF_EVENTS_PER_PAGE = 12;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
+export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -33,3 +36,4 @@ export const API_FINANCIALS_INVOICE = 'demo/cfe/invoices';
 export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
 export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
 export const API_MAINTENANCE_FILTERS = 'mock/materials/equipments/installations';
+export const API_MAINTENANCE_EVENTS = 'orders/service/events';

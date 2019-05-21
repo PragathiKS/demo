@@ -28,6 +28,19 @@ public class LinkUtils extends WCMUsePojo{
         }
         return link;
     }
+    
+    /**
+     * Used for analytics code to determine the link type
+     */
+    public static String linkType(String linkPath) {
+        if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
+        	return "download";
+        } else if (StringUtils.startsWith(linkPath, "/content/")) {
+        	return "internal";
+        } else {
+        	return "external";
+        }
+    }
 
 	@Override
 	public void activate() throws Exception {
@@ -78,6 +91,7 @@ public class LinkUtils extends WCMUsePojo{
 					bean.setLinkTextI18n(linkTextI18n);
 					bean.setLinkTooltipI18n(linkTooltipI18n);
 					bean.setLinkPath(sanitizeLink(linkPath));
+					bean.setLinkType(linkType(linkPath));
 					bean.setTargetBlank(targetBlank);
 					navLinksList.add(bean);
 

@@ -1,5 +1,5 @@
 <sly data-sly-template.footer_template="${@ data, flag}">
-  <footer class="tp-pw-footer">
+  <footer class="tp-pw-footer js-tp-pw-footer">
     <div class="tp-pw-footer__container tp-container">
       <div class="d-md-block d-lg-flex">
         <div class="col-lg-3 text-lg-left">
@@ -12,6 +12,7 @@
               style="justify-content: space-between;">
             <li class="tp-pw-footer__navigation-list__item">
               <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}"
+                 datatag="${navigationItems.linkType}" ctype="footer" ctypeone="footer nav link" ctitle="${navigationItems.linkTextI18n @ i18n}"
                  target="${navigationItems.targetBlank ? '_blank' : ''}">${navigationItems.linkTextI18n @ i18n}</a>
             </li>
           </ul>
@@ -20,7 +21,9 @@
           <div class="tp-pw-footer__social-media-items" data-sly-list.socialLink="${data.footerSocialLinks}">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link"
                href="${socialLink.socialMediaLinkPath}" target="_blank"
-               data-sly-test="${socialLink.socialMediaLinkPath}"><i class="${socialLink.socialMediaIconClass}"></i></a>
+               data-sly-test="${socialLink.socialMediaLinkPath}"
+               datatag="external" ctype="footer" ctypeone="social share"
+               ctitle="${socialLink.socialMediaName}"><i class="${socialLink.socialMediaIconClass}"></i></a>
           </div>
         </div>
       </div>

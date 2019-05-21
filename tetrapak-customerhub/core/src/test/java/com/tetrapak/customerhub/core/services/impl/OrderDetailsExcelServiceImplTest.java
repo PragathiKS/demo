@@ -41,7 +41,7 @@ public class OrderDetailsExcelServiceImplTest {
 	private ServletOutputStream servletOutputStream;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		Mockito.when(orderDetailsModel.getOrderNo()).thenReturn("Order Number");
 		Mockito.when(orderDetailsModel.getOrderStatus()).thenReturn("Order Status");
 		Mockito.when(orderDetailsModel.getCustomerNameLabel()).thenReturn("CustomerNameLabel");
@@ -56,7 +56,6 @@ public class OrderDetailsExcelServiceImplTest {
 		Mockito.when(orderDetailsModel.getDeliveryAddrLabel()).thenReturn("DeliveryAddrLabel");
 		Mockito.when(orderDetailsModel.getInvoiceAddrLabel()).thenReturn("InvoiceAddrLabel");
 		Mockito.when(orderDetailsModel.getOrderStatus()).thenReturn("OrderStatus");
-		//Mockito.when(orderDetailsModel.getTotalWeightLabel()).thenReturn("TotalWeightLabel");
 	}
 
 	@Test
@@ -85,13 +84,13 @@ public class OrderDetailsExcelServiceImplTest {
 		OrderDetailsData orderDetailData = new OrderDetailsData();
 		OrderDetails orderDetails = new OrderDetails();
 		orderDetails.setCustomerName("customerName");
-		orderDetails.setCustomerNumber(12345);
-		orderDetails.setCustomerReference(1234);
+		orderDetails.setCustomerNumber("12345");
+		orderDetails.setCustomerReference("1234");
 		orderDetails.setOrderNumber("orderNumber");
 		orderDetails.setPlacedOn("placedOn");
-		orderDetails.setPurchaseOrderNumber(123);
+		orderDetails.setPurchaseOrderNumber("123");
 		orderDetails.setStatus("status");
-		orderDetails.setWebRefID(123);
+		orderDetails.setWebRefID("123");
 		orderDetailData.setOrderDetails(orderDetails);
 		List<DeliveryList> deliveryList = new ArrayList<>();
 		DeliveryList delivery1 = new DeliveryList();
@@ -131,13 +130,13 @@ public class OrderDetailsExcelServiceImplTest {
 		OrderDetailsData orderDetailData = new OrderDetailsData();
 		OrderDetails orderDetails = new OrderDetails();
 		orderDetails.setCustomerName("customerName");
-		orderDetails.setCustomerNumber(12345);
-		orderDetails.setCustomerReference(1234);
+		orderDetails.setCustomerNumber("12345");
+		orderDetails.setCustomerReference("1234");
 		orderDetails.setOrderNumber("orderNumber");
 		orderDetails.setPlacedOn("placedOn");
-		orderDetails.setPurchaseOrderNumber(123);
+		orderDetails.setPurchaseOrderNumber("123");
 		orderDetails.setStatus("status");
-		orderDetails.setWebRefID(123);
+		orderDetails.setWebRefID("123");
 		orderDetailData.setOrderDetails(orderDetails);
 		List<DeliveryList> deliveryList = new ArrayList<>();
 		DeliveryList delivery1 = new DeliveryList();

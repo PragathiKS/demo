@@ -5,6 +5,8 @@ public class SocialLinkBean {
 	private String socialMediaLinkPath;
 
 	private String socialMediaIconClass;
+	
+	private String socialMediaName;
 
 	public String getSocialMediaLinkPath() {
 		return socialMediaLinkPath;
@@ -20,6 +22,14 @@ public class SocialLinkBean {
 
 	public void setSocialMediaIconClass(String socialMediaIconClass) {
 		this.socialMediaIconClass = socialMediaIconClass;
+	}
+	
+	public String getSocialMediaName() {
+		return socialMediaName;
+	}
+
+	public void setSocialMediaName(String socialMediaName) {
+		this.socialMediaName = socialMediaName;
 	}
 
 }

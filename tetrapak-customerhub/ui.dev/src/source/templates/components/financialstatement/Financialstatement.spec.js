@@ -85,12 +85,6 @@ describe('FinancialStatement', function () {
     done();
   });
 
-  it('should fire analytics by calling setCustomer when click from dropdown', function (done) {
-    $('.js-financial-statement__find-customer').trigger('click');
-    expect(this.financialstatement.trackAnalytics.called).to.be.true;
-    done();
-  });
-
   it('should change date selector on status change', function (done) {
     $('.js-financial-statement__status').trigger('change');
     expect(this.statusSpy.called).to.be.true;
