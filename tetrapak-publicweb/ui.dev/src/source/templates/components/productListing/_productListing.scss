@@ -16,6 +16,7 @@
         }
 
         &__dropdown {
+            @include font-size($font-baseline);
             @include padding($padding-sm $padding-md);
             width: 100%;
         }
@@ -44,10 +45,10 @@
     }
 
     &__item {
-        &__image,
         &__title,
         &__description,
-        &__link {
+        &__link,
+        .pw-wide-frame{
             @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-bottom($margin-l);
@@ -64,10 +65,6 @@
             }
         }
 
-        &__image {
-            width: 100%;
-            min-height: 330px; //demo fix
-        }
     }
 }
 
@@ -90,5 +87,20 @@
             color: $color-white;
             background-color: $color-congress-blue;
         }
+    }
+}
+
+.pw-wide-frame {
+    height: 0;
+    overflow: hidden;
+    padding-top: calc(9 / 16 * 100%);
+    position: relative;
+
+    img {
+        left: 0;
+        min-height: 100%;
+        min-width: 100%;
+        position: absolute;
+        top: 0;
     }
 }
