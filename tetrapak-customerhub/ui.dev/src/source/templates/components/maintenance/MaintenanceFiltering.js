@@ -44,7 +44,7 @@ function _trackAnalytics(name, type) {
     }
     case 'preventive maintenance': {
       analyticsData.linkParentTitle = 'maintenance events';
-      analyticsData.maintenanceeventpagination = currentPageIndex;
+      analyticsData.maintenanceEventPagination = currentPageIndex;
       break;
     }
     default: {

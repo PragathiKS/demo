@@ -61,7 +61,7 @@ describe('Maintenanceevents', function () {
     done();
   });
   it('should re-render events on trigger of pagination buttons', function (done) {
-    $('.js-pagination').trigger('eventsListing.pagenav', [{ pageIndex: 1 }]);
+    $('.js-pagination').trigger('eventslisting.pagenav', [{ pageIndex: 1 }]);
     expect(this.reRenderMaintenanceEventsSpy.called).to.be.true;
     done();
   });

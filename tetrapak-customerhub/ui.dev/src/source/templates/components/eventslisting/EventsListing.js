@@ -11,14 +11,14 @@ function _renderMaintenanceEvents(...eventsData) {
   let lineFilter = '';
   let equipmentFilter = '';
   let selectedFilter = '';
-  let $this = $(this);
   const [cache, trackAnalytics, onPageLoad, skip] = eventsData;
 
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
   };
-  const $monthsSelector = $this[0].root.parents().find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  const $todaySelector = $this[0].root.parents().find('.is-today');
+  const $this = this.root.parents('.js-maintenance');
+  const $monthsSelector = $this.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
+  const $todaySelector = $this.find('.is-today');
   let fromDate;
   if ($todaySelector.length === 0) {
     fromDate = moment(new Date($monthsSelector.first().data('time'))).format(DATE_FORMAT);
@@ -29,7 +29,7 @@ function _renderMaintenanceEvents(...eventsData) {
   const sitenumber = cache.$site.val();
   const linenumber = cache.$line.val();
   const equipmentnumber = cache.$equipment.val();
-  const $dateRangeSelector = $this[0].root.parents().find('.js-events-date-range-selector');
+  const $dateRangeSelector = $this.find('.js-events-date-range-selector');
   const dateRangeArray = $dateRangeSelector.val();
   if (dateRangeArray) {
     const dateRange = dateRangeArray.split(' - ');
@@ -80,7 +80,7 @@ function _renderMaintenanceEvents(...eventsData) {
         if (skip) {
           currentPage = (skip / NO_OF_EVENTS_PER_PAGE) + 1;
         }
-        $this[0].root.parents().find('.js-pagination').trigger('eventsListing.paginate', [{
+        $this.find('.js-pagination').trigger('eventslisting.paginate', [{
           currentPage,
           totalPages
         }]);
@@ -117,7 +117,7 @@ class EventsListing {
   bindEvents() {
     const $this = this;
     this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
-    this.root.parents().find('.js-pagination').on('eventsListing.pagenav', (...args) => {
+    this.root.parents('.js-maintenance').find('.js-pagination').on('eventslisting.pagenav', (...args) => {
       const [, data] = args;
       const skip = data.pageIndex * NO_OF_EVENTS_PER_PAGE;
       $this.reRenderMaintenanceEvents(skip);
