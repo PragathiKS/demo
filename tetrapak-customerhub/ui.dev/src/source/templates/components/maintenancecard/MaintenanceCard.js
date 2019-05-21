@@ -5,6 +5,27 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+
+/**
+ * Fire analytics on click of
+ * maintenance card event
+ */
+function _trackAnalytics() {
+  const { maintenanceHeading } = this.cache.i18nKeys;
+
+  const analyticsData = {
+    linkType: 'internal',
+    linkSection: 'dashboard',
+    linkName: 'maintenanceListItem',
+    linkParentTitle: maintenanceHeading
+      ? maintenanceHeading.toLowerCase()
+      : 'maintenance service events'
+  };
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 /**
  * Renders Maintenance Events
@@ -71,9 +92,11 @@ class MaintenanceCard {
     this.root.on('click', '.js-maintenance-card__event', function () {
       let detailTargetEle = $(this).data('target');
       $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
+      $this.trackAnalytics();
     });
   }
   renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);
+  trackAnalytics = () => _trackAnalytics.call(this);
   init() {
     /* Mandatory method */
     this.initCache();
