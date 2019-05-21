@@ -1,104 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:primaryType="nt:unstructured"
-    jcr:title="Ordering Card"
-    sling:resourceType="cq/gui/components/authoring/dialog">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Ordering Card"
+          sling:resourceType="cq/gui/components/authoring/dialog">
     <content
-        granite:class="ordering-card"
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+            granite:class="ordering-card"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">
-            <column
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/container"
-                maximized="{Boolean}true">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <title
+                    <column1
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Title i18 Key"
-                            fieldLabel="Title Key"
-                            required="true"
-                            name="./titleI18n"/>
-                    <preferencesTitle
+                            jcr:title="Ordering Card Component Settings"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Title i18 Key"
+                                    fieldLabel="Title Key"
+                                    required="true"
+                                    name="./titleI18n"/>
+                            <preferencesTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Preferences Title i18 Key"
+                                    fieldLabel="Preferences Title Key"
+                                    required="true"
+                                    name="./preferencesTitleI18n"/>
+                            <preferencesDescription
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Preferences Description i18 Key"
+                                    fieldLabel="Preferences Description Key"
+                                    required="true"
+                                    name="./preferencesDescriptionI18n"/>
+                            <allOrders
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter All Orders i18 Key"
+                                    fieldLabel="All Orders Key"
+                                    required="true"
+                                    name="./allOrdersI18n"/>
+                            <saveSettings
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Save Settings i18 Key"
+                                    fieldLabel="Save Settings Key"
+                                    required="true"
+                                    name="./saveSettingsI18n"/>
+                            <closeBtn
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Close Button i18 Key"
+                                    fieldLabel="Close Button Key"
+                                    required="true"
+                                    name="./closeBtnI18n"/>
+                            <preferencesBtn
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Preferences Button i18 Key"
+                                    fieldLabel="Preferences Button Key"
+                                    required="true"
+                                    name="./preferencesBtnI18n"/>
+                            <saveError
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Save Error i18 Key"
+                                    fieldLabel="Save Error Key"
+                                    required="true"
+                                    name="./saveErrorI18n"/>
+                            <allOrdersLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldDescription="Enter All Orders Link"
+                                    fieldLabel="All Orders Link"
+                                    required="true"
+                                    rootPath="/content/tetrapak/customerhub"
+                                    name="./allOrdersLink"/>
+                            <orderDetailLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldDescription="Enter Orders detail page Link"
+                                    fieldLabel="Order detail Link"
+                                    required="true"
+                                    rootPath="/content/tetrapak/customerhub"
+                                    name="./orderDetailLink"/>
+                            <noData
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter No Data i18 key"
+                                    fieldLabel="No Data i18 key"
+                                    required="true"
+                                    name="./noDataI18n"/>
+                            <dataError
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter Data Error i18 key"
+                                    fieldLabel="Data Error i18 key"
+                                    required="true"
+                                    name="./dataErrorI18n"/>
+                        </items>
+                    </column1>
+                    <column2
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Preferences Title i18 Key"
-                            fieldLabel="Preferences Title Key"
-                            required="true"
-                            name="./preferencesTitleI18n"/>
-                    <preferencesDescription
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Preferences Description i18 Key"
-                            fieldLabel="Preferences Description Key"
-                            required="true"
-                            name="./preferencesDescriptionI18n"/>
-                    <allOrders
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter All Orders i18 Key"
-                            fieldLabel="All Orders Key"
-                            required="true"
-                            name="./allOrdersI18n"/>
-					<saveSettings
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Save Settings i18 Key"
-                            fieldLabel="Save Settings Key"
-                            required="true"
-                            name="./saveSettingsI18n"/>
-                    <closeBtn
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Close Button i18 Key"
-                            fieldLabel="Close Button Key"
-                            required="true"
-                            name="./closeBtnI18n"/>
-                    <preferencesBtn
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Preferences Button i18 Key"
-                            fieldLabel="Preferences Button Key"
-                            required="true"
-                            name="./preferencesBtnI18n"/>
-                    <saveError
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Save Error i18 Key"
-                            fieldLabel="Save Error Key"
-                            required="true"
-                            name="./saveErrorI18n"/>
-                    <allOrdersLink
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldDescription="Enter All Orders Link"
-                            fieldLabel="All Orders Link"
-                            required="true"
-                            name="./allOrdersLink"/>
-                    <orderDetailLink
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldDescription="Enter Orders detail page Link"
-                            fieldLabel="Order detail Link"
-                            required="true"
-                            name="./orderDetailLink"/>
-                    <noData
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter No Data i18 key"
-                            fieldLabel="No Data i18 key"
-                            required="true"
-                            name="./noDataI18n"/>
-                    <dataError
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter Data Error i18 key"
-                            fieldLabel="Data Error i18 key"
-                            required="true"
-                            name="./dataErrorI18n"/>
+                            jcr:title="Ordering Card Fields Settings"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <list1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true"
+                                    fieldLabel="Default Fields">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./defaultFields">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <defaultField
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Default Field"
+                                                        fieldLabel="Default field"
+                                                        name="./defaultField"
+                                                />
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </list1>
+                            <list2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true"
+                                    fieldLabel="Enabled Fields">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./enabledFields">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <textField
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Enabled Field"
+                                                        fieldLabel="Enabled Field"
+                                                        name="./enabledField"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </list2>
+                        </items>
+                    </column2>
                 </items>
-            </column>
+            </tabs>
         </items>
     </content>
 </jcr:root>

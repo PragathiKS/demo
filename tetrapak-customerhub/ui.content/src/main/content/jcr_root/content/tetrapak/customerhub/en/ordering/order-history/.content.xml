@@ -39,7 +39,25 @@
                     resetButtonTextI18n="cuhu.orderingHistory.Reset"
                     searchButtonTextI18n="cuhu.orderingHistory.SearchBtnKey"
                     searchInputLabelI18n="cuhu.orderingHistory.SearchInput"
-                    searchTermPlaceholderI18n="cuhu.orderingHistory.Placeholderkey"/>
+                    searchTermPlaceholderI18n="cuhu.orderingHistory.Placeholderkey">
+                    <enabledFields jcr:primaryType="nt:unstructured">
+                        <item0
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="contact"/>
+                        <item1
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="customerNumber"/>
+                        <item2
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="salesOrg"/>
+                        <item3
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="requestedDelivery"/>
+                        <item4
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="ETA"/>
+                    </enabledFields>
+                </ordersearch>
             </responsivegrid>
         </root>
     </jcr:content>

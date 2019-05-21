@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +15,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 
 /**
@@ -65,18 +65,20 @@ public class OrderSearchModel {
     @Inject
     private String orderDetailLink;
 
-    private Set<String> disabledFields;
+    private Set<String> enabledFields;
 
     private String config;
 
     @PostConstruct
     protected void init() {
-        disabledFields = new LinkedHashSet<>();
-        disabledFields.add("contact");
-        disabledFields.add("customerNumber");
-        disabledFields.add("salesOrg");
-        disabledFields.add("requestedDelivery");
-        disabledFields.add("ETA");
+        enabledFields = new LinkedHashSet<>();
+        Resource childResource = resource.getChild("enabledFields");
+        if (null != childResource) {
+            Iterator<Resource> itr = childResource.listChildren();
+            while (itr.hasNext()) {
+                enabledFields.add((String) itr.next().getValueMap().get("enabledField"));
+            }
+        }
 
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put("setDatesBtnI18n", setDatesBtnI18n);
@@ -91,9 +93,9 @@ public class OrderSearchModel {
         i18KeyMap.put("orderStatusLabelI18n", orderStatusLabelI18n);
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
-        i18KeyMap.put("disabledFields", disabledFields);        
-        i18KeyMap.put("orderDetailLink", getOrderDetailLink()) ;
-       
+        i18KeyMap.put("enabledFields", enabledFields);
+        i18KeyMap.put("orderDetailLink", getOrderDetailLink());
+
 
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
@@ -107,7 +109,7 @@ public class OrderSearchModel {
         return LinkUtil.getValidLink(resource, orderDetailLink);
     }
 
-    public Set<String> getDisabledFields() {
-        return new LinkedHashSet<>(disabledFields);
+    public Set<String> getEnabledFields() {
+        return new LinkedHashSet<>(enabledFields);
     }
 }
