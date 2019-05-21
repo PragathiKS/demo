@@ -79,6 +79,13 @@
                                 fieldLabel="Customer Reference Label"
                                 name="./customerReferenceLabel"
                                 required="true"/>
+                            <webRefLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Web Reference Label&#xa;Used on both Parts and Package order details page."
+                                fieldLabel="Web Reference Label"
+                                name="./webRefLabel"
+                                required="true"/>
                             <custSupCentreLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
