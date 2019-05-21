@@ -64,6 +64,12 @@ public class OrderSearchModel {
 
     @Inject
     private String orderDetailLink;
+    
+    @Inject
+    private String noDataI18n;
+
+    @Inject
+    private String dataErrorI18n;
 
     private Set<String> disabledFields;
 
@@ -93,7 +99,8 @@ public class OrderSearchModel {
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("disabledFields", disabledFields);        
         i18KeyMap.put("orderDetailLink", getOrderDetailLink()) ;
-       
+        i18KeyMap.put("noDataI18n", noDataI18n);
+        i18KeyMap.put("dataErrorI18n", dataErrorI18n);
 
         Gson gson = new Gson();
         config = gson.toJson(i18KeyMap);
