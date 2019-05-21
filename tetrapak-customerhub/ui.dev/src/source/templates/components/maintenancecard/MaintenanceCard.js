@@ -18,7 +18,7 @@ function _trackAnalytics(name, type) {
     linkSection: 'dashboard'
   };
 
-  if (name === 'email' || name === 'phone') {
+  if (['email', 'phone'].includes(name)) {
     analyticsData.linkParentTitle = `contact-${type}`;
     analyticsData.linkName = name;
   } else {
@@ -94,10 +94,10 @@ class MaintenanceCard {
     this.root
       .on('click', '.js-maintenance-card__event', function () {
         let detailTargetEle = $(this).data('target');
-        const maintenanceHeading = $this.cache.i18nKeys.maintenanceHeading
-          ? $this.cache.i18nKeys.maintenanceHeading.toLowerCase()
+        let { maintenanceHeading } = $this.cache.i18nKeys;
+        maintenanceHeading = maintenanceHeading
+          ? maintenanceHeading.toLowerCase()
           : 'maintenance service events';
-
         $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
         $this.trackAnalytics(maintenanceHeading);
       })
