@@ -4,11 +4,9 @@
  * @date 16/02/2019
  */
 import dynamicMedia from './dynamicMedia';
-import contactAnchorLink from '../../templates/components/contactAnchorLink/ContactAnchorLink';
 
 export default {
   init() {
     dynamicMedia.init();
-    contactAnchorLink.init();
   }
 };
