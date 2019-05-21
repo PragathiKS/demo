@@ -1,13 +1,13 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE, MOCK_URL } from '../../../scripts/utils/constants'; // eslint-disable-line
+import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common'; // eslint-disable-line
+import { apiHost } from '../../../scripts/common/common';
 
 /**
  * Fire analytics on search submit
@@ -216,8 +216,7 @@ class OrderingCard {
       config = {
         template: 'orderingCard',
         url: {
-          //path: `${apiHost}/${API_ORDER_HISTORY}`,
-          path: `${MOCK_URL}/orderingCardData.json`,
+          path: `${apiHost}/${API_ORDER_HISTORY}`,
           data: {
             top: ORDER_HISTORY_ROWS_PER_PAGE
           }
