@@ -12,7 +12,6 @@ class SoftConversionForm {
     this.cache.$submitBtn = $('#softConversionModal .form-submit');
     this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
     this.cache.$radiobtns = $('#softConversionModal input:radio');
-    this.cache.$questionBtn = $('#softConversionModal .questionBtn');
     this.cache.digitalData = digitalData; //eslint-disable-line
   }
   storageFormData() {
@@ -49,7 +48,17 @@ class SoftConversionForm {
       let selectedTarget = $(e.target).data('target');
       $('[data-target="'+selectedTarget+'"]').addClass('active show');
     });
-
+    this.cache.$modal.on('show.bs.modal', function () {
+      if ($('#softConversionModal').data('form-filled')) {
+        $('[data-toggle="tab"]', '#softConversionModal').removeClass('active show');
+        $('.tab-pane', '#softConversionModal').removeClass('active');
+        $('.tab-content #step-final', '#softConversionModal').addClass('active');
+        $('#softConversionModal .softc-title-js').addClass('d-none');
+        $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+        let docpath = $('#softConversionModal input[name="docpath"]').val();
+        window.open(docpath, '_blank');
+      }
+    });
     this.cache.$modal.on('hidden.bs.modal', function () {
       $('[data-toggle="tab"]', '#softConversionModal').removeClass('active show');
       $('.tab-pane', '#softConversionModal').removeClass('active');
@@ -127,15 +136,6 @@ class SoftConversionForm {
       } else {
         $('#softConversionModal .isPro').removeClass('d-none');
         $('#softConversionModal .isNotPro').addClass('d-none');
-      }
-    });
-    this.cache.$questionBtn.click(function(e) {
-      e.preventDefault();
-      let target = $(this).data('target');
-      if($(target).length) {
-        $('html, body').animate({
-          scrollTop: parseInt($(target).offset().top, 10)
-        }, 1000);
       }
     });
   }

@@ -58,6 +58,8 @@ public class MaintenanceModel {
     private String noDataMsg;
     @Inject
     private String errorMsg;
+    @Inject
+    private String noEventMsg;
 
     private String i18nKeys;
 
@@ -86,6 +88,7 @@ public class MaintenanceModel {
         i18KeyMap.put("operationShortTextLabel", getOperationShortTextLabel());
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
+        i18KeyMap.put("noEventMsg", getNoEventMsg());
 
         i18nKeys = new Gson().toJson(i18KeyMap);
     }
@@ -167,5 +170,9 @@ public class MaintenanceModel {
 
     public String getErrorMsg() {
         return errorMsg;
+    }
+
+    public String getNoEventMsg() {
+        return noEventMsg;
     }
 }

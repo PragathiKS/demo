@@ -36,10 +36,18 @@ function _disableCalendarNext($this) {
  * Processes data before rendering
  * @param {object} data JSON data object
  */
-function _processOrderSearchData(data) {
-  data = $.extend(true, data, this.cache.config);
-  const { filterStartDate, filterEndDate } = data.summary;
-  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+function _processOrderSearchData(self, data) {
+  if (!data) {
+    data = {
+      isError: true
+    };
+  }
+  data = $.extend(true, data, self.cache.config);
+  if (!data.isError) {
+    const { filterStartDate, filterEndDate } = data.summary;
+    data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+  }
+  this.data = data;
   return data;
 }
 
@@ -125,7 +133,7 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { $filters } = this.cache;
+  const { $filters, config } = this.cache;
   const $this = this;
   this.setSearchFields(filterParams);
   this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
@@ -145,6 +153,12 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
+        $.extend(data, {
+          labels: {
+            dataError: config.dataErrorI18n,
+            noData: config.noDataI18n
+          }
+        });
         return _processTableData.apply($this, [data]);
       },
       ajaxConfig: {
@@ -158,7 +172,11 @@ function _renderTable(filterParams) {
         cancellable: true
       }
     }, (data) => {
-      if ($filters && $filters.length) {
+      if (
+        $filters
+        && $filters.length
+        && !data.isError
+      ) {
         $filters.removeClass('d-none');
       }
       if (filterParams && !data.isError && data.totalOrdersForQuery) {
@@ -232,7 +250,7 @@ function _trackAnalytics(type) {
     case 'orderList': {
       ob.linkParentTitle = 'order history';
       ob.linkName = 'ordersSearchResultClick';
-      ob.linkselection = `tetrapak order number|${pageNo}`;
+      ob.linkSelection = `tetrapak order number|${pageNo}`;
       break;
     }
     case 'search': {
@@ -264,6 +282,7 @@ function _trackAnalytics(type) {
  * Renders filter section
  */
 function _renderFilters() {
+  const self = this;
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
@@ -279,7 +298,9 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+      beforeRender(...args) {
+        return _processOrderSearchData.apply(this, [self, ...args]);
+      }
     }, () => {
       this.initPostCache();
       this.setFilters();
