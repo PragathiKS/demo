@@ -1,5 +1,5 @@
 pipeline {
-        agent any
+        agent { label "master" } 
    triggers {
           cron('30 10,15 * * *')
                    } 

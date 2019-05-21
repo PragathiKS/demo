@@ -1,5 +1,5 @@
 pipeline {
-        agent any
+        agent { label "master" } 
 /*
  triggers {
           cron('30 10,15 * * *')
@@ -254,9 +254,9 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 														  }}}
 														
 														
-														stage ( 'Sitespeed Execution on all platforms in Parallel - CustomerHub') {
-													    steps {
-														script {
+														stage ( 'Sitespeed Execution on all platforms - CustomerHub') {
+													       steps {
+														     script {
 														
 														if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
@@ -264,13 +264,13 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 														
                                                         else {
 
-                                                         echo "Starting Sitespeed-Desktop Test Run"
+                                                        echo "Starting Sitespeed-Desktop Test Run"
 														 
                                                          sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
 														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
 
-                                                        sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+                                                         sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
 														 
 
                                                          echo "Starting Sitespeed-Mobile Test Run"
