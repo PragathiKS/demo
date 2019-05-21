@@ -121,6 +121,8 @@ class EventsListing {
       const [, data] = args;
       const skip = data.pageIndex * NO_OF_EVENTS_PER_PAGE;
       $this.reRenderMaintenanceEvents(skip);
+      $this.cache.currentPageIndex = data.pageIndex + 1;
+      $this.cache.navigationSelected = 'preventive maintenance';
     });
   }
   renderMaintenanceEvents(...args) {
