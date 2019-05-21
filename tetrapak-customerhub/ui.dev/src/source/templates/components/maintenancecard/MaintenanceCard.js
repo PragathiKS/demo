@@ -18,7 +18,7 @@ function _trackAnalytics() {
   const analyticsData = {
     linkType: 'internal',
     linkSection: 'dashboard',
-    linkName: 'maintenanceListItem',
+    linkName: 'maintenance list item',
     linkParentTitle: maintenanceHeading
       ? maintenanceHeading.toLowerCase()
       : 'maintenance service events'
