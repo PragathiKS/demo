@@ -1,6 +1,6 @@
 
 pipeline {
-        agent any
+        agent { label "master" } 
   
 /* triggers {
           cron('30 6 * * *')
@@ -48,10 +48,9 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
             }
         }  
 
-               stage ('Build') {
+               stage ('Build Commons') {
                         steps {
-						
-						script {
+					
                            script {
 						
 					          if (params.Build_Commons) 
@@ -294,7 +293,7 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
       body: '''${DEFAULT_CONTENT}''',
 
 to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com; rajeev.duggal@publicissapient.com; tushar.tushar@publicissapient.com'
-} 
+}
 */
 
  always {
@@ -302,6 +301,6 @@ to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; ab
 	build 'Tetra-Splunk-All-Tools'
     }
 
-} 
+}
 
 }
