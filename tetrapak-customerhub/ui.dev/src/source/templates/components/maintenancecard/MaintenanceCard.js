@@ -12,17 +12,19 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  * Fire analytics on click of
  * maintenance card event
  */
-function _trackAnalytics() {
-  const { maintenanceHeading } = this.cache.i18nKeys;
-
+function _trackAnalytics(name, type) {
   const analyticsData = {
     linkType: 'internal',
-    linkSection: 'dashboard',
-    linkName: 'maintenance list item',
-    linkParentTitle: maintenanceHeading
-      ? maintenanceHeading.toLowerCase()
-      : 'maintenance service events'
+    linkSection: 'dashboard'
   };
+
+  if (name === 'email' || name === 'phone') {
+    analyticsData.linkParentTitle = `contact-${type}`;
+    analyticsData.linkName = name;
+  } else {
+    analyticsData.linkParentTitle = name;
+    analyticsData.linkName = 'maintenance list item';
+  }
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
@@ -89,14 +91,25 @@ class MaintenanceCard {
   }
   bindEvents() {
     const $this = this;
-    this.root.on('click', '.js-maintenance-card__event', function () {
-      let detailTargetEle = $(this).data('target');
-      $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
-      $this.trackAnalytics();
-    });
+    this.root
+      .on('click', '.js-maintenance-card__event', function () {
+        let detailTargetEle = $(this).data('target');
+        const maintenanceHeading = $this.cache.i18nKeys.maintenanceHeading
+          ? $this.cache.i18nKeys.maintenanceHeading.toLowerCase()
+          : 'maintenance service events';
+
+        $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
+        $this.trackAnalytics(maintenanceHeading);
+      })
+      .on('click', '.js-maintenance-card__contact-mail', function () {
+        $this.trackAnalytics('email', $(this).data('type').toLowerCase());
+      })
+      .on('click', '.js-maintenance-card__contact-phone', function () {
+        $this.trackAnalytics('phone', $(this).data('type').toLowerCase());
+      });
   }
   renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);
-  trackAnalytics = () => _trackAnalytics.call(this);
+  trackAnalytics = (name, type) => _trackAnalytics.call(this, name, type);
   init() {
     /* Mandatory method */
     this.initCache();

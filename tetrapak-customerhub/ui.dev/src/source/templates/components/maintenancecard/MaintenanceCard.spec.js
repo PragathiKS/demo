@@ -57,4 +57,12 @@ describe('MaintenanceCard', function () {
     $('.js-maintenance-card__event').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;
   });
+  it('should call track analytics on click of "contact email" link', function () {
+    $('.js-maintenance-card__contact-mail').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
+  it('should call track analytics on click of "contact phone" link', function () {
+    $('.js-maintenance-card__contact-phone').trigger('click');
+    expect(this.trackAnalyticsSpy.called).to.be.true;
+  });
 });
