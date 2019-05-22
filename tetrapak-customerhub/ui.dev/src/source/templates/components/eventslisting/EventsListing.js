@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_MAINTENANCE_EVENTS, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
@@ -11,13 +11,12 @@ function _renderMaintenanceEvents(...eventsData) {
   let lineFilter = '';
   let equipmentFilter = '';
   let selectedFilter = '';
-  let $this = $(this);
-
-  const [cache, trackAnalytics, onPageLoad] = eventsData;
+  const [cache, trackAnalytics, onPageLoad, skip] = eventsData;
 
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
   };
+  const $this = this.root.parents('.js-maintenance');
   const $monthsSelector = $this.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
   const $todaySelector = $this.find('.is-today');
   let fromDate;
@@ -47,6 +46,9 @@ function _renderMaintenanceEvents(...eventsData) {
     data.linenumber = linenumber;
     lineFilter = 'line/area';
   }
+  if (skip) {
+    data.skip = skip;
+  }
 
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
@@ -61,7 +63,6 @@ function _renderMaintenanceEvents(...eventsData) {
   if (toDate) {
     data['to-date'] = toDate;
   }
-
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
       url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
@@ -73,15 +74,21 @@ function _renderMaintenanceEvents(...eventsData) {
       cache: true,
       data: data
     }).done((data) => {
-      if (!data) {
-        cache.isEventDataError = true;
-      }
-      else {
-        if (data.events.length === 0) {
-          cache.isEventNoData = true;
+      if (!data.isError && data.totalRecordsForQuery > NO_OF_EVENTS_PER_PAGE) {
+        let currentPage = 1;
+        let totalPages = Math.ceil((+data.totalRecordsForQuery) / NO_OF_EVENTS_PER_PAGE);
+        if (skip) {
+          currentPage = (skip / NO_OF_EVENTS_PER_PAGE) + 1;
         }
-        cache.eventsData = data;
+        $this.find('.js-pagination').trigger('eventslisting.paginate', [{
+          currentPage,
+          totalPages
+        }]);
       }
+      if (data.events.length === 0) {
+        cache.isEventNoData = true;
+      }
+      cache.eventsData = data;
       render.fn({
         template: 'eventsListing',
         target: '.js-maintenance__events',
@@ -94,6 +101,13 @@ function _renderMaintenanceEvents(...eventsData) {
           trackAnalytics(name);
         }
       });
+    }).fail(() => {
+      cache.isEventDataError = true;
+      render.fn({
+        template: 'eventsListing',
+        target: '.js-maintenance__events',
+        data: cache
+      });
     });
   });
 }
@@ -103,10 +117,23 @@ class EventsListing {
   }
 
   bindEvents() {
-    this.root.parents('.js-maintenance').on('renderMaintenance', this.renderMaintenanceEvents);
+    const $this = this;
+    this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
+    this.root.parents('.js-maintenance').find('.js-pagination').on('eventslisting.pagenav', (...args) => {
+      const [, data] = args;
+      const skip = data.pageIndex * NO_OF_EVENTS_PER_PAGE;
+      $this.reRenderMaintenanceEvents(skip);
+      $this.cache.currentPageIndex = data.pageIndex + 1;
+      $this.cache.navigationSelected = 'preventive maintenance';
+    });
   }
   renderMaintenanceEvents(...args) {
-    return _renderMaintenanceEvents.apply(this, args.slice(1));
+    let $this = args[0].data;
+    [, $this.cache, $this.trackAnalytics] = args;
+    return _renderMaintenanceEvents.apply($this, args.slice(1));
+  }
+  reRenderMaintenanceEvents(skip) {
+    return _renderMaintenanceEvents.apply(this, [this.cache, this.trackAnalytics, '', skip]);
   }
   init() {
     this.bindEvents();

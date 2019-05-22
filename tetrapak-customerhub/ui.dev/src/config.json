@@ -173,7 +173,8 @@
         "source/templates/components/tabs/"
       ],
       "dashboard": [
-        "source/templates/components/orderingcard/"
+        "source/templates/components/orderingcard/",
+        "source/templates/components/maintenancecard/"
       ],
       "orders": [
         "source/templates/components/ordersearch/",
