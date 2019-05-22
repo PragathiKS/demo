@@ -74,7 +74,7 @@ function _renderMaintenanceEvents(...eventsData) {
       cache: true,
       data: data
     }).done((data) => {
-      if (!data.isError && data.totalRecordsForQuery) {
+      if (!data.isError && data.totalRecordsForQuery > NO_OF_EVENTS_PER_PAGE) {
         let currentPage = 1;
         let totalPages = Math.ceil((+data.totalRecordsForQuery) / NO_OF_EVENTS_PER_PAGE);
         if (skip) {
@@ -85,15 +85,10 @@ function _renderMaintenanceEvents(...eventsData) {
           totalPages
         }]);
       }
-      if (!data) {
-        cache.isEventDataError = true;
+      if (data.events.length === 0) {
+        cache.isEventNoData = true;
       }
-      else {
-        if (data.events.length === 0) {
-          cache.isEventNoData = true;
-        }
-        cache.eventsData = data;
-      }
+      cache.eventsData = data;
       render.fn({
         template: 'eventsListing',
         target: '.js-maintenance__events',
@@ -105,6 +100,13 @@ function _renderMaintenanceEvents(...eventsData) {
             cache.navigationSelected : 'maintenance tab selection';
           trackAnalytics(name);
         }
+      });
+    }).fail(() => {
+      cache.isEventDataError = true;
+      render.fn({
+        template: 'eventsListing',
+        target: '.js-maintenance__events',
+        data: cache
       });
     });
   });
