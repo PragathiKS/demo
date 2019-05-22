@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date; 
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,8 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePageModel extends BasePageModel {
 
@@ -16,7 +19,7 @@ public class ArticlePageModel extends BasePageModel {
 
 	private String articleTitle;
 	private Boolean showArticleDate;
-	private Date articleDate;
+	private String articleDate;
 	private String articleImagePath;
 	private String imageAltTextI18n;
 
@@ -34,9 +37,16 @@ public class ArticlePageModel extends BasePageModel {
 		jcrMap = super.getPageContent().getJcrMap();
 
 		if (jcrMap != null) {
-			articleTitle = jcrMap.get("articleTitle", String.class);
+			articleTitle = jcrMap.get("articleTitle", String.class) + " -Test";
 			showArticleDate = jcrMap.get("showArticleDate", false);
-			articleDate = jcrMap.get("articleDate", Date.class);
+			
+			Date date = jcrMap.get("articleDate", Date.class);
+			if (date == null) {
+				date = getPageContent().getCreatedOn();
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				articleDate = simpleDateFormat.format(date);
+			} 
+			
 			articleImagePath = jcrMap.get("articleImagePath", String.class);
 			imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
 
@@ -61,12 +71,12 @@ public class ArticlePageModel extends BasePageModel {
 		return showArticleDate;
 	}
 
-	public Date getArticleDate() {
+	public String getArticleDate() {
 		return articleDate;
 	}
 
 	public String getArticleImagePath() {
-		return articleImagePath;
+		return LinkUtils.sanitizeLink(articleImagePath);
 	}
 
 	public String getImageAltTextI18n() {
@@ -78,7 +88,7 @@ public class ArticlePageModel extends BasePageModel {
 	}
 
 	public String getThumbnailImagePath() {
-		return thumbnailImagePath;
+		return LinkUtils.sanitizeLink(thumbnailImagePath);
 	}
 
 	public String getStickyNavTitle() {
