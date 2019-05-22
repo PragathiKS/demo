@@ -66,11 +66,9 @@ class ListContentImage {
 
       // set active class to Tab Menu List Item
       $tabMenuItemLink.removeClass( 'active' );
+      $tabMenuItem.removeClass( 'active' );
       $this.addClass( 'active' );
-
-      // set no-border class for styling the Tab Menu List Item next sibling
-      $tabMenuItemLink.removeClass( 'no-border' );
-      $this.parent().next().children('.pw-listContentImage__tabMenuListItem__link').addClass( 'no-border' );
+      $this.closest('li').addClass( 'active' );
 
       // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
       $tabContent.removeClass( 'active' );
