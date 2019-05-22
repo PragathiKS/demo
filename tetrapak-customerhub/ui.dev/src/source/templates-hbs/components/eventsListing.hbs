@@ -1,8 +1,11 @@
 <h3 class="tp-maintenance-events__heading">{{i18n key=i18nKeys.eventsHeading}}</h3>
 {{#if isEventDataError}}
    <div class="tp-card">
-        <i class="icon-Info"></i>
-        <span class="tp-maintenance-events__no-data">{{i18n key=i18nKeys.errorMsg}}</span>
+        {{#if i18nKeys.errorMsg}}
+            {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+        {{else}}
+            {{> atoms/error/error error=true message="cuhu.error.message"}}
+        {{/if}}
     </div>
 {{else}}
     {{#if isEventNoData}}
@@ -13,7 +16,7 @@
     {{else}}
         {{#each eventsData.events}}
             <div class="tp-card tp-maintenance-events__wrapper">
-                <h4 class="tp-maintenance-events__event-heading">{{type}}</h4>
+                <h4 class="tp-maintenance-events__event-heading">{{title}} {{plannedStart}}</h4>
                 <div class="tp-maintenance-events__event-detail-wrapper">
                     <div class="tp-maintenance-events__event-detail-left-container float-lg-left">
                         {{> components/infoPair baseClass="left" label=../i18nKeys.statusLabel data=status }}

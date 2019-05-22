@@ -10,7 +10,6 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { getDatesBetweenDateRange } from '../../../scripts/utils/dateUtils';
 import moment from 'moment';
 
-
 /**
  * Fire analytics on click of
  * filters, contact and calender
@@ -21,7 +20,8 @@ function _trackAnalytics(name, type) {
     linkSection: 'installed equipment-maintenance',
     linkName: name
   };
-  const { selectedFilter, eventsData } = this.cache;
+  const { selectedFilter, eventsData, currentPageIndex } = this.cache;
+  this.cache.navigationSelected = null;
 
   switch (name) {
     case 'email':
@@ -40,6 +40,11 @@ function _trackAnalytics(name, type) {
       analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
       analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
+      break;
+    }
+    case 'preventive maintenance': {
+      analyticsData.linkParentTitle = 'maintenance events';
+      analyticsData.maintenanceEventPagination = currentPageIndex;
       break;
     }
     default: {
@@ -195,9 +200,8 @@ function _renderMaintenanceFilters() {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
         $this.renderMaintenanceContact();
-        this.renderCalendar();
+        this.renderCalendar(true);
         $this.renderCalendarEventsDot();
-        $this.triggerMaintenanceEvents(true);
       }
     });
   });
@@ -286,14 +290,14 @@ class MaintenanceFiltering {
     this.root
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
-        this.triggerMaintenanceEvents();
+        this.renderCalendar();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
-        this.triggerMaintenanceEvents();
+        this.renderCalendar();
       })
       .on('change', '.js-maintenance-filtering__equipment', () => {
-        this.triggerMaintenanceEvents();
+        this.renderCalendar();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
         self.trackAnalytics('email', $(this).data('type').toLowerCase());
@@ -303,7 +307,7 @@ class MaintenanceFiltering {
       })
       .on('click', '.js-maintenance-filtering__calendar-wrapper .js-calendar-nav', this, this.navigateCalendar);
   }
-  renderCalendar() {
+  renderCalendar(pageLoad) {
     const $this = this;
     render.fn({
       template: 'maintenanceCalendar',
@@ -335,6 +339,7 @@ class MaintenanceFiltering {
         }
       });
       this.wrapCalendar();
+      this.triggerMaintenanceEvents(pageLoad);
     });
 
   }
