@@ -20,7 +20,7 @@
 					<subheading jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter SubHeading i18 Key"
-						fieldLabel=" SubHeading i18 Key" name="./subHeading"
+						fieldLabel="SubHeading i18 Key" name="./subHeading"
 						required="true" />
 					<viewcontactbtntext
 						jcr:primaryType="nt:unstructured"
