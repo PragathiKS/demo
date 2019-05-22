@@ -148,6 +148,20 @@
                             </list>
                         </items>
                     </column2>
+					<noData
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter No Data i18 key"
+                            fieldLabel="No Data i18 key"
+                            required="true"
+                            name="./noDataI18n"/>
+                    <dataError
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Data Error i18 key"
+                            fieldLabel="Data Error i18 key"
+                            required="true"
+                            name="./dataErrorI18n"/>
                 </items>
             </tabs>
         </items>

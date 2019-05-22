@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -12,30 +14,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Model class for Maintenance Filtering component
+ * Model class for Maintenance Card component
+ * 
+ * @author ruhsharm
  *
- * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MaintenanceModel {
+public class MaintenanceCardModel {
 
     @Self
     private Resource resource;
 
     @Inject
-    private String siteFilterLabel;
-    @Inject
-    private String lineFilterLabel;
-    @Inject
-    private String equipmentFilterLabel;
-    @Inject
-    private String allOptionText;
+    private String maintenanceHeading;
     @Inject
     private String contactsHeading;
-    @Inject
-    private String scheduleHeading;
-    @Inject
-    private String eventsHeading;
     @Inject
     private String statusLabel;
     @Inject
@@ -47,9 +40,7 @@ public class MaintenanceModel {
     @Inject
     private String plannedFinishedLabel;
     @Inject
-    private String lineLabel;
-    @Inject
-    private String equipmentLabel;
+    private String viewAllText;
     @Inject
     private String serviceOrderLabel;
     @Inject
@@ -59,7 +50,7 @@ public class MaintenanceModel {
     @Inject
     private String errorMsg;
     @Inject
-    private String noEventMsg;
+    private String viewAllLink;
 
     private String i18nKeys;
 
@@ -70,25 +61,19 @@ public class MaintenanceModel {
     @PostConstruct
     protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<String, Object>();
-        i18KeyMap.put("siteFilterLabel", getSiteFilterLabel());
-        i18KeyMap.put("lineFilterLabel", getLineFilterLabel());
-        i18KeyMap.put("equipmentFilterLabel", getEquipmentFilterLabel());
-        i18KeyMap.put("allOptionText", getAllOptionText());
+        i18KeyMap.put("maintenanceHeading", getMaintenanceHeading());
         i18KeyMap.put("contactsHeading", getContactsHeading());
-        i18KeyMap.put("scheduleHeading", getScheduleHeading());
-        i18KeyMap.put("eventsHeading", getEventsHeading());
         i18KeyMap.put("statusLabel", getStatusLabel());
         i18KeyMap.put("serviceAgreementLabel", getServiceAgreementLabel());
         i18KeyMap.put("plannedDurationLabel", getPlannedDurationLabel());
         i18KeyMap.put("plannedStartLabel", getPlannedStartLabel());
         i18KeyMap.put("plannedFinishedLabel", getPlannedFinishedLabel());
-        i18KeyMap.put("lineLabel", getLineLabel());
-        i18KeyMap.put("equipmentLabel", getEquipmentLabel());
+        i18KeyMap.put("viewAllText", getViewAllText());
         i18KeyMap.put("serviceOrderLabel", getServiceOrderLabel());
         i18KeyMap.put("operationShortTextLabel", getOperationShortTextLabel());
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
-        i18KeyMap.put("noEventMsg", getNoEventMsg());
+        i18KeyMap.put("viewAllLink", getViewAllLink());
 
         i18nKeys = new Gson().toJson(i18KeyMap);
     }
@@ -99,80 +84,96 @@ public class MaintenanceModel {
     public String getI18nKeys() {
         return i18nKeys;
     }
-
-    public String getSiteFilterLabel() {
-        return siteFilterLabel;
+    
+    /**
+     * @return the maintenanceHeading
+     */
+    public String getMaintenanceHeading() {
+        return maintenanceHeading;
     }
 
-    public String getLineFilterLabel() {
-        return lineFilterLabel;
+    /**
+     * @return the viewAllText
+     */
+    public String getViewAllText() {
+        return viewAllText;
     }
 
-    public String getEquipmentFilterLabel() {
-        return equipmentFilterLabel;
+    /**
+     * @return the viewAllLink
+     */
+    public String getViewAllLink() {
+        return LinkUtil.getValidLink(resource,viewAllLink);
     }
 
-    public String getAllOptionText() {
-        return allOptionText;
-    }
-
+    /**
+     * @return the contactsHeading
+     */
     public String getContactsHeading() {
         return contactsHeading;
     }
 
-    public String getScheduleHeading() {
-        return scheduleHeading;
-    }
-
-    public String getEventsHeading() {
-        return eventsHeading;
-    }
-
+    /**
+     * @return the statusLabel
+     */
     public String getStatusLabel() {
         return statusLabel;
     }
 
+    /**
+     * @return the serviceAgreementLabel
+     */
     public String getServiceAgreementLabel() {
         return serviceAgreementLabel;
     }
 
+    /**
+     * @return the plannedDurationLabel
+     */
     public String getPlannedDurationLabel() {
         return plannedDurationLabel;
     }
 
+    /**
+     * @return the plannedStartLabel
+     */
     public String getPlannedStartLabel() {
         return plannedStartLabel;
     }
 
+    /**
+     * @return the plannedFinishedLabel
+     */
     public String getPlannedFinishedLabel() {
         return plannedFinishedLabel;
     }
 
-    public String getLineLabel() {
-        return lineLabel;
-    }
-
-    public String getEquipmentLabel() {
-        return equipmentLabel;
-    }
-
+    /**
+     * @return the serviceOrderLabel
+     */
     public String getServiceOrderLabel() {
         return serviceOrderLabel;
     }
 
+    /**
+     * @return the operationShortTextLabel
+     */
     public String getOperationShortTextLabel() {
         return operationShortTextLabel;
     }
 
+    /**
+     * @return the noDataMsg
+     */
     public String getNoDataMsg() {
         return noDataMsg;
     }
 
+    /**
+     * @return the errorMsg
+     */
     public String getErrorMsg() {
         return errorMsg;
     }
-
-    public String getNoEventMsg() {
-        return noEventMsg;
-    }
+    
 }

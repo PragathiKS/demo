@@ -64,6 +64,12 @@ public class OrderSearchModel {
 
     @Inject
     private String orderDetailLink;
+    
+    @Inject
+    private String noDataI18n;
+
+    @Inject
+    private String dataErrorI18n;
 
     private Set<String> enabledFields;
 
@@ -94,7 +100,9 @@ public class OrderSearchModel {
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("enabledFields", enabledFields);
-        i18KeyMap.put("orderDetailLink", getOrderDetailLink());
+        i18KeyMap.put("orderDetailLink", getOrderDetailLink()) ;
+        i18KeyMap.put("noDataI18n", noDataI18n);
+        i18KeyMap.put("dataErrorI18n", dataErrorI18n);
 
 
         Gson gson = new Gson();

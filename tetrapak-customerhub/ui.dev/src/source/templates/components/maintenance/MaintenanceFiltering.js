@@ -10,7 +10,6 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { getDatesBetweenDateRange } from '../../../scripts/utils/dateUtils';
 import moment from 'moment';
 
-
 /**
  * Fire analytics on click of
  * filters, contact and calender
@@ -21,7 +20,8 @@ function _trackAnalytics(name, type) {
     linkSection: 'installed equipment-maintenance',
     linkName: name
   };
-  const { selectedFilter, eventsData } = this.cache;
+  const { selectedFilter, eventsData, currentPageIndex } = this.cache;
+  this.cache.navigationSelected = null;
 
   switch (name) {
     case 'email':
@@ -32,13 +32,19 @@ function _trackAnalytics(name, type) {
     case 'maintenance tab selection': {
       analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceresultscount = eventsData.totalRecordsForQuery;
+      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
     case 'right arrow': {
       analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
+      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
+      break;
+    }
+    case 'preventive maintenance': {
+      analyticsData.linkParentTitle = 'maintenance events';
+      analyticsData.maintenanceEventPagination = currentPageIndex;
       break;
     }
     default: {
