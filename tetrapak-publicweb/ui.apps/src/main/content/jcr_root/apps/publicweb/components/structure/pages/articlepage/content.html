@@ -1,4 +1,4 @@
-<sly data-sly-use.articlePage="com.tetrapak.publicweb.core.models.ArticleItemModel"/>
+<sly data-sly-use.articlePage="com.tetrapak.publicweb.core.models.ArticlePageModel"/>
 <div>
 	<sly data-sly-resource="${'breadcrmb' @ resourceType='publicweb/components/content/breadcrumb'}"/>
 </div>
@@ -6,7 +6,7 @@
   <sly data-sly-test="${articlePage.articleTitle}"
                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                        data-sly-call="${heading.heading_h1_template @ headingText=articlePage.articleTitle}"/>
-  <p>${articlePage.articleDate} - ${articlePage.imageAltTextI18n}</p>
+  <p data-sly-test="${articlePage.showArticleDate}">${articlePage.articleDate}</p>
   <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=articlePage.articleImagePath, altText=articlePage.imageAltTextI18n}" />
   <sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/>
 </div>

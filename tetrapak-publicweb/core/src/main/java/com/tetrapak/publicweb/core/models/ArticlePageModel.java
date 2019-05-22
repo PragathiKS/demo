@@ -37,15 +37,15 @@ public class ArticlePageModel extends BasePageModel {
 		jcrMap = super.getPageContent().getJcrMap();
 
 		if (jcrMap != null) {
-			articleTitle = jcrMap.get("articleTitle", String.class) + " -Test";
+			articleTitle = jcrMap.get("articleTitle", String.class);
 			showArticleDate = jcrMap.get("showArticleDate", false);
 			
 			Date date = jcrMap.get("articleDate", Date.class);
 			if (date == null) {
 				date = getPageContent().getCreatedOn();
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				articleDate = simpleDateFormat.format(date);
 			} 
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			articleDate = simpleDateFormat.format(date);
 			
 			articleImagePath = jcrMap.get("articleImagePath", String.class);
 			imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
