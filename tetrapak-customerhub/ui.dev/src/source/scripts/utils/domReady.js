@@ -16,7 +16,7 @@ export default {
     // Toast error messages
     toast.init();
     // Body events
-    $body.on('click', 'js-prevent-default', (e) => {
+    $body.on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();
     }).on('show.bs.modal', function () {
       $(this).addClass('tp-no-backdrop');
