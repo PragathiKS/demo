@@ -84,6 +84,19 @@
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"lineFilterLabel": "Line/Area",
 					"sling:resourceType": "customerhub/components/content/maintenancecard"
+				},
+				"contactcard": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"heading": "Contacts",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
+					"subHeading": "Get in touch with right people",
+					"viewContactBtnText": "View contacts",
+					"imagePath": "/content/dam/customerhub/cow-blue-background.png",
+                    "imageAltText": "Cow Blue Background",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contactcard"
 				}
 			}
 		}
