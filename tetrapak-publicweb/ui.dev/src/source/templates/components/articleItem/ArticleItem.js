@@ -19,11 +19,9 @@ class ArticleItem {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = article.getAttribute('data-articleItem-linkType');
         this.cache.digitalData.linkClick.linkSection = 'articleItem';
+        this.cache.digitalData.linkClick.linkParentTitle = article.getAttribute('data-articleItem-parentTitle');
         if (articleContainer && articleContainer.getAttribute('data-container-title') !== null) {
-          this.cache.digitalData.linkClick.linkParentTitle = articleContainer.getAttribute('data-container-title');
-          this.cache.digitalData.linkClick.contentName = article.getAttribute('data-articleItem-contentName');
-        } else {
-          this.cache.digitalData.linkClick.linkParentTitle = article.getAttribute('data-articleItem-contentName');
+          this.cache.digitalData.linkClick.contentName = articleContainer.getAttribute('data-container-title');
         }
         this.cache.digitalData.linkClick.linkName = article.getAttribute('data-articleItem-linkName');
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
