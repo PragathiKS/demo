@@ -22,6 +22,8 @@ class ArticleItem {
         this.cache.digitalData.linkClick.linkParentTitle = article.getAttribute('data-articleItem-parentTitle');
         if (articleContainer && articleContainer.getAttribute('data-container-title') !== null) {
           this.cache.digitalData.linkClick.contentName = articleContainer.getAttribute('data-container-title');
+          let listPosition =  [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
+          this.cache.digitalData.linkClick.linkListPos = listPosition;
         }
         this.cache.digitalData.linkClick.linkName = article.getAttribute('data-articleItem-linkName');
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
