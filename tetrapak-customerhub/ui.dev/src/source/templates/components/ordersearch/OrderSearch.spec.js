@@ -50,6 +50,9 @@ describe('OrderSearch', function () {
         'orderdate-to': 'YYYY-MM-DD'
       }
     );
+    $(document).on('submit', '.js-prevent-default', (e) => {
+      e.preventDefault();
+    });
     this.orderSearch.init();
   });
   after(function () {

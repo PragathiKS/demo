@@ -41,6 +41,9 @@ describe('FinancialStatement', function () {
         token_type: "BearerToken"
       }
     });
+    $(document).on('submit', '.js-prevent-default', (e) => {
+      e.preventDefault();
+    });
     this.financialstatement.init();
   });
   after(function () {
