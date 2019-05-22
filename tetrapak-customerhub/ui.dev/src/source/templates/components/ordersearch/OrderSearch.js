@@ -86,20 +86,12 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { orderDetailLink, disabledFields } = this.cache.config;
-  let keys = [];
+  const { orderDetailLink, enabledFields } = this.cache.config;
   if (Array.isArray(data.orders)) {
-    data.orders = data.orders.map(order => {
-      keys = (keys.length === 0) ? Object.keys(order) : keys;
-      if (Array.isArray(disabledFields)) {
-        keys = keys.filter(key => !disabledFields.includes(key));
-      }
-      return _tableSort.call(this, order, keys, orderDetailLink);
-    });
-    data.orderHeadings = keys.map(key => ({
+    data.orders = data.orders.map(order => _tableSort.call(this, order, enabledFields, orderDetailLink));
+    data.orderHeadings = enabledFields.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
   }
 }

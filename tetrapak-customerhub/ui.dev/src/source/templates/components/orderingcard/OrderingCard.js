@@ -26,25 +26,6 @@ function _trackAnalytics() {
 }
 
 /**
- * Caches available keys from data
- * @param {string[]} availableKeys Available keys
- * @param {string[]} orderKeys Order keys
- */
-function _setAvailableKeys(availableKeys, orderKeys) {
-  const { disabledFieldList } = this.cache;
-  if (availableKeys.length === 0) {
-    orderKeys.forEach(key => {
-      if (
-        !disabledFieldList.includes(key)
-        && !availableKeys.includes(key)
-      ) {
-        availableKeys.push(key);
-      }
-    });
-  }
-}
-
-/**
  * Returns formatted contacts HTML
  * @param {object[]} contacts List of contacts
  */
@@ -91,35 +72,40 @@ function _tableSort(order, activeKeys, orderDetailLink, viewAllOrders) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields, disabledFieldList } = this.cache;
-  this.cache.availableKeys = availableKeys;
+  const {
+    i18nKeys,
+    savedPreferences,
+    viewAllOrders,
+    orderDetailLink,
+    defaultFields,
+    enabledFieldList
+  } = this.cache;
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
-    let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
-    activeKeys = activeKeys.filter(key => key && !disabledFieldList.includes(key));
-    data.orders = data.orders.map(order => {
-      const orderKeys = Object.keys(order);
-      if (availableKeys.length === 0) {
-        _setAvailableKeys.call(this, availableKeys, orderKeys);
+    const preferenceList = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
+    const defaultFieldList = typeof defaultFields === 'string' ? defaultFields.split(',') : [];
+    defaultFieldList.forEach(key => {
+      if (!preferenceList.includes(key)) {
+        preferenceList.push(key);
       }
-      if (activeKeys.length === 0) {
-        activeKeys.push(...orderKeys);
-      }
-      return _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders);
     });
+    const activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
+    data.orders = data.orders.map(order => _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders));
     data.orderHeadings = activeKeys.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
-    data.settingOptions = availableKeys.map(key => ({
-      key,
-      i18nKey: `cuhu.ordering.${key}`,
-      isChecked: activeKeys.includes(key),
-      isMandatory: defaultFields.split(',').includes(key)
-    }));
+    data.settingOptions = enabledFieldList.map(key => {
+      const isMandatory = defaultFieldList.includes(key);
+      return {
+        key,
+        i18nKey: `cuhu.ordering.${key}`,
+        isChecked: (isMandatory || activeKeys.includes(key)),
+        isMandatory
+      };
+    });
   }
   data.viewAllOrders = viewAllOrders;
   return data;
@@ -150,7 +136,8 @@ function _stopEvtProp(e) {
 
 function _saveSettings() {
   // Get selected preferences
-  const selectedFields = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+  const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
+  let selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
     return $(el).val();
   });
   ajaxWrapper.getXhrObj({
@@ -188,10 +175,10 @@ class OrderingCard {
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
     this.cache.defaultFields = $('#ordDefaultFields').val();
-    this.cache.disabledFields = $('#ordDisabledFields').val();
+    this.cache.enabledFields = $('#ordEnabledFields').val();
     this.cache.disabledFieldList = [];
-    if (typeof this.cache.disabledFields === 'string') {
-      this.cache.disabledFieldList = this.cache.disabledFields.split(',');
+    if (typeof this.cache.enabledFields === 'string') {
+      this.cache.enabledFieldList = this.cache.enabledFields.split(',');
     }
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
