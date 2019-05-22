@@ -293,7 +293,37 @@
                   "preferencesBtnI18n": "pref button",
                   "jcr:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
                   "preferencesDescriptionI18n": "pref desc",
-                  "sling:resourceType": "customerhub/components/content/orderingcard"
+                  "sling:resourceType": "customerhub/components/content/orderingcard",
+                  "defaultFields": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "item0": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "orderNumber"
+                     },
+                     "item1": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "poNumber"
+                     },
+                     "item2": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "orderDate"
+                     }
+                  },
+                  "enabledFields": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "item0": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "contact"
+                     },
+                     "item1": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "customerNumber"
+                     },
+                     "item2": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "salesOrg"
+                     }
+                  }
                }
             }
          }
@@ -350,7 +380,30 @@
                      "searchTermPlaceholderI18n": "Purchase order No. / Tetra Pak order No.",
                      "deliveryAddressLabelI18n": "Delivery Address Label",
                      "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
-                     "sling:resourceType": "customerhub/components/content/ordersearch"
+                     "sling:resourceType": "customerhub/components/content/ordersearch",
+                     "enabledFields": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "contact"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "customerNumber"
+                        },
+                        "item2": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "salesOrg"
+                        },
+                        "item3": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "requestedDelivery"
+                        },
+                        "item4": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "ETA"
+                        }
+                     }
                   }
                }
             }
