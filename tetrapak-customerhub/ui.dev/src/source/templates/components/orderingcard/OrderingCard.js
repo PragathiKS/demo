@@ -12,16 +12,44 @@ import { apiHost } from '../../../scripts/common/common';
 /**
  * Fire analytics on search submit
  */
-function _trackAnalytics() {
+function _trackAnalytics(type) {
   const { title = '' } = this.cache.i18nKeys;
+  let orderCardSettings = [];
+  let orderInput = this.root.find('input[type="checkbox"]');
+
+  $.each(orderInput, function () {
+    if ($(this).is(':checked')) {
+      orderCardSettings.push($(this).parent().text().trim().toLowerCase());
+    } else {
+      orderCardSettings.push('');
+    }
+  });
+
   let ob = {
-    linkType: 'internal',
-    linkSection: 'dashboard',
-    linkParentTitle: title.toLowerCase(),
-    linkName: 'order list item'
+    linkType: 'internal'
   };
+
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
+
+  switch (type) {
+    case 'orderCardList': {
+      ob.linkSection = 'dashboard';
+      ob.linkParentTitle = title.toLowerCase();
+      ob.linkName = 'order list item';
+      break;
+    }
+    case 'orderSettings': {
+      ob.linkSection = 'order settings';
+      ob.linkParentTitle = 'order settings overlay';
+      ob.linkName = 'save settings';
+      ob.linkselection = orderCardSettings.join('|');
+      break;
+    }
+    default: {
+      break;
+    }
+  }
   trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
@@ -193,11 +221,14 @@ class OrderingCard {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
-      .on('click', '.js-ordering-card__modal-save', this.saveSettings)
+      .on('click', '.js-ordering-card__modal-save', () => {
+        this.saveSettings();
+        this.trackAnalytics('orderSettings');
+      })
       .on('click', '.js-ordering-card__row', this, function (e) {
         const $this = e.data;
         $this.openOrderDetails.apply(this, arguments);
-        $this.trackAnalytics();
+        $this.trackAnalytics('orderCardList');
       })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
@@ -245,7 +276,7 @@ class OrderingCard {
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
   stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
-  trackAnalytics = () => _trackAnalytics.call(this);
+  trackAnalytics = (type) => _trackAnalytics.call(this, type);
   openOrderDetails(...args) {
     return _openOrderDetails.apply(this, args);
   }

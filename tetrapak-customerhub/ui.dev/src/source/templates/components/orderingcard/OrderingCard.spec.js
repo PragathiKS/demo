@@ -89,6 +89,10 @@ describe('OrderingCard', function () {
     $('.js-ordering-card__row').trigger('click');
     expect(this.orderingCard.trackAnalytics.called).to.be.true;
   });
+  it('should set Analytics tags on click of order settings', function () {
+    $('.js-ordering-card__modal-save').trigger('click');
+    expect(this.orderingCard.trackAnalytics.called).to.be.true;
+  });
   it('should open default calling or email app depending upon device', function () {
     const tableLink = $('.js-ordering-card__row').first().find('a').first();
     if (tableLink.length) {
