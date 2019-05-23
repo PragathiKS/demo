@@ -24,61 +24,41 @@ public class ContactCardModel {
     private Resource resource;
 
     @Inject
-    private String heading;
+    private String headingI18n;
     
     @Inject
-    private String subHeading;
+    private String subHeadingI18n;
     
     @Inject
-    private String viewContactBtnText;
+    private String viewContactBtnTextI18n;
     
     @Inject
     private String imagePath;
 
     @Inject
-    private String imageAltText;
+    private String imageAltTextI18n;
         
-    private String i18nKeys;
-    
+
     
     /**
-     * init method
-     * @return config 
+     * @return the headingI18n
      */
-    @PostConstruct
-    protected void init() {
-   
-        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
-        i18KeyMap.put("heading", getHeading());
-        i18KeyMap.put("subHeading", getSubHeading());
-        i18KeyMap.put("viewcontactbtntext", getViewContactBtnText());
-        i18KeyMap.put("imagePath", getImagePath());
-        i18KeyMap.put("imageAltText", getImageAltText());
-        
-        Gson gson = new Gson();
-        i18nKeys = gson.toJson(i18KeyMap);
-       
-    }
-    
-    /**
-     * @return the heading
-     */
-    public String getHeading() {
-        return heading;
+    public String getHeadingI18n() {
+        return headingI18n;
     }
 
     /**
-     * @return the subHeading
+     * @return the subHeadingI18n
      */
-    public String getSubHeading() {
-        return subHeading;
+    public String getSubHeadingI18n() {
+        return subHeadingI18n;
     }
 
     /**
-     * @return the viewContactBtnText
+     * @return the viewContactBtnTextI18n
      */
-    public String getViewContactBtnText() {
-        return viewContactBtnText;
+    public String getViewContactBtnTextI18n() {
+        return viewContactBtnTextI18n;
     }
 
     /**
@@ -89,17 +69,10 @@ public class ContactCardModel {
     }
 
     /**
-     * @return the altText
+     * @return the imageAltTextI18n
      */
-    public String getImageAltText() {
-        return imageAltText;
-    }
-    
-    /**
-     * @return the i18nKeys
-     */
-    public String getI18nKeys() {
-        return i18nKeys;
+    public String getImageAltTextI18n() {
+        return imageAltTextI18n;
     }
 
 }
