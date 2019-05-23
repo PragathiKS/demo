@@ -18,9 +18,11 @@ function _trackAnalytics(type) {
   let $orderInput = this.root.find('input[type="checkbox"]');
 
   let orderCardSettings = $.map($orderInput, function (el) {
-    const inputBox = $(el);
-    if (inputBox.is(':checked')) {
-      return inputBox.siblings('span').text().trim().toLowerCase();
+    const $inputBox = $(el);
+    if ($inputBox.is(':checked')) {
+      if ($inputBox.siblings('.js-ordering-card__text')) {
+        return $inputBox.siblings('.js-ordering-card__text').text().trim().toLowerCase();
+      }
     } else {
       return '';
     }
