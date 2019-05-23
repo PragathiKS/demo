@@ -214,10 +214,7 @@ td {
 
         @media #{$desktop} {
             @include margin-top(112px);
-
-            &.offset-lg-2 {
-                margin-left: 15%;
-            }
+            padding-left: 17.5rem;
         }
 
         &.col-lg-2 {
