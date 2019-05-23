@@ -99,7 +99,7 @@
                             required="true"/>
                     <viewAllLink
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                             fieldDescription="Enter View All Link i18n key"
                             fieldLabel="View All Link i18n key"
                             name="./viewAllLink"
