@@ -1,5 +1,9 @@
 <sly data-sly-template.introscreen_template="${@ data, flag}">
     <div class="modal tp-modal modal--intro-screen js-intro-modal fade" id="into-modal" data-module="IntroScreen">
+        <input type="hidden" name="onBoardingStatusURL" id="onBoardingStatusURL" value="${data.onBoardingStatusURL}" />
+        <input type="hidden" name="popupErrorMessage" id="popupErrorMessage" value="${data.errorMsgI18n}" />
+        <input type="hidden" name="popupCloseMessage" id="popupCloseMessage" value="${data.closeBtnI18n}" />
+        <input type="hidden" name="" />
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
             <div class="modal-content">
                 <!-- Modal body -->
