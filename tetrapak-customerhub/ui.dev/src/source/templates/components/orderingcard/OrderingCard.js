@@ -14,15 +14,15 @@ import { apiHost } from '../../../scripts/common/common';
  */
 function _trackAnalytics(type) {
   const { title = '' } = this.cache.i18nKeys;
-  let orderCardSettings = [];
+
   let $orderInput = this.root.find('input[type="checkbox"]');
 
-  $.map($orderInput, function (el) {
+  let orderCardSettings = $.map($orderInput, function (el) {
     const inputBox = $(el);
     if (inputBox.is(':checked')) {
-      return orderCardSettings.push(inputBox.siblings('span').text().trim().toLowerCase());
+      return inputBox.siblings('span').text().trim().toLowerCase();
     } else {
-      return orderCardSettings.push('');
+      return '';
     }
   });
 
