@@ -14,7 +14,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePageModel extends BasePageModel {
-
+	
 	private ValueMap jcrMap;
 
 	private String articleTitle;
@@ -28,16 +28,16 @@ public class ArticlePageModel extends BasePageModel {
 	private String stickyNavTitle;
 	private String stickyNavDescription;
 	private String navLinkText;
+	private String navLinkPath;
 	private String navLinkTarget;
 
 	@PostConstruct
 	public void init() {
 		super.init();
-
 		jcrMap = super.getPageContent().getJcrMap();
 
 		if (jcrMap != null) {
-			articleTitle = jcrMap.get("articleTitle", String.class);
+			articleTitle = jcrMap.get("jcr:title", String.class);
 			showArticleDate = jcrMap.get("showArticleDate", false);
 			
 			Date date = jcrMap.get("articleDate", Date.class);
@@ -55,6 +55,7 @@ public class ArticlePageModel extends BasePageModel {
 			stickyNavTitle = jcrMap.get("stickyNavTitle", String.class);
 			stickyNavDescription = jcrMap.get("stickyNavDescription", String.class);
 			navLinkText = jcrMap.get("navLinkText", String.class);
+			navLinkPath = jcrMap.get("navLinkPath", String.class);
 			navLinkTarget = jcrMap.get("navLinkTarget", String.class);
 		}
 	}
@@ -101,6 +102,10 @@ public class ArticlePageModel extends BasePageModel {
 
 	public String getNavLinkText() {
 		return navLinkText;
+	}
+	
+	public String getNavLinkPath() {
+		return navLinkPath;
 	}
 
 	public String getNavLinkTarget() {
