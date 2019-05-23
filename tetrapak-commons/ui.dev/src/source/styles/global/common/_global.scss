@@ -214,7 +214,8 @@ td {
 
         @media #{$desktop} {
             @include margin-top(112px);
-            padding-left: 17.5rem;
+            @include padding-left(248px);
+
         }
 
         &.col-lg-2 {
