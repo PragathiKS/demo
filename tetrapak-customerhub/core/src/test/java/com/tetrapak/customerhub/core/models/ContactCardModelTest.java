@@ -38,5 +38,6 @@ public class ContactCardModelTest {
         assertEquals("There should be View contacts button", "View contacts", contactCardModel.getViewContactBtnTextI18n());
         assertEquals("There should be Image Path label", "/content/dam/customerhub/cow-blue-background.png", contactCardModel.getImagePath());
         assertEquals("There should be Image Alt Text", "Cow Blue Background", contactCardModel.getImageAltTextI18n());
+        assertEquals("There should be Image Alt Text", "Contact", contactCardModel.getViewContactBtnRedirectUrl());
     }
 }

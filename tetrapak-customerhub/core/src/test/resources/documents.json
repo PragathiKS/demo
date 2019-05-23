@@ -95,6 +95,7 @@
 					"viewContactBtnTextI18n": "View contacts",
 					"imagePath": "/content/dam/customerhub/cow-blue-background.png",
                     "imageAltTextI18n": "Cow Blue Background",
+                    "viewContactBtnRedirectUrl":"Contact",
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"sling:resourceType": "customerhub/components/content/contactcard"
 				}

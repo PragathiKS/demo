@@ -31,11 +31,19 @@
 					<imagepath jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
 						fieldDescription="Select Image Path" fieldLabel="Image Path"
-						name="./imagePath" rootPath="/content/dam/customerhub" required="true"/>
+						name="./imagePath" rootPath="/content/dam/customerhub"
+						required="true" />
 					<imagealttext jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter alt text for the image"
-						fieldLabel="Image alt text" name="./imageAltTextI18n" required="true"/>
+						fieldLabel="Image alt text" name="./imageAltTextI18n"
+						required="true" />
+					<viewcontactbtnredirecturl
+						jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+						fieldDescription="Select View Contact Button Redirect URL"
+						fieldLabel="View Contact Button Redirect URL"
+						name="./viewContactBtnRedirectUrl" required="true" />
 				</items>
 			</column>
 		</items>

@@ -37,9 +37,11 @@ public class ContactCardModel {
 
     @Inject
     private String imageAltTextI18n;
+    
+    @Inject
+    private String viewContactBtnRedirectUrl;
         
 
-    
     /**
      * @return the headingI18n
      */
@@ -73,6 +75,13 @@ public class ContactCardModel {
      */
     public String getImageAltTextI18n() {
         return imageAltTextI18n;
+    }
+       
+    /**
+     * @return the viewContactBtnRedirectUrl
+     */
+    public String getViewContactBtnRedirectUrl() {
+        return viewContactBtnRedirectUrl;
     }
 
 }
