@@ -1,9 +1,54 @@
 import $ from 'jquery';
+import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_MAINTENANCE_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
 import { apiHost } from '../../../scripts/common/common';
+
+/**
+ * Fetch, Process and Render Documents
+ * @param {object} equipmentData JSON data object for filtered equipments
+ */
+function _renderDocuments(equipmentData) {
+  const allEquipments = equipmentData.options.map((option) => option.serialNo).join(',');
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'documentsFilteringTable',
+      url: {
+        path: `${apiHost}/${API_DOCUMENTS_SEARCH}`,
+        data: {
+          'serial': allEquipments
+        }
+      },
+      target: '.js-documents__equipments',
+      ajaxConfig: {
+        method: ajaxMethods.GET,
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        cache: true,
+        showLoader: true,
+        cancellable: true
+      },
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        } else {
+          $.extend(data, equipmentData);
+          debugger; //eslint-disable-line
+        }
+      }
+    }, (data) => {
+      if (!data.isError && !data.noData) {
+        logger.log(data);
+      }
+    });
+  });
+}
 
 
 /**
@@ -30,16 +75,13 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
   lines.forEach(line => {
     data.equipmentData.options.push(...line.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
+      serialNo: equipment.serialNumber,
       desc: equipment.equipmentName,
       docId: `#document${index}`
     })));
   });
 
-  render.fn({
-    template: 'documentsFilteringTable',
-    data: data.equipmentData,
-    target: '.js-documents__equipments'
-  });
+  this.renderDocuments(data.equipmentData);
 }
 /**
  * Filter the line values
@@ -199,6 +241,7 @@ class Documents {
   renderLineFilters = (data) => _renderLineFilters.call(this, data);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
+  renderDocuments = (data) => _renderDocuments.call(this, data);
   init() {
     /* Mandatory method */
     this.initCache();

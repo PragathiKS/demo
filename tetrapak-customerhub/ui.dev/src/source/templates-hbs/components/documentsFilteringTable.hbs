@@ -2,6 +2,7 @@
 {{#each options}}
     {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-documents__accordion" jsClass="js-documents__accordion" iconClass="icon-Chevron_Up"  data-toggle="collapse" text=desc data-target=docId}}
     <div class="tp-documents__table js-documents__table collapse" id="document{{@index}}">
+        {{i18n key=../i18nKeys.documentTypeLabel}}
         {{> molecules/table/table baseClass="tp-documents__documents" jsClass="js-documents__documents" list=docData headings=docHeadings tableSummary=totalAmount}}
     </div>
 {{/each}}
