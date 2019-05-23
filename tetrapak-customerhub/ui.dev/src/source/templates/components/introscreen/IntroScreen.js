@@ -64,7 +64,8 @@ class IntroScreen {
       this.cache.$introScreenCarousel.slick('slickNext');
     });
 
-    this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+    this.cache.$introScreenCarousel.on('beforeChange', (...args) => {
+      const [, slick, , nextSlide] = args;
       if (slick.$slides.length === nextSlide + 1) {
         this.cache.$carouselNextBtn.addClass('js-get-started-btn');
         this.cache.$carouselNextBtnTxt.text(getI18n(this.root.find('#getStartedBtnI18n').val()));
@@ -97,30 +98,35 @@ class IntroScreen {
       method: ajaxMethods.GET
     }).done(
       (data) => {
-        if (!$.isEmptyObject(data)) {
-          if (!data.isOnboarded) {
-            this.root.modal();
-            this.cache.$introScreenCarousel.slick({
-              dots: true,
-              speed: 500,
-              infinite: false,
-              appendDots: this.root.find('.slider-dots'),
-              prevArrow: false,
-              nextArrow: false,
-              customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
-            });
-          }
-        } else {
-          _renderError(popupErrorMessage, popupCloseMessage);
-        }
+        this.showOnboardingPopup(data, popupErrorMessage, popupCloseMessage);
       }
     ).fail(
       () => {
-        _renderError(popupErrorMessage, popupCloseMessage);
+        this.renderError(popupErrorMessage, popupCloseMessage);
       }
     );
   }
-
+  showOnboardingPopup(data, popupErrorMessage, popupCloseMessage) {
+    if (!$.isEmptyObject(data)) {
+      if (!data.isOnboarded) {
+        this.root.modal();
+        this.cache.$introScreenCarousel.slick({
+          dots: true,
+          speed: 500,
+          infinite: false,
+          appendDots: this.root.find('.slider-dots'),
+          prevArrow: false,
+          nextArrow: false,
+          customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
+        });
+      }
+    } else {
+      this.renderError(popupErrorMessage, popupCloseMessage);
+    }
+  }
+  renderError() {
+    return _renderError.apply(this, arguments);
+  }
   closeCarousel() {
     this.root.modal('hide');
   }

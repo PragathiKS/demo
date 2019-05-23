@@ -7,7 +7,7 @@
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
             <div class="modal-content">
                 <!-- Modal body -->
-                <sly data-sly-test.closeBtnText="#{data.closeBtnI18n @i18n}" />
+                <sly data-sly-test.closeBtnText="${data.closeBtnI18n @i18n}" />
                 <div class="modal-header">
                     <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
                         data-sly-call="${closeButton.closeButton_template @data=data, closeBtnText=closeBtnText, btnClasses='js-close-btn'}" />
