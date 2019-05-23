@@ -16,14 +16,23 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
+/**
+ * 
+ * This Class is responsible for transforming the internal links of the pages
+ * under /content/tetrapak/customerhub/en node with the shortened url based on
+ * the request URL's country and locale
+ * 
+ * @author Swati Lamba
+ *
+ */
 public class CustomLinkTransformer implements Transformer {
 
-	private final Logger log = LoggerFactory.getLogger(CustomLinkTransformer.class);
+	private final Logger LOG = LoggerFactory.getLogger(CustomLinkTransformer.class);
 	private ContentHandler contentHandler;
 	private String language = StringUtils.EMPTY, country = StringUtils.EMPTY;
 
 	public CustomLinkTransformer() {
-		log.info("CustomLinkTransformer create");
+		LOG.debug("CustomLinkTransformer created");
 	}
 
 	@Override
@@ -56,14 +65,14 @@ public class CustomLinkTransformer implements Transformer {
 		String linkUrl = atts.getValue("href");
 
 		AttributesImpl attrNew = new AttributesImpl(atts);
-		if (StringUtils.isNotBlank(linkUrl) && !country.equalsIgnoreCase("content")
-				&& !language.equalsIgnoreCase("tetrapak")) {
+		if (StringUtils.isNotBlank(linkUrl) && !"content".equalsIgnoreCase(country)
+				&& !"tetrapak".equalsIgnoreCase(language)) {
 			Pattern pattern = Pattern.compile("/content/tetrapak/customerhub/en");
 			Matcher matcher = pattern.matcher(linkUrl);
 			if (matcher.find()) {
 				country = country.isEmpty() ? "global" : country;
 				language = language.isEmpty() ? "en" : language;
-				log.info("Transformed url from: {} to: {}", linkUrl, linkUrl.substring(matcher.end()).trim());
+				LOG.info("Transformed url from: {} to: {}", linkUrl, linkUrl.substring(matcher.end()).trim());
 				String changedLinkUrl = "/" + country + "/" + language + "/MyTetraPak"
 						+ linkUrl.substring(matcher.end()).trim();
 				attrNew.removeAttribute("href");
@@ -101,17 +110,19 @@ public class CustomLinkTransformer implements Transformer {
 
 	@Override
 	public void dispose() {
+		LOG.debug("CustomLinkTransformer dispaosed");
+
 	}
 
 	@Override
 	public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
-		log.trace("init");
+		LOG.trace("init");
 		String[] pathArray = context.getRequest().getPathInfo().split("/");
 		if (pathArray.length > 2) {
 			country = pathArray[1];
 			language = pathArray[2];
 		}
-		log.info(context.getRequest().getPathInfo());
+		LOG.info(context.getRequest().getPathInfo());
 	}
 
 	@Override

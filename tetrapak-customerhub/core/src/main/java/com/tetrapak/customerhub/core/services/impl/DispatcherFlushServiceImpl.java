@@ -23,8 +23,15 @@ import com.day.cq.replication.AgentManager;
 import com.tetrapak.customerhub.core.services.DispatcherFlushService;
 
 /**
- * Service to flush the content from Dispatcher Takes handler Fetches Configured
- * Dispatcher_hosts at run time.
+ * This Class is responsible for transforming the internal links of the pages
+ * under /content/tetrapak/customerhub/en node with the shortened url based on
+ * the request URL's country and locale.
+ * 
+ * This service flushes the content from Dispatcher, takes handler and fetches
+ * configured Dispatcher_hosts at run time.
+ * 
+ * "dispflush" named host should be configured the dispatcher's vhost inorder
+ * for this service to work.
  *
  * @author Swati Lamba
  */
@@ -38,6 +45,12 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherFlushServiceImpl.class);
 
+	/**
+	 * This method will flush the cache of Customer Hub pages incase of activation
+	 * of the pages to map and remove the country and locale specific cache
+	 * 
+	 * @param dispatcherHandle
+	 */
 	@Override
 	public void flush(String dispatcherHandle) {
 		HttpClient httpClient = HttpClientBuilder.create().build();
@@ -62,12 +75,21 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
 		}
 	}
 
+	/**
+	 * @param dispatcherHandle
+	 * @param httpClient
+	 */
 	private void flush(String dispatcherHandle, HttpClient httpClient) {
 		for (String dispatcherHostURL : hostArray) {
 			flushDispatcher(httpClient, dispatcherHandle, dispatcherHostURL);
 		}
 	}
 
+	/**
+	 * @param httpClient
+	 * @param dispatcherHandle
+	 * @param dispatcherHostURL
+	 */
 	private void flushDispatcher(HttpClient httpClient, String dispatcherHandle, String dispatcherHostURL) {
 		HttpPost httpPost = new HttpPost();
 		try {

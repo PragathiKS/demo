@@ -8,14 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import com.tetrapak.customerhub.core.transformer.impl.CustomLinkTransformer;
 
-@Component(property = { "pipeline.type=cuhu-link-rewrite" /*"pipeline.mode=global", "service.ranking:Integer=1001" */}, service = { TransformerFactory.class })
+/**
+ * 
+ * This class is used to create a CustomLinkTransformer object from
+ * LinkTransformerFactory having pipeline type as cuhu-link-rewrite
+ * 
+ * @author Swati Lamba
+ *
+ */
+@Component(property = { "pipeline.type=cuhu-link-rewrite" }, service = { TransformerFactory.class })
 public class LinkTransformerFactory implements TransformerFactory {
 
-	private static final Logger log = LoggerFactory.getLogger(LinkTransformerFactory.class);
-	
+	private static final Logger LOG = LoggerFactory.getLogger(LinkTransformerFactory.class);
+
 	@Override
 	public Transformer createTransformer() {
-		log.info("createTransformer");
+		LOG.debug("CustomLinkTransformer object created");
 		return new CustomLinkTransformer();
 	}
 
