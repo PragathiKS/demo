@@ -34,10 +34,6 @@ function _trackAnalytics(obj, type) {
       analyticsData.linkName = `create ${type}`;
       break;
     }
-    case 'webRef': {
-      analyticsData.linkName = 'web ref';
-      break;
-    }
     case 'trackOrder': {
       analyticsData.linkParentTitle = 'delivery details';
       analyticsData.linkName = 'track order';
@@ -358,10 +354,6 @@ class OrderDetails {
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
       .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
-      .on('click', '.js-order-detail__webRef', this, function (e) {
-        const $this = e.data;
-        $this.trackAnalytics.call(this, $this, 'webRef');
-      })
       .on('click', '.js-order-delivery-summary-track-order', this, function (e) {
         const $this = e.data;
         $this.trackAnalytics.call(this, $this, 'trackOrder');
