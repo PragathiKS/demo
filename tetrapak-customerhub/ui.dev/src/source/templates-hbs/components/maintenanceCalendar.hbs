@@ -1,5 +1,5 @@
 <h4 class="tp-maintenance-filtering__calendar-heading">{{i18n key=scheduleHeading}}</h4>
-<div class="tp-cal-cont__calendar-nav clearfix">
+<div class="tp-cal-cont__calendar-nav js-cal-cont__calendar-nav clearfix">
 	{{> atoms/buttons/button/button
 					modifier="calendar"
 					className="tp-cal-cont__calendar-left float-left"
@@ -17,4 +17,4 @@
 					hideText=true
 					text="cuhu.calendar.next"}}
 </div>
-{{> atoms/input/input type="hidden" name="daterange" eleClasses="tp-cal-cont__range-selector js-range-selector" }}
+{{> atoms/input/input type="hidden" name="daterange" eleClasses="tp-cal-cont__range-selector js-events-date-range-selector" }}

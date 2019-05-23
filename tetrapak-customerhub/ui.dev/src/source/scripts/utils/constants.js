@@ -15,9 +15,11 @@ export const DATE_FORMAT = 'YYYY-MM-DD';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
+export const NO_OF_EVENTS_PER_PAGE = 12;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
+export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',

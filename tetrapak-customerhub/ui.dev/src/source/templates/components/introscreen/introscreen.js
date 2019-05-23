@@ -16,8 +16,8 @@ function _trackAnalytics(title, name) {
   };
 
   // creating linkParentTitle/linkName as per the title/name received
-  analyticsData.linkParentTitle = title;
-  analyticsData.linkName = name;
+  analyticsData.linkParentTitle = title.toLowerCase();
+  analyticsData.linkName = name.toLowerCase();
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
@@ -46,9 +46,12 @@ class introscreen {
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
+      if (sliderIndex === this.cache.$introScreenCarousel.slick('getSlick').slideCount) {
+        this.trackAnalytics(sliderTitle, nextButtonText.trim());
+      } else {
+        this.trackAnalytics(sliderTitle, nextButtonText.trim() + sliderIndex);
+      }
       this.cache.$introScreenCarousel.slick('slickNext');
-
-      this.trackAnalytics(sliderTitle, nextButtonText.trim() + sliderIndex);
     });
 
     this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {

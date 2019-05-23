@@ -8,8 +8,8 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
-import { trackAnalytics, trackParams } from '../../../scripts/utils/analytics';
-import { sanitize, apiHost } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { sanitize, apiHost, getI18n } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
 
 /**
@@ -36,10 +36,18 @@ function _disableCalendarNext($this) {
  * Processes data before rendering
  * @param {object} data JSON data object
  */
-function _processOrderSearchData(data) {
-  data = $.extend(true, data, this.cache.config);
-  const { filterStartDate, filterEndDate } = data.summary;
-  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+function _processOrderSearchData(self, data) {
+  if (!data) {
+    data = {
+      isError: true
+    };
+  }
+  data = $.extend(true, data, self.cache.config);
+  if (!data.isError) {
+    const { filterStartDate, filterEndDate } = data.summary;
+    data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+  }
+  this.data = data;
   return data;
 }
 
@@ -78,20 +86,12 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { orderDetailLink, disabledFields } = this.cache.config;
-  let keys = [];
+  const { orderDetailLink, enabledFields } = this.cache.config;
   if (Array.isArray(data.orders)) {
-    data.orders = data.orders.map(order => {
-      keys = (keys.length === 0) ? Object.keys(order) : keys;
-      if (Array.isArray(disabledFields)) {
-        keys = keys.filter(key => !disabledFields.includes(key));
-      }
-      return _tableSort.call(this, order, keys, orderDetailLink);
-    });
-    data.orderHeadings = keys.map(key => ({
+    data.orders = data.orders.map(order => _tableSort.call(this, order, enabledFields, orderDetailLink));
+    data.orderHeadings = enabledFields.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
   }
 }
@@ -125,7 +125,7 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { $filters } = this.cache;
+  const { $filters, config } = this.cache;
   const $this = this;
   this.setSearchFields(filterParams);
   this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
@@ -145,6 +145,12 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
+        $.extend(data, {
+          labels: {
+            dataError: config.dataErrorI18n,
+            noData: config.noDataI18n
+          }
+        });
         return _processTableData.apply($this, [data]);
       },
       ajaxConfig: {
@@ -158,7 +164,11 @@ function _renderTable(filterParams) {
         cancellable: true
       }
     }, (data) => {
-      if ($filters && $filters.length) {
+      if (
+        $filters
+        && $filters.length
+        && !data.isError
+      ) {
         $filters.removeClass('d-none');
       }
       if (filterParams && !data.isError && data.totalOrdersForQuery) {
@@ -226,13 +236,13 @@ function _trackAnalytics(type) {
   switch (type) {
     case 'reset': {
       ob.linkParentTitle = '';
-      ob.linkName = resetButtonTextI18n.toLowerCase();
+      ob.linkName = getI18n(resetButtonTextI18n).toLowerCase();
       break;
     }
-    case 'pagination': {
+    case 'orderList': {
       ob.linkParentTitle = 'order history';
       ob.linkName = 'ordersSearchResultClick';
-      ob.linkselection = `tetrapak order number|${pageNo}`;
+      ob.linkSelection = `tetrapak order number|${pageNo}`;
       break;
     }
     case 'search': {
@@ -247,8 +257,9 @@ function _trackAnalytics(type) {
       } else {
         orderStatusText = '';
       }
+
       ob.linkParentTitle = '';
-      ob.linkName = searchButtonTextI18n.toLowerCase();
+      ob.linkName = getI18n(searchButtonTextI18n).toLowerCase();
       ob.linkSelection = `DatesChoosen|${sanitize(orderStatusText)}|${deliveryAddressChoosen}|${sanitize(formData.search)}`;
       break;
     }
@@ -263,6 +274,7 @@ function _trackAnalytics(type) {
  * Renders filter section
  */
 function _renderFilters() {
+  const self = this;
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
@@ -278,7 +290,9 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+      beforeRender(...args) {
+        return _processOrderSearchData.apply(this, [self, ...args]);
+      }
     }, () => {
       this.initPostCache();
       this.setFilters();
@@ -299,28 +313,11 @@ function _sanitizeQuery(query) {
 }
 
 /**
- * Sets pagination analytics parameters
- */
-function _setPaginationAnalyticsParameters($this) {
-  const $tpOrderNumber = $.grep($(this).find('td'), ref => ['orderNumber'].includes($(ref).data('key')))[0];
-  if ($tpOrderNumber) {
-    const tpOrderNumber = $.trim($($tpOrderNumber).text());
-    const currentPage = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
-    trackParams({
-      searchresultclicks: tpOrderNumber,
-      pagination: currentPage
-    }, 'orders', 'SearchResultClick');
-  }
-}
-
-/**
  * Opens order detail page for current order
  */
-function _openOrderDetails(e) {
-  const $this = e.data;
+function _openOrderDetails() {
   const currentTarget = $(this);
   window.open(currentTarget.attr('href'), '_self');
-  _setPaginationAnalyticsParameters.apply(this, [$this]);
 }
 
 /**
@@ -373,7 +370,7 @@ class OrderSearch {
       .on('click', '.js-ordering-card__row', this, function (e) {
         const $this = e.data;
         $this.openOrderDetails.apply(this, arguments);
-        $this.trackAnalytics('pagination');
+        $this.trackAnalytics('orderList');
       })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp)
       .find('.js-pagination').on('ordersearch.pagenav', (...args) => {

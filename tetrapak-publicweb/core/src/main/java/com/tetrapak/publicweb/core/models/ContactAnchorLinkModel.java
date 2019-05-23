@@ -24,7 +24,7 @@ public class ContactAnchorLinkModel {
         if (currentPage != null) {
             Resource jcrContentResource = currentPage.getContentResource();
             BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
-            hideContactAnchorLink = basePageModel.getPageContent().getHideContactAnchorLink();
+            hideContactAnchorLink = basePageModel.getPageContent().getHideContactFooterForm();
         }
     }
 

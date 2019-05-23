@@ -73,7 +73,8 @@
           "plannedStartLabel": "Planned start",
           "noDataMsg": "no data",
           "equipmentLabel": "Equipment",
-          "serviceAgreementLabel": "Service agreement"
+          "serviceAgreementLabel": "Service agreement",
+          "noEventMsg": "No Event"
         }
       }
     }

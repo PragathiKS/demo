@@ -11,6 +11,7 @@ class ListContentImage {
     const $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', this.root );
     const $editTabItem = $('.pw-listContentImage__editTab', this.root);
     const $contentWrapper = $( '.pw-listContentImage__contentWrapper', this.root );
+    this.cache.digitalData = digitalData; //eslint-disable-line
 
     // Add Version Name to each instance
     $('.pw-listContentImage').each(function(index){
@@ -32,11 +33,22 @@ class ListContentImage {
     });
   }
   bindEvents() {
+    const self = this;
     this.cache.$tabMenuItemLink.click(function(e) {
       e.preventDefault();
       const $this = $( this );
       let tabID   = $this.data( 'tab-id' );
-
+      if (self.cache.digitalData) {
+        self.cache.digitalData.linkClick = {};
+        self.cache.digitalData.linkClick.linkType = 'internal';
+        self.cache.digitalData.linkClick.linkSection = 'listContentImage';
+        self.cache.digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' );
+        self.cache.digitalData.linkClick.linkName = $this.data( 'link-name' );
+        self.cache.digitalData.linkClick.linkListPos = $this.data( 'tab-count' );
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('linkClicked'); //eslint-disable-line
+        }
+      }
       // Get this organism grandparent class version name
       let grandParentClassNamesArr = $this.closest( '.pw-listContentImage' ).attr('class').match(/\S+/gi);
       let specificGrandParentClassVersion = grandParentClassNamesArr[grandParentClassNamesArr.length - 1];
@@ -54,11 +66,9 @@ class ListContentImage {
 
       // set active class to Tab Menu List Item
       $tabMenuItemLink.removeClass( 'active' );
+      $tabMenuItem.removeClass( 'active' );
       $this.addClass( 'active' );
-
-      // set no-border class for styling the Tab Menu List Item next sibling
-      $tabMenuItemLink.removeClass( 'no-border' );
-      $this.parent().next().children('.pw-listContentImage__tabMenuListItem__link').addClass( 'no-border' );
+      $this.closest('li').addClass( 'active' );
 
       // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
       $tabContent.removeClass( 'active' );

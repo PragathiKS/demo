@@ -8,6 +8,6 @@ exit
 fi
 echo "url to test : $LINE"
 
-zap-cli --api-key 12345 spider "$LINE":
+docker exec zap zap-cli spider "$LINE":
 done
 

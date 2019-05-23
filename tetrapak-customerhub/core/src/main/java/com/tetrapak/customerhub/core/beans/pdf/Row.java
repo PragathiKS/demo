@@ -20,8 +20,8 @@ public class Row {
      * Public constructor for this class
      *
      * @param content  string content
-     * @param height int height
-     * @param font PDFont font
+     * @param height   int height
+     * @param font     PDFont font
      * @param fontSize int Size
      */
     public Row(String content, int height, PDFont font, int fontSize) {
@@ -35,10 +35,11 @@ public class Row {
      * Public constructor for this class for link
      *
      * @param content  string content
-     * @param height int height
-     * @param font PDFont font
+     * @param height   int height
+     * @param font     PDFont font
      * @param fontSize int Size
-     * @param isHref boolean isHref
+     * @param isHref   boolean isHref
+     * @param link     String link
      */
     public Row(String content, int height, PDFont font, int fontSize, boolean isHref, String link) {
         this.content = content;

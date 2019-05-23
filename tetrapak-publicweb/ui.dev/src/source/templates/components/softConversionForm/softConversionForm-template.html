@@ -2,7 +2,7 @@
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-module="SoftConversionForm">
     <!-- Modal -->
-    <div class="modal fade" id="softConversionModal" tabindex="-1" role="dialog" aria-hidden="true" data-form-filled="false">
+    <div class="modal tp-modal fade" id="softConversionModal" tabindex="-1" role="dialog" aria-hidden="true" data-form-filled="false">
       <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -15,7 +15,7 @@
           <div class="modal-body">
             <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET">
               <div class="tab-content">
-                <div class="tab-pane active" role="tabpanel" id="step-0">
+                <div class="tab-pane active" data-stepNumber="0" data-stepName="sign up start" role="tabpanel" id="step-0">
                   <p class="mb-4 softc-desc-js"></p>
                   <h4 class="tpatom-heading tpatom-heading--small softc-head-js"></h4>
                   <div class="row mt-4">
@@ -37,11 +37,11 @@
                     		</div>
                     	</sly>
                       <input type="hidden" name="docpath" class="softc-doc-js">
-                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn'}" />
+                      <sly data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html" data-sly-call="${modalButton.togglebutton_template @ btnToggle='tab', btnTarget='#step-1', btnText=data.nextButtonLabel, variant='secondary', customClasses='pw-form__nextbtn mt-2'}" />
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="step-1">
+                <div class="tab-pane" data-stepNumber="1" data-stepName="name" role="tabpanel" id="step-1">
                   <div class="row">
                     <div class="col-md-8">
                       <p class="mb-4 softc-desc-js"></p>
@@ -99,7 +99,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="step-2">
+                <div class="tab-pane" data-stepNumber="2" data-stepName="email" role="tabpanel" id="step-2">
                   <div class="row">
                     <div class="col-md-8">
                       <p class="mb-4 softc-desc-js"></p>
@@ -171,7 +171,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="step-3">
+                <div class="tab-pane" data-stepNumber="3" data-stepName="company" role="tabpanel" id="step-3">
                   <div class="row">
                     <div class="col-md-8">
                       <p class="mb-4 softc-desc-js"></p>
@@ -237,7 +237,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="step-4">
+                <div class="tab-pane" data-stepNumber="4" data-stepName="position" role="tabpanel" id="step-4">
                   <div class="row">
                     <div class="col-md-8">
                       <p class="mb-4 softc-desc-js"></p>
@@ -329,9 +329,6 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-12">
-                      <button class="tpatom-button tpatom-button--secondary questionBtn mb-3" data-dismiss="modal" data-target=".pw-contactFooterForm">${'got a question?' @ i18n}</button>
-                    </div>
                     <div class="col-12">
                       <button class="tpatom-button tpatom-button--link" data-dismiss="modal">${'Close' @ i18n}</button>
                     </div>

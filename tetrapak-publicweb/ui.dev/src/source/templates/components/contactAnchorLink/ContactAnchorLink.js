@@ -1,7 +1,22 @@
 import $ from 'jquery';
 
-export default {
+class ContactAnchorLink {
+  constructor({ el }) {
+    this.root = $(el);
+  }
+  cache = {};
+  initCache() {
+    this.cache.$contactAnchor = $('.pw-contactAnchorLink', this.root);
+  }
+  goToContactForm(target) {
+    if($(target).length) {
+      $('html, body').animate({
+        scrollTop: parseInt($(target).offset().top, 10)
+      }, 1000);
+    }
+  }
   bindEvents() {
+    const self = this;
     $(window).scroll(function() {
       var windowBottom = $(this).scrollTop() + $(this).innerHeight();
       $('.pw-contactAnchorLink').each(function() {
@@ -20,17 +35,15 @@ export default {
         }
       });
     }).scroll();
-    $('.pw-contactAnchorLink').click(function(e) {
+    this.cache.$contactAnchor.click(function(e) {
       e.preventDefault();
       let target = $(this).attr('href');
-      if($(target).length) {
-        $('html, body').animate({
-          scrollTop: parseInt($(target).offset().top, 10)
-        }, 1000);
-      }
+      self.goToContactForm(target);
     });
-  },
+  }
   init() {
+    this.initCache();
     this.bindEvents();
   }
-};
+}
+export default ContactAnchorLink;

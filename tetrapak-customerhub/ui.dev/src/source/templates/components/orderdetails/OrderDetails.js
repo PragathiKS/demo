@@ -15,46 +15,41 @@ import { toast } from '../../../scripts/utils/toast';
  * @param {string} type
  */
 function _trackAnalytics(obj, type) {
-  const orderType = (obj.cache.orderType === 'packmat') ? 'packaging' : 'parts';
-  const analyticsData = {};
-  analyticsData.header = orderType;
-  let trackId = '';
   const self = $(this);
+  const analyticsData = {
+    linkType: 'internal',
+    linkParentTitle: 'order details'
+  };
+  const orderType = (obj.cache.orderType === 'packmat') ? 'packaging' : 'parts';
+
+  analyticsData.linkSection = `order details-${orderType}`;
   type = type || self.data('extnType');
+
   switch (type) {
     case 'excel': {
-      analyticsData.createexcel = 'true';
-      trackId = 'orderdetailsexcel';
+      analyticsData.linkName = `create ${type}`;
       break;
     }
     case 'pdf': {
-      analyticsData.createpdf = 'true';
-      trackId = 'orderdetailsPDF';
-      break;
-    }
-    case 'webRef': {
-      const webRef = this.innerText;
-      analyticsData.webreferencenumber = webRef;
-      trackId = 'orderdetailswebref';
+      analyticsData.linkName = `create ${type}`;
       break;
     }
     case 'trackOrder': {
-      const deliverynumber = self.data('deliveryNumber');
-      analyticsData.deliverynumber = deliverynumber;
-      analyticsData.trackorder = 'trackorderclicked';
-      trackId = 'orderdetailstrackorder';
+      analyticsData.linkParentTitle = 'delivery details';
+      analyticsData.linkName = 'track order';
       break;
     }
     case 'customercontactsupport': {
-      analyticsData.customercontactsupport = 'true';
-      trackId = 'orderdetailscontact';
+      analyticsData.linkParentTitle = 'customer support centre';
+      analyticsData.linkName = self.data('type');
       break;
     }
     default: {
       break;
     }
   }
-  trackAnalytics(analyticsData, orderType, trackId);
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
 /**
  * Process Order Data
@@ -79,6 +74,9 @@ function _processPackmatData(data) {
 
     data.deliveryList.forEach(function (delivery) {
       if (Array.isArray(delivery.products)) {
+        delivery.totalPages = delivery.totalProducts > ORDER_DETAILS_ROWS_PER_PAGE ?
+          Math.ceil(delivery.totalProducts / ORDER_DETAILS_ROWS_PER_PAGE) : false;
+
         delivery.products = delivery.products.map((product) => {
           const productColList = data.packagingDeliveryTableCols || Object.keys(product);
           keys = keys.length === 0 ? productColList : keys;
@@ -356,15 +354,15 @@ class OrderDetails {
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
       .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
-      .on('click', '.js-order-detail__webRef', this, function (e) {
-        const $this = e.data;
-        $this.trackAnalytics.call(this, $this, 'webRef');
-      })
       .on('click', '.js-order-delivery-summary-track-order', this, function (e) {
         const $this = e.data;
         $this.trackAnalytics.call(this, $this, 'trackOrder');
       })
       .on('click', '.js-support-center-email', this, function (e) {
+        const $this = e.data;
+        $this.trackAnalytics.call(this, $this, 'customercontactsupport');
+      })
+      .on('click', '.js-support-center-contact', this, function (e) {
         const $this = e.data;
         $this.trackAnalytics.call(this, $this, 'customercontactsupport');
       })

@@ -6,17 +6,32 @@
 import dynamicMedia from './dynamicMedia';
 import { toast } from './toast';
 import { $body } from './commonSelectors';
+import { isFirefox, isIE, isEdge } from './browserDetect';
+import { isTablet, isMobile } from '../common/common';
 
 export default {
   init() {
+    // Dynamic media
     dynamicMedia.init();
+    // Toast error messages
     toast.init();
-    $body.on('click', 'js-prevent-default', (e) => {
+    // Body events
+    $body.on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();
     }).on('show.bs.modal', function () {
       $(this).addClass('tp-no-backdrop');
     }).on('hidden.bs.modal', function () {
       $(this).removeClass('tp-no-backdrop');
     });
+    // Custom scrollbar cross-browser handling
+    if (
+      isFirefox()
+      || isIE()
+      || isEdge()
+      || isTablet()
+      || isMobile()
+    ) {
+      $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
+    }
   }
 };
