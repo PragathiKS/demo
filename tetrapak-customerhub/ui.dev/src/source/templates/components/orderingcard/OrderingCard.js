@@ -20,12 +20,12 @@ function _trackAnalytics(type) {
   let orderCardSettings = $.map($orderInput, function (el) {
     const $inputBox = $(el);
     if ($inputBox.is(':checked')) {
-      if ($inputBox.siblings('.js-ordering-card__text')) {
-        return $inputBox.siblings('.js-ordering-card__text').text().trim().toLowerCase();
+      const $inputText = $inputBox.siblings('.js-checkbox__text');
+      if ($inputText.length > 0) {
+        return $inputText.text().trim().toLowerCase();
       }
-    } else {
-      return '';
     }
+    return '';
   });
 
   let ob = {
