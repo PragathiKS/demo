@@ -22,7 +22,7 @@ function _trackAnalytics(title, name) {
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
 
-class introscreen {
+class IntroScreen {
   constructor({ templates, el }) {
     this.templates = templates;
     this.root = $(el);
@@ -110,4 +110,4 @@ class introscreen {
   trackAnalytics = (title, name) => _trackAnalytics.call(this, title, name);
 }
 
-export default introscreen;
+export default IntroScreen;
