@@ -56,7 +56,7 @@
                                           text="Heading 4"
                                           value="h4"/>
                                 </items>
-                            </contentType>
+                            </headingType>
                         </items>
                     </column>
                 </items>
