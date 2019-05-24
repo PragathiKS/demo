@@ -37,8 +37,10 @@
             border: 1px solid $color-boulder;
             background-color: $color-wild-sand;
 
-            .icon-Chevron_Down::before {
-                transform: rotate(180deg);
+            .icon-Chevron_Down {
+                &::before {
+                    transform: rotate(180deg);
+                }
             }
 
             @media #{$desktop} {
