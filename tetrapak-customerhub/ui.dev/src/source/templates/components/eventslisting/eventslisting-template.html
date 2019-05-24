@@ -1,0 +1,5 @@
+<sly data-sly-template.eventslisting_template="${@ data, flag}">
+   <div class="js-maintenance__events" aria-live="polite" data-module="EventsListing">
+    </div>
+    <sly data-sly-use.pagination="/apps/customerhub/components/content/pagination/pagination-template.html" data-sly-call="${pagination.pagination_template @customEvent='eventslisting', maxVisible=7}" />
+</sly>

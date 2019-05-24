@@ -38,7 +38,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/form/multifield"
                                 fieldDescription="Click 'Add field' to add a new tab"
-                                maxlinksallowed="8"
+                                maxlinksallowed="10"
                                 fieldLabel="Tabs">
                                 <field
                                     jcr:primaryType="nt:unstructured"
@@ -89,7 +89,20 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Open link in a new window ?"
                                 text="New Window"
+                                value="true"
                                 name="./targetBlank"/>
+                            <makeCollapsable
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Check to make the tab menu collapsable to the title on mobile"
+                                text="Make tab menu collapsable on mobile"
+                                value="true"
+                                name="./makeCollapsable"/>
+                            <makeCollapsableDelete
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./makeCollapsable@Delete"
+                                value="{Boolean}true"/>
                         </items>
                     </column>
                 </items>

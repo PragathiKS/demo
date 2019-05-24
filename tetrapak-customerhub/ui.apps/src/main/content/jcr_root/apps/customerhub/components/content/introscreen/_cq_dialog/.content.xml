@@ -54,6 +54,12 @@
                             fieldDescription="Enter Started Button"
                             fieldLabel="Started Button"
                             name="./getStartedBtnI18n"/>
+					<errorMsgI18n
+							jcr:primaryType="nt:unstructured"
+							sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+							fieldDescription="Enter the i18n key for the error message"
+							fieldLabel="Error Message"
+							name="./errorMsgI18n"/>			
                     <list
                         jcr:primaryType="nt:unstructured"
                         jcr:title="List"

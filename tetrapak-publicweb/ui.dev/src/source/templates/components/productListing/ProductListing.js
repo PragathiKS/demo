@@ -14,7 +14,7 @@ class ProductListing {
     this.cache.tabButtons = $('.js-product-listng-tab', this.root);
     this.cache.dropDown = $('.js-pw-product-listing__navigation__dropdown', this.root);
     this.cache.productRootPath = this.root.data('productRootPath');
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.digitalData = window.digitalData;
   }
 
   bindEvents() {

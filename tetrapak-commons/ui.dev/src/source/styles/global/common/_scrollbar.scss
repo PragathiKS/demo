@@ -49,8 +49,12 @@
 }
 
 .custom-scrollbar-content {
-    @media #{$desktop} {
-        @include margin-right(-$spacing-small-half);
+
+    .custom-scrollbar &,
+    .custom-scrollbar-vertical & {
+        @media #{$desktop} {
+            @include margin-right(-$spacing-small-half);
+        }
     }
 
     .native:not(.tablet) & {

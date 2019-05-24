@@ -233,6 +233,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
 																
                                                               sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad-pw'
+															  sh 'docker rmi $(docker images -q)'
 															  }
 															   catch (err) {
                                                               echo err.getMessage()

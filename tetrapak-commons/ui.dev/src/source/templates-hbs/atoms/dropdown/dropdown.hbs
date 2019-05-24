@@ -1,7 +1,7 @@
 <div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
-    <label class="d-block">
-        {{#if labelText}}<span class="tpatom-dropdown__text">{{i18n key=labelText}}</span>{{/if}}
-        <select name="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
+ {{#if labelText}}<label class="tpatom-dropdown__text" for="{{name}}">{{i18n key=labelText}}</label>{{/if}}
+    <div class="d-block position-relative">
+        <select name="{{name}}" id="{{name}}" class="tpatom-dropdown__select-box {{#if eleClasses}} {{eleClasses}}{{/if}}"{{#if dataLocator}} data-locator="{{dataLocator}}"{{/if}}{{#if label}} aria-label="{{i18n key=label}}"{{/if}}>
             {{#if defaultValue}}
                 <option value="">{{i18n key=defaultValue}}</option>
             {{/if}}
@@ -10,5 +10,5 @@
             {{/each}}
         </select>
         <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
-    </label>
+    </div>
 </div>

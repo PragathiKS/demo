@@ -55,6 +55,10 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your new experience"/>
+    <cuhu.documents.site
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SITE NEW"/>
     <cuhu.error.message
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -208,6 +212,14 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Statement Total"/>
+    <cuhu.Maintenance.Line
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Line/Area"/>
+    <cuhu.maintenance.site
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Site"/>
     <cuhu.orderDetail.deliveredQuantity
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -307,7 +319,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label"
-        sling:message="Total order KPK/ Requested KPK / Delivered KPK"/>
+        sling:message="Total order KPK/ Requested KPK / Delivered KPK1"/>
     <cuhu.orderdetail.packaging.kilo.popup.close
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -323,7 +335,7 @@
     <cuhu.orderdetail.packaging.production.place
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Production place11"/>
+        sling:message="Production place"/>
     <cuhu.orderdetail.packaging.requested
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -344,7 +356,7 @@
     <cuhu.orderDetail.productID
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Product ID12"/>
+        sling:message="Product ID"/>
     <cuhu.orderDetail.productName
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -420,23 +432,28 @@
     <cuhu.orderDetails.TotalpreVAT
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Total pre VAT"/>
+        sling:message="Total pre VAT 1"/>
     <cuhu.orderDetails.TotalWeight
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Total Weight"/>
+        sling:message="Total Weight 1"/>
     <cuhu.orderDetails.TrackOrder
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Track Order"/>
+    <cuhu.orderDetails.ValLabel
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="VAT"/>
     <cuhu.orderDetails.VAT
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="VAT1"/>
-    <cuhu.orderDetails.Webref
+    <cuhu.orderDetails.Webref0
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Web Ref."/>
+        sling:key="cuhu.orderDetails.WebRef"
+        sling:message="Test10"/>
     <cuhu.ordering.contact
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -464,7 +481,7 @@
     <cuhu.ordering.poNumber
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Purchase Order No."/>
+        sling:message="Purchase Order No"/>
     <cuhu.ordering.requestedDelivery
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -480,7 +497,7 @@
     <cuhu.orderingcard.another.Order
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Search for another order"/>
+        sling:message="Search for another record"/>
     <cuhu.orderingcard.ButtonKey
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
