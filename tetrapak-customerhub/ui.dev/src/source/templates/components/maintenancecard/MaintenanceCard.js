@@ -7,6 +7,20 @@ import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
+/**
+ * Process Events Data
+ */
+function _processEventsData(data) {
+  if (Array.isArray(data.events)) {
+    if (data.events.length > 6) {
+      data.events.length = 6;
+    }
+
+    data.events.forEach(event => {
+      event.plannedDuration = `${event.plannedDuration} ${event.plannedDurationUnit.toLowerCase()}`;
+    });
+  }
+}
 
 /**
  * Fire analytics on click of
@@ -64,6 +78,8 @@ function _renderMaintenanceEvents() {
           const { i18nKeys, viewAllLink } = $this.cache;
           data.i18nKeys = i18nKeys;
           data.viewAllLink = viewAllLink;
+
+          data = $this.processEventsData(data);
         }
       }
     }, (data) => {
@@ -109,6 +125,7 @@ class MaintenanceCard {
       });
   }
   renderMaintenanceEvents = () => _renderMaintenanceEvents.call(this);
+  processEventsData = (data) => _processEventsData.call(this, data);
   trackAnalytics = (name, type) => _trackAnalytics.call(this, name, type);
   init() {
     /* Mandatory method */
