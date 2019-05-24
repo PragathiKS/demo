@@ -1,13 +1,16 @@
 import { $body } from './commonSelectors';
 import { render } from './render';
 
+let tv = null;
+
 export const toast = {
   init() {
     $body.on('click', '.js-toast__dismiss', function () {
       $(this).parents('.js-toast').addClass('d-none');
+      clearTimeout(tv);
     });
   },
-  render(errorMsg, closeBtnLabel) {
+  render(errorMsg, closeBtnLabel, toastDuration) {
     if (
       typeof errorMsg === 'string'
       && errorMsg.length
@@ -23,7 +26,17 @@ export const toast = {
           closeBtnLabel
         })
       );
-      $body.find('.js-toast').removeClass('d-none');
+      const $toast = $body.find('.js-toast');
+      $toast.removeClass('d-none');
+      if (
+        typeof toastDuration === 'number'
+        && toastDuration > 0
+      ) {
+        tv = setTimeout(() => {
+          $toast.addClass('d-none');
+          clearTimeout(tv);
+        }, toastDuration);
+      }
     }
   }
 };

@@ -74,6 +74,7 @@ function _renderMaintenanceEvents(...eventsData) {
       cache: true,
       data: data
     }).done((data) => {
+      cache.isEventDataError = false;
       if (!data.isError && data.totalRecordsForQuery > NO_OF_EVENTS_PER_PAGE) {
         let currentPage = 1;
         let totalPages = Math.ceil((+data.totalRecordsForQuery) / NO_OF_EVENTS_PER_PAGE);
@@ -87,6 +88,8 @@ function _renderMaintenanceEvents(...eventsData) {
       }
       if (data.events.length === 0) {
         cache.isEventNoData = true;
+      } else {
+        cache.isEventNoData = false;
       }
       cache.eventsData = data;
       render.fn({
