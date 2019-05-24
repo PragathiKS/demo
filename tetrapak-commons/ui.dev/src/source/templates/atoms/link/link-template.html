@@ -1,0 +1,9 @@
+<sly data-sly-template.link_template="${@ url,text,baseClass,isExternal,modifier,iconClass}">
+  <sly data-sly-test.modifierClass=" tpatom-link--${modifier}" />
+  <a href="${url}" class="tpatom-link ${baseClass ? baseClass : '' }${modifier ? modifierClass : ' tpatom-link--primary'}" target="${isExternal ? '_blank' : ''}">
+      <span class="tpatom-link__text">${text @ i18n}</span>
+       <sly data-sly-test.isIconClass="${iconClass}" >
+          <i class="icon ${iconClass}"></i>
+       </sly>
+    </a>
+</sly>

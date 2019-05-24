@@ -1,6 +1,6 @@
-<sly data-sly-template.nextButton_template="${@ nextBtnText, btnClasses, btnTextIcon, linkUrl, isExternal}">
+<sly data-sly-template.nextButton_template="${@ nextBtnText, btnClasses, btnTextIcon, linkUrl}">
   <sly data-sly-test.isLink="${linkUrl}">
-    <a class="tp-next-btn ${btnClasses}" href="${linkUrl}" target="${!isExternal ? '_self' : '_target' }" rel="noopener noreferrer">
+    <a class="tp-next-btn ${btnClasses}" href="${linkUrl}">
         <p class="tp-next-btn__text float-left">${nextBtnText}</p>
         <i class="tp-next-btn__icon ${btnTextIcon}"></i>
     </a>
