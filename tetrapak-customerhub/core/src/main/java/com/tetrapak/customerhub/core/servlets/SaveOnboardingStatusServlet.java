@@ -8,12 +8,13 @@ import java.io.IOException;
 
 import javax.jcr.Session;
 import javax.servlet.Servlet;
+import javax.servlet.ServletException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -35,10 +36,9 @@ import com.tetrapak.customerhub.core.utils.HttpUtil;
 			property = {
 						Constants.SERVICE_DESCRIPTION + "=Onboarding Status Servlet",
 						SLING_SERVLET_METHODS + "=" + HttpConstants.METHOD_GET,
-						SLING_SERVLET_PATHS + "=" + "/bin/customerhub/onboarding",
 						SLING_SERVLET_RESOURCE_TYPES + "=customerhub/components/content/introscreen"
 						})
-public class SaveOnboardingStatusServlet extends SlingAllMethodsServlet {
+public class SaveOnboardingStatusServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = 4140890702261737392L;
 
@@ -51,7 +51,7 @@ public class SaveOnboardingStatusServlet extends SlingAllMethodsServlet {
 
 	@Override
 	protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
-			throws IOException {
+			throws IOException, ServletException {
 		LOGGER.debug("Initiating the on-boarding status for the user");
 		Session session = request.getResourceResolver().adaptTo(Session.class);
 		if (null == session) {
@@ -77,7 +77,7 @@ public class SaveOnboardingStatusServlet extends SlingAllMethodsServlet {
 	 * 
 	 * @param resp   SlingHttpServletResponse
 	 * @param status success or failure
-	 * @param onBoardingStatus yes or no
+	 * @param onBoardingStatus true/null
 	 * @throws IOException
 	 */
 	private void writeJsonResponse(SlingHttpServletResponse resp, String status, String onBoardingStatus) throws IOException {
