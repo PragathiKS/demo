@@ -7,12 +7,12 @@
     }
 
     &__content-container {
-        @include margin(0 0 $margin-md 0);
+        @include margin-bottom($margin-md);
         width: 100%;
 
 
         @media #{$desktop} {
-            width: 100%;
+            width: 50%;
             margin: 0;
         }
     }
@@ -20,53 +20,34 @@
     &__heading {
         @include font-size($font-l);
         @include line-height($font-xl, $font-l);
-        @include margin(0 0 $margin-md 0);
+        @include margin-bottom($margin-md);
 
         @media #{$desktop} {
-            @include margin(0 0 $margin-l 0);
-
+            @include margin-bottom($margin-l);
         }
     }
 
     &__description {
         @include font-size($font-md);
         @include line-height($font-l, $font-md);
-        @include margin(0 0 $margin-md 0);
+        @include margin-bottom($margin-md);
 
         @media #{$desktop} {
-            @include margin(0 0 $margin-l 0);
-
+            @include margin-bottom($margin-l);
         }
     }
-
-    &__view-btn {
-        @include padding(0 $padding-md);
-        background-color: $color-congress-blue;
-        color: $color-white;
-
-
-        &:hover,
-        &:visited,
-        &:active {
-            color: $color-white;
-        }
-    }
-
-
 
     &__image-container {
+        @include border-radius($border-radius);
         width: 100%;
-        border-radius: $border-radius;
-        background: $color-boulder;
 
         @media #{$desktop} {
-            width: 100%;
+            width: 50%;
         }
     }
 
     &__image {
-        max-width: 100%;
+        @include border-radius($border-radius);
         width: 100%;
-        border-radius: $border-radius;
     }
 }
