@@ -25,6 +25,9 @@ public class TextVideoModel {
 
     @Inject
     private String linkURL;
+    
+    @Inject
+    private Boolean targetBlank;
 
     @Inject
     private String videoSource;
@@ -80,6 +83,10 @@ public class TextVideoModel {
 
     public String getLinkURL() {
         return linkURL;
+    }
+    
+    public Boolean getTargetBlank() {
+        return targetBlank;
     }
 
     public String getVideoSource() {
