@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
-import { getI18n } from '../../../scripts/common/common';
+import { getI18n, isAuthorMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -108,7 +108,7 @@ class IntroScreen {
   }
   showOnboardingPopup(data, popupErrorMessage, popupCloseMessage) {
     if (!$.isEmptyObject(data)) {
-      if (!data.isOnboarded) {
+      if (!data.isOnboarded || isAuthorMode()) {
         this.root.modal();
         this.cache.$introScreenCarousel.slick({
           dots: true,
