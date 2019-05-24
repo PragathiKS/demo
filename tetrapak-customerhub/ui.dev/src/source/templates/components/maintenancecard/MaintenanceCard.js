@@ -68,7 +68,7 @@ function _renderMaintenanceEvents() {
       }
     }, (data) => {
       if (!data.isError && !data.noData) {
-        $this.root.find('.js-maintenance-card__events-detail').html($('#Event0').html());
+        $this.root.find('.js-maintenance-card__events-sidesection').html($('#Event0').html());
       }
     });
   });
@@ -98,7 +98,7 @@ class MaintenanceCard {
         maintenanceHeading = maintenanceHeading
           ? maintenanceHeading.toLowerCase()
           : 'maintenance service events';
-        $this.root.find('.js-maintenance-card__events-detail').html($(detailTargetEle).html());
+        $this.root.find('.js-maintenance-card__events-sidesection').html($(detailTargetEle).html());
         $this.trackAnalytics(maintenanceHeading);
       })
       .on('click', '.js-maintenance-card__contact-mail', function () {
