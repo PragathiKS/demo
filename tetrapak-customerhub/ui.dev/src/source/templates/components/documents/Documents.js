@@ -8,9 +8,33 @@ import { apiHost } from '../../../scripts/common/common';
 
 /**
  * Fetch, Process and Render Documents
+ * @param {object} documentsData JSON data object for equipments document
+ */
+function _processDocumentsData(documentsData) {
+  if (Array.isArray(documentsData.options) && Array.isArray(documentsData.results)) {
+    debugger; //eslint-disable-line
+    documentsData.results.forEach((result, resultIndex) => {
+      result.docTypes.forEach((docType, docIndex) => {
+        docType.docId = `#document${resultIndex}${docIndex}`;
+      });
+    });
+
+    documentsData.options.forEach(equipment => {
+      equipment.documents = documentsData.results.filter(document => {
+        if (equipment.serialNo === document.serial) {
+          return true;
+        }
+      });
+    });
+  }
+}
+
+/**
+ * Fetch, Process and Render Documents
  * @param {object} equipmentData JSON data object for filtered equipments
  */
 function _renderDocuments(equipmentData) {
+  const $this = this;
   const allEquipments = equipmentData.options.map((option) => option.serialNo).join(',');
   auth.getToken(({ data: authData }) => {
     render.fn({
@@ -39,6 +63,7 @@ function _renderDocuments(equipmentData) {
           };
         } else {
           $.extend(data, equipmentData);
+          $this.processDocumentsData(data);
           debugger; //eslint-disable-line
         }
       }
@@ -77,7 +102,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
       key: equipment.equipmentNumber,
       serialNo: equipment.serialNumber,
       desc: equipment.equipmentName,
-      docId: `#document${index}`
+      equipmentId: `#equipment${index}`
     })));
   });
 
@@ -242,6 +267,7 @@ class Documents {
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
   renderDocuments = (data) => _renderDocuments.call(this, data);
+  processDocumentsData = (data) => _processDocumentsData.call(this, data);
   init() {
     /* Mandatory method */
     this.initCache();
