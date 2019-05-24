@@ -179,5 +179,14 @@
                 top: convert-to-rem(13px);
             }
         }
+        a[aria-expanded='true'] { //sass-lint:disable-line force-attribute-nesting
+            .icon-Chevron_Down {
+                transform: rotate(180deg);
+            }
+            .tp-icon {
+                transform: rotate(-90deg);
+                right: convert-to-rem(14px);
+            }
+        }
     }
 }
