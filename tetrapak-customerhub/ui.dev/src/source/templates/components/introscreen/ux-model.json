@@ -2,7 +2,9 @@
   "headingI18n": "cuhu.getstarted.heading",
   "nextBtnI18n": "cuhu.getstarted.next",
   "closeBtnI18n": "cuhu.getstarted.close",
+  "errorMsgI18n": "cuhu.getstarted.error",
   "getStartedBtnI18n": "cuhu.getstarted.getstartedtext",
+  "onBoardingStatusURL": "/apps/settings/wcm/designs/customerhub/jsonData/getStartedServletResponse.json",
   "getStartedList": [
     {
       "imagePath": "/content/dam/tp-banner/banner.jpg",
