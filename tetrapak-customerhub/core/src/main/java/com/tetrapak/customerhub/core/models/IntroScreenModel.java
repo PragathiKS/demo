@@ -25,6 +25,9 @@ public class IntroScreenModel extends GetStartedModel {
 
     @Inject
     private String getStartedBtnI18n;
+    
+    @Inject
+    private String errorMsgI18n;
 
     @Override
     @PostConstruct
@@ -56,4 +59,17 @@ public class IntroScreenModel extends GetStartedModel {
     public String getGetStartedBtnI18n() {
         return getStartedBtnI18n;
     }
+    
+    /**
+     * The method provides the path for the AJAX call
+     * @return path
+     */
+    public String onBoardingStatusURL() {
+		return resource.getPath();
+	}
+    
+    public String getErrorMsgI18n() {
+		return errorMsgI18n;
+	}
+	
 }
