@@ -8,7 +8,7 @@
     @include max-width(1440px);
     color: $color-congress-blue;
     background-color: $color-white;
-    font-family: $font-bold;
+    font-family: $font-extraBold;
     $shadow: rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px 0 $shadow;
     position: fixed;
@@ -54,7 +54,7 @@
     &__links {
         @include line-height(24px, $font-baseline);
         color: $color-congress-blue;
-        font-family: $font-bold;
+        font-family: $font-extraBold;
 
         &:hover {
             color: $color-text;
