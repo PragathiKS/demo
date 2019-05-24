@@ -79,7 +79,7 @@ function _renderMaintenanceEvents() {
           data.i18nKeys = i18nKeys;
           data.viewAllLink = viewAllLink;
 
-          data = $this.processEventsData(data);
+          $this.processEventsData(data);
         }
       }
     }, (data) => {
