@@ -1,19 +1,47 @@
 <sly data-sly-template.listcontentimage_template="${@ data, flag}"
   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
     <sly data-sly-test.showEdit="${wcmmode.edit ? 'd-block' : 'd-none'}" />
-    <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''} pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-module="ListContentImage">
+    <div class="pw-listContentImage ${data.tabsAlignment == 'text-right'? 'pw-listContentImage--reverse' : ''} pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-module="ListContentImage"
+    id="pw-listContentImage-${data.componentId}">
     <div class="row">
         <div class="col-lg-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''} pw-listContentImage__linksList">
-            <h2 class="pw-listContentImage__title">${data.titleI18n  @ i18n}</h2>
-            <div class="pw-listContentImage__tabMenu">
-                <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
-                    <li class="pw-listContentImage__tabMenuListItem ${itemList.first? 'active' : ''}">
-                        <a href="#" data-tab-id="${itemList.index}" data-tab-count="${itemList.count}" data-parent-title="${data.titleI18n  @ i18n}" data-link-name="${item}" class="pw-listContentImage__tabMenuListItem__link d-block ${itemList.first? 'active' : ''}">
-                            ${item}
-                            <i class="icon-Chevron_Right tp-icon"></i>
-                        </a>
-                    </li>
-                </ul>
+            <div class="desktop-tabMenu d-none d-lg-block">
+              <h2 class="pw-listContentImage__title">${data.titleI18n  @ i18n}</h2>
+              <div class="pw-listContentImage__tabMenu">
+                  <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
+                      <li class="pw-listContentImage__tabMenuListItem">
+                          <a href="#" data-tab-id="mtab-${itemList.count}-${data.componentId}"
+                             data-tab-count="${itemList.count}" data-parent-title="${data.titleI18n  @ i18n}"
+                             data-link-name="${item}" class="pw-listContentImage__tabMenuListItem__link d-block">
+                              ${item}
+                              <i class="icon-Chevron_Right tp-icon"></i>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+            <div class="mobile-tabMenu d-block d-lg-none">
+              <a data-sly-test="${data.makeCollapsable}" class="collapse-title d-block"
+                 data-toggle="collapse" href="#menu-collapse-${data.componentId}">
+                <h2 class="pw-listContentImage__title">${data.titleI18n  @ i18n}</h2>
+                <i class="icon-Chevron_Down"></i>
+              </a>
+              <h2 data-sly-test="${!data.makeCollapsable}" class="pw-listContentImage__title">${data.titleI18n  @ i18n}</h2>
+              <div class="pw-listContentImage__tabMenu ${data.makeCollapsable? 'collapse':''}"
+                   id="menu-collapse-${data.componentId}">
+                  <ul class="pw-listContentImage__tabMenuList" data-sly-list="${data.tabLinks}">
+                      <li class="pw-listContentImage__tabMenuListItem">
+                          <a href="#mtab-${itemList.count}-${data.componentId}" data-toggle="collapse"
+                             data-tab-id="mtab-${itemList.count}-${data.componentId}" data-tab-count="${itemList.count}" data-parent-title="${data.titleI18n @ i18n}" data-link-name="${item}"
+                             class="pw-listContentImage__tabMenuListItem__link d-block">
+                              ${item}
+                              <i class="icon-Chevron_Right tp-icon"></i>
+                          </a>
+                          <div class="collapse pw-listContentImage__cWrapper" id="mtab-${itemList.count}-${data.componentId}"
+                               data-parent="#menu-collapse-${data.componentId}"></div>
+                      </li>
+                  </ul>
+              </div>
             </div>
             <sly data-sly-test="data.linkTextI18n"
                  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
@@ -27,9 +55,10 @@
     <div class="pw-listContentImage__editWrapper ${showEdit}">
         <div class="row" data-sly-list="${data.tabLinks}">
             <sly data-sly-test.parsys="${'par{0}' @ format=[itemList.count]}" />
-            <div class="pw-listContentImage__editTab col-12" data-tab-id="${itemList.index}">
+            <div class="pw-listContentImage__editTab col-12" data-tab-id="mtab-${itemList.count}-${data.componentId}">
                 <h3>Edit tab number ${itemList.count} Content</h3>
-                <div class="pw-listContentImage__contentTab ${itemList.first? 'active' : ''}" data-tab-id="${itemList.index}">
+                <div class="pw-listContentImage__contentTab ${itemList.first? 'active' : ''}"
+                     data-tab-id="mtab-${itemList.count}-${data.componentId}">
                     <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}">
                 </div>
             </div>
