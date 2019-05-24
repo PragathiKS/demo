@@ -13,7 +13,6 @@ describe('ContactAnchorLink', function () {
   });
   after(function () {
     $(document.body).empty();
-    this.initSpy.restore();
     this.initContactAnchorSpy.restore();
     this.goToContactFormSpy.restore();
   });
@@ -22,6 +21,6 @@ describe('ContactAnchorLink', function () {
   });
   it('should go to contact form position on click', function () {
     $('.pw-contactAnchorLink').trigger('click');
-    expect(this.contactAnchor.goToContactFormSpy.called).to.be.true;
+    expect(this.contactAnchor.goToContactForm.called).to.be.true;
   });
 });

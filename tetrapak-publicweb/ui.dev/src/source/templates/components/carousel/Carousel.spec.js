@@ -12,7 +12,6 @@ describe('Carousel', function () {
   });
   after(function () {
     $(document.body).empty();
-    this.initSpy.restore();
     this.initCarouselSpy.restore();
   });
   it('should initialize', function () {

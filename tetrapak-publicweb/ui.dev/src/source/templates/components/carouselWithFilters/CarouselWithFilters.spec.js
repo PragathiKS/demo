@@ -14,7 +14,6 @@ describe('CarouselWithFilters', function () {
   });
   after(function () {
     $(document.body).empty();
-    this.initSpy.restore();
     this.initCarouselWFiltersSpy.restore();
     this.renderSubcatSpy.restore();
     this.renderPracticeSpy.restore();
@@ -24,10 +23,10 @@ describe('CarouselWithFilters', function () {
   });
   it('should render subcategories on click', function () {
     $('.pw-carousel__filters .js-filter-category .dropdown-item').first().trigger('click');
-    expect(this.contactAnchor.renderSubcatSpy.called).to.be.true;
+    expect(this.carouselWFilters.renderSubcategories.called).to.be.true;
   });
   it('should render practice on click', function () {
     $('.pw-carousel__filters .js-filter-subcategory .dropdown-item').first().trigger('click');
-    expect(this.contactAnchor.renderPracticeSpy.called).to.be.true;
+    expect(this.carouselWFilters.renderPractice.called).to.be.true;
   });
 });
