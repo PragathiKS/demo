@@ -26,46 +26,49 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class SaveOrderPreferencesServletTest {
 
-    private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
-    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
+	private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
+	private static final String SERVLET_RESOURCE_JSON = "allContent.json";
 
-    @Rule
-    public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON, SERVLET_RESOURCE_PATH, getMultipleMockedService());
+	@Rule
+	public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON,
+			SERVLET_RESOURCE_PATH, getMultipleMockedService());
 
-    @Before
-    public void setup() {
-        aemContext.load().json("/" + "user.json", "/home");
-        aemContext.currentResource(SERVLET_RESOURCE_PATH);
-        aemContext.request().setServletPath(SERVLET_RESOURCE_PATH);
-        aemContext.request().setMethod(HttpConstants.METHOD_POST);
-        Map<String, Object> params = new HashMap<>();
-        params.put("fields","orderNumber.poNumber");
-        aemContext.request().setParameterMap(params);
-    }
+	@Before
+	public void setup() {
+		aemContext.load().json("/" + "user.json", "/home");
+		aemContext.currentResource(SERVLET_RESOURCE_PATH);
+		aemContext.request().setServletPath(SERVLET_RESOURCE_PATH);
+		aemContext.request().setMethod(HttpConstants.METHOD_POST);
+		Map<String, Object> params = new HashMap<>();
+		params.put("fields", "orderNumber.poNumber");
+		aemContext.request().setParameterMap(params);
+	}
 
-    @Test
-    public void doPost() throws IOException {
-        MockSlingHttpServletRequest request = aemContext.request();
-        MockSlingHttpServletResponse response = aemContext.response();
-        SaveOrderPreferencesServlet saveOrderPreferencesServlet = aemContext.getService(SaveOrderPreferencesServlet.class);
-        aemContext.registerInjectActivateService(saveOrderPreferencesServlet);
-        saveOrderPreferencesServlet.doPost(request, response);
-        assertEquals(HttpStatus.SC_OK, response.getStatus());
-    }
+	@Test
+	public void doPost() throws IOException {
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		SaveOrderPreferencesServlet saveOrderPreferencesServlet = aemContext
+				.getService(SaveOrderPreferencesServlet.class);
+		aemContext.registerInjectActivateService(saveOrderPreferencesServlet);
+		saveOrderPreferencesServlet.doPost(request, response);
+		assertEquals(HttpStatus.SC_OK, response.getStatus());
+	}
 
-    public <T> List<GenericServiceType<T>> getMultipleMockedService() {
+	public <T> List<GenericServiceType<T>> getMultipleMockedService() {
 
-        // GenericServiceType<APIGEEService> apigeeServiceGenericServiceType = new GenericServiceType<>();
-        // apigeeServiceGenericServiceType.setClazzType(APIGEEService.class);
-        // apigeeServiceGenericServiceType.set(new MockAPIGEEServiceImpl());
+		// GenericServiceType<APIGEEService> apigeeServiceGenericServiceType = new
+		// GenericServiceType<>();
+		// apigeeServiceGenericServiceType.setClazzType(APIGEEService.class);
+		// apigeeServiceGenericServiceType.set(new MockAPIGEEServiceImpl());
 
-        GenericServiceType<SaveOrderPreferencesServlet> saveOrderPreferencesServletGenericServiceType = new GenericServiceType<>();
-        saveOrderPreferencesServletGenericServiceType.setClazzType(SaveOrderPreferencesServlet.class);
-        saveOrderPreferencesServletGenericServiceType.set(new SaveOrderPreferencesServlet());
+		GenericServiceType<SaveOrderPreferencesServlet> saveOrderPreferencesServletGenericServiceType = new GenericServiceType<>();
+		saveOrderPreferencesServletGenericServiceType.setClazzType(SaveOrderPreferencesServlet.class);
+		saveOrderPreferencesServletGenericServiceType.set(new SaveOrderPreferencesServlet());
 
-        List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
-        // serviceTypes.add((GenericServiceType<T>)apigeeServiceGenericServiceType);
-        serviceTypes.add((GenericServiceType<T>) saveOrderPreferencesServletGenericServiceType);
-        return serviceTypes;
-    }
+		List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
+		// serviceTypes.add((GenericServiceType<T>)apigeeServiceGenericServiceType);
+		serviceTypes.add((GenericServiceType<T>) saveOrderPreferencesServletGenericServiceType);
+		return serviceTypes;
+	}
 }
