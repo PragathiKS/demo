@@ -17,7 +17,9 @@ function _processEventsData(data) {
     }
 
     data.events.forEach(event => {
-      event.plannedDuration = `${event.plannedDuration} ${event.plannedDurationUnit.toLowerCase()}`;
+      if (typeof event.plannedDurationUnit === 'string') {
+        event.plannedDuration = `${event.plannedDuration} ${event.plannedDurationUnit.toLowerCase()}`;
+      }
     });
   }
 }
