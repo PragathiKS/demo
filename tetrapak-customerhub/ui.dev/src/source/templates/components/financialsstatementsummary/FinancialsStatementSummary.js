@@ -129,6 +129,7 @@ function _renderTable(filterParams) {
           };
         }
         data = $.extend(true, data, $this.cache.i18nKeys);
+        data.params = filterParams;
         return $this.processTableData(data);
       },
       ajaxConfig: {
