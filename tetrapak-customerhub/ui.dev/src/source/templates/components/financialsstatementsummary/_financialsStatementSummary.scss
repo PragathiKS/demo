@@ -16,19 +16,8 @@
 
     &__documents {
         &__cell {
-            display: none;
-
-            &:first-child {
-                display: table-cell;
-            }
-
             &:last-child {
-                padding-right: 0;
                 text-align: right;
-            }
-
-            @media #{$desktop} {
-                display: table-cell;
             }
         }
 
@@ -37,12 +26,7 @@
             &,
             &:first-child {
                 @include font-size($font-baseline);
-                display: none;
                 font-family: $font-semi-bold;
-
-                @media #{$desktop} {
-                    display: table-cell;
-                }
             }
         }
     }
