@@ -276,9 +276,8 @@ function _downloadPdfExcel(...args) {
   const [, type, el] = args;
   const $el = $(el);
   $el.attr('disabled', 'disabled');
-  const $this = this;
   const paramsData = {};
-  const { $filterForm, $dateRange, data, i18nKeys } = $this.cache;
+  const { $filterForm, $dateRange, data, i18nKeys } = this.cache;
   const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
   const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
   const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
@@ -304,7 +303,7 @@ function _downloadPdfExcel(...args) {
     const requestBody = {};
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
-    const url = resolveQuery($this.cache.servletUrl, { extnType: type });
+    const url = resolveQuery(this.cache.servletUrl, { extnType: type });
     fileWrapper({
       url,
       data: {
@@ -445,7 +444,7 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
-    this.root.parents('.js-financials').on('downloadFinancialPdfExcel', this, this.downloadPdfExcel);
+    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

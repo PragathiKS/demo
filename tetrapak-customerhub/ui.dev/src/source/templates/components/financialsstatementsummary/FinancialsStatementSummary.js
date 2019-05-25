@@ -202,7 +202,7 @@ class FinancialsStatementSummary {
     $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type, el) {
-    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type, el]);
+    this.root.parents('.js-financials').trigger('financial.filedownload', [type, el]);
   }
 
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, this, type);
