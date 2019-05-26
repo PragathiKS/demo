@@ -23,14 +23,6 @@ $text-tags: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'secti
     }
 }
 
-/*------------------------------------*\
-    #BODY
-\*------------------------------------*/
-
-/**
- * Body base styles
- */
-
 body {
     background: $color-mercury;
     color: $color-text;
@@ -59,14 +51,6 @@ button {
     cursor: pointer;
 }
 
-/*------------------------------------*\
-      #MEDIA ELEMENTS
-  \*------------------------------------*/
-
-/**
-  * Make media elements responsive
-  */
-
 img,
 video,
 object {
@@ -74,17 +58,9 @@ object {
     height: auto;
 }
 
-/**
-  * Iframe base styles
-  */
-
 iframe {
     margin-bottom: $spacing-big;
 }
-
-/**
-  * Form Element styles
-  */
 
 select {
     @extend %appearance;
@@ -98,32 +74,17 @@ select::-ms-expand {
     display: none;
 }
 
-/**
-  * Figure base styles
-  */
-
 figure {
     margin-bottom: $spacing-big;
 
-    /**
-      * Figure image base styles
-      */
     img {
         margin-bottom: $spacing-small;
     }
 }
 
-/**
-  * Figure caption base styles
-  */
-
 figcaption {
     font-style: italic;
 }
-
-/**
-  * Ordered/Unordered list base styles
-  */
 
 ol,
 ul {
@@ -131,19 +92,11 @@ ul {
     list-style: none;
 }
 
-/**
-  * Table base styles
-  */
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
 }
-
-/**
-  * Table header base styles
-  */
 
 th,
 td {
@@ -151,15 +104,9 @@ td {
     white-space: nowrap;
 }
 
-/**
-   * Main content area
-   */
-
 [role="main"] {
     flex: 1;
 }
-
-// Font weight classes
 
 .semi-bold {
     font-family: $font-semi-bold;
