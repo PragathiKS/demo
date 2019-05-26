@@ -36,7 +36,9 @@
             </div>
             <div class="col-lg-10 tp-column__content">
                 {{!-- Main content goes here --}}
-                <h1 class="tp-page-title">{{fsdId}}</h1>
+                {{#if_notin "error" fsdId}}
+                    <h1 class="tp-page-title">{{fsdId}}</h1>
+                {{/if_notin}}
                 {{> body}}
                 <sly data-sly-call="${tabsLib.tabs_template @data=tabsModel}" />
                 <sly data-sly-call="${maintenanceLib.maintenance_template @data=maintenanceModel}" />

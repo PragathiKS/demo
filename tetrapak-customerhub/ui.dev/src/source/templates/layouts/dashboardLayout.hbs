@@ -34,7 +34,9 @@
             <div class="col-lg-7 tp-column__content">
                 {{!-- Main content goes here --}}
                 {{#if_notin "header,leftnavigation" fsdId}}
-                    <h1 class="tp-page-title">{{fsdId}}</h1>
+                    {{#if_notin "error" fsdId}}
+                        <h1 class="tp-page-title">{{fsdId}}</h1>
+                    {{/if_notin}}
                     {{> body}}
                 {{/if_notin}}
             </div>

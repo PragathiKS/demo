@@ -37,6 +37,16 @@ h4 {
     }
 }
 
+.hero {
+    @include font-size($font-m-xxl);
+    @include line-height(40px, $font-m-xxl);
+
+    @media #{$desktop} {
+        @include font-size($font-xxl);
+        @include line-height(48px, $font-xxl);
+    }
+}
+
 .font-style-sm {
     @include font-size($font-baseline);
     @include line-height(24px, $font-baseline);
