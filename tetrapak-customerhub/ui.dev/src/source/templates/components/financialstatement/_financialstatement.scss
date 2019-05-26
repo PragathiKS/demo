@@ -7,11 +7,10 @@
 
     &__select-customer-label {
         @include padding($padding-md 0);
-        font-family: $font-bold;
+        font-family: $font-light;
 
         @media #{$desktop} {
             @include padding($padding-l 0 $padding-md 0);
-            font-family: $font-light;
         }
     }
 

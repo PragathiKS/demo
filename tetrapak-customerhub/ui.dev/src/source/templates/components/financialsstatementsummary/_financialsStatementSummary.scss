@@ -2,11 +2,10 @@
     h3 {
         @include padding-top($padding-l);
         @include padding-bottom($padding-sm);
-        font-family: $font-bold;
+        font-family: $font-light;
 
         @media #{$desktop} {
             @include padding-top($padding-xl);
-            font-family: $font-light;
         }
     }
 
