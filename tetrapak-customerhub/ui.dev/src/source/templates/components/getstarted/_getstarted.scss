@@ -22,6 +22,10 @@
         justify-content: flex-start;
         flex-wrap: wrap;
 
+        &--image {
+            width: 100%;
+        }
+
         @media #{$desktop} {
             flex-direction: row;
         }
