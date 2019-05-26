@@ -36,3 +36,8 @@ h4 {
         @include line-height(24px, $font-baseline);
     }
 }
+
+.font-style-sm {
+    @include font-size($font-baseline);
+    @include line-height(24px, $font-baseline);
+}

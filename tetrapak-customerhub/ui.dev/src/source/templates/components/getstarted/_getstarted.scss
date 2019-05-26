@@ -1,20 +1,27 @@
 .tp-get-started {
     @include box-shadow-normal;
-    @include padding(16px 8px 8px 8px);
+    @include padding($padding-sm);
     width: 100%;
     background-color: $color-white;
     border-radius: 5px;
+
     @media #{$desktop} {
-        @include padding(24px 8px 8px 8px);
+        @include padding(12px);
     }
-    & &__heading {
-        @include padding(0 0 12px 12px);
-        font-family: $font-light;
+
+    &__heading {
+        @include padding($padding-sm);
+
+        @media #{$desktop} {
+            @include padding(12px);
+        }
     }
+
     &__details {
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
+
         @media #{$desktop} {
             flex-direction: row;
         }
