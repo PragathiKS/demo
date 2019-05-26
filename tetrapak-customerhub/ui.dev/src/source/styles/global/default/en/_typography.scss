@@ -1,0 +1,38 @@
+h1 {
+    @include font-size($font-m-xl);
+    @include line-height(36px, $font-m-xl);
+    font-weight: lighter;
+
+    @media #{$desktop} {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+}
+
+h2 {
+    @include font-size($font-m-l);
+    @include line-height(32px, $font-m-l);
+    font-weight: lighter;
+}
+
+h3 {
+    @include font-size($font-m-md);
+    @include line-height(28px, $font-m-md);
+    font-weight: lighter;
+
+    @media #{$desktop} {
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+    }
+}
+
+h4 {
+    @include font-size($font-m-baseline);
+    @include line-height(28px, $font-m-baseline);
+    font-weight: lighter;
+
+    @media #{$desktop} {
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+    }
+}

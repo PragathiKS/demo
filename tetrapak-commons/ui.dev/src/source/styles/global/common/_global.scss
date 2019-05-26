@@ -196,11 +196,9 @@ td {
 // Page title
 .tp-page-title {
     @include margin-bottom($margin-md);
-    @include font-size($font-l);
 
     @media #{$desktop} {
         @include margin-bottom($margin-l);
-        @include font-size($font-xl);
     }
 }
 
