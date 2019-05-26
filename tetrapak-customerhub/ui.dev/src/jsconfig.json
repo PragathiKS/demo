@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "tpCommon/*": [
+        "../../../tetrapak-commons/ui.dev/src/source/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "app"
+  ]
+}
