@@ -1,10 +1,11 @@
 .tpmol-image-card {
-    @include padding($padding-sm $padding-sm $padding-l $padding-sm);
+    @include padding($padding-sm);
     background-color: $color-white;
     display: flex;
     width: 100%;
 
     @media #{$desktop} {
+        @include padding(12px);
         width: 33.33%;
         margin: 0;
 
@@ -32,9 +33,7 @@
     }
 
     &__heading {
-        @include line-height($font-l, $font-md);
-        font-family: $font-light;
-        padding: 0;
+        @include margin-bottom($margin-md);
     }
 
     &__text {
@@ -47,20 +46,11 @@
             @include padding($padding-l);
         }
 
-        .font-style-sm {
-            @include line-height(21px, $font-sm);
-        }
-
         ul,
         ol {
+            @include padding-left($padding-md);
+            @include margin-bottom($margin-md);
             list-style: initial;
-            @include padding($padding-sm 0 0 $padding-md);
-
-            li {
-                @include font-size($font-sm);
-                @include line-height(22.5px, $font-baseline);
-                color: $color-light-gray;
-            }
         }
 
         ol {
@@ -68,30 +58,15 @@
         }
     }
 
-    &__normal-text {
-        @include margin-top($margin-sm);
-
-        @media #{$desktop} {
-            @include margin-top($margin-md);
-        }
-
+    &__normal-text,
+    &__rich-text,
+    .font-style-sm {
         p {
-            @include line-height(21px, $font-sm);
-            @include font-size($font-sm);
-        }
-    }
-
-    &__rich-text {
-        @include margin-top($margin-sm);
-
-        p {
-            @include line-height(21px, $font-baseline);
-            @include font-size($font-baseline);
+            @include margin-bottom($margin-md);
         }
     }
 
     &__link {
-        @include padding-top($padding-md);
         @include word-spacing($word-spacing-sm);
         @include font-size($font-normal);
         font-family: $font-light;

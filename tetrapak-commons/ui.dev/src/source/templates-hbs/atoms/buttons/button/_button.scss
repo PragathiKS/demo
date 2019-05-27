@@ -106,19 +106,23 @@
     &--calendar {
         @include width($spacing-big);
         @include height($spacing-big);
+        position: relative;
         border-radius: 50%;
         background-color: $color-tundora;
         color: $color-white;
 
         .icon {
-            @include font-size($font-baseline);
-            display: inline-block;
+            @include font-size($font-sm);
+            @include height(15px);
             width: 100%;
-            height: 100%;
-
-            &::before {
-                vertical-align: middle;
-            }
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
         }
     }
 }

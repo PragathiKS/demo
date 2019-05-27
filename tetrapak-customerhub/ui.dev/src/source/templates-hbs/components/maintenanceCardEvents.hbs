@@ -16,7 +16,7 @@
         <div class="tp-maintenance-card__events accordion" id="tp-maintenance-card__events">
             {{#each events}}
                 <button type="button" class="tp-maintenance-card__event js-maintenance-card__event{{#unless @first}} collapsed{{/unless}}" data-toggle="collapse" data-target="#Event{{@index}}" aria-expanded="{{#if @first}}true{{else}}false{{/if}}" aria-controls="#Event{{@index}}">
-                    <div class="tp-maintenance-card__event-title bold">{{title}} - {{plannedStart}}</div>
+                    <div class="tp-maintenance-card__event-title bold">{{matTitle}} - {{plannedStart}}</div>
                     <div class="tp-maintenance-card__event-line">{{siteName}}</div>
                     <div class="tp-maintenance-card__event-line">{{lineName}}</div>
                     <div class="tp-maintenance-card__event-euipment">{{euipmentName}}</div>
