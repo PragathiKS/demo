@@ -1,13 +1,11 @@
 import $ from 'jquery';
 import { mediaTypes, orientationTypes } from './constants';
-import { logger } from './logger';
 
 /**
  * responsive.js
- * This utility file is an extension to common utils and uses the same common utils namespace.
  * The file implements responsive events for JavaScript
- * @project   SapientNitro Roche Pharma Customer Portal
- * @date      2018-03-23
+ * @project   Tetra Pak
+ * @date      2019-05-27
  * @author    Sachin
  * @dependencies jQuery, matchMedia
  */
