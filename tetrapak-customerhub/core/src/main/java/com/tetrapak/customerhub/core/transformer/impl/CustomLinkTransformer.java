@@ -122,7 +122,7 @@ public class CustomLinkTransformer implements Transformer {
 			country = pathArray[1];
 			language = pathArray[2];
 		}
-		LOG.info(context.getRequest().getPathInfo());
+		LOG.debug(context.getRequest().getPathInfo());
 	}
 
 	@Override
