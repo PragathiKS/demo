@@ -16,14 +16,14 @@
         <div class="tp-maintenance-card__events accordion" id="tp-maintenance-card__events">
             {{#each events}}
                 <button type="button" class="tp-maintenance-card__event js-maintenance-card__event{{#unless @first}} collapsed{{/unless}}" data-toggle="collapse" data-target="#Event{{@index}}" aria-expanded="{{#if @first}}true{{else}}false{{/if}}" aria-controls="#Event{{@index}}">
-                    <div class="tp-maintenance-card__event-title bold">{{title}} - {{plannedStart}}</div>
+                    <div class="tp-maintenance-card__event-title bold">{{matTitle}} - {{plannedStart}}</div>
                     <div class="tp-maintenance-card__event-line">{{siteName}}</div>
                     <div class="tp-maintenance-card__event-line">{{lineName}}</div>
                     <div class="tp-maintenance-card__event-euipment">{{euipmentName}}</div>
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
                 <div class="tp-maintenance-card__event-detail-wrapper d-lg-none collapse{{#if @first}} show{{/if}}" id="Event{{@index}}" data-parent="#tp-maintenance-card__events">
-                    <div class="__event-detail">
+                    <div class="tp-maintenance-card__event-detail">
                         {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.statusLabel data=status }}
                         {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
                         {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}
