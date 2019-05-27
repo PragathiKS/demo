@@ -19,6 +19,7 @@ export const NO_OF_EVENTS_PER_PAGE = 12;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
+export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',

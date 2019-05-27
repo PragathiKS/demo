@@ -24,6 +24,7 @@ describe('Maintenanceevents', function () {
     this.maintenanceevents = new EventsListing({ el: $('.js-maintenance__events') });
     this.initSpy = sinon.spy(this.maintenanceevents, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "renderMaintenanceEvents");
+    this.reRenderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "reRenderMaintenanceEvents");
 
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -41,6 +42,7 @@ describe('Maintenanceevents', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderMaintenanceEventsSpy.restore();
+    this.reRenderMaintenanceEventsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -56,6 +58,11 @@ describe('Maintenanceevents', function () {
       $equipment: $('.js-maintenance-filtering__equipment')
     }, sinon.stub()]);
     expect(this.renderMaintenanceEventsSpy.called).to.be.true;
+    done();
+  });
+  it('should re-render events on trigger of pagination buttons', function (done) {
+    $('.js-pagination').trigger('eventslisting.pagenav', [{ pageIndex: 1 }]);
+    expect(this.reRenderMaintenanceEventsSpy.called).to.be.true;
     done();
   });
 });

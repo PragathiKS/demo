@@ -11,7 +11,7 @@
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ i18n}</p>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
           <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-                data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnIcon='icon-Circle_Arrow_Right', variant=data.pwButtonTheme}" />
+                data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnTarget=data.targetBlank, btnIcon='icon-Circle_Arrow_Right', variant=data.pwButtonTheme}" />
         </div>
       </div>
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">

@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
+
 @Ignore
 public class OrderingCardModelTest {
 
     private OrderingCardModel orderingCardModel = null;
-    private UserPreferenceService userPreferenceService;
     private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
     private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
     private static final String RESOURCE_JSON = "allContent.json";
@@ -25,7 +25,7 @@ public class OrderingCardModelTest {
     @Before
     public void setup() {
         aemContext.load().json("/" + "user.json", "/home");
-        userPreferenceService = new UserPreferenceServiceImpl();
+        UserPreferenceService userPreferenceService = new UserPreferenceServiceImpl();
 
         aemContext.registerInjectActivateService(userPreferenceService);
 
@@ -36,12 +36,12 @@ public class OrderingCardModelTest {
     @Test
     public void testModel() {
         String i18nKeys = orderingCardModel.getI18nKeys();
-        Assert.assertTrue(i18nKeys.contains("cuhu.ordering.title"));
-        Assert.assertEquals(1, orderingCardModel.getDisabledFields().size());
-        Assert.assertEquals(3, orderingCardModel.getDefaultFields().size());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getOrderDetailLink());
-        Assert.assertEquals(6, orderingCardModel.getSavedPreferences().size());
+        Assert.assertTrue("title is not empty", i18nKeys.contains("cuhu.ordering.title"));
+        Assert.assertEquals("size of enabled fields", 1, orderingCardModel.getEnabledFields().size());
+        Assert.assertEquals("size of default fields", 3, orderingCardModel.getDefaultFields().size());
+        Assert.assertEquals("preference url", "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
+        Assert.assertEquals("all orders detail link", "/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
+        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getOrderDetailLink());
+        Assert.assertEquals("saved preference size", 6, orderingCardModel.getSavedPreferences().size());
     }
 }
