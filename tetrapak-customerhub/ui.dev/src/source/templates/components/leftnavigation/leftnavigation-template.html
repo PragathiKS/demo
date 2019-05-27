@@ -1,9 +1,9 @@
 <sly data-sly-template.leftnavigation_template="${@ data, flag}">
    <div class="tp-left-nav" data-module="LeftNavigation">
     <aside class="tp-left-nav__overlay js-left-nav__overlay d-none d-lg-block" >
-      <nav class="tp-left-nav__container js-left-nav__container">
-        <div class="tp-left-nav__menu-wrapper custom-scrollbar-vertical">
-          <ul class="tp-left-nav__ullist custom-scrollbar-content">
+      <nav class="tp-left-nav__container js-left-nav__container custom-scrollbar-vertical">
+        <div class="tp-left-nav__menu-wrapper custom-scrollbar-content">
+          <ul class="tp-left-nav__ullist">
             <li class="tp-left-nav__main-heading">
               <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n}</span>
               <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
