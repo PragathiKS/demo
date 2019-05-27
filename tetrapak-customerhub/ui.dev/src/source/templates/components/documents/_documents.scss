@@ -34,4 +34,24 @@
             background-color: $color-white;
         }
     }
+
+    &__document-type-heading {
+        @include padding($padding-sm 0);
+        border-bottom: 1px solid $color-tundora;
+        font-family: $font-bold;
+    }
+
+    &__documents-list {
+        @include font-size($font-sm);
+
+        .tpmol-accordian-title {
+            font-family: $font-regular;
+            border-color: $color-mercury;
+        }
+    }
+
+    &__document {
+        @include padding($padding-sm 0);
+        border-bottom: 1px solid $color-mercury;
+    }
 }
