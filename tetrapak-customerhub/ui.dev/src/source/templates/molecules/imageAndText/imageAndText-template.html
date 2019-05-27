@@ -13,7 +13,7 @@
         <sly data-sly-test.linkUrl="${data.linkUrl}" />
           <div class="tpmol-image-card__link">
             <sly data-sly-use.nextButton="/apps/commons/components/atoms/nextButton/nextButton-template.html"
-                data-sly-call="${nextButton.nextButton_template @nextBtnText=linkText, btnClasses='js-slick-next', btnTextIcon='icon-Circle_Arrow_Right',linkUrl=linkUrl}" >
+                data-sly-call="${nextButton.nextButton_template @nextBtnText=linkText, btnClasses='js-slick-next',linkHeading=data.titleI18n, btnTextIcon='icon-Circle_Arrow_Right',linkUrl=linkUrl}" >
             </sly>
           </div>
         </sly>
