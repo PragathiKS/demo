@@ -19,5 +19,4 @@
 	</filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/jsonData" mode="replace"/>
 	<filter root="/etc/map/http/cuhu_regex" mode="update"/>
-	<filter root="/apps/cuhu/config/rewriter/cuhu-link-rewrite" mode="replace"/>
 </workspaceFilter>
