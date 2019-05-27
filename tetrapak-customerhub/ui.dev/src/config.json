@@ -174,7 +174,8 @@
       ],
       "dashboard": [
         "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/"
+        "source/templates/components/maintenancecard/",
+        "source/templates/components/contactcard/"
       ],
       "orders": [
         "source/templates/components/ordersearch/",

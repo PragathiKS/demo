@@ -1,12 +1,4 @@
 .tp-maintenance-card {
-    h2 {
-        @include font-size($font-md);
-
-        @media #{$desktop} {
-            @include font-size($font-l);
-        }
-    }
-
     &__events {
         @media #{$desktop} {
             float: left;
@@ -110,7 +102,6 @@
 
         h3 {
             @include margin($margin-md 0);
-            @include font-size($font-md);
         }
 
         &-icon {

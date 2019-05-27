@@ -99,6 +99,9 @@ describe('MaintenanceFiltering', function () {
     expect(this.trackAnalyticsSpy.called).to.be.true;
   });
   it('should render line filter on change of `site` filter', function (done) {
+    this.ajaxStub.restore();
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
     $('.js-maintenance-filtering__site').trigger('change');
     expect(this.maintenanceFiltering.renderLineFilter.called).to.be.true;
     done();

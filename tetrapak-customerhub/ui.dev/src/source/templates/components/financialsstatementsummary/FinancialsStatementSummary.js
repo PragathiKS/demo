@@ -129,6 +129,7 @@ function _renderTable(filterParams) {
           };
         }
         data = $.extend(true, data, $this.cache.i18nKeys);
+        data.params = filterParams;
         return $this.processTableData(data);
       },
       ajaxConfig: {
@@ -202,7 +203,7 @@ class FinancialsStatementSummary {
     $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type, el) {
-    this.root.parents('.js-financials').trigger('downloadFinancialPdfExcel', [type, el]);
+    this.root.parents('.js-financials').trigger('financial.filedownload', [type, el]);
   }
 
   trackAnalytics = (obj, type) => _trackAnalytics.call(obj, this, type);

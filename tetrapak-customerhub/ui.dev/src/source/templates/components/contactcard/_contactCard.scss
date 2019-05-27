@@ -18,8 +18,6 @@
     }
 
     &__heading {
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
         @include margin-bottom($margin-md);
 
         @media #{$desktop} {

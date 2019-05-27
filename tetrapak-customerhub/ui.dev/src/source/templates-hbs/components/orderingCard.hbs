@@ -1,5 +1,5 @@
 <div class="tp-ordering-card__orders">
-    <div class="tp-ordering-card__title">{{i18n key=labels.title}}</div>
+    <h2 class="tp-ordering-card__title">{{i18n key=labels.title}}</h2>
     {{#unless isError}}
         {{#if orders}}
             {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
@@ -10,7 +10,7 @@
     </div>
     {{#unless isError}}
         <div class="tp-ordering-card__viewmore-wrapper">
-            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" text=labels.allOrders modifier="secondary"}}
+            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" ctype="dashboard-Ordering" linkHeading=labels.title  text=labels.allOrders modifier="secondary"}}
         </div>
     {{/unless}}
     {{!-- Settings overlay --}}
