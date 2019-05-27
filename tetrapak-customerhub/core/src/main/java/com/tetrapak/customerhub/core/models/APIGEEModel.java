@@ -1,7 +1,9 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -18,6 +20,16 @@ public class APIGEEModel {
 
     public String getApiURL() {
         return GlobalUtil.getApiURL(apigeeService, "");
+    }
+
+    public String getApiMappings() {
+        String apiUrl = GlobalUtil.getApiURL(apigeeService, "");
+        JsonObject jsonObject = new JsonObject();
+        String[] mapArray = GlobalUtil.getApiMappings(apigeeService);
+        for (String mapping : mapArray) {
+            jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"), apiUrl + StringUtils.substringAfter(mapping, ":"));
+        }
+        return jsonObject.toString();
     }
 
 }

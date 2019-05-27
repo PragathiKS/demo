@@ -17,4 +17,9 @@ public class MockAPIGEEServiceImpl implements APIGEEService {
     public String getApigeeClientSecret() {
         return "jX38HGX7Ze4j6vvZ";
     }
+
+    @Override
+    public String[] getApiMappings() {
+        return new String[]{"token-generator:bin/customerhub/token-generator,orderingcard"};
+    }
 }

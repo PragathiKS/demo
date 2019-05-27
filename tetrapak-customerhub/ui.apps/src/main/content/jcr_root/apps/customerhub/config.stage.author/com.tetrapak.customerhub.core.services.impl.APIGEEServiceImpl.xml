@@ -3,4 +3,5 @@
           jcr:primaryType="sling:OsgiConfig"
           apigeeServiceUrl="https://api-mig.tetrapak.com"
           apigeeClientID="KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
-          apigeeClientSecret="jX38HGX7Ze4j6vvZ"/>
+          apigeeClientSecret="jX38HGX7Ze4j6vvZ"
+          apiMappings="[token-generator:bin/customerhub/token-generator,orderingcard:orders/summary,ordersearch:orders/history,orderdetails-parts:orders/details/parts,orderdetails-packmat:orders/details/packmat,financialstatement-filter:financials/summary,financialstatement-results:financials/results,financialstatement-invoice:demo/cfe/invoices,maintenance-filter:mock/materials/equipments/installations,maintenance-events:orders/service/events,maintenancecard:orders/service/events,documents-filter:mock/materials/equipments/installations,documents:techpub/search]"/>

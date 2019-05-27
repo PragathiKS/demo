@@ -45,6 +45,16 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get API Mappings
+     *
+     * @param apigeeService API GEE Service
+     * @return String array
+     */
+    public static String[] getApiMappings(APIGEEService apigeeService) {
+        return null != apigeeService ? apigeeService.getApiMappings() : null;
+    }
+
+    /**
      * Method to get Preference Url
      *
      * @param apigeeService   API GEE Service
