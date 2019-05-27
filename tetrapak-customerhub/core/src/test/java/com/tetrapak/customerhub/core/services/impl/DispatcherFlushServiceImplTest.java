@@ -1,7 +1,5 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import static org.junit.Assert.fail;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +59,7 @@ public class DispatcherFlushServiceImplTest {
 		agentMaps.put("dispatcherFlushAgent", agent);
 		Mockito.when(agentManager.getAgents()).thenReturn(agentMaps);
 		dispatcherFlushService.flush("/somepath");
+		Mockito.verify(agentManager, Mockito.atLeastOnce()).getAgents();
 	}
 
 }

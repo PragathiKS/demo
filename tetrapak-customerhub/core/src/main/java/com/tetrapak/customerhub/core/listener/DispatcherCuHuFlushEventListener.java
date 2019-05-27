@@ -139,6 +139,11 @@ public class DispatcherCuHuFlushEventListener implements EventListener {
 	}
 
 	/**
+	 * 
+	 * Flush cache configured in the country-locale list if the specificlocale
+	 * parameter is empty otherwise flush specificlocale page cache for the
+	 * countries defined in the configuration list
+	 * 
 	 * @param isSpecificLocale
 	 * @param relativePath
 	 * @param countryLocaleList
@@ -147,7 +152,7 @@ public class DispatcherCuHuFlushEventListener implements EventListener {
 		Iterator<String[]> itr = countryLocaleList.iterator();
 		while (itr.hasNext()) {
 			String[] countryLocale = itr.next();
-			if (!specificLocale.isEmpty() && specificLocale.equalsIgnoreCase(countryLocale[1])) {
+			if (specificLocale.isEmpty() || specificLocale.equalsIgnoreCase(countryLocale[1])) {
 				String path = CustomerHubConstants.PATH_SEPARATOR + countryLocale[0]
 						+ CustomerHubConstants.PATH_SEPARATOR + countryLocale[1] + relativePath;
 				dispatcherFlush.flush(path);

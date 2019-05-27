@@ -24,6 +24,9 @@ import com.tetrapak.customerhub.core.services.DispatcherFlushService;
 import com.tetrapak.customerhub.core.services.config.CuhuDispatcherFlushConfig;
 
 /**
+ * 
+ * DispatcherCuHuFlushEventListenerTest
+ * 
  * @author swalamba
  *
  */
@@ -72,7 +75,28 @@ public class DispatcherCuHuFlushEventListenerTest {
 				Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED, "/content/tetrapak/customerhub",
 				true, null, new String[] { "cq:PageContent" }, true);
 		Mockito.when(mockWorkSpace.getObservationManager()).thenReturn(obsMgr);
-		
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.tetrapak.customerhub.core.listener.DispatcherCuHuFlushEventListener#onEvent(javax.jcr.observation.EventIterator)}.
+	 * 
+	 * @throws RepositoryException
+	 */
+	@Test
+	public void testOnEventContentComponentPath() throws RepositoryException {
+		Mockito.when(config.enableCustomFlush()).thenReturn("true");
+		listener.activate(context, config);
+		Mockito.when(config.getCountryLocaleList()).thenReturn("us-en,fr-sp");
+		Mockito.when(events.hasNext()).thenReturn(true, false);
+		Mockito.when(events.nextEvent()).thenReturn(mockEvent);
+		Mockito.when(mockEvent.getPath()).thenReturn(
+				"/content/tetrapak/customerhub/content-components/en/dashboard/jcr:content/root/responsivegrid/orderingcard");
+		Mockito.doNothing().when(dispatcherFlush).flush(Mockito.anyString());
+		listener.onEvent(events);
+		Mockito.verify(events, Mockito.atLeastOnce()).nextEvent();
+		listener.deactivate();
 	}
 
 	/**
@@ -95,7 +119,7 @@ public class DispatcherCuHuFlushEventListenerTest {
 		Mockito.verify(events, Mockito.atLeastOnce()).nextEvent();
 		listener.deactivate();
 	}
-	
+
 	/**
 	 * Test method for
 	 * {@link com.tetrapak.customerhub.core.listener.DispatcherCuHuFlushEventListener#onEvent(javax.jcr.observation.EventIterator)}.
