@@ -4,27 +4,33 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_MAINTENANCE_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { apiHost, getI18n } from '../../../scripts/common/common';
 
 /**
- * Fetch, Process and Render Documents
- * @param {object} documentsData JSON data object for equipments document
+ * Process Documents Data
+ * @param {object} documentsData JSON data object for equipments documents
  */
 function _processDocumentsData(documentsData) {
-  if (Array.isArray(documentsData.options) && Array.isArray(documentsData.results)) {
-    debugger; //eslint-disable-line
+  if (Array.isArray(documentsData.equipments) && Array.isArray(documentsData.results)) {
     documentsData.results.forEach((result, resultIndex) => {
       result.docTypes.forEach((docType, docIndex) => {
         docType.docId = `#document${resultIndex}${docIndex}`;
       });
     });
 
-    documentsData.options.forEach(equipment => {
+    documentsData.equipments.forEach(equipment => {
       equipment.documents = documentsData.results.filter(document => {
         if (equipment.serialNo === document.serial) {
           return true;
         }
-      });
+      })[0];
+
+      if (typeof equipment.documents === 'undefined') {
+        equipment.noData = true;
+        equipment.desc = `${equipment.desc} (0 ${getI18n(documentsData.i18nKeys.documentLabel)})`;
+      } else {
+        equipment.desc = `${equipment.desc} (${equipment.documents.docCount} ${getI18n(documentsData.i18nKeys.documentLabel)})`;
+      }
     });
   }
 }
@@ -35,7 +41,7 @@ function _processDocumentsData(documentsData) {
  */
 function _renderDocuments(equipmentData) {
   const $this = this;
-  const allEquipments = equipmentData.options.map((option) => option.serialNo).join(',');
+  const allEquipments = equipmentData.equipments.map((option) => option.serialNo).join(',');
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'documentsFilteringTable',
@@ -64,12 +70,7 @@ function _renderDocuments(equipmentData) {
         } else {
           $.extend(data, equipmentData);
           $this.processDocumentsData(data);
-          debugger; //eslint-disable-line
         }
-      }
-    }, (data) => {
-      if (!data.isError && !data.noData) {
-        logger.log(data);
       }
     });
   });
@@ -86,7 +87,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
   let lines = [];
 
   data.equipmentData = {};
-  data.equipmentData.options = [];
+  data.equipmentData.equipments = [];
 
   if (lineVal === '') {
     lines = data.lines;
@@ -98,7 +99,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
   data.equipmentData.selectedFilter = `${this.selectedLine},${this.selectedSite}`;
 
   lines.forEach(line => {
-    data.equipmentData.options.push(...line.equipments.map((equipment, index) => ({
+    data.equipmentData.equipments.push(...line.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
       serialNo: equipment.serialNumber,
       desc: equipment.equipmentName,
@@ -108,6 +109,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
 
   this.renderDocuments(data.equipmentData);
 }
+
 /**
  * Filter the line values
  */
@@ -124,6 +126,7 @@ function _processLineData() {
     }
   }
 }
+
 /**
  * Renders Line Filter
  * @param {object} data JSON data object for selected site
@@ -145,6 +148,7 @@ function _renderLineFilters(data = this.cache.filteredData) {
     this.renderEquipmentFilters(data);
   }
 }
+
 /**
  * Process Sites Data
  * @param {object} data JSON data object
@@ -159,6 +163,7 @@ function _processSiteData(data) {
     data.noData = true;
   }
 }
+
 /**
  * To fetch all the sites
  */
@@ -215,6 +220,7 @@ class Documents {
     this.root = $(el);
   }
   cache = {};
+
   /**
   * Initialize selector cache after filters rendering
   */
@@ -222,6 +228,7 @@ class Documents {
     this.cache.$site = this.root.find('.js-documents-filtering__site');
     this.cache.$line = this.root.find('.js-documents-filtering__line');
   }
+
   /**
   * Initialize selector cache on component load
   */
@@ -234,10 +241,11 @@ class Documents {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.techPubHost = this.root.find('.js-tech-pub-host').val();
   }
+
   bindEvents() {
     const self = this;
-    /* Bind jQuery events here */
     this.root
       .on('change', '.js-documents-filtering__site', function () {
 
@@ -261,6 +269,7 @@ class Documents {
         self.renderEquipmentFilters();
       });
   }
+
   renderEquipmentFilters = (data) => _renderEquipmentFilters.call(this, data);
   processLineData = () => _processLineData.call(this);
   renderLineFilters = (data) => _renderLineFilters.call(this, data);
@@ -268,6 +277,7 @@ class Documents {
   renderSiteFilters = () => _renderSiteFilters.call(this);
   renderDocuments = (data) => _renderDocuments.call(this, data);
   processDocumentsData = (data) => _processDocumentsData.call(this, data);
+
   init() {
     /* Mandatory method */
     this.initCache();

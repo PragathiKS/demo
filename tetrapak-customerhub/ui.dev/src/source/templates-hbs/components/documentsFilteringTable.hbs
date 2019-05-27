@@ -1,15 +1,19 @@
 <h3 class="tp-documents__equipment-heading">{{i18n key=i18nKeys.documentHeading replaceList=selectedFilter}}</h3>
-{{#each options}}
+{{#each equipments}}
     {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-documents__accordion" jsClass="js-documents__accordion" iconClass="icon-Chevron_Up"  data-toggle="collapse" text=desc data-target=equipmentId}}
     <div class="tp-documents__table js-documents__table collapse" id="equipment{{@index}}">
         <div class="tp-documents__document-type-heading">
             {{i18n key=../i18nKeys.documentTypeLabel}}
         </div>
-        <div class="tp-documents__documents-list">
-            {{#each documents}}
-                {{#each docTypes}}
+        {{#if noData}}
+            <div class="tp-documents__no-documents">
+                {{i18n key=../i18nKeys.noDataMsg}}
+            </div>
+        {{else}}
+            <div class="tp-documents__documents-list" id="document-list-{{@index}}">
+                {{#each documents.docTypes}}
                     {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-documents__accordion" jsClass="js-documents__accordion" iconClass="icon-Chevron_Up"  data-toggle="collapse" text=type data-target=docId}}
-                    <div class="tp-documents__table collapse" id="document{{@../../index}}{{@index}}">
+                    <div class="tp-documents__table collapse" id="document{{@../index}}{{@index}}" data-parent="#document-list-{{@../index}}">
                         {{#each documents}}
                             <div class="tp-documents__document">
                                 {{> atoms/links/link/link text=name href=location isExternal=true jsClass=linkJsClass preIconClass="icon-Document" iconClass="icon-External_Link"}}
@@ -17,7 +21,7 @@
                         {{/each}}
                     </div>
                 {{/each}}
-            {{/each}}
-        </div>
+            </div>
+        {{/if}}
     </div>
 {{/each}}
