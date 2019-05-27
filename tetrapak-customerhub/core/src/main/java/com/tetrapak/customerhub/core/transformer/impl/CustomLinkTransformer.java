@@ -27,12 +27,15 @@ import org.xml.sax.SAXException;
  */
 public class CustomLinkTransformer implements Transformer {
 
-	private final Logger LOG = LoggerFactory.getLogger(CustomLinkTransformer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CustomLinkTransformer.class);
 	private ContentHandler contentHandler;
 	private String language = StringUtils.EMPTY, country = StringUtils.EMPTY;
 
+	/**
+	 * CustomLinkTransformer constructor
+	 */
 	public CustomLinkTransformer() {
-		LOG.debug("CustomLinkTransformer created");
+		LOGGER.debug("CustomLinkTransformer created");
 	}
 
 	@Override
@@ -72,7 +75,7 @@ public class CustomLinkTransformer implements Transformer {
 			if (matcher.find()) {
 				country = country.isEmpty() ? "global" : country;
 				language = language.isEmpty() ? "en" : language;
-				LOG.info("Transformed url from: {} to: {}", linkUrl, linkUrl.substring(matcher.end()).trim());
+				LOGGER.info("Transformed url from: {} to: {}", linkUrl, linkUrl.substring(matcher.end()).trim());
 				String changedLinkUrl = "/" + country + "/" + language + "/MyTetraPak"
 						+ linkUrl.substring(matcher.end()).trim();
 				attrNew.removeAttribute("href");
@@ -110,19 +113,19 @@ public class CustomLinkTransformer implements Transformer {
 
 	@Override
 	public void dispose() {
-		LOG.debug("CustomLinkTransformer dispaosed");
+		LOGGER.debug("CustomLinkTransformer dispaosed");
 
 	}
 
 	@Override
 	public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
-		LOG.trace("init");
+		LOGGER.trace("init");
 		String[] pathArray = context.getRequest().getPathInfo().split("/");
 		if (pathArray.length > 2) {
 			country = pathArray[1];
 			language = pathArray[2];
 		}
-		LOG.debug(context.getRequest().getPathInfo());
+		LOGGER.debug(context.getRequest().getPathInfo());
 	}
 
 	@Override
