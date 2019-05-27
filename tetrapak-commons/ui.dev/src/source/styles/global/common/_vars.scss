@@ -2,15 +2,23 @@
 $font-xxs: 8px;
 $font-xs: 10px;
 $font-sm: 12px;
+$font-m-xs: $font-sm;
 $font-baseline: 14px;
+$font-m-sm: $font-baseline;
 $font-normal: 16px;
+$font-m-baseline: $font-normal;
 $font-md: 18px;
+$font-m-md: $font-md;
 $font-l: 24px;
+$font-m-l: $font-l;
 $font-xl: 32px;
+$font-m-xl: 28px;
 $font-xxl: 42px;
+$font-m-xxl: $font-xl;
 $font-xxxl: 60px;
+$font-m-xxxl: 36px;
 // Body width
-$body-max-width: 1366px;
+$body-max-width: 1440px;
 // Variables for z-index
 $zindex-default: 0;
 // Maximum 3 levels allowed in z-index

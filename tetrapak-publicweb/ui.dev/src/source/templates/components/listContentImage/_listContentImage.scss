@@ -19,7 +19,8 @@
             }
         }
         #{ $self }__contentTab {
-            @include margin-bottom($spacing-small);
+            @include padding($spacing-small);
+            background-color: $color-white;
             @media #{$desktop} {
                 display: none !important; //sass-lint:disable-line no-important
             }
@@ -48,8 +49,10 @@
         }
     }
     &__contentTab {
-        &:not(.active) {
-            display: none;
+        @media #{$desktop} {
+            &:not(.active) {
+                display: none;
+            }
         }
     }
     &__tabMenuListItem__link {
@@ -64,23 +67,21 @@
         }
 
         &.active {
-            @include margin-bottom($margin-md);
             color: $color-tundora;
             border-top: 1px solid $color-white;
             background-color: $color-white;
 
             @media #{$desktop} {
-                @include margin-bottom(0);
                 @include margin-right(0);
             }
 
             .tp-icon {
-
                 @media #{$desktop} {
                     @include margin-right(15px);
                 }
             }
         }
+
     }
     &__contentWrapper {
         display: none;
@@ -135,7 +136,7 @@
             background-color: $color-wild-sand;
         }
         #{ $self }__tabMenuListItem {
-            &:first-child {
+            &:last-child {
                 #{ $self }__tabMenuListItem__link {
                     &.active { //sass-lint:disable-line nesting-depth
                         border-bottom: 1px solid $color-wild-sand;
@@ -144,8 +145,14 @@
             }
             &.active + #{ $self }__tabMenuListItem {
                 #{ $self }__tabMenuListItem__link {
-                    border-top: 1px solid $color-wild-sand;
+                    border-top: 1px solid $color-mercury;
+                    @media #{$desktop} {
+                        border-top: 1px solid $color-white;
+                    }
                 }
+            }
+            #{ $self }__contentTab {
+                background-color: $color-wild-sand;
             }
         }
     }
@@ -160,6 +167,26 @@
         @include margin-top($margin-l);
         #{ $self }__contentTab {
             display: block !important; //sass-lint:disable-line no-important
+        }
+    }
+    .mobile-tabMenu {
+        .collapse-title {
+            position: relative;
+            i {
+                @include font-size($font-sm);
+                position: absolute;
+                right: convert-to-rem(16px);
+                top: convert-to-rem(13px);
+            }
+        }
+        a[aria-expanded='true'] { //sass-lint:disable-line force-attribute-nesting
+            .icon-Chevron_Down {
+                transform: rotate(180deg);
+            }
+            .tp-icon {
+                transform: rotate(-90deg);
+                right: convert-to-rem(14px);
+            }
         }
     }
 }

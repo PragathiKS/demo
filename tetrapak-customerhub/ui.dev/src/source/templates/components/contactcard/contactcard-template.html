@@ -4,8 +4,8 @@
           <h2 class="tp-contact-card__heading">${data.headingI18n @i18n}</h2>
           <p  class="tp-contact-card__description">${data.subHeadingI18n @i18n}</p>
           <sly data-sly-use.link="/apps/commons/components/atoms/link/link-template.html"
-                            data-sly-call="${link.link_template @url=data.viewContactBtnRedirectUrl,text=data.viewContactBtnTextI18n,jsClass='js-view-contact-card-btn',iconClass='icon-Chevron_Right'}" />
-      </div>
+                            data-sly-call="${link.link_template @url=data.viewContactBtnRedirectUrl,text=data.viewContactBtnTextI18n,iconClass='icon-Chevron_Right',jsClass='js-view-contact-card-btn'}" />
+                          </div>
       <div class="tp-contact-card__image-container">
                 <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltTextI18n,className='tp-contact-card__image'}" />
       </div>
