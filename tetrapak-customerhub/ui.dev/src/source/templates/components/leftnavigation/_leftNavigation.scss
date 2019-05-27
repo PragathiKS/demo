@@ -4,6 +4,7 @@
         @include top(88px);
         position: fixed;
         height: calc(100vh - #{convert-to-rem(88px)});
+        z-index: $zindex-p;
     }
 
     &__overlay {

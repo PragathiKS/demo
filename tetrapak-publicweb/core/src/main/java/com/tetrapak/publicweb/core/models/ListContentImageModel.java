@@ -49,6 +49,11 @@ public class ListContentImageModel {
     @Inject
     private String pwPadding;
 
+    @Inject
+    private Boolean makeCollapsable;
+
+    private Integer componentId = (int )(Math.random() * 1000 + 1);
+
     public String getTitleI18n() {
         return titleI18n;
     }
@@ -87,6 +92,14 @@ public class ListContentImageModel {
 
     public String getPwPadding() {
         return pwPadding;
+    }
+
+    public Boolean getMakeCollapsable() {
+        return makeCollapsable;
+    }
+
+    public Integer getComponentId() {
+        return componentId;
     }
 
     /**
