@@ -56,7 +56,7 @@
 						sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
 						fieldDescription="Enter Techpub Host Link"
 						fieldLabel="Techpub Host Link" required="true"
-						rootPath="/content/tetrapak/customerhub" name="./techPubHost" />
+						name="./techPubHost" />
 				</items>
 			</column>
 		</items>

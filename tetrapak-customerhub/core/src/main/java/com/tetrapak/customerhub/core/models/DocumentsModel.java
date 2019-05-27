@@ -58,7 +58,7 @@ public class DocumentsModel {
         i18KeyMap.put("documentHeading", getDocumentHeading());
         i18KeyMap.put("documentLabel", getDocumentLabel());
         i18KeyMap.put("documentTypeLabel", getDocumentTypeLabel());
-        i18KeyMap.put("totalDocumentsLabel", getDocumentLabel());
+        i18KeyMap.put("totalDocumentsLabel", getTotalDocumentsLabel());
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
     
@@ -98,13 +98,6 @@ public class DocumentsModel {
      */
     public String getTotalDocumentsLabel() {
         return totalDocumentsLabel;
-    }
-
-    /**
-     * @param documentHeading the documentHeading to set
-     */
-    public void setDocumentHeading(String documentHeading) {
-        this.documentHeading = documentHeading;
     }
 
     /**
