@@ -6,7 +6,7 @@ function _trackAnalytics() {
     linkType: 'internal',
     linkSection: 'dashboard',
     linkParentTitle: 'contacts',
-    linkName: 'view contatcs'
+    linkName: 'view contacts'
   };
   trackAnalytics(obj, 'linkClick', 'linkClicked', undefined, false);
 }
