@@ -1,13 +1,14 @@
 <sly data-sly-template.contactcard_template="${@ data, flag}">
   <div class="tp-card tp-contact-card">
-      <div class="tp-contact-card__content-container">
-          <h2 class="tp-contact-card__heading">${data.headingI18n @i18n}</h2>
-          <p  class="tp-contact-card__description">${data.subHeadingI18n @i18n}</p>
-          <sly data-sly-use.link="/apps/commons/components/atoms/link/link-template.html"
-                            data-sly-call="${link.link_template @url=data.viewContactBtnRedirectUrl,text=data.viewContactBtnTextI18n,baseClass='tp-contact-card__view-btn',iconClass='icon-Chevron_Right'}" />
-      </div>
-      <div class="tp-contact-card__image-container">
-                <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltTextI18n,className='tp-contact-card__image'}" />
-      </div>
+    <div class="tp-contact-card__content-container">
+      <h2 class="tp-contact-card__heading">${data.headingI18n @i18n}</h2>
+      <p  class="tp-contact-card__description">${data.subHeadingI18n @i18n}</p>
+      <sly data-sly-use.link="/apps/commons/components/atoms/link/link-template.html"
+          data-sly-call="${link.link_template @url=data.viewContactBtnRedirectUrl,text=data.viewContactBtnTextI18n,baseClass='tp-contact-card__view-btn',iconClass='icon-Chevron_Right'}" />
+    </div>
+    <div class="tp-contact-card__image-container">
+      <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html"
+          data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltTextI18n,className='tp-contact-card__image'}" />
+    </div>
   </div>
 </sly>
