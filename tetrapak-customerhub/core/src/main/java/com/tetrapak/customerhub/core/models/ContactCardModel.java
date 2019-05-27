@@ -6,6 +6,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +82,7 @@ public class ContactCardModel {
      * @return the viewContactBtnRedirectUrl
      */
     public String getViewContactBtnRedirectUrl() {
-        return viewContactBtnRedirectUrl;
+        return LinkUtil.getValidLink(resource, viewContactBtnRedirectUrl);
     }
 
 }
