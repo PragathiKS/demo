@@ -8,6 +8,7 @@ import { toast } from './toast';
 import { $body } from './commonSelectors';
 import { isFirefox, isIE, isEdge } from './browserDetect';
 import { isTablet, isMobile } from '../common/common';
+import { responsive } from './responsive';
 
 export default {
   init() {
@@ -15,6 +16,8 @@ export default {
     dynamicMedia.init();
     // Toast error messages
     toast.init();
+    // Responsive events
+    responsive.init();
     // Body events
     $body.on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();

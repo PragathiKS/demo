@@ -26,6 +26,16 @@ export const ajaxMethods = {
   PUT: 'PUT',
   DELETE: 'DELETE'
 };
+export const mediaTypes = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  DESKTOP: 'desktop'
+};
+export const orientationTypes = {
+  LANDSCAPE: 'landscape',
+  PORTRAIT: 'portrait',
+  UNSUPPORTED: 'unsupported'
+};
 // API URLs
 export const API_TOKEN = 'bin/customerhub/token-generator';
 export const API_SEARCH = 'orders/summary';
