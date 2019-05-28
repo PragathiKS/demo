@@ -18,5 +18,5 @@
 		<exclude pattern="/apps/customerhub/i18n(/.*)?"/>
 	</filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/jsonData" mode="replace"/>
-	<filter root="/etc/map/http/cuhu_regex" mode="update"/>
+	<filter root="/etc/map/http/customerhub_regex" mode="update"/>
 </workspaceFilter>

@@ -9,7 +9,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  *
  * @author Swati Lamba
  */
-@ObjectClassDefinition(name = "TetraPak CuHu Dispatcher Flush Service Configuration", description = "TetraPak Customer Hub Dispatcher Flush Service Configuration")
+@ObjectClassDefinition(name = "TetraPak Customer Hub Specific Dispatcher Flush Service Configuration", description = "TetraPak Customer Hub Dispatcher Flush Service Configuration")
 public @interface CuhuDispatcherFlushConfig {
 
 	/**
