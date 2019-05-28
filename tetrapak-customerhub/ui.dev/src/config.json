@@ -155,6 +155,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "contacts": {
+        "testMultiple": true,
+        "name": "contacts",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
