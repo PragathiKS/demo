@@ -11,25 +11,23 @@ import { apiHost, getI18n } from '../../../scripts/common/common';
  * @param {object} documentsData JSON data object for equipments documents
  */
 function _processDocumentsData(documentsData) {
-  if (Array.isArray(documentsData.equipments) && Array.isArray(documentsData.results)) {
-    documentsData.results.forEach((result, resultIndex) => {
+  const { equipments, results, i18nKeys } = documentsData;
+
+  if (Array.isArray(equipments) && Array.isArray(results)) {
+    results.forEach((result, resultIndex) => {
       result.docTypes.forEach((docType, docIndex) => {
         docType.docId = `#document${resultIndex}${docIndex}`;
       });
     });
 
-    documentsData.equipments.forEach(equipment => {
-      equipment.documents = documentsData.results.filter(document => {
-        if (equipment.serialNo === document.serial) {
-          return true;
-        }
-      })[0];
+    equipments.forEach(equipment => {
+      equipment.documents = results.filter(document => equipment.serialNo === document.serial)[0];
 
       if (typeof equipment.documents === 'undefined') {
         equipment.noData = true;
-        equipment.desc = `${equipment.desc} (0 ${getI18n(documentsData.i18nKeys.documentLabel)})`;
+        equipment.desc = `${equipment.desc} (0 ${getI18n(i18nKeys.documentLabel)})`;
       } else {
-        equipment.desc = `${equipment.desc} (${equipment.documents.docCount} ${getI18n(documentsData.i18nKeys.documentLabel)})`;
+        equipment.desc = `${equipment.desc} (${equipment.documents.docCount} ${getI18n(i18nKeys.documentLabel)})`;
       }
     });
   }
