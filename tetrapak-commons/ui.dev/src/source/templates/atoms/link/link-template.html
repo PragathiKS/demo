@@ -9,8 +9,8 @@
     class="tpatom-link${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-link--primary'}${className ? classNameWithSpace : ''}"
     target="${isExternal ? '_blank' : ''}"
     datatag="${data.isExternalLink ? 'external' : 'internal'}"
-    ctype="${ctype'}"
-    ctypeone="${linkHeading}"
+    ctype="${ctype ? ctype : 'not_set'}"
+    ctypeone="${linkHeading ? linkHeading : 'notset'}"
     cttitle="${text @ i18n}">
       <span class="tpatom-link__text">${text @ i18n}</span>
        <sly data-sly-test="${iconClass}" >

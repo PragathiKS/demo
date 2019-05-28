@@ -18,7 +18,8 @@
     {{#eachData this}}
         {{@key}}="{{this}}"
     {{/eachData}}
-    datatag="internal"
+
+    {{#if datatag}} datatag="{{datatag}}"{{/if}}
     {{#if ctype}} ctype="{{ctype}}"{{/if}}
     {{#if linkHeading}} ctypeone="{{linkHeading}}"{{/if}}
     {{#if text}} cttitle="{{text}}"{{/if}}>
