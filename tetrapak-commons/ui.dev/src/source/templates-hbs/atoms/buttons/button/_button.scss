@@ -12,9 +12,17 @@
     color: $color-text;
 }
 
+button:focus {
+    outline-color: $color-congress-blue;
+}
+
 .tpatom-btn,
 .tpatom-link {
     cursor: pointer;
+
+    &:focus {
+        outline-color: $color-picton-blue;
+    }
 
     &[disabled] {
         cursor: not-allowed;
@@ -30,17 +38,27 @@
         @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
+        background-color: $color-congress-blue;
+        color: $color-white;
 
-        &,
-        &[disabled]:hover {
-            background-color: $color-congress-blue;
-            color: $color-white;
+
+
+        @media #{$desktop} {
+
+            &,
+            &[disabled]:hover {
+                background-color: $color-congress-blue;
+                color: $color-white;
+            }
+
+            &:hover {
+                background-color: $color-jordy-blue;
+                color: $color-congress-blue;
+                outline-color: $color-picton-blue;
+            }
+
         }
 
-        &:hover {
-            background-color: $color-jordy-blue;
-            color: $color-congress-blue;
-        }
 
         span {
             @include margin-right($margin-xs);

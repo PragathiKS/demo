@@ -7,10 +7,10 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize, getI18n } from '../../../scripts/common/common';
-//import auth from '../../../scripts/utils/auth';
+import { sanitize, apiHost, getI18n } from '../../../scripts/common/common';
+import auth from '../../../scripts/utils/auth';
 
 /**
  * Disables calendar next button if visible months has current month
@@ -129,62 +129,62 @@ function _renderTable(filterParams) {
   const $this = this;
   this.setSearchFields(filterParams);
   this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
-  // auth.getToken(({ data: authData }) => {
-  render.fn({
-    template: 'orderingTable',
-    target: '.js-order-search__table',
-    url: {
-      path: `/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json`,
-      data: $.extend(filterParams, {
-        top: ORDER_HISTORY_ROWS_PER_PAGE
-      })
-    },
-    beforeRender(data) {
-      if (!data) {
-        this.data = data = {
-          isError: true
-        };
-      }
-      $.extend(data, {
-        labels: {
-          dataError: config.dataErrorI18n,
-          noData: config.noDataI18n
-        }
-      });
-      return _processTableData.apply($this, [data]);
-    },
-    ajaxConfig: {
-      beforeSend(jqXHR) {
-        //jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'orderingTable',
+      target: '.js-order-search__table',
+      url: {
+        path: `${apiHost}/${API_ORDER_HISTORY}`,
+        data: $.extend(filterParams, {
+          top: ORDER_HISTORY_ROWS_PER_PAGE
+        })
       },
-      method: ajaxMethods.GET,
-      cache: true,
-      showLoader: true,
-      cancellable: true
-    }
-  }, (data) => {
-    if (
-      $filters
-      && $filters.length
-      && !data.isError
-    ) {
-      $filters.removeClass('d-none');
-    }
-    if (filterParams && !data.isError && data.totalOrdersForQuery) {
-      const { skip } = filterParams;
-      let currentPage = 1;
-      let totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
-      if (skip) {
-        currentPage = (skip / ORDER_HISTORY_ROWS_PER_PAGE) + 1;
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+        }
+        $.extend(data, {
+          labels: {
+            dataError: config.dataErrorI18n,
+            noData: config.noDataI18n
+          }
+        });
+        return _processTableData.apply($this, [data]);
+      },
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true,
+        showLoader: true,
+        cancellable: true
       }
-      this.root.find('.js-pagination').trigger('ordersearch.paginate', [{
-        currentPage,
-        totalPages
-      }]);
-    }
+    }, (data) => {
+      if (
+        $filters
+        && $filters.length
+        && !data.isError
+      ) {
+        $filters.removeClass('d-none');
+      }
+      if (filterParams && !data.isError && data.totalOrdersForQuery) {
+        const { skip } = filterParams;
+        let currentPage = 1;
+        let totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
+        if (skip) {
+          currentPage = (skip / ORDER_HISTORY_ROWS_PER_PAGE) + 1;
+        }
+        this.root.find('.js-pagination').trigger('ordersearch.paginate', [{
+          currentPage,
+          totalPages
+        }]);
+      }
+    });
   });
-  //});
 }
 
 /**
@@ -275,30 +275,30 @@ function _trackAnalytics(type) {
  */
 function _renderFilters() {
   const self = this;
-  //auth.getToken(({ data }) => {
-  render.fn({
-    template: 'orderSearch',
-    url: `/apps/settings/wcm/designs/customerhub/jsonData/orderSearchSummary.json`,
-    target: '.js-order-search__form',
-    ajaxConfig: {
-      beforeSend(jqXHR) {
-        //jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
-        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  auth.getToken(({ data }) => {
+    render.fn({
+      template: 'orderSearch',
+      url: `${apiHost}/${API_SEARCH}`,
+      target: '.js-order-search__form',
+      ajaxConfig: {
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${data.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        method: ajaxMethods.GET,
+        cache: true,
+        showLoader: true,
+        cancellable: true
       },
-      method: ajaxMethods.GET,
-      cache: true,
-      showLoader: true,
-      cancellable: true
-    },
-    beforeRender(...args) {
-      return _processOrderSearchData.apply(this, [self, ...args]);
-    }
-  }, () => {
-    this.initPostCache();
-    this.setFilters();
-    this.initializeCalendar();
+      beforeRender(...args) {
+        return _processOrderSearchData.apply(this, [self, ...args]);
+      }
+    }, () => {
+      this.initPostCache();
+      this.setFilters();
+      this.initializeCalendar();
+    });
   });
-  //});
 }
 
 /**
