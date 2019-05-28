@@ -1,4 +1,6 @@
 .tp-error {
+    margin-top: 0;
+
     &__heading {
         @include margin-bottom($margin-l);
         color: $color-text;

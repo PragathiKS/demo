@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.service.component.ComponentContext;
 
 import com.tetrapak.commons.core.services.DispatcherFlushService;

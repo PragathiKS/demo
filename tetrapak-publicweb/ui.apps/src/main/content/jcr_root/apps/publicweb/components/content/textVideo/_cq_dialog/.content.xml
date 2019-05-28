@@ -49,6 +49,13 @@
                                 fieldLabel="Link URL"
                                 rootPath="/content/tetrapak/public-web"
                                 name="./linkURL"/>
+                            <targetBlank
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Open link in a new window ?"
+                                text="New Window"
+                                value="true"
+                                name="./targetBlank"/>
                             <videoSource
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"

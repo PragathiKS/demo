@@ -24,6 +24,7 @@ describe('MaintenanceCard', function () {
     $(document.body).empty().html(maintenanceCardTemplate());
     this.initSpy = sinon.spy(this.maintenanceCard, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceCard, "renderMaintenanceEvents");
+    this.processEventsDataSpy = sinon.spy(this.maintenanceCard, "processEventsData");
     this.trackAnalyticsSpy = sinon.spy(this.maintenanceCard, 'trackAnalytics');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -40,18 +41,20 @@ describe('MaintenanceCard', function () {
   after(function () {
     this.initSpy.restore();
     this.renderMaintenanceEventsSpy.restore();
+    this.processEventsDataSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
   });
-  it('should initialize', function (done) {
+  it('should initialize', function () {
     expect(this.maintenanceCard.init.called).to.be.true;
-    done();
   });
-  it('should render maintenance events', function (done) {
+  it('should process maintenance events data before rendering', function () {
+    expect(this.maintenanceCard.processEventsData.called).to.be.true;
+  });
+  it('should render maintenance events', function () {
     expect(this.maintenanceCard.renderMaintenanceEvents.called).to.be.true;
-    done();
   });
   it('should call track analytics on click of maintenace event', function () {
     $('.js-maintenance-card__event').trigger('click');

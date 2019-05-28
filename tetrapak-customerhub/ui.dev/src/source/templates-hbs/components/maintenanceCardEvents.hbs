@@ -16,46 +16,47 @@
         <div class="tp-maintenance-card__events accordion" id="tp-maintenance-card__events">
             {{#each events}}
                 <button type="button" class="tp-maintenance-card__event js-maintenance-card__event{{#unless @first}} collapsed{{/unless}}" data-toggle="collapse" data-target="#Event{{@index}}" aria-expanded="{{#if @first}}true{{else}}false{{/if}}" aria-controls="#Event{{@index}}">
-                    <div class="tp-maintenance-card__event-title bold">{{title}} - {{plannedStart}}</div>
+                    <div class="tp-maintenance-card__event-title bold">{{matTitle}} - {{plannedStart}}</div>
                     <div class="tp-maintenance-card__event-line">{{siteName}}</div>
                     <div class="tp-maintenance-card__event-line">{{lineName}}</div>
                     <div class="tp-maintenance-card__event-euipment">{{euipmentName}}</div>
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
+                <div class="tp-maintenance-card__event-detail-wrapper d-lg-none collapse{{#if @first}} show{{/if}}" id="Event{{@index}}" data-parent="#tp-maintenance-card__events">
+                    <div class="tp-maintenance-card__event-detail">
+                        {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.statusLabel data=status }}
+                        {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
+                        {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}
+                        {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedStartLabel data=plannedStart }}
+                        {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedFinishedLabel data=plannedFinish }}
 
-                <div class="tp-maintenance-card__event-detail d-lg-none collapse{{#if @first}} show{{/if}}" id="Event{{@index}}" data-parent="#tp-maintenance-card__events">
-                    {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.statusLabel data=status }}
-                    {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
-                    {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}
-                    {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedStartLabel data=plannedStart }}
-                    {{> components/infoPair baseClass="tp-maintenance-card" label=../i18nKeys.plannedFinishedLabel data=plannedFinish }}
-
-                    <div class="tp-maintenance-card__order">
-                        <div class="bold">{{i18n key=../i18nKeys.serviceOrderLabel}}</div>
-                        {{order}}
-                    </div>
-
-                    <div class="tp-maintenance-card__operations-text">
-                        <div class="bold">{{i18n key=../i18nKeys.operationShortTextLabel}}</div>
-                        <p>{{operationsShortText}}</p>
-                    </div>
-
-                    <div class="tp-maintenance-card__contact text-center">
-                        <h3 class="text-left">{{i18n key=../i18nKeys.contactsHeading}}</h3>
-                        <div class="tp-maintenance-card__contact-icon">
-                            <i class="icon-TetraPak"></i>
+                        <div class="tp-maintenance-card__order">
+                            <div class="bold">{{i18n key=../i18nKeys.serviceOrderLabel}}</div>
+                            {{order}}
                         </div>
-                        <div class="tp-maintenance-card__contact-name semi-bold">{{firstName}} {{lastName}}</div>
-                        <div>{{type}}</div>
-                        <div class="tp-maintenance-card__contact-mail js-maintenance-card__contact-mail" data-type="{{type}}"><a href="mailTo:{{email}}">{{email}}</a></div>
-                        <div class="tp-maintenance-card__contact-phone js-maintenance-card__contact-phone" data-type="{{type}}"><a href="tel:{{phone}}">{{phone}}</a></div>
+
+                        <div class="tp-maintenance-card__operations-text">
+                            <div class="bold">{{i18n key=../i18nKeys.operationShortTextLabel}}</div>
+                            <p>{{operationsShortText}}</p>
+                        </div>
+
+                        <div class="tp-maintenance-card__contact text-center">
+                            <h3 class="text-left">{{i18n key=../i18nKeys.contactsHeading}}</h3>
+                            <div class="tp-maintenance-card__contact-icon">
+                                <i class="icon-TetraPak"></i>
+                            </div>
+                            <div class="tp-maintenance-card__contact-name semi-bold">{{firstName}} {{lastName}}</div>
+                            <div>{{type}}</div>
+                            <div class="tp-maintenance-card__contact-mail js-maintenance-card__contact-mail" data-type="{{type}}"><a href="mailTo:{{email}}">{{email}}</a></div>
+                            <div class="tp-maintenance-card__contact-phone js-maintenance-card__contact-phone" data-type="{{type}}"><a href="tel:{{phone}}">{{phone}}</a></div>
+                        </div>
                     </div>
                 </div>
             {{/each}}
-            {{> atoms/links/link/link text=i18nKeys.viewAllText href=viewAllLink baseClass="tp-maintenance-card__all-link" iconClass="icon-Circle_Arrow_Right"}}
+            {{> atoms/links/link/link text=i18nKeys.viewAllText href=viewAllLink baseClass="tp-maintenance-card__all-link" ctype="dashboard-maintenance" linkHeading=i18nKeys.maintenanceHeading iconClass="icon-Circle_Arrow_Right"}}
         </div>
 
-        <div class="tp-maintenance-card__events-detail tp-maintenance-card__event-detail js-maintenance-card__events-detail d-none d-lg-block" aria-live="polite">
+        <div class="tp-maintenance-card__events-sidesection js-maintenance-card__events-sidesection d-none d-lg-block" aria-live="polite">
         </div>
     {{/if}}
 {{/if}}
