@@ -1,4 +1,6 @@
 .custom-scrollbar {
+    overflow: auto;
+
     @media #{$desktop} {
         overflow: hidden;
 
@@ -10,9 +12,7 @@
     &,
     &-horizontal,
     &-vertical {
-        @media #{$desktop} {
-            -webkit-overflow-scrolling: touch;
-        }
+        -webkit-overflow-scrolling: touch;
 
         &:not(.native) {
             @media #{$desktop} {
@@ -31,19 +31,32 @@
         }
     }
 
-    @media #{$desktop} {
+    &-horizontal,
+    &-vertical {
+        overflow: hidden;
+    }
 
-        &-horizontal,
-        &-vertical {
-            overflow: hidden;
+    &-horizontal {
+        overflow-x: auto;
+
+        @media #{$desktop} {
+            overflow-x: hidden;
+
+            &:hover {
+                overflow-x: auto;
+            }
         }
+    }
 
-        &-horizontal:hover {
-            overflow-x: auto;
-        }
+    &-vertical {
+        overflow-y: auto;
 
-        &-vertical:hover {
-            overflow-y: auto;
+        @media #{$desktop} {
+            overflow-y: hidden;
+
+            &:hover {
+                overflow-y: auto;
+            }
         }
     }
 }
