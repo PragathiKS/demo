@@ -67,6 +67,7 @@ function _renderDocuments(equipmentData) {
           this.data = data = {
             isError: true
           };
+          data.i18nKeys = equipmentData.i18nKeys;
         } else {
           $.extend(data, equipmentData);
           $this.processDocumentsData(data);
