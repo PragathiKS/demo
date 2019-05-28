@@ -3,6 +3,14 @@
         @include margin-bottom($margin-l);
     }
 
+    &__line-filter {
+        @include margin-top($margin-md);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+    }
+
     &__table {
         @include horizontal-scroll-touch;
     }
@@ -36,8 +44,6 @@
 
     .tpmol-accordian-title {
         @include line-height(20px, $font-baseline);
-        padding-left: 0;
-        padding-right: 0;
     }
 
     &__document-type-heading {

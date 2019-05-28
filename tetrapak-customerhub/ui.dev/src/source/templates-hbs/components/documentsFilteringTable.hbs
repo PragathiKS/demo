@@ -16,7 +16,7 @@
                     <div class="tp-documents__table collapse" id="document{{@../index}}{{@index}}" data-parent="#document-list-{{@../index}}">
                         {{#each documents}}
                             <div class="tp-documents__document">
-                                {{> atoms/links/link/link text=name href=location isExternal=true jsClass=linkJsClass preIconClass="icon-Document" iconClass="icon-External_Link"}}
+                                {{> atoms/links/link/link text=name href=(concat ../../../techPubHost location) isExternal=true jsClass=linkJsClass preIconClass="icon-Document" iconClass="icon-External_Link"}}
                             </div>
                         {{/each}}
                     </div>

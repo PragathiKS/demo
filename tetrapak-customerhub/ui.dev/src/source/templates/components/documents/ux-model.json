@@ -1,4 +1,4 @@
 {
   "i18nKeys": "{\"siteFilterLabel\": \"Site\",\"lineFilterLabel\": \"Line / Area\", \"documentHeading\": \"Documents for {0} in {1}\", \"documentLabel\": \"Documents\", \"documentTypeLabel\": \"Document Type\",\"noDataMsg\": \"No documents\", \"errorMsg\": \"Error message incase any other error on the component\"}",
-  "techPubHost": "https://techpubrepositoryhtml.tetrapak.com/"
+  "techPubHost": "https://techpubrepositoryhtml.tetrapak.com"
 }

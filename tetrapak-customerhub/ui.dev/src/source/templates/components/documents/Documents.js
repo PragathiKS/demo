@@ -82,7 +82,7 @@ function _renderDocuments(equipmentData) {
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilters(data = this.cache.filteredData) {
-  const { i18nKeys, $line } = this.cache;
+  const { i18nKeys, $line, techPubHost } = this.cache;
   const lineVal = $line.val();
   let lines = [];
 
@@ -96,6 +96,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
   }
 
   data.equipmentData.i18nKeys = i18nKeys;
+  data.equipmentData.techPubHost = techPubHost;
   data.equipmentData.selectedFilter = `${this.selectedLine},${this.selectedSite}`;
 
   lines.forEach(line => {
