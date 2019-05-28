@@ -111,20 +111,7 @@
             color: $color-tundora;
         }
 
-        &__heading {
-            @include font-size($font-md);
-            @include line-height($font-l, $font-md);
-
-            @media #{$desktop} {
-                @include font-size($font-l);
-                @include line-height($font-xl, $font-l);
-            }
-
-        }
-
         &__event-heading {
-            @include font-size($font-md);
-            @include line-height($font-l, $font-md);
             @include margin-bottom($margin-md);
         }
 

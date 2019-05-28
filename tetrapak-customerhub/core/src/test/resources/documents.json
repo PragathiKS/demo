@@ -87,6 +87,20 @@
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"lineFilterLabel": "Line/Area",
 					"sling:resourceType": "customerhub/components/content/maintenancecard"
+				},
+				"contactcard": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"headingI18n": "Contacts",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
+					"subHeadingI18n": "Get in touch with right people",
+					"viewContactBtnTextI18n": "View contacts",
+					"imagePath": "/content/dam/customerhub/cow-blue-background.png",
+                    "imageAltTextI18n": "Cow Blue Background",
+                    "viewContactBtnRedirectUrl":"/content/tetrapak/customerhub/en/contact",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contactcard"
 				}
 			}
 		}

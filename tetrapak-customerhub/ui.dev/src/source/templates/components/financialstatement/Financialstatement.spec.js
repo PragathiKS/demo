@@ -125,7 +125,7 @@ describe('FinancialStatement', function () {
   });
 
   it('should download PDF/Excel file on click of create Excel/PDF button', function (done) {
-    $('.js-financials').trigger('downloadFinancialPdfExcel', ['excel']);
+    $('.js-financials').trigger('financial.filedownload', ['excel']);
     expect(this.downloadPdfExcelSpy.called).to.be.true;
     done();
   });

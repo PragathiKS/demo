@@ -17,7 +17,11 @@
     {{/if}}
     {{#eachData this}}
         {{@key}}="{{this}}"
-    {{/eachData}}>
+    {{/eachData}}
+    datatag="internal"
+    {{#if ctype}} ctype="{{ctype}}"{{/if}}
+    {{#if linkHeading}} ctypeone="{{linkHeading}}"{{/if}}
+    {{#if text}} cttitle="{{text}}"{{/if}}>
         {{#if preIconClass}}
             <i class="icon {{preIconClass}}"></i>
         {{/if}}

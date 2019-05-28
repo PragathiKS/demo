@@ -12,7 +12,8 @@
     "moment": "^2.24.0",
     "popper.js": "^1.14.7",
     "sanitize-html": "^1.19.3",
-    "vanilla-lazyload": "^8.17.0"
+    "vanilla-lazyload": "^8.17.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
     "build": "grunt aem",
