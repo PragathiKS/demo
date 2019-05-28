@@ -89,12 +89,12 @@ public class CarouselModel {
 					}
 				} else {
 
-					if (valueMap.containsKey("practiceTitle")) {
-						bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
+					if (valueMap.containsKey("jcr:title")) {
+						bean.setPracticeTitle(valueMap.get("jcr:title", String.class));
 					}
 
-					if (valueMap.containsKey("vanityDescription")) {
-						bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
+					if (valueMap.containsKey("jcr:description")) {
+						bean.setVanityDescription(valueMap.get("jcr:description", String.class));
 					}
 
 					if (valueMap.containsKey("ctaTexti18nKey")) {
