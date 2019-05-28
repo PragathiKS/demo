@@ -1,0 +1,6 @@
+.tp-contacts {
+    &__filtering-heading {
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-l);
+    }
+}

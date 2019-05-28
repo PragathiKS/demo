@@ -155,6 +155,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "contacts": {
+        "testMultiple": true,
+        "name": "contacts",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -174,7 +180,8 @@
       ],
       "dashboard": [
         "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/"
+        "source/templates/components/maintenancecard/",
+        "source/templates/components/contactcard/"
       ],
       "orders": [
         "source/templates/components/ordersearch/",
@@ -188,6 +195,9 @@
         "source/templates/components/maintenance/",
         "source/templates/components/eventslisting/",
         "source/templates/components/documents/"
+      ],
+      "contacts": [
+        "source/templates/components/contacts/"
       ]
     },
     "handlebars": {
