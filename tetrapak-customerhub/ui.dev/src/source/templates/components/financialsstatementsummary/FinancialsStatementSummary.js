@@ -4,11 +4,12 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { apiHost, tableSort } from '../../../scripts/common/common';
+import { tableSort } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS, API_FINANCIALS_INVOICE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on Invoice Download
@@ -55,7 +56,7 @@ function _downloadInvoice($this) {
     fileWrapper({
       extension: 'pdf',
       filename: `${documentNumber}`,
-      url: `${apiHost}/${API_FINANCIALS_INVOICE}/${documentNumber}`,
+      url: `${getURL(API_FINANCIALS_INVOICE)}/${documentNumber}`,
       method: ajaxMethods.GET,
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
@@ -119,7 +120,7 @@ function _renderTable(filterParams) {
       template: 'financialsSummaryTable',
       target: '.js-financials-summary',
       url: {
-        path: `${apiHost}/${API_FINANCIALS_STATEMENTS}`,
+        path: getURL(API_FINANCIALS_STATEMENTS),
         data: filterParams
       },
       beforeRender(data) {

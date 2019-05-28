@@ -3,9 +3,9 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Process Events Data
@@ -54,7 +54,7 @@ function _renderMaintenanceEvents() {
     render.fn({
       template: 'maintenanceCardEvents',
       url: {
-        path: `${apiHost}/${API_MAINTENANCE_EVENTS}`
+        path: getURL(API_MAINTENANCE_EVENTS)
       },
       target: '.js-maintenance-card__events',
       ajaxConfig: {

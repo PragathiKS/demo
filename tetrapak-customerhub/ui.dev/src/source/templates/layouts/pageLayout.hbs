@@ -19,6 +19,21 @@
     {{!-- Body --}}
     <input type="hidden" id="isDummyLayout" value="true" />
     <input type="hidden" id="apiHost" value="https://api-mig.tetrapak.com" />
+    <input type="hidden" id="apiMappings" value="{
+        &quot;token-generator&quot;:&quot;https://api-mig.tetrapak.com/bin/customerhub/token-generator&quot;,
+        &quot;ordersearch&quot;:&quot;https://api-mig.tetrapak.com/orders/summary&quot;,
+        &quot;orderingcard&quot;:&quot;https://api-mig.tetrapak.com/orders/history&quot;,
+        &quot;orderdetails-parts&quot;:&quot;https://api-mig.tetrapak.com/orders/details/parts&quot;,
+        &quot;orderdetails-packmat&quot;:&quot;https://api-mig.tetrapak.com/orders/details/packmat&quot;,
+        &quot;financialstatement-filter&quot;:&quot;https://api-mig.tetrapak.com/financials/summary&quot;,
+        &quot;financialstatement-results&quot;:&quot;https://api-mig.tetrapak.com/financials/results&quot;,
+        &quot;financialstatement-invoice&quot;:&quot;https://api-mig.tetrapak.com/demo/cfe/invoices&quot;,
+        &quot;maintenance-filter&quot;:&quot;https://api-mig.tetrapak.com/mock/materials/equipments/installations&quot;,
+        &quot;maintenance-events&quot;:&quot;https://api-mig.tetrapak.com/orders/service/events&quot;,
+        &quot;maintenancecard&quot;:&quot;https://api-mig.tetrapak.com/orders/service/events&quot;,
+        &quot;documents-filter&quot;:&quot;https://api-mig.tetrapak.com/mock/materials/equipments/installations&quot;,
+        &quot;documents&quot;:&quot;https://api-mig.tetrapak.com/techpub/search&quot;
+    }" />
        {{!-- Header component --}}
         <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
              data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"

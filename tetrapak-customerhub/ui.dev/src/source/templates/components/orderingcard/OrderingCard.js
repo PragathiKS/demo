@@ -7,7 +7,7 @@ import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on search submit
@@ -241,7 +241,7 @@ class OrderingCard {
       config = {
         template: 'orderingCard',
         url: {
-          path: `${apiHost}/${API_ORDER_HISTORY}`,
+          path: getURL(API_ORDER_HISTORY),
           data: {
             top: ORDER_HISTORY_ROWS_PER_PAGE
           }

@@ -9,8 +9,9 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize, apiHost, getI18n } from '../../../scripts/common/common';
+import { sanitize, getI18n } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Disables calendar next button if visible months has current month
@@ -134,7 +135,7 @@ function _renderTable(filterParams) {
       template: 'orderingTable',
       target: '.js-order-search__table',
       url: {
-        path: `${apiHost}/${API_ORDER_HISTORY}`,
+        path: getURL(API_ORDER_HISTORY),
         data: $.extend(filterParams, {
           top: ORDER_HISTORY_ROWS_PER_PAGE
         })
@@ -278,7 +279,7 @@ function _renderFilters() {
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
-      url: `${apiHost}/${API_SEARCH}`,
+      url: getURL(API_SEARCH),
       target: '.js-order-search__form',
       ajaxConfig: {
         beforeSend(jqXHR) {

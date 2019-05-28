@@ -28,13 +28,12 @@ export const ajaxMethods = {
 };
 // API URLs
 export const API_TOKEN = 'bin/customerhub/token-generator';
-export const API_SEARCH = 'orders/summary';
-export const API_ORDER_HISTORY = 'orders/history';
-export const API_ORDER_DETAIL = 'orders/details';
-export const API_FINANCIAL_SUMMARY = 'financials/summary';
-export const API_FINANCIALS_STATEMENTS = 'financials/results';
-export const API_FINANCIALS_INVOICE = 'demo/cfe/invoices';
-export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
-export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
-export const API_MAINTENANCE_FILTERS = 'mock/materials/equipments/installations';
-export const API_MAINTENANCE_EVENTS = 'orders/service/events';
+export const API_SEARCH = 'ordersearch';
+export const API_ORDER_HISTORY = 'orderingcard';
+export const API_FINANCIAL_SUMMARY = 'financialstatement-filter';
+export const API_FINANCIALS_STATEMENTS = 'financialstatement-results';
+export const API_FINANCIALS_INVOICE = 'financialstatement-invoice';
+export const API_ORDER_DETAIL_PARTS = 'orderdetails-parts';
+export const API_ORDER_DETAIL_PACKMAT = 'orderdetails-packmat';
+export const API_MAINTENANCE_FILTERS = 'maintenance-filter';
+export const API_MAINTENANCE_EVENTS = 'maintenance-events';

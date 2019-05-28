@@ -3,8 +3,7 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
-
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Renders Equipment Filter
@@ -101,7 +100,7 @@ function _renderSiteFilters() {
     render.fn({
       template: 'documentsFiltering',
       url: {
-        path: `${apiHost}/${API_MAINTENANCE_FILTERS}`
+        path: getURL(API_MAINTENANCE_FILTERS)
       },
       target: '.js-documents__installments',
       ajaxConfig: {
@@ -149,17 +148,16 @@ class Documents {
   }
   cache = {};
   /**
-  * Initialize selector cache after filters rendering
-  */
+   * Initialize selector cache after filters rendering
+   */
   initPostCache() {
     this.cache.$site = this.root.find('.js-documents-filtering__site');
     this.cache.$line = this.root.find('.js-documents-filtering__line');
   }
   /**
-  * Initialize selector cache on component load
-  */
+   * Initialize selector cache on component load
+   */
   initCache() {
-    /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-documents__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -170,27 +168,19 @@ class Documents {
   }
   bindEvents() {
     const self = this;
-    /* Bind jQuery events here */
     this.root
       .on('change', '.js-documents-filtering__site', function () {
-
         const siteAndLineRecords = self.cache.data;
-
         const matchedSite = siteAndLineRecords.sites.filter(site => site.key === $(this).val());
         self.selectedSite = matchedSite[0].desc;
-
         const matchedLine = siteAndLineRecords.installations.filter(site => site.customerNumber === $(this).val());
         self.selectedLine = matchedLine[0].lines[0].lineDesc;
-
         self.processLineData();
       })
       .on('change', '.js-documents-filtering__line', function () {
-
         const filteredLines = self.cache.filteredData.lines;
-
         const matchedLine = filteredLines.filter(line => line.lineNumber === $(this).val());
         self.selectedLine = matchedLine[0].lineDesc;
-
         self.renderEquipmentFilters();
       });
   }
@@ -200,7 +190,6 @@ class Documents {
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.renderSiteFilters();

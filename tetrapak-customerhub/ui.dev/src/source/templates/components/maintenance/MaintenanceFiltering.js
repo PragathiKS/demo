@@ -2,13 +2,14 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_FILTERS, API_MAINTENANCE_EVENTS, DATE_FORMAT } from '../../../scripts/utils/constants';
-import { apiHost, isDesktopMode } from '../../../scripts/common/common';
+import { isDesktopMode } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Lightpick from 'lightpick';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { getDatesBetweenDateRange } from '../../../scripts/utils/dateUtils';
 import moment from 'moment';
+import getURL from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on click of
@@ -170,7 +171,7 @@ function _renderMaintenanceFilters() {
     render.fn({
       template: 'maintenanceFiltering',
       url: {
-        path: `${apiHost}/${API_MAINTENANCE_FILTERS}`
+        path: getURL(API_MAINTENANCE_FILTERS)
       },
       target: '.js-maintenance-filtering__filters',
       ajaxConfig: {
@@ -217,7 +218,7 @@ function _renderCalendarEventsDot() {
   let eventsDateArrayFinal = [];
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
-      url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
+      url: getURL(API_MAINTENANCE_EVENTS),
       method: ajaxMethods.GET,
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
