@@ -1,11 +1,13 @@
 {{#each filteredContacts}}
-    <div class="tp-contacts-listing__contact-col col-lg-4 text-center">
-        <div class="tp-contacts-listing__contact-icon">
-            <i class="icon-TetraPak"></i>
+    <div class="tp-contacts__listing__contacts col-lg-4 text-center">
+        <div class="tp-contacts__listing__contacts-cell">
+            <div class="tp-contacts__listing__contacts-icon">
+                <i class="icon-TetraPak"></i>
+            </div>
+            <div class="tp-contacts__listing__contacts-name">{{firstName}} {{lastName}}</div>
+            <div>{{title}}</div>
+            <div class="js-contacts__listing__contacts-mail"><a href="mailTo:{{email}}">{{email}}</a></div>
+            <div class="js-contacts__listing__contacts-phone"><a href="tel:{{mobileNo}}">{{mobileNo}}</a></div>
         </div>
-        <div class="tp-contacts-listing__contact-name semi-bold">{{firstName}} {{lastName}}</div>
-        <div>{{title}}</div>
-        <div class="js-contacts-listing__contact-mail"><a href="mailTo:{{email}}">{{email}}</a></div>
-        <div class="js-contacts-listing__contact-phone"><a href="tel:{{mobileNo}}">{{mobileNo}}</a></div>
     </div>
 {{/each}}

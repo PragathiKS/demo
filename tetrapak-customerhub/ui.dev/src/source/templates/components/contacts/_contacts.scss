@@ -1,6 +1,52 @@
 .tp-contacts {
-    &__filtering-heading {
-        @include margin-top($margin-md);
-        @include margin-bottom($margin-l);
+    &__filtering-heading,
+    &__filter {
+        @include margin-bottom($margin-md);
+    }
+
+    &__listing {
+        border-top: 2px solid $color-mercury;
+
+        &__contacts {
+            @include padding-top($padding-xs + $padding-sm);
+            @include padding-bottom($padding-md);
+            border-bottom: 2px solid $color-mercury;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            @media #{$desktop} {
+                &-cell {
+                    @include padding-bottom($padding-xl);
+                    border-right: 1px solid $color-mercury;
+                }
+
+                &:nth-child(3n) {
+                    &>div {
+                        border-right: 0;
+                    }
+                }
+            }
+
+            &-icon {
+                @include margin-bottom($margin-md);
+                @include padding(8px $padding-md $padding-l $padding-md);
+                @include font-size($font-xl);
+                @include width(64px);
+                @include height(64px);
+                border: 1px solid $color-mercury;
+                display: inline-block;
+                color: $color-congress-blue;
+                background-color: $color-white;
+                border-radius: 50%;
+            }
+
+            &-name {
+                font-family: $font-extra-bold;
+                font-size: $font-normal;
+            }
+        }
+
     }
 }
