@@ -104,9 +104,6 @@ public class OrderDetailsModel {
     private String errorMsg;
 
     @Inject
-    private String webReferenceLink;
-
-    @Inject
     private String orderNoLink;
 
     @Inject
@@ -176,7 +173,6 @@ public class OrderDetailsModel {
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
         i18KeyMap.put("orderNoLink", getOrderNoLink());
-        i18KeyMap.put("webReferenceLink", getWebReferenceLink());
         i18KeyMap.put("kpkPopUpCloseBtnText", getKpkPopUpCloseBtnText());
         i18KeyMap.put("deliveryProductsFilterCheckboxText", getDeliveryProductsFilterCheckboxText());
         i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
@@ -379,13 +375,6 @@ public class OrderDetailsModel {
      */
     public String getErrorMsg() {
         return errorMsg;
-    }
-
-    /**
-     * @return the customerReferenceLink
-     */
-    public String getWebReferenceLink() {
-        return webReferenceLink;
     }
 
     /**

@@ -195,3 +195,34 @@ $progress-units: (
         }
     }
 }
+
+.tp-modal {
+    background-color: rgba($color-black, 0.5);
+
+    &.fade {
+        .modal-dialog {
+            transition: transform $anim-speed-quick $anim-ease-out;
+            transform: scale(0.8);
+        }
+    }
+
+    &.show {
+        .modal-dialog {
+            transform: none;
+        }
+    }
+}
+
+.tp-no-backdrop {
+    .modal-backdrop {
+        display: none;
+
+        &.fade {
+            transition: none;
+        }
+    }
+}
+
+.collapsing {
+    transition: height $anim-speed-quick $anim-ease-out;
+}

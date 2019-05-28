@@ -36,11 +36,11 @@
 /0019 { /type "deny" /method "GET" /query "wcmmode=*" }
 #### Deny front door entry
 /0020 { /type "deny" /path "/content/ams/healthcheck/*"}
-/0021 { /type "deny" /url "/content/regent.html"} 
+/0021 { /type "deny" /url "/content/regent.html"}
 
 ## allow some requests
-/0022 { /type "allow" /method "GET" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login  
+/0022 { /type "allow" /method "GET" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
 /0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
 /0024 { /type "allow" /method "GET" /url "/bin/customerhub/token-generator" }
-/0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/en/dashboard/jcr:content/root/responsivegrid/orderingcard.preference.json" }  ## allow POSTs to update the order preferences
-
+/0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/*/orderingcard.preference.json" }  ## allow POSTs to update the order preferences
+/0026 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/*/introscreen" }  ## allow GET calls to introscreen
