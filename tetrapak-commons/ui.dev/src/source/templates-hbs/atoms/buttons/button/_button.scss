@@ -12,17 +12,9 @@
     color: $color-text;
 }
 
-button:focus {
-    outline-color: $color-congress-blue;
-}
-
 .tpatom-btn,
 .tpatom-link {
     cursor: pointer;
-
-    &:focus {
-        outline-color: $color-picton-blue;
-    }
 
     &[disabled] {
         cursor: not-allowed;
@@ -54,7 +46,6 @@ button:focus {
             &:hover {
                 background-color: $color-jordy-blue;
                 color: $color-congress-blue;
-                outline-color: $color-picton-blue;
             }
 
         }
