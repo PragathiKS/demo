@@ -98,7 +98,7 @@ public class DispatcherCuHuFlushEventListener implements EventListener {
 				LOGGER.info("Event triggered at path: {}", event.getPath());
 				String eventPath = event.getPath();
 				String relativePath = StringUtils.EMPTY;
-				String str = "/content/tetrapak/customerhub/en";
+				String str = "/content/tetrapak/customerhub/global/en";
 				String locale = StringUtils.EMPTY;
 				if (eventPath.contains("content-components")) {
 					str = "/content/tetrapak/customerhub/content-components/";

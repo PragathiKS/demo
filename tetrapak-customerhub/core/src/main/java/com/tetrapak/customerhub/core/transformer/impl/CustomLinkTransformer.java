@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 /**
  * 
  * This Class is responsible for transforming the internal links of the pages
- * under /content/tetrapak/customerhub/en node with the shortened url based on
+ * under /content/tetrapak/customerhub/global/en node with the shortened url based on
  * the request URL's country and locale
  * 
  * @author Swati Lamba
@@ -70,7 +70,7 @@ public class CustomLinkTransformer implements Transformer {
 		AttributesImpl attrNew = new AttributesImpl(atts);
 		if (StringUtils.isNotBlank(linkUrl) && !"content".equalsIgnoreCase(country)
 				&& !"tetrapak".equalsIgnoreCase(language)) {
-			Pattern pattern = Pattern.compile("/content/tetrapak/customerhub/en");
+			Pattern pattern = Pattern.compile("/content/tetrapak/customerhub/global/en");
 			Matcher matcher = pattern.matcher(linkUrl);
 			if (matcher.find()) {
 				country = country.isEmpty() ? "global" : country;
