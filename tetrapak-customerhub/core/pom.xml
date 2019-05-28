@@ -198,5 +198,11 @@
 			<version>2.8.2</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>tetrapak</groupId>
+			<artifactId>tetrapak-commons.core</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 </project>

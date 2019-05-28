@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.DispatcherFlushService;
+import com.tetrapak.commons.core.services.DispatcherFlushService;
 import com.tetrapak.customerhub.core.services.config.CuhuDispatcherFlushConfig;
 
 /**

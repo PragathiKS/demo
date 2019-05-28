@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.osgi.service.component.ComponentContext;
 
-import com.tetrapak.customerhub.core.services.DispatcherFlushService;
+import com.tetrapak.commons.core.services.DispatcherFlushService;
 import com.tetrapak.customerhub.core.services.config.CuhuDispatcherFlushConfig;
 
 /**

@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.services.impl;
+package com.tetrapak.commons.core.services.impl;
 
 import java.util.HashMap;
 import java.util.Map;
