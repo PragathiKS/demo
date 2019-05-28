@@ -35,7 +35,7 @@ public class APIGEEModelTest {
     @Test
     public void testModel() {
         Assert.assertEquals("api url","https://api-mig.tetrapak.com", apigeeModel.getApiURL());
-        Assert.assertEquals("api mappings","{\"token-generator\":\"https://api-mig.tetrapak.combin/customerhub/token-generator,orderingcard\"}", apigeeModel.getApiMappings());
+        Assert.assertEquals("api mappings","{\"token-generator\":\"https://api-mig.tetrapak.com/bin/customerhub/token-generator,orderingcard\"}", apigeeModel.getApiMappings());
     }
 
 }

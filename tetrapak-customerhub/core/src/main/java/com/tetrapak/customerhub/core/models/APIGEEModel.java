@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +28,8 @@ public class APIGEEModel {
         JsonObject jsonObject = new JsonObject();
         String[] mapArray = GlobalUtil.getApiMappings(apigeeService);
         for (String mapping : mapArray) {
-            jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"), apiUrl + StringUtils.substringAfter(mapping, ":"));
+            jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"),
+                    apiUrl + CustomerHubConstants.PATH_SEPARATOR + StringUtils.substringAfter(mapping, ":"));
         }
         return jsonObject.toString();
     }
