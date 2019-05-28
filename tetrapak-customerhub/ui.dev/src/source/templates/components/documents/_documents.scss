@@ -1,6 +1,11 @@
 .tp-documents {
-    &__filters {
-        @include margin-bottom($margin-l);
+
+    &__dropdown {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
     }
 
     &__table {
@@ -22,7 +27,11 @@
     }
 
     &__equipment-heading {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
     }
 
     &__accordion {
