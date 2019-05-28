@@ -147,6 +147,12 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 		if (!fulltextSearchTerm.isEmpty()) {
 			map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
 		}
+		
+		//Excluding Error page template.
+		map.put("property","@jcr:content/cq:template");
+		map.put("property.value","/apps/publicweb/templates/errorpage");
+		map.put("property.operation","unequals");
+		
 		map.put("p.limit", "-1");
 
 		log.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
