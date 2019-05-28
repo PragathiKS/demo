@@ -1,4 +1,4 @@
-<sly data-sly-template.link_template="${@ url,text,baseClass,isExternal,modifier,iconClass,className,jsClass ,linkHeading}">
+<sly data-sly-template.link_template="${@ url,text,baseClass,isExternal,modifier,iconClass,className,jsClass ,linkHeading , ctype}">
   <sly data-sly-test.modifierClassWithSpace=" tpatom-link--${modifier}" />
   <sly data-sly-test.baseClassWithSpace=" ${baseClass}" />
   <sly data-sly-test.iconClassWithSpace=" ${iconClass}" />
@@ -7,7 +7,11 @@
   <a
     href="${url}"
     class="tpatom-link${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-link--primary'}${className ? classNameWithSpace : ''}"
-    target="${isExternal ? '_blank' : ''}" datatag="internal" ctype="dashboard-recommendations" ctypeone="${linkHeading}" cttitle="${text @ i18n}">
+    target="${isExternal ? '_blank' : ''}"
+    datatag="${data.isExternalLink ? 'external' : 'internal'}"
+    ctype="${ctype'}"
+    ctypeone="${linkHeading}"
+    cttitle="${text @ i18n}">
       <span class="tpatom-link__text">${text @ i18n}</span>
        <sly data-sly-test="${iconClass}" >
           <i class="icon${iconClassWithSpace}"></i>
