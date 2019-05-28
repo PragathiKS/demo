@@ -98,6 +98,17 @@
                     "viewContactBtnRedirectUrl":"Contact",
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"sling:resourceType": "customerhub/components/content/contactcard"
+				},
+				"contacts": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"siteFilterHeading": "Find contacts on your site",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",					
+                    "noContactMsg": "No contacts found",
+                    "errorMsg":"Error message incase any other error on the component",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contacts"
 				}
 			}
 		}
