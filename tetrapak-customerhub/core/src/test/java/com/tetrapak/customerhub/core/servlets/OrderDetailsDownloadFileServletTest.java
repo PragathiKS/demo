@@ -1,7 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -21,7 +21,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
@@ -34,6 +33,7 @@ import com.tetrapak.customerhub.core.services.impl.OrderDetailsExcelServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.OrderDetailsPDFServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
+import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderDetailsDownloadFileServletTest {
