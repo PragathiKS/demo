@@ -18,10 +18,12 @@ public class ArticlePageModel extends BasePageModel {
 	private ValueMap jcrMap;
 
 	private String articleTitle;
+	private String description;
 	private Boolean showArticleDate;
 	private String articleDate;
 	private String articleImagePath;
 	private String imageAltTextI18n;
+	private String linkText;
 
 	private Boolean showStickyNavigation;
 	private String thumbnailImagePath;
@@ -38,6 +40,7 @@ public class ArticlePageModel extends BasePageModel {
 
 		if (jcrMap != null) {
 			articleTitle = jcrMap.get("jcr:title", String.class);
+			description = jcrMap.get("jcr:description", String.class);
 			showArticleDate = jcrMap.get("showArticleDate", false);
 			
 			Date date = jcrMap.get("articleDate", Date.class);
@@ -49,6 +52,7 @@ public class ArticlePageModel extends BasePageModel {
 			
 			articleImagePath = jcrMap.get("articleImagePath", String.class);
 			imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
+			linkText = jcrMap.get("linkText", String.class);
 
 			showStickyNavigation = jcrMap.get("showStickyNavigation", false);
 			thumbnailImagePath = jcrMap.get("thumbnailImagePath", String.class);
@@ -67,6 +71,10 @@ public class ArticlePageModel extends BasePageModel {
 	public String getArticleTitle() {
 		return articleTitle;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
 
 	public Boolean getShowArticleDate() {
 		return showArticleDate;
@@ -84,6 +92,10 @@ public class ArticlePageModel extends BasePageModel {
 		return imageAltTextI18n;
 	}
 
+	public String getLinkText() {
+		return linkText;
+	}
+	
 	public Boolean getShowStickyNavigation() {
 		return showStickyNavigation;
 	}

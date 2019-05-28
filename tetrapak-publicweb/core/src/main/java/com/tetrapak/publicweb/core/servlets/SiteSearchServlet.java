@@ -216,8 +216,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 				searchResultItem.setTagsMap(tagsMap);
 			}
 
-			if (properties.containsKey("vanityDescription")) {
-				String description = properties.get("vanityDescription", String.class);
+			if (properties.containsKey("jcr:description")) {
+				String description = properties.get("jcr:description", String.class);
 				log.info("Decription : {}", description);
 				searchResultItem.setDescription(description);
 			}

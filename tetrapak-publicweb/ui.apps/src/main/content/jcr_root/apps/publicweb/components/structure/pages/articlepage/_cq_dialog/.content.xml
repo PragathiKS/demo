@@ -68,6 +68,11 @@
                                                     fieldDescription="Enter Alt Text"
                                                     fieldLabel="Article Image Alt Text"
                                                     name="./imageAltTextI18n"/>
+                                            <linkText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Link Text"
+                                                    name="./linkText"/>
                                           
                                             <stickyNavDetails
                                                     jcr:primaryType="nt:unstructured"
