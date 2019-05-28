@@ -291,13 +291,16 @@ class MaintenanceFiltering {
       .on('change', '.js-maintenance-filtering__site', () => {
         this.renderMaintenanceContact();
         this.renderCalendar();
+        this.renderCalendarEventsDot();
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
         this.renderCalendar();
+        this.renderCalendarEventsDot();
       })
       .on('change', '.js-maintenance-filtering__equipment', () => {
         this.renderCalendar();
+        this.renderCalendarEventsDot();
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
         self.trackAnalytics('email', $(this).data('type').toLowerCase());
