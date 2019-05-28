@@ -1,4 +1,4 @@
-<h3 class="tp-documents__equipment-heading">{{i18n key=i18nKeys.documentHeading replaceList=selectedFilter}}</h3>
+<h2 class="tp-documents__equipment-heading">{{i18n key=i18nKeys.documentHeading replaceList=selectedFilter}}</h2>
 {{#each equipments}}
     {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-documents__accordion" jsClass="js-documents__accordion" iconClass="icon-Chevron_Up"  data-toggle="collapse" text=desc data-target=equipmentId}}
     <div class="tp-documents__table js-documents__table collapse" id="equipment{{@index}}">

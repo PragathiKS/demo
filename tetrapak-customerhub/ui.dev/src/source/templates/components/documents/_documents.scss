@@ -7,6 +7,12 @@
         }
     }
 
+    h2 {
+        @media #{$mobile} {
+            @include font-size($font-md);
+        }
+    }
+
     &__table {
         @include horizontal-scroll-touch;
     }
@@ -26,10 +32,10 @@
     }
 
     &__equipment-heading {
-        @include margin-bottom($margin-md);
+        @include margin($margin-md 0);
 
         @media #{$desktop} {
-            @include margin-bottom($margin-l);
+            @include margin($margin-l 0);
         }
     }
 
