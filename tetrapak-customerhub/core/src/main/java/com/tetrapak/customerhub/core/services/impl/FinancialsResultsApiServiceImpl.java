@@ -2,8 +2,10 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -23,7 +25,8 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
     public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
                                            String customerkey, String token) {
         JsonObject jsonResponse = new JsonObject();
-        final String url = apigeeService.getApigeeServiceUrl() + "/financials/results?status=" + status
+        final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR +
+                GlobalUtil.getSelectedApiMapping(apigeeService, "financialstatement-results") + "?status=" + status
                 + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&customerkey="
                 + customerkey;
 
