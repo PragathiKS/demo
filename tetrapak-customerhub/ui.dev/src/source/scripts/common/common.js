@@ -14,7 +14,6 @@ const currentUserAgent = window.navigator.userAgent;
 export const storageUtil = new LZStorage();
 
 // Initialize functions for user agent detection
-
 /**
  * Checks if current user agent belongs to mobile
  */
