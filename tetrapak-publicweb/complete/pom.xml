@@ -140,12 +140,6 @@
         </dependency>
         <dependency>
             <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-publicweb.ui.dev</artifactId>
-            <version>${project.version}</version>
-            <type>content-package</type> 
-        </dependency>   
-        <dependency>
-            <groupId>tetrapak</groupId>
             <artifactId>tetrapak-publicweb.ui.apps</artifactId>
             <version>${project.version}</version>
             <type>content-package</type> 
@@ -155,7 +149,13 @@
             <artifactId>tetrapak-publicweb.ui.content</artifactId>
             <version>${project.version}</version>
             <type>content-package</type> 
-        </dependency>    
+        </dependency>
+         <dependency>
+            <groupId>tetrapak</groupId>
+            <artifactId>tetrapak-publicweb.ui.dev</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type> 
+        </dependency>       
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
