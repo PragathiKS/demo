@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
+ * Test class for Documents Model
  * @author ruhsharma
  *
  */
@@ -38,8 +39,12 @@ public class DocumentsModelTest {
         assertTrue("There should be site filter label in i18n keys string", documentsModel.getI18nKeys().contains("siteFilterLabel"));
         assertEquals("There should be site filter label", "Site", documentsModel.getSiteFilterLabel());
         assertEquals("There should be line filter label", "Line/Area", documentsModel.getLineFilterLabel());
-        assertEquals("There should be equipment filter label", "Document for {0} in {1}", documentsModel.getDocumentHeading());
-        assertEquals("There should be all option Text", "No documents message", documentsModel.getNoDocumentsMsg());
+        assertEquals("There should be document Heading", "Document for {0} in {1}", documentsModel.getDocumentHeading());
+        assertEquals("There should be documents label", "Documents", documentsModel.getDocumentLabel());
+        assertEquals("There should be documents Type label", "Document Type", documentsModel.getDocumentTypeLabel());
+        assertEquals("There should be total documents label", "Number Of documents", documentsModel.getTotalDocumentsLabel());
+        assertEquals("There should be all option Text", "No documents message", documentsModel.getNoDataMsg());
         assertEquals("There should be error message", "Error message incase any other error on the component", documentsModel.getErrorMsg());
+        assertEquals("There should be techpubhost url", "https://techpubrepositoryhtml.tetrapak.com/", documentsModel.getTechPubHost());
     }
 }

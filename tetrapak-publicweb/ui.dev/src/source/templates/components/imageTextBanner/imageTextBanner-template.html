@@ -7,9 +7,9 @@
        data-softc-last="${data.softConversionLastStep @ i18n}"
        data-softc-doc="${data.softConversionDocPath}"
        data-itb-linkType="${data.linkType}"
-       data-itb-linkParentTitle="${data.bannerSubtitleI18n @ i18n}"
+       data-itb-linkParentTitle="${data.titleI18n @ i18n}"
        data-itb-linkName="${data.bannerCtaTextI18n @ i18n}"
-       data-itb-contentName="${data.titleI18n @ i18n}"
+       data-itb-contentName="${data.bannerSubtitleI18n @ i18n}"
        data-itb-linkSection="${data.analyticsLinkSection}">
     <div class="pw-banner__image-wrapper">
       <sly data-sly-test="${data.contrastLayer}" data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html" data-sly-call="${contrastLayer.contrastLayer_template @ variant=data.contrastLayer}"/>

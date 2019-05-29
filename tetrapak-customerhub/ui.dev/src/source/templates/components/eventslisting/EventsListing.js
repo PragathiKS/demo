@@ -3,15 +3,11 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
+import { getURL } from '../../../scripts/utils/uri';
 
 function _renderMaintenanceEvents(...eventsData) {
-  let siteFilter = '';
-  let lineFilter = '';
-  let equipmentFilter = '';
-  let selectedFilter = '';
-  const [cache, trackAnalytics, onPageLoad, skip] = eventsData;
+  const [cache, , skip] = eventsData;
 
   const data = {
     top: NO_OF_EVENTS_PER_PAGE
@@ -39,12 +35,10 @@ function _renderMaintenanceEvents(...eventsData) {
 
   if (sitenumber) {
     data.sitenumber = sitenumber;
-    siteFilter = 'site';
   }
 
   if (linenumber) {
     data.linenumber = linenumber;
-    lineFilter = 'line/area';
   }
   if (skip) {
     data.skip = skip;
@@ -52,10 +46,8 @@ function _renderMaintenanceEvents(...eventsData) {
 
   if (equipmentnumber) {
     data.equipmentnumber = equipmentnumber;
-    equipmentFilter = 'equipment/unit';
   }
 
-  selectedFilter = [siteFilter, lineFilter, equipmentFilter, 'dateschoosen'].join('|');
 
   if (fromDate) {
     data['from-date'] = fromDate;
@@ -65,7 +57,7 @@ function _renderMaintenanceEvents(...eventsData) {
   }
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
-      url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
+      url: getURL(API_MAINTENANCE_EVENTS),
       method: ajaxMethods.GET,
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
@@ -96,13 +88,6 @@ function _renderMaintenanceEvents(...eventsData) {
         template: 'eventsListing',
         target: '.js-maintenance__events',
         data: cache
-      }, () => {
-        if (!onPageLoad) {
-          cache.selectedFilter = selectedFilter;
-          const name = cache.navigationSelected ?
-            cache.navigationSelected : 'maintenance tab selection';
-          trackAnalytics(name);
-        }
       });
     }).fail(() => {
       cache.isEventDataError = true;
@@ -127,7 +112,7 @@ class EventsListing {
       const skip = data.pageIndex * NO_OF_EVENTS_PER_PAGE;
       $this.reRenderMaintenanceEvents(skip);
       $this.cache.currentPageIndex = data.pageIndex + 1;
-      $this.cache.navigationSelected = 'preventive maintenance';
+      $this.trackAnalytics('pagination');
     });
   }
   renderMaintenanceEvents(...args) {
@@ -136,7 +121,7 @@ class EventsListing {
     return _renderMaintenanceEvents.apply($this, args.slice(1));
   }
   reRenderMaintenanceEvents(skip) {
-    return _renderMaintenanceEvents.apply(this, [this.cache, this.trackAnalytics, '', skip]);
+    return _renderMaintenanceEvents.apply(this, [this.cache, '', skip]);
   }
   init() {
     this.bindEvents();

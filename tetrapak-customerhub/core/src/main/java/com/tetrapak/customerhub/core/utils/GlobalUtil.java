@@ -45,6 +45,35 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get API Mappings
+     *
+     * @param apigeeService API GEE Service
+     * @return String array
+     */
+    public static String[] getApiMappings(APIGEEService apigeeService) {
+        return null != apigeeService ? apigeeService.getApiMappings() : null;
+    }
+
+    /**
+     * Method to get a particular endpoint e.g. order-details-parts
+     *
+     * @param apigeeService API GEE Service
+     * @param prefix        String prefix
+     * @return String value
+     */
+    public static String getSelectedApiMapping(APIGEEService apigeeService, String prefix) {
+        String[] mappings = getApiMappings(apigeeService);
+        String mappingValue = StringUtils.EMPTY;
+        for (String mapping : mappings) {
+            if (prefix.equalsIgnoreCase(StringUtils.substringBefore(mapping, ":"))) {
+                mappingValue = StringUtils.substringAfter(mapping, ":");
+                break;
+            }
+        }
+        return mappingValue;
+    }
+
+    /**
      * Method to get Preference Url
      *
      * @param apigeeService   API GEE Service
@@ -166,7 +195,7 @@ public class GlobalUtil {
      * @return Page global config
      */
     public static Page getCustomerhubConfigPage(Resource contentPageResource) {
-        final int DEPTH = 3;
+        final int DEPTH = 4;
         return getPageFromResource(contentPageResource, DEPTH);
     }
 

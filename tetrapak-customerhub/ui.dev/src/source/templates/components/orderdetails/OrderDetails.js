@@ -4,11 +4,12 @@ import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
-import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
+import { tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  *
@@ -151,7 +152,7 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetail',
       url: {
-        path: `${apiHost}/${$this.cache.apiUrl}`,
+        path: getURL($this.cache.apiUrl),
         data: {
           'order-number': $this.cache.orderNumber,
           top: ORDER_DETAILS_ROWS_PER_PAGE
@@ -223,7 +224,7 @@ function _renderPaginateData() {
     render.fn({
       template: 'deliveryDetail',
       url: {
-        path: `${apiHost}/${$this.cache.apiUrl}`,
+        path: getURL($this.cache.apiUrl),
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,

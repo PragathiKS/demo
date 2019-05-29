@@ -1,4 +1,5 @@
 import deparam from 'jquerydeparam';
+import { isHeadlessChrome } from './browserDetect';
 
 const currentHost = window.location.hostname;
 const currentParams = deparam(window.location.search);
@@ -13,6 +14,7 @@ const _shouldLog = () => (
     || currentParams.debugClientLibs
   )
   && typeof console !== 'undefined'
+  && !isHeadlessChrome()
 );
 
 export const logger = {
