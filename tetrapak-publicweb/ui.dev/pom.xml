@@ -125,12 +125,12 @@
                 <groupId>com.day.jcr.vault</groupId>
                 <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
-                <configuration>
-					<!-- <filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>-->
+                <!-- <configuration>
+                    <filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
                     <group>tetrapak-publicweb</group>
-                </configuration>
+                </configuration>-->
             </plugin>
 
             <plugin>
