@@ -176,7 +176,7 @@ public class GlobalUtil {
      * @return Page global config
      */
     public static Page getCustomerhubConfigPage(Resource contentPageResource) {
-        final int DEPTH = 3;
+        final int DEPTH = 4;
         return getPageFromResource(contentPageResource, DEPTH);
     }
 

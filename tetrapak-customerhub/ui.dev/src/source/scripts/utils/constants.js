@@ -37,3 +37,4 @@ export const API_ORDER_DETAIL_PARTS = 'orderdetails-parts';
 export const API_ORDER_DETAIL_PACKMAT = 'orderdetails-packmat';
 export const API_MAINTENANCE_FILTERS = 'maintenance-filter';
 export const API_MAINTENANCE_EVENTS = 'maintenance-events';
+export const API_DOCUMENTS_SEARCH = 'documents';
