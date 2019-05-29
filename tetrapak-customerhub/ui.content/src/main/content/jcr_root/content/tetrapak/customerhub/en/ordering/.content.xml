@@ -42,7 +42,30 @@
                     preferencesTitleI18n="preference title"
                     saveErrorI18n="save error"
                     saveSettingsI18n="save settings"
-                    titleI18n="cuhu.ordering.title"/>
+                    titleI18n="cuhu.ordering.title">
+                    <defaultFields jcr:primaryType="nt:unstructured">
+                        <item0
+                                jcr:primaryType="nt:unstructured"
+                                defaultField="orderNumber"/>
+                        <item1
+                                jcr:primaryType="nt:unstructured"
+                                defaultField="poNumber"/>
+                        <item2
+                                jcr:primaryType="nt:unstructured"
+                                defaultField="orderDate"/>
+                    </defaultFields>
+                    <enabledFields jcr:primaryType="nt:unstructured">
+                        <item0
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="contact"/>
+                        <item1
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="customerNumber"/>
+                        <item2
+                                jcr:primaryType="nt:unstructured"
+                                enabledField="salesOrg"/>
+                    </enabledFields>
+                </orderingcard>
             </responsivegrid>
         </root>
     </jcr:content>

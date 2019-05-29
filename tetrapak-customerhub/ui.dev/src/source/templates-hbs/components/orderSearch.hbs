@@ -21,7 +21,7 @@
         <div class="tp-order-search__flex-container">
             {{> atoms/input/input name="search" label=this.searchInputLabelI18n wrapClasses="tp-order-search__search-term" eleClasses="js-order-search__search-term" dataLocator="search-input" placeholder=this.searchTermPlaceholderI18n }}
             {{> atoms/buttons/primaryButton/buttons btnText=this.resetButtonTextI18n btnClasses="tpatom-button--secondary js-order-search__reset"  dataLocator="search-reset-btn" }}
-            {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonTextI18n btnClasses="tpatom-button--primary js-order-search__submit" iconClass="icon-Chevron_Right" dataLocator="search-order-btn" }}
+            {{> atoms/buttons/primaryButton/buttons btnText=this.searchButtonTextI18n btnClasses="tpatom-button--primary js-order-search__submit" iconClass="icon-Chevron_Right" buttonType="submit" dataLocator="search-order-btn" }}
         </div>
     </form>
 {{/if}}

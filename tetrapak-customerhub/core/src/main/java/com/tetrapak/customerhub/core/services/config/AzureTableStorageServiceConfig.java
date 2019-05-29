@@ -37,6 +37,7 @@ public @interface AzureTableStorageServiceConfig {
      * 
      * @return Azure Table name in which the user preference data would be saved
      */
-    @AttributeDefinition(name = "Table name", description = "Azure Table name in which the user preference data would be saved", type = AttributeType.STRING)
+    @AttributeDefinition(name = "Table name", description = "Azure Table name in which the user preference data would be saved",
+            type = AttributeType.STRING)
     String tableName();
 }

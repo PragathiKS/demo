@@ -1,20 +1,16 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-
-import javax.json.JsonString;
-import javax.servlet.ServletException;
-
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -26,29 +22,28 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
-
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * Test class for Financials Results Service
+ *
  * @author ruhsharm
  */
 @RunWith(MockitoJUnitRunner.class)
 public class FinancialsResultsDownloadFileServletTest {
-    
+
     @Mock
     private Page mockPage;
 
@@ -57,12 +52,11 @@ public class FinancialsResultsDownloadFileServletTest {
 
     private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/financials";
     private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/financials/jcr:content/root/responsivegrid/financialstatement";
-    private static final String SERVLET_RESOURCE_JSON = "allContent.json";    
+    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
     private static final String RESOURCE_JSON = "financialsresultspage.json";
     private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";
     private static final String I18_RESOURCE_JSON = "/financialsresultsI18n.json";
-    
-    
+
 
     @Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(RESOURCE_JSON, CONTENT_ROOT,
@@ -85,7 +79,7 @@ public class FinancialsResultsDownloadFileServletTest {
         MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
         requestPathInfo.setExtension("pdf");
         MockSlingHttpServletRequest request = aemContext.request();
-        MockSlingHttpServletResponse response = aemContext.response();        
+        MockSlingHttpServletResponse response = aemContext.response();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
         parameters.put("params", "{\"startDate\":\"2019-04-25\",\"customerData\":{\"key\":\"123\",\"desc\":\"John - Malmo\",\"info\":{\"acountNo\":\"12345\",\"title\":\"California Aseptic Beverages\",\"address\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
@@ -97,13 +91,13 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
-    
+
     @Test
     public void doPostForExcel() throws IOException {
         MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
         requestPathInfo.setExtension("excel");
         MockSlingHttpServletRequest request = aemContext.request();
-        MockSlingHttpServletResponse response = aemContext.response();        
+        MockSlingHttpServletResponse response = aemContext.response();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
         parameters.put("params", "{\"startDate\":\"2019-04-25\",\"customerData\":{\"key\":\"123\",\"desc\":\"John - Malmo\",\"info\":{\"acountNo\":\"12345\",\"title\":\"California Aseptic Beverages\",\"address\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
@@ -115,7 +109,7 @@ public class FinancialsResultsDownloadFileServletTest {
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
-   
+
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
 
         GenericServiceType<FinancialsResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
@@ -129,7 +123,7 @@ public class FinancialsResultsDownloadFileServletTest {
         GenericServiceType<FinancialsResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
         excelServiceGenericServiceType.setClazzType(FinancialsResultsExcelService.class);
         excelServiceGenericServiceType.set(new FinancialsResultsExcelServiceImpl());
-        
+
         GenericServiceType<FinancialsResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
         financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialsResultsDownloadFileServlet.class);
         financialsResultsDownloadFileServletGenericServiceType.set(new FinancialsResultsDownloadFileServlet());

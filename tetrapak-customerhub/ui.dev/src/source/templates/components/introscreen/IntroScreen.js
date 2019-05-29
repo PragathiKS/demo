@@ -1,9 +1,22 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'slick-carousel';
-import { storageUtil, getI18n } from '../../../scripts/common/common';
+import { getI18n, isAuthorMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { toast } from '../../../scripts/utils/toast';
 
+/**
+ * Renders toast error message
+ */
+function _renderError(popupErrorMessage, popupCloseMessage) {
+  toast.render(
+    popupErrorMessage,
+    popupCloseMessage,
+    3000
+  );
+}
 
 /**
  * Fire analytics on close, next and slider
@@ -14,35 +27,32 @@ function _trackAnalytics(title, name) {
     linkType: 'internal',
     linkSection: 'intro modal'
   };
-
   // creating linkParentTitle/linkName as per the title/name received
   analyticsData.linkParentTitle = title.toLowerCase();
   analyticsData.linkName = name.toLowerCase();
-
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
 
-class introscreen {
+class IntroScreen {
   constructor({ templates, el }) {
     this.templates = templates;
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    /* Initialize cache here */
     this.cache.$introScreenCarousel = this.root.find('.js-intro-slider');
     this.cache.$carouselNextBtn = this.root.find('.js-slick-next');
     this.cache.$carouselNextBtnTxt = this.root.find('.js-slick-next .tp-next-btn__text');
+    this.cache.onBoardingStatusURL = this.root.find('#onBoardingStatusURL').val();
+    this.cache.popupErrorMessage = this.root.find('#popupErrorMessage').val();
+    this.cache.popupCloseMessage = this.root.find('#popupCloseMessage').val();
   }
 
   bindEvents() {
-
-    /* Bind jQuery events here */
     this.cache.$carouselNextBtn.on('click', () => {
       const nextButtonText = this.root.find('.js-slick-next .tp-next-btn__text').text();
       const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
       const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
-
       if (this.cache.$carouselNextBtn.hasClass('js-get-started-btn')) {
         this.closeCarousel();
       }
@@ -54,7 +64,8 @@ class introscreen {
       this.cache.$introScreenCarousel.slick('slickNext');
     });
 
-    this.cache.$introScreenCarousel.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+    this.cache.$introScreenCarousel.on('beforeChange', (...args) => {
+      const [, slick, , nextSlide] = args;
       if (slick.$slides.length === nextSlide + 1) {
         this.cache.$carouselNextBtn.addClass('js-get-started-btn');
         this.cache.$carouselNextBtnTxt.text(getI18n(this.root.find('#getStartedBtnI18n').val()));
@@ -77,37 +88,50 @@ class introscreen {
         const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
         this.trackAnalytics(sliderTitle, 'slider' + sliderIndex);
       });
-
   }
-
   init() {
-    let introScreen = storageUtil.get('introScreen');
-
-    /* Mandatory method */
-    if (!introScreen) {
-      this.initCache();
-      this.bindEvents();
-
-      this.root.modal();
-
-      this.cache.$introScreenCarousel.slick({
-        dots: true,
-        speed: 500,
-        infinite: false,
-        appendDots: this.root.find('.slider-dots'),
-        prevArrow: false,
-        nextArrow: false,
-        customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
-      });
+    this.initCache();
+    this.bindEvents();
+    const { onBoardingStatusURL, popupErrorMessage, popupCloseMessage } = this.cache;
+    ajaxWrapper.getXhrObj({
+      url: onBoardingStatusURL,
+      method: ajaxMethods.GET
+    }).done(
+      (data) => {
+        this.showOnboardingPopup(data, popupErrorMessage, popupCloseMessage);
+      }
+    ).fail(
+      () => {
+        this.renderError(popupErrorMessage, popupCloseMessage);
+      }
+    );
+  }
+  showOnboardingPopup(data, popupErrorMessage, popupCloseMessage) {
+    if (!$.isEmptyObject(data)) {
+      if (!data.isOnboarded || isAuthorMode()) {
+        this.root.modal();
+        this.cache.$introScreenCarousel.slick({
+          dots: true,
+          speed: 500,
+          infinite: false,
+          appendDots: this.root.find('.slider-dots'),
+          prevArrow: false,
+          nextArrow: false,
+          customPaging: () => this.templates.cuhuDot() // Remove button, customize content of "li"
+        });
+      }
+    } else {
+      this.renderError(popupErrorMessage, popupCloseMessage);
     }
   }
-
+  renderError() {
+    return _renderError.apply(this, arguments);
+  }
   closeCarousel() {
     this.root.modal('hide');
-    storageUtil.set('introScreen', true);
   }
 
   trackAnalytics = (title, name) => _trackAnalytics.call(this, title, name);
 }
 
-export default introscreen;
+export default IntroScreen;

@@ -1,8 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.impl.APIGEEServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Assert;
@@ -29,8 +27,8 @@ public class OrderSearchModelTest {
     @Test
     public void testGetStartedMessage() {
         String config = orderSearchModel.getConfig();
-        Assert.assertTrue(config.contains("Search Orders"));
-        Assert.assertEquals(5, orderSearchModel.getDisabledFields().size());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history.html", orderSearchModel.getOrderDetailLink());
+        Assert.assertTrue("config should contain search orders string", config.contains("Search Orders"));
+        Assert.assertEquals("size", 5, orderSearchModel.getEnabledFields().size());
+        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/ordering/order-history.html", orderSearchModel.getOrderDetailLink());
     }
 }

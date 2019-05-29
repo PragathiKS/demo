@@ -1,0 +1,20 @@
+<sly data-sly-template.link_template="${@ url,text,baseClass,isExternal,modifier,iconClass,className,jsClass ,linkHeading , ctype}">
+  <sly data-sly-test.modifierClassWithSpace=" tpatom-link--${modifier}" />
+  <sly data-sly-test.baseClassWithSpace=" ${baseClass}" />
+  <sly data-sly-test.iconClassWithSpace=" ${iconClass}" />
+  <sly data-sly-test.classNameWithSpace=" ${className}" />
+  <sly data-sly-test.jsClassNameWithSpace=" ${jsClass}" />
+  <a
+    href="${url}"
+    class="tpatom-link${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-link--primary'}${className ? classNameWithSpace : ''}"
+    target="${isExternal ? '_blank' : ''}"
+    datatag="${isExternal ? 'external' : 'internal'}"
+    ctype="${ctype ? ctype : 'not_set'}"
+    ctypeone="${linkHeading ? linkHeading : 'notset'}"
+    cttitle="${text @ i18n}">
+      <span class="tpatom-link__text">${text @ i18n}</span>
+       <sly data-sly-test="${iconClass}" >
+          <i class="icon${iconClassWithSpace}"></i>
+       </sly>
+    </a>
+</sly>

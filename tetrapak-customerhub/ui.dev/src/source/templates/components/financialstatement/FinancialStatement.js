@@ -276,19 +276,17 @@ function _downloadPdfExcel(...args) {
   const [, type, el] = args;
   const $el = $(el);
   $el.attr('disabled', 'disabled');
-  const $this = this;
   const paramsData = {};
-  const { $filterForm, $dateRange, data, i18nKeys } = $this.cache;
-  const statusDesc = $filterForm.find('.js-financial-statement__status option:selected').text();
-  const statusKey = $filterForm.find('.js-financial-statement__status option:selected').val();
-  const docTypeDesc = $filterForm.find('.js-financial-statement__document-type option:selected').text();
-  const docTypeKey = $filterForm.find('.js-financial-statement__document-type option:selected').val();
-  const docNumber = $filterForm.find('.js-financial-statement__document-number').val();
-  const dateRangeArray = $dateRange.val().split(' - ');
-  paramsData.startDate = dateRangeArray[0];
+  const { $filterForm, data, i18nKeys } = this.cache;
+  const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
+  const statusKey = $el.data('status');
+  const docTypeDesc = $filterForm.find(`.js-financial-statement__document-type option[value="${$el.data('documentType')}"]`).text();
+  const docTypeKey = $el.data('documentType');
+  const docNumber = $el.data('search');
+  paramsData.startDate = $el.data('invoiceDateFrom');
 
-  if (dateRangeArray.length > 1) {
-    paramsData.endDate = dateRangeArray[1];
+  if ($el.data('invoiceDateTo')) {
+    paramsData.endDate = $el.data('invoiceDateTo');
   }
   paramsData.customerData = data.selectedCustomerData;
   paramsData.status = {
@@ -304,7 +302,7 @@ function _downloadPdfExcel(...args) {
     const requestBody = {};
     requestBody.params = JSON.stringify(paramsData);
     requestBody.token = authData.access_token;
-    const url = resolveQuery($this.cache.servletUrl, { extnType: type });
+    const url = resolveQuery(this.cache.servletUrl, { extnType: type });
     fileWrapper({
       url,
       data: {
@@ -445,7 +443,7 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
-    this.root.parents('.js-financials').on('downloadFinancialPdfExcel', this, this.downloadPdfExcel);
+    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

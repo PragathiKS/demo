@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class APIGEETokenGeneratorServletTest {
         APIGEETokenGeneratorServlet apigeeTokenGeneratorServlet = aemContext.getService(APIGEETokenGeneratorServlet.class);
         aemContext.registerInjectActivateService(apigeeTokenGeneratorServlet);
         apigeeTokenGeneratorServlet.doGet(request, response);
-        assertEquals(HttpStatus.SC_OK, response.getStatus());
+        assertEquals("status from response",HttpStatus.SC_OK, response.getStatus());
     }
 
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {

@@ -10,30 +10,38 @@ $font-regular: "muliregular",
 sans-serif;
 $font-black: "muliblack",
 sans-serif;
-$font-blackItalic: "muliblack_italic",
+$font-black-italic: "muliblack_italic",
 sans-serif;
+$font-blackItalic: $font-black-italic;
 $font-bold: "mulibold",
 sans-serif;
-$font-boldItalic: "mulibold_italic",
+$font-bold-italic: "mulibold_italic",
 sans-serif;
-$font-extraBold: "muliextrabold",
+$font-boldItalic: $font-bold-italic;
+$font-extra-bold: "muliextrabold",
 sans-serif;
-$font-extraBoldItalic: "muliextrabold_italic",
+$font-extraBold: $font-extra-bold;
+$font-extra-bold-italic: "muliextrabold_italic",
 sans-serif;
-$font-extraLight: "muliextralight",
+$font-extraBoldItalic: $font-extra-bold-italic;
+$font-extra-light: "muliextralight",
 sans-serif;
+$font-extraLight: $font-extra-light;
 $font-extraLightItalic: "muliextralight_italic",
 sans-serif;
 $font-italic: "muliitalic",
 sans-serif;
 $font-light: "mulilight",
 sans-serif;
-$font-lightItalic: "mulilight_italic",
+$font-light-italic: "mulilight_italic",
 sans-serif;
+$font-lightItalic: $font-light-italic;
 $font-semi-bold: "mulisemibold",
 sans-serif;
-$font-semi-boldItalic: "mulisemibold_italic",
+$font-semi-bold-italic: "mulisemibold_italic",
 sans-serif;
+$font-semi-boldItalic: $font-semi-bold-italic;
+
 .hero {
     @include font-size($font-xxxl);
     @include line-height(60px, $font-baseline);

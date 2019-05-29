@@ -18,6 +18,11 @@
     {{#eachData this}}
         {{@key}}="{{this}}"
     {{/eachData}}
+
+    {{#if datatag}} datatag="{{datatag}}"{{/if}}
+    {{#if ctype}} ctype="{{ctype}}"{{/if}}
+    {{#if linkHeading}} ctypeone="{{linkHeading}}"{{/if}}
+    {{#if text}} cttitle="{{text}}"{{/if}}>
         <span class="tpatom-link__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>
         {{#if iconClass}}
             <i class="icon {{iconClass}}"></i>
