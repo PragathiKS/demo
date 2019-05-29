@@ -33,11 +33,6 @@
         background-color: $color-congress-blue;
 
         &:hover {
-            background: $color-jordy-blue;
-            color: $color-congress-blue;
-        }
-
-        &:hover {
             @extend %btn-colors-hover;
         }
 
