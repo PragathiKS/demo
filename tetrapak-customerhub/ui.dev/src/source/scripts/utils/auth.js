@@ -91,7 +91,6 @@ export default {
   /**
    * Retrieves a valid APIGEE token
    * @param {Function} callback Success callback
-   * @param {Function} errorCallback Failure callback
    */
   getToken(callback) {
     if (!this.tokenPromise) {
