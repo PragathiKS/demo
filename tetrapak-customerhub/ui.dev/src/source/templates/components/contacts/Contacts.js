@@ -7,15 +7,22 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Fire analytics on click of
- * filters, contact and calender
+ * site filter or contact's mail, phone
  */
 function _trackAnalytics(name, title) {
   const analyticsData = {
     linkType: 'internal',
-    linkSection: 'contact',
-    linkParentTitle: `contact-${title}`,
-    linkName: name
+    linkSection: 'contact'
   };
+
+  if (['email', 'phone'].includes(name)) {
+    analyticsData.linkParentTitle = `contact-${title}`;
+    analyticsData.linkName = name;
+  } else {
+    analyticsData.linkParentTitle = name;
+    analyticsData.linkSelection = 'site name';
+    analyticsData.linkName = 'site name selection';
+  }
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
@@ -134,13 +141,20 @@ class Contacts {
     /* Bind jQuery events here */
     this.root
       .on('change', '.js-contacts-filtering__site', function () {
+        let { siteFilterHeading } = self.cache.i18nKeys;
+
         self.initPostCache();
         self.renderFilteredContacts();
+
+        siteFilterHeading = siteFilterHeading
+          ? siteFilterHeading.toLowerCase()
+          : 'find contacts on your site';
+        self.trackAnalytics(siteFilterHeading);
       })
-      .on('click', '.js-contacts__listing__contacts-mail', function () {
+      .on('click', '.js-contacts__cell-mail', function () {
         self.trackAnalytics('email', $(this).data('title').toLowerCase());
       })
-      .on('click', '.js-contacts__listing__contacts-phone', function () {
+      .on('click', '.js-contacts__cell-phone', function () {
         self.trackAnalytics('phone', $(this).data('title').toLowerCase());
       });
   }
