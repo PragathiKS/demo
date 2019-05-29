@@ -3,7 +3,7 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_MAINTENANCE_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_DOCUMENTS_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
 import { getI18n } from '../../../scripts/common/common';
 import { getURL } from '../../../scripts/utils/uri';
 
@@ -174,7 +174,7 @@ function _renderSiteFilters() {
     render.fn({
       template: 'documentsFiltering',
       url: {
-        path: getURL(API_MAINTENANCE_FILTERS)
+        path: getURL(API_DOCUMENTS_FILTERS)
       },
       target: '.js-documents__installments',
       ajaxConfig: {
