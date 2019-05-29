@@ -4,6 +4,9 @@ import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';
 
+/**
+ * Generates a valid APIGEE token and ensures token validity
+ */
 function generateToken() {
   return (
     new Promise(function (resolve, reject) {
@@ -55,13 +58,43 @@ function generateToken() {
   );
 }
 
+/**
+ * Executes callback if promise resolves
+ * @param {Function} callback Callback function
+ * @param  {...any} args Promise arguments
+ */
+function execCallback(callback, ...args) {
+  this.tokenPromise = null;
+  if (typeof callback === 'function') {
+    callback(...args);
+  }
+}
+
+/**
+ * Executes callback if promise is rejected
+ * @param {Function} callback Callback function
+ */
+function handleRejection(callback) {
+  this.tokenPromise = null;
+  storageUtil.removeCookie('authToken');
+  if (typeof callback === 'function') {
+    callback();
+  }
+}
+
 export default {
+  tokenPromise: null,
+  /**
+   * Retrieves a valid APIGEE token
+   * @param {Function} callback Success callback
+   * @param {Function} errorCallback Failure callback
+   */
   getToken(callback, errorCallback) {
-    return generateToken().then(callback).catch(() => {
-      storageUtil.removeCookie('authToken');
-      if (typeof errorCallback === 'function') {
-        errorCallback();
-      }
-    });
+    if (!this.tokenPromise) {
+      this.tokenPromise = generateToken();
+    }
+    return this.tokenPromise
+      .then((...args) => execCallback.apply(this, [callback, ...args]))
+      .catch(() => handleRejection.apply(this, [errorCallback]));
   }
 };

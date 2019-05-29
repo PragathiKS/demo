@@ -82,17 +82,13 @@ function _getMedia() {
  * Gets current orientation
  * @param  {...any} args Arguments
  */
-export const getOrientation = (...args) => {
-  return _getOrientation.apply(this, args);
-};
+export const getOrientation = (...args) => _getOrientation.apply(this, args);
 
 /**
  * Gets current media
  * @param  {...any} args Arguments
  */
-export const getMedia = (...args) => {
-  return _getMedia.apply(this, args);
-};
+export const getMedia = (...args) => _getMedia.apply(this, args);
 
 /**
  * Namespace for response events
