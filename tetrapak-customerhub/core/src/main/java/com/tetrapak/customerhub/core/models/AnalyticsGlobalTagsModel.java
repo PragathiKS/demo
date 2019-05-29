@@ -174,7 +174,7 @@ public class AnalyticsGlobalTagsModel {
      * @return String channel
      */
     public String getChannel() {
-        final int DEPTH = 4;
+        final int DEPTH = 5;
         return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
     }
 
