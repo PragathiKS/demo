@@ -114,13 +114,7 @@
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.it.launcher</artifactId>
             <version>${project.version}</version>
-        </dependency>-->
-        <dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-commons.ui.apps</artifactId>
-            <version>${project.version}</version>
-            <type>content-package</type> 
-        </dependency>
+        </dependency>-->        
          <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-commons.ui.dev</artifactId>

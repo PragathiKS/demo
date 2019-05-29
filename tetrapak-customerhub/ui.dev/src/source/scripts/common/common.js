@@ -15,10 +15,7 @@ export const apiHost = $('#apiHost').val();
 // Initialize storage utility
 export const storageUtil = new LZStorage();
 
-const { getCookie } = storageUtil;
-
 // Initialize functions for user agent detection
-
 /**
  * Checks if current user agent belongs to mobile
  */
@@ -48,7 +45,7 @@ export const isDesktopMode = () => !isMobileMode();
  * Checks if author mode is enabled
  */
 export const isAuthorMode = () => {
-  const wcmmode = getCookie('wcmmode');
+  const wcmmode = storageUtil.getCookie('wcmmode');
   return ['edit', 'preview', 'design'].includes(wcmmode);
 };
 

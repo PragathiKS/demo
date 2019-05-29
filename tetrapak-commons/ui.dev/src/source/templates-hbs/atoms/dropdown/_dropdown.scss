@@ -3,16 +3,17 @@
 
     &__text {
         margin-bottom: 0;
+        color: $color-mine-shaft;
     }
 
     &__select-box {
-        @include border-xs($color-tundora);
+        @include border-xs($color-boulder);
         @include border-radius($border-radius);
         @include padding($padding-sm $padding-xl $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;
-
+        color: $color-tundora
     }
 
     &__icon {
