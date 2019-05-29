@@ -27,7 +27,7 @@ export const ajaxMethods = {
   DELETE: 'DELETE'
 };
 // API URLs
-export const API_TOKEN = 'bin/customerhub/token-generator';
+export const API_TOKEN = 'token-generator';
 export const API_SEARCH = 'ordersearch';
 export const API_ORDER_HISTORY = 'orderingcard';
 export const API_FINANCIAL_SUMMARY = 'financialstatement-filter';
