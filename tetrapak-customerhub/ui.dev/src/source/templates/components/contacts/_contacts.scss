@@ -7,7 +7,7 @@
 
     &__container {
         @media #{$desktop} {
-            border-top: 2px solid $color-mercury;
+            border-top: 1px solid $color-mercury;
         }
     }
 
@@ -31,12 +31,12 @@
             @include font-size($font-xl);
             @include width(64px);
             @include height(64px);
-            display: inline-block;
-            position: relative;
             border: 1px solid $color-mercury;
+            display: inline-block;
+            color: $color-congress-blue;
+            position: relative;
             background-color: $color-white;
             border-radius: 50%;
-            color: $color-congress-blue;
 
             &>i {
                 position: absolute;
