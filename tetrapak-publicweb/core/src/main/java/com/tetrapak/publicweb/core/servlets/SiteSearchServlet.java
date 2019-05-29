@@ -149,9 +149,14 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 		}
 		
 		//Excluding Error page template.
-		map.put("property","@jcr:content/cq:template");
-		map.put("property.value","/apps/publicweb/templates/errorpage");
-		map.put("property.operation","unequals");
+		map.put("1_property","@jcr:content/cq:template");
+		map.put("1_property.value","/apps/publicweb/templates/errorpage");
+		map.put("1_property.operation","unequals");
+		
+		//Excluding pages which have Hide in Search selected.
+		map.put("2_property","@jcr:content/hideInSearch");
+		map.put("2_property.value","false");
+		map.put("2_property.operation","exists");		
 		
 		map.put("p.limit", "-1");
 

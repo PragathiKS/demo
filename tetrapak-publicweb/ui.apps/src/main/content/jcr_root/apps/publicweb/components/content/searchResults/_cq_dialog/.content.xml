@@ -28,6 +28,18 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                            <searchBoxPlaceholder
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="The placeholder text to be shown on the search box"
+                                fieldLabel="Search Box Placeholder Text"
+                                name="./searchBoxPlaceholder"/>
+                            <resultsText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Text to display for the results found"
+                                fieldLabel="Results Text"
+                                name="./resultsText"/>
                             <firstTabLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

@@ -32,6 +32,12 @@ public class SearchResultsModel {
 	Resource resource;
 
 	@Inject
+	private String searchBoxPlaceholder;	
+	
+	@Inject
+	private String resultsText;
+	
+	@Inject
 	private String firstTabLinkText;
 
 	@Inject
@@ -43,7 +49,7 @@ public class SearchResultsModel {
 	@Inject
 	private String[] filterTagPaths;
 
-	private final String templateBasePath = "/apps/publicweb/templates/";
+	private String templateBasePath = "/apps/publicweb/templates/";
 
 	protected final Logger log = LoggerFactory.getLogger(SearchResultsModel.class);
 	private LinkedHashMap<String, String> tagsMap = new LinkedHashMap<>();
@@ -95,7 +101,6 @@ public class SearchResultsModel {
 						String pageType = jObj.getString("pageType");
 						log.info("Page Template Path : {}", pageType);
 						pageType = pageType.replace(templateBasePath, "");
-						log.info("Page Template Path after updating : {}", pageType);
 						bean.setProductType(pageType);
 
 					}
@@ -106,6 +111,14 @@ public class SearchResultsModel {
 			log.error("Exception while Multifield data {}", e.getMessage(), e);
 		}
 		return tabList;
+	}
+	
+	public String getSearchBoxPlaceholder() {
+		return searchBoxPlaceholder;
+	}
+
+	public String getResultsText() {
+		return resultsText;
 	}
 
 	public String getFirstTabLinkText() {
