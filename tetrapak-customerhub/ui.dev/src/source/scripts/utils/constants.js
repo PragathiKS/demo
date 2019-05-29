@@ -38,3 +38,4 @@ export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
 export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
 export const API_MAINTENANCE_FILTERS = 'mock/materials/equipments/installations';
 export const API_MAINTENANCE_EVENTS = 'orders/service/events';
+export const API_DOCUMENTS_SEARCH = 'techpub/search';

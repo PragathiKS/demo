@@ -1,26 +1,58 @@
+%default-btn {
+    @include font-size($font-baseline);
+    @include line-height(40px, $font-baseline);
+    @include padding(0 $padding-md);
+    @include letter-spacing(0.5px);
+    font-family: $font-light;
+}
+
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
 .tpatom-button {
     @include padding($padding-sm $padding-md);
     white-space: nowrap;
+
     .icon-Chevron_Right {
         @include margin-right(-$margin-sm);
     }
+
     &--primary {
+        @extend %default-btn;
+        border-radius: $border-radius;
         color: $color-white;
         background-color: $color-congress-blue;
+
         &:hover {
-            background: $color-jordy-blue;
-            color: $color-congress-blue;
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
+            }
         }
     }
+
     &--secondary {
         color: $color-congress-blue;
         background-color: $color-wild-sand;
+
         &:hover {
             background: $color-mercury;
         }
     }
+
     &__icon {
         display: inline;
+
         &::before {
             @include margin-left($margin-sm);
         }
