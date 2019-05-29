@@ -5,6 +5,50 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_MAINTENANCE_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
 import { apiHost, getI18n } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+/**
+ * Fire analytics on click of
+ * filters, contact and calender
+ */
+function _trackAnalytics(name, obj) {
+  const analyticsData = {
+    linkSection: 'installed equipment-documents'
+  };
+  const { equipmentresultscount } = this.cache;
+
+  switch (name) {
+    case 'site': {
+      analyticsData.linkType = 'internal';
+      analyticsData.linkName = 'documents tab selection';
+      analyticsData.linkSelection = 'site';
+      analyticsData.linkParentTitle = 'documents tab';
+      analyticsData.equipmentresultscount = equipmentresultscount;
+      break;
+    }
+    case 'line': {
+      analyticsData.linkType = 'internal';
+      analyticsData.linkName = 'documents tab selection';
+      analyticsData.linkSelection = 'line/area';
+      analyticsData.linkParentTitle = 'documents tab';
+      analyticsData.equipmentresultscount = equipmentresultscount;
+      break;
+    }
+    case 'document': {
+      const linkName = obj.find('.tpatom-link__text').text();
+      const linkParentTitle = `${obj.data('equipment')}-${obj.data('doc-type')}`;
+      analyticsData.linkType = 'external';
+      analyticsData.linkName = linkName;
+      analyticsData.linkParentTitle = linkParentTitle;
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 /**
  * Process Documents Data
@@ -22,14 +66,10 @@ function _processDocumentsData(documentsData) {
 
     equipments.forEach(equipment => {
       equipment.documents = results.filter(document => equipment.serialNo === document.serial)[0];
-
-      if (typeof equipment.documents === 'undefined') {
-        equipment.noData = true;
-        equipment.desc = `${equipment.desc} (0 ${getI18n(i18nKeys.documentLabel)})`;
-      } else {
-        equipment.desc = `${equipment.desc} (${equipment.documents.docCount} ${getI18n(i18nKeys.documentLabel)})`;
-      }
+      equipment.titleWithCount = `${equipment.title} (${equipment.documents.docCount} ${getI18n(i18nKeys.documentLabel)})`;
     });
+
+    documentsData.equipments = equipments.filter(equipment => equipment.documents.docCount > 0);
   }
 }
 
@@ -66,9 +106,18 @@ function _renderDocuments(equipmentData) {
             isError: true
           };
           data.i18nKeys = equipmentData.i18nKeys;
+        } else if (data.totalDocuments === 0) {
+          data.noData = true;
+          data.i18nKeys = equipmentData.i18nKeys;
         } else {
           $.extend(data, equipmentData);
           $this.processDocumentsData(data);
+
+          const { name } = $this.cache;
+          if (name) {
+            $this.cache.equipmentresultscount = data.equipments.length;
+            $this.trackAnalytics(name);
+          }
         }
       }
     });
@@ -102,7 +151,7 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
     data.equipmentData.equipments.push(...line.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
       serialNo: equipment.serialNumber,
-      desc: equipment.equipmentName,
+      title: equipment.equipmentName,
       equipmentId: `#equipment${index}`
     })));
   });
@@ -248,7 +297,6 @@ class Documents {
     const self = this;
     this.root
       .on('change', '.js-documents-filtering__site', function () {
-
         const siteAndLineRecords = self.cache.data;
 
         const matchedSite = siteAndLineRecords.sites.filter(site => site.key === $(this).val());
@@ -257,16 +305,23 @@ class Documents {
         const matchedLine = siteAndLineRecords.installations.filter(site => site.customerNumber === $(this).val());
         self.selectedLine = matchedLine[0].lines[0].lineDesc;
 
+        self.cache.name = 'site';
+
         self.processLineData();
+
       })
       .on('change', '.js-documents-filtering__line', function () {
-
         const filteredLines = self.cache.filteredData.lines;
 
         const matchedLine = filteredLines.filter(line => line.lineNumber === $(this).val());
         self.selectedLine = matchedLine[0].lineDesc;
 
+        self.cache.name = 'line';
+
         self.renderEquipmentFilters();
+      })
+      .on('click', '.js-documents__document', function () {
+        self.trackAnalytics('document', $(this));
       });
   }
 
@@ -277,6 +332,7 @@ class Documents {
   renderSiteFilters = () => _renderSiteFilters.call(this);
   renderDocuments = (data) => _renderDocuments.call(this, data);
   processDocumentsData = (data) => _processDocumentsData.call(this, data);
+  trackAnalytics = (name, obj) => _trackAnalytics.call(this, name, obj);
 
   init() {
     /* Mandatory method */

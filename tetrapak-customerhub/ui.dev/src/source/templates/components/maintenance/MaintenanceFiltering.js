@@ -20,7 +20,8 @@ function _trackAnalytics(name, type) {
     linkSection: 'installed equipment-maintenance',
     linkName: name
   };
-  const { eventsData, currentPageIndex } = this.cache;
+  const { selectedFilter, eventsData, currentPageIndex } = this.cache;
+  this.cache.navigationSelected = null;
 
   switch (name) {
     case 'email':
@@ -28,42 +29,20 @@ function _trackAnalytics(name, type) {
       analyticsData.linkParentTitle = `contact-${type}`;
       break;
     }
-    case 'site': {
-      analyticsData.linkName = 'maintenance tab selection';
-      analyticsData.linkSelection = 'site';
+    case 'maintenance tab selection': {
+      analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
-      break;
-    }
-    case 'line': {
-      analyticsData.linkName = 'maintenance tab selection';
-      analyticsData.linkSelection = 'line/area';
-      analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
-      break;
-    }
-    case 'equipment': {
-      analyticsData.linkName = 'maintenance tab selection';
-      analyticsData.linkSelection = 'equipment/unit';
-      analyticsData.linkParentTitle = 'maintenance tab';
-      analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
-      break;
-    }
-    case 'date': {
-      analyticsData.linkName = 'maintenance tab selection';
-      analyticsData.linkSelection = 'dateschoosen';
-      analyticsData.linkParentTitle = 'maintenance schedule';
       analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
       break;
     }
     case 'left arrow':
     case 'right arrow': {
-      analyticsData.linkSelection = 'dateschoosen';
+      analyticsData.linkSelection = selectedFilter;
       analyticsData.linkParentTitle = 'maintenance schedule';
       analyticsData.maintenanceResultsCount = eventsData.totalRecordsForQuery;
       break;
     }
-    case 'pagination': {
+    case 'preventive maintenance': {
       analyticsData.linkParentTitle = 'maintenance events';
       analyticsData.linkName = 'pagination click';
       analyticsData.maintenanceEventPagination = currentPageIndex;
@@ -252,7 +231,6 @@ function _renderCalendarEventsDot() {
         'to-date': endDate
       }
     }).done((data) => {
-      this.cache.eventsData = data;
       let eventsDateArray = [];
       data.events.forEach(function (item) {
         let start = new Date(item.plannedStart);
@@ -305,8 +283,8 @@ class MaintenanceFiltering {
     this.cache.$line = this.root.find('.js-maintenance-filtering__line');
     this.cache.$equipment = this.root.find('.js-maintenance-filtering__equipment');
   }
-  triggerMaintenanceEvents() {
-    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache, this.trackAnalytics]);
+  triggerMaintenanceEvents(onPageLoad) {
+    this.root.parents('.js-maintenance').trigger('renderMaintenance', [this.cache, this.trackAnalytics, onPageLoad]);
   }
   bindEvents() {
     const self = this;
@@ -315,18 +293,15 @@ class MaintenanceFiltering {
         this.renderMaintenanceContact();
         this.renderCalendar();
         this.renderCalendarEventsDot();
-        this.trackAnalytics('site');
       })
       .on('change', '.js-maintenance-filtering__line', () => {
         this.renderEquipmentFilter();
         this.renderCalendar();
         this.renderCalendarEventsDot();
-        this.trackAnalytics('line');
       })
       .on('change', '.js-maintenance-filtering__equipment', () => {
         this.renderCalendar();
         this.renderCalendarEventsDot();
-        this.trackAnalytics('equipment');
       })
       .on('click', '.js-maintenance-filtering__contact-mail', function () {
         self.trackAnalytics('email', $(this).data('type').toLowerCase());
@@ -365,7 +340,6 @@ class MaintenanceFiltering {
         onSelectEnd() {
           $this.cache.$calendarNavCont.removeClass('js-disable-data-call');
           $this.triggerMaintenanceEvents();
-          $this.trackAnalytics('date');
         }
       });
       this.wrapCalendar();
@@ -393,8 +367,8 @@ class MaintenanceFiltering {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
 
-    const analyticsName = (action === 'previous-action') ? 'left arrow' : 'right arrow';
-    $this.trackAnalytics(analyticsName);
+    $this.cache.navigationSelected = (action === 'previous-action') ? 'left arrow' : 'right arrow';
+
     if ($defaultCalendarNavBtn.length) {
       let evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
