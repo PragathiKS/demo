@@ -9,7 +9,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Fire analytics on click of
- * filters, contact and calender
+ * filters and document links
  */
 function _trackAnalytics(name, obj) {
   const analyticsData = {
