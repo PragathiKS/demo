@@ -28,6 +28,7 @@ describe('Contacts', function () {
     this.renderSitesSpy = sinon.spy(this.contacts, "renderSites");
     this.processSitesSpy = sinon.spy(this.contacts, "processSites");
     this.renderFilteredContactsSpy = sinon.spy(this.contacts, "renderFilteredContacts");
+    this.trackAnalyticsSpy = sinon.spy(this.contacts, "trackAnalytics");
     this.renderSpy = sinon.spy(render, 'fn');
 
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -50,6 +51,7 @@ describe('Contacts', function () {
     this.renderSitesSpy.restore();
     this.processSitesSpy.restore();
     this.renderFilteredContactsSpy.restore();
+    this.trackAnalyticsSpy.restore();
 
     this.renderSpy.restore();
     this.ajaxStub.restore();
@@ -76,5 +78,17 @@ describe('Contacts', function () {
     $('.js-contacts-filtering__site').trigger('change');
     expect(this.contacts.renderFilteredContacts.called).to.be.true;
     done();
+  });
+  it('should call track analytics on site change', function () {
+    $('.js-contacts-filtering__site').trigger('change');
+    expect(this.contacts.trackAnalytics.called).to.be.true;
+  });
+  it('should call track analytics on click of "contact email" link', function () {
+    $('.js-contacts__cell-mail').trigger('click');
+    expect(this.contacts.trackAnalytics.called).to.be.true;
+  });
+  it('should call track analytics on click of "contact phone" link', function () {
+    $('.js-contacts__cell-phone').trigger('click');
+    expect(this.contacts.trackAnalytics.called).to.be.true;
   });
 });
