@@ -6,6 +6,16 @@
     font-family: $font-light;
 }
 
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
 %hiddentext-btn {
     @include width($min-accessible-dimension);
     @include height($min-accessible-dimension);
@@ -30,26 +40,21 @@
         @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
-        background-color: $color-congress-blue;
-        color: $color-white;
 
-
-
-        @media #{$desktop} {
-
-            .no-touch &,
-            &[disabled]:hover {
-                background-color: $color-congress-blue;
-                color: $color-white;
-            }
-
-            .no-touch &:hover {
-                background-color: $color-jordy-blue;
-                color: $color-congress-blue;
-            }
-
+        &,
+        &[disabled]:hover {
+            @extend %btn-colors;
         }
 
+        &:hover {
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
+            }
+        }
 
         span {
             @include margin-right($margin-xs);

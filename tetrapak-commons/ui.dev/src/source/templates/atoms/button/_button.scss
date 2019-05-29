@@ -6,6 +6,17 @@
     font-family: $font-light;
 }
 
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
+
 .tpatom-button {
     @include padding($padding-sm $padding-md);
     white-space: nowrap;
@@ -21,13 +32,21 @@
         color: $color-white;
         background-color: $color-congress-blue;
 
+        &:hover {
+            background: $color-jordy-blue;
+            color: $color-congress-blue;
+        }
 
-        @media #{$desktop} {
-            .no-touch &:hover {
-                background: $color-jordy-blue;
-                color: $color-congress-blue;
+        &:hover {
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
             }
         }
+
     }
 
     &--secondary {

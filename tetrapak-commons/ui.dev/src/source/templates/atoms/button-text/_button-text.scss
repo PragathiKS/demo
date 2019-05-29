@@ -19,12 +19,10 @@
         background-color: $color-wild-sand;
         color: $color-congress-blue;
 
-
-        @media #{$desktop} {
-            .no-touch &:hover {
-                background-color: $color-mercury;
-            }
+        .hover {
+            background-color: $color-mercury;
         }
+
 
     }
 
