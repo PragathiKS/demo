@@ -6,6 +6,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_DOCUMENTS_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
 import { getI18n } from '../../../scripts/common/common';
 import { getURL } from '../../../scripts/utils/uri';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
  * Fire analytics on click of
