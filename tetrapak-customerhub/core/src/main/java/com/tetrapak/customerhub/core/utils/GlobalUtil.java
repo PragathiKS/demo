@@ -55,6 +55,23 @@ public class GlobalUtil {
     }
 
     /**
+     * @param apigeeService API GEE Service
+     * @param prefix        String prefix
+     * @return String value
+     */
+    public static String getSelectedApiMapping(APIGEEService apigeeService, String prefix) {
+        String[] mappings = getApiMappings(apigeeService);
+        String mappingValue = StringUtils.EMPTY;
+        for (String mapping : mappings) {
+            if (prefix.equalsIgnoreCase(StringUtils.substringBefore(mapping, ":"))) {
+                mappingValue = StringUtils.substringAfter(mapping, ":");
+                break;
+            }
+        }
+        return mappingValue;
+    }
+
+    /**
      * Method to get Preference Url
      *
      * @param apigeeService   API GEE Service
