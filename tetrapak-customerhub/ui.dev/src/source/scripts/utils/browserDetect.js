@@ -18,7 +18,8 @@ const UA = {
   hasEdge: (/edge/i).test(userAgent),
   hasOpera: (/OPR/).test(userAgent),
   hasIphone: (/iphone/i).test(userAgent),
-  hasIpad: (/ipad/i).test(userAgent)
+  hasIpad: (/ipad/i).test(userAgent),
+  hasHeadless: (/headlesschrome/i).test(userAgent)
 };
 
 /**
@@ -35,6 +36,11 @@ export const isChrome = () => (UA.hasWebkit && (UA.hasChrome || UA.hasChromeIOS)
  * Returns true if current browser is chrome iOS
  */
 export const isChromeIOS = () => (UA.hasWebkit && UA.hasChromeIOS);
+
+/**
+ * Returns true if current browser is headless chrome
+ */
+export const isHeadlessChrome = () => UA.hasHeadless;
 
 /**
  * Returns true if current platform is iOS

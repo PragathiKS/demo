@@ -34,7 +34,8 @@ public class APIGEEModelTest {
 
     @Test
     public void testModel() {
-        Assert.assertEquals("https://api-mig.tetrapak.com", apigeeModel.getApiURL());
+        Assert.assertEquals("api url","https://api-mig.tetrapak.com", apigeeModel.getApiURL());
+        Assert.assertEquals("api mappings","{\"token-generator\":\"https://api-mig.tetrapak.com/bin/customerhub/token-generator\",\"auth-token\":\"https://api-mig.tetrapak.com//oauth2/v2/token\",\"orderingcard\":\"https://api-mig.tetrapak.com/orders/history\",\"ordersearch\":\"https://api-mig.tetrapak.com/orders/summary\",\"orderdetails-parts\":\"https://api-mig.tetrapak.com/orders/details/parts\",\"orderdetails-packmat\":\"https://api-mig.tetrapak.com/orders/details/packmat\",\"financialstatement-filter\":\"https://api-mig.tetrapak.com/financials/summary\",\"financialstatement-results\":\"https://api-mig.tetrapak.com/financials/results\",\"financialstatement-invoice\":\"https://api-mig.tetrapak.com/demo/cfe/invoices\",\"maintenance-filter\":\"https://api-mig.tetrapak.com/mock/materials/equipments/installations\",\"maintenance-events\":\"https://api-mig.tetrapak.com/orders/service/events\",\"maintenancecard\":\"https://api-mig.tetrapak.com/orders/service/events\",\"documents-filter\":\"https://api-mig.tetrapak.com/mock/materials/equipments/installations\",\"documents\":\"https://api-mig.tetrapak.com/techpub/search\"}", apigeeModel.getApiMappings());
     }
 
 }
