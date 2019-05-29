@@ -37,13 +37,13 @@
 
         @media #{$desktop} {
 
-            &,
+            .no-touch &,
             &[disabled]:hover {
                 background-color: $color-congress-blue;
                 color: $color-white;
             }
 
-            &:hover {
+            .no-touch &:hover {
                 background-color: $color-jordy-blue;
                 color: $color-congress-blue;
             }

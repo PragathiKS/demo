@@ -439,11 +439,38 @@ class FinancialStatement {
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
       .on('click', '.js-financial-statement__submit', this.populateResults)
+
+
+
       .on('click', '.js-financial-statement__reset', () => {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+
+
+    if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
+
+      logger.log('test 11111');
+      //If the device is a touch capable device, then...
+      $(document).on('touchstart', '.js-financial-statement__submit', function () {
+        //$(this).addClass('no-touch');
+
+        // logger.log('data test 123  5555', $(this));
+        // $(this).removeClass('hover');
+        //logger.log('data test 123', this.removeClass('hover'));
+        //this.removeClass('hover');
+        //$('.js-financial-statement__submit').removeClass('hover');
+        //$('.js-financial-statement__submit').css('background-color', '#023f88');
+
+        //$('.js-financial-statement__submit').css('color', 'white');
+
+      });
+    }
+    else {
+      null;
+    }
+
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

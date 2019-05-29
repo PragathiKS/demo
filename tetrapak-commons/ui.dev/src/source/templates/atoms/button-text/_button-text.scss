@@ -21,7 +21,7 @@
 
 
         @media #{$desktop} {
-            &:hover {
+            .no-touch &:hover {
                 background-color: $color-mercury;
             }
         }
