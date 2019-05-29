@@ -10,10 +10,11 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
  */
 function _renderFilteredContacts(data = this.cache.data) {
   const siteVal = this.cache.$site.val();
-  data.filteredContacts = data.results[siteVal].contacts;
+  const filteredContacts = data.results[siteVal].contacts;
+
   render.fn({
     template: 'contactListing',
-    data,
+    data: filteredContacts,
     target: '.js-contacts__listing'
   });
 }
@@ -72,6 +73,16 @@ function _renderSites() {
     }, (data) => {
       if (!data.isError && !data.noData) {
         $this.initPostCache();
+
+        // creating two-dimensional array of respective site's contacts
+        // to create multiple rows of 3-columns
+        data.results.map(site => {
+          const filteredContacts = [];
+          while (site.contacts.length > 0) {
+            filteredContacts.push(site.contacts.splice(0, 3));
+          }
+          site.contacts = filteredContacts;
+        });
         $this.renderFilteredContacts(data);
       }
     });

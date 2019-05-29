@@ -1,13 +1,15 @@
-{{#each filteredContacts}}
-    <div class="tp-contacts__listing__contacts col-lg-4 text-center">
-        <div class="tp-contacts__listing__contacts-cell">
+{{#each this}}
+    <div class="tp-contacts__listing__contacts row no-gutters">
+    {{#each this}}
+        <div class="tp-contacts__listing__contacts-cell col-lg-4 text-center">
             <div class="tp-contacts__listing__contacts-icon">
                 <i class="icon-TetraPak"></i>
             </div>
-            <div class="tp-contacts__listing__contacts-name">{{firstName}} {{lastName}}</div>
-            <div>{{title}}</div>
-            <div class="js-contacts__listing__contacts-mail"><a href="mailTo:{{email}}">{{email}}</a></div>
-            <div class="js-contacts__listing__contacts-phone"><a href="tel:{{mobileNo}}">{{mobileNo}}</a></div>
+            <div class="tp-contacts__listing__contacts-name">{{this.firstName}} {{this.lastName}}</div>
+            <div>{{this.title}}</div>
+            <div class="js-contacts__listing__contacts-mail"><a href="mailTo:{{this.email}}">{{this.email}}</a></div>
+            <div class="js-contacts__listing__contacts-phone"><a href="tel:{{this.mobileNo}}">{{this.mobileNo}}</a></div>
         </div>
+    {{/each}}
     </div>
 {{/each}}

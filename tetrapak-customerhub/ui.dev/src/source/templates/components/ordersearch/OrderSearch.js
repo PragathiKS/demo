@@ -454,7 +454,7 @@ class OrderSearch {
     if (defaultParams.daterange) {
       delete defaultParams.daterange;
     }
-    this.setSearchFields($.extend({}, defaultParams));
+    this.setSearchFields($.extend([], defaultParams));
     this.initializeCalendar(true);
     router.set({
       route: '#/',

@@ -1,29 +1,27 @@
 .tp-contacts {
+
     &__filtering-heading,
     &__filter {
         @include margin-bottom($margin-md);
     }
 
     &__listing {
-        border-top: 2px solid $color-mercury;
-
         &__contacts {
-            @include padding-top($padding-xs + $padding-sm);
-            @include padding-bottom($padding-md);
-            border-bottom: 2px solid $color-mercury;
-
-            &:last-child {
-                border-bottom: 0;
+            @media #{$desktop} {
+                border-top: 2px solid $color-mercury;
             }
 
-            @media #{$desktop} {
-                &-cell {
-                    @include padding-bottom($padding-xl);
-                    border-right: 1px solid $color-mercury;
-                }
+            &-cell {
+                @include padding($padding-md $padding-zero);
+                border-top: 2px solid $color-mercury;
 
-                &:nth-child(3n) {
-                    &>div {
+                @media #{$desktop} {
+                    @include margin($margin-l $margin-zero);
+                    @include padding($padding-zero);
+                    border-right: 1px solid $color-mercury;
+                    border-top: 0;
+
+                    &:last-child {
                         border-right: 0;
                     }
                 }
@@ -31,15 +29,27 @@
 
             &-icon {
                 @include margin-bottom($margin-md);
-                @include padding(8px $padding-md $padding-l $padding-md);
                 @include font-size($font-xl);
                 @include width(64px);
                 @include height(64px);
-                border: 1px solid $color-mercury;
                 display: inline-block;
-                color: $color-congress-blue;
+                position: relative;
+                border: 1px solid $color-mercury;
                 background-color: $color-white;
                 border-radius: 50%;
+                color: $color-congress-blue;
+
+                &>i {
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                @media #{$desktop} {
+                    @include font-size($font-xxxl);
+                    @include width(128px);
+                    @include height(128px);
+                }
             }
 
             &-name {
