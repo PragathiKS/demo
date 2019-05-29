@@ -56,7 +56,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                 
 							    echo "Build Commons"
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
-								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER} dependency:tree -Dverbose"
 								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 								
 							}
