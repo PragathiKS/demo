@@ -32,6 +32,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/form/multifield"
                                 fieldLabel="Groups - Radio Buttons"
+                                maxlinksallowed="4"
                                 class="full-width">
                                     <field
                                         jcr:primaryType="nt:unstructured"
