@@ -3,6 +3,22 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
+/**
+ * Fire analytics on click of
+ * filters, contact and calender
+ */
+function _trackAnalytics(name, title) {
+  const analyticsData = {
+    linkType: 'internal',
+    linkSection: 'contact',
+    linkParentTitle: `contact-${title}`,
+    linkName: name
+  };
+
+  trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
+}
 
 /**
  * Renders contacts based on selected site as filter
@@ -116,14 +132,22 @@ class Contacts {
   bindEvents() {
     const self = this;
     /* Bind jQuery events here */
-    this.root.on('change', '.js-contacts-filtering__site', function () {
-      self.initPostCache();
-      self.renderFilteredContacts();
-    });
+    this.root
+      .on('change', '.js-contacts-filtering__site', function () {
+        self.initPostCache();
+        self.renderFilteredContacts();
+      })
+      .on('click', '.js-contacts__listing__contacts-mail', function () {
+        self.trackAnalytics('email', $(this).data('title').toLowerCase());
+      })
+      .on('click', '.js-contacts__listing__contacts-phone', function () {
+        self.trackAnalytics('phone', $(this).data('title').toLowerCase());
+      });
   }
   renderFilteredContacts = (...arg) => _renderFilteredContacts.apply(this, arg);
   processSites = (...arg) => _processSites.apply(this, arg);
   renderSites = () => _renderSites.call(this);
+  trackAnalytics = (name, type) => _trackAnalytics.call(this, name, type);
   init() {
     /* Mandatory method */
     this.initCache();

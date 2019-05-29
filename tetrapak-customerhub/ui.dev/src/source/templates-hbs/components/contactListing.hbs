@@ -7,8 +7,8 @@
             </div>
             <div class="tp-contacts__listing__contacts-name">{{this.firstName}} {{this.lastName}}</div>
             <div>{{this.title}}</div>
-            <div class="js-contacts__listing__contacts-mail"><a href="mailTo:{{this.email}}">{{this.email}}</a></div>
-            <div class="js-contacts__listing__contacts-phone"><a href="tel:{{this.mobileNo}}">{{this.mobileNo}}</a></div>
+            <div class="js-contacts__listing__contacts-mail" data-title="{{this.title}}"><a href="mailTo:{{this.email}}">{{this.email}}</a></div>
+            <div class="js-contacts__listing__contacts-phone" data-title="{{this.title}}"><a href="tel:{{this.mobileNo}}">{{this.mobileNo}}</a></div>
         </div>
     {{/each}}
     </div>

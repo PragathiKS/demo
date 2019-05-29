@@ -13,10 +13,10 @@
 
             &-cell {
                 @include padding($padding-md $padding-zero);
-                border-top: 2px solid $color-mercury;
+                border-top: 1px solid $color-mercury;
 
                 @media #{$desktop} {
-                    @include margin($margin-l $margin-zero);
+                    @include margin($margin-l 0);
                     @include padding($padding-zero);
                     border-right: 1px solid $color-mercury;
                     border-top: 0;
