@@ -41,16 +41,20 @@ function generateToken() {
             }
           } catch (e) {
             reject({
-              jqXHR,
+              data: {
+                access_token: null
+              },
               textStatus: 'empty',
-              errorThrown: e.message
+              jqXHR
             });
           }
-        }).fail(function (jqXHR, textStatus, errorThrown) {
+        }).fail(function (jqXHR, textStatus) {
           reject({
-            jqXHR,
+            data: {
+              access_token: null
+            },
             textStatus,
-            errorThrown
+            jqXHR
           });
         });
       }
@@ -74,11 +78,11 @@ function execCallback(callback, ...args) {
  * Executes callback if promise is rejected
  * @param {Function} callback Callback function
  */
-function handleRejection(callback) {
+function handleRejection(callback, ...args) {
   this.tokenPromise = null;
   storageUtil.removeCookie('authToken');
   if (typeof callback === 'function') {
-    callback();
+    callback(...args);
   }
 }
 
@@ -89,12 +93,12 @@ export default {
    * @param {Function} callback Success callback
    * @param {Function} errorCallback Failure callback
    */
-  getToken(callback, errorCallback) {
+  getToken(callback) {
     if (!this.tokenPromise) {
       this.tokenPromise = generateToken();
     }
     return this.tokenPromise
       .then((...args) => execCallback.apply(this, [callback, ...args]))
-      .catch(() => handleRejection.apply(this, [errorCallback]));
+      .catch((...args) => handleRejection.apply(this, [callback, ...args]));
   }
 };
