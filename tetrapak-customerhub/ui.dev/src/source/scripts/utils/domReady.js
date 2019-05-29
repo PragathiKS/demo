@@ -16,6 +16,9 @@ export default {
     // Toast error messages
     toast.init();
     // Body events
+    if (isMobile() || isTablet()) {
+      $body.addClass('is-touch');
+    }
     $body.on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();
     }).on('show.bs.modal', function () {
