@@ -422,6 +422,8 @@ class OrderSearch {
           $this.root.find('.js-calendar').removeAttr('disabled');
         }
       });
+      const [, endDate] = $rangeSelector.val().split(' - ');
+      this.cache.picker.gotoDate(endDate);
       _disableCalendarNext(this);
     }
   }

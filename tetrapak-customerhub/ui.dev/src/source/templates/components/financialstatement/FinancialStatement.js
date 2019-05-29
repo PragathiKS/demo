@@ -409,6 +409,10 @@ class FinancialStatement {
         picker.destroy();
       }
       this.cache.picker = new Lightpick(currentConfig);
+      if (isRange && $rangeSelector.length) {
+        const [, endDate] = $rangeSelector.val().split(' - ');
+        this.cache.picker.gotoDate(endDate);
+      }
       _disableCalendarNext(this);
     }
   }
