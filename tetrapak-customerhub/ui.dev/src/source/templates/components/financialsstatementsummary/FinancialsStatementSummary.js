@@ -9,7 +9,7 @@ import { ajaxMethods, API_FINANCIALS_STATEMENTS, API_FINANCIALS_INVOICE } from '
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on Invoice Download

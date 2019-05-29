@@ -11,7 +11,7 @@ import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { sanitize, getI18n } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Disables calendar next button if visible months has current month

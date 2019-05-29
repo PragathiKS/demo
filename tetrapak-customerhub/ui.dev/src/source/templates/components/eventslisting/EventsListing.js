@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import moment from 'moment';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 function _renderMaintenanceEvents(...eventsData) {
   let siteFilter = '';

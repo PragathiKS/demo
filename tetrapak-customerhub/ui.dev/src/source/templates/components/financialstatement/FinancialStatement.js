@@ -13,7 +13,7 @@ import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_F
 import { resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 function _trackAnalytics(type) {
 

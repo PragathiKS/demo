@@ -3,7 +3,7 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Renders Equipment Filter

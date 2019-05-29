@@ -5,7 +5,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Process Events Data

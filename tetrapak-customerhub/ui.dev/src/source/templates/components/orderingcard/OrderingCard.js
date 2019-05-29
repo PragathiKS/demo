@@ -7,7 +7,7 @@ import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on search submit

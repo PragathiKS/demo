@@ -9,7 +9,7 @@ import Lightpick from 'lightpick';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { getDatesBetweenDateRange } from '../../../scripts/utils/dateUtils';
 import moment from 'moment';
-import getURL from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on click of
