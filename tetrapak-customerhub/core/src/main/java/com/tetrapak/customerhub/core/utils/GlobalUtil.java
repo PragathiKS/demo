@@ -55,6 +55,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get a particular endpoint e.g. order-details-parts
+     *
      * @param apigeeService API GEE Service
      * @param prefix        String prefix
      * @return String value
