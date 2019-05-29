@@ -11,6 +11,7 @@ class SoftConversionForm {
     this.cache.$field = $('#softConversionModal input[type="text"]');
     this.cache.$submitBtn = $('#softConversionModal .form-submit');
     this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
+    this.cache.$prevScfToggle = $('#softConversionModal .pw-form__prevbtn__scf[data-toggle="tab"]');
     this.cache.$radiobtns = $('#softConversionModal input:radio');
     this.cache.digitalData = digitalData; //eslint-disable-line
   }
@@ -129,6 +130,23 @@ class SoftConversionForm {
         }
       }
     });
+    
+    
+    
+    this.cache.$prevScfToggle.click(function(e) {
+      let parentTab = e.target.closest('.tab-pane');
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo.stepName = 'previous:' + stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
+    });
+    
+    
     this.cache.$radiobtns.click(function() {
       if ($(this).val() !== 'Professional') {
         $('#softConversionModal .isPro').addClass('d-none');

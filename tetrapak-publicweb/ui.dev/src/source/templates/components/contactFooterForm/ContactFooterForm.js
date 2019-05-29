@@ -11,7 +11,9 @@ class ContactFooterForm {
     this.cache.$field = $('input[type="text"]', this.root);
     this.cache.$submitBtn = $('.form-submit', this.root);
     this.cache.$tabtoggle = $('.pw-form__nextbtn[data-toggle="tab"]', this.root);
+    this.cache.$prevtoggle = $('.pw-form__prevbtn[data-toggle="tab"]', this.root);
     this.cache.$toggleBtns = $('.tpatom-button[data-toggle="tab"]', this.root);
+    this.cache.$helpText = $('.pw-cff-helpText a', this.root);
     this.cache.digitalData = digitalData; //eslint-disable-line
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
   }
@@ -92,6 +94,36 @@ class ContactFooterForm {
         self.cache.digitalData.formInfo.totalSteps = 7;
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
             _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
+    });
+    this.cache.$prevtoggle.click(function(e) {
+      let parentTab = e.target.closest('.tab-pane');
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = 'previous:' + parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo = {};
+        self.cache.digitalData.formInfo.formName = 'contact us';
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        self.cache.digitalData.formInfo.totalSteps = 7;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
+    });
+    this.cache.$helpText.click(function(e) {
+      let $thisLink = $(e.target);
+      let parentTab = e.target.closest('.tab-pane');
+      const stepName = parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.linkClick = {};
+        self.cache.digitalData.linkClick.linkType = 'internal';
+        self.cache.digitalData.linkClick.linkSection = 'contact form';
+        self.cache.digitalData.linkClick.linkName = $thisLink.text().trim();
+        self.cache.digitalData.linkClick.linkParentTitle = stepName;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('linkClicked'); //eslint-disable-line
         }
       }
     });

@@ -10,9 +10,10 @@ import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
-import { apiHost, resolveQuery } from '../../../scripts/common/common';
+import { resolveQuery } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
+import { getURL } from '../../../scripts/utils/uri';
 
 function _trackAnalytics(type) {
 
@@ -117,7 +118,7 @@ function _renderFilters() {
     render.fn({
       template: 'financialStatement',
       url: {
-        path: `${apiHost}/${API_FINANCIAL_SUMMARY}`
+        path: getURL(API_FINANCIAL_SUMMARY)
       },
       target: '.js-financial-statement__select-customer-dropdown',
       ajaxConfig: {

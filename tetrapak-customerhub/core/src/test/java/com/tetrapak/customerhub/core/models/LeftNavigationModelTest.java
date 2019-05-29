@@ -14,7 +14,7 @@ import java.util.List;
 public class LeftNavigationModelTest {
 
     private LeftNavigationModel leftNavigationModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
     private static final String RESOURCE_JSON = "allContent.json";
 
     @Rule
@@ -32,7 +32,7 @@ public class LeftNavigationModelTest {
         Assert.assertEquals("Close", leftNavigationModel.getCloseBtnText());
         List<LeftNavigationBean> list = leftNavigationModel.getLeftNavItems();
         LeftNavigationBean leftNavigationBean = list.get(0);
-        Assert.assertEquals("/content/tetrapak/customerhub/global/dashboard.html", leftNavigationBean.getHref());
+        Assert.assertEquals("/content/tetrapak/customerhub/global/en/dashboard.html", leftNavigationBean.getHref());
         Assert.assertEquals("icon-Dashboard", leftNavigationBean.getIconClass());
         Assert.assertEquals("DASHBOARD", leftNavigationBean.getIconLabel());
         Assert.assertEquals(false, leftNavigationBean.isExternalLink());
@@ -42,7 +42,7 @@ public class LeftNavigationModelTest {
         LeftNavigationBean leftNavigationBeanWithSubMenu = list.get(3);
         List<LeftNavigationBean> subMenuList = leftNavigationBeanWithSubMenu.getSubMenuList();
         LeftNavigationBean leftNavigationBeanFromSubMenu = subMenuList.get(0);
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history.html", leftNavigationBeanFromSubMenu.getHref());
+        Assert.assertEquals("/content/tetrapak/customerhub/global/en/ordering/order-history.html", leftNavigationBeanFromSubMenu.getHref());
         Assert.assertEquals("Order History", leftNavigationBeanFromSubMenu.getIconLabel());
         Assert.assertEquals(false, leftNavigationBeanFromSubMenu.isExternalLink());
         Assert.assertEquals(false, leftNavigationBeanFromSubMenu.isActive());

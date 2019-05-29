@@ -3,8 +3,8 @@ import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, DATE_FORMAT, NO_OF_EVENTS_PER_PAGE, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { apiHost } from '../../../scripts/common/common';
 import moment from 'moment';
+import { getURL } from '../../../scripts/utils/uri';
 
 function _renderMaintenanceEvents(...eventsData) {
   const [cache, , skip] = eventsData;
@@ -57,7 +57,7 @@ function _renderMaintenanceEvents(...eventsData) {
   }
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
-      url: `${apiHost}/${API_MAINTENANCE_EVENTS}`,
+      url: getURL(API_MAINTENANCE_EVENTS),
       method: ajaxMethods.GET,
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
