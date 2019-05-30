@@ -22,7 +22,7 @@
                     <div class="tp-ordering-card__modal-desc">{{i18n key=labels.preferencesDescription}}</div>
                     <div class="tp-ordering-card__modal-options">
                         {{#each settingOptions}}
-                            {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked disabled=isMandatory}}
+                            {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked  disabled=isMandatory}}
                         {{/each}}
                     </div>
                     <div class="tp-ordering-card__save-error js-ordering-card__save-error d-none">

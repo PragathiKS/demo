@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, ORDER_HISTORY_ROWS_PER_PAGE, API_ORDER_HISTORY} from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -111,6 +111,7 @@ function _processTableData(data) {
     defaultFields,
     enabledFieldList
   } = this.cache;
+  this.cache.activeKeys = {};
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
@@ -122,18 +123,19 @@ function _processTableData(data) {
         preferenceList.push(key);
       }
     });
-    const activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
-    data.orders = data.orders.map(order => _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders));
-    data.orderHeadings = activeKeys.map(key => ({
+    this.cache.activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
+    data.orders = data.orders.map(order => _tableSort.call(this, order, this.cache.activeKeys, orderDetailLink, viewAllOrders));
+    data.orderHeadings = this.cache.activeKeys.map(key => ({
       key,
       i18nKey: `cuhu.ordering.${key}`
     }));
     data.settingOptions = enabledFieldList.map(key => {
       const isMandatory = defaultFieldList.includes(key);
+
       return {
         key,
         i18nKey: `cuhu.ordering.${key}`,
-        isChecked: (isMandatory || activeKeys.includes(key)),
+        isChecked: (isMandatory || this.cache.activeKeys.includes(key)),
         isMandatory
       };
     });
@@ -146,6 +148,15 @@ function _processTableData(data) {
  * Opens settings overlay panel
  */
 function _openSettingsPanel() {
+  const { activeKeys } = this.cache;
+  const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
+  $.map($modalPreference.find('input'), function (el) {
+    if (activeKeys.includes($(el).val())) {
+      $(el).prop('checked', true);
+    } else {
+      $(el).prop('checked', false);
+    }
+  });
   this.root.find('.js-ordering-card__modal').modal();
 }
 
