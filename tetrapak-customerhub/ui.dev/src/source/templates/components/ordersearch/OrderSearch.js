@@ -411,6 +411,7 @@ class OrderSearch {
         singleDate: false,
         numberOfMonths: 2,
         inline: true,
+        skip: 1,
         maxDate: Date.now(),
         dropdowns: false,
         format: DATE_FORMAT,
