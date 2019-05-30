@@ -5,6 +5,7 @@
  */
 import dynamicMedia from './dynamicMedia';
 import { $body } from './commonSelectors';
+import $ from 'jquery';
 
 export default {
   init() {
