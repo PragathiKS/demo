@@ -56,6 +56,7 @@ describe('OrderSearch', function () {
       e.preventDefault();
     });
     this.orderSearch.init();
+    $(window).trigger('media.changed');
   });
   after(function () {
     $(document.body).empty();
