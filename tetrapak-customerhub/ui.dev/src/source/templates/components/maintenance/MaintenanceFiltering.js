@@ -342,11 +342,15 @@ class MaintenanceFiltering {
       })
       .on('click', '.js-maintenance-filtering__calendar-wrapper .js-calendar-nav', this, this.navigateCalendar);
   }
-  renderCalendar(pageLoad, noRender) {
+  renderCalendar(pageLoad, selectedDateRange = '', noRender) {
+    const { i18nKeys } = this.cache;
     render.fn({
       template: 'maintenanceCalendar',
       target: '.js-maintenance-filtering__calendar-wrapper',
-      data: this.cache.i18nKeys
+      data: {
+        ...i18nKeys,
+        selectedDateRange
+      }
     }, () => {
       this.cache.$calendarNavCont = this.root.find('.js-cal-cont__calendar-nav');
       const $maintenancecalendar = this.root.find('.js-events-date-range-selector');
@@ -379,7 +383,7 @@ class MaintenanceFiltering {
         this.triggerMaintenanceEvents(pageLoad);
       }
       $(window).off('media.changed').on('media.changed', () => {
-        this.renderCalendar(pageLoad, true);
+        this.renderCalendar(pageLoad, $maintenancecalendar.val(), true);
         this.renderDots(this.cache.dotsData);
       });
     });
