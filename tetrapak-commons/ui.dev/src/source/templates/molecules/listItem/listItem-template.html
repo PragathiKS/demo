@@ -1,7 +1,7 @@
-<sly data-sly-template.listItem_template="${@ data, flag}">
+<sly data-sly-template.listItem_template="${@ data, flag, ctype}">
   <li class="tpmol-list-item ${data.isActive ? 'active' : ''}">
      <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
-            data-sly-call="${listItemBtn.listItemBtn_template @data=data}">
+            data-sly-call="${listItemBtn.listItemBtn_template @data=data,ctype=ctype}">
       </sly>
    </li>
 </sly>

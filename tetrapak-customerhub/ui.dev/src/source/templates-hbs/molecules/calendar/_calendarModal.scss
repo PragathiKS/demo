@@ -43,3 +43,7 @@ $dialog-maxwidth: 663px;
         }
     }
 }
+
+.tp-modal-height {
+    @include height(480px);
+}
