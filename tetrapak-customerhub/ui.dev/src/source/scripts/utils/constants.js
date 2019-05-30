@@ -17,6 +17,7 @@ export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
 export const NO_OF_EVENTS_PER_PAGE = 12;
+export const NO_OF_EVENTS_ON_CARD = 6;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';

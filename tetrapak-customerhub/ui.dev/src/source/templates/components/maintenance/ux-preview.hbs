@@ -1,6 +1,6 @@
 ---
 {
-  "layout"	   : "installedEquipmentLayout.hbs",
+  "layout"	   : "pageLayout.hbs",
   "title"      : "maintenance - Development component",
   "fsdId"      : "maintenance",
   "categories" : "components",
@@ -9,3 +9,4 @@
   "hiddenUX"   : true
 }
 ---
+<sly data-sly-call="${lib.maintenance_template @data=maintenanceModel}" />
