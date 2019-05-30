@@ -225,7 +225,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                               
                                                          echo "Starting PALLY test Run on PublicWeb Urls"
                                                          sh 'chmod 777 PallyReportPubWeb.sh'
-                                                         sh './PallyReportPubWeb.sh'
+                                                         sh './Devops/PallyReportPubWeb.sh'
 														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
 														 
@@ -235,7 +235,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                           -config api.disablekey=true'  
 														 
 														sh 'chmod 777 Zap-PublicWeb.sh'
-														sh './Zap-PublicWeb.sh'
+														sh './Devops/Zap-PublicWeb.sh'
 														
 														sh 'docker exec zap zap-cli report -f html -o "Zap-PublicWeb.html"'
 														 sh 'docker cp zap:zap/Zap-PublicWeb.html .'

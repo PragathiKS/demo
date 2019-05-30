@@ -231,7 +231,7 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                              
                                                          echo "Starting pa11y test Run on CustomerHub Urls"
                                                          sh 'chmod 777 PallyReporting.sh'
-                                                         sh './PallyReporting.sh'
+                                                         sh './Devops/PallyReporting.sh'
 														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
 
