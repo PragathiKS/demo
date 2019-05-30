@@ -117,15 +117,9 @@ class Contacts {
     this.root = $(el);
   }
   cache = {};
-  /**
-  * Initialize selector cache after filters rendering
-  */
   initPostCache() {
     this.cache.$site = this.root.find('.js-contacts-filtering__site');
   }
-  /**
-  * Initialize selector cache on component load
-  */
   initCache() {
     /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-contacts__config').text();
@@ -138,7 +132,6 @@ class Contacts {
   }
   bindEvents() {
     const self = this;
-    /* Bind jQuery events here */
     this.root
       .on('change', '.js-contacts-filtering__site', function () {
         let { siteFilterHeading } = self.cache.i18nKeys;
@@ -163,7 +156,6 @@ class Contacts {
   renderSites = () => _renderSites.call(this);
   trackAnalytics = (name, type) => _trackAnalytics.call(this, name, type);
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.renderSites();
