@@ -38,7 +38,7 @@
 
     &__info-title {
         @include padding-right($margin-l);
-        font-family: $font-semi-bold;
+        font-family: $font-bold;
         vertical-align: top;
 
         @media #{$desktop} {
