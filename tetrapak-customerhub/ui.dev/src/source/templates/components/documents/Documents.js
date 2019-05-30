@@ -14,24 +14,21 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
  */
 function _trackAnalytics(name, obj) {
   const analyticsData = {
-    linkSection: 'installed equipment-documents'
+    linkType: 'internal',
+    linkSection: 'installed equipment-documents',
+    linkName: 'documents tab selection',
+    linkParentTitle: 'documents tab'
   };
   const { equipmentresultscount } = this.cache;
 
   switch (name) {
     case 'site': {
-      analyticsData.linkType = 'internal';
-      analyticsData.linkName = 'documents tab selection';
       analyticsData.linkSelection = 'site';
-      analyticsData.linkParentTitle = 'documents tab';
       analyticsData.equipmentresultscount = equipmentresultscount;
       break;
     }
     case 'line': {
-      analyticsData.linkType = 'internal';
-      analyticsData.linkName = 'documents tab selection';
       analyticsData.linkSelection = 'line/area';
-      analyticsData.linkParentTitle = 'documents tab';
       analyticsData.equipmentresultscount = equipmentresultscount;
       break;
     }
