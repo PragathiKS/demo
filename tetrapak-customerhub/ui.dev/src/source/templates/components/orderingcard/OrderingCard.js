@@ -150,12 +150,8 @@ function _processTableData(data) {
 function _openSettingsPanel() {
   const { activeKeys } = this.cache;
   const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
-  $.map($modalPreference.find('input'), function (el) {
-    if (activeKeys.includes($(el).val())) {
-      $(el).prop('checked', true);
-    } else {
-      $(el).prop('checked', false);
-    }
+  $.each($modalPreference.find('input'), function () {
+    $(this).prop('checked', activeKeys.includes($(this).val()));
   });
   this.root.find('.js-ordering-card__modal').modal();
 }
