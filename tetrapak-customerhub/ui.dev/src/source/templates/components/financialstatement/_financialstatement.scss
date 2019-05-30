@@ -141,6 +141,10 @@
 
     &__reset-btn {
         @include line-height($font-l, $font-baseline);
+
+        .icon {
+            @include font-size(12px);
+        }
     }
 
     .form-element__icon {
