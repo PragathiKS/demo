@@ -12,6 +12,7 @@ export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
 export const INVALID_BROWSER = 'Unsupported browser';
 export const DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE_RANGE_SEPARATOR = ' - ';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
