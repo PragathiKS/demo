@@ -11,8 +11,5 @@
         {{#if preIconClass}}
             <i class="icon {{preIconClass}}"></i>
         {{/if}}
-        <span class="tpatom-btn__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>
-        {{#if iconClass}}
-            <i class="icon {{iconClass}}"></i>
-        {{/if}}
+        <span class="tpatom-btn__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>{{#if iconClass}}<i class="icon {{iconClass}}"></i>{{/if}}
 </button>
