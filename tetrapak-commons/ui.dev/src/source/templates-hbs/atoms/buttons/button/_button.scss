@@ -6,6 +6,16 @@
     font-family: $font-light;
 }
 
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
 %hiddentext-btn {
     @include width($min-accessible-dimension);
     @include height($min-accessible-dimension);
@@ -33,13 +43,17 @@
 
         &,
         &[disabled]:hover {
-            background-color: $color-congress-blue;
-            color: $color-white;
+            @extend %btn-colors;
         }
 
         &:hover {
-            background-color: $color-jordy-blue;
-            color: $color-congress-blue;
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
+            }
         }
 
         span {

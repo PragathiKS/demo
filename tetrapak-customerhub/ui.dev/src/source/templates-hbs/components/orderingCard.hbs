@@ -10,7 +10,7 @@
     </div>
     {{#unless isError}}
         <div class="tp-ordering-card__viewmore-wrapper">
-            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" ctype="dashboard-Ordering" linkHeading=labels.title  text=labels.allOrders modifier="secondary"}}
+            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" datatag="internal" ctype="dashboard-Ordering" linkHeading=labels.title  text=labels.allOrders modifier="secondary"}}
         </div>
     {{/unless}}
     {{!-- Settings overlay --}}

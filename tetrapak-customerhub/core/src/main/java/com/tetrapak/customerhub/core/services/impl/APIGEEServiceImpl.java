@@ -42,4 +42,11 @@ public class APIGEEServiceImpl implements APIGEEService {
     public String getApigeeClientSecret() {
         return config.apigeeClientSecret();
     }
+
+    @Override
+    public String[] getApiMappings() {
+        return config.apiMappings();
+    }
+
+
 }

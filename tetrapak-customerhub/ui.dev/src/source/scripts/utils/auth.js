@@ -1,10 +1,8 @@
-import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
 import { storageUtil } from '../common/common';
-
-const servletHost = $('#servletHost').val() || '';
+import { getURL } from './uri';
 
 function generateToken() {
   return (
@@ -22,7 +20,7 @@ function generateToken() {
         });
       } else {
         ajaxWrapper.getXhrObj({
-          url: `${servletHost}/${API_TOKEN}`,
+          url: getURL(API_TOKEN),
           method: ajaxMethods.GET
         }).done(function (data, textStatus, jqXHR) {
           try {

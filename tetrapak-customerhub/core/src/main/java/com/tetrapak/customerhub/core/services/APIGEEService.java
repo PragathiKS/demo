@@ -11,5 +11,7 @@ public interface APIGEEService {
 
     String getApigeeClientSecret();
 
+    String[] getApiMappings();
+
 }
 

@@ -20,6 +20,7 @@ class ImageTextButton {
         this.cache.digitalData.linkClick.linkSection = 'imageTextButton';
         this.cache.digitalData.linkClick.linkParentTitle = comp.getAttribute('data-imageButton-title');
         this.cache.digitalData.linkClick.linkName = comp.getAttribute('data-imageButton-linkName');
+        this.cache.digitalData.linkClick.contentName = comp.getAttribute('data-imageButton-contentName');
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
           _satellite.track('linkClicked'); //eslint-disable-line
         }

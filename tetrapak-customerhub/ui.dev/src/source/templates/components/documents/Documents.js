@@ -1,9 +1,80 @@
 import $ from 'jquery';
+import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_MAINTENANCE_FILTERS } from '../../../scripts/utils/constants';
-import { apiHost } from '../../../scripts/common/common';
+import { ajaxMethods, API_DOCUMENTS_FILTERS, API_DOCUMENTS_SEARCH } from '../../../scripts/utils/constants';
+import { getI18n } from '../../../scripts/common/common';
+import { getURL } from '../../../scripts/utils/uri';
+
+/**
+ * Process Documents Data
+ * @param {object} documentsData JSON data object for equipments documents
+ */
+function _processDocumentsData(documentsData) {
+  const { equipments, results, i18nKeys } = documentsData;
+
+  if (Array.isArray(equipments) && Array.isArray(results)) {
+    results.forEach((result, resultIndex) => {
+      result.docTypes.forEach((docType, docIndex) => {
+        docType.docId = `#document${resultIndex}${docIndex}`;
+      });
+    });
+
+    equipments.forEach(equipment => {
+      equipment.documents = results.filter(document => equipment.serialNo === document.serial)[0];
+
+      if (typeof equipment.documents === 'undefined') {
+        equipment.noData = true;
+        equipment.desc = `${equipment.desc} (0 ${getI18n(i18nKeys.documentLabel)})`;
+      } else {
+        equipment.desc = `${equipment.desc} (${equipment.documents.docCount} ${getI18n(i18nKeys.documentLabel)})`;
+      }
+    });
+  }
+}
+
+/**
+ * Fetch, Process and Render Documents
+ * @param {object} equipmentData JSON data object for filtered equipments
+ */
+function _renderDocuments(equipmentData) {
+  const $this = this;
+  const allEquipments = equipmentData.equipments.map((option) => option.serialNo).join(',');
+  auth.getToken(({ data: authData }) => {
+    render.fn({
+      template: 'documentsFilteringTable',
+      url: {
+        path: getURL(API_DOCUMENTS_SEARCH),
+        data: {
+          'serial': allEquipments
+        }
+      },
+      target: '.js-documents__equipments',
+      ajaxConfig: {
+        method: ajaxMethods.GET,
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        cache: true,
+        showLoader: true,
+        cancellable: true
+      },
+      beforeRender(data) {
+        if (!data) {
+          this.data = data = {
+            isError: true
+          };
+          data.i18nKeys = equipmentData.i18nKeys;
+        } else {
+          $.extend(data, equipmentData);
+          $this.processDocumentsData(data);
+        }
+      }
+    });
+  });
+}
 
 
 /**
@@ -11,12 +82,12 @@ import { apiHost } from '../../../scripts/common/common';
  * @param {object} data JSON data object for selected site
  */
 function _renderEquipmentFilters(data = this.cache.filteredData) {
-  const { i18nKeys, $line } = this.cache;
+  const { i18nKeys, $line, techPubHost } = this.cache;
   const lineVal = $line.val();
   let lines = [];
 
   data.equipmentData = {};
-  data.equipmentData.options = [];
+  data.equipmentData.equipments = [];
 
   if (lineVal === '') {
     lines = data.lines;
@@ -25,22 +96,21 @@ function _renderEquipmentFilters(data = this.cache.filteredData) {
   }
 
   data.equipmentData.i18nKeys = i18nKeys;
+  data.equipmentData.techPubHost = techPubHost;
   data.equipmentData.selectedFilter = `${this.selectedLine},${this.selectedSite}`;
 
   lines.forEach(line => {
-    data.equipmentData.options.push(...line.equipments.map((equipment, index) => ({
+    data.equipmentData.equipments.push(...line.equipments.map((equipment, index) => ({
       key: equipment.equipmentNumber,
+      serialNo: equipment.serialNumber,
       desc: equipment.equipmentName,
-      docId: `#document${index}`
+      equipmentId: `#equipment${index}`
     })));
   });
 
-  render.fn({
-    template: 'documentsFilteringTable',
-    data: data.equipmentData,
-    target: '.js-documents__equipments'
-  });
+  this.renderDocuments(data.equipmentData);
 }
+
 /**
  * Filter the line values
  */
@@ -57,6 +127,7 @@ function _processLineData() {
     }
   }
 }
+
 /**
  * Renders Line Filter
  * @param {object} data JSON data object for selected site
@@ -78,6 +149,7 @@ function _renderLineFilters(data = this.cache.filteredData) {
     this.renderEquipmentFilters(data);
   }
 }
+
 /**
  * Process Sites Data
  * @param {object} data JSON data object
@@ -92,6 +164,7 @@ function _processSiteData(data) {
     data.noData = true;
   }
 }
+
 /**
  * To fetch all the sites
  */
@@ -101,7 +174,7 @@ function _renderSiteFilters() {
     render.fn({
       template: 'documentsFiltering',
       url: {
-        path: `${apiHost}/${API_MAINTENANCE_FILTERS}`
+        path: getURL(API_DOCUMENTS_FILTERS)
       },
       target: '.js-documents__installments',
       ajaxConfig: {
@@ -148,18 +221,19 @@ class Documents {
     this.root = $(el);
   }
   cache = {};
+
   /**
-  * Initialize selector cache after filters rendering
-  */
+   * Initialize selector cache after filters rendering
+   */
   initPostCache() {
     this.cache.$site = this.root.find('.js-documents-filtering__site');
     this.cache.$line = this.root.find('.js-documents-filtering__line');
   }
+
   /**
-  * Initialize selector cache on component load
-  */
+   * Initialize selector cache on component load
+   */
   initCache() {
-    /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-documents__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -167,40 +241,37 @@ class Documents {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.techPubHost = this.root.find('.js-tech-pub-host').val();
   }
+
   bindEvents() {
     const self = this;
-    /* Bind jQuery events here */
     this.root
       .on('change', '.js-documents-filtering__site', function () {
-
         const siteAndLineRecords = self.cache.data;
-
         const matchedSite = siteAndLineRecords.sites.filter(site => site.key === $(this).val());
         self.selectedSite = matchedSite[0].desc;
-
         const matchedLine = siteAndLineRecords.installations.filter(site => site.customerNumber === $(this).val());
         self.selectedLine = matchedLine[0].lines[0].lineDesc;
-
         self.processLineData();
       })
       .on('change', '.js-documents-filtering__line', function () {
-
         const filteredLines = self.cache.filteredData.lines;
-
         const matchedLine = filteredLines.filter(line => line.lineNumber === $(this).val());
         self.selectedLine = matchedLine[0].lineDesc;
-
         self.renderEquipmentFilters();
       });
   }
+
   renderEquipmentFilters = (data) => _renderEquipmentFilters.call(this, data);
   processLineData = () => _processLineData.call(this);
   renderLineFilters = (data) => _renderLineFilters.call(this, data);
   processSiteData = (...arg) => _processSiteData.apply(this, arg);
   renderSiteFilters = () => _renderSiteFilters.call(this);
+  renderDocuments = (data) => _renderDocuments.call(this, data);
+  processDocumentsData = (data) => _processDocumentsData.call(this, data);
+
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.renderSiteFilters();
