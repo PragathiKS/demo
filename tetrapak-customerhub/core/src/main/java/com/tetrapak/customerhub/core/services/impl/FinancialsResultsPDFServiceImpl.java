@@ -264,8 +264,8 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         
         for (Document documentDetail : documents) {
             if ((height > getNextTableHeight(documentDetail.getRecords()))) {
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 22, Color.LIGHT_GRAY, 0.01f);
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 10, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 8, Color.LIGHT_GRAY, 0.01f);
                 
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
           
@@ -280,8 +280,8 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     rowsForCurrentPage = totalRows;
                 }
                 contentStream = PDFUtil.getNewPage(document, contentStream);
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 22, Color.LIGHT_GRAY, 0.01f);
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 8, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
+                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 6, Color.LIGHT_GRAY, 0.01f);
                 
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
                 height = PDFUtil.drawTable(contentStream,
