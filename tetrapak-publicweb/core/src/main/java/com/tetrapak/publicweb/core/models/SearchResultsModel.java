@@ -41,6 +41,9 @@ public class SearchResultsModel {
 	private String firstTabLinkText;
 
 	@Inject
+  private String resultsPerPage;
+
+	@Inject
 	private String[] tabs;
 
 	@Inject
@@ -120,6 +123,10 @@ public class SearchResultsModel {
 	public String getResultsText() {
 		return resultsText;
 	}
+
+	public String getResultsPerPage() {
+  		return resultsPerPage;
+  }
 
 	public String getFirstTabLinkText() {
 		return firstTabLinkText;

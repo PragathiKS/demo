@@ -45,7 +45,7 @@ class ProductListing {
         }
       }
     });
-    
+
     this.productCardOnClickFn = (e) => {
       e.preventDefault();
       let $this = $(e.target);
@@ -61,7 +61,7 @@ class ProductListing {
         }
       }
     };
-    
+
 
     this.cache.dropDown.on('change', (e) => {
       e.preventDefault();
@@ -90,7 +90,7 @@ class ProductListing {
         }
       },
       target: '.js-pw-product-listing__cards-container'
-    }, () => {    
+    }, () => {
       this.cache.productCard = $('.pw-product-card-grid__item__link', this.root).on('click', this.productCardOnClickFn);
     });
   }

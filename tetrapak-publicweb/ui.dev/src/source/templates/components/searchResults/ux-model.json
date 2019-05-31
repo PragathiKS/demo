@@ -1,4 +1,5 @@
 {
+  "resultsText": "results found for",
   "filterTitle": "Search Filters",
   "tagsMap": {
     "Dairy": "tetrapak:application/dairy",
@@ -10,12 +11,13 @@
   "firstTabLinkText": "All",
   "tabs": [
     {
-      "title": "Articles",
-      "productType": "articles"
+      "title": "Products",
+      "productType": "productpage"
     },
     {
-      "title": "Products",
-      "productType": "products"
+      "title": "Pages",
+      "productType": "landingpage"
     }
-  ]
+  ],
+  "resultsPerPage": 8
 }
