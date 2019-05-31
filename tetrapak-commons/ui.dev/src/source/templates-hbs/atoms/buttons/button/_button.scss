@@ -1,9 +1,19 @@
 %default-btn {
     @include font-size($font-baseline);
     @include line-height(40px, $font-baseline);
-    @include padding(0 $padding-md);
+    @include padding(0 12px);
     @include letter-spacing(0.5px);
     font-family: $font-light;
+}
+
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
 }
 
 %hiddentext-btn {
@@ -27,19 +37,34 @@
     }
 
     &--primary {
+        .icon {
+            @include font-size(12px);
+
+            &::before {
+                @include margin-bottom(1px);
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &--primary {
         @extend %default-btn;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
 
         &,
         &[disabled]:hover {
-            background-color: $color-congress-blue;
-            color: $color-white;
+            @extend %btn-colors;
         }
 
         &:hover {
-            background-color: $color-jordy-blue;
-            color: $color-congress-blue;
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
+            }
         }
 
         span {

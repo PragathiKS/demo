@@ -4,7 +4,7 @@
     @include line-height(18px, $font-baseline);
     @include padding(12px $padding-md);
 
-    @media #{$desktop} {
+    @media #{$tablet-large} {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         @include padding(9px $padding-md 8px);
@@ -27,6 +27,7 @@
     &--secondary {
         color: white;
         background-color: $color-congress-blue;
+
         &:hover {
             background-color: $color-jordy-blue;
             color: $color-congress-blue;
@@ -36,7 +37,7 @@
     &--shift {
         color: white;
         background-color: $color-congress-blue;
-        @media #{$desktop} {
+        @media #{$tablet-large} {
             color: $color-congress-blue;
             background-color: $color-wild-sand;
 
@@ -45,7 +46,8 @@
         &:hover {
             color: $color-congress-blue;
             background-color: $color-jordy-blue;
-            @media #{$desktop} {
+
+            @media #{$tablet-large} {
                 color: $color-congress-blue;
                 background-color: $color-mercury;
             }
@@ -56,7 +58,8 @@
         color: $color-tundora;
         background-color: $color-mercury;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             color: $color-white;
             background-color: $color-congress-blue;
         }
@@ -72,19 +75,23 @@
         @include line-height($font-l, $font-normal);
         background-color: transparent;
         color: $color-congress-blue;
+
         &:hover {
             background-color: transparent;
             color: $color-tundora;
         }
     }
+
     &--prevBtn {
         .tpatom-button__icon {
             @include line-height(18px, $font-sm);
-            @media #{$desktop} {
+            @media #{$tablet-large} {
                 @include line-height($font-l, $font-sm);
             }
+
             @include padding(0 $padding-xs 0 0);
             display: inline;
+
             &::before {
                 content: '\f112';
             }

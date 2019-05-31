@@ -38,7 +38,7 @@ class ListContentImage {
       if (self.cache.digitalData) {
         self.cache.digitalData.linkClick = {};
         self.cache.digitalData.linkClick.linkType = 'internal';
-        self.cache.digitalData.linkClick.linkSection = 'listContentImage';
+        self.cache.digitalData.linkClick.linkSection = 'tabListText';
         self.cache.digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' );
         self.cache.digitalData.linkClick.linkName = $this.data( 'link-name' );
         self.cache.digitalData.linkClick.linkListPos = $this.data( 'tab-count' );

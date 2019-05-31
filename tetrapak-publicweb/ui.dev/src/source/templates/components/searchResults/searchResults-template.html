@@ -1,11 +1,47 @@
 <sly data-sly-template.searchResults_template="${@ data, flag}">
-  <div class="pw-search-results js-pw-search-results" data-locator="search-results" data-module="SearchResults">
-    <div class="pw-search-results__title">
-      <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h4_template @ headingText='Search Results'}"/>
+  <div class="pw-search-results js-pw-search-results" data-locator="search-results"
+       data-module="SearchResults">
+    <div class="tpatom-input-box">
+      <input type="text" name="random" class="tpatom-input-box__input" data-locator="{{dataLocator}}"
+      placeholder="Looking for something else?" />
+      <i class="tpatom-input-box__icon icon-Search"></i>
     </div>
-    <div class="pw-search-results__results-count js-pw-search-results__results-count">
+    <div class="pw-search-results__main-container pw-padding--regular">
+      <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular">
+        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.filtersTitle, variant='small-flat'}"/>
+        <div class="filter__list" data-sly-list.filter="${data.filters}">
+          <div class="tpatom-checkbox">
+            <label class="tpatom-checkbox__label clearfix" for="${filter.name}">
+              <input
+                type="checkbox"
+                class="tpatom-checkbox__input float-left"
+                id="${filter.name}"
+                value="${filter.name}"/>
+              <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+              <span class="tpatom-checkbox__text js-checkbox__text">${filter.label @ i18n}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="pw-search-results__results">
+        <div class="pw-search-results__title">
+          <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+               data-sly-call="${heading.heading_h4_template @ headingText='Search Results', variant='regular'}"/>
+        </div>
+        <div class="pw-search-results__tabs tpatom-button-group d-flex">
+          <sly data-sly-list.tabItem="${data.tabs}">
+            <sly data-sly-test="${tabItemList.first}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+                 data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.label, btnTooltip=tabItem.label, variant='group-item', customClasses='js-pw-search-results_tab tpatom-button--group-item--active', customData=tabItem.id}"/>
+            <sly data-sly-test="${!tabItemList.first}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+                 data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.label, btnTooltip=tabItem.label, variant='group-item', customClasses='js-pw-search-results_tab', customData=tabItem.id}"/>
+          </sly>
+        </div>
+        <div class="pw-search-results__results-list js-pw-search-results__results-list">
 
+        </div>
+        <sly data-sly-use.pagination="/apps/publicweb/components/content/pagination/pagination-template.html" data-sly-call="${pagination.pagination_template @customEvent='searchresults', maxVisible=7}" />
+      </div>
     </div>
   </div>
 

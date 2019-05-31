@@ -138,12 +138,6 @@
             <artifactId>tetrapak-publicweb.it.launcher</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-publicweb.ui.apps</artifactId>
-            <version>${project.version}</version>
-            <type>content-package</type> 
-        </dependency>
          <dependency>
             <groupId>tetrapak</groupId>
             <artifactId>tetrapak-publicweb.ui.content</artifactId>

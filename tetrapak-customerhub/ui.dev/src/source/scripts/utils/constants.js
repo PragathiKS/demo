@@ -12,10 +12,12 @@ export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
 export const INVALID_BROWSER = 'Unsupported browser';
 export const DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE_RANGE_SEPARATOR = ' - ';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
 export const NO_OF_EVENTS_PER_PAGE = 12;
+export const NO_OF_EVENTS_ON_CARD = 6;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
@@ -26,15 +28,26 @@ export const ajaxMethods = {
   PUT: 'PUT',
   DELETE: 'DELETE'
 };
+export const mediaTypes = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  DESKTOP: 'desktop'
+};
+export const orientationTypes = {
+  LANDSCAPE: 'landscape',
+  PORTRAIT: 'portrait',
+  UNSUPPORTED: 'unsupported'
+};
 // API URLs
-export const API_TOKEN = 'bin/customerhub/token-generator';
-export const API_SEARCH = 'orders/summary';
-export const API_ORDER_HISTORY = 'orders/history';
-export const API_ORDER_DETAIL = 'orders/details';
-export const API_FINANCIAL_SUMMARY = 'financials/summary';
-export const API_FINANCIALS_STATEMENTS = 'financials/results';
-export const API_FINANCIALS_INVOICE = 'demo/cfe/invoices';
-export const API_ORDER_DETAIL_PARTS = 'orders/details/parts';
-export const API_ORDER_DETAIL_PACKMAT = 'orders/details/packmat';
-export const API_MAINTENANCE_FILTERS = 'mock/materials/equipments/installations';
-export const API_MAINTENANCE_EVENTS = 'orders/service/events';
+export const API_TOKEN = 'token-generator';
+export const API_SEARCH = 'ordersearch';
+export const API_ORDER_HISTORY = 'orderingcard';
+export const API_FINANCIAL_SUMMARY = 'financialstatement-filter';
+export const API_FINANCIALS_STATEMENTS = 'financialstatement-results';
+export const API_FINANCIALS_INVOICE = 'financialstatement-invoice';
+export const API_ORDER_DETAIL_PARTS = 'orderdetails-parts';
+export const API_ORDER_DETAIL_PACKMAT = 'orderdetails-packmat';
+export const API_MAINTENANCE_FILTERS = 'maintenance-filter';
+export const API_MAINTENANCE_EVENTS = 'maintenance-events';
+export const API_DOCUMENTS_SEARCH = 'documents';
+export const API_DOCUMENTS_FILTERS = 'documents-filter';

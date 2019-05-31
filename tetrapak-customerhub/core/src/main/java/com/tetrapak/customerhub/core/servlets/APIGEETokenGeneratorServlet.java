@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -52,7 +53,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         JsonObject jsonResponse = new JsonObject();
-        final String apiURL = apigeeService.getApigeeServiceUrl() + "/oauth2/v2/token";
+        final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
 

@@ -9,7 +9,7 @@ class ImageTextBanner {
     /* Initialize cache here */
     this.cache.$modalBtn = $('.opensoftc', this.root);
     this.cache.itbLink = $('.itblink', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.digitalData = window.digitalData;
   }
   bindEvents() {
     /* Bind jQuery events here */

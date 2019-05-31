@@ -7,14 +7,14 @@
        data-softc-last="${data.softConversionLastStep @ i18n}"
        data-softc-doc="${data.softConversionDocPath}"
        data-itb-linkType="${data.linkType}"
-       data-itb-linkParentTitle="${data.bannerSubtitleI18n @ i18n}"
+       data-itb-linkParentTitle="${data.titleI18n @ i18n}"
        data-itb-linkName="${data.bannerCtaTextI18n @ i18n}"
-       data-itb-contentName="${data.titleI18n @ i18n}"
+       data-itb-contentName="${data.bannerSubtitleI18n @ i18n}"
        data-itb-linkSection="${data.analyticsLinkSection}">
     <div class="pw-banner__image-wrapper">
       <sly data-sly-test="${data.contrastLayer}" data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html" data-sly-call="${contrastLayer.contrastLayer_template @ variant=data.contrastLayer}"/>
-        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.mobileImage, altText=data.mobileImageAltI18n, className='pw-banner__image d-md-block d-lg-none'}" />
-        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.desktopImage, altText=data.desktopImageAltI18n, className='pw-banner__image d-none d-lg-block'}" />
+      <img class="pw-banner__image d-md-block d-lg-none" src="${data.mobileImage}" alt="">
+      <img class="pw-banner__image d-none d-lg-block" src="${data.desktopImage}" alt="">
     </div>
     <div class="pw-banner__content">
       <div data-sly-test="${data.bannerSubtitleI18n}" class="pw-banner__content__subtitle">

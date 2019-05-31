@@ -1,6 +1,16 @@
 .tp-documents {
-    &__filters {
-        @include margin-bottom($margin-l);
+    .col-lg-4 {
+        @media #{$desktop} {
+            @include padding-right($padding-md);
+        }
+    }
+
+    &__line-filter {
+        @include margin-top($margin-md);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
     }
 
     &__table {
@@ -22,16 +32,64 @@
     }
 
     &__equipment-heading {
-        @include margin-bottom($margin-l);
+        @include margin($margin-md 0);
+
+        @media #{$desktop} {
+            @include margin($margin-l 0);
+        }
     }
 
     &__accordion {
         font-family: $font-bold;
-        background-color: $color-wild-sand;
         transition: background-color $anim-speed-quick $anim-ease;
 
         &.collapsed {
             background-color: $color-white;
         }
+    }
+
+    .tpmol-accordian-title {
+        @include line-height(20px, $font-baseline);
+    }
+
+    &__document-type-heading {
+        @include padding($padding-sm 0);
+        @include line-height(24px, $font-baseline);
+        border-bottom: 1px solid $color-tundora;
+        font-family: $font-bold;
+    }
+
+    &__documents-list {
+        @include font-size($font-sm);
+
+        .tpmol-accordian-title {
+            @include line-height(21px, $font-sm);
+            font-family: $font-regular;
+            border-color: $color-mercury;
+        }
+    }
+
+    &__document {
+        @include padding($padding-sm 0);
+        @include line-height(24px, $font-sm);
+        border-bottom: 1px solid $color-mercury;
+    }
+
+    &__no-documents {
+        @include padding($padding-md 0 $padding-sm);
+        @include font-size($font-md);
+    }
+
+    .icon-Document {
+        @include margin-right($margin-xs);
+        color: $color-tundora;
+    }
+
+    .icon-External_Link {
+        @include margin-left($margin-xs);
+    }
+
+    .tpatom-error {
+        @include margin-top($margin-md);
     }
 }

@@ -56,12 +56,15 @@
 					"documentHeading": "Document for {0} in {1}",
 					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
 					"documentTypeLabel": "Document Type",
-					"noDocumentsMsg": "No documents message",
+					"documentLabel":"Documents",
+					"noDataMsg": "No documents message",
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"lineFilterLabel": "Line/Area",
 					"sling:resourceType": "customerhub/components/content/documents",
 					"siteFilterLabel": "Site",
-					"errorMsg": "Error message incase any other error on the component"
+					"totalDocumentsLabel":"Number Of documents",
+					"errorMsg": "Error message incase any other error on the component",
+					"techPubHost":"https://techpubrepositoryhtml.tetrapak.com/"
 				},
 				"maintenancecard": {
 					"jcr:primaryType": "nt:unstructured",
@@ -98,6 +101,17 @@
                     "viewContactBtnRedirectUrl":"/content/tetrapak/customerhub/en/contact",
 					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
 					"sling:resourceType": "customerhub/components/content/contactcard"
+				},
+				"contacts": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"siteFilterHeading": "Find contacts on your site",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",					
+                    "noContactMsg": "No contacts found",
+                    "errorMsg":"Error message incase any other error on the component",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contacts"
 				}
 			}
 		}

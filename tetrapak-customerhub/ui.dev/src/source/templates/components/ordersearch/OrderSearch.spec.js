@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import * as routeExports from 'jqueryrouter';
+import * as uri from '../../../scripts/utils/uri';
 import OrderSearch from './OrderSearch';
 import orderSearchData from './data/orderSearchSummary.json';
 import orderingCardData from '../orderingcard/data/orderingCardData.json';
@@ -20,6 +21,7 @@ describe('OrderSearch', function () {
     return pr.promise();
   }
   before(function () {
+    uri.uriCache.apiMappings = null;
     $(document.body).empty().html(orderSearchTemplate());
     this.orderSearch = new OrderSearch({ el: document.body });
     this.initSpy = sinon.spy(this.orderSearch, 'init');
@@ -54,6 +56,7 @@ describe('OrderSearch', function () {
       e.preventDefault();
     });
     this.orderSearch.init();
+    $(window).trigger('media.changed');
   });
   after(function () {
     $(document.body).empty();

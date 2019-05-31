@@ -45,6 +45,7 @@ describe('FinancialStatement', function () {
       e.preventDefault();
     });
     this.financialstatement.init();
+    $(window).trigger('media.changed');
   });
   after(function () {
     $(document.body).empty();

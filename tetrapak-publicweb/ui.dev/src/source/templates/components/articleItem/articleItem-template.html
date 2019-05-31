@@ -1,7 +1,7 @@
 <sly data-sly-template.articleItem_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.vanityDescription}" class="pw-article" data-module="ArticleItem"
-       data-articleItem-contentName="${data.articleTitle}"
+       data-articleItem-parentTitle="${data.articleTitle}"
        data-articleItem-linkName="${data.ctaTexti18nKey @ i18n}"
        data-articleItem-linkType="${data.linkType}">
     <sly data-sly-test="${data.showImage}">

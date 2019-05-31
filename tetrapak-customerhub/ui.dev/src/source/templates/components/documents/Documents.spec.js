@@ -1,13 +1,14 @@
-import $ from'jquery';
+import $ from 'jquery';
 import Documents from './Documents';
 import documentsTemplate from '../../../test-templates-hbs/documents.hbs';
 import maintenanceFilteringData from '../maintenance/data/maintenanceFiltering.json';
+import documentsData from './data/documentsData.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
 describe('Documents', function () {
-  const jqRef ={
+  const jqRef = {
     setRequestHeader() {
       // Dummy Method
     }
@@ -29,6 +30,9 @@ describe('Documents', function () {
     this.processLineDataSpy = sinon.spy(this.documents, "processLineData");
     this.renderLineFiltersSpy = sinon.spy(this.documents, "renderLineFilters");
     this.renderEquipmentFiltersSpy = sinon.spy(this.documents, "renderEquipmentFilters");
+    this.renderDocumentsSpy = sinon.spy(this.documents, "renderDocuments");
+    this.processDocumentsDataSpy = sinon.spy(this.documents, "processDocumentsData");
+    this.trackAnalyticsSpy = sinon.spy(this.documents, "trackAnalytics");
     this.renderSpy = sinon.spy(render, 'fn');
 
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -52,6 +56,9 @@ describe('Documents', function () {
     this.processLineDataSpy.restore();
     this.renderLineFiltersSpy.restore();
     this.renderEquipmentFiltersSpy.restore();
+    this.renderDocumentsSpy.restore();
+    this.processDocumentsDataSpy.restore();
+    this.trackAnalyticsSpy.restore();
     this.renderSpy.restore();
 
     this.ajaxStub.restore();
@@ -87,9 +94,32 @@ describe('Documents', function () {
     expect(this.documents.processLineData.called).to.be.true;
     done();
   });
-  it('should render equipment filter on change of `line` filter', function (done) {
+  it('should render equipments accordian on change of `line` filter', function (done) {
     $('.js-documents-filtering__line').trigger('change');
     expect(this.documents.renderEquipmentFilters.called).to.be.true;
+    done();
+  });
+  it('should render documents', function (done) {
+    expect(this.documents.renderDocuments.called).to.be.true;
+    done();
+  });
+  it('should process documents data before rendering documents', function (done) {
+    expect(this.documents.processDocumentsData.called).to.be.true;
+    done();
+  });
+  it('should fire analytics on change of site filter', function (done) {
+    $('.js-documents-filtering__site').trigger('change');
+    expect(this.documents.trackAnalytics.called).to.be.true;
+    done();
+  });
+  it('should fire analytics on change of line filter', function (done) {
+    $('.js-documents-filtering__line').trigger('change');
+    expect(this.documents.trackAnalytics.called).to.be.true;
+    done();
+  });
+  it('should fire analytics on click of document link', function (done) {
+    $('.js-documents__document').first().trigger('change');
+    expect(this.documents.trackAnalytics.called).to.be.true;
     done();
   });
 });
