@@ -1,39 +1,21 @@
 {
-  "filtersTitle": "Search Filters",
-  "filters": [
-    {
-      "name": "category",
-      "label": "Category"
-    },
-    {
-      "name": "mixing",
-      "label": "Mixing"
-    },
-    {
-      "name": "shear",
-      "label": "Shear"
-    },
-    {
-      "name": "bending-machines",
-      "label": "Bending Machines"
-    },
-    {
-      "name": "innovations",
-      "label": "Innovations"
-    }
-  ],
+  "filterTitle": "Search Filters",
+  "tagsMap": {
+    "Dairy": "tetrapak:application/dairy",
+    "Beverages": "tetrapak:application/beverages",
+    "Prepared Food": "tetrapak:application/prepared-food",
+    "Ice Cream": "tetrapak:application/ice-cream"
+
+  },
+  "firstTabLinkText": "All",
   "tabs": [
     {
-      "label": "All",
-      "id": "all"
+      "title": "Articles",
+      "productType": "articles"
     },
     {
-      "label": "Articles",
-      "id": "articles"
-    },
-    {
-      "label": "Products",
-      "id": "products"
+      "title": "Products",
+      "productType": "products"
     }
   ]
 }

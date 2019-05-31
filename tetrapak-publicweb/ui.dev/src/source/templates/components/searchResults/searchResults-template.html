@@ -8,18 +8,18 @@
     </div>
     <div class="pw-search-results__main-container pw-padding--regular">
       <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular">
-        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-             data-sly-call="${heading.heading_h4_template @ headingText=data.filtersTitle, variant='small-flat'}"/>
-        <div class="filter__list" data-sly-list.filter="${data.filters}">
+        <sly data-sly-test="${data.filterTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.filterTitle, variant='small-flat'}"/>
+        <div data-sly-test="${data.tagsMap}" class="filter__list" data-sly-list.key="${data.tagsMap}">
           <div class="tpatom-checkbox">
-            <label class="tpatom-checkbox__label clearfix" for="${filter.name}">
+            <label class="tpatom-checkbox__label clearfix" for="${key @ i18n}">
               <input
                 type="checkbox"
                 class="tpatom-checkbox__input float-left"
-                id="${filter.name}"
-                value="${filter.name}"/>
+                id="${key @ i18n}"
+                value="${data.tagsMap[key]}"/>
               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-              <span class="tpatom-checkbox__text js-checkbox__text">${filter.label @ i18n}</span>
+              <span class="tpatom-checkbox__text js-checkbox__text">${key @ i18n}</span>
             </label>
           </div>
         </div>
@@ -30,11 +30,11 @@
                data-sly-call="${heading.heading_h4_template @ headingText='Search Results', variant='regular'}"/>
         </div>
         <div class="pw-search-results__tabs tpatom-button-group d-flex">
+          <sly data-sly-test="${data.firstTabLinkText}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+               data-sly-call="${pwButton.button_template @ btnPath='#', btnText=data.firstTabLinkText, btnTooltip=data.firstTabLinkText, variant='group-item', customClasses='js-pw-search-results_tab tpatom-button--group-item--active', customData='all'}"/>
           <sly data-sly-list.tabItem="${data.tabs}">
-            <sly data-sly-test="${tabItemList.first}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-                 data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.label, btnTooltip=tabItem.label, variant='group-item', customClasses='js-pw-search-results_tab tpatom-button--group-item--active', customData=tabItem.id}"/>
-            <sly data-sly-test="${!tabItemList.first}" data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-                 data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.label, btnTooltip=tabItem.label, variant='group-item', customClasses='js-pw-search-results_tab', customData=tabItem.id}"/>
+            <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+                 data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.title, btnTooltip=tabItem.title, variant='group-item', customClasses='js-pw-search-results_tab', customData=tabItem.productType}"/>
           </sly>
         </div>
         <div class="pw-search-results__results-list js-pw-search-results__results-list">
