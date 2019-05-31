@@ -1,1 +1,39 @@
-{}
+{
+  "filtersTitle": "Search Filters",
+  "filters": [
+    {
+      "name": "category",
+      "label": "Category"
+    },
+    {
+      "name": "mixing",
+      "label": "Mixing"
+    },
+    {
+      "name": "shear",
+      "label": "Shear"
+    },
+    {
+      "name": "bending-machines",
+      "label": "Bending Machines"
+    },
+    {
+      "name": "innovations",
+      "label": "Innovations"
+    }
+  ],
+  "tabs": [
+    {
+      "label": "All",
+      "id": "all"
+    },
+    {
+      "label": "Articles",
+      "id": "articles"
+    },
+    {
+      "label": "Products",
+      "id": "products"
+    }
+  ]
+}
