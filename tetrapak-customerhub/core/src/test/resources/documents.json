@@ -62,7 +62,6 @@
 					"lineFilterLabel": "Line/Area",
 					"sling:resourceType": "customerhub/components/content/documents",
 					"siteFilterLabel": "Site",
-					"totalDocumentsLabel":"Number Of documents",
 					"errorMsg": "Error message incase any other error on the component",
 					"techPubHost":"https://techpubrepositoryhtml.tetrapak.com/"
 				},

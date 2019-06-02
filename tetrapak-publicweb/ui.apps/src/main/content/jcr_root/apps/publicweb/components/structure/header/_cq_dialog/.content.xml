@@ -86,6 +86,23 @@
                                 fieldDescription="Enter Login Text i18 key"
                                 fieldLabel="Login Text i18 Key"
                                 name="./loginTextI18n"/>
+                        </items>
+                    </column>
+                </items>
+            </general>
+            <search
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Search"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
                             <searchrootpath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
@@ -100,10 +117,89 @@
                                 fieldLabel="Search Results Page Path"
                                 name="./searchResultsPath"
                                 rootPath="/content"/>
+                            <searchplaceholdertext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Placeholder text that will appear in the Search box"
+                                fieldLabel="Placeholder Text"
+                                name="./searchPlaceholderText"/>
+                            <tabs
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/multifield"
+                                fieldDescription="Click 'Add field' to add a new tile"
+                                maxlinksallowed="4"
+                                fieldLabel="Search Panel">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                    acs-commons-nested=""
+                                    name="./searchPanelTiles">
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                        method="absolute"/>
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <tileimage
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the path for image to that will appear on tile."
+                                                    fieldLabel="Tile Image"
+                                                    name="./tileImage"
+                                                    rootPath="/content/dam/publicweb"/>
+                                                <imagealt
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Alt Text for Tile Image"
+                                                    fieldLabel="Tile Image Alt Text"
+                                                    name="./tileImageAltI18n"/>
+                                                <tiletitle
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Link Text for the tab"
+                                                    fieldLabel="Tile Title"
+                                                    name="./tileTitle"/>
+                                                <tiledescription
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                    fieldDescription="Enter description to appear under the tile."
+                                                    fieldLabel="Tile Description"
+                                                    name="./tileDescription"/>
+                                                <tilelinkpath
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the path for the page linking to the image."
+                                                    fieldLabel="Tile Link Path"
+                                                    name="./tileLinkPath"
+                                                    rootPath="/content"/>
+                                                <tilelinktarget
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Tile Link Target"
+                                                    name="./tileLinkTarget">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <new
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="New Window"
+                                                            value="_blank"/>
+                                                        <same
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Same Window"
+                                                            value="_self"/>
+                                                    </items>
+                                                </tilelinktarget>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </tabs>
                         </items>
                     </column>
                 </items>
-            </general>
+            </search>
         </items>
     </content>
 </jcr:root>
