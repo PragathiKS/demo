@@ -48,7 +48,7 @@
         &__title,
         &__description,
         &__link,
-        .pw-wide-frame{
+        .pw-wide-frame {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-bottom($margin-l);
@@ -70,10 +70,15 @@
 
 .tpatom-button-group {
     .tpatom-button--group-item {
+        background-color: $color-wild-sand;
         border-radius: 0;
+        border-bottom: 1px solid $color-mercury;
+        border-right: 1px solid $color-mercury;
+        border-top: 1px solid $color-mercury;
 
         &:first-child {
             border-radius: convert-to-rem($border-radius) 0 0 convert-to-rem($border-radius);
+            border-left: 1px solid $color-mercury;
         }
 
         &:last-child {

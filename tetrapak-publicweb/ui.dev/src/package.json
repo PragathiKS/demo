@@ -15,7 +15,7 @@
   "scripts": {
     "build": "npm run gruntProd",
     "buildDev": "npm run gruntDev",
-    "buildWatch": "npm run gruntWatch",
+    "buildWatch": "grunt aemWatch",
     "buildStart": "npm run gruntStart",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",

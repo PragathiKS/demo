@@ -1,1 +1,23 @@
-{}
+{
+  "resultsText": "results found for",
+  "filterTitle": "Search Filters",
+  "tagsMap": {
+    "Dairy": "tetrapak:application/dairy",
+    "Beverages": "tetrapak:application/beverages",
+    "Prepared Food": "tetrapak:application/prepared-food",
+    "Ice Cream": "tetrapak:application/ice-cream"
+
+  },
+  "firstTabLinkText": "All",
+  "tabs": [
+    {
+      "title": "Products",
+      "productType": "productpage"
+    },
+    {
+      "title": "Pages",
+      "productType": "landingpage"
+    }
+  ],
+  "resultsPerPage": 8
+}

@@ -1,0 +1,13 @@
+{{#each this}}
+  <div class="pw-search-results__results-list__item">
+    <span class="pw-search-results__results-list__item__breadcrumb">
+      {{#each this.breadcrumbMap}}
+        {{#unless @last}} {{@key}} > {{/unless}}{{#if @last}} {{@key}} {{/if}}
+      {{/each}}
+    </span>
+    <a href="{{this.path}}" class="pw-search-results__results-list__item__title-link">
+      <h4 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h4>
+    </a>
+    {{#if this.description}} <p class="pw-search-results__results-list__item__description">{{this.description}}</p> {{/if}}
+  </div>
+{{/each}}
