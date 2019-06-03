@@ -87,7 +87,10 @@
         .tpatom-button__icon {
             @include padding(0 $padding-xs 0 0);
             display: inline;
-            line-height: 40px;
+            line-height: 34px;
+            @media #{$tablet-large} {
+                line-height: 40px;
+            }
 
             &::before {
                 @include margin(0 $margin-xs 0 0);
