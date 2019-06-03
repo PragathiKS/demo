@@ -8,6 +8,7 @@
     "Ice Cream": "tetrapak:application/ice-cream"
 
   },
+  "searchBoxPlaceholder": "Looking for something else?",
   "firstTabLinkText": "All",
   "tabs": [
     {
@@ -19,5 +20,6 @@
       "productType": "landingpage"
     }
   ],
-  "resultsPerPage": 8
+  "resultsPerPage": 8,
+  "noResultsText": "No results were found"
 }

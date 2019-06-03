@@ -17,7 +17,11 @@ class SearchResults {
     this.cache.searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
     this.cache.searchRootPath = this.cache.$searchBoxToggle.data('rootPath');
     this.cache.resultsPerPage = this.root.data('resultsPerPage') || NO_OF_EVENTS_PER_PAGE;
-    this.cache.resultsTitle = $('.js-pw-search-results__title').data('resultsTitle');
+    this.cache.$searchInput = $('.js-pw-search-input', this.root);
+    this.cache.$tabs = $('.js-pw-search-results__tabs', this.root);
+    this.cache.$searchResultsTitle = $('.js-pw-search-results__title', this.root);
+    this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
+    this.cache.noResultsText = this.cache.$searchResultsTitle.data('noResultsText');
     this.cache.resultsCounter = '0';
     this.cache.tabButtons = $('.js-pw-search-results_tab', this.root);
     this.cache.$pagiantion = $('.js-pagination', this.root);
@@ -43,6 +47,16 @@ class SearchResults {
       this.renderResults(filteredData, 1);
       $this.addClass('tpatom-button--group-item--active');
     });
+    this.cache.$searchInput.keyup((e) => {
+      if (e.keyCode === 13) {
+        let $this = $(e.target);
+        let params = deparam(window.location.search);
+        params.q = $this.val();
+        window.history.pushState(null, null, ('?q=' + params.q));
+        this.search();
+      }
+    });
+
   }
 
   init() {
@@ -78,7 +92,8 @@ class SearchResults {
             this.renderResults(this.cache.results);
           }
         } else {
-          this.renderTitle(null, this.cache.resultsTitle, null);
+          this.renderTitle(null, this.cache.noResultsText, null);
+          this.cache.$tabs.addClass('d-none');
         }
       });
     }

@@ -36,7 +36,10 @@ public class SearchResultsModel {
 	
 	@Inject
 	private String resultsText;
-	
+
+  @Inject
+	private String noResultsText;
+
 	@Inject
 	private String firstTabLinkText;
 
@@ -123,6 +126,10 @@ public class SearchResultsModel {
 	public String getResultsText() {
 		return resultsText;
 	}
+
+	public String getNoResultsText() {
+  		return noResultsText;
+  }
 
 	public String getResultsPerPage() {
   		return resultsPerPage;
