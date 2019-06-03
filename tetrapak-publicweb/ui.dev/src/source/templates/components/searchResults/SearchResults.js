@@ -19,6 +19,7 @@ class SearchResults {
     this.cache.resultsPerPage = this.root.data('resultsPerPage') || NO_OF_EVENTS_PER_PAGE;
     this.cache.$searchInput = $('.js-pw-search-input', this.root);
     this.cache.$tabs = $('.js-pw-search-results__tabs', this.root);
+    this.cache.$filterChecks = $('.js-pw-search-results-filter-check', this.root);
     this.cache.$searchResultsTitle = $('.js-pw-search-results__title', this.root);
     this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
     this.cache.noResultsText = this.cache.$searchResultsTitle.data('noResultsText');
@@ -27,6 +28,8 @@ class SearchResults {
     this.cache.$pagiantion = $('.js-pagination', this.root);
     this.cache.searchTerm = '';
     this.cache.results = [];
+    this.cache.filteredData = [];
+    this.cache.filterObj = {tabValue: 'all', checks: []};
     this.cache.totalPages = 0;
   }
 
@@ -42,11 +45,24 @@ class SearchResults {
       e.preventDefault();
       this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
       let $this = $(e.target);
-      let filterValue = $this.data('custom');
-      let filteredData = filterValue === 'all' ? this.cache.results : this.cache.results.filter(i => i.productType === filterValue);
+      this.cache.filterObj.tabValue = $this.data('custom');
+      let filteredData = this.filterData(this.cache.filterObj);
       this.renderResults(filteredData, 1);
       $this.addClass('tpatom-button--group-item--active');
     });
+
+    this.cache.$filterChecks.change((e) => {
+      let $this = $(e.target);
+      this.cache.filterObj.checks = this.cache.filterObj.checks || [];
+      if ($this[0].checked) {
+        this.cache.filterObj.checks.push($this.val());
+      } else {
+        this.cache.filterObj.checks = this.cache.filterObj.checks.filter(item => item !== $this.val());
+      }
+      let filteredData = this.filterData(this.cache.filterObj);
+      this.renderResults(filteredData, 1);
+    });
+
     this.cache.$searchInput.keyup((e) => {
       if (e.keyCode === 13) {
         let $this = $(e.target);
@@ -66,6 +82,21 @@ class SearchResults {
     this.search();
   }
 
+  filterData = (filters) => {
+    this.cache.filteredData = filters.tabValue === 'all' ? this.cache.results : this.cache.results.filter(obj => obj.productType === filters.tabValue);
+    if (filters.checks.length > 0) {
+      this.cache.filteredData = this.cache.filteredData.filter((obj) => {
+        if (obj.tagsMap) {
+          let match = filters.checks.every(elem => Object.values(obj.tagsMap).indexOf(elem) > -1);
+          if (match) {
+            return obj;
+          }
+        }
+      });
+    }
+    return this.cache.filteredData;
+  };
+
   search = () => {
     let params = deparam(window.location.search);
     if (params.q) {
@@ -84,6 +115,8 @@ class SearchResults {
       }).done((data) => {
         if (data.length > 0) {
           this.cache.results = data;
+          this.cache.filteredData = [];
+          this.cache.filterObj = {tabValue: 'all', checks: []};
           this.renderTitle(data.length, this.cache.resultsTitle, params.q);
           if (data.length > this.cache.resultsPerPage) {
             let currentPage = 1;
