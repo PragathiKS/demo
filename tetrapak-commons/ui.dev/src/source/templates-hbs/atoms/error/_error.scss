@@ -3,6 +3,9 @@
 
     &__icon {
         @include margin-right($margin-xs);
+    }
+
+    .icon-error {
         color: $color-alert
     }
 }
