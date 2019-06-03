@@ -64,8 +64,10 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 					LOGGER.info("responseSAMLMessage is empty or null");
 				}
 				String custName = attrMap.get("firstname")+"-"+attrMap.get("lastname");
-				Cookie samlCookie = new Cookie("CustomerName", custName); 
+				Cookie samlCookie = new Cookie("CustomerName", custName);
+				Cookie bPNumber = new Cookie("BPN", attrMap.get("BusinessPartnerID"));
 				response.addCookie(samlCookie);
+				response.addCookie(bPNumber);
 			}
 		} catch (ParserConfigurationException e) {
 			LOGGER.error("Unable to get Document Builder ", e);
