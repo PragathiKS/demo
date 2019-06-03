@@ -224,7 +224,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 
                                               
                                                          echo "Starting PALLY test Run on PublicWeb Urls"
-                                                         sh 'chmod 777 PallyReportPubWeb.sh'
+                                                         sh 'chmod 777 Devops/PallyReportPubWeb.sh'
                                                          sh './Devops/PallyReportPubWeb.sh'
 														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
