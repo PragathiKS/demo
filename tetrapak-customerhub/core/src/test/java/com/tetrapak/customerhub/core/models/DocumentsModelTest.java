@@ -42,7 +42,6 @@ public class DocumentsModelTest {
         assertEquals("There should be document Heading", "Document for {0} in {1}", documentsModel.getDocumentHeading());
         assertEquals("There should be documents label", "Documents", documentsModel.getDocumentLabel());
         assertEquals("There should be documents Type label", "Document Type", documentsModel.getDocumentTypeLabel());
-        assertEquals("There should be total documents label", "Number Of documents", documentsModel.getTotalDocumentsLabel());
         assertEquals("There should be all option Text", "No documents message", documentsModel.getNoDataMsg());
         assertEquals("There should be error message", "Error message incase any other error on the component", documentsModel.getErrorMsg());
         assertEquals("There should be techpubhost url", "https://techpubrepositoryhtml.tetrapak.com/", documentsModel.getTechPubHost());

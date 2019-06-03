@@ -25,8 +25,8 @@
           </nav>
       </sly>
       <sly data-sly-test="${data.rightNavDisplay}">
-        <div class="tp-header__nav-right">
-          <span class="tp-header__user icon-Avatar">${data.getUserInfoI18n}</span>
+        <div class="tp-header__nav-right" data-sly-use.cookie="/apps/customerhub/components/structure/header/cookie.js">
+          <span class="tp-header__user icon-Avatar">${cookie.userName}</span>
         </div>
       </sly>
     </header>

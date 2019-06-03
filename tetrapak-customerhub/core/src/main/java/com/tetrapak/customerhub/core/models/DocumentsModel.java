@@ -35,8 +35,6 @@ public class DocumentsModel {
     @Inject
     private String documentTypeLabel;
     @Inject
-    private String totalDocumentsLabel;
-    @Inject
     private String noDataMsg;
     @Inject
     private String errorMsg;
@@ -58,7 +56,6 @@ public class DocumentsModel {
         i18KeyMap.put("documentHeading", getDocumentHeading());
         i18KeyMap.put("documentLabel", getDocumentLabel());
         i18KeyMap.put("documentTypeLabel", getDocumentTypeLabel());
-        i18KeyMap.put("totalDocumentsLabel", getTotalDocumentsLabel());
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
     
@@ -91,13 +88,6 @@ public class DocumentsModel {
      */
     public String getDocumentTypeLabel() {
         return documentTypeLabel;
-    }
-
-    /**
-     * @return the totalDocumentsLabel
-     */
-    public String getTotalDocumentsLabel() {
-        return totalDocumentsLabel;
     }
 
     /**
