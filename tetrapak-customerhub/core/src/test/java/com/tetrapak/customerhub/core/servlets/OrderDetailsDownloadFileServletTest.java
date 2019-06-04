@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import javax.servlet.http.Cookie;
+
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -64,6 +66,8 @@ public class OrderDetailsDownloadFileServletTest {
 		aemContext.currentResource(COMPONENT_PATH);
 		aemContext.request().setServletPath(COMPONENT_PATH);
 		aemContext.request().setMethod(HttpConstants.METHOD_POST);
+		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
+		aemContext.request().addCookie(cookie);
 	}
 
 	@Test
