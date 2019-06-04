@@ -458,6 +458,9 @@ class FinancialStatement {
         this.trackAnalytics('reset');
       });
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+    $(document).on('click', '#downloadPdf', function () {
+      window.open($(this).attr('href'), '_blank');
+    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
