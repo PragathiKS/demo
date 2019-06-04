@@ -19,7 +19,6 @@ h3 {
     @include font-size($font-m-md);
     @include line-height(28px, $font-m-md);
     font-weight: normal;
-    ;
 
     @media #{$desktop} {
         @include font-size($font-md);
