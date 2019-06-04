@@ -1,0 +1,27 @@
+<div data-sly-test="${data.productRootPath}" class="pw-product-listing pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-locator="product-listing"
+       data-module="ProductListing" data-product-root-path="${data.productRootPath}">
+  <div class="pw-product-listing__title">
+    <h4>Title</h4>
+  </div>
+  <div class="pw-product-listing__navigation">
+    <div class="d-lg-none">
+      <div class="pw-product-listing__navigation">
+        <select class="pw-product-listing__navigation__dropdown js-pw-product-listing__navigation__dropdown">
+          <option value="all">all</option>
+          <option value="opt1">option1</option>
+          <option value="opt2">option2</option>
+          <option value="opt3">option3</option>
+        </select>
+        <i class="pw-product-listing__navigation__icon icon-Chevron_Down"></i>
+      </div>
+    </div>
+    <div class="tpatom-button-group d-none d-lg-flex justify-content-center">
+      <a href="#" class="tpatom-button tpatom-button--group-item js-product-listng-tab tpatom-button--group-item--active" data-custom="all" title="title">all</a>
+      <a href="#" class="tpatom-button tpatom-button--group-item js-product-listng-tab" data-custom="cat1" title="title">cat1</a>
+      <a href="#" class="tpatom-button tpatom-button--group-item js-product-listng-tab" data-custom="cat2" title="title">cat2</a>
+    </div>
+  </div>
+  <div class="pw-product-listing__cards-container js-pw-product-listing__cards-container">
+    <!-- product cards renders here -->
+  </div>
+</div>
