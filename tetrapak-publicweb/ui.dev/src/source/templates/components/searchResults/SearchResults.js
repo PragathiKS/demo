@@ -20,8 +20,10 @@ class SearchResults {
     this.cache.$searchInput = $('.js-pw-search-input', this.root);
     this.cache.$tabs = $('.js-pw-search-results__tabs', this.root);
     this.cache.$filterChecks = $('.js-pw-search-results-filter-check', this.root);
+    this.cache.$resultsList = $('.js-pw-search-results__results-list', this.root);
     this.cache.$searchResultsTitle = $('.js-pw-search-results__title', this.root);
     this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
+    this.cache.noFiltersMatches = this.cache.$searchResultsTitle.data('noFiltersMatches');
     this.cache.noResultsText = this.cache.$searchResultsTitle.data('noResultsText');
     this.cache.resultsCounter = '0';
     this.cache.tabButtons = $('.js-pw-search-results_tab', this.root);
@@ -38,7 +40,7 @@ class SearchResults {
     this.cache.$pagiantion.on('searchresults.pagenav', (...args) => {
       const [, data] = args;
       $this.cache.currentPageIndex = data.pageIndex + 1;
-      $this.renderResults(this.cache.results, $this.cache.currentPageIndex);
+      $this.renderResults(this.cache.filteredData, $this.cache.currentPageIndex);
     });
 
     this.cache.tabButtons.on('click', (e) => {
@@ -115,7 +117,7 @@ class SearchResults {
       }).done((data) => {
         if (data.length > 0) {
           this.cache.results = data;
-          this.cache.filteredData = [];
+          this.cache.filteredData = data;
           this.cache.filterObj = {tabValue: 'all', checks: []};
           this.renderTitle(data.length, this.cache.resultsTitle, params.q);
           if (data.length > this.cache.resultsPerPage) {
@@ -124,9 +126,13 @@ class SearchResults {
           } else {
             this.renderResults(this.cache.results);
           }
+          this.cache.$tabs.removeClass('d-none');
+          this.cache.$filterChecks.removeAttr('disabled');
         } else {
           this.renderTitle(null, this.cache.noResultsText, null);
+          this.cache.$resultsList.empty();
           this.cache.$tabs.addClass('d-none');
+          this.cache.$filterChecks.attr('disabled', true);
         }
       });
     }
@@ -148,12 +154,13 @@ class SearchResults {
   renderResults = (data, currentPage) => {
     let pagination = this.cache.$pagiantion;
     let resultsPerPage = this.cache.resultsPerPage;
+    let noFilterMatches = this.cache.noFiltersMatches;
     render.fn({
       template: 'searchList',
       data: data,
-      target: '.js-pw-search-results__results-list',
+      target: this.cache.$resultsList,
       beforeRender(data) {
-        if (data || data.length > 0) {
+        if (data.length > 0) {
           if (data.length > resultsPerPage) {
             let totalPages = Math.ceil((+data.length) / resultsPerPage);
             this.data = data.slice(((currentPage - 1) * resultsPerPage), ((currentPage - 1) * resultsPerPage + resultsPerPage));
@@ -165,6 +172,8 @@ class SearchResults {
             this.data = data.slice(0, resultsPerPage);
             pagination.addClass('d-none');
           }
+        } else {
+          data.noFiltersMatches = noFilterMatches;
         }
       }
     });

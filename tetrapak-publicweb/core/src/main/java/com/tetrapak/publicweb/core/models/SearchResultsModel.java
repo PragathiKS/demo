@@ -38,6 +38,9 @@ public class SearchResultsModel {
 	private String resultsText;
 
   @Inject
+	private String noFilterMatches;
+
+  @Inject
 	private String noResultsText;
 
 	@Inject
@@ -129,6 +132,10 @@ public class SearchResultsModel {
 
 	public String getNoResultsText() {
   		return noResultsText;
+  }
+
+  public String getNoFilterMatches() {
+  		return noFilterMatches;
   }
 
 	public String getResultsPerPage() {

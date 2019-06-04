@@ -34,6 +34,10 @@
         }
     }
 
+    &__tabs {
+        display: flex;
+    }
+
     &__filters {
         @include border-radius($border-radius);
         background-color: $color-wild-sand;
@@ -78,7 +82,7 @@
             }
 
             &:last-child {
-                border-bottom: none;
+                border-bottom: 0;
             }
 
             &__breadcrumb {

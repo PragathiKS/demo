@@ -18,7 +18,7 @@
                 type="checkbox"
                 class="js-pw-search-results-filter-check tpatom-checkbox__input float-left"
                 id="${key @ i18n}"
-                value="${data.tagsMap[key]}"/>
+                value="${data.tagsMap[key]}" disabled/>
               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
               <span class="tpatom-checkbox__text js-checkbox__text">${key @ i18n}</span>
             </label>
@@ -26,10 +26,10 @@
         </div>
       </div>
       <div class="pw-search-results__results">
-        <div data-sly-test="${data.resultsText}" class="pw-search-results__title js-pw-search-results__title" data-results-title="${data.resultsText @ i18n}" data-no-results-text="${data.noResultsText @ i18n}">
+        <div data-sly-test="${data.resultsText}" class="pw-search-results__title js-pw-search-results__title" data-results-title="${data.resultsText @ i18n}" data-no-results-text="${data.noResultsText @ i18n}" data-no-filters-matches="${data.noFilterMatches @ i18n}">
 
         </div>
-        <div class="pw-search-results__tabs js-pw-search-results__tabs tpatom-button-group d-flex">
+        <div class="pw-search-results__tabs js-pw-search-results__tabs tpatom-button-group d-none">
           <sly data-sly-test="${data.firstTabLinkText}"
                data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
                data-sly-call="${pwButton.button_template @ btnPath='#', btnText=data.firstTabLinkText, btnTooltip=data.firstTabLinkText, variant='group-item', customClasses='js-pw-search-results_tab tpatom-button--group-item--active', customData='all'}"/>
