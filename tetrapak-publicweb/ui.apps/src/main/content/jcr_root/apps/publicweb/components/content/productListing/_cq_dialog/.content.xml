@@ -37,13 +37,38 @@
                                 name="./firstTabLinkTextI18n"/>
                             <tabs
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                sling:resourceType="granite/ui/components/foundation/form/multifield"
                                 fieldDescription="Click 'Add field' to add a new tab"
                                 fieldLabel="Tabs">
                                 <field
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                    <items jcr:primaryType="nt:unstructured"/>
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                    acs-commons-nested=""
+                                    name="./tabLinks">
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                        method="absolute"/>
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <linktext
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter label text for each tab"
+                                                    fieldLabel="Tab label"
+                                                    name="./tabLinkTextI18n"/>
+                                                <categoryTag
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                                    fieldLabel="Product Category Tag"
+                                                    name="./categoryTag"
+                                                    rootPath="/content/cq:tags"/>
+                                            </items>
+                                        </column>
+                                    </items>
                                 </field>
                             </tabs>
                         </items>

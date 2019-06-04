@@ -63,6 +63,7 @@
                             <contentalignment
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue="left"
                                 fieldLabel="Text Alignment"
                                 name="./contentAlignment">
                                 <items jcr:primaryType="nt:unstructured">
@@ -80,6 +81,7 @@
                             <contrastLayer
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue=""
                                 fieldDescription="Add a opacity layer to generate text contrast"
                                 fieldLabel="Text Contrast Layer"
                                 name="./contrastLayer">

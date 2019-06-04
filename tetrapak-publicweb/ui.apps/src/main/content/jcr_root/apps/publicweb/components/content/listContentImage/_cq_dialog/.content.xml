@@ -24,13 +24,33 @@
                                 name="./titleI18n"/>
                             <tabs
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                sling:resourceType="granite/ui/components/foundation/form/multifield"
                                 fieldDescription="Click 'Add field' to add a new tab"
-                                fieldLabel="Tabs">
+                                fieldLabel="Tabs"
+                                maxlinksallowed="10">
                                 <field
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                    <items jcr:primaryType="nt:unstructured"/>
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                    acs-commons-nested=""
+                                    name="./tabLinks">
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                        method="absolute"/>
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <linktext
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Link Text for the tab"
+                                                    fieldLabel="Tab Link Text"
+                                                    name="./tabLinkTextI18n"/>
+                                            </items>
+                                        </column>
+                                    </items>
                                 </field>
                             </tabs>
                             <linktext
@@ -99,6 +119,7 @@
                             <tabsalignment
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue="left"
                                 fieldDescription="Set the tabs alignment"
                                 fieldLabel="Layout Display"
                                 name="./tabsAlignment">

@@ -19,6 +19,7 @@
                             <numberofcolumns
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue="one-column"
                                 fieldDescription="Set the number of columns"
                                 fieldLabel="Number of Columns"
                                 name="./numberOfcolumns">
@@ -47,6 +48,7 @@
                             <titlealignment
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue="left"
                                 fieldDescription="Set the title alignment"
                                 fieldLabel="Title Alignment"
                                 name="./titleAlignment">
