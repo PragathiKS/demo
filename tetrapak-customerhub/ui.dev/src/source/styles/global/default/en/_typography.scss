@@ -1,7 +1,7 @@
 h1 {
     @include font-size($font-m-xl);
     @include line-height(36px, $font-m-xl);
-    font-weight: lighter;
+    font-weight: normal;
 
     @media #{$desktop} {
         @include font-size($font-xl);
@@ -12,13 +12,14 @@ h1 {
 h2 {
     @include font-size($font-m-l);
     @include line-height(32px, $font-m-l);
-    font-weight: lighter;
+    font-weight: normal;
 }
 
 h3 {
     @include font-size($font-m-md);
     @include line-height(28px, $font-m-md);
-    font-weight: lighter;
+    font-weight: normal;
+    ;
 
     @media #{$desktop} {
         @include font-size($font-md);
@@ -29,7 +30,7 @@ h3 {
 h4 {
     @include font-size($font-m-baseline);
     @include line-height(28px, $font-m-baseline);
-    font-weight: lighter;
+    font-weight: normal;
 
     @media #{$desktop} {
         @include font-size($font-baseline);
