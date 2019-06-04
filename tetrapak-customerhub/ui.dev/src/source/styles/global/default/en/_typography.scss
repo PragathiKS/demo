@@ -1,39 +1,52 @@
+%font-family-heading {
+    @media #{$desktop} {
+        font-family: $font-light;
+    }
+}
+
 h1 {
+    @extend %font-family-heading;
     @include font-size($font-m-xl);
     @include line-height(36px, $font-m-xl);
-    font-weight: normal;
+    font-family: $font-regular;
 
     @media #{$desktop} {
         @include font-size($font-xl);
         @include line-height(40px, $font-xl);
+
     }
 }
 
 h2 {
     @include font-size($font-m-l);
     @include line-height(32px, $font-m-l);
-    font-weight: normal;
+    font-family: $font-regular;
+
 }
 
 h3 {
+    @extend %font-family-heading;
     @include font-size($font-m-md);
     @include line-height(28px, $font-m-md);
-    font-weight: normal;
+    font-family: $font-regular;
 
     @media #{$desktop} {
         @include font-size($font-md);
         @include line-height(24px, $font-md);
+
     }
 }
 
 h4 {
-    @include font-size($font-m-baseline);
-    @include line-height(28px, $font-m-baseline);
-    font-weight: normal;
+    @extend %font-family-heading;
+@include font-size($font-m-baseline);
+@include line-height(28px, $font-m-baseline);
+font-family: $font-regular;
 
     @media #{$desktop} {
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
+
     }
 }
 
