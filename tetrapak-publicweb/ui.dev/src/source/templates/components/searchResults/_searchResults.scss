@@ -6,7 +6,11 @@
     }
 
     .tpatom-input-box {
-        @include margin(0 $padding-xxxl $margin-xl);
+        @include margin(0 $padding-md $margin-xl);
+
+        @media #{$tablet-large} {
+            @include margin(0 $padding-xxxl $margin-xl);
+        }
 
         &__icon {
             color: $color-congress-blue;
