@@ -134,8 +134,8 @@ class SearchResults {
           this.cache.$tabs.addClass('d-none');
           this.cache.$filterChecks.attr('disabled', true);
           this.cache.$pagiantion.addClass('d-none');
-          this.cache.$filterChecks.prop('checked', false);
         }
+        this.cache.$filterChecks.prop('checked', false);
       });
     }
   };
