@@ -504,7 +504,7 @@
                 </pluginManagement>
             </build>
         </profile>
-		
+
 		<profile>
             <id>minify</id>
             <activation>
@@ -537,7 +537,7 @@
                                     </goals>
                                 </execution>
                             </executions>
-                        </plugin>                        
+                        </plugin>
                     </plugins>
                 </pluginManagement>
             </build>
@@ -586,7 +586,7 @@
             <dependency>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>uber-jar</artifactId>
-                <version>6.3.0</version>
+                <version>6.4.0</version>
                 <classifier>apis</classifier>
                 <scope>provided</scope>
             </dependency>
@@ -679,7 +679,7 @@
 			    <artifactId>acs-aem-commons-bundle</artifactId>
 			    <version>3.17.4</version>
 			</dependency>
-		</dependencies>        
+		</dependencies>
     </dependencyManagement>
 
 </project>
