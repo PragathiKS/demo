@@ -76,6 +76,7 @@ class ContactFooterForm {
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
+      let isValidStep = true;
       $('input', parentTab).each(function(){
         let fieldName = $(this).attr('name');
         if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
@@ -83,6 +84,7 @@ class ContactFooterForm {
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
           $('.info-group.'+fieldName).removeClass('show');
+          isValidStep = false;
         } else {
           $('p.'+fieldName).text($(this).val());
           $('.info-group.'+fieldName).addClass('show');
@@ -94,16 +96,18 @@ class ContactFooterForm {
           $('.info-box', self.root).addClass('d-none');
         }
       });
-      const stepNumber = parentTab.getAttribute('data-stepNumber');
-      const stepName = parentTab.getAttribute('data-stepName');
-      if (self.cache.digitalData) {
-        self.cache.digitalData.formInfo = {};
-        self.cache.digitalData.formInfo.formName = 'contact us';
-        self.cache.digitalData.formInfo.stepName = stepName;
-        self.cache.digitalData.formInfo.stepNo = stepNumber;
-        self.cache.digitalData.formInfo.totalSteps = 7;
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-            _satellite.track('form_tracking'); //eslint-disable-line
+      if (isValidStep) {
+        const stepNumber = parentTab.getAttribute('data-stepNumber');
+        const stepName = parentTab.getAttribute('data-stepName');
+        if (self.cache.digitalData) {
+          self.cache.digitalData.formInfo = {};
+          self.cache.digitalData.formInfo.formName = 'contact us';
+          self.cache.digitalData.formInfo.stepName = stepName;
+          self.cache.digitalData.formInfo.stepNo = stepNumber;
+          self.cache.digitalData.formInfo.totalSteps = 7;
+          if (typeof _satellite !== 'undefined') { //eslint-disable-line
+              _satellite.track('form_tracking'); //eslint-disable-line
+          }
         }
       }
     });

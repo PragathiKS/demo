@@ -21,10 +21,11 @@ class ArticleItem {
         this.cache.digitalData.linkClick.linkType = article.getAttribute('data-articleItem-linkType');
         this.cache.digitalData.linkClick.linkSection = 'articleItem';
         this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-article').find('.pw-article__title').text().trim();
-        if (articleContainer && articleContainer.getAttribute('data-container-title') !== null) {
-          this.cache.digitalData.linkClick.contentName = $thisClick.closest('.article-container').find('.article-container__title').text().trim();
+        if (articleContainer) {
           let listPosition =  [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
           this.cache.digitalData.linkClick.linkListPos = listPosition;
+          this.cache.digitalData.linkClick.contentName = $thisClick.closest('.article-container').find('.article-container__title').text().trim();
+          
         }
         this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
 
