@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_CONTACT_FORM } from '../../../scripts/utils/constants';
 
 class ContactFooterForm {
   constructor({ el }) {
@@ -50,9 +52,17 @@ class ContactFooterForm {
         }
       });
       if (isvalid) {
-        $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
-        $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
-        $(this).closest('form').submit();
+        e.preventDefault();
+        ajaxWrapper.getXhrObj({
+          url: API_CONTACT_FORM,
+          method: ajaxMethods.GET,
+          data: $('form.pw-form', self.root).serialize()
+        }).done(
+          () => {
+            $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
+            $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
+          }
+        );
         if (self.cache.digitalData) {
           self.cache.digitalData.formInfo = {};
           self.cache.digitalData.formInfo.formName = 'contact us';
@@ -66,7 +76,6 @@ class ContactFooterForm {
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
-      let isValid = false;
       $('input', parentTab).each(function(){
         let fieldName = $(this).attr('name');
         if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
@@ -78,7 +87,6 @@ class ContactFooterForm {
           $('p.'+fieldName).text($(this).val());
           $('.info-group.'+fieldName).addClass('show');
           $(this).closest('.form-group').removeClass('hasError');
-          isValid = true;
         }
         if($('.info-group.show', self.root).length) {
           $('.info-box', self.root).removeClass('d-none');
@@ -86,18 +94,16 @@ class ContactFooterForm {
           $('.info-box', self.root).addClass('d-none');
         }
       });
-      if (isValid) {
-        const stepNumber = parentTab.getAttribute('data-stepNumber');
-        const stepName = parentTab.getAttribute('data-stepName');
-        if (self.cache.digitalData) {
-          self.cache.digitalData.formInfo = {};
-          self.cache.digitalData.formInfo.formName = 'contact us';
-          self.cache.digitalData.formInfo.stepName = stepName;
-          self.cache.digitalData.formInfo.stepNo = stepNumber;
-          self.cache.digitalData.formInfo.totalSteps = 7;
-          if (typeof _satellite !== 'undefined') { //eslint-disable-line
-              _satellite.track('form_tracking'); //eslint-disable-line
-          }
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      if (self.cache.digitalData) {
+        self.cache.digitalData.formInfo = {};
+        self.cache.digitalData.formInfo.formName = 'contact us';
+        self.cache.digitalData.formInfo.stepName = stepName;
+        self.cache.digitalData.formInfo.stepNo = stepNumber;
+        self.cache.digitalData.formInfo.totalSteps = 7;
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+            _satellite.track('form_tracking'); //eslint-disable-line
         }
       }
     });

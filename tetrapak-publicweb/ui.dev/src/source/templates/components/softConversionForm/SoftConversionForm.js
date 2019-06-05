@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { digitalData, storageUtil } from '../../../scripts/common/common';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_SOFT_CONVERSION } from '../../../scripts/utils/constants';
 
 class SoftConversionForm {
   cache = {};
@@ -56,19 +58,28 @@ class SoftConversionForm {
           _satellite.track('form_tracking'); //eslint-disable-line
         }
       }
+      e.preventDefault();
       self.storageFormData();
-      $this.closest('form').submit();
-      let docpath = $('#softConversionModal input[name="docpath"]').val();
-      window.open(docpath, '_blank');
-      $('#softConversionModal').data('form-filled', true);
-      $('#softConversionModal .softc-title-js').addClass('d-none');
-      $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+      ajaxWrapper.getXhrObj({
+        url: API_SOFT_CONVERSION,
+        method: ajaxMethods.GET,
+        data: $('#softConversionModal form').serialize()
+      }).done(
+        () => {
+          let docpath = $('#softConversionModal input[name="docpath"]').val();
+          window.open(docpath, '_blank');
+          $('#softConversionModal').data('form-filled', true);
+          $('#softConversionModal .softc-title-js').addClass('d-none');
+          $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+        }
+      );
     }
   }
   checkStepAndContinue(e, $this) {
     const self = this;
     let parentTab = e.target.closest('.tab-pane');
-    let isValidStep = false;
+    const stepNumber = parentTab.getAttribute('data-stepNumber');
+    const stepName = parentTab.getAttribute('data-stepName');
     $('input', parentTab).each(function(){
       let fieldName = $this.attr('name');
       if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
@@ -80,12 +91,9 @@ class SoftConversionForm {
         $('p.'+fieldName).text($this.val());
         $('.info-group.'+fieldName).addClass('show');
         $this.closest('.form-group').removeClass('hasError');
-        isValidStep = true;
       }
     });
-    if (isValidStep && self.cache.digitalData && self.cache.digitalData.formInfo) {
-      const stepNumber = parentTab.getAttribute('data-stepNumber');
-      const stepName = parentTab.getAttribute('data-stepName');
+    if (self.cache.digitalData && self.cache.digitalData.formInfo) {
       self.cache.digitalData.formInfo.stepName = stepName;
       self.cache.digitalData.formInfo.stepNo = stepNumber;
       if (stepNumber === '0') {
