@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_CONTACT_FORM } from '../../../scripts/utils/constants';
 
 class ContactFooterForm {
   constructor({ el }) {
@@ -50,9 +52,17 @@ class ContactFooterForm {
         }
       });
       if (isvalid) {
-        $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
-        $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
-        $(this).closest('form').submit();
+        e.preventDefault();
+        ajaxWrapper.getXhrObj({
+          url: API_CONTACT_FORM,
+          method: ajaxMethods.GET,
+          data: $('form.pw-form', self.root).serialize()
+        }).done(
+          () => {
+            $('.thankyou .first-name', self.root).text($('#first-name', self.root).val());
+            $('.thankyou .last-name', self.root).text($('#last-name', self.root).val());
+          }
+        );
         if (self.cache.digitalData) {
           self.cache.digitalData.formInfo = {};
           self.cache.digitalData.formInfo.formName = 'contact us';

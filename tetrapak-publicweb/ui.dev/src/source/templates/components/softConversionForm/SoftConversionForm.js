@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { digitalData, storageUtil } from '../../../scripts/common/common';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_SOFT_CONVERSION } from '../../../scripts/utils/constants';
 
 class SoftConversionForm {
   cache = {};
@@ -56,13 +58,21 @@ class SoftConversionForm {
           _satellite.track('form_tracking'); //eslint-disable-line
         }
       }
+      e.preventDefault();
       self.storageFormData();
-      $this.closest('form').submit();
-      let docpath = $('#softConversionModal input[name="docpath"]').val();
-      window.open(docpath, '_blank');
-      $('#softConversionModal').data('form-filled', true);
-      $('#softConversionModal .softc-title-js').addClass('d-none');
-      $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+      ajaxWrapper.getXhrObj({
+        url: API_SOFT_CONVERSION,
+        method: ajaxMethods.GET,
+        data: $('#softConversionModal form').serialize()
+      }).done(
+        () => {
+          let docpath = $('#softConversionModal input[name="docpath"]').val();
+          window.open(docpath, '_blank');
+          $('#softConversionModal').data('form-filled', true);
+          $('#softConversionModal .softc-title-js').addClass('d-none');
+          $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+        }
+      );
     }
   }
   checkStepAndContinue(e, $this) {
@@ -74,9 +84,9 @@ class SoftConversionForm {
       if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
         e.preventDefault();
         e.stopPropagation();
-        isValidStep = false;
         $this.closest('.form-group').addClass('hasError');
         $('.info-group.'+fieldName).removeClass('show');
+        isValidStep = false;
       } else {
         $('p.'+fieldName).text($this.val());
         $('.info-group.'+fieldName).addClass('show');
