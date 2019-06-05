@@ -68,8 +68,7 @@ class SoftConversionForm {
   checkStepAndContinue(e, $this) {
     const self = this;
     let parentTab = e.target.closest('.tab-pane');
-    const stepNumber = parentTab.getAttribute('data-stepNumber');
-    const stepName = parentTab.getAttribute('data-stepName');
+    let isValidStep = false;
     $('input', parentTab).each(function(){
       let fieldName = $this.attr('name');
       if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
@@ -81,9 +80,12 @@ class SoftConversionForm {
         $('p.'+fieldName).text($this.val());
         $('.info-group.'+fieldName).addClass('show');
         $this.closest('.form-group').removeClass('hasError');
+        isValidStep = true;
       }
     });
-    if (self.cache.digitalData && self.cache.digitalData.formInfo) {
+    if (isValidStep && self.cache.digitalData && self.cache.digitalData.formInfo) {
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
       self.cache.digitalData.formInfo.stepName = stepName;
       self.cache.digitalData.formInfo.stepNo = stepNumber;
       if (stepNumber === '0') {
