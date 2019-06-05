@@ -14,13 +14,14 @@ class ImageTextButton {
     /* Bind jQuery events here */
     this.cache.$imageTextButtonLink.click((e) => {
       let comp = e.target.closest('.pw-image-text-button');
+      let $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = comp.getAttribute('data-imageButton-linkType');
         this.cache.digitalData.linkClick.linkSection = 'imageTextButton';
-        this.cache.digitalData.linkClick.linkParentTitle = comp.getAttribute('data-imageButton-title');
-        this.cache.digitalData.linkClick.linkName = comp.getAttribute('data-imageButton-linkName');
-        this.cache.digitalData.linkClick.contentName = comp.getAttribute('data-imageButton-contentName');
+        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-image-text-button').find('.pw-image-text-button__title').text().trim();
+        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
+        this.cache.digitalData.linkClick.contentName = $thisClick.closest('.pw-image-text-button').find('.pw-image-text-button__subtitle').text().trim();
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
           _satellite.track('linkClicked'); //eslint-disable-line
         }
