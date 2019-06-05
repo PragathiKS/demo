@@ -63,11 +63,19 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 				} else {
 					LOGGER.info("responseSAMLMessage is empty or null");
 				}
-				String custName = attrMap.get("firstname")+"-"+attrMap.get("lastname");
-				Cookie samlCookie = new Cookie("CustomerName", custName);
-				Cookie bPNumber = new Cookie("BPN", attrMap.get("BusinessPartnerID"));
-				response.addCookie(samlCookie);
-				response.addCookie(bPNumber);
+				String firstName = StringUtils.isNoneBlank(attrMap.get("firstname"))?attrMap.get("firstname"):StringUtils.EMPTY;
+				String lastName = StringUtils.isNoneBlank(attrMap.get("lastname"))?attrMap.get("lastname"):StringUtils.EMPTY;;
+				
+				if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
+					Cookie samlCookie = new Cookie("CustomerName", firstName+"-"+lastName);
+					response.addCookie(samlCookie);
+				}
+				
+				if (StringUtils.isNotBlank(attrMap.get("BusinessPartnerID"))) {
+					Cookie bPNumber = new Cookie("BPN", attrMap.get("BusinessPartnerID"));
+					response.addCookie(bPNumber);
+				}
+				
 			}
 		} catch (ParserConfigurationException e) {
 			LOGGER.error("Unable to get Document Builder ", e);

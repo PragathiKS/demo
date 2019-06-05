@@ -5,9 +5,9 @@
     "Dairy": "tetrapak:application/dairy",
     "Beverages": "tetrapak:application/beverages",
     "Prepared Food": "tetrapak:application/prepared-food",
-    "Ice Cream": "tetrapak:application/ice-cream"
-
+    "Ice Cream": "tetra-pak:public-web/product/category/ice-cream"
   },
+  "searchBoxPlaceholder": "Looking for something else?",
   "firstTabLinkText": "All",
   "tabs": [
     {
@@ -19,5 +19,7 @@
       "productType": "landingpage"
     }
   ],
-  "resultsPerPage": 8
+  "resultsPerPage": 2,
+  "noFilterMatches": "There are no coincidences with these filters",
+  "noResultsText": "No results were found"
 }

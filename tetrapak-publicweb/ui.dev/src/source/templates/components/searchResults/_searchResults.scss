@@ -6,7 +6,11 @@
     }
 
     .tpatom-input-box {
-        @include margin(0 $padding-xxxl $margin-xl);
+        @include margin(0 $padding-md $margin-xl);
+
+        @media #{$tablet-large} {
+            @include margin(0 $padding-xxxl $margin-xl);
+        }
 
         &__icon {
             color: $color-congress-blue;
@@ -32,6 +36,10 @@
         @media #{$tablet-large} {
             @include margin-bottom(38px);
         }
+    }
+
+    &__tabs {
+        display: flex;
     }
 
     &__filters {
@@ -78,7 +86,7 @@
             }
 
             &:last-child {
-                border-bottom: none;
+                border-bottom: 0;
             }
 
             &__breadcrumb {

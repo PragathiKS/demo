@@ -86,6 +86,18 @@
                                 fieldLabel="Filter Tags"
                                 name="./filterTagPaths"
                                 rootPath="/content/cq:tags"/>
+                            <noResultsText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="No results text"
+                                required="true"
+                                name="./noResultsText"/>
+                            <noFilterMatches
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="No filters matches"
+                                required="true"
+                                name="./noFilterMatches"/>
                         </items>
                     </column>
                 </items>

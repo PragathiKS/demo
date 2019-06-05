@@ -1,0 +1,142 @@
+<div data-module="SoftConversionForm" id="softConversionModal">
+  <!-- Modal -->
+  <div class="modal tp-modal fade" id="softConversionModal" tabindex="-1" role="dialog" aria-hidden="true" data-form-filled="false">
+    <div class="modal-dialog modal-dialog-centered pw-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="tpatom-heading tpatom-heading--regular softc-title-js"></h4>
+          <h4 class="tpatom-heading tpatom-heading--regular softc-thankyou-js d-none">Thank you!</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="icon-Close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-softconversion" autocomplete="off" method="GET">
+            <div class="tab-content">
+              <div class="tab-pane active" data-stepNumber="0" data-stepName="sign up start" role="tabpanel" id="step-0">
+                <p class="mb-4 softc-desc-js"></p>
+                <h4 class="tpatom-heading tpatom-heading--small softc-head-js"></h4>
+                <div class="row mt-4">
+                  <div class="col">
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="radio" name="group" checked="checked" id="Professional" value="Professional">
+                      <label class="form-check-label" for="Professional">
+                        Professional
+                      </label>
+                      <div class="form-check-radio"></div>
+                    </div>
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="radio" name="group" id="option2" value="option2">
+                      <label class="form-check-label" for="option2">
+                        option2
+                      </label>
+                      <div class="form-check-radio"></div>
+                    </div>
+                    <button data-target="#step-4" data-toggle="tab" class="tpatom-button tpatom-button--secondary pw-form__nextbtn mt-2">next!!<i class="tpatom-button__icon icon-Chevron_Right"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" data-stepNumber="4" data-stepName="position" role="tabpanel" id="step-4">
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="mb-4 softc-desc-js"></p>
+                    <div class="info-box flex-column d-sm-flex d-md-none mb-3">
+                      <div class="info-group mb-3 first-name">
+                        <label>First Name</label>
+                        <p class="first-name"></p>
+                      </div>
+                      <div class="info-group mb-3 last-name">
+                        <label>Last Name</label>
+                        <p class="last-name"></p>
+                      </div>
+                      <div class="info-group mb-3 email-address">
+                        <label>Email</label>
+                        <p class="email-address"></p>
+                      </div>
+                      <div class="info-group company isPro">
+                        <label>Company</label>
+                        <p class="company"></p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="position">Position</label>
+                      <input type="text" name="position" class="form-control" id="position" required>
+                      <div class="error-msg">Error, input needed.</div>
+                    </div>
+                    <button data-target="#step-0" data-toggle="tab" class="tpatom-button tpatom-button--primary tpatom-button--prevBtn pw-form__prevbtn__scf d-inline-flex flex-row-reverse mr-2">Previous<i class="tpatom-button__icon icon-Chevron_Right"></i></button>
+                    <button data-target="#step-final" data-toggle="tab" class="tpatom-button tpatom-button--secondary pw-form__nextbtn form-submit">next!!<i class="tpatom-button__icon icon-Chevron_Right"></i></button>
+                    <div class="pw-progress row no-gutters">
+                      <div class="pw-progress__barwrapper col-md-7 mt-3">
+                        <div class="pw-progress__bar">
+                          <div class="pw-progress__point pw-progress__point--100"></div>
+                        </div>
+                        <div class="pw-progress__bar pw-progress__bar--blue">
+                          <div class="pw-progress__point pw-progress__point--blue"></div>
+                          <div class="pw-progress__point pw-progress__point--blue pw-progress__point--big"></div>
+                        </div>
+                      </div>
+                      <div class="pw-progress__info col-md-5 mt-3">
+                        Step 4 of 4
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 d-none d-md-block">
+                    <div class="info-box d-flex flex-column">
+                      <div class="info-group mb-3 first-name">
+                        <label>First Name</label>
+                        <p class="first-name"></p>
+                      </div>
+                      <div class="info-group mb-3 last-name">
+                        <label>Last Name</label>
+                        <p class="last-name"></p>
+                      </div>
+                      <div class="info-group mb-3 email-address">
+                        <label>Email</label>
+                        <p class="email-address"></p>
+                      </div>
+                      <div class="info-group company isPro">
+                        <label>Company</label>
+                        <p class="company"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" role="tabpanel" id="step-final">
+                <h4 class="tpatom-heading tpatom-heading--small softc-last-js mb-4"></h4>
+                <div class="images row">
+                  <div class="col-md text-center mb-4">
+                    <img class="img-fluid" src="https://picsum.photos/250/140">
+                    <div class="text-left mt-3">
+                      <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor</h4>
+                      <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                    </div>
+                  </div>
+                  <div class="col-md text-center mb-4">
+                    <img class="img-fluid" src="https://picsum.photos/249/140">
+                    <div class="text-left mt-3">
+                      <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
+                      <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                    </div>
+                  </div>
+                  <div class="col-md text-center mb-4">
+                    <img class="img-fluid" src="https://picsum.photos/251/140">
+                    <div class="text-left mt-3">
+                      <h4 class="tpatom-heading tpatom-heading--small mb-3">Lorem ipsum dolor</h4>
+                      <p>Sed nibh justo, dictum a odio in, suscipit auctor purus</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button class="tpatom-button tpatom-button--link" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
