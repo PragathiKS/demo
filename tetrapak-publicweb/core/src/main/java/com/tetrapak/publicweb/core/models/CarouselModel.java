@@ -23,7 +23,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselModel {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(CarouselModel.class);
 
 	@Self
@@ -45,7 +45,7 @@ public class CarouselModel {
     private String pwPadding;
 
     private Integer carouselId = (int )(Math.random() * 1000 + 1);
-	
+
 	private List<BestPracticeLineBean> tabs = new ArrayList<>();
 
 	@PostConstruct
@@ -89,12 +89,12 @@ public class CarouselModel {
 					}
 				} else {
 
-					if (valueMap.containsKey("jcr:title")) {
-						bean.setPracticeTitle(valueMap.get("jcr:title", String.class));
+					if (valueMap.containsKey("practiceTitle")) {
+						bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
 					}
 
-					if (valueMap.containsKey("jcr:description")) {
-						bean.setVanityDescription(valueMap.get("jcr:description", String.class));
+					if (valueMap.containsKey("vanityDescription")) {
+						bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
 					}
 
 					if (valueMap.containsKey("ctaTexti18nKey")) {
@@ -112,7 +112,7 @@ public class CarouselModel {
 					if (valueMap.containsKey("practiceImageAltI18n")) {
 						bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
 					}
-					
+
 					if (valueMap.containsKey("practicePath")) {
 						String path = valueMap.get("practicePath", String.class);
 						bean.setPracticePath(LinkUtils.sanitizeLink(path));
@@ -154,5 +154,5 @@ public class CarouselModel {
 	public List<BestPracticeLineBean> getTabs() {
 		return tabs;
 	}
-	
+
 }
