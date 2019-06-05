@@ -68,19 +68,19 @@ class SoftConversionForm {
   checkStepAndContinue(e, $this) {
     const self = this;
     let parentTab = e.target.closest('.tab-pane');
-    let isValidStep = false;
+    let isValidStep = true;
     $('input', parentTab).each(function(){
       let fieldName = $this.attr('name');
       if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
         e.preventDefault();
         e.stopPropagation();
+        isValidStep = false;
         $this.closest('.form-group').addClass('hasError');
         $('.info-group.'+fieldName).removeClass('show');
       } else {
         $('p.'+fieldName).text($this.val());
         $('.info-group.'+fieldName).addClass('show');
         $this.closest('.form-group').removeClass('hasError');
-        isValidStep = true;
       }
     });
     if (isValidStep && self.cache.digitalData && self.cache.digitalData.formInfo) {

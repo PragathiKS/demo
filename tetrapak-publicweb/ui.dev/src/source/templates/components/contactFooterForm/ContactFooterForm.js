@@ -66,7 +66,7 @@ class ContactFooterForm {
     });
     this.cache.$tabtoggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
-      let isValid = false;
+      let isValidStep = true;
       $('input', parentTab).each(function(){
         let fieldName = $(this).attr('name');
         if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
@@ -74,11 +74,11 @@ class ContactFooterForm {
           e.stopPropagation();
           $(this).closest('.form-group').addClass('hasError');
           $('.info-group.'+fieldName).removeClass('show');
+          isValidStep = false;
         } else {
           $('p.'+fieldName).text($(this).val());
           $('.info-group.'+fieldName).addClass('show');
           $(this).closest('.form-group').removeClass('hasError');
-          isValid = true;
         }
         if($('.info-group.show', self.root).length) {
           $('.info-box', self.root).removeClass('d-none');
@@ -86,7 +86,7 @@ class ContactFooterForm {
           $('.info-box', self.root).addClass('d-none');
         }
       });
-      if (isValid) {
+      if (isValidStep) {
         const stepNumber = parentTab.getAttribute('data-stepNumber');
         const stepName = parentTab.getAttribute('data-stepName');
         if (self.cache.digitalData) {
