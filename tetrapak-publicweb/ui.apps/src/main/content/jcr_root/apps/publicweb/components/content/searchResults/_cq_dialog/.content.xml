@@ -86,7 +86,7 @@
                                         </column>
                                     </items>
                                 </field>
-                            </tabs>                            
+                            </tabs>
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -97,11 +97,23 @@
                                 sling:resourceType="cq/gui/components/common/tagspicker"
                                 fieldLabel="Filter Tags"
                                 name="./filterTagPaths"
-                                rootPath="/content/cq:tags"/>  
+                                rootPath="/content/cq:tags"/>
+                            <noResultsText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="No results text"
+                                required="true"
+                                name="./noResultsText"/>
+                            <noFilterMatches
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="No filters matches"
+                                required="true"
+                                name="./noFilterMatches"/>
                         </items>
                     </column>
                 </items>
-            </properties>            
+            </properties>
         </items>
     </content>
 </jcr:root>

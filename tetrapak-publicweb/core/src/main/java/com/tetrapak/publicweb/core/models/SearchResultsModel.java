@@ -36,7 +36,13 @@ public class SearchResultsModel {
 	
 	@Inject
 	private String resultsText;
-	
+
+  @Inject
+	private String noFilterMatches;
+
+  @Inject
+	private String noResultsText;
+
 	@Inject
 	private String firstTabLinkText;
 
@@ -123,6 +129,14 @@ public class SearchResultsModel {
 	public String getResultsText() {
 		return resultsText;
 	}
+
+	public String getNoResultsText() {
+  		return noResultsText;
+  }
+
+  public String getNoFilterMatches() {
+  		return noFilterMatches;
+  }
 
 	public String getResultsPerPage() {
   		return resultsPerPage;

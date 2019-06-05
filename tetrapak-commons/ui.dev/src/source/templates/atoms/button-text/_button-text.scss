@@ -13,6 +13,7 @@
     &__icon {
         @include padding-left($padding-xs);
         @include font-size($font-sm);
+        @include margin-right(0);
     }
 
     &--primary {
@@ -84,17 +85,21 @@
 
     &--prevBtn {
         .tpatom-button__icon {
-            @include line-height(18px, $font-sm);
-            @media #{$tablet-large} {
-                @include line-height($font-l, $font-sm);
-            }
-
             @include padding(0 $padding-xs 0 0);
             display: inline;
+            line-height: 34px;
+            @media #{$tablet-large} {
+                line-height: 40px;
+            }
 
             &::before {
+                @include margin(0 $margin-xs 0 0);
                 content: '\f112';
             }
+            &.icon-Chevron_Right {
+                @include margin-right(0);
+            }
         }
+
     }
 }
