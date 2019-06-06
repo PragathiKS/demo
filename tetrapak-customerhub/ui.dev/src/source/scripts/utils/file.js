@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY, ajaxMethods } from './constants';
+import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY } from './constants';
 import { logger } from './logger';
 import { $body } from './commonSelectors';
 import { isIOS } from './browserDetect';
@@ -63,6 +63,7 @@ export const fileWrapper = (config) => {
               reject(e.message);
             }
           } else if (isIOS()) {
+            /*
             resolve({ data, filename: contentFileName, extension });
             // Workaround as IOS browsers does not consistently handle file downloads of different file type
             const formData = $.extend({}, config.data);
@@ -75,6 +76,16 @@ export const fileWrapper = (config) => {
             const $form = $body.find('.js-file-download');
             $form.submit();
             $form.remove();
+            */
+
+            const servLetURL = `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + location.port : ''}${config.url}`;
+            const anchor = $('<a target="_blank" class="downloadPdf" id="downloadPdf">Target</a>');
+            anchor.attr({
+              href: servLetURL
+            });
+            $body.append(anchor); // Firefox does not react to in-memory elements
+            anchor[0].click(); // Triggers file download
+            anchor.remove();
           } else {
             // Handle other browsers
             try {
