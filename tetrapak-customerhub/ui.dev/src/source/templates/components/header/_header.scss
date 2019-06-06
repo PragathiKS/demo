@@ -64,7 +64,7 @@
     &__nav-right {
         @include padding-left($padding-xxxl);
         @include line-height(24px, $font-baseline);
-        @include top(30px);
+        @include top(32px);
         @include right(24px);
         text-align: right;
         position: absolute;

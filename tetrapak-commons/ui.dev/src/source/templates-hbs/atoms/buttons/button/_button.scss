@@ -31,7 +31,6 @@
         opacity: $opacity-disabled;
     }
 
-    &__text,
     .icon {
         vertical-align: middle;
     }
@@ -80,7 +79,7 @@
         color: $color-text-link;
 
         span {
-            @include margin-right($margin-sm);
+            @include margin-right($margin-xs);
         }
     }
 
