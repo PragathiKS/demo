@@ -331,12 +331,12 @@ function _downloadPdfExcel(...args) {
   }
   paramsData.customerData = data.selectedCustomerData;
   paramsData.status = {
-    'key': statusKey,
-    'desc': statusDesc
+    key: statusKey,
+    desc: statusDesc
   };
   paramsData.documentType = {
-    'key': docTypeKey,
-    'desc': docTypeDesc
+    key: docTypeKey,
+    desc: docTypeDesc
   };
   paramsData.documentNumber = docNumber;
   auth.getToken(({ data: authData }) => {
@@ -347,8 +347,7 @@ function _downloadPdfExcel(...args) {
     fileWrapper({
       url,
       data: {
-        params: JSON.stringify(paramsData),
-        token: authData.access_token
+        params: JSON.stringify(paramsData)
       },
       extension: _getExtension(type)
     }).then(() => {
@@ -458,6 +457,9 @@ class FinancialStatement {
         this.trackAnalytics('reset');
       });
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+    $(document).on('click', '#downloadPdf', function () {
+      window.open($(this).attr('href'), '_blank');
+    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

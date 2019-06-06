@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 @PrepareForTest({TableOperation.class, SaveOrderPreferencesServlet.class})
 public class SaveOrderPreferencesServletTest {
 
-	private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
+	private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";
 	private static final String SERVLET_RESOURCE_JSON = "allContent.json";
 
     AzureTableStorageServiceImpl azureTableStorageService = new AzureTableStorageServiceImpl();

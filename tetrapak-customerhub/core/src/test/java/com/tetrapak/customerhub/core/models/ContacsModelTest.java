@@ -18,8 +18,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class ContacsModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/contacts";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/contacts/jcr:content/root/responsivegrid/contacts";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/contacts";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/contacts/jcr:content/root/responsivegrid/contacts";
     private static final String RESOURCE_JSON = "documents.json";
     private ContactsModel contactsModel;
 
