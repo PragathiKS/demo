@@ -1,6 +1,6 @@
 
 
-cat PallyUrls.txt | while read LINE; do 
+cat Devops/PallyUrls.txt | while read LINE; do 
 
 
 if [[ -z $LINE ]]

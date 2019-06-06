@@ -75,6 +75,9 @@ public class PageLoadAnalyticsModel {
 	        siteLanguage = pageLocale.getLanguage();
 	        siteCountry = pageLocale.getCountry();
         }
+        if (StringUtils.isBlank(siteCountry)) {
+        	siteCountry = "gb";
+        }
         
         updateBreadcrumb();
         updateRunMode();
