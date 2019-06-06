@@ -2,15 +2,17 @@
 <div>
 	<sly data-sly-resource="${'breadcrmb' @ resourceType='publicweb/components/content/breadcrumb'}"/>
 </div>
-<div>
-  <div class="article-title">
-    <sly data-sly-resource="${'title' @ resourceType='publicweb/components/content/title'}"/>
+<div class="pw-article-page d-flex justify-content-center">
+  <div class="col-xs-12 col-md-10 col-xl-7">
+    <div class="pw-article-page__fixed-title">
+      <sly data-sly-resource="${'title' @ resourceType='publicweb/components/content/title'}"/>
+      <span data-sly-test="${articlePage.showArticleDate}">${articlePage.articleDate}</span>
+    </div>
+
+    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=articlePage.articleImagePath, altText=articlePage.imageAltTextI18n}" />
+
+    <sly data-sly-test="${articlePage.showStickyNavigation}" data-sly-use.pageStickyLink="/apps/publicweb/components/content/pageStickyLink/pageStickyLink-template.html" data-sly-call="${pageStickyLink.pageStickyLink_template @thumbnailImagePath=articlePage.thumbnailImagePath, stickyNavTitle=articlePage.stickyNavTitle, stickyNavDescription=articlePage.stickyNavDescription, navLinkText=articlePage.navLinkText, navLinkPath=articlePage.navLinkPath, navLinkTarget=articlePage.navLinkTarget}" />
+
+    <sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/>
   </div>
-  <p data-sly-test="${articlePage.showArticleDate}">${articlePage.articleDate}</p>
-  
-  <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=articlePage.articleImagePath, altText=articlePage.imageAltTextI18n}" />
-  
-  <sly data-sly-test="${articlePage.showStickyNavigation}" data-sly-use.pageStickyLink="/apps/publicweb/components/content/pageStickyLink/pageStickyLink-template.html" data-sly-call="${pageStickyLink.pageStickyLink_template @thumbnailImagePath=articlePage.thumbnailImagePath, stickyNavTitle=articlePage.stickyNavTitle, stickyNavDescription=articlePage.stickyNavDescription, navLinkText=articlePage.navLinkText, navLinkPath=articlePage.navLinkPath, navLinkTarget=articlePage.navLinkTarget}" />
-  
-  <sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/>
 </div>
