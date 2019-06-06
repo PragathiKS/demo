@@ -19,8 +19,8 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class ErrorModelTest {
     
     private ErrorModel errorModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en";
-    private static final String ERROR_CONTENT_ROOT = "/content/tetrapak/customerhub/en/error-404/jcr:content/root/responsivegrid/error";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
+    private static final String ERROR_CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/error-404/jcr:content/root/responsivegrid/error";
     private static final String ERROR_JSON = "allContent.json";
     
     @Rule
