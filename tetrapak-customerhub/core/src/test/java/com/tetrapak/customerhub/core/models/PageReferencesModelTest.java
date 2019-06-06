@@ -10,7 +10,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class PageReferencesModelTest {
 	
 	private PageReferencesModel pageReferencesModel= null;
-	private static final String PAGE_REFERENCE = "/content/tetrapak/customerhub/en/dashboard/jcr:content/root/responsivegrid/pagereference"; 
+	private static final String PAGE_REFERENCE = "/content/tetrapak/customerhub/global/en/dashboard/jcr:content/root/responsivegrid/pagereference";
 	private static final String PAGE_REFERENCE_RESOURCE_JSON = "pagereference.json"; 
 	
 	 @Rule

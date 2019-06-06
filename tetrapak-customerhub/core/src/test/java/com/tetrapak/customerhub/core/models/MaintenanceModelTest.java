@@ -19,8 +19,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class MaintenanceModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/installed-equipment";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/installed-equipment/jcr:content/root/responsivegrid/maintenance";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/installed-equipment";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/installed-equipment/jcr:content/root/responsivegrid/maintenance";
     private static final String RESOURCE_JSON = "maintenance.json";
     private MaintenanceModel maintenanceModelModel;
 

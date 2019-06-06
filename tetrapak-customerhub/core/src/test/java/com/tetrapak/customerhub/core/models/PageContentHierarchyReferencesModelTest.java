@@ -10,7 +10,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class PageContentHierarchyReferencesModelTest {
 	
 	private PageContentHierarchyReferencesModel pageContentHierarchyReferencesModel= null;
-	private static final String PAGE_CONTENT_HIERARCHY_REFERENCE = "/content/tetrapak/customerhub/en/dashboard/training/jcr:content/root/responsivegrid/pagecontenthierarchy"; 
+	private static final String PAGE_CONTENT_HIERARCHY_REFERENCE = "/content/tetrapak/customerhub/global/en/dashboard/training/jcr:content/root/responsivegrid/pagecontenthierarchy";
 	private static final String PAGE_CONTENT_HIERARCHY_REFERENCE_RESOURCE_JSON = "pagecontenthierachyreference.json"; 
 	
 	 @Rule

@@ -50,8 +50,8 @@ public class FinancialsResultsDownloadFileServletTest {
     @Mock
     private ResourceBundleProvider mockResourceBundleProvider;
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/financials";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/financials/jcr:content/root/responsivegrid/financialstatement";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/financials";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/financials/jcr:content/root/responsivegrid/financialstatement";
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";
     private static final String RESOURCE_JSON = "financialsresultspage.json";
     private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";

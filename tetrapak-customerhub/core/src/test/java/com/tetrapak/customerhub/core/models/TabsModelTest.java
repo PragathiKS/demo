@@ -14,8 +14,8 @@ import java.util.List;
 public class TabsModelTest {
 
     private TabsModel tabsModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/installed-equipment";
-    private static final String RESOURCE = "/content/tetrapak/customerhub/en/installed-equipment/jcr:content/root/responsivegrid/tabs";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/installed-equipment";
+    private static final String RESOURCE = "/content/tetrapak/customerhub/global/en/installed-equipment/jcr:content/root/responsivegrid/tabs";
     private static final String TABS_JSON = "tabs.json";
 
     @Rule
@@ -36,7 +36,7 @@ public class TabsModelTest {
         TabBean bean = list.get(0);
         Assert.assertEquals("icon-document", bean.getIconClass());
         Assert.assertEquals("Documents", bean.getLabelI18n());
-        Assert.assertEquals("/content/tetrapak/customerhub/en/installed-equipment.html", bean.getPageUrl());
+        Assert.assertEquals("/content/tetrapak/customerhub/global/en/installed-equipment.html", bean.getPageUrl());
     }
 
 }

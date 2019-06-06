@@ -20,8 +20,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class DocumentsModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/Documents";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/Documents/jcr:content/root/responsivegrid/documents";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/Documents";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/Documents/jcr:content/root/responsivegrid/documents";
     private static final String RESOURCE_JSON = "documents.json";
     private DocumentsModel documentsModel;
 
