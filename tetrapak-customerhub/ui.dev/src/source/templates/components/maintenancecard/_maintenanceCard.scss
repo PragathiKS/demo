@@ -1,6 +1,6 @@
 .tp-maintenance-card {
     &__events {
-        @media #{$desktop} {
+        @media #{$tablet} {
             float: left;
             width: 50%;
         }
@@ -11,7 +11,7 @@
     }
 
     &__events-sidesection {
-        @media #{$desktop} {
+        @media #{$tablet} {
             @include padding-left($padding-l);
             float: right;
             width: 50%;
@@ -76,7 +76,7 @@
             @include border-radius($border-radius);
             background-color: $color-wild-sand;
 
-            @media #{$desktop} {
+            @media #{$tablet} {
                 @include padding($padding-l);
             }
 
