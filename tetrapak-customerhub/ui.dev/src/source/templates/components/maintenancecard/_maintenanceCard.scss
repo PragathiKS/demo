@@ -52,7 +52,7 @@
             &::before {
                 vertical-align: top;
 
-                @media #{$tablet} {
+                @media #{$desktop} {
                     transform: rotate(-90deg);
                 }
             }
@@ -83,7 +83,7 @@
             &.show+.tp-maintenance-card__event {
                 border-top: 1px solid $color-mercury;
 
-                @media #{$tablet} {
+                @media #{$desktop} {
                     border-top: 1px solid transparent;
                 }
             }
