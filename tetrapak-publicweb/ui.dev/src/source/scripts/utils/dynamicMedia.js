@@ -75,7 +75,7 @@ function _processImageAttributes(container) {
 
 export default {
   bindEvents() {
-    $(window).on('resize orientationchange', () => {
+    $(window).on('load resize orientationchange', () => {
       this.processImageAttributes();
     });
   },

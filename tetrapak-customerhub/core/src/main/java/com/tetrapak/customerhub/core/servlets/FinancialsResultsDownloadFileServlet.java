@@ -12,6 +12,8 @@ import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -31,77 +33,77 @@ import java.io.IOException;
  *
  * @author ruhsharm
  */
-@Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
-        "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-        "sling.servlet.resourceTypes=" + "customerhub/components/content/financialstatement",
-        "sling.servlet.selectors=" + "download",
-        "sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
-        "sling.servlet.extensions=" + CustomerHubConstants.PDF})
+@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
+		"sling.servlet.methods=" + HttpConstants.METHOD_POST, "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+		"sling.servlet.resourceTypes=" + "customerhub/components/content/financialstatement",
+		"sling.servlet.selectors=" + "download", "sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
+		"sling.servlet.extensions=" + CustomerHubConstants.PDF })
 public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
 
-    private static final long serialVersionUID = 2323660841296799482L;
+	private static final long serialVersionUID = 2323660841296799482L;
 
-    @Reference
-    private FinancialsResultsApiService financialsResultsApiService;
+	@Reference
+	private FinancialsResultsApiService financialsResultsApiService;
 
-    @Reference
-    private FinancialsResultsPDFService generatePDF;
+	@Reference
+	private FinancialsResultsPDFService generatePDF;
 
-    @Reference
-    private FinancialsResultsExcelService excelService;
+	@Reference
+	private FinancialsResultsExcelService excelService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsDownloadFileServlet.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsDownloadFileServlet.class);
 
-    @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
-    }
+	@Override
+	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
 
-    @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-        final String extension = request.getRequestPathInfo().getExtension();
-        String params = request.getParameter("params");
+	@Override
+	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+		final String extension = request.getRequestPathInfo().getExtension();
+		String params = request.getParameter("params");
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
 
-        Params paramsRequest = gson.fromJson(params, Params.class);
-        final String status = paramsRequest.getStatus().getKey();
-        final String documentType = paramsRequest.getDocumentType().getKey();
-        final String invoiceDateFrom = paramsRequest.getEndDate();
-        final String customerkey = paramsRequest.getCustomerData().getKey();
-        final String token = request.getParameter("token");
+		Params paramsRequest = gson.fromJson(params, Params.class);
+		final String status = paramsRequest.getStatus().getKey();
+		final String documentType = paramsRequest.getDocumentType().getKey();
+		final String invoiceDateFrom = paramsRequest.getEndDate();
+		final String customerkey = paramsRequest.getCustomerData().getKey();
+		final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
+				: request.getCookie("authToken").getValue();
+		LOGGER.debug("Got authToken from cookie : {}", token);
+		JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(status, documentType,
+				invoiceDateFrom, customerkey, token);
 
-        JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(status, documentType,
-                invoiceDateFrom, customerkey, token);
+		JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
+		boolean flag = false;
+		FinancialStatementModel financialStatementModel = request.getResource().adaptTo(FinancialStatementModel.class);
 
-        boolean flag = false;
-        FinancialStatementModel financialStatementModel = request.getResource().adaptTo(FinancialStatementModel.class);
+		if (null == financialStatementModel) {
+			LOGGER.error("FinancialStatementModel is null!");
+		} else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
+			LOGGER.error("Unable to retrieve response from API got status code:{}", status);
+		} else {
+			JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
+			Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
+			if (CustomerHubConstants.PDF.equals(extension)) {
+				flag = generatePDF.generateFinancialsResultsPDF(request, response, results, paramsRequest,
+						financialStatementModel);
+			} else if (CustomerHubConstants.EXCEL.equalsIgnoreCase(extension)) {
+				flag = excelService.generateFinancialsResultsExcel(request, response, results, paramsRequest);
+			} else {
+				LOGGER.error("File type not specified for the download operation.");
+			}
+		}
 
-        if (null == financialStatementModel) {
-            LOGGER.error("FinancialStatementModel is null!");
-        } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
-            LOGGER.error("Unable to retrieve response from API got status code:{}", status);
-        } else {
-            JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
-            Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
-            if (CustomerHubConstants.PDF.equals(extension)) {
-                flag = generatePDF.generateFinancialsResultsPDF(request, response, results, paramsRequest,
-                        financialStatementModel);
-            } else if (CustomerHubConstants.EXCEL.equalsIgnoreCase(extension)) {
-                flag = excelService.generateFinancialsResultsExcel(request, response, results, paramsRequest);
-            } else {
-                LOGGER.error("File type not specified for the download operation.");
-            }
-        }
-
-        if (!flag) {
-            LOGGER.error("Financial results file download failed!");
-            HttpUtil.sendErrorMessage(response);
-        }
-    }
+		if (!flag) {
+			LOGGER.error("Financial results file download failed!");
+			HttpUtil.sendErrorMessage(response);
+		}
+	}
 
 }
