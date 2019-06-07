@@ -23,6 +23,9 @@ public class TitleModel {
     private String titleText;
 
     @Inject
+    private String headingFontSize;
+
+    @Inject
     private String headingType;
 
     @PostConstruct
@@ -32,11 +35,15 @@ public class TitleModel {
             PageManager pageManager = resolver.adaptTo(PageManager.class);
             Page currentPage = pageManager.getContainingPage(resource);
             titleText = currentPage.getTitle();
+            headingFontSize = "large";
         }
 
     }
     public String getTitleText() {
         return titleText;
+    }
+    public String getHeadingFontSize() {
+        return headingFontSize;
     }
 
     public String getHeadingType() {

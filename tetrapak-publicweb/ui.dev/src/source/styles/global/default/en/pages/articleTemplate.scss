@@ -9,5 +9,9 @@
 
     &__fixed-title {
         @include margin-bottom($margin-l);
+
+        .pw-title {
+            margin-bottom: 0;
+        }
     }
 }
