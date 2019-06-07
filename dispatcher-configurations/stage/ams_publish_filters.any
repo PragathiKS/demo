@@ -43,3 +43,4 @@
 /0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
 /0024 { /type "allow" /method "GET" /url "/bin/customerhub/token-generator" }
 /0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/en/dashboard/jcr:content/root/responsivegrid/orderingcard.preference.json" }  ## allow POSTs to update the order preferences
+/0026 { /type "allow" /method "GET" /url "/bin/customerhub/invoice/document*" }
