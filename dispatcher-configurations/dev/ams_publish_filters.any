@@ -45,3 +45,4 @@
 /0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/*/orderingcard.preference.json" }  ## allow POSTs to update the order preferences
 /0026 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/*/introscreen" }  ## allow GET calls to introscreen
 /0027 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for PW services
+/0028 { /type "allow" /method "GET" /url "/bin/customerhub/invoice/document*" }

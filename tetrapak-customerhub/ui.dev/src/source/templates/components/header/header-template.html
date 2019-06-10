@@ -27,7 +27,7 @@
       <sly data-sly-test="${data.rightNavDisplay}">
         <div class="tp-header__nav-right">
           <span class="tp-header__user icon-Avatar">
-              <sly data-sly-test="!${cookie.userName}">${data.getUserInfoI18n}</sly>
+              <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
               <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
           </span>
         </div>

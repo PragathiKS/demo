@@ -87,3 +87,9 @@ export default {
     this.processImageAttributes();
   }
 };
+
+export const dynMedia = {
+  processImages() {
+    return _processImageAttributes.apply(this, arguments);
+  }
+};

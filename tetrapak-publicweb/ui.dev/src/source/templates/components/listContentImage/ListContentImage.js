@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { digitalData } from '../../../scripts/common/common';
+import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class ListContentImage {
   constructor({ el }) {
@@ -46,6 +47,7 @@ class ListContentImage {
         }
       }
       self.setActiveTab($this);
+      dynMedia.processImages();
     });
     $(document).ready(() => {
       let width = window.innerWidth || document.body.clientWidth;

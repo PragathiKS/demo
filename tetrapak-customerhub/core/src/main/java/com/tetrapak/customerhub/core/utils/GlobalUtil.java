@@ -116,9 +116,16 @@ public class GlobalUtil {
 		return isRunModeAvailable("dev");
 	}
 
-	/**
-	 * Method to check the run mode staging to execute the launch js for staging
-	 * environment -r stage
+	 /**
+     * Method to check the run mode QA to execute the launch js for QA environment -r test
+     *
+     * @return boolean
+     */
+    public static boolean isRunModeQA() {
+        return isRunModeAvailable("qa");
+    }
+    
+    /**
 	 *
 	 * @return boolean
 	 */
