@@ -21,35 +21,15 @@
 
         @media #{$desktop} {
             @include padding-bottom($font-sm);
-            display: table;
-        }
-
-        &-data {
-            @include padding-top($padding-xs);
-            @include padding-bottom($padding-sm);
-
-            @media #{$desktop} {
-                display: table-row;
-                padding: 0;
-            }
         }
 
         &-label {
             font-family: $font-bold;
-            @include padding-right($margin-l);
-
-            @media #{$desktop} {
-                @include padding-top($padding-xs);
-                @include padding-bottom($padding-sm);
-                display: table-cell;
-            }
         }
 
         &-text {
             @media #{$desktop} {
-                @include padding-top($padding-xs);
-                @include padding-bottom($padding-sm);
-                display: table-cell;
+                @include margin-right($margin-xxxl + $margin-xxxl);
             }
         }
     }
