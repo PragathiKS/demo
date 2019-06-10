@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 
@@ -81,8 +80,8 @@ module.exports = function (config) {
         }
       }
     },
-    webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
+    webpackMiddleware: {
+      stats: 'errors-only'
     }
   });
 };
