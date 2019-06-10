@@ -9,7 +9,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
-import { getURL } from '../../../scripts/utils/uri';
+//import { getURL } from '../../../scripts/utils/uri';
 
 /**
  *
@@ -152,7 +152,7 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetail',
       url: {
-        path: getURL($this.cache.apiUrl),
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/orderDetailsParts.json',
         data: {
           'order-number': $this.cache.orderNumber,
           top: ORDER_DETAILS_ROWS_PER_PAGE
@@ -224,7 +224,7 @@ function _renderPaginateData() {
     render.fn({
       template: 'deliveryDetail',
       url: {
-        path: getURL($this.cache.apiUrl),
+        path: '/apps/settings/wcm/designs/customerhub/jsonData/orderDetailsParts.json',
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,

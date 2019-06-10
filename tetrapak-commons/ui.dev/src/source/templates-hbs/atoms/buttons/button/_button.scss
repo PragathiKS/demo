@@ -120,7 +120,10 @@
         color: $color-congress-blue;
         transition: background-color $anim-speed-quick ease;
 
-        &:hover:not([disabled]),
+        &:hover:not([disabled]) {
+            color: $color-jordy-blue;
+        }
+
         &.active {
             background-color: $color-congress-blue;
             color: $color-white;
