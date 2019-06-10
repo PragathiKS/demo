@@ -4,22 +4,22 @@
     
     <sly data-sly-test.h4="${data.headingType == 'h4'}">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h4_template @ headingText=data.titleText}"/>
+           data-sly-call="${heading.heading_h4_template @ headingText=data.titleText, variant=data.headingFontSize}"/>
     </sly>
     
     <sly data-sly-test.h3="${!h4 && data.headingType == 'h3'}">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h3_template @ headingText=data.titleText}"/>
+           data-sly-call="${heading.heading_h3_template @ headingText=data.titleText, variant=data.headingFontSize}"/>
     </sly>
     
     <sly data-sly-test.h2="${!h4 && !h3 && data.headingType == 'h2'}">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h2_template @ headingText=data.titleText}"/>
+           data-sly-call="${heading.heading_h2_template @ headingText=data.titleText, variant=data.headingFontSize}"/>
     </sly>
     
     <sly data-sly-test="${!h4 && !h3 && !h2}">
       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-           data-sly-call="${heading.heading_h1_template @ headingText=data.titleText}"/>
+           data-sly-call="${heading.heading_h1_template @ headingText=data.titleText, variant=data.headingFontSize}"/>
     </sly>
     
   </div>
