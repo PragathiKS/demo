@@ -105,6 +105,11 @@
     "xmlbuilder": "^13.0.2"
   },
   "engines": {
-    "node": ">=0.8.0"
-  }
+    "node": ">=8.0.0"
+  },
+  "browserslist": [
+    ">0.5%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
 }
