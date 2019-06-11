@@ -26,6 +26,12 @@
         &-label {
             font-family: $font-bold;
         }
+
+        &-text {
+            @media #{$desktop} {
+                @include margin-right($margin-xxxl + $margin-xxxl);
+            }
+        }
     }
 
     &__address {
