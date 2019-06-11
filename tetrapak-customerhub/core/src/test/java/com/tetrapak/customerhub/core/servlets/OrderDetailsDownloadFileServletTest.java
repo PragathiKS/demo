@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import javax.servlet.http.Cookie;
+
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -44,8 +46,8 @@ public class OrderDetailsDownloadFileServletTest {
 	@Mock
 	private ResourceBundleProvider mockResourceBundleProvider;
 
-	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts";
-	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
+	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/ordering/order-history/order-details-parts";
+	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
 	private static final String RESOURCE_JSON = "order-detailspage.json";
 	private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";
 	private static final String I18_RESOURCE_JSON = "/orderDetailsI18n.json";
@@ -64,6 +66,8 @@ public class OrderDetailsDownloadFileServletTest {
 		aemContext.currentResource(COMPONENT_PATH);
 		aemContext.request().setServletPath(COMPONENT_PATH);
 		aemContext.request().setMethod(HttpConstants.METHOD_POST);
+		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
+		aemContext.request().addCookie(cookie);
 	}
 
 	@Test

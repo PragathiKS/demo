@@ -9,18 +9,78 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
-import { resolveQuery } from '../../../scripts/common/common';
+import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';
+import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
 
-function _trackAnalytics(type) {
+/**
+ * Disables calendar next button
+ * @param {object} $this Class context
+ */
+function _disableCalendarNext($this) {
+  // Check if current visible months contain current month
+  const currentMonth = moment().month();
+  const currentYear = moment().year();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  if (
+    visibleMonths.includes(currentMonth)
+    && visibleYears.includes(currentYear)
+  ) {
+    $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
+  } else {
+    $this.root.find('.js-calendar-next').removeAttr('disabled');
+  }
+}
 
+/**
+ * Initializes calendar
+ * @param {boolean} isRange Switch for range selector
+ */
+function _initializeCalendar(isRange) {
+  const { $rangeSelector, dateConfig, picker } = this.cache;
+  const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+  if (rangeSelectorEl) {
+    const currentConfig = $.extend({}, dateConfig);
+    if (isRange) {
+      $.extend(currentConfig, {
+        field: rangeSelectorEl,
+        singleDate: false,
+        numberOfMonths: (isMobileMode() ? 1 : 2),
+        separator: DATE_RANGE_SEPARATOR,
+        onSelectStart: () => {
+          this.root.find('.js-calendar').attr('disabled', 'disabled');
+        },
+        onSelectEnd: () => {
+          this.root.find('.js-calendar').removeAttr('disabled');
+        }
+      });
+    } else {
+      $.extend(currentConfig, {
+        field: rangeSelectorEl
+      });
+    }
+    if (picker) {
+      picker.destroy();
+    }
+    this.cache.picker = new Lightpick(currentConfig);
+    if (isRange && $rangeSelector.length) {
+      const [, endDate] = $rangeSelector.val().split(DATE_RANGE_SEPARATOR);
+      this.cache.picker.gotoDate(endDate);
+    }
+    _disableCalendarNext(this);
+    $(window).off('media.changed').on('media.changed', () => {
+      this.initializeCalendar(isRange);
+    });
+  }
+}
+
+function _trackAnalytics(type) {
   const $this = this;
   const { $filterForm } = $this.cache;
   const { statementOfAccount = '' } = $this.cache.i18nKeys;
-
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
@@ -159,26 +219,6 @@ function _renderFilters() {
 }
 
 /**
- * Disables calendar next button
- * @param {object} $this Class context
- */
-function _disableCalendarNext($this) {
-  // Check if current visible months contain current month
-  const currentMonth = moment().month();
-  const currentYear = moment().year();
-  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
-  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
-  if (
-    visibleMonths.includes(currentMonth)
-    && visibleYears.includes(currentYear)
-  ) {
-    $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
-  } else {
-    $this.root.find('.js-calendar-next').removeAttr('disabled');
-  }
-}
-
-/**
  * Sets date filter
  * @param {string} status Status
  * @param {string} selectedDate Selected date
@@ -187,7 +227,7 @@ function _setDateFilter(status, selectedDate) {
   const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
   if (selectedDate) {
     $dateSelector.val(selectedDate);
-    this.initializeCalendar((selectedDate.split(' - ').length > 1));
+    this.initializeCalendar((selectedDate.split(DATE_RANGE_SEPARATOR).length > 1));
   } else {
     const endDate = moment(Date.now()).format(DATE_FORMAT);
     if (
@@ -231,7 +271,7 @@ function _getFilterQuery() {
   const filters = $filterForm.serialize();
   const filterProps = deparam(filters);
   if (filterProps.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProps.daterange.split(' - ');
+    const [orderdateFrom, orderdateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
     filterProps['invoicedate-from'] = orderdateFrom.trim();
     if (orderdateTo) {
       filterProps['invoicedate-to'] = orderdateTo.trim();
@@ -291,12 +331,12 @@ function _downloadPdfExcel(...args) {
   }
   paramsData.customerData = data.selectedCustomerData;
   paramsData.status = {
-    'key': statusKey,
-    'desc': statusDesc
+    key: statusKey,
+    desc: statusDesc
   };
   paramsData.documentType = {
-    'key': docTypeKey,
-    'desc': docTypeDesc
+    key: docTypeKey,
+    desc: docTypeDesc
   };
   paramsData.documentNumber = docNumber;
   auth.getToken(({ data: authData }) => {
@@ -307,8 +347,7 @@ function _downloadPdfExcel(...args) {
     fileWrapper({
       url,
       data: {
-        params: JSON.stringify(paramsData),
-        token: authData.access_token
+        params: JSON.stringify(paramsData)
       },
       extension: _getExtension(type)
     }).then(() => {
@@ -358,6 +397,7 @@ class FinancialStatement {
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
+      skip: 1,
       inline: true,
       maxDate: Date.now(),
       dropdowns: false,
@@ -381,36 +421,8 @@ class FinancialStatement {
       _disableCalendarNext($this);
     }
   }
-  initializeCalendar(isRange) {
-    const $this = this;
-    const { $rangeSelector, dateConfig, picker } = this.cache;
-    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
-    if (rangeSelectorEl) {
-      const currentConfig = $.extend({}, dateConfig);
-      if (isRange) {
-        $.extend(currentConfig, {
-          field: rangeSelectorEl,
-          singleDate: false,
-          numberOfMonths: 2,
-          separator: ' - ',
-          onSelectStart() {
-            $this.root.find('.js-calendar').attr('disabled', 'disabled');
-          },
-          onSelectEnd() {
-            $this.root.find('.js-calendar').removeAttr('disabled');
-          }
-        });
-      } else {
-        $.extend(currentConfig, {
-          field: rangeSelectorEl
-        });
-      }
-      if (picker) {
-        picker.destroy();
-      }
-      this.cache.picker = new Lightpick(currentConfig);
-      _disableCalendarNext(this);
-    }
+  initializeCalendar() {
+    return _initializeCalendar.apply(this, arguments);
   }
   renderFilters() {
     return _renderFilters.apply(this, arguments);
@@ -445,6 +457,9 @@ class FinancialStatement {
         this.trackAnalytics('reset');
       });
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+    $(document).on('click', '#downloadPdf', function () {
+      window.open($(this).attr('href'), '_blank');
+    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

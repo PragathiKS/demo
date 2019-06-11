@@ -7,9 +7,9 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize, getI18n } from '../../../scripts/common/common';
+import { sanitize, getI18n, isMobileMode } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
 import { getURL } from '../../../scripts/utils/uri';
 
@@ -30,6 +30,41 @@ function _disableCalendarNext($this) {
     $this.root.find('.js-calendar-next').attr('disabled', 'disabled');
   } else {
     $this.root.find('.js-calendar-next').removeAttr('disabled');
+  }
+}
+
+function _initializeCalendar(reset) {
+  const { $rangeSelector } = this.cache;
+  const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+  if (rangeSelectorEl) {
+    // Initialize inline calendar
+    const { picker } = this.cache;
+    if (picker && reset) {
+      picker.destroy();
+    }
+    this.cache.picker = new Lightpick({
+      field: rangeSelectorEl,
+      singleDate: false,
+      numberOfMonths: (isMobileMode() ? 1 : 2),
+      inline: true,
+      skip: 1,
+      maxDate: Date.now(),
+      dropdowns: false,
+      format: DATE_FORMAT,
+      separator: DATE_RANGE_SEPARATOR,
+      onSelectStart: () => {
+        this.root.find('.js-calendar').attr('disabled', 'disabled');
+      },
+      onSelectEnd: () => {
+        this.root.find('.js-calendar').removeAttr('disabled');
+      }
+    });
+    const [, endDate] = $rangeSelector.val().split(DATE_RANGE_SEPARATOR);
+    this.cache.picker.gotoDate(endDate);
+    _disableCalendarNext(this);
+    $(window).off('media.changed').on('media.changed', () => {
+      this.initializeCalendar(reset);
+    });
   }
 }
 
@@ -196,7 +231,7 @@ function _setFilters(isModifiedSearch) {
   const filters = this.cache.$filters.serialize();
   const filterProp = deparam(filters);
   if (filterProp.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
+    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(DATE_RANGE_SEPARATOR);
     filterProp['orderdate-from'] = orderdateFrom.trim();
     filterProp['orderdate-to'] = orderdateTo.trim();
     delete filterProp.daterange;
@@ -396,34 +431,8 @@ class OrderSearch {
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
-  initializeCalendar(reset) {
-    const $this = this;
-    const { $rangeSelector } = this.cache;
-    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
-    if (rangeSelectorEl) {
-      // Initialize inline calendar
-      const { picker } = this.cache;
-      if (picker && reset) {
-        picker.destroy();
-      }
-      this.cache.picker = new Lightpick({
-        field: rangeSelectorEl,
-        singleDate: false,
-        numberOfMonths: 2,
-        inline: true,
-        maxDate: Date.now(),
-        dropdowns: false,
-        format: DATE_FORMAT,
-        separator: ' - ',
-        onSelectStart() {
-          $this.root.find('.js-calendar').attr('disabled', 'disabled');
-        },
-        onSelectEnd() {
-          $this.root.find('.js-calendar').removeAttr('disabled');
-        }
-      });
-      _disableCalendarNext(this);
-    }
+  initializeCalendar() {
+    return _initializeCalendar.apply(this, arguments);
   }
   openRangeSelector() {
     this.cache.$modal.modal('show');
