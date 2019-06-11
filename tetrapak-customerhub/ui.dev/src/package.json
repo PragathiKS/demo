@@ -34,8 +34,8 @@
     "sasslintDevWin": "sass-lint --config ./sass-lint-dev.yml ./source/templates/components/**/*.scss -v -q --color",
     "sasslinter": "node sasslinter",
     "sasslinterDev": "node sasslinter --development",
-    "test": "karma start karma.conf.js",
-    "createClientlib": "create-clientlib --config=config.json"
+    "test": "karma start karma.conf.js --color",
+    "createClientlib": "create-clientlib --config=config.json --color"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -45,7 +45,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/runtime": "^7.4.5",
     "aemsync": "1.0.2",
-    "argonui-clientlibs": "0.0.1",
+    "argonui-clientlibs": "0.0.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-istanbul": "^5.1.4",

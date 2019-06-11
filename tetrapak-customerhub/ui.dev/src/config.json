@@ -237,8 +237,8 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/customerhub/clientlibs/global.publish",
-        "apps/settings/wcm/designs/customerhub/clientlibs/common.publish",
-        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js"
+        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js",
+        "apps/settings/wcm/designs/customerhub/clientlibs/common.publish"
       ]
     },
     "default_en": {
