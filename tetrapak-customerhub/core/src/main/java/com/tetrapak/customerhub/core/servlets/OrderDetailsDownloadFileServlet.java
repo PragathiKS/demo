@@ -1,6 +1,9 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import java.io.IOException;
+
 import javax.servlet.Servlet;
+import javax.servlet.ServletException;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -30,13 +33,12 @@ import com.tetrapak.customerhub.core.utils.HttpUtil;
  * @author Nitin Kumar
  * @author Swati Lamba
  */
-@Component(service = Servlet.class, property = {Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
-        "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-        "sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
-		"sling.servlet.selectors=" + "parts",
-		"sling.servlet.selectors=" + "packmat",
+@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=PDF and Excel Generator Servlet",
+		"sling.servlet.methods=" + HttpConstants.METHOD_POST, "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+		"sling.servlet.resourceTypes=" + "customerhub/components/content/orderdetails",
+		"sling.servlet.selectors=" + "parts", "sling.servlet.selectors=" + "packmat",
 		"sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
-        "sling.servlet.extensions=" + CustomerHubConstants.PDF })
+		"sling.servlet.extensions=" + CustomerHubConstants.PDF })
 public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 
 	private static final long serialVersionUID = 2323660841296799482L;
@@ -53,12 +55,19 @@ public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 
 	@Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	@Override
+	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) {
 		LOGGER.debug("HTTP GET request from OrderDetailsPDFServlet");
 
 		final String orderNumber = request.getParameter(CustomerHubConstants.ORDER_NUMBER);
-		final String token = request.getParameter(CustomerHubConstants.TOKEN);
-
+		final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
+				: request.getCookie("authToken").getValue();
+		LOGGER.debug("Got authToken from cookie : {}", token);
 		final String[] selectors = request.getRequestPathInfo().getSelectors();
 		final String orderType = selectors.length > 0 ? selectors[0] : StringUtils.EMPTY;
 
@@ -96,5 +105,4 @@ public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
 		}
 	}
 
-	
 }

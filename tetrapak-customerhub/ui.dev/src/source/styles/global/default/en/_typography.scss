@@ -1,7 +1,15 @@
+%font-family-heading {
+    font-family: $font-regular;
+
+    @media #{$desktop} {
+        font-family: $font-light;
+    }
+}
+
 h1 {
+    @extend %font-family-heading;
     @include font-size($font-m-xl);
     @include line-height(36px, $font-m-xl);
-    font-weight: lighter;
 
     @media #{$desktop} {
         @include font-size($font-xl);
@@ -10,15 +18,15 @@ h1 {
 }
 
 h2 {
+    @extend %font-family-heading;
     @include font-size($font-m-l);
     @include line-height(32px, $font-m-l);
-    font-weight: lighter;
 }
 
 h3 {
+    @extend %font-family-heading;
     @include font-size($font-m-md);
     @include line-height(28px, $font-m-md);
-    font-weight: lighter;
 
     @media #{$desktop} {
         @include font-size($font-md);
@@ -27,9 +35,9 @@ h3 {
 }
 
 h4 {
+    @extend %font-family-heading;
     @include font-size($font-m-baseline);
     @include line-height(28px, $font-m-baseline);
-    font-weight: lighter;
 
     @media #{$desktop} {
         @include font-size($font-baseline);

@@ -12,10 +12,12 @@ export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
 export const INVALID_BROWSER = 'Unsupported browser';
 export const DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE_RANGE_SEPARATOR = ' - ';
 export const ORDER_HISTORY_ROWS_PER_PAGE = 10;
 export const ORDER_DETAILS_ROWS_PER_PAGE = 10;
 export const FINANCIAL_DATE_RANGE_PERIOD = 45;
 export const NO_OF_EVENTS_PER_PAGE = 12;
+export const NO_OF_EVENTS_ON_CARD = 6;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
@@ -25,6 +27,16 @@ export const ajaxMethods = {
   POST: 'POST',
   PUT: 'PUT',
   DELETE: 'DELETE'
+};
+export const mediaTypes = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  DESKTOP: 'desktop'
+};
+export const orientationTypes = {
+  LANDSCAPE: 'landscape',
+  PORTRAIT: 'portrait',
+  UNSUPPORTED: 'unsupported'
 };
 // API URLs
 export const API_TOKEN = 'token-generator';

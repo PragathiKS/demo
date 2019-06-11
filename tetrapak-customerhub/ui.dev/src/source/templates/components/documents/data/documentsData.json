@@ -1,265 +1,31 @@
 {
-  "totalDocuments": 195,
+  "totalDocuments": 182,
   "results": [
     {
       "serial": "21204/00015",
-      "docCount": 29,
-      "docTypes": [
-        {
-          "type": "Rebuilding Manual",
-          "docCount": 8,
-          "documents": [
-            {
-              "name": "MKC Transformer",
-              "docNo": "3553043-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3553043-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Cooling System",
-              "docNo": "3558003-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3558003-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Folder Wing",
-              "docNo": "3394435-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394435-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK REPL Level Relay 90459-2742",
-              "docNo": "3497626-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3497626-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK Repl Motor Magazine",
-              "docNo": "3568060-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3568060-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "R2 0500 Software Upgrade",
-              "docNo": "3580837-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3580837-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Flap Heater Cylinder Bracket",
-              "docNo": "3548491-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3548491-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK REPL ADAM&EVA\n(Cabled)",
-              "docNo": "3568126-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3568126-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Spare Parts Catalogue",
-          "docCount": 5,
-          "documents": [
-            {
-              "name": "MKC Transformer",
-              "docNo": "3553045-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3553045-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Cooling System",
-              "docNo": "3558005-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3558005-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK Repl Motor Magazine",
-              "docNo": "3568062-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3568062-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK REPL ADAM&EVA (Cabled)",
-              "docNo": "3568128-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3568128-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Flap Heater Cylinder Bracket",
-              "docNo": "3548493-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3548493-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Update Pages",
-          "docCount": 6,
-          "documents": [
-            {
-              "name": "MKC Transformer",
-              "docNo": "3553044-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3553044-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Cooling System",
-              "docNo": "3558004-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3558004-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK REPL Level Relay 90459-2742",
-              "docNo": "3497627-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3497627-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3394390-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394390-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "UK REPL ADAM&EVA (Cabled)",
-              "docNo": "3568127-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3568127-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "MKC Flap Heater Cylinder Bracket",
-              "docNo": "3548492-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3548492-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Operation Manual",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3394387-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394387-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Conversion Manual",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3094732-0104",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3094732-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Electrical Manual",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3394389-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394389-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Safety Precautions",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "TP R2",
-              "docNo": "3394465-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394465-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Technical Manual",
-          "docCount": 3,
-          "documents": [
-            {
-              "name": "Lifting Equipment",
-              "docNo": "3094780-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3094780-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "TP R2",
-              "docNo": "3394383-0102",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394383-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            },
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3394459-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394459-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Maintenance Manual",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "TP R2",
-              "docNo": "3394388-0101",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3394388-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Installation Manual",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "TP R2",
-              "docNo": "3094731-0105",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3094731-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        },
-        {
-          "type": "Spare Parts Catalogue",
-          "docCount": 1,
-          "documents": [
-            {
-              "name": "Tetra Pak R2",
-              "docNo": "3094730-0109",
-              "lang": "en",
-              "location": "/techpub-html/html/?docno=3094730-0109&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "serial": "21204/00076",
-      "docCount": 169,
+      "docCount": 173,
       "docTypes": [
         {
           "type": "Spare Parts Catalogue",
-          "docCount": 32,
+          "docCount": 34,
           "documents": [
             {
               "name": "UK Product Pipe",
               "docNo": "3450553-0101",
               "lang": "en",
               "location": "/techpub-html/html/?docno=3450553-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Soft Volume Cam",
+              "docNo": "3465039-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3465039-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Cock Valve",
+              "docNo": "3425338-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3425338-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             },
             {
               "name": "UK REPL Flow Meter",
@@ -451,7 +217,7 @@
         },
         {
           "type": "Rebuilding Manual",
-          "docCount": 65,
+          "docCount": 67,
           "documents": [
             {
               "name": "UK REPL Stepper Drive",
@@ -538,6 +304,12 @@
               "location": "/techpub-html/html/?docno=3367620-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             },
             {
+              "name": "UK REPL Cock Valve",
+              "docNo": "3425337-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3425337-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
               "name": "UK Oil Filtering\nUnit",
               "docNo": "3429100-0101",
               "lang": "en",
@@ -578,6 +350,12 @@
               "docNo": "3463167-0101",
               "lang": "en",
               "location": "/techpub-html/html/?docno=3463167-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Soft Volume Cam",
+              "docNo": "3465038-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3465038-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             },
             {
               "name": "UK REPL Flow Meter",
@@ -1187,9 +965,9 @@
             },
             {
               "name": "TBA/19",
-              "docNo": "81702-0108",
+              "docNo": "81655-0108",
               "lang": "en",
-              "location": "/techpub-html/html/?docno=81702-0108&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+              "location": "/techpub-html/html/?docno=81655-0108&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             }
           ]
         },
@@ -1283,9 +1061,9 @@
           "documents": [
             {
               "name": "TBA/19",
-              "docNo": "81656-0107",
+              "docNo": "81656-0105",
               "lang": "en",
-              "location": "/techpub-html/html/?docno=81656-0107&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+              "location": "/techpub-html/html/?docno=81656-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             },
             {
               "name": "TB/19",
@@ -1322,6 +1100,144 @@
               "docNo": "81657-0104",
               "lang": "en",
               "location": "/techpub-html/html/?docno=81657-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "12345/12345",
+      "docCount": 8,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 5,
+          "documents": [
+            {
+              "name": "Gerth_SPC_test2",
+              "docNo": "2323234-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2323234-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth_SPC_test100",
+              "docNo": "1111111-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1111111-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth-bom01",
+              "docNo": "555555-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=555555-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth-SPC-Translation",
+              "docNo": "123123-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=123123-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Tetra Multi Shrink 65",
+              "docNo": "585524-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=585524-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK Brazil NR 12 ",
+              "docNo": "3337405-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3337405-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Technical Manual",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "Laboratory Package Checks",
+              "docNo": "1531354-0106",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531354-0106&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Update Pages",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "",
+              "docNo": "3337406-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3337406-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "65184/50853",
+      "docCount": 2,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK REPL Cylinder 90450-0099 TR",
+              "docNo": "3513292-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513292-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 0,
+          "documents": [
+            {
+              "name": "UK\nREPL Cylinder 90450-0099 TR",
+              "docNo": "3513290-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513290-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "65184/50854",
+      "docCount": 0,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK REPL Cylinder 90450-0099 TR",
+              "docNo": "3513292-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513292-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 0,
+          "documents": [
+            {
+              "name": "UK\nREPL Cylinder 90450-0099 TR",
+              "docNo": "3513290-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513290-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
             }
           ]
         }

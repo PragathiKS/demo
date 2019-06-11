@@ -37,12 +37,6 @@
 						fieldDescription="Enter Document Type Label i18n key"
 						fieldLabel="Document Type Label i18n key"
 						name="./documentTypeLabel" required="true" />
-					<totaldocumentslabel
-						jcr:primaryType="nt:unstructured"
-						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-						fieldDescription="Enter Total Documents Label i18n key"
-						fieldLabel="Total Documents Label i18n key"
-						name="./totalDocumentsLabel" required="true" />
 					<nodatamsg jcr:primaryType="nt:unstructured"
 						sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						fieldDescription="Enter no data msg i18n key"

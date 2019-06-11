@@ -298,15 +298,13 @@ function _downloadContent($this) {
   const self = $(this);
   const data = self.data();
   self.attr('disabled', 'disabled');
-  auth.getToken(({ data: authData }) => {
-    data.token = authData.access_token;
+  auth.getToken(() => {
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
     fileWrapper({
       extension: `${_getExtension(data.extnType)}`,
       url: pdfExcelUrl,
       data: {
-        orderNumber: data.orderNumber,
-        token: data.token
+        orderNumber: data.orderNumber
       }
     }).then(() => {
       self.removeAttr('disabled');

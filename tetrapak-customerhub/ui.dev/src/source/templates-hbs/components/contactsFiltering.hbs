@@ -1,0 +1,29 @@
+<h2 class="tp-contacts__filtering-heading">{{i18n key=i18nKeys.siteFilterHeading}}</h2>
+{{#if isError}}
+    {{#if i18nKeys.errorMsg}}
+        {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+    {{else}}
+        {{> atoms/error/error error=true message="cuhu.error.message"}}
+    {{/if}}
+{{else}}
+    {{#if noData}}
+        {{#if i18nKeys.noContactMsg}}
+            {{> atoms/error/error message=i18nKeys.noContactMsg}}
+        {{else}}
+            {{> atoms/error/error message="cuhu.nodata.message"}}
+        {{/if}}
+    {{else}}
+        <div class="row no-gutters">
+            <div class="tp-contacts__filter col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{> atoms/dropdown/dropdown options=allSites name="site" eleClasses="tp-contacts-filtering__site js-contacts-filtering__site" }}
+                    </div>
+                </div>
+            </div>
+            <div class="js-contacts__listing col-lg-12" aria-live="polite">
+
+            </div>
+        </div>
+    {{/if}}
+{{/if}}

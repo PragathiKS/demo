@@ -11,8 +11,8 @@ import org.junit.Test;
 public class OrderSearchModelTest {
 
     private OrderSearchModel orderSearchModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/ordering/order-history/jcr:content/root/responsivegrid/ordersearch";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/ordering/order-history/jcr:content/root/responsivegrid/ordersearch";
     private static final String RESOURCE_JSON = "allContent.json";
 
     @Rule
@@ -29,6 +29,6 @@ public class OrderSearchModelTest {
         String config = orderSearchModel.getConfig();
         Assert.assertTrue("config should contain search orders string", config.contains("Search Orders"));
         Assert.assertEquals("size", 5, orderSearchModel.getEnabledFields().size());
-        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/ordering/order-history.html", orderSearchModel.getOrderDetailLink());
+        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/en/ordering/order-history.html", orderSearchModel.getOrderDetailLink());
     }
 }
