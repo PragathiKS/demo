@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { digitalData } from '../../../scripts/common/common';
+import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class ListContentImage {
   constructor({ el }) {
@@ -33,8 +35,6 @@ class ListContentImage {
     this.cache.$tabMenuItemLink.click(function(e) {
       e.preventDefault();
       const $this = $( this );
-      let width = window.innerWidth || document.body.clientWidth;
-      let tabID   = $this.data( 'tab-id' );
       if (self.cache.digitalData) {
         self.cache.digitalData.linkClick = {};
         self.cache.digitalData.linkClick.linkType = 'internal';
@@ -46,33 +46,8 @@ class ListContentImage {
           _satellite.track('linkClicked'); //eslint-disable-line
         }
       }
-
-      // variables for the clicked organism only
-      const $tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', self.root ),
-        $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', self.root ),
-        $tabContent       = $( '.pw-listContentImage__contentTab', self.root );
-
-      if ( $this.hasClass('active' ) ) {
-        if (width < 768) {
-          $this.removeClass( 'active' );
-          $tabMenuItem.removeClass( 'active' );
-          $tabContent.removeClass( 'active' );
-        }
-      } else {
-        // set active class to Tab Menu List Item
-        $tabMenuItemLink.removeClass( 'active' );
-        $tabMenuItem.removeClass( 'active' );
-        $this.addClass( 'active' );
-        $this.closest('li').addClass( 'active' );
-
-        // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
-        $tabContent.removeClass( 'active' );
-        $.each( $tabContent, function() {
-          if ( $( this ).data( 'tab-id' ) === tabID ) {
-            $( this ).addClass( 'active' );
-          }
-        });
-      }
+      self.setActiveTab($this);
+      dynMedia.processImages();
     });
     $(document).ready(() => {
       let width = window.innerWidth || document.body.clientWidth;
@@ -81,6 +56,37 @@ class ListContentImage {
         this.cache.$tabMenuItem.first().addClass( 'active' );
       }
     });
+  }
+  setActiveTab($this) {
+    const self = this;
+    // variables for the clicked organism only
+    let width = window.innerWidth || document.body.clientWidth;
+    let tabID   = $this.data( 'tab-id' );
+    const $tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', self.root ),
+      $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', self.root ),
+      $tabContent       = $( '.pw-listContentImage__contentTab', self.root );
+
+    if ( $this.hasClass('active' ) ) {
+      if (width < 768) {
+        $this.removeClass( 'active' );
+        $tabMenuItem.removeClass( 'active' );
+        $tabContent.removeClass( 'active' );
+      }
+    } else {
+      // set active class to Tab Menu List Item
+      $tabMenuItemLink.removeClass( 'active' );
+      $tabMenuItem.removeClass( 'active' );
+      $this.addClass( 'active' );
+      $this.closest('li').addClass( 'active' );
+
+      // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
+      $tabContent.removeClass( 'active' );
+      $.each( $tabContent, function() {
+        if ( $( this ).data( 'tab-id' ) === tabID ) {
+          $( this ).addClass( 'active' );
+        }
+      });
+    }
   }
   init() {
     this.initCache();

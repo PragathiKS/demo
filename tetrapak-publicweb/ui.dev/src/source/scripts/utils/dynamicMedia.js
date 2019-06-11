@@ -75,7 +75,7 @@ function _processImageAttributes(container) {
 
 export default {
   bindEvents() {
-    $(window).on('resize orientationchange', () => {
+    $(window).on('load resize orientationchange', () => {
       this.processImageAttributes();
     });
   },
@@ -85,5 +85,11 @@ export default {
   init() {
     this.bindEvents();
     this.processImageAttributes();
+  }
+};
+
+export const dynMedia = {
+  processImages() {
+    return _processImageAttributes.apply(this, arguments);
   }
 };

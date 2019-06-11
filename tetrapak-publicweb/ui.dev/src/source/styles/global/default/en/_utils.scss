@@ -226,3 +226,47 @@ $progress-units: (
 .collapsing {
     transition: height $anim-speed-quick $anim-ease-out;
 }
+
+.richtext {
+    ol ol, ul ul {
+        @include padding(0 0 0 20px);
+    }
+    ol, ul {
+        li:before {
+            color: $color-congress-blue;
+        }
+    }
+    ul {
+        li:before {
+            @include margin-right($margin-sm);
+            content: '\2022';
+            color: $color-congress-blue;
+            display: inline-block;
+        }
+    }
+    ul ul ul {
+        li:before {
+          content: '\2012';
+          font-weight: bold;
+        }
+    }
+    ol {
+        counter-reset: section;
+        list-style-type: none;
+        li:before {
+            @include margin-right($margin-sm);
+            counter-increment: section;
+            content: counters(section, '.') ' ';
+        }
+    }
+    table {
+        td {
+            @include padding(8px);
+            border-bottom: 1px solid $color-mercury;
+        }
+        th {
+            @include padding(8px);
+            border-bottom: 1px solid $color-boulder;
+        }
+    }
+}

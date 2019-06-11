@@ -48,6 +48,17 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                     name="./hideContactFooterForm@Delete"
                                                     value="{Boolean}true"/>
+                                            <hideInSearch
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Hide in search?"
+                                                    value="true"
+                                                    name="./hideInSearch" />
+                                            <hideInSearchDelete
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                    name="./hideInSearch@Delete"
+                                                    value="{Boolean}true"/>
                                             <errorpages
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

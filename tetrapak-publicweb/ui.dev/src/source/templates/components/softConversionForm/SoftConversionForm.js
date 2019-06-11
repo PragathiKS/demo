@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil } from '../../../scripts/common/common';
+import { digitalData, storageUtil } from '../../../scripts/common/common';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_SOFT_CONVERSION } from '../../../scripts/utils/constants';
 
 class SoftConversionForm {
   cache = {};
@@ -31,6 +33,89 @@ class SoftConversionForm {
       } else {
         $('#softConversionModal input[name="'+data[i].name+'"]').val(data[i].value);
       }
+    }
+  }
+  checkAndSubmit(e, $this) {
+    const self = this;
+    let isvalid = true;
+    let parentTab = e.target.closest('.tab-pane');
+    $('input', parentTab).each(function(){
+      let fieldName = $this.attr('name');
+      if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
+        isvalid = false;
+        e.preventDefault();
+        e.stopPropagation();
+        $this.closest('.form-group').addClass('hasError');
+      }
+    });
+    if (isvalid) {
+      if (self.cache.digitalData && self.cache.digitalData.formInfo) {
+        self.cache.digitalData.formInfo.stepName = 'thank you';
+        if (self.cache.digitalData.formInfo.stepNo) {
+          delete self.cache.digitalData.formInfo.stepNo;
+        }
+        if (typeof _satellite !== 'undefined') { //eslint-disable-line
+          _satellite.track('form_tracking'); //eslint-disable-line
+        }
+      }
+      e.preventDefault();
+      self.storageFormData();
+      ajaxWrapper.getXhrObj({
+        url: API_SOFT_CONVERSION,
+        method: ajaxMethods.GET,
+        data: $('#softConversionModal form').serialize()
+      }).done(
+        () => {
+          let docpath = $('#softConversionModal input[name="docpath"]').val();
+          window.open(docpath, '_blank');
+          $('#softConversionModal').data('form-filled', true);
+          $('#softConversionModal .softc-title-js').addClass('d-none');
+          $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+        }
+      );
+    }
+  }
+  checkStepAndContinue(e, $this) {
+    const self = this;
+    let parentTab = e.target.closest('.tab-pane');
+    let isValidStep = true;
+    $('input', parentTab).each(function(){
+      let fieldName = $this.attr('name');
+      if ($this.prop('required') && ($this.val() === '') || (fieldName ==='email-address') && !self.validEmail($this.val())) {
+        e.preventDefault();
+        e.stopPropagation();
+        $this.closest('.form-group').addClass('hasError');
+        $('.info-group.'+fieldName).removeClass('show');
+        isValidStep = false;
+      } else {
+        $('p.'+fieldName).text($this.val());
+        $('.info-group.'+fieldName).addClass('show');
+        $this.closest('.form-group').removeClass('hasError');
+      }
+    });
+    if (isValidStep && self.cache.digitalData && self.cache.digitalData.formInfo) {
+      const stepNumber = parentTab.getAttribute('data-stepNumber');
+      const stepName = parentTab.getAttribute('data-stepName');
+      self.cache.digitalData.formInfo.stepName = stepName;
+      self.cache.digitalData.formInfo.stepNo = stepNumber;
+      if (stepNumber === '0') {
+        const userRole = $("input[name='group']:checked").val();  //eslint-disable-line
+        self.cache.digitalData.formInfo.userRoleSelected = userRole;
+      } else if (stepNumber === '1') {
+        delete self.cache.digitalData.formInfo.userRoleSelected;
+      }
+      if (typeof _satellite !== 'undefined') { //eslint-disable-line
+        _satellite.track('form_tracking'); //eslint-disable-line
+      }
+    }
+  }
+  setFields($this) {
+    if ($this.val() !== 'Professional') {
+      $('#softConversionModal .isPro').addClass('d-none');
+      $('#softConversionModal .isNotPro').removeClass('d-none');
+    } else {
+      $('#softConversionModal .isPro').removeClass('d-none');
+      $('#softConversionModal .isNotPro').addClass('d-none');
     }
   }
   bindEvents() {
@@ -71,68 +156,11 @@ class SoftConversionForm {
       }
     });
     this.cache.$submitBtn.click(function(e) {
-      let isvalid = true;
-      let parentTab = e.target.closest('.tab-pane');
-      $('input', parentTab).each(function(){
-        let fieldName = $(this).attr('name');
-        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
-          isvalid = false;
-          e.preventDefault();
-          e.stopPropagation();
-          $(this).closest('.form-group').addClass('hasError');
-        }
-      });
-      if (isvalid) {
-        self.cache.digitalData.formInfo.stepName = 'thank you';
-        if (self.cache.digitalData.formInfo.stepNo) {
-          delete self.cache.digitalData.formInfo.stepNo;
-        }
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('form_tracking'); //eslint-disable-line
-        }
-        self.storageFormData();
-        $(this).closest('form').submit();
-        let docpath = $('#softConversionModal input[name="docpath"]').val();
-        window.open(docpath, '_blank');
-        $('#softConversionModal').data('form-filled', true);
-        $('#softConversionModal .softc-title-js').addClass('d-none');
-        $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
-      }
+      self.checkAndSubmit(e, $(this));
     });
     this.cache.$tabtoggle.click(function(e) {
-      let parentTab = e.target.closest('.tab-pane');
-      const stepNumber = parentTab.getAttribute('data-stepNumber');
-      const stepName = parentTab.getAttribute('data-stepName');
-      $('input', parentTab).each(function(){
-        let fieldName = $(this).attr('name');
-        if ($(this).prop('required') && ($(this).val() === '') || (fieldName ==='email-address') && !self.validEmail($(this).val())) {
-          e.preventDefault();
-          e.stopPropagation();
-          $(this).closest('.form-group').addClass('hasError');
-          $('.info-group.'+fieldName).removeClass('show');
-        } else {
-          $('p.'+fieldName).text($(this).val());
-          $('.info-group.'+fieldName).addClass('show');
-          $(this).closest('.form-group').removeClass('hasError');
-        }
-      });
-      if (self.cache.digitalData) {
-        self.cache.digitalData.formInfo.stepName = stepName;
-        self.cache.digitalData.formInfo.stepNo = stepNumber;
-        if (stepNumber === '0') {
-          const userRole = $("input[name='group']:checked").val();  //eslint-disable-line
-          self.cache.digitalData.formInfo.userRoleSelected = userRole;
-        } else if (stepNumber === '1') {
-          delete self.cache.digitalData.formInfo.userRoleSelected;
-        }
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('form_tracking'); //eslint-disable-line
-        }
-      }
+      self.checkStepAndContinue(e, $(this));
     });
-    
-    
-    
     this.cache.$prevScfToggle.click(function(e) {
       let parentTab = e.target.closest('.tab-pane');
       const stepNumber = parentTab.getAttribute('data-stepNumber');
@@ -145,16 +173,8 @@ class SoftConversionForm {
         }
       }
     });
-    
-    
     this.cache.$radiobtns.click(function() {
-      if ($(this).val() !== 'Professional') {
-        $('#softConversionModal .isPro').addClass('d-none');
-        $('#softConversionModal .isNotPro').removeClass('d-none');
-      } else {
-        $('#softConversionModal .isPro').removeClass('d-none');
-        $('#softConversionModal .isNotPro').addClass('d-none');
-      }
+      self.setFields($(this));
     });
   }
   init() {

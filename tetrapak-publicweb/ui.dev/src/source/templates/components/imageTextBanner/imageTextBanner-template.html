@@ -13,8 +13,8 @@
        data-itb-linkSection="${data.analyticsLinkSection}">
     <div class="pw-banner__image-wrapper">
       <sly data-sly-test="${data.contrastLayer}" data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html" data-sly-call="${contrastLayer.contrastLayer_template @ variant=data.contrastLayer}"/>
-        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.mobileImage, altText=data.mobileImageAltI18n, className='pw-banner__image d-md-block d-lg-none'}" />
-        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.desktopImage, altText=data.desktopImageAltI18n, className='pw-banner__image d-none d-lg-block'}" />
+      <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.mobileImage, altText=data.mobileImageAltI18n, className='pw-banner__image d-md-block d-lg-none'}" />
+      <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.desktopImage, altText=data.desktopImageAltI18n, className='pw-banner__image d-none d-lg-block'}" />
     </div>
     <div class="pw-banner__content">
       <div data-sly-test="${data.bannerSubtitleI18n}" class="pw-banner__content__subtitle">

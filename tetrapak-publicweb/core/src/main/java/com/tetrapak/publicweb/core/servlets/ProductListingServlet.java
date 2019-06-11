@@ -101,7 +101,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 		// get search arguments	    
 		String productCategory = request.getParameter(PRODUCT_CATEGORY);	
 		String productRootPath = request.getParameter(PRODUCT_ROOT_PATH);	
-		log.info("Product category : " + productCategory);
+		log.info("Product category : {}", productCategory);
 		
 		
 		Gson gson = new Gson();
@@ -134,7 +134,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 	 */
 	public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
 		log.info("Executing getListOfProducts method.");
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		
 		map.put("path", productRootPath);
 		map.put("type", "cq:Page");
@@ -155,8 +155,8 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
                         
         // paging metadata
         log.info("Total number of results : {}", result.getTotalMatches());
-        List<ProductInfoBean> resources = new LinkedList<ProductInfoBean>();
-		if (result.getHits().size() == 0)
+        List<ProductInfoBean> resources = new LinkedList<>();
+		if (result.getHits().isEmpty())
 			return resources;
 
 		// add all the items to the result list
@@ -165,13 +165,16 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 			try {
 				log.info("Hit : {}", hit.getPath());
 				Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
-				ValueMap properties = res.adaptTo(ValueMap.class);
-				productItem.setTitle(properties.get("title", String.class)!=null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
-				productItem.setDescription(properties.get("vanityDescription", String.class)!=null ? properties.get("vanityDescription", String.class) : "");
-				productItem.setProductImage(properties.get("productImagePath", String.class)!=null ? properties.get("productImagePath", String.class) : "");
-				productItem.setImageAltText(properties.get("productImageAltI18n", String.class)!=null ? properties.get("productImageAltI18n", String.class) : "");
-				productItem.setLinkText(properties.get("ctaTexti18nKey", String.class)!=null ? properties.get("ctaTexti18nKey", String.class) : "");
-				productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));				
+				if(res!=null) {
+					ValueMap properties = res.adaptTo(ValueMap.class);
+					productItem.setTitle(properties.get("jcr:title", String.class)!=null ? properties.get("jcr:title", String.class) : "");
+					productItem.setDescription(properties.get("jcr:description", String.class)!=null ? properties.get("jcr:description", String.class) : "");
+					productItem.setProductImage(properties.get("productImagePath", String.class)!=null ? properties.get("productImagePath", String.class) : "");
+					productItem.setImageAltText(properties.get("productImageAltI18n", String.class)!=null ? properties.get("productImageAltI18n", String.class) : "");
+					productItem.setLinkText(properties.get("ctaTexti18nKey", String.class)!=null ? properties.get("ctaTexti18nKey", String.class) : "");
+					productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));		
+				}
+						
 			} catch (RepositoryException e) {
 				log.error("[performSearch] There was an issue getting the resource {}", hit.toString());
 			}
