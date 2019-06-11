@@ -221,6 +221,7 @@ function _renderMaintenanceFilters() {
       }
     }, (data) => {
       if (!data.isError && !data.noData) {
+        this.root.find('.js-maintenance-filtering__filters').addClass('tp-maintenance-filtering__filters');
         this.initPostCache();
         this.renderMaintenanceContact();
         this.renderCalendar(true);
