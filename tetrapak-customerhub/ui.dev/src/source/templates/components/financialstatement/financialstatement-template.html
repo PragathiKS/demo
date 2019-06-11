@@ -7,9 +7,9 @@
       <input type="hidden" id="downloadPdfExcelServletUrl" name="downloadPdfExcelServletUrl" value="${data.downloadPdfExcelServletUrl}" />
       <input type="hidden" id="downloadInvoice" name="downloadInvoice" value="${data.downloadInvoice}" />
       <div class="tp-financial-statement__select-customer-dropdown js-financial-statement__select-customer-dropdown" aria-live="polite">
+            <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
       </div>
     </div>
-
     <sly data-sly-use.summary="/apps/customerhub/components/content/financialsstatementsummary/financialsstatementsummary-template.html"
          data-sly-call="${summary.financialsstatementsummary_template}" />
   </div>
