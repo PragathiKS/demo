@@ -40,6 +40,11 @@
             @include font-size(18px);
         }
     }
+
+    &--small-flat {
+        @include font-size(24px);
+        @include line-height(32px, 24px);
+    }
 }
 
 .tpatom-subheading {

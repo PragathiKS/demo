@@ -1,4 +1,4 @@
-cat PallyUrlsPublicWeb.txt | while read LINE; do 
+cat Devops/PallyUrlsPublicWeb.txt | while read LINE; do 
 
 
 if [[ -z $LINE ]]

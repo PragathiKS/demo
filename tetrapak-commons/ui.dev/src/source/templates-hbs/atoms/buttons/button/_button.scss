@@ -1,7 +1,7 @@
 %default-btn {
     @include font-size($font-baseline);
     @include line-height(40px, $font-baseline);
-    @include padding(0 $padding-md);
+    @include padding(0 12px);
     @include letter-spacing(0.5px);
     font-family: $font-light;
 }
@@ -31,9 +31,19 @@
         opacity: $opacity-disabled;
     }
 
-    &__text,
     .icon {
         vertical-align: middle;
+    }
+
+    &--primary {
+        .icon {
+            @include font-size(12px);
+
+            &::before {
+                @include margin-bottom(1px);
+                vertical-align: middle;
+            }
+        }
     }
 
     &--primary {
@@ -69,7 +79,7 @@
         color: $color-text-link;
 
         span {
-            @include margin-right($margin-sm);
+            @include margin-right($margin-xs);
         }
     }
 
