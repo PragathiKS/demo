@@ -34,7 +34,8 @@
     "sasslintDevWin": "sass-lint --config ./sass-lint-dev.yml ./source/templates/components/**/*.scss -v -q --color",
     "sasslinter": "node sasslinter",
     "sasslinterDev": "node sasslinter --development",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "createClientlib": "create-clientlib --config=config.json"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -96,7 +97,8 @@
     "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.3.3",
     "webpack-shell-plugin": "^0.5.0",
-    "xmlbuilder": "^13.0.2"
+    "xmlbuilder": "^13.0.2",
+    "yargs": "^13.2.4"
   },
   "engines": {
     "node": ">=8.0.0"
