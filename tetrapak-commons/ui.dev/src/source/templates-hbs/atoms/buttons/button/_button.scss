@@ -31,10 +31,6 @@
         opacity: $opacity-disabled;
     }
 
-    .icon {
-        vertical-align: middle;
-    }
-
     &--primary {
         .icon {
             @include font-size(12px);
@@ -68,6 +64,7 @@
 
         span {
             @include margin-right($margin-xs);
+            vertical-align: middle;
         }
     }
 
@@ -121,7 +118,8 @@
         transition: background-color $anim-speed-quick ease;
 
         &:hover:not([disabled]) {
-            color: $color-jordy-blue;
+            color: $color-royal-blue;
+            font-weight: bold;
         }
 
         &.active {
