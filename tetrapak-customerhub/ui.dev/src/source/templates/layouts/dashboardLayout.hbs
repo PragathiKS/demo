@@ -37,9 +37,8 @@
 
      {{!-- Header component --}}
         <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
-             data-sly-use.cookie="/apps/customerhub/components/content/header/cookie.js"
              data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
-             data-sly-call="${headerLibs.header_template @data=headerModel, cookie=cookie}" />
+             data-sly-call="${headerLibs.header_template @data=headerModel}" />
                   {{!-- Navigation component --}}
              <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
                      data-sly-use.leftnavigationLib="/apps/customerhub/components/content/leftnavigation/leftnavigation-template.html"

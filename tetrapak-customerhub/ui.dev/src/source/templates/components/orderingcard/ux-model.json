@@ -1,8 +1,11 @@
 {
   "preferencesURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
-  "savedPreferences": ["orderNumber", "poNumber"],
+  "savedPreferences": [],
   "defaultFields": [
-    "status"
+    "status",
+    "orderNumber",
+    "poNumber",
+    "orderDate"
   ],
   "enabledFields": [
     "status",

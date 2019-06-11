@@ -19,7 +19,7 @@ public class DynamicImageModelTest {
     
     private DynamicImageModel dynamicImageModel;
     private static final String GET_STARTED_RESOURCE_JSON = "getstarted.json";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted";
     
     private DynamicMediaService dynamicMediaService;
     

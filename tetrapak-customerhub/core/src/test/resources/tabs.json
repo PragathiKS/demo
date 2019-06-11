@@ -50,13 +50,13 @@
             "item0": {
               "jcr:primaryType": "nt:unstructured",
               "iconClass": "icon-document",
-              "pageUrl": "/content/tetrapak/customerhub/global/en/installed-equipment",
+              "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment",
               "labelI18n": "Documents"
             },
             "item1": {
               "jcr:primaryType": "nt:unstructured",
               "iconClass": "icon-maintenance",
-              "pageUrl": "/content/tetrapak/customerhub/global/en/installed-equipment",
+              "pageUrl": "/content/tetrapak/customerhub/en/installed-equipment",
               "labelI18n": "Maintenance"
             }
           }

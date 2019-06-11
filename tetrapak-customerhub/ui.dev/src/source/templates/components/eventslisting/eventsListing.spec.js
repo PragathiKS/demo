@@ -52,7 +52,7 @@ describe('Maintenanceevents', function () {
     done();
   });
   it('should render events on trigger of renderMaintenanceEvents event', function (done) {
-    $('.js-maintenance').trigger('maintenance.render', [{
+    $('.js-maintenance').trigger('renderMaintenance', [{
       $site: $('.js-maintenance-filtering__site'),
       $line: $('.js-maintenance-filtering__line'),
       $equipment: $('.js-maintenance-filtering__equipment')

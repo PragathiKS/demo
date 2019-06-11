@@ -105,13 +105,14 @@ class EventsListing {
   }
 
   bindEvents() {
-    this.root.parents('.js-maintenance').on('maintenance.render', this, this.renderMaintenanceEvents);
+    const $this = this;
+    this.root.parents('.js-maintenance').on('renderMaintenance', this, this.renderMaintenanceEvents);
     this.root.parents('.js-maintenance').find('.js-pagination').on('eventslisting.pagenav', (...args) => {
       const [, data] = args;
       const skip = data.pageIndex * NO_OF_EVENTS_PER_PAGE;
-      this.reRenderMaintenanceEvents(skip);
-      this.cache.currentPageIndex = data.pageIndex + 1;
-      this.trackAnalytics('pagination');
+      $this.reRenderMaintenanceEvents(skip);
+      $this.cache.currentPageIndex = data.pageIndex + 1;
+      $this.trackAnalytics('pagination');
     });
   }
   renderMaintenanceEvents(...args) {

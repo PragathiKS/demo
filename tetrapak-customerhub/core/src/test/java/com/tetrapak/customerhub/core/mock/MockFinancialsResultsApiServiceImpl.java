@@ -1,10 +1,9 @@
 package com.tetrapak.customerhub.core.mock;
 
-import org.apache.http.HttpResponse;
-
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Impl class for Financials Results Service Mock
@@ -22,9 +21,4 @@ public class MockFinancialsResultsApiServiceImpl implements FinancialsResultsApi
         jsonResponse.addProperty("status", 200);
         return jsonResponse;
     }
-
-	@Override
-	public HttpResponse getFinancialsInvoice(String documentNumber, String token) {
-		return null;
-	}
 }

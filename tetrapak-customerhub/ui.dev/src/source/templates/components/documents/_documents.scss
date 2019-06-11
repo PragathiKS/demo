@@ -53,7 +53,7 @@
     }
 
     &__document-type-heading {
-        @include padding($padding-sm);
+        @include padding($padding-sm 0);
         @include line-height(24px, $font-baseline);
         border-bottom: 1px solid $color-tundora;
         font-family: $font-bold;
@@ -70,7 +70,7 @@
     }
 
     &__document {
-        @include padding($padding-sm);
+        @include padding($padding-sm 0);
         @include line-height(24px, $font-sm);
         border-bottom: 1px solid $color-mercury;
     }

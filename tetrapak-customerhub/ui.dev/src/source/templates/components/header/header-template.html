@@ -1,4 +1,4 @@
-<sly data-sly-template.header_template="${@ data, cookie, flag}">
+<sly data-sly-template.header_template="${@ data, flag}">
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
 
@@ -26,10 +26,7 @@
       </sly>
       <sly data-sly-test="${data.rightNavDisplay}">
         <div class="tp-header__nav-right">
-          <span class="tp-header__user icon-Avatar">
-              <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
-              <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
-          </span>
+          <span class="tp-header__user icon-Avatar">${data.getUserInfoI18n}</span>
         </div>
       </sly>
     </header>

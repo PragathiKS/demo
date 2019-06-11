@@ -37,17 +37,19 @@
         &quot;documents-filter&quot;:&quot;https://api-mig.tetrapak.com/mock/materials/equipments/installations&quot;,
         &quot;documents&quot;:&quot;https://api-mig.tetrapak.com/techpub/search&quot;
     }" />
-    <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
-        data-sly-use.cookie="/apps/customerhub/components/content/header/cookie.js"
-        data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
-        data-sly-call="${headerLibs.header_template @data=headerModel, cookie=cookie}" />
-    <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
-        data-sly-use.leftnavigationLib="/apps/customerhub/components/content/leftnavigation/leftnavigation-template.html"
-        data-sly-call="${leftnavigationLib.leftnavigation_template @data=leftnavigationModel}" />
     <div class="tp-container">
         {{!-- Header component --}}
+        <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
+             data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
+             data-sly-call="${headerLibs.header_template @data=headerModel}" />
         <div class="row">
-            <div class="col-lg-12 tp-column__content">
+            {{!-- Navigation component --}}
+            <div class="col-lg-2 tp-column__sidenav">
+                <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
+                     data-sly-use.leftnavigationLib="/apps/customerhub/components/content/leftnavigation/leftnavigation-template.html"
+                     data-sly-call="${leftnavigationLib.leftnavigation_template @data=leftnavigationModel}" />
+            </div>
+            <div class="col-lg-10 tp-column__content">
                 {{!-- Main content goes here --}}
                 {{#if_notin "error" fsdId}}
                     <h1 class="tp-page-title">{{fsdId}}</h1>

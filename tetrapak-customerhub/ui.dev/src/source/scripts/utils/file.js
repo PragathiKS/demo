@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY } from './constants';
+import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY, ajaxMethods } from './constants';
 import { logger } from './logger';
 import { $body } from './commonSelectors';
 import { isIOS } from './browserDetect';
@@ -29,18 +29,6 @@ export const fileWrapper = (config) => {
     } else if (!config || (config && typeof config !== 'object')) {
       logger.log(INVALID_CONFIG);
       reject(INVALID_CONFIG);
-    } else if (isIOS()) {
-      resolve({ data: null, filename, extension });
-      const formData = $.param($.extend({}, config.data));
-      let url = config.url;
-      if (formData) {
-        url = `${url}?${formData}`;
-      }
-      $body.append(`<a href="${url}" class="js-file-download-link d-none" onclick="window.open(this.getAttribute('href'), '_blank')">Download</a>`);
-      $body.find('.js-file-download-link').trigger('click');
-      setTimeout(() => {
-        $body.find('.js-file-download-link').remove();
-      }, 0);
     } else {
       ajaxWrapper.getXhrObj(config)
         .done((...args) => {
@@ -74,6 +62,19 @@ export const fileWrapper = (config) => {
               logger.error(e);
               reject(e.message);
             }
+          } else if (isIOS()) {
+            resolve({ data, filename: contentFileName, extension });
+            // Workaround as IOS browsers does not consistently handle file downloads of different file type
+            const formData = $.extend({}, config.data);
+            const currentMethod = config.method || ajaxMethods.POST;
+            $body.append(`
+              <form class="js-file-download" action="${config.url}" method="${currentMethod}">
+                ${Object.keys(formData).map(key => `<input type="hidden" name="${key}" value="${formData[key]}" />`)}
+              </form>
+            `);
+            const $form = $body.find('.js-file-download');
+            $form.submit();
+            $form.remove();
           } else {
             // Handle other browsers
             try {

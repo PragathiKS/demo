@@ -17,8 +17,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class MaintenanceCardModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/maintenancecard";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/maintenancecard/jcr:content/root/responsivegrid/maintenancecard";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/maintenancecard";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/maintenancecard/jcr:content/root/responsivegrid/maintenancecard";
     private static final String RESOURCE_JSON = "documents.json";
     private MaintenanceCardModel maintenanceCardModel;
 

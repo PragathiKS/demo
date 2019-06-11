@@ -24,7 +24,7 @@ public class IntroScreenModelTest {
     @Before
     public void setup() {
         context.addModelsForPackage("com.tetrapak.customerhub.core.models");
-        context.build().resource("/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted",
+        context.build().resource("/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted",
                 "sling:resourceType", "customerhub/components/content/getstarted",
                 "headingI18n", "About_GS_Heading",
                 "className","abc",
@@ -32,17 +32,17 @@ public class IntroScreenModelTest {
                 "getStartedBtnI18n", "About_GS_Started",
                 "nextBtnI18n", "About_GS_Next"
         ).commit();
-        context.build().resource("/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted/list",
+        context.build().resource("/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted/list",
                 "jcr:primaryType", "nt:unstructured"
         ).commit();
-        context.build().resource("/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted/list/item0",
+        context.build().resource("/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted/list/item0",
                 "jcr:primaryType", "nt:unstructured",
                 "titleI18n", "About_GS_title1",
                 "descriptionI18n", "About_GS_Desc1",
                 "imageAltI18n", "About_GS_Image1_alt",
                 "imagePath", "/content/dam/customerhub/p2.PNG"
         ).commit();
-        Resource currentResource = context.currentResource("/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted");
+        Resource currentResource = context.currentResource("/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted");
         introScreenModel = currentResource.adaptTo(IntroScreenModel.class);
     }
 

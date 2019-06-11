@@ -32,7 +32,6 @@ describe('Documents', function () {
     this.renderEquipmentFiltersSpy = sinon.spy(this.documents, "renderEquipmentFilters");
     this.renderDocumentsSpy = sinon.spy(this.documents, "renderDocuments");
     this.processDocumentsDataSpy = sinon.spy(this.documents, "processDocumentsData");
-    this.trackAnalyticsSpy = sinon.spy(this.documents, "trackAnalytics");
     this.renderSpy = sinon.spy(render, 'fn');
 
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -58,7 +57,6 @@ describe('Documents', function () {
     this.renderEquipmentFiltersSpy.restore();
     this.renderDocumentsSpy.restore();
     this.processDocumentsDataSpy.restore();
-    this.trackAnalyticsSpy.restore();
     this.renderSpy.restore();
 
     this.ajaxStub.restore();
@@ -105,21 +103,6 @@ describe('Documents', function () {
   });
   it('should process documents data before rendering documents', function (done) {
     expect(this.documents.processDocumentsData.called).to.be.true;
-    done();
-  });
-  it('should fire analytics on change of site filter', function (done) {
-    $('.js-documents-filtering__site').trigger('change');
-    expect(this.documents.trackAnalytics.called).to.be.true;
-    done();
-  });
-  it('should fire analytics on change of line filter', function (done) {
-    $('.js-documents-filtering__line').trigger('change');
-    expect(this.documents.trackAnalytics.called).to.be.true;
-    done();
-  });
-  it('should fire analytics on click of document link', function (done) {
-    $('.js-documents__document').first().trigger('change');
-    expect(this.documents.trackAnalytics.called).to.be.true;
     done();
   });
 });

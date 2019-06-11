@@ -1,19 +1,16 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-
-import javax.servlet.http.Cookie;
-
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -27,18 +24,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * Test class for Financials Results Service
@@ -54,8 +50,8 @@ public class FinancialsResultsDownloadFileServletTest {
     @Mock
     private ResourceBundleProvider mockResourceBundleProvider;
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/financials";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/financials/jcr:content/root/responsivegrid/financialstatement";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/financials";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/financials/jcr:content/root/responsivegrid/financialstatement";
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";
     private static final String RESOURCE_JSON = "financialsresultspage.json";
     private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";
@@ -76,8 +72,6 @@ public class FinancialsResultsDownloadFileServletTest {
         aemContext.currentResource(COMPONENT_PATH);
         aemContext.request().setServletPath(COMPONENT_PATH);
         aemContext.request().setMethod(HttpConstants.METHOD_POST);
-        Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
-		aemContext.request().addCookie(cookie );
     }
 
     @Test

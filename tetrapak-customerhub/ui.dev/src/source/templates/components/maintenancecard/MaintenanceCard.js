@@ -1,9 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
-import moment from 'moment';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_MAINTENANCE_EVENTS, DATE_FORMAT, NO_OF_EVENTS_ON_CARD } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_MAINTENANCE_EVENTS } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { getURL } from '../../../scripts/utils/uri';
@@ -51,19 +50,11 @@ function _trackAnalytics(name, type) {
  */
 function _renderMaintenanceEvents() {
   const $this = this;
-  const startDate = moment().format(DATE_FORMAT);
-  const endDate = moment().add('4', 'month').format(DATE_FORMAT);
-
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'maintenanceCardEvents',
       url: {
-        path: getURL(API_MAINTENANCE_EVENTS),
-        data: {
-          'top': NO_OF_EVENTS_ON_CARD,
-          'from-date': startDate,
-          'to-date': endDate
-        }
+        path: getURL(API_MAINTENANCE_EVENTS)
       },
       target: '.js-maintenance-card__events',
       ajaxConfig: {

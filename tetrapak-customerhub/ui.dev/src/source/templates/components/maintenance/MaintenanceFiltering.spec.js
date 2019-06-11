@@ -45,7 +45,6 @@ describe('MaintenanceFiltering', function () {
       }
     });
     this.maintenanceFiltering.init();
-    $(window).trigger('media.changed');
   });
   after(function () {
     $(document.body).empty();

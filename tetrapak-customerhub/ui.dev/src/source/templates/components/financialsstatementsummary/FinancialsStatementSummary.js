@@ -4,8 +4,8 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort, resolveQuery } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { tableSort } from '../../../scripts/common/common';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, API_FINANCIALS_INVOICE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
@@ -51,16 +51,16 @@ function _trackAnalytics(self, type) {
  * Download Invoice
  */
 function _downloadInvoice($this) {
-  const { downloadInvoice } = $this.cache;
   const documentNumber = $.trim($(this).find('[data-key="documentNumber"]').text());
-  auth.getToken(() => {
+  auth.getToken(({ data: authData }) => {
     fileWrapper({
       extension: 'pdf',
       filename: `${documentNumber}`,
-      url: resolveQuery(downloadInvoice, {
-        docId: documentNumber
-      }),
-      method: ajaxMethods.GET
+      url: `${getURL(API_FINANCIALS_INVOICE)}/${documentNumber}`,
+      method: ajaxMethods.GET,
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+      }
     }).catch(() => {
       const { i18nKeys } = $this.cache;
       toast.render(
@@ -159,16 +159,13 @@ class FinancialsStatementSummary {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    this.cache.$parentRoot = this.root.parent();
-    this.cache.$filtersRoot = this.cache.$parentRoot.find('.js-financial-statement');
-    this.cache.$findCustomer = this.cache.$parentRoot.find('.js-financial-statement__select-customer-dropdown');
+    this.cache.$filtersRoot = this.root.parent().find('.js-financial-statement');
+    this.cache.$findCustomer = this.root.parent().find('.js-financial-statement__select-customer-dropdown');
     this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
-      this.cache.downloadInvoice = this.cache.$parentRoot.find('#downloadInvoice').val();
     } catch (e) {
       this.cache.i18nKeys = {};
-      this.cache.downloadInvoice = '';
       logger.error(e);
     }
   }
@@ -203,7 +200,7 @@ class FinancialsStatementSummary {
   downloadInvoice(e) {
     const $this = e.data;
 
-    _downloadInvoice.call(this, $this);
+    _downloadInvoice.call(this);
     $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type, el) {

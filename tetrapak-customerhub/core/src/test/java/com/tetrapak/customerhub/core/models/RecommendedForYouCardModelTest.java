@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class RecommendedForYouCardModelTest {
 
 	private RecommendedForYouCardModel recommendedForYouCardModel = null;
-	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted";
+	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted";
 	private static final String RESOURCE_JSON = "getstarted.json";
 
 	 @Rule

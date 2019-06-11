@@ -6,10 +6,6 @@
         }
     }
 
-    &__event-title {
-        color: $color-tundora;
-    }
-
     &__events-sidesection {
         @media #{$desktop} {
             @include padding-left($padding-l);
@@ -23,7 +19,6 @@
         @include line-height(24px, $font-baseline);
         border: 1px solid transparent;
         display: block;
-        color: $color-boulder;
         position: relative;
         border-top: 1px solid $color-mercury;
         width: 100%;
@@ -121,7 +116,6 @@
         }
 
     }
-
 
     &__info-title,
     &__info-text {

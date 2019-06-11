@@ -28,13 +28,8 @@ public class APIGEEModel {
         JsonObject jsonObject = new JsonObject();
         String[] mapArray = GlobalUtil.getApiMappings(apigeeService);
         for (String mapping : mapArray) {
-        	if (mapping.contains("token-generator")) { 
-        		jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"),
-                    CustomerHubConstants.PATH_SEPARATOR + StringUtils.substringAfter(mapping, ":"));
-        	} else {
-        		jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"),
-                        apiUrl + CustomerHubConstants.PATH_SEPARATOR + StringUtils.substringAfter(mapping, ":"));
-        	}
+            jsonObject.addProperty(StringUtils.substringBefore(mapping, ":"),
+                    apiUrl + CustomerHubConstants.PATH_SEPARATOR + StringUtils.substringAfter(mapping, ":"));
         }
         return jsonObject.toString();
     }

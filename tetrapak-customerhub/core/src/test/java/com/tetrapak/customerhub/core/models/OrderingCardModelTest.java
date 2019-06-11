@@ -15,8 +15,8 @@ import org.junit.Test;
 public class OrderingCardModelTest {
 
     private OrderingCardModel orderingCardModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
     private static final String RESOURCE_JSON = "allContent.json";
 
     @Rule
@@ -39,9 +39,9 @@ public class OrderingCardModelTest {
         Assert.assertTrue("title is not empty", i18nKeys.contains("cuhu.ordering.title"));
         Assert.assertEquals("size of enabled fields", 1, orderingCardModel.getEnabledFields().size());
         Assert.assertEquals("size of default fields", 3, orderingCardModel.getDefaultFields().size());
-        Assert.assertEquals("preference url", "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
-        Assert.assertEquals("all orders detail link", "/content/tetrapak/customerhub/global/en/ordering/order-history", orderingCardModel.getAllOrdersLink());
-        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/en/ordering/order-history", orderingCardModel.getOrderDetailLink());
+        Assert.assertEquals("preference url", "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
+        Assert.assertEquals("all orders detail link", "/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
+        Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getOrderDetailLink());
         Assert.assertEquals("saved preference size", 6, orderingCardModel.getSavedPreferences().size());
     }
 }

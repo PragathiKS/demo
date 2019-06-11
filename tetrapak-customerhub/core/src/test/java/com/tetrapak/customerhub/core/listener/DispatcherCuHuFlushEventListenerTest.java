@@ -113,7 +113,7 @@ public class DispatcherCuHuFlushEventListenerTest {
 		Mockito.when(events.hasNext()).thenReturn(true, false);
 		Mockito.when(events.nextEvent()).thenReturn(mockEvent);
 		Mockito.when(mockEvent.getPath())
-				.thenReturn("/content/tetrapak/customerhub/global/en/dashboard/jcr:content/root/responsivegrid/orderingcard");
+				.thenReturn("/content/tetrapak/customerhub/en/dashboard/jcr:content/root/responsivegrid/orderingcard");
 		Mockito.doNothing().when(dispatcherFlush).flush(Mockito.anyString());
 		listener.onEvent(events);
 		Mockito.verify(events, Mockito.atLeastOnce()).nextEvent();

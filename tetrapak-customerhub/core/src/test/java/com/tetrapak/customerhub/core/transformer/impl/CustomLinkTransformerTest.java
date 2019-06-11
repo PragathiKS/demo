@@ -78,7 +78,7 @@ public class CustomLinkTransformerTest {
 		String uri = "";
 		String localName = "a";
 		String qName = "a";
-		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/global/en/contacts.html");
+		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/en/contacts.html");
 		Mockito.when(context.getRequest()).thenReturn(request);
 		Mockito.when(request.getPathInfo()).thenReturn("/global/en/MyTetraPak/dashboard.html");
 		customLinkTransformer.init(context, config);
@@ -99,9 +99,9 @@ public class CustomLinkTransformerTest {
 		String uri = "";
 		String localName = "a";
 		String qName = "a";
-		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/global/en/contacts.html");
+		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/en/contacts.html");
 		Mockito.when(context.getRequest()).thenReturn(request);
-		Mockito.when(request.getPathInfo()).thenReturn("/content/tetrapak/customerhub/global/en/contacts.html");
+		Mockito.when(request.getPathInfo()).thenReturn("/content/tetrapak/customerhub/en/contacts.html");
 		customLinkTransformer.init(context, config);
 		customLinkTransformer.startElement(uri, localName, qName, atts);
 		Mockito.verify(atts).getValue("href");
@@ -119,7 +119,7 @@ public class CustomLinkTransformerTest {
 		String uri = "";
 		String localName = "a";
 		String qName = "a";
-		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/global/en/contacts.html");
+		Mockito.when(atts.getValue("href")).thenReturn("/content/tetrapak/customerhub/en/contacts.html");
 		customLinkTransformer.startElement(uri, localName, qName, atts);
 		Mockito.verify(atts).getValue("href");
 	}

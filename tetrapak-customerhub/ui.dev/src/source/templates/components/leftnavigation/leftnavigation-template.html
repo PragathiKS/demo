@@ -15,7 +15,7 @@
                       data-sly-call="${nestedListItem.nestedListItem_template @data=child}">
                 </sly>
                 <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
-                      data-sly-call="${listItem.listItem_template @data=child, ctype='side menu'}">
+                      data-sly-call="${listItem.listItem_template @data=child}">
                 </sly>
             </sly>
           </ul>
