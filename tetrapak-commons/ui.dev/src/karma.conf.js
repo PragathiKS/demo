@@ -7,15 +7,8 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
-        // debug: true,
-        // flags: ['--remote-debugging-port=9222'],
-        options: {
-          windowName: 'my-window',
-          viewportSize: {
-            'width': 1920,
-            'height': 1080
-          }
-        }
+        //debug: true,
+        flags: ['--window-size=1920,1080']
       }
     },
     browserNoActivityTimeout: 60000,
@@ -30,9 +23,16 @@ module.exports = function (config) {
       'testcases.webpack.js' //just load this file
     ],
     preprocessors: {
+      '**/*.js': 'coverage',
       'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
     },
-    reporters: ['progress', 'coverage-istanbul', 'dots', 'junit'], //report results in this format
+    reporters: [
+      'progress',
+      'coverage-istanbul',
+      'dots',
+      'junit',
+      'verbose'
+    ], //report results in this format
     coverageIstanbulReporter: {
       reports: ['html'],
       dir: 'coverage/',
@@ -51,7 +51,7 @@ module.exports = function (config) {
           {
             enforce: 'post',
             test: /\.js$/,
-            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack/,
+            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack|\.spec/,
             loader: 'istanbul-instrumenter-loader',
             query: {
               esModules: true
@@ -60,10 +60,17 @@ module.exports = function (config) {
           {
             test: /\.hbs$/,
             exclude: /node_modules/,
-            loader: "handlebars-loader",
+            loader: 'handlebars-loader',
             options: {
-              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
-              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              helperDirs: [
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder)
+              ],
+              partialDirs: [
+                path.join(
+                  __dirname,
+                  webpackConfig.handlebars.currentRelativeFolder
+                )
+              ],
               precompileOptions: {
                 knownHelpersOnly: false
               }
