@@ -9,7 +9,7 @@ aem:
     - 'shell:linting'
     - 'shell:karmaTests'
     - 'shell:webpackProd'
-    - 'copy:uxlibdemo'
+    - 'shell:clientlibify'
     - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
@@ -18,7 +18,7 @@ aemWatch:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'copy:uxlibdemo'
+    - 'shell:clientlibify'
     - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
@@ -31,7 +31,7 @@ aemStart:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'copy:uxlibdemo'
+    - 'shell:clientlibify'
     - 'copy:jsonData'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
@@ -43,5 +43,5 @@ default:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
-    - 'copy:uxlibdemo'
+    - 'shell:clientlibify'
     - 'aemcomponentcopy:uxlibProd'

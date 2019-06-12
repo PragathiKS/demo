@@ -26,7 +26,8 @@
     "eslintDev": "eslint \"./source/templates/components/**/*.js\" \"./source/scripts/**/*.js\" --color",
     "sasslint": "sass-lint --config ./sass-lint.yml './source/templates/components/**/*.scss' -v -q -f html -o 'sass-lint-report.html'",
     "sasslintDev": "sass-lint --config ./sass-lint-dev.yml './source/templates/components/**/*.scss' -v -q --color",
-    "test": "karma start karma.conf.js --color"
+    "test": "karma start karma.conf.js --color",
+    "createClientlib": "create-clientlib --config=config.json --color"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
