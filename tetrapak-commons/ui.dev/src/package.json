@@ -31,7 +31,8 @@
     "sasslintDevWin": "sass-lint --config ./sass-lint-dev.yml ./source/templates/components/**/*.scss -v -q --color",
     "sasslinter": "node sasslinter",
     "sasslinterDev": "node sasslinter --development",
-    "test": "node ensureTestCasesDirectory && karma start karma.conf.js"
+    "test": "node ensureTestCasesDirectory && karma start karma.conf.js",
+    "createClientlib": "create-clientlib --config=config.json --color"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
