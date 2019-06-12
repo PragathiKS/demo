@@ -10,15 +10,15 @@ import org.apache.sling.models.annotations.Model;
 public class BaseMaintenanceModel {
 
 	@Inject
-	private String statusLabel;
+	protected String statusLabel;
 	@Inject
-	private String serviceAgreementLabel;
+	protected String serviceAgreementLabel;
 	@Inject
-	private String plannedDurationLabel;
+	protected String plannedDurationLabel;
 	@Inject
-	private String plannedStartLabel;
+	protected String plannedStartLabel;
 	@Inject
-	private String plannedFinishedLabel;
+	protected String plannedFinishedLabel;
 
 	public String getStatusLabel() {
 		return statusLabel;
