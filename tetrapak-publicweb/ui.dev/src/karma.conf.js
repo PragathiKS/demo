@@ -1,7 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
-const {getArgs} = require('./args');
+const { getArgs } = require('./args');
 
 const mode = getArgs('mode') || 'development';
 
@@ -12,13 +11,7 @@ module.exports = function (config) {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
         //debug: true,
-        options: {
-          windowName: 'my-window',
-          viewportSize: {
-            'width': 1920,
-            'height': 1080
-          }
-        }
+        flags: ['--window-size=1920,1080']
       }
     },
     browserNoActivityTimeout: 60000,
@@ -82,14 +75,17 @@ module.exports = function (config) {
           {
             test: /\.hbs$/,
             exclude: /node_modules/,
-            loader: "handlebars-loader",
+            loader: 'handlebars-loader',
             options: {
               helperDirs: [
                 path.join(__dirname, webpackConfig.handlebars.helpersFolder),
                 path.resolve(webpackConfig.handlebars.commonHelpersFolder)
               ],
               partialDirs: [
-                path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder),
+                path.join(
+                  __dirname,
+                  webpackConfig.handlebars.currentRelativeFolder
+                ),
                 path.resolve(webpackConfig.handlebars.commonRelativeFolder)
               ],
               precompileOptions: {
@@ -107,6 +103,9 @@ module.exports = function (config) {
           handlebars: 'handlebars/runtime'
         }
       }
+    },
+    webpackMiddleware: {
+      stats: 'errors-only'
     }
   });
 };
