@@ -71,7 +71,7 @@ $anim-speed-normal: 0.3s;
   */
 
 $anim-ease: ease;
-$anim-ease-out: ease-out;
+$anim-ease-out: cubic-bezier(.40, 0, .20, 1);
 $anim-linear: linear;
 
 // Padding variables
