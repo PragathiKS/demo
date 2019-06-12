@@ -261,7 +261,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
             PDPageContentStream contentStream, List<Document> documents) throws IOException {
         int height = 400;
-        int height1;
+        int newPageHeight;
         
         for (Document documentDetail : documents) {
             if ((height > getNextTableHeight(documentDetail.getRecords()))) {
@@ -274,14 +274,14 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                         height - 10);
                 height -= 15;
             } else {
-                height1 = 730;
+                newPageHeight = 730;
                 int totalRows = documentDetail.getRecords().size();
-                int rowsForCurrentPage = height1 / 15;
+                int rowsForCurrentPage = newPageHeight / 15;
 
                 if(totalRows <rowsForCurrentPage && totalRows < 26 ) {
                 contentStream = PDFUtil.getNewPage(document, contentStream);  
                 rowsForCurrentPage = totalRows;
-                height = height1;
+                height = newPageHeight;
                 }
                 else {
                 	rowsForCurrentPage = height / 15;
