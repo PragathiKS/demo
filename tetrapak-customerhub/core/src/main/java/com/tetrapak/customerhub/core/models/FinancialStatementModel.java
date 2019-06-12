@@ -83,8 +83,6 @@ public class FinancialStatementModel {
 
 	private String downloadPdfExcelServletUrl;
 
-	private String downloadInvoice;
-
 	@Inject
 	private String fileDownloadErrorText;
 

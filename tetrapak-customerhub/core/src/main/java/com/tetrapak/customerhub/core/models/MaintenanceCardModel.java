@@ -20,7 +20,7 @@ import java.util.Map;
  *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MaintenanceCardModel {
+public class MaintenanceCardModel extends BaseMaintenanceModel{
 
     @Self
     private Resource resource;
@@ -29,16 +29,7 @@ public class MaintenanceCardModel {
     private String maintenanceHeading;
     @Inject
     private String contactsHeading;
-    @Inject
-    private String statusLabel;
-    @Inject
-    private String serviceAgreementLabel;
-    @Inject
-    private String plannedDurationLabel;
-    @Inject
-    private String plannedStartLabel;
-    @Inject
-    private String plannedFinishedLabel;
+   
     @Inject
     private String viewAllText;
     @Inject
@@ -111,41 +102,6 @@ public class MaintenanceCardModel {
      */
     public String getContactsHeading() {
         return contactsHeading;
-    }
-
-    /**
-     * @return the statusLabel
-     */
-    public String getStatusLabel() {
-        return statusLabel;
-    }
-
-    /**
-     * @return the serviceAgreementLabel
-     */
-    public String getServiceAgreementLabel() {
-        return serviceAgreementLabel;
-    }
-
-    /**
-     * @return the plannedDurationLabel
-     */
-    public String getPlannedDurationLabel() {
-        return plannedDurationLabel;
-    }
-
-    /**
-     * @return the plannedStartLabel
-     */
-    public String getPlannedStartLabel() {
-        return plannedStartLabel;
-    }
-
-    /**
-     * @return the plannedFinishedLabel
-     */
-    public String getPlannedFinishedLabel() {
-        return plannedFinishedLabel;
     }
 
     /**

@@ -1,0 +1,9 @@
+{
+	"jcr:primaryType": "nt:unstructured",
+	"jcr:createdBy": "admin",
+	"jcr:lastModifiedBy": "admin",
+	"contentPath": "/content/tetrapak/customerhub/content-components/en/dashboard/jcr:content/root/responsivegrid/recommendedforyoucard",
+	"jcr:created": "Tue Mar 26 2019 13:31:06 GMT+0530",
+	"jcr:lastModified": "Tue Mar 26 2019 13:31:26 GMT+0530",
+	"sling:resourceType": "customerhub/components/content/reference"
+}
