@@ -258,9 +258,10 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
     
-    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+   private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
             PDPageContentStream contentStream, List<Document> documents) throws IOException {
         int height = 400;
+        int newPageHeight;
         
         for (Document documentDetail : documents) {
             if ((height > getNextTableHeight(documentDetail.getRecords()))) {
@@ -273,13 +274,18 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                         height - 10);
                 height -= 15;
             } else {
-                height = 730;
+                newPageHeight = 730;
                 int totalRows = documentDetail.getRecords().size();
-                int rowsForCurrentPage = height / 15;
-                if (rowsForCurrentPage > totalRows) {
-                    rowsForCurrentPage = totalRows;
+                int rowsForCurrentPage = newPageHeight / 15;
+
+                if(totalRows <rowsForCurrentPage && totalRows < 26 ) {
+                contentStream = PDFUtil.getNewPage(document, contentStream);  
+                rowsForCurrentPage = totalRows;
+                height = newPageHeight;
                 }
-                contentStream = PDFUtil.getNewPage(document, contentStream);
+                else {
+                	rowsForCurrentPage = height / 15;
+                }
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 6, Color.LIGHT_GRAY, 0.01f);
                 
@@ -288,7 +294,6 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                         createRecordTable(request, (documentDetail.getRecords()), 0, rowsForCurrentPage - 1),
                         height - 10);
                 height -= 15;
-                
                 for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
                     int end = start + 39;
                     if (end > totalRows) {
@@ -296,13 +301,16 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     }
                     
                     contentStream = PDFUtil.getNewPage(document, contentStream);
+                   
                     
                     height = PDFUtil.drawTable(contentStream,
                             createRecordTable(request, documentDetail.getRecords(), start, end - 1), 730);
+                    PDFUtil.drawLine(contentStream, MARGIN, 570, 735, Color.LIGHT_GRAY, 0.01f);
+                    PDFUtil.drawLine(contentStream, MARGIN, 570, 718, Color.LIGHT_GRAY, 0.01f);
                 }
                 
             }
-        }
+                  }
         return contentStream;
     }
     
