@@ -47,10 +47,6 @@
         @media #{$desktop} {
             text-align: right;
         }
-
-        .tpatom-btn {
-            @include margin-bottom($margin-md);
-        }
     }
 
     &__create-excel {

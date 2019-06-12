@@ -1,0 +1,7 @@
+.pw-title {
+    @include margin-bottom($margin-md);
+
+    @media #{$tablet-large} {
+        @include margin-bottom($margin-l);
+    }
+}
