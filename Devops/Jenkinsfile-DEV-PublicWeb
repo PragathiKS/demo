@@ -221,14 +221,14 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 														sh 'cp -r /app/build-area/releases/coverage/index.html .'
                                                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])          
                                                         sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
-                                                
-                                              
+
                                                          echo "Starting PALLY test Run on PublicWeb Urls"
                                                          sh 'chmod 777 Devops/PallyReportPubWeb.sh'
                                                          sh './Devops/PallyReportPubWeb.sh'
-														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
 														 
+														 sh 'docker stop zap'
+														 sh 'docker rm zap'
 														 sh 'docker run --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
                                                          -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  \
                                                           -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true \
