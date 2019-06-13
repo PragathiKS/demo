@@ -1,5 +1,6 @@
+const webpack = require("webpack");
 const config = require("./config").webpack;
-const clientlibs = require("./config").clientlibs;
+const clientlibs = require("./config").chunkrename;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
@@ -124,7 +125,8 @@ module.exports = {
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
     }),
-    new ChunkRename(clientlibs)
+    new ChunkRename(clientlibs),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   node: {
     fs: 'empty'

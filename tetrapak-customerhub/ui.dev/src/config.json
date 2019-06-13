@@ -1,4 +1,5 @@
 {
+  "jcrRoot": "app/jcr_root",
   "appFolder": "app",
   "sourceFolder": "source",
   "publishFolder": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs",
@@ -75,17 +76,6 @@
     }
   },
   "copy": {
-    "uxlibdemo": [
-      {
-        "expand": true,
-        "dot": true,
-        "cwd": "<%= config.source %>/clientlib-format",
-        "src": [
-          "apps/settings/wcm/designs/**"
-        ],
-        "dest": "<%= config.app %>/jcr_root/"
-      }
-    ],
     "jsonData": [
       {
         "expand": true,
@@ -213,10 +203,59 @@
     "cssPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css"
   },
-  "clientlibs": {
+  "chunkrename": {
     "vendor": "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js/vendor.js",
     "common": "apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js/common.js",
     "default.en": "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js/default.js"
+  },
+  "clientlibs": {
+    "vendor": {
+      "categories": [
+        "tp.customerhub.vendor"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish"
+      ]
+    },
+    "global": {
+      "categories": [
+        "tp.customerhub.global"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/global.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/global.publish",
+        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js",
+        "apps/settings/wcm/designs/customerhub/clientlibs/common.publish"
+      ]
+    },
+    "default_en": {
+      "categories": [
+        "tp.customerhub.default.en"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/css"
+      ]
+    }
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
@@ -254,7 +293,7 @@
         "shell:lintingDev",
         "shell:webpackDev",
         "shell:removeChunkHash",
-        "copy:uxlibdemo",
+        "shell:clientlibify",
         "copy:jsonData",
         "assemble",
         "aemcomponentcopy:uxlib",
