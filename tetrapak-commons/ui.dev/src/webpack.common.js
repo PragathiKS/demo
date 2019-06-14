@@ -1,5 +1,5 @@
 const config = require("./config").webpack;
-const clientlibs = require("./config").clientlibs;
+const clientlibs = require("./config").chunkrename;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");

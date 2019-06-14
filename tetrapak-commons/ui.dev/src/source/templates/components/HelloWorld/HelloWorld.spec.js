@@ -1,4 +1,4 @@
-import HelloWorld from '../templates/components/HelloWorld/HelloWorld';
+import HelloWorld from './HelloWorld';
 
 describe('HelloWorld', function () {
   before(function () {
