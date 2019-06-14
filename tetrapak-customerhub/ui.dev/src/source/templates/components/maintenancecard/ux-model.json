@@ -1,4 +1,0 @@
-{
-  "i18nKeys": "{\"maintenanceHeading\": \"Maintenance Service Events\",\"contactsHeading\": \"Contact\",\"statusLabel\": \"Status\",\"serviceAgreementLabel\": \"Service agreement\",\"plannedDurationLabel\": \"Planned duration\",\"plannedStartLabel\": \"Planned start\",\"plannedFinishedLabel\": \"Planned finished\",\"viewAllText\": \"View all maintenance service events\",\"serviceOrderLabel\": \"Service order\",\"operationShortTextLabel\": \"Operation short text\",\"noDataMsg\": \"No data found\",\"errorMsg\": \"Error message incase any other error on the component\"}",
-  "viewAllLink": "https://tetrapak.com/"
-}

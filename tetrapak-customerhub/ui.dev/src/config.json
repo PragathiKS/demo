@@ -121,33 +121,9 @@
         "minSize": 0,
         "chunks": "all"
       },
-      "dashboard": {
-        "testMultiple": true,
-        "name": "dashboard",
-        "minSize": 0,
-        "chunks": "all"
-      },
-      "orders": {
-        "testMultiple": true,
-        "name": "orders",
-        "minSize": 0,
-        "chunks": "all"
-      },
       "financial": {
         "testMultiple": true,
         "name": "financial",
-        "minSize": 0,
-        "chunks": "all"
-      },
-      "maintenance": {
-        "testMultiple": true,
-        "name": "maintenance",
-        "minSize": 0,
-        "chunks": "all"
-      },
-      "contacts": {
-        "testMultiple": true,
-        "name": "contacts",
         "minSize": 0,
         "chunks": "all"
       },
@@ -162,32 +138,13 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/introscreen/",
         "source/templates/components/leftnavigation/",
         "source/templates/components/header/",
-        "source/templates/components/pagination/",
-        "source/templates/components/tabs/"
-      ],
-      "dashboard": [
-        "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/",
-        "source/templates/components/contactcard/"
-      ],
-      "orders": [
-        "source/templates/components/ordersearch/",
-        "source/templates/components/orderdetails/"
+        "source/templates/components/pagination/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
-      ],
-      "maintenance": [
-        "source/templates/components/maintenance/",
-        "source/templates/components/eventslisting/",
-        "source/templates/components/documents/"
-      ],
-      "contacts": [
-        "source/templates/components/contacts/"
       ]
     },
     "handlebars": {

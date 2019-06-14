@@ -1,8 +1,0 @@
-<sly data-sly-test="${wcmmode.edit}">
-    <p data-sly-unwrap="${properties.searchButtonTextI18n}" data-emptytext="configure ${component.title}"
-       class="cq-placeholder"></p>
-</sly>
-
-<sly data-sly-use.model="com.tetrapak.customerhub.core.models.OrderingCardModel"
-     data-sly-use.lib="orderingcard-template.html"
-     data-sly-call="${lib.orderingcard_template @ data=model}" />
