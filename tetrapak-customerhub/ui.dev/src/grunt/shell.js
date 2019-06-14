@@ -19,5 +19,8 @@ module.exports = {
   },
   removeChunkHash: {
     command: 'npm run removeHash'
+  },
+  clientlibify: {
+    command: 'npm run createClientlib'
   }
 }
