@@ -14,7 +14,7 @@ module.exports = {
   webpackDev: {
     command: 'npm run dev'
   },
-  removeChunkHash: {
-    command: 'npm run removeHash'
+  clientlibify: {
+    command: 'npm run createClientlib'
   }
 }
