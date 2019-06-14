@@ -5,12 +5,15 @@
         cq:conf="/conf/CustomerHub Launch"
         cq:lastModified="{Date}2019-05-28T14:13:08.806+05:30"
         cq:lastModifiedBy="reference-adjustment-service"
+        cq:lastReplicated="{Date}2019-05-31T10:08:10.855Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Something Went Wrong"
-        jcr:uuid="2987cfcc-1c24-4a15-86fa-c0d500d2b217"
+        jcr:uuid="46a75fb1-b39c-4fad-bf7b-86afae5372d4"
         sling:resourceType="customerhub/components/structure/page"
         hideInNav="true">
         <root

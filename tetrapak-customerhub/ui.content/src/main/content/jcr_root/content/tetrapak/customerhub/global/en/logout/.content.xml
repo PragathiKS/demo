@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-03-09T10:29:21.831Z"
         cq:lastModifiedBy="sapient-user"
-        cq:lastReplicated="{Date}2019-05-28T14:13:11.971+05:30"
+        cq:lastReplicated="{Date}2019-05-31T10:08:10.855Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
@@ -12,7 +12,7 @@
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Logout"
-        jcr:uuid="55dbc02f-0c2d-4181-b40b-fdaee1426d09"
+        jcr:uuid="61a82288-d076-4b3b-a2e6-df2c9d9689d2"
         sling:resourceType="customerhub/components/structure/page"
         iconClass="icon-Logout">
         <root

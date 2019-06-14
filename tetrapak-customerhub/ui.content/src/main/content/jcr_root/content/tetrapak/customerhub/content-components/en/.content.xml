@@ -5,8 +5,8 @@
     <jcr:content
         cq:lastModified="{Date}2019-03-11T04:46:30.780Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-03-22T10:55:37.719Z"
-        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicated="{Date}2019-05-31T10:08:08.664Z"
+        cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
@@ -37,4 +37,6 @@
     <dashboard/>
     <training/>
     <about-my-tetra-pak/>
+    <error-404/>
+    <error-500/>
 </jcr:root>

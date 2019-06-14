@@ -5,7 +5,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-04-22T03:49:30.336Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-05-28T14:13:13.335+05:30"
+        cq:lastReplicated="{Date}2019-05-31T10:08:10.449Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:redirectTarget="https://www.tetrapak.com/"
@@ -14,7 +14,7 @@
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Parts Inventory"
-        jcr:uuid="0e75f0b8-02c8-4f5d-9dd1-a944597f2912"
+        jcr:uuid="9ae1fd6e-b137-4e69-876e-86fb18cc7204"
         sling:resourceType="customerhub/components/structure/page"
         iconClass="icon-Inventory">
         <root
