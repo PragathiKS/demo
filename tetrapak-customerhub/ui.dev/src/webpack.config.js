@@ -10,8 +10,8 @@ if (prod === dev) {
   commonConfig.optimization.minimize = true;
   commonConfig.optimization.minimizer = [
     new TerserPlugin({
-      cache: false,
-      parallel: false,
+      cache: true,
+      parallel: true,
       chunkFilter(chunk) {
         if (['common', 'global', 'vendor'].includes(chunk.name)) {
           return false;
