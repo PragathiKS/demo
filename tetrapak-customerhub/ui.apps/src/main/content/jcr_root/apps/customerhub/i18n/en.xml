@@ -55,14 +55,39 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Customise your new experience"/>
+    <About_Sample_text
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sampletext"/>
+    <cuhu.ContactCard.Heading
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Contacts"/>
+    <cuhu.ContactCard.ImageAlt.txt
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Image text"/>
+    <cuhu.ContactCard.SubHeading
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get in contact with the right people"/>
+    <cuhu.ContactCard.ViewContactBtn.txt
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="View contacts"/>
     <cuhu.documents.site
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="SITE NEW"/>
+        sling:message="Site"/>
     <cuhu.error.message
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Something Went Wrong"/>
+    <cuhu.ErrorMessage
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ErrorMessage "
+        sling:message="Oops!!! Got error message "/>
     <cuhu.financial.AccountNo
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -220,6 +245,16 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Site"/>
+    <cuhu.noEventMessage
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.noEventMessage &#xa; &#xa;"
+        sling:message="Oops!! there is no data"/>
+    <cuhu.noEventMessage0
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.noEventMessage"
+        sling:message="No Event Available"/>
     <cuhu.orderDetail.deliveredQuantity
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
@@ -505,7 +540,7 @@
     <cuhu.orderingcard.dataError
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:message="Data error"/>
+        sling:message="Getting Error from API"/>
     <cuhu.orderingcard.Errorkey
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
