@@ -6,7 +6,7 @@
         cq:conf="/conf/CustomerHub Launch"
         cq:lastModified="{Date}2019-05-17T10:51:12.835Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-05-28T14:13:11.083+05:30"
+        cq:lastReplicated="{Date}2019-05-31T10:08:10.855Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
@@ -14,7 +14,7 @@
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="500"
-        jcr:uuid="a1b38a51-b540-445e-81d1-8371a7ae26dc"
+        jcr:uuid="6b62495c-0c12-47a6-9c50-e031287634eb"
         sling:resourceType="customerhub/components/structure/page"
         hideInNav="true">
         <root

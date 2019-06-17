@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2019-03-09T10:33:56.979Z"
         cq:lastModifiedBy="sapient-user"
-        cq:lastReplicated="{Date}2019-05-28T14:13:13.197+05:30"
+        cq:lastReplicated="{Date}2019-05-31T10:08:09.887Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:redirectTarget="https://innovationcreatesvalue.tetrapak.com/story-tag/package-design/"
@@ -13,7 +13,7 @@
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Package Design"
-        jcr:uuid="f76dc55b-b616-42ec-9533-eada9007415c"
+        jcr:uuid="73670683-32a8-42bd-8eed-811c813a4708"
         sling:resourceType="customerhub/components/structure/page"
         iconClass="icon-Packaging_Design">
         <root

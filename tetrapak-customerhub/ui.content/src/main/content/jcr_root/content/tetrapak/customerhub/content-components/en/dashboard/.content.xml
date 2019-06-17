@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
-    jcr:mixinTypes="[rep:CugMixin]"
+    jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-03-25T09:15:04.227Z"
+        cq:lastModified="{Date}2019-06-10T07:32:32.833Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-03-25T04:58:00.567Z"
+        cq:lastReplicated="{Date}2019-06-10T07:32:43.741Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
@@ -38,50 +38,57 @@
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc1"
                             imageAltI18n="About_GetStarted_Image1_altText"
-                            imagePath="/content/dam/customerhub/p1.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p1.PNG"
                             titleI18n="About_GetStarted_title1"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc2"
                             imageAltI18n="About_GetStarted_Image2_altText"
-                            imagePath="/content/dam/customerhub/p2.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p2.PNG"
                             titleI18n="About_GetStarted_title2"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc3"
                             imageAltI18n="About_GetStarted_Image3_altText"
-                            imagePath="/content/dam/customerhub/p3.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p3.PNG"
                             titleI18n="About_GetStarted_title3"/>
                         <item3
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc3"
                             imageAltI18n="About_GetStarted_Image2_altText"
-                            imagePath="/content/dam/customerhub/p1.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p1.PNG"
                             titleI18n="About_GetStarted_title2"/>
                         <item4
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc1"
                             imageAltI18n="About_GetStarted_Image3_altText"
-                            imagePath="/content/dam/customerhub/p2.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p2.PNG"
                             titleI18n="About_GetStarted_title3"/>
                         <item5
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc2"
                             imageAltI18n="About_GetStarted_Image1_altText"
-                            imagePath="/content/dam/customerhub/p3.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p3.PNG"
                             titleI18n="About_GetStarted_title1"/>
                         <item6
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="About_GetStarted_Desc2"
                             imageAltI18n="About_GetStarted_Image2_altText"
-                            imagePath="/content/dam/customerhub/p1.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p1.PNG"
                             titleI18n="About_GetStarted_title2"/>
                     </list>
                 </introscreen>
+                <reference
+                    jcr:created="{Date}2019-05-27T11:35:39.084Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-05-27T11:35:39.084Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/reference"/>
                 <recommendedforyoucar
                     jcr:created="{Date}2019-03-19T08:07:09.954Z"
                     jcr:createdBy="sapient-tarun"
-                    jcr:lastModified="{Date}2019-03-25T09:15:04.222Z"
+                    jcr:lastModified="{Date}2019-06-10T07:32:32.824Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/recommendedforyoucard"
@@ -91,22 +98,43 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
-                            descriptionI18n="&lt;p>&lt;b>Food and Drinks producer reduced variability by 84% thanks to Tetra Pak ® Plant Care with Performance Guarantee Fot demonstrate&lt;/b>&lt;/p>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Reduce variability by 84% in one year&lt;/li>&#xd;&#xa;&lt;li>Improve standards and quality&lt;/li>&#xd;&#xa;&lt;li>3-year performance guarantee agreement&amp;nbsp;&lt;/li>&#xd;&#xa;&lt;li>Improve equipment reliability&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;"
+                            descriptionI18n="&lt;p>Food and Drinks producer reduced variability by 84% thanks to Tetra Pak ® Plant Care with Performance Guarantee Fot demonstrate&lt;/p>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Reduce variability by 84% in one year&lt;/li>&#xd;&#xa;&lt;li>Improve standards and quality&lt;/li>&#xd;&#xa;&lt;li>3-year performance guarantee agreement &lt;/li>&#xd;&#xa;&lt;li>Improve equipment reliability&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;"
                             imageAltI18n="Image1"
-                            imagePath="/content/dam/customerhub/p1.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/straw-hole-tba200b.gif"
                             linkTextI18n="Learn more"
-                            linkUrl="https://www.tetrapak.com/"
-                            titleI18n="Reduced variability thanks to Tetra Pak's Plant Care with Performance Gurantee"/>
+                            linkUrl="/content/tetrapak/customerhub/global/en/financials"
+                            titleI18n="Reduced Variability"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="&lt;p>&lt;b>Robots, artificial intelligence, the cloud, algorithms, machines that 'talk' to each other, vehicles that drive themselves. Welcome to the world of Industry 4.0.&lt;/b>&lt;/p>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Industry 4.0 oppurtunities&lt;/li>&#xd;&#xa;&lt;li>Best practices&lt;/li>&#xd;&#xa;&lt;li>Increase productivity&lt;/li>&#xd;&#xa;&lt;li>Reduce cost&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;"
                             imageAltI18n="Image 2"
-                            imagePath="/content/dam/customerhub/p2.PNG"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/p2.PNG"
                             linkTextI18n="Learn more"
                             linkUrl="https://www.tetrapak.com/"
                             titleI18n="Webinar: Industry 4.0: Impact on food and beverage manufacturers"/>
                     </list>
                 </recommendedforyoucar>
+                <recommendedforyoucar_1031589211
+                    jcr:created="{Date}2019-03-28T12:24:25.811Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-04-02T07:10:44.977Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/recommendedforyoucard"
+                    className="tpmol-image-card__rich-text"
+                    headingI18n="getStartedertttttte"
+                    textIsRich="[true]">
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Thjis is for the test purspse&lt;/p>&#xd;&#xa;&lt;p>Thjis is for the test purspseThjis is for the test purspseThjis is for the test purspseThjis is for the test purspse&lt;/p>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;li>Thjis is for the test purspse&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;"
+                            imageAltI18n="safdsa"
+                            imagePath="/content/dam/customerhub/english/aboutmytetrapak/sample.PNG"
+                            linkTextI18n="Link text "
+                            linkUrl="/content/tetrapak/customerhub/content-components/en/about-my-tetra-pak"
+                            titleI18n="Title434434343"/>
+                    </list>
+                </recommendedforyoucar_1031589211>
             </responsivegrid>
         </root>
     </jcr:content>
