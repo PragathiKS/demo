@@ -18,7 +18,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 public class GetStartedModelTest {
 	
 	private GetStartedModel getStartedModel= null;
-	private static final String GET_STARTED_CONTENT_ROOT = "/content/tetrapak/customerhub/global/about-us/jcr:content/par/getstarted"; 
+	private static final String GET_STARTED_CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/about-us/jcr:content/par/getstarted";
 	private static final String GET_STARTED_RESOURCE_JSON = "getstarted.json"; 
 	
 	 @Rule

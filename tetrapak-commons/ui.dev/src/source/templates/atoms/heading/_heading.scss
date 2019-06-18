@@ -14,12 +14,22 @@
     }
 
     &--hero {
-        @include font-size(36px);
-        @include line-height(44px, 36px);
+        @include font-size($font-m-xl);
+        @include line-height($font-xl, $font-m-xl);
 
-        @media #{$desktop} {
+        @media #{$tablet-large} {
             @include font-size($font-xxxl);
             @include line-height(70px, $font-xxxl);
+        }
+    }
+
+    &--large {
+        @include font-size(28px);
+        @include line-height(36px, 28px);
+
+        @media #{$tablet-large} {
+            @include font-size(40px);
+            @include line-height($font-xxl, 40px);
         }
     }
 
@@ -27,7 +37,7 @@
         @include font-size(28px);
         @include line-height(36px, 28px);
 
-        @media #{$desktop} {
+        @media #{$tablet-large} {
             @include font-size($font-xl);
             @include line-height(40px, $font-xl);
         }
@@ -36,9 +46,14 @@
     &--small {
         @include font-size(24px);
         @include line-height(32px, 24px);
-        @media #{$desktop} {
+        @media #{$tablet-large} {
             @include font-size(18px);
         }
+    }
+
+    &--small-flat {
+        @include font-size(24px);
+        @include line-height(32px, 24px);
     }
 }
 

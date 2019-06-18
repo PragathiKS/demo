@@ -9,7 +9,7 @@ class ImageTextBanner {
     /* Initialize cache here */
     this.cache.$modalBtn = $('.opensoftc', this.root);
     this.cache.itbLink = $('.itblink', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.digitalData = window.digitalData;
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -32,13 +32,14 @@ class ImageTextBanner {
     });
     this.cache.itbLink.click((e) => {
       let banner = e.target.closest('.pw-banner');
+      let $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = banner.getAttribute('data-itb-linkType');
         this.cache.digitalData.linkClick.linkSection = banner.getAttribute('data-itb-linkSection');
-        this.cache.digitalData.linkClick.linkParentTitle = banner.getAttribute('data-itb-linkParentTitle');
-        this.cache.digitalData.linkClick.linkName = banner.getAttribute('data-itb-linkName');
-        this.cache.digitalData.linkClick.contentName = banner.getAttribute('data-itb-contentName');
+        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-banner').find('.pw-banner__content__title').text().trim();
+        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
+        this.cache.digitalData.linkClick.contentName = $thisClick.closest('.pw-banner').find('.pw-banner__content__subtitle').text().trim();
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
           _satellite.track('linkClicked'); //eslint-disable-line
         }

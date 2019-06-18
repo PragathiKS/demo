@@ -103,6 +103,13 @@
                             </column>
                         </items>
                     </customerhub>
+                    <socialmedia
+                            cq:hideOnEdit="{Boolean}true"
+                            cq:showOnCreate="{Boolean}false"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Social Media"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                    </socialmedia>
                 </items>
             </tabs>
         </items>

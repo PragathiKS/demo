@@ -1,98 +1,97 @@
 .tpmol-image-card {
-    @include padding($padding-sm $padding-sm $padding-l $padding-sm);
+    @include padding($padding-sm);
     background-color: $color-white;
     display: flex;
     width: 100%;
+
     @media #{$desktop} {
+        @include padding(12px);
         width: 33.33%;
         margin: 0;
+
         &__col--2 {
             width: 50%;
         }
+
         &__col--3 {
             width: 33.33%;
         }
+
         &__col--4 {
             width: 25%;
         }
     }
+
     &__container {
         width: 100%;
         background-color: $color-wild-sand;
+        border-radius: $border-radius;
+
         img {
             max-width: 100%;
             border-radius: $border-radius $border-radius 0 0;
         }
     }
+
     &__heading {
-        @include line-height($font-l, $font-md);
-        font-family: $font-light;
-        padding: 0;
+        @include margin-bottom($margin-md);
     }
+
     &__text {
         @include padding($padding-md);
         @include word-spacing($word-spacing-sm);
         font-family: $font-light;
         word-break: break-word;
+
         @media #{$desktop} {
             @include padding($padding-l);
         }
-        .font-style-sm {
-            @include line-height(21px, $font-sm);
-        }
+
         ul,
         ol {
+            @include padding-left($padding-md);
+            @include margin-bottom($margin-md);
             list-style: initial;
-            @include padding($padding-sm 0 0 $padding-md);
-            li {
-                @include font-size($font-sm);
-                @include line-height(22.5px, $font-baseline);
-                color: $color-light-gray;
-            }
         }
+
         ol {
             list-style: decimal;
         }
     }
-    &__normal-text {
-        @include margin-top($margin-sm);
-        @media #{$desktop} {
-            @include margin-top($margin-md);
-        }
+
+    &__normal-text,
+    &__rich-text,
+    .font-style-sm {
         p {
-            @include line-height(21px, $font-sm);
-            @include font-size($font-sm);
+            @include margin-bottom($margin-md);
         }
     }
-    &__rich-text {
-        @include margin-top($margin-sm);
-        p {
-            @include line-height(21px, $font-baseline);
-            @include font-size($font-baseline);
-        }
-    }
+
     &__link {
-        @include padding-top($padding-md);
         @include word-spacing($word-spacing-sm);
         @include font-size($font-normal);
         font-family: $font-light;
         color: $color-congress-blue;
+
         .tp-next-btn {
             @include line-height($font-normal, $font-normal);
             font-weight: bold;
             position: relative;
+
             &:visited,
             &:hover,
             &:active {
                 color: $color-congress-blue;
             }
         }
+
         .tp-next-btn__icon {
             @include font-size($font-l);
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
         }
+
         .tp-next-btn__text {
             @include font-size(13px)
         }

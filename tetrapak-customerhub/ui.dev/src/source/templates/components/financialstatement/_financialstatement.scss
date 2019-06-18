@@ -1,13 +1,4 @@
 .tp-financial-statement {
-    &__select-customer-heading {
-        @include line-height($font-l, $font-l);
-        @include font-size($font-l);
-
-        @media #{$desktop} {
-            @include line-height($font-xl, $font-l)
-        }
-    }
-
     &__select-box-wrapper {
         @media #{$desktop} {
             width: 50%;
@@ -15,15 +6,11 @@
     }
 
     &__select-customer-label {
-        @include padding($padding-md 0 $padding-md 0);
-        @include font-size($font-md);
-        @include line-height($font-l, $font-md);
-        font-family: $font-bold;
+        @include padding($padding-md 0);
+        font-family: $font-light;
 
         @media #{$desktop} {
             @include padding($padding-l 0 $padding-md 0);
-            @include line-height($font-l, $font-md);
-            font-family: $font-light;
         }
     }
 
@@ -154,6 +141,10 @@
 
     &__reset-btn {
         @include line-height($font-l, $font-baseline);
+
+        .icon {
+            @include font-size(12px);
+        }
     }
 
     .form-element__icon {
@@ -168,12 +159,4 @@
     .form-control {
         height: 100%;
     }
-
-    .tpatom-error {
-        @include margin-bottom($margin-md);
-    }
-}
-
-.tp-card.tp-financials {
-    @include padding-bottom($padding-sm);
 }

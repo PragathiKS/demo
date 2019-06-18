@@ -69,7 +69,7 @@ public final class ExcelUtil {
 	private static final String LIGHT_GREY_LEFT_CELL_STYLE = "lightGreyLeftStyle";
 	private static final String LIME_BG_CELL_STYLE = "limeBGStyle";
 	public static final String LIME_BG_TAG = "<limeBG>";
-	private static final String CONTENT_TYPE = "application/x-ms-excel";
+	private static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 	private static final String CONTENT_DISPOSITION = "Content-Disposition";
 	private static final String FILE_EXTENSION = ".xlsx";
 	private static final String RESP_HEADER_DATA = "attachment; filename=";

@@ -103,10 +103,6 @@ describe('OrderDetails', function () {
     $('.js-create-pdf').trigger('click');
     expect(this.downloadSpy.called).to.be.true;
   });
-  it('should call track analytics for web id on click of "web ref" link', function () {
-    $('.js-order-detail__webRef').trigger('click');
-    expect(this.trackAnalyticsSpy.called).to.be.true;
-  });
   it('should call track analytics for track order on click of "track order" link', function () {
     $('.js-order-delivery-summary-track-order').trigger('click');
     expect(this.trackAnalyticsSpy.called).to.be.true;

@@ -50,8 +50,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
 		if (paramRequest != null && null != apiResponse) {
 			request = req;
 			ExcelFileData excelReportData = new ExcelFileData();
-			String dateRange = paramRequest.getStartDate()
-					+ (paramRequest.getEndDate() == null ? StringUtils.EMPTY : "-" + paramRequest.getEndDate());
+			String dateRange = paramRequest.getStartDate() 
+					+ (paramRequest.getEndDate() == null ? StringUtils.EMPTY : " " + "-" + " "+ paramRequest.getEndDate());
 			excelReportData.setFileName("Financials-" + custName + "-" + dateRange);
 			excelReportData.setExcelSheetName("Sheet");
 			excelReportData.setCellBorderColor(IndexedColors.GREY_25_PERCENT.index);

@@ -7,13 +7,9 @@
     }
 
     &__heading {
-        @include font-size($font-md);
-        @include line-height($font-l, $font-md);
         @include margin-bottom($margin-md);
 
         @media #{$desktop} {
-            @include font-size($font-l);
-            @include line-height($font-xl, $font-l);
             @include margin-bottom($margin-l);
         }
 
@@ -29,6 +25,12 @@
 
         &-label {
             font-family: $font-bold;
+        }
+
+        &-text {
+            @media #{$desktop} {
+                @include margin-right($margin-xxxl + $margin-xxxl);
+            }
         }
     }
 

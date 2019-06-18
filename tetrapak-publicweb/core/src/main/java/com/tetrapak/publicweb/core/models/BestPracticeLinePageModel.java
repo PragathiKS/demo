@@ -25,8 +25,8 @@ public class BestPracticeLinePageModel extends BasePageModel {
         jcrMap = super.getPageContent().getJcrMap();
 
         if (jcrMap != null) {
-        	title = jcrMap.get("title", String.class);
-        	vanityDescription = jcrMap.get("vanityDescription", String.class);
+        	title = jcrMap.get("jcr:title", String.class);
+        	vanityDescription = jcrMap.get("jcr:description", String.class);
         	ctaTexti18nKey = jcrMap.get("ctaTexti18nKey", String.class);
         	practiceImagePath = jcrMap.get("practiceImagePath", String.class);
         	practiceImageAltI18n = jcrMap.get("practiceImageAltI18n", String.class);

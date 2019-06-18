@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -29,11 +31,16 @@ public class DocumentsModel {
     @Inject
     private String documentHeading;
     @Inject
+    private String documentLabel;
+    @Inject
     private String documentTypeLabel;
     @Inject
-    private String noDocumentsMsg;
+    private String noDataMsg;
     @Inject
     private String errorMsg;
+    @Inject
+    private String techPubHost;
+    
 
     private String i18nKeys;
 
@@ -47,10 +54,11 @@ public class DocumentsModel {
         i18KeyMap.put("siteFilterLabel", getSiteFilterLabel());
         i18KeyMap.put("lineFilterLabel", getLineFilterLabel());
         i18KeyMap.put("documentHeading", getDocumentHeading());
+        i18KeyMap.put("documentLabel", getDocumentLabel());
         i18KeyMap.put("documentTypeLabel", getDocumentTypeLabel());
-        i18KeyMap.put("noDocumentsMsg", getNoDocumentsMsg());
-        i18KeyMap.put("scheduleHeading", getErrorMsg());
-
+        i18KeyMap.put("noDataMsg", getNoDataMsg());
+        i18KeyMap.put("errorMsg", getErrorMsg());
+    
         i18nKeys = new Gson().toJson(i18KeyMap);
     }
 
@@ -85,8 +93,8 @@ public class DocumentsModel {
     /**
      * @return the noDocumentsMsg
      */
-    public String getNoDocumentsMsg() {
-        return noDocumentsMsg;
+    public String getNoDataMsg() {
+        return noDataMsg;
     }
 
     /**
@@ -101,6 +109,20 @@ public class DocumentsModel {
      */
     public String getDocumentHeading() {
         return documentHeading;
+    }
+
+    /**
+     * @return the documentLabel
+     */
+    public String getDocumentLabel() {
+        return documentLabel;
+    }
+
+    /**
+     * @return the techPubHost
+     */
+    public String getTechPubHost() {
+        return LinkUtil.getValidLink(resource, techPubHost);
     }
 
 }

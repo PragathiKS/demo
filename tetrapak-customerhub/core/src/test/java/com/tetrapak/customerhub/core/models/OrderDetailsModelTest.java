@@ -19,8 +19,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class OrderDetailsModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/ordering/order-history/order-details-parts";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails";
     private static final String RESOURCE_JSON = "order-detailspage.json";
     private OrderDetailsModel orderDetailsModel;
 
@@ -107,6 +107,6 @@ public class OrderDetailsModelTest {
 
     @Test
     public void testDownloadOrderDetailsServletUrl() {
-        assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails" + ".{orderType}.{extnType}"));
+        assertTrue(orderDetailsModel.getDownloadPdfExcelServletUrl().equals("/content/tetrapak/customerhub/global/en/ordering/order-history/order-details-parts/jcr:content/root/responsivegrid/orderdetails" + ".{orderType}.{extnType}"));
     }
 }

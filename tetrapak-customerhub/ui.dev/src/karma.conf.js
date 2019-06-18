@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 const { getArgs } = require('./args');
@@ -12,13 +11,7 @@ module.exports = function (config) {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
         //debug: true,
-        options: {
-          windowName: 'my-window',
-          viewportSize: {
-            width: 1920,
-            height: 1080
-          }
-        }
+        flags: ['--window-size=1920,1080']
       }
     },
     browserNoActivityTimeout: 60000,
@@ -110,6 +103,9 @@ module.exports = function (config) {
           handlebars: 'handlebars/runtime'
         }
       }
+    },
+    webpackMiddleware: {
+      stats: 'errors-only'
     }
   });
 };

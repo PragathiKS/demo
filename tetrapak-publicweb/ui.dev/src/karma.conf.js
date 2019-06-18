@@ -1,6 +1,8 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
+const { getArgs } = require('./args');
+
+const mode = getArgs('mode') || 'development';
 
 module.exports = function (config) {
   config.set({
@@ -9,13 +11,7 @@ module.exports = function (config) {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
         //debug: true,
-        options: {
-          windowName: 'my-window',
-          viewportSize: {
-            'width': 1920,
-            'height': 1080
-          }
-        }
+        flags: ['--window-size=1920,1080']
       }
     },
     browserNoActivityTimeout: 60000,
@@ -30,13 +26,32 @@ module.exports = function (config) {
       'testcases.webpack.js' //just load this file
     ],
     preprocessors: {
+      '**/*.js': 'coverage',
       'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
     },
-    reporters: ['progress', 'coverage-istanbul', 'dots', 'junit'], //report results in this format
+    reporters: [
+      'progress',
+      'coverage-istanbul',
+      'dots',
+      'junit',
+      'verbose'
+    ], //report results in this format
     coverageIstanbulReporter: {
       reports: ['html'],
       dir: 'coverage/',
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      // enforce percentage thresholds
+      // anything under these percentages will cause karma to fail with an exit code of 1 if not running in watch mode
+      thresholds: {
+        emitWarning: (mode === 'development'), // set to `true` to not fail the test command when thresholds are not met
+        // thresholds for all files
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 50,
+          functions: 80
+        }
+      }
     },
     webpack: {
       devtool: 'inline-source-map',
@@ -51,7 +66,7 @@ module.exports = function (config) {
           {
             enforce: 'post',
             test: /\.js$/,
-            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack/,
+            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack|\.spec/,
             loader: 'istanbul-instrumenter-loader',
             query: {
               esModules: true
@@ -60,14 +75,17 @@ module.exports = function (config) {
           {
             test: /\.hbs$/,
             exclude: /node_modules/,
-            loader: "handlebars-loader",
+            loader: 'handlebars-loader',
             options: {
               helperDirs: [
                 path.join(__dirname, webpackConfig.handlebars.helpersFolder),
                 path.resolve(webpackConfig.handlebars.commonHelpersFolder)
               ],
               partialDirs: [
-                path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder),
+                path.join(
+                  __dirname,
+                  webpackConfig.handlebars.currentRelativeFolder
+                ),
                 path.resolve(webpackConfig.handlebars.commonRelativeFolder)
               ],
               precompileOptions: {
@@ -86,8 +104,8 @@ module.exports = function (config) {
         }
       }
     },
-    webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
+    webpackMiddleware: {
+      stats: 'errors-only'
     }
   });
 };

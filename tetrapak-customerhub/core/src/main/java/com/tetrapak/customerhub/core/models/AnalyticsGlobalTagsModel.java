@@ -4,12 +4,10 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,15 +22,11 @@ import java.util.List;
 /**
  * AnalyticsGlobalTagsModel Implementation
  */
-@Model(adaptables = {SlingHttpServletRequest.class,
-        Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AnalyticsGlobalTagsModel {
 
     @Inject
     private Resource resource;
-
-    @SlingObject
-    private SlingHttpServletRequest request;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
     private static final int SUB_PAGE_THRESHOLD = 5;
@@ -150,13 +144,12 @@ public class AnalyticsGlobalTagsModel {
      * @return errorCode, if successful
      */
     public Integer getErrorCode() {
-        int status;
-        try {
-            status = (Integer) request.getAttribute("javax.servlet.error.status_code");
-            return status;
-        } catch (Exception e) {
-            LOGGER.error("Exception in getting error code {}", e);
+        if (resource.getPath().contains("500")) {
             return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+        } else if (resource.getPath().contains("404")) {
+            return HttpServletResponse.SC_NOT_FOUND;
+        } else {
+            return null;
         }
     }
 
@@ -166,9 +159,13 @@ public class AnalyticsGlobalTagsModel {
      * @return errorMessage, if successful
      */
     public String getErrorMessage() {
-        String errorStatusMessage = (String) request.getAttribute("javax.servlet.error.message");
-        String errorMessage = errorStatusMessage.substring(errorStatusMessage.indexOf(":") + 1);
-        return errorMessage.trim().toLowerCase();
+        if (resource.getPath().contains("500")) {
+            return "internal server error";
+        } else if (resource.getPath().contains("404")) {
+            return "resource not found";
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -177,7 +174,7 @@ public class AnalyticsGlobalTagsModel {
      * @return String channel
      */
     public String getChannel() {
-        final int DEPTH = 4;
+        final int DEPTH = 5;
         return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
     }
 

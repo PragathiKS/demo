@@ -272,3 +272,5 @@ export const isValidSelector = (selector) => (
   || selector instanceof HTMLCollection
   || Array.isArray(selector)
 );
+
+export const digitalData = window.digitalData || {};

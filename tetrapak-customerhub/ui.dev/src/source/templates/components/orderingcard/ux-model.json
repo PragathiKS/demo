@@ -1,19 +1,14 @@
 {
   "preferencesURL": "/apps/settings/wcm/designs/customerhub/jsonData/orderingPreference.json",
-  "savedPreferences": [
-    "orderNumber",
-    "poNumber",
-    "orderDate",
-    "status",
-    "contact"
-  ],
+  "savedPreferences": ["orderNumber", "poNumber"],
   "defaultFields": [
+    "status"
+  ],
+  "enabledFields": [
+    "status",
     "orderNumber",
     "poNumber",
     "orderDate"
-  ],
-  "disabledFields": [
-    "contact"
   ],
   "allOrdersLink": "/content/customerhub-ux/ordersearch.ux-preview.html",
   "orderDetailLink": "/content/customerhub-ux/orderdetails.ux-preview.html",

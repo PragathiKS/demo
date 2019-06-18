@@ -288,12 +288,42 @@
                   "saveSettingsI18n": "save settings",
                   "jcr:created": "Thu Mar 14 2019 05:22:32 GMT+0000",
                   "allOrdersI18n": "cuhu.ordering.allOrders",
-                  "allOrdersLink": "/content/tetrapak/customerhub/global/ordering/order-history",
-                  "orderDetailLink": "/content/tetrapak/customerhub/global/ordering/order-history",
+                  "allOrdersLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
+                  "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
                   "preferencesBtnI18n": "pref button",
                   "jcr:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
                   "preferencesDescriptionI18n": "pref desc",
-                  "sling:resourceType": "customerhub/components/content/orderingcard"
+                  "sling:resourceType": "customerhub/components/content/orderingcard",
+                  "defaultFields": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "item0": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "orderNumber"
+                     },
+                     "item1": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "poNumber"
+                     },
+                     "item2": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "defaultField": "orderDate"
+                     }
+                  },
+                  "enabledFields": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "item0": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "contact"
+                     },
+                     "item1": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "customerNumber"
+                     },
+                     "item2": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "enabledField": "salesOrg"
+                     }
+                  }
                }
             }
          }
@@ -346,11 +376,34 @@
                      "jcr:created": "Fri Mar 08 2019 06:16:09 GMT+0000",
                      "searchButtonTextI18n": "Search Orders",
                      "allAddressesTextI18n": "Address",
-                     "orderDetailLink": "/content/tetrapak/customerhub/global/ordering/order-history",
+                     "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
                      "searchTermPlaceholderI18n": "Purchase order No. / Tetra Pak order No.",
                      "deliveryAddressLabelI18n": "Delivery Address Label",
                      "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
-                     "sling:resourceType": "customerhub/components/content/ordersearch"
+                     "sling:resourceType": "customerhub/components/content/ordersearch",
+                     "enabledFields": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "contact"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "customerNumber"
+                        },
+                        "item2": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "salesOrg"
+                        },
+                        "item3": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "requestedDelivery"
+                        },
+                        "item4": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "ETA"
+                        }
+                     }
                   }
                }
             }
@@ -853,7 +906,7 @@
           "sling:resourceType": "customerhub/components/content/error",
           "textIsRich": "true",
           "errorTitle": "Oops... Page Not found",
-          "errorDescription": "<p>Either you do not have the access to this page or yoy mistyped the URL.</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/en/dashboard.html\">dashboard</a>.</p>\r\n"
+          "errorDescription": "<p>Either you do not have the access to this page or yoy mistyped the URL.</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/global/en/dashboard.html\">dashboard</a>.</p>\r\n"
         }
       }
     }

@@ -21,6 +21,7 @@ import javax.jcr.Session;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -80,19 +81,28 @@ public class OrderingCardModel {
 
     private Set<String> defaultFields;
 
-    private Set<String> disabledFields;
+    private Set<String> enabledFields;
 
     @PostConstruct
     protected void init() {
+        enabledFields = new LinkedHashSet<>();
         defaultFields = new LinkedHashSet<>();
-        defaultFields.add("orderNumber");
-        defaultFields.add("poNumber");
-        defaultFields.add("orderDate");
 
-        disabledFields = new LinkedHashSet<>();
-        disabledFields.add("contact");
-        disabledFields.add("customerNumber");
-        disabledFields.add("salesOrg");
+        Resource enabledFieldsResource = resource.getChild("enabledFields");
+        if (null != enabledFieldsResource) {
+            Iterator<Resource> itr = enabledFieldsResource.listChildren();
+            while (itr.hasNext()) {
+                enabledFields.add((String) itr.next().getValueMap().get("enabledField"));
+            }
+        }
+
+        Resource defaultFieldsResource = resource.getChild("defaultFields");
+        if (null != defaultFieldsResource) {
+            Iterator<Resource> itr = defaultFieldsResource.listChildren();
+            while (itr.hasNext()) {
+                defaultFields.add((String) itr.next().getValueMap().get("defaultField"));
+            }
+        }
 
         savedPreferences = new LinkedHashSet<>();
         savedPreferences.addAll(defaultFields);
@@ -178,10 +188,10 @@ public class OrderingCardModel {
     }
 
     /**
-     * @return disabledFields
+     * @return enabledFields
      */
-    public Set<String> getDisabledFields() {
-        return new LinkedHashSet<>(disabledFields);
+    public Set<String> getEnabledFields() {
+        return new LinkedHashSet<>(enabledFields);
     }
 
     /**

@@ -7,10 +7,11 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { sanitize, apiHost, getI18n } from '../../../scripts/common/common';
+import { sanitize, getI18n, isMobileMode } from '../../../scripts/common/common';
 import auth from '../../../scripts/utils/auth';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Disables calendar next button if visible months has current month
@@ -32,14 +33,57 @@ function _disableCalendarNext($this) {
   }
 }
 
+function _initializeCalendar(reset) {
+  const { $rangeSelector } = this.cache;
+  const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
+  if (rangeSelectorEl) {
+    // Initialize inline calendar
+    const { picker } = this.cache;
+    if (picker && reset) {
+      picker.destroy();
+    }
+    this.cache.picker = new Lightpick({
+      field: rangeSelectorEl,
+      singleDate: false,
+      numberOfMonths: (isMobileMode() ? 1 : 2),
+      inline: true,
+      skip: 1,
+      maxDate: Date.now(),
+      dropdowns: false,
+      format: DATE_FORMAT,
+      separator: DATE_RANGE_SEPARATOR,
+      onSelectStart: () => {
+        this.root.find('.js-calendar').attr('disabled', 'disabled');
+      },
+      onSelectEnd: () => {
+        this.root.find('.js-calendar').removeAttr('disabled');
+      }
+    });
+    const [, endDate] = $rangeSelector.val().split(DATE_RANGE_SEPARATOR);
+    this.cache.picker.gotoDate(endDate);
+    _disableCalendarNext(this);
+    $(window).off('media.changed').on('media.changed', () => {
+      this.initializeCalendar(reset);
+    });
+  }
+}
+
 /**
  * Processes data before rendering
  * @param {object} data JSON data object
  */
-function _processOrderSearchData(data) {
-  data = $.extend(true, data, this.cache.config);
-  const { filterStartDate, filterEndDate } = data.summary;
-  data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+function _processOrderSearchData(self, data) {
+  if (!data) {
+    data = {
+      isError: true
+    };
+  }
+  data = $.extend(true, data, self.cache.config);
+  if (!data.isError) {
+    const { filterStartDate, filterEndDate } = data.summary;
+    data.dateRange = `${filterStartDate} - ${filterEndDate}`;
+  }
+  this.data = data;
   return data;
 }
 
@@ -78,20 +122,12 @@ function _tableSort(order, keys, orderDetailLink) {
 }
 
 function _processTableData(data) {
-  const { orderDetailLink, disabledFields } = this.cache.config;
-  let keys = [];
+  const { orderDetailLink, enabledFields } = this.cache.config;
   if (Array.isArray(data.orders)) {
-    data.orders = data.orders.map(order => {
-      keys = (keys.length === 0) ? Object.keys(order) : keys;
-      if (Array.isArray(disabledFields)) {
-        keys = keys.filter(key => !disabledFields.includes(key));
-      }
-      return _tableSort.call(this, order, keys, orderDetailLink);
-    });
-    data.orderHeadings = keys.map(key => ({
+    data.orders = data.orders.map(order => _tableSort.call(this, order, enabledFields, orderDetailLink));
+    data.orderHeadings = enabledFields.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
   }
 }
@@ -125,7 +161,7 @@ function _setSearchFields(query) {
  * @param {object} filterParams Selected filter parameters
  */
 function _renderTable(filterParams) {
-  const { $filters } = this.cache;
+  const { $filters, config } = this.cache;
   const $this = this;
   this.setSearchFields(filterParams);
   this.root.find('.js-pagination').trigger('ordersearch.pagedisabled');
@@ -134,7 +170,7 @@ function _renderTable(filterParams) {
       template: 'orderingTable',
       target: '.js-order-search__table',
       url: {
-        path: `${apiHost}/${API_ORDER_HISTORY}`,
+        path: getURL(API_ORDER_HISTORY),
         data: $.extend(filterParams, {
           top: ORDER_HISTORY_ROWS_PER_PAGE
         })
@@ -145,6 +181,12 @@ function _renderTable(filterParams) {
             isError: true
           };
         }
+        $.extend(data, {
+          labels: {
+            dataError: config.dataErrorI18n,
+            noData: config.noDataI18n
+          }
+        });
         return _processTableData.apply($this, [data]);
       },
       ajaxConfig: {
@@ -158,7 +200,11 @@ function _renderTable(filterParams) {
         cancellable: true
       }
     }, (data) => {
-      if ($filters && $filters.length) {
+      if (
+        $filters
+        && $filters.length
+        && !data.isError
+      ) {
         $filters.removeClass('d-none');
       }
       if (filterParams && !data.isError && data.totalOrdersForQuery) {
@@ -185,7 +231,7 @@ function _setFilters(isModifiedSearch) {
   const filters = this.cache.$filters.serialize();
   const filterProp = deparam(filters);
   if (filterProp.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(' - ');
+    const [orderdateFrom, orderdateTo] = filterProp.daterange.split(DATE_RANGE_SEPARATOR);
     filterProp['orderdate-from'] = orderdateFrom.trim();
     filterProp['orderdate-to'] = orderdateTo.trim();
     delete filterProp.daterange;
@@ -264,10 +310,11 @@ function _trackAnalytics(type) {
  * Renders filter section
  */
 function _renderFilters() {
+  const self = this;
   auth.getToken(({ data }) => {
     render.fn({
       template: 'orderSearch',
-      url: `${apiHost}/${API_SEARCH}`,
+      url: getURL(API_SEARCH),
       target: '.js-order-search__form',
       ajaxConfig: {
         beforeSend(jqXHR) {
@@ -279,7 +326,9 @@ function _renderFilters() {
         showLoader: true,
         cancellable: true
       },
-      beforeRender: (...args) => _processOrderSearchData.apply(this, args)
+      beforeRender(...args) {
+        return _processOrderSearchData.apply(this, [self, ...args]);
+      }
     }, () => {
       this.initPostCache();
       this.setFilters();
@@ -382,34 +431,8 @@ class OrderSearch {
   renderFilters() {
     return _renderFilters.apply(this, arguments);
   }
-  initializeCalendar(reset) {
-    const $this = this;
-    const { $rangeSelector } = this.cache;
-    const rangeSelectorEl = $rangeSelector && $rangeSelector.length ? $rangeSelector[0] : null;
-    if (rangeSelectorEl) {
-      // Initialize inline calendar
-      const { picker } = this.cache;
-      if (picker && reset) {
-        picker.destroy();
-      }
-      this.cache.picker = new Lightpick({
-        field: rangeSelectorEl,
-        singleDate: false,
-        numberOfMonths: 2,
-        inline: true,
-        maxDate: Date.now(),
-        dropdowns: false,
-        format: DATE_FORMAT,
-        separator: ' - ',
-        onSelectStart() {
-          $this.root.find('.js-calendar').attr('disabled', 'disabled');
-        },
-        onSelectEnd() {
-          $this.root.find('.js-calendar').removeAttr('disabled');
-        }
-      });
-      _disableCalendarNext(this);
-    }
+  initializeCalendar() {
+    return _initializeCalendar.apply(this, arguments);
   }
   openRangeSelector() {
     this.cache.$modal.modal('show');

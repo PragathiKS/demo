@@ -9,6 +9,8 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 
+    public static final String DEFAULT_LOCALE =  "en";
+    
     public static final String GLOBAL_CONFIGURATION_RESOURCE_TYPE = "customerhub/components/structure/globalconfiguration";
 
     public static final String CQ_REDIRECT_PROPERTY = "cq:redirectTarget";

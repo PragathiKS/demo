@@ -1,4 +1,4 @@
-<sly data-sly-template.listItemBtn_template="${@ data, flag,identifier}">
+<sly data-sly-template.listItemBtn_template="${@ data, flag,identifier ,parentNameLabel ,ctype}">
   <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
     <button type="button" aria-haspopup="true" aria-expanded="${data.isExpanded ? 'true' : 'false'}"  class="tpatom-list-item__btn text-left js-list-item__btn">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
@@ -7,10 +7,11 @@
     </button>
   </sly>
   <sly data-sly-test="${!hasSubmenu}">
-    <a class="tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}">
+    <a class="tpatom-list-item__link ${identifier}" href="${data.href}" target="${data.isExternalLink ? '_blank' : '_self'}" datatag="${data.isExternalLink ? 'external' : 'internal'}" ctype="${ctype ? ctype : 'not_set'}" ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}" cttitle="${data.iconLabel}">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
           data-sly-call="${listItemIcon.listItemIcon_template @data=data}">
       </sly>
     </a>
   </sly>
 </sly>
+

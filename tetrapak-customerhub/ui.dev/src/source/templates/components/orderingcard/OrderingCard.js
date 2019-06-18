@@ -1,47 +1,59 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
-import { ajaxMethods, API_ORDER_HISTORY, ORDER_HISTORY_ROWS_PER_PAGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, ORDER_HISTORY_ROWS_PER_PAGE, API_ORDER_HISTORY} from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';
-import { apiHost } from '../../../scripts/common/common';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Fire analytics on search submit
  */
-function _trackAnalytics() {
+function _trackAnalytics(type) {
   const { title = '' } = this.cache.i18nKeys;
+
+  let $orderInput = this.root.find('input[type="checkbox"]');
+
+  let orderCardSettings = $.map($orderInput, function (el) {
+    const $inputBox = $(el);
+    if ($inputBox.is(':checked')) {
+      const $inputText = $inputBox.siblings('.js-checkbox__text');
+      if ($inputText.length > 0) {
+        return $inputText.text().trim().toLowerCase();
+      }
+    }
+    return '';
+  });
+
   let ob = {
-    linkType: 'internal',
-    linkSection: 'dashboard',
-    linkParentTitle: title.toLowerCase(),
-    linkName: 'order list item'
+    linkType: 'internal'
   };
+
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
-  trackAnalytics(ob, obKey, trackingKey, undefined, false);
-}
 
-/**
- * Caches available keys from data
- * @param {string[]} availableKeys Available keys
- * @param {string[]} orderKeys Order keys
- */
-function _setAvailableKeys(availableKeys, orderKeys) {
-  const { disabledFieldList } = this.cache;
-  if (availableKeys.length === 0) {
-    orderKeys.forEach(key => {
-      if (
-        !disabledFieldList.includes(key)
-        && !availableKeys.includes(key)
-      ) {
-        availableKeys.push(key);
-      }
-    });
+  switch (type) {
+    case 'orderCardList': {
+      ob.linkSection = 'dashboard';
+      ob.linkParentTitle = title.toLowerCase();
+      ob.linkName = 'order list item';
+      break;
+    }
+    case 'orderSettings': {
+      ob.linkSection = 'order settings';
+      ob.linkParentTitle = 'order settings overlay';
+      ob.linkName = 'save settings';
+      ob.linkselection = orderCardSettings.join('|');
+      break;
+    }
+    default: {
+      break;
+    }
   }
+  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
@@ -91,35 +103,42 @@ function _tableSort(order, activeKeys, orderDetailLink, viewAllOrders) {
  */
 function _processTableData(data) {
   // Update i18n keys
-  const { i18nKeys, savedPreferences, availableKeys = [], viewAllOrders, orderDetailLink, defaultFields, disabledFieldList } = this.cache;
-  this.cache.availableKeys = availableKeys;
+  const {
+    i18nKeys,
+    savedPreferences,
+    viewAllOrders,
+    orderDetailLink,
+    defaultFields,
+    enabledFieldList
+  } = this.cache;
+  this.cache.activeKeys = {};
   this.cache.tableData = $.extend(true, {}, data);
   data.labels = i18nKeys;
   // Activate fields which are enabled for render
   if (Array.isArray(data.orders)) {
-    let activeKeys = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
-    activeKeys = activeKeys.filter(key => key && !disabledFieldList.includes(key));
-    data.orders = data.orders.map(order => {
-      const orderKeys = Object.keys(order);
-      if (availableKeys.length === 0) {
-        _setAvailableKeys.call(this, availableKeys, orderKeys);
+    const preferenceList = typeof savedPreferences === 'string' ? savedPreferences.split(',') : [];
+    const defaultFieldList = typeof defaultFields === 'string' ? defaultFields.split(',') : [];
+    defaultFieldList.forEach(key => {
+      if (!preferenceList.includes(key)) {
+        preferenceList.push(key);
       }
-      if (activeKeys.length === 0) {
-        activeKeys.push(...orderKeys);
-      }
-      return _tableSort.call(this, order, activeKeys, orderDetailLink, viewAllOrders);
     });
-    data.orderHeadings = activeKeys.map(key => ({
+    this.cache.activeKeys = enabledFieldList.filter(key => preferenceList.includes(key));
+    data.orders = data.orders.map(order => _tableSort.call(this, order, this.cache.activeKeys, orderDetailLink, viewAllOrders));
+    data.orderHeadings = this.cache.activeKeys.map(key => ({
       key,
-      i18nKey: `cuhu.ordering.${key}`,
-      sortOrder: 'desc'
+      i18nKey: `cuhu.ordering.${key}`
     }));
-    data.settingOptions = availableKeys.map(key => ({
-      key,
-      i18nKey: `cuhu.ordering.${key}`,
-      isChecked: activeKeys.includes(key),
-      isMandatory: defaultFields.split(',').includes(key)
-    }));
+    data.settingOptions = enabledFieldList.map(key => {
+      const isMandatory = defaultFieldList.includes(key);
+
+      return {
+        key,
+        i18nKey: `cuhu.ordering.${key}`,
+        isChecked: (isMandatory || this.cache.activeKeys.includes(key)),
+        isMandatory
+      };
+    });
   }
   data.viewAllOrders = viewAllOrders;
   return data;
@@ -129,6 +148,11 @@ function _processTableData(data) {
  * Opens settings overlay panel
  */
 function _openSettingsPanel() {
+  const { activeKeys } = this.cache;
+  const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
+  $.each($modalPreference.find('input'), function () {
+    $(this).prop('checked', activeKeys.includes($(this).val()));
+  });
   this.root.find('.js-ordering-card__modal').modal();
 }
 
@@ -150,7 +174,8 @@ function _stopEvtProp(e) {
 
 function _saveSettings() {
   // Get selected preferences
-  const selectedFields = $.map(this.root.find('.js-ordering-card__modal-preference').find('input:checked'), function (el) {
+  const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
+  let selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
     return $(el).val();
   });
   ajaxWrapper.getXhrObj({
@@ -188,10 +213,10 @@ class OrderingCard {
     this.cache.viewAllOrders = $('#ordAllOrdersLink').val();
     this.cache.orderDetailLink = $('#ordDetailLink').val();
     this.cache.defaultFields = $('#ordDefaultFields').val();
-    this.cache.disabledFields = $('#ordDisabledFields').val();
+    this.cache.enabledFields = $('#ordEnabledFields').val();
     this.cache.disabledFieldList = [];
-    if (typeof this.cache.disabledFields === 'string') {
-      this.cache.disabledFieldList = this.cache.disabledFields.split(',');
+    if (typeof this.cache.enabledFields === 'string') {
+      this.cache.enabledFieldList = this.cache.enabledFields.split(',');
     }
     this.cache.savedPreferences = $('#ordSavedPreferences').val();
     this.cache.contactListTemplate = render.get('contactList');
@@ -206,11 +231,14 @@ class OrderingCard {
     /* Bind jQuery events here */
     this.root
       .on('click', '.js-ordering-card__settings', this.openSettingsPanel)
-      .on('click', '.js-ordering-card__modal-save', this.saveSettings)
+      .on('click', '.js-ordering-card__modal-save', () => {
+        this.saveSettings();
+        this.trackAnalytics('orderSettings');
+      })
       .on('click', '.js-ordering-card__row', this, function (e) {
         const $this = e.data;
         $this.openOrderDetails.apply(this, arguments);
-        $this.trackAnalytics();
+        $this.trackAnalytics('orderCardList');
       })
       .on('click', '.js-ordering-card__row a', this.stopEvtProp); // Stops event propagation of order detail for links inside table row
   }
@@ -220,7 +248,7 @@ class OrderingCard {
       config = {
         template: 'orderingCard',
         url: {
-          path: `${apiHost}/${API_ORDER_HISTORY}`,
+          path: getURL(API_ORDER_HISTORY),
           data: {
             top: ORDER_HISTORY_ROWS_PER_PAGE
           }
@@ -258,7 +286,7 @@ class OrderingCard {
   openSettingsPanel = (...args) => _openSettingsPanel.apply(this, args);
   saveSettings = (...args) => _saveSettings.apply(this, args);
   stopEvtProp = (...args) => _stopEvtProp.apply(this, args);
-  trackAnalytics = () => _trackAnalytics.call(this);
+  trackAnalytics = (type) => _trackAnalytics.call(this, type);
   openOrderDetails(...args) {
     return _openOrderDetails.apply(this, args);
   }

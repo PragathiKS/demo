@@ -1,0 +1,250 @@
+pipeline {
+        agent { label "master" } 
+
+
+        parameters {
+
+                booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
+        }
+
+        tools {
+                maven 'maven'
+                jdk 'jdk8'
+        }
+
+        environment {
+                sonar_url = "http://127.0.0.1:9000"
+                author_url = "http://10.202.13.228:4502"
+                publish_url = "http://10.202.13.229:4503"
+                package_name = "tetrapak-complete-package"
+test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak.sapient.com/content/tetrapak/customerhub/en/financials.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/training.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/projects.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
+                test_url_pally_zap = "http://tetrapak.sapient.com"
+                karmapath =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
+        }
+
+        stages {
+
+               stage ('Checkout') {
+                 steps {
+                   git(
+                   poll: true,
+                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
+                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
+                   branch: 'develop'
+                      )
+                   }
+                 }
+
+                stage ('Initialize') {
+                        steps {
+                                sh '''
+                                        echo "PATH = ${PATH}"
+                                        echo "M2_HOME = ${M2_HOME}"
+                                '''
+                        }
+                }
+
+                stage ('Build') {
+                        steps {
+                                sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+                                sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
+                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean  flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
+                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                        }
+                }
+
+                stage ('Sonar_JS') {
+                        steps {
+                                script {
+                                        if (params.Skip_Tool_Execution) {
+                                                echo "Skipping execution of Sonar on JS files"
+                                        }
+                                        else
+                                        {
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js  -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+                                        }
+                                }
+                        }
+                }
+
+                stage ('Sonar_CSS') {
+                        steps {
+                                script {
+                                        if (params.Skip_Tool_Execution) {
+                                                echo "Skipping execution of Sonar on CSS files"
+                                        }
+                                        else
+                                        {
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+                                        }
+                                }
+                        }
+                }
+
+                stage ('Sonar_JAVA') {
+                        steps {
+                                script {
+                                        if (params.Skip_Tool_Execution) {
+                                                echo "Skipping execution of Sonar on JAVA files"
+                                        }
+                                        else
+                                        {
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+                                        }
+                                }
+                        }
+                }
+
+                stage ('Deployment Author and Publish Parallel') {
+                        steps {
+                                parallel (
+                                        "Author Deployment" : {
+                                                echo "Uninstalling Old Commons Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+                                                echo "Deleting Old Commons Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+                                                echo "Uploading New Commons Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                echo "Installing New Commons Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+                                                sleep 20
+                                                echo "Uninstalling Old Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
+                                                echo "Deleting Old Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
+                                                echo "Uploading New Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                echo "Installing New Package on author"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
+                                        },
+                                        "Publish_Deployment" : {
+                                                echo "Uninstalling Old Commons Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+                                                echo "Deleting Old Commons Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+                                                echo "Uploading New Commons Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                echo "Installing New Commons Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+                                                sleep 20
+                                                echo "Uninstalling Old Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
+                                                echo "Deleting Old Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
+                                                echo "Uploading New Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                echo "Installing New Package on publish"
+                                                sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
+
+
+                                        }
+                                )
+                        }
+                }
+
+                stage ('Pa11y, Sitespeed, Zap Tools Execution') {
+                        steps {
+                                script{
+                                        parallel (
+                                                "karma" : {
+                                                        echo "Publising karma Test Report"
+                                                        sh 'echo "Karma Report"'
+                                                        sh 'cp -r ${karmapath} /app/build-area/releases'
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+                                                },
+                                                "Pa11y" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                                echo "Skipping execution of Pally"
+                                                        }
+                                                        else
+                                                        {
+                                                                echo "Starting pa11y test Run on CustomerHub Urls"
+                                                                sh 'chmod 777 PallyReporting.sh'
+                                                                sh './PallyReporting.sh'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
+
+
+                                                        }
+                                                },
+                                                "sitespeed_Desktop" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                                echo "Skipping execution of Sitespeed for Desktop"
+                                                        }
+                                                        else
+                                                        {
+                                                                echo "Starting Sitespeed Test Run"
+                                                                sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
+                                                        }
+                                                },
+                                                "sitespeed_Mobile" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                                echo "Skipping execution of Sitespeed for Mobile"
+                                                        }
+                                                        else
+                                                        {
+                                                                echo "Starting Sitespeed Test Run"
+                                                                sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
+                                                        }
+                                                },
+                                                "sitespeed_IPad" : {
+                                                        if (params.Skip_Tool_Execution) {
+                                                                echo "Skipping execution of Sitespeed for iPad"
+                                                        }
+                                                        else
+                                                        {
+                                                                echo "Starting Sitespeed Test Run"
+                                                                sh 'docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url} -b firefox --outputFolder sitespeed_ipad'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
+                                                        }
+                                                },
+                                                "zap" :{
+                                                        if (params.Skip_Tool_Execution) {
+                                                                echo "Skipping execution of Zap"
+                                                        }
+                                                        else
+                                                        {
+                                                                echo "Starting Zap Test Run"
+                                                                sh 'zap-cli --zap-path /app/zap start -o "-config api.key=12345"'
+                                                                sh 'zap-cli --api-key 12345 spider ${test_url_pally_zap}'
+                                                                sh 'zap-cli --api-key 12345 report -f html -o "zap.html"'
+                                                                sh 'zap-cli --api-key 12345 shutdown'
+                                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])
+                                                        }
+                                                }
+                                        )
+                                }
+                        }
+                }
+        }
+post {
+/*
+      success {
+      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',
+
+to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, tushar.tushar@publicissapient.com'
+
+
+}
+      failure {
+      emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
+      body: '''${DEFAULT_CONTENT}''',
+
+to: 'sebastian.villamarin@3sharecorp.com; martin.demuniategui@3sharecorp.com; abhinit.bhatnagar@3sharecorp.com; lucio.poveda@3sharecorp.com; ravi.kapula@3sharecorp.com; nicolas.behotas@3sharecorp.com; nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, tushar.tushar@publicissapient.com'
+      }
+*/
+
+
+ always {
+    build 'Tetra-SapDev-Dispatcher-Flush'
+    }
+
+}
+
+}
+

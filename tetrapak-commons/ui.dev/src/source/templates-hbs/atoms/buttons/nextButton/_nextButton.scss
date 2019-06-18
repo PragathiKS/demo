@@ -12,18 +12,22 @@
     color: $color-text-link;
     font-family: $font-light;
     cursor: pointer;
+
     &__text {
         @include margin-right($margin-sm);
+
         .tp-btnNext--disabled & {
             opacity: $opacity-mid;
         }
     }
+
     &__icon {
         display: inline-block;
         .tp-btnNext--disabled & {
             opacity: $opacity-mid;
         }
     }
+
     &--disabled {
         background: $color-wild-sand;
         color: $color-congress-blue;

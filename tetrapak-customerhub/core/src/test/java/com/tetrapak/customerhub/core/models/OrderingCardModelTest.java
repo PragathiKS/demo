@@ -1,47 +1,75 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.services.impl.UserPreferenceServiceImpl;
-import io.wcm.testing.mock.aem.junit.AemContext;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-@Ignore
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.services.AzureTableStorageService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.services.impl.AzureTableStorageServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.UserPreferenceServiceImpl;
+
+import io.wcm.testing.mock.aem.junit.AemContext;
+
+@RunWith(MockitoJUnitRunner.class)
 public class OrderingCardModelTest {
 
-    private OrderingCardModel orderingCardModel = null;
-    private UserPreferenceService userPreferenceService;
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard";
-    private static final String RESOURCE_JSON = "allContent.json";
+	private OrderingCardModel orderingCardModel = null;
 
-    @Rule
-    public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(RESOURCE_JSON, CONTENT_ROOT);
+	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
+	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";
+	private static final String RESOURCE_JSON = "allContent.json";
 
-    @Before
-    public void setup() {
-        aemContext.load().json("/" + "user.json", "/home");
-        userPreferenceService = new UserPreferenceServiceImpl();
+	@Rule
+	public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(RESOURCE_JSON, CONTENT_ROOT,
+			getMultipleMockedService());
 
-        aemContext.registerInjectActivateService(userPreferenceService);
+	@Before
+	public void setup() {
+		aemContext.load().json("/" + "user.json", "/home");
+		aemContext.addModelsForClasses(OrderingCardModel.class);
+		Resource resource = aemContext.currentResource(COMPONENT_PATH);
+		orderingCardModel = resource.adaptTo(OrderingCardModel.class);
+	}
 
-        Resource resource = aemContext.currentResource(COMPONENT_PATH);
-        orderingCardModel = resource.adaptTo(OrderingCardModel.class);
-    }
+	private <T> List<GenericServiceType<T>> getMultipleMockedService() {
+		GenericServiceType<UserPreferenceService> userPreferenceServiceType = new GenericServiceType<>();
+		userPreferenceServiceType.setClazzType(UserPreferenceService.class);
+		userPreferenceServiceType.set(new UserPreferenceServiceImpl());
 
-    @Test
-    public void testModel() {
-        String i18nKeys = orderingCardModel.getI18nKeys();
-        Assert.assertTrue(i18nKeys.contains("cuhu.ordering.title"));
-        Assert.assertEquals(1, orderingCardModel.getDisabledFields().size());
-        Assert.assertEquals(3, orderingCardModel.getDefaultFields().size());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json", orderingCardModel.getPreferencesURL());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getAllOrdersLink());
-        Assert.assertEquals("/content/tetrapak/customerhub/global/ordering/order-history", orderingCardModel.getOrderDetailLink());
-        Assert.assertEquals(6, orderingCardModel.getSavedPreferences().size());
-    }
+		GenericServiceType<AzureTableStorageService> azureTableStorageServiceGenericServiceType = new GenericServiceType<>();
+		azureTableStorageServiceGenericServiceType.setClazzType(AzureTableStorageService.class);
+		azureTableStorageServiceGenericServiceType.set(new AzureTableStorageServiceImpl());
+
+		List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
+		serviceTypes.add((GenericServiceType<T>) userPreferenceServiceType);
+		serviceTypes.add((GenericServiceType<T>) azureTableStorageServiceGenericServiceType);
+		return serviceTypes;
+	}
+
+	@Test
+	public void testModel() {
+		String i18nKeys = orderingCardModel.getI18nKeys();
+		Assert.assertTrue("title is not empty", i18nKeys.contains("cuhu.ordering.title"));
+		Assert.assertEquals("size of enabled fields", 3, orderingCardModel.getEnabledFields().size());
+		Assert.assertEquals("size of default fields", 3, orderingCardModel.getDefaultFields().size());
+		Assert.assertEquals("preference url",
+				"/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard.preference.json",
+				orderingCardModel.getPreferencesURL());
+		Assert.assertEquals("all orders detail link", "/content/tetrapak/customerhub/global/en/ordering/order-history.html",
+				orderingCardModel.getAllOrdersLink());
+		Assert.assertEquals("order details link", "/content/tetrapak/customerhub/global/en/ordering/order-history.html",
+				orderingCardModel.getOrderDetailLink());
+		Assert.assertEquals("saved preference size", 3, orderingCardModel.getSavedPreferences().size());
+	}
+
 }

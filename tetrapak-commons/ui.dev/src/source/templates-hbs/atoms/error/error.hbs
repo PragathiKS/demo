@@ -1,8 +1,4 @@
 <div class="tpatom-error">
-    <i class="tpatom-error__icon icon-error"></i>
-    {{#if error}}
+    <i class="tpatom-error__icon{{#if error}} icon-error{{else}} icon-Info{{/if}}"></i>
     <span>{{i18n key=message}}</span>
-    {{else}}
-    <span>{{i18n key=message}}</span>
-    {{/if}}
 </div>

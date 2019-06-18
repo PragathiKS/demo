@@ -4,13 +4,10 @@
     @include padding-right($padding-md);
     @include padding-top($padding-xl);
     @include margin-bottom($margin-l);
-    @include margin-left(-15px);
-    @include margin-right(-15px);
     @include font-size(14px);
-    @include max-width(1360px);
     color: $color-congress-blue;
     background-color: $color-white;
-    font-family: $font-bold;
+    font-family: $font-extra-bold;
     $shadow: rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px 0 $shadow;
     position: fixed;
@@ -56,7 +53,7 @@
     &__links {
         @include line-height(24px, $font-baseline);
         color: $color-congress-blue;
-        font-family: $font-bold;
+        font-family: $font-extra-bold;
 
         &:hover {
             color: $color-text;
@@ -67,7 +64,7 @@
     &__nav-right {
         @include padding-left($padding-xxxl);
         @include line-height(24px, $font-baseline);
-        @include top(30px);
+        @include top(32px);
         @include right(24px);
         text-align: right;
         position: absolute;
@@ -92,7 +89,6 @@
         @media #{$desktop} {
             @include padding-right($padding-md);
             display: inline-block;
-            border-right: 1px $color-mercury solid;
         }
 
         &::before {

@@ -62,8 +62,6 @@ public class PageLoadAnalyticsModel {
     @PostConstruct
     public void initModel() {
         String currentPagePath = currentPage.getPath();
-        pageName = StringUtils.substringAfter(currentPagePath, currentPage.getAbsoluteParent(1).getPath() + "/");
-        pageName = StringUtils.replace(pageName, "/", ":");
         
         String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
         if (StringUtils.equals(templatePath, PRODUCT_PAGE_TEMPLATE_PATH)) {
@@ -77,10 +75,15 @@ public class PageLoadAnalyticsModel {
 	        siteLanguage = pageLocale.getLanguage();
 	        siteCountry = pageLocale.getCountry();
         }
+        if (StringUtils.isBlank(siteCountry)) {
+        	siteCountry = "gb";
+        }
         
         updateBreadcrumb();
         updateRunMode();
         updateSiteSections();
+        updatePageName();
+        
         updateTagsMap();
         
         contentName = currentPage.getName();
@@ -125,6 +128,25 @@ public class PageLoadAnalyticsModel {
             }
         }
     }
+    
+    private void updatePageName() {
+		pageName = SITE_NAME + ":" + siteCountry + "-" + siteLanguage + ":home";
+        if (StringUtils.isNotEmpty(siteSection1.toString())) {
+        	pageName += ":" + siteSection1.toString();
+        	if (StringUtils.isNotEmpty(siteSection2.toString())) {
+            	pageName += ":" + siteSection2.toString();
+            	if (StringUtils.isNotEmpty(siteSection3.toString())) {
+                	pageName += ":" + siteSection3.toString();
+                	if (StringUtils.isNotEmpty(siteSection4.toString())) {
+                    	pageName += ":" + siteSection4.toString();
+                    }
+                }
+            }
+        }
+        if (currentPage.getDepth() > 5) {
+        	pageName += ":" + currentPage.getName();
+        }
+	}
     
     private void updateTagsMap() {
     	Tag[] pageTags = currentPage.getTags();

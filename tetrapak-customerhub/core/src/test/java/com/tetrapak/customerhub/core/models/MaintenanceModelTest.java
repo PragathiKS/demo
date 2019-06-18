@@ -19,8 +19,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class MaintenanceModelTest {
 
-    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/en/installed-equipment";
-    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/en/installed-equipment/jcr:content/root/responsivegrid/maintenance";
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/installed-equipment";
+    private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/installed-equipment/jcr:content/root/responsivegrid/maintenance";
     private static final String RESOURCE_JSON = "maintenance.json";
     private MaintenanceModel maintenanceModelModel;
 
@@ -54,5 +54,6 @@ public class MaintenanceModelTest {
         assertEquals("There should be operation hort text label", "Operation short text", maintenanceModelModel.getOperationShortTextLabel());
         assertEquals("There should be no data message", "no data", maintenanceModelModel.getNoDataMsg());
         assertEquals("There should be error message", "error", maintenanceModelModel.getErrorMsg());
+        assertEquals("There should be no event message", "No Event", maintenanceModelModel.getNoEventMsg());
     }
 }

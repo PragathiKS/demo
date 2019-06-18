@@ -56,21 +56,17 @@ public class ArticleItemModel {
         ResourceResolver resolver = resource.getResourceResolver();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-        if ("automatic".equals(contentType)) {
-            articleTitle = "";
-            vanityDescription = "";
-            ctaTexti18nKey = "";
-
-            Page landingPage = pageManager.getPage(articlePath);
-            if (landingPage != null) {
-                Resource jcrContentResource = landingPage.getContentResource();
-                LandingPageModel landingPageModel = jcrContentResource.adaptTo(LandingPageModel.class);
-                if (landingPageModel != null) {
-                    articleTitle = landingPageModel.getTitle();
-                    vanityDescription = landingPageModel.getVanityDescription();
-                    ctaTexti18nKey = landingPageModel.getCtaTexti18nKey();
-                    articleImagePath = landingPageModel.getArticleImagePath();
-                    articleImageAltI18n = landingPageModel.getArticleImageAltI18n();
+        if ("automatic".equals(contentType) && pageManager!=null) {
+            Page articlePage = pageManager.getPage(articlePath);
+            if (articlePage != null) {
+                Resource jcrContentResource = articlePage.getContentResource();
+                ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
+                if (articlePageModel != null) {
+                    articleTitle = articlePageModel.getArticleTitle();
+                    vanityDescription = articlePageModel.getDescription();
+                    ctaTexti18nKey = articlePageModel.getLinkText();
+                    articleImagePath = articlePageModel.getArticleImagePath();
+                    articleImageAltI18n = articlePageModel.getImageAltTextI18n();
                 }
             }
 

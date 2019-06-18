@@ -12,6 +12,7 @@ describe('Maintenanceevents', function () {
       // Dummy method
     }
   };
+
   function ajaxResponse(response) {
     const pr = $.Deferred();
     pr.resolve(response, 'success', jqRef);
@@ -23,6 +24,8 @@ describe('Maintenanceevents', function () {
     this.maintenanceevents = new EventsListing({ el: $('.js-maintenance__events') });
     this.initSpy = sinon.spy(this.maintenanceevents, "init");
     this.renderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "renderMaintenanceEvents");
+    this.reRenderMaintenanceEventsSpy = sinon.spy(this.maintenanceevents, "reRenderMaintenanceEvents");
+
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(maintenanceEventsData));
@@ -39,6 +42,7 @@ describe('Maintenanceevents', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.renderMaintenanceEventsSpy.restore();
+    this.reRenderMaintenanceEventsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
@@ -48,12 +52,17 @@ describe('Maintenanceevents', function () {
     done();
   });
   it('should render events on trigger of renderMaintenanceEvents event', function (done) {
-    $('.js-maintenance').trigger('renderMaintenance', [{
+    $('.js-maintenance').trigger('maintenance.render', [{
       $site: $('.js-maintenance-filtering__site'),
       $line: $('.js-maintenance-filtering__line'),
       $equipment: $('.js-maintenance-filtering__equipment')
-    }]);
+    }, sinon.stub()]);
     expect(this.renderMaintenanceEventsSpy.called).to.be.true;
+    done();
+  });
+  it('should re-render events on trigger of pagination buttons', function (done) {
+    $('.js-pagination').trigger('eventslisting.pagenav', [{ pageIndex: 1 }]);
+    expect(this.reRenderMaintenanceEventsSpy.called).to.be.true;
     done();
   });
 });

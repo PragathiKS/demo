@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { digitalData } from '../../../scripts/common/common';
+import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class ListContentImage {
   constructor({ el }) {
@@ -6,11 +8,11 @@ class ListContentImage {
   }
   cache = {};
   initCache() {
+    const self = this;
     this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', this.root );
-    // First clone the editTabContent and then clone its active tabContent and append under active tab in the tablist (for mobile)
-    const $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', this.root );
-    const $editTabItem = $('.pw-listContentImage__editTab', this.root);
-    const $contentWrapper = $( '.pw-listContentImage__contentWrapper', this.root );
+    this.cache.$tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', this.root );
+    this.cache.$editTabItem = $('.pw-listContentImage__editTab', this.root);
+    this.cache.$contentWrapper = $( '.pw-listContentImage__contentWrapper', this.root );
     this.cache.digitalData = digitalData; //eslint-disable-line
 
     // Add Version Name to each instance
@@ -19,29 +21,24 @@ class ListContentImage {
     });
 
     // Clone all EditTab Content to the Content Wrapper
-    $.each($editTabItem, function() {
+    $.each(this.cache.$editTabItem, function() {
+      let tabID = $(this).data( 'tab-id' );
       let $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
-      $contentWrapper.append($clonedEditTabContent);
+      let $clonedEditTabContentMobile = $('.pw-listContentImage__contentTab', this).clone();
+      self.cache.$contentWrapper.append($clonedEditTabContent);
+      $('#'+tabID).append($clonedEditTabContentMobile);
     });
 
-    // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link (this is hidden in desktop view with css)
-    let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', this.root ).clone();
-    $.each( $tabMenuItem, function() {
-      if ( $( this ).children( 'a.active' ).hasClass( 'active' ) ) {
-        $( this ).append( $clonedActiveTabContent );
-      }
-    });
   }
   bindEvents() {
     const self = this;
     this.cache.$tabMenuItemLink.click(function(e) {
       e.preventDefault();
       const $this = $( this );
-      let tabID   = $this.data( 'tab-id' );
       if (self.cache.digitalData) {
         self.cache.digitalData.linkClick = {};
         self.cache.digitalData.linkClick.linkType = 'internal';
-        self.cache.digitalData.linkClick.linkSection = 'listContentImage';
+        self.cache.digitalData.linkClick.linkSection = 'tabListText';
         self.cache.digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' );
         self.cache.digitalData.linkClick.linkName = $this.data( 'link-name' );
         self.cache.digitalData.linkClick.linkListPos = $this.data( 'tab-count' );
@@ -49,28 +46,38 @@ class ListContentImage {
           _satellite.track('linkClicked'); //eslint-disable-line
         }
       }
-      // Get this organism grandparent class version name
-      let grandParentClassNamesArr = $this.closest( '.pw-listContentImage' ).attr('class').match(/\S+/gi);
-      let specificGrandParentClassVersion = grandParentClassNamesArr[grandParentClassNamesArr.length - 1];
-      const grandParentClass = '.'+specificGrandParentClassVersion;
-
-      // variables for the clicked organism only
-      const $tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', grandParentClass ),
-        $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', grandParentClass ),
-        $tabContent       = $( '.pw-listContentImage__contentTab', grandParentClass );
-
-      // dont do anything if link Tab Link is active
-      if ( $this.hasClass('active' ) ) {
-        return;
+      self.setActiveTab($this);
+      dynMedia.processImages();
+    });
+    $(document).ready(() => {
+      let width = window.innerWidth || document.body.clientWidth;
+      if (width > 767) {
+        this.cache.$tabMenuItemLink.first().addClass( 'active' );
+        this.cache.$tabMenuItem.first().addClass( 'active' );
       }
+    });
+  }
+  setActiveTab($this) {
+    const self = this;
+    // variables for the clicked organism only
+    let width = window.innerWidth || document.body.clientWidth;
+    let tabID   = $this.data( 'tab-id' );
+    const $tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', self.root ),
+      $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', self.root ),
+      $tabContent       = $( '.pw-listContentImage__contentTab', self.root );
 
+    if ( $this.hasClass('active' ) ) {
+      if (width < 768) {
+        $this.removeClass( 'active' );
+        $tabMenuItem.removeClass( 'active' );
+        $tabContent.removeClass( 'active' );
+      }
+    } else {
       // set active class to Tab Menu List Item
       $tabMenuItemLink.removeClass( 'active' );
+      $tabMenuItem.removeClass( 'active' );
       $this.addClass( 'active' );
-
-      // set no-border class for styling the Tab Menu List Item next sibling
-      $tabMenuItemLink.removeClass( 'no-border' );
-      $this.parent().next().children('.pw-listContentImage__tabMenuListItem__link').addClass( 'no-border' );
+      $this.closest('li').addClass( 'active' );
 
       // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
       $tabContent.removeClass( 'active' );
@@ -79,19 +86,7 @@ class ListContentImage {
           $( this ).addClass( 'active' );
         }
       });
-
-      // Mobile
-      // Clone the Active Tab Content and put in clicked active Tab Menu List Item under Tab Menu List Item Link
-      let $clonedActiveTabContent = $( '.pw-listContentImage__contentWrapper .pw-listContentImage__contentTab.active', grandParentClass ).clone();
-      $( '.pw-listContentImage__tabMenuListItem .pw-listContentImage__contentTab', grandParentClass ).slideUp( 'slow', function() {
-        $( this ).remove();
-      });
-      $.each( $tabMenuItem, function() {
-        if ( $( this ).children( 'a.active' ).hasClass( 'active' ) ) {
-          $clonedActiveTabContent.appendTo( $( this ) ).slideDown( 'slow' );
-        }
-      });
-    });
+    }
   }
   init() {
     this.initCache();

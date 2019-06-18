@@ -15,17 +15,20 @@ class ArticleItem {
     this.cache.$articleItemBtnLink.click((e) => {
       let article = e.target.closest('.pw-article');
       let articleContainer = e.target.closest('.article-container');
+      let $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = article.getAttribute('data-articleItem-linkType');
         this.cache.digitalData.linkClick.linkSection = 'articleItem';
-        if (articleContainer && articleContainer.getAttribute('data-container-title') !== null) {
-          this.cache.digitalData.linkClick.linkParentTitle = articleContainer.getAttribute('data-container-title');
-          this.cache.digitalData.linkClick.contentName = article.getAttribute('data-articleItem-contentName');
-        } else {
-          this.cache.digitalData.linkClick.linkParentTitle = article.getAttribute('data-articleItem-contentName');
+        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-article').find('.pw-article__title').text().trim();
+        if (articleContainer) {
+          let listPosition =  [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
+          this.cache.digitalData.linkClick.linkListPos = listPosition;
+          this.cache.digitalData.linkClick.contentName = $thisClick.closest('.article-container').find('.article-container__title').text().trim();
+          
         }
-        this.cache.digitalData.linkClick.linkName = article.getAttribute('data-articleItem-linkName');
+        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
+
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
             _satellite.track('linkClicked'); //eslint-disable-line
         }

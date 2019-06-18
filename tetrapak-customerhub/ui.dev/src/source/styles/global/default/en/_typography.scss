@@ -1,0 +1,61 @@
+%font-family-heading {
+    font-family: $font-regular;
+
+    @media #{$desktop} {
+        font-family: $font-light;
+    }
+}
+
+h1 {
+    @extend %font-family-heading;
+    @include font-size($font-m-xl);
+    @include line-height(36px, $font-m-xl);
+
+    @media #{$desktop} {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+}
+
+h2 {
+    @extend %font-family-heading;
+    @include font-size($font-m-l);
+    @include line-height(32px, $font-m-l);
+}
+
+h3 {
+    @extend %font-family-heading;
+    @include font-size($font-m-md);
+    @include line-height(28px, $font-m-md);
+
+    @media #{$desktop} {
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
+    }
+}
+
+h4 {
+    @extend %font-family-heading;
+    @include font-size($font-m-baseline);
+    @include line-height(28px, $font-m-baseline);
+
+    @media #{$desktop} {
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+    }
+}
+
+.hero {
+    @include font-size($font-m-xxl);
+    @include line-height(40px, $font-m-xxl);
+
+    @media #{$desktop} {
+        @include font-size($font-xxl);
+        @include line-height(48px, $font-xxl);
+    }
+}
+
+.font-style-sm {
+    @include font-size($font-baseline);
+    @include line-height(24px, $font-baseline);
+}

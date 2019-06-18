@@ -37,6 +37,16 @@
         </div>
       </div>
     </div>
+        <!-- This is the example of how the search panel values can be retrieved from the model 
+        <p> Placeholder Text : ${data.searchPlaceholderText}</p>
+        <ul data-sly-list.tile="${data.searchPanelTiles}">
+        <li>Title : ${tile.title}</li>
+            <li>Description : ${tile.description}</li>
+            <li>Image : ${tile.image}</li>
+            <li>Image Alt Text : ${tile.imageAltText}</li>
+            <li>Link Path : ${tile.linkPath}</li>
+            <li>Target Blank : ${tile.targetBlank}</li>
+        </ul>-->
     <div class="tp-pw-header__hero-image" data-sly-test="${data.enableHeroImage}">
       <sly data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
     </div>

@@ -1,4 +1,4 @@
-<sly data-sly-template.header_template="${@ data, flag}">
+<sly data-sly-template.header_template="${@ data, cookie, flag}">
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
 
@@ -26,11 +26,10 @@
       </sly>
       <sly data-sly-test="${data.rightNavDisplay}">
         <div class="tp-header__nav-right">
-          <span class="tp-header__user icon-Avatar">${data.getUserInfoI18n}</span>
-          <button type="button" class="tp-header__bell icon-Bell">
-             <!--/* TODO - The value will be dynamic when notification story is developed. */-->
-            <label class="tp-header__notif">2</label>
-          </button>
+          <span class="tp-header__user icon-Avatar">
+              <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
+              <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
+          </span>
         </div>
       </sly>
     </header>

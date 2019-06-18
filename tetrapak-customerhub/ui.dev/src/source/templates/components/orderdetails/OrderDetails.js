@@ -4,11 +4,12 @@ import auth from '../../../scripts/utils/auth';
 import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
-import { apiHost, tableSort, resolveQuery } from '../../../scripts/common/common';
+import { tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  *
@@ -32,10 +33,6 @@ function _trackAnalytics(obj, type) {
     }
     case 'pdf': {
       analyticsData.linkName = `create ${type}`;
-      break;
-    }
-    case 'webRef': {
-      analyticsData.linkName = 'web ref';
       break;
     }
     case 'trackOrder': {
@@ -155,7 +152,7 @@ function _renderOrderSummary() {
     render.fn({
       template: 'orderDetail',
       url: {
-        path: `${apiHost}/${$this.cache.apiUrl}`,
+        path: getURL($this.cache.apiUrl),
         data: {
           'order-number': $this.cache.orderNumber,
           top: ORDER_DETAILS_ROWS_PER_PAGE
@@ -227,7 +224,7 @@ function _renderPaginateData() {
     render.fn({
       template: 'deliveryDetail',
       url: {
-        path: `${apiHost}/${$this.cache.apiUrl}`,
+        path: getURL($this.cache.apiUrl),
         data: {
           'order-number': $this.cache.orderNumber,
           'delivery-number': deliveryNo,
@@ -301,15 +298,13 @@ function _downloadContent($this) {
   const self = $(this);
   const data = self.data();
   self.attr('disabled', 'disabled');
-  auth.getToken(({ data: authData }) => {
-    data.token = authData.access_token;
+  auth.getToken(() => {
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
     fileWrapper({
       extension: `${_getExtension(data.extnType)}`,
       url: pdfExcelUrl,
       data: {
-        orderNumber: data.orderNumber,
-        token: data.token
+        orderNumber: data.orderNumber
       }
     }).then(() => {
       self.removeAttr('disabled');
@@ -358,10 +353,6 @@ class OrderDetails {
     this.root
       .on('click', '.js-icon-Info', this.openOverlay)
       .on('click', '.js-create-excel, .js-create-pdf', this, this.downloadContent)
-      .on('click', '.js-order-detail__webRef', this, function (e) {
-        const $this = e.data;
-        $this.trackAnalytics.call(this, $this, 'webRef');
-      })
       .on('click', '.js-order-delivery-summary-track-order', this, function (e) {
         const $this = e.data;
         $this.trackAnalytics.call(this, $this, 'trackOrder');
