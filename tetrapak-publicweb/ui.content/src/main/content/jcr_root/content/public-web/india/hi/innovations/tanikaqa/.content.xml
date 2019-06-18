@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.280Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.280Z"
+        cq:template="/apps/publicweb/templates/landingpage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/innovations/tanikaqa"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="TanikaQA"
+        jcr:uuid="e8f4e42c-1a60-4821-98da-81a62a725ae9"
+        sling:resourceType="publicweb/components/structure/pages/landingpage">
+        <par
+            jcr:mixinTypes="[]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <articlecontainer
+                jcr:created="{Date}2019-03-21T12:57:00.415Z"
+                jcr:createdBy="treeshare-tanika"
+                jcr:lastModified="{Date}2019-05-14T15:17:59.643Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/articleContainer"
+                numberOfcolumns="three-column"
+                pwTheme="transparent"
+                titleAlignment="text-left">
+                <col1
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.653Z"
+                    jcr:lastModifiedBy="threeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articleImageAltI18n="This is a test for Alt Text"
+                    articleImagePath="/content/dam/publicweb/ContentImage4.png"
+                    articlePath="http://www.google.com"
+                    articleTitle="Learn About Dairy Farm Machines"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    openInNewWindow="true"
+                    pwButtonTheme="link"
+                    showImage="true"
+                    vanityDescription="this is a description"
+                    vanityDescriptionI18n="THis is the description for the article"/>
+                <col2
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.660Z"
+                    jcr:lastModifiedBy="threeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articleImageAltI18n="This is the Alt Text"
+                    articleImagePath="/content/dam/publicweb/ContentImage6.png"
+                    articleTitle="Learn About Tetra Pak"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    openInNewWindow="true"
+                    pwButtonTheme="link"
+                    showImage="true"
+                    vanityDescription="this is the description"/>
+                <col3
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.667Z"
+                    jcr:lastModifiedBy="threeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articleImageAltI18n="This is the Alt Text"
+                    articleImagePath="/content/dam/publicweb/ContentImage5.png"
+                    articleTitle="When is the Best Season?"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    pwButtonTheme="link"
+                    showImage="true"
+                    vanityDescription="This is the description"/>
+            </articlecontainer>
+            <articleitem
+                jcr:created="{Date}2019-03-26T10:18:51.944Z"
+                jcr:createdBy="treeshare-tanika"
+                jcr:lastModified="{Date}2019-05-14T15:17:59.673Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/articleItem"/>
+            <articlecontainer_1666122592
+                jcr:created="{Date}2019-03-22T12:30:29.914Z"
+                jcr:createdBy="treeshare-tanika"
+                jcr:lastModified="{Date}2019-05-14T15:17:59.678Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/articleContainer"
+                numberOfcolumns="two-column"
+                pwTheme="grayscale-white"
+                titleAlignment="text-left"
+                titleI18n="Need Help? We Have the Answers!">
+                <col1
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.687Z"
+                    jcr:lastModifiedBy="treeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articlePath="http://www.google.com"
+                    articleTitle="Learn about Tetra Pak"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    openInNewWindow="true"
+                    vanityDescription="This is a description"/>
+                <col2
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.693Z"
+                    jcr:lastModifiedBy="treeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articlePath="http://www.google.com"
+                    articleTitle="Contact us"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    openInNewWindow="true"
+                    vanityDescription="This is a description"/>
+            </articlecontainer_1666122592>
+            <articlecontainer_1398501603
+                jcr:created="{Date}2019-03-22T12:36:35.299Z"
+                jcr:createdBy="treeshare-tanika"
+                jcr:lastModified="{Date}2019-05-14T15:17:59.699Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/articleContainer"
+                numberOfcolumns="one-column"
+                pwTheme="grayscale-white"
+                titleAlignment="text-center">
+                <col1
+                    jcr:lastModified="{Date}2019-05-14T15:17:59.707Z"
+                    jcr:lastModifiedBy="treeshare-tanika"
+                    jcr:mixinTypes="[]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/articleItem"
+                    articleImageAltI18n="Image Alt Text"
+                    articleImagePath="/content/dam/publicweb/ContentImage5.png"
+                    articlePath="http://www.googl.e"
+                    articleTitle="Ask Us a Question"
+                    contentType="manual"
+                    ctaTexti18nKey="Learn More"
+                    openInNewWindow="true"
+                    showImage="true"
+                    vanityDescription="This is the description"/>
+            </articlecontainer_1398501603>
+            <imagetextbanner
+                jcr:created="{Date}2019-03-22T12:57:25.440Z"
+                jcr:createdBy="treeshare-tanika"
+                jcr:lastModified="{Date}2019-05-14T15:17:59.714Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/imageTextBanner"
+                bannerCtaPath="http://www.google.com"
+                bannerCtaTextI18n="Learn More"
+                bannerCtaTooltipI18n="This is the link tool tip"
+                bannerDescriptionI18n="This is the description"
+                bannerSubtitleI18n="This is the Sub Title"
+                contentAlignment="pw-banner"
+                desktopImage="/content/dam/publicweb/Teaser1.png"
+                desktopImageAltI18n="Desktop Image Alt Text"
+                mobileImage="/content/dam/publicweb/Teaser1.png"
+                mobileImageAltI18n="mobile Image Alt Text"
+                targetBlank="on"
+                titleI18n="This is the Image Text Banner Title"/>
+        </par>
+        <header
+            jcr:mixinTypes="[]"
+            jcr:primaryType="nt:unstructured">
+            <logo
+                jcr:lastModified="{Date}2019-05-14T15:17:59.725Z"
+                jcr:lastModifiedBy="treeshare-tanika"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/logo"
+                imageAltI18n="Tetra Pak"
+                imageLink="/content/tetrapak/public-web/global0/en"
+                imagePath="/content/dam/publicweb/logo_tetra_pak.png"/>
+        </header>
+    </jcr:content>
+</jcr:root>

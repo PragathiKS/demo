@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-14T15:18:00.641Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-05-17T03:10:15.604Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:lastRolledout="{Date}2019-05-14T15:18:00.645Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/publicweb/templates/landingpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Errors"
+        jcr:uuid="ba5f6ad6-e394-48a7-af47-2ca59408362d"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"/>
+    <_x0035_00/>
+    <_x0034_04/>
+</jcr:root>

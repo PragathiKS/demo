@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.838Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.838Z"
+        cq:template="/apps/publicweb/templates/bestpracticelinepage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/lines/mixers"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Mixers"
+        jcr:uuid="204ef274-4e77-4a63-899c-de7930f735bd"
+        sling:resourceType="publicweb/components/structure/pages/bestpracticelinepage"/>
+</jcr:root>

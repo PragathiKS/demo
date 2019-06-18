@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.717Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.717Z"
+        cq:template="/apps/publicweb/templates/landingpage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/innovations/test-lucio"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="test-lucio"
+        jcr:uuid="fec66e25-2a86-4af1-b8a4-86e839543688"
+        sling:resourceType="publicweb/components/structure/pages/landingpage">
+        <par
+            jcr:mixinTypes="[]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <officelocator
+                jcr:created="{Date}2019-05-06T08:26:48.659Z"
+                jcr:createdBy="treeshare-lucio"
+                jcr:lastModified="{Date}2019-05-14T15:18:00.548Z"
+                jcr:lastModifiedBy="treeshare-lucio"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/officeLocator"
+                cityInputLabel="Country or city"
+                filtersLabel="Filters"
+                title="Office Locator"/>
+        </par>
+    </jcr:content>
+</jcr:root>

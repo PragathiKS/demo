@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:conf="/conf/Public Web"
+        cq:lastModified="{Date}2019-04-17T12:47:09.359Z"
+        cq:lastModifiedBy="threeshare-tanika"
+        cq:lastReplicated="{Date}2019-05-17T03:10:11.963Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/apps/publicweb/templates/bestpracticelinepage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tanika Practice Line"
+        jcr:uuid="8ae8a45a-246e-4eee-970c-9e5fedfa800a"
+        sling:resourceType="publicweb/components/structure/pages/bestpracticelinepage"
+        ctaTexti18nKey="Discover Georgia peaches"
+        linkTarget="_blank"
+        title="Georgia Peaches line (NFC and FC)"
+        vanityDescription="Tasty, healthy, nutritious, with endless flavors and easy-to-drink packaging."/>
+</jcr:root>

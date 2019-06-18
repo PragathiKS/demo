@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-14T15:18:00.663Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-05-17T03:10:15.604Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:lastRolledout="{Date}2019-05-14T15:18:00.666Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/publicweb/templates/errorpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Internal Server Error"
+        jcr:uuid="3c586699-4b4a-46f5-9327-2613db72ff2c"
+        sling:resourceType="publicweb/components/structure/pages/error"
+        errorDescription="&lt;p>An error has occurred and we are working on a solution.&amp;nbsp;&lt;br>&#xd;&#xa;&lt;/p>&#xd;&#xa;&lt;p>We'll be back shortly!&lt;/p>&#xd;&#xa;"
+        errorSubtitle="Error 500"
+        errorTitle="Ooops… something whent wrong!  "
+        imagePath="/content/dam/publicweb/Hero.png"
+        textIsRich="true">
+        <logo
+            cq:lastRolledout="{Date}2019-05-14T15:18:00.665Z"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2019-05-14T15:18:00.662Z"
+            jcr:lastModifiedBy="treeshare-abhinit"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/content/logo"
+            imageAltI18n="Tetra Pak"
+            imagePath="/content/dam/publicweb/logo_tetra_pak_white.svg"/>
+    </jcr:content>
+</jcr:root>
