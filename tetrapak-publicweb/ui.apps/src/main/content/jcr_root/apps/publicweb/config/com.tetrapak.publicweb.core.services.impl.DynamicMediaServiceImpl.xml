@@ -3,5 +3,5 @@
     jcr:primaryType="sling:OsgiConfig"
 	rootPath="/tetrapak"
     imageServiceUrl="http://s7g10.scene7.com/is/image"
-    dynamicMediaConfMap="[articleItem-desktop=400,articleItem-tabletL=300,articleItem-tabletP=450,articleItem-mobileL=450,articleItem-mobileP=768,imageTextBanner-desktop=1416,imageTextBanner-tabletL=1336,imageTextBanner-tabletP=1024,imageTextBanner-mobileL=992,imageTextBanner-mobileP=768,carousel-desktop=1416,carousel-tabletL=1416,carousel-tabletP=1416,carousel-mobileL=1416,carousel-mobileP=1416,imageTextButton-desktop=500,imageTextButton-tabletL=1336,imageTextButton-tabletP=1024,imageTextButton-mobileL=992,imageTextButton-mobileP=768,logo-desktop=160,logo-tabletL=160,logo-tabletP=160,logo-mobileL=160,logo-mobileP=160]"/>
+    dynamicMediaConfMap="[articleItem-desktop=400,articleItem-tabletL=300,articleItem-tabletP=450,articleItem-mobileL=450,articleItem-mobileP=768,imageTextBanner-desktop=1416,imageTextBanner-tabletL=1336,imageTextBanner-tabletP=1024,imageTextBanner-mobileL=660,imageTextBanner-mobileP=500,carousel-desktop=1416,carousel-tabletL=1416,carousel-tabletP=1416,carousel-mobileL=1416,carousel-mobileP=1416,imageTextButton-desktop=500,imageTextButton-tabletL=1336,imageTextButton-tabletP=1024,imageTextButton-mobileL=992,imageTextButton-mobileP=768,logo-desktop=160,logo-tabletL=160,logo-tabletP=160,logo-mobileL=160,logo-mobileP=160]"/>
 
