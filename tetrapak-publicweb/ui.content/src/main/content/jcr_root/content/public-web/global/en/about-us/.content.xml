@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-22T12:39:16.841Z"
+        cq:lastModifiedBy="treeshare-nico"
+        cq:lastReplicated="{Date}2019-05-17T03:10:11.963Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/apps/publicweb/templates/basepage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="About Us"
+        jcr:uuid="e0331904-bdb4-4a4a-83f9-d84a66d364b8"
+        sling:resourceType="publicweb/components/structure/pages/page">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <officelocator
+                jcr:created="{Date}2019-05-05T22:38:19.491Z"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2019-05-05T22:39:39.791Z"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/officeLocator"
+                cityInputLabel="Country or city"
+                filtersLabel="Filter by office type"
+                title="Find your Tetra Pak Office"/>
+        </par>
+        <header
+            jcr:lastModified="{Date}2019-05-22T12:39:16.838Z"
+            jcr:lastModifiedBy="treeshare-nico"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/structure/header">
+            <imageTextBanner
+                jcr:lastModified="{Date}2019-05-22T12:37:29.148Z"
+                jcr:lastModifiedBy="treeshare-nico"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/imageTextBanner"
+                bannerCtaTextI18n="link"
+                bannerSubtitleI18n="Subtitle"
+                contentAlignment="pw-banner"
+                desktopImage="/content/dam/publicweb/ContentImage4.png"
+                desktopImageAltI18n="altDesk"
+                softConversionDescription="aaa"
+                softConversionDocPath="/content/dam/publicweb/1320x500-test2.png"
+                softConversionHeadline="aaaa"
+                softConversionLastStep="You have downloaded the whitepaper 4 tips to help you choose the right High Shear Mixer. Take the opportunity to explore other relevant whitepapers."
+                softConversionTitle="How to choose the right High Shear Mixer"
+                targetSoftConversion="true"
+                titleI18n="NewTitle"/>
+        </header>
+    </jcr:content>
+</jcr:root>

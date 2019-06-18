@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.904Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.904Z"
+        cq:template="/apps/publicweb/templates/errorpage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/errors/500"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Internal Server Error"
+        jcr:uuid="e029060e-9709-4665-a486-8d35c843b1d6"
+        sling:resourceType="publicweb/components/structure/pages/error"
+        errorDescription="&lt;p>An error has occurred and we are working on a solution.&amp;nbsp;&lt;br>&#xd;&#xa;&lt;/p>&#xd;&#xa;&lt;p>We'll be back shortly!&lt;/p>&#xd;&#xa;"
+        errorSubtitle="Error 500"
+        errorTitle="Ooops… something whent wrong!  "
+        imagePath="/content/dam/publicweb/Hero.png"
+        textIsRich="true">
+        <logo
+            jcr:lastModified="{Date}2019-05-14T15:18:00.662Z"
+            jcr:lastModifiedBy="treeshare-abhinit"
+            jcr:mixinTypes="[]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/content/logo"
+            imageAltI18n="Tetra Pak"
+            imagePath="/content/dam/publicweb/logo_tetra_pak_white.svg"/>
+    </jcr:content>
+</jcr:root>

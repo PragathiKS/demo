@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:24.348Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:24.348Z"
+        cq:template="/apps/publicweb/templates/basepage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/search"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Search"
+        jcr:uuid="1319c3fc-6570-4814-bb93-3a3c476e0ce1"
+        sling:resourceType="publicweb/components/structure/pages/page">
+        <par
+            jcr:mixinTypes="[]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <searchresults
+                jcr:created="{Date}2019-05-05T22:45:10.721Z"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2019-05-14T15:18:00.739Z"
+                jcr:lastModifiedBy="admin"
+                jcr:mixinTypes="[]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/searchResults"/>
+        </par>
+    </jcr:content>
+</jcr:root>

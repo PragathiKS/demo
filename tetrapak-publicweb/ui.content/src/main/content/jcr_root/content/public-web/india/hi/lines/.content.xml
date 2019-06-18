@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.806Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.806Z"
+        cq:template="/apps/publicweb/templates/landingpage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/lines"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Lines"
+        jcr:uuid="47c4d9b2-5d7f-40e6-99f8-3acf24e5f9e7"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"/>
+    <mixers/>
+</jcr:root>
