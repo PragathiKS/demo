@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -29,7 +31,7 @@ public class AnalyticsGlobalTagsModel {
     private Resource resource;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
-    private static final int SUB_PAGE_THRESHOLD = 5;
+    private static final int SUB_PAGE_THRESHOLD = 6;
 
     /**
      * Get Site Name.
@@ -174,8 +176,10 @@ public class AnalyticsGlobalTagsModel {
      * @return String channel
      */
     public String getChannel() {
-        final int DEPTH = 5;
-        return GlobalUtil.getPageFromResource(resource, DEPTH).getName();
+        final int DEPTH = 4;
+        String channel = StringUtils.substringAfter(StringUtils.substringBefore(resource.getPath(),"/jcr:content"),
+                GlobalUtil.getPageFromResource(resource, DEPTH).getPath() + CustomerHubConstants.PATH_SEPARATOR);
+        return channel.replaceAll(CustomerHubConstants.PATH_SEPARATOR, ":").toLowerCase();
     }
 
     /**
