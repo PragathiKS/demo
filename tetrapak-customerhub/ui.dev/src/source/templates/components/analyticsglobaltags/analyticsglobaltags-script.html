@@ -28,7 +28,9 @@
     if(window.location.pathname.slice(1) !== "") {
       var siteSections = window.location.pathname.slice(1).split("/");
       siteSections.forEach(function (siteSection, index) {
-        digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
+        if(siteSection.indexOf('.html') == -1){
+            digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
+        }
       });
     }
   </sly>
