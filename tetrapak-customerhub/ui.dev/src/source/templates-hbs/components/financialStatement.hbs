@@ -17,7 +17,7 @@
                         {{> atoms/dropdown/dropdown options=this.status name="status" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="js-financial-statement__status"}}
                     </div>
                     <div class="tp-financial-statement__date-range-container">
-                        {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.currentDate name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
+                        {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
                     </div>
                 </div>
                 <div class="tp-financial-statement__search-container">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="tp-financial-statement__document-number-container">
                         <div class="tp-financial-statement__document-number-wrapper">
-                            {{> atoms/input/input name="search" label=this.searchInputLabel eleClasses="js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber }}
+                            {{> atoms/input/input name="document-number" label=this.searchInputLabel eleClasses="js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber }}
                         </div>
                     </div>
                     <div class="tp-financial-statement__buttons-container">

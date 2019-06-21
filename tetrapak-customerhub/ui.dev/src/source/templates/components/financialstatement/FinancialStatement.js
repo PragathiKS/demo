@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
@@ -15,6 +15,13 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
 import { $body } from '../../../scripts/utils/commonSelectors';
+
+/**
+ * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
+ */
+function _getStartDate() {
+  return moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+}
 
 /**
  * Disables calendar next button
@@ -149,7 +156,11 @@ function _processFinancialStatementData(data) {
         delete data.selectDates;
         delete data.closeBtn;
         delete data.setDates;
+        const [selectedStatus] = data.status;
         data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+        if ((`${selectedStatus.key}`).toUpperCase() !== 'O') {
+          data.dateRange = `${_getStartDate()} - ${data.currentDate}`;
+        }
         const [selectedCustomerData] = data.customerData;
         data.selectedCustomerData = selectedCustomerData;
       } catch (e) {
@@ -234,7 +245,11 @@ function _renderFilters() {
         const [docType] = data.documentType;
         defaultQuery.status = defaultStatus.key;
         defaultQuery['document-type'] = docType.key;
-        defaultQuery['invoicedate-from'] = moment().format(DATE_FORMAT);
+        defaultQuery['soa-date'] = moment().format(DATE_FORMAT);
+        if ((`${defaultQuery.status}`).toUpperCase() !== 'O') {
+          defaultQuery['invoicedate-from'] = _getStartDate();
+          defaultQuery['invoicedate-to'] = moment().format(DATE_FORMAT);
+        }
         defaultQuery.customerkey = customerNumber.key;
         this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
@@ -259,12 +274,12 @@ function _setDateFilter(status, selectedDate) {
     const endDate = moment(Date.now()).format(DATE_FORMAT);
     if (
       typeof status === 'string'
-      && ['open'].includes(status.toLowerCase())
+      && ['O'].includes(status.toUpperCase())
     ) {
       $dateSelector.val(endDate);
       this.initializeCalendar();
     } else {
-      const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+      const startDate = _getStartDate();
       $dateSelector.val(`${startDate} - ${endDate}`);
       this.initializeCalendar(true);
     }
@@ -278,9 +293,13 @@ function _setDateFilter(status, selectedDate) {
 function _syncFields(query) {
   const { $filterForm, $findCustomer } = this.cache;
   const $statusField = $filterForm.find('.js-financial-statement__status');
-  let dateRange = query['invoicedate-from'];
-  if (query['invoicedate-to']) {
-    dateRange += ` - ${query['invoicedate-to']}`;
+
+  let dateRange = query['soa-date'];
+  if (
+    query['invoicedate-from']
+    && query['invoicedate-to']
+  ) {
+    dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
   $findCustomer.val(query.customerkey).trigger('change', [true]);
   $statusField.val(query.status);
@@ -296,12 +315,13 @@ function _syncFields(query) {
 function _getFilterQuery() {
   const { $filterForm, $findCustomer } = this.cache;
   const filters = $filterForm.serialize();
-  const filterProps = deparam(filters);
+  const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
-    filterProps['invoicedate-from'] = orderdateFrom.trim();
-    if (orderdateTo) {
-      filterProps['invoicedate-to'] = orderdateTo.trim();
+    const [invoiceDateFrom, invoiceDateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
+    filterProps['soa-date'] = invoiceDateFrom.trim();
+    if (invoiceDateTo) {
+      filterProps['invoicedate-from'] = invoiceDateFrom.trim();
+      filterProps['soa-date'] = filterProps['invoicedate-to'] = invoiceDateTo.trim();
     }
     delete filterProps.daterange;
   }
@@ -391,7 +411,7 @@ function _downloadPdfExcel(...args) {
 
 function _getDefaultQueryString() {
   const { defaultQueryString, $findCustomer } = this.cache;
-  const queryObject = deparam(defaultQueryString);
+  const queryObject = deparam(defaultQueryString, false);
   // Retain current customer address selection
   queryObject.customerkey = $findCustomer.val();
   return $.param(queryObject);
@@ -470,7 +490,7 @@ class FinancialStatement {
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
-        this.setDateFilter(currentTarget.text(), currentTarget.data('selectedDate'));
+        this.setDateFilter(currentTarget.val(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
@@ -521,7 +541,7 @@ class FinancialStatement {
     $status.find('option').each(function () {
       $(this).removeData();
     });
-    this.syncFields(deparam(defaultQueryString));
+    this.syncFields(deparam(defaultQueryString, false));
     router.set({
       route: '#/',
       queryString: defaultQueryString

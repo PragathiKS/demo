@@ -1,4 +1,4 @@
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import { isHeadlessChrome } from './browserDetect';
 
 const currentHost = window.location.hostname;

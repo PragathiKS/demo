@@ -1,4 +1,4 @@
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 
 const currentHost = window.location.hostname;
 const currentParams = deparam(window.location.search);

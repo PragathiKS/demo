@@ -110,6 +110,25 @@ function _processTableData(data) {
 }
 
 /**
+ * Returns query parameter object as per API requirements
+ * @param {object} filterParams Route query parameters
+ */
+function _getRequestParams(filterParams) {
+  const queryParam = $.extend({}, filterParams);
+  queryParam.customernumber = queryParam.customerkey;
+  delete queryParam.customerkey;
+  queryParam['invoice-status'] = queryParam.status;
+  delete queryParam.status;
+  if (queryParam['invoicedate-to']) {
+    delete queryParam['soa-date'];
+  } else {
+    delete queryParam['invoicedate-from'];
+    delete queryParam['invoicedate-to'];
+  }
+  return queryParam;
+}
+
+/**
  * Renders table section
  * @param {object} filterParams Selected filter parameters
  */
@@ -121,7 +140,7 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         path: getURL(API_FINANCIALS_STATEMENTS),
-        data: filterParams
+        data: _getRequestParams(filterParams)
       },
       beforeRender(data) {
         if (!data) {
