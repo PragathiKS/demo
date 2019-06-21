@@ -14,6 +14,7 @@ import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
  * Disables calendar next button
@@ -116,27 +117,45 @@ function _trackAnalytics(type) {
 function _processFinancialStatementData(data) {
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
-    data.customerData.sort((a, b) => {
-      if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
-        return -1;
+    if (!data.customerData) {
+      data.isError = true;
+    } else {
+      data.customerData.sort((a, b) => {
+        if (a && typeof a.customerName === 'string') {
+          a = a.customerName.toUpperCase();
+        }
+        if (b && typeof b.customerName === 'string') {
+          b = b.customerName.toUpperCase();
+        }
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      });
+      try {
+        data.customerData.forEach(customerOb => {
+          customerOb.key = customerOb.customerNumber;
+          customerOb.desc = `${customerOb.customerNumber} - ${customerOb.customerName} - ${customerOb.info.city}`;
+        });
+        // Resolve i18n keys for calendar modal
+        data.selectDatesI18n = data.selectDates;
+        data.closeBtnI18n = data.closeBtn;
+        data.setDatesBtnI18n = data.setDates;
+        data.dateRangeLabelI18n = data.selectDateRangeLabel;
+        // Remove duplicate properties
+        delete data.selectDates;
+        delete data.closeBtn;
+        delete data.setDates;
+        data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+        const [selectedCustomerData] = data.customerData;
+        data.selectedCustomerData = selectedCustomerData;
+      } catch (e) {
+        data.isError = true;
       }
-      if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
-        return 1;
-      }
-      return 0;
-    });
-    // Resolve i18n keys for calendar modal
-    data.selectDatesI18n = data.selectDates;
-    data.closeBtnI18n = data.closeBtn;
-    data.setDatesBtnI18n = data.setDates;
-    data.dateRangeLabelI18n = data.selectDateRangeLabel;
-    // Remove duplicate properties
-    delete data.selectDates;
-    delete data.closeBtn;
-    delete data.setDates;
-    data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
-    const [selectedCustomerData] = data.customerData;
-    data.selectedCustomerData = selectedCustomerData;
+    }
   }
   this.cache.data = data;
   return data;
@@ -174,12 +193,20 @@ function _setSelectedCustomer(key, noReset) {
  */
 function _renderFilters() {
   const $this = this;
+  const { tempCustomerList } = this.cache;
   auth.getToken(({ data: authData }) => {
+    const url = {
+      path: getURL(API_FINANCIAL_SUMMARY)
+    };
+    if (
+      typeof tempCustomerList === 'string'
+      && tempCustomerList.trim().length
+    ) {
+      url.data = `customernumber=${tempCustomerList.trim()}`;
+    }
     render.fn({
       template: 'financialStatement',
-      url: {
-        path: getURL(API_FINANCIAL_SUMMARY)
-      },
+      url,
       target: '.js-financial-statement__select-customer-dropdown',
       ajaxConfig: {
         method: ajaxMethods.GET,
@@ -202,13 +229,13 @@ function _renderFilters() {
     }, (data) => {
       if (!data.isError && Array.isArray(data.customerData)) {
         const defaultQuery = {};
-        const [customerKey] = data.customerData;
+        const [customerNumber] = data.customerData;
         const [defaultStatus] = data.status;
         const [docType] = data.documentType;
         defaultQuery.status = defaultStatus.key;
         defaultQuery['document-type'] = docType.key;
         defaultQuery['invoicedate-from'] = moment().format(DATE_FORMAT);
-        defaultQuery.customerkey = customerKey.key;
+        defaultQuery.customerkey = customerNumber.key;
         this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
         this.initializeCalendar();
@@ -375,15 +402,16 @@ class FinancialStatement {
     this.root = $(el);
   }
   cache = {};
-
   initCache() {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.servletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
+      this.cache.tempCustomerList = $body.find('#tempCustomerList').val();
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.servletUrl = '';
+      this.cache.tempCustomerList = '';
       logger.error(e);
     }
   }
