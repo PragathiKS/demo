@@ -306,7 +306,7 @@ function _syncFields(query) {
   $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
   $statusField.trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
-  $filterForm.find('.js-financial-statement__document-number').val(query.search);
+  $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
 /**
