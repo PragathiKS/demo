@@ -3,6 +3,7 @@
  * @author Sachin Singh
  * @date 16/02/2019
  */
+import $ from 'jquery';
 import dynamicMedia from './dynamicMedia';
 import { toast } from './toast';
 import { $body } from './commonSelectors';
