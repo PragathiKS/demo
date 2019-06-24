@@ -24,7 +24,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
 
         stages {
 
-               stage ('Checkout') {
+             /*  stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -34,6 +34,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                       )
                    }
                  }
+				 */
 
                 stage ('Initialize') {
                         steps {
