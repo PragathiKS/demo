@@ -371,9 +371,9 @@ function _downloadPdfExcel(...args) {
   const docTypeDesc = $filterForm.find(`.js-financial-statement__document-type option[value="${$el.data('documentType')}"]`).text();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
-  paramsData.startDate = $el.data('invoiceDateFrom');
-
+  paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
   if ($el.data('invoiceDateTo')) {
+    paramsData.startDate = $el.data('invoiceDateFrom');
     paramsData.endDate = $el.data('invoiceDateTo');
   }
   paramsData.customerData = data.selectedCustomerData;
@@ -386,10 +386,7 @@ function _downloadPdfExcel(...args) {
     desc: docTypeDesc
   };
   paramsData.documentNumber = docNumber;
-  auth.getToken(({ data: authData }) => {
-    const requestBody = {};
-    requestBody.params = JSON.stringify(paramsData);
-    requestBody.token = authData.access_token;
+  auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
     fileWrapper({
       url,
