@@ -14,7 +14,7 @@ import { getURL } from '../../../scripts/utils/uri';
 /**
  * Fire analytics on Invoice Download
  */
-function _trackAnalytics(self, type) {
+function _trackAnalytics(self, type, data) {
   const $this = self;
   let ob = {
     linkType: 'internal',
@@ -38,6 +38,11 @@ function _trackAnalytics(self, type) {
     case 'downloadExcel': {
       ob.linkParentTitle = statementOfAccount.toLowerCase();
       ob.linkName = 'create excel';
+      break;
+    }
+    case 'documents': {
+      ob.linkParentTitle = 'documents';
+      ob.linkName = data.toLowerCase();
       break;
     }
     default: {
@@ -186,6 +191,12 @@ class FinancialsStatementSummary {
       $this.trackAnalytics($this, 'downloadExcel');
       $this.downloadPdfExcel('excel', this);
     });
+    this.root.on('click', '.js-financials-summary__accordion.collapsed', this, function (e) {
+      const $this = e.data;
+      const documentTitleTotal = $(this).text();
+      const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
+      $this.trackAnalytics($this, 'documents', documentTitle);
+    });
 
     route((...args) => {
       const [config, , query] = args;
@@ -210,7 +221,7 @@ class FinancialsStatementSummary {
     this.root.parents('.js-financials').trigger('financial.filedownload', [type, el]);
   }
 
-  trackAnalytics = (obj, type) => _trackAnalytics.call(obj, this, type);
+  trackAnalytics = (obj, type, data) => _trackAnalytics.call(obj, this, type, data);
   init() {
     /* Mandatory method */
     this.initCache();
