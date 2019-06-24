@@ -117,7 +117,7 @@ function fetchCurrencyMapping() {
         ajaxWrapper.getXhrObj({
           url: currencyMappingURL
         }).done(response => {
-          strCompressed.set('isoMapping', response);
+          strCompressed.set('isoMapping', response, true);
           resolve(response);
         }).fail((jqXHR, textStatus) => {
           reject({
@@ -158,8 +158,7 @@ export default {
     return Promise.all([
       this.tokenPromise,
       this.currencyPromise
-    ])
-      .then(response => execCallback.apply(this, getArgs(callback, response)))
+    ]).then(response => execCallback.apply(this, getArgs(callback, response)))
       .catch(error => handleRejection.apply(this, getArgs(callback, error)));
   }
 };
