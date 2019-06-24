@@ -193,7 +193,8 @@ class FinancialsStatementSummary {
     });
     this.root.on('click', '.js-financials-summary__accordion.collapsed', this, function (e) {
       const $this = e.data;
-      const documentTitle = this.innerText.substring(0, this.innerText.indexOf('(') - 1);
+      const documentTitleTotal = $(this).text();
+      const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
       $this.trackAnalytics($this, 'documents', documentTitle);
     });
 
