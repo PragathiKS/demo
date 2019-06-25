@@ -12,7 +12,6 @@ import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -25,11 +24,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import javax.servlet.ServletException;
-import java.io.IOException;
 
 /**
  * PDF and Excel Generator Servlet
+ *
  * @author Nitin Kumar
  */
 @Component(service = Servlet.class, property = {
@@ -40,50 +38,51 @@ import java.io.IOException;
         "sling.servlet.extensions=" + CustomerHubConstants.PDF
 })
 public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
-    
+
     private static final long serialVersionUID = 2323660841296799482L;
-    
+
     @Reference
     private FinancialsResultsApiService financialsResultsApiService;
-    
+
     @Reference
     private FinancialsResultsPDFService generatePDF;
-    
+
     @Reference
     private FinancialsResultsExcelService excelService;
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsDownloadFileServlet.class);
-    
+
+    private static final String AUTH_TOKEN = "authToken";
+
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         doPost(request, response);
     }
-    
+
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         final String extension = request.getRequestPathInfo().getExtension();
         String params = request.getParameter("params");
-        
+
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        
+
         Params paramsRequest = gson.fromJson(params, Params.class);
         final String status = paramsRequest.getStatus().getKey();
         final String documentType = paramsRequest.getDocumentType().getKey();
         final String invoiceDateFrom = paramsRequest.getEndDate();
         final String customerkey = paramsRequest.getCustomerData().getCustomerNumber();
-        final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
-                : request.getCookie("authToken").getValue();
+        final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
+                : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
         JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(status, documentType,
                 invoiceDateFrom, customerkey, token);
-        
+
         JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
-        
+
         boolean flag = false;
         FinancialStatementModel financialStatementModel = request.getResource().adaptTo(FinancialStatementModel.class);
-        
+
         if (null == financialStatementModel) {
             LOGGER.error("FinancialStatementModel is null!");
         } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
@@ -100,11 +99,18 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
                 LOGGER.error("File type not specified for the download operation.");
             }
         }
-        
+
         if (!flag) {
             LOGGER.error("Financial results file download failed!");
             HttpUtil.sendErrorMessage(response);
         }
     }
-    
+
+    private String getAuthTokenValue(SlingHttpServletRequest request) {
+        if (null == request.getCookie(AUTH_TOKEN)) {
+            return StringUtils.EMPTY;
+        }
+        return request.getCookie(AUTH_TOKEN).getValue();
+    }
+
 }

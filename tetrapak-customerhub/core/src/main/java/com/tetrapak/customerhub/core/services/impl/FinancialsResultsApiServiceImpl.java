@@ -20,6 +20,7 @@ import java.io.IOException;
 
 /**
  * Impl class for Financial Results Service
+ *
  * @author Nitin Kumar
  */
 @Component(immediate = true, service = FinancialsResultsApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
@@ -27,10 +28,12 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsApiServiceImpl.class);
 
-    @Reference private APIGEEService apigeeService;
+    @Reference
+    private APIGEEService apigeeService;
 
-    @Override public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
-            String customerkey, String token) {
+    @Override
+    public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
+                                           String customerkey, String token) {
         JsonObject jsonResponse = new JsonObject();
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-results") + "?status=" + status
@@ -40,7 +43,8 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
         return HttpUtil.getJsonObject(token, jsonResponse, url);
     }
 
-    @Override public HttpResponse getFinancialsInvoice(String documentNumber, String token) {
+    @Override
+    public HttpResponse getFinancialsInvoice(String documentNumber, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-invoice") + "/" + documentNumber;

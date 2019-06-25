@@ -1,11 +1,9 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import java.io.IOException;
-
-import javax.servlet.Servlet;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HeaderIterator;
@@ -20,14 +18,14 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
-import com.tetrapak.customerhub.core.utils.HttpUtil;
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Financial Invoice PDF Download FileServlet using URL: /bin/customerhub/invoice/document.<doc number>.pdf supports
  * both GET and POST
+ *
  * @author Nitin Kumar
  */
 @Component(service = Servlet.class, property = {
@@ -37,35 +35,37 @@ import com.tetrapak.customerhub.core.utils.HttpUtil;
         "sling.servlet.extensions=" + CustomerHubConstants.PDF
 })
 public class FinancialsInvoiceDownloadFileServlet extends SlingAllMethodsServlet {
-    
+
     private static final long serialVersionUID = 2323660841296799482L;
-    
+
     @Reference
     private FinancialsResultsApiService financialsResultsApiService;
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsInvoiceDownloadFileServlet.class);
-    
+
+    private static final String AUTH_TOKEN = "authToken";
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         doPost(request, response);
     }
-    
+
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         final String extension = request.getRequestPathInfo().getExtension();
         String documentNumber = request.getRequestPathInfo().getSelectorString();
-        final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
-                : request.getCookie("authToken").getValue();
+        final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
+                : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
-        
+
         if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
                 && StringUtils.isNotBlank(documentNumber)) {
             HttpResponse httpResp = financialsResultsApiService.getFinancialsInvoice(documentNumber, token);
-            
+
             int statusCode = httpResp.getStatusLine().getStatusCode();
             LOGGER.debug("Retrieved response from API got status code:{}", statusCode);
-            
+
             HeaderIterator headerItr = httpResp.headerIterator();
             while (headerItr.hasNext()) {
                 Header apiRespHeader = headerItr.nextHeader();
@@ -80,5 +80,12 @@ public class FinancialsInvoiceDownloadFileServlet extends SlingAllMethodsServlet
             HttpUtil.writeJsonResponse(response, jsonResponse);
         }
     }
-    
+
+    private String getAuthTokenValue(SlingHttpServletRequest request) {
+        if (null == request.getCookie(AUTH_TOKEN)) {
+            return StringUtils.EMPTY;
+        }
+        return request.getCookie(AUTH_TOKEN).getValue();
+    }
+
 }

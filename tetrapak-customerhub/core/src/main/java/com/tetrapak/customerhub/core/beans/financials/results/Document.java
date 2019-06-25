@@ -1,9 +1,10 @@
 
 package com.tetrapak.customerhub.core.beans.financials.results;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Bean class for Document response json

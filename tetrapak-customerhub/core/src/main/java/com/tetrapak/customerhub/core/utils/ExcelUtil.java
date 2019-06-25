@@ -222,7 +222,7 @@ public final class ExcelUtil {
      * @param customFont font
      */
     private static void processFieldToCellValue(Sheet sheet, Cell cell, String field, Map<String, CellStyle> cellStyles,
-            int length, Font customFont) {
+                                                int length, Font customFont) {
 
         if (StringUtils.isNotBlank(field)) {
 
@@ -360,7 +360,7 @@ public final class ExcelUtil {
      * @throws ExcelReportRuntimeException
      */
     private static void downloadExcel(SlingHttpServletResponse response, Workbook workBook,
-            ExcelFileData excelReportData) {
+                                      ExcelFileData excelReportData) {
         OutputStream os = null;
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             workBook.write(out);
