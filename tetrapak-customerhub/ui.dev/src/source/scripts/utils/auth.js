@@ -2,8 +2,9 @@ import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
-import { storageUtil } from '../common/common';
+import { storageUtil, strCompressed } from '../common/common';
 import { getURL } from './uri';
+import { $body } from './commonSelectors';
 
 /**
  * Generates a valid APIGEE token and ensures token validity
@@ -102,8 +103,47 @@ function handleRejection(callback, ...args) {
   }
 }
 
+/**
+ * Fetches currency mapping
+ */
+function fetchCurrencyMapping() {
+  return new Promise((resolve, reject) => {
+    const currencyMappingURL = $body.find('#currencyMappingURL').val();
+    if (typeof currencyMappingURL === 'string' && currencyMappingURL.length) {
+      const isoMapping = strCompressed.get('isoMapping');
+      if (isoMapping) {
+        resolve(isoMapping);
+      } else {
+        ajaxWrapper.getXhrObj({
+          url: currencyMappingURL
+        }).done(response => {
+          strCompressed.set('isoMapping', response, true);
+          resolve(response);
+        }).fail((jqXHR, textStatus) => {
+          reject({
+            data: {
+              access_token: null
+            },
+            textStatus,
+            jqXHR
+          });
+        });
+      }
+    } else {
+      reject({
+        data: {
+          access_token: null
+        },
+        textStatus: 'empty',
+        jqXHR: {}
+      });
+    }
+  });
+}
+
 export default {
   tokenPromise: null,
+  currencyPromise: null,
   /**
    * Retrieves a valid APIGEE token
    * @param {Function} callback Success callback
@@ -112,8 +152,12 @@ export default {
     if (!this.tokenPromise) {
       this.tokenPromise = generateToken();
     }
+    if (!this.currencyPromise) {
+      this.currencyPromise = fetchCurrencyMapping();
+    }
     return Promise.all([
-      this.tokenPromise
+      this.tokenPromise,
+      this.currencyPromise
     ]).then(response => execCallback.apply(this, getArgs(callback, response)))
       .catch(error => handleRejection.apply(this, getArgs(callback, error)));
   }

@@ -10,6 +10,7 @@ import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
 
 const currentUserAgent = window.navigator.userAgent;
+let isoMapping = null;
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
@@ -290,4 +291,24 @@ export const tableSort = (data, keys, dataLink) => {
     };
   });
   return dataObject;
+};
+
+/**
+ * Adds currency symbol to value
+ * @param {string} value Input value
+ * @param {string} isoCode ISO currency code
+ */
+export const resolveCurrency = (value, isoCode) => {
+  if (!Number.isNaN(+value)) {
+    if (!isoMapping) {
+      isoMapping = $.extend({}, strCompressed.get('isoMapping'));
+    }
+    if (Array.isArray(isoMapping.Currency)) {
+      const found = isoMapping.Currency.find((curr) => (curr['ISO_Code'] === isoCode));
+      if (found) {
+        return `${found.Symbol}${value}`;
+      }
+    }
+  }
+  return value; // No transformation
 };

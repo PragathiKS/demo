@@ -4,7 +4,7 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort, resolveQuery } from '../../../scripts/common/common';
+import { tableSort, resolveQuery, resolveCurrency } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
@@ -73,10 +73,16 @@ function _downloadInvoice($this) {
 
 function _processTableData(data) {
   let keys = [];
-  const { $filtersRoot } = this.cache;
+  const { $filtersRoot, currencyFields } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      // Resolve currency for summary section
+      keys.forEach(key => {
+        if (currencyFields.includes(key)) {
+          summary[key] = resolveCurrency(summary[key], summary.currency);
+        }
+      });
       return tableSort.call(this, summary, keys);
     });
     data.summaryHeadings = keys.map(key => ({
@@ -89,6 +95,7 @@ function _processTableData(data) {
     data.documents.forEach((doc, index) => {
       doc.title = `${doc.salesOffice} (${doc.records.length})`;
       doc.docId = `#document${index}`;
+      doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
       doc.docData = doc.records.map(record => {
         delete record.salesOffice;
         if (keys.length === 0) {
@@ -96,6 +103,12 @@ function _processTableData(data) {
           keys.splice(keys.indexOf('orgAmount'), 1);
           keys.push('orgAmount');
         }
+        // Resolve currency for summary section
+        keys.forEach(key => {
+          if (currencyFields.includes(key)) {
+            record[key] = resolveCurrency(record[key], record.currency);
+          }
+        });
         return tableSort.call(this, record, keys, record.invoiceReference);
       });
       doc.docHeadings = keys.map(key => ({
@@ -185,9 +198,11 @@ class FinancialsStatementSummary {
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.downloadInvoice = this.cache.$parentRoot.find('#downloadInvoice').val();
+      this.cache.currencyFields = this.cache.$parentRoot.find('#currencyFields').val().split(',');
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.downloadInvoice = '';
+      this.cache.currencyFields = [];
       logger.error(e);
     }
   }
