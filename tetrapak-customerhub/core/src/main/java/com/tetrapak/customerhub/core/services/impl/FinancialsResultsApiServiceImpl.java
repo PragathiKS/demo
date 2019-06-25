@@ -33,12 +33,12 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
 
     @Override
     public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
-                                           String customerkey, String token) {
+                                           String customerNumber, String token) {
         JsonObject jsonResponse = new JsonObject();
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(apigeeService, "financialstatement-results") + "?status=" + status
-                + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&customerkey="
-                + customerkey;
+                .getSelectedApiMapping(apigeeService, "financialstatement-results") + "?invoice-status=" + status
+                + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&customernumber="
+                + customerNumber;
 
         return HttpUtil.getJsonObject(token, jsonResponse, url);
     }
@@ -58,7 +58,7 @@ public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiServ
             httpResponse = httpClient.execute(getRequest);
             LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
         } catch (IOException e) {
-            LOGGER.error("IOException occured while getting invoice details response", e);
+            LOGGER.error("IOException occurred while getting invoice details response", e);
         }
         return httpResponse;
     }
