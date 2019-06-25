@@ -195,10 +195,21 @@ class FinancialsStatementSummary {
     this.cache.$filtersRoot = this.cache.$parentRoot.find('.js-financial-statement');
     this.cache.$findCustomer = this.cache.$parentRoot.find('.js-financial-statement__select-customer-dropdown');
     this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
+    this.cache.currencyFields = [
+      'current',
+      'ninty',
+      'nintyPlus',
+      'overdue',
+      'sixty',
+      'thirty',
+      'total',
+      'orgAmount',
+      'remAmount',
+      'totalAmount'
+    ];
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.downloadInvoice = this.cache.$parentRoot.find('#downloadInvoice').val();
-      this.cache.currencyFields = this.cache.$parentRoot.find('#currencyFields').val().split(',');
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.downloadInvoice = '';
