@@ -71,7 +71,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     private String[][] getColumnHeaderArray() {
-        String[][] columnNames = new String[1][10];
+        String[][] columnNames = new String[1][16];
         String[] tags = new String[]{
                 ExcelUtil.DARK_GREY_BG_TAG
         };
@@ -87,6 +87,12 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
         columnNames[0][7] = addTagToContent(getI18nVal(COLFIELDS[6]), tags);
         columnNames[0][8] = addTagToContent(getI18nVal(COLFIELDS[7]), tags);
         columnNames[0][9] = addTagToContent(getI18nVal(COLFIELDS[8]), tags);
+        columnNames[0][10] = addTagToContent(getI18nVal(COLFIELDS[9]), tags);
+        columnNames[0][11] = addTagToContent(getI18nVal(COLFIELDS[10]), tags);
+        columnNames[0][12] = addTagToContent(getI18nVal(COLFIELDS[11]), tags);
+        columnNames[0][13] = addTagToContent(getI18nVal(COLFIELDS[12]), tags);
+        columnNames[0][14] = addTagToContent(getI18nVal(COLFIELDS[13]), tags);
+        columnNames[0][15] = addTagToContent(getI18nVal(COLFIELDS[14]), tags);
         return columnNames;
     }
 

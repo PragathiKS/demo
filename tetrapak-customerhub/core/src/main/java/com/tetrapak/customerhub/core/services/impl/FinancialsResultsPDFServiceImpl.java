@@ -91,14 +91,14 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
             PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY,
                     getHeadLines(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createAccountServicetable(request, paramRequest), 570);
-            PDFUtil.writeContent(document, contentStream, MARGIN, 510, Color.DARK_GRAY,
+            PDFUtil.drawTable(contentStream, createAccountServicetable(request, paramRequest), 520);
+            PDFUtil.writeContent(document, contentStream, MARGIN, 460, Color.DARK_GRAY,
                     getstatementSummary(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 490);
-            PDFUtil.drawLine(contentStream, MARGIN, 500, 475, Color.DARK_GRAY, 0.01f);
-            PDFUtil.drawLine(contentStream, MARGIN, 500, 450, Color.LIGHT_GRAY, 0.01f);
+            PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 440);
+            PDFUtil.drawLine(contentStream, MARGIN, 500, 415, Color.DARK_GRAY, 0.01f);
+            PDFUtil.drawLine(contentStream, MARGIN, 500, 400, Color.LIGHT_GRAY, 0.01f);
 
-            PDFUtil.writeContent(document, contentStream, MARGIN, 430, Color.DARK_GRAY, getDocumentName(request));
+            PDFUtil.writeContent(document, contentStream, MARGIN, 380, Color.DARK_GRAY, getDocumentName(request));
             contentStream = printDeliveryDetails(request, document, contentStream, documents);
             return true;
         } catch (IOException e) {
@@ -268,7 +268,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
 
     private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
                                                      PDPageContentStream contentStream, List<Document> documents) throws IOException {
-        int height = 400;
+        int height = 350;
         int newPageHeight;
 
         for (Document documentDetail : documents) {
