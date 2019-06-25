@@ -71,12 +71,12 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
         final String status = paramsRequest.getStatus().getKey();
         final String documentType = paramsRequest.getDocumentType().getKey();
         final String invoiceDateFrom = paramsRequest.getEndDate();
-        final String customerkey = paramsRequest.getCustomerData().getCustomerNumber();
+        final String customerNumber = paramsRequest.getCustomerData().getCustomerNumber();
         final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
                 : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
         JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(status, documentType,
-                invoiceDateFrom, customerkey, token);
+                invoiceDateFrom, customerNumber, token);
 
         JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
 

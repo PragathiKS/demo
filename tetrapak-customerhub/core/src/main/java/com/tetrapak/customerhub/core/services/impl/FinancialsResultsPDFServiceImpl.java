@@ -102,7 +102,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             contentStream = printDeliveryDetails(request, document, contentStream, documents);
             return true;
         } catch (IOException e) {
-            LOGGER.error("IOException {}", e);
+            LOGGER.error("IOException ", e);
             return false;
         } finally {
             try {
