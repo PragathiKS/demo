@@ -255,6 +255,8 @@ function _renderFilters() {
         this.initPostCache();
         this.initializeCalendar();
         this.setRoute(true);
+      } else {
+        this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
       }
     });
   });
