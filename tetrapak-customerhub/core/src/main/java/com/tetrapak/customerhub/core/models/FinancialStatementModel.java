@@ -89,11 +89,6 @@ public class FinancialStatementModel {
     @Inject
     private String fileDownloadErrorClose;
     
-    private String[] currencyFields;
-    
-    @Inject
-    private String currencyList;
-    
     /**
      * @return the statementOfAccount
      */
@@ -262,11 +257,7 @@ public class FinancialStatementModel {
     public String getDownloadInvoice() {
         return "/bin/customerhub/invoice/document.{docId}.pdf";
     }
-    
-    public String[] getCurrencyFields() {
-        return currencyFields;
-    }
-    
+
     /**
      * init method
      * @return config
@@ -300,9 +291,5 @@ public class FinancialStatementModel {
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";
-        
-        if (null != currencyList) {
-            currencyFields = currencyList.split(",");
-        }
     }
 }

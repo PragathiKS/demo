@@ -160,13 +160,6 @@
                             fieldLabel="File Download Error Close Key"
                             name="./fileDownloadErrorClose"
                             required="true"/>
-                    <currencyList
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter currency fields comma separated without space e.g. current,ninty,nintyPlus,overdue,sixty,thirty,total,orgAmount,remAmount,totalAmount"
-                            fieldLabel="Enter currency fields comma separated"
-                            name="./currencyList"
-                            required="true"/>
                 </items>
             </column>
         </items>

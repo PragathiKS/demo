@@ -87,7 +87,7 @@ public class FinancialsResultsDownloadFileServletTest {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
         parameters.put("params",
-                "{\"startDate\":\"2019-04-25\",\"customerData\":{\"customerNumber\":\"123\",\"customerName\":\"John - Malmo\",\"info\":{\"accountNo\":\"12345\",\"name1\":\"California Aseptic Beverages\",\"street\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
+                "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
         request.setParameterMap(parameters);
         
         FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
@@ -106,7 +106,7 @@ public class FinancialsResultsDownloadFileServletTest {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
         parameters.put("params",
-                "{\"startDate\":\"2019-04-25\",\"customerData\":{\"customerNumber\":\"123\",\"customerName\":\"John - Malmo\",\"info\":{\"accountNo\":\"12345\",\"name1\":\"California Aseptic Beverages\",\"street\":\"Street 1A\"}},\"status\":{\"key\":\"1\",\"desc\":\"Open\"},\"documentType\":{\"key\":\"1\",\"desc\":\"Confirmed\"},\"documentNumber\":\"\"}");
+                "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
         request.setParameterMap(parameters);
         
         FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext

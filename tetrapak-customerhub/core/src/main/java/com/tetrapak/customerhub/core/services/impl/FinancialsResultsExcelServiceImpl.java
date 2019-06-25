@@ -35,8 +35,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsExcelServiceImpl.class);
     private SlingHttpServletRequest request;
     private static final String[] COLFIELDS = {
-            "documentNumber", "desc", "invoiceReference", "poNumber", "docDate", "dueDate", "currency",
-            "salesLocalData", "orgAmount"
+            "documentNumber", "documentType", "invoiceStatus", "invoiceReference", "poNumber", "docDate", "dueDate", "clearedDate",
+            "currency", "dueDays", "orgAmount", "remAmount", "salesOffice", "companyCode", "salesLocalData"
     };
     private static final String I18N_PREFIX = "cuhu.financials.";
 
@@ -44,7 +44,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     public boolean generateFinancialsResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
                                                   Results apiResponse, Params paramRequest) {
 
-        String custName = (paramRequest != null && paramRequest.getCustomerData() != null)
+        String customerName = (paramRequest != null && paramRequest.getCustomerData() != null)
                 ? paramRequest.getCustomerData().getCustomerName()
                 : StringUtils.EMPTY;
         if (paramRequest != null && null != apiResponse) {
@@ -52,7 +52,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
             ExcelFileData excelReportData = new ExcelFileData();
             String dateRange = paramRequest.getStartDate() + (paramRequest.getEndDate() == null ? StringUtils.EMPTY
                     : " " + "-" + " " + paramRequest.getEndDate());
-            excelReportData.setFileName("Financials-" + custName + "-" + dateRange);
+            excelReportData.setFileName("Financial-" + customerName + "-" + dateRange);
             excelReportData.setExcelSheetName("Sheet");
             excelReportData.setCellBorderColor(IndexedColors.GREY_25_PERCENT.index);
             excelReportData.setHasMargin(false);
@@ -66,13 +66,10 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
             }
         }
 
-        LOGGER.error("Excel file could not be generated for customer {}", custName);
+        LOGGER.error("Excel file could not be generated for customer {}", customerName);
         return false;
     }
 
-    /**
-     * @return ColumnHeaderArray
-     */
     private String[][] getColumnHeaderArray() {
         String[][] columnNames = new String[1][10];
         String[] tags = new String[]{
@@ -120,8 +117,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param summaryList
-     * @return
+     * @param summaryList summary list
+     * @return total
      */
     private String getTotalFromSummary(List<Summary> summaryList) {
 
@@ -135,7 +132,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
                 sb.append(summary.getTotal());
             }
         }
-        String totalSummary = null;
+        String totalSummary;
         if (currency.size() > 1) {
             totalSummary = "N/A for Multiple Currencies";
         } else {
@@ -146,8 +143,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param documents
-     * @return
+     * @param documents documents
+     * @return doc list
      */
     private String[][] getSalesOfficeStatementList(List<Document> documents) {
         String[][] docList = null;
@@ -162,8 +159,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param doc
-     * @return
+     * @param doc document
+     * @return array
      */
     private String[][] getEachSalesOfcStatement(Document doc) {
         String[][] data = null;
@@ -185,13 +182,13 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param records
+     * @param records list of records
      * @return StatementData rows
      */
     private String[][] setStatementData(List<Record> records) {
         String[][] data = null;
         if (null != records) {
-            data = new String[records.size()][10];
+            data = new String[records.size()][16];
             Iterator<Record> itr = records.iterator();
             byte counter = 0;
             String[] tags = new String[]{};
@@ -202,15 +199,24 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
                 });
                 data[counter][1] = addTagToContent(record.getDocumentNumber(), tags);
                 data[counter][2] = addTagToContent(record.getDocumentType(), tags);
-                data[counter][3] = addTagToContent(record.getInvoiceReference(), tags);
-                data[counter][4] = addTagToContent(record.getPoNumber(), tags);
-                data[counter][5] = addTagToContent(record.getDocDate(), tags);
-                data[counter][6] = addTagToContent(record.getDueDate(), tags);
-                data[counter][7] = addTagToContent(record.getCurrency(), tags);
-                data[counter][8] = addTagToContent(record.getSalesLocalData(), tags);
-                data[counter][9] = addTagToContent(record.getOrgAmount(), new String[]{
+                data[counter][3] = addTagToContent(record.getInvoiceStatus(), tags);
+                data[counter][4] = addTagToContent(record.getInvoiceReference(), tags);
+                data[counter][5] = addTagToContent(record.getPoNumber(), tags);
+                data[counter][6] = addTagToContent(record.getDocDate(), tags);
+                data[counter][7] = addTagToContent(record.getDueDate(), tags);
+                data[counter][8] = addTagToContent(record.getClearedDate(), tags);
+                data[counter][9] = addTagToContent(record.getCurrency(), tags);
+                data[counter][10] = addTagToContent(record.getDueDays(), tags);
+                data[counter][11] = addTagToContent(record.getOrgAmount(), new String[]{
                         ExcelUtil.RIGHT_ALIGN_TAG
                 });
+                data[counter][12] = addTagToContent(record.getRemAmount(), new String[]{
+                        ExcelUtil.RIGHT_ALIGN_TAG
+                });
+                data[counter][13] = addTagToContent(record.getSalesOffice(), tags);
+                data[counter][14] = addTagToContent(record.getCompanyCode(), tags);
+                data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
+
                 counter++;
             }
         }
@@ -218,8 +224,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param totalAmount
-     * @return
+     * @param totalAmount total amount
+     * @return array
      */
     private String[] setTotalAmountRow(String totalAmount) {
         String[] tags = new String[]{
@@ -242,7 +248,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     }
 
     /**
-     * @param salesOffice
+     * @param salesOffice sales office
      * @return salesOffice value
      */
     private String setSalesOfficeRow(String salesOffice) {
@@ -255,9 +261,9 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     /**
      * Appending the tags to the field values so that it can be processed for the styling
      *
-     * @param rawData
-     * @param tags
-     * @return
+     * @param rawData raw data
+     * @param tags tags
+     * @return string
      */
     private String addTagToContent(String rawData, String[] tags) {
         StringBuilder processedData = new StringBuilder();
@@ -273,8 +279,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     /**
      * getI18nVal
      *
-     * @param value
-     * @return
+     * @param value value
+     * @return string
      */
     private String getI18nVal(String value) {
         if (null != request && !StringUtils.isBlank(value)) {

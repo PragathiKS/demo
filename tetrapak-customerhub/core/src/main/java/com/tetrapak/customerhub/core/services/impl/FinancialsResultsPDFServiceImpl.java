@@ -161,7 +161,15 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(paramRequest.getCustomerData().getInfo().getName1(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName2(), 10, muliBold, 11));
+        rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(paramRequest.getCustomerData().getInfo().getStreet(), 10, muliRegular, 11));
+        rows.add(new Row("", 15, muliRegular, 12));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getCity()
+                + ", " + paramRequest.getCustomerData().getInfo().getState()
+                + ", " + paramRequest.getCustomerData().getInfo().getPostalcode()
+                + ", " + paramRequest.getCustomerData().getInfo().getCountry()
+                , 10, muliRegular, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(
                 GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountService()) + ":",
