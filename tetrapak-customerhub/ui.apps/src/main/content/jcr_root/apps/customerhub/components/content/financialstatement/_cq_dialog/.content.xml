@@ -38,109 +38,128 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Statement of Account i18 Key "
-                            fieldLabel="Statement of Account Key" name="./statementOfAccount"
+                            fieldLabel="Statement of Account Key"
+                            name="./statementOfAccount"
                             required="true"/>
                     <findCustomer
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter find Customer i18 Key"
-                            fieldLabel="Find Customer Key" name="./findCustomer"
+                            fieldLabel="Find Customer Key"
+                            name="./findCustomer"
                             required="true"/>
                     <accountNumber
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Account Number i18 Key"
-                            fieldLabel="Account Number Key" name="./accountNumber"
+                            fieldLabel="Account Number Key"
+                            name="./accountNumber"
                             required="true"/>
                     <accountService
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Account Service i18 Key"
-                            fieldLabel="Account Service Key" name="./accountService"
+                            fieldLabel="Account Service Key"
+                            name="./accountService"
                             required="true"/>
                     <selectCustomerLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Select Customer Label i18 Key"
                             fieldLabel="Select Customer Label Key"
-                            name="./selectCustomerLabel" required="true"/>
+                            name="./selectCustomerLabel"
+                            required="true"/>
                     <selectStatusLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Select Status Label i18 Key"
-                            fieldLabel="Select Status Label Key" name="./selectStatusLabel"
+                            fieldLabel="Select Status Label Key"
+                            name="./selectStatusLabel"
                             required="true"/>
                     <selectDateRangeLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Select Date Range Label i18 Key"
                             fieldLabel="Select Date Range Label 	Key"
-                            name="./selectDateRangeLabel" required="true"/>
+                            name="./selectDateRangeLabel"
+                            required="true"/>
                     <selectDocumentTypeLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Select Doc Type i18 Key"
                             fieldLabel="Select Document Type label Key"
-                            name="./selectDocumentTypeLabel" required="true"/>
+                            name="./selectDocumentTypeLabel"
+                            required="true"/>
                     <placeholderForDocumentNumber
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Placeholder For Document Number i18 Key"
                             fieldLabel="Placeholder For Document Number Key"
-                            name="./placeholderForDocumentNumber" required="true"/>
+                            name="./placeholderForDocumentNumber"
+                            required="true"/>
                     <searchInputLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Search Input Label i18 Key"
-                            fieldLabel="Search Input Label Key" name="./searchInputLabel"
+                            fieldLabel="Search Input Label Key"
+                            name="./searchInputLabel"
                             required="true"/>
-                    <resetButtonText jcr:primaryType="nt:unstructured"
-                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                     fieldDescription="Enter Reset Button Text i18 Key"
-                                     fieldLabel="Reset Button Text Key" name="./resetButtonText"
-                                     required="true"/>
+                    <resetButtonText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Reset Button Text i18 Key"
+                            fieldLabel="Reset Button Text Key"
+                            name="./resetButtonText"
+                            required="true"/>
                     <searchButtonText
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Search Button Text i18 Key"
-                            fieldLabel="Search Button Text Key" name="./searchButtonText"
+                            fieldLabel="Search Button Text Key"
+                            name="./searchButtonText"
                             required="true"/>
                     <summaryHeadingI18n
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Summary Heading i18 Key"
-                            fieldLabel="Summary Heading Key" name="./summaryHeadingI18n"
+                            fieldLabel="Summary Heading Key"
+                            name="./summaryHeadingI18n"
                             required="true"/>
                     <documentHeadingI18n
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Documents Heading i18 Key"
-                            fieldLabel="Documents Heading Key" name="./documentHeadingI18n"
+                            fieldLabel="Documents Heading Key"
+                            name="./documentHeadingI18n"
                             required="true"/>
                     <createExcelBtnI18n
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Create Excel Button i18 Key"
-                            fieldLabel="Create Excel Button Key" name="./createExcelBtnI18n"
+                            fieldLabel="Create Excel Button Key"
+                            name="./createExcelBtnI18n"
                             required="true"/>
                     <createPdfBtnI18n
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter Create Pdf Button i18 Key"
-                            fieldLabel="Create Pdf Button Key" name="./createPdfBtnI18n"
+                            fieldLabel="Create Pdf Button Key"
+                            name="./createPdfBtnI18n"
                             required="true"/>
                     <fileDownloadErrorText
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter File Download Error Text i18 Key"
-                            fieldLabel="File Download Error Text Key" name="./fileDownloadErrorText"
+                            fieldLabel="File Download Error Text Key"
+                            name="./fileDownloadErrorText"
                             required="true"/>
                     <fileDownloadErrorClose
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="Enter File Download Error Close i18 Key"
-                            fieldLabel="File Download Error Close Key" name="./fileDownloadErrorClose"
-                            required="true"/>                
+                            fieldLabel="File Download Error Close Key"
+                            name="./fileDownloadErrorClose"
+                            required="true"/>
                 </items>
             </column>
         </items>

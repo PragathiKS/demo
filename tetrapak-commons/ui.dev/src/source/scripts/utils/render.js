@@ -1,6 +1,6 @@
 import 'core-js/features/array/includes';
 import $ from 'jquery';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import { throwError, parseJson, isValidSelector } from '../common/common';
 import { ajaxWrapper } from '../utils/ajax';
 import { templates } from './templates';
@@ -283,7 +283,7 @@ function _getStatus(data, textStatus, jqXHR) {
 function _setXHRData(jqXHRObj, data, textStatus) {
   if (this.url) {
     jqXHRObj.url = this.url.split('?')[0];
-    jqXHRObj.requestData = deparam(this.url.split('?')[1]);
+    jqXHRObj.requestData = deparam(this.url.split('?')[1], false);
   }
   jqXHRObj.id = this.dataId;
   if (Array.isArray(this.dataId)) {

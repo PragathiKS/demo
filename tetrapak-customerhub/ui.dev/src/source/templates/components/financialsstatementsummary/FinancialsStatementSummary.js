@@ -4,7 +4,7 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort, resolveQuery } from '../../../scripts/common/common';
+import { tableSort, resolveQuery, resolveCurrency } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
@@ -78,10 +78,16 @@ function _downloadInvoice($this) {
 
 function _processTableData(data) {
   let keys = [];
-  const { $filtersRoot } = this.cache;
+  const { $filtersRoot, currencyFields } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
+      // Resolve currency for summary section
+      keys.forEach(key => {
+        if (currencyFields.includes(key)) {
+          summary[key] = resolveCurrency(summary[key], summary.currency);
+        }
+      });
       return tableSort.call(this, summary, keys);
     });
     data.summaryHeadings = keys.map(key => ({
@@ -94,6 +100,7 @@ function _processTableData(data) {
     data.documents.forEach((doc, index) => {
       doc.title = `${doc.salesOffice} (${doc.records.length})`;
       doc.docId = `#document${index}`;
+      doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
       doc.docData = doc.records.map(record => {
         delete record.salesOffice;
         if (keys.length === 0) {
@@ -101,6 +108,12 @@ function _processTableData(data) {
           keys.splice(keys.indexOf('orgAmount'), 1);
           keys.push('orgAmount');
         }
+        // Resolve currency for summary section
+        keys.forEach(key => {
+          if (currencyFields.includes(key)) {
+            record[key] = resolveCurrency(record[key], record.currency);
+          }
+        });
         return tableSort.call(this, record, keys, record.invoiceReference);
       });
       doc.docHeadings = keys.map(key => ({
@@ -115,6 +128,25 @@ function _processTableData(data) {
 }
 
 /**
+ * Returns query parameter object as per API requirements
+ * @param {object} filterParams Route query parameters
+ */
+function _getRequestParams(filterParams) {
+  const queryParam = $.extend({}, filterParams);
+  queryParam.customernumber = queryParam.customerkey;
+  delete queryParam.customerkey;
+  queryParam['invoice-status'] = queryParam.status;
+  delete queryParam.status;
+  if (queryParam['invoicedate-to']) {
+    delete queryParam['soa-date'];
+  } else {
+    delete queryParam['invoicedate-from'];
+    delete queryParam['invoicedate-to'];
+  }
+  return queryParam;
+}
+
+/**
  * Renders table section
  * @param {object} filterParams Selected filter parameters
  */
@@ -126,7 +158,7 @@ function _renderTable(filterParams) {
       target: '.js-financials-summary',
       url: {
         path: getURL(API_FINANCIALS_STATEMENTS),
-        data: filterParams
+        data: _getRequestParams(filterParams)
       },
       beforeRender(data) {
         if (!data) {
@@ -168,12 +200,25 @@ class FinancialsStatementSummary {
     this.cache.$filtersRoot = this.cache.$parentRoot.find('.js-financial-statement');
     this.cache.$findCustomer = this.cache.$parentRoot.find('.js-financial-statement__select-customer-dropdown');
     this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
+    this.cache.currencyFields = [
+      'current',
+      'ninty',
+      'nintyPlus',
+      'overdue',
+      'sixty',
+      'thirty',
+      'total',
+      'orgAmount',
+      'remAmount',
+      'totalAmount'
+    ];
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.downloadInvoice = this.cache.$parentRoot.find('#downloadInvoice').val();
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.downloadInvoice = '';
+      this.cache.currencyFields = [];
       logger.error(e);
     }
   }

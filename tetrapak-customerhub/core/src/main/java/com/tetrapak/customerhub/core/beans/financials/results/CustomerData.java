@@ -1,4 +1,3 @@
-
 package com.tetrapak.customerhub.core.beans.financials.results;
 
 import com.google.gson.annotations.Expose;
@@ -9,30 +8,32 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CustomerData {
 
-    @SerializedName("key")
+    @SerializedName("customerNumber")
     @Expose
-    private String key;
-    @SerializedName("desc")
+    private String customerNumber;
+
+    @SerializedName("customerName")
     @Expose
-    private String desc;
+    private String customerName;
+
     @SerializedName("info")
     @Expose
     private Info info;
 
-    public String getKey() {
-        return key;
+    public String getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public Info getInfo() {
@@ -42,5 +43,4 @@ public class CustomerData {
     public void setInfo(Info info) {
         this.info = info;
     }
-
 }

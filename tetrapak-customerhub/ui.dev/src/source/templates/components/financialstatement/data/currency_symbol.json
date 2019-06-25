@@ -1,0 +1,440 @@
+﻿{
+    "Currency": [
+        {
+            "ISO_Code": "ALL",
+            "Symbol": "Lek"
+        },
+        {
+            "ISO_Code": "AFN",
+            "Symbol": "؋"
+        },
+        {
+            "ISO_Code": "ARS",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "AWG",
+            "Symbol": "ƒ"
+        },
+        {
+            "ISO_Code": "AUD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "AZN",
+            "Symbol": "₼"
+        },
+        {
+            "ISO_Code": "BSD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "BBD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "BYN",
+            "Symbol": "Br"
+        },
+        {
+            "ISO_Code": "BZD",
+            "Symbol": "BZ$"
+        },
+        {
+            "ISO_Code": "BMD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "BOB",
+            "Symbol": "$b"
+        },
+        {
+            "ISO_Code": "BAM",
+            "Symbol": "KM"
+        },
+        {
+            "ISO_Code": "BWP",
+            "Symbol": "P"
+        },
+        {
+            "ISO_Code": "BGN",
+            "Symbol": "лв"
+        },
+        {
+            "ISO_Code": "BRL",
+            "Symbol": "R$"
+        },
+        {
+            "ISO_Code": "BND",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "KHR",
+            "Symbol": "៛"
+        },
+        {
+            "ISO_Code": "CAD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "KYD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "CLP",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "CNY",
+            "Symbol": "¥"
+        },
+        {
+            "ISO_Code": "COP",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "CRC",
+            "Symbol": "₡"
+        },
+        {
+            "ISO_Code": "HRK",
+            "Symbol": "kn"
+        },
+        {
+            "ISO_Code": "CUP",
+            "Symbol": "₱"
+        },
+        {
+            "ISO_Code": "CZK",
+            "Symbol": "Kč"
+        },
+        {
+            "ISO_Code": "DKK",
+            "Symbol": "kr"
+        },
+        {
+            "ISO_Code": "DOP",
+            "Symbol": "RD$"
+        },
+        {
+            "ISO_Code": "XCD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "EGP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "SVC",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "EUR",
+            "Symbol": "€"
+        },
+        {
+            "ISO_Code": "FKP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "FJD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "GHS",
+            "Symbol": "¢"
+        },
+        {
+            "ISO_Code": "GIP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "GTQ",
+            "Symbol": "Q"
+        },
+        {
+            "ISO_Code": "GGP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "GYD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "HNL",
+            "Symbol": "L"
+        },
+        {
+            "ISO_Code": "HKD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "HUF",
+            "Symbol": "Ft"
+        },
+        {
+            "ISO_Code": "ISK",
+            "Symbol": "₹"
+        },
+        {
+            "ISO_Code": "INR",
+            "Symbol": "kr"
+        },
+        {
+            "ISO_Code": "IDR",
+            "Symbol": "Rp"
+        },
+        {
+            "ISO_Code": "IRR",
+            "Symbol": "﷼"
+        },
+        {
+            "ISO_Code": "IMP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "ILS",
+            "Symbol": "₪"
+        },
+        {
+            "ISO_Code": "JMD",
+            "Symbol": "J$"
+        },
+        {
+            "ISO_Code": "JPY",
+            "Symbol": "¥"
+        },
+        {
+            "ISO_Code": "JEP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "KZT",
+            "Symbol": "лв"
+        },
+        {
+            "ISO_Code": "KPW",
+            "Symbol": "₩"
+        },
+        {
+            "ISO_Code": "KRW",
+            "Symbol": "₩"
+        },
+        {
+            "ISO_Code": "KGS",
+            "Symbol": "лв"
+        },
+        {
+            "ISO_Code": "LAK",
+            "Symbol": "₭"
+        },
+        {
+            "ISO_Code": "LBP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "LRD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "MKD",
+            "Symbol": "ден"
+        },
+        {
+            "ISO_Code": "MYR",
+            "Symbol": "RM"
+        },
+        {
+            "ISO_Code": "MUR",
+            "Symbol": "₨"
+        },
+        {
+            "ISO_Code": "MXN",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "MNT",
+            "Symbol": "₮"
+        },
+        {
+            "ISO_Code": "MZN",
+            "Symbol": "MT"
+        },
+        {
+            "ISO_Code": "NAD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "NPR",
+            "Symbol": "₨"
+        },
+        {
+            "ISO_Code": "ANG",
+            "Symbol": "ƒ"
+        },
+        {
+            "ISO_Code": "NZD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "NIO",
+            "Symbol": "C$"
+        },
+        {
+            "ISO_Code": "NGN",
+            "Symbol": "₦"
+        },
+        {
+            "ISO_Code": "NOK",
+            "Symbol": "kr"
+        },
+        {
+            "ISO_Code": "OMR",
+            "Symbol": "﷼"
+        },
+        {
+            "ISO_Code": "PKR",
+            "Symbol": "₨"
+        },
+        {
+            "ISO_Code": "PAB",
+            "Symbol": "B/."
+        },
+        {
+            "ISO_Code": "PYG",
+            "Symbol": "Gs"
+        },
+        {
+            "ISO_Code": "PEN",
+            "Symbol": "S/."
+        },
+        {
+            "ISO_Code": "PHP",
+            "Symbol": "₱"
+        },
+        {
+            "ISO_Code": "PLN",
+            "Symbol": "zł"
+        },
+        {
+            "ISO_Code": "QAR",
+            "Symbol": "﷼"
+        },
+        {
+            "ISO_Code": "RON",
+            "Symbol": "lei"
+        },
+        {
+            "ISO_Code": "RUB",
+            "Symbol": "₽"
+        },
+        {
+            "ISO_Code": "SHP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "SAR",
+            "Symbol": "﷼"
+        },
+        {
+            "ISO_Code": "RSD",
+            "Symbol": "Дин."
+        },
+        {
+            "ISO_Code": "SCR",
+            "Symbol": "₨"
+        },
+        {
+            "ISO_Code": "SGD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "SBD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "SOS",
+            "Symbol": "S"
+        },
+        {
+            "ISO_Code": "ZAR",
+            "Symbol": "R"
+        },
+        {
+            "ISO_Code": "LKR",
+            "Symbol": "₨"
+        },
+        {
+            "ISO_Code": "SEK",
+            "Symbol": "kr"
+        },
+        {
+            "ISO_Code": "CHF",
+            "Symbol": "CHF"
+        },
+        {
+            "ISO_Code": "SRD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "SYP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "TWD",
+            "Symbol": "NT$"
+        },
+        {
+            "ISO_Code": "THB",
+            "Symbol": "฿"
+        },
+        {
+            "ISO_Code": "TTD",
+            "Symbol": "TT$"
+        },
+        {
+            "ISO_Code": "TRY",
+            "Symbol": "₺"
+        },
+        {
+            "ISO_Code": "TVD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "UAH",
+            "Symbol": "₴"
+        },
+        {
+            "ISO_Code": "GBP",
+            "Symbol": "£"
+        },
+        {
+            "ISO_Code": "USD",
+            "Symbol": "$"
+        },
+        {
+            "ISO_Code": "UYU",
+            "Symbol": "$U"
+        },
+        {
+            "ISO_Code": "UZS",
+            "Symbol": "лв"
+        },
+        {
+            "ISO_Code": "VEF",
+            "Symbol": "Bs"
+        },
+        {
+            "ISO_Code": "VND",
+            "Symbol": "₫"
+        },
+        {
+            "ISO_Code": "YER",
+            "Symbol": "﷼"
+        },
+        {
+            "ISO_Code": "ZWD",
+            "Symbol": "Z$"
+        }
+    ]
+}

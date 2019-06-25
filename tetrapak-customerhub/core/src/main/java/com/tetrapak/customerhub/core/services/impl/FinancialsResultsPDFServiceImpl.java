@@ -42,28 +42,28 @@ import java.util.List;
  */
 @Component(immediate = true, service = FinancialsResultsPDFService.class)
 public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFService {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsPDFServiceImpl.class);
-    
+
     private PDFont muliRegular;
     private PDFont muliBold;
     private static final int MARGIN = 20;
     private FinancialStatementModel financialStatementModel;
     private static final String CUHU_FINANCIAL_PREFIX = "cuhu.financials.";
-    
+
     /**
-     * @param request SlingHttpServletRequest
-     * @param response SlingHttpServletResponse
-     * @param resultsResponse Results
-     * @param paramRequest RequestParams
+     * @param request            SlingHttpServletRequest
+     * @param response           SlingHttpServletResponse
+     * @param resultsResponse    Results
+     * @param paramRequest       RequestParams
      * @param financialStatement FinancialStatementModel
      */
     @Override
     public boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-            Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
+                                                Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
         financialStatementModel = financialStatement;
         List<Document> documents = resultsResponse.getDocuments();
-        String customerName = paramRequest.getCustomerData().getDesc();
+        String customerName = paramRequest.getCustomerData().getCustomerName();
         String startDate = paramRequest.getStartDate();
         String endDate = paramRequest.getEndDate();
         InputStream in1 = null;
@@ -78,16 +78,16 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     true);
             in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
             in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
-            
+
             muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
             muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
-            
+
             image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
-            
+
             BufferedImage bufferedImage1 = ImageIO.read(image1);
-            
+
             PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
-            
+
             PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
             PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY,
                     getHeadLines(request, paramRequest));
@@ -97,12 +97,12 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 490);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 475, Color.DARK_GRAY, 0.01f);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 450, Color.LIGHT_GRAY, 0.01f);
-            
+
             PDFUtil.writeContent(document, contentStream, MARGIN, 430, Color.DARK_GRAY, getDocumentName(request));
             contentStream = printDeliveryDetails(request, document, contentStream, documents);
             return true;
         } catch (IOException e) {
-            LOGGER.error("IOException {}", e);
+            LOGGER.error("IOException ", e);
             return false;
         } finally {
             try {
@@ -136,11 +136,11 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     image1.close();
                 }
             } catch (IOException e) {
-                LOGGER.error("IOException {}", e);
+                LOGGER.error("IOException", e);
             }
         }
     }
-    
+
     private List<Row> getDocumentName(SlingHttpServletRequest request) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row(
@@ -148,7 +148,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 10, muliRegular, 12));
         return rows;
     }
-    
+
     private List<Row> getHeadLines(SlingHttpServletRequest request, Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         rows.add(new Row(
@@ -157,11 +157,19 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 10, muliRegular, 12));
         rows.add(new Row("", 20, muliRegular, 12));
         rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountNumber())
-                + ":" + " " + paramRequest.getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
+                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getTitle(), 10, muliBold, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName1(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getAddress(), 10, muliRegular, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName2(), 10, muliBold, 11));
+        rows.add(new Row("", 15, muliRegular, 12));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getStreet(), 10, muliRegular, 11));
+        rows.add(new Row("", 15, muliRegular, 12));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getCity()
+                + ", " + paramRequest.getCustomerData().getInfo().getState()
+                + ", " + paramRequest.getCustomerData().getInfo().getPostalcode()
+                + ", " + paramRequest.getCustomerData().getInfo().getCountry()
+                , 10, muliRegular, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(
                 GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountService()) + ":",
@@ -169,7 +177,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         rows.add(new Row("", 15, muliRegular, 12));
         return rows;
     }
-    
+
     private List<Row> getstatementSummary(SlingHttpServletRequest request, Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
@@ -192,7 +200,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         rows.add(new Row("", 20, muliRegular, 8));
         return rows;
     }
-    
+
     private Table createAccountServicetable(SlingHttpServletRequest request, Params paramRequest) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
@@ -210,15 +218,15 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                                 financialStatementModel.getSelectDocumentTypeLabel()),
                         paramRequest.getDocumentType().getDesc(),
                 }, {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                                financialStatementModel.getPlaceholderForDocumentNumber()),
-                        paramRequest.getDocumentNumber()
-                }
+                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
+                        financialStatementModel.getPlaceholderForDocumentNumber()),
+                paramRequest.getDocumentNumber()
+        }
         };
-        
+
         return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private Table createSummaryTable(SlingHttpServletRequest request, List<Summary> summary) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
@@ -240,9 +248,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         columns.add(new Column(
                 CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "total"),
                 10));
-        
+
         String[][] content = new String[summary.size()][8];
-        
+
         for (int i = 0; i < summary.size(); i++) {
             content[i][0] = summary.get(i).getCurrency();
             content[i][1] = summary.get(i).getCurrent();
@@ -252,24 +260,24 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             content[i][5] = summary.get(i).getNinty();
             content[i][6] = summary.get(i).getNintyPlus();
             content[i][7] = summary.get(i).getTotal();
-            
+
         }
-        
+
         return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
-    
-   private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
-            PDPageContentStream contentStream, List<Document> documents) throws IOException {
+
+    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+                                                     PDPageContentStream contentStream, List<Document> documents) throws IOException {
         int height = 400;
         int newPageHeight;
-        
+
         for (Document documentDetail : documents) {
             if ((height > getNextTableHeight(documentDetail.getRecords()))) {
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 8, Color.LIGHT_GRAY, 0.01f);
-                
+
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
-          
+
                 height = PDFUtil.drawTable(contentStream, createProductTable(request, documentDetail.getRecords()),
                         height - 10);
                 height -= 15;
@@ -278,17 +286,16 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 int totalRows = documentDetail.getRecords().size();
                 int rowsForCurrentPage = newPageHeight / 15;
 
-                if(totalRows <rowsForCurrentPage && totalRows < 26 ) {
-                contentStream = PDFUtil.getNewPage(document, contentStream);  
-                rowsForCurrentPage = totalRows;
-                height = newPageHeight;
-                }
-                else {
-                	rowsForCurrentPage = height / 15;
+                if (totalRows < rowsForCurrentPage && totalRows < 26) {
+                    contentStream = PDFUtil.getNewPage(document, contentStream);
+                    rowsForCurrentPage = totalRows;
+                    height = newPageHeight;
+                } else {
+                    rowsForCurrentPage = height / 15;
                 }
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 6, Color.LIGHT_GRAY, 0.01f);
-                
+
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
                 height = PDFUtil.drawTable(contentStream,
                         createRecordTable(request, (documentDetail.getRecords()), 0, rowsForCurrentPage - 1),
@@ -296,24 +303,28 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 height -= 15;
                 for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
                     int end = start + 39;
-                    if (end > totalRows) {
-                        end = totalRows;
-                    }
-                    
+                    end = getEnd(totalRows, end);
+
                     contentStream = PDFUtil.getNewPage(document, contentStream);
-                   
-                    
+
                     height = PDFUtil.drawTable(contentStream,
                             createRecordTable(request, documentDetail.getRecords(), start, end - 1), 730);
                     PDFUtil.drawLine(contentStream, MARGIN, 570, 735, Color.LIGHT_GRAY, 0.01f);
                     PDFUtil.drawLine(contentStream, MARGIN, 570, 718, Color.LIGHT_GRAY, 0.01f);
                 }
-                
+
             }
-                  }
+        }
         return contentStream;
     }
-    
+
+    private int getEnd(int totalRows, int end) {
+        if (end > totalRows) {
+            end = totalRows;
+        }
+        return end;
+    }
+
     private Table createRecordTable(SlingHttpServletRequest request, List<Record> records, int start, int end) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
@@ -335,12 +346,12 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "salesLocalData"), 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "orgAmount"), 10));
-        
+
         String[][] content = new String[end - start + 1][9];
-        
+
         for (int i = 0; i < end - start + 1; i++) {
             content[i][0] = records.get(i).getDocumentNumber();
-            content[i][1] = records.get(i).getDesc();
+            content[i][1] = records.get(i).getDocumentType();
             content[i][2] = records.get(i).getInvoiceReference();
             content[i][3] = records.get(i).getPoNumber();
             content[i][4] = records.get(i).getDocDate();
@@ -348,15 +359,15 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             content[i][6] = records.get(i).getCurrency();
             content[i][7] = records.get(i).getSalesLocalData();
             content[i][8] = records.get(i).getOrgAmount();
-            
+
         }
         return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private int getNextTableHeight(List<Record> documentDetail) {
         return documentDetail.size() * 15 + 10;
     }
-    
+
     private Table createDeliveryDetailTable(Document documentList) {
         // Total size of columns must not be greater than table width.
         List<Column> columns = new ArrayList<>();
@@ -365,9 +376,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         String[][] content = new String[0][0];
         return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
     }
-    
+
     private Table createProductTable(SlingHttpServletRequest request, List<Record> records) {
         return createRecordTable(request, records, 0, records.size() - 1);
     }
-    
+
 }

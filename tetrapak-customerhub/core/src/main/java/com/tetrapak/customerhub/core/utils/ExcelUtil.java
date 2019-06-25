@@ -3,7 +3,16 @@ package com.tetrapak.customerhub.core.utils;
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -25,8 +34,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This utility is used to generate and download an excel file based on the 2D
- * String array provided as a parameter
+ * This utility is used to generate and download an excel file based on the 2D String array provided as a parameter
  *
  * @author dhitiwar
  * @author swalamba
@@ -37,7 +45,6 @@ public final class ExcelUtil {
     private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
 
     public static final String MERGE_ROW_TAG = "<mergerow>";
-    public static final String REGULAR_STYLE_TAG = "<regularStyle>";
     public static final String LIGHT_GREY_LEFT_TAG = "<lightGreyLeft>";
     public static final String LIGHT_GREY_BG_TAG = "<lightGreyBG>";
     public static final String BOLD_TAG = "<bold>";
@@ -226,8 +233,9 @@ public final class ExcelUtil {
                 sheet.addMergedRegion(
                         new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(), cell.getColumnIndex(), length));
             } else if (tags.contains(MERGE_2_CELLS_TAG)) {
-                sheet.addMergedRegion(new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(),
-                        cell.getColumnIndex() - 1, cell.getColumnIndex()));
+                sheet.addMergedRegion(
+                        new CellRangeAddress(cell.getRowIndex(), cell.getRowIndex(), cell.getColumnIndex() - 1,
+                                cell.getColumnIndex()));
             }
 
             applyCellStyling(cell, tags, cellStyles);
@@ -359,7 +367,8 @@ public final class ExcelUtil {
             byte[] docBytes = out.toByteArray();
             ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
             response.setContentType(CONTENT_TYPE);
-            response.setHeader(CONTENT_DISPOSITION, RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION);
+            response.setHeader(CONTENT_DISPOSITION,
+                    RESP_HEADER_DATA + excelReportData.getFileName() + FILE_EXTENSION + "; size=" + in.available());
             response.addHeader("Content-Length", Integer.toString(in.available()));
             int read;
             os = response.getOutputStream();
@@ -404,8 +413,7 @@ public final class ExcelUtil {
      * Apply custom font styling to the richtextString based on the list of tags
      *
      * @param field      : raw data to be set in the cell
-     * @param tags       : list of tags based on which the manipulation would be
-     *                   done
+     * @param tags       : list of tags based on which the manipulation would be done
      * @param customFont fint
      * @return manipulated richTextString from the string data to be put in the cell
      */

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
@@ -14,6 +14,14 @@ import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
+import { $body } from '../../../scripts/utils/commonSelectors';
+
+/**
+ * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
+ */
+function _getStartDate() {
+  return moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+}
 
 /**
  * Disables calendar next button
@@ -115,27 +123,49 @@ function _trackAnalytics(type) {
 function _processFinancialStatementData(data) {
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
-    data.customerData.sort((a, b) => {
-      if (a.desc.toUpperCase() < b.desc.toUpperCase()) {
-        return -1;
+    if (!data.customerData) {
+      data.isError = true;
+    } else {
+      data.customerData.sort((a, b) => {
+        if (a && typeof a.customerName === 'string') {
+          a = a.customerName.toUpperCase();
+        }
+        if (b && typeof b.customerName === 'string') {
+          b = b.customerName.toUpperCase();
+        }
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      });
+      try {
+        data.customerData.forEach(customerOb => {
+          customerOb.key = customerOb.customerNumber;
+          customerOb.desc = `${customerOb.customerNumber} - ${customerOb.customerName} - ${customerOb.info.city}`;
+        });
+        // Resolve i18n keys for calendar modal
+        data.selectDatesI18n = data.selectDates;
+        data.closeBtnI18n = data.closeBtn;
+        data.setDatesBtnI18n = data.setDates;
+        data.dateRangeLabelI18n = data.selectDateRangeLabel;
+        // Remove duplicate properties
+        delete data.selectDates;
+        delete data.closeBtn;
+        delete data.setDates;
+        const [selectedStatus] = data.status;
+        data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+        if ((`${selectedStatus.key}`).toUpperCase() !== 'O') {
+          data.dateRange = `${_getStartDate()} - ${data.currentDate}`;
+        }
+        const [selectedCustomerData] = data.customerData;
+        data.selectedCustomerData = selectedCustomerData;
+      } catch (e) {
+        data.isError = true;
       }
-      if (a.desc.toUpperCase() > b.desc.toUpperCase()) {
-        return 1;
-      }
-      return 0;
-    });
-    // Resolve i18n keys for calendar modal
-    data.selectDatesI18n = data.selectDates;
-    data.closeBtnI18n = data.closeBtn;
-    data.setDatesBtnI18n = data.setDates;
-    data.dateRangeLabelI18n = data.selectDateRangeLabel;
-    // Remove duplicate properties
-    delete data.selectDates;
-    delete data.closeBtn;
-    delete data.setDates;
-    data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
-    const [selectedCustomerData] = data.customerData;
-    data.selectedCustomerData = selectedCustomerData;
+    }
   }
   this.cache.data = data;
   return data;
@@ -173,12 +203,20 @@ function _setSelectedCustomer(key, noReset) {
  */
 function _renderFilters() {
   const $this = this;
+  const { tempCustomerList } = this.cache;
   auth.getToken(({ data: authData }) => {
+    const url = {
+      path: getURL(API_FINANCIAL_SUMMARY)
+    };
+    if (
+      typeof tempCustomerList === 'string'
+      && tempCustomerList.trim().length
+    ) {
+      url.data = `customernumber=${tempCustomerList.trim()}`;
+    }
     render.fn({
       template: 'financialStatement',
-      url: {
-        path: getURL(API_FINANCIAL_SUMMARY)
-      },
+      url,
       target: '.js-financial-statement__select-customer-dropdown',
       ajaxConfig: {
         method: ajaxMethods.GET,
@@ -201,17 +239,23 @@ function _renderFilters() {
     }, (data) => {
       if (!data.isError && Array.isArray(data.customerData)) {
         const defaultQuery = {};
-        const [customerKey] = data.customerData;
+        const [customerNumber] = data.customerData;
         const [defaultStatus] = data.status;
         const [docType] = data.documentType;
         defaultQuery.status = defaultStatus.key;
         defaultQuery['document-type'] = docType.key;
-        defaultQuery['invoicedate-from'] = moment().format(DATE_FORMAT);
-        defaultQuery.customerkey = customerKey.key;
+        defaultQuery['soa-date'] = moment().format(DATE_FORMAT);
+        if ((`${defaultQuery.status}`).toUpperCase() !== 'O') {
+          defaultQuery['invoicedate-from'] = _getStartDate();
+          defaultQuery['invoicedate-to'] = moment().format(DATE_FORMAT);
+        }
+        defaultQuery.customerkey = customerNumber.key;
         this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
         this.initializeCalendar();
         this.setRoute(true);
+      } else {
+        this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
       }
     });
   });
@@ -231,12 +275,12 @@ function _setDateFilter(status, selectedDate) {
     const endDate = moment(Date.now()).format(DATE_FORMAT);
     if (
       typeof status === 'string'
-      && ['open'].includes(status.toLowerCase())
+      && ['O'].includes(status.toUpperCase())
     ) {
       $dateSelector.val(endDate);
       this.initializeCalendar();
     } else {
-      const startDate = moment(Date.now() - (FINANCIAL_DATE_RANGE_PERIOD * 24 * 60 * 60 * 1000)).format(DATE_FORMAT);
+      const startDate = _getStartDate();
       $dateSelector.val(`${startDate} - ${endDate}`);
       this.initializeCalendar(true);
     }
@@ -250,16 +294,20 @@ function _setDateFilter(status, selectedDate) {
 function _syncFields(query) {
   const { $filterForm, $findCustomer } = this.cache;
   const $statusField = $filterForm.find('.js-financial-statement__status');
-  let dateRange = query['invoicedate-from'];
-  if (query['invoicedate-to']) {
-    dateRange += ` - ${query['invoicedate-to']}`;
+
+  let dateRange = query['soa-date'];
+  if (
+    query['invoicedate-from']
+    && query['invoicedate-to']
+  ) {
+    dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
   $findCustomer.val(query.customerkey).trigger('change', [true]);
   $statusField.val(query.status);
   $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
   $statusField.trigger('change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
-  $filterForm.find('.js-financial-statement__document-number').val(query.search);
+  $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
 /**
@@ -268,12 +316,13 @@ function _syncFields(query) {
 function _getFilterQuery() {
   const { $filterForm, $findCustomer } = this.cache;
   const filters = $filterForm.serialize();
-  const filterProps = deparam(filters);
+  const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
-    const [orderdateFrom, orderdateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
-    filterProps['invoicedate-from'] = orderdateFrom.trim();
-    if (orderdateTo) {
-      filterProps['invoicedate-to'] = orderdateTo.trim();
+    const [invoiceDateFrom, invoiceDateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
+    filterProps['soa-date'] = invoiceDateFrom.trim();
+    if (invoiceDateTo) {
+      filterProps['invoicedate-from'] = invoiceDateFrom.trim();
+      filterProps['soa-date'] = filterProps['invoicedate-to'] = invoiceDateTo.trim();
     }
     delete filterProps.daterange;
   }
@@ -323,9 +372,9 @@ function _downloadPdfExcel(...args) {
   const docTypeDesc = $filterForm.find(`.js-financial-statement__document-type option[value="${$el.data('documentType')}"]`).text();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
-  paramsData.startDate = $el.data('invoiceDateFrom');
-
+  paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
   if ($el.data('invoiceDateTo')) {
+    paramsData.startDate = $el.data('invoiceDateFrom');
     paramsData.endDate = $el.data('invoiceDateTo');
   }
   paramsData.customerData = data.selectedCustomerData;
@@ -338,10 +387,7 @@ function _downloadPdfExcel(...args) {
     desc: docTypeDesc
   };
   paramsData.documentNumber = docNumber;
-  auth.getToken(({ data: authData }) => {
-    const requestBody = {};
-    requestBody.params = JSON.stringify(paramsData);
-    requestBody.token = authData.access_token;
+  auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
     fileWrapper({
       url,
@@ -363,7 +409,7 @@ function _downloadPdfExcel(...args) {
 
 function _getDefaultQueryString() {
   const { defaultQueryString, $findCustomer } = this.cache;
-  const queryObject = deparam(defaultQueryString);
+  const queryObject = deparam(defaultQueryString, false);
   // Retain current customer address selection
   queryObject.customerkey = $findCustomer.val();
   return $.param(queryObject);
@@ -374,15 +420,16 @@ class FinancialStatement {
     this.root = $(el);
   }
   cache = {};
-
   initCache() {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.servletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
+      this.cache.tempCustomerList = $body.find('#tempCustomerList').val();
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.servletUrl = '';
+      this.cache.tempCustomerList = '';
       logger.error(e);
     }
   }
@@ -441,7 +488,7 @@ class FinancialStatement {
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
-        this.setDateFilter(currentTarget.text(), currentTarget.data('selectedDate'));
+        this.setDateFilter(currentTarget.val(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
@@ -492,7 +539,7 @@ class FinancialStatement {
     $status.find('option').each(function () {
       $(this).removeData();
     });
-    this.syncFields(deparam(defaultQueryString));
+    this.syncFields(deparam(defaultQueryString, false));
     router.set({
       route: '#/',
       queryString: defaultQueryString
