@@ -132,7 +132,7 @@ public final class PDFUtil {
             ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
 
             response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf; size=" + in.available());
             response.addHeader("Content-Length", Integer.toString(in.available()));
 
             int read;

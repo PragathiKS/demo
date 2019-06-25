@@ -26,59 +26,59 @@ import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 
 /**
- * Financials Invoice PDF Download FileServlet using URL:
- * /bin/customerhub/invoice/document.<doc number>.pdf supports both GET and POST
- *
- * @author Swati Lamba
+ * Financial Invoice PDF Download FileServlet using URL: /bin/customerhub/invoice/document.<doc number>.pdf supports
+ * both GET and POST
+ * @author Nitin Kumar
  */
 @Component(service = Servlet.class, property = {
-		Constants.SERVICE_DESCRIPTION + "=PDF Generator Servlet for Invoice for given document ID",
-		"sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.paths=" + "/bin/customerhub/invoice/document",
-		"sling.servlet.extensions=" + CustomerHubConstants.PDF })
+        Constants.SERVICE_DESCRIPTION + "=PDF Generator Servlet for Invoice for given document ID",
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+        "sling.servlet.paths=" + "/bin/customerhub/invoice/document",
+        "sling.servlet.extensions=" + CustomerHubConstants.PDF
+})
 public class FinancialsInvoiceDownloadFileServlet extends SlingAllMethodsServlet {
-
-	private static final long serialVersionUID = 2323660841296799482L;
-
-	@Reference
-	private FinancialsResultsApiService financialsResultsApiService;
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsInvoiceDownloadFileServlet.class);
-
-	@Override
-	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
-			throws ServletException, IOException {
-		doPost(request, response);
-	}
-
-	@Override
-	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-		final String extension = request.getRequestPathInfo().getExtension();
-		String documentNumber = request.getRequestPathInfo().getSelectorString();
-		final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
-				: request.getCookie("authToken").getValue();
-		LOGGER.debug("Got authToken from cookie : {}", token);
-
-		if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
-				&& StringUtils.isNotBlank(documentNumber)) {
-			HttpResponse httpResp = financialsResultsApiService.getFinancialsInvoice(documentNumber, token);
-
-			int statusCode = httpResp.getStatusLine().getStatusCode();
-			LOGGER.debug("Retrieved response from API got status code:{}", statusCode);
-
-			HeaderIterator headerItr = httpResp.headerIterator();
-			while (headerItr.hasNext()) {
-				Header apiRespHeader = headerItr.nextHeader();
-				response.setHeader(apiRespHeader.getName(), apiRespHeader.getValue());
-			}
-			httpResp.getEntity().writeTo(response.getOutputStream());
-		} else {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			JsonObject jsonResponse = new JsonObject();
-			jsonResponse.addProperty("errorMsg",
-					"URL is invalid or auth token is missing : " + request.getRequestPathInfo());
-			HttpUtil.writeJsonResponse(response, jsonResponse);
-		}
-	}
-
+    
+    private static final long serialVersionUID = 2323660841296799482L;
+    
+    @Reference
+    private FinancialsResultsApiService financialsResultsApiService;
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsInvoiceDownloadFileServlet.class);
+    
+    @Override
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
+    
+    @Override
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+        final String extension = request.getRequestPathInfo().getExtension();
+        String documentNumber = request.getRequestPathInfo().getSelectorString();
+        final String token = request.getCookie("authToken") == null ? StringUtils.EMPTY
+                : request.getCookie("authToken").getValue();
+        LOGGER.debug("Got authToken from cookie : {}", token);
+        
+        if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
+                && StringUtils.isNotBlank(documentNumber)) {
+            HttpResponse httpResp = financialsResultsApiService.getFinancialsInvoice(documentNumber, token);
+            
+            int statusCode = httpResp.getStatusLine().getStatusCode();
+            LOGGER.debug("Retrieved response from API got status code:{}", statusCode);
+            
+            HeaderIterator headerItr = httpResp.headerIterator();
+            while (headerItr.hasNext()) {
+                Header apiRespHeader = headerItr.nextHeader();
+                response.setHeader(apiRespHeader.getName(), apiRespHeader.getValue());
+            }
+            httpResp.getEntity().writeTo(response.getOutputStream());
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            JsonObject jsonResponse = new JsonObject();
+            jsonResponse.addProperty("errorMsg",
+                    "URL is invalid or auth token is missing : " + request.getRequestPathInfo());
+            HttpUtil.writeJsonResponse(response, jsonResponse);
+        }
+    }
+    
 }

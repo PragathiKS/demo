@@ -13,9 +13,11 @@ public class Document {
     @SerializedName("salesOffice")
     @Expose
     private String salesOffice;
+
     @SerializedName("totalAmount")
     @Expose
     private String totalAmount;
+
     @SerializedName("records")
     @Expose
     private List<Record> records;

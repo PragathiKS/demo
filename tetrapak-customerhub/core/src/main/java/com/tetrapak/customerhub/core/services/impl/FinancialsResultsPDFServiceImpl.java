@@ -1,18 +1,14 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.financials.results.Document;
-import com.tetrapak.customerhub.core.beans.financials.results.Params;
-import com.tetrapak.customerhub.core.beans.financials.results.Record;
-import com.tetrapak.customerhub.core.beans.financials.results.Results;
-import com.tetrapak.customerhub.core.beans.financials.results.Summary;
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.models.FinancialStatementModel;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -29,13 +25,15 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.customerhub.core.beans.financials.results.*;
+import com.tetrapak.customerhub.core.beans.pdf.Column;
+import com.tetrapak.customerhub.core.beans.pdf.Row;
+import com.tetrapak.customerhub.core.beans.pdf.Table;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.FinancialStatementModel;
+import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.PDFUtil;
 
 /**
  * Impl class for Financials Results PDF Service
@@ -63,7 +61,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
         financialStatementModel = financialStatement;
         List<Document> documents = resultsResponse.getDocuments();
-        String customerName = paramRequest.getCustomerData().getDesc();
+        String customerName = paramRequest.getCustomerData().getCustomerName();
         String startDate = paramRequest.getStartDate();
         String endDate = paramRequest.getEndDate();
         InputStream in1 = null;
@@ -136,7 +134,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     image1.close();
                 }
             } catch (IOException e) {
-                LOGGER.error("IOException {}", e);
+                LOGGER.error("IOException", e);
             }
         }
     }
@@ -157,11 +155,11 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 10, muliRegular, 12));
         rows.add(new Row("", 20, muliRegular, 12));
         rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountNumber())
-                + ":" + " " + paramRequest.getCustomerData().getInfo().getAcountNo(), 10, muliBold, 11));
+                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getTitle(), 10, muliBold, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName1(), 10, muliBold, 11));
         rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getAddress(), 10, muliRegular, 11));
+        rows.add(new Row(paramRequest.getCustomerData().getInfo().getStreet(), 10, muliRegular, 11));
         rows.add(new Row("", 15, muliRegular, 12));
         rows.add(new Row(
                 GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountService()) + ":",
@@ -258,7 +256,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
     }
     
-   private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
+    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
             PDPageContentStream contentStream, List<Document> documents) throws IOException {
         int height = 400;
         int newPageHeight;
@@ -269,7 +267,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 8, Color.LIGHT_GRAY, 0.01f);
                 
                 PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
-          
+                
                 height = PDFUtil.drawTable(contentStream, createProductTable(request, documentDetail.getRecords()),
                         height - 10);
                 height -= 15;
@@ -277,14 +275,13 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 newPageHeight = 730;
                 int totalRows = documentDetail.getRecords().size();
                 int rowsForCurrentPage = newPageHeight / 15;
-
-                if(totalRows <rowsForCurrentPage && totalRows < 26 ) {
-                contentStream = PDFUtil.getNewPage(document, contentStream);  
-                rowsForCurrentPage = totalRows;
-                height = newPageHeight;
-                }
-                else {
-                	rowsForCurrentPage = height / 15;
+                
+                if (totalRows < rowsForCurrentPage && totalRows < 26) {
+                    contentStream = PDFUtil.getNewPage(document, contentStream);
+                    rowsForCurrentPage = totalRows;
+                    height = newPageHeight;
+                } else {
+                    rowsForCurrentPage = height / 15;
                 }
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
                 PDFUtil.drawLine(contentStream, MARGIN, 570, height - 6, Color.LIGHT_GRAY, 0.01f);
@@ -301,7 +298,6 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                     }
                     
                     contentStream = PDFUtil.getNewPage(document, contentStream);
-                   
                     
                     height = PDFUtil.drawTable(contentStream,
                             createRecordTable(request, documentDetail.getRecords(), start, end - 1), 730);
@@ -310,7 +306,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 }
                 
             }
-                  }
+        }
         return contentStream;
     }
     
@@ -340,7 +336,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         
         for (int i = 0; i < end - start + 1; i++) {
             content[i][0] = records.get(i).getDocumentNumber();
-            content[i][1] = records.get(i).getDesc();
+            content[i][1] = records.get(i).getDocumentType();
             content[i][2] = records.get(i).getInvoiceReference();
             content[i][3] = records.get(i).getPoNumber();
             content[i][4] = records.get(i).getDocDate();
