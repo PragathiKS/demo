@@ -104,10 +104,9 @@ function _trackAnalytics(type) {
     case 'search': {
       const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
       const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
-      const docNumber = $filterForm.find('.js-financial-statement__document-number').val().toLowerCase() || '';
 
       ob.linkName = 'search statement';
-      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|${docNumber}`;
+      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
     }
     default: {

@@ -16,14 +16,13 @@ pipeline {
                 author_url = "http://10.202.13.228:4502"
                 publish_url = "http://10.202.13.229:4503"
                 package_name = "tetrapak-complete-package"
-test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak.sapient.com/content/tetrapak/customerhub/en/financials.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/training.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/projects.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/contact.html http://tetrapak.sapient.com/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
-                test_url_pally_zap = "http://tetrapak.sapient.com"
+				test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/en/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhub/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
+                test_url_pally_zap = "http://tetrapak.sapient.com/content/tetrapak/customerhub/global/en/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
         stages {
-
-               stage ('Checkout') {
+             /*  stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -33,6 +32,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                       )
                    }
                  }
+				 */
 
                 stage ('Initialize') {
                         steps {
@@ -221,25 +221,21 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                 }
         }
 post {
-/*
+
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-
-to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+					to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, harsimran.kaur@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-
-to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+					to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, harsimran.kaur@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
       }
-*/
+
 
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'
     }
-
 }
-
 }

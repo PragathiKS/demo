@@ -3,10 +3,9 @@ pipeline {
 /*
  triggers {
           cron('30 10,15 * * *')
-                   }  */
-
+		}
+		*/
         parameters {
-
                 booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
         }
 
@@ -20,15 +19,14 @@ pipeline {
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
-test_url = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/financials.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/training.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/projects.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/contact.html http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html"
-
-test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
+				test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
+				test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/en/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
         stages {
-
-               /* stage ('Checkout') {
+				/*
+				stage ('Checkout') {
                  steps {
                    git(
                    poll: true,
@@ -37,8 +35,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                    branch: 'develop'
                       )
                    }
-                 } */
-
+                } 
+				*/
                 stage ('Initialize') {
                         steps {
                                 sh      '''
@@ -124,7 +122,6 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                         }
                                         else
                                         {
-										
                                                 if (params.Build_Commons)
 												{
 												echo "Running Sonar for JAVA profile on Project - Commons"
@@ -137,19 +134,12 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                         }
                 }
 
-				
 				stage ('Deployment Author and Publish Parallel') {
                         steps {
                                 parallel (
-								
-								
                                         "Author Deployment" : {
-										        
 												script {
-										        if (params.Build_Commons)
-										     
-												{
-												
+														if (params.Build_Commons) {
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -161,10 +151,8 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-												
                                                 sleep 20
 												}
-                                                										
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -176,12 +164,10 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-												
                                         }},
                                         "Publish_Deployment" : {
 										    script {
-										    if (params.Build_Commons)
-												{
+														if (params.Build_Commons) {
                                                 echo "Uninstalling Old Commons Package on publish for commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -195,7 +181,6 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
 												}
-												
                                                 echo "Uninstalling Old Package on publish for customerhub"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -212,29 +197,24 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
                                 )
                         }
                 }
+				
                     stage ( 'Karma, Pa11y, Zap Tools Execution for CustomerHub') {
                         steps {
                                 script {
-                                  
 										                if (params.Skip_Tool_Execution) {
                                                                 echo "Skipping TOOLS Execution"
 														 }
-                                                        else
-                                                        {
+										else {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
                                                         sh 'cp -r ${karmapath} /app/build-area/releases'
 														sh 'cp -r /app/build-area/releases/coverage/index.html .'
                                                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
                                                         sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
-
-                                             
                                                          echo "Starting pa11y test Run on CustomerHub Urls"
                                                          sh 'chmod 777 Devops/PallyReporting.sh'
                                                          sh './Devops/PallyReporting.sh'
-														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
-
 														 echo "Starting Zap Test Run- CustomerHub"
                                                           sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
                                                          -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  \
@@ -246,55 +226,38 @@ test_url_pally_zap = "http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/
 														  sh 'docker cp zap:zap/zap.html .'
 														  sh 'docker stop zap'
 														  sh 'docker rm zap' 
-                                                         
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap.html', reportName: 'zap Report', reportTitles: ''])            
-  
 														  sh 'cp -r ./zap.html /app/splunk-output/zap/customerhub'
 														  }
-														  }}}
-														
+								}
+						}
+				}
 														
 														stage ( 'Sitespeed Execution on all platforms - CustomerHub') {
 													       steps {
 														     script {
-														
 														if (params.Skip_Tool_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
                                                         }
-														
                                                         else {
-
                                                         echo "Starting Sitespeed-Desktop Test Run"
-														 
                                                          sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
-														 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
-
                                                          sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
-														 
-
                                                          echo "Starting Sitespeed-Mobile Test Run"
                                                          sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url} -b firefox --outputFolder sitespeed_mobile'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
 														 sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
-														
-														
                                                           echo "Starting Sitespeed-IPAD Test Run"
                                                           sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url} -b firefox --outputFolder sitespeed_ipad'
-														  
                                                           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
-														  
                                                           sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 														  }
 														  }
 														  }
 														  }
-														  
 														  }
-
 post {
-
-
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
@@ -303,17 +266,11 @@ to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  hars
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-
 to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
 }
-
-
-
   always {
     build 'Tetra_Dev_Clear_httpd_Cache'
 	build 'Tetra-Splunk-All-Tools'
     } 
-	
 	} 
-
-	}
+}

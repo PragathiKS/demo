@@ -1,9 +1,2 @@
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/dashboard.html 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/installed-equipment.html  
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/financials.html 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/training.html 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/projects.html 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/contact.html 
-http://tetrapak-dev64a.dev.adobecqms.net/content/tetrapak/customerhub/en/about-my-tetra-pak.html 
-
+http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/en/dashboard.html
+http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123
