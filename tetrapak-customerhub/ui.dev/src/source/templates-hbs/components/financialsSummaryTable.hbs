@@ -30,10 +30,11 @@
                 iconClass="icon-Excel"
                 data-status=params.status
                 data-document-type=params.[document-type]
+                data-soa-date=params.[soa-date]
                 data-invoice-date-from=params.[invoicedate-from]
                 data-invoice-date-to=params.[invoicedate-to]
                 data-customer-key=params.customerkey
-                data-search=params.search
+                data-search=params.[document-number]
             }}
             {{> atoms/buttons/button/button
                 text=createPdfBtnI18n
@@ -42,10 +43,11 @@
                 iconClass="icon-PDF"
                 data-status=params.status
                 data-document-type=params.[document-type]
+                data-soa-date=params.[soa-date]
                 data-invoice-date-from=params.[invoicedate-from]
                 data-invoice-date-to=params.[invoicedate-to]
                 data-customer-key=params.customerkey
-                data-search=params.search
+                data-search=params.[document-number]
             }}
         </div>
     {{/if}}
