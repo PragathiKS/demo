@@ -97,8 +97,8 @@ public class FinancialsResultsExcelServiceImplTest {
         Results apiResponse = new Results();
         Params paramRequest = new Params();
         CustomerData customerData = new CustomerData();
-        customerData.setDesc("John Smith");
-        customerData.setKey("key");
+        customerData.setCustomerName("John Smith");
+        customerData.setCustomerNumber("key");
         paramRequest.setCustomerData(customerData);
         paramRequest.setStartDate("startDate");
         assertTrue(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
@@ -113,8 +113,8 @@ public class FinancialsResultsExcelServiceImplTest {
         Results apiResponse = new Results();
         Params paramRequest = new Params();
         CustomerData customerData = new CustomerData();
-        customerData.setDesc("John Smith");
-        customerData.setKey("key");
+        customerData.setCustomerName("John Smith");
+        customerData.setCustomerNumber("key");
         paramRequest.setCustomerData(customerData);
         paramRequest.setStartDate("startDate");
         List<Document> documents = new ArrayList<>();
@@ -124,7 +124,7 @@ public class FinancialsResultsExcelServiceImplTest {
         List<Record> records = new ArrayList<Record>();
         Record record = new Record();
         record.setCurrency("currency");
-        record.setDesc("desc");
+        record.setDocumentType("desc");
         record.setSalesOffice("salesOffice");
         record.setDueDate("dueDate");
         record.setOrgAmount("orgAmount");
@@ -151,8 +151,8 @@ public class FinancialsResultsExcelServiceImplTest {
         Results apiResponse = new Results();
         Params paramRequest = new Params();
         CustomerData customerData = new CustomerData();
-        customerData.setDesc("John Smith");
-        customerData.setKey("key");
+        customerData.setCustomerName("John Smith");
+        customerData.setCustomerNumber("key");
         paramRequest.setCustomerData(customerData);
         paramRequest.setStartDate("startDate");
         List<Document> documents = new ArrayList<>();
@@ -162,7 +162,7 @@ public class FinancialsResultsExcelServiceImplTest {
         List<Record> records = new ArrayList<Record>();
         Record record = new Record();
         record.setCurrency("currency");
-        record.setDesc("desc");
+        record.setDocumentType("desc");
         record.setSalesOffice("salesOffice");
         record.setDueDate("dueDate");
         record.setOrgAmount("orgAmount");

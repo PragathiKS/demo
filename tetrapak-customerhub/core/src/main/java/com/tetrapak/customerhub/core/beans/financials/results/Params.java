@@ -1,4 +1,3 @@
-
 package com.tetrapak.customerhub.core.beans.financials.results;
 
 import com.google.gson.annotations.Expose;
@@ -12,18 +11,23 @@ public class Params {
     @SerializedName("customerData")
     @Expose
     private CustomerData customerData;
+
     @SerializedName("startDate")
     @Expose
     private String startDate;
+
     @SerializedName("endDate")
     @Expose
     private String endDate;
+
     @SerializedName("status")
     @Expose
     private Status status;
+
     @SerializedName("documentType")
     @Expose
     private DocumentType documentType;
+
     @SerializedName("documentNumber")
     @Expose
     private String documentNumber;

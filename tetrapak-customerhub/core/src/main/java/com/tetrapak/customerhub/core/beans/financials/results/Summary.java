@@ -1,4 +1,3 @@
-
 package com.tetrapak.customerhub.core.beans.financials.results;
 
 import com.google.gson.annotations.Expose;
@@ -9,30 +8,49 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Summary {
 
+    @SerializedName("customer")
+    @Expose
+    private String customer;
+
     @SerializedName("currency")
     @Expose
     private String currency;
+
     @SerializedName("current")
     @Expose
     private String current;
+
     @SerializedName("overdue")
     @Expose
     private String overdue;
+
     @SerializedName("thirty")
     @Expose
     private String thirty;
+
     @SerializedName("sixty")
     @Expose
     private String sixty;
+
     @SerializedName("ninty")
     @Expose
     private String ninty;
+
     @SerializedName("nintyPlus")
     @Expose
     private String nintyPlus;
+
     @SerializedName("total")
     @Expose
     private String total;
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
 
     public String getCurrency() {
         return currency;

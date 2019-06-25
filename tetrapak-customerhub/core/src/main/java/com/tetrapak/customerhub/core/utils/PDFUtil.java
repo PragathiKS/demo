@@ -53,7 +53,7 @@ public final class PDFUtil {
      * @param rows          list of string lines to be printed on document
      */
     public static void writeContent(PDDocument document, PDPageContentStream contentStream, int margin, int height,
-            Color color, List<Row> rows) {
+                                    Color color, List<Row> rows) {
         try {
             for (Row row : rows) {
                 height -= row.getHeight();
@@ -61,7 +61,7 @@ public final class PDFUtil {
                 contentStream.setFont(row.getFont(), row.getFontSize());
                 contentStream.newLineAtOffset(margin, height);
                 String rowContent = row.getContent();
-                String[] message = { rowContent };
+                String[] message = {rowContent};
                 if (row.isHref()) {
                     contentStream.setNonStrokingColor(Color.BLUE);
                     setTextWithLink(document.getPage(0), margin, height, rowContent, row.getLink());
@@ -74,7 +74,7 @@ public final class PDFUtil {
 
             }
         } catch (IOException e) {
-            LOGGER.error("IOException in PDFUtil class {}", e);
+            LOGGER.error("IOException in PDFUtil class ", e);
         }
     }
 
@@ -113,7 +113,7 @@ public final class PDFUtil {
      * @throws IOException IO Exception
      */
     public static void drawImage(PDPageContentStream contentStream, PDImageXObject image, int x, int y, int width,
-            int height) throws IOException {
+                                 int height) throws IOException {
         contentStream.drawImage(image, x, y, width, height);
     }
 
@@ -132,7 +132,7 @@ public final class PDFUtil {
             ByteArrayInputStream in = new ByteArrayInputStream(docBytes);
 
             response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf");
+            response.addHeader("Content-Disposition", "attachment; filename=" + fileName + ".pdf; size=" + in.available());
             response.addHeader("Content-Length", Integer.toString(in.available()));
 
             int read;
@@ -145,7 +145,7 @@ public final class PDFUtil {
             os.close();
             document.close();
         } catch (IOException e) {
-            LOGGER.error("IOException in PDFUtil class {}", e);
+            LOGGER.error("IOException in PDFUtil class ", e);
         }
     }
 
@@ -184,10 +184,10 @@ public final class PDFUtil {
     }
 
     private static void writeContentLine(String[] lineContent, PDPageContentStream contentStream, double nextTextX,
-            float nextTextY, Table table) throws IOException {
+                                         float nextTextY, Table table) throws IOException {
         for (int i = 0; i < table.getNumberOfColumns(); i++) {
             String text = lineContent[i];
-            if(null == text){
+            if (null == text) {
                 text = StringUtils.EMPTY;
             }
             boolean isBold = text.startsWith(CustomerHubConstants.BOLD_IDENTIFIER);
@@ -213,7 +213,7 @@ public final class PDFUtil {
      * @throws IOException IO Exception
      */
     public static void drawLine(PDPageContentStream contentStream, int margin, int length, int height, Color color,
-            float thickness) throws IOException {
+                                float thickness) throws IOException {
         contentStream.setLineDashPattern(new float[]{}, 0.0f);
         drawSelectedLine(contentStream, margin, length, height, color, thickness);
     }
@@ -230,7 +230,7 @@ public final class PDFUtil {
      * @throws IOException IO Exception
      */
     public static void drawDashedLine(PDPageContentStream contentStream, int margin, int length, int height, Color color,
-                                float thickness) throws IOException {
+                                      float thickness) throws IOException {
         contentStream.setLineDashPattern(new float[]{2.0f}, 0.0f);
         drawSelectedLine(contentStream, margin, length, height, color, thickness);
     }
@@ -257,7 +257,7 @@ public final class PDFUtil {
      * @return table table
      */
     public static Table getTable(List<Column> columns, String[][] content, double rowHeight, PDFont muliRegular,
-            PDFont muliBold, double fontSize) {
+                                 PDFont muliBold, double fontSize) {
         final float MARGIN = 65;
         return getTable(columns, content, rowHeight, muliRegular, muliBold, fontSize, MARGIN);
     }
@@ -275,7 +275,7 @@ public final class PDFUtil {
      * @return table table
      */
     public static Table getTable(List<Column> columns, String[][] content, double rowHeight, PDFont muliRegular,
-            PDFont muliBold, double fontSize, float margin) {
+                                 PDFont muliBold, double fontSize, float margin) {
         final float MARGIN = margin;
         final float FONT_SIZE = (float) fontSize;
 
