@@ -273,7 +273,7 @@ export const sanitize = (input) => Handlebars.escapeExpression(input);
  * @param {string[]} keys List of keys
  * @param {dataLink} dataLink Row link
  */
-export const tableSort = (data, keys, dataLink) => {
+export const tableSort = (data, keys, dataLink, isClickable) => {
   const dataObject = {
     row: []
   };
@@ -281,6 +281,7 @@ export const tableSort = (data, keys, dataLink) => {
   if (dataLink) {
     dataObject.rowLink = `${dataLink}`;
   }
+  dataObject.isClickable = !!dataLink || isClickable;
 
   keys.forEach((key, index) => {
     const value = data[key];

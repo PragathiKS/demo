@@ -114,7 +114,7 @@ function _processTableData(data) {
             record[key] = resolveCurrency(record[key], record.currency);
           }
         });
-        return tableSort.call(this, record, keys, record.invoiceReference);
+        return tableSort.call(this, record, keys, record.invoiceReference, true);
       });
       doc.docHeadings = keys.map(key => ({
         key,
