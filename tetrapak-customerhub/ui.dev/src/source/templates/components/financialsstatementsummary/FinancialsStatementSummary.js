@@ -92,30 +92,35 @@ function _processTableData(data) {
   }
   if (Array.isArray(data.documents) && data.documents.length > 0) {
     keys.length = 0;
-    data.documents.forEach((doc, index) => {
-      doc.title = `${doc.salesOffice} (${doc.records.length})`;
-      doc.docId = `#document${index}`;
-      doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
-      doc.docData = doc.records.map(record => {
-        delete record.salesOffice;
-        if (keys.length === 0) {
-          keys = Object.keys(record);
-          keys.splice(keys.indexOf('orgAmount'), 1);
-          keys.push('orgAmount');
-        }
-        // Resolve currency for summary section
-        keys.forEach(key => {
-          if (currencyFields.includes(key)) {
-            record[key] = resolveCurrency(record[key], record.currency);
+    data.documents = data.documents.filter(doc => doc.records && doc.records.length);
+    if (!data.documents.length) {
+      data.noData = true;
+    } else {
+      data.documents.forEach((doc, index) => {
+        doc.title = `${doc.salesOffice} (${doc.records.length})`;
+        doc.docId = `#document${index}`;
+        doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
+        doc.docData = doc.records.map(record => {
+          delete record.salesOffice;
+          if (keys.length === 0) {
+            keys = Object.keys(record);
+            keys.splice(keys.indexOf('orgAmount'), 1);
+            keys.push('orgAmount');
           }
+          // Resolve currency for summary section
+          keys.forEach(key => {
+            if (currencyFields.includes(key)) {
+              record[key] = resolveCurrency(record[key], record.currency);
+            }
+          });
+          return tableSort.call(this, record, keys, record.invoiceReference, true);
         });
-        return tableSort.call(this, record, keys, record.invoiceReference, true);
+        doc.docHeadings = keys.map(key => ({
+          key,
+          i18nKey: `cuhu.financials.${key}`
+        }));
       });
-      doc.docHeadings = keys.map(key => ({
-        key,
-        i18nKey: `cuhu.financials.${key}`
-      }));
-    });
+    }
   } else {
     data.noData = true;
   }
