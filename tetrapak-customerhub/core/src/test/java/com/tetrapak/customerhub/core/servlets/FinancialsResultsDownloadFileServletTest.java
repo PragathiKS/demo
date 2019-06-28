@@ -31,12 +31,12 @@ import com.day.cq.wcm.api.Page;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.mock.MockFinancialResultsApiServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -118,17 +118,17 @@ public class FinancialsResultsDownloadFileServletTest {
     
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
         
-        GenericServiceType<FinancialsResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
-        apigeeServiceGenericServiceType.setClazzType(FinancialsResultsApiService.class);
-        apigeeServiceGenericServiceType.set(new MockFinancialsResultsApiServiceImpl());
+        GenericServiceType<FinancialResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
+        apigeeServiceGenericServiceType.setClazzType(FinancialResultsApiService.class);
+        apigeeServiceGenericServiceType.set(new MockFinancialResultsApiServiceImpl());
         
-        GenericServiceType<FinancialsResultsPDFService> financialsResultsPDFServiceGenericServiceType = new GenericServiceType<>();
-        financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialsResultsPDFService.class);
-        financialsResultsPDFServiceGenericServiceType.set(new FinancialsResultsPDFServiceImpl());
+        GenericServiceType<FinancialResultsPDFService> financialsResultsPDFServiceGenericServiceType = new GenericServiceType<>();
+        financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialResultsPDFService.class);
+        financialsResultsPDFServiceGenericServiceType.set(new FinancialResultsPDFServiceImpl());
         
         GenericServiceType<FinancialsResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
         excelServiceGenericServiceType.setClazzType(FinancialsResultsExcelService.class);
-        excelServiceGenericServiceType.set(new FinancialsResultsExcelServiceImpl());
+        excelServiceGenericServiceType.set(new FinancialResultsExcelServiceImpl());
         
         GenericServiceType<FinancialsResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
         financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialsResultsDownloadFileServlet.class);

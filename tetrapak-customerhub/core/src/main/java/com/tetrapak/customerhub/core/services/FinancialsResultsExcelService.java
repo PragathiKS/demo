@@ -24,6 +24,6 @@ public interface FinancialsResultsExcelService {
      * @return true if successful in generation of the excel otherwise false
      */
 
-    boolean generateFinancialsResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-                                           Results apiResponse, Params paramRequest);
+    boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
+                                          Results apiResponse, Params paramRequest);
 }
