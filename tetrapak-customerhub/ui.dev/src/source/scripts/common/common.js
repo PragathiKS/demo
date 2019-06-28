@@ -307,7 +307,7 @@ export const resolveCurrency = (value, isoCode) => {
     if (Array.isArray(isoMapping.Currency)) {
       const found = isoMapping.Currency.find((curr) => (curr['ISO_Code'] === isoCode));
       if (found) {
-        return `${found.Symbol}${value}`;
+        return `${found.Symbol} ${value}`;
       }
     }
   }
