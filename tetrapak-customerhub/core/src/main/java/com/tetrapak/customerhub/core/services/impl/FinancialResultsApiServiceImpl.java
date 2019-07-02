@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.HttpResponse;
@@ -23,28 +23,28 @@ import java.io.IOException;
  *
  * @author Nitin Kumar
  */
-@Component(immediate = true, service = FinancialsResultsApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-public class FinancialsResultsApiServiceImpl implements FinancialsResultsApiService {
+@Component(immediate = true, service = FinancialResultsApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
+public class FinancialResultsApiServiceImpl implements FinancialResultsApiService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsApiServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsApiServiceImpl.class);
 
     @Reference
     private APIGEEService apigeeService;
 
     @Override
-    public JsonObject getFinancialsResults(String status, String documentType, String invoiceDateFrom,
-                                           String customerNumber, String token) {
+    public JsonObject getFinancialResults(String status, String documentType, String invoiceDateFrom, String invoiceDateTo, String soaDate,
+                                          String customerNumber, String token) {
         JsonObject jsonResponse = new JsonObject();
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-results") + "?invoice-status=" + status
-                + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&customernumber="
-                + customerNumber;
+                + "&document-type=" + documentType + "&invoicedate-from=" + invoiceDateFrom + "&invoicedate-to=" + invoiceDateTo
+                + "&customernumber=" + customerNumber;
 
         return HttpUtil.getJsonObject(token, jsonResponse, url);
     }
 
     @Override
-    public HttpResponse getFinancialsInvoice(String documentNumber, String token) {
+    public HttpResponse getFinancialInvoice(String documentNumber, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-invoice") + "/" + documentNumber;

@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.Header;
@@ -34,14 +34,14 @@ import java.io.IOException;
         "sling.servlet.paths=" + "/bin/customerhub/invoice/document",
         "sling.servlet.extensions=" + CustomerHubConstants.PDF
 })
-public class FinancialsInvoiceDownloadFileServlet extends SlingAllMethodsServlet {
+public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    private FinancialsResultsApiService financialsResultsApiService;
+    private FinancialResultsApiService financialsResultsApiService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsInvoiceDownloadFileServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialInvoiceDownloadFileServlet.class);
 
     private static final String AUTH_TOKEN = "authToken";
 
@@ -61,7 +61,7 @@ public class FinancialsInvoiceDownloadFileServlet extends SlingAllMethodsServlet
 
         if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
                 && StringUtils.isNotBlank(documentNumber)) {
-            HttpResponse httpResp = financialsResultsApiService.getFinancialsInvoice(documentNumber, token);
+            HttpResponse httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
 
             int statusCode = httpResp.getStatusLine().getStatusCode();
             LOGGER.debug("Retrieved response from API got status code:{}", statusCode);

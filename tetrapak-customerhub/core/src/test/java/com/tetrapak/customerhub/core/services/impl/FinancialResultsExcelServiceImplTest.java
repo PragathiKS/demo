@@ -30,7 +30,7 @@ import static org.junit.Assert.assertTrue;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
-public class FinancialsResultsExcelServiceImplTest {
+public class FinancialResultsExcelServiceImplTest {
 
     @Mock
     private SlingHttpServletRequest servletRequest;
@@ -38,7 +38,7 @@ public class FinancialsResultsExcelServiceImplTest {
     @Mock
     private SlingHttpServletResponse response;
 
-    FinancialsResultsExcelServiceImpl finService = new FinancialsResultsExcelServiceImpl();
+    FinancialResultsExcelServiceImpl finService = new FinancialResultsExcelServiceImpl();
 
     @Mock
     ServletOutputStream servletOutputStream;
@@ -55,29 +55,29 @@ public class FinancialsResultsExcelServiceImplTest {
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcelWithNullApiResp() {
         Results apiResponse = null;
         Params paramRequest = new Params();
-        assertFalse(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertFalse(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcelWithNullRequestParam() {
         Results apiResponse = new Results();
         Params paramRequest = null;
-        assertFalse(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertFalse(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcelWithNoCustDataAndDocs() {
@@ -85,12 +85,12 @@ public class FinancialsResultsExcelServiceImplTest {
         Params paramRequest = new Params();
         paramRequest.setStartDate("startDate");
         paramRequest.setEndDate("endDate");
-        assertTrue(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcelWithEndDateNull() {
@@ -101,12 +101,12 @@ public class FinancialsResultsExcelServiceImplTest {
         customerData.setCustomerNumber("key");
         paramRequest.setCustomerData(customerData);
         paramRequest.setStartDate("startDate");
-        assertTrue(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcel() {
@@ -139,12 +139,12 @@ public class FinancialsResultsExcelServiceImplTest {
         summary.setTotal("total");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
-        assertTrue(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
      * Test method for
-     * {@link com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl#generateFinancialsResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
+     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
     public void testGenerateFinancialsResultsExcelMultipleObjInSummary() {
@@ -181,7 +181,7 @@ public class FinancialsResultsExcelServiceImplTest {
         summary.setTotal("total2");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
-        assertTrue(finService.generateFinancialsResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
 }

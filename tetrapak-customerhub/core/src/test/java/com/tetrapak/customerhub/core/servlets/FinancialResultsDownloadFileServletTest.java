@@ -31,12 +31,12 @@ import com.day.cq.wcm.api.Page;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockFinancialsResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.FinancialsResultsPDFServiceImpl;
+import com.tetrapak.customerhub.core.mock.MockFinancialResultsApiServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -45,7 +45,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  * @author ruhsharm
  */
 @RunWith(MockitoJUnitRunner.class)
-public class FinancialsResultsDownloadFileServletTest {
+public class FinancialResultsDownloadFileServletTest {
     
     @Mock
     private Page mockPage;
@@ -90,8 +90,8 @@ public class FinancialsResultsDownloadFileServletTest {
                 "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
         request.setParameterMap(parameters);
         
-        FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
-                .getService(FinancialsResultsDownloadFileServlet.class);
+        FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
+                .getService(FinancialResultsDownloadFileServlet.class);
         aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
@@ -109,8 +109,8 @@ public class FinancialsResultsDownloadFileServletTest {
                 "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
         request.setParameterMap(parameters);
         
-        FinancialsResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
-                .getService(FinancialsResultsDownloadFileServlet.class);
+        FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
+                .getService(FinancialResultsDownloadFileServlet.class);
         aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
@@ -118,21 +118,21 @@ public class FinancialsResultsDownloadFileServletTest {
     
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
         
-        GenericServiceType<FinancialsResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
-        apigeeServiceGenericServiceType.setClazzType(FinancialsResultsApiService.class);
-        apigeeServiceGenericServiceType.set(new MockFinancialsResultsApiServiceImpl());
+        GenericServiceType<FinancialResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
+        apigeeServiceGenericServiceType.setClazzType(FinancialResultsApiService.class);
+        apigeeServiceGenericServiceType.set(new MockFinancialResultsApiServiceImpl());
         
-        GenericServiceType<FinancialsResultsPDFService> financialsResultsPDFServiceGenericServiceType = new GenericServiceType<>();
-        financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialsResultsPDFService.class);
-        financialsResultsPDFServiceGenericServiceType.set(new FinancialsResultsPDFServiceImpl());
+        GenericServiceType<FinancialResultsPDFService> financialsResultsPDFServiceGenericServiceType = new GenericServiceType<>();
+        financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialResultsPDFService.class);
+        financialsResultsPDFServiceGenericServiceType.set(new FinancialResultsPDFServiceImpl());
         
-        GenericServiceType<FinancialsResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
-        excelServiceGenericServiceType.setClazzType(FinancialsResultsExcelService.class);
-        excelServiceGenericServiceType.set(new FinancialsResultsExcelServiceImpl());
+        GenericServiceType<FinancialResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
+        excelServiceGenericServiceType.setClazzType(FinancialResultsExcelService.class);
+        excelServiceGenericServiceType.set(new FinancialResultsExcelServiceImpl());
         
-        GenericServiceType<FinancialsResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
-        financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialsResultsDownloadFileServlet.class);
-        financialsResultsDownloadFileServletGenericServiceType.set(new FinancialsResultsDownloadFileServlet());
+        GenericServiceType<FinancialResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
+        financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialResultsDownloadFileServlet.class);
+        financialsResultsDownloadFileServletGenericServiceType.set(new FinancialResultsDownloadFileServlet());
         
         List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
         serviceTypes.add((GenericServiceType<T>) apigeeServiceGenericServiceType);
