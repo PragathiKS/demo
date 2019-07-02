@@ -7,7 +7,7 @@ import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.beans.financials.results.Summary;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
 import com.tetrapak.customerhub.core.utils.ExcelUtil;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.ArrayUtils;
@@ -29,8 +29,8 @@ import java.util.Set;
  *
  * @author swalamba
  */
-@Component(immediate = true, service = FinancialsResultsExcelService.class)
-public class FinancialResultsExcelServiceImpl implements FinancialsResultsExcelService {
+@Component(immediate = true, service = FinancialResultsExcelService.class)
+public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsExcelServiceImpl.class);
     private SlingHttpServletRequest request;

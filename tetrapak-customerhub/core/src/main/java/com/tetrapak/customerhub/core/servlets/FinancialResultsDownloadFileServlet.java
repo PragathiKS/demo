@@ -9,7 +9,7 @@ import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
@@ -37,7 +37,7 @@ import javax.servlet.Servlet;
         "sling.servlet.selectors=" + "download", "sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
         "sling.servlet.extensions=" + CustomerHubConstants.PDF
 })
-public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
+public class FinancialResultsDownloadFileServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
 
@@ -48,9 +48,9 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
     private FinancialResultsPDFService generatePDF;
 
     @Reference
-    private FinancialsResultsExcelService excelService;
+    private FinancialResultsExcelService excelService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsDownloadFileServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsDownloadFileServlet.class);
 
     private static final String AUTH_TOKEN = "authToken";
 

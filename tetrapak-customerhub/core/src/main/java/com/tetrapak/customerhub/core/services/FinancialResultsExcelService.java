@@ -11,7 +11,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
  * @author Swati Lamba
  */
 @FunctionalInterface
-public interface FinancialsResultsExcelService {
+public interface FinancialResultsExcelService {
 
     /**
      * Method to generate financial results excel
