@@ -1,0 +1,19 @@
+<div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
+ {{#if labelText}}<label class="tpatom-dropdown__text" for="{{name}}">{{i18n key=labelText}}</label>{{/if}}
+    <div class="dropdown">
+        <button class="btn dropdown-toggle dropdown-btn" type="button" id="{{name}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{#if defaultValue}}
+                <option value="">{{i18n key=defaultValue}}</option>
+            {{else}}
+                {{options.[0].desc}}
+            {{/if}}
+        </button>
+        <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
+        <i class="tpatom-dropdown__icon icon-Chevron_Up"></i>
+        <ul class="dropdown-menu" aria-labelledby="{{name}}">
+            {{#each options}}
+                <li class="dropdown-item {{#if ../eleClasses}} {{../eleClasses}}{{/if}}" data-key="{{this.key}}">{{this.desc}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

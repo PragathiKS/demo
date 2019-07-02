@@ -6,10 +6,56 @@
         color: $color-mine-shaft;
     }
 
+    .dropdown.show .btn {
+        @include border-radius($border-radius $border-radius 0 0);
+        border-bottom: 0;
+    }
+
+    .dropdown.show .tpatom-dropdown__icon.icon-Chevron_Down {
+        display: none;
+    }
+
+    .dropdown:not(.show) .tpatom-dropdown__icon.icon-Chevron_Up {
+        display: none;
+    }
+
+    .dropdown-menu.show {
+        border-top-color: $color-mercury;
+    }
+
+    .dropdown-btn {
+        @include padding($padding-sm);
+        @include line-height(22px, $font-baseline);
+        @include border-xs($color-boulder);
+        width: 100%;
+        text-align: left;
+    }
+
+    .dropdown-menu {
+        @include border-radius(0 0 $border-radius $border-radius);
+        @include border-xs($color-boulder);
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .dropdown-item {
+        @include padding($padding-sm);
+        @include line-height(24px, $font-baseline);
+
+        &:hover {
+            background: $color-wild-sand;
+        }
+    }
+
+    .dropdown-toggle::after {
+        border: 0;
+    }
+
     &__select-box {
         @include border-xs($color-boulder);
         @include border-radius($border-radius);
-        @include padding($padding-sm $padding-xl $padding-sm $padding-sm);
+        @include padding($padding-sm);
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;

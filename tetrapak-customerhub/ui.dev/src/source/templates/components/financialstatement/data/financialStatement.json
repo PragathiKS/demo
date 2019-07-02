@@ -1,75 +1,74 @@
 {
   "customerData": [
     {
-      "key": "123",
-      "desc": "John - Malmo",
+      "customerNumber": "0000010050",
+      "customerName": "Arla Foods AB1",
       "info": {
-        "acountNo": "12345",
-        "title": "Malmo Aseptic Beverages",
-        "address": "Lorem ipsum"
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
       }
     },
     {
-      "key": "1243",
-      "desc": "Zohn - Malmo",
+      "customerNumber": "0000010051",
+      "customerName": "Second",
       "info": {
-        "acountNo": "12345",
-        "title": "Malmo Aseptic Beverages",
-        "address": "Lorem ipsum"
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
       }
     },
     {
-      "key": "456",
-      "desc": "bcd - Lund",
+      "customerNumber": "0000010052",
+      "customerName": "third",
       "info": {
-        "acountNo": "12345",
-        "title": "Lund Aseptic Beverages",
-        "address": "Lorem ipsum"
-      }
-    },
-    {
-      "key": "4536",
-      "desc": "Abc - Abc",
-      "info": {
-        "acountNo": "12345",
-        "title": "Abc Aseptic Beverages",
-        "address": "Abc ipsum"
-      }
-    },
-    {
-      "key": "45368",
-      "desc": "Abc - Abc",
-      "info": {
-        "acountNo": "45368",
-        "title": "Abc Aseptic Beverages",
-        "address": "Abc ipsum"
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
       }
     }
   ],
-  "startDate": "yyyy-mm-dd",
-  "endDate": "yyyy-mm-dd",
   "status": [
     {
-      "key": "123",
+      "key": "C",
+      "desc": "Cleared"
+    },
+    {
+      "key": "O",
       "desc": "Open"
     },
     {
-      "key": "123",
-      "desc": "Closed"
-    },
-    {
-      "key": "123",
-      "desc": "Open & Closed"
+      "key": "B",
+      "desc": "Both"
     }
   ],
   "documentType": [
     {
-      "key": "123",
-      "desc": "Confirmed"
+      "key": "CM",
+      "desc": "Credit Memo"
     },
     {
-      "key": "123",
-      "desc": "Confirmed"
+      "key": "PMT",
+      "desc": "Payment"
+    },
+    {
+      "key": "INV",
+      "desc": "Invoice"
     }
   ]
 }

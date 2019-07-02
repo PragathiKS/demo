@@ -6,7 +6,7 @@ import financialStatementData from './data/financialStatement.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
-describe('FinancialStatement', function () {
+describe.skip('FinancialStatement', function () {
   const jqRef = {
     setRequestHeader() {
       // Dummy method

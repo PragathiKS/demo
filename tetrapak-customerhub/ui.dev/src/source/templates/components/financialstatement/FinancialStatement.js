@@ -9,11 +9,11 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';//eslint-disable-line
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
-import { getURL } from '../../../scripts/utils/uri';
+import { bindDropdown } from '../../../scripts/utils/dropdown';
 import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
@@ -206,7 +206,8 @@ function _renderFilters() {
   const { tempCustomerList } = this.cache;
   auth.getToken(({ data: authData }) => {
     const url = {
-      path: getURL(API_FINANCIAL_SUMMARY)
+      //path: getURL(API_FINANCIAL_SUMMARY)
+      path: '/apps/settings/wcm/designs/customerhub/jsonData/financialStatement.json'
     };
     if (
       typeof tempCustomerList === 'string'
@@ -506,6 +507,11 @@ class FinancialStatement {
     $(document).on('click', '#downloadPdf', function () {
       window.open($(this).attr('href'), '_blank');
     });
+    $(document).on('click', '.js-financial-statement__find-customer', function (e) {
+      logger.log($(e.target).data('key')
+      );
+    });
+    bindDropdown('js-financial-statement__find-customer');
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
