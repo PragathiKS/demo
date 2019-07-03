@@ -9,11 +9,12 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';//eslint-disable-line
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';//eslint-disable-line
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
@@ -205,8 +206,7 @@ function _renderFilters() {
   const { tempCustomerList } = this.cache;
   auth.getToken(({ data: authData }) => {
     const url = {
-      //path: getURL(API_FINANCIAL_SUMMARY)
-      path: '/apps/settings/wcm/designs/customerhub/jsonData/financialStatement.json'
+      path: getURL(API_FINANCIAL_SUMMARY)
     };
     if (
       typeof tempCustomerList === 'string'
@@ -302,7 +302,7 @@ function _syncFields(query) {
   ) {
     dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
-  $findCustomer.val(query.customerkey).trigger('change', [true]);
+  $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
   $statusField.val(query.status);
   $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
   $statusField.trigger('change');
@@ -326,7 +326,7 @@ function _getFilterQuery() {
     }
     delete filterProps.daterange;
   }
-  filterProps.customerkey = $findCustomer.val();
+  filterProps.customerkey = $findCustomer.customSelect();
   Object.keys(filterProps).forEach(key => {
     if (!filterProps[key]) {
       delete filterProps[key];
@@ -411,7 +411,7 @@ function _getDefaultQueryString() {
   const { defaultQueryString, $findCustomer } = this.cache;
   const queryObject = deparam(defaultQueryString, false);
   // Retain current customer address selection
-  queryObject.customerkey = $findCustomer.val();
+  queryObject.customerkey = $findCustomer.customSelect();
   return $.param(queryObject);
 }
 
@@ -482,9 +482,9 @@ class FinancialStatement {
       }
     });
     this.root
-      .on('change', '.js-financial-statement__find-customer', function () {
+      .on('dropdown.change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
-        $this.setSelectedCustomer($(this).val(), noReset);
+        $this.setSelectedCustomer($(this).data('key'), noReset);
       })
       .on('change', '.js-financial-statement__status', (e) => {
         const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
@@ -505,10 +505,6 @@ class FinancialStatement {
     this.root.parents('.tp-financial-statement__select-box-wrapper').on('financial.filedownload', this, this.downloadPdfExcel);
     $(document).on('click', '#downloadPdf', function () {
       window.open($(this).attr('href'), '_blank');
-    });
-    this.root.on('changeCustomDropdown', '.tp-financial-statement__select-box-wrapper .js-dropdown-btn', function () {
-      const [, data] = arguments;
-      logger.log(data);
     });
   }
   openDateSelector() {

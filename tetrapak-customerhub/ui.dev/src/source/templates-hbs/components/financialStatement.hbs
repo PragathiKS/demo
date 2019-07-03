@@ -6,7 +6,7 @@
         <h2 class="tp-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
         {{#if customerData}}
             <h3 class="tp-financial-statement__select-customer-label">{{i18n key=this.findCustomer}}</h3>
-            {{> atoms/dropdown/dropdown-custom  options=this.customerData name='selectCustomer' label=this.selectCustomerLabel className="tp-financial-statement__select-box-wrapper"}}
+            {{> atoms/dropdown/dropdown-custom  options=this.customerData name='selectCustomer' label=this.selectCustomerLabel className="tp-financial-statement__select-box-wrapper" jsClass="js-financial-statement__find-customer"}}
             <div class="tp-financial-statement__customer-detail js-financial-statement__customer-detail">
                 {{> molecules/financialStatement/financialAddressDetail this}}
             </div>
