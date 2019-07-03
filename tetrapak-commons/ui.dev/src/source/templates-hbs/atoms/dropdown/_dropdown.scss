@@ -11,19 +11,11 @@
         border-bottom-color: $color-mercury;
     }
 
-    .dropdown.show .tpatom-dropdown__icon.icon-Chevron_Down {
-        display: none;
-    }
-
-    .dropdown:not(.show) .tpatom-dropdown__icon.icon-Chevron_Up {
-        display: none;
-    }
-
     .dropdown-btn {
         @include padding($padding-sm $padding-md $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
         @include border-xs($color-boulder);
-        overflow: hidden;
+        white-space: normal;
         width: 100%;
         text-align: left;
     }
@@ -40,6 +32,7 @@
     .dropdown-item {
         @include padding($padding-sm);
         @include line-height(24px, $font-baseline);
+        white-space: normal;
 
         &:hover {
             background: $color-wild-sand;
@@ -61,12 +54,16 @@
     }
 
     &__icon {
-        @include right(8px);
+        @include right($spacing-small-half);
+        @include font-size($font-sm);
+        transition: transform $anim-speed-quick $anim-ease-out;
         position: absolute;
         top: 50%;
-        transform: translate(0%, -50%);
+        transform: translateY(-50%);
         pointer-events: none;
-        @include font-size($font-sm);
 
+        .dropdown.show & {
+            transform: translateY(-50%) rotate(180deg);
+        }
     }
 }

@@ -13,7 +13,6 @@ import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_P
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
-import { bindDropdown } from '../../../scripts/utils/dropdown';
 import { $body } from '../../../scripts/utils/commonSelectors';
 
 /**
@@ -503,15 +502,14 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
-    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+    this.root.parents('.tp-financial-statement__select-box-wrapper').on('financial.filedownload', this, this.downloadPdfExcel);
     $(document).on('click', '#downloadPdf', function () {
       window.open($(this).attr('href'), '_blank');
     });
-    $(document).on('click', '.js-financial-statement__find-customer', function (e) {
-      logger.log($(e.target).data('key')
-      );
+    this.root.on('changeCustomDropdown', '.tp-financial-statement__select-box-wrapper .js-dropdown-btn', function () {
+      const [, data] = arguments;
+      logger.log(data);
     });
-    bindDropdown('js-financial-statement__find-customer');
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

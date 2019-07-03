@@ -1,18 +1,17 @@
-<div class="tpatom-dropdown {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
+<div class="tpatom-dropdown {{#if className}} {{className}}{{/if}}">
  {{#if labelText}}<label class="tpatom-dropdown__text" for="{{name}}">{{i18n key=labelText}}</label>{{/if}}
-    <div class="dropdown">
-        <button class="btn dropdown-toggle dropdown-btn" type="button" id="{{name}}" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown js-custom-dropdown">
+        <button class="btn dropdown-toggle dropdown-btn js-dropdown-btn" type="button" id="{{name}}" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             {{#if defaultValue}}
-                <option value="">{{i18n key=defaultValue}}</option>
+               <span>{{i18n key=defaultValue}}</span>
             {{else}}
-                {{options.[0].desc}}
+                <span>{{options.[0].desc}}</span>
             {{/if}}
         </button>
         <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
-        <i class="tpatom-dropdown__icon icon-Chevron_Up"></i>
-        <ul class="dropdown-menu" aria-labelledby="{{name}}">
+        <ul class="dropdown-menu" aria-labelledby="{{name}}" role="menu">
             {{#each options}}
-                <li class="dropdown-item {{#if ../eleClasses}} {{../eleClasses}}{{/if}}" data-key="{{this.key}}">{{this.desc}}</li>
+                <li role="presentation"> <a href="#" role="menuitem" class="dropdown-item js-custom-dropdrown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}">{{this.desc}}</a></li>
             {{/each}}
         </ul>
     </div>
