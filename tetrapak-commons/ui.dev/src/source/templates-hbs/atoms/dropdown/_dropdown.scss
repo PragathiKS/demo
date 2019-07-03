@@ -8,7 +8,7 @@
 
     .dropdown.show .btn {
         @include border-radius($border-radius $border-radius 0 0);
-        border-bottom: 0;
+        border-bottom-color: $color-mercury;
     }
 
     .dropdown.show .tpatom-dropdown__icon.icon-Chevron_Down {
@@ -19,14 +19,11 @@
         display: none;
     }
 
-    .dropdown-menu.show {
-        border-top-color: $color-mercury;
-    }
-
     .dropdown-btn {
-        @include padding($padding-sm);
+        @include padding($padding-sm $padding-md $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
         @include border-xs($color-boulder);
+        overflow: hidden;
         width: 100%;
         text-align: left;
     }
@@ -34,6 +31,7 @@
     .dropdown-menu {
         @include border-radius(0 0 $border-radius $border-radius);
         @include border-xs($color-boulder);
+        border-top: 0;
         width: 100%;
         padding: 0;
         margin: 0;
@@ -63,10 +61,10 @@
     }
 
     &__icon {
-        @include right(12px);
+        @include right(8px);
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(0%, -50%);
         pointer-events: none;
         @include font-size($font-sm);
 
