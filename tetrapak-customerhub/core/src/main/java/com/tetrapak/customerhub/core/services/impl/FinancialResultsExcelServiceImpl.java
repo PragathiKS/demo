@@ -7,7 +7,7 @@ import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.beans.financials.results.Summary;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
 import com.tetrapak.customerhub.core.utils.ExcelUtil;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.ArrayUtils;
@@ -29,10 +29,10 @@ import java.util.Set;
  *
  * @author swalamba
  */
-@Component(immediate = true, service = FinancialsResultsExcelService.class)
-public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcelService {
+@Component(immediate = true, service = FinancialResultsExcelService.class)
+public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsExcelServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsExcelServiceImpl.class);
     private SlingHttpServletRequest request;
     private static final String[] COLFIELDS = {
             "documentNumber", "documentType", "invoiceStatus", "invoiceReference", "poNumber", "docDate", "dueDate", "clearedDate",
@@ -41,8 +41,8 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
     private static final String I18N_PREFIX = "cuhu.financials.";
 
     @Override
-    public boolean generateFinancialsResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-                                                  Results apiResponse, Params paramRequest) {
+    public boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
+                                                 Results apiResponse, Params paramRequest) {
 
         String customerName = (paramRequest != null && paramRequest.getCustomerData() != null)
                 ? paramRequest.getCustomerData().getCustomerName()
@@ -268,7 +268,7 @@ public class FinancialsResultsExcelServiceImpl implements FinancialsResultsExcel
      * Appending the tags to the field values so that it can be processed for the styling
      *
      * @param rawData raw data
-     * @param tags tags
+     * @param tags    tags
      * @return string
      */
     private String addTagToContent(String rawData, String[] tags) {

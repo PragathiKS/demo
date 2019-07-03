@@ -20,6 +20,10 @@ public class Params {
     @Expose
     private String endDate;
 
+    @SerializedName("soaDate")
+    @Expose
+    private String soaDate;
+
     @SerializedName("status")
     @Expose
     private Status status;
@@ -54,6 +58,14 @@ public class Params {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getSoaDate() {
+        return soaDate;
+    }
+
+    public void setSoaDate(String soaDate) {
+        this.soaDate = soaDate;
     }
 
     public Status getStatus() {

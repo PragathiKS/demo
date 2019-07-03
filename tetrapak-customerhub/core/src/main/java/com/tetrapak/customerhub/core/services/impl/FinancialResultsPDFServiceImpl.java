@@ -10,7 +10,7 @@ import com.tetrapak.customerhub.core.beans.pdf.Row;
 import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.PDFUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -38,12 +38,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Impl class for Financials Results PDF Service
+ * Impl class for Financial Results PDF Service
  */
-@Component(immediate = true, service = FinancialsResultsPDFService.class)
-public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFService {
+@Component(immediate = true, service = FinancialResultsPDFService.class)
+public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsPDFServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsPDFServiceImpl.class);
 
     private PDFont muliRegular;
     private PDFont muliBold;
@@ -59,8 +59,8 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
      * @param financialStatement FinancialStatementModel
      */
     @Override
-    public boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-                                                Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
+    public boolean generateFinancialResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+                                               Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
         financialStatementModel = financialStatement;
         List<Document> documents = resultsResponse.getDocuments();
         String customerName = paramRequest.getCustomerData().getCustomerName();
@@ -91,9 +91,9 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
             PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
             PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY,
                     getHeadLines(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createAccountServicetable(request, paramRequest), 520);
+            PDFUtil.drawTable(contentStream, createAccountServiceTable(request, paramRequest), 520);
             PDFUtil.writeContent(document, contentStream, MARGIN, 460, Color.DARK_GRAY,
-                    getstatementSummary(request, paramRequest));
+                    getStatementSummary(request, paramRequest));
             PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 440);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 415, Color.DARK_GRAY, 0.01f);
             PDFUtil.drawLine(contentStream, MARGIN, 500, 400, Color.LIGHT_GRAY, 0.01f);
@@ -178,7 +178,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return rows;
     }
 
-    private List<Row> getstatementSummary(SlingHttpServletRequest request, Params paramRequest) {
+    private List<Row> getStatementSummary(SlingHttpServletRequest request, Params paramRequest) {
         List<Row> rows = new ArrayList<>();
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             rows.add(new Row(
@@ -201,7 +201,7 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
         return rows;
     }
 
-    private Table createAccountServicetable(SlingHttpServletRequest request, Params paramRequest) {
+    private Table createAccountServiceTable(SlingHttpServletRequest request, Params paramRequest) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
@@ -230,6 +230,8 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
     private Table createSummaryTable(SlingHttpServletRequest request, List<Summary> summary) {
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
+                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "customer"), 60));
+        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"), 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "current"), 60));
@@ -249,17 +251,18 @@ public class FinancialsResultsPDFServiceImpl implements FinancialsResultsPDFServ
                 CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "total"),
                 10));
 
-        String[][] content = new String[summary.size()][8];
+        String[][] content = new String[summary.size()][9];
 
         for (int i = 0; i < summary.size(); i++) {
-            content[i][0] = summary.get(i).getCurrency();
-            content[i][1] = summary.get(i).getCurrent();
-            content[i][2] = summary.get(i).getOverdue();
-            content[i][3] = summary.get(i).getThirty();
-            content[i][4] = summary.get(i).getSixty();
-            content[i][5] = summary.get(i).getNinty();
-            content[i][6] = summary.get(i).getNintyPlus();
-            content[i][7] = summary.get(i).getTotal();
+            content[i][0] = summary.get(i).getCustomer();
+            content[i][1] = summary.get(i).getCurrency();
+            content[i][2] = summary.get(i).getCurrent();
+            content[i][3] = summary.get(i).getOverdue();
+            content[i][4] = summary.get(i).getThirty();
+            content[i][5] = summary.get(i).getSixty();
+            content[i][6] = summary.get(i).getNinty();
+            content[i][7] = summary.get(i).getNintyPlus();
+            content[i][8] = summary.get(i).getTotal();
 
         }
 

@@ -8,15 +8,15 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
 /**
- * Tetra Pak Financials Results Service
+ * Tetra Pak Financial Results Service
  *
- * @author Ruhee Sharma
+ * @author Nitin Kumar
  */
 @FunctionalInterface
-public interface FinancialsResultsPDFService {
+public interface FinancialResultsPDFService {
 
     /**
-     * Method to generate financials results pdf
+     * Method to generate financial results pdf
      *
      * @param request                 SlingHttpServletRequest
      * @param response                SlingHttpServletResponse
@@ -25,6 +25,6 @@ public interface FinancialsResultsPDFService {
      * @param financialStatementModel FinancialStatementModel
      * @return true or false
      */
-    boolean generateFinancialsResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
-                                         Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatementModel);
+    boolean generateFinancialResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
+                                        Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatementModel);
 }

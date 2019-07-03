@@ -8,9 +8,9 @@ import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
-import com.tetrapak.customerhub.core.services.FinancialsResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialsResultsPDFService;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -37,20 +37,20 @@ import javax.servlet.Servlet;
         "sling.servlet.selectors=" + "download", "sling.servlet.extensions=" + CustomerHubConstants.EXCEL,
         "sling.servlet.extensions=" + CustomerHubConstants.PDF
 })
-public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet {
+public class FinancialResultsDownloadFileServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    private FinancialsResultsApiService financialsResultsApiService;
+    private FinancialResultsApiService financialsResultsApiService;
 
     @Reference
-    private FinancialsResultsPDFService generatePDF;
+    private FinancialResultsPDFService generatePDF;
 
     @Reference
-    private FinancialsResultsExcelService excelService;
+    private FinancialResultsExcelService excelService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialsResultsDownloadFileServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsDownloadFileServlet.class);
 
     private static final String AUTH_TOKEN = "authToken";
 
@@ -70,13 +70,15 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
         Params paramsRequest = gson.fromJson(params, Params.class);
         final String status = paramsRequest.getStatus().getKey();
         final String documentType = paramsRequest.getDocumentType().getKey();
-        final String invoiceDateFrom = paramsRequest.getEndDate();
+        final String invoiceDateFrom = paramsRequest.getStartDate();
+        final String invoiceDateTo = paramsRequest.getEndDate();
+        final String soaDate = paramsRequest.getSoaDate();
         final String customerNumber = paramsRequest.getCustomerData().getCustomerNumber();
         final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
                 : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
-        JsonObject jsonResponse = financialsResultsApiService.getFinancialsResults(status, documentType,
-                invoiceDateFrom, customerNumber, token);
+        JsonObject jsonResponse = financialsResultsApiService.getFinancialResults(status, documentType,
+                invoiceDateFrom, invoiceDateTo, soaDate, customerNumber, token);
 
         JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
 
@@ -91,10 +93,10 @@ public class FinancialsResultsDownloadFileServlet extends SlingAllMethodsServlet
             JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
             Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
             if (CustomerHubConstants.PDF.equals(extension)) {
-                flag = generatePDF.generateFinancialsResultsPDF(request, response, results, paramsRequest,
+                flag = generatePDF.generateFinancialResultsPDF(request, response, results, paramsRequest,
                         financialStatementModel);
             } else if (CustomerHubConstants.EXCEL.equalsIgnoreCase(extension)) {
-                flag = excelService.generateFinancialsResultsExcel(request, response, results, paramsRequest);
+                flag = excelService.generateFinancialResultsExcel(request, response, results, paramsRequest);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
             }
