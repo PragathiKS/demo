@@ -1,0 +1,87 @@
+.pw-text-video {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
+    $self: &;
+
+    &--display-row {
+        > .row {
+            flex-direction: row;
+        }
+    }
+
+    &--display-row-reversed {
+        > .row {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &--display-column {
+        > .row {
+            flex-direction: column;
+        }
+
+        #{$self}__video {
+            @include margin-top($padding-md);
+            @media #{$desktop} {
+                @include margin-top($padding-l);
+            }
+        }
+    }
+
+    &--display-column-reversed {
+        > .row {
+            flex-direction: column-reverse;
+        }
+
+        #{$self}__video {
+            @include margin-bottom($padding-md);
+            @media #{$desktop} {
+                @include margin-bottom($padding-l);
+            }
+        }
+    }
+
+
+    &__title,
+    &__description {
+        @include margin-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($padding-l);
+        }
+    }
+
+    &__description {
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        @media #{$tablet} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }
+    }
+
+    &__video {
+        @include border-radius($border-radius);
+        @include margin-bottom($padding-md);
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+
+        video,
+        iframe {
+            @include border-radius($border-radius);
+            @include margin-bottom(0);
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+}
