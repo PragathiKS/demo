@@ -10,7 +10,10 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 
-
+/**
+ * Model class for Text Video component.
+ * @author tustusha
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
