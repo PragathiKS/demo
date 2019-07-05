@@ -16,8 +16,8 @@ pipeline {
                 author_url = "http://10.202.13.228:4502"
                 publish_url = "http://10.202.13.229:4503"
                 package_name = "tetrapak-complete-package"
-				test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
-                test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
+				test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhubtools/global/en/dashboard.html http://tetrapak.sapient.com/content/tetrapak/customerhubtools/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
+                test_url_pally_zap = "http://tetrapak.sapient.com/content/tetrapak/customerhubtools/global/en/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
