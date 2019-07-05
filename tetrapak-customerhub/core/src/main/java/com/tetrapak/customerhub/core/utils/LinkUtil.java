@@ -25,7 +25,7 @@ public final class LinkUtil {
      */
     public static String getValidLink(Resource resource, String pathField) {
         ResourceResolver resolver = resource.getResourceResolver();
-        if (null == pathField || null == resource || null == resolver) {
+        if (StringUtils.isBlank(pathField) || null == resolver) {
             return StringUtils.EMPTY;
         }
         if (isInternalLink(pathField)) {

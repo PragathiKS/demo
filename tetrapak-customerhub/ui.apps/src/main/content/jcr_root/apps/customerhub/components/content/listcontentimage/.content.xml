@@ -4,4 +4,4 @@
     jcr:title="List Content"
     jcr:description="This is List Content component for Public Web."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup="tetrapak-customerhub"/>
