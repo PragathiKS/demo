@@ -33,7 +33,7 @@ public class TextVideoModel {
     private String linkURL;
     
     @Inject
-    private Boolean targetBlank;
+    private Boolean isExternal;
 
     @Inject
     private String videoSource;
@@ -88,8 +88,8 @@ public class TextVideoModel {
         return linkURL;
     }
     
-    public Boolean getTargetBlank() {
-        return targetBlank;
+    public Boolean isExternal() {
+        return isExternal;
     }
 
     public String getVideoSource() {
