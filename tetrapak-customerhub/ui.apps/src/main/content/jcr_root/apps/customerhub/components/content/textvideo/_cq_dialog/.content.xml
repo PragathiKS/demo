@@ -57,7 +57,7 @@
                                     <damVideo
                                         jcr:primaryType="nt:unstructured"
                                         text="DAM Video"
-                                        value="damVideo"/>
+                                        value="dam"/>
                                 </items>
                             </videoSource>
                             <youtubeVideoID
