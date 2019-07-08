@@ -1,4 +1,4 @@
-.pw-listContentImage {
+.tp-list-content-image {
     @include border-radius($border-radius);
     @include margin-bottom($margin-xxxl);
     $self: &;
@@ -6,84 +6,108 @@
     @media #{$desktop} {
         @include margin-bottom($margin-l);
     }
+
+    &--left {
+        @media #{$desktop} {
+            @include padding-right(39px);
+        }
+    }
+
     &__title {
         @include margin-bottom($margin-l);
     }
-    &__tabMenuListItem {
+
+    &__tab-menu-list-item {
         &:last-child {
-            #{ $self }__tabMenuListItem__link {
+            #{$self}__tab-menu-list-item__link {
                 border-bottom: 1px solid $color-mercury;
-                &.active { //sass-lint:disable-line nesting-depth
-                    border-bottom: 1px solid $color-white;
+            }
+        }
+
+        &.active {
+            &:last-child {
+                #{$self}__tab-menu-list-item__link {
+                    @media #{$desktop} {
+                        border-bottom: 1px solid $color-wild-sand;
+                    }
                 }
             }
         }
-        #{ $self }__contentTab {
-            @include padding($spacing-small);
-            background-color: $color-white;
+
+        #{$self}__content-tab {
+            @include padding($padding-md);
+            background-color: $color-wild-sand;
+
             @media #{$desktop} {
-                display: none !important; //sass-lint:disable-line no-important
+                display: none;
             }
         }
-        &.active + #{ $self }__tabMenuListItem {
-            #{ $self }__tabMenuListItem__link {
+
+        &.active+& {
+            #{$self}__tab-menu-list-item__link {
+                border-top: 1px solid $color-mercury;
+
                 @media #{$desktop} {
                     border-top: 1px solid $color-white;
                 }
             }
         }
+
+        &__link {
+            @include padding($padding-md $padding-xxxl $padding-md $padding-md);
+            color: $color-congress-blue;
+            cursor: pointer;
+            border-top: 1px solid $color-mercury;
+            font-family: $font-regular;
+            position: relative;
+            transition: none;
+
+            @media #{$desktop} {
+                @include margin-right($margin-md);
+            }
+
+            &.active {
+                color: $color-tundora;
+
+                @media #{$desktop} {
+                    margin-right: 0;
+                    border-top: 1px solid transparent;
+                    background-color: $color-wild-sand;
+                }
+
+                .icon {
+                    @media #{$desktop} {
+                        @include margin-right(15px);
+                    }
+                }
+            }
+        }
     }
-    &__linksList {
+
+    &__links-list {
         @media #{$desktop} {
             padding-right: 0;
         }
     }
-    &__contentContainer {
+
+    &__content-container {
         @include padding($padding-l);
         @include border-radius($border-radius);
         display: none;
-        background-color: $color-white;
+        background-color: $color-wild-sand;
 
         @media #{$desktop} {
             display: block;
         }
     }
-    &__contentTab {
-        @media #{$desktop} {
-            &:not(.active) {
-                display: none;
-            }
+
+    &__content-tab {
+        &:not(.active) {
+            display: none;
         }
     }
-    &__tabMenuListItem__link {
-        @include padding($padding-md $padding-xxxl $padding-md $padding-md);
-        color: $color-congress-blue;
-        border-top: 1px solid $color-mercury;
-        font-family: $font-regular;
-        position: relative;
-        transition: none;
-        @media #{$desktop} {
-            @include margin-right($margin-md);
-        }
 
-        &.active {
-            color: $color-tundora;
-            border-top: 1px solid $color-white;
-            background-color: $color-white;
-
-            @media #{$desktop} {
-                @include margin-right(0);
-            }
-
-            .tp-icon {
-                @media #{$desktop} {
-                    @include margin-right(15px);
-                }
-            }
-        }
-
-    }
-    &__contentWrapper {
+    &__content-wrapper {
         display: none;
 
         @media #{$desktop} {
@@ -91,8 +115,9 @@
             display: block;
         }
     }
-    &--reverse {
-        .tp-icon {
+
+    &--right {
+        .icon {
             transform: rotate(-90deg);
 
             @media #{$desktop} {
@@ -101,91 +126,73 @@
             }
         }
 
-        #{ $self }__tabMenuListItem__link {
+        #{$self}__tab-menu-list-item__link {
             @media #{$desktop} {
                 @include padding($padding-md $padding-md $padding-md $padding-xxxl);
             }
         }
 
-        #{ $self }__contentWrapper {
+        #{$self}__content-wrapper {
             @media #{$desktop} {
                 @include padding-right($padding-l);
                 padding-left: 0;
             }
         }
+
+        @media #{$desktop} {
+            @include padding-left(39px);
+        }
     }
-    .tp-icon {
+
+    .icon {
         @include margin-top(-6px);
         @include font-size($font-sm);
+        @include right($spacing-small);
         position: absolute;
-        right: convert-to-rem(16px);
         top: 50%;
         transform: rotate(90deg);
+
         @media #{$desktop} {
             transform: none;
         }
     }
 
-    &.pw-theme--grayscale-white {
-        #{ $self }__tabMenuListItem__link {
-            &.active {
-                background-color: $color-wild-sand;
-            }
-        }
-        #{ $self }__contentContainer {
-            background-color: $color-wild-sand;
-        }
-        #{ $self }__tabMenuListItem {
-            &:last-child {
-                #{ $self }__tabMenuListItem__link {
-                    &.active { //sass-lint:disable-line nesting-depth
-                        border-bottom: 1px solid $color-wild-sand;
-                    }
-                }
-            }
-            &.active + #{ $self }__tabMenuListItem {
-                #{ $self }__tabMenuListItem__link {
-                    border-top: 1px solid $color-mercury;
-                    @media #{$desktop} {
-                        border-top: 1px solid $color-white;
-                    }
-                }
-            }
-            #{ $self }__contentTab {
-                background-color: $color-wild-sand;
-            }
-        }
-    }
-
     .tpatom-button {
         @include margin-top($margin-md);
+
         @media #{$desktop} {
             @include margin-top($margin-l);
         }
     }
-    &__editWrapper {
+
+    &__edit-wrapper {
         @include margin-top($margin-l);
-        #{ $self }__contentTab {
-            display: block !important; //sass-lint:disable-line no-important
-        }
     }
-    .mobile-tabMenu {
-        .collapse-title {
-            position: relative;
-            i {
-                @include font-size($font-sm);
-                position: absolute;
-                right: convert-to-rem(16px);
-                top: convert-to-rem(13px);
+
+    &--mobile {
+        a {
+            &[aria-expanded='true'] {
+                @media #{$mobile} {
+                    border-top: 1px solid $color-white;
+                    background-color: $color-wild-sand;
+                }
+
+                .icon {
+                    @include right($font-baseline);
+                    transform: rotate(-90deg);
+                }
             }
         }
-        a[aria-expanded='true'] { //sass-lint:disable-line force-attribute-nesting
-            .icon-Chevron_Down {
-                transform: rotate(180deg);
-            }
-            .tp-icon {
-                transform: rotate(-90deg);
-                right: convert-to-rem(14px);
+
+        #{$self}__tab-menu-list-item {
+            &:last-child {
+                a {
+                    &[aria-expanded='true'] {
+                        @media #{$mobile} {
+                            border-bottom: 1px solid transparent;
+                        }
+                    }
+                }
             }
         }
     }

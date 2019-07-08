@@ -1,6 +1,8 @@
 import $ from 'jquery';
-import { digitalData } from '../../../scripts/common/common';
-import { dynMedia } from '../../../scripts/utils/dynamicMedia';
+import 'bootstrap';
+import dynamicMedia from '../../../scripts/utils/dynamicMedia';
+import { render } from '../../../scripts/utils/render';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class ListContentImage {
   constructor({ el }) {
@@ -8,89 +10,80 @@ class ListContentImage {
   }
   cache = {};
   initCache() {
-    const self = this;
-    this.cache.$tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', this.root );
-    this.cache.$tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', this.root );
-    this.cache.$editTabItem = $('.pw-listContentImage__editTab', this.root);
-    this.cache.$contentWrapper = $( '.pw-listContentImage__contentWrapper', this.root );
-    this.cache.digitalData = digitalData; //eslint-disable-line
-
-    // Add Version Name to each instance
-    $('.pw-listContentImage').each(function(index){
-      $(this).addClass('listContentImage-version'+index);
-    });
-
-    // Clone all EditTab Content to the Content Wrapper
-    $.each(this.cache.$editTabItem, function() {
-      let tabID = $(this).data( 'tab-id' );
-      let $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
-      let $clonedEditTabContentMobile = $('.pw-listContentImage__contentTab', this).clone();
-      self.cache.$contentWrapper.append($clonedEditTabContent);
-      $('#'+tabID).append($clonedEditTabContentMobile);
-    });
-
+    this.cache.$tabMenuItemLink = this.root.find('.js-list-content-image__tab-menu-list-item__link');
+    this.cache.$tabMenuItem = this.root.find('.js-list-content-image__tab-menu-list-item');
+    this.cache.$contentTabItems = this.root.find('.js-list-content-image__content-tab');
+    this.cache.$contentWrapper = this.root.find('.js-list-content-image__content-wrapper');
   }
   bindEvents() {
     const self = this;
-    this.cache.$tabMenuItemLink.click(function(e) {
+    this.root.on('click', '.js-list-content-image__tab-menu-list-item__link', function (e) {
       e.preventDefault();
-      const $this = $( this );
-      if (self.cache.digitalData) {
-        self.cache.digitalData.linkClick = {};
-        self.cache.digitalData.linkClick.linkType = 'internal';
-        self.cache.digitalData.linkClick.linkSection = 'tabListText';
-        self.cache.digitalData.linkClick.linkParentTitle = $this.data( 'parent-title' );
-        self.cache.digitalData.linkClick.linkName = $this.data( 'link-name' );
-        self.cache.digitalData.linkClick.linkListPos = $this.data( 'tab-count' );
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
-        }
-      }
-      self.setActiveTab($this);
-      dynMedia.processImages();
-    });
-    $(document).ready(() => {
-      let width = window.innerWidth || document.body.clientWidth;
-      if (width > 767) {
-        this.cache.$tabMenuItemLink.first().addClass( 'active' );
-        this.cache.$tabMenuItem.first().addClass( 'active' );
-      }
+      const $this = $(this);
+      self.setActiveTab.apply(this, [self]);
+      dynamicMedia.processImageAttributes();
+      // Handle analytics
+      trackAnalytics({
+        linkType: 'internal',
+        linkSection: 'tabListText',
+        linkParentTitle: $this.data('parentTitle'),
+        linkName: $this.data('linkName'),
+        linkListPos: $this.data('tabCount')
+      }, 'linkClick', 'linkClicked', undefined, false);
     });
   }
   setActiveTab($this) {
-    const self = this;
-    // variables for the clicked organism only
-    let width = window.innerWidth || document.body.clientWidth;
-    let tabID   = $this.data( 'tab-id' );
-    const $tabMenuItemLink  = $( '.pw-listContentImage__tabMenuListItem__link', self.root ),
-      $tabMenuItem      = $( '.pw-listContentImage__tabMenuListItem', self.root ),
-      $tabContent       = $( '.pw-listContentImage__contentTab', self.root );
-
-    if ( $this.hasClass('active' ) ) {
-      if (width < 768) {
-        $this.removeClass( 'active' );
-        $tabMenuItem.removeClass( 'active' );
-        $tabContent.removeClass( 'active' );
+    const self = $(this);
+    const { $tabMenuItem, $tabMenuItemLink, $contentTabItems, $contentWrapper } = $this.cache;
+    const tabId = self.data('tabId');
+    $tabMenuItem.removeClass('active');
+    $tabMenuItemLink.removeClass('active');
+    $tabMenuItem.filter(`[data-tab-id="${tabId}"]`).addClass('active');
+    $tabMenuItemLink.filter(`[data-tab-id="${tabId}"]`).addClass('active');
+    $contentTabItems.removeClass('active');
+    const thisHTML = $contentTabItems.filter(`[data-tab-id="${tabId}"]`).addClass('active')[0].outerHTML;
+    render.fn({
+      template: 'listRteContent',
+      target: $contentWrapper,
+      data: {
+        content: thisHTML
       }
-    } else {
-      // set active class to Tab Menu List Item
-      $tabMenuItemLink.removeClass( 'active' );
-      $tabMenuItem.removeClass( 'active' );
-      $this.addClass( 'active' );
-      $this.closest('li').addClass( 'active' );
-
-      // Show active tab content depending on the data-tab-id attribute on Tab Menu List Item to match Tab Content data-tab-id attribute
-      $tabContent.removeClass( 'active' );
-      $.each( $tabContent, function() {
-        if ( $( this ).data( 'tab-id' ) === tabID ) {
-          $( this ).addClass( 'active' );
+    });
+  }
+  renderRTE() {
+    const { $contentTabItems, $contentWrapper } = this.cache;
+    $contentTabItems.each((index, el) => {
+      const $this = $(el);
+      const tabId = $this.data('tabId');
+      const thisHTML = $this[0].outerHTML;
+      const target = this.root.find(`[data-section-id="${tabId}"]`);
+      if (target.length) {
+        render.fn({
+          template: 'listRteContent',
+          target,
+          data: {
+            content: thisHTML
+          }
+        }, () => {
+          target.find('.js-list-content-image__content-tab').addClass('active');
+        });
+        // Desktop render
+        if (index === 0) {
+          render.fn({
+            template: 'listRteContent',
+            target: $contentWrapper,
+            data: {
+              content: thisHTML
+            }
+          });
         }
-      });
-    }
+      }
+    });
   }
   init() {
     this.initCache();
     this.bindEvents();
+    this.renderRTE();
   }
 }
 

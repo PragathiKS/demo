@@ -2,10 +2,10 @@ import ListContentImage from './ListContentImage';
 import $ from 'jquery';
 import listContentImageTemplate from '../../../test-templates-hbs/listContentImage.hbs';
 
-describe.skip('ListContentImage', function () {
+describe('ListContentImage', function () {
   before(function () {
     $(document.body).empty().html(listContentImageTemplate());
-    this.listContentImage = new ListContentImage({ el: document.body });
+    this.listContentImage = new ListContentImage({ el: $('[data-root]') });
     this.initSpy = sinon.spy(this.listContentImage, 'init');
     this.setActiveTabSpy = sinon.spy(this.listContentImage, 'setActiveTab');
     this.listContentImage.init();
@@ -17,10 +17,10 @@ describe.skip('ListContentImage', function () {
     this.setActiveTabSpy.restore();
   });
   it('should initialize', function () {
-    expect(this.listContentImage.init.called).to.be.true;
+    expect(this.initSpy.called).to.be.true;
   });
   it('should set active tab on click', function () {
-    $('.pw-listContentImage__tabMenuListItem__link').first().trigger('click');
-    expect(this.listContentImage.setActiveTab.called).to.be.true;
+    $('.js-list-content-image__tab-menu-list-item__link').first().trigger('click');
+    expect(this.setActiveTabSpy.called).to.be.true;
   });
 });
