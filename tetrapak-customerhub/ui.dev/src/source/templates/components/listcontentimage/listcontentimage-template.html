@@ -61,8 +61,7 @@
               <div class="tp-list-content-image__edit-tab js-list-content-image__edit-tab col-12">
                   <h3>Edit tab number ${itemList.count} Content</h3>
                   <div class="js-list-content-image__content-tab tp-list-content-image__content-tab${itemList.first? ' active' : ''}" data-tab-id="rteContent-${itemList.count}">
-                      <!-- <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}"> -->
-                      <h2>This is some content ${itemList.count}</h2>
+                      <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}">
                   </div>
               </div>
           </div>
