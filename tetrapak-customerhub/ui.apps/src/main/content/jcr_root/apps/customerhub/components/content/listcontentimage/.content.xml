@@ -2,6 +2,6 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Component"
     jcr:title="List Content"
-    jcr:description="This is List Content component for Public Web."
+    jcr:description="List Content component for Customer Hub."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup="tetrapak-customerhub"/>
