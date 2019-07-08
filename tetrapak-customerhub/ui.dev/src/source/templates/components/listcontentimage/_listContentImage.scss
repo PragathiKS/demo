@@ -64,6 +64,15 @@
 
             @media #{$desktop} {
                 @include margin-right($margin-md);
+
+                .order-2 & {
+                    @include margin-left($margin-md);
+                    margin-right: 0;
+
+                    &.active {
+                        margin-left: 0;
+                    }
+                }
             }
 
             &.active {
@@ -85,8 +94,16 @@
     }
 
     &__links-list {
-        @media #{$desktop} {
-            padding-right: 0;
+        &:not(.order-2) {
+            @media #{$desktop} {
+                padding-right: 0;
+            }
+        }
+
+        &.order-2 {
+            @media #{$desktop} {
+                padding-left: 0;
+            }
         }
     }
 
@@ -121,14 +138,27 @@
             transform: rotate(-90deg);
 
             @media #{$desktop} {
-                left: $spacing-small;
+                @include left($spacing-small);
                 transform: rotate(180deg);
             }
+        }
+
+        #{$self}__title {
+            @include padding-left(32px);
         }
 
         #{$self}__tab-menu-list-item__link {
             @media #{$desktop} {
                 @include padding($padding-md $padding-md $padding-md $padding-xxxl);
+
+                &.active {
+                    $padding-left: $padding-xxxl + $padding-md;
+                    @include padding($padding-md $padding-md $padding-md $padding-left);
+
+                    .icon {
+                        @include left($spacing-small + $padding-md);
+                    }
+                }
             }
         }
 
