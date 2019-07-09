@@ -1,6 +1,6 @@
 <sly data-sly-template.listcontentimage_template="${@ data, flag}"
   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-    <sly data-sly-test.showEdit="${wcmmode.edit ? 'd-block' : 'd-none'}" />
+    <sly data-sly-test.showEdit="${wcmmode.edit ? ' d-block' : ' d-none'}" />
     <div class="tp-list-content-image${data.tabsAlignment == 'text-right'? ' tp-list-content-image--right' : ' tp-list-content-image--left'} tp-card" data-module="ListContentImage">
       <div class="row">
           <div class="col-lg-4 ${data.tabsAlignment == 'text-right'? 'order-2' : ''} tp-list-content-image__links-list">
@@ -55,12 +55,12 @@
               </div>
           </div>
       </div>
-      <div class="tp-list-content-image__edit-wrapper ${showEdit}">
+      <div class="tp-list-content-image__edit-wrapper${showEdit}">
           <div class="row" data-sly-list="${data.tabLinks}">
               <sly data-sly-test.parsys="${'par{0}' @ format=[itemList.count]}" />
               <div class="tp-list-content-image__edit-tab js-list-content-image__edit-tab col-12">
                   <h3>Edit tab number ${itemList.count} Content</h3>
-                  <div class="js-list-content-image__content-tab tp-list-content-image__content-tab${itemList.first? ' active' : ''}" data-tab-id="rteContent-${itemList.count}">
+                  <div class="js-list-content-image__content-tab${showEdit} tp-list-content-image__content-tab${itemList.first? ' active' : ''}" data-tab-id="rteContent-${itemList.count}">
                       <sly data-sly-resource="${parsys @ resourceType='foundation/components/parsys'}">
                   </div>
               </div>
