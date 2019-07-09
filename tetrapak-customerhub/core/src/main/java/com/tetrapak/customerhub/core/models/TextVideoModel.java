@@ -1,25 +1,25 @@
 package com.tetrapak.customerhub.core.models;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.tetrapak.customerhub.core.utils.LinkUtil;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * Model class for Text Video component.
+ *
  * @author tustusha
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
-	@Self
-	private Resource resource;
-	
+    @Self
+    private Resource resource;
+
     @Inject
     private String title;
 
@@ -27,11 +27,11 @@ public class TextVideoModel {
     private String description;
 
     @Inject
-    private String linkTexti18n;
+    private String linkTextI18n;
 
     @Inject
     private String linkURL;
-    
+
     @Inject
     private Boolean isExternal;
 
@@ -53,20 +53,11 @@ public class TextVideoModel {
     private String textAlignment;
 
     @Inject
-    private String pwTheme;
-
-    @Inject
-    private String pwButtonTheme;
-
-    @Inject
-    private String pwPadding;
-
-    @Inject
     private String pwDisplay;
 
     @PostConstruct
-    protected void init() {    
-    	linkURL = LinkUtil.getValidLink(resource, linkURL);
+    protected void init() {
+        linkURL = LinkUtil.getValidLink(resource, linkURL);
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
@@ -80,14 +71,14 @@ public class TextVideoModel {
         return description;
     }
 
-    public String getLinkTexti18n() {
-        return linkTexti18n;
+    public String getLinkTextI18n() {
+        return linkTextI18n;
     }
 
     public String getLinkURL() {
         return linkURL;
     }
-    
+
     public Boolean isExternal() {
         return isExternal;
     }
@@ -114,18 +105,6 @@ public class TextVideoModel {
 
     public String getTextAlignment() {
         return textAlignment;
-    }
-
-    public String getPwTheme() {
-        return pwTheme;
-    }
-
-    public String getPwButtonTheme() {
-        return pwButtonTheme;
-    }
-
-    public String getPwPadding() {
-        return pwPadding;
     }
 
     public String getPwDisplay() {
