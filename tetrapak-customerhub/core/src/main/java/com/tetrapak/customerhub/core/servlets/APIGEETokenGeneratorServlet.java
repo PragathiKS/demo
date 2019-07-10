@@ -81,7 +81,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         postRequest.addHeader("Accept", "application/json");
         ArrayList<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair("grant_type", "urn:ietf:params:oauth:grant-type:token-exchange"));
+        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
         postParameters.add(new BasicNameValuePair("token", acctkn));
         postParameters.add(new BasicNameValuePair("BPN", bPNumber));
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
