@@ -14,7 +14,7 @@
             <form class="tp-financial-statement__filters js-financial-statement__filters js-prevent-default form-group">
                 <div class="tp-financial-statement__status-calender-container">
                     <div class="tp-financial-statement__status-container float-lg-left">
-                        {{> atoms/dropdown/dropdown options=this.status name="status" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="js-financial-statement__status"}}
+                        {{> atoms/dropdown/dropdown-custom  options=this.status name='status' label=this.selectStatusLabel className="tp-financial-statement__status-wrapper" jsClass="js-financial-statement__status"}}
                     </div>
                     <div class="tp-financial-statement__date-range-container">
                         {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
