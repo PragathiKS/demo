@@ -303,8 +303,9 @@ function _syncFields(query) {
     dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
   $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
-  $statusField.customSelect(query.status).trigger('dropdown.change');
-  $statusField.customSelect(query.status).data('selectedDate', dateRange);
+  $statusField.customSelect(query.status);
+  $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.trigger('dropdown.change');
   $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
@@ -488,7 +489,7 @@ class FinancialStatement {
       })
       .on('dropdown.change', '.js-financial-statement__status', function () {
         const self = $(this);
-        const currentTarget = self.parents('.js-custom-dropdown').find(`li[data-key="${self.data('key')}"]`);
+        const currentTarget = self.parents('.js-custom-dropdown').find(`li>a[data-key="${self.data('key')}"]`);
         $this.setDateFilter(self.customSelect(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
