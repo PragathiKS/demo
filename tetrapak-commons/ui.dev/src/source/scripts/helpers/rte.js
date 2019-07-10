@@ -10,7 +10,7 @@ import sanitizeHtml from 'sanitize-html';
 import Handlebars from 'handlebars';
 
 const cache = {};
-const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub', 'span']);
+const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['img', 'sup', 'sub', 'span', 'h1', 'h2', 'section', 'article']);
 const allowedAttr = sanitizeHtml.defaults.allowedAttributes;
 const allowedSchemes = sanitizeHtml.defaults.allowedSchemes.concat(['tel']);
 allowedAttr.img = ['src', 'alt'];

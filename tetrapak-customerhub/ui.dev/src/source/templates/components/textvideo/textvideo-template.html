@@ -1,0 +1,17 @@
+<sly data-sly-template.textvideo_template="${@ data, flag}">
+  <div class="tp-card tp-text-video" data-locator="text-video">
+    <div class="row">
+      <div class="col-md-12 col-lg-4">
+        <h2 class="tp-text-video__heading"> ${data.title @ i18n}</h2>
+        <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
+            data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=true}" />
+      </div>
+      <div class="col-md-12 col-lg-8">
+        <sly data-sly-use.genericvideo="/apps/commons/components/molecules/genericvideo/genericvideo-template.html"
+                data-sly-call="${genericvideo.genericvideo_template @data=data}" />
+        <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
+            data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=false}" />
+      </div>
+    </div>
+  </div>
+</sly>

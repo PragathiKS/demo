@@ -1,0 +1,64 @@
+.tp-text-video {
+    &__heading {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($font-xxl, $font-xl);
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__description {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__link {
+        color: $color-congress-blue;
+
+        .tpatom-link {
+            @include line-height($font-l, $font-baseline);
+        }
+    }
+
+    &__video {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            margin-bottom: 0;
+        }
+
+        video {
+            @include border-radius($border-radius);
+        }
+    }
+
+    &__youtube {
+        @include margin-bottom($margin-md);
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+
+        @media #{$desktop} {
+            margin-bottom: 0;
+        }
+
+        iframe {
+            @include border-radius($border-radius);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

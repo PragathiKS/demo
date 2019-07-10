@@ -1,0 +1,10 @@
+<sly data-sly-template.videodescription_template="${@ data, isDesktop, flag}">
+  <p class="tp-text-video__description${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}">${data.description @ i18n}</p>
+  <div class="tp-text-video__link${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}" data-sly-test="${data.linkURL}">
+    <sly data-sly-test.linkText="${data.linkTextI18n @i18n}">
+      <sly data-sly-test.linkUrl="${data.linkURL}" />
+        <sly data-sly-use.linkAtom="/apps/commons/components/atoms/link/link-template.html"
+              data-sly-call="${linkAtom.link_template @url=linkUrl,text=linkText,baseClass='',isExternal=data.isExternal,modifier='secondary', iconClass='icon-Circle_Arrow_Right'}" />
+    </sly>
+  </div>
+</sly>

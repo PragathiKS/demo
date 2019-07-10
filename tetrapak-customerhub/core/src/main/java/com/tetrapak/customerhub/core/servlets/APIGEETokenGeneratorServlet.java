@@ -62,10 +62,14 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         final String password = apigeeService.getApigeeClientSecret();
         final Cookie[] allCookies = request.getCookies();
         String bPNumber = StringUtils.EMPTY;
+        String acctkn = StringUtils.EMPTY;
                 
         for (Cookie cookie : allCookies) {
         	if ("bPNumber".equals(cookie.getName())) {
         		bPNumber = cookie.getValue();
+        	}
+        	if ("acctoken".equals(cookie.getName())) {
+        		acctkn = cookie.getValue();
         	}
         }
         
@@ -78,6 +82,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.addHeader("Accept", "application/json");
         ArrayList<NameValuePair> postParameters = new ArrayList<>();
         postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
+        postParameters.add(new BasicNameValuePair("token", acctkn));
         postParameters.add(new BasicNameValuePair("BPN", bPNumber));
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
