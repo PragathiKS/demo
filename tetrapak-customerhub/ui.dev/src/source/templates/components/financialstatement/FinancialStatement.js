@@ -9,7 +9,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';//eslint-disable-line
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
@@ -102,8 +102,8 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const status = $status.text().trim() || '';
-      const docType = $docType.text().trim().toLowerCase() || '';
+      const status = typeof $status.text() === 'string' ? $status.text().trim() : '';
+      const docType = typeof $docType.text() === 'string' ? $docType.text().trim().toLowerCase() : '';
       ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
