@@ -87,7 +87,7 @@ function _initializeCalendar(isRange) {
 
 function _trackAnalytics(type) {
   const $this = this;
-  const { $filterForm, $status } = $this.cache;
+  const { $status, $docType } = $this.cache;
   const { statementOfAccount = '' } = $this.cache.i18nKeys;
   let ob = {
     linkType: 'internal',
@@ -102,9 +102,8 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const status = $status.customSelect() || '';
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
-
+      const status = $status.text().trim() || '';
+      const docType = $docType.text().trim().toLowerCase() || '';
       ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
@@ -292,7 +291,7 @@ function _setDateFilter(status, selectedDate) {
  * @param {object} query Query object
  */
 function _syncFields(query) {
-  const { $filterForm, $findCustomer } = this.cache;
+  const { $filterForm, $findCustomer, $docType } = this.cache;
   const $statusField = $filterForm.find('.js-financial-statement__status');
 
   let dateRange = query['soa-date'];
@@ -306,7 +305,7 @@ function _syncFields(query) {
   $statusField.customSelect(query.status);
   $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
   $statusField.trigger('dropdown.change');
-  $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
+  $docType.customSelect(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
@@ -314,7 +313,7 @@ function _syncFields(query) {
  * Gets current set filters
  */
 function _getFilterQuery() {
-  const { $filterForm, $findCustomer, $status } = this.cache;
+  const { $filterForm, $findCustomer, $status, $docType } = this.cache;
   const filters = $filterForm.serialize();
   const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
@@ -328,6 +327,7 @@ function _getFilterQuery() {
   }
   filterProps.customerkey = $findCustomer.customSelect();
   filterProps.status = $status.customSelect();
+  filterProps['document-type'] = $docType.customSelect();
   Object.keys(filterProps).forEach(key => {
     if (!filterProps[key]) {
       delete filterProps[key];
@@ -367,10 +367,10 @@ function _downloadPdfExcel(...args) {
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
-  const { $filterForm, data, i18nKeys } = this.cache;
+  const { $filterForm, data, i18nKeys, $docType } = this.cache;
   const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
   const statusKey = $el.data('status');
-  const docTypeDesc = $filterForm.find(`.js-financial-statement__document-type option[value="${$el.data('documentType')}"]`).text();
+  const docTypeDesc = $docType.text().trim();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
   paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
@@ -441,6 +441,7 @@ class FinancialStatement {
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
+    this.cache.$docType = this.root.find('.js-financial-statement__document-type');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -504,7 +505,7 @@ class FinancialStatement {
         this.resetFilters();
         this.trackAnalytics('reset');
       });
-    this.root.parents('.tp-financial-statement__select-box-wrapper').on('financial.filedownload', this, this.downloadPdfExcel);
+    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
     $(document).on('click', '#downloadPdf', function () {
       window.open($(this).attr('href'), '_blank');
     });

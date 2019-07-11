@@ -56,7 +56,6 @@
     &__icon {
         @include right($spacing-small-half);
         @include font-size($font-sm);
-        transition: transform $anim-speed-quick $anim-ease-out;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
