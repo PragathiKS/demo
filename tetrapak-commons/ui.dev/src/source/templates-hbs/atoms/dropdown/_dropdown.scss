@@ -6,9 +6,11 @@
         color: $color-mine-shaft;
     }
 
-    .dropdown.show .btn {
-        @include border-radius($border-radius $border-radius 0 0);
-        border-bottom-color: $color-mercury;
+    .dropdown.show {
+        .btn {
+            @include border-radius($border-radius $border-radius 0 0);
+            border-bottom-color: $color-mercury;
+        }
     }
 
     .dropdown-btn {
@@ -17,7 +19,6 @@
         @include border-xs($color-boulder);
         white-space: normal;
         width: 100%;
-        text-align: left;
     }
 
     .dropdown-menu {
@@ -39,8 +40,10 @@
         }
     }
 
-    .dropdown-toggle::after {
-        border: 0;
+    .dropdown-toggle {
+        &::after {
+            border: 0;
+        }
     }
 
     &__select-box {
