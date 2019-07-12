@@ -10,6 +10,7 @@ import { $body } from './commonSelectors';
 import { isFirefox, isIE, isEdge } from './browserDetect';
 import { isTablet, isMobile } from '../common/common';
 import { responsive } from './responsive';
+import { customDropdown } from './customDropdown';
 
 export default {
   init() {
@@ -19,6 +20,8 @@ export default {
     toast.init();
     // Responsive events
     responsive.init();
+    // Custom dropdown
+    customDropdown.init();
     // Body events
     if (isMobile() || isTablet()) {
       $body.addClass('is-touch');

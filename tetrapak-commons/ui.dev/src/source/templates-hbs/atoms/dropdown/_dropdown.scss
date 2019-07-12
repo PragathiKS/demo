@@ -6,10 +6,50 @@
         color: $color-mine-shaft;
     }
 
+    .dropdown.show {
+        .btn {
+            @include border-radius($border-radius $border-radius 0 0);
+            border-bottom-color: $color-mercury;
+        }
+    }
+
+    .dropdown-btn {
+        @include padding($padding-sm $padding-md $padding-sm $padding-sm);
+        @include line-height(22px, $font-baseline);
+        @include border-xs($color-boulder);
+        white-space: normal;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        @include border-radius(0 0 $border-radius $border-radius);
+        @include border-xs($color-boulder);
+        border-top: 0;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .dropdown-item {
+        @include padding($padding-sm);
+        @include line-height(24px, $font-baseline);
+        white-space: normal;
+
+        &:hover {
+            background: $color-wild-sand;
+        }
+    }
+
+    .dropdown-toggle {
+        &::after {
+            border: 0;
+        }
+    }
+
     &__select-box {
         @include border-xs($color-boulder);
         @include border-radius($border-radius);
-        @include padding($padding-sm $padding-xl $padding-sm $padding-sm);
+        @include padding($padding-sm);
         @include line-height(22px, $font-baseline);
         width: 100%;
         background-color: $color-white;
@@ -17,12 +57,15 @@
     }
 
     &__icon {
-        @include right(12px);
+        @include right($spacing-small-half);
+        @include font-size($font-sm);
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
         pointer-events: none;
-        @include font-size($font-sm);
 
+        .dropdown.show & {
+            transform: translateY(-50%) rotate(180deg);
+        }
     }
 }

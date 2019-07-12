@@ -2,6 +2,7 @@ import FinancialStatement from './FinancialStatement';
 import financialStatementTemplate from '../../../test-templates-hbs/financialstatement.hbs';
 import { render } from '../../../scripts/utils/render';
 import $ from 'jquery';
+import { customDropdown } from '../../../scripts/utils/customDropdown';
 import financialStatementData from './data/financialStatement.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
@@ -44,6 +45,7 @@ describe('FinancialStatement', function () {
     $(document).on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();
     });
+    customDropdown.init();
     this.financialstatement.init();
     $(window).trigger('media.changed');
   });
@@ -84,7 +86,7 @@ describe('FinancialStatement', function () {
   });
 
   it('should set new customer by calling setCustomer when changed from dropdown', function (done) {
-    $('.js-financial-statement__find-customer').trigger('change');
+    $('.js-financial-statement__find-customer').trigger('dropdown.change');
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
     done();
   });

@@ -6,7 +6,7 @@
         <h2 class="tp-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
         {{#if customerData}}
             <h3 class="tp-financial-statement__select-customer-label">{{i18n key=this.findCustomer}}</h3>
-            {{> atoms/dropdown/dropdown options=this.customerData name='selectCustomer' label=this.selectCustomerLabel wrapClasses="tp-financial-statement__select-box-wrapper" eleClasses="js-financial-statement__find-customer"}}
+            {{> atoms/dropdown/dropdown-custom  options=this.customerData name='selectCustomer' label=this.selectCustomerLabel className="tp-financial-statement__select-box-wrapper" jsClass="js-financial-statement__find-customer"}}
             <div class="tp-financial-statement__customer-detail js-financial-statement__customer-detail">
                 {{> molecules/financialStatement/financialAddressDetail this}}
             </div>
@@ -14,7 +14,7 @@
             <form class="tp-financial-statement__filters js-financial-statement__filters js-prevent-default form-group">
                 <div class="tp-financial-statement__status-calender-container">
                     <div class="tp-financial-statement__status-container float-lg-left">
-                        {{> atoms/dropdown/dropdown options=this.status name="status" label=this.selectStatusLabel wrapClasses="tp-financial-statement__status-wrapper" eleClasses="js-financial-statement__status"}}
+                        {{> atoms/dropdown/dropdown-custom  options=this.status name='status' label=this.selectStatusLabel className="tp-financial-statement__status-wrapper" jsClass="js-financial-statement__status"}}
                     </div>
                     <div class="tp-financial-statement__date-range-container">
                         {{> atoms/input/input iconClass="icon-Calendar2" defaultValue=this.dateRange name="daterange" label=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper" eleClasses="js-financial-statement__date-range" dataLocator="calendar-picker" readonly=true }}
@@ -22,7 +22,7 @@
                 </div>
                 <div class="tp-financial-statement__search-container">
                     <div class="tp-financial-statement__document-type-container">
-                        {{> atoms/dropdown/dropdown options=this.documentType name="document-type" label=this.selectDocumentTypeLabel wrapClasses="tp-financial-statement__document-type-wrapper" eleClasses="js-financial-statement__document-type"}}
+                        {{> atoms/dropdown/dropdown-custom  options=this.documentType name='document-type' label=this.selectDocumentTypeLabel className="tp-financial-statement__document-type-wrapper" jsClass="js-financial-statement__document-type"}}
                     </div>
                     <div class="tp-financial-statement__document-number-container">
                         <div class="tp-financial-statement__document-number-wrapper">

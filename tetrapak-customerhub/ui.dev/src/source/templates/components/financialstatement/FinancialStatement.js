@@ -9,12 +9,12 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, API_FINANCIAL_SUMMARY, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
-import { getURL } from '../../../scripts/utils/uri';
 import { $body } from '../../../scripts/utils/commonSelectors';
+import { getURL } from '../../../scripts/utils/uri';
 
 /**
  * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
@@ -87,7 +87,7 @@ function _initializeCalendar(isRange) {
 
 function _trackAnalytics(type) {
   const $this = this;
-  const { $filterForm } = $this.cache;
+  const { $status, $docType } = $this.cache;
   const { statementOfAccount = '' } = $this.cache.i18nKeys;
   let ob = {
     linkType: 'internal',
@@ -102,9 +102,8 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const status = $filterForm.find('.js-financial-statement__status option:selected').text().toLowerCase() || '';
-      const docType = $filterForm.find('.js-financial-statement__document-type option:selected').text().toLowerCase() || '';
-
+      const status = typeof $status.text() === 'string' ? $status.text().trim() : '';
+      const docType = typeof $docType.text() === 'string' ? $docType.text().trim().toLowerCase() : '';
       ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
@@ -292,7 +291,7 @@ function _setDateFilter(status, selectedDate) {
  * @param {object} query Query object
  */
 function _syncFields(query) {
-  const { $filterForm, $findCustomer } = this.cache;
+  const { $filterForm, $findCustomer, $docType } = this.cache;
   const $statusField = $filterForm.find('.js-financial-statement__status');
 
   let dateRange = query['soa-date'];
@@ -302,11 +301,11 @@ function _syncFields(query) {
   ) {
     dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
-  $findCustomer.val(query.customerkey).trigger('change', [true]);
-  $statusField.val(query.status);
-  $statusField.find(`option[value="${query.status}"]`).data('selectedDate', dateRange);
-  $statusField.trigger('change');
-  $filterForm.find('.js-financial-statement__document-type').val(query['document-type']);
+  $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
+  $statusField.customSelect(query.status);
+  $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.trigger('dropdown.change');
+  $docType.customSelect(query['document-type']);
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
@@ -314,7 +313,7 @@ function _syncFields(query) {
  * Gets current set filters
  */
 function _getFilterQuery() {
-  const { $filterForm, $findCustomer } = this.cache;
+  const { $filterForm, $findCustomer, $status, $docType } = this.cache;
   const filters = $filterForm.serialize();
   const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
@@ -326,7 +325,9 @@ function _getFilterQuery() {
     }
     delete filterProps.daterange;
   }
-  filterProps.customerkey = $findCustomer.val();
+  filterProps.customerkey = $findCustomer.customSelect();
+  filterProps.status = $status.customSelect();
+  filterProps['document-type'] = $docType.customSelect();
   Object.keys(filterProps).forEach(key => {
     if (!filterProps[key]) {
       delete filterProps[key];
@@ -366,10 +367,10 @@ function _downloadPdfExcel(...args) {
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
-  const { $filterForm, data, i18nKeys } = this.cache;
+  const { $filterForm, data, i18nKeys, $docType } = this.cache;
   const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
   const statusKey = $el.data('status');
-  const docTypeDesc = $filterForm.find(`.js-financial-statement__document-type option[value="${$el.data('documentType')}"]`).text();
+  const docTypeDesc = $docType.text().trim();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
   paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
@@ -411,7 +412,7 @@ function _getDefaultQueryString() {
   const { defaultQueryString, $findCustomer } = this.cache;
   const queryObject = deparam(defaultQueryString, false);
   // Retain current customer address selection
-  queryObject.customerkey = $findCustomer.val();
+  queryObject.customerkey = $findCustomer.customSelect();
   return $.param(queryObject);
 }
 
@@ -440,6 +441,7 @@ class FinancialStatement {
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
+    this.cache.$docType = this.root.find('.js-financial-statement__document-type');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -482,13 +484,14 @@ class FinancialStatement {
       }
     });
     this.root
-      .on('change', '.js-financial-statement__find-customer', function () {
+      .on('dropdown.change', '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
-        $this.setSelectedCustomer($(this).val(), noReset);
+        $this.setSelectedCustomer($(this).data('key'), noReset);
       })
-      .on('change', '.js-financial-statement__status', (e) => {
-        const currentTarget = $(e.target).find('option').eq(e.target.selectedIndex);
-        this.setDateFilter(currentTarget.val(), currentTarget.data('selectedDate'));
+      .on('dropdown.change', '.js-financial-statement__status', function () {
+        const self = $(this);
+        const currentTarget = self.parents('.js-custom-dropdown').find(`li>a[data-key="${self.data('key')}"]`);
+        $this.setDateFilter(self.customSelect(), currentTarget.data('selectedDate'));
       })
       .on('click', '.js-financial-statement__date-range', () => {
         this.openDateSelector();
