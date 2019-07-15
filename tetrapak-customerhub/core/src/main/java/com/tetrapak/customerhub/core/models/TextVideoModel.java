@@ -52,9 +52,6 @@ public class TextVideoModel {
     @Inject
     private String textAlignment;
 
-    @Inject
-    private String pwDisplay;
-
     @PostConstruct
     protected void init() {
         linkURL = LinkUtil.getValidLink(resource, linkURL);
@@ -105,9 +102,5 @@ public class TextVideoModel {
 
     public String getTextAlignment() {
         return textAlignment;
-    }
-
-    public String getPwDisplay() {
-        return pwDisplay;
     }
 }
