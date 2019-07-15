@@ -1,0 +1,129 @@
+.tp-tablist {
+    &__events-sidesection {
+        @include padding($padding-l);
+        background: $color-wild-sand;
+        width: 60%;
+        float: left;
+    }
+
+    &__events {
+        @media #{$desktop} {
+            float: left;
+            width: 40%;
+        }
+    }
+
+    &__heading {
+        @include font-size($font-m-xl);
+        @include line-height($padding-xxl, $font-m-xl);
+
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($padding-xxl, $font-xl);
+        }
+    }
+
+    &__media-wrapper {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+
+        }
+    }
+
+    &__event {
+        @include padding($padding-md $margin-xl $padding-md 0);
+        @include line-height($font-l, $font-baseline);
+        @include border-xs(transparent);
+        display: block;
+        color: $color-congress-blue;
+        background-color: transparent;
+        border-top: 1px solid $color-mercury;
+        position: relative;
+        width: 100%;
+        text-align: left;
+
+        &:first-of-type {
+            @include margin-top($margin-md);
+        }
+
+        &:last-of-type {
+            border-bottom: 1px solid $color-mercury;
+        }
+
+        .icon-Chevron_Down {
+            @include right($margin-md);
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            @include font-size($font-sm);
+            color: $color-congress-blue;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transition: transform $anim-speed-quick $anim-ease;
+
+            &::before {
+                vertical-align: top;
+
+                @media #{$desktop} {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        &:not(.collapsed) {
+            @include padding($padding-md $margin-xl $padding-md $padding-md);
+            border: 0;
+            color: $color-tundora;
+            background: $color-wild-sand;
+
+            @media #{$desktop} {
+                @include padding($padding-md $margin-xl $padding-md $padding-l);
+            }
+
+            .icon-Chevron_Down {
+                color: $color-tundora;
+
+                @media #{$mobile} {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+        @media #{$desktop} {
+            @include padding($padding-md $margin-xl $padding-md $padding-l);
+        }
+    }
+
+    &__event-detail-wrapper {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+    }
+
+    &__event-detail-title {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+
+        }
+    }
+
+    &__event-detail-description {
+        @include font-size($font-normal);
+        @include line-height($font-m-xl, $font-normal);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__description-link {
+        white-space: normal;
+    }
+}
