@@ -2,11 +2,6 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-03-09T10:38:13.302Z"
-        cq:lastModifiedBy="sapient-user"
-        cq:lastReplicated="{Date}2019-05-31T10:08:10.449Z"
-        cq:lastReplicatedBy="admin"
-        cq:lastReplicationAction="Activate"
         cq:redirectTarget="https://www.tetrapak.com/packaging/materials"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"

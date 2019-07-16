@@ -858,7 +858,7 @@
          }
       }
    },
- "error-404" : {
+ "404" : {
   "jcr:primaryType": "cq:Page",
   "jcr:createdBy": "admin",
   "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
@@ -868,7 +868,7 @@
       "mix:versionable"
     ],
     "jcr:createdBy": "admin",
-    "jcr:title": "Error 404",
+    "jcr:title": "404",
     "cq:lastReplicationAction": "Activate",
     "jcr:versionHistory": "250de795-57da-440f-9871-0be51a57a46b",
     "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
@@ -901,7 +901,7 @@
           "imagePath": "/content/dam/customerhub/english/common/Error_CuHu.png",
           "jcr:created": "Wed May 08 2019 10:55:05 GMT+0530",
           "imageAltText": "Error Cuhu",
-          "errorCode": "Error 404",
+          "errorCode": "404",
           "jcr:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
           "sling:resourceType": "customerhub/components/content/error",
           "textIsRich": "true",
