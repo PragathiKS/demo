@@ -127,6 +127,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "landingpage": {
+        "testMultiple": true,
+        "name": "landingpage",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -145,6 +151,9 @@
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
+      ],
+      "landingpage": [
+        "source/templates/components/tabslist/"
       ]
     },
     "handlebars": {
