@@ -2,7 +2,7 @@ import ListContentImage from './ListContentImage';
 import $ from 'jquery';
 import listContentImageTemplate from '../../../test-templates-hbs/listContentImage.hbs';
 
-describe.only('ListContentImage', function () {
+describe('ListContentImage', function () {
   before(function () {
     $(document.body).empty().html(listContentImageTemplate());
     this.listContentImage = new ListContentImage({ el: $('[data-root]') });
