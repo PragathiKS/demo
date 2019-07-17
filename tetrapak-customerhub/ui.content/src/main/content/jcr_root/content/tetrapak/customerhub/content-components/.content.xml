@@ -46,17 +46,17 @@
                                 targetNew="true"/>
                         <item2
                                 jcr:primaryType="nt:unstructured"
-                                href="https://www.tetrapak.com/services"
+                                href="https://www.tetrapak.com/services.html"
                                 name="Services"
                                 targetNew="true"/>
                         <item3
                                 jcr:primaryType="nt:unstructured"
-                                href="https://www.tetrapak.com/sustainability"
+                                href="https://www.tetrapak.com/sustainability.html"
                                 name="Sustainability"
                                 targetNew="true"/>
                         <item4
                                 jcr:primaryType="nt:unstructured"
-                                href="https://www.tetrapak.com/about"
+                                href="https://www.tetrapak.com/about.html"
                                 name="About us"
                                 targetNew="true"/>
                     </headerNavLinks>
