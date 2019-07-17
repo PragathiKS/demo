@@ -83,9 +83,9 @@ public class LeftNavigationModel {
         while (itr.hasNext()) {
             Page subPage = itr.next();
             if (PageUtil.isCurrentPage(subPage, resource) || isChildPageActive(subPage, resource)) {
-                leftNavigationBean.setExpanded(true);
                 leftNavigationBean.setActive(true);
             }
+            leftNavigationBean.setExpanded(true);
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
