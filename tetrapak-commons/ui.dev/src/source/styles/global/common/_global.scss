@@ -157,10 +157,10 @@ td {
     }
 
     &__content {
-        @include margin-top(104px);
+        @include margin-top(90px);
 
         @media #{$desktop} {
-            @include margin-top(112px);
+            @include margin-top(90px);
             @include padding-left(248px);
 
         }
@@ -198,9 +198,11 @@ td {
 // Page title
 .tp-page-title {
     @include margin-bottom($margin-md);
+    @include margin-top($margin-md);
 
     @media #{$desktop} {
         @include margin-bottom($margin-l);
+        @include margin-top($margin-l);
     }
 }
 
