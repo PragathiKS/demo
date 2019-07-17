@@ -276,4 +276,19 @@ public class GlobalUtil {
         }
     }
 
+    /**
+     * This method is used to get language page for the current resource
+     *
+     * @param resource current resource
+     * @return language page
+     */
+    public static Page getLanguagePage(Resource resource) {
+        // TODO remove hard coded en and set language dynamically
+        Resource languagePageResource = resource.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/en");
+        if (null == languagePageResource) {
+            return null;
+        }
+        return languagePageResource.adaptTo(Page.class);
+    }
+
 }

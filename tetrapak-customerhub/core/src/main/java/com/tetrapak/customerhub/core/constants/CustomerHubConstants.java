@@ -13,6 +13,8 @@ public final class CustomerHubConstants {
     
     public static final String GLOBAL_CONFIGURATION_RESOURCE_TYPE = "customerhub/components/structure/globalconfiguration";
 
+    public static final String HEADER_CONFIGURATION_PATH = "customerhub/components/structure/globalconfiguration";
+
     public static final String CQ_REDIRECT_PROPERTY = "cq:redirectTarget";
 
     public static final String HTML_EXTENSION = ".html";
