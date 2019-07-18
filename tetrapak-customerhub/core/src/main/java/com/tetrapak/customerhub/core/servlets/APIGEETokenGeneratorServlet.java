@@ -67,6 +67,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         String acctkn = StringUtils.EMPTY;
                 
         for (Cookie cookie : allCookies) {
+        	LOGGER.info("Cokkie {} contains {}",cookie.getName(), cookie.getValue());
         	if ("acctoken".equals(cookie.getName())) {
         		acctkn = cookie.getValue();
         		//to do acctkn = xssAPI.encodeForHTML(cookie.getValue());
