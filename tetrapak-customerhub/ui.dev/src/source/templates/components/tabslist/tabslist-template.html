@@ -1,0 +1,28 @@
+<sly data-sly-template.tabslist_template="${@ data, flag}">
+    <div class="tp-card tp-tablist clearfix" data-module="TabsList">
+      <h2 class="tp-tablist__heading d-lg-none"> ${data.headingI18n @ i18n}</h2>
+      <div class="tp-tablist__events accordion" id="tp-tablist__events">
+        <h2 class="tp-tablist__heading d-none d-lg-block"> ${data.headingI18n @ i18n}</h2>
+        <sly data-sly-list.tab="${data.tabs}">
+              <button type="button" class="tp-tablist__event js-tablist__event ${tabList.index == 0 ? '' : 'collapsed'}" data-toggle="collapse" data-target="#Event${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+                  <div class="tp-tablist__event-title bold">${tab.tabTitleI18n @ i18n}</div>
+                  <i class="icon icon-Chevron_Down"></i>
+              </button>
+              <div class="tp-tablist__event-detail-wrapper d-lg-none collapse ${tabList.index == 0 ? 'show' : ''}" id="Event${tabList.index}" data-parent="#tp-tablist__events">
+                  <div class="tp-tablist__event-detail">
+                     <sly data-sly-use.genericmedia="/apps/commons/components/molecules/genericmedia/genericmedia-template.html"
+                         data-sly-call="${genericmedia.genericmedia_template @data=tab, type=tab.type, className='tp-tablist__media-wrapper'}" />
+                      <h3 class="tp-tablist__event-detail-title">${tab.mediaTitleI18n @ i18n}</h3>
+                      <div class="tp-tablist__event-detail-description">${tab.mediaDescriptionI18n @ context='html'}</div>
+                      <sly data-sly-test.variant="${tab.linkType == 'button' ? 'primary' :'secondary'}">
+                      <sly data-sly-use.btntext="/apps/commons/components/atoms/button-text/button-text.html"
+                         data-sly-call="${btntext.button_template @btnPath=tab.linkURL, btnText=tab.linkTextI18n ,btnTarget=tab.isExternal, variant=variant, customClasses='tp-tablist__event-detail-description-link'}" />
+                      </sly>
+                  </div>
+              </div>
+        </sly>
+      </div>
+       <div class="tp-tablist__events-sidesection js-tablist__events-sidesection d-none d-lg-block" aria-live="polite">
+      </div>
+    </div>
+</sly>
