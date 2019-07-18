@@ -34,8 +34,6 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
-    private LeftNavigationBean tpLogoListItem = new LeftNavigationBean();
-
     public static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     @PostConstruct
@@ -48,7 +46,6 @@ public class LeftNavigationModel {
                 ValueMap map = globalConfigResource.getValueMap();
                 navHeading = (String) map.get("navHeadingI18n");
                 closeBtnText = (String) map.get("closeBtnText");
-                setLogoListItem(map);
             }
         }
 
@@ -115,13 +112,6 @@ public class LeftNavigationModel {
         return flag;
     }
 
-    private void setLogoListItem(ValueMap valueMap) {
-        tpLogoListItem.setHref(LinkUtil.getValidLink(resource,(String)valueMap.get("stickyHref")));
-        tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
-        tpLogoListItem.setExternalLink(true);
-        tpLogoListItem.setIconLabel((String) valueMap.get("stickyLabel"));
-    }
-
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
         LeftNavigationBean bean = new LeftNavigationBean();
         bean.setIconClass((String) valueMap.get("iconClass"));
@@ -180,9 +170,5 @@ public class LeftNavigationModel {
 
     public String getCloseBtnText() {
         return closeBtnText;
-    }
-
-    public LeftNavigationBean getTpLogoListItem() {
-        return tpLogoListItem;
     }
 }
