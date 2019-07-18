@@ -71,6 +71,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 
                 if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
                 	Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
+                	acctoken.setPath("/");
                     response.addCookie(acctoken);
                 }
 
