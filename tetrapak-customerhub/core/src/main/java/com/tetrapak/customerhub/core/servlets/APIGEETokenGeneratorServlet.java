@@ -19,6 +19,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.xss.XSSAPI; 
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -55,24 +56,17 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    	
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
+        XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
-        final Cookie[] allCookies = request.getCookies();
-        String bPNumber = StringUtils.EMPTY;
         String acctkn = StringUtils.EMPTY;
-                
-        for (Cookie cookie : allCookies) {
-        	if ("bPNumber".equals(cookie.getName())) {
-        		bPNumber = cookie.getValue();
-        	}
-        	if ("acctoken".equals(cookie.getName())) {
-        		acctkn = cookie.getValue();
-        	}
+        if (null != request.getCookie("acctoken")) {
+        	acctkn = request.getCookie("acctoken").getValue();  
         }
-        
         String authString = username + ":" + password;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 
@@ -81,9 +75,8 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         postRequest.addHeader("Accept", "application/json");
         ArrayList<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
+        postParameters.add(new BasicNameValuePair("grant_type", "urn:ietf:params:oauth:grant-type:token-exchange"));
         postParameters.add(new BasicNameValuePair("token", acctkn));
-        postParameters.add(new BasicNameValuePair("BPN", bPNumber));
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
         HttpClient httpClient = HttpClientBuilder.create().build();
