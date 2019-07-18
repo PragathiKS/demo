@@ -1,6 +1,6 @@
 {
 	"jcr:primaryType": "nt:unstructured",
-	"headingI18n": "Heading For the Tabs List Component",
+	"heading": "Heading For the Tabs List Component",
 	"sling:resourceType": "customerhub/components/content/tabslist",
 	"textIsRich": [
 		"true",

@@ -23,10 +23,13 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  */
 public class TabsListModelTest {
 
-	private TabsListModel tabsListModel = null;
+	private TabsListModel tabsListModel;
 	private static final String TABSLIST_CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/about-my-tetra-pak/jcr:content/par/tabslist";
 	private static final String TABSLIST_RESOURCE_JSON = "tabslist.json";
 
+	/**
+	 * Setting the context for the class.
+	 */
 	@Rule
 	public final AemContext aemContext = CuhuCoreAemContext.getAemContext(TABSLIST_RESOURCE_JSON,
 			TABSLIST_CONTENT_ROOT);
@@ -45,7 +48,7 @@ public class TabsListModelTest {
 	 */
 	@Test
 	public void testTabsListContent() {
-		String heading = tabsListModel.getHeadingI18n();
+		String heading = tabsListModel.getHeading();
 		assertNotNull("Heading should not be null", heading);
 		assertTrue("Heading is not empty", heading.length() > 0);
 		Assert.assertEquals("Heading For the Tabs List Component", heading);
