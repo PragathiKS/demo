@@ -13,7 +13,7 @@
                      <sly data-sly-use.genericmedia="/apps/commons/components/molecules/genericmedia/genericmedia-template.html"
                          data-sly-call="${genericmedia.genericmedia_template @data=tab, type=tab.type, className='tp-tablist__media-wrapper'}" />
                       <h3 class="tp-tablist__event-detail-title">${tab.mediaTitleI18n @ i18n}</h3>
-                      <p class="tp-tablist__event-detail-description">${tab.mediaDescriptionI18n @ context='html'}</p>
+                      <div class="tp-tablist__event-detail-description">${tab.mediaDescriptionI18n @ context='html'}</div>
                       <sly data-sly-test.variant="${tab.linkType == 'button' ? 'primary' :'secondary'}">
                       <sly data-sly-use.btntext="/apps/commons/components/atoms/button-text/button-text.html"
                          data-sly-call="${btntext.button_template @btnPath=tab.linkURL, btnText=tab.linkTextI18n ,btnTarget=tab.isExternal, variant=variant, customClasses='tp-tablist__event-detail-description-link'}" />

@@ -113,7 +113,7 @@
         }
     }
 
-    &__event-detail-description {
+    &__event-detail-description p {
         @include font-size($font-normal);
         @include line-height($font-m-xl, $font-normal);
         @include margin-bottom($margin-md);
