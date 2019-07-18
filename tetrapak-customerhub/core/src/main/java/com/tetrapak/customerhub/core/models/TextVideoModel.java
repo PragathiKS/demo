@@ -69,7 +69,7 @@ public class TextVideoModel {
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
-        if (!slingSettingsService.getRunModes().contains("author")) {
+        if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
             damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
             damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
             damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
