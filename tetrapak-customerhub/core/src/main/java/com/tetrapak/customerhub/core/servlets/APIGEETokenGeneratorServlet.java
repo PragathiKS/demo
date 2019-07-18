@@ -63,10 +63,16 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
+        final Cookie[] allCookies = request.getCookies();
         String acctkn = StringUtils.EMPTY;
-        if (null != request.getCookie("acctoken")) {
-        	acctkn = request.getCookie("acctoken").getValue();  
+                
+        for (Cookie cookie : allCookies) {
+        	if ("acctoken".equals(cookie.getName())) {
+        		acctkn = cookie.getValue();
+        		//to do acctkn = xssAPI.encodeForHTML(cookie.getValue());
+        	}
         }
+        
         String authString = username + ":" + password;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 
