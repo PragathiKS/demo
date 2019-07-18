@@ -22,25 +22,6 @@
         &:visited {
             color: $color-white;
         }
-
-        &--customBackground {
-            background: $color-white;
-            color: $color-black;
-            font-weight: bold;
-
-            &:hover,
-            &:visited {
-                color: $color-black;
-            }
-
-            @media #{$desktop} {
-                display: none;
-            }
-
-            &.translated {
-                transform: translateX(0);
-            }
-        }
     }
 
     &__btn {

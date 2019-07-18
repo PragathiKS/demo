@@ -24,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -64,15 +65,10 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname") : StringUtils.EMPTY;
 
                 if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-                    Cookie samlCookie = new Cookie("CustomerName", firstName + "-" + lastName);
+                    Cookie samlCookie = new Cookie("CustomerName", URLEncoder.encode(firstName + " " + lastName, "UTF-8"));
                     response.addCookie(samlCookie);
                 }
 
-                if (StringUtils.isNotBlank(attrMap.get("BusinessPartnerID"))) {
-                    Cookie bPNumber = new Cookie("BPN", attrMap.get("BusinessPartnerID"));
-                    response.addCookie(bPNumber);
-                }
-                
                 if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
                 	Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
                     response.addCookie(acctoken);
