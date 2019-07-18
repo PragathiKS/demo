@@ -1,8 +1,15 @@
 <br /><h2>Header Configurations</h2>
-logoURL : ${properties.logoUrl}
 
-<br /> mLogoLink : ${properties.mLogoLink}
+<b>Logo URL :</b> ${properties.logoUrl}
 
-<br /> dLogoLink : ${properties.dLogoLink}
+<br/> <b>Mobile Logo Link :</b> ${properties.mLogoLink}
 
-<br />
+<br/> <b>Desktop Logo Link :</b> ${properties.dLogoLink}
+
+<br/><br/> <b>Header Links :</b>
+
+<dl data-sly-list="${resource.listChildren}">
+    <dd data-sly-list="${item.listChildren}">
+        <b>${item.valueMap.name} :</b> ${item.valueMap.href}<br/>
+    </dd>
+</dl>
