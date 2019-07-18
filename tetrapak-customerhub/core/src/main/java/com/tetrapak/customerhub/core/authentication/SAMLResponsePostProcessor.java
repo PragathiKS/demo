@@ -68,11 +68,6 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     response.addCookie(samlCookie);
                 }
 
-                if (StringUtils.isNotBlank(attrMap.get("BusinessPartnerID"))) {
-                    Cookie bPNumber = new Cookie("BPN", attrMap.get("BusinessPartnerID"));
-                    response.addCookie(bPNumber);
-                }
-                
                 if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
                 	Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
                     response.addCookie(acctoken);
