@@ -1,10 +1,15 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -19,6 +24,12 @@ public class TextVideoModel {
 
     @Self
     private Resource resource;
+
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
+
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
 
     @Inject
     private String title;
@@ -57,6 +68,12 @@ public class TextVideoModel {
         linkURL = LinkUtil.getValidLink(resource, linkURL);
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+        }
+        if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
+            damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
+            damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
+            damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
+                    + CustomerHubConstants.PATH_SEPARATOR + damVideoPath;
         }
     }
 

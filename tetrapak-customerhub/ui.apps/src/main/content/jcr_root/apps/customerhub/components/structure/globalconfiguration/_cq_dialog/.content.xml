@@ -5,13 +5,13 @@
           jcr:title="Global Configurations"
           sling:resourceType="cq/gui/components/authoring/dialog">
     <content
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
             <column
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/container"
-                maximized="{Boolean}true">
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
                     <section
                             jcr:primaryType="nt:unstructured"
@@ -32,75 +32,6 @@
                                     name="./closeBtnText"/>
                         </items>
                     </section>
-                    <stickySection
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Tetrapak Home Configuration"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                        <items jcr:primaryType="nt:unstructured">
-                            <href
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    fieldDescription="Select Public Web Home Page Path"
-                                    fieldLabel="Public Web Home Page"
-                                    rootPath="/content/tetrapak/customerhub"
-                                    name="./stickyHref"/>
-                            <title
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Enter Tetrapak home i18 Key"
-                                    fieldLabel="Tetrapak home i18 Key"
-                                    name="./stickyLabel"/>
-                            <iconClass
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    emptyText="Select"
-                                    fieldLabel="Icon Class"
-                                    name="./stickyIconClass"
-                                    translateOptions="{Boolean}true">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <None jcr:primaryType="nt:unstructured"
-                                               text="None"
-                                               value=""/>
-                                    <Dashboard jcr:primaryType="nt:unstructured"
-                                               text="Dashboard"
-                                               value="icon-Dashboard"/>
-                                    <Install jcr:primaryType="nt:unstructured"
-                                             text="Install"
-                                             value="icon-Install"/>
-                                    <Packaging_Design jcr:primaryType="nt:unstructured"
-                                                      text="Packaging_Design"
-                                                      value="icon-Packaging_Design"/>
-                                    <Cart jcr:primaryType="nt:unstructured"
-                                          text="Cart"
-                                          value="icon-Cart"/>
-                                    <Inventory jcr:primaryType="nt:unstructured"
-                                               text="Inventory"
-                                               value="icon-Inventory"/>
-                                    <Financials jcr:primaryType="nt:unstructured"
-                                                text="Financials"
-                                                value="icon-Financials"/>
-                                    <Training jcr:primaryType="nt:unstructured"
-                                              text="Training"
-                                              value="icon-Training"/>
-                                    <Collaboration jcr:primaryType="nt:unstructured"
-                                                   text="Collaboration"
-                                                   value="icon-Collaboration"/>
-                                    <Phone jcr:primaryType="nt:unstructured"
-                                           text="Phone"
-                                           value="icon-Phone"/>
-                                    <Info jcr:primaryType="nt:unstructured"
-                                          text="Info"
-                                          value="icon-Info"/>
-                                    <Logout jcr:primaryType="nt:unstructured"
-                                            text="Logout"
-                                            value="icon-Logout"/>
-                                    <TetraPak jcr:primaryType="nt:unstructured"
-                                          text="TetraPak"
-                                          value="icon-TetraPak"/>
-                                </items>
-                            </iconClass>
-                        </items>
-                    </stickySection>
                 </items>
             </column>
         </items>

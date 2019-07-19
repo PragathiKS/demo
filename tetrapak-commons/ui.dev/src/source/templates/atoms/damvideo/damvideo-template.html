@@ -1,5 +1,5 @@
 <sly data-sly-template.damvideo_template="${@ videoUrl, className,thumbnailPath}">
-  <div class="${className ? className : ''}">
+  <div class="tpatom-dam ${className ? className : ''}">
     <video controls poster="${thumbnailPath}">
       <source src="${videoUrl}">
     </video>

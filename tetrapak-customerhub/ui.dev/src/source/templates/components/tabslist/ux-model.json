@@ -1,0 +1,69 @@
+{
+  "heading": "Solution for all needs",
+  "tabs": [
+    {
+      "type": "image",
+      "tabTitleI18n": "World's first ambient drinking yoghurt with large food pieces",
+      "mediaTitleI18n": "Turn your products into success",
+      "mediaDescriptionI18n": "Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. ",
+      "linkTextI18n": "Discover what we can do for your products",
+      "linkURL": "http://www.google.com",
+      "linkType": "button",
+      "isExternal": "true",
+      "videoSource": "youtube",
+      "damVideoPath": "/content/dam/publicweb/test.mp4",
+      "youtubeEmbedURL": "https://www.youtube.com/embed/ggJMQHltiQc",
+      "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext"
+    },
+    {
+      "type": "image",
+      "tabTitleI18n": "ghurt with large food pieces",
+      "mediaTitleI18n": "Turn your products into success",
+      "mediaDescriptionI18n": "Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. ",
+      "linkTextI18n": "Discover what we can do for your products",
+      "linkURL": "http://www.google.com",
+      "linkType": "button",
+      "isExternal": "true",
+      "videoSource": "youtube",
+      "damVideoPath": "/content/dam/publicweb/test.mp4",
+      "youtubeEmbedURL": "https://www.youtube.com/embed/ggJMQHltiQc",
+      "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext"
+    },
+    {
+      "type": "image",
+      "tabTitleI18n": "World's first ambient drinking yoghurt with large food pieces",
+      "mediaTitleI18n": "Turn your products into success",
+      "mediaDescriptionI18n": "Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. ",
+      "linkTextI18n": "Discover what we can do for your products",
+      "linkURL": "http://www.google.com",
+      "linkType": "button",
+      "isExternal": "true",
+      "videoSource": "youtube",
+      "damVideoPath": "/content/dam/publicweb/test.mp4",
+      "youtubeEmbedURL": "https://www.youtube.com/embed/ggJMQHltiQc",
+      "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext"
+    },
+    {
+      "type": "video",
+      "tabTitleI18n": "World's first ambient drinking yoghurt with large food pieces",
+      "mediaTitleI18n": "Turn your products into success",
+      "mediaDescriptionI18n": "Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. ",
+      "linkTextI18n": "Discover what we can do for your products",
+      "linkURL": "http://www.google.com",
+      "linkType": "button",
+      "isExternal": "true",
+      "videoSource": "youtube",
+      "damVideoPath": "/content/dam/publicweb/test.mp4",
+      "youtubeEmbedURL": "https://www.youtube.com/embed/ggJMQHltiQc",
+      "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+      "imagePath": "https://3blaws.s3.amazonaws.com/images/Tetra_Pak_in_Lund_Sweden.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext"
+    }
+  ]
+}

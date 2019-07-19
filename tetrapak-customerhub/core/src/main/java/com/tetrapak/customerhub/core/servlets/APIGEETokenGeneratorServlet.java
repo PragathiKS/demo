@@ -6,7 +6,6 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -27,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.Cookie;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -63,7 +61,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
-        String acctkn = xssAPI.encodeForHTML(request.getCookie("acctoken").getValue());       
+        String acctkn = xssAPI.encodeForHTML(request.getCookie("acctoken").getValue());
         String authString = username + ":" + password;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 

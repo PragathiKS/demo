@@ -1,0 +1,11 @@
+.tpatom-dam {
+    @include margin-bottom($margin-md);
+
+    @media #{$desktop} {
+        margin-bottom: 0;
+    }
+
+    video {
+        @include border-radius($border-radius);
+    }
+}

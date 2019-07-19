@@ -16,7 +16,7 @@
 /0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|excel|mp4|wmv)' /path "/content/*" }  ## disable this rule to allow mapped content only
 
 ## Enable specific mime types in non-public content directories
-/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2)' }
+/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|video/mp4)' }
 
 ## Enable clientlibs proxy servlet
 /0012 { /type "allow" /method "GET" /url "/etc.clientlibs/*" }
