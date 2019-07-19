@@ -1,7 +1,6 @@
 use(function () {
     if (request.getCookie("CustomerName")) {
-    	var cookiValue = request.getCookie("CustomerName").getValue();
-    	cookieValue = decodeURIComponent(cookieValue);
+    	var cookiValue = decodeURI(request.getCookie("CustomerName").getValue());
     }
     return {
         userName: cookiValue,
