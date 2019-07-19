@@ -28,7 +28,7 @@ public class TabsListModel {
     private Resource resource;
     
     @Inject
-    private String headingI18n;
+    private String heading;
     
     private String youtubeVideoID;
     
@@ -72,8 +72,8 @@ public class TabsListModel {
         }
     }
 
-    public String getHeadingI18n() {
-        return headingI18n;
+    public String getHeading() {
+        return heading;
     }
     
     public List<TabsListBean> getTabs() {
