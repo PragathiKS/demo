@@ -12,6 +12,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -85,7 +86,8 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
         if (null == request.getCookie(AUTH_TOKEN)) {
             return StringUtils.EMPTY;
         }
-        return request.getCookie(AUTH_TOKEN).getValue();
+        XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
+        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue()) ;
     }
 
 }
