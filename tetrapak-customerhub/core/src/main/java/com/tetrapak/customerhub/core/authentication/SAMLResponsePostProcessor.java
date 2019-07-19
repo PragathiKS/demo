@@ -155,7 +155,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 			NodeList attributeValueNodeList, int l) {
 		if ("saml:AttributeValue".equalsIgnoreCase(attributeValueNodeList.item(l).getNodeName())) {
 			samlAttributeMap.put(attributeValue, attributeValueNodeList.item(l).getTextContent());
-			LOGGER.info("SAML Assertions" + attributeValue + " : " + attributeValueNodeList.item(l).getTextContent());
+			LOGGER.debug("SAML Assertions" + attributeValue + " : " + attributeValueNodeList.item(l).getTextContent());
 		}
 	}
 
