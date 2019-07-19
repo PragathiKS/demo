@@ -105,7 +105,13 @@ function _processTableData(data) {
         doc.title = `${doc.salesOffice} (${doc.records.length})`;
         doc.docId = `#document${index}`;
         doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
+        const deleteLocalData = doc.records.length > 0 ? doc.records[0].salesLocalData === '' : true;
         doc.docData = doc.records.map(record => {
+          let isClickable = false;
+          let dataLink;
+          if (deleteLocalData) {
+            delete record.salesLocalData;
+          }
           delete record.salesOffice;
           if (keys.length === 0) {
             keys = Object.keys(record);
@@ -114,11 +120,29 @@ function _processTableData(data) {
           }
           // Resolve currency for summary section
           keys.forEach(key => {
+
+            if (key === 'documentType' && (record[key] === 'INV' || record[key] === 'CM')) {
+              isClickable = true;
+              dataLink = record.invoiceReference;
+              record['documentNumber'] = `
+              <span class="tp-financials-summary__download-invoice">
+                ${record['documentNumber']}
+                <i class="icon-PDF"></i>
+              </span>`;
+            }
+
+            if (key === 'invoiceStatus') {
+              record[key] = record[key] === 'O' ? 'Open' : record[key] === 'C' ? 'Cleared' : record[key] === 'B' ? 'Both' : record[key];
+            }
+
+            if (key === 'documentType') {
+              record[key] = record[key] === 'INV' ? 'Invoice' : record[key] === 'CM' ? 'Credit Memo' : record[key] === 'PMT' ? 'Payment' : record[key];
+            }
             if (currencyFields.includes(key)) {
               record[key] = resolveCurrency(record[key], record.currency);
             }
           });
-          return tableSort.call(this, record, keys, record.invoiceReference, true);
+          return tableSort.call(this, record, keys, dataLink, isClickable, ['documentNumber']);
         });
         doc.docHeadings = keys.map(key => ({
           key,
@@ -177,7 +201,7 @@ function _renderTable(filterParams) {
       },
       ajaxConfig: {
         beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token} `);
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         method: ajaxMethods.GET,
