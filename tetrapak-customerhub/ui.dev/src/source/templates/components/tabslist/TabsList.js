@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { logger } from '../../../scripts/utils/logger';
 
 function _renderFirstTab() {
   this.root.find('.js-tablist__events-sidesection').html($('#Event0').html());
