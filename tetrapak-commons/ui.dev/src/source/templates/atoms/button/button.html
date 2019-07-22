@@ -1,6 +1,6 @@
 <sly data-sly-template.button_template="${@ buttonText, buttonClasses, btnIcon, flag}">
   <button type="button" class="btn tpatom-button ${buttonClasses}">
-    <span class="tpatom-button__text">${buttonText}</span>
-    <i class="tpatom-button__icon ${btnIcon}"></i>
+    <span class="tpatom-button__text">${buttonText @i18n}</span>
+    <i data-sly-test="${btnIcon}" class="tpatom-button__icon ${btnIcon}"></i>
   </button>
 </sly>
