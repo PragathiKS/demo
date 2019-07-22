@@ -1,4 +1,8 @@
 .tp-financials-summary {
+    &__download-invoice {
+        color: $color-congress-blue;
+    }
+
     h3 {
         @include padding-top($padding-l);
         @include padding-bottom($padding-sm);
