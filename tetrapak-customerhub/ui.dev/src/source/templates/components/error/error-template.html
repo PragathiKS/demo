@@ -6,7 +6,7 @@
               <p class="tp-error__description">${data.errorDescription @ context='html'}</p>
           </div>
           <div class="col-lg offset-lg tp-error__img">
-              <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltText}" />
+              <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @imagePath=data.imagePath,imageAltI18n=data.imageAltText}">
               </sly>
           </div>
       </div>

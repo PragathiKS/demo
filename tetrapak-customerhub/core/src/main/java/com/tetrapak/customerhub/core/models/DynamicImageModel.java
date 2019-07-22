@@ -166,7 +166,7 @@ public class DynamicImageModel {
         String assetName;
         if (imagePath != null) {
             String subString;
-            int iend = imagePath.indexOf(".");
+            int iend = imagePath.indexOf('.');
             if (iend != -1) {
                 subString = imagePath.substring(0, iend);
                 damPath = StringUtils.substringBeforeLast(subString, CustomerHubConstants.PATH_SEPARATOR);
@@ -330,7 +330,7 @@ public class DynamicImageModel {
         if (StringUtils.isNotBlank(componentName)) {
             final StringBuilder key = new StringBuilder(componentName).append(HYPHEN).append(deviceType);
 
-            String imageConfiguration = getImageConfigurations(deviceType, imagePath, dynamicMediaConfiguration, key);
+            String imageConfiguration = getImageConfigurations(deviceType, dynamicMediaConfiguration, key);
 
             if (StringUtils.isNotEmpty(imageConfiguration)) {
                 url = createUrl(imagePath, imageConfiguration);
@@ -340,7 +340,7 @@ public class DynamicImageModel {
         return url;
     }
 
-    private String getImageConfigurations(String deviceType, String imagePath,
+    private String getImageConfigurations(String deviceType,
                                           Map<String, String> dynamicMediaConfiguration, StringBuilder key) {
         String imageConfiguration;
         String cropping = getCroppingFromMobile();
