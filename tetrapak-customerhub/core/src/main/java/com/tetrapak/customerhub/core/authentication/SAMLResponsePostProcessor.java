@@ -68,7 +68,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 
 				if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
 					Cookie samlCookie = new Cookie("CustomerName",
-							URLEncoder.encode(firstName + "" + lastName, "UTF-8").replaceAll("\\+", "%20"));
+							URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20"));
 					samlCookie.setHttpOnly(true);
 					samlCookie.setPath("/");
 					response.addCookie(samlCookie);
