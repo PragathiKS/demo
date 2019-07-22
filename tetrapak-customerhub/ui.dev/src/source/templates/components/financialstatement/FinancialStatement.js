@@ -120,6 +120,7 @@ function _trackAnalytics(type) {
  * @param {object} data Financial data
  */
 function _processFinancialStatementData(data) {
+  $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
     if (!data.customerData) {

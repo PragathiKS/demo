@@ -78,7 +78,7 @@ function _downloadInvoice($this) {
 
 function _processTableData(data) {
   let keys = [];
-  const { $filtersRoot, currencyFields } = this.cache;
+  const { $filtersRoot, currencyFields, documentType, status } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
@@ -105,7 +105,7 @@ function _processTableData(data) {
         doc.title = `${doc.salesOffice} (${doc.records.length})`;
         doc.docId = `#document${index}`;
         doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
-        const deleteLocalData = doc.records.length > 0 ? doc.records[0].salesLocalData === '' : true;
+        const deleteLocalData = Array.isArray(doc.records) && doc.records[0] && !doc.records[0].salesLocalData;
         doc.docData = doc.records.map(record => {
           let isClickable = false;
           let dataLink;
@@ -120,8 +120,7 @@ function _processTableData(data) {
           }
           // Resolve currency for summary section
           keys.forEach(key => {
-
-            if (key === 'documentType' && (record[key] === 'INV' || record[key] === 'CM')) {
+            if (key === 'documentType' && record[key] !== 'PMT') {
               isClickable = true;
               dataLink = record.invoiceReference;
               record['documentNumber'] = `
@@ -132,11 +131,11 @@ function _processTableData(data) {
             }
 
             if (key === 'invoiceStatus') {
-              record[key] = record[key] === 'O' ? 'Open' : record[key] === 'C' ? 'Cleared' : record[key] === 'B' ? 'Both' : record[key];
+              record[key] = Array.isArray(status) && status.find(obj => obj.key === record[key]).desc;
             }
 
             if (key === 'documentType') {
-              record[key] = record[key] === 'INV' ? 'Invoice' : record[key] === 'CM' ? 'Credit Memo' : record[key] === 'PMT' ? 'Payment' : record[key];
+              record[key] = Array.isArray(documentType) && documentType.find(obj => obj.key === record[key]).desc;
             }
             if (currencyFields.includes(key)) {
               record[key] = resolveCurrency(record[key], record.currency);
@@ -201,7 +200,7 @@ function _renderTable(filterParams) {
       },
       ajaxConfig: {
         beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token} `);
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         method: ajaxMethods.GET,
@@ -270,6 +269,12 @@ class FinancialsStatementSummary {
       const documentTitleTotal = $(this).text();
       const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
       $this.trackAnalytics($this, 'documents', documentTitle);
+    });
+    this.cache.$parentRoot.on('financial.filters', this, function (...args) {
+      const [e, status, documentType] = args;
+      const $this = e.data;
+      $this.cache.status = status;
+      $this.cache.documentType = documentType;
     });
 
     route((...args) => {

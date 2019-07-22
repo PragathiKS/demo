@@ -282,8 +282,8 @@ export const tableSort = (data, keys, dataLink, isClickable, rtKeys) => {
     dataObject.rowLink = `${dataLink}`;
   }
   if (!rtKeys) {
-    rtKeys = [''];
-  } 
+    rtKeys = [];
+  }
   dataObject.isClickable = !!dataLink || isClickable;
 
   keys.forEach((key, index) => {
