@@ -6,6 +6,7 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -27,7 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.Cookie;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -58,14 +58,14 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
     	
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
-        XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
         final String username = apigeeService.getApigeeClientID();
         final String password = apigeeService.getApigeeClientSecret();
+        final XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         String acctkn = StringUtils.EMPTY;
-        if (null != request.getCookie("acctoken")) {
-        	acctkn = request.getCookie("acctoken").getValue();  
+        if (ObjectUtils.notEqual(null, request.getCookie("acctoken"))) {
+        	acctkn = xssAPI.encodeForHTML(request.getCookie("acctoken").getValue());
         }
         String authString = username + ":" + password;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
