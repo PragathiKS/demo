@@ -74,8 +74,8 @@
                                                     <maspectratiol
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/well"
-                                                        fieldDescription="Aspect ratio to display image in desktop and iPad viewport"
-                                                        fieldLabel="Desktop Aspect Ratio">
+                                                        fieldDescription="Aspect ratio to display image in mobile landscape viewport"
+                                                        fieldLabel="Mobile Aspect Ratio Landscape">
                                                         <items jcr:primaryType="nt:unstructured">
                                                             <width
                                                                 jcr:primaryType="nt:unstructured"
@@ -103,8 +103,8 @@
                                                     <maspectratiop
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/well"
-                                                            fieldDescription="Aspect ratio to display image in desktop and iPad viewport"
-                                                            fieldLabel="Desktop Aspect Ratio">
+                                                            fieldDescription="Aspect ratio to display image in mobile portrait viewport"
+                                                            fieldLabel="Mobile Aspect Ratio Portrait">
                                                         <items jcr:primaryType="nt:unstructured">
                                                             <width
                                                                     jcr:primaryType="nt:unstructured"
