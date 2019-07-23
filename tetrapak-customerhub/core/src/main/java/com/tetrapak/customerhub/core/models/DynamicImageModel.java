@@ -21,9 +21,7 @@ import java.util.Map;
  *
  * @author Nitin Kumar
  */
-@Model(adaptables = {
-        SlingHttpServletRequest.class
-}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class DynamicImageModel {
 
     @SlingObject
@@ -177,7 +175,8 @@ public class DynamicImageModel {
         }
 
         if (null != dynamicMediaUrl) {
-            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, CustomerHubConstants.PATH_SEPARATOR) + finalPath;
+            dynamicMediaUrl =
+                    StringUtils.removeEndIgnoreCase(dynamicMediaUrl, CustomerHubConstants.PATH_SEPARATOR) + finalPath;
         }
 
         if (StringUtils.isNotBlank(dynamicMediaUrl) && StringUtils.isNotBlank(altText)) {
@@ -245,7 +244,7 @@ public class DynamicImageModel {
 
     private String getCroppingFromMobile() {
         Resource imageResource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
-        if(null == imageResource){
+        if (null == imageResource) {
             return StringUtils.EMPTY;
         }
         ValueMap vMap = imageResource.getValueMap();
@@ -299,13 +298,15 @@ public class DynamicImageModel {
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(height)) {
-            url = queryFlag ? url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height)
-                    : url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height) :
+                    url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(crop)) {
-            url = queryFlag ? url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop)
-                    : url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop) :
+                    url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
             queryFlag = true;
         }
 
@@ -340,30 +341,32 @@ public class DynamicImageModel {
         return url;
     }
 
-    private String getImageConfigurations(String deviceType,
-                                          Map<String, String> dynamicMediaConfiguration, StringBuilder key) {
+    private String getImageConfigurations(String deviceType, Map<String, String> dynamicMediaConfiguration,
+                                          StringBuilder key) {
         String imageConfiguration;
         String cropping = getCroppingFromMobile();
         if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
             imageConfiguration = dwidth + "," + dheight;
-        } else if (deviceType.equals(MOBILELANDSCAPE) && StringUtils.isNotBlank(mwidthl) && StringUtils.isNotBlank(mheightl)) {
-            imageConfiguration = getImageConfigurationForMobile(cropping, mwidthl, mheightl);
-        } else if (deviceType.equals(MOBILEPORTRAIT) && StringUtils.isNotBlank(mwidthl) && StringUtils.isNotBlank(mheightl)) {
-            imageConfiguration = getImageConfigurationForMobile(cropping, mwidthp, mheightp);
+        } else if (deviceType.equals(MOBILELANDSCAPE)) {
+            imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthl,
+                    mheightl);
+        } else if (deviceType.equals(MOBILEPORTRAIT)) {
+            imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthp,
+                    mheightp);
         } else {
             imageConfiguration = dynamicMediaConfiguration.get(key.toString());
         }
         return imageConfiguration;
     }
 
-    private String getImageConfigurationForMobile(String cropping, String mWidth, String mHeight) {
-        String imageConfiguration;
-        if (StringUtils.isNotEmpty(cropping)) {
-            imageConfiguration = mWidth + "," + mHeight + "," + cropping;
-        } else {
-            imageConfiguration = mWidth + "," + mHeight;
+    private String getImageConfigurationForMobile(java.util.Map<String, String> dynamicMediaConfiguration,
+                                                  StringBuilder key, String cropping, String mWidth, String mHeight) {
+        if (StringUtils.isNotEmpty(mWidth) && StringUtils.isNotEmpty(mHeight)) {
+            return mWidth + "," + mHeight + "," + cropping;
+        } else if (StringUtils.isNotEmpty(cropping)) {
+            return ",," + cropping;
         }
-        return imageConfiguration;
+        return dynamicMediaConfiguration.get(key.toString());
     }
 
     private Map<String, String> getMap(String[] dynamicMediaConfiguration) {
@@ -446,6 +449,5 @@ public class DynamicImageModel {
     public String getFinalPath() {
         return finalPath;
     }
-
 
 }
