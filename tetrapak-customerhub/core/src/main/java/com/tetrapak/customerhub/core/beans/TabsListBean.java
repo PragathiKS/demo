@@ -11,31 +11,29 @@ public class TabsListBean {
     private String mediaTitleI18n;
 
     private String mediaDescriptionI18n;
-    
-    private String linkTextI18n;
-    
-    private String linkURL;
-    
-    private String linkType;
-    
-    private Boolean isExternal;
-    
-    private String videoSource;
-    
-    private String damVideoPath;
-    
-    private String youtubeEmbedURL;
-    
-    private String thumbnailPath;
-    
-    private String imagePath;
-    
-	private String imageAltI18n;
 
-	public String getType() {
+    private String linkTextI18n;
+
+    private String linkURL;
+
+    private String linkType;
+
+    private Boolean isExternal;
+
+    private String videoSource;
+
+    private String damVideoPath;
+
+    private String youtubeEmbedURL;
+
+    private String thumbnailPath;
+
+    private ImageBean image;
+
+    public String getType() {
         return type;
     }
-	
+
     public void setType(String type) {
         this.type = type;
     }
@@ -63,84 +61,76 @@ public class TabsListBean {
     public void setMediaDescriptionI18n(String mediaDescriptionI18n) {
         this.mediaDescriptionI18n = mediaDescriptionI18n;
     }
-    
+
     public String getLinkTextI18n() {
-		return linkTextI18n;
-	}
+        return linkTextI18n;
+    }
 
-	public void setLinkTextI18n(String linkTextI18n) {
-		this.linkTextI18n = linkTextI18n;
-	}
-	
-	public String getLinkURL() {
-		return linkURL;
-	}
+    public void setLinkTextI18n(String linkTextI18n) {
+        this.linkTextI18n = linkTextI18n;
+    }
 
-	public void setLinkURL(String linkURL) {
-		this.linkURL = linkURL;
-	}
-	
-	public String getLinkType() {
-		return linkType;
-	}
+    public String getLinkURL() {
+        return linkURL;
+    }
 
-	public void setLinkType(String linkType) {
-		this.linkType = linkType;
-	}
+    public void setLinkURL(String linkURL) {
+        this.linkURL = linkURL;
+    }
 
-	public Boolean getIsExternal() {
-		return isExternal;
-	}
+    public String getLinkType() {
+        return linkType;
+    }
 
-	public void setIsExternal(Boolean isExternal) {
-		this.isExternal = isExternal;
-	}
+    public void setLinkType(String linkType) {
+        this.linkType = linkType;
+    }
 
-	public String getVideoSource() {
-		return videoSource;
-	}
+    public Boolean getIsExternal() {
+        return isExternal;
+    }
 
-	public void setVideoSource(String videoSource) {
-		this.videoSource = videoSource;
-	}
+    public void setIsExternal(Boolean isExternal) {
+        this.isExternal = isExternal;
+    }
 
-	public String getDamVideoPath() {
-		return damVideoPath;
-	}
+    public String getVideoSource() {
+        return videoSource;
+    }
 
-	public void setDamVideoPath(String damVideoPath) {
-		this.damVideoPath = damVideoPath;
-	}
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
 
-	public String getYoutubeEmbedURL() {
-		return youtubeEmbedURL;
-	}
+    public String getDamVideoPath() {
+        return damVideoPath;
+    }
 
-	public void setYoutubeEmbedURL(String youtubeEmbedURL) {
-		this.youtubeEmbedURL = youtubeEmbedURL;
-	}
+    public void setDamVideoPath(String damVideoPath) {
+        this.damVideoPath = damVideoPath;
+    }
 
-	public String getThumbnailPath() {
-		return thumbnailPath;
-	}
+    public String getYoutubeEmbedURL() {
+        return youtubeEmbedURL;
+    }
 
-	public void setThumbnailPath(String thumbnailPath) {
-		this.thumbnailPath = thumbnailPath;
-	}
+    public void setYoutubeEmbedURL(String youtubeEmbedURL) {
+        this.youtubeEmbedURL = youtubeEmbedURL;
+    }
 
-	public String getImagePath() {
-		return imagePath;
-	}
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
+    }
 
-	public String getImageAltI18n() {
-		return imageAltI18n;
-	}
+    public ImageBean getImage() {
+        return image;
+    }
 
-	public void setImageAltI18n(String imageAltI18n) {
-		this.imageAltI18n = imageAltI18n;
-	}
+    public void setImage(ImageBean image) {
+        this.image = image;
+    }
 }

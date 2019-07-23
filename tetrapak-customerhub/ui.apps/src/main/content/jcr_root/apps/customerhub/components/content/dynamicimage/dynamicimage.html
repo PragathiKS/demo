@@ -1,7 +1,7 @@
 <template
-        data-sly-template.dynamicimage_template="${@ imagePath,altText,dheight,dwidth,mheightl,mwidthl,mheightp,mwidthp,imageCrop,className} ">
-    <sly data-sly-use.dynamicImageModel="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=imagePath , altText=altText,
-										dheight=dheight,dwidth=dwidth,mheightl=mheightl,mwidthl=mwidthl,mheightp=mheightp,mwidthp=mwidthp,imageCrop=imageCrop}">
+        data-sly-template.dynamicimage_template="${@ image,className} ">
+    <sly data-sly-use.dynamicImageModel="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=image.imagePath , altText=image.altText,
+										dheight=image.dheight,dwidth=image.dwidth,mheightl=image.mheightl,mwidthl=image.mwidthl,mheightp=image.mheightp,mwidthp=image.mwidthp,imageCrop=image.imageCrop}">
     </sly>
     <img src="${dynamicImageModel.desktopUrl}" class="img-responsive js-dynamic-media ${className}"
          itemprop="image" alt="${dynamicImageModel.altText}"

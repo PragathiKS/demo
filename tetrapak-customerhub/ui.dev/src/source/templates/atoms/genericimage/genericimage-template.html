@@ -1,9 +1,7 @@
-<sly data-sly-template.genericimage_template="${@ imagePath,altText,dheight,dwidth,mheightl,mwidthl,mheightp,mwidthp,imageCrop,className}">
+<sly data-sly-template.genericimage_template="${@ image,className}">
     <div class="x-img-responsive">
         <sly data-sly-use.lib="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
-             data-sly-call="${lib.dynamicimage_template @imagePath=imagePath, altText=altText,
-                            dheight=dheight,dwidth=dwidth,mheightl=mheightl,mwidthl=mwidthl,mheightp=mheightp,mwidthp=mwidthp,
-                            imageCrop=imageCrop, className=className}">
+             data-sly-call="${lib.dynamicimage_template @image=image, className=className}">
         </sly>
     </div>
 </sly>
