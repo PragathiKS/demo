@@ -5,6 +5,7 @@ import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -17,23 +18,38 @@ import java.util.Map;
 
 /**
  * class for dynamic image model
+ *
+ * @author Nitin Kumar
  */
-@Model(adaptables = {
-        SlingHttpServletRequest.class
-}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class DynamicImageModel {
 
-    /**
-     * The sling request.
-     */
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /**
-     * The image path.
-     */
     @Inject
     private String imagePath;
+
+    @Inject
+    private String dheight;
+
+    @Inject
+    private String dwidth;
+
+    @Inject
+    private String mheightl;
+
+    @Inject
+    private String mwidthl;
+
+    @Inject
+    private String mheightp;
+
+    @Inject
+    private String mwidthp;
+
+    @Inject
+    private String imageCrop;
 
     /**
      * The asset alt text.
@@ -148,18 +164,19 @@ public class DynamicImageModel {
         String assetName;
         if (imagePath != null) {
             String subString;
-            int iend = imagePath.indexOf(".");
+            int iend = imagePath.indexOf('.');
             if (iend != -1) {
                 subString = imagePath.substring(0, iend);
-                imagePath = StringUtils.substringBeforeLast(subString, CustomerHubConstants.PATH_SEPARATOR);
+                damPath = StringUtils.substringBeforeLast(subString, CustomerHubConstants.PATH_SEPARATOR);
                 assetName = StringUtils.substringAfterLast(subString, CustomerHubConstants.PATH_SEPARATOR);
-                damPath = imagePath.replace(imagePath, rootPath);
+                damPath = damPath.replace(damPath, rootPath);
                 finalPath = damPath + CustomerHubConstants.PATH_SEPARATOR + assetName;
             }
         }
 
         if (null != dynamicMediaUrl) {
-            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, CustomerHubConstants.PATH_SEPARATOR) + finalPath;
+            dynamicMediaUrl =
+                    StringUtils.removeEndIgnoreCase(dynamicMediaUrl, CustomerHubConstants.PATH_SEPARATOR) + finalPath;
         }
 
         if (StringUtils.isNotBlank(dynamicMediaUrl) && StringUtils.isNotBlank(altText)) {
@@ -199,7 +216,7 @@ public class DynamicImageModel {
      * @param imageConfiguration the image configuration
      * @return the string
      */
-    private static String createUrl(final String paramUrl, final String imageConfiguration) {
+    private String createUrl(final String paramUrl, final String imageConfiguration) {
         final int widthIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 1);
         final int heightIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 2);
         String width;
@@ -218,10 +235,40 @@ public class DynamicImageModel {
         } else {
             width = imageConfiguration;
         }
+
         if (StringUtils.isNotEmpty(width) || StringUtils.isNotEmpty(height) || StringUtils.isNotEmpty(crop)) {
             url = getUrl(paramUrl, width, height, crop);
         }
         return url;
+    }
+
+    private String getCroppingFromMobile() {
+        Resource imageResource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+        if (null == imageResource) {
+            return StringUtils.EMPTY;
+        }
+        ValueMap vMap = imageResource.getValueMap();
+        Long height = (Long) vMap.get("tiff:ImageLength");
+        Long width = (Long) vMap.get("tiff:ImageWidth");
+        return getCropParameterForScene7(height, width);
+    }
+
+    private String getCropParameterForScene7(Long height, Long width) {
+        if (null == imageCrop) {
+            return StringUtils.EMPTY;
+        }
+        String[] cropArray = imageCrop.split(",");
+        Double topW = Double.valueOf(cropArray[0]);
+        Double topH = Double.valueOf(cropArray[1]);
+        Double lowW = Double.valueOf(cropArray[2]);
+        Double lowH = Double.valueOf(cropArray[3]);
+
+        double normTopW = topW / width;
+        double normTopH = topH / height;
+        double normWidth = (lowW - topW) / width;
+        double normHeight = (lowH - topH) / height;
+
+        return normTopW + "," + normTopH + "," + normWidth + "," + normHeight;
     }
 
     /**
@@ -251,13 +298,15 @@ public class DynamicImageModel {
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(height)) {
-            url = queryFlag ? url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height)
-                    : url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height) :
+                    url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(crop)) {
-            url = queryFlag ? url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop)
-                    : url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop) :
+                    url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
             queryFlag = true;
         }
 
@@ -282,13 +331,42 @@ public class DynamicImageModel {
         if (StringUtils.isNotBlank(componentName)) {
             final StringBuilder key = new StringBuilder(componentName).append(HYPHEN).append(deviceType);
 
-            final String imageConfiguration = dynamicMediaConfiguration.get(key.toString());
+            String imageConfiguration = getImageConfigurations(deviceType, dynamicMediaConfiguration, key);
+
             if (StringUtils.isNotEmpty(imageConfiguration)) {
                 url = createUrl(imagePath, imageConfiguration);
                 hasConfiguraton = true;
             }
         }
         return url;
+    }
+
+    private String getImageConfigurations(String deviceType, Map<String, String> dynamicMediaConfiguration,
+                                          StringBuilder key) {
+        String imageConfiguration;
+        String cropping = getCroppingFromMobile();
+        if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
+            imageConfiguration = dwidth + "," + dheight;
+        } else if (deviceType.equals(MOBILELANDSCAPE)) {
+            imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthl,
+                    mheightl);
+        } else if (deviceType.equals(MOBILEPORTRAIT)) {
+            imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthp,
+                    mheightp);
+        } else {
+            imageConfiguration = dynamicMediaConfiguration.get(key.toString());
+        }
+        return imageConfiguration;
+    }
+
+    private String getImageConfigurationForMobile(java.util.Map<String, String> dynamicMediaConfiguration,
+                                                  StringBuilder key, String cropping, String mWidth, String mHeight) {
+        if (StringUtils.isNotEmpty(mWidth) && StringUtils.isNotEmpty(mHeight)) {
+            return mWidth + "," + mHeight + "," + cropping;
+        } else if (StringUtils.isNotEmpty(cropping)) {
+            return ",," + cropping;
+        }
+        return dynamicMediaConfiguration.get(key.toString());
     }
 
     private Map<String, String> getMap(String[] dynamicMediaConfiguration) {
@@ -371,6 +449,5 @@ public class DynamicImageModel {
     public String getFinalPath() {
         return finalPath;
     }
-
 
 }
