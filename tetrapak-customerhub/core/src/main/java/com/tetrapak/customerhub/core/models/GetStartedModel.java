@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.beans.GetStartedBean;
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,6 +14,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 
 /**
  * Model class for Get Started Component
@@ -32,51 +35,30 @@ public class GetStartedModel {
 
     private List<GetStartedBean> getStartedList = new ArrayList<>();
 
+    private List<String> imageList = new ArrayList<>();
+
     @PostConstruct
     protected void init() {
         Resource childResource = resource.getChild("list");
         if (null != childResource) {
             Iterator<Resource> itr = childResource.listChildren();
-            int index = 0;
             while (itr.hasNext()) {
                 Resource res = itr.next();
-                Resource imageResource = getImageResource(index, res);
-                index = index + 1;
+                imageList.add(res.getName() + "-image");
+
                 ValueMap resValueMap = res.getValueMap();
                 GetStartedBean bean = new GetStartedBean();
                 bean.setTitleI18n((String) resValueMap.get("titleI18n"));
                 bean.setDescriptionI18n((String) resValueMap.get("descriptionI18n"));
 
+                Resource imageResource = GlobalUtil.getImageResource(res);
                 if (null != imageResource) {
-                    ValueMap imgValueMap = imageResource.getValueMap();
-                    bean.setDheight((String) imgValueMap.get("dheight"));
-                    bean.setDwidth((String) imgValueMap.get("dwidth"));
-                    bean.setMheightl((String) imgValueMap.get("mheightl"));
-                    bean.setMwidthl((String) imgValueMap.get("mwidthl"));
-                    bean.setMheightp((String) imgValueMap.get("mheightp"));
-                    bean.setMwidthp((String) imgValueMap.get("mwidthp"));
-                    bean.setImageCrop((String) imgValueMap.get("imageCrop"));
-                    bean.setImagePath((String) imgValueMap.get("fileReference"));
-                    bean.setImageAltI18n((String) imgValueMap.get("alt"));
+                    ImageBean imageBean = GlobalUtil.getImageBean(imageResource);
+                    bean.setImage(imageBean);
                 }
                 getStartedList.add(bean);
-
-
             }
         }
-    }
-
-    private Resource getImageResource(int index, Resource res) {
-
-        Resource listResource = res.getParent();
-        if (null == listResource) {
-            return null;
-        }
-        Resource getStartedResource = listResource.getParent();
-        if (null == getStartedResource) {
-            return null;
-        }
-        return getStartedResource.getChild(Integer.toString(index));
     }
 
     public List<GetStartedBean> getGetStartedList() {
@@ -89,5 +71,9 @@ public class GetStartedModel {
 
     public String getClassName() {
         return className;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
     }
 }

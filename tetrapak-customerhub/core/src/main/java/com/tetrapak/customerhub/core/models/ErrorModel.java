@@ -1,9 +1,12 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.beans.ImageBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 
@@ -30,6 +33,15 @@ public class ErrorModel {
     
     @Inject
     protected String errorDescription;
+
+    private ImageBean image;
+
+    @PostConstruct
+    protected void init() {
+        image = new ImageBean();
+        image.setImagePath(imagePath);
+        image.setAltText(imageAltText);
+    }
 
     /**
      * @return the imagePath
@@ -64,5 +76,9 @@ public class ErrorModel {
      */
     public String getErrorDescription() {
         return errorDescription;
+    }
+
+    public ImageBean getImage(){
+        return image;
     }
 }

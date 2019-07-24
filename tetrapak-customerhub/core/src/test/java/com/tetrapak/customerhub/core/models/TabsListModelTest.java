@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import com.tetrapak.customerhub.core.beans.ImageBean;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,27 +52,37 @@ public class TabsListModelTest {
 		String heading = tabsListModel.getHeading();
 		assertNotNull("Heading should not be null", heading);
 		assertTrue("Heading is not empty", heading.length() > 0);
-		Assert.assertEquals("Heading For the Tabs List Component", heading);
+		Assert.assertEquals("heading","Heading For the Tabs List Component", heading);
 		
-		assertFalse(tabsListModel.getTabs().isEmpty());
+		assertFalse("tabs",tabsListModel.getTabs().isEmpty());
+		assertFalse("image list",tabsListModel.getImageList().isEmpty());
 		List<TabsListBean> tabs = tabsListModel.getTabs();
 		
 		TabsListBean imageTabBean = tabs.get(0);
-		Assert.assertEquals("Image Tab", imageTabBean.getTabTitleI18n());
-		Assert.assertEquals("Image Content Title", imageTabBean.getMediaTitleI18n());
-		Assert.assertEquals("<p>Some description</p> ", imageTabBean.getMediaDescriptionI18n());
-		Assert.assertEquals("/content/dam/customerhub/tetrapak.png", imageTabBean.getImagePath());
-		Assert.assertEquals("Image alt text", imageTabBean.getImageAltI18n());
-		Assert.assertEquals(true, imageTabBean.getIsExternal());
-		Assert.assertEquals("link text", imageTabBean.getLinkTextI18n());
-		Assert.assertEquals("http://www.tetrapak.com", imageTabBean.getLinkURL());
-		Assert.assertEquals("button", imageTabBean.getLinkType());
+		Assert.assertEquals("title","Image Tab", imageTabBean.getTabTitleI18n());
+		Assert.assertEquals("media title","Image Content Title", imageTabBean.getMediaTitleI18n());
+		Assert.assertEquals("media description","<p>Some description</p> ", imageTabBean.getMediaDescriptionI18n());
+
+		Assert.assertEquals("is external",true, imageTabBean.getIsExternal());
+		Assert.assertEquals("link text","link text", imageTabBean.getLinkTextI18n());
+		Assert.assertEquals("link URL","http://www.tetrapak.com", imageTabBean.getLinkURL());
+		Assert.assertEquals("link type","button", imageTabBean.getLinkType());
 		
 		TabsListBean videoTabBean = tabs.get(1);
-		Assert.assertEquals("video", videoTabBean.getType());
-		Assert.assertEquals("youtube", videoTabBean.getVideoSource());
-		Assert.assertEquals("https://www.youtube.com/embed/ZofQqevIIZA", videoTabBean.getYoutubeEmbedURL());
-		Assert.assertEquals("/content/dam/customerhub/thumbnail.png", videoTabBean.getThumbnailPath());
-	}
+		Assert.assertEquals("media type","video", videoTabBean.getType());
+		Assert.assertEquals("video source","youtube", videoTabBean.getVideoSource());
+		Assert.assertEquals("youtube embed URL","https://www.youtube.com/embed/ZofQqevIIZA", videoTabBean.getYoutubeEmbedURL());
+		Assert.assertEquals("thumbnail path","/content/dam/customerhub/thumbnail.png", videoTabBean.getThumbnailPath());
 
+		ImageBean image = videoTabBean.getImage();
+		Assert.assertEquals("image path","/content/dam/customerhub/p2.PNG", image.getImagePath());
+		Assert.assertEquals("alt text","alt1", image.getAltText());
+		Assert.assertEquals("Desktop Height","200", image.getDheight());
+		Assert.assertEquals("Desktop Height","100", image.getDwidth());
+		Assert.assertEquals("Mobile Height Landscape","290", image.getMheightl());
+		Assert.assertEquals("Mobile Width Landscape","100", image.getMwidthl());
+		Assert.assertEquals("Mobile Height Portrait","290", image.getMheightp());
+		Assert.assertEquals("Mobile Width Portrait","100", image.getMwidthp());
+		Assert.assertEquals("Image crop","390,57,947,473", image.getImageCrop());
+	}
 }
