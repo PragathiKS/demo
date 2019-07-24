@@ -4,8 +4,6 @@ import { trackAnalytics } from './analytics';
 
 let YT = null;
 
-let trackIndex = 0;
-
 /**
  * Calculates appropriate trackIndex based on percent completion
  * @param {number} currentTime Current video time
@@ -57,17 +55,19 @@ function _trackVideoParameters(videoInteraction, videoLength) {
  */
 function _calculateProgress(currentTime, totalTime) {
   const percentCompleted = Math.floor(currentTime / totalTime * 100);
+  const $this = $(this);
+  let trackIndex = $this.data('trackIndex');
   if (percentCompleted >= 25 && trackIndex === 0) {
     _trackVideoParameters.apply(this, ['25%', Math.round(totalTime)]);
-    trackIndex = 1;
+    $this.data('trackIndex', (trackIndex = 1));
   }
   if (percentCompleted >= 50 && trackIndex === 1) {
     _trackVideoParameters.apply(this, ['50%', Math.round(totalTime)]);
-    trackIndex = 2;
+    $this.data('trackIndex', (trackIndex = 2));
   }
   if (percentCompleted >= 75 && trackIndex === 2) {
     _trackVideoParameters.apply(this, ['75%', Math.round(totalTime)]);
-    trackIndex = 3;
+    $this.data('trackIndex', (trackIndex = 3));
   }
 }
 
@@ -79,9 +79,12 @@ function _calculateProgress(currentTime, totalTime) {
  */
 function _onStateChange(thisIns, e) {
   const totalTime = thisIns.ytPlayer.getDuration();
-  trackIndex = _getIndex(thisIns.ytPlayer.getCurrentTime(), totalTime);
   const $this = $(this);
+  $this.data('trackIndex', _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]));
   if (e.data === YT.PlayerState.PLAYING) {
+    if (thisIns.intervalRef) {
+      clearInterval(thisIns.intervalRef);
+    }
     thisIns.intervalRef = window.setInterval(() => {
       _calculateProgress.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]);
     }, 500);
@@ -103,8 +106,10 @@ function _onStateChange(thisIns, e) {
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
-    $this.attr('data-started', 'false').data('started', 'false');
-    trackIndex = 0;
+    $this.attr('data-started', 'false').data({
+      started: 'false',
+      trackIndex: 0
+    });
     _trackVideoParameters.apply(this, ['end', Math.round(totalTime)]);
   }
 }
@@ -141,6 +146,7 @@ export default {
     $('.js-dam-player').on('play', function () {
       const $this = $(this);
       const wasStarted = $this.data('started');
+      $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
       if (['true', true].includes(wasStarted)) {
         _trackVideoParameters.apply(this, ['resume', Math.round(this.duration)]);
       } else {
@@ -149,7 +155,7 @@ export default {
       }
     }).on('pause', function () {
       if (this.currentTime < this.duration) {
-        trackIndex = _getIndex(this.currentTime, this.duration);
+        $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
         _trackVideoParameters.apply(this, ['pause', Math.round(this.duration)]);
       }
     }).on('timeupdate', function () {
@@ -157,8 +163,10 @@ export default {
       const currentTime = this.currentTime;
       _calculateProgress.apply(this, [currentTime, currentDuration]);
     }).on('ended', function () {
-      $(this).attr('data-started', 'false').data('started', 'false');
-      trackIndex = 0;
+      $(this).attr('data-started', 'false').data({
+        started: 'false',
+        trackIndex: 0
+      });
       _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
     });
   }
