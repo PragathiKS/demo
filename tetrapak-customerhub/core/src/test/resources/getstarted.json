@@ -7,7 +7,7 @@
    "className":"abc",
    "jcr:lastModified":"Wed Feb 20 2019 07:49:52 GMT+0000",
    "sling:resourceType":"customerhub/components/content/getstarted",
-   "0": {
+   "item0-image": {
       "jcr:primaryType": "nt:unstructured",
       "fileReference": "/content/dam/customerhub/p3.PNG",
       "dwidth": "100",
@@ -22,7 +22,7 @@
       "sling:resourceType": "customerhub/components/content/image",
       "dheight": "200"
    },
-   "1": {
+   "item1-image": {
       "jcr:primaryType": "nt:unstructured",
       "fileReference": "/content/dam/customerhub/p1.PNG",
       "dwidth": "200",
