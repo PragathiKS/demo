@@ -28,4 +28,8 @@
             @include line-height($font-l, $font-baseline);
         }
     }
+
+    video {
+        width: 100%;
+    }
 }
