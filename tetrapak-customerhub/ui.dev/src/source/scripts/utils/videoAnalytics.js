@@ -103,6 +103,8 @@ function _onStateChange(thisIns, e) {
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
+    $this.attr('data-started', 'false').data('started', 'false');
+    trackIndex = 0;
     _trackVideoParameters.apply(this, ['end', Math.round(totalTime)]);
   }
 }
@@ -155,7 +157,8 @@ export default {
       const currentTime = this.currentTime;
       _calculateProgress.apply(this, [currentTime, currentDuration]);
     }).on('ended', function () {
-      trackIndex = _getIndex(this.currentTime, this.duration);
+      $(this).attr('data-started', 'false').data('started', 'false');
+      trackIndex = 0;
       _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
     });
   }
