@@ -294,7 +294,7 @@ public class GlobalUtil {
     }
 
     /**
-     * This method prepare image bean from image resource
+     * This method prepares image bean from image resource
      *
      * @param imageResource image resource
      * @return image bean
@@ -315,7 +315,7 @@ public class GlobalUtil {
     }
 
     /**
-     * This method is used to get image resource from inside a chile element of a multi-field
+     * This method is used to get image resource from inside a child element of a multi-field
      *
      * @param res Current Resource from a multi-field
      * @return image resource
