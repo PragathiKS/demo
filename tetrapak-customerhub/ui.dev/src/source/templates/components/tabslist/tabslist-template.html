@@ -1,6 +1,9 @@
 <sly data-sly-template.tabslist_template="${@ data, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
     <div class="tp-card tp-tablist clearfix" data-module="TabsList">
+      <code class="d-none js-tablist__config">
+          ${data.heading}
+      </code>
       <h2 class="tp-tablist__heading d-lg-none"> ${parentHeading}</h2>
       <div class="tp-tablist__events accordion" id="tp-tablist__events">
         <h2 class="tp-tablist__heading d-none d-lg-block"> ${parentHeading}</h2>
@@ -17,7 +20,7 @@
                       <div class="tp-tablist__event-detail-description">${tab.mediaDescriptionI18n @ context='html'}</div>
                       <sly data-sly-test.variant="${tab.linkType == 'button' ? 'primary' :'secondary'}">
                       <sly data-sly-use.btntext="/apps/commons/components/atoms/button-text/button-text.html"
-                         data-sly-call="${btntext.button_template @btnPath=tab.linkURL, btnText=tab.linkTextI18n ,btnTarget=tab.isExternal, variant=variant, customClasses='tp-tablist__event-detail-description-link'}" />
+                         data-sly-call="${btntext.button_template @btnPath=tab.linkURL, btnText=tab.linkTextI18n ,btnTarget=tab.isExternal, variant=variant, customClasses='tp-tablist__event-detail-description-link js-tablist__event-detail-description-link'}" />
                       </sly>
                   </div>
               </div>
