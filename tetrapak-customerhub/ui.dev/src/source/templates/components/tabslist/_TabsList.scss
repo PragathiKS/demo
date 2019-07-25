@@ -48,7 +48,7 @@
             @include margin-top($margin-md);
         }
 
-        &:last-of-type {
+        &:last-of-type.collapsed {
             border-bottom: 1px solid $color-mercury;
         }
 
@@ -75,9 +75,14 @@
 
         &:not(.collapsed) {
             @include padding($padding-md $margin-xl $padding-md $padding-md);
-            border: 0;
+
             color: $color-tundora;
+            border-top-color: transparent;
             background: $color-wild-sand;
+
+            &+div+button {
+                border-top-color: transparent;
+            }
 
             @media #{$desktop} {
                 @include padding($padding-md $margin-xl $padding-md $padding-l);

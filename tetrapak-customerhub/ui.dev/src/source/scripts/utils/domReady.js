@@ -11,6 +11,7 @@ import { isFirefox, isIE, isEdge } from './browserDetect';
 import { isTablet, isMobile } from '../common/common';
 import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
+import videoAnalytics from './videoAnalytics';
 
 export default {
   init() {
@@ -22,6 +23,8 @@ export default {
     responsive.init();
     // Custom dropdown
     customDropdown.init();
+    // Video analytics
+    videoAnalytics.init();
     // Body events
     if (isMobile() || isTablet()) {
       $body.addClass('is-touch');
