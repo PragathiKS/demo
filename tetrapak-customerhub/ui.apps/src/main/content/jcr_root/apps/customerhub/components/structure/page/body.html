@@ -19,6 +19,8 @@
         <input type="hidden" id="currencyMappingURL"
                value="/apps/settings/wcm/designs/customerhub/jsonData/currency_symbol.json"/>
     </sly>
-
 </div>
-<sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/customerhub/components/content/cookieconsent'}"/>
+<sly data-sly-use.cookiemodel="com.tetrapak.customerhub.core.models.CookieConsentModel"/>
+<sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">
+	<sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/customerhub/components/content/cookieconsent'}"/>
+</sly>
