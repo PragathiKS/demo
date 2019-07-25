@@ -47,6 +47,9 @@ public class HeaderModel {
                 mLogoLink = LinkUtil.getValidLink(resource, (String) map.get("mLogoLink"));
                 dLogoLink = LinkUtil.getValidLink(resource, (String) map.get("dLogoLink"));
                 Resource links = headerConfigurationResource.getChild("headerNavLinks");
+                if (null == links) {
+                    return;
+                }
                 Iterator<Resource> itr = links.listChildren();
                 while (itr.hasNext()) {
                     Resource res = itr.next();
@@ -57,6 +60,7 @@ public class HeaderModel {
                     headerBean.setTargetNew(StringUtils.equalsIgnoreCase("true", (String) valueMap.get("targetNew")));
                     headerNavLinks.add(headerBean);
                 }
+
             }
         }
     }

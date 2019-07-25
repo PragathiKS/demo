@@ -38,5 +38,35 @@
 			"damVideoPath": "/content/dam/customerhub/tetrapak_intro.mp4",
 			"thumbnailPath": "/content/dam/customerhub/thumbnail.png"
 		}
+	},
+	"item0-image": {
+		"jcr:primaryType": "nt:unstructured",
+		"fileReference": "/content/dam/customerhub/p3.PNG",
+		"dwidth": "100",
+		"jcr:lastModifiedBy": "admin",
+		"mwidthl": "200",
+		"mwidthp": "300",
+		"alt": "alt1",
+		"imageCrop": "390,57,947,473",
+		"jcr:lastModified": "Fri Jul 19 2019 12:43:09 GMT+0530",
+		"mheightl": "400",
+		"mheightp": "500",
+		"sling:resourceType": "customerhub/components/content/image",
+		"dheight": "200"
+	},
+	"item1-image": {
+		"jcr:primaryType": "nt:unstructured",
+		"fileReference": "/content/dam/customerhub/p2.PNG",
+		"dwidth": "100",
+		"jcr:lastModifiedBy": "admin",
+		"mwidthl": "100",
+		"mwidthp": "100",
+		"alt": "alt1",
+		"imageCrop": "390,57,947,473",
+		"jcr:lastModified": "Fri Jul 19 2019 12:43:09 GMT+0530",
+		"mheightl": "290",
+		"mheightp": "290",
+		"sling:resourceType": "customerhub/components/content/image",
+		"dheight": "200"
 	}
 }

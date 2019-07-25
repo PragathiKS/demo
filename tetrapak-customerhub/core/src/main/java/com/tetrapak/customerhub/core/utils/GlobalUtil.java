@@ -4,12 +4,14 @@ import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -289,6 +291,46 @@ public class GlobalUtil {
             return null;
         }
         return languagePageResource.adaptTo(Page.class);
+    }
+
+    /**
+     * This method prepares image bean from image resource
+     *
+     * @param imageResource image resource
+     * @return image bean
+     */
+    public static ImageBean getImageBean(Resource imageResource) {
+        ValueMap imgValueMap = imageResource.getValueMap();
+        ImageBean imageBean = new ImageBean();
+        imageBean.setImagePath((String) imgValueMap.get("fileReference"));
+        imageBean.setAltText((String) imgValueMap.get("alt"));
+        imageBean.setDheight((String) imgValueMap.get("dheight"));
+        imageBean.setDwidth((String) imgValueMap.get("dwidth"));
+        imageBean.setMheightl((String) imgValueMap.get("mheightl"));
+        imageBean.setMwidthl((String) imgValueMap.get("mwidthl"));
+        imageBean.setMheightp((String) imgValueMap.get("mheightp"));
+        imageBean.setMwidthp((String) imgValueMap.get("mwidthp"));
+        imageBean.setImageCrop((String) imgValueMap.get("imageCrop"));
+        return imageBean;
+    }
+
+    /**
+     * This method is used to get image resource from inside a child element of a multi-field
+     *
+     * @param res Current Resource from a multi-field
+     * @return image resource
+     */
+    public static Resource getImageResource(Resource res) {
+
+        Resource listResource = res.getParent();
+        if (null == listResource) {
+            return null;
+        }
+        Resource tabResource = listResource.getParent();
+        if (null == tabResource) {
+            return null;
+        }
+        return tabResource.getChild(res.getName() + "-image");
     }
 
 }

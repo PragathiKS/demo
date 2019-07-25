@@ -1,0 +1,161 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "admin",
+  "jcr:versionHistory": "f2bc57e2-5c45-440e-be86-79f70529d8fa",
+  "jcr:predecessors": [
+    "429da5cd-a72a-4d1a-9bee-6bf86bcf0d88"
+  ],
+  "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+  "jcr:baseVersion": "429da5cd-a72a-4d1a-9bee-6bf86bcf0d88",
+  "jcr:isCheckedOut": true,
+  "jcr:uuid": "aba8137c-84f7-410c-a2ac-fa4b28b67b5a",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "cq:lastReplicated": "Mon Mar 18 2019 09:52:07 GMT+0000",
+    "dam:assetState": "processed",
+    "cq:name": "p2.png",
+    "jcr:lastModified": "Mon Jul 08 2019 11:18:31 GMT+0530",
+    "cq:parentPath": "/content/dam/customerhub",
+    "dam:relativePath": "customerhub/p2.png",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+      "cq5dam.web.1280.1280.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Mon Jul 08 2019 11:18:28 GMT+0530",
+          ":jcr:data": 1352551
+        }
+      },
+      "cq5dam.thumbnail.48.48.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Mon Jul 08 2019 11:18:27 GMT+0530",
+          ":jcr:data": 3179
+        }
+      },
+      "cq5dam.thumbnail.140.100.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Mon Jul 08 2019 11:18:27 GMT+0530",
+          ":jcr:data": 22656
+        }
+      },
+      "original": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:mixinTypes": [
+            "dam:Thumbnails"
+          ],
+          "jcr:lastModifiedBy": "admin",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Mon Jul 08 2019 11:18:31 GMT+0530",
+          ":jcr:data": 1579307,
+          "dam:thumbnails": {
+            "jcr:primaryType": "nt:folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530"
+          }
+        }
+      },
+      "cq5dam.thumbnail.319.319.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Mon Jul 08 2019 11:18:09 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Mon Jul 08 2019 11:18:09 GMT+0530",
+          ":jcr:data": 103122
+        }
+      }
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "dam:Physicalheightininches": "5.7180352210998535",
+      "dam:Physicalwidthininches": "13.487896919250488",
+      "dam:Fileformat": "PNG",
+      "dam:Progressive": "no",
+      "tiff:ImageLength": 549,
+      "tiff:YResolution": "960000/10000",
+      "exif:ColorSpace": 65535,
+      "jcr:lastModifiedBy": "admin",
+      "xmp:CreatorTool": "Adobe Photoshop CC 2015.5 (Macintosh)",
+      "dam:extracted": "Mon Jul 08 2019 11:18:27 GMT+0530",
+      "dc:format": "image/png",
+      "dam:Bitsperpixel": 32,
+      "xmpMM:DocumentID": "xmp.did:c3ebde8b-90d8-4257-b445-dfddb4aace4f",
+      "dam:MIMEtype": "image/png",
+      "tiff:Orientation": 1,
+      "dam:Physicalwidthindpi": 96,
+      "dam:Physicalheightindpi": 96,
+      "tiff:ResolutionUnit": 2,
+      "xmpMM:OriginalDocumentID": "xmp.did:c3ebde8b-90d8-4257-b445-dfddb4aace4f",
+      "dc:modified": "Mon Jul 08 2019 11:18:30 GMT+0530",
+      "photoshop:ColorMode": 3,
+      "dam:Numberofimages": 1,
+      "tiff:XResolution": "960000/10000",
+      "exif:PixelYDimension": 549,
+      "xmp:MetadataDate": "Mon Feb 25 2019 11:15:27 GMT+0530",
+      "exif:PixelXDimension": 1295,
+      "jcr:lastModified": "Mon Jul 08 2019 11:18:30 GMT+0530",
+      "dam:Numberoftextualcomments": 0,
+      "xmpMM:InstanceID": "xmp.iid:c3ebde8b-90d8-4257-b445-dfddb4aace4f",
+      "xmp:ModifyDate": "Mon Feb 25 2019 11:15:27 GMT+0530",
+      "xmp:CreateDate": "Mon Feb 25 2019 05:43:14 GMT+0530",
+      "tiff:ImageWidth": 1295,
+      "dam:sha1": "1072b853416dc6bd89001737ef55c91364eae6b5",
+      "dam:size": 1579307,
+      "xmpMM:History": {
+        "1": {
+          "jcr:primaryType": "nt:unstructured",
+          "stEvt:action": "created",
+          "xmpNodeType": "xmpStruct",
+          "stEvt:softwareAgent": "Adobe Photoshop CC 2015.5 (Macintosh)",
+          "stEvt:when": "Mon Feb 25 2019 05:43:14 GMT+0530",
+          "stEvt:instanceID": "xmp.iid:c3ebde8b-90d8-4257-b445-dfddb4aace4f"
+        },
+        "jcr:primaryType": "nt:unstructured",
+        "xmpNodeType": "xmpArray",
+        "xmpArraySize": 1,
+        "xmpArrayType": "rdf:Seq"
+      }
+    }
+  }
+}
