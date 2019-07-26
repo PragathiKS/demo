@@ -80,35 +80,6 @@ public class FinancialResultsExcelServiceImplTest {
      * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
-    public void testGenerateFinancialsResultsExcelWithNoCustDataAndDocs() {
-        Results apiResponse = new Results();
-        Params paramRequest = new Params();
-        paramRequest.setStartDate("startDate");
-        paramRequest.setEndDate("endDate");
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
-    }
-
-    /**
-     * Test method for
-     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
-     */
-    @Test
-    public void testGenerateFinancialsResultsExcelWithEndDateNull() {
-        Results apiResponse = new Results();
-        Params paramRequest = new Params();
-        CustomerData customerData = new CustomerData();
-        customerData.setCustomerName("John Smith");
-        customerData.setCustomerNumber("key");
-        paramRequest.setCustomerData(customerData);
-        paramRequest.setStartDate("startDate");
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
-    }
-
-    /**
-     * Test method for
-     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
-     */
-    @Test
     public void testGenerateFinancialsResultsExcel() {
         Results apiResponse = new Results();
         Params paramRequest = new Params();
