@@ -86,8 +86,64 @@ public class FinancialResultsDownloadFileServletTest {
         MockSlingHttpServletResponse response = aemContext.response();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
-        parameters.put("params",
-                "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
+        parameters.put("params", "{\n" +
+                "   \"startDate\":\"2019-06-11\",\n" +
+                "   \"soaDate\":\"2019-07-26\",\n" +
+                "   \"endDate\":\"2019-07-26\",\n" +
+                "   \"customerData\":{\n" +
+                "      \"customerNumber\":\"0000321004\",\n" +
+                "      \"customerName\":\"Danone Tikvesli Gida ve Icecek\",\n" +
+                "      \"info\":{\n" +
+                "         \"accountNo\":\"0000321004\",\n" +
+                "         \"name1\":\"Danone Tikvesli Gida ve Icecek\",\n" +
+                "         \"name2\":\"San. ve Tic. A.S.\",\n" +
+                "         \"street\":\"Kucukbakkalkoy Mah.No:3 B Blok\",\n" +
+                "         \"city\":\"Istanbul\",\n" +
+                "         \"state\":\"\",\n" +
+                "         \"postalcode\":\"34805\",\n" +
+                "         \"country\":\"TR\"\n" +
+                "      },\n" +
+                "      \"key\":\"0000321004\",\n" +
+                "      \"desc\":\"0000321004 - Danone Tikvesli Gida ve Icecek - Istanbul\"\n" +
+                "   },\n" +
+                "   \"status\":{\n" +
+                "      \"key\":\"B\",\n" +
+                "      \"desc\":\"\"\n" +
+                "   },\n" +
+                "   \"documentType\":{\n" +
+                "      \"key\":\"INV\",\n" +
+                "      \"desc\":\"Invoice\"\n" +
+                "   },\n" +
+                "   \"documentNumber\":\"\",\n" +
+                "   \"statusList\":[\n" +
+                "      {\n" +
+                "         \"key\":\"C\",\n" +
+                "         \"desc\":\"Cleared\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"O\",\n" +
+                "         \"desc\":\"Open\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"B\",\n" +
+                "         \"desc\":\"Both\"\n" +
+                "      }\n" +
+                "   ],\n" +
+                "   \"documentTypeList\":[\n" +
+                "      {\n" +
+                "         \"key\":\"INV\",\n" +
+                "         \"desc\":\"Invoice\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"CM\",\n" +
+                "         \"desc\":\"Credit Memo\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"PMT\",\n" +
+                "         \"desc\":\"Payment\"\n" +
+                "      }\n" +
+                "   ]\n" +
+                "}\n");
         request.setParameterMap(parameters);
         
         FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
@@ -105,8 +161,64 @@ public class FinancialResultsDownloadFileServletTest {
         MockSlingHttpServletResponse response = aemContext.response();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
-        parameters.put("params",
-                "{\"startDate\":\"2018-05-24\",\"soaDate\":\"2018-05-25\",\"endDate\":\"2018-05-25\",\"customerData\":{\"customerNumber\":\"0000010050\",\"customerName\":\"Arla Foods AB1\",\"info\":{\"accountNo\":\"0000010050\",\"name1\":\"Arla Foods AB1\",\"name2\":\"Leverantorsreskontran\",\"street\":\"Arla Foods Bolagskontor\",\"city\":\"STOCKHOLM\",\"state\":\"012\",\"postalcode\":\"105 46\",\"country\":\"SE\"},\"key\":\"0000010050\",\"desc\":\"0000010050 - Arla Foods AB1 - STOCKHOLM\"},\"status\":{\"key\":\"B\",\"desc\":\"Both\"},\"documentType\":{\"key\":\"CM\",\"desc\":\"Credit Memo\"},\"documentNumber\":\"\"}");
+        parameters.put("params", "{\n" +
+                "   \"startDate\":\"2019-06-11\",\n" +
+                "   \"soaDate\":\"2019-07-26\",\n" +
+                "   \"endDate\":\"2019-07-26\",\n" +
+                "   \"customerData\":{\n" +
+                "      \"customerNumber\":\"0000321004\",\n" +
+                "      \"customerName\":\"Danone Tikvesli Gida ve Icecek\",\n" +
+                "      \"info\":{\n" +
+                "         \"accountNo\":\"0000321004\",\n" +
+                "         \"name1\":\"Danone Tikvesli Gida ve Icecek\",\n" +
+                "         \"name2\":\"San. ve Tic. A.S.\",\n" +
+                "         \"street\":\"Kucukbakkalkoy Mah.No:3 B Blok\",\n" +
+                "         \"city\":\"Istanbul\",\n" +
+                "         \"state\":\"\",\n" +
+                "         \"postalcode\":\"34805\",\n" +
+                "         \"country\":\"TR\"\n" +
+                "      },\n" +
+                "      \"key\":\"0000321004\",\n" +
+                "      \"desc\":\"0000321004 - Danone Tikvesli Gida ve Icecek - Istanbul\"\n" +
+                "   },\n" +
+                "   \"status\":{\n" +
+                "      \"key\":\"B\",\n" +
+                "      \"desc\":\"\"\n" +
+                "   },\n" +
+                "   \"documentType\":{\n" +
+                "      \"key\":\"INV\",\n" +
+                "      \"desc\":\"Invoice\"\n" +
+                "   },\n" +
+                "   \"documentNumber\":\"\",\n" +
+                "   \"statusList\":[\n" +
+                "      {\n" +
+                "         \"key\":\"C\",\n" +
+                "         \"desc\":\"Cleared\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"O\",\n" +
+                "         \"desc\":\"Open\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"B\",\n" +
+                "         \"desc\":\"Both\"\n" +
+                "      }\n" +
+                "   ],\n" +
+                "   \"documentTypeList\":[\n" +
+                "      {\n" +
+                "         \"key\":\"INV\",\n" +
+                "         \"desc\":\"Invoice\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"CM\",\n" +
+                "         \"desc\":\"Credit Memo\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "         \"key\":\"PMT\",\n" +
+                "         \"desc\":\"Payment\"\n" +
+                "      }\n" +
+                "   ]\n" +
+                "}\n");
         request.setParameterMap(parameters);
         
         FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext

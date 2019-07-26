@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -19,9 +20,11 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -40,16 +43,27 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     };
     private static final String I18N_PREFIX = "cuhu.financials.";
 
-    boolean showLocalData;
+    private boolean showLocalData;
+    private Map<String, String> statusTypeMap;
+    private Map<String, String> documentTypeMap;
+
+    private Map<String, String> getMapFromParams(List<DocumentType> docTypeList) {
+        Map<String, String> map = new HashMap<>();
+        for(DocumentType docType : docTypeList){
+            map.put(docType.getKey(), docType.getDesc());
+        }
+        return map;
+    }
 
     @Override
     public boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
                                                  Results apiResponse, Params paramRequest) {
-
         String customerName = (paramRequest != null && paramRequest.getCustomerData() != null)
                 ? paramRequest.getCustomerData().getCustomerName()
                 : StringUtils.EMPTY;
         if (paramRequest != null && null != apiResponse) {
+            statusTypeMap = getMapFromParams(paramRequest.getStatusList());
+            documentTypeMap = getMapFromParams(paramRequest.getDocumentTypeList());
             request = req;
             showLocalData = StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
             ExcelFileData excelReportData = new ExcelFileData();
@@ -209,8 +223,8 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                         ExcelUtil.NO_BORDER_TAG
                 });
                 data[counter][1] = addTagToContent(record.getDocumentNumber(), tags);
-                data[counter][2] = addTagToContent(record.getDocumentType(), tags);
-                data[counter][3] = addTagToContent("C".equalsIgnoreCase(record.getInvoiceStatus()) ? "Cleared" : "Open", tags);
+                data[counter][2] = addTagToContent(documentTypeMap.get(record.getDocumentType()), tags);
+                data[counter][3] = addTagToContent(statusTypeMap.get(record.getInvoiceStatus()), tags);
                 data[counter][4] = addTagToContent(record.getInvoiceReference(), tags);
                 data[counter][5] = addTagToContent(record.getPoNumber(), tags);
                 data[counter][6] = addTagToContent(record.getDocDate(), tags);

@@ -5,6 +5,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.financials.results.CustomerData;
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -80,35 +81,6 @@ public class FinancialResultsExcelServiceImplTest {
      * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
      */
     @Test
-    public void testGenerateFinancialsResultsExcelWithNoCustDataAndDocs() {
-        Results apiResponse = new Results();
-        Params paramRequest = new Params();
-        paramRequest.setStartDate("startDate");
-        paramRequest.setEndDate("endDate");
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
-    }
-
-    /**
-     * Test method for
-     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
-     */
-    @Test
-    public void testGenerateFinancialsResultsExcelWithEndDateNull() {
-        Results apiResponse = new Results();
-        Params paramRequest = new Params();
-        CustomerData customerData = new CustomerData();
-        customerData.setCustomerName("John Smith");
-        customerData.setCustomerNumber("key");
-        paramRequest.setCustomerData(customerData);
-        paramRequest.setStartDate("startDate");
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
-    }
-
-    /**
-     * Test method for
-     * {@link FinancialResultsExcelServiceImpl#generateFinancialResultsExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.financials.results.Results, com.tetrapak.customerhub.core.beans.financials.results.Params)}.
-     */
-    @Test
     public void testGenerateFinancialsResultsExcel() {
         Results apiResponse = new Results();
         Params paramRequest = new Params();
@@ -139,6 +111,15 @@ public class FinancialResultsExcelServiceImplTest {
         summary.setTotal("total");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
+        List<DocumentType> statusList = new ArrayList<>();
+        DocumentType docType = new DocumentType();
+        docType.setKey("key");
+        docType.setDesc("desc");
+        statusList.add(docType);
+        List<DocumentType> documentTypeList = new ArrayList<>();
+        documentTypeList.add(docType);
+        paramRequest.setStatusList(statusList);
+        paramRequest.setDocumentTypeList(documentTypeList);
         assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
@@ -181,6 +162,15 @@ public class FinancialResultsExcelServiceImplTest {
         summary.setTotal("total2");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
+        List<DocumentType> statusList = new ArrayList<>();
+        DocumentType docType = new DocumentType();
+        docType.setKey("key");
+        docType.setDesc("desc");
+        statusList.add(docType);
+        List<DocumentType> documentTypeList = new ArrayList<>();
+        documentTypeList.add(docType);
+        paramRequest.setStatusList(statusList);
+        paramRequest.setDocumentTypeList(documentTypeList);
         assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
