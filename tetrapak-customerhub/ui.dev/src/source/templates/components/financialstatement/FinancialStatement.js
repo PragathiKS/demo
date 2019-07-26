@@ -120,6 +120,8 @@ function _trackAnalytics(type) {
  * @param {object} data Financial data
  */
 function _processFinancialStatementData(data) {
+  this.cache.statusList = data.status;
+  this.cache.documentTypeList = data.documentType;
   $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
@@ -389,6 +391,8 @@ function _downloadPdfExcel(...args) {
     desc: docTypeDesc
   };
   paramsData.documentNumber = docNumber;
+  paramsData.statusList = this.cache.statusList;
+  paramsData.documentTypeList = this.cache.documentTypeList;
   auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
     fileWrapper({
