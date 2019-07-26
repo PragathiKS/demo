@@ -329,7 +329,6 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     }
 
     private Table createRecordTable(SlingHttpServletRequest request, List<Record> records, int start, int end) {
-        boolean showLocalData = StringUtils.isNotBlank(records.get(0).getSalesLocalData());
         List<Column> columns = new ArrayList<>();
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "documentNumber"), 60));
@@ -346,15 +345,10 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "dueDate"), 60));
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"), 50));
-        if (showLocalData) {
-            columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                    + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "salesLocalData"), 60));
-        }
         columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
                 + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "orgAmount"), 10));
 
-        int columnCount = showLocalData ? 9 : 8;
-        String[][] content = new String[end - start + 1][columnCount];
+        String[][] content = new String[end - start + 1][8];
 
         for (int i = 0; i < end - start + 1; i++) {
             content[i][0] = records.get(i).getDocumentNumber();
@@ -364,12 +358,7 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
             content[i][4] = records.get(i).getDocDate();
             content[i][5] = records.get(i).getDueDate();
             content[i][6] = records.get(i).getCurrency();
-            if (showLocalData) {
-                content[i][7] = records.get(i).getSalesLocalData();
-                content[i][8] = records.get(i).getOrgAmount();
-            } else {
-                content[i][7] = records.get(i).getOrgAmount();
-            }
+            content[i][7] = records.get(i).getOrgAmount();
         }
         return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
     }
