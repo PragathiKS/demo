@@ -5,6 +5,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.financials.results.CustomerData;
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -110,6 +111,15 @@ public class FinancialResultsExcelServiceImplTest {
         summary.setTotal("total");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
+        List<DocumentType> statusList = new ArrayList<>();
+        DocumentType docType = new DocumentType();
+        docType.setKey("key");
+        docType.setDesc("desc");
+        statusList.add(docType);
+        List<DocumentType> documentTypeList = new ArrayList<>();
+        documentTypeList.add(docType);
+        paramRequest.setStatusList(statusList);
+        paramRequest.setDocumentTypeList(documentTypeList);
         assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
@@ -152,6 +162,15 @@ public class FinancialResultsExcelServiceImplTest {
         summary.setTotal("total2");
         summaryList.add(summary);
         apiResponse.setSummary(summaryList);
+        List<DocumentType> statusList = new ArrayList<>();
+        DocumentType docType = new DocumentType();
+        docType.setKey("key");
+        docType.setDesc("desc");
+        statusList.add(docType);
+        List<DocumentType> documentTypeList = new ArrayList<>();
+        documentTypeList.add(docType);
+        paramRequest.setStatusList(statusList);
+        paramRequest.setDocumentTypeList(documentTypeList);
         assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
