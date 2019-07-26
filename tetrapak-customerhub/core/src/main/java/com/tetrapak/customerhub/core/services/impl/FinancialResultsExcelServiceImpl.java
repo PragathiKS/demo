@@ -40,6 +40,8 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     };
     private static final String I18N_PREFIX = "cuhu.financials.";
 
+    boolean showLocalData;
+
     @Override
     public boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
                                                  Results apiResponse, Params paramRequest) {
@@ -49,6 +51,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                 : StringUtils.EMPTY;
         if (paramRequest != null && null != apiResponse) {
             request = req;
+            showLocalData = StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
             ExcelFileData excelReportData = new ExcelFileData();
             String dateRange = paramRequest.getStartDate() + (paramRequest.getEndDate() == null ? StringUtils.EMPTY
                     : " " + "-" + " " + paramRequest.getEndDate());
@@ -92,7 +95,9 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         columnNames[0][12] = addTagToContent(getI18nVal(COLFIELDS[11]), tags);
         columnNames[0][13] = addTagToContent(getI18nVal(COLFIELDS[12]), tags);
         columnNames[0][14] = addTagToContent(getI18nVal(COLFIELDS[13]), tags);
-        columnNames[0][15] = addTagToContent(getI18nVal(COLFIELDS[14]), tags);
+        if (showLocalData) {
+            columnNames[0][15] = addTagToContent(getI18nVal(COLFIELDS[14]), tags);
+        }
         return columnNames;
     }
 
@@ -180,7 +185,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
             String[][] lastRow = {
                     setTotalAmountRow(doc.getTotalAmount())
             };
-            data = ArrayUtils.addAll(data, firstRow);
+            data = firstRow.clone();
             data = ArrayUtils.addAll(data, middleRows);
             data = ArrayUtils.addAll(data, lastRow);
         }
@@ -205,7 +210,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                 });
                 data[counter][1] = addTagToContent(record.getDocumentNumber(), tags);
                 data[counter][2] = addTagToContent(record.getDocumentType(), tags);
-                data[counter][3] = addTagToContent(record.getInvoiceStatus(), tags);
+                data[counter][3] = addTagToContent("C".equalsIgnoreCase(record.getInvoiceStatus()) ? "Cleared" : "Open", tags);
                 data[counter][4] = addTagToContent(record.getInvoiceReference(), tags);
                 data[counter][5] = addTagToContent(record.getPoNumber(), tags);
                 data[counter][6] = addTagToContent(record.getDocDate(), tags);
@@ -221,8 +226,9 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                 });
                 data[counter][13] = addTagToContent(record.getSalesOffice(), tags);
                 data[counter][14] = addTagToContent(record.getCompanyCode(), tags);
-                data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
-
+                if (showLocalData) {
+                    data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
+                }
                 counter++;
             }
         }
