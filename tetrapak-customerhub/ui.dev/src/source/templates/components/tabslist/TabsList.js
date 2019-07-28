@@ -4,7 +4,8 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
 function _renderFirstTab() {
-  this.root.find('.js-tablist__events-sidesection').html($('#Event0').html());
+  const { componentId } = this.cache;
+  this.root.find('.js-tablist__events-sidesection').html($(`#tab_${componentId}_0`).html());
 }
 /**
  * Fire analytics on click of
@@ -37,6 +38,7 @@ function _trackAnalytics(type, el) {
 
   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
 }
+
 class TabsList {
   constructor({ el }) {
     this.root = $(el);
@@ -44,6 +46,7 @@ class TabsList {
   cache = {};
   initCache() {
     this.cache.selectedTabIndex = 0;
+    this.cache.componentId = this.root.find('#tabComponentId').val();
     this.cache.heading = $.trim(this.root.find('.js-tablist__heading').text());
   }
   bindEvents() {
