@@ -1,15 +1,19 @@
 .tp-tablist {
+    &__events {
+        padding: 0;
+
+        @media #{$desktop} {
+            @include padding-right($padding-l);
+            padding-left: 0;
+        }
+    }
+
     &__events-sidesection {
         @include padding($padding-l);
         background: $color-wild-sand;
-        width: 60%;
-        float: left;
-    }
 
-    &__events {
         @media #{$desktop} {
-            float: left;
-            width: 40%;
+            border-radius: $border-radius;
         }
     }
 
@@ -33,16 +37,25 @@
     }
 
     &__event {
-        @include padding($padding-md $margin-xl $padding-md 0);
         @include line-height($font-l, $font-baseline);
-        @include border-xs(transparent);
         display: block;
         color: $color-congress-blue;
         background-color: transparent;
         border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
+        margin-top: -1px;
         position: relative;
         width: 100%;
         text-align: left;
+
+        div {
+            @include padding($padding-md $margin-xl $padding-md $padding-md);
+
+            @media #{$desktop} {
+                @include padding($padding-md $margin-xl $padding-md $padding-l);
+                @include margin-right(-$margin-l);
+            }
+        }
 
         &:first-of-type {
             @include margin-top($margin-md);
@@ -64,6 +77,10 @@
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
 
+            @media #{$desktop} {
+                right: 0;
+            }
+
             &::before {
                 vertical-align: top;
 
@@ -73,19 +90,33 @@
             }
         }
 
-        &:not(.collapsed) {
-            @include padding($padding-md $margin-xl $padding-md $padding-md);
+        &.active {
+            z-index: $zindex-p;
 
-            color: $color-tundora;
-            border-top-color: transparent;
-            background: $color-wild-sand;
-
-            &+div+button {
-                border-top-color: transparent;
-            }
+            border-color: $color-wild-sand;
 
             @media #{$desktop} {
-                @include padding($padding-md $margin-xl $padding-md $padding-l);
+                border-color: $color-white;
+            }
+
+            div {
+                @media #{$desktop} {
+                    color: $color-tundora;
+                    background: $color-wild-sand;
+                }
+            }
+        }
+
+        &.collapsed {
+            @media #{$mobile} {
+                border-color: $color-mercury;
+            }
+        }
+
+        &:not(.collapsed) {
+            @media #{$mobile} {
+                color: $color-tundora;
+                background: $color-wild-sand;
             }
 
             .icon-Chevron_Down {
@@ -95,10 +126,6 @@
                     transform: rotate(-180deg);
                 }
             }
-        }
-
-        @media #{$desktop} {
-            @include padding($padding-md $margin-xl $padding-md $padding-l);
         }
     }
 
@@ -128,7 +155,11 @@
         }
     }
 
-    &__description-link {
-        white-space: normal;
+    &__event-detail-description-link {
+        @include margin-top($margin-md);
+
+        @media #{$desktop} {
+            @include margin-top($margin-l);
+        }
     }
 }
