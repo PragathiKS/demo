@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { pauseVideosByReference } from '../../../scripts/utils/videoAnalytics';
 
 
 function _renderFirstTab() {
@@ -63,6 +64,9 @@ class TabsList {
       })
       .on('click', '.js-tablist__event-detail-description-link', function () {
         $this.trackAnalytics('descriptionLink', this);
+      })
+      .on('hidden.bs.collapse', '.collapse', function () {
+        pauseVideosByReference($(this).find('.is-playing'));
       });
   }
   showTabDetail = (el) => {

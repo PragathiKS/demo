@@ -162,4 +162,8 @@
             @include margin-top($margin-l);
         }
     }
+
+    video {
+        width: 100%;
+    }
 }
