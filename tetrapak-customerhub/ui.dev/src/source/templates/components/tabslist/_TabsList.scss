@@ -119,7 +119,7 @@
     }
 
     &__event-detail-description p {
-        @include font-size($font-normal);
+        @include font-size($font-baseline);
         @include line-height($font-m-xl, $font-normal);
         @include margin-bottom($margin-md);
 

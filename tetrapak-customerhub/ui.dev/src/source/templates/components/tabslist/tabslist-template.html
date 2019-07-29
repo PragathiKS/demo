@@ -9,7 +9,7 @@
         <h2 class="tp-tablist__heading d-none d-lg-block"> ${parentHeading}</h2>
         <sly data-sly-list.tab="${data.tabs}">
               <button type="button" class="tp-tablist__event js-tablist__event ${tabList.index == 0 ? '' : 'collapsed'}" data-toggle="collapse" data-target="#Event${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
-                  <div class="tp-tablist__event-title bold">${tab.tabTitleI18n @i18n}</div>
+                  <div class="tp-tablist__event-title semi-bold">${tab.tabTitleI18n @i18n}</div>
                   <i class="icon icon-Chevron_Down"></i>
               </button>
               <div class="tp-tablist__event-detail-wrapper d-lg-none collapse ${tabList.index == 0 ? 'show' : ''}" id="Event${tabList.index}" data-parent="#tp-tablist__events">
