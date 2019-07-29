@@ -89,10 +89,10 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     }
 
     private boolean getShowLocalData(Results apiResponse) {
-        if(null == apiResponse.getDocuments().get(0)){
+        if(null == apiResponse.getDocuments() || apiResponse.getDocuments().isEmpty()){
             return false;
         }
-        if(null == apiResponse.getDocuments().get(0).getRecords().get(0)){
+        if(null == apiResponse.getDocuments().get(0).getRecords() || apiResponse.getDocuments().get(0).getRecords().isEmpty()){
             return false;
         }
         return StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
