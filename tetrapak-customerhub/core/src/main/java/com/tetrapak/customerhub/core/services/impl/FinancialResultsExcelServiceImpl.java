@@ -36,6 +36,7 @@ import java.util.Set;
 public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsExcelServiceImpl.class);
+    private static final String WHITE = "<white>";
     private SlingHttpServletRequest request;
     private static final String[] COLFIELDS = {
             "documentNumber", "documentType", "invoiceStatus", "invoiceReference", "poNumber", "docDate", "dueDate", "clearedDate",
@@ -65,7 +66,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
             statusTypeMap = getMapFromParams(paramRequest.getStatusList());
             documentTypeMap = getMapFromParams(paramRequest.getDocumentTypeList());
             request = req;
-            showLocalData = StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
+            showLocalData = getShowLocalData(apiResponse);
             ExcelFileData excelReportData = new ExcelFileData();
             String dateRange = paramRequest.getStartDate() + (paramRequest.getEndDate() == null ? StringUtils.EMPTY
                     : " " + "-" + " " + paramRequest.getEndDate());
@@ -87,30 +88,40 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         return false;
     }
 
+    private boolean getShowLocalData(Results apiResponse) {
+        if(null == apiResponse.getDocuments().get(0)){
+            return false;
+        }
+        if(null == apiResponse.getDocuments().get(0).getRecords().get(0)){
+            return false;
+        }
+        return StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
+    }
+
     private String[][] getColumnHeaderArray() {
         String[][] columnNames = new String[1][16];
         String[] tags = new String[]{
                 ExcelUtil.DARK_GREY_BG_TAG
         };
-        columnNames[0][0] = addTagToContent("<white>" + getI18nVal(COLFIELDS[0]), tags);
+        columnNames[0][0] = addTagToContent(WHITE + getI18nVal(COLFIELDS[0]), tags);
         columnNames[0][1] = addTagToContent(StringUtils.EMPTY, new String[]{
                 ExcelUtil.MERGE_2_CELLS_TAG, ExcelUtil.DARK_GREY_BG_TAG
         });
-        columnNames[0][2] = addTagToContent("<white>" + getI18nVal(COLFIELDS[1]), tags);
-        columnNames[0][3] = addTagToContent("<white>" + getI18nVal(COLFIELDS[2]), tags);
-        columnNames[0][4] = addTagToContent("<white>" + getI18nVal(COLFIELDS[3]), tags);
-        columnNames[0][5] = addTagToContent("<white>" + getI18nVal(COLFIELDS[4]), tags);
-        columnNames[0][6] = addTagToContent("<white>" + getI18nVal(COLFIELDS[5]), tags);
-        columnNames[0][7] = addTagToContent("<white>" + getI18nVal(COLFIELDS[6]), tags);
-        columnNames[0][8] = addTagToContent("<white>" + getI18nVal(COLFIELDS[7]), tags);
-        columnNames[0][9] = addTagToContent("<white>" + getI18nVal(COLFIELDS[8]), tags);
-        columnNames[0][10] = addTagToContent("<white>" + getI18nVal(COLFIELDS[9]), tags);
-        columnNames[0][11] = addTagToContent("<white>" + getI18nVal(COLFIELDS[10]), tags);
-        columnNames[0][12] = addTagToContent("<white>" + getI18nVal(COLFIELDS[11]), tags);
-        columnNames[0][13] = addTagToContent("<white>" + getI18nVal(COLFIELDS[12]), tags);
-        columnNames[0][14] = addTagToContent("<white>" + getI18nVal(COLFIELDS[13]), tags);
+        columnNames[0][2] = addTagToContent(WHITE + getI18nVal(COLFIELDS[1]), tags);
+        columnNames[0][3] = addTagToContent(WHITE + getI18nVal(COLFIELDS[2]), tags);
+        columnNames[0][4] = addTagToContent(WHITE + getI18nVal(COLFIELDS[3]), tags);
+        columnNames[0][5] = addTagToContent(WHITE + getI18nVal(COLFIELDS[4]), tags);
+        columnNames[0][6] = addTagToContent(WHITE + getI18nVal(COLFIELDS[5]), tags);
+        columnNames[0][7] = addTagToContent(WHITE + getI18nVal(COLFIELDS[6]), tags);
+        columnNames[0][8] = addTagToContent(WHITE + getI18nVal(COLFIELDS[7]), tags);
+        columnNames[0][9] = addTagToContent(WHITE + getI18nVal(COLFIELDS[8]), tags);
+        columnNames[0][10] = addTagToContent(WHITE + getI18nVal(COLFIELDS[9]), tags);
+        columnNames[0][11] = addTagToContent(WHITE + getI18nVal(COLFIELDS[10]), tags);
+        columnNames[0][12] = addTagToContent(WHITE + getI18nVal(COLFIELDS[11]), tags);
+        columnNames[0][13] = addTagToContent(WHITE + getI18nVal(COLFIELDS[12]), tags);
+        columnNames[0][14] = addTagToContent(WHITE + getI18nVal(COLFIELDS[13]), tags);
         if (showLocalData) {
-            columnNames[0][15] = addTagToContent("<white>" + getI18nVal(COLFIELDS[14]), tags);
+            columnNames[0][15] = addTagToContent(WHITE + getI18nVal(COLFIELDS[14]), tags);
         }
         return columnNames;
     }
@@ -120,7 +131,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
      * @return String array
      */
     private String[][] getSummaryRow(List<Summary> summaryList) {
-        String[][] summaryRow = new String[1][10];
+        String[][] summaryRow = new String[1][15];
         String[] tags = new String[]{
                 ExcelUtil.LIME_BG_TAG
         };
@@ -136,7 +147,12 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         summaryRow[0][6] = addTagToContent(StringUtils.EMPTY, tags);
         summaryRow[0][7] = addTagToContent(StringUtils.EMPTY, tags);
         summaryRow[0][8] = addTagToContent(StringUtils.EMPTY, tags);
-        summaryRow[0][9] = addTagToContent(totalSummary, tags);
+        summaryRow[0][9] = addTagToContent(StringUtils.EMPTY, tags);
+        summaryRow[0][10] = addTagToContent(StringUtils.EMPTY, tags);
+        summaryRow[0][11] = addTagToContent(StringUtils.EMPTY, tags);
+        summaryRow[0][12] = addTagToContent(StringUtils.EMPTY, tags);
+        summaryRow[0][13] = addTagToContent(StringUtils.EMPTY, tags);
+        summaryRow[0][14] = addTagToContent(totalSummary, tags);
 
         return summaryRow;
     }
