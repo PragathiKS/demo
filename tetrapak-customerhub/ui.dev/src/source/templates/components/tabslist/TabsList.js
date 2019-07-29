@@ -65,14 +65,14 @@ class TabsList {
       .on('click', '.js-tablist__event-detail-description-link', function () {
         $this.trackAnalytics('descriptionLink', this);
       })
-      .on('hidden.bs.collapse', '.collapse', function () {
-        pauseVideosByReference($(this).find('.is-playing'));
-      });
+      .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
   }
   showTabDetail = (el) => {
     this.root.find('.js-tablist__events-sidesection').html($(el).html());
   }
-
+  pauseVideoIfExists() {
+    pauseVideosByReference($(this).find('.is-playing'));
+  }
   renderFirstTab = () => _renderFirstTab.call(this);
   trackAnalytics = (type, el) => _trackAnalytics.apply(this, [type, el]);
   init() {
