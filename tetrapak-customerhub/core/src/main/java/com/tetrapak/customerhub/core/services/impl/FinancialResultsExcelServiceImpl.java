@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -19,9 +20,11 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -36,19 +39,33 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     private SlingHttpServletRequest request;
     private static final String[] COLFIELDS = {
             "documentNumber", "documentType", "invoiceStatus", "invoiceReference", "poNumber", "docDate", "dueDate", "clearedDate",
-            "currency", "dueDays", "orgAmount", "remAmount", "salesOffice", "companyCode", "salesLocalData"
+            "currency", "dueDays", "remAmount", "salesOffice", "companyCode", "orgAmount", "salesLocalData"
     };
     private static final String I18N_PREFIX = "cuhu.financials.";
+
+    private boolean showLocalData;
+    private Map<String, String> statusTypeMap;
+    private Map<String, String> documentTypeMap;
+
+    private Map<String, String> getMapFromParams(List<DocumentType> docTypeList) {
+        Map<String, String> map = new HashMap<>();
+        for (DocumentType docType : docTypeList) {
+            map.put(docType.getKey(), docType.getDesc());
+        }
+        return map;
+    }
 
     @Override
     public boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
                                                  Results apiResponse, Params paramRequest) {
-
         String customerName = (paramRequest != null && paramRequest.getCustomerData() != null)
                 ? paramRequest.getCustomerData().getCustomerName()
                 : StringUtils.EMPTY;
         if (paramRequest != null && null != apiResponse) {
+            statusTypeMap = getMapFromParams(paramRequest.getStatusList());
+            documentTypeMap = getMapFromParams(paramRequest.getDocumentTypeList());
             request = req;
+            showLocalData = StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
             ExcelFileData excelReportData = new ExcelFileData();
             String dateRange = paramRequest.getStartDate() + (paramRequest.getEndDate() == null ? StringUtils.EMPTY
                     : " " + "-" + " " + paramRequest.getEndDate());
@@ -75,24 +92,26 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         String[] tags = new String[]{
                 ExcelUtil.DARK_GREY_BG_TAG
         };
-        columnNames[0][0] = addTagToContent(getI18nVal(COLFIELDS[0]), tags);
+        columnNames[0][0] = addTagToContent("<white>" + getI18nVal(COLFIELDS[0]), tags);
         columnNames[0][1] = addTagToContent(StringUtils.EMPTY, new String[]{
                 ExcelUtil.MERGE_2_CELLS_TAG, ExcelUtil.DARK_GREY_BG_TAG
         });
-        columnNames[0][2] = addTagToContent(getI18nVal(COLFIELDS[1]), tags);
-        columnNames[0][3] = addTagToContent(getI18nVal(COLFIELDS[2]), tags);
-        columnNames[0][4] = addTagToContent(getI18nVal(COLFIELDS[3]), tags);
-        columnNames[0][5] = addTagToContent(getI18nVal(COLFIELDS[4]), tags);
-        columnNames[0][6] = addTagToContent(getI18nVal(COLFIELDS[5]), tags);
-        columnNames[0][7] = addTagToContent(getI18nVal(COLFIELDS[6]), tags);
-        columnNames[0][8] = addTagToContent(getI18nVal(COLFIELDS[7]), tags);
-        columnNames[0][9] = addTagToContent(getI18nVal(COLFIELDS[8]), tags);
-        columnNames[0][10] = addTagToContent(getI18nVal(COLFIELDS[9]), tags);
-        columnNames[0][11] = addTagToContent(getI18nVal(COLFIELDS[10]), tags);
-        columnNames[0][12] = addTagToContent(getI18nVal(COLFIELDS[11]), tags);
-        columnNames[0][13] = addTagToContent(getI18nVal(COLFIELDS[12]), tags);
-        columnNames[0][14] = addTagToContent(getI18nVal(COLFIELDS[13]), tags);
-        columnNames[0][15] = addTagToContent(getI18nVal(COLFIELDS[14]), tags);
+        columnNames[0][2] = addTagToContent("<white>" + getI18nVal(COLFIELDS[1]), tags);
+        columnNames[0][3] = addTagToContent("<white>" + getI18nVal(COLFIELDS[2]), tags);
+        columnNames[0][4] = addTagToContent("<white>" + getI18nVal(COLFIELDS[3]), tags);
+        columnNames[0][5] = addTagToContent("<white>" + getI18nVal(COLFIELDS[4]), tags);
+        columnNames[0][6] = addTagToContent("<white>" + getI18nVal(COLFIELDS[5]), tags);
+        columnNames[0][7] = addTagToContent("<white>" + getI18nVal(COLFIELDS[6]), tags);
+        columnNames[0][8] = addTagToContent("<white>" + getI18nVal(COLFIELDS[7]), tags);
+        columnNames[0][9] = addTagToContent("<white>" + getI18nVal(COLFIELDS[8]), tags);
+        columnNames[0][10] = addTagToContent("<white>" + getI18nVal(COLFIELDS[9]), tags);
+        columnNames[0][11] = addTagToContent("<white>" + getI18nVal(COLFIELDS[10]), tags);
+        columnNames[0][12] = addTagToContent("<white>" + getI18nVal(COLFIELDS[11]), tags);
+        columnNames[0][13] = addTagToContent("<white>" + getI18nVal(COLFIELDS[12]), tags);
+        columnNames[0][14] = addTagToContent("<white>" + getI18nVal(COLFIELDS[13]), tags);
+        if (showLocalData) {
+            columnNames[0][15] = addTagToContent("<white>" + getI18nVal(COLFIELDS[14]), tags);
+        }
         return columnNames;
     }
 
@@ -180,7 +199,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
             String[][] lastRow = {
                     setTotalAmountRow(doc.getTotalAmount())
             };
-            data = ArrayUtils.addAll(data, firstRow);
+            data = firstRow.clone();
             data = ArrayUtils.addAll(data, middleRows);
             data = ArrayUtils.addAll(data, lastRow);
         }
@@ -204,8 +223,8 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                         ExcelUtil.NO_BORDER_TAG
                 });
                 data[counter][1] = addTagToContent(record.getDocumentNumber(), tags);
-                data[counter][2] = addTagToContent(record.getDocumentType(), tags);
-                data[counter][3] = addTagToContent(record.getInvoiceStatus(), tags);
+                data[counter][2] = addTagToContent(documentTypeMap.get(record.getDocumentType()), tags);
+                data[counter][3] = addTagToContent(statusTypeMap.get(record.getInvoiceStatus()), tags);
                 data[counter][4] = addTagToContent(record.getInvoiceReference(), tags);
                 data[counter][5] = addTagToContent(record.getPoNumber(), tags);
                 data[counter][6] = addTagToContent(record.getDocDate(), tags);
@@ -213,16 +232,17 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
                 data[counter][8] = addTagToContent(record.getClearedDate(), tags);
                 data[counter][9] = addTagToContent(record.getCurrency(), tags);
                 data[counter][10] = addTagToContent(record.getDueDays(), tags);
-                data[counter][11] = addTagToContent(record.getOrgAmount(), new String[]{
+                data[counter][11] = addTagToContent(record.getRemAmount(), new String[]{
                         ExcelUtil.RIGHT_ALIGN_TAG
                 });
-                data[counter][12] = addTagToContent(record.getRemAmount(), new String[]{
+                data[counter][12] = addTagToContent(record.getSalesOffice(), tags);
+                data[counter][13] = addTagToContent(record.getCompanyCode(), tags);
+                data[counter][14] = addTagToContent(record.getOrgAmount(), new String[]{
                         ExcelUtil.RIGHT_ALIGN_TAG
                 });
-                data[counter][13] = addTagToContent(record.getSalesOffice(), tags);
-                data[counter][14] = addTagToContent(record.getCompanyCode(), tags);
-                data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
-
+                if (showLocalData) {
+                    data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
+                }
                 counter++;
             }
         }
@@ -237,7 +257,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         String[] tags = new String[]{
                 ExcelUtil.LIME_BG_TAG
         };
-        String[] totalAmountRow = new String[10];
+        String[] totalAmountRow = new String[15];
         totalAmountRow[0] = addTagToContent(StringUtils.EMPTY, new String[]{
                 ExcelUtil.NO_BORDER_TAG
         });
@@ -249,7 +269,12 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         totalAmountRow[6] = addTagToContent(StringUtils.EMPTY, tags);
         totalAmountRow[7] = addTagToContent(StringUtils.EMPTY, tags);
         totalAmountRow[8] = addTagToContent(StringUtils.EMPTY, tags);
-        totalAmountRow[9] = addTagToContent(totalAmount, tags);
+        totalAmountRow[9] = addTagToContent(StringUtils.EMPTY, tags);
+        totalAmountRow[10] = addTagToContent(StringUtils.EMPTY, tags);
+        totalAmountRow[11] = addTagToContent(StringUtils.EMPTY, tags);
+        totalAmountRow[12] = addTagToContent(StringUtils.EMPTY, tags);
+        totalAmountRow[13] = addTagToContent(StringUtils.EMPTY, tags);
+        totalAmountRow[14] = addTagToContent(totalAmount, tags);
         return totalAmountRow;
     }
 

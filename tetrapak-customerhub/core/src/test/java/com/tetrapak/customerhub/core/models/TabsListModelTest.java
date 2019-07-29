@@ -54,6 +54,9 @@ public class TabsListModelTest {
 		assertTrue("Heading is not empty", heading.length() > 0);
 		Assert.assertEquals("heading","Heading For the Tabs List Component", heading);
 		
+		assertNotNull("Component ID is not null", tabsListModel.getComponentId());
+		assertTrue("Component ID is not empty", tabsListModel.getComponentId().length() > 0);
+		
 		assertFalse("tabs",tabsListModel.getTabs().isEmpty());
 		assertFalse("image list",tabsListModel.getImageList().isEmpty());
 		List<TabsListBean> tabs = tabsListModel.getTabs();
