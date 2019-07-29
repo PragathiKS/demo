@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
+import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
@@ -35,7 +36,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Impl class for Financial Results PDF Service
@@ -50,6 +53,15 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     private static final int MARGIN = 20;
     private FinancialStatementModel financialStatementModel;
     private static final String CUHU_FINANCIAL_PREFIX = "cuhu.financials.";
+    private Map<String, String> statusTypeMap;
+
+    private Map<String, String> getMapFromParams(List<DocumentType> docTypeList) {
+        Map<String, String> map = new HashMap<>();
+        for (DocumentType docType : docTypeList) {
+            map.put(docType.getKey(), docType.getDesc());
+        }
+        return map;
+    }
 
     /**
      * @param request            SlingHttpServletRequest
@@ -66,6 +78,9 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         String customerName = paramRequest.getCustomerData().getCustomerName();
         String startDate = paramRequest.getStartDate();
         String endDate = paramRequest.getEndDate();
+        if(null != paramRequest) {
+            statusTypeMap = getMapFromParams(paramRequest.getStatusList());
+        }
         InputStream in1 = null;
         InputStream in2 = null;
         InputStream image1 = null;
@@ -203,10 +218,10 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
     private Table createAccountServiceTable(SlingHttpServletRequest request, Params paramRequest) {
         List<Column> columns = new ArrayList<>();
-        columns.add(new Column(paramRequest.getStatus().getDesc(), 90));
+        columns.add(new Column(statusTypeMap.get(paramRequest.getStatus().getKey()), 90));
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
-            columns.add(new Column(paramRequest.getEndDate() + " " + CustomerHubConstants.HYPHEN_STRING + " "
-                    + paramRequest.getStartDate(), 60));
+            columns.add(new Column(paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING + " "
+                    + paramRequest.getEndDate(), 60));
         } else if (paramRequest.getStartDate() != null) {
             columns.add(new Column(paramRequest.getStartDate(), 60));
         } else {

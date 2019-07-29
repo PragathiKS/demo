@@ -68,17 +68,11 @@ public class FinancialResultsDownloadFileServlet extends SlingAllMethodsServlet 
         Gson gson = builder.create();
 
         Params paramsRequest = gson.fromJson(params, Params.class);
-        final String status = paramsRequest.getStatus().getKey();
-        final String documentType = paramsRequest.getDocumentType().getKey();
-        final String invoiceDateFrom = paramsRequest.getStartDate();
-        final String invoiceDateTo = paramsRequest.getEndDate();
-        final String soaDate = paramsRequest.getSoaDate();
-        final String customerNumber = paramsRequest.getCustomerData().getCustomerNumber();
+
         final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
                 : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
-        JsonObject jsonResponse = financialsResultsApiService.getFinancialResults(status, documentType,
-                invoiceDateFrom, invoiceDateTo, soaDate, customerNumber, token);
+        JsonObject jsonResponse = financialsResultsApiService.getFinancialResults(paramsRequest, token);
 
         JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
 
@@ -88,7 +82,7 @@ public class FinancialResultsDownloadFileServlet extends SlingAllMethodsServlet 
         if (null == financialStatementModel) {
             LOGGER.error("FinancialStatementModel is null!");
         } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
-            LOGGER.error("Unable to retrieve response from API got status code:{}", status);
+            LOGGER.error("Unable to retrieve response from API got status code:{}", paramsRequest.getStatus().getKey());
         } else {
             JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
             Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
