@@ -11,12 +11,14 @@ describe('Tablist', function () {
     this.initSpy = sinon.spy(this.tabList, "init");
     this.showTabDetailSpy = sinon.spy(this.tabList, "showTabDetail");
     this.analyticsSpy = sinon.spy(this.tabList, 'trackAnalytics');
+    this.pauseVideoSpy = sinon.spy(this.tabList, 'pauseVideoIfExists');
     this.tabList.init();
   });
   after(function () {
     this.initSpy.restore();
     this.showTabDetailSpy.restore();
     this.analyticsSpy.restore();
+    this.pauseVideoSpy.restore();
   });
   it('should initialize', function () {
     expect(this.tabList.init.called).to.be.true;
@@ -29,5 +31,9 @@ describe('Tablist', function () {
   it('should track analytics on click of description link', function () {
     $('.js-tablist__event-detail-description-link').first().trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
+  });
+  it('should pause video if section is collapsed', function () {
+    $('.collapse').trigger('hidden.bs.collapse');
+    expect(this.pauseVideoSpy.called).to.be.true;
   });
 });

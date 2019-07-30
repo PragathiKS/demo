@@ -1,8 +1,12 @@
+import $ from 'jquery';
 import 'core-js/features/promise';
 import 'core-js/features/array/includes';
+import 'core-js/features/array/find';
 import { trackAnalytics } from './analytics';
 
 let YT = null;
+
+const ytRefs = [];
 
 /**
  * Calculates appropriate trackIndex based on percent completion
@@ -72,6 +76,27 @@ function _calculateProgress(currentTime, totalTime) {
 }
 
 /**
+ * Pauses play of existing playing videos
+ * @public
+ * @param {object} el Video elements
+ */
+export const pauseVideosByReference = (el) => {
+  $(el).each((...args) => {
+    const [, ref] = args;
+    const $thisRef = $(ref);
+    if ($thisRef.hasClass('js-yt-player')) {
+      const ytPayerRef = ytRefs.find(ytRef => ytRef.el === ref);
+      if (ytPayerRef && ytPayerRef.ytPlayer && $thisRef.hasClass('is-playing')) {
+        ytPayerRef.ytPlayer.pauseVideo();
+      }
+    } else if ($thisRef.hasClass('is-playing') && ref.pause) {
+      // Assuming HTML5 video
+      ref.pause();
+    }
+  });
+};
+
+/**
  * Fires when youtube event state change occurs
  * @private
  * @param {object} thisIns Current instance
@@ -82,6 +107,8 @@ function _onStateChange(thisIns, e) {
   const $this = $(this);
   $this.data('trackIndex', _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]));
   if (e.data === YT.PlayerState.PLAYING) {
+    pauseVideosByReference($('.is-playing').not(this));
+    $this.removeClass('is-paused is-stopped').addClass('is-playing');
     if (thisIns.intervalRef) {
       clearInterval(thisIns.intervalRef);
     }
@@ -97,12 +124,14 @@ function _onStateChange(thisIns, e) {
     }
   }
   if (e.data === YT.PlayerState.PAUSED) {
+    $this.removeClass('is-playing is-stopped').addClass('is-paused');
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
     _trackVideoParameters.apply(this, ['pause', Math.round(totalTime)]);
   }
   if (e.data === YT.PlayerState.ENDED) {
+    $this.removeClass('is-playing is-paused').addClass('is-stopped');
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
@@ -136,15 +165,19 @@ export default {
     ytPromise.then(() => {
       $('.js-yt-player').each(function () {
         const thisIns = {};
+        thisIns.el = this;
         thisIns.ytPlayer = new YT.Player(this, {
           events: {
             onStateChange: _onStateChange.bind(this, thisIns)
           }
         });
+        ytRefs.push(thisIns);
       });
     });
     $('.js-dam-player').on('play', function () {
       const $this = $(this);
+      pauseVideosByReference($('.is-playing').not(this));
+      $this.removeClass('is-paused is-stopped').addClass('is-playing');
       const wasStarted = $this.data('started');
       $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
       if (['true', true].includes(wasStarted)) {
@@ -155,7 +188,7 @@ export default {
       }
     }).on('pause', function () {
       if (this.currentTime < this.duration) {
-        $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
+        $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration])).removeClass('is-stopped is-playing').addClass('is-paused');
         _trackVideoParameters.apply(this, ['pause', Math.round(this.duration)]);
       }
     }).on('timeupdate', function () {
@@ -166,7 +199,7 @@ export default {
       $(this).attr('data-started', 'false').data({
         started: 'false',
         trackIndex: 0
-      });
+      }).removeClass('is-playing is-paused').addClass('is-stopped');
       _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
     });
   }
