@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.authentication;
 
-import org.apache.commons.codec.Charsets;
+import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
@@ -38,6 +38,7 @@ import java.util.Set;
 public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcessor {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SAMLResponsePostProcessor.class);
+	private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
 
 	@Reference
 	private SlingSettingsService slingSettingsService;
@@ -46,7 +47,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 		HttpServletRequest httpRequest;
 		Map<String, String> attrMap = new HashMap<>();
 		try {
-			LOGGER.info("SAMLResponse Post Processor invoked");
+			LOGGER.debug("SAMLResponse Post Processor invoked");
 			httpRequest = request;
 			String pathInfo = httpRequest.getRequestURI();
 			Set<String> runModes = slingSettingsService.getRunModes();
@@ -59,37 +60,34 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 					LOGGER.debug("base64DecodedResponse:" + base64DecodedResponse);
 					attrMap = parseSAMLResponse(base64DecodedResponse);
 				} else {
-					LOGGER.info("responseSAMLMessage is empty or null");
+					LOGGER.debug("SAMLResponse parameter is empty of null!");
 				}
 				String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ? attrMap.get("firstname")
 						: StringUtils.EMPTY;
 				String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname")
 						: StringUtils.EMPTY;
+				String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
 				if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-					Cookie samlCookie = new Cookie("CustomerName",
-							URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20"));
+					Cookie samlCookie = new Cookie("CustomerName", customerName);
 					samlCookie.setHttpOnly(true);
 					samlCookie.setPath("/");
 					response.addCookie(samlCookie);
 				}
-
 				if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
 					Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
 					acctoken.setHttpOnly(true);
 					acctoken.setPath("/");
 					response.addCookie(acctoken);
 				}
-
 			}
-		} catch (ParserConfigurationException e) {
-			LOGGER.error("Unable to get Document Builder ", e);
-		} catch (SAXException e) {
-			LOGGER.error("Unable to parse the xml document ", e);
-		} catch (IOException e) {
-			LOGGER.error("IOException ", e);
+		} catch (ParserConfigurationException parserConfiExep) {
+			LOGGER.error("Unable to get Document Builder ", parserConfiExep);
+		} catch (SAXException saxExcep) {
+			LOGGER.error("Unable to parse the xml document ", saxExcep);
+		} catch (IOException iOExcep) {
+			LOGGER.error("IOException ", iOExcep);
 		}
-
 	}
 
 	/**
@@ -124,38 +122,44 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 	 * @param samlAssertion    samlAssertion
 	 */
 	private Map<String, String> populateSAMLAttrMap(Map<String, String> samlAttributeMap, NodeList samlAssertion) {
-		for (int i = 0; i < samlAssertion.getLength(); i++) {
-			Node item = samlAssertion.item(i);
-			NodeList childNodes = item.getChildNodes();
-			for (int j = 0; j < childNodes.getLength(); j++) {
-				Node subChildNode = childNodes.item(j);
-				if ("saml:AttributeStatement".equalsIgnoreCase(subChildNode.getNodeName())) {
-					getNodes(samlAttributeMap, subChildNode);
-				}
+		Node samlAssertionNode = samlAssertion.item(0);
+		NodeList childNodes = samlAssertionNode.getChildNodes();
+		int maxChildNodeCount = childNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
+				: childNodes.getLength();
+		for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
+			Node subChildNode = childNodes.item(childCount);
+			if ("saml:AttributeStatement".equalsIgnoreCase(subChildNode.getNodeName())) {
+				getNodes(samlAttributeMap, subChildNode);
 			}
 		}
 		return samlAttributeMap;
 	}
 
-	private void getNodes(Map<String, String> samlAttributeMap, Node subChildNode) {
-		NodeList childNodes2 = subChildNode.getChildNodes();
-		for (int k = 0; k < childNodes2.getLength(); k++) {
-			Node item2 = childNodes2.item(k);
-			if ("saml:Attribute".equalsIgnoreCase(item2.getNodeName())) {
-				String attributeValue = item2.getAttributes().item(0).getNodeValue();
-				NodeList attributeValueNodeList = item2.getChildNodes();
-				for (int l = 0; l < attributeValueNodeList.getLength(); l++) {
-					putSamlAttributes(samlAttributeMap, attributeValue, attributeValueNodeList, l);
+	private void getNodes(Map<String, String> samlAttributeMap, Node attributeStatementNode) {
+		NodeList attributeStatementChildNodes = attributeStatementNode.getChildNodes();
+		int maxChildNodeCount = attributeStatementChildNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT
+				? MAX_FIRSTLEVEL_CHILD_COUNT
+				: attributeStatementChildNodes.getLength();
+		for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
+			Node childNode = attributeStatementChildNodes.item(childCount);
+			if ("saml:Attribute".equalsIgnoreCase(childNode.getNodeName())) {
+				String attributeValue = childNode.getAttributes().item(0).getNodeValue();
+				NodeList attrValNodeList = childNode.getChildNodes();
+				int maxNodeCount = attrValNodeList.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
+						: attrValNodeList.getLength();
+				for (int attrValNodeCount = 0; attrValNodeCount < maxNodeCount; attrValNodeCount++) {
+					putSamlAttributes(samlAttributeMap, attributeValue, attrValNodeList, attrValNodeCount);
 				}
 			}
 		}
 	}
 
 	private void putSamlAttributes(Map<String, String> samlAttributeMap, String attributeValue,
-			NodeList attributeValueNodeList, int l) {
-		if ("saml:AttributeValue".equalsIgnoreCase(attributeValueNodeList.item(l).getNodeName())) {
-			samlAttributeMap.put(attributeValue, attributeValueNodeList.item(l).getTextContent());
-			LOGGER.debug("SAML Assertions" + attributeValue + " : " + attributeValueNodeList.item(l).getTextContent());
+			NodeList attributeValueNodeList, int attributeValueCount) {
+		Node currentNode = attributeValueNodeList.item(attributeValueCount);
+		if ("saml:AttributeValue".equalsIgnoreCase(currentNode.getNodeName())) {
+			samlAttributeMap.put(attributeValue, currentNode.getTextContent());
+			LOGGER.debug("SAML Assertions" + attributeValue + " : " + currentNode.getTextContent());
 		}
 	}
 
