@@ -228,7 +228,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
      */
     private String[][] setStatementData(List<Record> records) {
         String[][] data = null;
-        if (null != records) {
+        if (null != records && !records.isEmpty()) {
             data = new String[records.size()][16];
             Iterator<Record> itr = records.iterator();
             byte counter = 0;
