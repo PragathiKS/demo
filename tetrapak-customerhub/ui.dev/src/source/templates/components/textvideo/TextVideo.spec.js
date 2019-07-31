@@ -17,11 +17,13 @@ describe('TextVideo', function () {
     this.initSpy.restore();
     this.analyticsSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
-  it('should track analytics on click of link', function () {
+  it('should track analytics on click of link', function (done) {
     $('.js-text-video__description-link').trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
+    done();
   });
 });
