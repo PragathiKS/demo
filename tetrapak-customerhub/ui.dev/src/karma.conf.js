@@ -7,6 +7,9 @@ const mode = getArgs('mode') || 'development';
 module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadlessCustom'],
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 3,
+    browserNoActivityTimeout: 60000,
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
