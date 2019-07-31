@@ -3,13 +3,13 @@ import 'core-js/features/promise';
 import 'core-js/features/array/includes';
 import 'core-js/features/array/find';
 import { trackAnalytics } from './analytics';
+import { logger } from './logger';
 
-let YT = null;
-
-const ytRefs = [];
+let ytRefs = [];
 
 /**
  * Calculates appropriate trackIndex based on percent completion
+ * @private
  * @param {number} currentTime Current video time
  * @param {*} totalTime Total video time
  */
@@ -94,7 +94,7 @@ export function pauseVideosByReference(el) {
       ref.pause();
     }
   });
-};
+}
 
 /**
  * Fires when youtube event state change occurs
@@ -106,7 +106,7 @@ function _onStateChange(thisIns, e) {
   const totalTime = thisIns.ytPlayer.getDuration();
   const $this = $(this);
   $this.data('trackIndex', _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]));
-  if (e.data === YT.PlayerState.PLAYING) {
+  if (e.data === window.YT.PlayerState.PLAYING) {
     pauseVideosByReference($('.is-playing').not(this));
     $this.removeClass('is-paused is-stopped').addClass('is-playing');
     if (thisIns.intervalRef) {
@@ -123,14 +123,14 @@ function _onStateChange(thisIns, e) {
       _trackVideoParameters.apply(this, ['start', Math.round(totalTime)]);
     }
   }
-  if (e.data === YT.PlayerState.PAUSED) {
+  if (e.data === window.YT.PlayerState.PAUSED) {
     $this.removeClass('is-playing is-stopped').addClass('is-paused');
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
     _trackVideoParameters.apply(this, ['pause', Math.round(totalTime)]);
   }
-  if (e.data === YT.PlayerState.ENDED) {
+  if (e.data === window.YT.PlayerState.ENDED) {
     $this.removeClass('is-playing is-paused').addClass('is-stopped');
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
@@ -145,6 +145,7 @@ function _onStateChange(thisIns, e) {
 
 /**
  * Promise that ensures that youtube API is ready
+ * @public
  */
 export const ytPromise = new Promise(function (resolve) {
   const scr = document.createElement('script');
@@ -152,10 +153,119 @@ export const ytPromise = new Promise(function (resolve) {
   const firstScript = document.getElementsByTagName('script')[0];
   firstScript.parentNode.insertBefore(scr, firstScript);
   window.onYouTubeIframeAPIReady = function (...args) {
-    YT = window.YT;
     resolve(args);
   };
 });
+
+/**
+ * Initializes youtube player API for existing videos
+ * @public
+ */
+export function initializeYoutubePlayer() {
+  const $ytVideos = $('.js-yt-player').not('.video-init');
+  logger.log(`[Youtube]: ${$ytVideos.length} youtube video(s) initialized`);
+  $ytVideos.each(function () {
+    const thisIns = {};
+    thisIns.el = this;
+    thisIns.ytPlayer = new window.YT.Player(this, {
+      events: {
+        onStateChange: _onStateChange.bind(this, thisIns)
+      }
+    });
+    if (!ytRefs.find(ytRef => ytRef.el === thisIns.el)) {
+      ytRefs.push(thisIns);
+    }
+    $(this).addClass('video-init');
+  });
+}
+
+/**
+ * Clears youtube API instances
+ * @public
+ * @param {object|string} ref Reference selector
+ */
+export function removeYTReferences(ref) {
+  if (!ref) {
+    logger.log(`[Youtube]: ${ytRefs.length} reference(s) removed`);
+    ytRefs.length = 0;
+    $('.js-yt-player').removeClass('video-init');
+    return;
+  }
+  const initialLength = ytRefs.length;
+  $(ref).each(function () {
+    const $this = $(this);
+    if ($this.hasClass('js-yt-player') && $this.hasClass('video-init')) {
+      ytRefs = ytRefs.filter(ytRef => ytRef.el !== this);
+      $this.removeClass('video-init');
+    }
+  });
+  const finalLength = ytRefs.length;
+  logger.log(`[Youtube]: ${(initialLength - finalLength)} reference(s) removed`);
+}
+
+/**
+ * Fires when HTML5 video is played
+ * @private
+ */
+function _onDAMPlay() {
+  const $this = $(this);
+  pauseVideosByReference($('.is-playing').not(this));
+  $this.removeClass('is-paused is-stopped').addClass('is-playing');
+  const wasStarted = $this.data('started');
+  $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
+  if (['true', true].includes(wasStarted)) {
+    _trackVideoParameters.apply(this, ['resume', Math.round(this.duration)]);
+  } else {
+    $this.attr('data-started', 'true').data('started', 'true');
+    _trackVideoParameters.apply(this, ['start', Math.round(this.duration)]);
+  }
+}
+
+/**
+ * Fires when HTML5 video is paused
+ * @private
+ */
+function _onDAMPause() {
+  if (this.currentTime < this.duration) {
+    $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration])).removeClass('is-stopped is-playing').addClass('is-paused');
+    _trackVideoParameters.apply(this, ['pause', Math.round(this.duration)]);
+  }
+}
+
+/**
+ * Fires when HTML5 video time updates
+ * @private
+ */
+function _onTimeUpdate() {
+  const currentDuration = this.duration;
+  const currentTime = this.currentTime;
+  _calculateProgress.apply(this, [currentTime, currentDuration]);
+}
+
+/**
+ * Fires when youtube video ends
+ */
+function _onEnd() {
+  $(this).attr('data-started', 'false').data({
+    started: 'false',
+    trackIndex: 0
+  }).removeClass('is-playing is-paused').addClass('is-stopped');
+  _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
+}
+
+/**
+ * Initializes DAM player for existing videos
+ * @public
+ */
+export function initializeDAMPlayer() {
+  const $damVideos = $('.js-dam-player').not('.video-init');
+  logger.log(`[HTML5 video]: ${$damVideos.length} video(s) initialized`);
+  $damVideos.addClass('video-init')
+    .on('play', _onDAMPlay)
+    .on('pause', _onDAMPause)
+    .on('timeupdate', _onTimeUpdate)
+    .on('ended', _onEnd);
+}
 
 /**
  * Default export
@@ -163,44 +273,8 @@ export const ytPromise = new Promise(function (resolve) {
 export default {
   init() {
     ytPromise.then(() => {
-      $('.js-yt-player').each(function () {
-        const thisIns = {};
-        thisIns.el = this;
-        thisIns.ytPlayer = new YT.Player(this, {
-          events: {
-            onStateChange: _onStateChange.bind(this, thisIns)
-          }
-        });
-        ytRefs.push(thisIns);
-      });
+      initializeYoutubePlayer();
     });
-    $('.js-dam-player').on('play', function () {
-      const $this = $(this);
-      pauseVideosByReference($('.is-playing').not(this));
-      $this.removeClass('is-paused is-stopped').addClass('is-playing');
-      const wasStarted = $this.data('started');
-      $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
-      if (['true', true].includes(wasStarted)) {
-        _trackVideoParameters.apply(this, ['resume', Math.round(this.duration)]);
-      } else {
-        $this.attr('data-started', 'true').data('started', 'true');
-        _trackVideoParameters.apply(this, ['start', Math.round(this.duration)]);
-      }
-    }).on('pause', function () {
-      if (this.currentTime < this.duration) {
-        $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration])).removeClass('is-stopped is-playing').addClass('is-paused');
-        _trackVideoParameters.apply(this, ['pause', Math.round(this.duration)]);
-      }
-    }).on('timeupdate', function () {
-      const currentDuration = this.duration;
-      const currentTime = this.currentTime;
-      _calculateProgress.apply(this, [currentTime, currentDuration]);
-    }).on('ended', function () {
-      $(this).attr('data-started', 'false').data({
-        started: 'false',
-        trackIndex: 0
-      }).removeClass('is-playing is-paused').addClass('is-stopped');
-      _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
-    });
+    initializeDAMPlayer();
   }
 };
