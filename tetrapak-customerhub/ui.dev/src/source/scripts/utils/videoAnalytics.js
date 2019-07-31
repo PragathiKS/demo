@@ -80,7 +80,7 @@ function _calculateProgress(currentTime, totalTime) {
  * @public
  * @param {object} el Video elements
  */
-export const pauseVideosByReference = (el) => {
+export function pauseVideosByReference(el) {
   $(el).each((...args) => {
     const [, ref] = args;
     const $thisRef = $(ref);

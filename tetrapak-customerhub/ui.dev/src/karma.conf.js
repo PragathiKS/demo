@@ -7,14 +7,11 @@ const mode = getArgs('mode') || 'development';
 module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadlessCustom'],
-    browserDisconnectTimeout: 10000,
-    browserDisconnectTolerance: 3,
-    browserNoActivityTimeout: 60000,
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
         //debug: true,
-        flags: ['--window-size=1920,1080']
+        flags: ['--window-size=1920,1080', '--no-sandbox']
       }
     },
     browserNoActivityTimeout: 60000,

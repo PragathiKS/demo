@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import TabList from './TabsList';
+import * as vid from '../../../scripts/utils/videoAnalytics';
 import tablistTemplate from '../../../test-templates-hbs/tablist.hbs';
 
 describe('Tablist', function () {
@@ -12,6 +13,7 @@ describe('Tablist', function () {
     this.showTabDetailSpy = sinon.spy(this.tabList, "showTabDetail");
     this.analyticsSpy = sinon.spy(this.tabList, 'trackAnalytics');
     this.pauseVideoSpy = sinon.spy(this.tabList, 'pauseVideoIfExists');
+    this.pauseVideoStub = sinon.stub(vid, 'pauseVideosByReference');
     this.tabList.init();
   });
   after(function () {
@@ -20,6 +22,7 @@ describe('Tablist', function () {
     this.showTabDetailSpy.restore();
     this.analyticsSpy.restore();
     this.pauseVideoSpy.restore();
+    this.pauseVideoStub.restore();
   });
   it('should initialize', function (done) {
     expect(this.tabList.init.called).to.be.true;
