@@ -34,6 +34,7 @@
     "sasslinter": "node sasslinter",
     "sasslinterDev": "node sasslinter --development",
     "test": "karma start karma.conf.js --color",
+    "testProd": "karma start karma.conf.js --mode=production --color",
     "createClientlib": "create-clientlib --config=config.json --color"
   },
   "devDependencies": {
