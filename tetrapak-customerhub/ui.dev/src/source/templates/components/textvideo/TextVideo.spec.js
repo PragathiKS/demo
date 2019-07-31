@@ -13,6 +13,7 @@ describe('TextVideo', function () {
     this.textVideo.init();
   });
   after(function () {
+    $(document.body).empty();
     this.initSpy.restore();
     this.analyticsSpy.restore();
   });

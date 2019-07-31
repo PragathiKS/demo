@@ -15,6 +15,7 @@ describe('Tablist', function () {
     this.tabList.init();
   });
   after(function () {
+    $(document.body).empty();
     this.initSpy.restore();
     this.showTabDetailSpy.restore();
     this.analyticsSpy.restore();

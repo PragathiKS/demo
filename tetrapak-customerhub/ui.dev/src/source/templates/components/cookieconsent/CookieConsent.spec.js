@@ -13,6 +13,7 @@ describe('CookieConsent', function () {
     this.cookieConsent.init();
   });
   after(function () {
+    $(document.body).empty();
     this.initSpy.restore();
     this.removeBannerSpy.restore();
   });
