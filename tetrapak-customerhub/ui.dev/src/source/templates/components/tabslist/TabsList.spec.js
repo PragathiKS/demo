@@ -4,10 +4,10 @@ import tablistTemplate from '../../../test-templates-hbs/tablist.hbs';
 
 describe('Tablist', function () {
   before(function () {
+    $(document.body).empty().html(tablistTemplate());
     this.tabList = new TabList({
       el: document.body
     });
-    $(document.body).empty().html(tablistTemplate());
     this.initSpy = sinon.spy(this.tabList, "init");
     this.showTabDetailSpy = sinon.spy(this.tabList, "showTabDetail");
     this.analyticsSpy = sinon.spy(this.tabList, 'trackAnalytics');
