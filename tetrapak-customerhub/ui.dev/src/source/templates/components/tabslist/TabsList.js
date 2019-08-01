@@ -1,12 +1,18 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { pauseVideosByReference } from '../../../scripts/utils/videoAnalytics';
+import { pauseVideosByReference, initializeYoutubePlayer, removeYTReferences, ytPromise, initializeDAMPlayer } from '../../../scripts/utils/videoAnalytics';
 
 
 function _renderFirstTab() {
   const { componentId } = this.cache;
-  this.root.find('.js-tablist__events-sidesection').html($(`#tab_${componentId}_0`).html());
+  const $tabSection = this.root.find('.js-tablist__events-sidesection');
+  $tabSection.html($(`#tab_${componentId}_0`).html());
+  $tabSection.find('.js-yt-player, .js-dam-player').removeClass('video-init');
+  ytPromise.then(() => {
+    initializeYoutubePlayer();
+  });
+  initializeDAMPlayer();
 }
 /**
  * Fire analytics on click of
@@ -68,7 +74,14 @@ class TabsList {
       .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
   }
   showTabDetail = (el) => {
-    this.root.find('.js-tablist__events-sidesection').html($(el).html());
+    const $tabSection = this.root.find('.js-tablist__events-sidesection');
+    removeYTReferences($tabSection.find('.js-yt-player'));
+    $tabSection.html($(el).html());
+    $tabSection.find('.js-yt-player, .js-dam-player').removeClass('video-init');
+    ytPromise.then(() => {
+      initializeYoutubePlayer();
+    });
+    initializeDAMPlayer();
   }
   pauseVideoIfExists() {
     pauseVideosByReference($(this).find('.is-playing'));

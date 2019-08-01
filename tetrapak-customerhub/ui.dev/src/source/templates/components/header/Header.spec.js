@@ -21,14 +21,17 @@ describe('Header', function () {
     this.initHeaderSpy.restore();
     this.openSideNavSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.leftNavigation.init.called).to.be.true;
+    done();
   });
-  it('should initialize header', function () {
+  it('should initialize header', function (done) {
     expect(this.header.init.called).to.be.true;
+    done();
   });
-  it('should open left navigation on click of burger menu icon', function () {
+  it('should open left navigation on click of burger menu icon', function (done) {
     $('.tp-header__burger-menu').trigger('click');
     expect(this.leftNavigation.openSideNav.called).to.be.true;
+    done();
   });
 });

@@ -22,10 +22,11 @@ describe('Pagination', function () {
     this.initSpy.restore();
     this.paginateSpy.restore();
   });
-  it('should initialize on page load', function () {
+  it('should initialize on page load', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
-  it('should render pagination component on "paginate" event', function () {
+  it('should render pagination component on "paginate" event', function (done) {
     $('.js-pagination').trigger('ordersearch.paginate', [{
       totalPages: 20,
       currentPage: 1
@@ -43,13 +44,16 @@ describe('Pagination', function () {
       currentPage: 1
     }]);
     expect(this.paginateSpy.called).to.be.true;
+    done();
   });
-  it('should trigger "pagenav" even on click of pagination button', function () {
+  it('should trigger "pagenav" even on click of pagination button', function (done) {
     $('.js-page-number').eq(3).trigger('click');
     expect(this.pageNavSpy.called).to.be.true;
+    done();
   });
-  it('should disable pagination on "pagedisabled" event', function () {
+  it('should disable pagination on "pagedisabled" event', function (done) {
     $('.js-pagination').trigger('ordersearch.pagedisabled');
     expect(this.pageDisabledSpy.called).to.be.true;
+    done();
   });
 });

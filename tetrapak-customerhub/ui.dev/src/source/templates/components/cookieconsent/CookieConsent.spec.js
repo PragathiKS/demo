@@ -13,15 +13,18 @@ describe('CookieConsent', function () {
     this.cookieConsent.init();
   });
   after(function () {
+    $(document.body).empty();
     this.initSpy.restore();
     this.removeBannerSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
-  it('should dismiss cookie banner on click of OK button', function () {
+  it('should dismiss cookie banner on click of OK button', function (done) {
     $('.js-cookie-consent__btn').trigger('click');
     $('.js-cookie-consent').trigger('transitionend');
     expect(this.removeBannerSpy.called).to.be.true;
+    done();
   });
 });

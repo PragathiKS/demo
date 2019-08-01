@@ -9,7 +9,7 @@ module.exports = {
     command: 'npm run test'
   },
   karmaTestsProd: {
-    command: 'npm run test -- --mode=production'
+    command: 'npm run testProd'
   },
   webpackProd: {
     command: 'npm run prod'
