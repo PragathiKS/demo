@@ -333,4 +333,24 @@ public class GlobalUtil {
         return tabResource.getChild(res.getName() + "-image");
     }
 
+    /**
+     * @param childResource resource
+     * @return global config resource
+     */
+    public static Resource getGlobalConfigurationResource(Resource childResource) {
+        Resource res = childResource.getChild("globalconfiguration");
+        if (null != res) {
+            return res;
+        } else {
+            Iterator<Resource> itr = childResource.listChildren();
+            while (itr.hasNext()) {
+                Resource nextResource = itr.next();
+                if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
+                    return nextResource;
+                }
+            }
+        }
+        return null;
+    }
+
 }
