@@ -165,7 +165,6 @@ export function initializeYoutubePlayer() {
   const $ytVideos = $('.js-yt-player').not('.video-init');
   logger.log(`[Youtube]: ${$ytVideos.length} youtube video(s) initialized`);
   $ytVideos.each(function () {
-    logger.log('dfkhdkjhdfkjdfhkjdfh');
     const thisIns = {};
     thisIns.el = this;
     if (window.YT && window.YT.Player) {
@@ -275,7 +274,6 @@ export function initializeDAMPlayer() {
  */
 export default {
   init() {
-    console.log('I was called');
     ytPromise.then(() => {
       initializeYoutubePlayer();
     });
