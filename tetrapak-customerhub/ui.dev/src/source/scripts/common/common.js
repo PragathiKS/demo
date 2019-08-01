@@ -8,9 +8,9 @@ import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
+import * as money from 'argon-formatter';
 
 const currentUserAgent = window.navigator.userAgent;
-let isoMapping = null;
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
@@ -301,16 +301,10 @@ export const tableSort = (data, keys, dataLink, isClickable, rtKeys = []) => {
  * @param {string} isoCode ISO currency code
  */
 export const resolveCurrency = (value, isoCode) => {
-  if (!Number.isNaN(+value)) {
-    if (!isoMapping) {
-      isoMapping = $.extend({}, strCompressed.get('isoMapping'));
-    }
-    if (Array.isArray(isoMapping.Currency)) {
-      const found = isoMapping.Currency.find((curr) => (curr['ISO_Code'] === isoCode));
-      if (found) {
-        return `${found.Symbol} ${value}`;
-      }
-    }
+  if (isNaN(+value) || !isoCode) {
+    return value; // No transformation
   }
-  return value; // No transformation
+  return money.format(value, {
+    code: isoCode
+  });
 };
