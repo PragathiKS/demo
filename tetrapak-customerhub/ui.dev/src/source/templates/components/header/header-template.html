@@ -4,11 +4,11 @@
 
         <sly data-sly-test="${data.logoUrl}">
           <div class="tp-header__logo">
-            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link">
+            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link" datatag="internal" ctype="header" ctypeone="notset" cttitle="${data.logoTextI18n @i18n}" aria-label="${data.logoTextI18n @i18n}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
             </a>
             <!--/*logo for mobile  */-->
-            <a href="${data.mLogoLink}" class="d-md-none tp-header__link">
+            <a href="${data.mLogoLink}" class="d-md-none tp-header__link" datatag="internal" ctype="header" ctypeone="notset" cttitle="${data.logoTextI18n @i18n}" aria-label="${data.logoTextI18n @i18n}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
             </a>
           </div>
@@ -18,7 +18,7 @@
             <ul>
             <sly data-sly-list.headerLinks="${data.headerNavLinks}">
                 <li class="tp-header__list">
-                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}">${headerLinks.name}</a>
+                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}" datatag="internal" ctype="header" ctypeone="notset" cttitle="${headerLinks.name}">${headerLinks.name}</a>
                 </li>
             </sly>
             </ul>
