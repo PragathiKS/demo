@@ -167,15 +167,17 @@ export function initializeYoutubePlayer() {
   $ytVideos.each(function () {
     const thisIns = {};
     thisIns.el = this;
-    thisIns.ytPlayer = new window.YT.Player(this, {
-      events: {
-        onStateChange: _onStateChange.bind(this, thisIns)
+    if (window.YT && window.YT.Player) {
+      thisIns.ytPlayer = new window.YT.Player(this, {
+        events: {
+          onStateChange: _onStateChange.bind(this, thisIns)
+        }
+      });
+      if (!ytRefs.find(ytRef => ytRef.el === thisIns.el)) {
+        ytRefs.push(thisIns);
       }
-    });
-    if (!ytRefs.find(ytRef => ytRef.el === thisIns.el)) {
-      ytRefs.push(thisIns);
+      $(this).addClass('video-init');
     }
-    $(this).addClass('video-init');
   });
 }
 

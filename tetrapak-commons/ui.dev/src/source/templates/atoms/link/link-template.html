@@ -8,6 +8,7 @@
     href="${url}"
     class="tpatom-link${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-link--primary'}${className ? classNameWithSpace : ''}"
     target="${isExternal ? '_blank' : ''}"
+    rel="${isExternal ? 'noopener noreferrer' : ''}"
     datatag="${isExternal ? 'external' : 'internal'}"
     ctype="${ctype ? ctype : 'not_set'}"
     ctypeone="${linkHeading ? linkHeading : 'notset'}"
