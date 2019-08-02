@@ -40,295 +40,39 @@
                "sling:resourceType": "customerhub/components/structure/globalconfiguration",
                "stickyIconClass": "icon-TetraPak",
                "navHeadingI18n": "My Tetra Pak",
-               "stickyLabel": "Tetra Pak Home"
-            }
-         }
-      }
-   },
-   "dashboard": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "DASHBOARD",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "a8e60aaa-5dbc-4c58-9a18-9de8cd6acabb",
-         "iconClass": "icon-Dashboard",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/dashboard-page",
-         "cq:lastReplicatedBy": "sapient-tarun",
-         "jcr:predecessors": [
-            "ce8cd2fb-c2dc-4719-86b1-e45b8040527b"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Thu Mar 14 2019 11:20:01 GMT+0000",
-         "cq:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
-         "jcr:baseVersion": "ce8cd2fb-c2dc-4719-86b1-e45b8040527b",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "c380f3ee-383b-4af1-aa95-b895997150fb",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "admin",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid",
-               "introscreen": {
+               "stickyLabel": "Tetra Pak Home",
+               "cookieConsentButtonText": "I agree",
+               "headingI18n": "Choose your language",
+               "cookieConsentDisabled": "false",
+               "cookieConsentText": "abc",
+               "languages": {
                   "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "admin",
-                  "jcr:lastModifiedBy": "admin",
-                  "closeBtnI18n": "Intro_screen_Closebutton",
-                  "getStartedBtnI18n": "Intro_screen_GetStarted",
-                  "jcr:created": "Thu Feb 21 2019 12:36:27 GMT+0000",
-                  "headingI18n": "Intro_Screen_Heading",
-                  "jcr:lastModified": "Fri Mar 08 2019 13:13:55 GMT+0000",
-                  "sling:resourceType": "customerhub/components/content/introscreen",
-                  "nextBtnI18n": "Intro_Screen_NextCaption"
-               },
-               "orderingcard": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:mixinTypes": [
-                     "rep:AccessControllable"
-                  ],
-                  "titleI18n": "Ordering",
-                  "jcr:createdBy": "sapient-user",
-                  "saveErrorI18n": "Error",
-                  "preferencesTitleI18n": "cuhu.orderingcard.Preferences.title",
-                  "dataErrorI18n": "data error",
-                  "noDataI18n": "no data",
-                  "jcr:lastModifiedBy": "sapient-user",
-                  "closeBtnI18n": "cuhu.orderingcard.pref.Close",
-                  "saveSettingsI18n": "cuhu.orderingcard.pref.Sav",
-                  "jcr:created": "Thu Mar 07 2019 16:30:14 GMT+0000",
-                  "allOrdersI18n": "cuhu.orderingcard.another.Order",
-                  "allOrdersLink": "All Order Lin",
-                  "preferencesBtnI18n": "Button",
-                  "jcr:lastModified": "Thu Mar 14 2019 09:05:06 GMT+0000",
-                  "preferencesDescriptionI18n": "cuhu.orderingcard.Preferences.Desc",
-                  "orderDetailLink": "Order details",
-                  "sling:resourceType": "customerhub/components/content/orderingcard"
-               },
-               "getstarted": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "admin",
-                  "jcr:lastModifiedBy": "admin",
-                  "jcr:created": "Mon Mar 18 2019 11:11:58 GMT+0530",
-                  "jcr:lastModified": "Mon Mar 18 2019 13:33:46 GMT+0530",
-                  "sling:resourceType": "customerhub/components/content/getstarted",
-                  "textIsRich": [
-                     "true",
-                     "true",
-                     "true"
-                  ]
-               },
-               "introscreen_1189040245": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "admin",
-                  "jcr:lastModifiedBy": "admin",
-                  "jcr:created": "Mon Mar 18 2019 13:33:13 GMT+0530",
-                  "jcr:lastModified": "Mon Mar 18 2019 13:33:13 GMT+0530",
-                  "sling:resourceType": "customerhub/components/content/introscreen"
-               },
-               "recommendedforyoucar": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "admin",
-                  "jcr:lastModifiedBy": "admin",
-                  "jcr:created": "Mon Mar 18 2019 14:32:33 GMT+0530",
-                  "headingI18n": "Rec For You",
-                  "jcr:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
-                  "sling:resourceType": "customerhub/components/content/recommendedforyoucard",
-                  "textIsRich": "true"
-               }
-            }
-         }
-      }
-   },
-   "installed-equipment": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Installed Equipment",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "edec8354-2136-4d9e-af38-27e8887001bc",
-         "iconClass": "icon-Install",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-tarun",
-         "jcr:predecessors": [
-            "57439fff-e29a-4453-8fce-4860cf1d8ffa"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Thu Mar 14 2019 11:24:37 GMT+0000",
-         "cq:lastModified": "Thu Mar 14 2019 11:24:31 GMT+0000",
-         "jcr:baseVersion": "57439fff-e29a-4453-8fce-4860cf1d8ffa",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "7f8f6719-aca6-46ba-b651-84230c193463",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-tarun",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "package-design": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Package Design",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "83242703-7849-4c66-bc31-ee63875f6936",
-         "iconClass": "icon-Packaging_Design",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "837f3367-57fe-4340-8396-befce35bcd8d"
-         ],
-         "cq:redirectTarget": "https://innovationcreatesvalue.tetrapak.com/story-tag/package-design/",
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:33:56 GMT+0000",
-         "jcr:baseVersion": "837f3367-57fe-4340-8396-befce35bcd8d",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "4a889fea-df41-4eef-a222-bd934bbf4ab1",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "ordering": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:mixinTypes": [
-         "rep:AccessControllable"
-      ],
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Ordering",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "69d4d069-45c3-4196-b421-20efecf91eaf",
-         "iconClass": "icon-Cart",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "28786c01-c5c1-4f5a-b1aa-cb823a47acb1"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
-         "jcr:baseVersion": "28786c01-c5c1-4f5a-b1aa-cb823a47acb1",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "4b82fe65-b904-4d58-bafc-2bff2a605a9d",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "admin",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid",
-               "orderingcard": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "titleI18n": "cuhu.ordering.title",
-                  "jcr:createdBy": "admin",
-                  "saveErrorI18n": "save error",
-                  "preferencesTitleI18n": "preference title",
-                  "dataErrorI18n": "data error",
-                  "noDataI18n": "no data",
-                  "jcr:lastModifiedBy": "admin",
-                  "closeBtnI18n": "close",
-                  "saveSettingsI18n": "save settings",
-                  "jcr:created": "Thu Mar 14 2019 05:22:32 GMT+0000",
-                  "allOrdersI18n": "cuhu.ordering.allOrders",
-                  "allOrdersLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
-                  "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
-                  "preferencesBtnI18n": "pref button",
-                  "jcr:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
-                  "preferencesDescriptionI18n": "pref desc",
-                  "sling:resourceType": "customerhub/components/content/orderingcard",
-                  "defaultFields": {
+                  "item0": {
                      "jcr:primaryType": "nt:unstructured",
-                     "item0": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "defaultField": "orderNumber"
-                     },
-                     "item1": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "defaultField": "poNumber"
-                     },
-                     "item2": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "defaultField": "orderDate"
-                     }
+                     "langCode": "en"
                   },
-                  "enabledFields": {
+                  "item1": {
                      "jcr:primaryType": "nt:unstructured",
-                     "item0": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledField": "contact"
-                     },
-                     "item1": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledField": "customerNumber"
-                     },
-                     "item2": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledField": "salesOrg"
-                     }
+                     "langCode": "fr"
+                  },
+                  "item2": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "langCode": "es"
+                  },
+                  "item3": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "langCode": "it"
+                  },
+                  "item4": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "langCode": "ar"
                   }
                }
             }
          }
+      }
       },
-      "order-history": {
+      "dashboard": {
          "jcr:primaryType": "cq:Page",
          "jcr:createdBy": "admin",
          "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
@@ -338,22 +82,23 @@
                "mix:versionable"
             ],
             "jcr:createdBy": "admin",
-            "jcr:title": "Order History",
+            "jcr:title": "DASHBOARD",
             "cq:lastReplicationAction": "Activate",
-            "jcr:versionHistory": "27405d1f-ec02-400a-a7a6-1dd80f287c4f",
-            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "jcr:versionHistory": "a8e60aaa-5dbc-4c58-9a18-9de8cd6acabb",
+            "iconClass": "icon-Dashboard",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/dashboard-page",
             "cq:lastReplicatedBy": "sapient-tarun",
             "jcr:predecessors": [
-               "5014b9bf-77fe-46a8-9cb4-22f7b1c8f98b"
+               "ce8cd2fb-c2dc-4719-86b1-e45b8040527b"
             ],
             "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-            "cq:lastReplicated": "Mon Mar 11 2019 05:00:23 GMT+0000",
-            "cq:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
-            "jcr:baseVersion": "5014b9bf-77fe-46a8-9cb4-22f7b1c8f98b",
+            "cq:lastReplicated": "Thu Mar 14 2019 11:20:01 GMT+0000",
+            "cq:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
+            "jcr:baseVersion": "ce8cd2fb-c2dc-4719-86b1-e45b8040527b",
             "jcr:isCheckedOut": true,
-            "jcr:uuid": "1469e615-3549-4e0d-b137-2df33507e6c9",
+            "jcr:uuid": "c380f3ee-383b-4af1-aa95-b895997150fb",
             "sling:resourceType": "customerhub/components/structure/page",
-            "cq:lastModifiedBy": "sapient-tushar",
+            "cq:lastModifiedBy": "admin",
             "root": {
                "jcr:primaryType": "nt:unstructured",
                "sling:resourceType": "wcm/foundation/components/responsivegrid",
@@ -364,52 +109,77 @@
                "responsivegrid": {
                   "jcr:primaryType": "nt:unstructured",
                   "sling:resourceType": "wcm/foundation/components/responsivegrid",
-                  "ordersearch": {
+                  "introscreen": {
                      "jcr:primaryType": "nt:unstructured",
-                     "jcr:createdBy": "sapient-tarun",
-                     "orderStatusLabelI18n": "Order Status Label",
-                     "allStatusesTextI18n": "Status",
-                     "dateRangeLabelI18n": "Date Range Label",
-                     "searchInputLabelI18n": "Search Input Label",
-                     "resetButtonTextI18n": "Reset",
-                     "jcr:lastModifiedBy": "sapient-tushar",
-                     "jcr:created": "Fri Mar 08 2019 06:16:09 GMT+0000",
-                     "searchButtonTextI18n": "Search Orders",
-                     "allAddressesTextI18n": "Address",
-                     "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
-                     "searchTermPlaceholderI18n": "Purchase order No. / Tetra Pak order No.",
-                     "deliveryAddressLabelI18n": "Delivery Address Label",
-                     "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
-                     "sling:resourceType": "customerhub/components/content/ordersearch",
-                     "enabledFields": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "item0": {
-                           "jcr:primaryType": "nt:unstructured",
-                           "enabledField": "contact"
-                        },
-                        "item1": {
-                           "jcr:primaryType": "nt:unstructured",
-                           "enabledField": "customerNumber"
-                        },
-                        "item2": {
-                           "jcr:primaryType": "nt:unstructured",
-                           "enabledField": "salesOrg"
-                        },
-                        "item3": {
-                           "jcr:primaryType": "nt:unstructured",
-                           "enabledField": "requestedDelivery"
-                        },
-                        "item4": {
-                           "jcr:primaryType": "nt:unstructured",
-                           "enabledField": "ETA"
-                        }
-                     }
+                     "jcr:createdBy": "admin",
+                     "jcr:lastModifiedBy": "admin",
+                     "closeBtnI18n": "Intro_screen_Closebutton",
+                     "getStartedBtnI18n": "Intro_screen_GetStarted",
+                     "jcr:created": "Thu Feb 21 2019 12:36:27 GMT+0000",
+                     "headingI18n": "Intro_Screen_Heading",
+                     "jcr:lastModified": "Fri Mar 08 2019 13:13:55 GMT+0000",
+                     "sling:resourceType": "customerhub/components/content/introscreen",
+                     "nextBtnI18n": "Intro_Screen_NextCaption"
+                  },
+                  "orderingcard": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:mixinTypes": [
+                        "rep:AccessControllable"
+                     ],
+                     "titleI18n": "Ordering",
+                     "jcr:createdBy": "sapient-user",
+                     "saveErrorI18n": "Error",
+                     "preferencesTitleI18n": "cuhu.orderingcard.Preferences.title",
+                     "dataErrorI18n": "data error",
+                     "noDataI18n": "no data",
+                     "jcr:lastModifiedBy": "sapient-user",
+                     "closeBtnI18n": "cuhu.orderingcard.pref.Close",
+                     "saveSettingsI18n": "cuhu.orderingcard.pref.Sav",
+                     "jcr:created": "Thu Mar 07 2019 16:30:14 GMT+0000",
+                     "allOrdersI18n": "cuhu.orderingcard.another.Order",
+                     "allOrdersLink": "All Order Lin",
+                     "preferencesBtnI18n": "Button",
+                     "jcr:lastModified": "Thu Mar 14 2019 09:05:06 GMT+0000",
+                     "preferencesDescriptionI18n": "cuhu.orderingcard.Preferences.Desc",
+                     "orderDetailLink": "Order details",
+                     "sling:resourceType": "customerhub/components/content/orderingcard"
+                  },
+                  "getstarted": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "admin",
+                     "jcr:lastModifiedBy": "admin",
+                     "jcr:created": "Mon Mar 18 2019 11:11:58 GMT+0530",
+                     "jcr:lastModified": "Mon Mar 18 2019 13:33:46 GMT+0530",
+                     "sling:resourceType": "customerhub/components/content/getstarted",
+                     "textIsRich": [
+                        "true",
+                        "true",
+                        "true"
+                     ]
+                  },
+                  "introscreen_1189040245": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "admin",
+                     "jcr:lastModifiedBy": "admin",
+                     "jcr:created": "Mon Mar 18 2019 13:33:13 GMT+0530",
+                     "jcr:lastModified": "Mon Mar 18 2019 13:33:13 GMT+0530",
+                     "sling:resourceType": "customerhub/components/content/introscreen"
+                  },
+                  "recommendedforyoucar": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "admin",
+                     "jcr:lastModifiedBy": "admin",
+                     "jcr:created": "Mon Mar 18 2019 14:32:33 GMT+0530",
+                     "headingI18n": "Rec For You",
+                     "jcr:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
+                     "sling:resourceType": "customerhub/components/content/recommendedforyoucard",
+                     "textIsRich": "true"
                   }
                }
             }
          }
       },
-      "packaging-material": {
+      "installed-equipment": {
          "jcr:primaryType": "cq:Page",
          "jcr:createdBy": "admin",
          "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
@@ -419,21 +189,63 @@
                "mix:versionable"
             ],
             "jcr:createdBy": "admin",
-            "jcr:title": "Packaging Material",
+            "jcr:title": "Installed Equipment",
             "cq:lastReplicationAction": "Activate",
-            "jcr:versionHistory": "2f3114e2-5c82-4c12-a557-c39fa3d274b2",
+            "jcr:versionHistory": "edec8354-2136-4d9e-af38-27e8887001bc",
+            "iconClass": "icon-Install",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-tarun",
+            "jcr:predecessors": [
+               "57439fff-e29a-4453-8fce-4860cf1d8ffa"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Thu Mar 14 2019 11:24:37 GMT+0000",
+            "cq:lastModified": "Thu Mar 14 2019 11:24:31 GMT+0000",
+            "jcr:baseVersion": "57439fff-e29a-4453-8fce-4860cf1d8ffa",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "7f8f6719-aca6-46ba-b651-84230c193463",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-tarun",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               }
+            }
+         }
+      },
+      "package-design": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Package Design",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "83242703-7849-4c66-bc31-ee63875f6936",
+            "iconClass": "icon-Packaging_Design",
             "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
             "cq:lastReplicatedBy": "sapient-user",
             "jcr:predecessors": [
-               "cdb61fd7-2292-4a6f-a63b-65303abc5c17"
+               "837f3367-57fe-4340-8396-befce35bcd8d"
             ],
-            "cq:redirectTarget": "https://www.tetrapak.com/packaging/materials",
+            "cq:redirectTarget": "https://innovationcreatesvalue.tetrapak.com/story-tag/package-design/",
             "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
             "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-            "cq:lastModified": "Sat Mar 09 2019 10:38:13 GMT+0000",
-            "jcr:baseVersion": "cdb61fd7-2292-4a6f-a63b-65303abc5c17",
+            "cq:lastModified": "Sat Mar 09 2019 10:33:56 GMT+0000",
+            "jcr:baseVersion": "837f3367-57fe-4340-8396-befce35bcd8d",
             "jcr:isCheckedOut": true,
-            "jcr:uuid": "b359574d-b4fa-43b2-96c6-51110ef00fa0",
+            "jcr:uuid": "4a889fea-df41-4eef-a222-bd934bbf4ab1",
             "sling:resourceType": "customerhub/components/structure/page",
             "cq:lastModifiedBy": "sapient-user",
             "root": {
@@ -450,8 +262,11 @@
             }
          }
       },
-      "parts": {
+      "ordering": {
          "jcr:primaryType": "cq:Page",
+         "jcr:mixinTypes": [
+            "rep:AccessControllable"
+         ],
          "jcr:createdBy": "admin",
          "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
          "jcr:content": {
@@ -460,24 +275,282 @@
                "mix:versionable"
             ],
             "jcr:createdBy": "admin",
-            "jcr:title": "Parts",
+            "jcr:title": "Ordering",
             "cq:lastReplicationAction": "Activate",
-            "jcr:versionHistory": "bce74f8d-52c5-4130-aaa2-17a1eaf6a18a",
+            "jcr:versionHistory": "69d4d069-45c3-4196-b421-20efecf91eaf",
             "iconClass": "icon-Cart",
             "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-            "cq:lastReplicatedBy": "sapient-tarun",
+            "cq:lastReplicatedBy": "sapient-user",
             "jcr:predecessors": [
-               "52df607c-f226-4b6c-81f5-6be803ca196e"
+               "28786c01-c5c1-4f5a-b1aa-cb823a47acb1"
             ],
-            "cq:redirectTarget": "http://tetrapak.com/services/parts",
             "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-            "cq:lastReplicated": "Thu Mar 14 2019 05:33:22 GMT+0000",
-            "cq:lastModified": "Thu Mar 14 2019 05:33:15 GMT+0000",
-            "jcr:baseVersion": "52df607c-f226-4b6c-81f5-6be803ca196e",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
+            "jcr:baseVersion": "28786c01-c5c1-4f5a-b1aa-cb823a47acb1",
             "jcr:isCheckedOut": true,
-            "jcr:uuid": "e8a1b139-73a8-4bfd-8800-132a8bafdd21",
+            "jcr:uuid": "4b82fe65-b904-4d58-bafc-2bff2a605a9d",
             "sling:resourceType": "customerhub/components/structure/page",
-            "cq:lastModifiedBy": "sapient-tarun",
+            "cq:lastModifiedBy": "admin",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "orderingcard": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "titleI18n": "cuhu.ordering.title",
+                     "jcr:createdBy": "admin",
+                     "saveErrorI18n": "save error",
+                     "preferencesTitleI18n": "preference title",
+                     "dataErrorI18n": "data error",
+                     "noDataI18n": "no data",
+                     "jcr:lastModifiedBy": "admin",
+                     "closeBtnI18n": "close",
+                     "saveSettingsI18n": "save settings",
+                     "jcr:created": "Thu Mar 14 2019 05:22:32 GMT+0000",
+                     "allOrdersI18n": "cuhu.ordering.allOrders",
+                     "allOrdersLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
+                     "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
+                     "preferencesBtnI18n": "pref button",
+                     "jcr:lastModified": "Thu Mar 14 2019 07:53:33 GMT+0000",
+                     "preferencesDescriptionI18n": "pref desc",
+                     "sling:resourceType": "customerhub/components/content/orderingcard",
+                     "defaultFields": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "defaultField": "orderNumber"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "defaultField": "poNumber"
+                        },
+                        "item2": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "defaultField": "orderDate"
+                        }
+                     },
+                     "enabledFields": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "contact"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "customerNumber"
+                        },
+                        "item2": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "enabledField": "salesOrg"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "order-history": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "jcr:content": {
+               "jcr:primaryType": "cq:PageContent",
+               "jcr:mixinTypes": [
+                  "mix:versionable"
+               ],
+               "jcr:createdBy": "admin",
+               "jcr:title": "Order History",
+               "cq:lastReplicationAction": "Activate",
+               "jcr:versionHistory": "27405d1f-ec02-400a-a7a6-1dd80f287c4f",
+               "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+               "cq:lastReplicatedBy": "sapient-tarun",
+               "jcr:predecessors": [
+                  "5014b9bf-77fe-46a8-9cb4-22f7b1c8f98b"
+               ],
+               "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+               "cq:lastReplicated": "Mon Mar 11 2019 05:00:23 GMT+0000",
+               "cq:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
+               "jcr:baseVersion": "5014b9bf-77fe-46a8-9cb4-22f7b1c8f98b",
+               "jcr:isCheckedOut": true,
+               "jcr:uuid": "1469e615-3549-4e0d-b137-2df33507e6c9",
+               "sling:resourceType": "customerhub/components/structure/page",
+               "cq:lastModifiedBy": "sapient-tushar",
+               "root": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "responsivegrid_622605362": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                  },
+                  "responsivegrid": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                     "ordersearch": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "jcr:createdBy": "sapient-tarun",
+                        "orderStatusLabelI18n": "Order Status Label",
+                        "allStatusesTextI18n": "Status",
+                        "dateRangeLabelI18n": "Date Range Label",
+                        "searchInputLabelI18n": "Search Input Label",
+                        "resetButtonTextI18n": "Reset",
+                        "jcr:lastModifiedBy": "sapient-tushar",
+                        "jcr:created": "Fri Mar 08 2019 06:16:09 GMT+0000",
+                        "searchButtonTextI18n": "Search Orders",
+                        "allAddressesTextI18n": "Address",
+                        "orderDetailLink": "/content/tetrapak/customerhub/global/en/ordering/order-history",
+                        "searchTermPlaceholderI18n": "Purchase order No. / Tetra Pak order No.",
+                        "deliveryAddressLabelI18n": "Delivery Address Label",
+                        "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
+                        "sling:resourceType": "customerhub/components/content/ordersearch",
+                        "enabledFields": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "item0": {
+                              "jcr:primaryType": "nt:unstructured",
+                              "enabledField": "contact"
+                           },
+                           "item1": {
+                              "jcr:primaryType": "nt:unstructured",
+                              "enabledField": "customerNumber"
+                           },
+                           "item2": {
+                              "jcr:primaryType": "nt:unstructured",
+                              "enabledField": "salesOrg"
+                           },
+                           "item3": {
+                              "jcr:primaryType": "nt:unstructured",
+                              "enabledField": "requestedDelivery"
+                           },
+                           "item4": {
+                              "jcr:primaryType": "nt:unstructured",
+                              "enabledField": "ETA"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "packaging-material": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "jcr:content": {
+               "jcr:primaryType": "cq:PageContent",
+               "jcr:mixinTypes": [
+                  "mix:versionable"
+               ],
+               "jcr:createdBy": "admin",
+               "jcr:title": "Packaging Material",
+               "cq:lastReplicationAction": "Activate",
+               "jcr:versionHistory": "2f3114e2-5c82-4c12-a557-c39fa3d274b2",
+               "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+               "cq:lastReplicatedBy": "sapient-user",
+               "jcr:predecessors": [
+                  "cdb61fd7-2292-4a6f-a63b-65303abc5c17"
+               ],
+               "cq:redirectTarget": "https://www.tetrapak.com/packaging/materials",
+               "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+               "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+               "cq:lastModified": "Sat Mar 09 2019 10:38:13 GMT+0000",
+               "jcr:baseVersion": "cdb61fd7-2292-4a6f-a63b-65303abc5c17",
+               "jcr:isCheckedOut": true,
+               "jcr:uuid": "b359574d-b4fa-43b2-96c6-51110ef00fa0",
+               "sling:resourceType": "customerhub/components/structure/page",
+               "cq:lastModifiedBy": "sapient-user",
+               "root": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "responsivegrid_622605362": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                  },
+                  "responsivegrid": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                  }
+               }
+            }
+         },
+         "parts": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "jcr:content": {
+               "jcr:primaryType": "cq:PageContent",
+               "jcr:mixinTypes": [
+                  "mix:versionable"
+               ],
+               "jcr:createdBy": "admin",
+               "jcr:title": "Parts",
+               "cq:lastReplicationAction": "Activate",
+               "jcr:versionHistory": "bce74f8d-52c5-4130-aaa2-17a1eaf6a18a",
+               "iconClass": "icon-Cart",
+               "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+               "cq:lastReplicatedBy": "sapient-tarun",
+               "jcr:predecessors": [
+                  "52df607c-f226-4b6c-81f5-6be803ca196e"
+               ],
+               "cq:redirectTarget": "http://tetrapak.com/services/parts",
+               "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+               "cq:lastReplicated": "Thu Mar 14 2019 05:33:22 GMT+0000",
+               "cq:lastModified": "Thu Mar 14 2019 05:33:15 GMT+0000",
+               "jcr:baseVersion": "52df607c-f226-4b6c-81f5-6be803ca196e",
+               "jcr:isCheckedOut": true,
+               "jcr:uuid": "e8a1b139-73a8-4bfd-8800-132a8bafdd21",
+               "sling:resourceType": "customerhub/components/structure/page",
+               "cq:lastModifiedBy": "sapient-tarun",
+               "root": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "responsivegrid_622605362": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                  },
+                  "responsivegrid": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                  }
+               }
+            }
+         }
+      },
+      "parts-inventory": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:mixinTypes": [
+            "rep:AccessControllable"
+         ],
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Parts Inventory",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "eec70182-4f8f-4f12-864a-030f1b5ad7db",
+            "iconClass": "icon-Inventory",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-user",
+            "jcr:predecessors": [
+               "7db13c5e-81a0-4ce4-96f4-7ee015a50444"
+            ],
+            "cq:redirectTarget": "https://www.tetrapak.com/",
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Sat Mar 09 2019 10:25:36 GMT+0000",
+            "jcr:baseVersion": "7db13c5e-81a0-4ce4-96f4-7ee015a50444",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "38807626-5f60-4ed1-bf70-24288694b901",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-user",
             "root": {
                "jcr:primaryType": "nt:unstructured",
                "sling:resourceType": "wcm/foundation/components/responsivegrid",
@@ -491,425 +564,379 @@
                }
             }
          }
-      }
-   },
-   "parts-inventory": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:mixinTypes": [
-         "rep:AccessControllable"
-      ],
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Parts Inventory",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "eec70182-4f8f-4f12-864a-030f1b5ad7db",
-         "iconClass": "icon-Inventory",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "7db13c5e-81a0-4ce4-96f4-7ee015a50444"
-         ],
-         "cq:redirectTarget": "https://www.tetrapak.com/",
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:25:36 GMT+0000",
-         "jcr:baseVersion": "7db13c5e-81a0-4ce4-96f4-7ee015a50444",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "38807626-5f60-4ed1-bf70-24288694b901",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "financials": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:mixinTypes": [
-         "rep:AccessControllable"
-      ],
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Financials",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "3761fead-95b5-4b73-a0b5-cd6f48254dbb",
-         "iconClass": "icon-Financials",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-swati",
-         "jcr:predecessors": [
-            "54dff1e0-6e4f-409c-b520-e5956fe1715c"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Tue Mar 12 2019 12:12:06 GMT+0000",
-         "cq:lastModified": "Tue Mar 12 2019 12:11:58 GMT+0000",
-         "jcr:baseVersion": "54dff1e0-6e4f-409c-b520-e5956fe1715c",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "12c34fb7-b833-495b-8819-9243e533e96e",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-swati",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid",
-				"financialstatement": {
-				 "jcr:primaryType": "nt:unstructured",
-				 "jcr:createdBy": "sapient-tarun",
-				 "statementOfAccount": "Statement of account",
-				 "findCustomer": "Find customer",
-				 "accountNumber": "Account Number",
-				 "accountService": "Account service",
-				 "selectCustomerLabel": "Select customer",
-				 "jcr:lastModifiedBy": "sapient-tushar",
-				 "jcr:created": "Fri Mar 08 2019 06:16:09 GMT+0000",
-				 "selectStatusLabel": "Select Status",
-				 "selectDateRangeLabel": "Select Date Range",
-				 "selectDocumentTypeLabel": "Select Document Type",
-				 "placeholderForDocumentNumber": "Document Number",
-				 "searchInputLabel": "Search Input",
-				 "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
-				 "sling:resourceType": "customerhub/components/content/ordersearch",
-				 "resetButtonText":"Reset search",
-				 "searchButtonText": "Search statement",
-				 "summaryHeadingI18n": "Statement Summary",
-				 "documentHeadingI18n":"Documents",
-				 "createExcelBtnI18n": "Create Excel",
-				 "createPdfBtnI18n": "Create PDF"
-				}
-            }
-         }
-      }
-   },
-   "training": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:mixinTypes": [
-         "rep:AccessControllable"
-      ],
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Training",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "57f81ad9-d0a5-4967-8d3f-3bd0d531f362",
-         "iconClass": "icon-Training",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "be66f963-18ac-49ef-8edc-b3782f131084"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:26:22 GMT+0000",
-         "jcr:baseVersion": "be66f963-18ac-49ef-8edc-b3782f131084",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "ab4d0b77-8c1e-433c-8620-d88d0119d4a6",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "projects": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Projects",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "71b58a33-e8e5-42d5-87bb-f819c71c5af0",
-         "iconClass": "icon-Collaboration",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "f0a289b0-8e2a-448c-b614-f969cc3b2a8a"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:27:59 GMT+0000",
-         "jcr:baseVersion": "f0a289b0-8e2a-448c-b614-f969cc3b2a8a",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "14348025-54ed-469b-89d0-79fdb58341bd",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "contact": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Contact",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "c056aad8-c2d8-4116-b82c-6f43a6ae7640",
-         "iconClass": "icon-Phone",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "bd1dee8c-85d8-4d2b-aea4-adaa5d7642b9"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:28:21 GMT+0000",
-         "jcr:baseVersion": "bd1dee8c-85d8-4d2b-aea4-adaa5d7642b9",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "00cb96e2-abc3-4a16-93f7-82bfddb5dfb3",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "about-my-tetra-pak": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "About My Tetra Pak",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "bfa1cbbf-7222-46e7-a8b4-cbf3911ab4c6",
-         "iconClass": "icon-Info",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-tarun",
-         "jcr:predecessors": [
-            "a63f53b8-73f4-44ee-b02d-d79c53853ae4"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Fri Mar 15 2019 07:42:07 GMT+0000",
-         "cq:lastModified": "Fri Mar 15 2019 07:24:35 GMT+0000",
-         "jcr:baseVersion": "a63f53b8-73f4-44ee-b02d-d79c53853ae4",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "bcec82f2-d3ba-4052-a8b9-5dfbd7ade9bc",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-tarun",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid",
-               "getstarted": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "sapient-nitin",
-                  "jcr:lastModifiedBy": "sapient-tarun",
-                  "jcr:created": "Wed Feb 20 2019 05:12:55 GMT+0000",
-                  "headingI18n": "About_GetStarted_Heading",
-                  "jcr:lastModified": "Fri Mar 15 2019 07:24:35 GMT+0000",
-                  "sling:resourceType": "customerhub/components/content/getstarted"
-               }
-            }
-         }
-      }
-   },
-   "logout": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:mixinTypes": [
-            "mix:versionable"
-         ],
-         "jcr:createdBy": "admin",
-         "jcr:title": "Logout",
-         "cq:lastReplicationAction": "Activate",
-         "jcr:versionHistory": "6f36f9bb-19d9-4916-9501-0cf3dbe7c15b",
-         "iconClass": "icon-Logout",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "cq:lastReplicatedBy": "sapient-user",
-         "jcr:predecessors": [
-            "3d06d5f1-46b1-490f-942b-985c8a66f9ba"
-         ],
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
-         "cq:lastModified": "Sat Mar 09 2019 10:29:21 GMT+0000",
-         "jcr:baseVersion": "3d06d5f1-46b1-490f-942b-985c8a66f9ba",
-         "jcr:isCheckedOut": true,
-         "jcr:uuid": "70342a88-00ad-47e9-992a-145e7a1bd765",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-user",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            }
-         }
-      }
-   },
-   "Getstartedtest": {
-      "jcr:primaryType": "cq:Page",
-      "jcr:createdBy": "admin",
-      "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-      "jcr:content": {
-         "jcr:primaryType": "cq:PageContent",
-         "jcr:createdBy": "admin",
-         "jcr:title": "get started test",
-         "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
-         "cq:lastModified": "Thu Mar 14 2019 07:35:35 GMT+0000",
-         "sling:resourceType": "customerhub/components/structure/page",
-         "cq:lastModifiedBy": "sapient-tarun",
-         "root": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "wcm/foundation/components/responsivegrid",
-            "responsivegrid_622605362": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid"
-            },
-            "responsivegrid": {
-               "jcr:primaryType": "nt:unstructured",
-               "sling:resourceType": "wcm/foundation/components/responsivegrid",
-               "getstarted": {
-                  "jcr:primaryType": "nt:unstructured",
-                  "jcr:createdBy": "sapient-tarun",
-                  "jcr:lastModifiedBy": "sapient-tarun",
-                  "jcr:created": "Thu Mar 14 2019 07:34:56 GMT+0000",
-                  "jcr:lastModified": "Thu Mar 14 2019 07:35:35 GMT+0000",
-                  "sling:resourceType": "customerhub/components/content/getstarted"
-               }
-            }
-         }
-      }
-   },
- "404" : {
-  "jcr:primaryType": "cq:Page",
-  "jcr:createdBy": "admin",
-  "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
-  "jcr:content": {
-    "jcr:primaryType": "cq:PageContent",
-    "jcr:mixinTypes": [
-      "mix:versionable"
-    ],
-    "jcr:createdBy": "admin",
-    "jcr:title": "404",
-    "cq:lastReplicationAction": "Activate",
-    "jcr:versionHistory": "250de795-57da-440f-9871-0be51a57a46b",
-    "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-    "cq:lastReplicatedBy": "admin",
-    "jcr:predecessors": [
-      "cdda510d-8066-4c85-bb53-bb3020b8fa87"
-    ],
-    "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
-    "cq:lastReplicated": "Wed May 08 2019 10:57:19 GMT+0530",
-    "cq:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
-    "jcr:baseVersion": "cdda510d-8066-4c85-bb53-bb3020b8fa87",
-    "jcr:isCheckedOut": true,
-    "jcr:uuid": "a6fd9c51-a2af-478b-be75-73c58e033fc9",
-    "sling:resourceType": "customerhub/components/structure/page",
-    "cq:lastModifiedBy": "admin",
-    "root": {
-      "jcr:primaryType": "nt:unstructured",
-      "sling:resourceType": "wcm/foundation/components/responsivegrid",
-      "responsivegrid_622605362": {
-        "jcr:primaryType": "nt:unstructured",
-        "sling:resourceType": "wcm/foundation/components/responsivegrid"
       },
-      "responsivegrid": {
-        "jcr:primaryType": "nt:unstructured",
-        "sling:resourceType": "wcm/foundation/components/responsivegrid",
-        "error": {
-          "jcr:primaryType": "nt:unstructured",
-          "jcr:createdBy": "admin",
-          "jcr:lastModifiedBy": "admin",
-          "imagePath": "/content/dam/customerhub/english/common/Error_CuHu.png",
-          "jcr:created": "Wed May 08 2019 10:55:05 GMT+0530",
-          "imageAltText": "Error Cuhu",
-          "errorCode": "404",
-          "jcr:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
-          "sling:resourceType": "customerhub/components/content/error",
-          "textIsRich": "true",
-          "errorTitle": "Oops... Page Not found",
-          "errorDescription": "<p>Either you do not have the access to this page or yoy mistyped the URL.</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/global/en/dashboard.html\">dashboard</a>.</p>\r\n"
-        }
+      "financials": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:mixinTypes": [
+            "rep:AccessControllable"
+         ],
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Financials",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "3761fead-95b5-4b73-a0b5-cd6f48254dbb",
+            "iconClass": "icon-Financials",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-swati",
+            "jcr:predecessors": [
+               "54dff1e0-6e4f-409c-b520-e5956fe1715c"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Tue Mar 12 2019 12:12:06 GMT+0000",
+            "cq:lastModified": "Tue Mar 12 2019 12:11:58 GMT+0000",
+            "jcr:baseVersion": "54dff1e0-6e4f-409c-b520-e5956fe1715c",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "12c34fb7-b833-495b-8819-9243e533e96e",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-swati",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "financialstatement": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "sapient-tarun",
+                     "statementOfAccount": "Statement of account",
+                     "findCustomer": "Find customer",
+                     "accountNumber": "Account Number",
+                     "accountService": "Account service",
+                     "selectCustomerLabel": "Select customer",
+                     "jcr:lastModifiedBy": "sapient-tushar",
+                     "jcr:created": "Fri Mar 08 2019 06:16:09 GMT+0000",
+                     "selectStatusLabel": "Select Status",
+                     "selectDateRangeLabel": "Select Date Range",
+                     "selectDocumentTypeLabel": "Select Document Type",
+                     "placeholderForDocumentNumber": "Document Number",
+                     "searchInputLabel": "Search Input",
+                     "jcr:lastModified": "Fri Mar 15 2019 09:39:07 GMT+0000",
+                     "sling:resourceType": "customerhub/components/content/ordersearch",
+                     "resetButtonText": "Reset search",
+                     "searchButtonText": "Search statement",
+                     "summaryHeadingI18n": "Statement Summary",
+                     "documentHeadingI18n": "Documents",
+                     "createExcelBtnI18n": "Create Excel",
+                     "createPdfBtnI18n": "Create PDF"
+                  }
+               }
+            }
+         }
+      },
+      "training": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:mixinTypes": [
+            "rep:AccessControllable"
+         ],
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Training",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "57f81ad9-d0a5-4967-8d3f-3bd0d531f362",
+            "iconClass": "icon-Training",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-user",
+            "jcr:predecessors": [
+               "be66f963-18ac-49ef-8edc-b3782f131084"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Sat Mar 09 2019 10:26:22 GMT+0000",
+            "jcr:baseVersion": "be66f963-18ac-49ef-8edc-b3782f131084",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "ab4d0b77-8c1e-433c-8620-d88d0119d4a6",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-user",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               }
+            }
+         }
+      },
+      "projects": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Projects",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "71b58a33-e8e5-42d5-87bb-f819c71c5af0",
+            "iconClass": "icon-Collaboration",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-user",
+            "jcr:predecessors": [
+               "f0a289b0-8e2a-448c-b614-f969cc3b2a8a"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Sat Mar 09 2019 10:27:59 GMT+0000",
+            "jcr:baseVersion": "f0a289b0-8e2a-448c-b614-f969cc3b2a8a",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "14348025-54ed-469b-89d0-79fdb58341bd",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-user",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               }
+            }
+         }
+      },
+      "contact": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Contact",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "c056aad8-c2d8-4116-b82c-6f43a6ae7640",
+            "iconClass": "icon-Phone",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-user",
+            "jcr:predecessors": [
+               "bd1dee8c-85d8-4d2b-aea4-adaa5d7642b9"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Sat Mar 09 2019 10:28:21 GMT+0000",
+            "jcr:baseVersion": "bd1dee8c-85d8-4d2b-aea4-adaa5d7642b9",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "00cb96e2-abc3-4a16-93f7-82bfddb5dfb3",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-user",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               }
+            }
+         }
+      },
+      "about-my-tetra-pak": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "About My Tetra Pak",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "bfa1cbbf-7222-46e7-a8b4-cbf3911ab4c6",
+            "iconClass": "icon-Info",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-tarun",
+            "jcr:predecessors": [
+               "a63f53b8-73f4-44ee-b02d-d79c53853ae4"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Fri Mar 15 2019 07:42:07 GMT+0000",
+            "cq:lastModified": "Fri Mar 15 2019 07:24:35 GMT+0000",
+            "jcr:baseVersion": "a63f53b8-73f4-44ee-b02d-d79c53853ae4",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "bcec82f2-d3ba-4052-a8b9-5dfbd7ade9bc",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-tarun",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "getstarted": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "sapient-nitin",
+                     "jcr:lastModifiedBy": "sapient-tarun",
+                     "jcr:created": "Wed Feb 20 2019 05:12:55 GMT+0000",
+                     "headingI18n": "About_GetStarted_Heading",
+                     "jcr:lastModified": "Fri Mar 15 2019 07:24:35 GMT+0000",
+                     "sling:resourceType": "customerhub/components/content/getstarted"
+                  }
+               }
+            }
+         }
+      },
+      "logout": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Logout",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "6f36f9bb-19d9-4916-9501-0cf3dbe7c15b",
+            "iconClass": "icon-Logout",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "sapient-user",
+            "jcr:predecessors": [
+               "3d06d5f1-46b1-490f-942b-985c8a66f9ba"
+            ],
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastReplicated": "Sat Mar 09 2019 10:58:26 GMT+0000",
+            "cq:lastModified": "Sat Mar 09 2019 10:29:21 GMT+0000",
+            "jcr:baseVersion": "3d06d5f1-46b1-490f-942b-985c8a66f9ba",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "70342a88-00ad-47e9-992a-145e7a1bd765",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-user",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               }
+            }
+         }
+      },
+      "Getstartedtest": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:createdBy": "admin",
+            "jcr:title": "get started test",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "jcr:created": "Fri Mar 15 2019 17:40:22 GMT+0530",
+            "cq:lastModified": "Thu Mar 14 2019 07:35:35 GMT+0000",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "sapient-tarun",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "getstarted": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "sapient-tarun",
+                     "jcr:lastModifiedBy": "sapient-tarun",
+                     "jcr:created": "Thu Mar 14 2019 07:34:56 GMT+0000",
+                     "jcr:lastModified": "Thu Mar 14 2019 07:35:35 GMT+0000",
+                     "sling:resourceType": "customerhub/components/content/getstarted"
+                  }
+               }
+            }
+         }
+      },
+      "404": {
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+               "mix:versionable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "404",
+            "cq:lastReplicationAction": "Activate",
+            "jcr:versionHistory": "250de795-57da-440f-9871-0be51a57a46b",
+            "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:lastReplicatedBy": "admin",
+            "jcr:predecessors": [
+               "cdda510d-8066-4c85-bb53-bb3020b8fa87"
+            ],
+            "jcr:created": "Wed May 08 2019 10:51:16 GMT+0530",
+            "cq:lastReplicated": "Wed May 08 2019 10:57:19 GMT+0530",
+            "cq:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
+            "jcr:baseVersion": "cdda510d-8066-4c85-bb53-bb3020b8fa87",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "a6fd9c51-a2af-478b-be75-73c58e033fc9",
+            "sling:resourceType": "customerhub/components/structure/page",
+            "cq:lastModifiedBy": "admin",
+            "root": {
+               "jcr:primaryType": "nt:unstructured",
+               "sling:resourceType": "wcm/foundation/components/responsivegrid",
+               "responsivegrid_622605362": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid"
+               },
+               "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "error": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "jcr:createdBy": "admin",
+                     "jcr:lastModifiedBy": "admin",
+                     "imagePath": "/content/dam/customerhub/english/common/Error_CuHu.png",
+                     "jcr:created": "Wed May 08 2019 10:55:05 GMT+0530",
+                     "imageAltText": "Error Cuhu",
+                     "errorCode": "404",
+                     "jcr:lastModified": "Wed May 08 2019 10:57:10 GMT+0530",
+                     "sling:resourceType": "customerhub/components/content/error",
+                     "textIsRich": "true",
+                     "errorTitle": "Oops... Page Not found",
+                     "errorDescription": "<p>Either you do not have the access to this page or yoy mistyped the URL.</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/global/en/dashboard.html\">dashboard</a>.</p>\r\n"
+                  }
+               }
+            }
+         }
       }
-    }
-  }
-}
-}
+   }

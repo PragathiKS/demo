@@ -1,6 +1,5 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -12,8 +11,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -43,9 +40,9 @@ public class LanguageSelectorModel {
 
     @PostConstruct
     protected void init() {
-        selectedLanguage = getSelectedLanguageFromCookie();
+        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
 
-        Resource globalConfigResource = getGlobalConfigurationResource();
+        Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(request);
         if (null != globalConfigResource) {
             ValueMap map = globalConfigResource.getValueMap();
             headingI18n = (String) map.get("headingI18n");
@@ -64,28 +61,6 @@ public class LanguageSelectorModel {
 
             Collections.sort(listOfLanguages);
         }
-    }
-
-    private String getSelectedLanguageFromCookie() {
-        Cookie languageCookie = request.getCookie("lang-code");
-        if (null != languageCookie) {
-            return languageCookie.getValue();
-        }
-        Session session = request.getResourceResolver().adaptTo(Session.class);
-        if (null != session && null != userPreferenceService) {
-            String userId = session.getUserID();
-            userPreferenceService.getSavedPreferences(userId, CustomerHubConstants.LANGUGAGE_PREFERENCES);
-        }
-        return null;
-    }
-
-    private Resource getGlobalConfigurationResource() {
-        Resource childResource = request.getResourceResolver().getResource(
-                GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
-        if (null != childResource) {
-            return GlobalUtil.getGlobalConfigurationResource(childResource);
-        }
-        return null;
     }
 
     public String getHeadingI18n() {
