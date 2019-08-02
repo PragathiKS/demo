@@ -6,6 +6,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -42,6 +43,12 @@ public class ReferenceModel {
             path = path.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
                     CustomerHubConstants.PATH_SEPARATOR + locale);
         }
+        Resource checkResource = request.getResourceResolver().getResource(path);
+        if (null != checkResource && ResourceUtil.isNonExistingResource(checkResource)) {
+            path = path.replace(CustomerHubConstants.PATH_SEPARATOR + locale,
+                    CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE);
+        }
+
         return path;
     }
 }
