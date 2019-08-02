@@ -39,9 +39,10 @@
 
      {{!-- Header component --}}
         <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
+             data-sly-use.languageModel="/apps/customerhub/components/content/languageselector/ux-model.js"
              data-sly-use.cookie="/apps/customerhub/components/content/header/cookie.js"
              data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
-             data-sly-call="${headerLibs.header_template @data=headerModel, cookie=cookie}" />
+             data-sly-call="${headerLibs.header_template @data=headerModel,langData=languageModel, cookie=cookie}" />
                   {{!-- Navigation component --}}
              <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
                      data-sly-use.leftnavigationLib="/apps/customerhub/components/content/leftnavigation/leftnavigation-template.html"
@@ -51,7 +52,7 @@
         <div class="row">
             <div class="col-lg-9 tp-column__content">
                 {{!-- Main content goes here --}}
-                {{#if_notin "header,leftnavigation" fsdId}}
+                {{#if_notin "header,leftnavigation,languageselector" fsdId}}
                     {{#if_notin "error" fsdId}}
                         <h1 class="tp-page-title">{{fsdId}}</h1>
                     {{/if_notin}}
