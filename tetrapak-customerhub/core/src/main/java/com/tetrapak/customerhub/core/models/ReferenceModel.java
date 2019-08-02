@@ -42,11 +42,12 @@ public class ReferenceModel {
         if (null != path) {
             path = path.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
                     CustomerHubConstants.PATH_SEPARATOR + locale);
-        }
-        Resource checkResource = request.getResourceResolver().getResource(path);
-        if (null != checkResource && ResourceUtil.isNonExistingResource(checkResource)) {
-            path = path.replace(CustomerHubConstants.PATH_SEPARATOR + locale,
-                    CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE);
+
+            Resource checkResource = request.getResourceResolver().getResource(path);
+            if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
+                path = path.replace(CustomerHubConstants.PATH_SEPARATOR + locale,
+                        CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE);
+            }
         }
 
         return path;

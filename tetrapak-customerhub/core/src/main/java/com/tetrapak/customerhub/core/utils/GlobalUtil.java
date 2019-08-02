@@ -291,7 +291,7 @@ public class GlobalUtil {
             language = "en";
         }
         Resource checkResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
-        if (null != checkResource && ResourceUtil.isNonExistingResource(checkResource)) {
+        if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
             language = "en";
         }
         Resource languagePageResource = request.getResourceResolver().getResource
