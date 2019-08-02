@@ -12,12 +12,11 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
@@ -32,8 +31,6 @@ import java.util.Set;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-
-    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
      * Method to get API GEE URL
@@ -284,12 +281,17 @@ public class GlobalUtil {
     /**
      * This method is used to get language page for the current resource
      *
-     * @param request current request
+     * @param request               current request
+     * @param userPreferenceService user preference service
      * @return language page
      */
     public static Page getLanguagePage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
         String language = getSelectedLanguage(request, userPreferenceService);
-        if(StringUtils.isEmpty(language)){
+        if (StringUtils.isEmpty(language)) {
+            language = "en";
+        }
+        Resource checkResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
+        if (null != checkResource && ResourceUtil.isNonExistingResource(checkResource)) {
             language = "en";
         }
         Resource languagePageResource = request.getResourceResolver().getResource
@@ -301,7 +303,10 @@ public class GlobalUtil {
     }
 
     /**
-     * @param request sling request
+     * Method to get selected language
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
      * @return string language code
      */
     public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
@@ -357,6 +362,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get global config resource for a resource
+     *
      * @param childResource resource
      * @return global config resource
      */
@@ -377,6 +384,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get global config resource for a request
+     *
      * @param request sling request
      * @return global config resource
      */
