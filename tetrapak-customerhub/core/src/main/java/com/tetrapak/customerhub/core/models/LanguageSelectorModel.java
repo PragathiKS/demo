@@ -37,7 +37,7 @@ public class LanguageSelectorModel {
 
     private String closeBtnTextI18n;
 
-    private String selectedLanguage = "en";
+    private String selectedLanguage;
 
     private List<String> listOfLanguages = new ArrayList<>();
 

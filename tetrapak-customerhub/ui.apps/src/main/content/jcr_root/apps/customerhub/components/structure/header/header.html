@@ -1,4 +1,6 @@
-<sly data-sly-use.model="com.tetrapak.customerhub.core.models.HeaderModel"
+<sly data-sly-use.headerModel="com.tetrapak.customerhub.core.models.HeaderModel"
+     data-sly-use.langModel="com.tetrapak.customerhub.core.models.LanguageSelectorModel"
      data-sly-use.lib="/apps/customerhub/components/content/header/header-template.html"
      data-sly-use.cookie="/apps/customerhub/components/structure/header/cookie.js"
-     data-sly-call="${lib.header_template @ data=model, cookie=cookie}"/>
+     data-sly-call="${lib.header_template @ data=headerModel, langData=langModel, cookie=cookie}">
+</sly>
