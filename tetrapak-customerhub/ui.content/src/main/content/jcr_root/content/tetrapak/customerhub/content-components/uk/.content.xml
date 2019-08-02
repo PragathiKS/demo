@@ -2,18 +2,20 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
-    <error-404/>
-    <error-500/>
     <jcr:content
-        cq:lastModified="{Date}2019-07-26T08:35:21.259Z"
-        cq:lastModifiedBy="admin"
+        cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
+        cq:conf=""
+        cq:lastModified="{Date}2019-07-17T11:23:47.676Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.676Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en"
         jcr:isCheckedOut="{Boolean}true"
         jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="English"
-        jcr:uuid="5971bdf4-bf6e-4fe8-90e8-bada498253bb"
+        jcr:title="Ukrainian"
+        jcr:uuid="e7fa9b13-0b02-499b-a88d-28538f62bfc4"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">
             <responsivegrid
@@ -22,19 +24,15 @@
                 <globalconfiguration
                     jcr:created="{Date}2019-03-09T10:45:30.509Z"
                     jcr:createdBy="sapient-user"
-                    jcr:lastModified="{Date}2019-07-26T08:35:21.255Z"
-                    jcr:lastModifiedBy="admin"
+                    jcr:lastModified="{Date}2019-03-11T04:46:30.777Z"
+                    jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/globalconfiguration"
                     closeBtnText="Close"
-                    cookieConsentButtonText="Ok! I understand."
-                    cookieConsentDisabled="false"
-                    cookieConsentText="&lt;p>Cookie consent text with &lt;b>RTE.&lt;/b>&lt;/p>&#xd;&#xa;&lt;p>&lt;a href=&quot;http://www.tetrapak.com/&quot; target=&quot;_blank&quot;>More details...&lt;/a>&lt;/p>&#xd;&#xa;"
                     navHeadingI18n="My Tetra Pak"
                     stickyHref="https://www.tetrapak.com"
                     stickyIconClass="icon-TetraPak"
-                    stickyLabel="Tetra Pak Home"
-                    textIsRich="true"/>
+                    stickyLabel="Tetra Pak Home"/>
                 <headerconfiguration
                     jcr:created="{Date}2019-07-16T16:53:27.341+05:30"
                     jcr:createdBy="admin"
