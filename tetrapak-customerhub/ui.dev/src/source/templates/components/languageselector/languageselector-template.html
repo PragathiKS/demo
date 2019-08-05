@@ -1,5 +1,6 @@
 <sly data-sly-template.languageselector_template="${@ data, flag}">
      <div class="modal tp-modal tp-lang-selector js-lang-modal  fade" id="lang-modal" data-module="LanguageSelector">
+        <input type="hidden" id="selectedLanguage" name="selectedLanguage" value="${data.selectedLanguage}" />
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
             <div class="modal-content">
                 <sly data-sly-test.closeBtnText="${data.closeBtnTextI18n @i18n}" />
@@ -13,12 +14,12 @@
                   <sly data-sly-test.selectedLanguage="language.${userLanguage}" />
                   <div class="tp-lang-selector__selected-lang">
                     <i class="icon-Globe"></i>
-                    <p class="tp-lang-selector__selected-lang-label">${selectedLanguage @i18n}</p>
+                    <p class="tp-lang-selector__selected-lang-label d-inline">${selectedLanguage @i18n}</p>
                   </div>
                   <div class="tp-lang-selector__lang-container">
                       <sly data-sly-list.lang=${data.listOfLanguages}>
                           <sly data-sly-test.language="language.${lang}" />
-                          <div class='tp-lang-selector__btn js-lang-selector__btn'>${language @i18n}</div>
+                          <div class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode=${lang}>${language @i18n}</div>
                       </sly>
                 </div>
                 </div>

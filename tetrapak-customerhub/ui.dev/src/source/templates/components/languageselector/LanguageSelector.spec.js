@@ -1,6 +1,5 @@
 import LanguageSelector from './LanguageSelector';
 import languageSelectorTemplate from '../../../test-templates-hbs/languageSelector.hbs';
-import { PageReloader } from '../../../scripts/utils/pageReloader';
 import $ from 'jquery';
 
 describe('LanguageSelector', function () {
@@ -10,7 +9,6 @@ describe('LanguageSelector', function () {
     this.initSpy = sinon.spy(this.languageSelector, 'init');
     this.closePopupSpy = sinon.spy(this.languageSelector, 'closeModalHandler');
     this.setCustomerLanguageSpy = sinon.spy(this.languageSelector, 'setCustomerLanguage');
-    this.pageReloadSpy = sinon.stub(PageReloader, 'reload');
     this.languageSelector.init();
   });
   after(function () {
@@ -18,7 +16,6 @@ describe('LanguageSelector', function () {
     this.initSpy.restore();
     this.closePopupSpy.restore();
     this.setCustomerLanguageSpy.restore();
-    this.pageReloadSpy.restore();
   });
 
   it('should initialize', function (done) {

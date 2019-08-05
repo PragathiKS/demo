@@ -16,14 +16,12 @@
 
         &-label {
             @include padding($padding-xs);
-            display: inline;
         }
     }
 
     &__btn {
         @include padding(2px);
         width: 25%;
-        text-align: left;
         cursor: pointer;
 
         @media #{$mobile} {
