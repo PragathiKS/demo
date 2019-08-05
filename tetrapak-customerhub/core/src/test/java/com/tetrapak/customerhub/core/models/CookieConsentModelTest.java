@@ -32,8 +32,8 @@ public class CookieConsentModelTest {
 	 */
 	@Before
 	public void setup() {
-		Resource cookieConsentResource = aemContext.currentResource(CONTENT_PATH);
-		cookieConsentModel = cookieConsentResource.adaptTo(CookieConsentModel.class);
+		aemContext.currentResource(CONTENT_PATH);
+		cookieConsentModel = aemContext.request().adaptTo(CookieConsentModel.class);
 	}
 
 	/**

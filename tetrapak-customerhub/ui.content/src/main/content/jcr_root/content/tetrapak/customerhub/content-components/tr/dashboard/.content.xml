@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-07-26T10:43:01.857Z"
+        cq:lastModifiedBy="sapient-tarun"
+        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.528Z"
+        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
+        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/dashboard"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Start Page"
+        jcr:uuid="bf5aaae6-671c-49ac-bb32-e5730bfe3b43"
+        sling:resourceType="customerhub/components/structure/page"
+        iconClass="icon-Dashboard">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <textvideo_416075310
+                    jcr:created="{Date}2019-07-08T09:23:35.205Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-07-18T03:46:56.833Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/textvideo"
+                    damVideoPath="/content/dam/customerhub/SampleVideo_1280x720_5mb.mp4"
+                    description="Yiyecek, içecek veya kozmetik? Hangi ürün olursa olsun, size gereksinimlerinize uyan işleme ve paketleme çözümlerini sunuyoruz. Akıllı çevre düşüncesi ile tarifler geliştirmek ve üretim süreçlerini tasarlamak için sizinle birlikte çalışıyoruz. Müşterilerinizin sevdiği ürünleri fikirlere dönüştürmenize yardımcı oluyoruz.&#xd;&#xa;"
+                    isExternal="true"
+                    pwDisplay="display-row"
+                    thumbnailPath="/content/dam/customerhub/get_started-3.PNG"
+                    title=" Ürünlerinizi başarıya dönüştürün"
+                    videoSource="dam"
+                    youtubeVideoID="ZofQqevIIZA"/>
+                <getstarted
+                    jcr:lastModified="{Date}2019-07-26T10:29:50.504Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    className="tpmol-image-card__normal-text"
+                    headingI18n="Başlamak"
+                    textIsRich="[true,true,true]">
+                    <item0-image
+                        jcr:lastModified="{Date}2019-07-26T09:31:44.179Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="first image"
+                        fileReference="/content/dam/customerhub/get_started-3.PNG"/>
+                    <item1-image
+                        jcr:lastModified="{Date}2019-07-26T09:33:02.350Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="second one"
+                        fileReference="/content/dam/customerhub/get_started-2.PNG"/>
+                    <item2-image
+                        jcr:lastModified="{Date}2019-07-26T09:34:08.409Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="third one"
+                        fileReference="/content/dam/customerhub/get_started-1.PNG"/>
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>&lt;b>Tetra Pak'ım&lt;/b>, Tetra Pak'a tek giriş noktanız. İş verilerini zamandan ve paradan tasarruf etmenize, performansı artırmanıza ve bilginizi artırmanıza yardımcı olmak için akıllı yollarla kullanır. Günlük çalışmanızı iyileştiren tavsiyeler ve görüşler alırsınız. Tetra Pak'ım, çözümünüzden en iyi sonucu almanıza yardımcı olur.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
+                            titleI18n="İşletmeniz için bir yer"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Ekipmanınıza, kurulumunuza, gereksinimlerinize ve hedeflerinize göre; Tetra Pak'ım, bir şeyin dikkatinize ihtiyacı olduğunda sizi bilgilendirir. Performans sorunları, bakım ve optimizasyon hakkındaki ayrıntıları inceleyin - bildirimleri günlük çalışmanız için kontrol listesi olarak kullanabilirsiniz.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
+                            titleI18n=" İhtiyacınız olan bildirimler"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Hangi tür bildirimleri almak istersiniz? İşimizin performans hedefleri nelerdir? İlgi alanlarınız? My Tetra Pak'ı ihtiyaçlarınız için optimize edin ve işinize yeni değerler katın.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
+                            titleI18n=" Deneyiminizi özelleştirin"/>
+                    </list>
+                </getstarted>
+                <tabslist
+                    jcr:created="{Date}2019-07-26T09:35:35.713Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-07-26T10:41:15.934Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/tabslist"
+                    heading=" Tüm ihtiyaçlar için çözümler"
+                    textIsRich="[true,true,true]">
+                    <tablist jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="true"
+                            linkTextI18n=" İçgörü hakkında bilgi edinin"
+                            linkType="button"
+                            linkURL="https://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>Ortamda yoğurt içmek artık ekstra büyük meyve parçaları alıyor. Bu, Çin süt üretimi ve TETRA Pak uzmanı arasındaki yenilikçi işbirliğinin sonucudur. Fikir, işleme, paketleme ve lansmanın ardındaki başarı formülü neydi?&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Doğanın daha büyük anları"
+                            tabTitleI18n="Dünyanın ilk büyük meyve parçalarıyla yoğurt içen içeceği"
+                            type="image"
+                            videoSource="dam"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="true"
+                            linkTextI18n="Daha fazla bilgi edin"
+                            linkType="button"
+                            linkURL="http://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>Ortamda yoğurt içmek artık ekstra büyük meyve parçaları alıyor. Bu, Çin süt üretimi ve TETRA Pak uzmanı arasındaki yenilikçi işbirliğinin sonucudur. Fikir, işleme, paketleme ve lansmanın ardındaki başarı formülü neydi?&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Doğanın daha büyük anları"
+                            tabTitleI18n="Dünyanın ilk büyük meyve parçalarıyla yoğurt içen içeceği"
+                            thumbnailPath="/content/dam/customerhub/english/common/Error_CuHu.png"
+                            type="video"
+                            videoSource="dam"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="true"
+                            linkTextI18n="Daha fazla bilgi edin"
+                            linkType="link"
+                            linkURL="http://www.tetrapak.com"
+                            mediaDescriptionI18n="&lt;p>Ortamda yoğurt içmek artık ekstra büyük meyve parçaları alıyor. Bu, Çin süt üretimi ve TETRA Pak uzmanı arasındaki yenilikçi işbirliğinin sonucudur. Fikir, işleme, paketleme ve lansmanın ardındaki başarı formülü neydi?&lt;/p>&#xd;&#xa;&lt;p>Ortamda yoğurt içmek artık ekstra büyük meyve parçaları alıyor. Bu, Çin süt üretimi ve TETRA Pak uzmanı arasındaki yenilikçi işbirliğinin sonucudur. Fikir, işleme, paketleme ve lansmanın ardındaki başarı formülü neydi?&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Doğanın daha büyük anları"
+                            tabTitleI18n=" Dünyanın ilk büyük meyve parçalarıyla yoğurt içen içeceği"
+                            type="video"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                    </tablist>
+                    <item0-image
+                        jcr:lastModified="{Date}2019-07-26T10:43:01.848Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="third one"
+                        fileReference="/content/dam/customerhub/get_started-2.PNG"/>
+                </tabslist>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

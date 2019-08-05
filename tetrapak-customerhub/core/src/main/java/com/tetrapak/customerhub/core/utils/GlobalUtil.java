@@ -7,17 +7,19 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -29,8 +31,6 @@ import java.util.Set;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-
-    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
      * Method to get API GEE URL
@@ -281,16 +281,44 @@ public class GlobalUtil {
     /**
      * This method is used to get language page for the current resource
      *
-     * @param resource current resource
+     * @param request               current request
+     * @param userPreferenceService user preference service
      * @return language page
      */
-    public static Page getLanguagePage(Resource resource) {
-        // TODO remove hard coded en and set language dynamically
-        Resource languagePageResource = resource.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/en");
+    public static Page getLanguagePage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        String language = getSelectedLanguage(request, userPreferenceService);
+        if (StringUtils.isEmpty(language)) {
+            language = "en";
+        }
+        Resource checkResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
+        if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
+            language = "en";
+        }
+        Resource languagePageResource = request.getResourceResolver().getResource
+                ("/content/tetrapak/customerhub/content-components/" + language);
         if (null == languagePageResource) {
             return null;
         }
         return languagePageResource.adaptTo(Page.class);
+    }
+
+    /**
+     * Method to get selected language
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Cookie languageCookie = request.getCookie("lang-code");
+        if (null != languageCookie) {
+            return languageCookie.getValue();
+        }
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        }
+        return null;
     }
 
     /**
@@ -334,6 +362,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Method to get global config resource for a resource
+     *
      * @param childResource resource
      * @return global config resource
      */
@@ -349,6 +379,21 @@ public class GlobalUtil {
                     return nextResource;
                 }
             }
+        }
+        return null;
+    }
+
+    /**
+     * Method to get global config resource for a request
+     *
+     * @param request sling request
+     * @return global config resource
+     */
+    public static Resource getGlobalConfigurationResource(SlingHttpServletRequest request) {
+        Resource childResource = request.getResourceResolver().getResource(
+                GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
+        if (null != childResource) {
+            return getGlobalConfigurationResource(childResource);
         }
         return null;
     }
