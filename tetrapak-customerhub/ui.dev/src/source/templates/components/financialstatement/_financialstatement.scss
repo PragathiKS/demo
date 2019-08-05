@@ -96,6 +96,13 @@
         }
     }
 
+    &__document-number-container,
+    &__date-range-container {
+        input {
+            @include height(40px);
+        }
+    }
+
     &__document-number-container {
         @include margin(0 0 $margin-md 0);
         align-self: baseline;
