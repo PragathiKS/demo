@@ -2,8 +2,8 @@
   "name": "customerhub",
   "version": "0.0.1",
   "dependencies": {
-    "argon-formatter": "0.0.4",
-    "bootstrap": "^4.2.1",
+    "argon-formatter": "0.0.5",
+    "bootstrap": "^4.3.1",
     "core-js": "^3.1.3",
     "deparam.js": "^2.0.2",
     "jquery": "^3.4.1",
