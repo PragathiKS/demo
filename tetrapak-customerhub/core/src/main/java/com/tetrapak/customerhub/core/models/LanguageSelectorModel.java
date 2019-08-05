@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -72,7 +73,7 @@ public class LanguageSelectorModel {
     }
 
     public String getPageLanguage() {
-        return selectedLanguage.isEmpty() ? "en" : selectedLanguage;
+        return StringUtils.isEmpty(selectedLanguage) ? "en" : selectedLanguage;
     }
 
     public String getSelectedLanguage() {
