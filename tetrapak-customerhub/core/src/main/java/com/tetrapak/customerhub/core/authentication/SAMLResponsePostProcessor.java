@@ -104,6 +104,18 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 	private Map<String, String> parseSAMLResponse(String base64DecodedResponse)
 			throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		// -----------------------------------------------------------------
+        // [#4592] FIX START: Improper_Restriction_of_XXE_Ref
+        try {
+        	documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        	documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        	documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        }
+        catch (ParserConfigurationException ignore) {}
+        documentBuilderFactory.setXIncludeAware(false);
+        documentBuilderFactory.setExpandEntityReferences(false);
+        // [#4592] FIX END : Improper_Restriction_of_XXE_Ref
+        // -----------------------------------------------------------------
 		documentBuilderFactory.setNamespaceAware(true);
 		DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
 		Map<String, String> samlAttributeMap = new HashMap<>();
