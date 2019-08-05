@@ -318,6 +318,6 @@ export const resolveCurrency = (value, isoCode) => {
 /**
  * For Page reload
  */
-export const reloadPage = () => {
+export function reloadPage() {
   window.location.reload();
-};
+}

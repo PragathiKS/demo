@@ -1,6 +1,7 @@
 import LanguageSelector from './LanguageSelector';
 import languageSelectorTemplate from '../../../test-templates-hbs/languageSelector.hbs';
 import $ from 'jquery';
+import * as common from '../../../scripts/common/common';
 
 describe('LanguageSelector', function () {
   before(function () {
@@ -9,6 +10,7 @@ describe('LanguageSelector', function () {
     this.initSpy = sinon.spy(this.languageSelector, 'init');
     this.closePopupSpy = sinon.spy(this.languageSelector, 'closeModalHandler');
     this.setCustomerLanguageSpy = sinon.spy(this.languageSelector, 'setCustomerLanguage');
+    this.pageReloadStub = sinon.stub(common, 'reloadPage')
     this.languageSelector.init();
   });
   after(function () {

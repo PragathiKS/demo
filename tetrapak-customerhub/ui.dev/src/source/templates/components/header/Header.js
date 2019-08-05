@@ -8,7 +8,7 @@ class Header {
 
   bindEvents() {
     this.root.find('.tp-header__burger-menu').on('click', () => {
-      $body.trigger('showLeftNav');
+      $body.trigger('showleftnav');
     });
     this.root.find('.js-header__selected-lang').on('click', () => {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup');

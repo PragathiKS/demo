@@ -28,8 +28,8 @@ class LanguageSelector {
       $this.root.modal('hide');
       $this.closeModalHandler();
     })
-      .on('click', function (e) {
-        if ($(e.target).hasClass('js-lang-modal')) {
+      .on('click', function () {
+        if ($(this).hasClass('js-lang-modal')) {
           $this.closeModalHandler();
         }
       })
