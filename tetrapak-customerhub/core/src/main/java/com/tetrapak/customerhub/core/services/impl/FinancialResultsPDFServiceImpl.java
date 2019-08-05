@@ -198,8 +198,8 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             rows.add(new Row(
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " + " " + paramRequest.getEndDate() + " " + CustomerHubConstants.HYPHEN_STRING
-                            + " " + paramRequest.getStartDate(),
+                            + ":" + " " + " " + paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING
+                            + " " + paramRequest.getEndDate(),
                     10, muliRegular, 12));
         } else if (paramRequest.getEndDate() != null) {
             rows.add(new Row(
