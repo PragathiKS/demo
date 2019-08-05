@@ -36,45 +36,46 @@
                         headingI18n="choose language"
                         stickyHref="/content/tetrapak/customerhub/global/en/dashboard"
                         stickyIconClass="icon-TetraPak"
-                        stickyLabel="Tetra Pak Home"/>
-                <languages jcr:primaryType="nt:unstructured">
-                    <item0
-                            jcr:primaryType="nt:unstructured"
-                            langCode="en"/>
-                    <item1
-                            jcr:primaryType="nt:unstructured"
-                            langCode="zh_tw"/>
-                    <item2
-                            jcr:primaryType="nt:unstructured"
-                            langCode="zh"/>
-                    <item3
-                            jcr:primaryType="nt:unstructured"
-                            langCode="uk"/>
-                    <item4
-                            jcr:primaryType="nt:unstructured"
-                            langCode="tr"/>
-                    <item5
-                            jcr:primaryType="nt:unstructured"
-                            langCode="sv"/>
-                    <item6
-                            jcr:primaryType="nt:unstructured"
-                            langCode="sl"/>
-                    <item7
-                            jcr:primaryType="nt:unstructured"
-                            langCode="sk"/>
-                    <item8
-                            jcr:primaryType="nt:unstructured"
-                            langCode="ru"/>
-                    <item9
-                            jcr:primaryType="nt:unstructured"
-                            langCode="pt"/>
-                    <item10
-                            jcr:primaryType="nt:unstructured"
-                            langCode="ko"/>
-                    <item11
-                            jcr:primaryType="nt:unstructured"
-                            langCode="ja"/>
-                </languages>
+                        stickyLabel="Tetra Pak Home">
+                    <languages jcr:primaryType="nt:unstructured">
+                        <item0
+                                jcr:primaryType="nt:unstructured"
+                                langCode="en"/>
+                        <item1
+                                jcr:primaryType="nt:unstructured"
+                                langCode="zh_tw"/>
+                        <item2
+                                jcr:primaryType="nt:unstructured"
+                                langCode="zh"/>
+                        <item3
+                                jcr:primaryType="nt:unstructured"
+                                langCode="uk"/>
+                        <item4
+                                jcr:primaryType="nt:unstructured"
+                                langCode="tr"/>
+                        <item5
+                                jcr:primaryType="nt:unstructured"
+                                langCode="sv"/>
+                        <item6
+                                jcr:primaryType="nt:unstructured"
+                                langCode="sl"/>
+                        <item7
+                                jcr:primaryType="nt:unstructured"
+                                langCode="sk"/>
+                        <item8
+                                jcr:primaryType="nt:unstructured"
+                                langCode="ru"/>
+                        <item9
+                                jcr:primaryType="nt:unstructured"
+                                langCode="pt"/>
+                        <item10
+                                jcr:primaryType="nt:unstructured"
+                                langCode="ko"/>
+                        <item11
+                                jcr:primaryType="nt:unstructured"
+                                langCode="ja"/>
+                    </languages>
+                </globalconfiguration>
             </responsivegrid>
         </root>
     </jcr:content>
