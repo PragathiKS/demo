@@ -35,7 +35,7 @@
                 <reference_1364873486
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="customerhub/components/content/reference"
-                        contentPath="/content/tetrapak/customerhub/content-components/en/dashboard/jcr:content/root/responsivegrid/listcontentimage"/>
+                        contentPath="/content/tetrapak/customerhub/content-components/en/dashboard/jcr:content/root/responsivegrid/tabslist"/>
             </responsivegrid>
         </root>
     </jcr:content>

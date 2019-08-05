@@ -2,14 +2,17 @@ package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.customerhub.core.beans.HeaderBean;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -21,11 +24,14 @@ import java.util.List;
  *
  * @author Nitin Kumar
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-    @Self
-    private Resource resource;
+    @SlingObject
+    private SlingHttpServletRequest request;
+
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
 
     private String logoUrl;
 
@@ -37,15 +43,15 @@ public class HeaderModel {
 
     @PostConstruct
     protected void init() {
-        Page languagePage = GlobalUtil.getLanguagePage(resource);
+        Page languagePage = GlobalUtil.getLanguagePage(request, userPreferenceService);
         if (null != languagePage) {
-            Resource headerConfigurationResource = resource.getResourceResolver().getResource(languagePage.getPath()
+            Resource headerConfigurationResource = request.getResourceResolver().getResource(languagePage.getPath()
                     + "/jcr:content/root/responsivegrid/headerconfiguration");
             if (null != headerConfigurationResource) {
                 ValueMap map = headerConfigurationResource.getValueMap();
                 logoUrl = (String) map.get("logoUrl");
-                mLogoLink = LinkUtil.getValidLink(resource, (String) map.get("mLogoLink"));
-                dLogoLink = LinkUtil.getValidLink(resource, (String) map.get("dLogoLink"));
+                mLogoLink = LinkUtil.getValidLink(request.getResource(), (String) map.get("mLogoLink"));
+                dLogoLink = LinkUtil.getValidLink(request.getResource(), (String) map.get("dLogoLink"));
                 Resource links = headerConfigurationResource.getChild("headerNavLinks");
                 if (null == links) {
                     return;
@@ -55,7 +61,7 @@ public class HeaderModel {
                     Resource res = itr.next();
                     ValueMap valueMap = res.getValueMap();
                     HeaderBean headerBean = new HeaderBean();
-                    headerBean.setHref(LinkUtil.getValidLink(resource, (String) valueMap.get("href")));
+                    headerBean.setHref(LinkUtil.getValidLink(request.getResource(), (String) valueMap.get("href")));
                     headerBean.setName((String) valueMap.get("name"));
                     headerBean.setTargetNew(StringUtils.equalsIgnoreCase("true", (String) valueMap.get("targetNew")));
                     headerNavLinks.add(headerBean);
@@ -63,10 +69,6 @@ public class HeaderModel {
 
             }
         }
-    }
-
-    public Resource getResource() {
-        return resource;
     }
 
     public String getLogoUrl() {

@@ -140,6 +140,7 @@
         "source/scripts/utils/",
         "source/templates/components/leftnavigation/",
         "source/templates/components/header/",
+        "source/templates/components/languageselector/",
         "source/templates/components/pagination/",
         "source/templates/components/cookieconsent/",
         "source/templates/components/getstarted/",

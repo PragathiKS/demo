@@ -121,4 +121,23 @@
             display: none;
         }
     }
+
+    &__selected-lang {
+        @include padding-right($padding-xl);
+        position: relative;
+        cursor: pointer;
+
+        &-label {
+            @include padding-right($padding-xs);
+            text-transform: uppercase;
+        }
+
+        .icon-Chevron_Down {
+            @include font-size($font-xxs);
+            color: $color-tundora;
+            transform: translateY(-50%);
+            position: absolute;
+            top: 50%;
+        }
+    }
 }

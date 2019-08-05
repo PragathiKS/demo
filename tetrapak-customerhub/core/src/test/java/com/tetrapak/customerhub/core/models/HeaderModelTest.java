@@ -22,8 +22,8 @@ public class HeaderModelTest {
 
     @Before
     public void setup() {
-        Resource headerResource = aemContext.currentResource(CONTENT_ROOT);
-        headerModel = headerResource.adaptTo(HeaderModel.class);
+        aemContext.currentResource(CONTENT_ROOT);
+        headerModel = aemContext.request().adaptTo(HeaderModel.class);
     }
 
     @Test
