@@ -11,6 +11,9 @@ import org.junit.Test;
 
 import java.util.List;
 
+/**
+ * @author Nitin Kumar
+ */
 public class LeftNavigationModelTest {
 
     private LeftNavigationModel leftNavigationModel = null;
@@ -46,13 +49,6 @@ public class LeftNavigationModelTest {
         Assert.assertEquals("Order History", leftNavigationBeanFromSubMenu.getIconLabel());
         Assert.assertEquals(false, leftNavigationBeanFromSubMenu.isExternalLink());
         Assert.assertEquals(false, leftNavigationBeanFromSubMenu.isActive());
-
-        LeftNavigationBean bean = leftNavigationModel.getTpLogoListItem();
-        Assert.assertEquals("https://www.tetrapak.com", bean.getHref());
-        Assert.assertEquals("icon-TetraPak", bean.getIconClass());
-        Assert.assertEquals("Tetra Pak Home", bean.getIconLabel());
-        Assert.assertEquals(true, bean.isExternalLink());
-        Assert.assertEquals(false, bean.isActive());
 
     }
 }

@@ -5,7 +5,6 @@ import com.day.cq.wcm.api.PageFilter;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -34,8 +33,6 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
-    private LeftNavigationBean tpLogoListItem = new LeftNavigationBean();
-
     public static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     @PostConstruct
@@ -43,12 +40,11 @@ public class LeftNavigationModel {
         Resource childResource = resource.getResourceResolver().getResource(
                 GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
-            Resource globalConfigResource = getGlobalConfigurationResource(childResource);
+            Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(childResource);
             if (null != globalConfigResource) {
                 ValueMap map = globalConfigResource.getValueMap();
                 navHeading = (String) map.get("navHeadingI18n");
                 closeBtnText = (String) map.get("closeBtnText");
-                setLogoListItem(map);
             }
         }
 
@@ -83,9 +79,9 @@ public class LeftNavigationModel {
         while (itr.hasNext()) {
             Page subPage = itr.next();
             if (PageUtil.isCurrentPage(subPage, resource) || isChildPageActive(subPage, resource)) {
-                leftNavigationBean.setExpanded(true);
                 leftNavigationBean.setActive(true);
             }
+            leftNavigationBean.setExpanded(true);
             ValueMap vMap = subPage.getContentResource().getValueMap();
             if (!isHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
@@ -113,13 +109,6 @@ public class LeftNavigationModel {
             }
         }
         return flag;
-    }
-
-    private void setLogoListItem(ValueMap valueMap) {
-        tpLogoListItem.setHref(LinkUtil.getValidLink(resource,(String)valueMap.get("stickyHref")));
-        tpLogoListItem.setIconClass((String) valueMap.get("stickyIconClass"));
-        tpLogoListItem.setExternalLink(true);
-        tpLogoListItem.setIconLabel((String) valueMap.get("stickyLabel"));
     }
 
     private LeftNavigationBean getLeftNavigationBean(Page childPage, ValueMap valueMap) {
@@ -154,22 +143,6 @@ public class LeftNavigationModel {
         return valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY);
     }
 
-    private Resource getGlobalConfigurationResource(Resource childResource) {
-        Resource res = childResource.getChild("globalconfiguration");
-        if (null != res) {
-            return res;
-        } else {
-            Iterator<Resource> itr = childResource.listChildren();
-            while (itr.hasNext()) {
-                Resource nextResource = itr.next();
-                if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
-                    return nextResource;
-                }
-            }
-        }
-        return null;
-    }
-
     public List<LeftNavigationBean> getLeftNavItems() {
         return new ArrayList<>(this.leftNavItems);
     }
@@ -180,9 +153,5 @@ public class LeftNavigationModel {
 
     public String getCloseBtnText() {
         return closeBtnText;
-    }
-
-    public LeftNavigationBean getTpLogoListItem() {
-        return tpLogoListItem;
     }
 }

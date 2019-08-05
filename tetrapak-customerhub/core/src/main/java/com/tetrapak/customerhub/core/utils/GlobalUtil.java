@@ -4,18 +4,22 @@ import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -27,8 +31,6 @@ import java.util.Set;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-
-    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
      * Method to get API GEE URL
@@ -274,6 +276,126 @@ public class GlobalUtil {
                 componentsReference.add(iterators.next().getPath());
             }
         }
+    }
+
+    /**
+     * This method is used to get language page for the current resource
+     *
+     * @param request               current request
+     * @param userPreferenceService user preference service
+     * @return language page
+     */
+    public static Page getLanguagePage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        String language = getSelectedLanguage(request, userPreferenceService);
+        if (StringUtils.isEmpty(language)) {
+            language = "en";
+        }
+        Resource checkResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
+        if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
+            language = "en";
+        }
+        Resource languagePageResource = request.getResourceResolver().getResource
+                ("/content/tetrapak/customerhub/content-components/" + language);
+        if (null == languagePageResource) {
+            return null;
+        }
+        return languagePageResource.adaptTo(Page.class);
+    }
+
+    /**
+     * Method to get selected language
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Cookie languageCookie = request.getCookie("lang-code");
+        if (null != languageCookie) {
+            return languageCookie.getValue();
+        }
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        }
+        return null;
+    }
+
+    /**
+     * This method prepares image bean from image resource
+     *
+     * @param imageResource image resource
+     * @return image bean
+     */
+    public static ImageBean getImageBean(Resource imageResource) {
+        ValueMap imgValueMap = imageResource.getValueMap();
+        ImageBean imageBean = new ImageBean();
+        imageBean.setImagePath((String) imgValueMap.get("fileReference"));
+        imageBean.setAltText((String) imgValueMap.get("alt"));
+        imageBean.setDheight((String) imgValueMap.get("dheight"));
+        imageBean.setDwidth((String) imgValueMap.get("dwidth"));
+        imageBean.setMheightl((String) imgValueMap.get("mheightl"));
+        imageBean.setMwidthl((String) imgValueMap.get("mwidthl"));
+        imageBean.setMheightp((String) imgValueMap.get("mheightp"));
+        imageBean.setMwidthp((String) imgValueMap.get("mwidthp"));
+        imageBean.setImageCrop((String) imgValueMap.get("imageCrop"));
+        return imageBean;
+    }
+
+    /**
+     * This method is used to get image resource from inside a child element of a multi-field
+     *
+     * @param res Current Resource from a multi-field
+     * @return image resource
+     */
+    public static Resource getImageResource(Resource res) {
+
+        Resource listResource = res.getParent();
+        if (null == listResource) {
+            return null;
+        }
+        Resource tabResource = listResource.getParent();
+        if (null == tabResource) {
+            return null;
+        }
+        return tabResource.getChild(res.getName() + "-image");
+    }
+
+    /**
+     * Method to get global config resource for a resource
+     *
+     * @param childResource resource
+     * @return global config resource
+     */
+    public static Resource getGlobalConfigurationResource(Resource childResource) {
+        Resource res = childResource.getChild("globalconfiguration");
+        if (null != res) {
+            return res;
+        } else {
+            Iterator<Resource> itr = childResource.listChildren();
+            while (itr.hasNext()) {
+                Resource nextResource = itr.next();
+                if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
+                    return nextResource;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method to get global config resource for a request
+     *
+     * @param request sling request
+     * @return global config resource
+     */
+    public static Resource getGlobalConfigurationResource(SlingHttpServletRequest request) {
+        Resource childResource = request.getResourceResolver().getResource(
+                GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
+        if (null != childResource) {
+            return getGlobalConfigurationResource(childResource);
+        }
+        return null;
     }
 
 }

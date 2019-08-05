@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.exceptions.SecutiyRuntimeException;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -61,7 +63,21 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
 
         if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
                 && StringUtils.isNotBlank(documentNumber)) {
-            HttpResponse httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
+            HttpResponse httpResp = null;
+            
+            try {
+            	httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
+            } catch (SecutiyRuntimeException secRTExcep) {
+            	LOGGER.error("Auth token is invalid! {}", secRTExcep.getMessage());
+            	response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
+                JsonObject jsonResponse = new JsonObject();
+                jsonResponse.addProperty("errorMsg",
+                        "Auth token is invalid!" + request.getRequestPathInfo());
+                HttpUtil.writeJsonResponse(response, jsonResponse);
+                throw secRTExcep;
+			} catch (Exception e) {
+				LOGGER.error("Exception {}", e);
+			}
 
             int statusCode = httpResp.getStatusLine().getStatusCode();
             LOGGER.debug("Retrieved response from API got status code:{}", statusCode);
@@ -85,7 +101,8 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
         if (null == request.getCookie(AUTH_TOKEN)) {
             return StringUtils.EMPTY;
         }
-        return request.getCookie(AUTH_TOKEN).getValue();
+        XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
+        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue()) ;
     }
 
 }

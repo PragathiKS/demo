@@ -8,9 +8,9 @@ import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
+import * as money from 'argon-formatter';
 
 const currentUserAgent = window.navigator.userAgent;
-let isoMapping = null;
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
@@ -273,7 +273,7 @@ export const sanitize = (input) => Handlebars.escapeExpression(input);
  * @param {string[]} keys List of keys
  * @param {dataLink} dataLink Row link
  */
-export const tableSort = (data, keys, dataLink, isClickable) => {
+export const tableSort = (data, keys, dataLink, isClickable, rtKeys = []) => {
   const dataObject = {
     row: []
   };
@@ -281,6 +281,7 @@ export const tableSort = (data, keys, dataLink, isClickable) => {
   if (dataLink) {
     dataObject.rowLink = `${dataLink}`;
   }
+
   dataObject.isClickable = !!dataLink || isClickable;
 
   keys.forEach((key, index) => {
@@ -288,7 +289,7 @@ export const tableSort = (data, keys, dataLink, isClickable) => {
     dataObject.row[index] = {
       key,
       value,
-      isRTE: [''].includes(key)
+      isRTE: rtKeys.includes(key)
     };
   });
   return dataObject;
@@ -300,16 +301,17 @@ export const tableSort = (data, keys, dataLink, isClickable) => {
  * @param {string} isoCode ISO currency code
  */
 export const resolveCurrency = (value, isoCode) => {
-  if (!Number.isNaN(+value)) {
-    if (!isoMapping) {
-      isoMapping = $.extend({}, strCompressed.get('isoMapping'));
-    }
-    if (Array.isArray(isoMapping.Currency)) {
-      const found = isoMapping.Currency.find((curr) => (curr['ISO_Code'] === isoCode));
-      if (found) {
-        return `${found.Symbol} ${value}`;
-      }
-    }
+  if (isNaN(+value) || !isoCode) {
+    return value; // No transformation
   }
-  return value; // No transformation
+  return money.format(value, {
+    code: isoCode
+  });
 };
+
+/**
+ * For Page reload
+ */
+export function reloadPage() {
+  window.location.reload();
+}

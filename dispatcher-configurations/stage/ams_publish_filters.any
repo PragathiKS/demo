@@ -13,10 +13,10 @@
 #/006 { /type "allow" /url "/bin/*"    }  ## allow bin path access
 
 ## This rule allows content to be access
-/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|excel)' /path "/content/*" }  ## disable this rule to allow mapped content only
+/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|excel|mp4)' /path "/content/*" }  ## disable this rule to allow mapped content only
 
 ## Enable specific mime types in non-public content directories
-/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2)' }
+/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|video/mp4)' }
 
 ## Enable clientlibs proxy servlet
 /0012 { /type "allow" /method "GET" /url "/etc.clientlibs/*" }
@@ -43,4 +43,9 @@
 /0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
 /0024 { /type "allow" /method "GET" /url "/bin/customerhub/token-generator" }
 /0025 { /type "allow" /method "POST" /url "/content/tetrapak/customerhub/en/dashboard/jcr:content/root/responsivegrid/orderingcard.preference.json" }  ## allow POSTs to update the order preferences
-/0026 { /type "allow" /method "GET" /url "/bin/customerhub/invoice/document*" }
+/0026 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/*/introscreen" }  ## allow GET calls to introscreen
+/0027 { /type "allow" /method "GET" /url "/bin/customerhub/invoice/document*" }
+/0028 { /method "POST" /url "*/saml_login" }  ## allow POST for SAML calls
+/0029 { /type "allow" /url "*/saml_login"}
+/0030 { /type "allow" /path "/saml_login*"}
+/0031 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for PW services

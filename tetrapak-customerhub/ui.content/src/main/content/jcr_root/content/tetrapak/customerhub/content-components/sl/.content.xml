@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
+        cq:conf=""
+        cq:lastModified="{Date}2019-07-17T11:23:47.030Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.030Z"
+        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:language="en"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Slovenian"
+        jcr:uuid="67e77929-3ffe-49d9-b12a-2962a7cf35f8"
+        sling:resourceType="customerhub/components/structure/page">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <globalconfiguration
+                    jcr:created="{Date}2019-03-09T10:45:30.509Z"
+                    jcr:createdBy="sapient-user"
+                    jcr:lastModified="{Date}2019-03-11T04:46:30.777Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/structure/globalconfiguration"
+                    closeBtnText="Close"
+                    navHeadingI18n="My Tetra Pak"
+                    stickyHref="https://www.tetrapak.com"
+                    stickyIconClass="icon-TetraPak"
+                    stickyLabel="Tetra Pak Home"/>
+                <headerconfiguration
+                    jcr:created="{Date}2019-07-16T16:53:27.341+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-07-17T11:55:13.231+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/structure/headerconfiguration"
+                    dLogoLink="/content/tetrapak/customerhub/global/en/dashboard"
+                    logoUrl="/content/dam/customerhub/english/common/TetraPakLogo.png"
+                    mLogoLink="/content/tetrapak/customerhub/global/en/dashboard">
+                    <headerNavLinks jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            href="https://www.tetrapak.com/processing.html"
+                            name="Processing"
+                            targetNew="true"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            href="https://www.tetrapak.com/packaging.html"
+                            name="Packaging"
+                            targetNew="true"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            href="https://www.tetrapak.com/services.html"
+                            name="Services"
+                            targetNew="true"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            href="https://www.tetrapak.com/sustainability.html"
+                            name="Sustainability"
+                            targetNew="true"/>
+                        <item4
+                            jcr:primaryType="nt:unstructured"
+                            href="https://www.tetrapak.com/about.html"
+                            name="About us"
+                            targetNew="true"/>
+                    </headerNavLinks>
+                </headerconfiguration>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+    <_x0035_00/>
+    <_x0034_04/>
+    <dashboard/>
+</jcr:root>

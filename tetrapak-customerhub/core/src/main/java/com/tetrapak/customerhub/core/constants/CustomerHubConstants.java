@@ -33,6 +33,8 @@ public final class CustomerHubConstants {
 
     public static final String ORDER_PREFERENCES = "orderPreferences";
 
+    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
+
     public static final String RESULT = "result";
 
     public static final String STATUS = "status";

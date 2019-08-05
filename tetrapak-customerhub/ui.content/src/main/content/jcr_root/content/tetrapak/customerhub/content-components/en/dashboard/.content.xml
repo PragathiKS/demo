@@ -3,17 +3,14 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-06-10T07:32:32.833Z"
+        cq:lastModified="{Date}2019-07-26T11:33:17.188Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-06-10T07:32:43.741Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Dashboard"
-        jcr:uuid="15c6095b-071c-4ee0-a137-d7f667dcd0cb"
+        jcr:title="Start Page"
+        jcr:uuid="5b4cf713-10e1-4fa0-a648-a8fdb39a401c"
         sling:resourceType="customerhub/components/structure/page"
         iconClass="icon-Dashboard">
         <root
@@ -21,7 +18,152 @@
             sling:resourceType="wcm/foundation/components/responsivegrid">
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <textvideo_416075310
+                    jcr:created="{Date}2019-07-08T09:23:35.205Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-07-09T09:14:00.057Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/textvideo"
+                    damVideoPath="/content/dam/customerhub/SampleVideo_1280x720_5mb.mp4"
+                    description="Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customer love."
+                    isExternal="true"
+                    pwDisplay="display-row"
+                    thumbnailPath="/content/dam/customerhub/get_started-3.PNG"
+                    title="Turn your products into success"
+                    videoSource="dam"
+                    youtubeVideoID="ZofQqevIIZA"/>
+                <getstarted
+                    jcr:lastModified="{Date}2019-07-26T11:32:52.535Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    className="tpmol-image-card__normal-text"
+                    headingI18n="About_GetStarted_Heading"
+                    textIsRich="[true,true,true]">
+                    <item0-image
+                        jcr:lastModified="{Date}2019-07-26T11:33:17.180Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="get started 1"
+                        fileReference="/content/dam/customerhub/get_started-1.PNG"/>
+                    <item1-image
+                        jcr:lastModified="{Date}2019-07-23T09:45:19.373Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="get started 3"
+                        fileReference="/content/dam/customerhub/get_started-2.PNG"/>
+                    <item2-image
+                        jcr:lastModified="{Date}2019-07-23T09:45:47.482Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="get started3"
+                        fileReference="/content/dam/customerhub/get_started-3.PNG"/>
+                    <item3-image
+                        jcr:lastModified="{Date}2019-07-23T09:46:02.191Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="get started 4"
+                        fileReference="/content/dam/customerhub/get_started-2.PNG"/>
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>&lt;b>My Tetra Pak&lt;/b> is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your &lt;a title=&quot;Hi&quot; href=&quot;http://www.google.com&quot;>solutions.&lt;/a>&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title1"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work.&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title2"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business.&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title3"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="About_GetStarted_Desc4"
+                            imageAltI18n="About_GetStarted_Image4_altText"
+                            imagePath="/content/dam/customerhub/p3.PNG"
+                            titleI18n="About_GetStarted_title3"/>
+                    </list>
+                </getstarted>
+                <tabslist
+                    jcr:created="{Date}2019-07-24T06:55:47.428Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-07-26T08:24:15.981Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/tabslist"
+                    heading="Solutions for all needs"
+                    textIsRich="[true,true,true,true]">
+                    <item0-image
+                        jcr:lastModified="{Date}2019-07-24T07:00:56.058Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="a"
+                        fileReference="/content/dam/customerhub/get_started-2.PNG"/>
+                    <item3-image
+                        jcr:lastModified="{Date}2019-07-24T07:01:02.895Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="a"
+                        fileReference="/content/dam/customerhub/cow-blue-background.png"/>
+                    <tablist jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="true"
+                            linkTextI18n="Learn about the insight"
+                            linkType="button"
+                            linkURL="https://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Bigger moments of nature"
+                            tabTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            type="image"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="true"
+                            linkTextI18n="Learn more"
+                            linkType="button"
+                            linkURL="http://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. &lt;br />&#xd;&#xa;&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Bigger moments of nature"
+                            tabTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            thumbnailPath="/content/dam/customerhub/english/common/Error_CuHu.png"
+                            type="video"
+                            videoSource="dam"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="true"
+                            linkTextI18n="http://www.tetrapak.com"
+                            linkType="link"
+                            linkURL="http://www.tetrapak.com"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            tabTitleI18n="Total productive Maintainance implementation for dairy products"
+                            type="video"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="true"
+                            linkTextI18n="learn more"
+                            linkType="button"
+                            linkURL="https://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>&lt;b>Ambient drinking yogurt now got that extr&lt;/b>a&lt;b>&lt;/b> -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Bigger moments of nature44"
+                            tabTitleI18n="Supply chain auditing that  secure food quality"
+                            type="image"/>
+                    </tablist>
+                </tabslist>
+            </responsivegrid>
         </root>
     </jcr:content>
 </jcr:root>

@@ -1,0 +1,74 @@
+.tp-lang-selector {
+    color: $color-tundora;
+    font-family: $font-light;
+
+    &__heading {
+        @include margin-bottom($margin-md);
+    }
+
+    &__lang-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__selected-lang {
+        @include margin-bottom($margin-md);
+
+        &-label {
+            @include padding($padding-xs);
+        }
+    }
+
+    &__btn {
+        @include padding(2px);
+        width: 25%;
+        cursor: pointer;
+
+        @media #{$mobile} {
+            width: 100%;
+        }
+
+        @media #{$tablet} {
+            width: 25%;
+        }
+    }
+
+    .tp-close-btn {
+        color: $color-text;
+        top: 0;
+        right: 0;
+        padding: 0;
+        position: absolute;
+        z-index: $zindex-p;
+    }
+
+    .modal-dialog {
+        @include margin(0 $margin-md);
+        max-width: 100%;
+
+        @media #{$desktop} {
+            @include max-width(700px);
+            margin: auto;
+        }
+
+        .modal-content {
+            @include box-shadow-modal;
+            @include margin($margin-md 0);
+            @include padding($padding-xl);
+            overflow: hidden;
+        }
+
+        .modal-header,
+        .modal-body {
+            border: 0;
+            padding: 0;
+        }
+
+    }
+
+    @media #{$mobile} {
+        .modal-dialog-centered {
+            min-height: 100%;
+        }
+    }
+}

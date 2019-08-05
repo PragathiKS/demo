@@ -5,5 +5,12 @@
 
 <sly data-sly-use.model="com.tetrapak.customerhub.core.models.GetStartedModel"
      data-sly-use.lib="getstarted-template.html"
+     data-sly-test="${!wcmmode.edit}"
      data-sly-call="${lib.getstarted_template @ data=model}">
+</sly>
+
+<sly data-sly-test="${wcmmode.edit}" data-sly-list.image=${model.imageList}>
+    <div>
+        <sly data-sly-resource="${image @ resourceType='customerhub/components/content/image'}"></sly> </br>
+    </div>
 </sly>

@@ -1,0 +1,72 @@
+{
+	"jcr:primaryType": "nt:unstructured",
+	"heading": "Heading For the Tabs List Component",
+	"sling:resourceType": "customerhub/components/content/tabslist",
+	"textIsRich": [
+		"true",
+		"true"
+	],
+	"tablist": {
+		"jcr:primaryType": "nt:unstructured",
+		"item0": {
+			"jcr:primaryType": "nt:unstructured",
+			"mediaTitleI18n": "Image Content Title",
+			"type": "image",
+			"linkTextI18n": "link text",
+			"linkURL": "http://www.tetrapak.com",
+			"youtubeId": "7878hhyu9",
+			"mediaDescriptionI18n": "<p>Some description</p> ",
+			"videoSource": "youtube",
+			"linkType": "button",
+			"tabTitleI18n": "Image Tab",
+			"isExternal": "true",
+			"imagePath": "/content/dam/customerhub/tetrapak.png",
+			"imageAltI18n":"Image alt text"
+		},
+		"item1": {
+			"jcr:primaryType": "nt:unstructured",
+			"mediaTitleI18n": "Some video title",
+			"type": "video",
+			"linkTextI18n": "Google Link ",
+			"linkURL": "http://www.tetrapak.com",
+			"youtubeVideoID": "ZofQqevIIZA",
+			"mediaDescriptionI18n": "<p>Video description</p> ",
+			"videoSource": "youtube",
+			"linkType": "link",
+			"tabTitleI18n": "Video tab",
+			"isExternal": "false",
+			"damVideoPath": "/content/dam/customerhub/tetrapak_intro.mp4",
+			"thumbnailPath": "/content/dam/customerhub/thumbnail.png"
+		}
+	},
+	"item0-image": {
+		"jcr:primaryType": "nt:unstructured",
+		"fileReference": "/content/dam/customerhub/p3.PNG",
+		"dwidth": "100",
+		"jcr:lastModifiedBy": "admin",
+		"mwidthl": "200",
+		"mwidthp": "300",
+		"alt": "alt1",
+		"imageCrop": "390,57,947,473",
+		"jcr:lastModified": "Fri Jul 19 2019 12:43:09 GMT+0530",
+		"mheightl": "400",
+		"mheightp": "500",
+		"sling:resourceType": "customerhub/components/content/image",
+		"dheight": "200"
+	},
+	"item1-image": {
+		"jcr:primaryType": "nt:unstructured",
+		"fileReference": "/content/dam/customerhub/p2.PNG",
+		"dwidth": "100",
+		"jcr:lastModifiedBy": "admin",
+		"mwidthl": "100",
+		"mwidthp": "100",
+		"alt": "alt1",
+		"imageCrop": "390,57,947,473",
+		"jcr:lastModified": "Fri Jul 19 2019 12:43:09 GMT+0530",
+		"mheightl": "290",
+		"mheightp": "290",
+		"sling:resourceType": "customerhub/components/content/image",
+		"dheight": "200"
+	}
+}

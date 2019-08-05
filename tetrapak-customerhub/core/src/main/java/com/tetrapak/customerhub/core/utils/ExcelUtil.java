@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.utils;
 import com.tetrapak.customerhub.core.beans.excel.ExcelFileData;
 import com.tetrapak.customerhub.core.exceptions.ExcelReportRuntimeException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -418,10 +419,12 @@ public final class ExcelUtil {
      * @return manipulated richTextString from the string data to be put in the cell
      */
     private static XSSFRichTextString applyCustomStyles(String field, List<String> tags, Font customFont) {
+        boolean isWhite = field.startsWith("<white>");
         field = stripTags(field);
         XSSFRichTextString richTextString = new XSSFRichTextString(field);
         customFont.setFontName(DEFAULT_FONT_NAME);
         customFont.setFontHeightInPoints(DEFAULT_FONT_HEIGHT);
+        customFont.setColor(isWhite?HSSFColor.HSSFColorPredefined.WHITE.getIndex():HSSFColor.HSSFColorPredefined.BLACK.getIndex());
         if (!tags.isEmpty()) {
             if (tags.contains(BOLD_TAG)) {
                 customFont.setBold(true);

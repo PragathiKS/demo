@@ -21,29 +21,34 @@ describe('LeftNavigation', function () {
     this.subsectionSpy.restore();
     this.eventOneStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.leftNavigation.init.called).to.be.true;
+    done();
   });
-  it('should close left navigation on click of close icon', function () {
+  it('should close left navigation on click of close icon', function (done) {
     $('.js-close-btn').trigger('click');
     expect(this.leftNavigation.closeSideNav.called).to.be.true;
+    done();
   });
 
-  it('should close left navigation on click of overlay icon', function () {
+  it('should close left navigation on click of overlay icon', function (done) {
     $('.js-left-nav__overlay').trigger('click');
     expect(this.leftNavigation.closeSideNav.called).to.be.true;
+    done();
   });
 
-  it('should open/close side nav submenu sections', function () {
+  it('should open/close side nav submenu sections', function (done) {
     $('.tpatom-list-item__btn').first().trigger('click'); // Open state
     this.leftNavigation.cache.anim = false;
     $('.tpatom-list-item__btn').first().trigger('click'); // Closed state
     expect(this.subsectionSpy.called).to.be.true;
+    done();
   });
 
-  it('should hide aside section', function () {
+  it('should hide aside section', function (done) {
     $('.js-left-nav__overlay').trigger('transitionend');
     expect(this.leftNavigation.hideAside.called).to.be.true;
+    done();
   });
 
 });

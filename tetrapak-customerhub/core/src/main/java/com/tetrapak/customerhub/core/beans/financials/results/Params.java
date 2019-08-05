@@ -3,6 +3,8 @@ package com.tetrapak.customerhub.core.beans.financials.results;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Bean class for Params response json
  */
@@ -35,6 +37,14 @@ public class Params {
     @SerializedName("documentNumber")
     @Expose
     private String documentNumber;
+
+    @SerializedName("statusList")
+    @Expose
+    private List<DocumentType> statusList;
+
+    @SerializedName("documentTypeList")
+    @Expose
+    private List<DocumentType> documentTypeList;
 
     public CustomerData getCustomerData() {
         return customerData;
@@ -92,4 +102,19 @@ public class Params {
         this.documentNumber = documentNumber;
     }
 
+    public List<DocumentType> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<DocumentType> statusList) {
+        this.statusList = statusList;
+    }
+
+    public List<DocumentType> getDocumentTypeList() {
+        return documentTypeList;
+    }
+
+    public void setDocumentTypeList(List<DocumentType> documentTypeList) {
+        this.documentTypeList = documentTypeList;
+    }
 }

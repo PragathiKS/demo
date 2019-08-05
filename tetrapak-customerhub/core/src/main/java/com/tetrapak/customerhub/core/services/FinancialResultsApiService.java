@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.services;
 
 import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import org.apache.http.HttpResponse;
 
 /**
@@ -13,17 +14,11 @@ public interface FinancialResultsApiService {
     /**
      * Method to get Financials Results from TETRA PAK API
      *
-     * @param status          status
-     * @param documentType    document type
-     * @param invoiceDateFrom invoice date from
-     * @param invoiceDateTo   invoice date to
-     * @param soaDate         soa date
-     * @param customerNumber  customer Number
+     * @param paramsRequest   params
      * @param token           token
      * @return json object
      */
-    JsonObject getFinancialResults(String status, String documentType, String invoiceDateFrom, String invoiceDateTo,
-                                   String soaDate, String customerNumber, String token);
+    JsonObject getFinancialResults(Params paramsRequest, String token);
 
     /**
      * Method to get the PDF of the invoice of the given document number

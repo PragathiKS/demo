@@ -99,6 +99,7 @@ module.exports = function (config) {
         fs: 'empty'
       },
       resolve: {
+        mainFields: ['main', 'module'],
         alias: {
           handlebars: 'handlebars/runtime'
         }

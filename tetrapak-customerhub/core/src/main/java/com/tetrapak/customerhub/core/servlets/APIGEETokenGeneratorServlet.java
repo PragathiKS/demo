@@ -5,7 +5,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -19,6 +19,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -26,8 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.Cookie;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,25 +54,16 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
-        final String username = apigeeService.getApigeeClientID();
-        final String password = apigeeService.getApigeeClientSecret();
-        final Cookie[] allCookies = request.getCookies();
-        String bPNumber = StringUtils.EMPTY;
+        final XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         String acctkn = StringUtils.EMPTY;
-                
-        for (Cookie cookie : allCookies) {
-        	if ("bPNumber".equals(cookie.getName())) {
-        		bPNumber = cookie.getValue();
-        	}
-        	if ("acctoken".equals(cookie.getName())) {
-        		acctkn = cookie.getValue();
-        	}
+        if (ObjectUtils.notEqual(null, request.getCookie("acctoken"))) {
+            acctkn = xssAPI.encodeForHTML(request.getCookie("acctoken").getValue());
         }
-        
-        String authString = username + ":" + password;
+        String authString = apigeeService.getApigeeClientID() + ":" + apigeeService.getApigeeClientSecret();
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
 
         HttpPost postRequest = new HttpPost(apiURL);
@@ -81,9 +71,8 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         postRequest.addHeader("Accept", "application/json");
         ArrayList<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
+        postParameters.add(new BasicNameValuePair("grant_type", "urn:ietf:params:oauth:grant-type:token-exchange"));
         postParameters.add(new BasicNameValuePair("token", acctkn));
-        postParameters.add(new BasicNameValuePair("BPN", bPNumber));
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
         HttpClient httpClient = HttpClientBuilder.create().build();
