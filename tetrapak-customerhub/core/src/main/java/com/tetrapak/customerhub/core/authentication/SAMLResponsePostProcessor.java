@@ -110,7 +110,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         	documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
         	documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
         	documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        } 
+        }
         catch (ParserConfigurationException ignore) {}
         documentBuilderFactory.setXIncludeAware(false);
         documentBuilderFactory.setExpandEntityReferences(false);
