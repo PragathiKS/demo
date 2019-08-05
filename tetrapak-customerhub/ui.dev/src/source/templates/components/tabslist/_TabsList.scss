@@ -1,4 +1,9 @@
 .tp-tablist {
+    .tp-container & {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     &__events {
         padding: 0;
 
