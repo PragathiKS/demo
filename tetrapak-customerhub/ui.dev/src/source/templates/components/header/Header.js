@@ -11,7 +11,7 @@ class Header {
       $body.trigger('showLeftNav');
     });
     this.root.find('.js-header__selected-lang').on('click', () => {
-      this.root.find('.js-lang-modal').trigger('showLanuagePreferencePopup');
+      this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup');
     });
   }
 
