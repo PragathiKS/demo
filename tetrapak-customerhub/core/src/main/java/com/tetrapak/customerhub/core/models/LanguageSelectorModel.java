@@ -71,6 +71,10 @@ public class LanguageSelectorModel {
         return closeBtnTextI18n;
     }
 
+    public String getPageLanguage() {
+        return selectedLanguage.isEmpty() ? "en" : selectedLanguage;
+    }
+
     public String getSelectedLanguage() {
         return selectedLanguage;
     }
