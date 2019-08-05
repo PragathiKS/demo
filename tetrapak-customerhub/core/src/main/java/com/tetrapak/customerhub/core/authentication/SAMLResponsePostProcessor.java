@@ -136,22 +136,30 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 	private Map<String, String> populateSAMLAttrMap(Map<String, String> samlAttributeMap, NodeList samlAssertion) {
 		Node samlAssertionNode = samlAssertion.item(0);
 		NodeList childNodes = samlAssertionNode.getChildNodes();
-		int maxChildNodeCount = childNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
-				: childNodes.getLength();
+		/*int maxChildNodeCount = childNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
+				: childNodes.getLength();*/
+		// [#3954] FIX START: Unchecked Input for Loop Condition
+		int maxChildNodeCount = childNodes.getLength();
+		if(maxChildNodeCount<=MAX_FIRSTLEVEL_CHILD_COUNT){
 		for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
 			Node subChildNode = childNodes.item(childCount);
 			if ("saml:AttributeStatement".equalsIgnoreCase(subChildNode.getNodeName())) {
 				getNodes(samlAttributeMap, subChildNode);
 			}
 		}
+		}
+		// [#3954] FIX END: Unchecked Input for Loop Condition
 		return samlAttributeMap;
 	}
 
 	private void getNodes(Map<String, String> samlAttributeMap, Node attributeStatementNode) {
 		NodeList attributeStatementChildNodes = attributeStatementNode.getChildNodes();
-		int maxChildNodeCount = attributeStatementChildNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT
+		/*int maxChildNodeCount = attributeStatementChildNodes.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT
 				? MAX_FIRSTLEVEL_CHILD_COUNT
-				: attributeStatementChildNodes.getLength();
+				: attributeStatementChildNodes.getLength();*/
+		// [#3954] FIX START: Unchecked Input for Loop Condition
+		int maxChildNodeCount = attributeStatementChildNodes.getLength();
+		if(maxChildNodeCount<=MAX_FIRSTLEVEL_CHILD_COUNT){
 		for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
 			Node childNode = attributeStatementChildNodes.item(childCount);
 			if ("saml:Attribute".equalsIgnoreCase(childNode.getNodeName())) {
@@ -163,7 +171,8 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 					putSamlAttributes(samlAttributeMap, attributeValue, attrValNodeList, attrValNodeCount);
 				}
 			}
-		}
+		} 
+		}// [#3954] FIX END: Unchecked Input for Loop Condition
 	}
 
 	private void putSamlAttributes(Map<String, String> samlAttributeMap, String attributeValue,
