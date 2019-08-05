@@ -61,8 +61,11 @@ class LanguageSelector {
   }
 
   showPopup() {
-    const { $modal } = this.cache;
+    const { $modal, selectedLanguage } = this.cache;
     const langCookie = storageUtil.getCookie('lang-code');
+    if (selectedLanguage && langCookie !== selectedLanguage) {
+      storageUtil.setCookie('lang-code', selectedLanguage);
+    }
     if (!this.cache.selectedLanguage && !langCookie) {
       $modal.modal();
     }

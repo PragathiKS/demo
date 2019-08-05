@@ -1,7 +1,7 @@
 {
   "headingI18n": "Choose your language",
   "closeBtnTextI18n": "Close",
-  "selectedLanguage": null,
+  "selectedLanguage": "fr",
   "listOfLanguages": [
     "en",
     "fr",
