@@ -308,3 +308,10 @@ export const resolveCurrency = (value, isoCode) => {
     code: isoCode
   });
 };
+
+/**
+ * For Page reload
+ */
+export function reloadPage() {
+  window.location.reload();
+}

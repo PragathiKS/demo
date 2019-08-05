@@ -73,7 +73,7 @@ class LeftNavigation {
     $mainHeading.on('click', (e) => {
       e.stopPropagation();
     });
-    $body.on('showLeftNav', this.openSideNav);
+    $body.on('showleftnav', this.openSideNav);
   }
 
   closeSideNav = () => {

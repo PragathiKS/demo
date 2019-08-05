@@ -5,7 +5,6 @@ import com.day.cq.wcm.api.PageFilter;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -41,7 +40,7 @@ public class LeftNavigationModel {
         Resource childResource = resource.getResourceResolver().getResource(
                 GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
-            Resource globalConfigResource = getGlobalConfigurationResource(childResource);
+            Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(childResource);
             if (null != globalConfigResource) {
                 ValueMap map = globalConfigResource.getValueMap();
                 navHeading = (String) map.get("navHeadingI18n");
@@ -142,22 +141,6 @@ public class LeftNavigationModel {
 
     private boolean isExternalLink(ValueMap valueMap) {
         return valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY);
-    }
-
-    private Resource getGlobalConfigurationResource(Resource childResource) {
-        Resource res = childResource.getChild("globalconfiguration");
-        if (null != res) {
-            return res;
-        } else {
-            Iterator<Resource> itr = childResource.listChildren();
-            while (itr.hasNext()) {
-                Resource nextResource = itr.next();
-                if (nextResource.isResourceType(CustomerHubConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
-                    return nextResource;
-                }
-            }
-        }
-        return null;
     }
 
     public List<LeftNavigationBean> getLeftNavItems() {
