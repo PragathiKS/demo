@@ -9,12 +9,12 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, MOCK_URL } from '../../../scripts/utils/constants'; // eslint-disable-line
 import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
-import { getURL } from '../../../scripts/utils/uri';
+import { getURL } from '../../../scripts/utils/uri'; // eslint-disable-line
 
 /**
  * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
@@ -208,7 +208,8 @@ function _renderFilters() {
   const { tempCustomerList } = this.cache;
   auth.getToken(({ data: authData }) => {
     const url = {
-      path: getURL(API_FINANCIAL_SUMMARY)
+      //path: getURL(API_FINANCIAL_SUMMARY)
+      path: `${MOCK_URL}/financialStatement.json`
     };
     if (
       typeof tempCustomerList === 'string'
@@ -251,7 +252,7 @@ function _renderFilters() {
           defaultQuery['invoicedate-from'] = _getStartDate();
           defaultQuery['invoicedate-to'] = moment().format(DATE_FORMAT);
         }
-        defaultQuery.customerkey = customerNumber.key;
+        defaultQuery.customerkey = customerNumber ? customerNumber.key : '';
         this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
         this.initializeCalendar();
