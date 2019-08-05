@@ -3,13 +3,7 @@
  */
 package com.tetrapak.customerhub.core.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
@@ -30,7 +24,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Test class for Financials Invoice Download File Servlet

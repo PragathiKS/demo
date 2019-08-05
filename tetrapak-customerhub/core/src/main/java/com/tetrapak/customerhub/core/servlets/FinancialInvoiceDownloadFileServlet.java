@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.exceptions.SecutiyRuntimeException;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
@@ -62,7 +63,21 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
 
         if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
                 && StringUtils.isNotBlank(documentNumber)) {
-            HttpResponse httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
+            HttpResponse httpResp = null;
+            
+            try {
+            	httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
+            } catch (SecutiyRuntimeException secRTExcep) {
+            	LOGGER.error("Auth token is invalid! {}", secRTExcep.getMessage());
+            	response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
+                JsonObject jsonResponse = new JsonObject();
+                jsonResponse.addProperty("errorMsg",
+                        "Auth token is invalid!" + request.getRequestPathInfo());
+                HttpUtil.writeJsonResponse(response, jsonResponse);
+                throw secRTExcep;
+			} catch (Exception e) {
+				LOGGER.error("Exception {}", e);
+			}
 
             int statusCode = httpResp.getStatusLine().getStatusCode();
             LOGGER.debug("Retrieved response from API got status code:{}", statusCode);

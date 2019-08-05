@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.exceptions.SecutiyRuntimeException;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
@@ -56,16 +57,18 @@ public class FinancialResultsApiServiceImpl implements FinancialResultsApiServic
      * @return http response
      */
     @Override
-    public HttpResponse getFinancialInvoice(String documentNumber, String token) {
+    public HttpResponse getFinancialInvoice(String documentNumber, String token){
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-invoice") + "/" + documentNumber;
 
+        if (token.length()>29) {
+        	throw new SecutiyRuntimeException("Invalid token while fetching invoce!");
+        }	
         HttpGet getRequest = new HttpGet(url);
         getRequest.addHeader("Authorization", "Bearer " + token);
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpResponse httpResponse = null;
-
         try {
             httpResponse = httpClient.execute(getRequest);
             LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
