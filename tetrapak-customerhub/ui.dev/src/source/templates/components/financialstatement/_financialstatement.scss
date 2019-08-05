@@ -10,7 +10,7 @@
         font-family: $font-light;
 
         @media #{$desktop} {
-            @include padding($padding-l 0 $padding-md 0);
+            @include padding($padding-l 0 $padding-sm);
         }
     }
 
@@ -40,8 +40,8 @@
         margin-bottom: 0;
     }
 
-    &__status-calender-container {
-        @include margin-bottom($margin-md);
+    &__status-calendar-container {
+        @include margin-bottom(10px);
     }
 
     &__status-container {
@@ -64,7 +64,6 @@
     }
 
     &__date-range-container {
-        @include height(40px);
         width: 100%;
 
         @media #{$desktop} {
@@ -94,6 +93,13 @@
         @media #{$desktop} {
             @include padding(0 $padding-md 0 0);
             width: (100% / 3);
+        }
+    }
+
+    &__document-number-container,
+    &__date-range-container {
+        input {
+            @include height(40px);
         }
     }
 
@@ -128,9 +134,32 @@
 
     &__reset-btn-container {
         @include margin-bottom($margin-md);
-        @include padding($padding-sm $padding-md);
         display: inline-block;
-        background: $color-wild-sand;
+
+        button {
+            @include padding($padding-sm $padding-md);
+            background: $color-wild-sand;
+        }
+    }
+
+    &__buttons-container {
+        @media #{$desktop} {
+            display: flex;
+        }
+    }
+
+    &__search-btn-container,
+    &__reset-btn-container {
+        @media #{$desktop} {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            @media #{$desktop} {
+                margin-top: auto;
+            }
+        }
     }
 
     &__submit-btn {

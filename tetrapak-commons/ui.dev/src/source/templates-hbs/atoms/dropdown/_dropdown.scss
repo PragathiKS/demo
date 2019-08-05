@@ -2,8 +2,13 @@
     position: relative;
 
     &__text {
+        @include line-height(24px, $font-baseline);
         margin-bottom: 0;
         color: $color-mine-shaft;
+
+        @media #{$desktop} {
+            @include margin-top($margin-md);
+        }
     }
 
     .dropdown.show {
@@ -14,7 +19,7 @@
     }
 
     .dropdown-btn {
-        @include padding($padding-sm $padding-md $padding-sm $padding-sm);
+        @include padding($padding-sm $padding-l $padding-sm $padding-sm);
         @include line-height(22px, $font-baseline);
         @include border-xs($color-boulder);
         white-space: normal;
@@ -57,7 +62,7 @@
     }
 
     &__icon {
-        @include right($spacing-small-half);
+        @include right($spacing-big-half);
         @include font-size($font-sm);
         position: absolute;
         top: 50%;
@@ -65,6 +70,7 @@
         pointer-events: none;
 
         .dropdown.show & {
+            @include margin-top(-2px);
             transform: translateY(-50%) rotate(180deg);
         }
     }

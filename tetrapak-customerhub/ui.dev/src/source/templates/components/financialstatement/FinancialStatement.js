@@ -251,7 +251,7 @@ function _renderFilters() {
           defaultQuery['invoicedate-from'] = _getStartDate();
           defaultQuery['invoicedate-to'] = moment().format(DATE_FORMAT);
         }
-        defaultQuery.customerkey = customerNumber.key;
+        defaultQuery.customerkey = customerNumber ? customerNumber.key : '';
         this.cache.defaultQueryString = $.param(defaultQuery);
         this.initPostCache();
         this.initializeCalendar();
