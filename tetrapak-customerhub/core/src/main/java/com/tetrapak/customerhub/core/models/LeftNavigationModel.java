@@ -2,14 +2,20 @@ package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
+import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -21,11 +27,14 @@ import java.util.List;
  *
  * @author Nitin Kumar
  */
-@Model(adaptables = Resource.class)
+@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LeftNavigationModel {
 
-    @Self
-    private Resource resource;
+    @SlingObject
+    private SlingHttpServletRequest request;
+
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
 
     private String navHeading;
 
@@ -33,24 +42,21 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
-    public static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
+    private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
+
+    private String selectedLanguage;
 
     @PostConstruct
     protected void init() {
-        Resource childResource = resource.getResourceResolver().getResource(
-                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
-        if (null != childResource) {
-            Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(childResource);
-            if (null != globalConfigResource) {
-                ValueMap map = globalConfigResource.getValueMap();
-                navHeading = (String) map.get("navHeadingI18n");
-                closeBtnText = (String) map.get("closeBtnText");
-            }
-        }
+        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(request);
+        PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
+        if (null != globalConfigResource && null != pageManager) {
+            ValueMap map = globalConfigResource.getValueMap();
+            navHeading = (String) map.get("navHeadingI18n");
+            closeBtnText = (String) map.get("closeBtnText");
 
-        Resource globalResource = resource.getResourceResolver().getResource(GlobalUtil.getCustomerhubConfigPagePath(resource));
-        if (null != globalResource) {
-            Page globalPage = globalResource.adaptTo(Page.class);
+            Page globalPage = pageManager.getContainingPage(globalConfigResource);
             if (null != globalPage) {
                 Iterator<Page> itr = globalPage.listChildren();
                 while (itr.hasNext()) {
@@ -78,7 +84,7 @@ public class LeftNavigationModel {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
-            if (PageUtil.isCurrentPage(subPage, resource) || isChildPageActive(subPage, resource)) {
+            if (PageUtil.isCurrentPage(subPage, request.getResource()) || isChildPageActive(subPage, request.getResource())) {
                 leftNavigationBean.setActive(true);
             }
             leftNavigationBean.setExpanded(true);
@@ -117,12 +123,12 @@ public class LeftNavigationModel {
         bean.setExternalLink(isExternalLink(valueMap));
         bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setHref(getResolvedPagePath(childPage));
-        bean.setActive(PageUtil.isCurrentPage(childPage, resource) || isChildPageActive(childPage, resource));
+        bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage, request.getResource()));
         return bean;
     }
 
     private String getResolvedPagePath(Page childPage) {
-        return resource.getResourceResolver().map(childPage.getPath() + CustomerHubConstants.HTML_EXTENSION);
+        return request.getResourceResolver().map(childPage.getPath() + CustomerHubConstants.HTML_EXTENSION);
     }
 
     private String getPageNameI18key(ValueMap valueMap) {
@@ -153,5 +159,9 @@ public class LeftNavigationModel {
 
     public String getCloseBtnText() {
         return closeBtnText;
+    }
+
+    public String getLocale() {
+        return StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
     }
 }

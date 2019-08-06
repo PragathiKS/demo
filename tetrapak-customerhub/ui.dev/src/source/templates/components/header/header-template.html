@@ -3,12 +3,12 @@
         <span class="tp-header__burger-menu icon-Burger"></span>
         <sly data-sly-test="${data.logoUrl}">
           <div class="tp-header__logo">
-            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link" datatag="internal" ctype="header" ctypeone="brandlogo" cttitle="${data.logoTextI18n @i18n}" aria-label="${data.logoTextI18n @i18n}">
-              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link" datatag="internal" ctype="header" ctypeone="brandlogo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
             <!--/*logo for mobile  */-->
-            <a href="${data.mLogoLink}" class="d-md-none tp-header__link" datatag="internal" ctype="header" ctypeone="brandlogo" cttitle="${data.logoTextI18n @i18n}" aria-label="${data.logoTextI18n @i18n}">
-              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+            <a href="${data.mLogoLink}" class="d-md-none tp-header__link" datatag="internal" ctype="header" ctypeone="brandlogo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
           </div>
         </sly>
@@ -38,7 +38,7 @@
           <span class="tp-header__selected-lang d-inline-block js-header__selected-lang">
               <i class="icon icon-Globe"></i>
               <sly data-sly-test.selectedLanguage="${langData.selectedLanguage ? langData.selectedLanguage : 'en'}" />
-              <p class="tp-header__selected-lang-label d-inline semibold">${selectedLanguage @i18n}</p>
+              <p class="tp-header__selected-lang-label d-inline semibold">${selectedLanguage @i18n, locale=langData.locale}</p>
               <i class="icon icon-Chevron_Down"></i>
           </span>
         </div>

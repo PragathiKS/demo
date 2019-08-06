@@ -25,14 +25,15 @@ public class LeftNavigationModelTest {
 
     @Before
     public void setup() {
-        Resource resource = aemContext.currentResource(CONTENT_ROOT);
-        leftNavigationModel = resource.adaptTo(LeftNavigationModel.class);
+        aemContext.currentResource(CONTENT_ROOT);
+        leftNavigationModel = aemContext.request().adaptTo(LeftNavigationModel.class);
     }
 
     @Test
     public void testGetStartedMessage() {
         Assert.assertEquals("My Tetra Pak", leftNavigationModel.getNavHeading());
         Assert.assertEquals("Close", leftNavigationModel.getCloseBtnText());
+        Assert.assertEquals("en", leftNavigationModel.getLocale());
         List<LeftNavigationBean> list = leftNavigationModel.getLeftNavItems();
         LeftNavigationBean leftNavigationBean = list.get(0);
         Assert.assertEquals("/content/tetrapak/customerhub/global/en/dashboard.html", leftNavigationBean.getHref());

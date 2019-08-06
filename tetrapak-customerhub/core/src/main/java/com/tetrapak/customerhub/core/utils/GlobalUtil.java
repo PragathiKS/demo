@@ -288,11 +288,11 @@ public class GlobalUtil {
     public static Page getLanguagePage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
         String language = getSelectedLanguage(request, userPreferenceService);
         if (StringUtils.isEmpty(language)) {
-            language = "en";
+            language = CustomerHubConstants.DEFAULT_LOCALE;
         }
         Resource checkResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
         if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
-            language = "en";
+            language = CustomerHubConstants.DEFAULT_LOCALE;
         }
         Resource languagePageResource = request.getResourceResolver().getResource
                 ("/content/tetrapak/customerhub/content-components/" + language);
