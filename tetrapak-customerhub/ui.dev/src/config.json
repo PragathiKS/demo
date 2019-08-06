@@ -156,9 +156,6 @@
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
-      ],
-      "landingpage": [
-        "source/templates/components/tabslist/"
       ]
     },
     "handlebars": {
