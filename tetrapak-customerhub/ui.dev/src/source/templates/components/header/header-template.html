@@ -35,7 +35,7 @@
               <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
               <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
           </span>
-          <span class="tp-header__selected-lang d-inline-block js-header__selected-lang">
+          <span class="tp-header__selected-lang d-inline-block js-header__selected-lang" datatag="internal" ctype="header" ctypeone="notset" cttitle="language selector" aria-label="language selector">
               <i class="icon icon-Globe"></i>
               <sly data-sly-test.selectedLanguage="${langData.selectedLanguage ? langData.selectedLanguage : 'en'}" />
               <p class="tp-header__selected-lang-label d-inline semibold">${selectedLanguage @i18n}</p>
