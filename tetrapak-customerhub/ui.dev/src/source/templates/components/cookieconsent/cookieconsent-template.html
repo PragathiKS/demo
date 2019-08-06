@@ -1,8 +1,8 @@
 <sly data-sly-template.cookieconsent_template="${@ data, flag}">
   <div class="tp-cookie-consent js-cookie-consent tp-card d-none" data-module="CookieConsent">
-    <div class="tp-cookie-consent__text">${data.cookieConsentText @context='html',i18n}</div>
+    <div class="tp-cookie-consent__text">${data.cookieConsentText @context='html',i18n, locale=data.locale}</div>
     <sly data-sly-use.btn="/apps/commons/components/atoms/button/button.html"
-        data-sly-call="${btn.button_template @buttonText=data.cookieConsentButtonText, buttonClasses='tpatom-button--primary tp-cookie-consent__btn js-cookie-consent__btn'}" />
+        data-sly-call="${btn.button_template @buttonText=data.cookieConsentButtonText, buttonClasses='tpatom-button--primary tp-cookie-consent__btn js-cookie-consent__btn'}" >
     </sly>
   </div>
 </sly>
