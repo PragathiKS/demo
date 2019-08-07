@@ -30,7 +30,7 @@ function generateToken() {
           try {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
-              const expiry = (+result.expires_in) / (24 * 60 * 60 * 1000);
+              const expiry = (+result.expires_in) / (24 * 60 * 60);
               storageUtil.setCookie('authToken', result.access_token, expiry);
               resolve({
                 data: result,
