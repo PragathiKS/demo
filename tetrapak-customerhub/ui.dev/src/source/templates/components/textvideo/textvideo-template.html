@@ -1,13 +1,13 @@
 <sly data-sly-template.textvideo_template="${@ data, flag}">
-  <div class="tp-card tp-text-video" data-locator="text-video">
+  <div class="tp-card tp-text-video" data-locator="text-video" data-module="TextVideo">
     <div class="row">
       <sly data-sly-test="${data.textAlignment == 'left' || data.textAlignment == null}">
         <div class="col-md-12 col-lg-4">
-          <h2 class="tp-text-video__heading"> ${data.title @ i18n}</h2>
+          <h2 class="tp-text-video__heading js-text-video__heading"> ${data.title @ i18n}</h2>
           <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
               data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=true}" />
         </div>
-        <div class="col-md-12 col-lg-8">
+        <div class="col-md-12 col-lg-8 js-video-props" data-link-parent-title="${data.title}" data-video-name="${data.videoSource == 'youtube' ? data.youtubeEmbedURL : data.damVideoPath}">
           <sly data-sly-use.genericmedia="/apps/commons/components/molecules/genericmedia/genericmedia-template.html"
                   data-sly-call="${genericmedia.genericmedia_template @data=data, type='video'}" />
           <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
@@ -15,15 +15,15 @@
         </div>
       </sly>
       <sly data-sly-test="${data.textAlignment == 'right'}">
-           <div class="col-md-12 col-lg-8">
-              <h2 class="tp-text-video__heading d-lg-none"> ${data.title @ i18n}</h2>
+           <div class="col-md-12 col-lg-8 js-video-props" data-link-parent-title="${data.title}" data-video-name="${data.videoSource == 'youtube' ? data.youtubeEmbedURL : data.damVideoPath}">
+              <h2 class="tp-text-video__heading js-text-video__heading d-lg-none"> ${data.title @ i18n}</h2>
               <sly data-sly-use.genericmedia="/apps/commons/components/molecules/genericmedia/genericmedia-template.html"
                       data-sly-call="${genericmedia.genericmedia_template @data=data, type='video'}" />
               <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
                   data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=false}" />
             </div>
             <div class="col-md-12 col-lg-4">
-              <h2 class="tp-text-video__heading d-none d-lg-block"> ${data.title @ i18n}</h2>
+              <h2 class="tp-text-video__heading js-text-video__heading d-none d-lg-block"> ${data.title @ i18n}</h2>
               <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
                   data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=true}" />
             </div>
