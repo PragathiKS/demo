@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang.StringUtils;
@@ -72,8 +73,8 @@ public class LanguageSelectorModel {
         return closeBtnTextI18n;
     }
 
-    public String getPageLanguage() {
-        return StringUtils.isEmpty(selectedLanguage) ? "en" : selectedLanguage;
+    public String getLocale() {
+        return StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
     }
 
     public String getSelectedLanguage() {

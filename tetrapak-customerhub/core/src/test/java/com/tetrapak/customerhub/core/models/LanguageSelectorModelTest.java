@@ -48,7 +48,7 @@ public class LanguageSelectorModelTest {
         Assert.assertEquals("Heading", "Choose your language", languageSelectorModel.getHeadingI18n());
         Assert.assertEquals("Heading", "Close", languageSelectorModel.getCloseBtnTextI18n());
         Assert.assertEquals("Heading", "fr", languageSelectorModel.getSelectedLanguage());
-        Assert.assertEquals("Heading", "fr", languageSelectorModel.getPageLanguage());
+        Assert.assertEquals("Heading", "fr", languageSelectorModel.getLocale());
         Assert.assertEquals("Heading", 5, languageSelectorModel.getListOfLanguages().size());
     }
 }
