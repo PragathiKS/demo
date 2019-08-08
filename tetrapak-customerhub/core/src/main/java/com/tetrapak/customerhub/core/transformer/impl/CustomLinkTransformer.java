@@ -1,6 +1,5 @@
 package com.tetrapak.customerhub.core.transformer.impl;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.cocoon.xml.sax.AttributesImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
@@ -19,8 +18,7 @@ import java.util.regex.Pattern;
 
 /**
  * This Class is responsible for transforming the internal links of the pages
- * under /content/tetrapak/customerhub/global/en node with the shortened url based on
- * the request URL's country and locale
+ * under /content/tetrapak/customerhub/global/en node with the shortened url
  *
  * @author Swati Lamba
  */
@@ -28,7 +26,6 @@ public class CustomLinkTransformer implements Transformer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomLinkTransformer.class);
     private ContentHandler contentHandler;
-    private String language = StringUtils.EMPTY, country = StringUtils.EMPTY;
 
     /**
      * CustomLinkTransformer constructor
@@ -67,22 +64,17 @@ public class CustomLinkTransformer implements Transformer {
         String linkUrl = atts.getValue("href");
 
         AttributesImpl attrNew = new AttributesImpl(atts);
-        if (StringUtils.isNotBlank(linkUrl) && !"content".equalsIgnoreCase(country)
-                && !"tetrapak".equalsIgnoreCase(language)) {
+        if (StringUtils.isNotBlank(linkUrl)) {
             Pattern pattern = Pattern.compile("/content/tetrapak/customerhub/global/en");
             Matcher matcher = pattern.matcher(linkUrl);
             if (matcher.find()) {
-                country = country.isEmpty() ? "global" : country;
-                language = language.isEmpty() ? CustomerHubConstants.DEFAULT_LOCALE : language;
                 LOGGER.info("Transformed url from: {} to: {}", linkUrl, linkUrl.substring(matcher.end()).trim());
-                String changedLinkUrl = "/" + country + "/" + language + "/MyTetraPak"
-                        + linkUrl.substring(matcher.end()).trim();
+                String changedLinkUrl = "/customerhub" + linkUrl.substring(matcher.end()).trim();
                 attrNew.removeAttribute("href");
                 attrNew.addAttribute(uri, "href", "href", "string", changedLinkUrl);
             }
         }
         contentHandler.startElement(uri, localName, qName, attrNew);
-
     }
 
     @Override
@@ -112,18 +104,13 @@ public class CustomLinkTransformer implements Transformer {
 
     @Override
     public void dispose() {
-        LOGGER.debug("CustomLinkTransformer dispaosed");
+        LOGGER.debug("CustomLinkTransformer disposed");
 
     }
 
     @Override
     public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
         LOGGER.trace("init");
-        String[] pathArray = context.getRequest().getPathInfo().split("/");
-        if (pathArray.length > 2) {
-            country = pathArray[1];
-            language = pathArray[2];
-        }
         LOGGER.debug(context.getRequest().getPathInfo());
     }
 
