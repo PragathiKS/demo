@@ -12,10 +12,10 @@
             </li>
             <sly data-sly-list.child=${data.leftNavItems}>
                 <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"
-                      data-sly-call="${nestedListItem.nestedListItem_template @data=child}">
+                      data-sly-call="${nestedListItem.nestedListItem_template @data=child, locale=data.locale}">
                 </sly>
                 <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
-                      data-sly-call="${listItem.listItem_template @data=child, ctype='side menu'}">
+                      data-sly-call="${listItem.listItem_template @data=child, locale=data.locale, ctype='side menu'}">
                 </sly>
             </sly>
           </ul>
