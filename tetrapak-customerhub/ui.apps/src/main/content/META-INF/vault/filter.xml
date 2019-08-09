@@ -19,5 +19,4 @@
 		<exclude pattern="/apps/customerhub/i18n(/.*)?"/>
 	</filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/jsonData" mode="replace"/>
-	<filter root="/etc/map.publish" mode="replace"/>
 </workspaceFilter>
