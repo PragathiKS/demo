@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	
 	parameters {
-		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CHOICE'
+		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CODEBASE'
 	}
 	
 	tools {
@@ -14,13 +14,10 @@ pipeline {
 		sonar_url = "http://127.0.0.1:9000"
 		author_url = "http://13.69.79.81:4502"
 		publish_url = "http://13.69.73.197:4503"
-		package_name = "tetrapak-complete-package"
-		test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/installed-equipment.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/ordering/order-history.html#/?orderdate-from=2018-01-05&orderdate-to=2018-02-20 http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/financials.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/training.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/projects.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/contact.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/about-my-tetra-pak.html"
-		test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html"
-		karmapath =  "${workspace}/${params.CHOICE}/ui.dev/src/coverage"
 	}
    
 	stages {		
+		/*
 		stage ('Checkout') {
 			steps {
 				git(
@@ -31,7 +28,8 @@ pipeline {
 				)
 			}
 		}
-				 
+		*/
+		
 		stage ('Initialize') {
 			steps {
 				sh 	'''
