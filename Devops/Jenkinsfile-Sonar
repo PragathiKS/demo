@@ -41,12 +41,23 @@ pipeline {
 		
 		stage ('Build') {
 			steps {
-				sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+			
+			  echo "Build Commons"
+                                sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								
+			  echo "Build CustomerHub"
+                                sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
+                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER} dependency:tree -Dverbose"
+                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"					
+				/*sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
 				sh "npm install --prefix $workspace/${params.CHOICE}/ui.dev/src"
 				sh "mvn -f $workspace/tetrapak-commons/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 				sh "mvn -f $workspace/${params.CHOICE}/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
 				sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
-				sh "cp $workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"				 
+				sh "cp $workspace/${params.CHOICE}/complete/target/${params.CHOICE}.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"	
+				*/
 			}
 		}
 		
