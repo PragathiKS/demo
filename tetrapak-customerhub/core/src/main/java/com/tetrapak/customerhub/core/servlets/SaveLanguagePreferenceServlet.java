@@ -51,15 +51,27 @@ public class SaveLanguagePreferenceServlet extends SlingAllMethodsServlet {
 
         String userId = session.getUserID();
         String langCode = request.getParameter("lang-code");
-
-        boolean langPrefStatus = userPreferenceService.setPreferences(userId, CustomerHubConstants.LANGUGAGE_PREFERENCES, langCode);
-        if (langPrefStatus) {
-            LOGGER.info("Saving the language preference as {} for the user : {}", langCode, userId);
-            writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS, "language preference is saved as " + langCode);
+        langCode = getValidLangCode(langCode);
+        if (null != langCode) {
+            boolean langPrefStatus = userPreferenceService.setPreferences(userId, CustomerHubConstants.LANGUGAGE_PREFERENCES, langCode);
+            if (langPrefStatus) {
+                LOGGER.info("Saving the language preference as {} for the user : {}", langCode, userId);
+                writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS, "language preference is saved as " + langCode);
+            } else {
+                LOGGER.info("Saving the language preference failed for the user : {}", userId);
+                writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE, "failed to save language " + langCode);
+            }
         } else {
             LOGGER.info("Saving the language preference failed for the user : {}", userId);
-            writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE, "failed to save language preference as " + langCode);
+            writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE, "invalid input");
         }
+    }
+
+    private String getValidLangCode(String langCode) {
+        if (langCode.matches("^[a-z]{2}([_])?([A-Za-z]{2})?$")) {
+            return langCode;
+        }
+        return null;
     }
 
     /**
