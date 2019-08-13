@@ -1,5 +1,10 @@
 package com.tetrapak.customerhub.core.beans;
 
+/**
+ * Bean class for Images
+ *
+ * @author Nitin Kumar
+ */
 public class ImageBean {
     private String imagePath;
 

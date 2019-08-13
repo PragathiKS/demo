@@ -47,6 +47,8 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
 
     private static final String AUTH_TOKEN = "authToken";
 
+    private static final String ERROR_MESSAGE = "errorMsg";
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws IOException {
@@ -64,21 +66,27 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
         if (CustomerHubConstants.PDF.equals(extension) && StringUtils.isNotBlank(token)
                 && StringUtils.isNotBlank(documentNumber)) {
             HttpResponse httpResp = null;
-            
+
             try {
-            	httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
+                httpResp = financialsResultsApiService.getFinancialInvoice(documentNumber, token);
             } catch (SecutiyRuntimeException secRTExcep) {
-            	LOGGER.error("Auth token is invalid! {}", secRTExcep.getMessage());
-            	response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
+                LOGGER.error("Auth token is invalid! {}", secRTExcep.getMessage());
+                response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
                 JsonObject jsonResponse = new JsonObject();
-                jsonResponse.addProperty("errorMsg",
+                jsonResponse.addProperty(ERROR_MESSAGE,
                         "Auth token is invalid!" + request.getRequestPathInfo());
                 HttpUtil.writeJsonResponse(response, jsonResponse);
                 throw secRTExcep;
-			} catch (Exception e) {
-				LOGGER.error("Exception {}", e);
-			}
+            }
 
+            if (null == httpResp) {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                JsonObject jsonResponse = new JsonObject();
+                jsonResponse.addProperty(ERROR_MESSAGE,
+                        "Http response is null : " + request.getRequestPathInfo());
+                HttpUtil.writeJsonResponse(response, jsonResponse);
+                return;
+            }
             int statusCode = httpResp.getStatusLine().getStatusCode();
             LOGGER.debug("Retrieved response from API got status code:{}", statusCode);
 
@@ -91,7 +99,7 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             JsonObject jsonResponse = new JsonObject();
-            jsonResponse.addProperty("errorMsg",
+            jsonResponse.addProperty(ERROR_MESSAGE,
                     "URL is invalid or auth token is missing : " + request.getRequestPathInfo());
             HttpUtil.writeJsonResponse(response, jsonResponse);
         }
@@ -102,7 +110,6 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
             return StringUtils.EMPTY;
         }
         XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
-        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue()) ;
+        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue());
     }
-
 }
