@@ -17,8 +17,13 @@
 }
 
 ## Don't cache /content/tetrapak/customerhub
-/0002
-      {
+/0002 {
         /glob "/content/tetrapak/customerhub[./]*"
-        /type "deny"
+        /type "allow"
       }
+
+## Don't cache SDI resources	  
+/0003 {
+    /glob "*.nocache.html*"
+    /type "deny"
+  }
