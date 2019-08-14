@@ -48,3 +48,8 @@
 /0028 { /method "POST" /url "*/saml_login" }  ## allow POST for SAML calls
 /0029 { /type "allow" /url "*/saml_login"}
 /0030 { /type "allow" /path "/saml_login*"}
+/0031 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for PW services
+
+## Defining rules to access short url and not long urls
+/0041 { /type "allow" /url "/customerhub/*" }
+/0042 { /type "deny"  /url "/content/tetrapak/customerhub/content-components/*" }
