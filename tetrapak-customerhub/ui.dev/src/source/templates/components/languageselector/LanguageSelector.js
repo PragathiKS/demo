@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil, reloadPage } from '../../../scripts/common/common';
+import { storageUtil } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
@@ -56,8 +56,12 @@ class LanguageSelector {
       }
     }).always(() => {
       storageUtil.setCookie('lang-code', langCode);
-      reloadPage();
+      this.reloadPage();
     });
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
   showPopup() {
