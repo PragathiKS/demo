@@ -135,11 +135,6 @@
     &__reset-btn-container {
         @include margin-bottom($margin-md);
         display: inline-block;
-
-        button {
-            @include padding($padding-sm $padding-md);
-            background: $color-wild-sand;
-        }
     }
 
     &__buttons-container {
@@ -165,14 +160,6 @@
     &__submit-btn {
         @media #{$desktop} {
             width: 100%;
-        }
-    }
-
-    &__reset-btn {
-        @include line-height($font-l, $font-baseline);
-
-        .icon {
-            @include font-size(12px);
         }
     }
 

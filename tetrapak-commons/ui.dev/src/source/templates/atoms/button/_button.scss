@@ -1,9 +1,14 @@
-%default-btn {
+%common-btn {
     @include font-size($font-baseline);
-    @include line-height(40px, $font-baseline);
-    @include padding(0 $padding-md);
+    @include padding($padding-sm $padding-md);
     @include letter-spacing(0.5px);
     font-family: $font-light;
+    line-height: normal;
+
+    span {
+        @include line-height(24px, $font-baseline);
+        display: inline-block;
+    }
 }
 
 %btn-colors {
@@ -25,7 +30,7 @@
     }
 
     &--primary {
-        @extend %default-btn;
+        @extend %common-btn;
         border-radius: $border-radius;
         color: $color-white;
         background-color: $color-congress-blue;

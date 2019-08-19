@@ -1,9 +1,28 @@
 %default-btn {
     @include font-size($font-baseline);
-    @include line-height(40px, $font-baseline);
-    @include padding(0 12px);
+    @include padding($padding-sm $padding-md);
     @include letter-spacing(0.5px);
     font-family: $font-light;
+    line-height: normal;
+
+    .icon {
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+        display: inline-block;
+
+        &::before {
+            @include font-size(12px);
+            @include height(12px);
+            vertical-align: middle;
+        }
+    }
+
+    span {
+        @include line-height(24px, $font-baseline);
+        @include margin-right($margin-xs);
+        vertical-align: top;
+        display: inline-block;
+    }
 }
 
 %btn-colors {
@@ -11,8 +30,18 @@
     color: $color-white;
 }
 
+%btn-secondary-colors {
+    background-color: $color-wild-sand;
+    color: $color-congress-blue;
+}
+
 %btn-colors-hover {
     background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
+%btn-secondary-colors-hover {
+    background-color: $color-mercury;
     color: $color-congress-blue;
 }
 
@@ -29,17 +58,6 @@
     &[disabled] {
         cursor: not-allowed;
         opacity: $opacity-disabled;
-    }
-
-    &--primary {
-        .icon {
-            @include font-size(12px);
-
-            &::before {
-                @include margin-bottom(1px);
-                vertical-align: middle;
-            }
-        }
     }
 
     &--primary {
@@ -61,14 +79,30 @@
                 @extend %btn-colors;
             }
         }
-
-        span {
-            @include margin-right($margin-xs);
-            vertical-align: middle;
-        }
     }
 
     &--secondary {
+        @extend %default-btn;
+        border-radius: $border-radius;
+        transition: background-color $anim-speed-quick ease;
+
+        &,
+        &[disabled]:hover {
+            @extend %btn-secondary-colors;
+        }
+
+        &:hover {
+            @extend %btn-secondary-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-secondary-colors;
+            }
+        }
+    }
+
+    &--transparent {
         @extend %default-btn;
         background: none;
         border: 0;
