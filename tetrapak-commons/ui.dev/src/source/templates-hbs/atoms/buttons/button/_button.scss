@@ -14,6 +14,7 @@
             @include font-size(12px);
             @include height(12px);
             vertical-align: middle;
+            margin-bottom: 1px;
         }
     }
 
@@ -22,6 +23,10 @@
         @include margin-right($margin-xs);
         vertical-align: top;
         display: inline-block;
+
+        &.sly-text {
+            margin-right: 0;
+        }
     }
 }
 
@@ -108,10 +113,6 @@
         border: 0;
         padding: 0;
         color: $color-text-link;
-
-        span {
-            @include margin-right($margin-xs);
-        }
     }
 
     &--close {

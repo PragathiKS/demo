@@ -98,8 +98,6 @@
         &.active {
             z-index: $zindex-p;
 
-            border-color: $color-wild-sand;
-
             @media #{$desktop} {
                 border-color: $color-white;
             }
@@ -109,6 +107,13 @@
                     color: $color-tundora;
                     background: $color-wild-sand;
                 }
+            }
+        }
+
+        &.m-active {
+            @media #{$mobile} {
+                z-index: $zindex-p;
+                border-color: $color-wild-sand;
             }
         }
 
