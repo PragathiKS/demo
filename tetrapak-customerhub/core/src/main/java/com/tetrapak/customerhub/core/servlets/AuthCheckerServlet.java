@@ -42,10 +42,14 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
 
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null == session) {
-            LOGGER.info("auth checker servlet exception: session is null");
+            LOGGER.error("auth checker servlet exception: session is null");
             return;
         }
 
+        String uri = request.getParameter("uri");
+        performPermissionCheck(response, uri, session);
+
+        try {
         Cookie languageCookie = request.getCookie("lang-code");
         if (null == languageCookie) {
             LOGGER.info("auth checker trying to set cookie");
@@ -56,9 +60,10 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
                 setLanguageCookie(request, response, langCode);
             }
         }
+        } catch (Exception e) {
+            LOGGER.error("auth checker exception during setting cookie", e);
+        }
 
-        String uri = request.getParameter("uri");
-        performPermissionCheck(response, uri, session);
     }
 
     private void performPermissionCheck(SlingHttpServletResponse response, String uri, Session session) {
