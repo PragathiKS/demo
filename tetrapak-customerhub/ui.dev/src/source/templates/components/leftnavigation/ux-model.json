@@ -24,7 +24,7 @@
           "href": "/content/tetrapak/customerhub/en/installed-equipment/Maintenance.html",
           "iconLabel": "Maintenance",
           "isExternalLink": "false",
-          "isActive": "true"
+          "isActive": "false"
         }
       ]
     },
@@ -44,7 +44,7 @@
           "href": "https://www.tetrapak.com",
           "iconLabel": "Order History",
           "isExternalLink": "true",
-          "isActive": "true"
+          "isActive": "false"
         },
         {
           "href": "https://www.tetrapak.com",

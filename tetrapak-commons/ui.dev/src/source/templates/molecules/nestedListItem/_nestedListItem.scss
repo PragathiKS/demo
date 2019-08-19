@@ -34,6 +34,10 @@
         opacity: 1;
         height: auto;
 
+        &:first-child {
+            border-top: 1px solid $color-denim;
+        }
+
         &.active,
         &:hover {
             background-color: $color-denim;
