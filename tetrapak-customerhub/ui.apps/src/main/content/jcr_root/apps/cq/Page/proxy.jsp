@@ -27,7 +27,7 @@
     } else if(crValueMap != null && crValueMap.containsKey(NameConstants.PN_REDIRECT_TARGET) && slingRequest.getRequestPathInfo().getSelectors().length == 1) {
         options.setReplaceSelectors("redirect");
         crd = slingRequest.getRequestDispatcher(resource, options);
-    } else{
+    } else {
         crd = slingRequest.getRequestDispatcher(cr, options);
     }
     if (crd != null) {
