@@ -47,7 +47,7 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
         }
 
         Cookie languageCookie = request.getCookie("lang-code");
-        if (null != languageCookie) {
+        if (null == languageCookie) {
             final String langCode = userPreferenceService.getSavedPreferences(session.getUserID(),
                     CustomerHubConstants.LANGUGAGE_PREFERENCES);
             if (StringUtils.isNotEmpty(langCode)) {
