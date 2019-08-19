@@ -13,7 +13,7 @@ function _openSubMenu($this) {
   const section = self.next('.collapsible');
   if (self.attr('aria-expanded') === 'false') {
     self.attr('aria-expanded', 'true');
-    self.parent('li').addClass('is-active');
+    self.parent('li').addClass('active');
     section
       .attr('aria-hidden', 'false')
       .removeClass('collapsible').addClass('animating')
@@ -31,7 +31,7 @@ function _openSubMenu($this) {
     section.css('height', `${section.outerHeight()}px`);
     $this.reflow(section[0]);
     self.attr('aria-expanded', 'false');
-    self.parent('li').removeClass('is-active');
+    self.parent('li').removeClass('active');
     section
       .attr('aria-hidden', 'true');
     section.addClass('animating').removeClass('collapsible').removeClass('active');

@@ -1,5 +1,5 @@
 <sly data-sly-template.listItem_template="${@ data, locale, flag, ctype}">
-  <li class="tpmol-list-item ${data.isActive ? 'active is-active' : ''}">
+  <li class="tpmol-list-item${data.isActive ? ' active' : ''}">
      <sly data-sly-use.listItemBtn="/apps/commons/components/atoms/listItemBtn/listItemBtn-template.html"
             data-sly-call="${listItemBtn.listItemBtn_template @data=data, locale=locale, ctype=ctype}">
       </sly>
