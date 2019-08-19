@@ -1,4 +1,5 @@
 // Vendor imports
+import 'focus-visible';
 import 'core-js/features/promise';
 import 'core-js/features/array/includes';
 import $ from 'jquery';
