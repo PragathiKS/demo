@@ -6,7 +6,11 @@
 
     &.active,
     &:hover {
-        background: $color-tory-blue;
+        background-color: $color-tory-blue;
+    }
+
+    &.is-active {
+        border-bottom: 0;
     }
 
     &__sublist {
@@ -32,7 +36,7 @@
 
         &.active,
         &:hover {
-            background: $color-denim;
+            background-color: $color-denim;
         }
     }
 }

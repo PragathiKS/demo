@@ -13,6 +13,7 @@ function _openSubMenu($this) {
   const section = self.next('.collapsible');
   if (self.attr('aria-expanded') === 'false') {
     self.attr('aria-expanded', 'true');
+    self.parent('li').addClass('is-active');
     section
       .attr('aria-hidden', 'false')
       .removeClass('collapsible').addClass('animating')
@@ -30,6 +31,7 @@ function _openSubMenu($this) {
     section.css('height', `${section.outerHeight()}px`);
     $this.reflow(section[0]);
     self.attr('aria-expanded', 'false');
+    self.parent('li').removeClass('is-active');
     section
       .attr('aria-hidden', 'true');
     section.addClass('animating').removeClass('collapsible').removeClass('active');
@@ -51,7 +53,7 @@ class LeftNavigation {
   initCache() {
     this.cache.$container = this.root.find('.tp-left-nav__container');
     this.cache.$sticky = this.root.find('.tpatom-list-item__link--sticky');
-    this.cache.$submenuSections = this.root.find('.tpatom-list-item__btn');
+    this.cache.$submenuSections = this.root.find('.js-list-item__btn');
     this.cache.$closeBtn = this.root.find('.js-close-btn');
     this.cache.$navOverlay = this.root.find('.js-left-nav__overlay');
     this.cache.$mainHeading = this.root.find('.tp-left-nav__main-heading');
