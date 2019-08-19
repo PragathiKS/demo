@@ -125,4 +125,38 @@
                 ## it is automatically re-requested from the backend.
                 # /enableTTL "1"
         }
+		/auth_checker
+                  {
+                  # request is sent to this URL with '?uri=<page>' appended
+                  /url "/bin/customerhub/permissioncheck"
+
+                  # only the requested pages matching the filter section below are checked,
+                  # all other pages get delivered unchecked
+                  /filter
+                        {
+                        /0000
+                          {
+                          /glob "*" /type "deny"
+                          }
+                        /0001
+                          {
+                          /glob "/content/tetrapak/customerhub/*.html" /type "allow"
+                          }
+                        }
+                  # any header line returned from the auth_checker's HEAD request matching
+                  # the section below will be returned as well
+                  /headers
+                        {
+                        /0000
+                          {
+                          /glob "*"
+                          /type "deny"
+                          }
+                        /0001
+                          {
+                          /glob "Set-Cookie:*"
+                          /type "allow"
+                          }
+                        }
+                  }
 }
