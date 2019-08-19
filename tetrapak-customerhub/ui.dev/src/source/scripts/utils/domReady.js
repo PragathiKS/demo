@@ -12,9 +12,12 @@ import { isTablet, isMobile } from '../common/common';
 import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
 import videoAnalytics from './videoAnalytics';
+import customEvents from './customEvents';
 
 export default {
   init() {
+    // Custom events
+    customEvents.init();
     // Dynamic media
     dynamicMedia.init();
     // Toast error messages
