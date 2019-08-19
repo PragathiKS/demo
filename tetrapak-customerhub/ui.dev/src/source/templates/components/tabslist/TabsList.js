@@ -66,7 +66,7 @@ class TabsList {
           $this.trackAnalytics('tabclick', this);
         }
         $this.root.find('.js-tablist__event').removeClass('active');
-        self.addClass('active');
+        self.addClass('active').toggleClass('m-active');
       })
       .on('click', '.js-tablist__event-detail-description-link', function () {
         $this.trackAnalytics('descriptionLink', this);
