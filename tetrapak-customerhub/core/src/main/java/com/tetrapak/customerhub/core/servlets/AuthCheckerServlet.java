@@ -42,14 +42,16 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
 
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null == session) {
-            LOGGER.error("auth checker servlet exception: session is null");
+            LOGGER.info("auth checker servlet exception: session is null");
             return;
         }
 
         Cookie languageCookie = request.getCookie("lang-code");
         if (null == languageCookie) {
+            LOGGER.info("auth checker trying to set cookie");
             final String langCode = userPreferenceService.getSavedPreferences(session.getUserID(),
                     CustomerHubConstants.LANGUGAGE_PREFERENCES);
+            LOGGER.info("auth checker lang code found: {}", langCode);
             if (StringUtils.isNotEmpty(langCode)) {
                 setLanguageCookie(request, response, langCode);
             }
@@ -75,5 +77,6 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
         cookie.setPath("/");
         cookie.setDomain(request.getServerName());
         response.addCookie(cookie);
+        LOGGER.info("setting cookie for language code {} and for domain {}", langCode, request.getServerName());
     }
 }
