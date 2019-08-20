@@ -19,7 +19,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,12 +58,13 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
+            String base64DecodedResponse = null;
             if (runModes.contains("publish") && StringUtils.isNotEmpty(pathInfo) && pathInfo.contains("saml_login")) {
                 LOGGER.info("SAMLResponse Post Processor processing ...");
                 String responseSAMLMessage = httpRequest.getParameter("SAMLResponse");
                 if (StringUtils.isNotEmpty(responseSAMLMessage)) {
                     LOGGER.debug("responseSAMLMessage:" + responseSAMLMessage);
-                    String base64DecodedResponse = decodeStr(responseSAMLMessage);
+                    base64DecodedResponse = decodeStr(responseSAMLMessage);
                     LOGGER.debug("base64DecodedResponse:" + base64DecodedResponse);
                     attrMap = parseSAMLResponse(base64DecodedResponse);
                 } else {
@@ -88,16 +88,11 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     acctoken.setPath("/");
                     response.addCookie(acctoken);
                 }
-                Session session = ((SlingHttpServletRequest) request).getResourceResolver().adaptTo(Session.class);
-                if (null == session) {
-                    LOGGER.error("CustomerHubCookieServlet exception: session is null");
-                    return;
-                }
-                final String langCode = userPreferenceService.getSavedPreferences(session.getUserID(),
+                final String langCode = userPreferenceService.getSavedPreferences(getUserIDFromSamlResponse(base64DecodedResponse),
                         CustomerHubConstants.LANGUGAGE_PREFERENCES);
                 if (StringUtils.isNotEmpty(langCode)) {
                     LOGGER.info("setting language cookie for the lang-code: {}", langCode);
-                    setLanguageCookie((SlingHttpServletRequest)request, (SlingHttpServletResponse)response, langCode);
+                    setLanguageCookie((SlingHttpServletRequest) request, (SlingHttpServletResponse) response, langCode);
                 }
             }
         } catch (ParserConfigurationException parserConfiExep) {
@@ -107,6 +102,58 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
         }
+    }
+
+    private String getUserIDFromSamlResponse(String base64DecodedResponse)
+            throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        } catch (ParserConfigurationException e) {
+            LOGGER.error("ParserConfigurationException", e);
+        }
+        documentBuilderFactory.setXIncludeAware(false);
+        documentBuilderFactory.setExpandEntityReferences(false);
+        documentBuilderFactory.setNamespaceAware(true);
+        DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
+        StringReader strReader = new StringReader(base64DecodedResponse);
+        InputSource inputSource = new InputSource(strReader);
+        Document document = docBuilder.parse(inputSource);
+        NodeList samlAssertion = document.getElementsByTagName("saml:Assertion");
+        return populateUserAttrMap(samlAssertion);
+    }
+
+    private String populateUserAttrMap(NodeList samlAssertion) {
+        Node samlAssertionNode = samlAssertion.item(0);
+        NodeList childNodes = samlAssertionNode.getChildNodes();
+
+        int maxChildNodeCount = childNodes.getLength();
+        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
+            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
+                Node subChildNode = childNodes.item(childCount);
+                if ("saml:Subject".equalsIgnoreCase(subChildNode.getNodeName())) {
+                    return getUserID(subChildNode);
+                }
+            }
+        }
+        return null;
+    }
+
+    private String getUserID(Node subChildNode) {
+        NodeList attributeStatementChildNodes = subChildNode.getChildNodes();
+
+        int maxChildNodeCount = attributeStatementChildNodes.getLength();
+        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
+            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
+                Node childNode = attributeStatementChildNodes.item(childCount);
+                if ("saml:NameID".equalsIgnoreCase(childNode.getNodeName())) {
+                    return childNode.getAttributes().item(0).getNodeValue();
+                }
+            }
+        }
+        return null;
     }
 
     private void setLanguageCookie(SlingHttpServletRequest request, SlingHttpServletResponse response, String langCode) {
