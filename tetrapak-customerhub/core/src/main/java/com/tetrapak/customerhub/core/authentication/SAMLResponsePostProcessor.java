@@ -138,6 +138,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 }
             }
         }
+        LOGGER.info("user ID is null from SAML response");
         return null;
     }
 
