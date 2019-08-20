@@ -1,7 +1,11 @@
 package com.tetrapak.customerhub.core.authentication;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
 import org.apache.sling.settings.SlingSettingsService;
@@ -15,6 +19,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +47,9 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 
     @Reference
     private SlingSettingsService slingSettingsService;
+
+    @Reference
+    private UserPreferenceService userPreferenceService;
 
     public void postProcess(AuthenticationInfo info, HttpServletRequest request, HttpServletResponse response) {
         HttpServletRequest httpRequest;
@@ -80,6 +88,17 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     acctoken.setPath("/");
                     response.addCookie(acctoken);
                 }
+                Session session = ((SlingHttpServletRequest) request).getResourceResolver().adaptTo(Session.class);
+                if (null == session) {
+                    LOGGER.error("CustomerHubCookieServlet exception: session is null");
+                    return;
+                }
+                final String langCode = userPreferenceService.getSavedPreferences(session.getUserID(),
+                        CustomerHubConstants.LANGUGAGE_PREFERENCES);
+                if (StringUtils.isNotEmpty(langCode)) {
+                    LOGGER.info("setting language cookie for the lang-code: {}", langCode);
+                    setLanguageCookie((SlingHttpServletRequest)request, (SlingHttpServletResponse)response, langCode);
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -88,6 +107,13 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
         }
+    }
+
+    private void setLanguageCookie(SlingHttpServletRequest request, SlingHttpServletResponse response, String langCode) {
+        Cookie cookie = new Cookie("lang-code", langCode);
+        cookie.setPath("/");
+        cookie.setDomain(request.getServerName());
+        response.addCookie(cookie);
     }
 
     /**
