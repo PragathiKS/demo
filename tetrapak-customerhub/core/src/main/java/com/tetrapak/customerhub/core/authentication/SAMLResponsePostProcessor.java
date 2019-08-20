@@ -4,8 +4,6 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
 import org.apache.sling.settings.SlingSettingsService;
@@ -93,7 +91,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
                 if (null != userID && StringUtils.isNotEmpty(langCode)) {
                     LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
-                    setLanguageCookie((SlingHttpServletRequest) request, (SlingHttpServletResponse) response, langCode);
+                    setLanguageCookie(request, response, langCode);
                 }
             }
         } catch (ParserConfigurationException parserConfiExep) {
@@ -158,7 +156,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         return null;
     }
 
-    private void setLanguageCookie(SlingHttpServletRequest request, SlingHttpServletResponse response, String langCode) {
+    private void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String langCode) {
         Cookie cookie = new Cookie("lang-code", langCode);
         cookie.setPath("/");
         cookie.setDomain(request.getServerName());
