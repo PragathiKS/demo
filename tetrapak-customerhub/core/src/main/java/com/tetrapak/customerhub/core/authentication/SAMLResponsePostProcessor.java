@@ -151,7 +151,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node childNode = attributeStatementChildNodes.item(childCount);
                 if ("saml:NameID".equalsIgnoreCase(childNode.getNodeName())) {
-                    return childNode.getNodeValue();
+                    return childNode.getTextContent();
                 }
             }
         }
