@@ -67,7 +67,9 @@
         }
 
         &:last-of-type.collapsed {
-            border-bottom: 1px solid $color-mercury;
+            @media #{$mobile} {
+                border-bottom: 1px solid $color-mercury;
+            }
         }
 
         .icon-Chevron_Down {
