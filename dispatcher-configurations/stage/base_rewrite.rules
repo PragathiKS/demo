@@ -1,3 +1,7 @@
 RewriteCond %{REQUEST_URI} ^/
+RewriteCond %{HTTP_COOKIE} !^.*lang-code.*$
+RewriteRule "^/customerhub/(.*).html$" /bin/customerhub/setcookie?uri=%{REQUEST_URI} [PT]
+
+RewriteCond %{REQUEST_URI} ^/
 RewriteCond %{HTTP_COOKIE}##en ^.*lang-code=([^;]+)|##(en)
 RewriteRule "^/customerhub/(.*).html$" "/content/tetrapak/customerhub/global/en/$1.%1%2.html" [QSA,PT,L]
