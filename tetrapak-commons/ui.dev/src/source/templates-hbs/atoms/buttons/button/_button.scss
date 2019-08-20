@@ -1,26 +1,33 @@
 %default-btn {
     @include font-size($font-baseline);
-    @include padding($padding-sm $padding-md);
+    @include padding(13px 12px);
     @include letter-spacing(0.5px);
     font-family: $font-light;
-    line-height: normal;
+    line-height: 1;
 
     .icon {
         @include font-size($font-baseline);
-        @include line-height(24px, $font-baseline);
+        @include line-height(12px, $font-baseline);
         display: inline-block;
 
         &::before {
             @include font-size(12px);
             @include height(12px);
-            vertical-align: middle;
-            margin-bottom: 1px;
+            @include margin-top(1px);
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    .icon-Circle_Arrow_Right {
+        &::before {
+            margin-top: 0;
         }
     }
 
     span {
-        @include line-height(24px, $font-baseline);
         @include margin-right($margin-xs);
+        line-height: 1;
         vertical-align: top;
         display: inline-block;
 
