@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.http.Cookie;
+import java.io.IOException;
 
 /**
  * Servlet to check language of the user and to create lang-code cookie
@@ -49,6 +50,14 @@ public class CustomerHubCookieServlet extends SlingSafeMethodsServlet {
                 CustomerHubConstants.LANGUGAGE_PREFERENCES);
         if (StringUtils.isNotEmpty(langCode)) {
             setLanguageCookie(request, response, langCode);
+        }
+
+        String uri = request.getParameter("uri");
+        LOGGER.info("uri from request {}", uri);
+        try {
+            response.sendRedirect(uri);
+        } catch (IOException e) {
+            LOGGER.error("IO Exception while request dispatching in CustomerHubCookieServlet", e);
         }
     }
 
