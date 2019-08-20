@@ -88,10 +88,11 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     acctoken.setPath("/");
                     response.addCookie(acctoken);
                 }
-                final String langCode = userPreferenceService.getSavedPreferences(getUserIDFromSamlResponse(base64DecodedResponse),
-                        CustomerHubConstants.LANGUGAGE_PREFERENCES);
-                if (StringUtils.isNotEmpty(langCode)) {
-                    LOGGER.info("setting language cookie for the lang-code: {}", langCode);
+                String userID = getUserIDFromSamlResponse(base64DecodedResponse);
+                LOGGER.debug("user ID: {}", userID);
+                final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
+                if (null != userID && StringUtils.isNotEmpty(langCode)) {
+                    LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
                     setLanguageCookie((SlingHttpServletRequest) request, (SlingHttpServletResponse) response, langCode);
                 }
             }
@@ -138,7 +139,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 }
             }
         }
-        LOGGER.info("user ID is null from SAML response");
+        LOGGER.debug("user ID is null from SAML response");
         return null;
     }
 
@@ -150,7 +151,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node childNode = attributeStatementChildNodes.item(childCount);
                 if ("saml:NameID".equalsIgnoreCase(childNode.getNodeName())) {
-                    return childNode.getAttributes().item(0).getNodeValue();
+                    return childNode.getNodeValue();
                 }
             }
         }
