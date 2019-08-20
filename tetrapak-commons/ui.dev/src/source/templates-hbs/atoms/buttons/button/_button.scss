@@ -9,13 +9,13 @@
         @include font-size($font-baseline);
         @include line-height(12px, $font-baseline);
         display: inline-block;
+        vertical-align: top;
 
         &::before {
             @include font-size(12px);
             @include height(12px);
             margin-top: 1px;
             display: inline-block;
-            vertical-align: top;
         }
     }
 
