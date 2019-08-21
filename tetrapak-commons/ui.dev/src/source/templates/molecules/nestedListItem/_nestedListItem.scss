@@ -4,13 +4,22 @@
     position: relative;
     background-color: $color-congress-blue;
 
-    &.active,
     &:hover {
         background-color: $color-tory-blue;
     }
 
     &.active {
-        border-bottom: 0;
+        background-color: $color-denim;
+        border-bottom: 1px solid $color-denim;
+
+        &.has-submenu {
+            background-color: $color-tory-blue;
+        }
+
+        &:not(.has-submenu) {
+            border-top: 1px solid $color-denim;
+            margin-top: -1px;
+        }
     }
 
     &__sublist {

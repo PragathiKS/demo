@@ -11,7 +11,8 @@
       "href": "https://www.tetrapak.com",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
-      "isExternalLink": "true"
+      "isExternalLink": "true",
+      "isActive": "true"
     },
     {
       "href": "/content/customerhub-ux/getstarted.ux-preview.html",
@@ -44,7 +45,7 @@
           "href": "https://www.tetrapak.com",
           "iconLabel": "Order History",
           "isExternalLink": "true",
-          "isActive": "false"
+          "isActive": "true"
         },
         {
           "href": "https://www.tetrapak.com",
