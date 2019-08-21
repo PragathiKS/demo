@@ -1,31 +1,31 @@
-const { wizard } = require('./ask');
+const inquirer = require('inquirer');
+const argv = require('yargs').argv;
 const config = require('./config').createComponent;
 const fs = require('fs-extra');
-const { hasArgs } = require('./args');
 
-let targetFolder = 'components';
 let targetModule = 'component';
-if (hasArgs('atom')) {
+if (argv.atom) {
   targetFolder = 'atoms';
   targetModule = 'atom'
-} else if (hasArgs('molecule')) {
+} else if (argv.molecule) {
   targetFolder = 'molecules';
   targetModule = 'molecule'
 }
 
 const questions = [
   {
-    question: `Enter ${targetModule} name\nRules: \n1. Name should start with capital or small case\n2. Name should not start with a number\n3. Name can contain an underscore\n:`,
-    key: "componentName"
+    message: `Enter ${targetModule} name\nRules: \n1. Name should start with capital or small case\n2. Name should not start with a number\n3. Name can contain an underscore\n:`,
+    name: "cName",
+    type: 'text'
   }
 ];
 
 function createComponent(name) {
   // Create folder structure
   let componentPath = `${config.componentsFolder}/${name.toLowerCase()}`;
-  if (hasArgs('atom')) {
+  if (argv.atom) {
     componentPath = `${config.atomsFolder}/${name.toLowerCase()}`;
-  } else if (hasArgs('molecule')) {
+  } else if (argv.molecule) {
     componentPath = `${config.moleculesFolder}/${name.toLowerCase()}`;
   }
   fs.mkdirsSync(componentPath);
@@ -33,7 +33,7 @@ function createComponent(name) {
   fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
   const templateFileName = name.toLowerCase();
   fs.writeFileSync(`${componentPath}/${templateFileName}-template.html`, `<sly data-sly-template.${templateFileName}_template="$\{@ data, flag\}"></sly>`);
-  if (!(hasArgs('atom') || hasArgs('molecule'))) {
+  if (!(argv.atom || argv.molecule)) {
     const jsFileName = `${name.charAt(0).toUpperCase()}${name.substring(1)}`;
     const instanceName = `${name.charAt(0).toLowerCase()}${name.substring(1)}`;
     fs.writeFileSync(`${componentPath}/${jsFileName}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, jsFileName));
@@ -45,20 +45,20 @@ function createComponent(name) {
   console.log('\x1b[32m%s\x1b[0m', `${targetModule} ${name} has been created!`);
 }
 
-wizard({ questions })
-  .then(([data]) => {
+inquirer.prompt(questions)
+  .then((data) => {
     if (
-      data.answer
-      && !(/^\d|[^A-Za-z0-9_]/).test(data.answer)
+      data.cName
+      && !(/^\d|[^A-Za-z0-9_]/).test(data.cName)
     ) {
       // Check if component already exists
       try {
         let folder = config.componentsFolder;
         let moduleName = 'Component';
-        if (hasArgs('atom')) {
+        if (argv.atom) {
           folder = config.atomsFolder;
           moduleName = 'Atom';
-        } else if (hasArgs('molecule')) {
+        } else if (argv.molecule) {
           folder = config.moleculesFolder;
           moduleName = 'Molecule';
         }
@@ -66,10 +66,10 @@ wizard({ questions })
           fs.mkdirsSync(folder);
         }
         const componentList = fs.readdirSync(folder);
-        if (componentList.includes(data.answer)) {
-          console.log('\x1b[31m%s\x1b[0m', `${moduleName} with name ${data.answer} already exists!`);
+        if (componentList.includes(data.cName)) {
+          console.log('\x1b[31m%s\x1b[0m', `${moduleName} with name ${data.cName} already exists!`);
         } else {
-          createComponent(data.answer);
+          createComponent(data.cName);
         }
       } catch (e) {
         console.log(e);
