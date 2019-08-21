@@ -51,6 +51,7 @@ inquirer.prompt(questions)
       data.cName
       && !(/^\d|[^A-Za-z0-9_]/).test(data.cName)
     ) {
+      const inputComponentName = `${data.cName.charAt(0).toLowerCase()}${data.cName.substring(1)}`;
       // Check if component already exists
       try {
         let folder = config.componentsFolder;
@@ -66,10 +67,10 @@ inquirer.prompt(questions)
           fs.mkdirsSync(folder);
         }
         const componentList = fs.readdirSync(folder);
-        if (componentList.includes(data.cName)) {
-          console.log('\x1b[31m%s\x1b[0m', `${moduleName} with name ${data.cName} already exists!`);
+        if (componentList.includes(inputComponentName)) {
+          console.log('\x1b[31m%s\x1b[0m', `${moduleName} with name ${inputComponentName} already exists!`);
         } else {
-          createComponent(data.cName);
+          createComponent(inputComponentName);
         }
       } catch (e) {
         console.log(e);
