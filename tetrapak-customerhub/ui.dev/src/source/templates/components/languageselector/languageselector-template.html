@@ -11,15 +11,15 @@
                 </div>
                 <div class="modal-body">
                   <sly data-sly-test.userLanguage="${data.selectedLanguage ? data.selectedLanguage : 'en'}" />
-                  <sly data-sly-test.selectedLanguage="language.${userLanguage}" />
+                  <sly data-sly-test.selectedLanguage="${data.listOfLanguages[userLanguage]}" />
                   <div class="tp-lang-selector__selected-lang">
                     <i class="icon-Globe"></i>
-                    <p class="tp-lang-selector__selected-lang-label d-inline">${selectedLanguage @i18n, locale=data.locale}</p>
+                    <p class="tp-lang-selector__selected-lang-label d-inline">${selectedLanguage}</p>
                   </div>
                   <div class="tp-lang-selector__lang-container">
-                      <sly data-sly-list.lang=${data.listOfLanguages}>
-                          <sly data-sly-test.language="language.${lang}" />
-                          <div class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode=${lang} datatag="internal" ctype="choose your language" ctypeone="notset" cttitle="${language @i18n, locale=data.locale}" aria-label="${language @i18n, locale=data.locale}">${language @i18n, locale=data.locale}</div>
+                      <sly data-sly-list=${data.listOfLanguages}>
+                          <sly data-sly-test.language="${data.listOfLanguages[item]}" />
+                          <div class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" datatag="internal" ctype="choose your language" ctypeone="notset" cttitle="${language}" aria-label="${language}">${language}</div>
                       </sly>
                 </div>
                 </div>
