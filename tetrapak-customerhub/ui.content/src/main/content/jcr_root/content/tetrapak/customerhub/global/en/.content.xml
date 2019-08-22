@@ -32,48 +32,48 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="customerhub/components/structure/globalconfiguration"
                         closeBtnText="Close"
-                        navHeadingI18n="My Tetra Pak"
-                        headingI18n="choose language"
+                        navHeadingI18n="cuhu.LeftNav_Heading"
+                        headingI18n="Cuhu_language_window_title"
                         stickyHref="/content/tetrapak/customerhub/global/en/dashboard"
                         stickyIconClass="icon-TetraPak"
                         stickyLabel="Tetra Pak Home">
                     <languages jcr:primaryType="nt:unstructured">
                         <item0
                                 jcr:primaryType="nt:unstructured"
+                                languageDisplayName="English"
                                 langCode="en"/>
                         <item1
                                 jcr:primaryType="nt:unstructured"
+                                languageDisplayName="中文"
                                 langCode="zh_tw"/>
                         <item2
                                 jcr:primaryType="nt:unstructured"
+                                languageDisplayName="中文"
                                 langCode="zh"/>
                         <item3
                                 jcr:primaryType="nt:unstructured"
-                                langCode="uk"/>
+                                languageDisplayName="Türk"
+                                langCode="tr"/>
                         <item4
                                 jcr:primaryType="nt:unstructured"
-                                langCode="tr"/>
+                                languageDisplayName="русский"
+                                langCode="ru"/>
                         <item5
                                 jcr:primaryType="nt:unstructured"
-                                langCode="sv"/>
+                                languageDisplayName="Portugues"
+                                langCode="pt"/>
                         <item6
                                 jcr:primaryType="nt:unstructured"
-                                langCode="sl"/>
+                                languageDisplayName="한국어"
+                                langCode="ko"/>
                         <item7
                                 jcr:primaryType="nt:unstructured"
-                                langCode="sk"/>
+                                languageDisplayName="日本人"
+                                langCode="ja"/>
                         <item8
                                 jcr:primaryType="nt:unstructured"
-                                langCode="ru"/>
-                        <item9
-                                jcr:primaryType="nt:unstructured"
-                                langCode="pt"/>
-                        <item10
-                                jcr:primaryType="nt:unstructured"
-                                langCode="ko"/>
-                        <item11
-                                jcr:primaryType="nt:unstructured"
-                                langCode="ja"/>
+                                languageDisplayName="Español (colombia)"
+                                langCode="es_co"/>
                     </languages>
                 </globalconfiguration>
             </responsivegrid>

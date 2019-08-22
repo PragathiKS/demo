@@ -6,11 +6,11 @@ navHeadingI18n : ${properties.navHeadingI18n}
 Cookie Consent Disabled:${properties.cookieConsentDisabled}
 <br />Cookie Consent Text : ${properties.cookieConsentText}
 <br /> Cookie Consent Button Text : ${properties.cookieConsentButtonText}
-<br /> Languages :
-
+<br />
+<br /> <h2>Languages : </h2>
 <sly data-sly-list="${resource.listChildren}">
     <sly data-sly-list="${item.listChildren}">
         ${item.valueMap.langCode} : ${item.valueMap.languageDisplayName}
+        <br />
     </sly>
 </sly>
-
