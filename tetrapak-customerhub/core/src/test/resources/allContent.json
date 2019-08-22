@@ -49,23 +49,33 @@
                   "jcr:primaryType": "nt:unstructured",
                   "item0": {
                      "jcr:primaryType": "nt:unstructured",
-                     "langCode": "en"
+                     "langCode": "en",
+                     "languageDisplayName": "English"
                   },
                   "item1": {
                      "jcr:primaryType": "nt:unstructured",
-                     "langCode": "fr"
+                     "langCode": "fr",
+                     "languageDisplayName": "Française"
                   },
                   "item2": {
                      "jcr:primaryType": "nt:unstructured",
-                     "langCode": "es"
+                     "langCode": "es",
+                     "languageDisplayName": "Española"
                   },
                   "item3": {
                      "jcr:primaryType": "nt:unstructured",
-                     "langCode": "it"
+                     "langCode": "it",
+                     "languageDisplayName": "Italiano"
                   },
                   "item4": {
                      "jcr:primaryType": "nt:unstructured",
-                     "langCode": "ar"
+                     "langCode": "ar",
+                     "languageDisplayName": "عربى"
+                  },
+                  "item5": {
+                     "jcr:primaryType": "nt:unstructured",
+                     "langCode": "zh",
+                     "languageDisplayName": "中文"
                   }
                }
             }

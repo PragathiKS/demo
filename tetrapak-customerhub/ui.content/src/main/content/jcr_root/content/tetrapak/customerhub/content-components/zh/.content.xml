@@ -5,8 +5,11 @@
     <jcr:content
         cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
         cq:conf=""
-        cq:lastModified="{Date}2019-07-17T11:24:12.992Z"
-        cq:lastModifiedBy="translation-job-service"
+        cq:lastModified="{Date}2019-08-10T09:49:49.857Z"
+        cq:lastModifiedBy="sapient-tarun"
+        cq:lastReplicated="{Date}2019-08-10T09:49:58.089Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-07-17T11:24:12.992Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en"
@@ -24,20 +27,24 @@
                 <globalconfiguration
                     jcr:created="{Date}2019-03-09T10:45:30.509Z"
                     jcr:createdBy="sapient-user"
-                    jcr:lastModified="{Date}2019-03-11T04:46:30.777Z"
+                    jcr:lastModified="{Date}2019-08-10T09:49:49.853Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/globalconfiguration"
                     closeBtnText="Close"
-                    navHeadingI18n="My Tetra Pak"
+                    cookieConsentButtonText=" 好！我明白。"
+                    cookieConsentDisabled="false"
+                    cookieConsentText="&lt;p>我们正在使用cookies。继续使用我们的网站而不更改设置，即表示您同意我们使用cookies了解有关我&lt;a href=&quot;http://tetrapak.com/about/legal-information&quot;>们的cookie政策的更多信息&lt;/a>&lt;/p>&#xd;&#xa;"
+                    navHeadingI18n="我的利乐"
                     stickyHref="https://www.tetrapak.com"
                     stickyIconClass="icon-TetraPak"
-                    stickyLabel="Tetra Pak Home"/>
+                    stickyLabel="Tetra Pak Home"
+                    textIsRich="true"/>
                 <headerconfiguration
                     jcr:created="{Date}2019-07-16T16:53:27.341+05:30"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-07-17T11:55:13.231+05:30"
-                    jcr:lastModifiedBy="admin"
+                    jcr:lastModified="{Date}2019-08-06T04:20:28.963Z"
+                    jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/headerconfiguration"
                     dLogoLink="/content/tetrapak/customerhub/global/en/dashboard"
@@ -47,27 +54,27 @@
                         <item0
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/processing.html"
-                            name="Processing"
+                            name="处理"
                             targetNew="true"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/packaging.html"
-                            name="Packaging"
+                            name="打包"
                             targetNew="true"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/services.html"
-                            name="Services"
+                            name="服务"
                             targetNew="true"/>
                         <item3
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/sustainability.html"
-                            name="Sustainability"
+                            name="可持续发展"
                             targetNew="true"/>
                         <item4
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/about.html"
-                            name="About us"
+                            name=" 关于我们"
                             targetNew="true"/>
                     </headerNavLinks>
                 </headerconfiguration>

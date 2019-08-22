@@ -6,12 +6,16 @@
         cq:isLanguageRoot="true"
         cq:lastModified="{Date}2019-03-27T11:13:32.325+05:30"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-05-31T10:08:08.664Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
+        jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Content Components"
-        jcr:uuid="6245b335-98f0-4ef5-b48b-7950e4d69c88"
+        jcr:uuid="dcc535ac-9d3d-4d67-83f8-658bbd7c01a1"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -61,15 +65,15 @@
         </root>
     </jcr:content>
     <en/>
-    <zh_tw/>
     <zh/>
-    <uk/>
-    <tr/>
     <sv/>
-    <sl/>
-    <sk/>
     <ru/>
-    <pt/>
+    <tr/>
     <ko/>
+    <pt/>
     <ja/>
+    <sk/>
+    <zh_tw/>
+    <sl/>
+    <uk/>
 </jcr:root>
