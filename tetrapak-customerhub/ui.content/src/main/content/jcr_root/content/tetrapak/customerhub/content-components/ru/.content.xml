@@ -37,7 +37,7 @@
                     jcr:lastModified="{Date}2019-08-06T10:22:32.898Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/structure/headerconfiguration"
+                    sling:resourceType="customerhub/components/content/headerconfiguration"
                     dLogoLink="/content/tetrapak/customerhub/global/en/dashboard"
                     logoUrl="/content/dam/customerhub/english/common/TetraPakLogo.png"
                     mLogoLink="/content/tetrapak/customerhub/global/en/dashboard">

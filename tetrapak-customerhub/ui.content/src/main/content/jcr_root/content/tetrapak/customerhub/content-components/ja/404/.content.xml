@@ -2,16 +2,16 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-07-17T11:23:47.290Z"
+        cq:lastModified="{Date}2019-07-17T11:23:47.715Z"
         cq:lastModifiedBy="translation-job-service"
-        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.290Z"
+        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.715Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/404"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="404"
-        jcr:uuid="0e4f2429-8caf-4927-8097-d91ed3095daa"
+        jcr:uuid="86a9d375-6c4b-4ccf-893b-42d6cd2f9518"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
