@@ -42,10 +42,10 @@ public class CookieConsentModel {
         selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
         Page languagePage = GlobalUtil.getLanguagePage(request, userPreferenceService);
         if (null != languagePage) {
-            Resource globalConfigurationResource = request.getResourceResolver().getResource(languagePage.getPath()
-                    + "/jcr:content/root/responsivegrid/globalconfiguration");
-            if (null != globalConfigurationResource) {
-                ValueMap map = globalConfigurationResource.getValueMap();
+            Resource cookieConfigurationResource = request.getResourceResolver().getResource(languagePage.getPath()
+                    + "/jcr:content/root/responsivegrid/cookieconfiguration");
+            if (null != cookieConfigurationResource) {
+                ValueMap map = cookieConfigurationResource.getValueMap();
                 cookieConsentDisabled = Boolean.valueOf((String) map.get("cookieConsentDisabled"));
                 cookieConsentText = (String) map.get("cookieConsentText");
                 cookieConsentButtonText = (String) map.get("cookieConsentButtonText");
