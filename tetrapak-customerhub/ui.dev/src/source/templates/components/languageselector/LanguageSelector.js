@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil } from '../../../scripts/common/common';
+import { storageUtil, isAuthorMode } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
@@ -70,7 +70,7 @@ class LanguageSelector {
     if (selectedLanguage && langCookie !== selectedLanguage) {
       storageUtil.setCookie('lang-code', selectedLanguage);
     }
-    if (!this.cache.selectedLanguage && !langCookie) {
+    if (!this.cache.selectedLanguage && !langCookie && !isAuthorMode()) {
       $modal.modal();
     }
   }
