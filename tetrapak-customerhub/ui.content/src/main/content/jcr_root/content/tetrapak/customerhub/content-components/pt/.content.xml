@@ -25,7 +25,7 @@
                     jcr:lastModified="{Date}2019-08-05T13:04:00.936Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/structure/cookieconfiguration"
+                    sling:resourceType="customerhub/components/content/cookieconfiguration"
                     cookieConsentButtonText="Ok! I understand."
                     cookieConsentDisabled="false"
                     cookieConsentText="&lt;p>We are using cookies. By continuing to use our website without changing the settings, you are agreeing to our use of cookies &lt;a href=&quot;http://tetrapak.com/about/legal-information&quot; title=&quot;Follow link&quot; target=&quot;_blank&quot;>Learn more about our cookie policy.&lt;/a>&lt;/p>&#xd;&#xa;"

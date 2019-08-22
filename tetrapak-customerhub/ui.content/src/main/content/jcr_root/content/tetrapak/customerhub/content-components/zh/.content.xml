@@ -30,7 +30,7 @@
                     jcr:lastModified="{Date}2019-08-10T09:49:49.853Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/structure/cookieconfiguration"
+                    sling:resourceType="customerhub/components/content/cookieconfiguration"
                     cookieConsentButtonText=" 好！我明白。"
                     cookieConsentDisabled="false"
                     cookieConsentText="&lt;p>我们正在使用cookies。继续使用我们的网站而不更改设置，即表示您同意我们使用cookies了解有关我&lt;a href=&quot;http://tetrapak.com/about/legal-information&quot;>们的cookie政策的更多信息&lt;/a>&lt;/p>&#xd;&#xa;"
