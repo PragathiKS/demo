@@ -17,6 +17,7 @@
             jcr:title="Parts"
             jcr:uuid="5673e3d7-8e0e-4567-aeab-2a66b167796d"
             sling:resourceType="customerhub/components/structure/page"
+            isExternal="true"
             iconClass="icon-Cart">
         <root
                 jcr:primaryType="nt:unstructured"

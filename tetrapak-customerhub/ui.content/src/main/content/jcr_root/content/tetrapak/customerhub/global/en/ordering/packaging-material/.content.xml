@@ -16,6 +16,7 @@
             jcr:primaryType="cq:PageContent"
             jcr:title="Packaging Material"
             jcr:uuid="7ad3bc65-baca-417e-adc4-751845c59f36"
+            isExternal="true"
             sling:resourceType="customerhub/components/structure/page">
         <root
                 jcr:primaryType="nt:unstructured"
