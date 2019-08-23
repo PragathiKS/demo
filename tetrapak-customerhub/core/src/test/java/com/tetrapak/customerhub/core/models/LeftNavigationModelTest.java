@@ -38,17 +38,17 @@ public class LeftNavigationModelTest {
         Assert.assertEquals("href", "/content/tetrapak/customerhub/global/en/dashboard.html", leftNavigationBean.getHref());
         Assert.assertEquals("icon class", "icon-Dashboard", leftNavigationBean.getIconClass());
         Assert.assertEquals("icon label", "DASHBOARD", leftNavigationBean.getIconLabel());
-        Assert.assertEquals("is external link", false, leftNavigationBean.isExternalLink());
-        Assert.assertEquals("is active", false, leftNavigationBean.isActive());
-        Assert.assertEquals("is expanded", false, leftNavigationBean.isExpanded());
+        Assert.assertTrue("is external link", leftNavigationBean.isExternalLink());
+        Assert.assertFalse("is active",  leftNavigationBean.isActive());
+        Assert.assertFalse("is expanded",  leftNavigationBean.isExpanded());
 
         LeftNavigationBean leftNavigationBeanWithSubMenu = list.get(3);
         List<LeftNavigationBean> subMenuList = leftNavigationBeanWithSubMenu.getSubMenuList();
         LeftNavigationBean leftNavigationBeanFromSubMenu = subMenuList.get(0);
         Assert.assertEquals("href", "/content/tetrapak/customerhub/global/en/ordering/order-history.html", leftNavigationBeanFromSubMenu.getHref());
         Assert.assertEquals("icon label", "Order History", leftNavigationBeanFromSubMenu.getIconLabel());
-        Assert.assertEquals("is external link", false, leftNavigationBeanFromSubMenu.isExternalLink());
-        Assert.assertEquals("is active", false, leftNavigationBeanFromSubMenu.isActive());
+        Assert.assertFalse("is external link", leftNavigationBeanFromSubMenu.isExternalLink());
+        Assert.assertFalse("is active", leftNavigationBeanFromSubMenu.isActive());
 
     }
 }
