@@ -43,6 +43,7 @@ public class LeftNavigationModel {
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
     private static final String IS_EXTERNAL_LINK_PROPERTY = "isExternal";
+    private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     private String selectedLanguage;
 
@@ -142,11 +143,11 @@ public class LeftNavigationModel {
     }
 
     private boolean isHiddenInNavigation(ValueMap valueMap) {
-        return valueMap.containsKey(IS_EXTERNAL_LINK_PROPERTY);
+        return valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
     private boolean isExternalLink(ValueMap valueMap) {
-        return valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY);
+        return valueMap.containsKey(IS_EXTERNAL_LINK_PROPERTY);
     }
 
     public List<LeftNavigationBean> getLeftNavItems() {
