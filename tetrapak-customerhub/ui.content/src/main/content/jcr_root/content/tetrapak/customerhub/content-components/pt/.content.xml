@@ -12,7 +12,7 @@
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="English"
+        jcr:title="Portuguese"
         jcr:uuid="cd36023d-5124-4b65-a334-bdf6cf5ac110"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">

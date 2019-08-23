@@ -17,7 +17,7 @@
         jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Chinese"
+        jcr:title="Chinese Simplified"
         jcr:uuid="b8737c3d-36b9-485b-97c1-e3a1627e83b9"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">

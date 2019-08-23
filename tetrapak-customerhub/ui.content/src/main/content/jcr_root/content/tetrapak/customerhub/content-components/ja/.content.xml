@@ -12,48 +12,25 @@
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="English"
+        jcr:title="Japanese"
         jcr:uuid="8e15f125-3966-43ba-88fb-8de2dc1077e7"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
-                <globalconfiguration
+                <cookieconfiguration
                     jcr:created="{Date}2019-03-09T10:45:30.509Z"
                     jcr:createdBy="sapient-user"
                     jcr:lastModified="{Date}2019-08-21T06:27:11.915Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/structure/globalconfiguration"
-                    closeBtnText="Close"
+                    sling:resourceType="customerhub/components/structure/cookieconfiguration"
                     cookieConsentButtonText="Ok! I understand."
                     cookieConsentDisabled="false"
                     cookieConsentText="&lt;p>We are using cookies. By continuing to use our website without changing the settings, you are agreeing to our use of cookies &lt;a href=&quot;http://tetrapak.com/about/legal-information&quot; title=&quot;Follow link&quot; target=&quot;_blank&quot;>Learn more about our cookie policy.&lt;/a>&lt;/p>&#xd;&#xa;"
-                    headingI18n="Cuhu_language_window_title"
-                    navHeadingI18n="cuhu.LeftNav_Heading"
-                    stickyHref="https://www.tetrapak.com"
-                    stickyIconClass="icon-TetraPak"
-                    stickyLabel="Tetra Pak Home"
                     textIsRich="true">
-                    <languages jcr:primaryType="nt:unstructured">
-                        <item0
-                            jcr:primaryType="nt:unstructured"
-                            langCode="en"/>
-                        <item1
-                            jcr:primaryType="nt:unstructured"
-                            langCode="zh_tw"/>
-                        <item2
-                            jcr:primaryType="nt:unstructured"
-                            langCode="zh"/>
-                        <item3
-                            jcr:primaryType="nt:unstructured"
-                            langCode="ko"/>
-                        <item4
-                            jcr:primaryType="nt:unstructured"
-                            langCode="ja"/>
-                    </languages>
-                </globalconfiguration>
+                </cookieconfiguration>
                 <headerconfiguration
                     jcr:created="{Date}2019-07-16T16:53:27.341+05:30"
                     jcr:createdBy="admin"
