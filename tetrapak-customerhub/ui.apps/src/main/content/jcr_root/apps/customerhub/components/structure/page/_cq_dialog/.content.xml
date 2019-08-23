@@ -56,6 +56,15 @@
                                                     fieldDescription="Enter Navigation Title i18n key"
                                                     fieldLabel="Navigation Title i18n key"
                                                     name="./iconLabel"/>
+                                            <isExternal
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="is External Link"
+                                                    fieldDescription="Check this to make it an external link"
+                                                    fieldLabel="is External Link"
+                                                    value="{Boolean}true"
+                                                    name="./isExternal"/>
                                             <iconClass
                                                     cq:showOnCreate="{Boolean}true"
                                                     jcr:primaryType="nt:unstructured"
