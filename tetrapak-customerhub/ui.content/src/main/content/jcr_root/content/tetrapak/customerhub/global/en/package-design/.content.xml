@@ -15,6 +15,7 @@
         jcr:title="Package Design"
         jcr:uuid="73670683-32a8-42bd-8eed-811c813a4708"
         sling:resourceType="customerhub/components/structure/page"
+        isExternal="true"
         iconClass="icon-Packaging_Design">
         <root
             jcr:primaryType="nt:unstructured"

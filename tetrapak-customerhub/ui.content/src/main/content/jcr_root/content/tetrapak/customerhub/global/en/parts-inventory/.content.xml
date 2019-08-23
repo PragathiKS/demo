@@ -16,6 +16,7 @@
         jcr:title="Parts Inventory"
         jcr:uuid="9ae1fd6e-b137-4e69-876e-86fb18cc7204"
         sling:resourceType="customerhub/components/structure/page"
+        isExternal="true"
         iconClass="icon-Inventory">
         <root
             jcr:primaryType="nt:unstructured"

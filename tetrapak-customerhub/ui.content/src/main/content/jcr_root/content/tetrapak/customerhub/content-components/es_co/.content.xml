@@ -14,7 +14,7 @@
         jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Ukrainian"
+        jcr:title="Spanish (Colombia)"
         jcr:uuid="e7fa9b13-0b02-499b-a88d-28538f62bfc4"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">

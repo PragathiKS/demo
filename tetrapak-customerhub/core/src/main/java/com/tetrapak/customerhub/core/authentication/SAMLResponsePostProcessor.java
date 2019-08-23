@@ -34,7 +34,8 @@ import java.util.Set;
 /**
  * SAML Response post processor
  *
- * @author tustusha
+ * @author Tushar
+ * @author Nitin Kumar
  */
 @Component(immediate = true, service = AuthenticationInfoPostProcessor.class)
 public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcessor {
@@ -81,18 +82,14 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     response.addCookie(samlCookie);
                 }
                 if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
-                    Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
-                    acctoken.setHttpOnly(true);
-                    acctoken.setPath("/");
-                    response.addCookie(acctoken);
+                    Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
+                    accToken.setHttpOnly(true);
+                    accToken.setPath("/");
+                    final int SECONDS = 900;
+                    accToken.setMaxAge(SECONDS);
+                    response.addCookie(accToken);
                 }
-                String userID = getUserIDFromSamlResponse(base64DecodedResponse);
-                LOGGER.debug("user ID: {}", userID);
-                final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
-                if (null != userID && StringUtils.isNotEmpty(langCode)) {
-                    LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
-                    setLanguageCookie(request, response, langCode);
-                }
+                setLangCodeCookie(request, response, base64DecodedResponse);
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -100,6 +97,17 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             LOGGER.error("Unable to parse the xml document ", saxExcep);
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
+        }
+    }
+
+    private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response, String base64DecodedResponse)
+            throws ParserConfigurationException, SAXException, IOException {
+        String userID = getUserIDFromSamlResponse(base64DecodedResponse);
+        LOGGER.debug("user ID: {}", userID);
+        final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        if (null != userID && StringUtils.isNotEmpty(langCode)) {
+            LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
+            setLanguageCookie(request, response, langCode);
         }
     }
 
