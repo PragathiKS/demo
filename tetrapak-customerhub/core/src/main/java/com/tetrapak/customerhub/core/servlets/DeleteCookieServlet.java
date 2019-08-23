@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * This servlet is used to delete cookies which are
@@ -51,6 +51,10 @@ public class DeleteCookieServlet extends SlingSafeMethodsServlet {
             authTokenCookie.setMaxAge(-1);
             response.addCookie(authTokenCookie);
         }
-        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            response.sendRedirect("/customerhub/empty.html");
+        } catch (IOException e) {
+            LOGGER.error("unable to redirect to empty page", e);
+        }
     }
 }
