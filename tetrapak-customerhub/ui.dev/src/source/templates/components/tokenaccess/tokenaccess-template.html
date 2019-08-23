@@ -1,0 +1,16 @@
+<sly data-sly-template.tokenaccess_template="${@ data, flag}">
+  <!--/*
+    **************************************************************************************
+    This file is not used in actual environment. This is created for testing purpose only.
+    **************************************************************************************
+  */-->
+  <script class="scr-token-refresh">
+    var dt = new Date();
+    dt.setTime(dt.getTime() + (15 * 1000));
+    document.cookie = 'acctoken=somedummyvalue' + Math.round(Math.random() * 1000) + '; expires=' + dt.toUTCString() + '; domain=' + '; path=/';
+    if (window.location !== window.parent.location) {
+      console.log('[Page]: New token received');
+      window.parent.postMessage('token_refresh');
+    }
+  </script>
+</sly>

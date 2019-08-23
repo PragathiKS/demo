@@ -308,3 +308,18 @@ export const resolveCurrency = (value, isoCode) => {
     code: isoCode
   });
 };
+
+/**
+ * Checks if current page is iframe
+ */
+export const isCurrentPageIframe = () => (window.location !== window.parent.location);
+
+/**
+ * Checks if current environment is localhost
+ */
+export const isLocalhost = () => ($('#isDummyLayout').val() === 'true');
+
+/**
+ * Returns max safe integer
+ */
+export const getMaxSafeInteger = () => (Number.MAX_SAFE_INTEGER || 9007199254740991);

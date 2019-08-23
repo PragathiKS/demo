@@ -20,9 +20,15 @@ export const NO_OF_EVENTS_PER_PAGE = 12;
 export const NO_OF_EVENTS_ON_CARD = 6;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
+export const TOKEN_REFRESH_IDENTIFIER = 'token_refresh';
+export const ACC_TOKEN_COOKIE = 'acctoken';
+export const AUTH_TOKEN_COOKIE = 'authToken';
+export const AUTH_TOKEN_EXPIRY = 'tokenExpiry';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
+// Servlet URLs
 export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePreference';
+export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/delete-cookie';
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -52,3 +58,7 @@ export const API_MAINTENANCE_FILTERS = 'maintenance-filter';
 export const API_MAINTENANCE_EVENTS = 'maintenance-events';
 export const API_DOCUMENTS_SEARCH = 'documents';
 export const API_DOCUMENTS_FILTERS = 'documents-filter';
+// Custom events
+export const EVT_TOKEN_REFRESH = 'token.refresh';
+export const EVT_REFRESH_INITIATE = 'refresh.initiate';
+export const EVT_POST_REFRESH = 'refresh.post';
