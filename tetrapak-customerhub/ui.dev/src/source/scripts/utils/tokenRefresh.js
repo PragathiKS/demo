@@ -1,7 +1,7 @@
 import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, isLocalhost, getMaxSafeInteger } from '../common/common';
 import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, TOKEN_REFRESH_IDENTIFIER, EMPTY_PAGE_URL } from './constants';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, TOKEN_REFRESH_IDENTIFIER, EMPTY_PAGE_URL, ajaxMethods } from './constants';
 import { logger } from './logger';
 import { ajaxWrapper } from './ajax';
 
@@ -80,7 +80,8 @@ function triggerRefresh() {
         iFrame = existingIframe[0];
       }
       ajaxWrapper.getXhrObj({
-        url: DELETE_COOKIE_SERVLET_URL
+        url: DELETE_COOKIE_SERVLET_URL,
+        method: ajaxMethods.GET
       }).always(() => {
         const emptyPageURL = `${window.location.protocol}//${window.location.host}${EMPTY_PAGE_URL}`;
         iFrame.src = isLocalhost() ? '/content/customerhub-ux/tokenredirect.ux-preview.html' : emptyPageURL;
