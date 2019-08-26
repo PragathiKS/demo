@@ -121,7 +121,13 @@ function _trackAnalytics(type) {
  */
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
-  this.cache.documentTypeList = data.documentType;
+  const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  this.cache.documentTypeList = data.documentType = [
+    {
+      key: '', desc: documentTypeAll
+    },
+    ...data.documentType
+  ];
   $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
@@ -308,7 +314,7 @@ function _syncFields(query) {
   $statusField.customSelect(query.status);
   $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
   $statusField.trigger('dropdown.change');
-  $docType.customSelect(query['document-type']);
+  $docType.customSelect(query['document-type'] || '');
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
