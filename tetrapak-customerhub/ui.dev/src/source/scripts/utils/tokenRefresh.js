@@ -1,8 +1,9 @@
 import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, isLocalhost, getMaxSafeInteger } from '../common/common';
 import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, TOKEN_REFRESH_IDENTIFIER } from './constants';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, TOKEN_REFRESH_IDENTIFIER, EMPTY_PAGE_URL } from './constants';
 import { logger } from './logger';
+import { ajaxWrapper } from './ajax';
 
 const cache = {};
 
@@ -68,11 +69,22 @@ function triggerRefresh() {
   if (!cache.refreshTokenPromise) {
     cache.refreshTokenPromise = new Promise((resolve) => {
       logger.log(`[Webpack]: Token refresh triggered`);
-      const iFrame = document.createElement('iframe');
-      document.body.appendChild(iFrame);
-      iFrame.classList.add('d-none');
-      iFrame.classList.add('js-token-ifrm');
-      iFrame.src = isLocalhost() ? '/content/customerhub-ux/tokenredirect.ux-preview.html' : DELETE_COOKIE_SERVLET_URL;
+      let iFrame = null;
+      const existingIframe = $('.js-token-ifrm');
+      if (!existingIframe.length) {
+        iFrame = document.createElement('iframe');
+        document.body.appendChild(iFrame);
+        iFrame.classList.add('d-none');
+        iFrame.classList.add('js-token-ifrm');
+      } else {
+        iFrame = existingIframe[0];
+      }
+      ajaxWrapper.getXhrObj({
+        url: DELETE_COOKIE_SERVLET_URL
+      }).always(() => {
+        const emptyPageURL = `${window.location.protocol}//${window.location.host}${EMPTY_PAGE_URL}`;
+        iFrame.src = isLocalhost() ? '/content/customerhub-ux/tokenredirect.ux-preview.html' : emptyPageURL;
+      });
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
