@@ -39,18 +39,21 @@ public class DeleteCookieServlet extends SlingSafeMethodsServlet {
         Cookie loginTokenCookie = request.getCookie("login-token");
         if (null != loginTokenCookie) {
             loginTokenCookie.setMaxAge(-1);
+            loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
             LOGGER.debug("cookie login-token was deleted");
         }
         Cookie accTokenCookie = request.getCookie("acctoken");
         if (null != accTokenCookie) {
             accTokenCookie.setMaxAge(-1);
+            accTokenCookie.setPath("/");
             response.addCookie(accTokenCookie);
             LOGGER.debug("cookie acctoken was deleted");
         }
         Cookie authTokenCookie = request.getCookie("authToken");
         if (null != authTokenCookie) {
             authTokenCookie.setMaxAge(-1);
+            authTokenCookie.setPath("/");
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }

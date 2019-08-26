@@ -94,7 +94,8 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 Cookie[] cookies = request.getCookies();
                 for (Cookie cookie : cookies) {
                     if (StringUtils.equalsIgnoreCase("request_uri", cookie.getName())) {
-                        Cookie samlRequestPath = new Cookie("saml_request_path", cookie.getValue());
+                        LOGGER.debug("request_uri found.");
+                        Cookie samlRequestPath = new Cookie("saml_request_path", StringUtils.substringBefore(cookie.getValue(), "."));
                         samlRequestPath.setHttpOnly(true);
                         samlRequestPath.setPath("/");
                         response.addCookie(samlRequestPath);
