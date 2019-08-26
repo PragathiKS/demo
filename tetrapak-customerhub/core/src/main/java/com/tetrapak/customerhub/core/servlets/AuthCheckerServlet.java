@@ -47,10 +47,10 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
         String uri = request.getParameter("uri");
         performPermissionCheck(response, uri, session);
 
-        Cookie samlRequestPath = new Cookie("saml_request_path", uri);
-        samlRequestPath.setHttpOnly(true);
-        samlRequestPath.setPath("/");
-        response.addCookie(samlRequestPath);
+        Cookie requestUriCookie = new Cookie("request_uri", uri);
+        requestUriCookie.setHttpOnly(true);
+        requestUriCookie.setPath("/");
+        response.addCookie(requestUriCookie);
     }
 
     private void performPermissionCheck(SlingHttpServletResponse response, String uri, Session session) {
