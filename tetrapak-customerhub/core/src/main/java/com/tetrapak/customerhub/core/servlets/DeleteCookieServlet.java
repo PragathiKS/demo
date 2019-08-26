@@ -38,31 +38,25 @@ public class DeleteCookieServlet extends SlingSafeMethodsServlet {
         LOGGER.debug("DeleteCookieServlet was called");
         Cookie loginTokenCookie = request.getCookie("login-token");
         if (null != loginTokenCookie) {
-            loginTokenCookie.setMaxAge(-1);
+            loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
             LOGGER.debug("cookie login-token was deleted");
         }
         Cookie accTokenCookie = request.getCookie("acctoken");
         if (null != accTokenCookie) {
-            accTokenCookie.setMaxAge(-1);
+            accTokenCookie.setMaxAge(0);
             accTokenCookie.setPath("/");
             response.addCookie(accTokenCookie);
             LOGGER.debug("cookie acctoken was deleted");
         }
         Cookie authTokenCookie = request.getCookie("authToken");
         if (null != authTokenCookie) {
-            authTokenCookie.setMaxAge(-1);
+            authTokenCookie.setMaxAge(0);
             authTokenCookie.setPath("/");
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
         response.setStatus(HttpServletResponse.SC_OK);
-        /*
-        try {
-            response.sendRedirect("/customerhub/empty.html");
-        } catch (IOException e) {
-            LOGGER.error("unable to redirect to empty page", e);
-        }*/
     }
 }
