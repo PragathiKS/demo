@@ -5,13 +5,13 @@
             {{#if defaultValue}}
                <span>{{i18n key=defaultValue}}</span>
             {{else}}
-                <span>{{options.[0].desc}}</span>
+                <span>{{i18n key=options.[0].desc}}</span>
             {{/if}}
         </button>
         <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
         <ul class="dropdown-menu" aria-labelledby="{{name}}" role="menu">
             {{#each options}}
-                <li role="presentation"> <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}">{{this.desc}}</a></li>
+                <li role="presentation"> <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}">{{i18n key=this.desc}}</a></li>
             {{/each}}
         </ul>
     </div>

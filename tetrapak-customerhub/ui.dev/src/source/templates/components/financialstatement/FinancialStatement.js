@@ -10,7 +10,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
-import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
+import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
@@ -394,7 +394,7 @@ function _downloadPdfExcel(...args) {
   };
   paramsData.documentType = {
     key: docTypeKey,
-    desc: docTypeDesc
+    desc: getI18n(docTypeDesc)
   };
   paramsData.documentNumber = docNumber;
   paramsData.statusList = this.cache.statusList;
