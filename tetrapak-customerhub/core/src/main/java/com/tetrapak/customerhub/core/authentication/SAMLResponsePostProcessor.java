@@ -90,6 +90,13 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     response.addCookie(accToken);
                 }
                 setLangCodeCookie(request, response, base64DecodedResponse);
+
+                Cookie[] cookies = request.getCookies();
+                for (Cookie cookie : cookies) {
+                    if (StringUtils.equalsIgnoreCase("saml_request_path", cookie.getName())) {
+                        LOGGER.debug("saml_request_path cookie found with value: {}", cookie.getValue());
+                    }
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
