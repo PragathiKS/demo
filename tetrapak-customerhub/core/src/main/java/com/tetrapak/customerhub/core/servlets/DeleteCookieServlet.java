@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.Cookie;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet is used to delete cookies which are
@@ -40,21 +40,26 @@ public class DeleteCookieServlet extends SlingSafeMethodsServlet {
         if (null != loginTokenCookie) {
             loginTokenCookie.setMaxAge(-1);
             response.addCookie(loginTokenCookie);
+            LOGGER.debug("cookie login-token was deleted");
         }
         Cookie accTokenCookie = request.getCookie("acctoken");
         if (null != accTokenCookie) {
             accTokenCookie.setMaxAge(-1);
             response.addCookie(accTokenCookie);
+            LOGGER.debug("cookie acctoken was deleted");
         }
         Cookie authTokenCookie = request.getCookie("authToken");
         if (null != authTokenCookie) {
             authTokenCookie.setMaxAge(-1);
             response.addCookie(authTokenCookie);
+            LOGGER.debug("cookie authToken was deleted");
         }
+        response.setStatus(HttpServletResponse.SC_OK);
+        /*
         try {
             response.sendRedirect("/customerhub/empty.html");
         } catch (IOException e) {
             LOGGER.error("unable to redirect to empty page", e);
-        }
+        }*/
     }
 }
