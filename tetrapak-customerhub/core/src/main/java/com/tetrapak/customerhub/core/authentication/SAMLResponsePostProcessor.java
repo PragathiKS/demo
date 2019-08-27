@@ -54,7 +54,20 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         Map<String, String> attrMap = new HashMap<>();
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
-            LOGGER.debug("request URI {}",request.getRequestURI());
+            String url = request.getRequestURI();
+
+            if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
+                LOGGER.debug("request URI {}", url);
+                StringBuilder processedUrl = new StringBuilder();
+                processedUrl.append("/customerhub")
+                        .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+                        .append(".html");
+                Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
+                samlRequestPath.setHttpOnly(true);
+                samlRequestPath.setPath("/");
+                response.addCookie(samlRequestPath);
+            }
+
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
