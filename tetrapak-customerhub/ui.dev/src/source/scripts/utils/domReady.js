@@ -8,7 +8,7 @@ import dynamicMedia from './dynamicMedia';
 import { toast } from './toast';
 import { $body } from './commonSelectors';
 import { isFirefox, isIE, isEdge } from './browserDetect';
-import { isTablet, isMobile, isCurrentPageIframe } from '../common/common';
+import { isTablet, isMobile } from '../common/common';
 import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
 import videoAnalytics from './videoAnalytics';
@@ -53,10 +53,6 @@ export default {
       || isMobile()
     ) {
       $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
-    }
-    // In absence of token refresh script, trigger post message event to avoid refresh failure
-    if (!$('.scr-token-refresh').length && isCurrentPageIframe()) {
-      window.parent.postMessage(true);
     }
   }
 };

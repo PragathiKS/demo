@@ -63,10 +63,10 @@ public class AnalyticsGlobalTagsModel {
     /**
      * Get Site Country.
      *
-     * @return gb
+     * @return StringUtils.EMPTY
      */
     public String getSiteCountry() {
-        return "gb";
+        return StringUtils.EMPTY;
     }
 
     /**
