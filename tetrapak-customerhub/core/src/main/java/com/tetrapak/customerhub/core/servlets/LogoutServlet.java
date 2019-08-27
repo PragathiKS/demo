@@ -39,13 +39,13 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("LogoutServlet was called");
-        Cookie loginTokenCookie = request.getCookie("login-token");
+       /* Cookie loginTokenCookie = request.getCookie("login-token");
         if (null != loginTokenCookie) {
             loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
             LOGGER.debug("cookie login-token was deleted");
-        }
+        }*/
         Cookie accTokenCookie = request.getCookie("acctoken");
         if (null != accTokenCookie) {
             accTokenCookie.setMaxAge(0);
@@ -60,7 +60,8 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
-        String redirectURL = request.getParameter("redirectURL");
+        //String redirectURL = request.getParameter("redirectURL");
+        String redirectURL = "https://ssodev.tetrapak.com/idp/startSSO.ping?PartnerSpId=AEMDev";
         try {
             response.sendRedirect(redirectURL);
         } catch (IOException e) {
