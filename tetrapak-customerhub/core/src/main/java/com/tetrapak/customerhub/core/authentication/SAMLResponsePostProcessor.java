@@ -54,6 +54,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         Map<String, String> attrMap = new HashMap<>();
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
+            LOGGER.debug("request URI {}",request.getRequestURI());
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
