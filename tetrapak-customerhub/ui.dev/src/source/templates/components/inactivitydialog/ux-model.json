@@ -1,5 +1,5 @@
 {
-  "message": "You have been inactive for a while. Would you like to continue or Logout?",
+  "messageI18n": "You have been inactive for a while. Would you like to continue or Logout?",
   "continueBtnI18n": "Continue",
   "logoutBtnI18n": "Logout",
   "closeBtnI18n": "Close",
