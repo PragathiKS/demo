@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
 import org.apache.sling.settings.SlingSettingsService;
+import org.eclipse.jetty.util.StringUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -55,18 +56,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
             String url = request.getRequestURI();
-
-            if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
-                LOGGER.debug("request URI {}", url);
-                StringBuilder processedUrl = new StringBuilder();
-                processedUrl.append("/customerhub")
-                        .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
-                        .append(".html");
-                Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
-                samlRequestPath.setHttpOnly(true);
-                samlRequestPath.setPath("/");
-                response.addCookie(samlRequestPath);
-            }
+            setSAMLRequestPathCookie(request, response, url);
 
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
@@ -105,16 +95,6 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 }
                 setLangCodeCookie(request, response, base64DecodedResponse);
 
-                Cookie[] cookies = request.getCookies();
-                for (Cookie cookie : cookies) {
-                    if (StringUtils.equalsIgnoreCase("request_uri", cookie.getName())) {
-                        LOGGER.debug("request_uri found.");
-                        Cookie samlRequestPath = new Cookie("saml_request_path", StringUtils.substringBefore(cookie.getValue(), "."));
-                        samlRequestPath.setHttpOnly(true);
-                        samlRequestPath.setPath("/");
-                        response.addCookie(samlRequestPath);
-                    }
-                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -122,6 +102,24 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             LOGGER.error("Unable to parse the xml document ", saxExcep);
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
+        }
+    }
+
+    private void setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
+        if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
+            LOGGER.debug("request URI {}", url);
+            StringBuilder processedUrl = new StringBuilder();
+            processedUrl.append("/customerhub")
+                    .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+                    .append("html");
+            String queryString = request.getQueryString();
+            if (StringUtil.isNotBlank(queryString)) {
+                processedUrl.append("?").append(queryString);
+            }
+            Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
+            samlRequestPath.setHttpOnly(true);
+            samlRequestPath.setPath("/");
+            response.addCookie(samlRequestPath);
         }
     }
 
