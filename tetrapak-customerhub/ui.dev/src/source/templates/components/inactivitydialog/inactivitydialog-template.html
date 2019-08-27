@@ -1,6 +1,7 @@
 <sly data-sly-template.inactivitydialog_template="${@ data, flag}">
   <div class="tp-inactivity-modal modal tp-modal fade" data-module="InactivityDialog">
     <input id="idleTimeoutMinutes" name="idleTimeoutMinutes" type="hidden" value="${data.idleTimeoutMinutes}" />
+    <input id="logoutURL" name="logoutURL" type="hidden" value="${data.logoutURL}" />
     <div class="modal-dialog modal-dialog-centered tp-inactivity-modal__dialog">
       <div class="modal-content tp-modal-content">
         <div class="modal-body tp-modal-body tp-inactivity-modal__body">
