@@ -7,6 +7,8 @@ import { ajaxWrapper } from './ajax';
 
 const cache = {};
 
+const MAX_SAFE_INTEGER = getMaxSafeInteger();
+
 /**
  * Executes function if it's valid
  * @param {function} callback Callback function
@@ -38,7 +40,6 @@ function initiateTokenTimer() {
       $body.trigger(EVT_TOKEN_REFRESH);
     }
   } else {
-    const MAX_SAFE_INTEGER = getMaxSafeInteger();
     const timeoutTime = (remainingTime > MAX_SAFE_INTEGER) ? MAX_SAFE_INTEGER : remainingTime;
     cache.tokenTimeout = setTimeout(() => {
       $body.trigger(EVT_TOKEN_REFRESH);
@@ -49,7 +50,7 @@ function initiateTokenTimer() {
 }
 
 /**
- * Triggered when iframe is loaded
+ * Triggered when delete cookie AJAX call is completed
  */
 function postResolveHandler() {
   if (storageUtil.get(AUTH_TOKEN_COOKIE)) {
@@ -66,16 +67,6 @@ function triggerRefresh() {
   if (!cache.refreshTokenPromise) {
     cache.refreshTokenPromise = new Promise((resolve) => {
       logger.log(`[Webpack]: Token refresh triggered`);
-      let iFrame = null;
-      const existingIframe = $('.js-token-ifrm');
-      if (!existingIframe.length) {
-        iFrame = document.createElement('iframe');
-        document.body.appendChild(iFrame);
-        iFrame.classList.add('d-none');
-        iFrame.classList.add('js-token-ifrm');
-      } else {
-        iFrame = existingIframe[0];
-      }
       ajaxWrapper.getXhrObj({
         url: DELETE_COOKIE_SERVLET_URL,
         data: {
