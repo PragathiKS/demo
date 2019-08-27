@@ -31,6 +31,7 @@ export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePre
 export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/delete-cookie';
 // Page URLs
 export const EMPTY_PAGE_URL = '/customerhub/empty.html';
+// Constant maps
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -46,6 +47,10 @@ export const orientationTypes = {
   LANDSCAPE: 'landscape',
   PORTRAIT: 'portrait',
   UNSUPPORTED: 'unsupported'
+};
+export const ajaxTextStatus = {
+  SUCCESS: 'success',
+  ERROR: 'error'
 };
 // API URLs
 export const API_TOKEN = 'token-generator';
