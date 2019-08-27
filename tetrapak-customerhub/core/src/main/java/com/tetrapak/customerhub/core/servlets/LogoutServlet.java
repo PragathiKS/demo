@@ -11,13 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
+ * This servlet is called with ajax request
  * This servlet is used to delete cookies which are
  * 1. login-token
  * 2. acctoken
  * 3. authToken
+ * <p>
+ * And redirects to page given in query parameter which internally redirect to sso and gets a new access token
  *
  * @author Nitin Kumar
  */
@@ -25,17 +28,17 @@ import javax.servlet.http.HttpServletResponse;
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Delete Cookie Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.paths=" + "/bin/customerhub/delete-cookie"
+                "sling.servlet.paths=" + "/bin/customerhub/logout"
         })
-public class DeleteCookieServlet extends SlingSafeMethodsServlet {
+public class LogoutServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 5277815225105722120L;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DeleteCookieServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutServlet.class);
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        LOGGER.debug("DeleteCookieServlet was called");
+        LOGGER.debug("LogoutServlet was called");
         Cookie loginTokenCookie = request.getCookie("login-token");
         if (null != loginTokenCookie) {
             loginTokenCookie.setMaxAge(0);
@@ -57,6 +60,11 @@ public class DeleteCookieServlet extends SlingSafeMethodsServlet {
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
-        response.setStatus(HttpServletResponse.SC_OK);
+        String redirectURL = request.getParameter("redirectURL");
+        try {
+            response.sendRedirect(redirectURL);
+        } catch (IOException e) {
+            LOGGER.error("IOException in redirecting from Logout handler", e);
+        }
     }
 }
