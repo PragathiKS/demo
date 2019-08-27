@@ -28,9 +28,10 @@ export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionE
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 // Servlet URLs
 export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePreference';
-export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/delete-cookie';
+export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/logout';
 // Page URLs
 export const EMPTY_PAGE_URL = '/customerhub/empty.html';
+// Constant maps
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -46,6 +47,10 @@ export const orientationTypes = {
   LANDSCAPE: 'landscape',
   PORTRAIT: 'portrait',
   UNSUPPORTED: 'unsupported'
+};
+export const ajaxTextStatus = {
+  SUCCESS: 'success',
+  ERROR: 'error'
 };
 // API URLs
 export const API_TOKEN = 'token-generator';

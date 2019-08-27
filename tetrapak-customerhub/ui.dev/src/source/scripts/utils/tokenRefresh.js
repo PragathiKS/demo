@@ -1,11 +1,13 @@
 import 'core-js/features/promise';
-import { storageUtil, isCurrentPageIframe, isLocalhost, getMaxSafeInteger } from '../common/common';
+import { storageUtil, isCurrentPageIframe, getMaxSafeInteger } from '../common/common';
 import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, TOKEN_REFRESH_IDENTIFIER, EMPTY_PAGE_URL, ajaxMethods } from './constants';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, ajaxMethods } from './constants';
 import { logger } from './logger';
 import { ajaxWrapper } from './ajax';
 
 const cache = {};
+
+const MAX_SAFE_INTEGER = getMaxSafeInteger();
 
 /**
  * Executes function if it's valid
@@ -32,13 +34,12 @@ function initiateTokenTimer() {
   if (remainingTime <= 0) {
     // Either token refresh already happened or is pending
     // Check if a valid access token has already been created
-    logger.log('[Webpack]: I entered in a dead zone');
+    logger.log('[Webpack]: Entered a dead zone');
     if (!storageUtil.get(ACC_TOKEN_COOKIE)) {
       // If cookie doesn't exists then trigger refresh
       $body.trigger(EVT_TOKEN_REFRESH);
     }
   } else {
-    const MAX_SAFE_INTEGER = getMaxSafeInteger();
     const timeoutTime = (remainingTime > MAX_SAFE_INTEGER) ? MAX_SAFE_INTEGER : remainingTime;
     cache.tokenTimeout = setTimeout(() => {
       $body.trigger(EVT_TOKEN_REFRESH);
@@ -49,17 +50,14 @@ function initiateTokenTimer() {
 }
 
 /**
- * Triggered when iframe is loaded
+ * Triggered when delete cookie AJAX call is completed
  */
-function postResolveHandler(e) {
-  if (e.data === TOKEN_REFRESH_IDENTIFIER) {
-    if (storageUtil.get(AUTH_TOKEN_COOKIE)) {
-      storageUtil.removeCookie(AUTH_TOKEN_COOKIE);
-    }
-    $body.trigger(EVT_POST_REFRESH);
-    logger.log(`[Webpack]: Access token refreshed`);
-    $('.js-token-ifrm').remove();
+function postResolveHandler() {
+  if (storageUtil.get(AUTH_TOKEN_COOKIE)) {
+    storageUtil.removeCookie(AUTH_TOKEN_COOKIE);
   }
+  $body.trigger(EVT_POST_REFRESH);
+  logger.log(`[Webpack]: Access token refreshed`);
 }
 
 /**
@@ -69,23 +67,13 @@ function triggerRefresh() {
   if (!cache.refreshTokenPromise) {
     cache.refreshTokenPromise = new Promise((resolve) => {
       logger.log(`[Webpack]: Token refresh triggered`);
-      let iFrame = null;
-      const existingIframe = $('.js-token-ifrm');
-      if (!existingIframe.length) {
-        iFrame = document.createElement('iframe');
-        document.body.appendChild(iFrame);
-        iFrame.classList.add('d-none');
-        iFrame.classList.add('js-token-ifrm');
-      } else {
-        iFrame = existingIframe[0];
-      }
       ajaxWrapper.getXhrObj({
         url: DELETE_COOKIE_SERVLET_URL,
+        data: {
+          redirectURL: EMPTY_PAGE_URL
+        },
         method: ajaxMethods.GET
-      }).always(() => {
-        const emptyPageURL = `${window.location.protocol}//${window.location.host}${EMPTY_PAGE_URL}`;
-        iFrame.src = isLocalhost() ? '/content/customerhub-ux/tokenredirect.ux-preview.html' : emptyPageURL;
-      });
+      }).always(postResolveHandler);
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
@@ -119,7 +107,6 @@ export default {
       cache.authToken = storageUtil.get(AUTH_TOKEN_COOKIE);
       initiateTokenTimer();
     });
-    window.addEventListener('message', postResolveHandler);
   },
   init() {
     if (!isCurrentPageIframe()) {
