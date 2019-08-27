@@ -1,0 +1,17 @@
+.tp-inactivity-modal {
+    &__body {
+        @include padding(46px $padding-md 0);
+
+        @media #{$desktop} {
+            @include padding(54px $padding-l 0);
+        }
+    }
+
+    &__footer {
+        justify-content: center;
+    }
+
+    & &__logout {
+        @include margin-left($margin-sm);
+    }
+}

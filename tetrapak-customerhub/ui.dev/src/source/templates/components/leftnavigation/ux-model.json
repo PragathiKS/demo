@@ -8,32 +8,11 @@
   },
   "leftNavItems": [
     {
-      "href": "https://www.tetrapak.com",
+      "href": "https://localhost:4502/content/customerhub-ux/getstarted.ux-preview.html",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
       "isExternalLink": "true",
       "isActive": "true"
-    },
-    {
-      "href": "/content/customerhub-ux/getstarted.ux-preview.html",
-      "iconClass": "icon-Install",
-      "iconLabel": "Installed equipment",
-      "isExternalLink": "true",
-      "isExpanded": "false",
-      "subMenuList": [
-        {
-          "href": "/content/tetrapak/customerhub/en/installed-equipment/Maintenance.html",
-          "iconLabel": "Maintenance",
-          "isExternalLink": "false",
-          "isActive": "false"
-        }
-      ]
-    },
-    {
-      "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Packaging_Design",
-      "iconLabel": "Package design",
-      "isExternalLink": "true"
     },
     {
       "iconClass": "icon-Cart",
@@ -41,12 +20,6 @@
       "isExternalLink": "false",
       "isExpanded": "true",
       "subMenuList": [
-        {
-          "href": "https://www.tetrapak.com",
-          "iconLabel": "Order History",
-          "isExternalLink": "true",
-          "isActive": "true"
-        },
         {
           "href": "https://www.tetrapak.com",
           "iconLabel": "Packaging material",
@@ -60,46 +33,16 @@
       ]
     },
     {
-      "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Inventory",
-      "iconLabel": "Parts inventory",
-      "isExternalLink": "true"
-    },
-    {
-      "href": "https://www.tetrapak.com",
+      "href": "https://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
       "isExternalLink": "true"
     },
     {
       "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Training",
-      "iconLabel": "Training",
-      "isExternalLink": "true"
-    },
-    {
-      "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Collaboration",
-      "iconLabel": "Projects",
-      "isExternalLink": "true"
-    },
-    {
-      "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Phone",
-      "iconLabel": "Contact",
-      "isExternalLink": "true"
-    },
-    {
-      "href": "https://www.tetrapak.com",
-      "iconClass": "icon-Info",
-      "iconLabel": "My Tetra Pak",
-      "isExternalLink": "true"
-    },
-    {
-      "href": "https://www.tetrapak.com",
       "iconClass": "icon-Logout",
       "iconLabel": "Log out",
-      "isExternalLink": "true"
+      "isExternalLink": "false"
     }
   ]
 }
