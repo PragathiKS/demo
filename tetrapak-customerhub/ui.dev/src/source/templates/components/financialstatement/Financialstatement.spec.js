@@ -121,6 +121,13 @@ describe('FinancialStatement', function () {
     done();
   });
 
+  it('should not apply the filters on "Search Statement" button click if input date is invalid', function (done) {
+    $('.js-financial-statement__date-range-input').addClass('has-error');
+    $('.js-financial-statement__submit').trigger('click');
+    expect(this.searchSpy.called).to.be.true;
+    done();
+  });
+
   it('should reset filters "Reset Search" button click', function (done) {
     $('.js-financial-statement__reset').trigger('click');
     expect(this.resetSpy.called).to.be.true;

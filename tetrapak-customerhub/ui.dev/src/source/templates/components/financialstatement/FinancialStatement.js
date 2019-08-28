@@ -110,8 +110,8 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const status = typeof $status.text() === 'string' ? $status.text().trim() : '';
-      const docType = typeof $docType.text() === 'string' ? $docType.text().trim().toLowerCase() : '';
+      const status = $.trim($status.text());
+      const docType = $.trim($docType.text()).toLowerCase();
       ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
@@ -326,7 +326,10 @@ function _syncFields(query) {
   }
   $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
   $statusField.customSelect(query.status);
-  $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.parents('.js-custom-dropdown')
+    .find(`li>a[data-key="${query.status}"]`)
+    .attr('data-selected-date', dateRange)
+    .data('selectedDate', dateRange);
   $statusField.trigger('dropdown.change');
   $docType.customSelect(query['document-type'] || '');
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
@@ -509,8 +512,12 @@ class FinancialStatement {
   }
   submitDateRange() {
     const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
-    $dateRange.val($rangeSelector.val()).trigger('input');
-    $status.find('option').eq($status.prop('selectedIndex')).data('selectedDate', $rangeSelector.val());
+    const rangeSelectorValue = $rangeSelector.val();
+    $dateRange.val(rangeSelectorValue).trigger('input');
+    $status.find('option')
+      .eq($status.prop('selectedIndex'))
+      .attr('data-selected-date', rangeSelectorValue)
+      .data('selectedDate', rangeSelectorValue);
     $modal.modal('hide');
   }
   navigateCalendar(e) {
@@ -602,8 +609,8 @@ class FinancialStatement {
   resetFilters() {
     const { $status } = this.cache;
     const defaultQueryString = _getDefaultQueryString.apply(this);
-    $status.find('option').each(function () {
-      $(this).removeData();
+    $status.parents('.js-custom-dropdown').find('.js-custom-dropdown-li').each(function () {
+      $(this).removeData('selectedDate').removeAttr('data-selected-date');
     });
     this.syncFields(deparam(defaultQueryString, false));
     router.set({
