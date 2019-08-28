@@ -73,9 +73,41 @@
         }
     }
 
+    &__date-range-wrapper,
+    &__date-range-picker {
+        @include height(40px);
+    }
+
     &__date-range-wrapper {
-        width: 100%;
-        height: 100%;
+        width: calc(100% - #{convert-to-rem(38px)});
+    }
+
+    &__date-range-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: 1px solid transparent;
+
+        &.has-error {
+            border-color: $color-alert;
+            border-right-color: transparent;
+        }
+    }
+
+    &__date-range-picker {
+        @include width(38px);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &.has-error {
+            color: $color-alert;
+            border-color: $color-alert;
+        }
+    }
+
+    &__date-range-error {
+        @include font-size(12px);
+        @include margin-top($margin-xs);
+        color: $color-alert;
     }
 
     &__search-container {

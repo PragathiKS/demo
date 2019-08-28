@@ -152,7 +152,7 @@ function _processTableData(data) {
   } else {
     data.noData = true;
   }
-  data.dateRange = $filtersRoot.find('.js-financial-statement__date-range').val();
+  data.dateRange = $filtersRoot.find('.js-financial-statement__date-range-input').val();
 }
 
 /**
