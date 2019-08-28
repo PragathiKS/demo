@@ -41,6 +41,44 @@
                                                     name="./closeBtnText"/>
                                         </items>
                                     </section>
+                                    <inactivitydialog
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Inactivity Dialog"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <messageI18n
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Inactivity alert message i18 Key"
+                                                    fieldLabel="Inactivity alert message i18 Key"
+                                                    name="./messageI18n"/>
+                                            <continueBtnI18n
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Continue Button i18 Key"
+                                                    fieldLabel="Continue Button i18 Key"
+                                                    name="./continueBtnI18n"/>
+                                            <logoutBtnI18n
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Logout Button i18 Key"
+                                                    fieldLabel="Logout Button i18 Key"
+                                                    name="./logoutBtnI18n"/>
+                                            <closeBtnI18n
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Close Button i18 Key"
+                                                    fieldLabel="Close Button i18 Key"
+                                                    name="./closeBtnI18n"/>
+                                            <idleTimeoutMinutes
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                    min="{Long}0"
+                                                    fieldDescription="Enter Idle Timeout in Minutes"
+                                                    fieldLabel="Idle Timeout in Minutes"
+                                                    name="./idleTimeoutMinutes"/>
+                                        </items>
+                                    </inactivitydialog>
                                 </items>
                             </column>
                         </items>

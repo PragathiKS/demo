@@ -45,6 +45,12 @@
                "headingI18n": "Choose your language",
                "cookieConsentDisabled": "false",
                "cookieConsentText": "abc",
+               "messageI18n": "You have been inactive for a while. Would you like to continue or Logout?",
+               "continueBtnI18n": "Continue",
+               "logoutBtnI18n": "Logout",
+               "closeBtnI18n": "Close",
+               "idleTimeoutMinutes": "15",
+               "logoutURL": "https://ptwjveuug6a2mtsbyyycta-on.drv.tw/SSO/ssodev.tetrapak.com/idp/stopSSOdev_new.html",
                "languages": {
                   "jcr:primaryType": "nt:unstructured",
                   "item0": {
@@ -835,6 +841,7 @@
             "jcr:versionHistory": "6f36f9bb-19d9-4916-9501-0cf3dbe7c15b",
             "iconClass": "icon-Logout",
             "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+            "cq:redirectTarget": "https://ptwjveuug6a2mtsbyyycta-on.drv.tw/SSO/ssodev.tetrapak.com/idp/stopSSOdev_new.html",
             "cq:lastReplicatedBy": "sapient-user",
             "jcr:predecessors": [
                "3d06d5f1-46b1-490f-942b-985c8a66f9ba"

@@ -36,7 +36,12 @@
                         headingI18n="Cuhu_language_window_title"
                         stickyHref="/content/tetrapak/customerhub/global/en/dashboard"
                         stickyIconClass="icon-TetraPak"
-                        stickyLabel="Tetra Pak Home">
+                        stickyLabel="Tetra Pak Home"
+                messageI18n="You have been inactive for a while. Would you like to continue or Logout?"
+                continueBtnI18n="Continue"
+                logoutBtnI18n="Logout"
+                closeBtnI18n="Close"
+                idleTimeoutMinutes= "15">
                     <languages jcr:primaryType="nt:unstructured">
                         <item0
                                 jcr:primaryType="nt:unstructured"

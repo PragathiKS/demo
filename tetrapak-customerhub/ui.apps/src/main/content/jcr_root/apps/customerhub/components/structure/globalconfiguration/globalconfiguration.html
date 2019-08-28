@@ -1,11 +1,19 @@
-<br /><h2>Global Configurations</h2>
+<br/><h2>Global Configurations</h2>
 navHeadingI18n : ${properties.navHeadingI18n}
-<br /> closeBtnText : ${properties.closeBtnText}
-<br />
-<br /> <h2>Languages : </h2>
+<br/>  closeBtnText : ${properties.closeBtnText}
+<br/>
+<br/> <h2>Inactivity Dialog Configurations : </h2>
+messageI18n : ${properties.messageI18n}
+<br/>  continueBtnI18n : ${properties.continueBtnI18n}
+<br/>  logoutBtnI18n : ${properties.logoutBtnI18n}
+<br/>  closeBtnI18n : ${properties.closeBtnI18n}
+<br/>  idleTimeoutMinutes : ${properties.idleTimeoutMinutes}
+
+<br/>
+<br/> <h2>Languages : </h2>
 <sly data-sly-list="${resource.listChildren}">
     <sly data-sly-list="${item.listChildren}">
         ${item.valueMap.langCode} : ${item.valueMap.languageDisplayName}
-        <br />
+        <br/>
     </sly>
 </sly>
