@@ -34,6 +34,7 @@ class InactivityDialog {
     });
     $body
       .on('mousedown key.return', 'button,a,[tabindex]', this.setIdleTimer)
+      .on('focusin', 'input', this.setIdleTimer)
       .on('input', 'input', this.setIdleTimer);
   }
   closeModal = () => {
