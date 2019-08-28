@@ -174,9 +174,11 @@ function _processFinancialStatementData(data) {
         const [selectedStatus] = data.status;
         data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
         data.dateRangeType = dateTypes.DATE;
+        data.currentDatePlaceholder = data.datePlaceholder;
         if ((`${selectedStatus.key}`).toUpperCase() !== 'O') {
           data.dateRange = `${_getStartDate()} - ${data.currentDate}`;
           data.dateRangeType = dateTypes.RANGE;
+          data.currentDatePlaceholder = data.dateRangePlaceholder;
         }
         const [selectedCustomerData] = data.customerData;
         data.selectedCustomerData = selectedCustomerData;
@@ -286,9 +288,12 @@ function _renderFilters() {
  */
 function _setDateFilter(status, selectedDate) {
   const $dateSelector = this.root.find('.js-financial-statement__date-range-input, .js-range-selector');
+  const i18nKeys = this.cache.i18nKeys;
   if (selectedDate) {
     const dateRangeType = _getDateRangeType(selectedDate);
+    const currentDatePlaceholder = dateRangeType === dateTypes.RANGE ? 'dateRangePlaceholder' : 'datePlaceholder';
     $dateSelector.attr('data-date-range-type', dateRangeType).data('dateRangeType', dateRangeType);
+    $dateSelector.attr('placeholder', i18nKeys[currentDatePlaceholder]);
     $dateSelector.val(selectedDate).trigger('input');
     this.initializeCalendar((selectedDate.split(DATE_RANGE_SEPARATOR).length > 1));
   } else {
@@ -298,11 +303,13 @@ function _setDateFilter(status, selectedDate) {
       && ['O'].includes(status.toUpperCase())
     ) {
       $dateSelector.attr('data-date-range-type', dateTypes.DATE).data('dateRangeType', dateTypes.DATE);
+      $dateSelector.attr('placeholder', i18nKeys.datePlaceholder);
       $dateSelector.val(endDate).trigger('input');
       this.initializeCalendar();
     } else {
       const startDate = _getStartDate();
       $dateSelector.attr('data-date-range-type', dateTypes.RANGE).data('dateRangeType', dateTypes.RANGE);
+      $dateSelector.attr('placeholder', i18nKeys.dateRangePlaceholder);
       $dateSelector.val(`${startDate} - ${endDate}`).trigger('input');
       this.initializeCalendar(true);
     }

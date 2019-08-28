@@ -32,7 +32,9 @@ class InactivityDialog {
         this.cache.counter = 0;
       }
     });
-    $body.on('mousedown key.return', 'button,a,[tabindex]', this.setIdleTimer);
+    $body
+      .on('mousedown key.return', 'button,a,[tabindex]', this.setIdleTimer)
+      .on('input', 'input', this.setIdleTimer);
   }
   closeModal = () => {
     this.root.modal('hide');
