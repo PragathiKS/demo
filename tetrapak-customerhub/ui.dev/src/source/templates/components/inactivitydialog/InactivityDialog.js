@@ -53,10 +53,11 @@ class InactivityDialog {
     }
     logger.log('[Webpack]: Session timer started');
     // Avoid fractional values as final value is increased if divided by fraction
-    if (idleTimeoutMinutes > 1) {
+    if (idleTimeoutMinutes >= 1) {
       let idleTimeoutMilliseconds = ((+idleTimeoutMinutes) * 60 * 1000);
       idleTimeoutMilliseconds = (idleTimeoutMilliseconds > MAX_SAFE_INTEGER) ? MAX_SAFE_INTEGER : idleTimeoutMilliseconds;
       this.cache.idleTimer = setTimeout(() => {
+        window.focus();
         window.clearTimeout(this.cache.idleTimer);
         logger.log('[Webpack]: Session inactivity popup triggered');
         this.root.modal('show');
