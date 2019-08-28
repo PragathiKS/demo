@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
-import javax.servlet.http.Cookie;
 
 /**
  * Auth Checker Servlet performs the authentication and authorization of the user
@@ -46,11 +45,6 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
 
         String uri = request.getParameter("uri");
         performPermissionCheck(response, uri, session);
-
-        Cookie requestUriCookie = new Cookie("request_uri", uri);
-        requestUriCookie.setHttpOnly(true);
-        requestUriCookie.setPath("/");
-        response.addCookie(requestUriCookie);
     }
 
     private void performPermissionCheck(SlingHttpServletResponse response, String uri, Session session) {
