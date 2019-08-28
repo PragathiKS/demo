@@ -57,7 +57,6 @@ class InactivityDialog {
       let idleTimeoutMilliseconds = ((+idleTimeoutMinutes) * 60 * 1000);
       idleTimeoutMilliseconds = (idleTimeoutMilliseconds > MAX_SAFE_INTEGER) ? MAX_SAFE_INTEGER : idleTimeoutMilliseconds;
       this.cache.idleTimer = setTimeout(() => {
-        window.focus();
         window.clearTimeout(this.cache.idleTimer);
         logger.log('[Webpack]: Session inactivity popup triggered');
         this.root.modal('show');
