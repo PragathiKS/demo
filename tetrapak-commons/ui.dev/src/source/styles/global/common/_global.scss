@@ -15,7 +15,8 @@ html {
     }
 }
 
-*:focus:not(.focus-visible) {
+*:focus:not(.focus-visible),
+input.focus-visible:focus {
     outline: none;
 }
 
