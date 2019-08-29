@@ -11,8 +11,8 @@
     target="${isExternal ? '_blank' : ''}"
     rel="${isExternal ? 'noopener noreferrer' : ''}"
     datatag="${isExternal ? 'external' : 'internal'}"
-    ctype="${ctype ? ctype : 'not_set'}"
-    ctypeone="${linkHeading ? linkHeading : 'notset'}"
+    ctype="${ctype ? ctype : ''}"
+    ctypeone="${linkHeading ? linkHeading : ''}"
     cttitle="${text @ i18n}">
       <span class="tpatom-link__text sly-text">${text @ i18n}</span>
        <sly data-sly-test="${iconClass}" >
