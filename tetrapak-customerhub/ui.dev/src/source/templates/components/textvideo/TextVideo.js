@@ -13,7 +13,7 @@ class TextVideo {
    * Init cache
    */
   initCache() {
-    this.cache.linkParentTitle = this.root.find('.js-text-video__heading').text();
+    this.cache.linkParentTitle = $.trim(this.root.find('.js-text-video__heading').text());
   }
   /**
    * Init component
@@ -35,7 +35,7 @@ class TextVideo {
       linkType: 'internal',
       linkSection: 'dashboard',
       linkParentTitle,
-      linkName: $(el).text()
+      linkName: $.trim($(el).text())
     }, 'linkClick', 'linkClicked', undefined, false);
   };
 }
