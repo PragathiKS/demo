@@ -20,6 +20,27 @@
                             fieldLabel="Select Dates i18 Key"
                             name="./selectDates"
                             required="true"/>
+                    <datePlaceholder
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Date Place Holder"
+                            fieldLabel="Date Place Holder e.g. YYYY-MM-DD"
+                            name="./datePlaceholder"
+                            required="true"/>
+                    <dateRangePlaceholder
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Date Range Place Holder"
+                            fieldLabel="Date Range Place Holder e.g. YYYY-MM-DD - YYYY-MM-DD"
+                            name="./dateRangePlaceholder"
+                            required="true"/>
+                    <dateRangeErrorLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Date Range Error Label i18 Key"
+                            fieldLabel="Date Range Error Label i18 Key"
+                            name="./dateRangeErrorLabel"
+                            required="true"/>
                     <closeBtn
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
