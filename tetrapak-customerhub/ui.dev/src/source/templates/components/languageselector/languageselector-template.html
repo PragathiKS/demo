@@ -19,7 +19,7 @@
                   <div class="tp-lang-selector__lang-container">
                       <sly data-sly-list=${data.listOfLanguages}>
                           <sly data-sly-test.language="${data.listOfLanguages[item]}" />
-                          <div class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" datatag="internal" ctype="choose your language" ctypeone="" cttitle="${language}" aria-label="${language}">${language}</div>
+                          <div class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" datatag="internal" ctype="choose your language" ctypeone="notset" cttitle="${language}" aria-label="${language}">${language}</div>
                       </sly>
                 </div>
                 </div>
