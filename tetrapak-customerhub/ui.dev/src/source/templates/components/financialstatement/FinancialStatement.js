@@ -100,7 +100,7 @@ function _trackAnalytics(type) {
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: statementOfAccount.toLowerCase()
+    linkParentTitle: $.trim(statementOfAccount.toLowerCase())
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';

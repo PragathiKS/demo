@@ -26,23 +26,23 @@ function _trackAnalytics(self, type, data) {
 
   switch (type) {
     case 'downloadPdf': {
-      ob.linkParentTitle = statementOfAccount.toLowerCase();
+      ob.linkParentTitle = $.trim(statementOfAccount.toLowerCase());
       ob.linkName = 'create pdf';
       break;
     }
     case 'downloadInvoice': {
-      ob.linkParentTitle = $(this).parents('table').data('salesOffice').toLowerCase();
+      ob.linkParentTitle = $.trim($(this).parents('table').data('salesOffice').toLowerCase());
       ob.linkName = 'invoice download';
       break;
     }
     case 'downloadExcel': {
-      ob.linkParentTitle = statementOfAccount.toLowerCase();
+      ob.linkParentTitle = $.trim(statementOfAccount.toLowerCase());
       ob.linkName = 'create excel';
       break;
     }
     case 'documents': {
       ob.linkParentTitle = 'documents';
-      ob.linkName = data.toLowerCase();
+      ob.linkName = $.trim(data.toLowerCase());
       break;
     }
     default: {
