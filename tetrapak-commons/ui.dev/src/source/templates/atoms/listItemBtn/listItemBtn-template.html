@@ -14,7 +14,7 @@
        datatag="${data.isExternalLink ? 'external' : 'internal'}"
        ctype="${ctype ? ctype : 'not_set'}"
        ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
-       cttitle="${data.iconLabel}">
+       cttitle="${data.iconLabel @i18n, locale=locale}">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
           data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
       </sly>
