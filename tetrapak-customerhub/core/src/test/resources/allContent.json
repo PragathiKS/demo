@@ -644,7 +644,8 @@
                      "summaryHeadingI18n": "Statement Summary",
                      "documentHeadingI18n": "Documents",
                      "createExcelBtnI18n": "Create Excel",
-                     "createPdfBtnI18n": "Create PDF"
+                     "createPdfBtnI18n": "Create PDF",
+                     "dateRangeErrorLabel": "Please enter a valid date"
                   }
                }
             }

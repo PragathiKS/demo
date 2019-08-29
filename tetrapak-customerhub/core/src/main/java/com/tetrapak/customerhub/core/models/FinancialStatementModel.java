@@ -24,7 +24,16 @@ public class FinancialStatementModel {
     
     @Inject
     private String selectDates;
-    
+
+    @Inject
+    private String datePlaceholder;
+
+    @Inject
+    private String dateRangePlaceholder;
+
+    @Inject
+    private String dateRangeErrorLabel;
+
     @Inject
     private String closeBtn;
     
@@ -158,7 +167,19 @@ public class FinancialStatementModel {
     public String getSetDates() {
         return setDates;
     }
-    
+
+    public String getDatePlaceholder() {
+        return datePlaceholder;
+    }
+
+    public String getDateRangePlaceholder() {
+        return dateRangePlaceholder;
+    }
+
+    public String getDateRangeErrorLabel() {
+        return dateRangeErrorLabel;
+    }
+
     /**
      * @return the findCustomer
      */
@@ -287,7 +308,10 @@ public class FinancialStatementModel {
         i18KeyMap.put("createPdfBtnI18n", getCreatePdfBtnI18n());
         i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
         i18KeyMap.put("fileDownloadErrorClose", getFileDownloadErrorClose());
-        
+        i18KeyMap.put("datePlaceholder", getDatePlaceholder());
+        i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
+        i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
+
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";

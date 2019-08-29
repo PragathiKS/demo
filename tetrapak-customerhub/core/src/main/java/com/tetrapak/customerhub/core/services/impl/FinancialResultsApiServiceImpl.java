@@ -8,6 +8,7 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -41,9 +42,11 @@ public class FinancialResultsApiServiceImpl implements FinancialResultsApiServic
     @Override
     public JsonObject getFinancialResults(Params paramsRequest, String token) {
         JsonObject jsonResponse = new JsonObject();
+        String documentKey = paramsRequest.getDocumentType().getKey();
+        documentKey = documentKey.isEmpty() ? StringUtils.EMPTY : "&document-type=" + paramsRequest.getDocumentType().getKey();
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-results") + "?invoice-status="
-                + paramsRequest.getStatus().getKey() + "&document-type=" + paramsRequest.getDocumentType().getKey()
+                + paramsRequest.getStatus().getKey() + documentKey
                 + "&invoicedate-from=" + paramsRequest.getStartDate() + "&invoicedate-to=" + paramsRequest.getEndDate()
                 + "&customernumber=" + paramsRequest.getCustomerData().getCustomerNumber()
                 + "&document-number=" + paramsRequest.getDocumentNumber();
@@ -57,14 +60,14 @@ public class FinancialResultsApiServiceImpl implements FinancialResultsApiServic
      * @return http response
      */
     @Override
-    public HttpResponse getFinancialInvoice(String documentNumber, String token){
+    public HttpResponse getFinancialInvoice(String documentNumber, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(apigeeService, "financialstatement-invoice") + "/" + documentNumber;
 
-        if (token.length()>29) {
-        	throw new SecutiyRuntimeException("Invalid token while fetching invoce!");
-        }	
+        if (token.length() > 29) {
+            throw new SecutiyRuntimeException("Invalid token while fetching invoce!");
+        }
         HttpGet getRequest = new HttpGet(url);
         getRequest.addHeader("Authorization", "Bearer " + token);
         HttpClient httpClient = HttpClientBuilder.create().build();
