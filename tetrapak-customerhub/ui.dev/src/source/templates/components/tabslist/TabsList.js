@@ -29,7 +29,7 @@ function _trackAnalytics(type, el) {
 
   switch (type) {
     case 'tabclick': {
-      analyticsData.linkParentTitle = heading.toLowerCase();
+      analyticsData.linkParentTitle = $.trim(heading.toLowerCase());
       analyticsData.linkName = $.trim(currentEl.text());
       analyticsData.linkListPos = currentEl.data('index') + 1;
       break;
