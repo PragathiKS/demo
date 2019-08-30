@@ -100,7 +100,7 @@ function _trackAnalytics(type) {
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: statementOfAccount.toLowerCase()
+    linkParentTitle: $.trim(statementOfAccount.toLowerCase())
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
@@ -130,11 +130,12 @@ function _trackAnalytics(type) {
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
   const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  const { documentType = [] } = data;
   this.cache.documentTypeList = data.documentType = [
     {
       key: '', desc: documentTypeAll
     },
-    ...data.documentType
+    ...documentType
   ];
   $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);

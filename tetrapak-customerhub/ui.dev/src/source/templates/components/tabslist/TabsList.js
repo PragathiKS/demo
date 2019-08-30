@@ -20,6 +20,8 @@ function _renderFirstTab() {
  */
 function _trackAnalytics(type, el) {
   const { heading } = this.cache;
+  const currentEl = $(el);
+
   const analyticsData = {
     linkType: 'internal',
     linkSection: 'tablist'
@@ -27,16 +29,17 @@ function _trackAnalytics(type, el) {
 
   switch (type) {
     case 'tabclick': {
-      analyticsData.linkParentTitle = heading.toLowerCase();
-      analyticsData.linkName = $.trim($(el).text());
-      analyticsData.linkListPos = $(el).data('index') + 1;
+      analyticsData.linkParentTitle = $.trim(heading.toLowerCase());
+      analyticsData.linkName = $.trim(currentEl.text());
+      analyticsData.linkListPos = currentEl.data('index') + 1;
       break;
     }
     case 'descriptionLink': {
-      analyticsData.linkType = $(el).attr('target') === '_blank' ? 'external' : 'internal';
-      analyticsData.contentName = $.trim($(el).parents('.js-tablist').find('.js-tablist__event:not(.collapsed)').text());
-      analyticsData.linkParentTitle = $.trim($(el).parents('.js-tablist').find('.collapse.show').find('.tp-tablist__event-detail-title').text());
-      analyticsData.linkName = $.trim($(el).text());
+      const activeTab = currentEl.parents('.js-tablist').find('.js-tablist__event.active');
+      analyticsData.linkType = currentEl.attr('target') === '_blank' ? 'external' : 'internal';
+      analyticsData.contentName = $.trim(activeTab.text());
+      analyticsData.linkParentTitle = $.trim(activeTab.next('.show').find('.js-tablist__event-detail-title').text());
+      analyticsData.linkName = $.trim(currentEl.text());
       break;
     }
     default:

@@ -3,8 +3,8 @@
   <div class="tp-text-video__link${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}" data-sly-test="${data.linkURL}">
     <sly data-sly-test.linkText="${data.linkTextI18n @i18n}">
       <sly data-sly-test.linkUrl="${data.linkURL}" />
-        <sly data-sly-use.linkAtom="/apps/commons/components/atoms/link/link-template.html"
-              data-sly-call="${linkAtom.link_template @url=linkUrl,text=linkText,baseClass='js-text-video__description-link',isExternal=data.isExternal,modifier='transparent',iconClass='icon-Circle_Arrow_Right'}" />
+        <sly data-sly-use.linkAtom="/apps/commons/components/atoms/button-text/button-text.html"
+             data-sly-call="${linkAtom.button_template @btnPath=linkUrl,btnText=linkText,customClasses='js-text-video__description-link',variant='transparent',btnTarget=data.isExternal}"/>
     </sly>
   </div>
 </sly>
