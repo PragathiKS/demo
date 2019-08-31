@@ -10,7 +10,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX } from '../../../scripts/utils/constants';
-import { resolveQuery, isMobileMode, getI18n, scrollToElement } from '../../../scripts/common/common';
+import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
@@ -100,7 +100,7 @@ function _trackAnalytics(type) {
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: $.trim(statementOfAccount.toLowerCase())
+    linkParentTitle: $.trim(getI18n(statementOfAccount).toLowerCase())
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
@@ -137,7 +137,7 @@ function _processFinancialStatementData(data) {
     },
     ...documentType
   ];
-  $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
+  this.root.parents('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
     if (!data.customerData) {
@@ -597,9 +597,7 @@ class FinancialStatement {
   populateResults = () => {
     const { $dateRange } = this.cache;
     if ($dateRange.hasClass('has-error')) {
-      scrollToElement($dateRange, 500, () => {
-        $dateRange.focus();
-      });
+      $dateRange.focus();
       return;
     }
     this.trackAnalytics('search');
