@@ -243,7 +243,7 @@
                                                 fieldDescription="Open link in a new window or tab"
                                                 fieldLabel="Open link in a new window ?"
                                                 name="./isExternal"
-                                                text="Is External Link Text"
+                                                text="Open link in a new window ?"
                                                 uncheckedValue="{Boolean}false"
                                                 value="{Boolean}true"/>
                                     </items>
