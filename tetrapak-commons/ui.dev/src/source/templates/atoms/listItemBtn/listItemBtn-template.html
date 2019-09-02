@@ -9,7 +9,7 @@
   <sly data-sly-test="${!hasSubmenu}">
     <a class="tpatom-list-item__link ${identifier}"
        href="${data.href}"
-       target="${data.isExternalLink ? '_blank' : '_self'}"
+       target="${data.isExternalLink ? data.pageName : ''}"
        rel="${data.isExternalLink ? 'noopener noreferrer' : ''}"
        datatag="${data.isExternalLink ? 'external' : 'internal'}"
        ctype="${ctype ? ctype : 'not_set'}"
