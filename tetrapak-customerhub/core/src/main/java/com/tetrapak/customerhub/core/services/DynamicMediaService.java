@@ -2,6 +2,8 @@ package com.tetrapak.customerhub.core.services;
 
 /**
  * Dynamic Media Service class
+ *
+ * @author Nitin Kumar
  */
 public interface DynamicMediaService {
 
@@ -12,5 +14,5 @@ public interface DynamicMediaService {
     String getVideoServiceUrl();
 
     String getRootPath();
-    
+
 }

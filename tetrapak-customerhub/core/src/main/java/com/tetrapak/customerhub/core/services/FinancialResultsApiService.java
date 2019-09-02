@@ -14,8 +14,8 @@ public interface FinancialResultsApiService {
     /**
      * Method to get Financials Results from TETRA PAK API
      *
-     * @param paramsRequest   params
-     * @param token           token
+     * @param paramsRequest params
+     * @param token         token
      * @return json object
      */
     JsonObject getFinancialResults(Params paramsRequest, String token);
