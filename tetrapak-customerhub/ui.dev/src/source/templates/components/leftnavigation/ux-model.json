@@ -12,7 +12,8 @@
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
       "isExternalLink": "true",
-      "isActive": "true"
+      "isActive": "true",
+      "pageName": "cuhu-aem-getstarted"
     },
     {
       "iconClass": "icon-Cart",
@@ -23,12 +24,14 @@
         {
           "href": "http://www.tetrapak.com",
           "iconLabel": "Packaging material",
-          "isExternalLink": "true"
+          "isExternalLink": "true",
+          "pageName": "cuhu-packmat"
         },
         {
           "href": "http://www.tetrapak.com",
           "iconLabel": "Parts",
-          "isExternalLink": "true"
+          "isExternalLink": "true",
+          "pageName": "cuhu-parts"
         }
       ]
     },
@@ -36,13 +39,15 @@
       "href": "http://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
-      "isExternalLink": "true"
+      "isExternalLink": "true",
+      "pageName": "cuhu-aem-soa"
     },
     {
       "href": "http://www.tetrapak.com",
       "iconClass": "icon-Logout",
       "iconLabel": "Log out",
-      "isExternalLink": "false"
+      "isExternalLink": "false",
+      "pageName": "cuhu-logout"
     }
   ]
 }
