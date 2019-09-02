@@ -14,6 +14,7 @@ public class LeftNavigationBean {
     private boolean isActive;
     private boolean isExpanded;
     private List<LeftNavigationBean> subMenuList;
+    private String pageName;
 
     public String getHref() {
         return href;
@@ -69,5 +70,13 @@ public class LeftNavigationBean {
 
     public void setExpanded(boolean expanded) {
         isExpanded = expanded;
+    }
+
+    public String getPageName() {
+        return pageName;
+    }
+
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
     }
 }
