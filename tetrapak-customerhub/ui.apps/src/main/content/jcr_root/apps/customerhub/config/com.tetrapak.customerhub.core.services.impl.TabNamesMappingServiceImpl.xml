@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:primaryType="sling:OsgiConfig"
-          tabNamesMap="[/content/tetrapak/customerhub/global/en/package-design=cuhu_package_design,/content/tetrapak/customerhub/global/en/ordering/packaging-material=cuhu_packaging_material,/content/tetrapak/customerhub/global/en/ordering/parts=cuhu_parts,/content/tetrapak/customerhub/global/en/parts-inventory=cuhu_parts_inventory]"/>

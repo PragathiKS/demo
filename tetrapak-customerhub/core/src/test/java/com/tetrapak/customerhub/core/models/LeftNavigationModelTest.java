@@ -2,17 +2,13 @@ package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.services.TabNamesMappingService;
-import com.tetrapak.customerhub.core.services.impl.TabNamesMappingServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Nitin Kumar
@@ -20,8 +16,6 @@ import java.util.Map;
 public class LeftNavigationModelTest {
 
     private LeftNavigationModel leftNavigationModel = null;
-
-    private TabNamesMappingService tabNamesMappingService = new TabNamesMappingServiceImpl();
 
     private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
     private static final String RESOURCE_JSON = "allContent.json";
@@ -31,11 +25,6 @@ public class LeftNavigationModelTest {
 
     @Before
     public void setup() {
-        Map<String, Object> _config = new HashMap<>();
-        String[] values = {"/content/tetrapak/customerhub/global/en/package-design=package_design", "/content/tetrapak/customerhub/global/en/ordering/packaging-material=packaging_material", "/content/tetrapak/customerhub/global/en/ordering/parts=parts", "/content/tetrapak/customerhub/global/en/parts-inventory=parts_inventory"};
-        _config.put("tabNamesMap", values);
-        aemContext.registerInjectActivateService(tabNamesMappingService, _config);
-
         aemContext.currentResource(CONTENT_ROOT);
         leftNavigationModel = aemContext.request().adaptTo(LeftNavigationModel.class);
     }
@@ -48,7 +37,7 @@ public class LeftNavigationModelTest {
         List<LeftNavigationBean> list = leftNavigationModel.getLeftNavItems();
         LeftNavigationBean leftNavigationBean = list.get(0);
         Assert.assertEquals("href", "/content/tetrapak/customerhub/global/en/dashboard.html", leftNavigationBean.getHref());
-        Assert.assertEquals("page name", "", leftNavigationBean.getPageName());
+        Assert.assertEquals("page name", "cuhu_dashboard", leftNavigationBean.getPageName());
         Assert.assertEquals("icon class", "icon-Dashboard", leftNavigationBean.getIconClass());
         Assert.assertEquals("icon label", "DASHBOARD", leftNavigationBean.getIconLabel());
         Assert.assertTrue("is external link", leftNavigationBean.isExternalLink());

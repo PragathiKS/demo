@@ -5,7 +5,6 @@ import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.TabNamesMappingService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
@@ -39,9 +38,6 @@ public class LeftNavigationModel {
     @OSGiService
     private UserPreferenceService userPreferenceService;
 
-    @OSGiService
-    private TabNamesMappingService tabNamesMappingService;
-
     private String navHeading;
 
     private String closeBtnText;
@@ -52,8 +48,6 @@ public class LeftNavigationModel {
     private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     private String selectedLanguage;
-
-    private Map<String, String> tabsMap = new HashMap<>();
 
     @PostConstruct
     protected void init() {
@@ -67,24 +61,12 @@ public class LeftNavigationModel {
 
             Page globalPage = pageManager.getContainingPage(globalConfigResource);
             if (null != globalPage) {
-                setMapFromConfiguration();
                 Iterator<Page> itr = globalPage.listChildren();
                 while (itr.hasNext()) {
                     Page childPage = itr.next();
                     populateLeftNavItems(childPage);
                 }
             }
-        }
-    }
-
-    private void setMapFromConfiguration() {
-        if (null == tabNamesMappingService) {
-            return;
-        }
-        String[] tabNamesMapArray = tabNamesMappingService.getTabNamesMap();
-        for (String text : tabNamesMapArray) {
-            tabsMap.put(StringUtils.substringBefore(text, "="),
-                    StringUtils.substringAfter(text, "="));
         }
     }
 
@@ -146,15 +128,8 @@ public class LeftNavigationModel {
         bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage, request.getResource()));
-        bean.setPageName(getTabNameFromMappingConfiguration(childPage.getPath()));
+        bean.setPageName((String) valueMap.get("tabName"));
         return bean;
-    }
-
-    private String getTabNameFromMappingConfiguration(String path) {
-        if (tabsMap.containsKey(path)) {
-            return tabsMap.get(path);
-        }
-        return StringUtils.EMPTY;
     }
 
     private String getResolvedPagePath(Page childPage) {

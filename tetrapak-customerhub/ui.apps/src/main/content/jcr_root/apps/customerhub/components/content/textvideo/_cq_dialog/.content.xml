@@ -41,7 +41,7 @@
                             <isExternal
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                    fieldDescription="Open link in a new window ?"
+                                    fieldDescription="Open link in a new window?"
                                     name="./isExternal"
                                     text="New Window"
                                     value="true"/>
