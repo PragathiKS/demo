@@ -56,9 +56,12 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         return map;
     }
 
+    private String language;
+
     @Override
     public boolean generateFinancialResultsExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
                                                  Results apiResponse, Params paramRequest) {
+        language = GlobalUtil.getLanguage(req);
         String customerName = (paramRequest != null && paramRequest.getCustomerData() != null)
                 ? paramRequest.getCustomerData().getCustomerName()
                 : StringUtils.EMPTY;
@@ -89,10 +92,10 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     }
 
     private boolean getShowLocalData(Results apiResponse) {
-        if(null == apiResponse.getDocuments() || apiResponse.getDocuments().isEmpty()){
+        if (null == apiResponse.getDocuments() || apiResponse.getDocuments().isEmpty()) {
             return false;
         }
-        if(null == apiResponse.getDocuments().get(0).getRecords() || apiResponse.getDocuments().get(0).getRecords().isEmpty()){
+        if (null == apiResponse.getDocuments().get(0).getRecords() || apiResponse.getDocuments().get(0).getRecords().isEmpty()) {
             return false;
         }
         return StringUtils.isNotBlank(apiResponse.getDocuments().get(0).getRecords().get(0).getSalesLocalData());
@@ -331,7 +334,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
      */
     private String getI18nVal(String value) {
         if (null != request && !StringUtils.isBlank(value)) {
-            value = GlobalUtil.getI18nValue(request, I18N_PREFIX, value);
+            value = GlobalUtil.getI18nValueForThisLanguage(request, I18N_PREFIX, value, language);
         }
         return value;
     }
