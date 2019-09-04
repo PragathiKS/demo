@@ -8,6 +8,7 @@
     @include font-size(24px);
     @include line-height(32px, 24px);
     font-family: $font-light;
+
     @media #{$desktop} {
         @include font-size($font-xl);
         @include line-height(40px, $font-xl);
@@ -46,6 +47,7 @@
     &--small {
         @include font-size(24px);
         @include line-height(32px, 24px);
+
         @media #{$tablet-large} {
             @include font-size(18px);
         }
@@ -60,6 +62,5 @@
 .tpatom-subheading {
     @include font-size($font-sm);
     @include line-height(20px, $font-sm);
-    letter-spacing: 1.5px;
-    
+    @include letter-spacing($letter-spacing-sm);
 }

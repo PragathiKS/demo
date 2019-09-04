@@ -5,7 +5,7 @@
 .tp-next-btn {
     @include font-size($font-baseline);
     @include line-height(40px, $font-baseline);
-    @include letter-spacing(0.5px);
+    @include letter-spacing($letter-spacing-sm);
     background: none;
     border: 0;
     padding: 0;

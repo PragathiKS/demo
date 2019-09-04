@@ -1,7 +1,7 @@
 %default-btn {
     @include font-size($font-baseline);
     @include padding(13px 12px);
-    @include letter-spacing(0.5px);
+    @include letter-spacing($letter-spacing-sm);
     font-family: $font-light;
     line-height: 1;
 

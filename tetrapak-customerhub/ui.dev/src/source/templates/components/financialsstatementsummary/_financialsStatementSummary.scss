@@ -29,7 +29,7 @@
             &,
             &:first-child {
                 @include font-size($font-baseline);
-                font-family: $font-semi-bold;
+                font-family: $font-bold;
             }
         }
     }
@@ -38,7 +38,7 @@
         &__cell {
             &:last-child {
                 @include font-size($font-baseline);
-                font-family: $font-semi-bold;
+                font-family: $font-bold;
                 padding-right: 0;
                 text-align: right;
             }

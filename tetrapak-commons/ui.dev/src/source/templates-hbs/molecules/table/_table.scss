@@ -52,7 +52,7 @@
             @include font-size($font-baseline);
             @include line-height(24px, $font-baseline);
             border-bottom: 1px solid $color-boulder;
-            font-family: $font-semi-bold;
+            font-family: $font-bold;
             font-weight: normal;
             position: relative;
         }
