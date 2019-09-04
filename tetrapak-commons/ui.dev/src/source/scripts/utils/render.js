@@ -33,16 +33,18 @@ function _resolveUrlAndData(ajaxConfig, urlOb) {
     }
     ajaxConfig.pathObject.id = ajaxConfig.dataId = ajaxConfig.url;
     return;
-  } else if (urlOb && typeof urlOb === 'object') {
-    if (typeof urlOb.path === 'string') {
-      ajaxConfig.url = urlOb.path;
-      if (urlOb.data) {
-        ajaxConfig.data = urlOb.data;
-      }
-      ajaxConfig.dataId = urlOb.id = urlOb.id || urlOb.path;
-      ajaxConfig.pathObject = urlOb;
-      return;
+  } else if (
+    urlOb
+    && typeof urlOb === 'object'
+    && typeof urlOb.path === 'string'
+  ) {
+    ajaxConfig.url = urlOb.path;
+    if (urlOb.data) {
+      ajaxConfig.data = urlOb.data;
     }
+    ajaxConfig.dataId = urlOb.id = urlOb.id || urlOb.path;
+    ajaxConfig.pathObject = urlOb;
+    return;
   }
   throwError(INVALID_URL);
 }
