@@ -2,7 +2,6 @@ import 'core-js/features/array/includes';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
-import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 
 const currentUserAgent = window.navigator.userAgent;

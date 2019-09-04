@@ -5,7 +5,6 @@ import 'core-js/features/object/assign';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
-import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
 import * as money from 'argon-formatter';
