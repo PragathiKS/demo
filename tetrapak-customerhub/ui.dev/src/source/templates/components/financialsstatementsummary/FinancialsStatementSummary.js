@@ -112,7 +112,7 @@ function _processTableData(data) {
           if (deleteLocalData) {
             delete record.salesLocalData;
           }
-          delete record.salesOffice;
+          delete record.salesOffice; // Hide sales office
           if (keys.length === 0) {
             keys = Object.keys(record);
             keys.splice(keys.indexOf('orgAmount'), 1);
@@ -123,19 +123,19 @@ function _processTableData(data) {
             if (key === 'documentType' && record[key] !== 'PMT') {
               isClickable = true;
               dataLink = record.invoiceReference;
-              record['documentNumber'] = `
-              <span class="tp-financials-summary__download-invoice">
-                ${record['documentNumber']}
-                <i class="icon-PDF"></i>
-              </span>`;
+              record.documentNumber = render.get('downloadInvoice')({
+                documentNumber: record.documentNumber
+              });
             }
 
-            if (key === 'invoiceStatus') {
-              record[key] = Array.isArray(status) && status.find(obj => obj.key === record[key]).desc;
+            if (key === 'invoiceStatus' && Array.isArray(status)) {
+              const statusMatch = status.find(obj => obj.key === record[key]);
+              record[key] = statusMatch ? statusMatch.desc : record[key];
             }
 
-            if (key === 'documentType') {
-              record[key] = Array.isArray(documentType) && documentType.find(obj => obj.key === record[key]).desc;
+            if (key === 'documentType' && Array.isArray(documentType)) {
+              const documentTypeMatch = documentType.find(obj => obj.key === record[key]);
+              record[key] = documentTypeMatch ? documentTypeMatch.desc : record[key];
             }
             if (currencyFields.includes(key)) {
               record[key] = resolveCurrency(record[key], record.currency);
