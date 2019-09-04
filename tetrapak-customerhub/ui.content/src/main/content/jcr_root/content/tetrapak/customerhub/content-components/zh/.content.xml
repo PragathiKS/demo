@@ -5,19 +5,19 @@
     <jcr:content
         cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
         cq:conf=""
-        cq:lastModified="{Date}2019-08-10T09:49:49.857Z"
-        cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-08-10T09:49:58.089Z"
-        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastModified="{Date}2019-09-04T06:14:34.741Z"
+        cq:lastModifiedBy="reference-adjustment-service"
+        cq:lastReplicated="{Date}2019-09-04T06:40:54.392Z"
+        cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-07-17T11:24:12.992Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:language="en"
+        jcr:language="zh"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Chinese Simplified"
+        jcr:title="Chinese"
         jcr:uuid="b8737c3d-36b9-485b-97c1-e3a1627e83b9"
         sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">
@@ -38,28 +38,28 @@
                 <headerconfiguration
                     jcr:created="{Date}2019-07-16T16:53:27.341+05:30"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-08-06T04:20:28.963Z"
+                    jcr:lastModified="{Date}2019-08-26T08:17:37.684Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/structure/headerconfiguration"
                     dLogoLink="/content/tetrapak/customerhub/global/en/dashboard"
-                    logoUrl="/content/dam/customerhub/english/common/TetraPakLogo.png"
+                    logoUrl="/content/dam/tetrapak/customerhub/english/error/images/TetraPakLogo.png"
                     mLogoLink="/content/tetrapak/customerhub/global/en/dashboard">
                     <headerNavLinks jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
                             href="https://www.tetrapak.com/processing.html"
                             name="处理"
-                            targetNew="true"/>
+                            targetNew="false"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
-                            href="https://www.tetrapak.com/packaging.html"
-                            name="打包"
+                            href="https://www.tetrapak.com/sustainability.html"
+                            name="可持续发展"
                             targetNew="true"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
-                            href="https://www.tetrapak.com/services.html"
-                            name="服务"
+                            href="https://www.tetrapak.com/about.html"
+                            name=" 关于我们"
                             targetNew="true"/>
                         <item3
                             jcr:primaryType="nt:unstructured"

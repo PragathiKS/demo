@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    cq:lastReplicated="{Date}2019-08-21T06:29:12.888Z"
+    cq:lastReplicated="{Date}2019-09-04T03:44:06.117Z"
     cq:lastReplicatedBy="sapient-tarun"
     cq:lastReplicationAction="Activate"
     jcr:language="ko"
     jcr:mixinTypes="[cq:ReplicationStatus,mix:language]"
     jcr:primaryType="sling:Folder">
-    <cuhu.financials.dueDays
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:message="기한"/>
     <entry_1
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -22,7 +15,7 @@
         sling:key="cuhu.orderDetails.createExcel"
         sling:message="엑셀 만들기"/>
     <entry_10
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -30,87 +23,87 @@
         sling:key="cuhu_Logout_leftNav"
         sling:message="Logout"/>
     <entry_100
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.117Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.Search"
+        sling:message="검색"/>
+    <entry_101
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.AccountNo"
+        sling:message="계정 번호"/>
+    <entry_102
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="Intro_Screen_title5"
+        sling:message="사용자 환경 맞춤설정"/>
+    <entry_103
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingcard.Preferences.title"
         sling:message="선호"/>
-    <entry_101
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
+    <entry_104
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_Desc1"
         sling:message="내 테트라 박은 테트라 박에 항목의 단일 지점입니다. 비즈니스 데이터를 스마트하게 사용하여 시간과 비용을 절약하고 성능을 개선하며 지식을 향상시킵니다. 일상 업무를 개선하는 조언과 통찰력을 얻을 수 있습니다. 내 테트라 박은 솔루션에서 최선을 가지고하는 데 도움이됩니다. 이는 테스트의 유효성을 검사하기 위한 것입니다."/>
-    <entry_102
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+    <entry_105
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_Desc2"
         sling:message="장비, 설정, 요구 및 목표에 따라; 내 테트라 박은 뭔가당신의 주의를 필요로 할 때 당신을 통보합니다. 성능 문제, 유지 관리 및 최적화에 대한 세부 정보를 탐색하여 알림을 일상 업무의 체크리스트로 사용할 수 있습니다."/>
-    <entry_103
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_106
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ErrorMessage "
         sling:message="이런!!! 오류 메시지가 나타납니다."/>
-    <entry_104
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
+    <entry_107
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.kilo.pack.quantity"
         sling:message="킬로 팩 수량"/>
-    <entry_105
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_108
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.LeftNav_Heading"
         sling:message="마이 테트라 박"/>
-    <entry_106
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="language.en"
-        sling:message="영어"/>
-    <entry_107
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="Intro_Screen_Img5_altText"
-        sling:message="이미지Alt5"/>
-    <entry_108
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.ordering.customerNumber"
-        sling:message="테트라 박 고객 번호"/>
     <entry_109
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.375Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:key="cuhu.ordering.requestedDelivery"
-        sling:message="요청된 배달 테스트 i18"/>
+        sling:key="cuhu.financial.Error"
+        sling:message="인보이스 를 사용할 수 없습니다."/>
     <entry_11
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -118,87 +111,87 @@
         sling:key="cuhu.documents.site"
         sling:message="사이트"/>
     <entry_110
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="language.en"
+        sling:message="영어"/>
+    <entry_111
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="Intro_Screen_Img5_altText"
+        sling:message="이미지Alt5"/>
+    <entry_112
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ordering.customerNumber"
+        sling:message="테트라 박 고객 번호"/>
+    <entry_113
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ordering.requestedDelivery"
+        sling:message="요청된 배달 테스트 i18"/>
+    <entry_114
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.unitPrice"
         sling:message="단가"/>
-    <entry_111
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
+    <entry_115
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.createPDF"
         sling:message="PDF 만들기"/>
-    <entry_112
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+    <entry_116
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.serialNo"
         sling:message="#"/>
-    <entry_113
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_117
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.CustomerSupport"
         sling:message="고객 지원 센터"/>
-    <entry_114
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+    <entry_118
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu_Package_Design_leftNav"
         sling:message="패키지 디자인"/>
-    <entry_115
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_119
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.deliveryList.products.price"
         sling:message="순 가격"/>
-    <entry_116
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label"
-        sling:message="총 주문 KPK / 요청 KPK / 납품 KPK1"/>
-    <entry_117
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.price"
-        sling:message="가격"/>
-    <entry_118
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.nintyPlus"
-        sling:message=">90"/>
-    <entry_119
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.Staetementaccount"
-        sling:message="계정 명세서"/>
     <entry_12
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -206,87 +199,87 @@
         sling:key="cuhu_Parts_Inventory_leftNav"
         sling:message="부품 재고"/>
     <entry_120
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label"
+        sling:message="총 주문 KPK / 요청 KPK / 납품 KPK1"/>
+    <entry_121
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.price"
+        sling:message="가격"/>
+    <entry_122
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.nintyPlus"
+        sling:message=">90"/>
+    <entry_123
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.Staetementaccount"
+        sling:message="계정 명세서"/>
+    <entry_124
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.tr"
         sling:message="터키어"/>
-    <entry_121
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+    <entry_125
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu_Parts_leftNav"
         sling:message="부품"/>
-    <entry_122
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+    <entry_126
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.de"
         sling:message="독일어"/>
-    <entry_123
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+    <entry_127
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_Desc3"
         sling:message="어떤 종류의 알림을 받고 싶습니까? 우리 사업의 성과 목표는 무엇입니까? 관심 분야는? My Tetra Pak을 사용자의 요구에 맞게 최적화하고 비즈니스에 새로운 가치를 제공합니다."/>
-    <entry_124
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+    <entry_128
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_Desc4"
         sling:message="내 테트라 박은 테트라 박에 항목의 단일 지점입니다. 비즈니스 데이터를 스마트하게 사용하여 시간과 비용을 절약하고 성능을 개선하며 지식을 향상시킵니다. 일상 업무를 개선하는 조언과 통찰력을 얻을 수 있습니다. 내 테트라 박은 솔루션에서 최선을 가지고하는 데 도움이됩니다. 이는 테스트의 유효성을 검사하기 위한 것입니다."/>
-    <entry_125
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
+    <entry_129
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.orgAmount"
         sling:message="원래 금액"/>
-    <entry_126
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingcard.Errorkey"
-        sling:message="저장 오류"/>
-    <entry_127
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.overdue"
-        sling:message="총 연체"/>
-    <entry_128
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.productID"
-        sling:message="제품 ID"/>
-    <entry_129
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetails.TotalWeight"
-        sling:message="총 무게 1"/>
     <entry_13
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -294,87 +287,87 @@
         sling:key="cuhu.orderDetail.deliveryList.products.orderNumber"
         sling:message="주문 번호"/>
     <entry_130
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingcard.Errorkey"
+        sling:message="저장 오류"/>
+    <entry_131
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.overdue"
+        sling:message="총 연체"/>
+    <entry_132
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.productID"
+        sling:message="제품 ID"/>
+    <entry_133
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetails.TotalWeight"
+        sling:message="총 무게 1"/>
+    <entry_134
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.TrackOrder"
         sling:message="트랙 순서"/>
-    <entry_131
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+    <entry_135
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.docDate"
         sling:message="문서 날짜"/>
-    <entry_132
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_136
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="test1"
         sling:message="테스트 4"/>
-    <entry_133
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_137
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.documenttype.all"
+        sling:message="모든"/>
+    <entry_138
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.DateRange"
         sling:message="날짜 범위"/>
-    <entry_134
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_139
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.DocumentType"
         sling:message="문서 유형"/>
-    <entry_135
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.orderSummary.orderQuantity"
-        sling:message="주문한 수량"/>
-    <entry_136
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="About_GetStarted_title1"
-        sling:message="비즈니스를 위한 한 곳"/>
-    <entry_137
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.error.msg"
-        sling:message="오류가 발생했습니다."/>
-    <entry_138
-        cq:lastReplicated="{Date}2019-08-21T06:29:20.379Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="About_GetStarted_title4"
-        sling:message="새로운 환경 맞춤설정"/>
-    <entry_139
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingHistory.Reset1"
-        sling:message="재설정1"/>
     <entry_14
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.117Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -382,87 +375,87 @@
         sling:key="cuhu.financial.DocumentNumber"
         sling:message="문서 번호"/>
     <entry_140
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.orderSummary.orderQuantity"
+        sling:message="주문한 수량"/>
+    <entry_141
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="About_GetStarted_title1"
+        sling:message="비즈니스를 위한 한 곳"/>
+    <entry_142
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.error.msg"
+        sling:message="오류가 발생했습니다."/>
+    <entry_143
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="About_GetStarted_title4"
+        sling:message="새로운 환경 맞춤설정"/>
+    <entry_144
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingHistory.Reset1"
+        sling:message="재설정1"/>
+    <entry_145
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.searchBtn"
         sling:message="검색 문"/>
-    <entry_141
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+    <entry_146
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_title2"
         sling:message="필요한 알림"/>
-    <entry_142
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_147
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_title3"
         sling:message="사용자 환경 맞춤설정"/>
-    <entry_143
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+    <entry_148
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.117Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.orderSummary.deliveredQuantity"
         sling:message="지금까지 납품된 수량"/>
-    <entry_144
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
+    <entry_149
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.Price"
         sling:message="가격"/>
-    <entry_145
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.invoiceReference"
-        sling:message="송장 참조"/>
-    <entry_146
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.deliveryList.products.materialCode"
-        sling:message="재질 코드"/>
-    <entry_147
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.ordering.orderNumber"
-        sling:message="테트라 박 주문 번호."/>
-    <entry_148
-        cq:lastReplicated="{Date}2019-08-21T06:29:12.888Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingcard.Preferences.Desc"
-        sling:message="설명"/>
-    <entry_149
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu_Ordering_leftNav"
-        sling:message="주문"/>
     <entry_15
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -470,87 +463,87 @@
         sling:key="cuhu.orderDetail.deliveryList.products.quantityKPK"
         sling:message="수량 KPK"/>
     <entry_150
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.invoiceReference"
+        sling:message="송장 참조"/>
+    <entry_151
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.deliveryList.products.materialCode"
+        sling:message="재질 코드"/>
+    <entry_152
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ordering.orderNumber"
+        sling:message="테트라 박 주문 번호."/>
+    <entry_153
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingcard.Preferences.Desc"
+        sling:message="설명"/>
+    <entry_154
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_Ordering_leftNav"
+        sling:message="주문"/>
+    <entry_155
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingcard.titlekey"
         sling:message="주문"/>
-    <entry_151
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+    <entry_156
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.OrderStatus"
         sling:message="상태"/>
-    <entry_152
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_157
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.remainingQuantity"
         sling:message="열기"/>
-    <entry_153
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+    <entry_158
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.deliveryList.products.SKU"
         sling:message="Sku"/>
-    <entry_154
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+    <entry_159
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.ru"
         sling:message="러시아어"/>
-    <entry_155
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.ordering.orderType"
-        sling:message="주문 유형"/>
-    <entry_156
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.maintenance.site"
-        sling:message="사이트"/>
-    <entry_157
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.Customer"
-        sling:message="고객 선택"/>
-    <entry_158
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu_Startpage_leftNav"
-        sling:message="시작 페이지"/>
-    <entry_159
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.documentNumber"
-        sling:message="문서 번호"/>
     <entry_16
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -558,87 +551,87 @@
         sling:key="cuhu.orderDetail.deliveryList.products.quantityKpk"
         sling:message="수량 KPK"/>
     <entry_160
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ordering.orderType"
+        sling:message="주문 유형"/>
+    <entry_161
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.maintenance.site"
+        sling:message="사이트"/>
+    <entry_162
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.Customer"
+        sling:message="고객 선택"/>
+    <entry_163
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_Startpage_leftNav"
+        sling:message="시작 페이지"/>
+    <entry_164
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.documentNumber"
+        sling:message="문서 번호"/>
+    <entry_165
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.weight"
         sling:message="무게"/>
-    <entry_161
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_166
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.closeButton"
         sling:message="닫기 버튼"/>
-    <entry_162
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_167
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ContactCard.ImageAlt.txt"
         sling:message="이미지 텍스트"/>
-    <entry_163
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+    <entry_168
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.ninty"
         sling:message="61 - 90"/>
-    <entry_164
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+    <entry_169
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.poNumber"
         sling:message="PO 번호"/>
-    <entry_165
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.delivery.productName"
-        sling:message="제품"/>
-    <entry_166
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingHistory.SetDate"
-        sling:message="날짜 설정"/>
-    <entry_167
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.clearedDate"
-        sling:message="선택 취소된 날짜"/>
-    <entry_168
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.current"
-        sling:message="현재"/>
-    <entry_169
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.noEventMessage"
-        sling:message="사용할 수 있는 이벤트가 없습니다."/>
     <entry_17
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -646,87 +639,87 @@
         sling:key="cuhu.orderingcard.pref.Save"
         sling:message="저장"/>
     <entry_170
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.productName"
+        sling:message="제품"/>
+    <entry_171
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingHistory.SetDate"
+        sling:message="날짜 설정"/>
+    <entry_172
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.clearedDate"
+        sling:message="선택 취소된 날짜"/>
+    <entry_173
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.current"
+        sling:message="현재"/>
+    <entry_174
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.noEventMessage"
+        sling:message="사용할 수 있는 이벤트가 없습니다."/>
+    <entry_175
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.pt"
         sling:message="포르투갈어"/>
-    <entry_171
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_176
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="Intro_Screen_description5"
         sling:message="어떤 종류의 알림을 받고 싶습니까? 우리 사업의 성과 목표는 무엇입니까? 관심 분야는? My Tetra Pak을 사용자의 요구에 맞게 최적화하고 비즈니스에 새로운 가치를 제공합니다."/>
-    <entry_172
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+    <entry_177
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.production.place"
         sling:message="생산 장소"/>
-    <entry_173
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_178
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.currency"
         sling:message="통화"/>
-    <entry_174
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_179
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.error.message"
         sling:message="문제가 생겼습니다."/>
-    <entry_175
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.ordering.status"
-        sling:message="상태"/>
-    <entry_176
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.orderSummary.product"
-        sling:message="제품"/>
-    <entry_177
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.AccountServ"
-        sling:message="계정 서비스"/>
-    <entry_178
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.documentType"
-        sling:message="문서 유형"/>
-    <entry_179
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="About_GetStarted_Img3_altText"
-        sling:message="이미지3_alt"/>
     <entry_18
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -734,87 +727,87 @@
         sling:key="cuhu.orderdetail.packaging.requested"
         sling:message="요청"/>
     <entry_180
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ordering.status"
+        sling:message="상태"/>
+    <entry_181
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.orderSummary.product"
+        sling:message="제품"/>
+    <entry_182
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.AccountServ"
+        sling:message="계정 서비스"/>
+    <entry_183
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.documentType"
+        sling:message="문서 유형"/>
+    <entry_184
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="About_GetStarted_Img3_altText"
+        sling:message="이미지3_alt"/>
+    <entry_185
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.FindCustomer"
         sling:message="고객 찾기"/>
-    <entry_181
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_186
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.DeliveryAddress"
         sling:message="배달 주소"/>
-    <entry_182
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
+    <entry_187
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.SearchInput"
         sling:message="검색 입력"/>
-    <entry_183
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+    <entry_188
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu_Financial_leftNav"
         sling:message="금융"/>
-    <entry_184
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_189
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.OrderNumberLabel"
         sling:message="테트라 박 주문 번호"/>
-    <entry_185
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.deliveredQuantity"
-        sling:message="전송"/>
-    <entry_186
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.375Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.Status"
-        sling:message="상태"/>
-    <entry_187
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.delivery.price"
-        sling:message="순 가격"/>
-    <entry_188
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.deliveryList.products.productName"
-        sling:message="제품 1"/>
-    <entry_189
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.no.data"
-        sling:message="사용할 수 있는 데이터 없음"/>
     <entry_19
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -822,47 +815,87 @@
         sling:key="cuhu.orderingHistory.Addresskey"
         sling:message="모든 배달 주소"/>
     <entry_190
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.deliveredQuantity"
+        sling:message="전송"/>
+    <entry_191
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_demo"
+        sling:message="데모 페이지"/>
+    <entry_192
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.Status"
+        sling:message="상태"/>
+    <entry_193
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.price"
+        sling:message="순 가격"/>
+    <entry_194
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.deliveryList.products.productName"
+        sling:message="제품 1"/>
+    <entry_195
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.no.data"
+        sling:message="사용할 수 있는 데이터 없음"/>
+    <entry_196
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.Maintenance.Line"
         sling:message="선/면적"/>
-    <entry_191
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_197
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingcard.another.Order"
         sling:message="다른 레코드 검색"/>
-    <entry_192
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+    <entry_198
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.orderDate"
         sling:message="주문 날짜"/>
-    <entry_193
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+    <entry_199
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.CustomerNumber"
         sling:message="고객 번호"/>
-    <entry_194
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="language.zh_tw"
-        sling:message="중국어 번체"/>
     <entry_2
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.117Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -870,15 +903,23 @@
         sling:key="cuhu.financial.Documents"
         sling:message="문서"/>
     <entry_20
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.StatusBtnkey"
         sling:message="모든 상태"/>
+    <entry_200
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="language.zh_tw"
+        sling:message="중국어 번체"/>
     <entry_21
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -886,7 +927,7 @@
         sling:key="cuhu.orderdetail.packaging.delivery.materialCode"
         sling:message="재질 코드"/>
     <entry_22
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -894,7 +935,7 @@
         sling:key="cuhu.financials.remAmount"
         sling:message="Rem. 금액"/>
     <entry_23
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -902,7 +943,7 @@
         sling:key="cuhu.orderdetail.product"
         sling:message="제품"/>
     <entry_24
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -910,7 +951,7 @@
         sling:key="Intro_screen_Closebutton"
         sling:message="가까이"/>
     <entry_25
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -918,7 +959,7 @@
         sling:key="cuhu.financials.thirty"
         sling:message="1 - 30"/>
     <entry_26
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -926,7 +967,7 @@
         sling:key="About_GetStarted_Image1_altText"
         sling:message="이미지1_alt"/>
     <entry_27
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -934,7 +975,7 @@
         sling:key="cuhu.financials.customer"
         sling:message="고객 ID"/>
     <entry_28
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -942,7 +983,7 @@
         sling:key="Cuhu_language_window_title"
         sling:message="언어 선택"/>
     <entry_29
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -950,7 +991,7 @@
         sling:key="cuhu.orderdetail.packaging.ETD"
         sling:message="Etd"/>
     <entry_3
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -958,87 +999,87 @@
         sling:key="cuhu.orderDetails.DeliveryNum"
         sling:message="i18n에서 배송 번호"/>
     <entry_30
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.dueDays"
+        sling:message="기한"/>
+    <entry_31
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.es_co"
         sling:message="스페인 C&amp;amp;S 아메리카"/>
-    <entry_31
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+    <entry_32
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.063Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingcard.no.data"
         sling:message="사용할 수 있는 데이터 없음"/>
-    <entry_32
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_33
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ContactCard.SubHeading"
         sling:message="적합한 사람들과 연락하기"/>
-    <entry_33
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
+    <entry_34
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.Summary"
         sling:message="요약"/>
-    <entry_34
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+    <entry_35
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.orderQuantity"
         sling:message="수량"/>
-    <entry_35
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+    <entry_36
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.delivery.productName&#x9;"
         sling:message="제품"/>
-    <entry_36
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_37
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.ko"
         sling:message="한국어"/>
-    <entry_37
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_38
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.logotext.text"
+        sling:message="테트라팍"/>
+    <entry_39
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.orderDate"
         sling:message="주문 날짜"/>
-    <entry_38
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.265Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.InputLabel"
-        sling:message="입력 레이블"/>
-    <entry_39
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.order.status"
-        sling:message="상태"/>
     <entry_4
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1046,87 +1087,87 @@
         sling:key="cuhu.financial.CreateExcel"
         sling:message="엑셀 만들기"/>
     <entry_40
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.InputLabel"
+        sling:message="입력 레이블"/>
+    <entry_41
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.order.status"
+        sling:message="상태"/>
+    <entry_42
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.ja"
         sling:message="일본어"/>
-    <entry_41
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+    <entry_43
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.503Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.ValLabel"
         sling:message="부가 가치세"/>
-    <entry_42
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+    <entry_44
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.PurchaseOrderNum"
         sling:message="구매 주문 번호"/>
-    <entry_43
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+    <entry_45
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.359Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.Reset"
         sling:message="재설정"/>
-    <entry_44
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.375Z"
+    <entry_46
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.it"
         sling:message="이탈리아어"/>
-    <entry_45
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+    <entry_47
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.zh"
         sling:message="중국어"/>
-    <entry_46
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+    <entry_48
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="sample"
         sling:message="s"/>
-    <entry_47
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_49
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.678Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.noEventMessage &#xa; &#xa;"
         sling:message="이런!! 데이터가 없습니다."/>
-    <entry_48
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="About_GetStarted_Heading"
-        sling:message="Get_시작"/>
-    <entry_49
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.374Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingcard.pref.Close"
-        sling:message="가까이"/>
     <entry_5
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1134,87 +1175,87 @@
         sling:key="About_GetStarted_Img4_altText"
         sling:message="이미지알트4"/>
     <entry_50
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="About_GetStarted_Heading"
+        sling:message="시작"/>
+    <entry_51
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingcard.pref.Close"
+        sling:message="가까이"/>
+    <entry_52
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ContactCard.ViewContactBtn.txt"
         sling:message="연락처 보기"/>
-    <entry_51
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_53
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.salesLocalData"
         sling:message="로컬 데이터"/>
-    <entry_52
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_54
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.checkbox.text"
         sling:message="배달에 위의 항목만 표시"/>
-    <entry_53
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_55
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.invoiceStatus"
         sling:message="송장 상태"/>
-    <entry_54
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+    <entry_56
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.Shipping"
         sling:message="배송"/>
-    <entry_55
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_57
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.poNumber"
         sling:message="구매 주문 번호"/>
-    <entry_56
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+    <entry_58
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.Placeholderkey"
         sling:message="구매 주문 번호 / 테트라 박 주문 번호"/>
-    <entry_57
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+    <entry_59
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="About_GetStarted_Img2_altText"
         sling:message="대체 2"/>
-    <entry_58
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.delivery.SKU"
-        sling:message="Sku"/>
-    <entry_59
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financials.total"
-        sling:message="명세서 합계"/>
     <entry_6
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.511Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1222,87 +1263,87 @@
         sling:key="cuhu.financial.setDate"
         sling:message="날짜 설정"/>
     <entry_60
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.SKU"
+        sling:message="Sku"/>
+    <entry_61
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financials.total"
+        sling:message="명세서 합계"/>
+    <entry_62
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.PONumber"
         sling:message="PO 번호"/>
-    <entry_61
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+    <entry_63
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.DeliveryAddress"
         sling:message="dddddd"/>
-    <entry_62
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+    <entry_64
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderdetail.packaging.kilo.popup.close"
         sling:message="킬로 팝업 클로즈"/>
-    <entry_63
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_65
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.companyCode"
         sling:message="회사 코드"/>
-    <entry_64
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+    <entry_66
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.Reset"
         sling:message="재설정"/>
-    <entry_65
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_67
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu_PackagingMaterial_leftNav"
         sling:message="포장 재"/>
-    <entry_66
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+    <entry_68
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.SelectDates"
         sling:message="날짜 선택"/>
-    <entry_67
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="Aabc"
-        sling:message="테스트데이터포라브"/>
-    <entry_68
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="test"
-        sling:message="테스트"/>
     <entry_69
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingHistory.DateRange"
-        sling:message="2018-12-20 - 2018-12-28"/>
+        sling:key="cuhu.financial.DateRangeError"
+        sling:message="유효한 날짜를 입력하십시오."/>
     <entry_7
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1310,87 +1351,87 @@
         sling:key="cuhu.orderDetails.CustomerRef"
         sling:message="고객 참조"/>
     <entry_70
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="test"
+        sling:message="테스트"/>
+    <entry_71
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingHistory.DateRange"
+        sling:message="2018-12-20 - 2018-12-28"/>
+    <entry_72
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.dueDay"
         sling:message="기한"/>
-    <entry_71
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_73
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="Intro_screen_GetStarted"
         sling:message="시작"/>
-    <entry_72
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+    <entry_74
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetail.productName"
         sling:message="제품"/>
-    <entry_73
-        cq:lastReplicated="{Date}2019-08-21T06:29:20.379Z"
+    <entry_75
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.desc"
         sling:message="설명"/>
-    <entry_74
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+    <entry_76
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.256Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financial.Createpdf"
         sling:message="Pdf 만들기"/>
-    <entry_75
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+    <entry_77
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.nodata.message"
+        sling:message="사용할 수 있는 데이터 없음"/>
+    <entry_78
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.dueDate"
         sling:message="마감일"/>
-    <entry_76
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.889Z"
+    <entry_79
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="Intro_Screen_Heading"
         sling:message="소개"/>
-    <entry_77
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderingcard.dataError"
-        sling:message="API에서 오류 얻기"/>
-    <entry_78
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderdetail.packaging.delivery.quantityKPK"
-        sling:message="수량 KPK"/>
-    <entry_79
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.ContactCard.Heading"
-        sling:message="연락처"/>
     <entry_8
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1398,87 +1439,87 @@
         sling:key="cuhu.orderDetails.InvoiceAddress"
         sling:message="송장 주소"/>
     <entry_80
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.274Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderingcard.dataError"
+        sling:message="API에서 오류 얻기"/>
+    <entry_81
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.quantityKPK"
+        sling:message="수량 KPK"/>
+    <entry_82
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.ContactCard.Heading"
+        sling:message="연락처"/>
+    <entry_83
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.TotalpreVAT"
         sling:message="총 사전 부가가치세 1"/>
-    <entry_81
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
+    <entry_84
+        cq:lastReplicated="{Date}2019-09-04T03:44:07.304Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.sixty"
         sling:message="31 - 60"/>
-    <entry_82
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_85
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.008Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.fr"
         sling:message="프랑스어"/>
-    <entry_83
-        cq:lastReplicated="{Date}2019-08-21T06:29:20.379Z"
+    <entry_86
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.CloseButton"
         sling:message="닫기 버튼"/>
-    <entry_84
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.999Z"
+    <entry_87
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.027Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingcard.ButtonKey"
         sling:message="단추"/>
-    <entry_85
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.574Z"
+    <entry_88
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.233Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderingHistory.SearchBtnKey"
         sling:message="주문 검색"/>
-    <entry_86
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
+    <entry_89
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.410Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="dsaf"
         sling:message="Asdf"/>
-    <entry_87
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.595Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.orderDetail.ETA"
-        sling:message="도착"/>
-    <entry_88
-        cq:lastReplicated="{Date}2019-08-21T06:29:17.762Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.selectDate"
-        sling:message="날짜 선택"/>
-    <entry_89
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.107Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="About_Sample_text"
-        sling:message="샘플 텍스트"/>
     <entry_9
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.624Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
@@ -1486,83 +1527,83 @@
         sling:key="cuhu.orderDetails.VAT"
         sling:message="부가가치세1"/>
     <entry_90
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.918Z"
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.ETA"
+        sling:message="도착"/>
+    <entry_91
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.442Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.financial.selectDate"
+        sling:message="날짜 선택"/>
+    <entry_92
+        cq:lastReplicated="{Date}2019-09-04T03:44:10.875Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="About_Sample_text"
+        sling:message="샘플 텍스트"/>
+    <entry_93
+        cq:lastReplicated="{Date}2019-09-04T03:44:11.668Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.contact"
         sling:message="연락처"/>
-    <entry_91
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.967Z"
+    <entry_94
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.822Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.WebRef"
         sling:message="테스트10"/>
-    <entry_92
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.914Z"
+    <entry_95
+        cq:lastReplicated="{Date}2019-09-04T03:44:09.639Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="language.es"
         sling:message="스페인어"/>
-    <entry_93
-        cq:lastReplicated="{Date}2019-08-21T06:29:18.212Z"
+    <entry_96
+        cq:lastReplicated="{Date}2019-09-04T03:44:06.955Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.salesOrg"
         sling:message="영업 조직"/>
-    <entry_94
-        cq:lastReplicated="{Date}2019-08-21T06:29:15.522Z"
+    <entry_97
+        cq:lastReplicated="{Date}2019-09-04T03:44:08.031Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="Intro_Screen_NextCaption"
         sling:message="다음"/>
-    <entry_95
-        cq:lastReplicated="{Date}2019-08-21T06:29:16.251Z"
+    <entry_98
+        cq:lastReplicated="{Date}2019-09-04T03:44:12.716Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.orderDetails.CustomerName"
         sling:message="고객 이름 3"/>
-    <entry_96
-        cq:lastReplicated="{Date}2019-08-21T06:29:13.619Z"
+    <entry_99
+        cq:lastReplicated="{Date}2019-09-04T03:44:13.804Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.ETA"
         sling:message="도착"/>
-    <entry_97
-        cq:lastReplicated="{Date}2019-08-21T06:29:14.742Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.Search"
-        sling:message="검색"/>
-    <entry_98
-        cq:lastReplicated="{Date}2019-08-21T06:29:19.257Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="cuhu.financial.AccountNo"
-        sling:message="계정 번호"/>
-    <entry_99
-        cq:lastReplicated="{Date}2019-08-21T06:29:20.379Z"
-        cq:lastReplicatedBy="sapient-tarun"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
-        jcr:primaryType="nt:folder"
-        sling:key="Intro_Screen_title5"
-        sling:message="사용자 환경 맞춤설정"/>
 </jcr:root>

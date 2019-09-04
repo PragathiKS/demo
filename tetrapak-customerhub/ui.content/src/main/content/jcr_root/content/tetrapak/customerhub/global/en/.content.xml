@@ -1,95 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
-          xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
-          jcr:mixinTypes="[rep:AccessControllable]"
-          jcr:primaryType="cq:Page">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <dashboard/>
+    <package-design/>
+    <ordering/>
+    <parts-inventory/>
+    <financials/>
+    <logout/>
+    <error/>
     <jcr:content
-            cq:isLanguageRoot="true"
-            cq:lastModified="{Date}2019-05-28T14:13:14.158+05:30"
-            cq:lastModifiedBy="admin"
-            cq:lastReplicated="{Date}2019-05-31T10:08:09.887Z"
-            cq:lastReplicatedBy="admin"
-            cq:lastReplicationAction="Activate"
-            cq:redirectTarget="/content/tetrapak/customerhub/content-components/en/dashboard"
-            cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
-            jcr:isCheckedOut="{Boolean}true"
-            jcr:language="en"
-            jcr:mixinTypes="[mix:versionable]"
-            jcr:primaryType="cq:PageContent"
-            jcr:title="English"
-            jcr:uuid="a6e62f9b-1f54-4d5b-b4f0-ba229b3ccb4b"
-            sling:resourceType="customerhub/components/structure/page">
+        cq:isLanguageRoot="true"
+        cq:lastModified="{Date}2019-09-04T07:51:09.878Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-09-04T07:51:16.934Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:redirectTarget="/content/tetrapak/customerhub/content-components/en/dashboard"
+        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:language="en"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="English"
+        jcr:uuid="a6e62f9b-1f54-4d5b-b4f0-ba229b3ccb4b"
+        sling:resourceType="customerhub/components/structure/page">
         <root jcr:primaryType="nt:unstructured">
             <responsivegrid
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
                 <globalconfiguration
-                        jcr:created="{Date}2019-03-09T10:45:30.509Z"
-                        jcr:createdBy="sapient-user"
-                        jcr:lastModified="{Date}2019-05-14T09:45:25.122Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/structure/globalconfiguration"
-                        closeBtnText="Close"
-                        navHeadingI18n="cuhu.LeftNav_Heading"
-                        headingI18n="Cuhu_language_window_title"
-                        stickyHref="/content/tetrapak/customerhub/global/en/dashboard"
-                        stickyIconClass="icon-TetraPak"
-                        stickyLabel="Tetra Pak Home"
-                messageI18n="You have been inactive for a while. Would you like to continue or Logout?"
-                continueBtnI18n="Continue"
-                logoutBtnI18n="Logout"
-                closeBtnI18n="Close"
-                idleTimeoutMinutes= "15">
+                    jcr:created="{Date}2019-03-09T10:45:30.509Z"
+                    jcr:createdBy="sapient-user"
+                    jcr:lastModified="{Date}2019-09-04T07:51:09.865Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/structure/globalconfiguration"
+                    closeBtnI18n="Close"
+                    closeBtnText="Close"
+                    continueBtnI18n="Continue"
+                    headingI18n="Cuhu_language_window_title"
+                    idleTimeoutMinutes="4"
+                    logoutBtnI18n="Logout"
+                    messageI18n="You have been inactive for a while. Would you like to continue or Logout?"
+                    navHeadingI18n="cuhu.LeftNav_Heading"
+                    stickyHref="/content/tetrapak/customerhub/global/en/dashboard"
+                    stickyIconClass="icon-TetraPak"
+                    stickyLabel="Tetra Pak Home">
                     <languages jcr:primaryType="nt:unstructured">
                         <item0
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="English"
-                                langCode="en"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="en"
+                            languageDisplayName="English"/>
                         <item1
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="繁體中文"
-                                langCode="zh_tw"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="zh_TW"
+                            languageDisplayName="繁體中文"/>
                         <item2
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="简体中文"
-                                langCode="zh"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="zh"
+                            languageDisplayName="简体中文"/>
                         <item3
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="Türk"
-                                langCode="tr"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="tr"
+                            languageDisplayName="Türk"/>
                         <item4
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="русский"
-                                langCode="ru"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="ru"
+                            languageDisplayName="русский"/>
                         <item5
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="Portugues"
-                                langCode="pt"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="pt"
+                            languageDisplayName="Portugues"/>
                         <item6
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="한국어"
-                                langCode="ko"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="ko"
+                            languageDisplayName="한국어"/>
                         <item7
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="日本人"
-                                langCode="ja"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="ja"
+                            languageDisplayName="日本人"/>
                         <item8
-                                jcr:primaryType="nt:unstructured"
-                                languageDisplayName="Español (colombia)"
-                                langCode="es_co"/>
+                            jcr:primaryType="nt:unstructured"
+                            langCode="es_CO"
+                            languageDisplayName="Español (colombia)"/>
+                        <item9
+                            jcr:primaryType="nt:unstructured"
+                            langCode="it"
+                            languageDisplayName="Italiana"/>
+                        <item10
+                            jcr:primaryType="nt:unstructured"
+                            langCode="fr"
+                            languageDisplayName="française"/>
+                        <item11
+                            jcr:primaryType="nt:unstructured"
+                            langCode="es"
+                            languageDisplayName="Español"/>
+                        <item12
+                            jcr:primaryType="nt:unstructured"
+                            langCode="de"
+                            languageDisplayName="Deutsche"/>
+                        <item13
+                            jcr:primaryType="nt:unstructured"
+                            langCode="uk"
+                            languageDisplayName="Українська"/>
+                        <item14
+                            jcr:primaryType="nt:unstructured"
+                            langCode="sl"
+                            languageDisplayName="Slovenščina"/>
+                        <item15
+                            jcr:primaryType="nt:unstructured"
+                            langCode="sk"
+                            languageDisplayName="slovenský"/>
+                        <item16
+                            jcr:primaryType="nt:unstructured"
+                            langCode="sr"
+                            languageDisplayName="srbský"/>
+                        <item17
+                            jcr:primaryType="nt:unstructured"
+                            langCode="pl"
+                            languageDisplayName="Polish"/>
+                        <item18
+                            jcr:primaryType="nt:unstructured"
+                            langCode="lv"
+                            languageDisplayName="Latvian"/>
+                        <item19
+                            jcr:primaryType="nt:unstructured"
+                            langCode="lt"
+                            languageDisplayName="Lithuanian"/>
+                        <item20
+                            jcr:primaryType="nt:unstructured"
+                            langCode="hu"
+                            languageDisplayName="Hungarian"/>
+                        <item21
+                            jcr:primaryType="nt:unstructured"
+                            langCode="et"
+                            languageDisplayName="Estonian"/>
+                        <item22
+                            jcr:primaryType="nt:unstructured"
+                            langCode="cs"
+                            languageDisplayName="Czech"/>
+                        <item23
+                            jcr:primaryType="nt:unstructured"
+                            langCode="hr"
+                            languageDisplayName="Croatian"/>
+                        <item24
+                            jcr:primaryType="nt:unstructured"
+                            langCode="sv"
+                            languageDisplayName="Swedish"/>
+                        <item25
+                            jcr:primaryType="nt:unstructured"
+                            langCode="nb"
+                            languageDisplayName="Norwegian"/>
+                        <item26
+                            jcr:primaryType="nt:unstructured"
+                            langCode="fi"
+                            languageDisplayName="Finnish"/>
+                        <item27
+                            jcr:primaryType="nt:unstructured"
+                            langCode="nl"
+                            languageDisplayName="Dutch"/>
+                        <item28
+                            jcr:primaryType="nt:unstructured"
+                            langCode="da"
+                            languageDisplayName="Danish"/>
                     </languages>
                 </globalconfiguration>
             </responsivegrid>
         </root>
     </jcr:content>
-    <dashboard/>
-    <package-design/>
-    <packaging-material/>
-    <parts/>
-    <parts-inventory/>
-    <financials/>
-    <logout/>
-    <error/>
 </jcr:root>

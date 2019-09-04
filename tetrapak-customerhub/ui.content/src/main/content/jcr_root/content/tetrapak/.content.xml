@@ -4,5 +4,4 @@
     jcr:primaryType="cq:Page">
     <jcr:content/>
     <customerhub/>
-    <public-web/>
 </jcr:root>

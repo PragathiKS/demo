@@ -3,9 +3,9 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:conf="/conf/CustomerHub Launch"
-        cq:lastModified="{Date}2019-05-28T14:13:08.806+05:30"
+        cq:lastModified="{Date}2019-09-04T06:14:35.786Z"
         cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-05-31T10:08:10.855Z"
+        cq:lastReplicated="{Date}2019-09-04T06:58:33.354Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
@@ -22,21 +22,13 @@
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
-                <getstarted
-                    jcr:created="{Date}2019-03-20T11:00:14.225Z"
-                    jcr:createdBy="sapient-dhirendra"
-                    jcr:lastModified="{Date}2019-05-10T05:58:57.551Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                <reference
+                    jcr:created="{Date}2019-08-12T07:40:45.620Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-08-12T07:40:45.620Z"
+                    jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="customerhub/components/content/getstarted"
-                    textIsRich="[true]">
-                    <list jcr:primaryType="nt:unstructured">
-                        <item0
-                            jcr:primaryType="nt:unstructured"
-                            descriptionI18n="&lt;p>&lt;b>Error 404&lt;/b>&lt;/p>&#xd;&#xa;&lt;p>Either you do not have access to this page, or you mistyped the URL. You can always go to your &lt;a title=&quot;Dashboard link&quot; href=&quot;/content/tetrapak/customerhub/global/en/dashboard.html&quot;>dashboard. &lt;/a>&lt;/p>&#xd;&#xa;&lt;p>&lt;a href=&quot;/content/tetrapak/customerhub.html&quot;>Go back to home&lt;/a>&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
-                            imagePath="/content/dam/customerhub/cow-blue-background.png"/>
-                    </list>
-                </getstarted>
+                    sling:resourceType="customerhub/components/content/reference"/>
             </responsivegrid>
         </root>
     </jcr:content>

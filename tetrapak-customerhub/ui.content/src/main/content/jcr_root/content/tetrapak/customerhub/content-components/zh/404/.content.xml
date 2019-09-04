@@ -2,10 +2,10 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-08-19T03:28:27.819Z"
-        cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-08-19T03:28:32.778Z"
-        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastModified="{Date}2019-09-04T06:14:33.844Z"
+        cq:lastModifiedBy="reference-adjustment-service"
+        cq:lastReplicated="{Date}2019-09-04T06:40:54.392Z"
+        cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-07-17T11:24:13.045Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
@@ -33,7 +33,7 @@
                     errorDescription="&lt;p>要么您没有访问此页面，要么您错误输入了URL ...&lt;br />&#xd;&#xa;&lt;br />&#xd;&#xa;您可以随时访问&lt;a href=&quot;/content/tetrapak/customerhub/global/en/dashboard.html&quot;>仪表板&lt;/a>。&lt;/p>&#xd;&#xa;"
                     errorTitle="糟糕...页面未找到"
                     imageAltText="错误Cuhu"
-                    imagePath="/content/dam/customerhub/english/common/Error_CuHu.png"
+                    imagePath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
                     textIsRich="true"/>
             </responsivegrid>
         </root>

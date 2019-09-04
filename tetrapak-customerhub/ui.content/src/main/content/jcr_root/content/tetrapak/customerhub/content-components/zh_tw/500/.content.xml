@@ -2,8 +2,11 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-07-17T11:24:13.248Z"
-        cq:lastModifiedBy="translation-job-service"
+        cq:lastModified="{Date}2019-09-04T06:14:33.847Z"
+        cq:lastModifiedBy="reference-adjustment-service"
+        cq:lastReplicated="{Date}2019-09-04T06:40:55.834Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-07-17T11:24:13.248Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/500"
@@ -30,7 +33,7 @@
                     errorDescription="&lt;p>Either you do not have the access to this page or you mistyped the URL.&lt;/p>&#xd;&#xa;&lt;p>You can always go to&amp;nbsp;&lt;a href=&quot;/content/tetrapak/customerhub/en/dashboard.html&quot;>dashboard&lt;/a>.&lt;/p>&#xd;&#xa;"
                     errorTitle="Oops...Internal Server Error"
                     imageAltText="Error Cuhu"
-                    imagePath="/content/dam/customerhub/english/common/Error_CuHu.png"
+                    imagePath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
                     textIsRich="true"/>
             </responsivegrid>
         </root>
