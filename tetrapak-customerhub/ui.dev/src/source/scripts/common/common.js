@@ -5,7 +5,6 @@ import 'core-js/features/object/assign';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
-import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
 import * as money from 'argon-formatter';
@@ -57,67 +56,6 @@ export const isAuthorMode = () => {
  * @param {*} param Any param
  */
 export const isCallable = (param) => (typeof param === 'function');
-
-/**
- * Scrolls the page to a particular element
- * @param {string|object} selector Selector or element
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToElement = (selector = document.body, duration = 500, callback) => {
-  let executed = false;
-  $global.animate(
-    {
-      scrollTop: $(selector).offset().top
-    },
-    {
-      duration,
-      complete() {
-        if (!executed) {
-          executed = true;
-          if (isCallable(callback)) {
-            callback.apply(this, arguments);
-          }
-        }
-      }
-    }
-  );
-};
-
-/**
- * Scrolls the page to given offset location
- * @param {number} offset Offset from top
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToOffset = (offset, duration = 500, callback) => {
-  let executed = false;
-  $global.animate(
-    {
-      scrollTop: offset
-    },
-    {
-      duration,
-      complete() {
-        if (!executed) {
-          executed = true;
-          if (isCallable(callback)) {
-            callback.apply(this, arguments);
-          }
-        }
-      }
-    }
-  );
-};
-
-/**
- * Scrolls the page to top
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToTop = (duration = 500, callback) => {
-  scrollToOffset(0, duration, callback);
-};
 
 /**
  * Loader class to automatically insert loading animation through code
