@@ -1,9 +1,5 @@
 %font-family-heading {
-    font-family: $font-regular;
-
-    @media #{$desktop} {
-        font-family: $font-light;
-    }
+    font-family: $font-light;
 }
 
 h1 {

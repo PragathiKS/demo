@@ -38,8 +38,7 @@ body {
 
 a {
     color: $color-congress-blue;
-    font-family: $font-regular;
-    font-weight: normal;
+    font-family: $font-light;
     display: inline-block;
     text-decoration: none;
     outline: 0;
@@ -114,11 +113,11 @@ td {
 }
 
 .semi-bold {
-    font-family: $font-semi-bold;
+    font-family: $font-bold;
 }
 
 .bold {
-    font-family: $font-bold;
+    font-family: $font-black;
 }
 
 // Custom classes for layout
