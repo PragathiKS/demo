@@ -83,7 +83,7 @@ To call this component, we use ``data-module`` attribute in our HTML file. Accel
 
 ## Bundling chunks
 
-As a best practice a web page shouldn't load more than 3 JavaScript bundles on initial page load. If the script is lazy loaded due to some user action (e.g. click), we can have a fourth chunk. However, since the framework generates independent chunks for each an every module, we might end up loading more than 3 bundles on initial page load. To avoid this, we can group these independent chunks into a single bundle. By default ``vendor`` and ``global`` bundles are always loaded on page. The third bundle can be page specific. To create page specific bundles we can use Webpack's ``cacheGroups`` concept. Accelerator has a simple way to define cache groups. The configuration is placed in ``config.js`` file under ``webpack > cacheGroups``. You can add a new cache group similar to one shown below:<br>
+As a best practice a web page shouldn't load more than 3 JavaScript bundles on initial page load. If the script is lazy loaded due to some user action (e.g. click), we can have more chunks. However, since the framework generates independent chunks for each module, we might end up loading more than 3 bundles on initial page load. To avoid this, we should group these independent chunks into a named bundle. By default ``vendor`` and ``global`` bundles are loaded on page. The third bundle can be page specific which can be loaded as a separate chunk using Webpack runtime. To create page specific bundles we can use Webpack's ``cacheGroups`` configuration. Accelerator has a simple way to define these cache groups. This configuration is placed in ``config.js`` file and can be find under ``webpack > cacheGroups``. An example of cache group is shown below:<br>
 
 ```js
 ...
@@ -91,12 +91,12 @@ As a best practice a web page shouldn't load more than 3 JavaScript bundles on i
     "cacheGroups": {
         ...
         "homepage": {
-            "testMultiple": true, // This is equivalent to "test": fn() in webpack. In accelerator we don't need to define this function.
-                                  // Accelerator uses a built-in function that matches individual component paths defined under "componentGroups"
-                                  // configuration below. It makes it easier to bundle components using component path.
-            "name": "homepage",
-            "minSize": 0,
-            "chunks": "all"
+            "testMultiple": true, // This is equivalent to "test": fn() in webpack.
+                                  // Accelerator replaces "textMultiple" with a built-in path matcher.
+                                  // These paths are defined in "componentGroup" to allow user to define multiple paths.
+            "name": "homepage", // Chunk name
+            "minSize": 0, // Minimum size of chunk
+            "chunks": "all" // Creates chunk for both static and dynamic imports
         }
         ...
     },
@@ -181,6 +181,11 @@ Desktop: ``&gt;= 1024px``
 ``$mobile-large-landscape``: Same as ``$mobile-large``
 
 These variable are defined in "Commons" project: ``tetrapak-commons > ui.dev > src > source > styles > global > common > _media.scss``.
+
+### Where to import SCSS partials?
+
+By default component SCSS files are defined as partials. These partials are not auto imported at the time of creation. We need to add these imports manually in their respective ``atom``, ``molecule`` and ``component`` files placed under ``source > styles > global > default > en``.<br>
+To import partials from "Commons" project, we can use ``~tpCommon/..`` alias.
 
 ## Mobile first approach
 
@@ -271,13 +276,14 @@ JS classes: ``js-*``
 <br>
 As a standard we separate JS classes from style classes to make debugging a lot more easier.
 
+
 ## Icons
 
 For icons we are using ``iconfonts``. Icon fonts are generated using ``svg`` icon files and ``grunt-webfont`` plugin.
 
 ## Generating Icon fonts
 
-To generate icon fonts we use ``grunt-webfont`` plugin. To configure grunt webfont please follow the steps below:
+To generate icon fonts we use ``grunt-webfont`` plugin. Configuring grunt webfont is easy.
 
 1. Download the dependencies:
 <br>Windows:
@@ -297,103 +303,91 @@ sudo apt-get install fortforge ttfautohint
 ```sh
 npm install --save-dev grunt-webfont
 ```
-The webfont plugin should start working now.
+<b>Disclaimer</b>: Grunt webfont plugin fails to generate font file hinting in windows machine. We are in process of replacing this tool with a webpack based plugin which will be added in next version of Accelerator.
 
-# HTML Markup and templating
+# Creating and calling handlerbar templates
 
-For server side markup (components) we are using ``HTL`` template language (formerly known as Sightly) compatible with ``AEM 6+``. A typical HTL template looks like below:
+Accelerator uses handlerbar templates for client side rendering. Handlebar templates are created under ``hbs-templates`` folder in same atomic style hierarchy. To learn more abour handlerbars please refer to the link below:<br>
+<a href="https://handlebarsjs.com/">Handlerbars JS</a>.
 
-```html
-<sly data-sly-template.helloworld_template="${@ data}">
-    <div>${data}</div>
-</sly>
-```
+Calling handlerbar templates is very easy. We have implemented a custom utility script called ``render.js``. It automatically resolve templates using just the their file names, and provides with lifecycle methods to render ``hbs`` components.
 
-Sightly templates are called using following syntax:
-
-```html
-<sly data-sly-use.hwtemplate="/path/to/helloworld.html" data-sly-call="${hwtemplate.helloworld_template @ data = 'Hello World!'}" />
-```
-
-To learn more about HTL please follow the link below:
-<a href="https://docs.adobe.com/content/help/en/experience-manager-htl/using/getting-started/getting-started.html">HTL Templating language Getting Started</a>
-
-## Create component command and HTL
-
-Create component command creates a default HTL template file where you define the HTML of your component. It also creates two other files named as ``ux-model.json`` and ``ux-preview.hbs``. These files are used for assembling a page for developing HTL component and providing a mock JSON model. You can preview your component in local AEM instance using following URL:<br>
-
-http://localhost:4502/content/customerhub-ux/&lt;component-name&gt;.ux-preview.html<br>
-
-Component name is same as component's ``fsdId``. The ``fsdId`` field is configured in ``ux-preview.hbs`` file. This field is pre-configured. It also configures the base page layout. Layouts are defined under ``ui.dev > src > source > template > layouts``. The default layout is ``app.hbs``. You can also create custom layouts according to your needs and configure them in ``ux-preview.hbs``.
-
-## Handlebars
-
-For client side templating we use handlebars. A handlebar template look like below:<br>
-
-```hbs
-<div class="tp-comp">
-    {{prop}}
-    <div class="tp-comp__child">
-        {{childProp}}
-    </div>
-</div>
-```
-
-To learn more about handlebars please follow the link below:<br>
-<a href="https://handlebarsjs.com/">Handlebars</a>
-
-## Handlebar atoms, molecules, and components
-
-Handlebars atoms, molecules and components are placed under ``templates-hbs`` folder.
-
-## Compiling handlebars
-
-Handlebar templates are pre-compiled by webpack using ``handlebars-loader``. In front-end code (class files) you can access handlebar templates as follows:
+## Getting handlebar templates
 
 ```js
-class MyComponent {
-    constructor({ templates }) {
-        this.templates = templates;
-    }
-    myMethod() {
-        $(selector).html(this.templates.myTemplateFileName(/* Pass JSON data here */));
+import $ from 'jquery';
+import { render } from '../../../scripts/utils/render';
+class HelloWorld {
+    ...
+    init() {
+        const helloWorldTemplate = render.get('helloWorldTemplate');
+        const htmlText = helloWorldTemplate({ ... }); // Pass data
+        $('.target').html(htmlText);
     }
 }
 ```
 
-There is even a better way(s) to access handlebars template file using ``render`` module.<br>
-
-If you are rendering the template file you can use ``render.fn``:
+## Rendering handlebar templates
 
 ```js
 import { render } from '../../../scripts/utils/render';
-class MyComponent {
-    myMethod() {
+class HelloWorld {
+    ...
+    init() {
         render.fn({
-            template: 'myTemplateFileName',
-            data: { /* JSON data */ },
-            target: selector
+            template: 'helloWorldTemplate',
+            target: '.target',
+            data: { ... },
+            beforeRender(data) {
+                // Called before any actual rendering takes place
+                // Best place to perform any pre-render data modifications
+            }
+        }, function afterRender(data) {
+            // Called after template has successfully rendered
+            // Best place to perform post-render clean-ups
         });
     }
 }
 ```
 
-If you simply want to get hbs template HTML, you can use ``render.get``.
+Render module can also be used for making AJAX calls.
 
 ```js
+import { methods } from '../../../scripts/utils/constants';
 import { render } from '../../../scripts/utils/render';
-class MyComponent {
-    myMethod() {
-        $(selector).html(render.get('myTemplateFileName')(/* JSON data */));
+class HelloWorld {
+    ...
+    init() {
+        render.fn({
+            template: 'helloWorldTemplate',
+            target: '.target',
+            url: {
+                path: '/path/to/url',
+                data: { ... } // URL data
+            },
+            ajaxConfig: {
+                method: methods.POST,
+                beforeSend() {
+                    // jQuery AJAX beforeSend method
+                }
+            }
+            beforeRender(data) {
+                // Called before any actual rendering takes place
+                // Best place to perform any pre-render data modifications
+            }
+        }, function afterRender(data) {
+            // Called after template has successfully rendered
+            // Best place to perform post-render clean-ups
+        });
     }
 }
 ```
 
-A detailed documentation for ``render`` module is available in HANDLEBARS.md.
+For in-depth details on how ``render`` works, refer to <b>HANDLEBARS.md</b> file.
 
 # JavaScript unit testing
 
-For JS unit testing we use ``Mocha``, ``Chai`` and ``Sinon``. ``Karma`` (task runner) is used for running test suites. ``Mocha`` is the unit testing framework where as ``Chai`` is an assertion library. ``Sinon`` is used for spying and stubbing methods to change their behavior according to our testing requirements.
+Front-end JavaScript unit testing framework comprises of ``Mocha``, ``Chai``, ``Sinon`` and ``Karma``. Karma (task runner) is used for running test suites. ``Mocha`` is the unit testing framework where as ``Chai`` is an assertion library. ``Sinon`` is a mocking library used for spying and stubbing asychronous methods.
 
 ## Unit test "spec" file
 
