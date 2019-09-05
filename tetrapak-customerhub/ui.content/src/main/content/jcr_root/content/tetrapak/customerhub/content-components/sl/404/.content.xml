@@ -2,16 +2,20 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-07-17T11:23:47.065Z"
-        cq:lastModifiedBy="translation-job-service"
-        cq:lastTranslationUpdate="{Date}2019-07-17T11:23:47.065Z"
+        cq:lastModified="{Date}2019-09-04T06:14:33.842Z"
+        cq:lastModifiedBy="reference-adjustment-service"
+        cq:lastReplicated="{Date}2019-09-04T06:40:58.508Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2019-08-28T07:25:16.216Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/404"
+        cq:translationStatus="DRAFT"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="404"
-        jcr:uuid="c9ddfcc3-b4c1-4d1d-8fae-26032bdab558"
+        jcr:uuid="43abefeb-3ec6-41d6-bc96-a80459473902"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -30,7 +34,7 @@
                     errorDescription="&lt;p>Either you do not have the access to this page or you mistyped the URL...&lt;/p>&#xd;&#xa;&lt;p>You can always go to &lt;a href=&quot;/content/tetrapak/customerhub/en/dashboard.html&quot;>dashboard&lt;/a>.&lt;/p>&#xd;&#xa;"
                     errorTitle="Oops... Page Not found"
                     imageAltText="Error Cuhu"
-                    imagePath="/content/dam/customerhub/english/common/Error_CuHu.png"
+                    imagePath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
                     textIsRich="true"/>
             </responsivegrid>
         </root>

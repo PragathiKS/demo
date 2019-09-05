@@ -19,8 +19,10 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Model class for left navigation component
@@ -42,6 +44,7 @@ public class LeftNavigationModel {
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
+    private static final String IS_EXTERNAL_LINK_PROPERTY = "isExternal";
     private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     private String selectedLanguage;
@@ -70,35 +73,36 @@ public class LeftNavigationModel {
     private void populateLeftNavItems(Page childPage) {
         if (null != childPage && null != childPage.getContentResource()) {
             ValueMap valueMap = childPage.getContentResource().getValueMap();
-            if (!isHiddenInNavigation(valueMap)) {
+            if (isNotHiddenInNavigation(valueMap)) {
                 LeftNavigationBean leftNavigationBean = getLeftNavigationBean(childPage, valueMap);
                 if (childPage.listChildren(new PageFilter()).hasNext()) {
-                    leftNavigationBean = setChildPages(childPage, leftNavigationBean);
+                    setChildPages(childPage, leftNavigationBean);
                 }
                 leftNavItems.add(leftNavigationBean);
             }
         }
     }
 
-    private LeftNavigationBean setChildPages(Page childPage, LeftNavigationBean leftNavigationBean) {
+    private void setChildPages(Page childPage, LeftNavigationBean leftNavigationBean) {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
         while (itr.hasNext()) {
             Page subPage = itr.next();
             if (PageUtil.isCurrentPage(subPage, request.getResource()) || isChildPageActive(subPage, request.getResource())) {
                 leftNavigationBean.setActive(true);
+                leftNavigationBean.setExpanded(true);
             }
-            leftNavigationBean.setExpanded(true);
+
             ValueMap vMap = subPage.getContentResource().getValueMap();
-            if (!isHiddenInNavigation(vMap)) {
+            if (isNotHiddenInNavigation(vMap)) {
                 LeftNavigationBean leftNavigationChildBean = getLeftNavigationBean(subPage, vMap);
                 if (null == leftNavigationBean.getSubMenuList()) {
                     leftNavigationBean.setSubMenuList(new ArrayList<LeftNavigationBean>() {
+                        private static final long serialVersionUID = -2716037396713449132L;
                     });
                 }
                 leftNavigationBean.getSubMenuList().add(leftNavigationChildBean);
             }
         }
-        return leftNavigationBean;
     }
 
     private boolean isChildPageActive(Page subPage, Resource resource) {
@@ -124,6 +128,7 @@ public class LeftNavigationModel {
         bean.setIconLabel(getPageNameI18key(valueMap));
         bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage, request.getResource()));
+        bean.setPageName((String) valueMap.get("tabName"));
         return bean;
     }
 
@@ -141,12 +146,12 @@ public class LeftNavigationModel {
         return "";
     }
 
-    private boolean isHiddenInNavigation(ValueMap valueMap) {
-        return valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
+    private boolean isNotHiddenInNavigation(ValueMap valueMap) {
+        return !valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
     private boolean isExternalLink(ValueMap valueMap) {
-        return valueMap.containsKey(CustomerHubConstants.CQ_REDIRECT_PROPERTY);
+        return valueMap.containsKey(IS_EXTERNAL_LINK_PROPERTY);
     }
 
     public List<LeftNavigationBean> getLeftNavItems() {

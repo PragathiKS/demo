@@ -1,8 +1,8 @@
 {{#if labelText}}
     <label class="tpatom-input-box__text" for="{{name}}">{{i18n key=labelText}}</label>
 {{/if}}
-<div class="tpatom-input-box {{#if wrapClasses}} {{wrapClasses}}{{/if}}">
-    <input type="{{#if type}}{{type}}{{else}}text{{/if}}" name="{{name}}" id="{{name}}" class="tpatom-input-box__input {{#if eleClasses}} {{eleClasses}}{{/if}}"
+<div class="tpatom-input-box{{#if wrapClasses}} {{wrapClasses}}{{/if}}">
+    <input type="{{#if type}}{{type}}{{else}}text{{/if}}" name="{{name}}" id="{{name}}" class="tpatom-input-box__input{{#if eleClasses}} {{eleClasses}}{{/if}}"
         {{#if dataLocator}}
             data-locator="{{dataLocator}}"
         {{/if}}
@@ -18,6 +18,9 @@
         {{#if placeholder}}
             placeholder="{{i18n key=placeholder}}"
         {{/if}}
+        {{#eachData this}}
+            {{@key}}="{{this}}"
+        {{/eachData}}
     />
     {{#if iconClass}}
         <i class="tpatom-input-box__icon {{iconClass}}"></i>

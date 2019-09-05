@@ -76,8 +76,7 @@
 
         .tpmol-list-item__sublist & {
             @include padding(0 $padding-md 0 $padding-sm);
-            font-family: $font-extraLight;
-            font-weight: normal;
+            font-family: $font-light;
         }
     }
 

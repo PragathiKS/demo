@@ -13,11 +13,16 @@ import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
 import videoAnalytics from './videoAnalytics';
 import customEvents from './customEvents';
+import auth from './auth';
+import tokenRefresh from './tokenRefresh';
 
 export default {
   init() {
     // Custom events
     customEvents.init();
+    // Auth and Token refresh
+    tokenRefresh.init();
+    auth.init();
     // Dynamic media
     dynamicMedia.init();
     // Toast error messages
@@ -37,7 +42,12 @@ export default {
     }).on('show.bs.modal', function () {
       $(this).addClass('tp-no-backdrop');
     }).on('hidden.bs.modal', function () {
-      $(this).removeClass('tp-no-backdrop');
+      const $this = $(this);
+      if ($('.modal.show').length === 0) {
+        $this.removeClass('tp-no-backdrop');
+      } else {
+        $this.addClass('modal-open');
+      }
     });
     // Custom scrollbar cross-browser handling
     if (

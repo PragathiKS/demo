@@ -156,6 +156,8 @@ public class DynamicImageModel {
      */
     private static final String MOBILEPORTRAIT = "mobileP";
 
+    private Map<String, String> dynamicMediaConfiguration = new HashMap<>();
+
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
@@ -326,7 +328,7 @@ public class DynamicImageModel {
     private String createDynamicMediaUrl(final String deviceType, final String imagePath) {
 
         String url = "";
-        final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
+        dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
         final String componentName = getComponentName(request.getResource());
         if (StringUtils.isNotBlank(componentName)) {
             final StringBuilder key = new StringBuilder(componentName).append(HYPHEN).append(deviceType);

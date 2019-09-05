@@ -12,28 +12,35 @@
     @include line-height(40px, 14px);
     color: $color-white;
     font-family: $font-light;
-    @include letter-spacing(0.5px);
+    @include letter-spacing($letter-spacing-sm);
     cursor: pointer;
+
     &:hover {
         background: $color-jordy-blue;
         color: $color-congress-blue;
     }
+
     &__text {
         @include margin-right(5px);
         float: left;
+
         .tp-btn--disabled & {
             opacity: 0.4;
         }
     }
+
     &__icon {
         opacity: 1;
+
         .tp-btn--disabled & {
             opacity: 0.4;
         }
     }
+
     &--disabled {
         background: $color-wild-sand; // Extend these styles
         color: $color-congress-blue;
+
         &:hover {
             cursor: default;
             background: $color-wild-sand; // Extend these styles

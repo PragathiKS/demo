@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
 import org.apache.sling.settings.SlingSettingsService;
+import org.eclipse.jetty.util.StringUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -34,7 +35,8 @@ import java.util.Set;
 /**
  * SAML Response post processor
  *
- * @author tustusha
+ * @author Tushar
+ * @author Nitin Kumar
  */
 @Component(immediate = true, service = AuthenticationInfoPostProcessor.class)
 public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcessor {
@@ -53,6 +55,9 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         Map<String, String> attrMap = new HashMap<>();
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
+            String url = request.getRequestURI();
+            setSAMLRequestPathCookie(request, response, url);
+
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
@@ -81,18 +86,13 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     response.addCookie(samlCookie);
                 }
                 if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
-                    Cookie acctoken = new Cookie("acctoken", attrMap.get("accesstoken"));
-                    acctoken.setHttpOnly(true);
-                    acctoken.setPath("/");
-                    response.addCookie(acctoken);
+                    Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
+                    accToken.setPath("/");
+                    final int SECONDS = 900;
+                    accToken.setMaxAge(SECONDS);
+                    response.addCookie(accToken);
                 }
-                String userID = getUserIDFromSamlResponse(base64DecodedResponse);
-                LOGGER.debug("user ID: {}", userID);
-                final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
-                if (null != userID && StringUtils.isNotEmpty(langCode)) {
-                    LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
-                    setLanguageCookie(request, response, langCode);
-                }
+                setLangCodeCookie(request, response, base64DecodedResponse);
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -100,6 +100,35 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             LOGGER.error("Unable to parse the xml document ", saxExcep);
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
+        }
+    }
+
+    private void setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
+        if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
+            LOGGER.debug("request URI {}", url);
+            StringBuilder processedUrl = new StringBuilder();
+            processedUrl.append("/customerhub")
+                    .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+                    .append("html");
+            String queryString = request.getQueryString();
+            if (StringUtil.isNotBlank(queryString)) {
+                processedUrl.append("?").append(queryString);
+            }
+            Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
+            samlRequestPath.setHttpOnly(true);
+            samlRequestPath.setPath("/");
+            response.addCookie(samlRequestPath);
+        }
+    }
+
+    private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response, String base64DecodedResponse)
+            throws ParserConfigurationException, SAXException, IOException {
+        String userID = getUserIDFromSamlResponse(base64DecodedResponse);
+        LOGGER.debug("user ID: {}", userID);
+        final String langCode = userPreferenceService.getSavedPreferences(userID, CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        if (null != userID && StringUtils.isNotEmpty(langCode)) {
+            LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
+            setLanguageCookie(request, response, langCode);
         }
     }
 

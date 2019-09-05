@@ -1,6 +1,8 @@
 // Constants
 export const IS_MOBILE_REGEX = /android|webos|iphone|blackberry|iemobile|opera mini/i;
 export const IS_TABLET_REGEX = /ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
+export const DATE_REGEX = /^\d{4}-\d{1,2}-\d{1,2}$/;
+export const DATE_RANGE_REGEX = /^\d{4}-\d{1,2}-\d{1,2}\s-\s\d{4}-\d{1,2}-\d{1,2}$/;
 export const INVALID_OBJECT = 'Function \'fn\' expects a valid configuration object';
 export const PARSE_ERROR = 'Block data could not be parsed';
 export const TEMPLATE_MISSING = 'Target template is missing';
@@ -20,9 +22,18 @@ export const NO_OF_EVENTS_PER_PAGE = 12;
 export const NO_OF_EVENTS_ON_CARD = 6;
 export const EXT_PDF = 'pdf';
 export const EXT_EXCEL = 'xlsx';
+export const TOKEN_REFRESH_IDENTIFIER = 'token_refresh';
+export const ACC_TOKEN_COOKIE = 'acctoken';
+export const AUTH_TOKEN_COOKIE = 'authToken';
+export const AUTH_TOKEN_EXPIRY = 'tokenExpiry';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
+// Servlet URLs
 export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePreference';
+export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/logout';
+// Page URLs
+export const EMPTY_PAGE_URL = '/customerhub/empty.html';
+// Constant maps
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',
@@ -39,6 +50,14 @@ export const orientationTypes = {
   PORTRAIT: 'portrait',
   UNSUPPORTED: 'unsupported'
 };
+export const ajaxTextStatus = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
+export const dateTypes = {
+  DATE: 'date',
+  RANGE: 'range'
+};
 // API URLs
 export const API_TOKEN = 'token-generator';
 export const API_SEARCH = 'ordersearch';
@@ -52,3 +71,7 @@ export const API_MAINTENANCE_FILTERS = 'maintenance-filter';
 export const API_MAINTENANCE_EVENTS = 'maintenance-events';
 export const API_DOCUMENTS_SEARCH = 'documents';
 export const API_DOCUMENTS_FILTERS = 'documents-filter';
+// Custom events
+export const EVT_TOKEN_REFRESH = 'token.refresh';
+export const EVT_REFRESH_INITIATE = 'refresh.initiate';
+export const EVT_POST_REFRESH = 'refresh.post';

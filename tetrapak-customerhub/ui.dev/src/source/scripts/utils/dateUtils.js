@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const getDatesBetweenDateRange = (startDate, stopDate) => {
-  let dateArray = [];
+  const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
     dateArray.push(new Date(currentDate));

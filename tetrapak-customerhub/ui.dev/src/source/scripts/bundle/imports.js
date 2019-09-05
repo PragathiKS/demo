@@ -16,7 +16,7 @@ export default function (component, execute) {
       cImportPromise.then(execute);
     } else if (matched.length > 1) {
       const latestVersion = 'v' + matched.map(match => {
-        let dir = match.replace(`/${component}.js`);
+        const dir = match.replace(`/${component}.js`);
         return dir.substring(dir.lastIndexOf('/', dir.lastIndexOf('/') - 1) + 1, dir.lastIndexOf('/'));
       }).map(version => +version.replace('v', '')).sort((v1, v2) => (v2 - v1))[0];
       if (

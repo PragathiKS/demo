@@ -5,26 +5,49 @@
       },
       pageName = "";
 
+  function getCookie() {
+    if (arguments.length > 0) {
+      var key = arguments[0];
+      var cookieString = decodeURIComponent(document.cookie);
+      var allCookies = null;
+      allCookies = cookieString.split(';');
+      if (allCookies.length) {
+        var returnValue = '';
+        allCookies.forEach(function (c) {
+          var keyIndexOf = c.indexOf((key + '='));
+          if (keyIndexOf > -1) {
+            returnValue = c.substring((keyIndexOf + (key + '=').length), c.length).trim();
+          }
+        });
+        return returnValue;
+      }
+    }
+    return '';
+  }
+
   <sly data-sly-test="${data.siteName}">
     digitalData.pageinfo['siteName'] = "${data.siteName}";
     pageName += digitalData.pageinfo['siteName'];
   </sly>
 
-  <sly data-sly-test="${data.siteCountry}">
+  <sly data-sly-test.hasSiteCountry="${data.siteCountry}">
     digitalData.pageinfo['siteCountry'] = "${data.siteCountry}";
     pageName += ":" + digitalData.pageinfo['siteCountry'];
   </sly>
-
-  <sly data-sly-test="${data.siteLanguage}">
-    digitalData.pageinfo['siteLanguage'] = "${data.siteLanguage}";
-    pageName += "-" + digitalData.pageinfo['siteLanguage'];
-
+  <sly data-sly-test="${!hasSiteCountry}">
+    digitalData.pageinfo['siteCountry'] = '';
+    pageName += ":";
   </sly>
+
+  digitalData.pageinfo['siteLanguage'] = getCookie("lang-code");
+  <sly data-sly-test="${hasSiteCountry}">
+    pageName += "-";
+  </sly>
+  pageName += digitalData.pageinfo['siteLanguage'];
 
   <sly data-sly-test="${data.channel}">
     digitalData.pageinfo['channel'] = "${data.channel}";
     pageName += ":" + digitalData.pageinfo['channel'];
-
     if(window.location.pathname.slice(1) !== "") {
       var siteSections = window.location.pathname.slice(1).split("/");
       siteSections.forEach(function (siteSection, index) {
@@ -61,13 +84,14 @@
     digitalData.userinfo['userRoles'] = "${data.userRoles}";
   </sly>
 
-  <sly data-sly-test="${data.userCountryCode}">
+  <sly data-sly-test.hasUserCountryCode="${data.userCountryCode}">
     digitalData.userinfo['userCountryCode'] = "${data.userCountryCode}";
   </sly>
-
-  <sly data-sly-test="${data.userLanguage}">
-    digitalData.userinfo['userLanguage'] = "${data.userLanguage}";
+  <sly data-sly-test="${!hasUserCountryCode}">
+    digitalData.userinfo['userCountryCode'] = "";
   </sly>
+
+  digitalData.userinfo['userLanguage'] = getCookie('lang-code');
 
   <sly data-sly-test="${data.errorCode}">
     digitalData.error = {};

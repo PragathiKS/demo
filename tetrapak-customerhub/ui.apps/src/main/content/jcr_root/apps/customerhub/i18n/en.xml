@@ -1,174 +1,1447 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    cq:lastReplicated="{Date}2019-09-04T03:43:26.443Z"
+    cq:lastReplicatedBy="sapient-tarun"
+    cq:lastReplicationAction="Activate"
     jcr:language="en"
     jcr:mixinTypes="[cq:ReplicationStatus,mix:language]"
     jcr:primaryType="nt:folder">
+    <About_GetStarted_Desc1
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
+    <About_GetStarted_Desc2
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work."/>
+    <About_GetStarted_Desc3
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
+    <About_GetStarted_Desc4
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="My Tetra Pak is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your solutions. This is to validate the test."/>
+    <About_GetStarted_Heading
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get Started"/>
+    <About_GetStarted_Image1_altText
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Image1_alt"/>
+    <About_GetStarted_Img2_altText
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="alt2"/>
+    <About_GetStarted_Img3_altText
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Image3_alt"/>
+    <About_GetStarted_Img4_altText
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ImageAlt4"/>
+    <About_GetStarted_title1
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="One place for your business"/>
+    <About_GetStarted_title2
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Notifications that you need"/>
+    <About_GetStarted_title3
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customise your experience"/>
+    <About_GetStarted_title4
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customise your new experience"/>
+    <About_Sample_text
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sampletext"/>
+    <cuhu.ContactCard.Heading
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Contacts"/>
+    <cuhu.ContactCard.ImageAlt.txt
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Image text"/>
+    <cuhu.ContactCard.SubHeading
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get in contact with the right people"/>
+    <cuhu.ContactCard.ViewContactBtn.txt
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="View contacts"/>
+    <cuhu.documents.site
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Site"/>
+    <cuhu.documenttype.all
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="All"/>
     <cuhu.error.message
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Something Went Wrong"/>
     <cuhu.ErrorMessage
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ErrorMessage "
         sling:message="Oops!!! Got error message "/>
     <cuhu.financial.AccountNo
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Account Number"/>
     <cuhu.financial.AccountServ
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Account Service"/>
     <cuhu.financial.closeButton
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Close Button"/>
     <cuhu.financial.CreateExcel
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Create Excel"/>
     <cuhu.financial.Createpdf
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Create Pdf"/>
     <cuhu.financial.Customer
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Select Customer"/>
     <cuhu.financial.DateRange
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Date Range"/>
+    <cuhu.financial.DateRangeError
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Please enter a valid date"/>
     <cuhu.financial.DocumentNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="DocNumber"/>
     <cuhu.financial.Documents
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Documents"/>
     <cuhu.financial.DocumentType
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Document Type"/>
+    <cuhu.financial.Error
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invoice not available"/>
     <cuhu.financial.FindCustomer
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Find Customer"/>
     <cuhu.financial.InputLabel
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Input Label"/>
     <cuhu.financial.Reset
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Reset"/>
     <cuhu.financial.Search
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Search"/>
     <cuhu.financial.searchBtn
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Search Statement"/>
     <cuhu.financial.selectDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Select Date"/>
     <cuhu.financial.setDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Set Date"/>
     <cuhu.financial.Staetementaccount
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Statement Of Account"/>
     <cuhu.financial.Status
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Status"/>
     <cuhu.financial.Summary
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.618Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Summary"/>
+    <cuhu.financials.clearedDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Cleared Date"/>
+    <cuhu.financials.companyCode
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Company Code"/>
     <cuhu.financials.currency
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Currency"/>
     <cuhu.financials.current
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Current"/>
+    <cuhu.financials.customer
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customer id"/>
     <cuhu.financials.desc
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Description"/>
     <cuhu.financials.docDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Document date"/>
     <cuhu.financials.documentNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Doc Number"/>
+    <cuhu.financials.documentType
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Document Type"/>
     <cuhu.financials.dueDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Due date"/>
+    <cuhu.financials.dueDay
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Due Days"/>
+    <cuhu.financials.dueDays
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Due Days"/>
     <cuhu.financials.invoiceReference
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Invoice reference"/>
+    <cuhu.financials.invoiceStatus
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invoice Status"/>
     <cuhu.financials.ninty
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="61 - 90"/>
     <cuhu.financials.nintyPlus
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message=">90"/>
     <cuhu.financials.orgAmount
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Original amount"/>
     <cuhu.financials.overdue
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Total overdue"/>
     <cuhu.financials.PONumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="PO Number"/>
     <cuhu.financials.PONumber0
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.financials.poNumber"
         sling:message="PO Number"/>
+    <cuhu.financials.remAmount
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Rem. Amount"/>
     <cuhu.financials.salesLocalData
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Local Data"/>
+    <cuhu.financials.salesOffice
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sales Office"/>
     <cuhu.financials.sixty
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="31 - 60"/>
     <cuhu.financials.thirty
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="1 - 30"/>
     <cuhu.financials.total
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="Statement Total"/>
+    <cuhu.LeftNav_Heading
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="My Tetra Pak"/>
+    <cuhu.logotext.text
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="TetraPak"/>
+    <cuhu.Maintenance.Line
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Line/Area"/>
+    <cuhu.maintenance.site
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Site"/>
+    <cuhu.nodata.message
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No Data Available"/>
     <cuhu.noEventMessage
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.noEventMessage &#xa; &#xa;"
         sling:message="Oops!! there is no data"/>
     <cuhu.noEventMessage0
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.noEventMessage"
         sling:message="No Event Available"/>
+    <cuhu.orderDetail.deliveredQuantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sent"/>
+    <cuhu.orderDetail.deliveryList.products.materialCod
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.deliveryList.products.materialCode"
+        sling:message="Material Code"/>
+    <cuhu.orderDetail.deliveryList.products.orderNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order Number"/>
+    <cuhu.orderDetail.deliveryList.products.price
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Net Price"/>
+    <cuhu.orderDetail.deliveryList.products.productName
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product1"/>
+    <cuhu.orderDetail.deliveryList.products.quantityKpk
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity KPK"/>
+    <cuhu.orderDetail.deliveryList.products.quantityKpk0
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.deliveryList.products.quantityKPK"
+        sling:message="Quantity KPK"/>
+    <cuhu.orderDetail.deliveryList.products.SKU
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SKU"/>
+    <cuhu.orderDetail.ETA
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETA"/>
+    <cuhu.orderDetail.orderQuantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity"/>
+    <cuhu.orderDetail.orderSummary.deliveredQuantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity delivered so far"/>
+    <cuhu.orderDetail.orderSummary.orderQuantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity Ordered"/>
+    <cuhu.orderDetail.orderSummary.product
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderdetail.packaging.checkbox.text
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Only show above items in the deliveries"/>
+    <cuhu.orderdetail.packaging.delivery.materialCode
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Material code"/>
+    <cuhu.orderdetail.packaging.delivery.price
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Net price"/>
+    <cuhu.orderdetail.packaging.delivery.productName
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderdetail.packaging.delivery.productName0
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.delivery.productName&#x9;"
+        sling:message="Product"/>
+    <cuhu.orderdetail.packaging.delivery.quantityKPK
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Quantity KPK"/>
+    <cuhu.orderdetail.packaging.delivery.SKU
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SKU"/>
+    <cuhu.orderdetail.packaging.error.msg
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="An Error occurred.."/>
+    <cuhu.orderdetail.packaging.ETD
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETD"/>
+    <cuhu.orderdetail.packaging.kilo.pack.quantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Kilo Pack Quantity"/>
+    <cuhu.orderdetail.packaging.kilo.pack.requested.kpk
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderdetail.packaging.kilo.pack.requested.kpk.label"
+        sling:message="Total order KPK/ Requested KPK / Delivered KPK1"/>
+    <cuhu.orderdetail.packaging.kilo.popup.close
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Kilo PopUp Close"/>
+    <cuhu.orderdetail.packaging.no.data
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No Data Available"/>
+    <cuhu.orderdetail.packaging.order.status
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.orderdetail.packaging.production.place
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Production place"/>
+    <cuhu.orderdetail.packaging.requested
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Requested"/>
+    <cuhu.orderDetail.Price
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Price"/>
+    <cuhu.orderDetail.Price0
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetail.price"
+        sling:message="Price"/>
+    <cuhu.orderdetail.product
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderDetail.productID
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product ID"/>
+    <cuhu.orderDetail.productName
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Product"/>
+    <cuhu.orderDetail.remainingQuantity
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Open"/>
+    <cuhu.orderDetail.serialNo
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="#"/>
+    <cuhu.orderDetail.unitPrice
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Unit Price"/>
+    <cuhu.orderDetail.weight
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Weight"/>
+    <cuhu.orderDetails.createExcel
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Create Excel"/>
+    <cuhu.orderDetails.createPDF
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Create PDF"/>
+    <cuhu.orderDetails.CustomerName
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customer Name 3"/>
+    <cuhu.orderDetails.CustomerNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customer Number"/>
+    <cuhu.orderDetails.CustomerRef
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customer reference"/>
+    <cuhu.orderDetails.CustomerSupport
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customer Support Centre"/>
+    <cuhu.orderDetails.DeliveryAddress
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Delivery Address"/>
+    <cuhu.orderDetails.DeliveryNum
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Delivery Number from i18n"/>
+    <cuhu.orderDetails.InvoiceAddress
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invoice Address"/>
+    <cuhu.orderDetails.orderDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order date"/>
+    <cuhu.orderDetails.OrderNumberLabel
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Tetra Pak Order Number"/>
+    <cuhu.orderDetails.PurchaseOrderNum
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Purchase Order No."/>
+    <cuhu.orderDetails.Shipping
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Shipping"/>
+    <cuhu.orderDetails.TotalpreVAT
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Total pre VAT 1"/>
+    <cuhu.orderDetails.TotalWeight
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Total Weight 1"/>
+    <cuhu.orderDetails.TrackOrder
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Track Order"/>
+    <cuhu.orderDetails.ValLabel
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="VAT"/>
+    <cuhu.orderDetails.VAT
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="VAT1"/>
+    <cuhu.orderDetails.Webref0
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.orderDetails.WebRef"
+        sling:message="Test10"/>
+    <cuhu.ordering.contact
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Contact"/>
+    <cuhu.ordering.customerNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Tetra Pak Customer No."/>
+    <cuhu.ordering.ETA
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ETA"/>
+    <cuhu.ordering.orderDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order date"/>
+    <cuhu.ordering.orderNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Tetra Pak Order No."/>
+    <cuhu.ordering.orderType
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Order Type"/>
+    <cuhu.ordering.poNumber
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Purchase Order No"/>
+    <cuhu.ordering.requestedDelivery
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Requested delivery test i18"/>
+    <cuhu.ordering.salesOrg
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Sales Organization"/>
+    <cuhu.ordering.status
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.orderingcard.another.Order
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search for another record"/>
+    <cuhu.orderingcard.ButtonKey
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Button"/>
+    <cuhu.orderingcard.dataError
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Getting Error from API"/>
+    <cuhu.orderingcard.Errorkey
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Error in saving"/>
+    <cuhu.orderingcard.no.data
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No Data Available"/>
+    <cuhu.orderingcard.pref.Close
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.823Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close"/>
+    <cuhu.orderingcard.pref.Save
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Save"/>
+    <cuhu.orderingcard.Preferences.Desc
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Description"/>
+    <cuhu.orderingcard.Preferences.title
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Preferences"/>
+    <cuhu.orderingcard.titlekey
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Orders"/>
+    <cuhu.orderingHistory.Addresskey
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="All delivery address"/>
+    <cuhu.orderingHistory.CloseButton
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close Button"/>
+    <cuhu.orderingHistory.DateRange
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="2018-12-20 - 2018-12-28"/>
+    <cuhu.orderingHistory.DeliveryAddress
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ddddd"/>
+    <cuhu.orderingHistory.OrderStatus
+        cq:lastReplicated="{Date}2019-09-04T03:43:34.249Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Status"/>
+    <cuhu.orderingHistory.Placeholderkey
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Purchase Order No. / Tetra Pak order No."/>
+    <cuhu.orderingHistory.Reset
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Reset"/>
+    <cuhu.orderingHistory.Reset1
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="RESET1"/>
+    <cuhu.orderingHistory.SearchBtnKey
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Search orders"/>
+    <cuhu.orderingHistory.SearchInput
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="SearchInput"/>
+    <cuhu.orderingHistory.SelectDates
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Select Dates"/>
+    <cuhu.orderingHistory.SetDate
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.214Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Set Date"/>
+    <cuhu.orderingHistory.StatusBtnkey
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.317Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="All Statuses"/>
+    <cuhu_demo
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Demo Page"/>
+    <cuhu_Financial_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.443Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Financial"/>
+    <Cuhu_language_window_title
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Choose your language"/>
+    <cuhu_Logout_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Logout"/>
+    <cuhu_Ordering_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Ordering"/>
+    <cuhu_Package_Design_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Package Design"/>
+    <cuhu_PackagingMaterial_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Packaging Material"/>
+    <cuhu_Parts_Inventory_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Parts Inventory"/>
+    <cuhu_Parts_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Parts"/>
+    <cuhu_Startpage_leftNav
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Start Page"/>
+    <dsaf
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="asdf"/>
+    <Financial_Date_Place_Holder
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="YYYY-MM-DD"/>
+    <Financial_DateRange_Error
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.443Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Enter a valid date"/>
+    <Financial_DateRange_Place_Holder
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="YYYY-MM-DD - YYYY-MM-DD"/>
+    <Intro_screen_Closebutton
+        cq:lastReplicated="{Date}2019-09-04T03:43:26.443Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close"/>
+    <Intro_Screen_description5
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business."/>
+    <Intro_screen_GetStarted
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.247Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Get Started"/>
+    <Intro_Screen_Heading
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Introduction"/>
+    <Intro_Screen_Img5_altText
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ImageAlt5"/>
+    <Intro_Screen_NextCaption
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Next"/>
+    <Intro_Screen_title5
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.408Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Customise your experience"/>
+    <language.de
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.493Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="German"/>
+    <language.en
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.052Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="English"/>
+    <language.es
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Spanish"/>
+    <language.es_co
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.128Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Spanish C&amp;S America"/>
+    <language.fr
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.580Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="French"/>
+    <language.it
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.842Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Italian"/>
+    <language.ja
+        cq:lastReplicated="{Date}2019-09-04T03:43:29.867Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Japanese"/>
+    <language.ko
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.481Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Korean"/>
+    <language.pt
+        cq:lastReplicated="{Date}2019-09-04T03:43:28.693Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Portuguese"/>
+    <language.ru
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.469Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Russian"/>
+    <language.tr
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Turkish"/>
+    <language.zh
+        cq:lastReplicated="{Date}2019-09-04T03:43:27.965Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Chinese"/>
+    <language.zh_tw
+        cq:lastReplicated="{Date}2019-09-04T03:43:30.689Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Chinese Traditional"/>
+    <sample
+        cq:lastReplicated="{Date}2019-09-04T03:43:33.120Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="s"/>
+    <test
+        cq:lastReplicated="{Date}2019-09-04T03:43:32.761Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="test"/>
+    <test1
+        cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="test4"/>
 </jcr:root>

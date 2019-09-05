@@ -1,9 +1,12 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { RESULTS_EMPTY, ajaxMethods, API_TOKEN } from './constants';
+import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE, EVT_REFRESH_INITIATE, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';
+import { refreshToken } from './tokenRefresh';
+import { $body } from './commonSelectors';
+import { logger } from './logger';
 
 /**
  * Generates a valid APIGEE token and ensures token validity
@@ -11,7 +14,7 @@ import { getURL } from './uri';
 function generateToken() {
   return (
     new Promise(function (resolve, reject) {
-      const access_token = storageUtil.get('authToken');
+      const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);
       if (access_token) {
         resolve({
           data: {
@@ -30,8 +33,11 @@ function generateToken() {
           try {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
-              const expiry = (+result.expires_in) / (24 * 60 * 60);
-              storageUtil.setCookie('authToken', result.access_token, expiry);
+              const expiresIn = +result.expires_in;
+              const expiry = expiresIn / (24 * 60 * 60);
+              storageUtil.setCookie(AUTH_TOKEN_COOKIE, `${result.access_token}`, expiry);
+              storageUtil.set(AUTH_TOKEN_EXPIRY, (Date.now() + (expiresIn * 1000)));
+              $body.trigger(EVT_REFRESH_INITIATE);
               resolve({
                 data: result,
                 textStatus,
@@ -96,7 +102,7 @@ function execCallback(callback, ...args) {
  */
 function handleRejection(callback, ...args) {
   this.tokenPromise = null;
-  storageUtil.removeCookie('authToken');
+  storageUtil.removeCookie(AUTH_TOKEN_COOKIE);
   if (typeof callback === 'function') {
     callback(...args);
   }
@@ -109,12 +115,21 @@ export default {
    * @param {Function} callback Success callback
    */
   getToken(callback) {
-    if (!this.tokenPromise) {
-      this.tokenPromise = generateToken();
-    }
-    return Promise.all([
-      this.tokenPromise
-    ]).then(response => execCallback.apply(this, getArgs(callback, response)))
-      .catch(error => handleRejection.apply(this, getArgs(callback, error)));
+    refreshToken(() => {
+      if (!this.tokenPromise) {
+        this.tokenPromise = generateToken();
+      }
+      return Promise.all([
+        this.tokenPromise
+      ]).then(response => execCallback.apply(this, getArgs(callback, response)))
+        .catch(error => handleRejection.apply(this, getArgs(callback, error)));
+    });
+  },
+  init() {
+    $body.on(EVT_POST_REFRESH, () => {
+      this.getToken(() => {
+        logger.log('[Webpack]: Bearer token refreshed');
+      });
+    });
   }
 };

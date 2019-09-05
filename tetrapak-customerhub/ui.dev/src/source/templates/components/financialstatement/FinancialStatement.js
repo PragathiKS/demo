@@ -9,12 +9,20 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY } from '../../../scripts/utils/constants';
-import { resolveQuery, isMobileMode } from '../../../scripts/common/common';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX } from '../../../scripts/utils/constants';
+import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
+
+/**
+ * Returns type of date
+ * @param {string} date Input date
+ */
+function _getDateRangeType(date) {
+  return (DATE_RANGE_REGEX).test(date) ? dateTypes.RANGE : dateTypes.DATE;
+}
 
 /**
  * Returns formatted start date by substracting FINANCIAL_DATE_RANGE_PERIOD from current date
@@ -92,7 +100,7 @@ function _trackAnalytics(type) {
   let ob = {
     linkType: 'internal',
     linkSection: 'financials',
-    linkParentTitle: statementOfAccount.toLowerCase()
+    linkParentTitle: $.trim(getI18n(statementOfAccount).toLowerCase())
   };
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
@@ -102,8 +110,8 @@ function _trackAnalytics(type) {
       break;
     }
     case 'search': {
-      const status = typeof $status.text() === 'string' ? $status.text().trim() : '';
-      const docType = typeof $docType.text() === 'string' ? $docType.text().trim().toLowerCase() : '';
+      const status = $.trim($status.text());
+      const docType = $.trim($docType.text()).toLowerCase();
       ob.linkName = 'search statement';
       ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
       break;
@@ -121,8 +129,15 @@ function _trackAnalytics(type) {
  */
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
-  this.cache.documentTypeList = data.documentType;
-  $('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
+  const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  const { documentType = [] } = data;
+  this.cache.documentTypeList = data.documentType = [
+    {
+      key: '', desc: documentTypeAll
+    },
+    ...documentType
+  ];
+  this.root.parents('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
     if (!data.customerData) {
@@ -159,8 +174,12 @@ function _processFinancialStatementData(data) {
         delete data.setDates;
         const [selectedStatus] = data.status;
         data.dateRange = data.currentDate = moment(Date.now()).format(DATE_FORMAT);
+        data.dateRangeType = dateTypes.DATE;
+        data.currentDatePlaceholder = data.datePlaceholder;
         if ((`${selectedStatus.key}`).toUpperCase() !== 'O') {
           data.dateRange = `${_getStartDate()} - ${data.currentDate}`;
+          data.dateRangeType = dateTypes.RANGE;
+          data.currentDatePlaceholder = data.dateRangePlaceholder;
         }
         const [selectedCustomerData] = data.customerData;
         data.selectedCustomerData = selectedCustomerData;
@@ -269,9 +288,14 @@ function _renderFilters() {
  * @param {string} selectedDate Selected date
  */
 function _setDateFilter(status, selectedDate) {
-  const $dateSelector = this.root.find('.js-financial-statement__date-range, .js-range-selector');
+  const $dateSelector = this.root.find('.js-financial-statement__date-range-input, .js-range-selector');
+  const i18nKeys = this.cache.i18nKeys;
   if (selectedDate) {
-    $dateSelector.val(selectedDate);
+    const dateRangeType = _getDateRangeType(selectedDate);
+    const currentDatePlaceholder = dateRangeType === dateTypes.RANGE ? 'dateRangePlaceholder' : 'datePlaceholder';
+    $dateSelector.attr('data-date-range-type', dateRangeType).data('dateRangeType', dateRangeType);
+    $dateSelector.attr('placeholder', i18nKeys[currentDatePlaceholder]);
+    $dateSelector.val(selectedDate).trigger('input');
     this.initializeCalendar((selectedDate.split(DATE_RANGE_SEPARATOR).length > 1));
   } else {
     const endDate = moment(Date.now()).format(DATE_FORMAT);
@@ -279,11 +303,15 @@ function _setDateFilter(status, selectedDate) {
       typeof status === 'string'
       && ['O'].includes(status.toUpperCase())
     ) {
-      $dateSelector.val(endDate);
+      $dateSelector.attr('data-date-range-type', dateTypes.DATE).data('dateRangeType', dateTypes.DATE);
+      $dateSelector.attr('placeholder', i18nKeys.datePlaceholder);
+      $dateSelector.val(endDate).trigger('input');
       this.initializeCalendar();
     } else {
       const startDate = _getStartDate();
-      $dateSelector.val(`${startDate} - ${endDate}`);
+      $dateSelector.attr('data-date-range-type', dateTypes.RANGE).data('dateRangeType', dateTypes.RANGE);
+      $dateSelector.attr('placeholder', i18nKeys.dateRangePlaceholder);
+      $dateSelector.val(`${startDate} - ${endDate}`).trigger('input');
       this.initializeCalendar(true);
     }
   }
@@ -306,9 +334,12 @@ function _syncFields(query) {
   }
   $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
   $statusField.customSelect(query.status);
-  $statusField.parents('.js-custom-dropdown').find(`li>a[data-key="${query.status}"]`).data('selectedDate', dateRange);
+  $statusField.parents('.js-custom-dropdown')
+    .find(`li>a[data-key="${query.status}"]`)
+    .attr('data-selected-date', dateRange)
+    .data('selectedDate', dateRange);
   $statusField.trigger('dropdown.change');
-  $docType.customSelect(query['document-type']);
+  $docType.customSelect(query['document-type'] || '');
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
 
@@ -388,7 +419,7 @@ function _downloadPdfExcel(...args) {
   };
   paramsData.documentType = {
     key: docTypeKey,
-    desc: docTypeDesc
+    desc: getI18n(docTypeDesc)
   };
   paramsData.documentNumber = docNumber;
   paramsData.statusList = this.cache.statusList;
@@ -421,6 +452,34 @@ function _getDefaultQueryString() {
   return $.param(queryObject);
 }
 
+/**
+ * Checks if entered date or date range is valid
+ */
+function _validateDateRange(e) {
+  const ref = e.data;
+  const $this = $(this);
+  const { $dateRangePicker, $errorMsg } = ref.cache;
+  const currentValue = $.trim($this.val());
+  const currentType = $this.data('dateRangeType');
+  const testRegex = currentType === dateTypes.RANGE ? DATE_RANGE_REGEX : DATE_REGEX;
+  const dateRangeParts = currentValue.split(DATE_RANGE_SEPARATOR);
+  let result = true;
+  if (testRegex.test(currentValue)) {
+    dateRangeParts.forEach(part => {
+      if (!moment(part.trim()).isValid()) {
+        result = result && false;
+      }
+    });
+  } else {
+    result = false;
+  }
+  const fn = result ? 'removeClass' : 'addClass';
+  $this[fn]('has-error');
+  $dateRangePicker[fn]('has-error');
+  $errorMsg[result ? 'addClass' : 'removeClass']('d-none');
+}
+
+
 class FinancialStatement {
   constructor({ el }) {
     this.root = $(el);
@@ -442,7 +501,9 @@ class FinancialStatement {
   initPostCache() {
     this.cache.$filterForm = this.root.find('.js-financial-statement__filters');
     this.cache.$findCustomer = this.root.find('.js-financial-statement__find-customer');
-    this.cache.$dateRange = this.root.find('.js-financial-statement__date-range');
+    this.cache.$dateRange = this.root.find('.js-financial-statement__date-range-input');
+    this.cache.$dateRangePicker = this.root.find('.js-financial-statement__date-range');
+    this.cache.$errorMsg = this.root.find('.js-financial-statement__date-range-error');
     this.cache.$rangeSelector = this.root.find('.js-range-selector');
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
@@ -459,8 +520,12 @@ class FinancialStatement {
   }
   submitDateRange() {
     const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
-    $dateRange.val($rangeSelector.val());
-    $status.find('option').eq($status.prop('selectedIndex')).data('selectedDate', $rangeSelector.val());
+    const rangeSelectorValue = $rangeSelector.val();
+    $dateRange.val(rangeSelectorValue).trigger('input');
+    $status.find('option')
+      .eq($status.prop('selectedIndex'))
+      .attr('data-selected-date', rangeSelectorValue)
+      .data('selectedDate', rangeSelectorValue);
     $modal.modal('hide');
   }
   navigateCalendar(e) {
@@ -509,7 +574,8 @@ class FinancialStatement {
       .on('click', '.js-financial-statement__reset', () => {
         this.resetFilters();
         this.trackAnalytics('reset');
-      });
+      })
+      .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
     $(document).on('click', '#downloadPdf', function () {
       window.open($(this).attr('href'), '_blank');
@@ -529,6 +595,11 @@ class FinancialStatement {
     return _setSelectedCustomer.apply(this, arguments);
   }
   populateResults = () => {
+    const { $dateRange } = this.cache;
+    if ($dateRange.hasClass('has-error')) {
+      $dateRange.focus();
+      return;
+    }
     this.trackAnalytics('search');
     this.setRoute();
   }
@@ -544,8 +615,8 @@ class FinancialStatement {
   resetFilters() {
     const { $status } = this.cache;
     const defaultQueryString = _getDefaultQueryString.apply(this);
-    $status.find('option').each(function () {
-      $(this).removeData();
+    $status.parents('.js-custom-dropdown').find('.js-custom-dropdown-li').each(function () {
+      $(this).removeData('selectedDate').removeAttr('data-selected-date');
     });
     this.syncFields(deparam(defaultQueryString, false));
     router.set({
@@ -554,6 +625,9 @@ class FinancialStatement {
     });
   }
   trackAnalytics = (type) => _trackAnalytics.call(this, type);
+  validateDateRange() {
+    return _validateDateRange.apply(this, arguments);
+  }
   init() {
     this.initCache();
     this.bindEvents();

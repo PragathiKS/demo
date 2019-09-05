@@ -56,6 +56,23 @@
                                                     fieldDescription="Enter Navigation Title i18n key"
                                                     fieldLabel="Navigation Title i18n key"
                                                     name="./iconLabel"/>
+                                            <isExternal
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Open link in a new window ?"
+                                                    fieldDescription="Open link in a new window or tab"
+                                                    fieldLabel="Open link in a new window?"
+                                                    value="{Boolean}true"
+                                                    name="./isExternal"/>
+                                            <tabName
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Please note that this tab name is used for logout and session expiry so it must be shared with PING team while creating a new page."
+                                                    fieldLabel="Tab Name (Please use pattern cuhu_page_title)"
+                                                    emptyText="This field must be configured when a link is to be opened in a new tab/window"
+                                                    name="./tabName"/>
                                             <iconClass
                                                     cq:showOnCreate="{Boolean}true"
                                                     jcr:primaryType="nt:unstructured"

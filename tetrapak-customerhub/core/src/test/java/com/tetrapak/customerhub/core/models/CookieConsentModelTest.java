@@ -41,9 +41,9 @@ public class CookieConsentModelTest {
 	 */
 	@Test
 	public void testMessage() {
-		Assert.assertEquals(true, cookieConsentModel.isCookieConsentDisabled());
-		Assert.assertEquals("Cookie consent text with RTE", cookieConsentModel.getCookieConsentText());
-		Assert.assertEquals("Ok! I understand.", cookieConsentModel.getCookieConsentButtonText());
-		Assert.assertEquals("en", cookieConsentModel.getLocale());
+		Assert.assertEquals("enabled",true, cookieConsentModel.isCookieConsentDisabled());
+		Assert.assertEquals("cookie consent text","Cookie consent text with RTE", cookieConsentModel.getCookieConsentText());
+		Assert.assertEquals("button text","Ok! I understand.", cookieConsentModel.getCookieConsentButtonText());
+		Assert.assertEquals("locale","en", cookieConsentModel.getLocale());
 	}
 }

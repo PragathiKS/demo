@@ -6,7 +6,7 @@
     @include font-size($font-baseline);
     @include padding($padding-zero $padding-md);
     @include line-height(40px, $font-baseline);
-    @include letter-spacing(0.5px);
+    @include letter-spacing($letter-spacing-sm);
     background: none;
     border: 0;
     color: $color-text-link;
@@ -23,6 +23,7 @@
 
     &__icon {
         display: inline-block;
+
         .tp-btnNext--disabled & {
             opacity: $opacity-mid;
         }

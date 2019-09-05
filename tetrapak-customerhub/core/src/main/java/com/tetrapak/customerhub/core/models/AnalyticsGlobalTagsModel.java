@@ -52,21 +52,12 @@ public class AnalyticsGlobalTagsModel {
     }
 
     /**
-     * Get Site Language.
-     *
-     * @return english
-     */
-    public String getSiteLanguage() {
-        return "en";
-    }
-
-    /**
      * Get Site Country.
      *
-     * @return gb
+     * @return StringUtils.EMPTY
      */
     public String getSiteCountry() {
-        return "gb";
+        return StringUtils.EMPTY;
     }
 
     /**
@@ -88,21 +79,12 @@ public class AnalyticsGlobalTagsModel {
     }
 
     /**
-     * Get User Language.
-     *
-     * @return english
-     */
-    public String getUserLanguage() {
-        return "en";
-    }
-
-    /**
      * Get User Country Code.
      *
      * @return gb
      */
     public String getUserCountryCode() {
-        return "gb";
+        return StringUtils.EMPTY;
     }
 
     /**

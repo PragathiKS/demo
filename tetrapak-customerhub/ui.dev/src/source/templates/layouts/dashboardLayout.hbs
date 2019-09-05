@@ -20,7 +20,7 @@
     <input type="hidden" id="isDummyLayout" value="true" />
     <input type="hidden" id="apiHost" value="https://api-mig.tetrapak.com" />
     <input type="hidden" id="currencyMappingURL" value="/apps/settings/wcm/designs/customerhub/jsonData/currency_symbol.json" />
-    <input type="hidden" id="tempCustomerList" value="0000010050,0000010052" />
+    <input type="hidden" id="tempCustomerList" value="0000953003" />
     <input type="hidden" id="apiMappings" value="{
         &quot;token-generator&quot;:&quot;/bin/customerhub/token-generator&quot;,
         &quot;ordersearch&quot;:&quot;https://api-mig.tetrapak.com/orders/summary&quot;,
@@ -52,17 +52,20 @@
         <div class="row">
             <div class="col-lg-9 tp-column__content">
                 {{!-- Main content goes here --}}
-                {{#if_notin "header,leftnavigation,languageselector" fsdId}}
+                {{#if_notin "header,leftnavigation,languageselector,inactivitydialog" fsdId}}
                     {{#if_notin "error" fsdId}}
                         <h1 class="tp-page-title">{{fsdId}}</h1>
                     {{/if_notin}}
                     {{> body}}
                 {{/if_notin}}
             </div>
-               <div class="col-lg-3 tp-column__notif">
+            <div class="col-lg-3 tp-column__notif">
                 {{!-- Notification panel goes here --}}
             </div>
         </div>
+        <sly data-sly-use.idModel="/apps/customerhub/components/content/inactivitydialog/ux-model.js"
+             data-sly-use.idLib="/apps/customerhub/components/content/inactivitydialog/inactivitydialog-template.html"
+             data-sly-call="${idLib.inactivitydialog_template @data=idModel}" />
     </div>
 
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"

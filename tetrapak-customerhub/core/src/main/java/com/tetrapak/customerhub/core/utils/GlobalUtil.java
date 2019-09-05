@@ -22,6 +22,7 @@ import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -202,6 +203,20 @@ public class GlobalUtil {
      */
     public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key) {
         I18n i18n = new I18n(request);
+        return i18n.get(prefix + key);
+    }
+
+    /**
+     * The method provides the i18n value provided the following parameters.
+     *
+     * @param request  request
+     * @param prefix   prefix
+     * @param key      key
+     * @param language language
+     * @return value
+     */
+    public static String getI18nValueForThisLanguage(SlingHttpServletRequest request, String prefix, String key, String language) {
+        I18n i18n = new I18n(request.getResourceBundle(new Locale(language)));
         return i18n.get(prefix + key);
     }
 
@@ -396,6 +411,20 @@ public class GlobalUtil {
             return getGlobalConfigurationResource(childResource);
         }
         return null;
+    }
+
+    /**
+     * Method to get language from cookie
+     *
+     * @param request sling request
+     * @return language
+     */
+    public static String getLanguage(SlingHttpServletRequest request) {
+        Cookie languageCookie = request.getCookie("lang-code");
+        if (null != languageCookie) {
+            return languageCookie.getValue();
+        }
+        return CustomerHubConstants.DEFAULT_LOCALE;
     }
 
 }

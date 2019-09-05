@@ -32,14 +32,15 @@ public class FinancialStatementModelTest {
     @Test
     public void testGetConfigMessage() {
         String config = financialStatementModel.getI18nKeys();
-        Assert.assertTrue(config.contains("Search statement"));
-        Assert.assertTrue(config.contains("Reset search"));
-        Assert.assertTrue(config.contains("Statement Summary"));
-        Assert.assertTrue(config.contains("Find customer"));
-        Assert.assertTrue(config.contains("Document Number"));  
-        Assert.assertTrue(config.contains("Create PDF"));
+        Assert.assertTrue("Search statement",config.contains("Search statement"));
+        Assert.assertTrue("Reset search",config.contains("Reset search"));
+        Assert.assertTrue("Statement Summary",config.contains("Statement Summary"));
+        Assert.assertTrue("Find customer",config.contains("Find customer"));
+        Assert.assertTrue("Document Number",config.contains("Document Number"));
+        Assert.assertTrue("Create PDF",config.contains("Create PDF"));
+        Assert.assertTrue("date range error",config.contains("Please enter a valid date"));
         String url = financialStatementModel.getDownloadPdfExcelServletUrl();
-        Assert.assertEquals("/content/tetrapak/customerhub/global/en/financials/jcr:content/root/responsivegrid/financialstatement.download.{extnType}", url);
+        Assert.assertEquals("URL","/content/tetrapak/customerhub/global/en/financials/jcr:content/root/responsivegrid/financialstatement.download.{extnType}", url);
         
     }
 }

@@ -1,7 +1,7 @@
 %default-btn {
     @include font-size($font-baseline);
     @include padding(13px 12px);
-    @include letter-spacing(0.5px);
+    @include letter-spacing($letter-spacing-sm);
     font-family: $font-light;
     line-height: 1;
 
@@ -14,14 +14,8 @@
         &::before {
             @include font-size(12px);
             @include height(12px);
-            margin-top: 1px;
+            @include margin-top(2px);
             display: inline-block;
-        }
-    }
-
-    .icon-Circle_Arrow_Right {
-        &::before {
-            margin-top: 0;
         }
     }
 
@@ -114,12 +108,28 @@
         }
     }
 
-    &--transparent {
+    &--transparent,
+    &--datepicker {
         @extend %default-btn;
         background: none;
         border: 0;
         padding: 0;
         color: $color-text-link;
+    }
+
+    &--datepicker {
+        @include padding(13px 12px);
+        @include font-size(12px);
+        color: $color-text;
+        border: 1px solid $color-boulder;
+        line-height: 1;
+        border-radius: $border-radius;
+
+        .icon {
+            &::before {
+                margin: 0;
+            }
+        }
     }
 
     &--close {
