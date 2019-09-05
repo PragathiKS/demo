@@ -251,7 +251,6 @@ class FinancialsStatementSummary {
     }
   }
   bindEvents() {
-    /* Bind jQuery events here */
     this.root
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
     this.root.on('click', '.js-financials-summary__create-pdf', this, function (e) {
