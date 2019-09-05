@@ -7,166 +7,168 @@ npm install -g grunt-cli
 
 # Build
 
-Development build without grunt deployment
-```sh
-npm run buildDev
-```
-
-Development with grunt deployment
+Prototype deployment for local development
 ```sh
 npm run buildStart
 ```
 
-Development build with watch mode
+With watch mode
 ```sh
 npm run buildWatch
 ```
 
-Optimized production build
+Unoptimized build for dev environment
+```sh
+npm run buildDev
+```
+
+Optimized build for test, staging and production environment
 ```sh
 npm run build
 ```
 
-# JavaScript framework
+# Accelerator
 
-Accelerator JS framework is based on ES6 modules and Webpack. Latter is used for compiling and bundling ES6 modules to web compatible ES5.<br>
+This application uses accelerator version 2 (which combines Webpack and Grunt). Accelerator framework is based on decoupled front-end architecture.<br>
+For more details of decoupled architecture please follow the link below:<br>
+<a href="https://tools.publicis.sapient.com/confluence/download/attachments/797481010/Accelerator%20FE%20Framework.pptx?version=1&modificationDate=1549614956000&api=v2">Accelerator FE Framework</a> [Please contact Sachin Singh (sacsingh2) if the link doesn't work]<br>
+We use ES6 modules as part of this version. The framework is designed in a way that each module is treated as independent chunk (unless the chunk is bundled to a cache group). For more details on chunks and cache groups please refer to this link: <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>. Therefore, keep a tab on how many output chunk files you are generating as part of the build. Later we will learn how to create cache groups.<br><br>
 
-Conventional ES5 module:
+# Creating a component
 
-```js
-(function ($) {
-    'use strict';
-    ...
-    console.log($.param({
-        data: 'Hello World'
-    }));
-})(window.jQuery);
+Creating a component is easy. Navigate to ``ui.dev > src`` of your current AEM project and type ``npm run createComponent``. You will be asked to enter a component name. Make sure to use camel case for the name. The script will take care of rest of the naming conventions. The script generates following project files:<br>
+```
+_<componentName>.scss
+ComponentName.js
+ComponentName.spec.js
+componentname-template.html
+ux-model.json
+ux-preview.hbs
 ```
 
-ES6 module:
+These files are placed under ``ui.dev > src > source > templates > components``.<br>
+The script places some initial boilderplate code which can be easily compiled and tested. We use class based JavaScript component which means each instance of this component in AEM will have it's own copy of JS code to work with. This allows better error handling compared to compared to object based components in Accelerator 1. The class based component is shown below:<br>
 
 ```js
 import $ from 'jquery';
 
-console.log($.param({ ... }));
-```
-
-ES6 modules are not wrapped inside an IIFE like ES5 and does not require ``use strict`` statement. Advantage of using ES6 modules is that they don't pollute global (window) namespace.<br>
-
-Webpack compiles ES6 modules to ES5 and create minified bundles for production use.
-
-## Code splitting
-
-The current framework supports code splitting using ``SplitChunks`` webpack plugin. Code splitting is crucial to avoid duplicate code when importing and exporting modules. For example, ``vendor`` chunk is split separately which contain libraries imported from ``node_modules``. The framework also support dynamic imports to load chunks at runtime without the need of creating script tags:
-
-### Loading chunks:
-<b>Using ``data-module`` attribute</b>:<br> The framework automatically imports and execute module chunks without the need of writing an explicit ``import`` statement or a script tag. Such modules are loaded on page load.<br>
-For example:
-```html
-<div data-module="HelloWorld"></div>
-```
-Webpack loader will look for ``HelloWorld.js`` file in components folder and generate a dynamic chunk. When the page is loaded, webpack automatically loads this chunk to execute ``HelloWorld.js``. All of this happens automatically. Although, you do need to make sure that JS modules follow a specific pattern.<br>
-<b>Using ``import()`` function</b>:<br> You can use dynamic ``import`` function lazy loading chunks. For example, you can load a separate chunk for an overlay module when user performs a click action. Such chunks can be loaded on demand.
-
-## JavaScript module pattern
-
-The current framework supports ``class`` based modules which is a new feature in ES2015. A simple class based module is shown below:
-
-```js
 class HelloWorld {
+    constructor({ el }) {
+        this.root = $(el);
+    }
     init() {
-        logger.log('Hello World!');
+        // Write your code here
     }
 }
+
 export default HelloWorld;
 ```
-The ``init`` method is required for the framework to load and initialize this component.<br>
-The framewoek also supports object based pattern shown below:
+
+We can still create object based components like the old way and it still works.<br>
 
 ```js
 export default {
     init() {
-        logger.log('Hello World!');
+        // Write your code here
     }
 }
 ```
 
-It is recommended to use ``class`` based modules over objects.
+To call this component, we use ``data-module`` attribute in our HTML file. Accelerator uses class file name to identify which module needs to be loaded. The framework will automatically fetch appropriate chunks after reading available modules on page. This way we can control number of JS files required for that given page. As a standard practice we should have <b>class name same as file name</b>. However, it doesn't matter if you change the name of class.
 
-## Create component command
-
-The current framework provides with an npm command ``createComponent`` which creates HTML, JavaScript and SCSS files with default boilerplate code compatible with framework's runtime. You don't have to worry about writing an ``init`` method in your JavaScript component since it's already there. Just add functional logic to your component and you are good to go!<br>
-
-```sh
-npm run createComponent
+```html
+...
+<div class="tp-hello-world" data-module="HelloWorld">...</div>
 ```
 
-Create component command reduces errors and speeds up the process of creating components.
+## Bundling chunks
 
-### Creating atoms and molecules using createComponent
+As a best practice a web page shouldn't load more than 3 JavaScript bundles on initial page load. If the script is lazy loaded due to some user action (e.g. click), we can have a fourth chunk. However, since the framework generates independent chunks for each an every module, we might end up loading more than 3 bundles on initial page load. To avoid this, we can group these independent chunks into a single bundle. By default ``vendor`` and ``global`` bundles are always loaded on page. The third bundle can be page specific. To create page specific bundles we can use Webpack's ``cacheGroups`` concept. Accelerator has a simple way to define cache groups. The configuration is placed in ``config.js`` file under ``webpack > cacheGroups``. You can add a new cache group similar to one shown below:<br>
 
-You can create ``atoms`` and ``molecules`` using ``createComponent`` command. There are two ways of doing that:<br>
-
-Using ``createComponent``:<br>
-
-```sh
-npm run createComponent -- --atom
-npm run createComponent -- --molecule
+```js
+...
+"webpack": {
+    "cacheGroups": {
+        ...
+        "homepage": {
+            "testMultiple": true, // This is equivalent to "test": fn() in webpack. In accelerator we don't need to define this function.
+                                  // Accelerator uses a built-in function that matches individual component paths defined under "componentGroups"
+                                  // configuration below. It makes it easier to bundle components using component path.
+            "name": "homepage",
+            "minSize": 0,
+            "chunks": "all"
+        }
+        ...
+    },
+    "componentGroups": {
+        ...
+        "homepage": [
+            "/source/templates/components/helloworld/"
+        ]
+    }
+}
 ```
 
-Using ``createAtom`` and ``createMolecule`` aliases:<br>
+# Atomic design
+
+We have structured components following atomic design principles. Each component is broken into smallest individual unit possible known as atom. An example of an atom can be an ``input`` field. Atoms are combined together to form ``molecules``. Multiple molecules are then combined to form a ``component`` or (``organism``).
+
+<b>Atom</b>
+```html
+<input type="text" />
+```
+
+<b>Molecule</b>
+```html
+<div class="calendar-input-group">
+    <input type="text" />
+    <button class="date-picker">
+        <span class="sr-only">Select date</span>
+        <i class="icon-calendar icon"></i>
+    </div>
+</div>
+```
+
+<b>Component (Organism)</b>
+```html
+<form action="/" method="POST" data-module="DateSelectorForm">
+    ...
+    <div class="calendar-input-group">
+        <input type="text" />
+        <button class="date-picker">
+            <span class="sr-only">Select date</span>
+            <i class="icon-calendar icon"></i>
+        </div>
+    </div>
+    ...
+</form>
+```
+
+Each atom and molecule can have their own SCSS and HTML implementation. JavaScript however is placed only at component level for simplicity.
+
+## Shortcuts for creating atoms and molecules
+
+Atoms and molecules can be created easily using ``createAtom`` and ``createMolecule`` scripts.<br>
 
 ```sh
 npm run createAtom
 npm run createMolecule
 ```
 
-Atoms and molecules don't have JavaScript files.
-
-## Cache groups
-
-By default webpack generates separate chunk for each module imported using ``data-module`` attribute. The advantage of having separate chunks is that your webpage downloads limited number of script files required for the application.<br>
-Imagine loading a huge bundle (in comparison to loading smaller sized chunks) containing half of the code which is not even being used.<br>
-The downside however is that it results into too many network requests for your application.<br>
-Fortunately, webpack provides with an option to group two or more chunks together using ``cacheGroup`` configuration. You can find this configuration in ``config.json`` file.
-
-### Creating cache groups
-
-Inside ``config.json`` under ``webpack`` configuration you can create a ``cacheGroup`` as follows:
-
-```json
-{
-    "webpack": {
-        "cacheGroups": {
-            "myComponentGroup": {
-                "testMultiple": true,
-                "name": "myComponentGroup",
-                "enforce": true,
-                "chunks": "all"
-            }
-        },
-        "componentGroups": {
-            "myComponentGroup": [
-                "/path/to/first/component",
-                "/path/to/second/component"
-            ]
-        }
-    }
-}
-```
+<b>Please note that</b> for HTL atoms and molecules, script adds a ``-template`` suffix to it.
 
 # CSS Framework
 
 Accelerator CSS framework uses SASS pre-processor and Bootstrap 4 Grid System modified as below:
 
-### Breakpoints (as per design guidelines):
+### Breakpoints (as per guidelines):
 xs: ``0px - 575px``
 sm: ``576px - 767px``
 md: ``768px - 1023px``
 lg: ``1024px - 1199px``
 xl: ``1200px`` and above
 
-### Mobile and Desktop views (as closed with design team)
+### Mobile and Desktop views
 Mobile: ``&lt; 1024px``
 Desktop: ``&gt;= 1024px``
 
@@ -178,11 +180,11 @@ Desktop: ``&gt;= 1024px``
 ``$mobile-landscape``: Same as ``$mobile`` with orientation as ``landscape``
 ``$mobile-large-landscape``: Same as ``$mobile-large``
 
-You can check the definition in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _media.scss``.
+These variable are defined in "Commons" project: ``tetrapak-commons > ui.dev > src > source > styles > global > common > _media.scss``.
 
 ## Mobile first approach
 
-The CSS framework implements mobile first approach. Therefore, you may never have to use breapoint variables other than ``$desktop``.
+To use mobile first approach you must write your code in format below:<br>
 
 ```scss
 .my-class {
@@ -195,16 +197,17 @@ The CSS framework implements mobile first approach. Therefore, you may never hav
 
 ## Base CSS and component max-width
 
-The base CSS has already been implemented in ``tetrapak-commons``. Some components follow maximum width of ``1366px`` as per design. To set ``1366px`` max-width you need to use ``tp-container`` class.<br>
-To check the base css implementation go to ``tetrapak-commons > ui.dev > src > source > styles > global > common > _global.scss``.
+The base CSS is been implemented in "Commons" project. The max width of any individual component (except for header, footer and side navigation) is ``1440px``. To place your component within ``1440px`` column you should use ``tp-container`` wrapping div where ``tp-container`` is the class.
+
+The base CSS is implemented in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _global.scss``.
 
 ## Fonts
 
-For English language we are using ``Muli`` font and it's variants. The font family definitions and variables can be found in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _fonts.scss`` and ``tetrapak-commons > ui.dev > src > source > styles > global > common > _typography.scss``.
+For English language we are using ``Avenir`` font and it's variants. The font family definitions and variables can be found in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _fonts.scss`` and ``tetrapak-commons > ui.dev > src > source > styles > global > common > _typography.scss``.
 
 ## Using REM
 
-For units we are using ``rem``. For converting PX to REM we use mixins as follows:
+Accelerator defines custom mixins to convert pixel values to rem.<br>
 
 ```scss
 .my-class {
@@ -216,7 +219,7 @@ For units we are using ``rem``. For converting PX to REM we use mixins as follow
 }
 ```
 
-In some cases where mixins can't be used, we can use ``convert-to-rem`` function.
+In cases where mixins can't be used, we use ``convert-to-rem`` function.
 
 ```scss
 .my-class {
@@ -226,7 +229,7 @@ In some cases where mixins can't be used, we can use ``convert-to-rem`` function
 
 ## BEM guidelines and prefixes
 
-For CSS we are using BEM (Block Element Modifier). Let's understand how BEM works using a simple example below:
+BEM stands for Block Element Modifier. BEM allows us to control specificity, hence we use it as a standard in our CSS code. Let's understand how BEM works using a simple example below:
 
 ```html
 <div class="tp-comp">
@@ -255,10 +258,10 @@ The final output after compilation is shown below:
         color: green; }
 ```
 
-BEM convention allows us to perform SASS style nesting as well as reduce selector specificity. To read more about BEM please go through the link below:<br>
+To read more about BEM please follow the link below:<br>
 <a href="http://getbem.com/">Block Element Modifier</a>
 
-### Prefixes
+### Class Prefixes
 
 To differentiate between atoms, molecules and organism (components) we are using following prefixes in our CSS classes:<br>
 Atoms: ``tpatom-*``
@@ -266,7 +269,7 @@ Molecules: ``tpmol-*``
 Organism (Component): ``tp-*``
 JS classes: ``js-*``
 <br>
-Please note that JS classes should be separate from classes used for styling.
+As a standard we separate JS classes from style classes to make debugging a lot more easier.
 
 ## Icons
 

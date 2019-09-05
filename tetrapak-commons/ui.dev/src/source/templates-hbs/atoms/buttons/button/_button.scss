@@ -14,14 +14,8 @@
         &::before {
             @include font-size(12px);
             @include height(12px);
-            margin-top: 1px;
+            @include margin-top(2px);
             display: inline-block;
-        }
-    }
-
-    .icon-Circle_Arrow_Right {
-        &::before {
-            margin-top: 0;
         }
     }
 
