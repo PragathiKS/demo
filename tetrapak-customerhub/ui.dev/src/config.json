@@ -226,12 +226,7 @@
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "atomsFolder": "source/templates/atoms",
-    "moleculesFolder": "source/templates/molecules",
-    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
-    "componentTemplate": "ccTemplates/classTmp.txt",
-    "testTemplate": "ccTemplates/testTmp.txt",
-    "pageTemplate": "ccTemplates/pageTmp.txt",
-    "importsJsFile": "source/scripts/bundle/imports.js"
+    "moleculesFolder": "source/templates/molecules"
   },
   "watch": {
     "assemble": {
