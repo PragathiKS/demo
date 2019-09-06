@@ -7,7 +7,7 @@
 import $ from 'jquery';
 import LazyLoad from 'vanilla-lazyload';
 
-function _processImageAttributes(container) {
+function _processImageAttributes(container, isMediaChanged) {
   $('.js-dynamic-media').each(function () {
     const $this = $(this);
     const desktopSrc = $this.attr('data-src_desktop');
@@ -15,7 +15,9 @@ function _processImageAttributes(container) {
     let mobilePortSrc = $this.attr('data-src_mobilep');
 
     // To re-process image on media query change
-    $this.removeAttr('data-was-processed');
+    if (isMediaChanged) {
+      $this.removeAttr('data-was-processed');
+    }
 
     if (typeof desktopSrc !== 'undefined') {
       if (typeof mobileLandSrc === 'undefined') {
@@ -57,7 +59,7 @@ function _processImageAttributes(container) {
 export default {
   bindEvents() {
     $(window).on('mediawithorientation.changed', () => {
-      this.processImageAttributes();
+      this.processImageAttributes(null, true);
     });
   },
   processImageAttributes() {
