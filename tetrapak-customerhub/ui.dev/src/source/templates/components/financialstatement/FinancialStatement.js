@@ -9,7 +9,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
@@ -130,14 +130,18 @@ function _trackAnalytics(type) {
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
   const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  const defaultDocumentTypes = Object.keys(documentTypes).map(key => ({
+    key,
+    desc: documentTypes[key]
+  }));
+  const allKey = {
+    key: '',
+    desc: documentTypeAll
+  };
   const { documentType = [] } = data;
-  this.cache.documentTypeList = data.documentType = [
-    {
-      key: '', desc: documentTypeAll
-    },
-    ...documentType
-  ];
-  this.root.parents('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
+  data.documentType = [allKey].concat(documentType);
+  this.cache.documentTypeList = [allKey].concat(defaultDocumentTypes);
+  this.root.parents('.js-financials').trigger('financial.filters', [data.status, this.cache.documentTypeList]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
     if (!data.customerData) {
