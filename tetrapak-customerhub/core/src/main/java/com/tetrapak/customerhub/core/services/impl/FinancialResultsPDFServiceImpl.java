@@ -20,6 +20,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
 import com.tetrapak.customerhub.core.services.UrlService;
+import com.tetrapak.customerhub.core.utils.FontUtil;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.PDFUtil2;
 import org.apache.commons.lang3.StringUtils;
@@ -102,29 +103,19 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
             switch (language) {
                 case "ja":
-                    BaseFont jp = BaseFont.createFont(FONT_RESOURCES + "NotoSerifCJKjp-Light.otf",
-                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    languageSpecificFont = new Font(jp, 10);
+                    languageSpecificFont = FontUtil.getJpFont(FONT_RESOURCES + "NotoSerifCJKjp-Light.otf");
                     break;
                 case "zh":
-                    BaseFont sc = BaseFont.createFont(FONT_RESOURCES + "NotoSerifCJKsc-Light.otf",
-                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    languageSpecificFont = new Font(sc, 10);
+                    languageSpecificFont = FontUtil.getScFont(FONT_RESOURCES + "NotoSerifCJKsc-Light.otf");
                     break;
                 case "zh_TW":
-                    BaseFont tc = BaseFont.createFont(FONT_RESOURCES + "NotoSerifCJKtc-Light.otf",
-                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    languageSpecificFont = new Font(tc, 10);
+                    languageSpecificFont = FontUtil.getTcFont(FONT_RESOURCES + "NotoSerifCJKtc-Light.otf");
                     break;
                 case "ko":
-                    BaseFont kr = BaseFont.createFont(FONT_RESOURCES + "NotoSerifCJKkr-Light.otf",
-                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    languageSpecificFont = new Font(kr, 10);
+                    languageSpecificFont = FontUtil.getKoFont(FONT_RESOURCES + "NotoSerifCJKkr-Light.otf");
                     break;
                 default:
-                    BaseFont en = BaseFont.createFont(FONT_RESOURCES + "NotoSerif-Light.ttf",
-                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    languageSpecificFont = new Font(en, 10);
+                    languageSpecificFont = FontUtil.getEnFont(FONT_RESOURCES + "NotoSerif-Light.ttf");
                     break;
             }
 
