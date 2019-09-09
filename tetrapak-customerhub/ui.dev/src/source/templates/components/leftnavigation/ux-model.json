@@ -39,7 +39,7 @@
       "href": "http://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
-      "isExternalLink": "true",
+      "isExternalLink": "false",
       "pageName": "cuhu-aem-soa"
     },
     {
