@@ -52,7 +52,7 @@
                             a bnd plugin -->
                         <_plugin>org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;destdir=${project.build.outputDirectory}</_plugin>
 
-                        <Embed-Dependency>pdfbox,fontbox,bcprov-jdk15on,bcmail-jdk15on,bcpkix-jdk15on;scope=compile|runtime;inline=true</Embed-Dependency>
+                        <Embed-Dependency>bcprov-jdk15on,bcmail-jdk15on,bcpkix-jdk15on,itextpdf;scope=compile|runtime;inline=true</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
 
                     </instructions>
@@ -156,31 +156,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>pdfbox</artifactId>
-            <version>2.0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>fontbox</artifactId>
-            <version>2.0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.60</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcmail-jdk15on</artifactId>
-            <version>1.60</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
-            <version>1.60</version>
-        </dependency>
-		<dependency>
            <groupId>org.apache.commons</groupId>
            <artifactId>commons-lang3</artifactId>
            <version>3.4</version>
@@ -229,5 +204,11 @@
 			<version>[1.0,)</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.9</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
