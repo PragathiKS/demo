@@ -58,6 +58,15 @@ export const dateTypes = {
   DATE: 'date',
   RANGE: 'range'
 };
+export const documentTypes = {
+  INV: 'Invoice',
+  CM: 'Credit Memo',
+  DM: 'Debit Memo',
+  CHD: 'A/P Deferred Check',
+  DP: 'Down Payment',
+  PN: 'Promissory Note',
+  PMT: 'Payment'
+};
 // API URLs
 export const API_TOKEN = 'token-generator';
 export const API_SEARCH = 'ordersearch';
