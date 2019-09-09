@@ -15,9 +15,12 @@ import videoAnalytics from './videoAnalytics';
 import customEvents from './customEvents';
 import auth from './auth';
 import tokenRefresh from './tokenRefresh';
+import feedback from './feedback';
 
 export default {
   init() {
+    // Feedback script
+    feedback.init();
     // Custom events
     customEvents.init();
     // Auth and Token refresh
