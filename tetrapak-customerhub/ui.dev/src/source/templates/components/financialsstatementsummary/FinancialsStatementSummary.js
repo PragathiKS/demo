@@ -4,7 +4,7 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort, resolveQuery, resolveCurrency } from '../../../scripts/common/common';
+import { tableSort, resolveQuery, resolveCurrency, getI18n } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { fileWrapper } from '../../../scripts/utils/file';
@@ -26,7 +26,7 @@ function _trackAnalytics(self, type, data) {
 
   switch (type) {
     case 'downloadPdf': {
-      ob.linkParentTitle = $.trim(statementOfAccount.toLowerCase());
+      ob.linkParentTitle = $.trim(getI18n(statementOfAccount)).toLowerCase();
       ob.linkName = 'create pdf';
       break;
     }
@@ -36,7 +36,7 @@ function _trackAnalytics(self, type, data) {
       break;
     }
     case 'downloadExcel': {
-      ob.linkParentTitle = $.trim(statementOfAccount.toLowerCase());
+      ob.linkParentTitle = $.trim(getI18n(statementOfAccount)).toLowerCase();
       ob.linkName = 'create excel';
       break;
     }
