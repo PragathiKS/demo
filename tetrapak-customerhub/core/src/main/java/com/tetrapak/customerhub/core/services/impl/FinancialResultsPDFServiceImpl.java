@@ -19,12 +19,14 @@ import com.tetrapak.customerhub.core.beans.financials.results.Summary;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
+import com.tetrapak.customerhub.core.services.UrlService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.PDFUtil2;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,8 +41,10 @@ import java.util.Map;
 @Component(immediate = true, service = FinancialResultsPDFService.class)
 public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsPDFServiceImpl.class);
+    @Reference
+    private UrlService urlService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsPDFServiceImpl.class);
 
     private Font languageSpecificFont;
     private FinancialStatementModel financialStatementModel;
@@ -48,7 +52,6 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     private Map<String, String> statusTypeMap;
     private Map<String, String> documentTypeMap;
     private String language;
-    private static final String FONT_RESOURCES = "C:\\code\\Tetrapak\\tetrapak\\tetrapak-customerhub\\core\\src\\main\\resources\\fonts\\";
 
     private Map<String, String> getMapFromParams(List<DocumentType> docTypeList) {
         Map<String, String> map = new HashMap<>();
@@ -95,6 +98,8 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
             PdfWriter writer = PdfWriter.getInstance(document1, response.getOutputStream());
             document1.open();
 
+            final String FONT_RESOURCES = urlService.getFontsUrl();
+
             switch (language) {
                 case "ja":
                     BaseFont jp = BaseFont.createFont(FONT_RESOURCES + "NotoSerifCJKjp-Light.otf",
@@ -123,7 +128,7 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
                     break;
             }
 
-            PDFUtil2.drawImage(document1, "tetra_pdf.png", 180, 69);
+            PDFUtil2.drawImage(document1, urlService.getImagesUrl() + "tetra_pdf.png", 180, 69);
 
             printHeadLines(request, paramRequest, document1);
 

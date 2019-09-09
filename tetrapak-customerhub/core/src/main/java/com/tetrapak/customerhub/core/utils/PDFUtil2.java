@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.utils;
 
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -21,23 +22,21 @@ public final class PDFUtil2 {
         //adding private constructor
     }
 
-    private static final String IMG_RESOURCES = "C:\\code\\Tetrapak\\tetrapak\\tetrapak-customerhub\\core\\src\\main\\resources\\images\\";
-
     /**
      * Method to draw image
      *
-     * @param document1 document
-     * @param imagePath image path
+     * @param document  document
+     * @param imagePath complete image path
      * @param width     width
      * @param height    height
      * @throws IOException       IO Exception
      * @throws DocumentException Document Exception
      */
-    public static void drawImage(com.itextpdf.text.Document document1, String imagePath, float width, float height)
+    public static void drawImage(Document document, String imagePath, float width, float height)
             throws IOException, DocumentException {
-        Image image = Image.getInstance(IMG_RESOURCES + imagePath);
+        Image image = Image.getInstance(imagePath);
         image.scaleToFit(width, height);
-        document1.add(image);
+        document.add(image);
     }
 
     /**
