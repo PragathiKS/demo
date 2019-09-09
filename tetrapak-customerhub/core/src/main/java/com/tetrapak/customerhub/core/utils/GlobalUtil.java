@@ -7,6 +7,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -425,6 +426,10 @@ public class GlobalUtil {
             return languageCookie.getValue();
         }
         return CustomerHubConstants.DEFAULT_LOCALE;
+    }
+
+    public static String getSiteImproveScript(){
+        return getService(SiteImproveScriptService.class).getSiteImproveScriptUrl();
     }
 
 }
