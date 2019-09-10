@@ -107,8 +107,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
             LOGGER.debug("request URI {}", url);
             StringBuilder processedUrl = new StringBuilder();
-            processedUrl.append("/")
-                    .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+            processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
                     .append("html");
             String queryString = request.getQueryString();
             if (StringUtil.isNotBlank(queryString)) {
