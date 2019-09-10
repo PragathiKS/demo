@@ -405,12 +405,13 @@ function _downloadPdfExcel(...args) {
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
-  const { $filterForm, data, i18nKeys, $docType } = this.cache;
+  const { $filterForm, data, i18nKeys, $docType, $soaTitle } = this.cache;
   const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
   const statusKey = $el.data('status');
   const docTypeDesc = $docType.text().trim();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
+  const soaTitle = $soaTitle.text();
   paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
   if ($el.data('invoiceDateTo')) {
     paramsData.startDate = $el.data('invoiceDateFrom');
@@ -444,6 +445,7 @@ function _downloadPdfExcel(...args) {
         i18nKeys.fileDownloadErrorClose
       );
       $el.removeAttr('disabled');
+      this.root.trigger('financial.error', [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.fileDownloadErrorText)]);
     });
   });
 }
@@ -512,6 +514,7 @@ class FinancialStatement {
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
     this.cache.$docType = this.root.find('.js-financial-statement__document-type');
+    this.cache.$soaTitle = this.root.find('.js-financial-statement__select-customer-heading');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,

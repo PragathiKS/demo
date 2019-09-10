@@ -90,7 +90,6 @@ export const fileWrapper = (config) => {
               anchor.remove();
               resolve({ data, filename: contentFileName, extension });
             } catch (e) {
-              logger.log(e);
               reject(e.message);
             }
           }

@@ -12,7 +12,28 @@ import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
 
 /**
+ * Error tracking
+ * @param {string} type
+ */
+function _trackErrors(linkParentTitle, linkName, errorMessage) {
+  linkParentTitle = linkParentTitle.toLowerCase();
+  linkName = linkName.toLowerCase();
+  errorMessage = errorMessage.toLowerCase();
+  const obj = {
+    linkType: 'internal',
+    linkSection: 'financials-error',
+    linkParentTitle,
+    linkName,
+    errorMessage
+  };
+  trackAnalytics(obj, 'linkClick', 'linkClicked', undefined, false);
+}
+
+/**
  * Fire analytics on Invoice Download
+ * @param {object} self
+ * @param {string} type
+ * @param {object} data
  */
 function _trackAnalytics(self, type, data) {
   const $this = self;
@@ -55,9 +76,11 @@ function _trackAnalytics(self, type, data) {
 /**
  * Download Invoice
  */
-function _downloadInvoice($this) {
-  const { downloadInvoice } = $this.cache;
-  const documentNumber = $.trim($(this).find('[data-key="documentNumber"]').text());
+function _downloadInvoice(self) {
+  const { downloadInvoice } = self.cache;
+  const $this = $(this);
+  const documentNumber = $.trim($this.find('[data-key="documentNumber"]').text());
+  const linkParentTitle = $this.parents('.js-financials-summary__table').data('sectionTitle');
   auth.getToken(() => {
     fileWrapper({
       extension: 'pdf',
@@ -67,11 +90,12 @@ function _downloadInvoice($this) {
       }),
       method: ajaxMethods.GET
     }).catch(() => {
-      const { i18nKeys } = $this.cache;
+      const { i18nKeys } = self.cache;
       toast.render(
         i18nKeys.fileDownloadErrorText,
         i18nKeys.fileDownloadErrorClose
       );
+      self.trackErrors(linkParentTitle, 'invoice download', getI18n(i18nKeys.fileDownloadErrorText));
     });
   });
 }
@@ -251,31 +275,31 @@ class FinancialsStatementSummary {
     }
   }
   bindEvents() {
-    /* Bind jQuery events here */
     this.root
-      .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice);
-    this.root.on('click', '.js-financials-summary__create-pdf', this, function (e) {
-      const $this = e.data;
-      $this.trackAnalytics($this, 'downloadPdf');
-      $this.downloadPdfExcel('pdf', this);
-    });
-    this.root.on('click', '.js-financials-summary__create-excel', this, function (e) {
-      const $this = e.data;
-      $this.trackAnalytics($this, 'downloadExcel');
-      $this.downloadPdfExcel('excel', this);
-    });
-    this.root.on('click', '.js-financials-summary__accordion.collapsed', this, function (e) {
-      const $this = e.data;
-      const documentTitleTotal = $(this).text();
-      const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
-      $this.trackAnalytics($this, 'documents', documentTitle);
-    });
-    this.cache.$parentRoot.on('financial.filters', this, function (...args) {
-      const [e, status, documentType] = args;
-      const $this = e.data;
-      $this.cache.status = status;
-      $this.cache.documentType = documentType;
-    });
+      .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice)
+      .on('click', '.js-financials-summary__create-pdf,.js-financials-summary__create-excel', this, function (e) {
+        const $this = e.data;
+        const downloadType = $(this).data('downloadType');
+        $this.trackAnalytics($this, (downloadType === 'pdf' ? 'downloadPdf' : 'downloadExcel'));
+        $this.downloadPdfExcel(downloadType, this);
+      })
+      .on('click', '.js-financials-summary__accordion.collapsed', this, function (e) {
+        const $this = e.data;
+        const documentTitleTotal = $(this).text();
+        const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
+        $this.trackAnalytics($this, 'documents', documentTitle);
+      });
+    this.cache.$parentRoot
+      .on('financial.filters', this, function (...args) {
+        const [e, status, documentType] = args;
+        const $this = e.data;
+        $this.cache.status = status;
+        $this.cache.documentType = documentType;
+      })
+      .on('financial.error', (...args) => {
+        const [, linkParentTitle, linkName, errorMessage] = args;
+        this.trackErrors(linkParentTitle, linkName, errorMessage);
+      });
 
     route((...args) => {
       const [config, , query] = args;
@@ -292,15 +316,16 @@ class FinancialsStatementSummary {
   }
   downloadInvoice(e) {
     const $this = e.data;
-
     _downloadInvoice.call(this, $this);
     $this.trackAnalytics(this, 'downloadInvoice');
   }
   downloadPdfExcel(type, el) {
     this.root.parents('.js-financials').trigger('financial.filedownload', [type, el]);
   }
-
   trackAnalytics = (obj, type, data) => _trackAnalytics.call(obj, this, type, data);
+  trackErrors() {
+    return _trackErrors.apply(this, arguments);
+  }
   init() {
     /* Mandatory method */
     this.initCache();
