@@ -6,6 +6,7 @@ import { customDropdown } from '../../../scripts/utils/customDropdown';
 import financialStatementData from './data/financialStatement.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
+import file from '../../../scripts/utils/file';
 
 describe('FinancialStatement', function () {
   const jqRef = {
@@ -42,6 +43,7 @@ describe('FinancialStatement', function () {
         token_type: "BearerToken"
       }
     });
+    this.fileStub = sinon.stub(file, 'get').returns(new Promise(resolve => resolve()));
     $(document).on('submit', '.js-prevent-default', (e) => {
       e.preventDefault();
     });
@@ -65,6 +67,7 @@ describe('FinancialStatement', function () {
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
+    this.fileStub.restore();
   });
 
   it('should initialize', function (done) {
@@ -136,7 +139,9 @@ describe('FinancialStatement', function () {
 
   it('should download PDF/Excel file on click of create Excel/PDF button', function (done) {
     $('.js-financials').trigger('financial.filedownload', ['excel']);
-    expect(this.downloadPdfExcelSpy.called).to.be.true;
-    done();
+    file.get().then(() => {
+      expect(this.downloadPdfExcelSpy.called).to.be.true;
+      done();
+    });
   });
 });

@@ -7,14 +7,15 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
+import { isIOS } from '../../../scripts/utils/browserDetect';
+import file from '../../../scripts/utils/file';
 
 /**
  * Returns type of date
@@ -141,7 +142,7 @@ function _processFinancialStatementData(data) {
   const { documentType = [] } = data;
   data.documentType = [allKey].concat(documentType);
   this.cache.documentTypeList = [allKey].concat(defaultDocumentTypes);
-  this.root.parents('.js-financials').trigger('financial.filters', [data.status, this.cache.documentTypeList]);
+  this.root.parents('.js-financials').trigger(EVT_FINANCIAL_FILTERS, [data.status, this.cache.documentTypeList]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
     if (!data.customerData) {
@@ -280,6 +281,12 @@ function _renderFilters() {
         this.initializeCalendar();
         this.setRoute(true);
       } else {
+        const { statementOfAccount = '' } = this.cache.i18nKeys;
+        this.root.trigger(EVT_FINANCIAL_ERROR, [
+          $.trim(getI18n(statementOfAccount)).toLowerCase(),
+          SOA_FORM_LOAD_MSG,
+          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+        ]);
         this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
       }
     });
@@ -396,7 +403,10 @@ function _setRoute(isInit = false) {
   } else {
     router.set({
       route: '#/',
-      queryString: this.getFilterQuery()
+      queryString: this.getFilterQuery(),
+      data: {
+        isClick: !isInit
+      }
     }, isInit);
   }
 }
@@ -405,12 +415,13 @@ function _downloadPdfExcel(...args) {
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
-  const { $filterForm, data, i18nKeys, $docType } = this.cache;
+  const { $filterForm, data, i18nKeys, $docType, $soaTitle } = this.cache;
   const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
   const statusKey = $el.data('status');
   const docTypeDesc = $docType.text().trim();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
+  const soaTitle = $soaTitle.text();
   paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
   if ($el.data('invoiceDateTo')) {
     paramsData.startDate = $el.data('invoiceDateFrom');
@@ -430,7 +441,7 @@ function _downloadPdfExcel(...args) {
   paramsData.documentTypeList = this.cache.documentTypeList;
   auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
-    fileWrapper({
+    file.get({
       url,
       data: {
         params: JSON.stringify(paramsData)
@@ -438,12 +449,16 @@ function _downloadPdfExcel(...args) {
       extension: _getExtension(type)
     }).then(() => {
       $el.removeAttr('disabled');
+      if (!isIOS()) {
+        this.root.trigger(EVT_FINANCIAL_ANALYTICS, ['downloadInvoice', 'invoice download', $el]);
+      }
     }).catch(() => {
       toast.render(
         i18nKeys.fileDownloadErrorText,
         i18nKeys.fileDownloadErrorClose
       );
       $el.removeAttr('disabled');
+      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.fileDownloadErrorText)]);
     });
   });
 }
@@ -512,6 +527,7 @@ class FinancialStatement {
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
     this.cache.$docType = this.root.find('.js-financial-statement__document-type');
+    this.cache.$soaTitle = this.root.find('.js-financial-statement__select-customer-heading');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -581,9 +597,6 @@ class FinancialStatement {
       })
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
-    $(document).on('click', '#downloadPdf', function () {
-      window.open($(this).attr('href'), '_blank');
-    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');

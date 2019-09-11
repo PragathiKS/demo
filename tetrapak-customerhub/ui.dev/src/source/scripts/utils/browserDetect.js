@@ -25,49 +25,69 @@ const UA = {
 /**
  * Returns true if current browser is webkit
  */
-export const isWebkit = () => UA.hasWebkit;
+export function isWebkit() {
+  return UA.hasWebkit;
+}
 
 /**
  * Returns true if current browser is chrome
  */
-export const isChrome = () => (UA.hasWebkit && (UA.hasChrome || UA.hasChromeIOS));
+export function isChrome() {
+  return (UA.hasWebkit && (UA.hasChrome || UA.hasChromeIOS));
+}
 
 /**
  * Returns true if current browser is chrome iOS
  */
-export const isChromeIOS = () => (UA.hasWebkit && UA.hasChromeIOS);
+export function isChromeIOS() {
+  (UA.hasWebkit && UA.hasChromeIOS);
+}
 
 /**
  * Returns true if current browser is headless chrome
  */
-export const isHeadlessChrome = () => UA.hasHeadless;
+export function isHeadlessChrome() {
+  return UA.hasHeadless;
+}
 
 /**
  * Returns true if current platform is iOS
  */
-export const isIOS = () => (UA.hasIpad || UA.hasIphone);
+export function isIOS() {
+  return (UA.hasIpad || UA.hasIphone);
+}
 
 /**
  * Returns true if current browser is safari
  */
-export const isSafari = () => (UA.hasWebkit && UA.hasSafari && !(UA.hasChrome || UA.hasChromeIOS));
+export function isSafari() {
+  return (UA.hasWebkit && UA.hasSafari && !(UA.hasChrome || UA.hasChromeIOS));
+}
 
 /**
  * Returns true if current browser is edge
  */
-export const isEdge = () => (UA.hasWebkit && UA.hasEdge);
+export function isEdge() {
+  return (UA.hasWebkit && UA.hasEdge);
+}
 
 /**
  * Returns true if current browser is firefox
  */
-export const isFirefox = () => (UA.hasMozilla && UA.hasFirefox);
+export function isFirefox() {
+  return (UA.hasMozilla && UA.hasFirefox);
+}
 
 /**
  * Returns true if current browser is internet explorer
  */
-export const isIE = () => (UA.hasMSIE || UA.hasTrident || UA.isEdge);
+export function isIE() {
+  return (UA.hasMSIE || UA.hasTrident || UA.isEdge);
+}
 
 /**
  * Returns true if current browser is opera
  */
-export const isOpera = () => (UA.hasWebkit && UA.hasOpera);
+export function isOpera() {
+  return (UA.hasWebkit && UA.hasOpera);
+}
