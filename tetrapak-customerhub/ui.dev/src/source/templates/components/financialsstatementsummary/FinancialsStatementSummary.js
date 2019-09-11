@@ -202,7 +202,7 @@ function _getRequestParams(filterParams) {
  * Renders table section
  * @param {object} filterParams Selected filter parameters
  */
-function _renderTable(filterParams) {
+function _renderTable(filterParams, config) {
   const $this = this;
   auth.getToken(({ data: authData }) => {
     render.fn({
@@ -236,6 +236,17 @@ function _renderTable(filterParams) {
       if (!data.isError) {
         const { $filtersRoot } = this.cache;
         $filtersRoot.find('.js-financial-statement__filter-section').removeClass('d-none');
+      } else {
+        const { $parentRoot } = this.cache;
+        const { statementOfAccount = '' } = this.cache.i18nKeys;
+        const linkName = config && config.isClick ?
+          $.trim($parentRoot.find('.js-financial-statement__submit').text()).toLowerCase()
+          : 'financial search form load';
+        $parentRoot.trigger(EVT_FINANCIAL_ERROR, [
+          $.trim(getI18n(statementOfAccount)).toLowerCase(),
+          linkName,
+          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+        ]);
       }
     });
   });
@@ -312,7 +323,7 @@ class FinancialsStatementSummary {
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
-        this.renderTable(query);
+        this.renderTable(query, config);
       }
     });
   }

@@ -282,7 +282,11 @@ function _renderFilters() {
         this.setRoute(true);
       } else {
         const { statementOfAccount = '' } = this.cache.i18nKeys;
-        this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(getI18n(statementOfAccount)), 'financial search form load', $.trim(getI18n('cuhu.error.message'))]);
+        this.root.trigger(EVT_FINANCIAL_ERROR, [
+          $.trim(getI18n(statementOfAccount)).toLowerCase(),
+          'financial search form load',
+          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+        ]);
         this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
       }
     });
@@ -399,7 +403,10 @@ function _setRoute(isInit = false) {
   } else {
     router.set({
       route: '#/',
-      queryString: this.getFilterQuery()
+      queryString: this.getFilterQuery(),
+      data: {
+        isClick: !isInit
+      }
     }, isInit);
   }
 }
