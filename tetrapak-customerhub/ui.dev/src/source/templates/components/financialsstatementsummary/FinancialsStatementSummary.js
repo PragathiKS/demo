@@ -5,7 +5,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { tableSort, resolveQuery, resolveCurrency, getI18n } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
@@ -241,7 +241,7 @@ function _renderTable(filterParams, config) {
         const { statementOfAccount = '' } = this.cache.i18nKeys;
         const linkName = config && config.isClick ?
           $.trim($parentRoot.find('.js-financial-statement__submit').text()).toLowerCase()
-          : 'financial search form load';
+          : SOA_FORM_LOAD_MSG;
         $parentRoot.trigger(EVT_FINANCIAL_ERROR, [
           $.trim(getI18n(statementOfAccount)).toLowerCase(),
           linkName,

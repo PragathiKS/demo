@@ -87,3 +87,5 @@ export const EVT_POST_REFRESH = 'refresh.post';
 export const EVT_FINANCIAL_ERROR = 'financial.error';
 export const EVT_FINANCIAL_ANALYTICS = 'financial.analytics';
 export const EVT_FINANCIAL_FILTERS = 'financial.filters';
+// Analytics constants
+export const SOA_FORM_LOAD_MSG = 'financial search form load';
