@@ -37,8 +37,8 @@ import java.util.regex.Pattern;
 /**
  * This utility is used to generate and download an excel file based on the 2D String array provided as a parameter
  *
- * @author dhitiwar
- * @author swalamba
+ * @author Nitin Kumar
+ * @author Swati Lamba
  */
 public final class ExcelUtil {
 
