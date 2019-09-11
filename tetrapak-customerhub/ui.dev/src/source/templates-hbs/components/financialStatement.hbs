@@ -3,7 +3,7 @@
         {{> atoms/error/error error=true message="cuhu.error.message"}}
     {{else}}
         {{> molecules/calendar/calendarModal this}}
-        <h2 class="tp-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
+        <h2 class="tp-financial-statement__select-customer-heading js-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
         {{#if customerData}}
             <h3 class="tp-financial-statement__select-customer-label">{{i18n key=this.findCustomer}}</h3>
             {{> atoms/dropdown/dropdown-custom  options=this.customerData name='selectCustomer' label=this.selectCustomerLabel className="tp-financial-statement__select-box-wrapper" jsClass="js-financial-statement__find-customer"}}

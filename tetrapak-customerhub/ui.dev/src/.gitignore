@@ -1,8 +1,7 @@
 app
 node_modules
 coverage
-TESTS-HeadlessChrome*
-TESTS-PhantomJS*
+TESTS-*
 sass-lint-report.html
 eslint-report.html
 .vscode
