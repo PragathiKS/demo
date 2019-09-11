@@ -68,6 +68,9 @@ PassEnv DISP_ID
                 LogLevel warn rewrite:info
                 ##Global rewrite include
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
+				##Publish  rewrite include
+                Include /etc/httpd/conf.d/rewrites/publish_rewrite.rules
+				
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_FORCE_SSL from 0 or 1 to enable or disable enforcing SSL
                 <If "${PUBLISH_FORCE_SSL} == 1">
                         Include /etc/httpd/conf.d/rewrites/xforwarded_forcessl_rewrite.rules
