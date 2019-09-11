@@ -5,7 +5,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { tableSort, resolveQuery, resolveCurrency, getI18n } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
@@ -294,17 +294,17 @@ class FinancialsStatementSummary {
         self.trackAnalytics.apply(self, ['documents', documentTitle]);
       });
     this.cache.$parentRoot
-      .on('financial.filters', this, function (...args) {
+      .on(EVT_FINANCIAL_FILTERS, this, function (...args) {
         const [e, status, documentType] = args;
         const self = e.data;
         self.cache.status = status;
         self.cache.documentType = documentType;
       })
-      .on('financial.error', (...args) => {
+      .on(EVT_FINANCIAL_ERROR, (...args) => {
         const [, linkParentTitle, linkName, errorMessage] = args;
         this.trackErrors(linkParentTitle, linkName, errorMessage);
       })
-      .on('financial.analytics', (...args) => {
+      .on(EVT_FINANCIAL_ANALYTICS, (...args) => {
         const [, type, linkName, el] = args;
         this.trackAnalytics.apply(this, [type, linkName, el]);
       });

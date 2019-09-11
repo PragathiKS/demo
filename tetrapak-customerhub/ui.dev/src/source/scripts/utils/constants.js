@@ -84,3 +84,6 @@ export const API_DOCUMENTS_FILTERS = 'documents-filter';
 export const EVT_TOKEN_REFRESH = 'token.refresh';
 export const EVT_REFRESH_INITIATE = 'refresh.initiate';
 export const EVT_POST_REFRESH = 'refresh.post';
+export const EVT_FINANCIAL_ERROR = 'financial.error';
+export const EVT_FINANCIAL_ANALYTICS = 'financial.analytics';
+export const EVT_FINANCIAL_FILTERS = 'financial.filters';
