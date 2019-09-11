@@ -1,12 +1,12 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.RectangleReadOnly;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -48,6 +48,7 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsPDFServiceImpl.class);
 
     private Font languageSpecificFont;
+    private Font languageSpecificFontBold;
     private FinancialStatementModel financialStatementModel;
     private static final String CUHU_FINANCIAL_PREFIX = "cuhu.financials.";
     private Map<String, String> statusTypeMap;
@@ -104,20 +105,27 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
             switch (language) {
                 case "ja":
                     languageSpecificFont = FontUtil.getJpFont(FONT_RESOURCES + "NotoSerifCJKjp-Light.otf");
+                    languageSpecificFontBold = FontUtil.getJpFontBold(FONT_RESOURCES + "NotoSerifCJKjp-Bold.otf");
                     break;
                 case "zh":
                     languageSpecificFont = FontUtil.getScFont(FONT_RESOURCES + "NotoSerifCJKsc-Light.otf");
+                    languageSpecificFontBold = FontUtil.getScFontBold(FONT_RESOURCES + "NotoSerifCJKsc-Bold.otf");
                     break;
                 case "zh_TW":
                     languageSpecificFont = FontUtil.getTcFont(FONT_RESOURCES + "NotoSerifCJKtc-Light.otf");
+                    languageSpecificFontBold = FontUtil.getTcFontBold(FONT_RESOURCES + "NotoSerifCJKtc-Bold.otf");
                     break;
                 case "ko":
                     languageSpecificFont = FontUtil.getKoFont(FONT_RESOURCES + "NotoSerifCJKkr-Light.otf");
+                    languageSpecificFontBold = FontUtil.getKoFontBold(FONT_RESOURCES + "NotoSerifCJKkr-Bold.otf");
                     break;
                 default:
                     languageSpecificFont = FontUtil.getEnFont(FONT_RESOURCES + "NotoSerif-Light.ttf");
+                    languageSpecificFontBold = FontUtil.getEnFontBold(FONT_RESOURCES + "NotoSerif-Bold.ttf");
                     break;
             }
+            languageSpecificFont.setColor(BaseColor.DARK_GRAY);
+            languageSpecificFontBold.setColor(BaseColor.DARK_GRAY);
 
             PDFUtil2.drawImage(document1, urlService.getImagesUrl() + "tetra_pdf.png", 180, 69);
 
@@ -146,19 +154,21 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
     private void printHeadLines(SlingHttpServletRequest request, Params paramRequest, com.itextpdf.text.Document document1)
             throws DocumentException {
+        languageSpecificFont.setSize(13);
+        languageSpecificFontBold.setSize(13);
         Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
                 request, StringUtils.EMPTY, financialStatementModel.getStatementOfAccount(), language), languageSpecificFont);
         document1.add(p);
 
         p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
                 request, StringUtils.EMPTY, financialStatementModel.getAccountNumber(), language)
-                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), languageSpecificFont);
+                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), languageSpecificFontBold);
         document1.add(p);
 
-        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName1(), languageSpecificFont);
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName1(), languageSpecificFontBold);
         document1.add(p);
 
-        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName2(), languageSpecificFont);
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName2(), languageSpecificFontBold);
         document1.add(p);
 
         p = new Paragraph(paramRequest.getCustomerData().getInfo().getStreet(), languageSpecificFont);
@@ -184,13 +194,14 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         final int HEIGHT = 15;
 
         PdfPCell cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(
-                request, StringUtils.EMPTY, financialStatementModel.getDocumentHeadingI18n(), language), HEIGHT);
+                request, StringUtils.EMPTY, financialStatementModel.getDocumentHeadingI18n(), language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
         return table;
     }
 
     private void printStatementSummary(SlingHttpServletRequest request, Params paramRequest, com.itextpdf.text.Document document1)
             throws DocumentException {
+        languageSpecificFont.setSize(13);
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
                     request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n(), language)
@@ -212,6 +223,8 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
     private PdfPTable createAccountServiceTable(SlingHttpServletRequest request, Params paramRequest)
             throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
         PdfPTable table = new PdfPTable(2);
         table.setTotalWidth(new float[]{90, 160});
         table.setLockedWidth(true);
@@ -219,41 +232,41 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         table.setSpacingBefore(0);
         final int HEIGHT = 15;
 
-        PdfPCell cell = getPdfPCell(statusTypeMap.get(paramRequest.getStatus().getKey()), HEIGHT);
+        PdfPCell cell = getPdfPCell(statusTypeMap.get(paramRequest.getStatus().getKey()), HEIGHT, languageSpecificFont);
         table.addCell(cell);
 
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
             cell = getPdfPCell(paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING + " "
-                    + paramRequest.getEndDate(), HEIGHT);
+                    + paramRequest.getEndDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
 
         } else if (paramRequest.getStartDate() != null) {
-            cell = getPdfPCell(paramRequest.getStartDate(), HEIGHT);
+            cell = getPdfPCell(paramRequest.getStartDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
         } else {
-            cell = getPdfPCell(paramRequest.getEndDate(), HEIGHT);
+            cell = getPdfPCell(paramRequest.getEndDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
         }
 
         cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-                financialStatementModel.getSelectDocumentTypeLabel(), language), HEIGHT);
+                financialStatementModel.getSelectDocumentTypeLabel(), language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
 
-        cell = getPdfPCell(paramRequest.getDocumentType().getDesc(), HEIGHT);
+        cell = getPdfPCell(paramRequest.getDocumentType().getDesc(), HEIGHT, languageSpecificFont);
         table.addCell(cell);
 
         cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-                financialStatementModel.getPlaceholderForDocumentNumber(), language), HEIGHT);
+                financialStatementModel.getPlaceholderForDocumentNumber(), language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
 
-        cell = getPdfPCell(paramRequest.getDocumentNumber(), HEIGHT);
+        cell = getPdfPCell(paramRequest.getDocumentNumber(), HEIGHT, languageSpecificFont);
         table.addCell(cell);
         return table;
     }
 
-    private PdfPCell getPdfPCell(String text, int height) {
+    private PdfPCell getPdfPCell(String text, int height, Font font) {
         PdfPCell cell;
-        cell = new PdfPCell(new Phrase(text, languageSpecificFont));
+        cell = new PdfPCell(new Phrase(text, font));
         cell.setFixedHeight(height);
         cell.setBorder(Rectangle.NO_BORDER);
         return cell;
@@ -261,30 +274,41 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
     private PdfPTable createSummaryTable(PdfWriter writer, SlingHttpServletRequest request, List<Summary> summaries)
             throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
         PdfPTable table = new PdfPTable(9);
-        table.setTotalWidth(new float[]{60, 50, 60, 70, 50, 50, 50, 70, 80});
+        table.setTotalWidth(new float[]{60, 60, 60, 70, 50, 50, 50, 70, 80});
         table.setLockedWidth(true);
         table.setHorizontalAlignment(0);
         table.setSpacingBefore(0);
         final int HEIGHT = 15;
 
-        PdfPCell cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "customer", language), HEIGHT);
+        PdfPCell cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "customer",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "current", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "current",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "overdue", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "overdue",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "thirty", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "thirty",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "sixty", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "sixty",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "ninty", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "ninty",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "nintyPlus", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "nintyPlus",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "total", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "total",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
 
         double height = (double) writer.getVerticalPosition(false) - (double) HEIGHT;
@@ -292,23 +316,23 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         for (Summary summary : summaries) {
             PDFUtil2.drawLine(writer, 36, 580, (float) height);
             PDFUtil2.drawLine(writer, 36, 580, (float) height2);
-            cell = getPdfPCell(summary.getCustomer(), HEIGHT);
+            cell = getPdfPCell(summary.getCustomer(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getCurrency(), HEIGHT);
+            cell = getPdfPCell(summary.getCurrency(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getCurrent(), HEIGHT);
+            cell = getPdfPCell(summary.getCurrent(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getOverdue(), HEIGHT);
+            cell = getPdfPCell(summary.getOverdue(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getThirty(), HEIGHT);
+            cell = getPdfPCell(summary.getThirty(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getSixty(), HEIGHT);
+            cell = getPdfPCell(summary.getSixty(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getNinty(), HEIGHT);
+            cell = getPdfPCell(summary.getNinty(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getNintyPlus(), HEIGHT);
+            cell = getPdfPCell(summary.getNintyPlus(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(summary.getTotal(), HEIGHT);
+            cell = getPdfPCell(summary.getTotal(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
         }
 
@@ -316,6 +340,8 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     }
 
     private PdfPTable createDeliveryDetailTable(Document documentList) throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
         PdfPTable table = new PdfPTable(2);
         table.setTotalWidth(new float[]{510, 40});
         table.setLockedWidth(true);
@@ -323,18 +349,20 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         table.setSpacingBefore(0);
         final int HEIGHT = 15;
 
-        PdfPCell cell = getPdfPCell(documentList.getSalesOffice(), HEIGHT);
+        PdfPCell cell = getPdfPCell(documentList.getSalesOffice(), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
 
-        cell = getPdfPCell(documentList.getTotalAmount(), HEIGHT);
+        cell = getPdfPCell(documentList.getTotalAmount(), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
 
         return table;
     }
 
     private PdfPTable createRecordTable(PdfWriter writer, SlingHttpServletRequest request, List<Record> records) throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
         PdfPTable table = new PdfPTable(8);
-        table.setTotalWidth(new float[]{60, 60, 80, 60, 80, 60, 50, 60});
+        table.setTotalWidth(new float[]{60, 70, 80, 60, 80, 60, 50, 60});
         table.setLockedWidth(true);
         table.setHorizontalAlignment(0);
         table.setSpacingBefore(0);
@@ -345,40 +373,48 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         PDFUtil2.drawLine(writer, 36, 580, (float) height);
         PDFUtil2.drawLine(writer, 36, 580, (float) height2);
         PdfPCell cell =
-                getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "documentNumber", language), HEIGHT);
+                getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "documentNumber",
+                        language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "desc", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "desc",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "invoiceReference", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "invoiceReference",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "poNumber", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "poNumber",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "docDate", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "docDate",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "dueDate", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "dueDate",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
-        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "orgAmount", language), HEIGHT);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "orgAmount",
+                language), HEIGHT, languageSpecificFontBold);
         table.addCell(cell);
         PDFUtil2.drawLine(writer, 36, 580, writer.getVerticalPosition(false));
 
         for (Record record : records) {
-            cell = getPdfPCell(record.getDocumentNumber(), HEIGHT);
+            cell = getPdfPCell(record.getDocumentNumber(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(documentTypeMap.get(record.getDocumentType()), HEIGHT);
+            cell = getPdfPCell(documentTypeMap.get(record.getDocumentType()), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getInvoiceReference(), HEIGHT);
+            cell = getPdfPCell(record.getInvoiceReference(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getPoNumber(), HEIGHT);
+            cell = getPdfPCell(record.getPoNumber(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getDocDate(), HEIGHT);
+            cell = getPdfPCell(record.getDocDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getDueDate(), HEIGHT);
+            cell = getPdfPCell(record.getDueDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getCurrency(), HEIGHT);
+            cell = getPdfPCell(record.getCurrency(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(record.getOrgAmount(), HEIGHT);
+            cell = getPdfPCell(record.getOrgAmount(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
         }
         return table;
