@@ -7,7 +7,6 @@ import 'bootstrap';
 import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
@@ -15,6 +14,8 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
+import { isIOS } from '../../../scripts/utils/browserDetect';
+import file from '../../../scripts/utils/file';
 
 /**
  * Returns type of date
@@ -431,7 +432,7 @@ function _downloadPdfExcel(...args) {
   paramsData.documentTypeList = this.cache.documentTypeList;
   auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
-    fileWrapper({
+    file.get({
       url,
       data: {
         params: JSON.stringify(paramsData)
@@ -439,6 +440,9 @@ function _downloadPdfExcel(...args) {
       extension: _getExtension(type)
     }).then(() => {
       $el.removeAttr('disabled');
+      if (!isIOS()) {
+        this.root.trigger('financial.analytics', ['downloadInvoice', 'invoice download', $el]);
+      }
     }).catch(() => {
       toast.render(
         i18nKeys.fileDownloadErrorText,
@@ -584,9 +588,6 @@ class FinancialStatement {
       })
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
     this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
-    $(document).on('click', '#downloadPdf', function () {
-      window.open($(this).attr('href'), '_blank');
-    });
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
