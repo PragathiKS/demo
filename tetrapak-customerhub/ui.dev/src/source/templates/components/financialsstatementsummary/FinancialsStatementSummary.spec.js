@@ -7,6 +7,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
+import { EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_ERROR } from '../../../scripts/utils/constants';
 
 describe('FinancialsStatementSummary', function () {
   const jqRef = {
@@ -55,7 +56,7 @@ describe('FinancialsStatementSummary', function () {
         customerkey: 123
       }
     );
-    this.fileStub = sinon.stub(file, 'get').returns(new Promise(resolve => resolve()));
+    this.fileStub = sinon.stub(file, 'get').returns(Promise.resolve());
     this.financialsStatementSummary.init();
   });
   after(function () {
@@ -73,7 +74,7 @@ describe('FinancialsStatementSummary', function () {
     this.tokenStub.restore();
     this.routeStub.restore();
     this.fileStub.restore();
-  })
+  });
   it('should initialize', function (done) {
     expect(this.financialsStatementSummary.init.called).to.be.true;
     done();
@@ -91,16 +92,16 @@ describe('FinancialsStatementSummary', function () {
     done();
   });
   it('should download invoice on click of document row', function (done) {
+    $('.js-financials-summary__documents__row').first().trigger('click');
     file.get().then(() => {
-      $('.js-financials-summary__documents__row').first().trigger('click');
       expect(this.financialsStatementSummary.downloadInvoice.called).to.be.true;
       done();
     });
   });
   it('downloadPdfExcel should be called on download excel btn click', function (done) {
+    $('.js-financials-summary__create-pdf').first().trigger('click');
+    $('.js-financials-summary__create-excel').first().trigger('click');
     file.get().then(() => {
-      $('.js-financials-summary__create-pdf').first().trigger('click');
-      $('.js-financials-summary__create-excel').first().trigger('click');
       expect(this.financialsStatementSummary.downloadPdfExcel.called).to.be.true;
       done();
     });
@@ -111,8 +112,16 @@ describe('FinancialsStatementSummary', function () {
     done();
   });
   it('should track error analytics on error scenarios', function (done) {
-    $(document.body).trigger('financial.error', ['test', 'invoice download', 'error']);
+    $(document.body).trigger(EVT_FINANCIAL_ERROR, ['test', 'invoice download', 'error']);
     expect(this.errorSpy.called).to.be.true;
+    done();
+  });
+  it('should track analytics on financial.analytics event', function (done) {
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadExcel', 'create excel']);
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadPdf', 'create pdf']);
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['documents', 'document']);
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['test', 'document']);
+    expect(this.analyticsSpy.called).to.be.true;
     done();
   });
 });
