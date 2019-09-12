@@ -34,4 +34,10 @@ describe('Header', function () {
     expect(this.leftNavigation.openSideNav.called).to.be.true;
     done();
   });
+  it('should trigger "showlanuagepreferencepopup" event on click of language selection button', function (done) {
+    $('.js-header__selected-lang').on('click', () => {
+      done();
+    });
+    $('.js-header__selected-lang').trigger('click');
+  });
 });

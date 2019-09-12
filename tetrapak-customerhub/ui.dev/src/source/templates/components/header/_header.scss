@@ -124,8 +124,8 @@
 
     &__selected-lang {
         @include padding-right($padding-xl);
+        color: $color-congress-blue;
         position: relative;
-        cursor: pointer;
 
         &-label {
             @include padding-right($padding-xs);
@@ -133,6 +133,7 @@
         }
 
         .icon-Chevron_Down {
+            @include right($padding-l);
             @include font-size($font-xxs);
             color: $color-tundora;
             transform: translateY(-50%);

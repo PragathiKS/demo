@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-09-10T07:41:29.195Z"
+        cq:lastModifiedBy="admin"
+        cq:lastTranslationUpdate="{Date}2019-09-10T07:41:29.195Z"
+        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
+        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/dashboard"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Dashboard"
+        jcr:uuid="7852d4a5-8165-4432-801d-a1a15fc9e1e3"
+        sling:resourceType="customerhub/components/structure/page"
+        iconClass="icon-Dashboard"
+        showTitle="true">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <textvideo_416075310
+                    jcr:created="{Date}2019-07-08T09:23:35.205Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-08-29T06:17:19.499Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/textvideo"
+                    damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                    description="Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customer love."
+                    isExternal="true"
+                    linkTextI18n="Read More"
+                    linkURL="http://www.tetrapak.com"
+                    pwDisplay="display-column"
+                    textAlignment="right"
+                    thumbnailPath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
+                    title="Turn your products into success"
+                    videoSource="dam"
+                    youtubeVideoID="ZofQqevIIZA"/>
+                <getstarted
+                    jcr:lastModified="{Date}2019-08-26T08:47:21.404Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    className="tpmol-image-card__normal-text"
+                    headingI18n="About_GetStarted_Heading"
+                    textIsRich="[true,true,true,true]">
+                    <_x0030_
+                        jcr:lastModified="{Date}2019-07-24T06:00:52.117Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="first image"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"
+                        imageCrop="303,93,1152,489"
+                        imageRotate="180"/>
+                    <_x0031_
+                        jcr:lastModified="{Date}2019-07-24T05:47:12.356Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="second one"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"
+                        imageCrop="128,53,644,488"
+                        mheightl="50"
+                        mheightp="50"
+                        mwidthl="100"
+                        mwidthp="100"/>
+                    <_x0032_
+                        jcr:lastModified="{Date}2019-07-24T05:34:59.366Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="third one"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"/>
+                    <item0-image
+                        jcr:lastModified="{Date}2019-08-26T08:51:49.878Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"
+                        imageCrop="252,122,1021,416"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item1-image
+                        jcr:lastModified="{Date}2019-08-27T04:20:12.933Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"
+                        imageCrop="371,129,913,359"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item2-image
+                        jcr:lastModified="{Date}2019-07-24T09:08:16.836Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"/>
+                    <item3-image
+                        jcr:lastModified="{Date}2019-07-24T09:08:11.629Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"/>
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>&lt;b>My Tetra Pak&lt;/b> is your single point of entry to Tetra Pak. It uses business data in smart ways to help you save time and money, improve performance and increase your knowledge. You get advice and insights that improve your daily work. My Tetra Pak helps to bring the best out of your &lt;a title=&quot;Hi&quot; href=&quot;http://www.google.com&quot;>solutions.&lt;/a>&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title1"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work.&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title2"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>Which kind of notifications do you want to receive? Which are the performance goals of our business? Your areas of interest? Optimise My Tetra Pak for your needs and bring new value to your business.&lt;/p>&#xd;&#xa;"
+                            titleI18n="About_GetStarted_title3"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>asdffdsa&lt;/p>&#xd;&#xa;"
+                            titleI18n="dsafdsa"/>
+                    </list>
+                </getstarted>
+                <listcontentimage
+                    jcr:created="{Date}2019-07-09T07:21:33.179Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-07-09T08:36:21.104Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/listcontentimage"
+                    linkPath="/content/tetrapak/customerhub/global/en/financials"
+                    linkTextI18n="Explore other stories"
+                    linkTooltipI18n="Explore other stories"
+                    pwButtonTheme="secondary"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    tabLinks="[{&quot;tabLinkTextI18n&quot;:&quot;Tangible results for your business&quot;},{&quot;tabLinkTextI18n&quot;:&quot;World's first ambient drinking yoghurt with large fruit pieces&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Total Productive Manteinance implementation for dairy producer&quot;}]"
+                    tabsAlignment="text-left"
+                    targetBlank="true"
+                    titleI18n="Solutions for all needs">
+                    <par1
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="foundation/components/parsys">
+                        <text
+                            jcr:created="{Date}2019-07-09T08:16:06.287Z"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2019-07-09T08:38:46.753Z"
+                            jcr:lastModifiedBy="sapient-tarun"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="customerhub/components/content/text"
+                            text="&lt;h1>Bigger moments of nature&lt;/h1>&#xd;&#xa;&lt;p>Ambient drinking your yoghurt now got that extra - large fruit pieces. This is the outcome of an innovative collaboration between a Chinese diary manufacturer and Tetra Pak experts. What was the success formula behind idea, processing, packaging and launc?&lt;/p>&#xd;&#xa;"
+                            textIsRich="true"/>
+                    </par1>
+                    <par3
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="foundation/components/parsys">
+                        <text
+                            jcr:created="{Date}2019-07-09T08:16:48.606Z"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2019-07-09T08:38:12.669Z"
+                            jcr:lastModifiedBy="sapient-tarun"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="customerhub/components/content/text"
+                            text="&lt;h2>Turn your products into success&lt;/h2>&#xd;&#xa;&lt;p>Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart enviromental thinking. We help you turning ideas into products that your customers love.&lt;/p>&#xd;&#xa;"
+                            textIsRich="true"/>
+                    </par3>
+                    <par2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="foundation/components/parsys">
+                        <text
+                            jcr:created="{Date}2019-07-09T08:16:27.445Z"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2019-07-09T08:39:30.018Z"
+                            jcr:lastModifiedBy="sapient-tarun"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="customerhub/components/content/text"
+                            text="&lt;h3>Bigger moments of nature&lt;/h3>&#xd;&#xa;&lt;p>Ambient drinking your yoghurt now got that extra - large fruit pieces. This is the outcome of an innovative collaboration between a Chinese diary manufacturer and Tetra Pak experts. What was the success formula behind idea, processing, packaging and launc?&lt;/p>&#xd;&#xa;"
+                            textIsRich="true"/>
+                    </par2>
+                </listcontentimage>
+                <tabslist
+                    jcr:created="{Date}2019-07-22T04:35:08.708Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-06T09:32:01.901Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/tabslist"
+                    heading="Solutions for all needs for demo"
+                    textIsRich="[true,true,true,true]">
+                    <item0-image
+                        jcr:lastModified="{Date}2019-09-10T06:09:52.964Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/images.jpg"
+                        mheightl="576"
+                        mheightp="280"
+                        mwidthl="1024"
+                        mwidthp="500"/>
+                    <item3-image
+                        jcr:lastModified="{Date}2019-07-25T06:08:38.802Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
+                        imageCrop="22,11,608,396"/>
+                    <item4-image
+                        jcr:lastModified="{Date}2019-07-25T06:31:24.933Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="fifth"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"
+                        imageCrop="429,88,1088,411"/>
+                    <item5-image
+                        jcr:lastModified="{Date}2019-07-25T06:19:36.952Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="adsf"
+                        fileReference="/content/dam/publicweb/qa/carbonated_soft_drinks.jpg"/>
+                    <tablist jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            isExternal="false"
+                            linkTextI18n="Learn about the insight"
+                            linkType="button"
+                            linkURL="http://tetrapak-test64.adobecqms.net/customerhub/dashboard.html"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that &lt;b>extra -- large &lt;/b>fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the &lt;a href=&quot;http://www.google.com&quot;>success formula&lt;/a> behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Bigger moments of nature"
+                            tabTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            type="image"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="true"
+                            linkTextI18n="Learn more"
+                            linkType="button"
+                            linkURL="http://www.tetrapak.com/"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Ambient drinking"
+                            tabTitleI18n="Tangible results for your business"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
+                            type="video"
+                            videoSource="dam"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="true"
+                            linkTextI18n="This is forth image external text"
+                            linkType="link"
+                            linkURL="http://tetrapak-test64.adobecqms.net/customerhub/dashboard.html"
+                            mediaDescriptionI18n="&lt;p>&lt;b>Ambient drinking yogurt now got that extr&lt;/b>a&lt;b>&lt;/b> -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="Bigger moments of nature"
+                            tabTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"
+                            type="image"
+                            videoSource="dam"
+                            youtubeVideoID="v=PkQW3-RjqEE"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="false"
+                            linkTextI18n="http://www.tetrapak.com"
+                            linkType="link"
+                            linkURL="http://www.tetrapak.com"
+                            mediaDescriptionI18n="&lt;p>Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?Ambient drinking yogurt now got that extra -- large fruit pieces. This is the outcome of an innovative collaboration between Chinese dairy manufacture and TETRA Pak expert. What was the success formula behind idea, processing, packaging and launch?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="World's first ambient drinking yogurt with large fruit pieces"
+                            tabTitleI18n="Total productive Maintainance implementation for dairy products"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
+                            type="video"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                    </tablist>
+                </tabslist>
+                <getstarted_501212240
+                    jcr:created="{Date}2019-08-23T07:50:56.170Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-09T08:48:42.812Z"
+                    jcr:lastModifiedBy="tetrapak-henrik"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    headingI18n="Test"
+                    textIsRich="[true,true]">
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>ggfgf&lt;/p>&#xd;&#xa;"
+                            titleI18n="gfgf"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>gfgf&lt;/p>&#xd;&#xa;"
+                            titleI18n="gfgfgf"/>
+                    </list>
+                </getstarted_501212240>
+                <getstarted_1060167058
+                    jcr:created="{Date}2019-08-26T08:45:18.826Z"
+                    jcr:createdBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-08-26T08:45:47.644Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/getstarted"
+                    className="tpmol-image-card__normal-text"
+                    headingI18n="sadffdsa"
+                    textIsRich="true">
+                    <list jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            descriptionI18n="&lt;p>ssss&lt;/p>&#xd;&#xa;"
+                            titleI18n="ssss"/>
+                    </list>
+                </getstarted_1060167058>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

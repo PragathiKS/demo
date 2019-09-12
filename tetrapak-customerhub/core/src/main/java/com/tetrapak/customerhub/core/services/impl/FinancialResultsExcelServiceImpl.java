@@ -31,6 +31,7 @@ import java.util.Set;
  * Implementation class for Financial Results Excel Service
  *
  * @author swalamba
+ * @author Nitin Kumar
  */
 @Component(immediate = true, service = FinancialResultsExcelService.class)
 public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelService {
@@ -234,7 +235,7 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         if (null != records && !records.isEmpty()) {
             data = new String[records.size()][16];
             Iterator<Record> itr = records.iterator();
-            byte counter = 0;
+            int counter = 0;
             String[] tags = new String[]{};
             while (itr.hasNext()) {
                 Record record = itr.next();

@@ -4,6 +4,7 @@ import { storageUtil, isAuthorMode } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 class LanguageSelector {
   constructor({ el }) {
@@ -64,13 +65,16 @@ class LanguageSelector {
     window.location.reload();
   }
 
-  showPopup() {
+  showPopup(isInit) {
     const { $modal, selectedLanguage } = this.cache;
     const langCookie = storageUtil.getCookie('lang-code');
     if (selectedLanguage && langCookie !== selectedLanguage) {
       storageUtil.setCookie('lang-code', selectedLanguage);
     }
     if (!this.cache.selectedLanguage && !langCookie && !isAuthorMode()) {
+      if (isInit) {
+        $body.addClass('tp-no-backdrop');
+      }
       $modal.modal();
     }
   }
@@ -78,7 +82,7 @@ class LanguageSelector {
   init() {
     this.initCache();
     this.bindEvents();
-    this.showPopup();
+    this.showPopup(true);
   }
 }
 
