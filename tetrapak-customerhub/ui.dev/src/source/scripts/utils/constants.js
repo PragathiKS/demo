@@ -26,13 +26,14 @@ export const TOKEN_REFRESH_IDENTIFIER = 'token_refresh';
 export const ACC_TOKEN_COOKIE = 'acctoken';
 export const AUTH_TOKEN_COOKIE = 'authToken';
 export const AUTH_TOKEN_EXPIRY = 'tokenExpiry';
+export const AUTH_WINDOW_NAME = 'refreshPage';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 // Servlet URLs
 export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePreference';
 export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/logout';
 // Page URLs
-export const EMPTY_PAGE_URL = '/customerhub/empty.html';
+export const EMPTY_PAGE_URL = '/dashboard.html';
 // Constant maps
 export const ajaxMethods = {
   GET: 'GET',
@@ -81,7 +82,7 @@ export const API_MAINTENANCE_EVENTS = 'maintenance-events';
 export const API_DOCUMENTS_SEARCH = 'documents';
 export const API_DOCUMENTS_FILTERS = 'documents-filter';
 // Custom events
-export const EVT_TOKEN_REFRESH = 'token.refresh';
+export const EVT_TOKEN_REFRESH = 'message';
 export const EVT_REFRESH_INITIATE = 'refresh.initiate';
 export const EVT_POST_REFRESH = 'refresh.post';
 export const EVT_FINANCIAL_ERROR = 'financial.error';

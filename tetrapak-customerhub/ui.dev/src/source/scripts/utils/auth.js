@@ -1,12 +1,10 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE, EVT_REFRESH_INITIATE, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY } from './constants';
+import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';
 import { refreshToken } from './tokenRefresh';
-import { $body } from './commonSelectors';
-import { logger } from './logger';
 
 /**
  * Generates a valid APIGEE token and ensures token validity
@@ -36,8 +34,6 @@ function generateToken() {
               const expiresIn = +result.expires_in;
               const expiry = expiresIn / (24 * 60 * 60);
               storageUtil.setCookie(AUTH_TOKEN_COOKIE, `${result.access_token}`, expiry);
-              storageUtil.set(AUTH_TOKEN_EXPIRY, (Date.now() + (expiresIn * 1000)));
-              $body.trigger(EVT_REFRESH_INITIATE);
               resolve({
                 data: result,
                 textStatus,
@@ -123,13 +119,6 @@ export default {
         this.tokenPromise
       ]).then(response => execCallback.apply(this, getArgs(callback, response)))
         .catch(error => handleRejection.apply(this, getArgs(callback, error)));
-    });
-  },
-  init() {
-    $body.on(EVT_POST_REFRESH, () => {
-      this.getToken(() => {
-        logger.log('[Webpack]: Bearer token refreshed');
-      });
     });
   }
 };

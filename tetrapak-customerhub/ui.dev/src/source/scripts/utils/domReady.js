@@ -13,9 +13,8 @@ import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
 import videoAnalytics from './videoAnalytics';
 import customEvents from './customEvents';
-import auth from './auth';
-import tokenRefresh from './tokenRefresh';
 import feedback from './feedback';
+import { AUTH_WINDOW_NAME } from './constants';
 
 export default {
   init() {
@@ -23,9 +22,6 @@ export default {
     feedback.init();
     // Custom events
     customEvents.init();
-    // Auth and Token refresh
-    tokenRefresh.init();
-    auth.init();
     // Dynamic media
     dynamicMedia.init();
     // Toast error messages
@@ -61,6 +57,9 @@ export default {
       || isMobile()
     ) {
       $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
+    }
+    if (window.name === AUTH_WINDOW_NAME) {
+      window.close();
     }
   }
 };
