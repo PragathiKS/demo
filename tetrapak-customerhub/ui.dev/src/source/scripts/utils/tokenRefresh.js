@@ -1,13 +1,29 @@
 import 'core-js/features/promise';
-import { storageUtil, isCurrentPageIframe, getMaxSafeInteger } from '../common/common';
+import { storageUtil, isCurrentPageIframe, isLocalhost } from '../common/common';
 import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, ajaxMethods } from './constants';
+import { ACC_TOKEN_COOKIE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, EMPTY_PAGE_URL, AUTH_WINDOW_NAME } from './constants';
 import { logger } from './logger';
-import { ajaxWrapper } from './ajax';
 
 const cache = {};
 
-const MAX_SAFE_INTEGER = getMaxSafeInteger();
+const refreshTokenURL = isLocalhost()
+  ? 'http://localhost:4502/content/customerhub-ux/pageredirect.ux-preview.html'
+  : `${DELETE_COOKIE_SERVLET_URL}?redirectURL=${EMPTY_PAGE_URL}`;
+
+/**
+ * Opens a centered popup
+ * @param {string} url URL string
+ * @param {string} winName Window name
+ * @param {string} width Width
+ * @param {string} height Height
+ * @param {string} scr Scroll
+ */
+function centeredPopup(url, winName, width, height, scr) {
+  const leftPos = (screen.width) ? (screen.width - width) / 2 : 0;
+  const topPos = (screen.height) ? (screen.height - height) / 2 : 0;
+  const settings = `height=${height},width=${width},top=${topPos},left=${leftPos},scrollbars=${scr},resizable`;
+  return window.open(url, winName, settings);
+}
 
 /**
  * Executes function if it's valid
@@ -17,35 +33,6 @@ const MAX_SAFE_INTEGER = getMaxSafeInteger();
 function execFunc(callback, ...args) {
   if (typeof callback === 'function') {
     callback.apply(this, args);
-  }
-}
-
-/**
- * Initiates a timer to refresh token
- */
-function initiateTokenTimer() {
-  logger.log('[Webpack]: Token timer initiated');
-  if (cache.tokenTimeout) {
-    clearTimeout(cache.tokenTimeout);
-  }
-  const currentTimestamp = Date.now();
-  const savedTimestamp = storageUtil.get(AUTH_TOKEN_EXPIRY);
-  const remainingTime = (+savedTimestamp) - currentTimestamp - (2 * 60 * 1000); // Substracting 2 minutes from original difference
-  if (remainingTime <= 0) {
-    // Either token refresh already happened or is pending
-    // Check if a valid access token has already been created
-    logger.log('[Webpack]: Entered a dead zone');
-    if (!storageUtil.get(ACC_TOKEN_COOKIE)) {
-      // If cookie doesn't exists then trigger refresh
-      $body.trigger(EVT_TOKEN_REFRESH);
-    }
-  } else {
-    const timeoutTime = (remainingTime > MAX_SAFE_INTEGER) ? MAX_SAFE_INTEGER : remainingTime;
-    cache.tokenTimeout = setTimeout(() => {
-      $body.trigger(EVT_TOKEN_REFRESH);
-      clearTimeout(cache.tokenTimeout);
-    }, timeoutTime);
-    logger.log(`[Webpack]: Remaining time ${timeoutTime}ms`);
   }
 }
 
@@ -67,13 +54,11 @@ function triggerRefresh() {
   if (!cache.refreshTokenPromise) {
     cache.refreshTokenPromise = new Promise((resolve) => {
       logger.log(`[Webpack]: Token refresh triggered`);
-      ajaxWrapper.getXhrObj({
-        url: DELETE_COOKIE_SERVLET_URL,
-        data: {
-          redirectURL: EMPTY_PAGE_URL
-        },
-        method: ajaxMethods.GET
-      }).always(postResolveHandler);
+      const popupWindow = centeredPopup(refreshTokenURL, AUTH_WINDOW_NAME, '1', '1', 'no');
+      $(popupWindow).one('beforeunload', () => {
+        postResolveHandler();
+        logger.log('[Webpack]: Window successfully closed');
+      });
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
@@ -96,26 +81,3 @@ export function refreshToken(callback) {
     execFunc.apply(this, [callback]);
   }
 }
-
-export default {
-  bindEvents() {
-    $body.on(EVT_TOKEN_REFRESH, function () {
-      triggerRefresh().then(() => {
-        cache.refreshTokenPromise = null;
-      });
-    }).on(EVT_REFRESH_INITIATE, function () {
-      cache.authToken = storageUtil.get(AUTH_TOKEN_COOKIE);
-      initiateTokenTimer();
-    });
-  },
-  init() {
-    if (!isCurrentPageIframe()) {
-      this.bindEvents();
-      cache.authToken = storageUtil.get(AUTH_TOKEN_COOKIE);
-      // If auth token exists then previous token timer was initiated. This will restore the timer in case the page reloads.
-      if (cache.authToken) {
-        initiateTokenTimer();
-      }
-    }
-  }
-};
