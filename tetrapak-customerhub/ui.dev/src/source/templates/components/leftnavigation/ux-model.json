@@ -16,6 +16,13 @@
       "pageName": "cuhu-aem-getstarted"
     },
     {
+      "href": "https://google.com",
+      "iconClass": "icon-Packaging_Design",
+      "iconLabel": "Package Design",
+      "isExternalLink": "true",
+      "pageName": "cuhu-aem-package-design"
+    },
+    {
       "iconClass": "icon-Cart",
       "iconLabel": "Ordering",
       "isExternalLink": "false",
