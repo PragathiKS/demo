@@ -82,9 +82,6 @@ export const API_MAINTENANCE_EVENTS = 'maintenance-events';
 export const API_DOCUMENTS_SEARCH = 'documents';
 export const API_DOCUMENTS_FILTERS = 'documents-filter';
 // Custom events
-export const EVT_TOKEN_REFRESH = 'message';
-export const EVT_REFRESH_INITIATE = 'refresh.initiate';
-export const EVT_POST_REFRESH = 'refresh.post';
 export const EVT_FINANCIAL_ERROR = 'financial.error';
 export const EVT_FINANCIAL_ANALYTICS = 'financial.analytics';
 export const EVT_FINANCIAL_FILTERS = 'financial.filters';

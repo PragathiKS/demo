@@ -4,7 +4,6 @@ import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';
-import { refreshToken } from './tokenRefresh';
 
 /**
  * Generates a valid APIGEE token and ensures token validity
@@ -111,14 +110,12 @@ export default {
    * @param {Function} callback Success callback
    */
   getToken(callback) {
-    refreshToken(() => {
-      if (!this.tokenPromise) {
-        this.tokenPromise = generateToken();
-      }
-      return Promise.all([
-        this.tokenPromise
-      ]).then(response => execCallback.apply(this, getArgs(callback, response)))
-        .catch(error => handleRejection.apply(this, getArgs(callback, error)));
-    });
+    if (!this.tokenPromise) {
+      this.tokenPromise = generateToken();
+    }
+    return Promise.all([
+      this.tokenPromise
+    ]).then(response => execCallback.apply(this, getArgs(callback, response)))
+      .catch(error => handleRejection.apply(this, getArgs(callback, error)));
   }
 };
