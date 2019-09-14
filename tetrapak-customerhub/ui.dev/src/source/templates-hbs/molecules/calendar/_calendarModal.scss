@@ -17,6 +17,22 @@ $dialog-maxwidth: 663px;
         }
     }
 
+    &__calendar-left,
+    &__calendar-right {
+        @include height($font-l);
+
+        .icon {
+            @include font-size($font-l);
+            color: $color-tundora;
+
+            &::before {
+                @include font-size($font-l);
+                height: auto;
+                margin-top: 0;
+            }
+        }
+    }
+
     &__modal {
         .tpmol-modal-footer {
             justify-content: center;
