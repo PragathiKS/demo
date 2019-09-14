@@ -104,7 +104,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
     }
 
     private void setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
-        if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
+        if (url.contains("/content/tetrapak/customerhub") && !url.contains("logout") && url.endsWith(".html")) {
             LOGGER.debug("request URI {}", url);
             StringBuilder processedUrl = new StringBuilder();
             processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
