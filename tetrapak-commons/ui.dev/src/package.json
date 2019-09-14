@@ -2,7 +2,7 @@
   "name": "commons",
   "version": "0.0.1",
   "dependencies": {
-    "argon-logger": "0.0.4",
+    "argon-logger": "0.0.6",
     "bootstrap": "^4.3.1",
     "core-js": "^3.2.1",
     "deparam.js": "^2.0.10",
