@@ -3,5 +3,5 @@ import { isHeadlessChrome } from './browserDetect';
 
 export const logger = new Logger({
   disable: isHeadlessChrome(),
-  allowedQueryStringParameters: ['debugClientLibs']
+  allowedQueryStringParameters: ['debug', 'debugClientLibs']
 });
