@@ -194,7 +194,7 @@
                                                 fieldDescription="Select Video Path"
                                                 fieldLabel="Video Path"
                                                 name="./damVideoPath"
-                                                rootPath="/content/dam/customerhub"/>
+                                                rootPath="/content/dam/tetrapak/customerhub"/>
                                         <youtubeVideoID
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -207,7 +207,7 @@
                                                 fieldDescription="Select Thumbnail Image Path"
                                                 fieldLabel="Thumbnail Image Path"
                                                 name="./thumbnailPath"
-                                                rootPath="/content/dam/customerhub"/>
+                                                rootPath="/content/dam/tetrapak/customerhub"/>
                                         <linkTextI18n
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

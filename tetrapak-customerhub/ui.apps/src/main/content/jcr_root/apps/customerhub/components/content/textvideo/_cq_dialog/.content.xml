@@ -71,14 +71,14 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                     fieldLabel="DAM Video Path"
                                     name="./damVideoPath"
-                                    rootPath="/content/dam/customerhub"/>
+                                    rootPath="/content/dam/tetrapak/customerhub"/>
                             <image
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                     fieldDescription="Select a thumbnail for the DAM video"
                                     fieldLabel="Thumbnail"
                                     name="./thumbnailPath"
-                                    rootPath="/content/dam/customerhub"/>
+                                    rootPath="/content/dam/tetrapak/customerhub"/>
                             <textAlignment
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"

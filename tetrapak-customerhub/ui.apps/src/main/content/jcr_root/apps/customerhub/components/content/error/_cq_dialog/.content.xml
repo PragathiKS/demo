@@ -16,7 +16,7 @@
                     <imagepath jcr:primaryType="nt:unstructured"
                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                fieldDescription="Select Image Path" fieldLabel="Image Path"
-                               name="./imagePath" rootPath="/content/dam/customerhub"/>
+                               name="./imagePath" rootPath="/content/dam/tetrapak/customerhub"/>
                     <imagealttext jcr:primaryType="nt:unstructured"
                                   sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                   fieldDescription="Enter alt text for the image"
