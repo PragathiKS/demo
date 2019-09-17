@@ -62,7 +62,7 @@ export default {
     ) {
       $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
     }
-    if (isCurrentPageIframe()) {
+    if (isCurrentPageIframe() && $('.js-empty-page-script').length === 0) {
       window.parent.postMessage({
         refresh: true
       });
