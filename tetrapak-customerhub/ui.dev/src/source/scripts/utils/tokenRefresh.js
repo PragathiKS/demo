@@ -1,7 +1,7 @@
 import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, getMaxSafeInteger, isLocalhost } from '../common/common';
-import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL } from './constants';
+import { $body, $win } from './commonSelectors';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT } from './constants';
 import { logger } from './logger';
 
 const cache = {};
@@ -58,6 +58,9 @@ function initiateTokenTimer() {
 function postResolveHandler() {
   // Remove iframe
   $('.js-token-refresh-ifrm').remove();
+  // Reset timeout
+  clearTimeout(cache.iframeTimeoutRef);
+  logger.log(`[TokenRefresh]: Refresh token iframe timeout is cleared`);
   // Remove cookie if it still exists
   if (storageUtil.get(AUTH_TOKEN_COOKIE)) {
     storageUtil.removeCookie(AUTH_TOKEN_COOKIE);
@@ -78,6 +81,7 @@ function triggerRefresh() {
       $(iFrame).addClass('d-none js-token-refresh-ifrm');
       $(document.body).append(iFrame);
       iFrame.src = `${deleteCookieServletURL}?redirectURL=${EMPTY_PAGE_URL}`;
+      $win.trigger(EVT_IFRAME_TIMEOUT);
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
@@ -115,6 +119,11 @@ export default {
       if (e.data && e.data.refresh) {
         postResolveHandler();
       }
+    });
+    $win.on(EVT_IFRAME_TIMEOUT, () => {
+      clearTimeout(cache.iframeTimeoutRef);
+      cache.iframeTimeoutRef = setTimeout(postResolveHandler, TOKEN_REFRESH_IFRAME_TIMEOUT);
+      logger.log(`[TokenRefresh]: Refresh token iframe will timeout in ${TOKEN_REFRESH_IFRAME_TIMEOUT}ms`);
     });
   },
   init() {
