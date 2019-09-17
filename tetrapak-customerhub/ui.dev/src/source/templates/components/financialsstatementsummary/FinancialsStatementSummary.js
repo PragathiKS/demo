@@ -133,6 +133,7 @@ function _processTableData(data) {
         doc.docData = doc.records.map(record => {
           let isClickable = false;
           let dataLink;
+          delete record.documentTypeDesc;
           if (deleteLocalData) {
             delete record.salesLocalData;
           }
