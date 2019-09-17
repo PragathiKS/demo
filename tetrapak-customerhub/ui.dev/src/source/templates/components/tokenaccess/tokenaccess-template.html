@@ -1,7 +1,9 @@
 <sly data-sly-template.tokenaccess_template="${@ data, flag}">
   <script>
-    if (window.name === 'refreshPage') {
-      window.close();
+    if (window.location !== window.parent.location) {
+      window.parent.postMessage({
+        refresh: true
+      });
     }
   </script>
 </sly>
