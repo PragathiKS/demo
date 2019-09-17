@@ -209,8 +209,8 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
             documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        } catch (ParserConfigurationException ignore) {
-            LOGGER.error("ParserConfigurationException ", ignore);
+        } catch (ParserConfigurationException e) {
+            LOGGER.error("ParserConfigurationException ", e);
         }
         documentBuilderFactory.setXIncludeAware(false);
         documentBuilderFactory.setExpandEntityReferences(false);
@@ -258,8 +258,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 if ("saml:Attribute".equalsIgnoreCase(childNode.getNodeName())) {
                     String attributeValue = childNode.getAttributes().item(0).getNodeValue();
                     NodeList attrValNodeList = childNode.getChildNodes();
-                    int maxNodeCount = attrValNodeList.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
-                            : attrValNodeList.getLength();
+                    int maxNodeCount = Math.min(attrValNodeList.getLength(), MAX_FIRSTLEVEL_CHILD_COUNT);
                     putSAMLAttributes(samlAttributeMap, attributeValue, attrValNodeList, maxNodeCount);
                 }
             }
@@ -288,7 +287,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
      * @param encodedStr encoded SAML response
      * @return string decoded SAML response
      */
-    public static String decodeStr(String encodedStr) {
+    private static String decodeStr(String encodedStr) {
         org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
         byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
         return new String(base64DecodedByteArray, Charsets.UTF_8);
