@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -62,7 +63,9 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
         }
         String redirectURL = request.getParameter("redirectURL");
         try {
-            response.sendRedirect(redirectURL);
+            if (StringUtils.isNotEmpty(redirectURL)) {
+                response.sendRedirect(redirectURL);
+            }
         } catch (IOException e) {
             LOGGER.error("IOException in redirecting from Logout handler", e);
         }
