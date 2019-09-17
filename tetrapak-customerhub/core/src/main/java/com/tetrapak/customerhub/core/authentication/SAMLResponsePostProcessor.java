@@ -56,7 +56,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
             String url = request.getRequestURI();
-            setSAMLRequestPathCookie(request, response, url);
+            String processedURL = setSAMLRequestPathCookie(request, response, url);
 
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
@@ -93,6 +93,9 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                     response.addCookie(accToken);
                 }
                 setLangCodeCookie(request, response, base64DecodedResponse);
+                if (processedURL.contains("empty")) {
+                    response.setHeader("Location", "https://" + request.getServerName() + processedURL);
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -103,21 +106,27 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         }
     }
 
-    private void setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
-        if (url.contains("/content/tetrapak/customerhub") && !url.contains("logout") && url.endsWith(".html")) {
+    private String setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
+        StringBuilder processedUrl = new StringBuilder();
+        if (isValidURL(url)) {
             LOGGER.debug("request URI {}", url);
-            StringBuilder processedUrl = new StringBuilder();
             processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
                     .append("html");
             String queryString = request.getQueryString();
             if (StringUtil.isNotBlank(queryString)) {
                 processedUrl.append("?").append(queryString);
             }
+
             Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
             samlRequestPath.setHttpOnly(true);
             samlRequestPath.setPath("/");
             response.addCookie(samlRequestPath);
         }
+        return processedUrl.toString();
+    }
+
+    private boolean isValidURL(String url) {
+        return url.contains("/content/tetrapak/customerhub") && !url.contains("logout") && !url.contains("empty") && url.endsWith(".html");
     }
 
     private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response, String base64DecodedResponse)
