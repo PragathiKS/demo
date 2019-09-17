@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:primaryType="sling:OsgiConfig"
-          browser-title-prefix="PROD"
-          css-color="orange"
-          css-override="#acs-commons-env-indicator { &#x9;&#xd;&#xa;background-color: #00700E;  &#x9;&#xd;&#xa;color: #FFF;  &#xd;&#xa;&#xd;&#xa;position: fixed;&#xd;&#xa;top: 0;&#xd;&#xa;left: 50%;&#xd;&#xa;width: 170px;&#xd;&#xa;margin-left: -63px;&#xd;&#xa;height: 30px;  &#x9;&#xd;&#xa;font: bold 18px/29px sans-serif;&#xd;&#xa;text-align: center; &#x9; &#x9;&#xd;&#xa;border: solid 1px black;&#xd;&#xa;border-top-width: 0;&#xd;&#xa;z-index: 100000000000000;&#xd;&#xa;}"
-          excluded-wcm-modes=""
-          inner-html="PROD PUBLISH"/>
