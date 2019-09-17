@@ -1,16 +1,21 @@
 import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, getMaxSafeInteger, isLocalhost } from '../common/common';
 import { $body, $win } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT } from './constants';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT, ajaxMethods } from './constants';
 import { logger } from './logger';
+import { ajaxWrapper } from './ajax';
 
 const cache = {};
 
 const MAX_SAFE_INTEGER = getMaxSafeInteger();
 
-const deleteCookieServletURL = isLocalhost()
-  ? 'http://localhost:4502/content/customerhub-ux/pageredirect.ux-preview.html'
-  : DELETE_COOKIE_SERVLET_URL;
+const { protocol, host } = window.location;
+
+const iFrameSrc = `${protocol}//${host}${(
+  isLocalhost()
+    ? '/content/customerhub-ux/pageredirect.ux-preview.html'
+    : EMPTY_PAGE_URL
+)}`;
 
 /**
  * Executes function if it's valid
@@ -78,11 +83,15 @@ function triggerRefresh() {
       logger.log(`[TokenRefresh]: Token refresh triggered`);
       // Insert iframe
       const iFrame = document.createElement('iframe');
-      const { protocol, host } = window.location;
       $(iFrame).addClass('d-none js-token-refresh-ifrm');
-      $(document.body).append(iFrame);
-      iFrame.src = `${deleteCookieServletURL}?redirectURL=${protocol}//${host}${EMPTY_PAGE_URL}`;
-      $win.trigger(EVT_IFRAME_TIMEOUT);
+      ajaxWrapper.getXhrObj({
+        method: ajaxMethods.GET,
+        url: DELETE_COOKIE_SERVLET_URL
+      }).always(() => {
+        $(document.body).append(iFrame);
+        iFrame.src = iFrameSrc;
+        $win.trigger(EVT_IFRAME_TIMEOUT);
+      });
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
