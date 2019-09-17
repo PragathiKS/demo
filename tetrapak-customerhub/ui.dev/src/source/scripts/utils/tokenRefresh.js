@@ -78,9 +78,10 @@ function triggerRefresh() {
       logger.log(`[TokenRefresh]: Token refresh triggered`);
       // Insert iframe
       const iFrame = document.createElement('iframe');
+      const { protocol, host } = window.location;
       $(iFrame).addClass('d-none js-token-refresh-ifrm');
       $(document.body).append(iFrame);
-      iFrame.src = `${deleteCookieServletURL}?redirectURL=${EMPTY_PAGE_URL}`;
+      iFrame.src = `${deleteCookieServletURL}?redirectURL=${protocol}//${host}${EMPTY_PAGE_URL}`;
       $win.trigger(EVT_IFRAME_TIMEOUT);
       $body.one(EVT_POST_REFRESH, resolve);
     });
@@ -122,7 +123,10 @@ export default {
     });
     $win.on(EVT_IFRAME_TIMEOUT, () => {
       clearTimeout(cache.iframeTimeoutRef);
-      cache.iframeTimeoutRef = setTimeout(postResolveHandler, TOKEN_REFRESH_IFRAME_TIMEOUT);
+      cache.iframeTimeoutRef = setTimeout(() => {
+        logger.log('[TokenRefresh]: Refresh occurred due to timeout');
+        postResolveHandler();
+      }, TOKEN_REFRESH_IFRAME_TIMEOUT);
       logger.log(`[TokenRefresh]: Refresh token iframe will timeout in ${TOKEN_REFRESH_IFRAME_TIMEOUT}ms`);
     });
   },
