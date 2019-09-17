@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component(
+        immediate = true,
         service = Filter.class,
         property = {HttpWhiteboardConstants.HTTP_WHITEBOARD_FILTER_PATTERN + "=/content/tetrapak/",
                 HttpWhiteboardConstants.HTTP_WHITEBOARD_FILTER_REGEX + "=/[a-z]*",
