@@ -93,10 +93,6 @@
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="&lt;p>Based on your equipment, setup, needs and goals; My Tetra Pak notifies you when something needs your attention. Explore the details around performance issues, maintenance and optimisation – you can use the notifications as a checklist for your daily work.&lt;/p>&#xd;&#xa;"
                             titleI18n="Notifications that you need"/>
-                        <item3
-                            jcr:primaryType="nt:unstructured"
-                            descriptionI18n="&lt;p>asdffdsa&lt;/p>&#xd;&#xa;"
-                            titleI18n="dsafdsa"/>
                     </list>
                     <item3-image
                         jcr:lastModified="{Date}2019-07-24T09:08:11.629Z"
