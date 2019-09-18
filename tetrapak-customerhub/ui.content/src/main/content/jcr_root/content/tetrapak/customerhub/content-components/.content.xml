@@ -7,12 +7,11 @@
         cq:isLanguageRoot="true"
         cq:lastModified="{Date}2019-03-27T11:13:32.325+05:30"
         cq:lastModifiedBy="admin"
-        cq:lastReplicated="{Date}2019-09-04T06:40:53.780Z"
+        cq:lastReplicated="{Date}2019-09-18T09:35:59.479Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Content Components"
@@ -27,7 +26,11 @@
         </root>
     </jcr:content>
     <en/>
-	<da/>
+    <sv/>
+    <nl/>
+    <nb/>
+    <fi/>
+    <da/>
     <zh/>
     <ru/>
     <tr/>

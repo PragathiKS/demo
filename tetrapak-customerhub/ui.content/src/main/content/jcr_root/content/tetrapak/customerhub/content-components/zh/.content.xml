@@ -5,9 +5,9 @@
     <jcr:content
         cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
         cq:conf=""
-        cq:lastModified="{Date}2019-09-04T06:14:34.741Z"
-        cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-04T06:40:54.392Z"
+        cq:lastModified="{Date}2019-09-16T08:24:38.918Z"
+        cq:lastModifiedBy="sapient-tarun"
+        cq:lastReplicated="{Date}2019-09-18T09:36:00.527Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-07-17T11:24:12.992Z"
@@ -27,12 +27,12 @@
                 <cookieconfiguration
                     jcr:created="{Date}2019-03-09T10:45:30.509Z"
                     jcr:createdBy="sapient-user"
-                    jcr:lastModified="{Date}2019-08-10T09:49:49.853Z"
+                    jcr:lastModified="{Date}2019-09-16T08:24:38.915Z"
                     jcr:lastModifiedBy="sapient-tarun"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/cookieconfiguration"
                     cookieConsentButtonText=" 好！我明白。"
-                    cookieConsentDisabled="false"
+                    cookieConsentDisabled="true"
                     cookieConsentText="&lt;p>我们正在使用cookies。继续使用我们的网站而不更改设置，即表示您同意我们使用cookies了解有关我&lt;a href=&quot;http://tetrapak.com/about/legal-information&quot;>们的cookie政策的更多信息&lt;/a>&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <headerconfiguration

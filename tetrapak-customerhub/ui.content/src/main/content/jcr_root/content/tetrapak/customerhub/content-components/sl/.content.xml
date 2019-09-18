@@ -7,7 +7,7 @@
         cq:isLanguageRoot="{Boolean}true"
         cq:lastModified="{Date}2019-09-04T06:14:34.746Z"
         cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-04T06:40:58.508Z"
+        cq:lastReplicated="{Date}2019-09-18T09:36:02.870Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-08-28T07:24:53.727Z"
@@ -78,7 +78,7 @@
             </responsivegrid>
         </root>
     </jcr:content>
-    <dashboard/>
     <_x0035_00/>
     <_x0034_04/>
+    <dashboard/>
 </jcr:root>

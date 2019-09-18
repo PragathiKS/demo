@@ -7,6 +7,9 @@
         cq:isLanguageRoot="{Boolean}true"
         cq:lastModified="{Date}2019-09-10T07:41:29.123Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-09-18T09:36:00.527Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
         cq:lastTranslationUpdate="{Date}2019-09-10T07:41:29.123Z"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en"
@@ -73,7 +76,7 @@
             </responsivegrid>
         </root>
     </jcr:content>
-    <dashboard/>
     <_x0035_00/>
     <_x0034_04/>
+    <dashboard/>
 </jcr:root>
