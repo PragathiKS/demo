@@ -50,18 +50,21 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>&lt;b>我的利樂&lt;/b>是你進入利樂的唯一入口。它以智慧的管道使用業務數據，以幫助您節省時間和金錢、提高效能和新增知識。你會得到改善日常工作的建議和見解。我的利樂有助於使您的解決方案發揮最佳效果。&lt;/p>&#xd;&#xa;"
                             imageAltI18n="一個地方做你的生意"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n="關於“開始”標題1"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>根據您的設備、設定、需求和目標，我的利樂會在需要您注意的時候通知您。瞭解有關效能問題、維護和優化的詳細資訊—您可以將通知用作日常工作的檢查表。&lt;/p>&#xd;&#xa;"
                             imageAltI18n="關於\\u GetStarted \\u Image21 \\u AltText"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n="關於“開始”標題2"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>您希望接收哪種通知？我們業務的績效目標是什麼？你感興趣的領域？為您的需求優化我的利樂，為您的業務帶來新的價值。&lt;/p>&#xd;&#xa;"
                             imageAltI18n="關於\\u GetStarted \\u Image3 \\u AltText"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
@@ -101,6 +104,7 @@
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             isExternal="true"
                             linkTextI18n="了解洞察力"
                             linkType="button"
@@ -111,6 +115,7 @@
                             type="image"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="學到更多"
@@ -125,6 +130,7 @@
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             isExternal="true"
                             linkTextI18n="了解洞察力"
                             linkType="link"

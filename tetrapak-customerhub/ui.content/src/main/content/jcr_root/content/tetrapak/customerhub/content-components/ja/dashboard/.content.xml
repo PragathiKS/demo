@@ -50,18 +50,21 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>私のテトラパックは、テトラパックへの入り口です。ビジネスデータをスマートな方法で使用して、時間とお金を節約し、パフォーマンスを向上させ、知識を向上させます。あなたはあなたの毎日の仕事を向上させるアドバイスと洞察を得ます。私のテトラパックはあなたの解決策を最大限に引き出すのに役立ちます。&lt;/p>&#xd;&#xa;"
                             imageAltI18n=" あなたのビジネスのための一箇所"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n=" あなたのビジネスのための一箇所"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>あなたの機器、セットアップ、ニーズ、そして目標に基づきます。注意が必要な場合は、My Tetra Pakから通知されます。パフォーマンスの問題、メンテナンス、最適化に関する詳細を調べてください - あなたはあなたの毎日の仕事のためのチェックリストとして通知を使うことができます。&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
                             imageAltI18n=" 必要な通知"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n=" 必要な通知"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>どの種類の通知を受け取りますか？当社の事業の業績目標はどれですか。あなたの興味のある分野は？ニーズに合わせてMy Tetra Pakを最適化し、ビジネスに新しい価値をもたらします。&lt;/p>&#xd;&#xa;"
                             imageAltI18n="あなたの経験をカスタマイズする"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
@@ -101,6 +104,7 @@
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             isExternal="true"
                             linkTextI18n="洞察について学ぶ"
                             linkType="button"
@@ -111,6 +115,7 @@
                             type="image"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n=" もっと詳しく知る"
@@ -125,6 +130,7 @@
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             isExternal="true"
                             linkTextI18n=" もっと詳しく知る"
                             linkType="link"

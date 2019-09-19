@@ -72,14 +72,17 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>我的&lt;b>Tetra Pak&lt;/b>是你进入Tetra Pak的唯一入口点。它以智能方式使用业务数据，帮助您节省时间和金钱，提高性能并增加知识。您可以获得改善日常工作的建议和见解。我的Tetra Pak有助于您的解决方案发挥最大作用。&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
                             titleI18n="一个适合您业务的地方"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>根据您的设备，设置，需求和目标;当您需要注意某些事情时，我的Tetra Pak会通知您。探索有关性能问题，维护和优化的详细信息 - 您可以将通知用作日常工作的核对表。&lt;/p>&#xd;&#xa;"
                             titleI18n="您需要的通知"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>您想收到哪种通知？我们业务的绩效目标是什么？您感兴趣的领域？根据您的需求优化My Tetra Pak，为您的业务带来新的价值。&lt;/p>&#xd;&#xa;"
                             titleI18n="定制您的体验"/>
                     </list>
@@ -110,6 +113,7 @@
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             isExternal="true"
                             linkTextI18n=" 了解洞察力"
                             linkType="button"
@@ -120,6 +124,7 @@
                             type="image"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="学到更多"
@@ -134,6 +139,7 @@
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             isExternal="true"
                             linkTextI18n="学到更多"
                             linkType="link"

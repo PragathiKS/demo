@@ -71,14 +71,17 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>&lt;b>Tetra Pak'ım&lt;/b>, Tetra Pak'a tek giriş noktanız. İş verilerini zamandan ve paradan tasarruf etmenize, performansı artırmanıza ve bilginizi artırmanıza yardımcı olmak için akıllı yollarla kullanır. Günlük çalışmanızı iyileştiren tavsiyeler ve görüşler alırsınız. Tetra Pak'ım, çözümünüzden en iyi sonucu almanıza yardımcı olur.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
                             titleI18n="İşletmeniz için bir yer"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>Ekipmanınıza, kurulumunuza, gereksinimlerinize ve hedeflerinize göre; Tetra Pak'ım, bir şeyin dikkatinize ihtiyacı olduğunda sizi bilgilendirir. Performans sorunları, bakım ve optimizasyon hakkındaki ayrıntıları inceleyin - bildirimleri günlük çalışmanız için kontrol listesi olarak kullanabilirsiniz.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
                             titleI18n=" İhtiyacınız olan bildirimler"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>Hangi tür bildirimleri almak istersiniz? İşimizin performans hedefleri nelerdir? İlgi alanlarınız? My Tetra Pak'ı ihtiyaçlarınız için optimize edin ve işinize yeni değerler katın.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
                             titleI18n=" Deneyiminizi özelleştirin"/>
                     </list>
@@ -95,6 +98,7 @@
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             isExternal="true"
                             linkTextI18n=" İçgörü hakkında bilgi edinin"
                             linkType="button"
@@ -106,6 +110,7 @@
                             videoSource="dam"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="Daha fazla bilgi edin"
@@ -120,6 +125,7 @@
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             isExternal="true"
                             linkTextI18n="Daha fazla bilgi edin"
                             linkType="link"

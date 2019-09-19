@@ -50,18 +50,21 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>&lt;b>My Tetra Pak&lt;/b>은 Tetra Pak에 입장 할 수있는 유일한 곳입니다. 스마트 한 방식으로 비즈니스 데이터를 사용하여 시간과 비용을 절약하고 성능을 향상 시키며 지식을 향상시킵니다. 일상 업무를 개선하는 조언과 통찰력을 얻을 수 있습니다. My Tetra Pak은 최고의 솔루션을 제공합니다.&lt;/p>&#xd;&#xa;"
                             imageAltI18n="귀하의 비즈니스를위한 한 곳"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n="귀하의 비즈니스를위한 한 곳"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>장비, 설정, 필요 및 목표에 따라; My Tetra Pak은 관심이 필요할 때 알려줍니다. 성능 문제, 유지 관리 및 최적화에 관한 세부 정보를 탐색하십시오. 일상적인 작업을위한 점검 목록으로 알림을 사용할 수 있습니다.&lt;/p>&#xd;&#xa;"
                             imageAltI18n="필요한 알림"
                             imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
                             titleI18n="필요한 알림"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>어떤 종류의 알림을 받으시겠습니까? 우리 사업의 성과 목표는 무엇입니까? 관심 분야 My Tetra Pak을 고객의 필요에 맞게 최적화하고 비즈니스에 새로운 가치를 부여하십시오.&lt;/p>&#xd;&#xa;"
                             imageAltI18n=" 경험을 사용자 정의하십시오."
                             imagePath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
@@ -104,6 +107,7 @@
                             isExternal="true"
                             linkTextI18n="통찰력에 대해 알아보십시오."
                             linkType="button"
+                            tabId="item0"
                             linkURL="https://www.tetrapak.com/"
                             mediaDescriptionI18n="&lt;p>앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?&lt;/p>&#xd;&#xa;"
                             mediaTitleI18n="더 큰 순간의 자연"
@@ -111,6 +115,7 @@
                             type="image"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="더 알아보기"
@@ -126,6 +131,7 @@
                         <item2
                             jcr:primaryType="nt:unstructured"
                             isExternal="true"
+                            tabId="item2"
                             linkTextI18n="더 알아보기"
                             linkType="link"
                             linkURL="http://www.tetrapak.com"

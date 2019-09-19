@@ -71,14 +71,17 @@
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             descriptionI18n="&lt;p>Мой &lt;b>Тетра Пак&lt;/b> - ваша единственная точка входа в Тетра Пак. Он использует деловые данные разумными способами, чтобы помочь вам сэкономить время и деньги, повысить производительность и расширить свои знания. Вы получаете советы и идеи, которые улучшают вашу повседневную работу. My Tetra Pak помогает извлечь максимальную пользу из ваших решений.&lt;/p>&#xd;&#xa;&lt;p> &lt;/p>&#xd;&#xa;"
                             titleI18n=" Одно место для вашего бизнеса"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             descriptionI18n="&lt;p>В зависимости от вашего оборудования, настроек, потребностей и целей; Мой Тетра Пак уведомляет вас, когда что-то требует вашего внимания. Узнайте подробности о проблемах производительности, обслуживания и оптимизации - вы можете использовать уведомления в качестве контрольного списка для вашей повседневной работы.&lt;/p>&#xd;&#xa;"
                             titleI18n=" Уведомления, которые вам нужны"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             descriptionI18n="&lt;p>Какие уведомления вы хотите получать? Каковы цели производительности нашего бизнеса? Ваши сферы интересов? Оптимизируйте My Tetra Pak для ваших нужд и принесите новую ценность для вашего бизнеса.&lt;/p>&#xd;&#xa;"
                             titleI18n="Настройте свой опыт"/>
                     </list>
@@ -95,6 +98,7 @@
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            tabId="item0"
                             isExternal="true"
                             linkTextI18n="Узнайте о понимании"
                             linkType="button"
@@ -106,6 +110,7 @@
                             videoSource="dam"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
+                            tabId="item1"
                             damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="Учить больше"
@@ -120,6 +125,7 @@
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            tabId="item2"
                             isExternal="true"
                             linkTextI18n="Учить больше"
                             linkType="link"
