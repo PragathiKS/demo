@@ -57,8 +57,14 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldDescription="Enter title"
                                             fieldLabel="Title"
-                                            required="true"
                                             name="./titleI18n"/>
+                                        <tabId
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter Tab ID without special characters"
+                                                fieldLabel="Tab ID"
+                                                required="true"
+                                                name="./tabId"/>
                                         <description
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="cq/gui/components/authoring/dialog/richtext"

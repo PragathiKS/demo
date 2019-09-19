@@ -50,7 +50,7 @@ public class GetStartedModel {
             while (itr.hasNext()) {
                 Resource res = itr.next();
                 ValueMap resValueMap = res.getValueMap();
-                String imageName = GlobalUtil.getValidName((String) resValueMap.get("titleI18n") + "-image");
+                String imageName = GlobalUtil.getValidName((String) resValueMap.get("tabId") + "-image");
                 imageList.add(imageName);
 
                 GetStartedBean bean = new GetStartedBean();

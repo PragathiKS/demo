@@ -12,6 +12,7 @@
 			"jcr:primaryType": "nt:unstructured",
 			"mediaTitleI18n": "Image Content Title",
 			"type": "image",
+			"tabId": "item0",
 			"linkTextI18n": "link text",
 			"linkURL": "http://www.tetrapak.com",
 			"youtubeId": "7878hhyu9",
@@ -27,6 +28,7 @@
 			"jcr:primaryType": "nt:unstructured",
 			"mediaTitleI18n": "Some video title",
 			"type": "video",
+			"tabId": "item1",
 			"linkTextI18n": "Google Link ",
 			"linkURL": "http://www.tetrapak.com",
 			"youtubeVideoID": "ZofQqevIIZA",
@@ -39,7 +41,7 @@
 			"thumbnailPath": "/content/dam/customerhub/thumbnail.png"
 		}
 	},
-	"image_tab-image": {
+	"item0-image": {
 		"jcr:primaryType": "nt:unstructured",
 		"fileReference": "/content/dam/customerhub/p3.PNG",
 		"dwidth": "100",
@@ -54,7 +56,7 @@
 		"sling:resourceType": "customerhub/components/content/image",
 		"dheight": "200"
 	},
-	"video_tab-image": {
+	"item1-image": {
 		"jcr:primaryType": "nt:unstructured",
 		"fileReference": "/content/dam/customerhub/p2.PNG",
 		"dwidth": "100",

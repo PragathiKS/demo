@@ -66,7 +66,7 @@ public class TabsListModel {
                 ValueMap valueMap = res.getValueMap();
                 TabsListBean tabsListBean = new TabsListBean();
                 tabsListBean.setType((String) valueMap.get("type"));
-                String imageName = GlobalUtil.getValidName((String) valueMap.get("tabTitleI18n") + "-image");
+                String imageName = GlobalUtil.getValidName((String) valueMap.get("tabId") + "-image");
                 if ("image".equalsIgnoreCase(tabsListBean.getType())) {
                     imageList.add(imageName);
                 }
