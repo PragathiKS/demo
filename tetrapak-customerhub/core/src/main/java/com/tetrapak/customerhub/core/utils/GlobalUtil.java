@@ -378,7 +378,6 @@ public class GlobalUtil {
         if (null == tabResource) {
             return null;
         }
-        ValueMap resValueMap = res.getValueMap();
         return tabResource.getChild(imageName);
     }
 
@@ -441,7 +440,9 @@ public class GlobalUtil {
     }
 
     /**
-     * @param damVideoPath video path
+     * get scene 7 video url
+     *
+     * @param damVideoPath        video path
      * @param dynamicMediaService dynamic media service
      * @return video path from scene 7
      */
@@ -454,24 +455,29 @@ public class GlobalUtil {
     }
 
     /**
+     * Get a name with special characters replaced by underscore
+     *
      * @param name tab title
-     * @return
+     * @return valid name
      */
     public static String getValidName(String name) {
         return JcrUtil.createValidName(name);
     }
 
     /**
-     * @param resource
-     * @param imageList
-     * @throws PersistenceException
+     * Removes images which are no longer attached to any tab
+     *
+     * @param resource  resource
+     * @param listName  list name the node which is not to be removed
+     * @param imageList image list
+     * @throws PersistenceException persistence exception
      */
-    public static void cleanUpImages(Resource resource, List<String> imageList) throws PersistenceException {
+    public static void cleanUpImages(Resource resource, String listName, List<String> imageList) throws PersistenceException {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         Iterator<Resource> itr = resource.listChildren();
         while (itr.hasNext()) {
             Resource resource1 = itr.next();
-            if ("tablist".equals(resource1.getName())) {
+            if (listName.equals(resource1.getName())) {
                 continue;
             }
             if (!imageList.contains(resource1.getName())) {

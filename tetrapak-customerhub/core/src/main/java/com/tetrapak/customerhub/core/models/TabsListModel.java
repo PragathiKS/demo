@@ -103,7 +103,7 @@ public class TabsListModel {
         }
         componentId = UUID.randomUUID().toString().replace("-", "");
         try {
-            GlobalUtil.cleanUpImages(resource, imageList);
+            GlobalUtil.cleanUpImages(resource, "tablist", imageList);
         } catch (PersistenceException e) {
             LOGGER.error("Persistence Exception while deleting node", e);
         }

@@ -66,7 +66,7 @@ public class GetStartedModel {
             }
         }
         try {
-            GlobalUtil.cleanUpImages(resource, imageList);
+            GlobalUtil.cleanUpImages(resource, "list", imageList);
         } catch (PersistenceException e) {
             LOGGER.error("Persistence Exception while deleting node", e);
         }
