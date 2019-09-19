@@ -5,6 +5,7 @@ import com.tetrapak.customerhub.core.beans.TabsListBean;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,6 +13,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -46,6 +49,8 @@ public class TabsListModel {
 
     private List<String> imageList = new ArrayList<>();
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
+
     /**
      * Post construct method to get the tab content from the multifield property
      * saved in CRX for each of the tab.
@@ -61,8 +66,9 @@ public class TabsListModel {
                 ValueMap valueMap = res.getValueMap();
                 TabsListBean tabsListBean = new TabsListBean();
                 tabsListBean.setType((String) valueMap.get("type"));
+                String imageName = GlobalUtil.getValidName((String) valueMap.get("tabTitleI18n") + "-image");
                 if ("image".equalsIgnoreCase(tabsListBean.getType())) {
-                    imageList.add(res.getName() + "-image");
+                    imageList.add(imageName);
                 }
                 tabsListBean.setTabTitleI18n((String) valueMap.get("tabTitleI18n"));
                 tabsListBean.setMediaTitleI18n((String) valueMap.get("mediaTitleI18n"));
@@ -79,7 +85,10 @@ public class TabsListModel {
                 }
                 tabsListBean.setThumbnailPath((String) valueMap.get("thumbnailPath"));
 
-                Resource imageResource = GlobalUtil.getImageResource(res);
+                Resource imageResource = null;
+                if ("image".equalsIgnoreCase(tabsListBean.getType())) {
+                    imageResource = GlobalUtil.getImageResource(res, imageName);
+                }
                 if (null != imageResource) {
                     ImageBean imageBean = GlobalUtil.getImageBean(imageResource);
                     tabsListBean.setImage(imageBean);
@@ -93,7 +102,13 @@ public class TabsListModel {
             }
         }
         componentId = UUID.randomUUID().toString().replace("-", "");
+        try {
+            GlobalUtil.cleanUpImages(resource, imageList);
+        } catch (PersistenceException e) {
+            LOGGER.error("Persistence Exception while deleting node", e);
+        }
     }
+
 
     public String getHeading() {
         return heading;

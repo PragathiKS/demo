@@ -7,7 +7,7 @@
    "className":"abc",
    "jcr:lastModified":"Wed Feb 20 2019 07:49:52 GMT+0000",
    "sling:resourceType":"customerhub/components/content/getstarted",
-   "item0-image": {
+   "one_place_for_yourbusiness-image": {
       "jcr:primaryType": "nt:unstructured",
       "fileReference": "/content/dam/customerhub/p3.PNG",
       "dwidth": "100",
@@ -22,7 +22,7 @@
       "sling:resourceType": "customerhub/components/content/image",
       "dheight": "200"
    },
-   "item1-image": {
+   "one_place_for-image": {
       "jcr:primaryType": "nt:unstructured",
       "fileReference": "/content/dam/customerhub/p1.PNG",
       "dwidth": "200",
@@ -48,7 +48,7 @@
       },
       "item1":{
          "jcr:primaryType":"nt:unstructured",
-         "titleI18n":"One place for your business",
+         "titleI18n":"One place for",
          "imagePath":"/content/dam/customerhub/p3.PNG",
          "imageAltI18n":"Image alt",
          "descriptionI18n":"Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",

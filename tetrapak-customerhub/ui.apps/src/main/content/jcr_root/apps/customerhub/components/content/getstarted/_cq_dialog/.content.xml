@@ -57,6 +57,7 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldDescription="Enter title"
                                             fieldLabel="Title"
+                                            required="true"
                                             name="./titleI18n"/>
                                         <description
                                             jcr:primaryType="nt:unstructured"

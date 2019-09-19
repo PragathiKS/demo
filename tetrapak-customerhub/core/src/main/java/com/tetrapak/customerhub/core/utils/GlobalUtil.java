@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.utils;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -12,6 +13,7 @@ import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceUtil;
@@ -362,10 +364,11 @@ public class GlobalUtil {
     /**
      * This method is used to get image resource from inside a child element of a multi-field
      *
-     * @param res Current Resource from a multi-field
+     * @param res       Current Resource from a multi-field
+     * @param imageName image node name
      * @return image resource
      */
-    public static Resource getImageResource(Resource res) {
+    public static Resource getImageResource(Resource res, String imageName) {
 
         Resource listResource = res.getParent();
         if (null == listResource) {
@@ -375,7 +378,8 @@ public class GlobalUtil {
         if (null == tabResource) {
             return null;
         }
-        return tabResource.getChild(res.getName() + "-image");
+        ValueMap resValueMap = res.getValueMap();
+        return tabResource.getChild(imageName);
     }
 
     /**
@@ -429,10 +433,18 @@ public class GlobalUtil {
         return CustomerHubConstants.DEFAULT_LOCALE;
     }
 
+    /**
+     * @return site improve script
+     */
     public static String getSiteImproveScript() {
         return getService(SiteImproveScriptService.class).getSiteImproveScriptUrl();
     }
 
+    /**
+     * @param damVideoPath video path
+     * @param dynamicMediaService dynamic media service
+     * @return video path from scene 7
+     */
     public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
         damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
         damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
@@ -441,4 +453,31 @@ public class GlobalUtil {
         return damVideoPath;
     }
 
+    /**
+     * @param name tab title
+     * @return
+     */
+    public static String getValidName(String name) {
+        return JcrUtil.createValidName(name);
+    }
+
+    /**
+     * @param resource
+     * @param imageList
+     * @throws PersistenceException
+     */
+    public static void cleanUpImages(Resource resource, List<String> imageList) throws PersistenceException {
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        Iterator<Resource> itr = resource.listChildren();
+        while (itr.hasNext()) {
+            Resource resource1 = itr.next();
+            if ("tablist".equals(resource1.getName())) {
+                continue;
+            }
+            if (!imageList.contains(resource1.getName())) {
+                resourceResolver.delete(resource1);
+                resourceResolver.commit();
+            }
+        }
+    }
 }

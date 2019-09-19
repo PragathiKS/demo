@@ -58,6 +58,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Enter title for the Tab"
                                                 fieldLabel="Tab Title"
+                                                required="true"
                                                 name="./tabTitleI18n"/>
                                         <mediaTitleI18n
                                                 jcr:primaryType="nt:unstructured"

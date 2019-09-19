@@ -39,7 +39,7 @@
 			"thumbnailPath": "/content/dam/customerhub/thumbnail.png"
 		}
 	},
-	"item0-image": {
+	"image_tab-image": {
 		"jcr:primaryType": "nt:unstructured",
 		"fileReference": "/content/dam/customerhub/p3.PNG",
 		"dwidth": "100",
@@ -54,7 +54,7 @@
 		"sling:resourceType": "customerhub/components/content/image",
 		"dheight": "200"
 	},
-	"item1-image": {
+	"video_tab-image": {
 		"jcr:primaryType": "nt:unstructured",
 		"fileReference": "/content/dam/customerhub/p2.PNG",
 		"dwidth": "100",
