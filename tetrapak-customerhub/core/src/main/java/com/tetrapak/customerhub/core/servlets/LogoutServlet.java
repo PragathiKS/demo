@@ -29,7 +29,7 @@ import java.io.IOException;
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Delete Cookie Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.paths=" + "/bin/customerhub/logout"
+                "sling.servlet.paths=" + "/bin/customerhub/deleteCookies"
         })
 public class LogoutServlet extends SlingSafeMethodsServlet {
 

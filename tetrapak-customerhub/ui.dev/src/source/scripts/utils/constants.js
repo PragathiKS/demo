@@ -31,7 +31,7 @@ export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionE
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 // Servlet URLs
 export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/customerhub/saveLanguagePreference';
-export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/logout';
+export const DELETE_COOKIE_SERVLET_URL = '/bin/customerhub/deleteCookies';
 // Page URLs
 export const EMPTY_PAGE_URL = '/empty.html';
 // Constant maps

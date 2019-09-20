@@ -7,7 +7,7 @@
         cq:lastReplicated="{Date}2019-09-04T07:30:13.694Z"
         cq:lastReplicatedBy="sapient-tarun"
         cq:lastReplicationAction="Activate"
-        cq:redirectTarget="/bin/customerhub/logout?redirectURL=https://ptwjveuug6a2mtsbyyycta-on.drv.tw/SSO/ssodev.tetrapak.com/idp/stopSSOdev_new"
+        cq:redirectTarget="/bin/customerhub/deleteCookies?redirectURL=https://ptwjveuug6a2mtsbyyycta-on.drv.tw/SSO/ssodev.tetrapak.com/idp/stopSSOdev_new"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
