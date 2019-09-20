@@ -120,6 +120,7 @@ describe('FinancialsStatementSummary', function () {
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadExcel', 'create excel']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadPdf', 'create pdf']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['documents', 'document']);
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['search', 'search statement', null, 'test']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['test', 'document']);
     expect(this.analyticsSpy.called).to.be.true;
     done();
