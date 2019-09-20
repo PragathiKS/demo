@@ -343,7 +343,7 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         languageSpecificFont.setSize(9);
         languageSpecificFontBold.setSize(9);
         PdfPTable table = new PdfPTable(2);
-        table.setTotalWidth(new float[]{510, 40});
+        table.setTotalWidth(new float[]{500, 60});
         table.setLockedWidth(true);
         table.setHorizontalAlignment(0);
         table.setSpacingBefore(0);
