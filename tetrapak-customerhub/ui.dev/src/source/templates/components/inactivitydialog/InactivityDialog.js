@@ -52,6 +52,7 @@ class InactivityDialog {
       window.clearTimeout(this.cache.idleTimer);
     }
     if (isNaN(idleTimeoutMinutes)) {
+      logger.log('[Webpack]: Timeout value is invalid. Setting default 15 mins timeout.');
       idleTimeoutMinutes = 15;
     }
     // Avoid fractional values as final value is increased if divided by fraction
@@ -64,7 +65,7 @@ class InactivityDialog {
         logger.log('[Webpack]: Session inactivity popup triggered');
         this.root.modal('show');
       }, idleTimeoutMilliseconds);
-      logger.log(`[Webpack]: Session timer set for ${idleTimeoutMilliseconds}ms`);
+      logger.log(`[Webpack]: Session timer set for ${idleTimeoutMinutes} minutes`);
     }
   };
   init() {
