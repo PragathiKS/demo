@@ -68,6 +68,18 @@ export const documentTypes = {
   PN: 'Promissory Note',
   PMT: 'Payment'
 };
+export const CURRENCY_FIELDS = [
+  'current',
+  'ninty',
+  'nintyPlus',
+  'overdue',
+  'sixty',
+  'thirty',
+  'total',
+  'orgAmount',
+  'remAmount',
+  'totalAmount'
+];
 // API URLs
 export const API_TOKEN = 'token-generator';
 export const API_SEARCH = 'ordersearch';
@@ -89,5 +101,7 @@ export const EVT_IFRAME_TIMEOUT = 'iframeevents.timeout';
 export const EVT_FINANCIAL_ERROR = 'financial.error';
 export const EVT_FINANCIAL_ANALYTICS = 'financial.analytics';
 export const EVT_FINANCIAL_FILTERS = 'financial.filters';
+export const EVT_FINANCIAL_FILEDOWNLOAD = 'financial.filedownload';
+export const EVT_DROPDOWN_CHANGE = 'dropdown.change';
 // Analytics constants
 export const SOA_FORM_LOAD_MSG = 'financial search form load';

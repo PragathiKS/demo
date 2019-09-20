@@ -36,6 +36,8 @@
                 data-customer-key=params.customerkey
                 data-search=params.[document-number]
                 data-download-type="excel"
+                data-tracking-type="downloadExcel"
+                data-link-name=createExcelBtnI18n
             }}
             {{> atoms/buttons/button/button
                 text=createPdfBtnI18n
@@ -50,6 +52,8 @@
                 data-customer-key=params.customerkey
                 data-search=params.[document-number]
                 data-download-type="pdf"
+                data-tracking-type="downloadPdf"
+                data-link-name=createPdfBtnI18n
             }}
         </div>
     {{/if}}

@@ -7,6 +7,7 @@ import financialStatementData from './data/financialStatement.json';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
+import { EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
 
 describe('FinancialStatement', function () {
   const jqRef = {
@@ -24,7 +25,6 @@ describe('FinancialStatement', function () {
     this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
-    this.analyticsSpy = sinon.spy(this.financialstatement, 'trackAnalytics');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
     this.dateRangeSpy = sinon.spy(this.financialstatement, 'openDateSelector');
@@ -59,7 +59,6 @@ describe('FinancialStatement', function () {
     this.renderFiltersSpy.restore();
     this.dateRangeSpy.restore();
     this.calendarSpy.restore();
-    this.analyticsSpy.restore();
     this.downloadPdfExcelSpy.restore();
     this.navigateSpy.restore();
     this.searchSpy.restore();
@@ -89,7 +88,7 @@ describe('FinancialStatement', function () {
   });
 
   it('should set new customer by calling setCustomer when changed from dropdown', function (done) {
-    $('.js-financial-statement__find-customer').trigger('dropdown.change');
+    $('.js-financial-statement__find-customer').trigger(EVT_DROPDOWN_CHANGE);
     expect(this.financialstatement.setSelectedCustomer.called).to.be.true;
     done();
   });
@@ -138,7 +137,7 @@ describe('FinancialStatement', function () {
   });
 
   it('should download PDF/Excel file on click of create Excel/PDF button', function (done) {
-    $('.js-financials').trigger('financial.filedownload', ['excel']);
+    $('.js-financials').trigger(EVT_FINANCIAL_FILEDOWNLOAD, ['excel', 'downloadExcel', 'create excel']);
     file.get().then(() => {
       expect(this.downloadPdfExcelSpy.called).to.be.true;
       done();

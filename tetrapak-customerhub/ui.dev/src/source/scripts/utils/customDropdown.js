@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { $body } from './commonSelectors';
+import { EVT_DROPDOWN_CHANGE } from './constants';
 
 /**
  * customDropdown.js
@@ -34,7 +35,7 @@ export const customDropdown = {
       const $btn = $this.parents('.js-custom-dropdown').find('.js-dropdown-btn');
       $btn.find('span').text(desc);
       $btn.data('key', currentTarget.data('key')).attr('data-key', currentTarget.data('key'));
-      $btn.trigger('dropdown.change');
+      $btn.trigger(EVT_DROPDOWN_CHANGE);
     });
   },
   init() {

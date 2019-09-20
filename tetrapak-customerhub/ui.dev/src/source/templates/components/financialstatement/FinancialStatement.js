@@ -8,9 +8,8 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
@@ -92,36 +91,6 @@ function _initializeCalendar(isRange) {
       this.initializeCalendar(isRange);
     });
   }
-}
-
-function _trackAnalytics(type) {
-  const $this = this;
-  const { $status, $docType } = $this.cache;
-  const { statementOfAccount = '' } = $this.cache.i18nKeys;
-  let ob = {
-    linkType: 'internal',
-    linkSection: 'financials',
-    linkParentTitle: $.trim(getI18n(statementOfAccount).toLowerCase())
-  };
-  const obKey = 'linkClick';
-  const trackingKey = 'linkClicked';
-  switch (type) {
-    case 'reset': {
-      ob.linkName = 'reset';
-      break;
-    }
-    case 'search': {
-      const status = $.trim($status.text());
-      const docType = $.trim($docType.text()).toLowerCase();
-      ob.linkName = 'search statement';
-      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  trackAnalytics(ob, obKey, trackingKey, undefined, false);
 }
 
 /**
@@ -343,13 +312,13 @@ function _syncFields(query) {
   ) {
     dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
-  $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
+  $findCustomer.customSelect(query.customerkey).trigger(EVT_DROPDOWN_CHANGE, [true]);
   $statusField.customSelect(query.status);
   $statusField.parents('.js-custom-dropdown')
     .find(`li>a[data-key="${query.status}"]`)
     .attr('data-selected-date', dateRange)
     .data('selectedDate', dateRange);
-  $statusField.trigger('dropdown.change');
+  $statusField.trigger(EVT_DROPDOWN_CHANGE);
   $docType.customSelect(query['document-type'] || '');
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
 }
@@ -397,7 +366,7 @@ function _getExtension(type) {
  * Sets current filter route
  * @param {boolean} isInit Initialize flag
  */
-function _setRoute(isInit = false) {
+function _setRoute(isInit = false, linkText, type, linkSelection) {
   if (window.location.hash && isInit) {
     router.init();
   } else {
@@ -405,13 +374,16 @@ function _setRoute(isInit = false) {
       route: '#/',
       queryString: this.getFilterQuery(),
       data: {
-        isClick: !isInit
+        isClick: !isInit,
+        linkText,
+        type,
+        linkSelection
       }
     }, isInit);
   }
 }
 function _downloadPdfExcel(...args) {
-  const [, type, el] = args;
+  const [, type, trackingType, linkName, el] = args;
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
@@ -450,15 +422,15 @@ function _downloadPdfExcel(...args) {
     }).then(() => {
       $el.removeAttr('disabled');
       if (!isIOS()) {
-        this.root.trigger(EVT_FINANCIAL_ANALYTICS, ['downloadInvoice', 'invoice download', $el]);
+        this.root.trigger(EVT_FINANCIAL_ANALYTICS, [trackingType, linkName, $el]);
       }
     }).catch(() => {
       toast.render(
-        i18nKeys.fileDownloadErrorText,
+        i18nKeys.excelPdfDownloadErrorText,
         i18nKeys.fileDownloadErrorClose
       );
       $el.removeAttr('disabled');
-      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.fileDownloadErrorText)]);
+      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.excelPdfDownloadErrorText)]);
     });
   });
 }
@@ -574,11 +546,11 @@ class FinancialStatement {
       }
     });
     this.root
-      .on('dropdown.change', '.js-financial-statement__find-customer', function () {
+      .on(EVT_DROPDOWN_CHANGE, '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).data('key'), noReset);
       })
-      .on('dropdown.change', '.js-financial-statement__status', function () {
+      .on(EVT_DROPDOWN_CHANGE, '.js-financial-statement__status', function () {
         const self = $(this);
         const currentTarget = self.parents('.js-custom-dropdown').find(`li>a[data-key="${self.data('key')}"]`);
         $this.setDateFilter(self.customSelect(), currentTarget.data('selectedDate'));
@@ -590,13 +562,18 @@ class FinancialStatement {
         this.submitDateRange();
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
-      .on('click', '.js-financial-statement__submit', this.populateResults)
-      .on('click', '.js-financial-statement__reset', () => {
-        this.resetFilters();
-        this.trackAnalytics('reset');
+      .on('click', '.js-financial-statement__submit', this, this.populateResults)
+      .on('click', '.js-financial-statement__reset', this, function (e) {
+        const self = e.data;
+        const resetLinkText = $(this).text();
+        const type = 'reset';
+        self.resetFilters(resetLinkText, type);
+        if (isIOS()) {
+          self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['reset', resetLinkText]);
+        }
       })
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
-    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
+    this.root.parents('.js-financials').on(EVT_FINANCIAL_FILEDOWNLOAD, this, this.downloadPdfExcel);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
@@ -611,14 +588,23 @@ class FinancialStatement {
   setSelectedCustomer() {
     return _setSelectedCustomer.apply(this, arguments);
   }
-  populateResults = () => {
-    const { $dateRange } = this.cache;
+  populateResults(e) {
+    const self = e.data;
+    const { $dateRange } = self.cache;
     if ($dateRange.hasClass('has-error')) {
       $dateRange.focus();
       return;
     }
-    this.trackAnalytics('search');
-    this.setRoute();
+    const type = 'search';
+    const { $status, $docType } = self.cache;
+    const status = $.trim($status.text());
+    const docType = $.trim($docType.text()).toLowerCase();
+    const btnText = $(this).text();
+    const linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
+    if (isIOS()) {
+      self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['search', btnText, null, linkSelection]);
+    }
+    self.setRoute(false, $(this).text(), type, linkSelection);
   }
   getFilterQuery() {
     return _getFilterQuery.apply(this, arguments);
@@ -629,7 +615,7 @@ class FinancialStatement {
   syncFields() {
     return _syncFields.apply(this, arguments);
   }
-  resetFilters() {
+  resetFilters(linkText, type) {
     const { $status } = this.cache;
     const defaultQueryString = _getDefaultQueryString.apply(this);
     $status.parents('.js-custom-dropdown').find('.js-custom-dropdown-li').each(function () {
@@ -638,10 +624,14 @@ class FinancialStatement {
     this.syncFields(deparam(defaultQueryString, false));
     router.set({
       route: '#/',
-      queryString: defaultQueryString
+      queryString: defaultQueryString,
+      data: {
+        isClick: true,
+        linkText,
+        type
+      }
     });
   }
-  trackAnalytics = (type) => _trackAnalytics.call(this, type);
   validateDateRange() {
     return _validateDateRange.apply(this, arguments);
   }

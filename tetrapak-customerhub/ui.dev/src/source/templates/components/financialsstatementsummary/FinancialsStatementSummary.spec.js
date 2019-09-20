@@ -30,7 +30,7 @@ describe('FinancialsStatementSummary', function () {
     this.processTableData = sinon.spy(this.financialsStatementSummary, 'processTableData');
     this.downloadInvoice = sinon.spy(this.financialsStatementSummary, 'downloadInvoice');
     this.downloadPdfExcel = sinon.spy(this.financialsStatementSummary, 'downloadPdfExcel');
-    this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackAnalytics');
+    this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackValues');
     this.errorSpy = sinon.spy(this.financialsStatementSummary, 'trackErrors');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -120,6 +120,7 @@ describe('FinancialsStatementSummary', function () {
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadExcel', 'create excel']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['downloadPdf', 'create pdf']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['documents', 'document']);
+    $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['search', 'search statement', null, 'test']);
     $(document.body).trigger(EVT_FINANCIAL_ANALYTICS, ['test', 'document']);
     expect(this.analyticsSpy.called).to.be.true;
     done();

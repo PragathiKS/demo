@@ -5,7 +5,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { tableSort, resolveQuery, resolveCurrency, getI18n } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, CURRENCY_FIELDS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
@@ -36,9 +36,7 @@ function _trackErrors(linkParentTitle, linkName, errorMessage) {
  * @param {string} type
  * @param {object} data
  */
-function _trackAnalytics(type, linkName, el) {
-  const obKey = 'linkClick';
-  const trackingKey = 'linkClicked';
+function _trackValues(type, linkName, el, linkSelection) {
   const { statementOfAccount = '' } = this.cache.i18nKeys;
   linkName = $.trim(linkName).toLowerCase();
   const ob = {
@@ -48,25 +46,24 @@ function _trackAnalytics(type, linkName, el) {
   };
 
   switch (type) {
-    case 'downloadPdf': {
+    case 'downloadPdf':
+    case 'downloadExcel':
+    case 'reset':
       ob.linkParentTitle = $.trim(getI18n(statementOfAccount)).toLowerCase();
       break;
-    }
-    case 'downloadInvoice': {
+    case 'search':
+      ob.linkParentTitle = $.trim(getI18n(statementOfAccount)).toLowerCase();
+      ob.linkSelection = linkSelection;
+      break;
+    case 'downloadInvoice':
       ob.linkParentTitle = $.trim($(el).parents('table').data('salesOffice')).toLowerCase();
       break;
-    }
-    case 'downloadExcel': {
-      ob.linkParentTitle = $.trim(getI18n(statementOfAccount)).toLowerCase();
-      break;
-    }
-    case 'documents': {
+    case 'documents':
       ob.linkParentTitle = 'documents';
       break;
-    }
     default: break;
   }
-  trackAnalytics(ob, obKey, trackingKey, undefined, false);
+  trackAnalytics(ob, 'linkClick', 'linkClicked', undefined, false);
 }
 
 /**
@@ -87,7 +84,7 @@ function _downloadInvoice(self) {
       method: ajaxMethods.GET
     }).then(() => {
       if (!isIOS()) {
-        self.trackAnalytics.apply(self, ['downloadInvoice', 'invoice download', this]);
+        self.trackValues.apply(self, ['downloadInvoice', 'invoice download', this]);
       }
     }).catch(() => {
       const { i18nKeys } = self.cache;
@@ -102,13 +99,12 @@ function _downloadInvoice(self) {
 
 function _processTableData(data) {
   let keys = [];
-  const { $filtersRoot, currencyFields, documentType, status } = this.cache;
+  const { $filtersRoot, documentType, status } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = (keys.length === 0) ? Object.keys(summary) : keys;
-      // Resolve currency for summary section
       keys.forEach(key => {
-        if (currencyFields.includes(key)) {
+        if (CURRENCY_FIELDS.includes(key)) {
           summary[key] = resolveCurrency(summary[key], summary.currency);
         }
       });
@@ -162,7 +158,7 @@ function _processTableData(data) {
               const documentTypeMatch = documentType.find(obj => obj.key === record[key]);
               record[key] = documentTypeMatch ? documentTypeMatch.desc : record[key];
             }
-            if (currencyFields.includes(key)) {
+            if (CURRENCY_FIELDS.includes(key)) {
               record[key] = resolveCurrency(record[key], record.currency);
             }
           });
@@ -234,15 +230,22 @@ function _renderTable(filterParams, config) {
         cancellable: true
       }
     }, (data) => {
+      const { $parentRoot } = this.cache;
+      const linkName = config && config.isClick
+        ? $.trim(config.linkText).toLowerCase()
+        : SOA_FORM_LOAD_MSG;
       if (!data.isError) {
         const { $filtersRoot } = this.cache;
         $filtersRoot.find('.js-financial-statement__filter-section').removeClass('d-none');
+        if (
+          !isIOS()
+          && config
+          && config.isClick
+        ) {
+          this.trackValues.apply(this, [config.type, linkName, null, config.linkSelection]);
+        }
       } else {
-        const { $parentRoot } = this.cache;
         const { statementOfAccount = '' } = this.cache.i18nKeys;
-        const linkName = config && config.isClick ?
-          $.trim($parentRoot.find('.js-financial-statement__submit').text()).toLowerCase()
-          : SOA_FORM_LOAD_MSG;
         $parentRoot.trigger(EVT_FINANCIAL_ERROR, [
           $.trim(getI18n(statementOfAccount)).toLowerCase(),
           linkName,
@@ -264,25 +267,12 @@ class FinancialsStatementSummary {
     this.cache.$filtersRoot = this.cache.$parentRoot.find('.js-financial-statement');
     this.cache.$findCustomer = this.cache.$parentRoot.find('.js-financial-statement__select-customer-dropdown');
     this.cache.configJson = this.cache.$filtersRoot.find('.js-financial-statement__config').text();
-    this.cache.currencyFields = [
-      'current',
-      'ninty',
-      'nintyPlus',
-      'overdue',
-      'sixty',
-      'thirty',
-      'total',
-      'orgAmount',
-      'remAmount',
-      'totalAmount'
-    ];
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.downloadInvoice = this.cache.$parentRoot.find('#downloadInvoice').val();
     } catch (e) {
       this.cache.i18nKeys = {};
       this.cache.downloadInvoice = '';
-      this.cache.currencyFields = [];
       logger.error(e);
     }
   }
@@ -291,19 +281,20 @@ class FinancialsStatementSummary {
       .on('click', '.js-financials-summary__documents__row', this, this.downloadInvoice)
       .on('click', '.js-financials-summary__create-pdf,.js-financials-summary__create-excel', this, function (e) {
         const self = e.data;
-        const downloadType = $(this).data('downloadType');
-        const trackingType = downloadType === 'pdf' ? 'downloadPdf' : 'downloadExcel';
-        const linkName = downloadType === 'pdf' ? 'create pdf' : 'create excel';
+        const $this = $(this);
+        const downloadType = $this.data('downloadType');
+        const trackingType = $this.data('trackingType');
+        const linkName = getI18n($this.data('linkName'));
         if (isIOS()) {
-          self.trackAnalytics.apply(self, [trackingType, linkName]);
+          self.trackValues.apply(self, [trackingType, linkName]);
         }
-        self.downloadPdfExcel(downloadType, this);
+        self.downloadPdfExcel(downloadType, trackingType, linkName, this);
       })
       .on('click', '.js-financials-summary__accordion.collapsed', this, function (e) {
         const self = e.data;
         const documentTitleTotal = $(this).text();
         const documentTitle = documentTitleTotal.substring(0, documentTitleTotal.indexOf('(') - 1);
-        self.trackAnalytics.apply(self, ['documents', documentTitle]);
+        self.trackValues.apply(self, ['documents', documentTitle]);
       });
     this.cache.$parentRoot
       .on(EVT_FINANCIAL_FILTERS, this, function (...args) {
@@ -318,7 +309,7 @@ class FinancialsStatementSummary {
       })
       .on(EVT_FINANCIAL_ANALYTICS, (...args) => {
         const [, type, linkName, el] = args;
-        this.trackAnalytics.apply(this, [type, linkName, el]);
+        this.trackValues.apply(this, [type, linkName, el]);
       });
 
     route((...args) => {
@@ -338,14 +329,14 @@ class FinancialsStatementSummary {
     const $this = e.data;
     _downloadInvoice.call(this, $this);
     if (isIOS()) {
-      $this.trackAnalytics.apply($this, ['downloadInvoice', 'invoice download', this]);
+      $this.trackValues.apply($this, ['downloadInvoice', 'invoice download', this]);
     }
   }
-  downloadPdfExcel(type, el) {
-    this.root.parents('.js-financials').trigger('financial.filedownload', [type, el]);
+  downloadPdfExcel(type, trackingType, linkName, el) {
+    this.root.parents('.js-financials').trigger(EVT_FINANCIAL_FILEDOWNLOAD, [type, trackingType, linkName, el]);
   }
-  trackAnalytics() {
-    return _trackAnalytics.apply(this, arguments);
+  trackValues() {
+    return _trackValues.apply(this, arguments);
   }
   trackErrors() {
     return _trackErrors.apply(this, arguments);
