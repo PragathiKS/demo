@@ -426,11 +426,11 @@ function _downloadPdfExcel(...args) {
       }
     }).catch(() => {
       toast.render(
-        i18nKeys.fileDownloadErrorText,
+        i18nKeys.excelPdfDownloadErrorText,
         i18nKeys.fileDownloadErrorClose
       );
       $el.removeAttr('disabled');
-      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.fileDownloadErrorText)]);
+      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.excelPdfDownloadErrorText)]);
     });
   });
 }
