@@ -103,10 +103,15 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     }
 
     private String[][] getColumnHeaderArray() {
-        String[][] columnNames = new String[1][16];
+        String[][] columnNames;
         String[] tags = new String[]{
                 ExcelUtil.DARK_GREY_BG_TAG
         };
+        if(showLocalData){
+            columnNames = new String[1][16];
+        }else{
+            columnNames = new String[1][15];
+        }
         columnNames[0][0] = addTagToContent(WHITE + getI18nVal(COLFIELDS[0]), tags);
         columnNames[0][1] = addTagToContent(StringUtils.EMPTY, new String[]{
                 ExcelUtil.MERGE_2_CELLS_TAG, ExcelUtil.DARK_GREY_BG_TAG
@@ -135,10 +140,17 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
      * @return String array
      */
     private String[][] getSummaryRow(List<Summary> summaryList) {
-        String[][] summaryRow = new String[1][15];
+        String[][] summaryRow;
         String[] tags = new String[]{
                 ExcelUtil.LIME_BG_TAG
         };
+        if(showLocalData){
+            summaryRow = new String[1][16];
+            summaryRow[0][15] = addTagToContent(StringUtils.EMPTY, tags);
+        }else{
+            summaryRow = new String[1][15];
+        }
+
         String totalSummary = getTotalFromSummary(summaryList);
         summaryRow[0][0] = addTagToContent(StringUtils.EMPTY, tags);
         summaryRow[0][1] = addTagToContent(StringUtils.EMPTY, new String[]{
@@ -233,7 +245,12 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
     private String[][] setStatementData(List<Record> records) {
         String[][] data = null;
         if (null != records && !records.isEmpty()) {
-            data = new String[records.size()][16];
+            if(showLocalData){
+                data = new String[records.size()][16];
+            }else{
+                data = new String[records.size()][15];
+            }
+
             Iterator<Record> itr = records.iterator();
             int counter = 0;
             String[] tags = new String[]{};
@@ -277,7 +294,13 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
         String[] tags = new String[]{
                 ExcelUtil.LIME_BG_TAG
         };
-        String[] totalAmountRow = new String[15];
+        String[] totalAmountRow;
+        if(showLocalData){
+            totalAmountRow = new String[16];
+            totalAmountRow[15] = addTagToContent(StringUtils.EMPTY, tags);
+        }else{
+            totalAmountRow = new String[15];
+        }
         totalAmountRow[0] = addTagToContent(StringUtils.EMPTY, new String[]{
                 ExcelUtil.NO_BORDER_TAG
         });

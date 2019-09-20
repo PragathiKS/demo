@@ -303,7 +303,7 @@ public final class ExcelUtil {
         cellStyles.put(REGULAR_CELL_STYLE, borderStyle);
 
         cellStyle = workbook.createCellStyle();
-        CellStyle emptyCellStyle = setBorderStyle(BorderStyle.NONE, borderColor, cellStyle);
+        CellStyle emptyCellStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         cellStyles.put(EMPTY_CELL_STYLE, emptyCellStyle);
 
         cellStyle = workbook.createCellStyle();
