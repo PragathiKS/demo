@@ -170,9 +170,16 @@
                     <fileDownloadErrorText
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Enter File Download Error Text i18 Key"
-                            fieldLabel="File Download Error Text Key"
+                            fieldDescription="Enter Invoice Download Error Text i18 Key"
+                            fieldLabel="Invoice Download Error Text Key"
                             name="./fileDownloadErrorText"
+                            required="true"/>
+                    <excelPdfDownloadErrorText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Enter Excel/PDF Download Error Text i18 Key"
+                            fieldLabel="Excel/PDF Download Error Text Key"
+                            name="./excelPdfDownloadErrorText"
                             required="true"/>
                     <fileDownloadErrorClose
                             jcr:primaryType="nt:unstructured"

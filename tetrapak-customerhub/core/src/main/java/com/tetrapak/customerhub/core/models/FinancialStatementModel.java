@@ -94,7 +94,10 @@ public class FinancialStatementModel {
     
     @Inject
     private String fileDownloadErrorText;
-    
+
+    @Inject
+    private String excelPdfDownloadErrorText;
+
     @Inject
     private String fileDownloadErrorClose;
     
@@ -249,7 +252,14 @@ public class FinancialStatementModel {
     public String getFileDownloadErrorText() {
         return fileDownloadErrorText;
     }
-    
+
+    /**
+     * @return the excelPdfDownloadErrorText
+     */
+    public String getExcelPdfDownloadErrorText() {
+        return excelPdfDownloadErrorText;
+    }
+
     /**
      * @return the fileDownloadErrorClose
      */
@@ -307,6 +317,7 @@ public class FinancialStatementModel {
         i18KeyMap.put("createExcelBtnI18n", getCreateExcelBtnI18n());
         i18KeyMap.put("createPdfBtnI18n", getCreatePdfBtnI18n());
         i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
+        i18KeyMap.put("excelPdfDownloadErrorText", getExcelPdfDownloadErrorText());
         i18KeyMap.put("fileDownloadErrorClose", getFileDownloadErrorClose());
         i18KeyMap.put("datePlaceholder", getDatePlaceholder());
         i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
