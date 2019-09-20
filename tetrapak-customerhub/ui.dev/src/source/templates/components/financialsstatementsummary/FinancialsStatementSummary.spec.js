@@ -30,7 +30,7 @@ describe('FinancialsStatementSummary', function () {
     this.processTableData = sinon.spy(this.financialsStatementSummary, 'processTableData');
     this.downloadInvoice = sinon.spy(this.financialsStatementSummary, 'downloadInvoice');
     this.downloadPdfExcel = sinon.spy(this.financialsStatementSummary, 'downloadPdfExcel');
-    this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackAnalytics');
+    this.analyticsSpy = sinon.spy(this.financialsStatementSummary, 'trackValues');
     this.errorSpy = sinon.spy(this.financialsStatementSummary, 'trackErrors');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
