@@ -10,7 +10,9 @@
             data-display="static"
             aria-haspopup="true"
             aria-expanded="false"
-            aria-labelledby="tpatom-dropdown-{{name}}">
+            {{#if labelText}}
+                aria-labelledby="tpatom-dropdown-{{name}}">
+            {{/if}}
             {{#if defaultValue}}
                <span>{{i18n key=defaultValue}}</span>
             {{else}}
