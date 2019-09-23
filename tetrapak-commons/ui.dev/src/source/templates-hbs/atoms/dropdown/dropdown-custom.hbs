@@ -1,7 +1,16 @@
 <div class="tpatom-dropdown {{#if className}} {{className}}{{/if}}">
-{{#if labelText}}<label class="tpatom-dropdown__text" for="{{name}}">{{i18n key=labelText}}</label>{{/if}}
+{{#if labelText}}<span class="tpatom-dropdown__text js-dropdown__text" id="tpatom-dropdown-{{name}}">{{i18n key=labelText}}</span>{{/if}}
     <div class="dropdown js-custom-dropdown">
-        <button class="btn dropdown-toggle dropdown-btn  text-left js-dropdown-btn{{#if jsClass}} {{jsClass}}{{/if}}" type="button" id="{{name}}" data-key="{{#if defaultKey}}{{defaultKey}}{{else}}{{options.[0].key}}{{/if}}" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <button
+            class="btn dropdown-toggle dropdown-btn  text-left js-dropdown-btn{{#if jsClass}} {{jsClass}}{{/if}}"
+            type="button"
+            id="{{name}}"
+            data-key="{{#if defaultKey}}{{defaultKey}}{{else}}{{options.[0].key}}{{/if}}"
+            data-toggle="dropdown"
+            data-display="static"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-labelledby="tpatom-dropdown-{{name}}">
             {{#if defaultValue}}
                <span>{{i18n key=defaultValue}}</span>
             {{else}}
