@@ -109,13 +109,13 @@
             <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.it.launcher</artifactId>
               <version>${project.version}</version>
-        </dependency>-->          
+        </dependency>
         <dependency>
             <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.content</artifactId>
             <version>${project.version}</version>
              <type>content-package</type>
-        </dependency>
+        </dependency>-->
           <dependency>
             <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.dev</artifactId>

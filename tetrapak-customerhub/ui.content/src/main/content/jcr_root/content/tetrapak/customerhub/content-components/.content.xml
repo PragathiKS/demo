@@ -4,6 +4,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:isLanguageRoot="true"
+        cq:allowedTemplates="/conf/customerhub/settings/wcm/templates/language-page"
         cq:lastModified="{Date}2019-03-27T11:13:32.325+05:30"
         cq:lastModifiedBy="admin"
         cq:lastReplicated="{Date}2019-09-19T13:43:50.175Z"
