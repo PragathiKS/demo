@@ -27,16 +27,25 @@ export const customDropdown = {
     };
   },
   bindEvents() {
-    $body.on('click', '.js-custom-dropdown-li', function (e) {
-      e.preventDefault();
-      const $this = $(this);
-      const currentTarget = $(e.currentTarget);
-      const desc = currentTarget.text();
-      const $btn = $this.parents('.js-custom-dropdown').find('.js-dropdown-btn');
-      $btn.find('span').text(desc);
-      $btn.data('key', currentTarget.data('key')).attr('data-key', currentTarget.data('key'));
-      $btn.trigger(EVT_DROPDOWN_CHANGE);
-    });
+    $body
+      .on('click', '.js-custom-dropdown-li', function (e) {
+        e.preventDefault();
+        const $this = $(this);
+        const currentTarget = $(e.currentTarget);
+        const desc = currentTarget.text();
+        const $btn = $this.parents('.js-custom-dropdown').find('.js-dropdown-btn');
+        $btn.find('span').text(desc);
+        $btn.data('key', currentTarget.data('key')).attr('data-key', currentTarget.data('key'));
+        $btn.trigger(EVT_DROPDOWN_CHANGE);
+      }).on('click', '.js-dropdown__text', function () {
+        const currentId = $(this).attr('id');
+        setTimeout(() => {
+          const targetEl = $(`[aria-labelledby="${currentId}"]`);
+          if (targetEl.length) {
+            targetEl[0].click();
+          }
+        }, 0);
+      });
   },
   init() {
     this.extendJQueryAPI();
