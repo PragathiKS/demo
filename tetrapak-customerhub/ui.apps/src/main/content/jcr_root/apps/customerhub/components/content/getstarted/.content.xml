@@ -4,4 +4,4 @@
     jcr:description="Getting Started Component"
     jcr:primaryType="cq:Component"
     jcr:title="Getting Started"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

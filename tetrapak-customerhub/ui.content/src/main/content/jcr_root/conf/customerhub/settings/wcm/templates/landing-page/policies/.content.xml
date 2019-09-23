@@ -2,17 +2,21 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
+        cq:lastModified="{Date}2019-09-23T09:08:44.653Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-03-19T04:39:23.779Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[cq:ReplicationStatus,mix:versionable]"
         jcr:primaryType="nt:unstructured"
-        jcr:uuid="acb01ace-209c-4ef2-a59c-d17c930cffd2"
+        jcr:uuid="ac135697-8841-4724-99c1-42a20d42e8a5"
         sling:resourceType="wcm/core/components/policies/mappings">
         <root
-            cq:policy="wcm/foundation/components/responsivegrid/content-default"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
             <responsivegrid
-                cq:policy="wcm/foundation/components/responsivegrid/content-default"
+                cq:policy="wcm/foundation/components/responsivegrid/global-default"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>

@@ -4,4 +4,4 @@
     jcr:description="Analytics Global Tags Component"
     jcr:primaryType="cq:Component"
     jcr:title="Analytics Global Tags"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup=".hidden"/>

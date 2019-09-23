@@ -2,48 +2,53 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
-    <rep:policy/>
     <wcm jcr:primaryType="nt:unstructured">
         <foundation jcr:primaryType="nt:unstructured">
             <components jcr:primaryType="nt:unstructured">
                 <responsivegrid jcr:primaryType="nt:unstructured">
                     <content-default
                         jcr:description="Policy for editable layout containers"
-                        jcr:lastModified="{Date}2019-02-24T13:18:13.410+05:30"
+                        jcr:lastModified="{Date}2019-09-23T09:03:15.250Z"
                         jcr:lastModifiedBy="admin"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="customerhub Default"
+                        jcr:title="tetrapak content components"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[group:tetrapak-customerhub,/apps/customerhub/components/form/container]"
+                        components="[group:tetrapak-content-components]"
                         policyResourceType="wcm/foundation/components/responsivegrid">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
                         </cq:authoring>
                         <jcr:content
-                            cq:lastReplicated="{Date}2019-02-24T13:16:02.240+05:30"
-                            cq:lastReplicatedBy="admin"
+                            cq:lastReplicated="{Date}2019-03-19T03:34:41.101Z"
+                            cq:lastReplicatedBy="sapient-tarun"
                             cq:lastReplicationAction="Activate"
                             jcr:mixinTypes="[cq:ReplicationStatus]"
                             jcr:primaryType="nt:unstructured"
                             mergeList="{Boolean}true"/>
                     </content-default>
+                    <global-default
+                        jcr:description="Policy for global components"
+                        jcr:lastModified="{Date}2019-09-23T09:08:44.649Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="tetrapak global components"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:tetrapak-global-components">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </global-default>
+                    <config-default
+                        jcr:description="Policy for config components"
+                        jcr:lastModified="{Date}2019-09-23T09:08:44.649Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="tetrapak configuration components"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:tetrapak-configuration-components">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </config-default>
                 </responsivegrid>
             </components>
         </foundation>
     </wcm>
-    <customerhub jcr:primaryType="nt:unstructured">
-        <components jcr:primaryType="nt:unstructured">
-            <form jcr:primaryType="nt:unstructured">
-                <container jcr:primaryType="nt:unstructured">
-                    <form-container
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="customerhub Form"
-                        sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/apps/customerhub/components/form/button,/apps/customerhub/components/form/hidden,/apps/customerhub/components/form/options,/apps/customerhub/components/form/text]">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </form-container>
-                </container>
-            </form>
-        </components>
-    </customerhub>
+    <rep:policy/>
 </jcr:root>

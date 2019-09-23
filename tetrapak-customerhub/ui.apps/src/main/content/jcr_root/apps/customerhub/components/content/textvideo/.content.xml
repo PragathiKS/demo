@@ -4,4 +4,4 @@
     jcr:title="Text Video"
     jcr:description="Text Video component"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

@@ -3,11 +3,13 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[/etc/mobile/groups/responsive]"
-        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
+        cq:lastModified="{Date}2019-09-23T07:48:36.221Z"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/customerhub/settings/wcm/templates/language-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:uuid="a6eb3cef-8be7-47cc-8cff-713b5fa26fe3"
+        jcr:uuid="04ee3254-72d8-4a8e-89ba-1c24cc6dd960"
         sling:resourceType="customerhub/components/structure/page">
         <root
             jcr:primaryType="nt:unstructured"

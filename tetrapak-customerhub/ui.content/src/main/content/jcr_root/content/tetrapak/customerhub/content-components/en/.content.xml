@@ -3,12 +3,13 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
+        cq:allowedTemplates="/conf/customerhub/settings/wcm/templates/content-page"
         cq:lastModified="{Date}2019-09-16T08:32:01.756Z"
         cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-09-18T09:35:59.479Z"
+        cq:lastReplicated="{Date}2019-09-19T13:43:50.175Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
-        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        cq:template="/conf/customerhub/settings/wcm/templates/language-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
