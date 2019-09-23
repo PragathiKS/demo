@@ -2,10 +2,12 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Template">
     <jcr:content
+        cq:lastModified="{Date}2019-09-23T07:52:13.956Z"
+        cq:lastModifiedBy="admin"
         cq:templateType="/conf/customerhub/settings/wcm/template-types/empty-page"
-        jcr:description="This page is used to create only dashboard page. It will contain notification component by default."
+        jcr:description="This page is used to create pages for language pages and their parent pages."
         jcr:primaryType="cq:PageContent"
-        jcr:title="Dashboard Page"
-		shortTitle="dashboard"
+        jcr:title="Language Page"
+        shortTitle="language"
         status="enabled"/>
 </jcr:root>

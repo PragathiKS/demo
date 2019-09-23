@@ -2,37 +2,43 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-09-04T06:14:33.851Z"
-        cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-18T09:36:01.086Z"
-        cq:lastReplicatedBy="admin"
-        cq:lastReplicationAction="Activate"
-        cq:lastTranslationUpdate="{Date}2019-07-17T11:24:13.015Z"
-        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
-        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/500"
+        cq:lastModified="{Date}2019-09-23T09:56:07.866Z"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2019-09-23T09:56:07.869Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/conf/customerhub/settings/wcm/templates/content-page"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[mix:versionable]"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="500"
-        jcr:uuid="f93c9873-01b4-4b24-b88d-3bdd0f5a75f3"
+        jcr:uuid="4269263c-468b-44fe-b123-3bd3f564ffa4"
         sling:resourceType="customerhub/components/structure/page">
         <root
+            cq:lastRolledout="{Date}2019-09-23T09:56:07.859Z"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">
             <responsivegrid
+                cq:lastRolledout="{Date}2019-09-23T09:56:07.861Z"
+                cq:lastRolledoutBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <error
+                    cq:lastRolledout="{Date}2019-09-23T09:56:07.869Z"
+                    cq:lastRolledoutBy="admin"
                     jcr:created="{Date}2019-05-08T11:33:02.334+05:30"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-08-19T03:29:56.055Z"
+                    jcr:lastModified="{Date}2019-09-23T09:56:07.864Z"
                     jcr:lastModifiedBy="sapient-tarun"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/error"
-                    errorCode="错误500"
-                    errorDescription="&lt;p>要么您没有此页面的访问权限，要么您输入了错误的URL。&lt;br>&#xd;&#xa;&lt;br>&#xd;&#xa;您可以随时访&lt;a href=&quot;/content/tetrapak/customerhub/global/en/dashboard.html&quot;>问仪表板&lt;/a>&lt;/p>&#xd;&#xa;"
-                    errorTitle="糟糕...内部服务器错误"
-                    imageAltText="错误Cuhu"
+                    errorCode="Error 500"
+                    errorDescription="&lt;p>Either you do not have the access to this page or you mistyped the URL.&lt;/p>&#xd;&#xa;&lt;p>You can always go to&amp;nbsp;&lt;a href=&quot;/content/tetrapak/customerhub/en/dashboard.html&quot;>dashboard&lt;/a>.&lt;/p>&#xd;&#xa;"
+                    errorTitle="Oops...Internal Server Error"
+                    imageAltText="Error Cuhu"
                     imagePath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
                     textIsRich="true"/>
             </responsivegrid>

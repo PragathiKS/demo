@@ -4,4 +4,4 @@
     jcr:title="Tab List Component"
     jcr:description="Tab List Component for Customer Hub."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

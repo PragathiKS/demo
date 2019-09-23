@@ -3,152 +3,188 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-09-04T06:14:33.846Z"
-        cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-18T09:36:01.953Z"
-        cq:lastReplicatedBy="admin"
-        cq:lastReplicationAction="Activate"
-        cq:lastTranslationUpdate="{Date}2019-07-17T11:24:13.290Z"
-        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
-        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/dashboard"
+        cq:lastModified="{Date}2019-09-23T10:36:35.153Z"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2019-09-23T09:59:27.952Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/conf/customerhub/settings/wcm/templates/content-page"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[mix:versionable]"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Start Page"
-        jcr:uuid="5351bf84-7260-435d-9c1b-339b79ad1559"
+        jcr:title="Dashboard"
+        jcr:uuid="2b237104-6df1-43dd-9632-e881c3f4079b"
         sling:resourceType="customerhub/components/structure/page"
-        iconClass="icon-Dashboard">
+        iconClass="icon-Dashboard"
+        showTitle="true">
         <root
+            cq:lastRolledout="{Date}2019-09-23T09:59:27.865Z"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">
             <responsivegrid
+                cq:lastRolledout="{Date}2019-09-23T09:59:27.869Z"
+                cq:lastRolledoutBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <textvideo_416075310
+                    cq:isCancelledForChildren="{Boolean}true"
+                    cq:lastReplicated="{Date}2019-09-18T09:21:34.025Z"
+                    cq:lastReplicatedBy="admin"
+                    cq:lastReplicationAction="Activate"
+                    cq:lastRolledout="{Date}2019-09-23T09:59:27.879Z"
+                    cq:lastRolledoutBy="admin"
                     jcr:created="{Date}2019-07-08T09:23:35.205Z"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-07-18T03:56:50.144Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-23T10:30:09.163Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled,cq:ReplicationStatus]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/textvideo"
-                    damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                    damVideoPath="/content/dam/tetrapak/customerhub/english/dashboard/videos/SampleVideo_1280x720_5mb.mp4"
                     description="食物、飲料或化妝品？無論什麼產品，我們都為您提供適合您需求的加工和包裝解決方案。我們與您合作，開發配方和設計與智慧環境思維生產過程。我們幫助您將創意轉化為客戶喜愛的產品。"
                     isExternal="true"
-                    pwDisplay="display-row"
-                    thumbnailPath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
+                    pwDisplay="display-column"
+                    textAlignment="left"
                     title="把你的產品變成成功"
                     videoSource="dam"
                     youtubeVideoID="ZofQqevIIZA"/>
                 <getstarted
-                    jcr:lastModified="{Date}2019-07-18T06:06:18.091Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    cq:lastRolledout="{Date}2019-09-23T09:59:27.883Z"
+                    cq:lastRolledoutBy="admin"
+                    jcr:lastModified="{Date}2019-09-23T10:30:58.189Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/getstarted"
                     className="tpmol-image-card__normal-text"
                     headingI18n="關於“開始”標題"
                     textIsRich="[true,true,true]">
+                    <item0-image
+                        cq:lastRolledout="{Date}2019-09-23T09:59:27.890Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:59:27.886Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"
+                        imageCrop="318,126,976,411"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item1-image
+                        cq:lastRolledout="{Date}2019-09-23T09:59:27.895Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:59:27.892Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"
+                        imageCrop="371,129,913,359"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item2-image
+                        cq:lastRolledout="{Date}2019-09-23T09:59:27.899Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:59:27.897Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"/>
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
-                            tabId="item0"
                             descriptionI18n="&lt;p>&lt;b>我的利樂&lt;/b>是你進入利樂的唯一入口。它以智慧的管道使用業務數據，以幫助您節省時間和金錢、提高效能和新增知識。你會得到改善日常工作的建議和見解。我的利樂有助於使您的解決方案發揮最佳效果。&lt;/p>&#xd;&#xa;"
-                            imageAltI18n="一個地方做你的生意"
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
+                            tabId="item0"
                             titleI18n="關於“開始”標題1"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
-                            tabId="item1"
                             descriptionI18n="&lt;p>根據您的設備、設定、需求和目標，我的利樂會在需要您注意的時候通知您。瞭解有關效能問題、維護和優化的詳細資訊—您可以將通知用作日常工作的檢查表。&lt;/p>&#xd;&#xa;"
-                            imageAltI18n="關於\\u GetStarted \\u Image21 \\u AltText"
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
+                            tabId="item1"
                             titleI18n="關於“開始”標題2"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
-                            tabId="item2"
                             descriptionI18n="&lt;p>您希望接收哪種通知？我們業務的績效目標是什麼？你感興趣的領域？為您的需求優化我的利樂，為您的業務帶來新的價值。&lt;/p>&#xd;&#xa;"
-                            imageAltI18n="關於\\u GetStarted \\u Image3 \\u AltText"
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
+                            tabId="item2"
                             titleI18n="關於“開始”標題3"/>
                     </list>
-                    <item0-image
-                        jcr:lastModified="{Date}2019-07-26T08:31:20.874Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="1"
-                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"/>
-                    <item1-image
-                        jcr:lastModified="{Date}2019-07-26T08:31:51.905Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="2"
-                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"/>
-                    <item2-image
-                        jcr:lastModified="{Date}2019-07-26T08:32:29.087Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="3"
-                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"/>
                 </getstarted>
                 <tabslist
-                    jcr:created="{Date}2019-07-26T08:32:58.017Z"
+                    cq:isCancelledForChildren="{Boolean}true"
+                    cq:lastRolledout="{Date}2019-09-23T09:59:27.917Z"
+                    cq:lastRolledoutBy="admin"
+                    jcr:created="{Date}2019-07-22T04:35:08.708Z"
                     jcr:createdBy="sapient-tarun"
-                    jcr:lastModified="{Date}2019-07-26T08:50:13.552Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-23T10:36:35.145Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/tabslist"
                     heading=" 解決所有需求"
                     textIsRich="[true,true,true]">
+                    <item0-image
+                        cq:lastRolledout="{Date}2019-09-23T09:59:27.922Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:59:27.919Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt2"
+                        fileReference="/content/dam/tetrapak/customerhub/english/error/images/Login_Error.PNG"/>
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
-                            tabId="item0"
+                            damVideoPath="/content/dam/tetrapak/customerhub/english/dashboard/videos/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="了解洞察力"
-                            linkType="button"
-                            linkURL="https://www.tetrapak.com/"
-                            mediaDescriptionI18n="&lt;p>環境飲用酸奶現在得到了超大的水果塊。這是中國乳製品製造商與TETRA Pak專家之間創新合作的成果。創意，加工，包裝和發布背後的成功秘訣是什麼？&lt;/p>&#xd;&#xa;"
-                            mediaTitleI18n="大自然的時刻"
-                            tabTitleI18n=" 世界上第一款含有大量水果的環境飲用酸奶"
-                            type="image"/>
-                        <item1
-                            jcr:primaryType="nt:unstructured"
-                            tabId="item1"
-                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
-                            isExternal="true"
-                            linkTextI18n="學到更多"
                             linkType="button"
                             linkURL="http://www.tetrapak.com/"
                             mediaDescriptionI18n="&lt;p>環境飲用酸奶現在得到了超大的水果塊。這是中國乳製品製造商與TETRA Pak專家之間創新合作的成果。創意，加工，包裝和發布背後的成功秘訣是什麼？&lt;/p>&#xd;&#xa;"
                             mediaTitleI18n="大自然的時刻"
-                            tabTitleI18n="世界上第一款含有大量水果的環境飲用酸奶"
+                            tabId="item0"
+                            tabTitleI18n=" 世界上第一款含有大量水果的環境飲用酸奶"
                             thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
-                            type="video"
+                            type="image"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/english/dashboard/videos/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="true"
+                            linkTextI18n="學到更多"
+                            linkType="button"
+                            linkURL="http://www.tetrapak.com"
+                            mediaDescriptionI18n="&lt;p>環境飲用酸奶現在得到了超大的水果塊。這是中國乳製品製造商與TETRA Pak專家之間創新合作的成果。創意，加工，包裝和發布背後的成功秘訣是什麼？&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="大自然的時刻"
+                            tabId="item1"
+                            tabTitleI18n="世界上第一款含有大量水果的環境飲用酸奶"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
+                            type="image"
                             videoSource="dam"
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
-                            tabId="item2"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="了解洞察力"
                             linkType="link"
                             linkURL="http://www.tetrapak.com"
                             mediaDescriptionI18n="&lt;p>環境飲用酸奶現在得到了超大的水果塊。這是中國乳製品製造商與TETRA Pak專家之間創新合作的成果。創意，加工，包裝和發布背後的成功秘訣是什麼？環境飲用酸奶現在得到了超大的水果塊。這是中國乳製品製造商與TETRA Pak專家之間創新合作的成果。創意，加工，包裝和發布背後的成功秘訣是什麼？&lt;/p>&#xd;&#xa;"
                             mediaTitleI18n="大自然的時刻"
+                            tabId="item2"
                             tabTitleI18n="乳製品的總生產力維持實施"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
                             type="video"
                             videoSource="youtube"
                             youtubeVideoID="fR-esiS1Pn0"/>
                     </tablist>
-                    <item0-image
-                        jcr:lastModified="{Date}2019-07-26T08:51:58.527Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="first image"
-                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"/>
                 </tabslist>
             </responsivegrid>
         </root>

@@ -4,4 +4,4 @@
     jcr:description="Page Content Hierarchy Reference"
     jcr:primaryType="cq:Component"
     jcr:title="Page Content Hierarchy Reference"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

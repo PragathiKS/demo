@@ -3,4 +3,4 @@
           jcr:description="Header Configuration Component"
           jcr:primaryType="cq:Component"
           jcr:title="Header Configuration"
-          componentGroup="tetrapak-customerhub"/>
+          componentGroup="tetrapak-configuration-components"/>

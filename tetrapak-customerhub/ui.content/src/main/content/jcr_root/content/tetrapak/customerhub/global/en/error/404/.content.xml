@@ -6,7 +6,7 @@
         cq:conf="/conf/CustomerHub Launch"
         cq:lastModified="{Date}2019-09-04T06:14:35.785Z"
         cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-04T06:58:33.746Z"
+        cq:lastReplicated="{Date}2019-09-19T07:28:33.762Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"

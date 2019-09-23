@@ -4,4 +4,4 @@
     jcr:description="Page Reference Component"
     jcr:primaryType="cq:Component"
     jcr:title="Page Reference"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>
