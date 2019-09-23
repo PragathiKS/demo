@@ -238,7 +238,9 @@ function _renderFilters() {
         const [defaultStatus] = data.status;
         const [docType] = data.documentType;
         defaultQuery.status = defaultStatus.key;
-        defaultQuery['document-type'] = docType.key;
+        if (docType.key) {
+          defaultQuery['document-type'] = docType.key;
+        }
         defaultQuery['soa-date'] = moment().format(DATE_FORMAT);
         if ((`${defaultQuery.status}`).toUpperCase() !== 'O') {
           defaultQuery['invoicedate-from'] = _getStartDate();
