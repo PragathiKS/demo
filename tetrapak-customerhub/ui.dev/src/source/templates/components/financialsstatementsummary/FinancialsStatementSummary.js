@@ -226,8 +226,7 @@ function _renderTable(filterParams, config) {
         },
         method: ajaxMethods.GET,
         cache: true,
-        showLoader: true,
-        cancellable: true
+        showLoader: true
       }
     }, (data) => {
       const { $parentRoot } = this.cache;

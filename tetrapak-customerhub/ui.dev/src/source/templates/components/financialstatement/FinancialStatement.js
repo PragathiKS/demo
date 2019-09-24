@@ -220,8 +220,7 @@ function _renderFilters() {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         cache: true,
-        showLoader: true,
-        cancellable: true
+        showLoader: true
       },
       beforeRender(data) {
         if (!data) {
