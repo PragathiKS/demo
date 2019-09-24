@@ -4,4 +4,4 @@
     jcr:description="Page Reference Component"
     jcr:primaryType="cq:Component"
     jcr:title="Page Reference"
-    componentGroup="tetrapak-content-components"/>
+    componentGroup=".hidden"/>
