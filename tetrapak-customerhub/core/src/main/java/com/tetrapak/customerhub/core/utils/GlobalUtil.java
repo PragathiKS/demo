@@ -230,7 +230,7 @@ public class GlobalUtil {
      * @return value
      */
     public static String getI18nValueForThisLanguage(SlingHttpServletRequest request, String prefix, String key, String language) {
-        I18n i18n = new I18n(request.getResourceBundle(new Locale(language)));
+        I18n i18n = new I18n(request.getResourceBundle(new Locale(language.substring(0,2), StringUtils.substringAfter(language,"_"))));
         return i18n.get(prefix + key);
     }
 
