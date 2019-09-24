@@ -20,6 +20,7 @@ import java.io.IOException;
  * 1. login-token
  * 2. acctoken
  * 3. authToken
+ * 4. samlRequestPathCookie
  * <p>
  * And redirects to page given in query parameter which internally redirect to sso and gets a new access token
  *
@@ -61,13 +62,20 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
+        Cookie samlRequestPathCookie = request.getCookie("saml_request_path");
+        if (null != samlRequestPathCookie) {
+            samlRequestPathCookie.setMaxAge(0);
+            samlRequestPathCookie.setPath("/");
+            response.addCookie(samlRequestPathCookie);
+            LOGGER.debug("cookie samlRequestPathCookie was deleted");
+        }
         String redirectURL = request.getParameter("redirectURL");
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {
                 response.sendRedirect(redirectURL);
             }
         } catch (IOException e) {
-            LOGGER.error("IOException in redirecting from Logout handler", e);
+            LOGGER.error("IOException in redirecting from Logout Servlet", e);
         }
     }
 }
