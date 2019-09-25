@@ -76,4 +76,9 @@ PassEnv DISP_ID
                         Include /etc/httpd/conf.d/rewrites/xforwarded_forcessl_rewrite.rules
                 </If>
         </IfModule>
+		<IfModule mod_expires.c>
+			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
+			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
+			Header set Cache-Control max-age=2592000 env=long_expires
+		</IfModule>
 </VirtualHost>
