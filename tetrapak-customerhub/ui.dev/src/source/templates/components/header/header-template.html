@@ -2,12 +2,14 @@
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
         <sly data-sly-test="${data.logoUrl}">
-          <div class="tp-header__logo">
-            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+          <div class="tp-header__logo d-none d-md-inline-block">
+            <a href="${data.dLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
+          </div>
+          <div class="tp-header__logo d-md-none">
             <!--/*logo for mobile  */-->
-            <a href="${data.mLogoLink}" class="d-md-none tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+            <a href="${data.mLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
           </div>

@@ -28,22 +28,26 @@ sans-serif;
     font-weight: normal;
 }
 
-h1 {
+h1,
+[role="heading"][aria-level="1"] {
     @include font-size($font-xxl);
     font-weight: lighter;
 }
 
-h2 {
+h2,
+[role="heading"][aria-level="2"] {
     @include font-size($font-xl);
     font-weight: lighter;
 }
 
-h3 {
+h3,
+[role="heading"][aria-level="3"] {
     @include font-size($font-l);
     font-weight: lighter;
 }
 
-h4 {
+h4,
+[role="heading"][aria-level="4"] {
     @include font-size($font-md);
     font-weight: lighter;
 }
