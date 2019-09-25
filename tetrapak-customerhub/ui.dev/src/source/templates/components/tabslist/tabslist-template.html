@@ -2,9 +2,9 @@
     <sly data-sly-test.parentHeading="${data.heading}" />
     <div class="tp-card tp-tablist js-tablist clearfix row" data-module="TabsList">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="${data.componentId}" />
-      <h2 class="tp-tablist__heading d-lg-none js-tablist__heading"> ${parentHeading}</h2>
+      <h2 data-sly-test="${parentHeading}" class="tp-tablist__heading d-lg-none js-tablist__heading"> ${parentHeading}</h2>
       <div class="tp-tablist__events accordion col-lg-5">
-        <h2 class="tp-tablist__heading d-none d-lg-block"> ${parentHeading}</h2>
+        <h2 data-sly-test="${parentHeading}" class="tp-tablist__heading d-none d-lg-block"> ${parentHeading}</h2>
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.tabTitleI18n}">
             <button type="button" class="tp-tablist__event js-tablist__event${tabList.index == 0 ? ' active m-active' : ' collapsed'}" data-toggle="collapse" data-target="#tab_${data.componentId}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">

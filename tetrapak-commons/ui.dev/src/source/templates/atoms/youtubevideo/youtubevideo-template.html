@@ -1,6 +1,8 @@
-<sly data-sly-template.youtubevideo_template="${@ videoUrl, className}">
+<sly data-sly-template.youtubevideo_template="${@ videoUrl, className, videoTitle}">
+  <sly data-sly-test.videoTitleText="${videoTitle ? videoTitle : 'youtube video'}" />
   <div data-sly-test="${videoUrl}" class="tpatom-youtube ${className ? className : ''}">
-    <iframe class="tpatom-yt-player js-yt-player" src="${videoUrl}?enablejsapi=1" frameborder="0"
+    <iframe title="${videoTitleText}"
+            class="tpatom-yt-player js-yt-player" src="${videoUrl}?enablejsapi=1" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
