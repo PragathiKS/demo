@@ -1,19 +1,19 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-
-import javax.servlet.http.Cookie;
-
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.mock.MockFinancialResultsApiServiceImpl;
+import com.tetrapak.customerhub.core.mock.MockUrlServiceImpl;
+import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
+import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
+import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
+import com.tetrapak.customerhub.core.services.UrlService;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsExcelServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl;
+import com.tetrapak.customerhub.core.services.impl.UrlServiceImpl;
+import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -25,47 +25,48 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.mock.GenericServiceType;
-import com.tetrapak.customerhub.core.mock.MockFinancialResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
-import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
-import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
-import com.tetrapak.customerhub.core.services.impl.FinancialResultsExcelServiceImpl;
-import com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl;
+import javax.servlet.http.Cookie;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * Test class for Financials Results Service
+ *
  * @author ruhsharm
  */
-@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class FinancialResultsDownloadFileServletTest {
-    
+
     @Mock
     private Page mockPage;
-    
+
     @Mock
     private ResourceBundleProvider mockResourceBundleProvider;
-    
+
     private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/financials";
     private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/financials/jcr:content/root/responsivegrid/financialstatement";
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";
     private static final String RESOURCE_JSON = "financialsresultspage.json";
     private static final String I18_RESOURCE = "/apps/customerhub/i18n/en";
     private static final String I18_RESOURCE_JSON = "/financialsresultsI18n.json";
-    
+
     @Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(RESOURCE_JSON, CONTENT_ROOT,
             getMultipleMockedService());
-    
+
     @Before
     public void setup() throws IOException {
         ResourceBundle resourceBundle = new PropertyResourceBundle(
@@ -79,14 +80,15 @@ public class FinancialResultsDownloadFileServletTest {
         Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
         aemContext.request().addCookie(cookie);
     }
-    
+
+    @Ignore
     @Test
     public void doPostForPdf() throws IOException {
         MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
         requestPathInfo.setExtension("pdf");
         MockSlingHttpServletRequest request = aemContext.request();
         MockSlingHttpServletResponse response = aemContext.response();
-        Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
         parameters.put("params", "{\n" +
                 "   \"startDate\":\"2019-06-11\",\n" +
@@ -147,14 +149,14 @@ public class FinancialResultsDownloadFileServletTest {
                 "   ]\n" +
                 "}\n");
         request.setParameterMap(parameters);
-        
+
         FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
                 .getService(FinancialResultsDownloadFileServlet.class);
         aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
     }
-    
+
     @Test
     public void doPostForExcel() throws IOException {
         MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
@@ -222,32 +224,32 @@ public class FinancialResultsDownloadFileServletTest {
                 "   ]\n" +
                 "}\n");
         request.setParameterMap(parameters);
-        
+
         FinancialResultsDownloadFileServlet financialsResultsDownloadFileServlet = aemContext
                 .getService(FinancialResultsDownloadFileServlet.class);
         aemContext.registerInjectActivateService(financialsResultsDownloadFileServlet);
         financialsResultsDownloadFileServlet.doPost(request, response);
         assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
     }
-    
+
     public <T> List<GenericServiceType<T>> getMultipleMockedService() {
-        
+
         GenericServiceType<FinancialResultsApiService> apigeeServiceGenericServiceType = new GenericServiceType<>();
         apigeeServiceGenericServiceType.setClazzType(FinancialResultsApiService.class);
         apigeeServiceGenericServiceType.set(new MockFinancialResultsApiServiceImpl());
-        
+
         GenericServiceType<FinancialResultsPDFService> financialsResultsPDFServiceGenericServiceType = new GenericServiceType<>();
         financialsResultsPDFServiceGenericServiceType.setClazzType(FinancialResultsPDFService.class);
         financialsResultsPDFServiceGenericServiceType.set(new FinancialResultsPDFServiceImpl());
-        
+
         GenericServiceType<FinancialResultsExcelService> excelServiceGenericServiceType = new GenericServiceType<>();
         excelServiceGenericServiceType.setClazzType(FinancialResultsExcelService.class);
         excelServiceGenericServiceType.set(new FinancialResultsExcelServiceImpl());
-        
+
         GenericServiceType<FinancialResultsDownloadFileServlet> financialsResultsDownloadFileServletGenericServiceType = new GenericServiceType<>();
         financialsResultsDownloadFileServletGenericServiceType.setClazzType(FinancialResultsDownloadFileServlet.class);
         financialsResultsDownloadFileServletGenericServiceType.set(new FinancialResultsDownloadFileServlet());
-        
+
         List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
         serviceTypes.add((GenericServiceType<T>) apigeeServiceGenericServiceType);
         serviceTypes.add((GenericServiceType<T>) financialsResultsPDFServiceGenericServiceType);
@@ -255,5 +257,5 @@ public class FinancialResultsDownloadFileServletTest {
         serviceTypes.add((GenericServiceType<T>) excelServiceGenericServiceType);
         return serviceTypes;
     }
-    
+
 }
