@@ -120,7 +120,7 @@ public class FinancialResultsExcelServiceImplTest {
         documentTypeList.add(docType);
         paramRequest.setStatusList(statusList);
         paramRequest.setDocumentTypeList(documentTypeList);
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue("true", finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
     /**
@@ -171,7 +171,7 @@ public class FinancialResultsExcelServiceImplTest {
         documentTypeList.add(docType);
         paramRequest.setStatusList(statusList);
         paramRequest.setDocumentTypeList(documentTypeList);
-        assertTrue(finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
+        assertTrue("true", finService.generateFinancialResultsExcel(servletRequest, response, apiResponse, paramRequest));
     }
 
 }
