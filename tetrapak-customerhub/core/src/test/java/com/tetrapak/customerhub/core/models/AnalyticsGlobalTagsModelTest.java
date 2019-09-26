@@ -1,0 +1,48 @@
+package com.tetrapak.customerhub.core.models;
+
+import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import io.wcm.testing.mock.aem.junit.AemContext;
+import org.apache.sling.api.resource.Resource;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+
+/**
+ * Test class for Analytics Global Tags Model
+ *
+ * @author Nitin Kumar
+ */
+public class AnalyticsGlobalTagsModelTest {
+
+    private AnalyticsGlobalTagsModel analyticsGlobalTagsModel = null;
+    private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en";
+    private static final String RESOURCE_ROOT = "/content/tetrapak/customerhub/global/en/dashboard/jcr:content";
+    private static final String JSON = "allContent.json";
+
+    @Rule
+    public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(JSON, CONTENT_ROOT);
+
+    @Before
+    public void setup() {
+        Resource resource = aemContext.currentResource(RESOURCE_ROOT);
+        aemContext.registerService(Resource.class, resource);
+        analyticsGlobalTagsModel = resource.adaptTo(AnalyticsGlobalTagsModel.class);
+    }
+
+    @Test
+    public void testGetStartedMessage() {
+        Assert.assertEquals("Channel", "dashboard", analyticsGlobalTagsModel.getChannel());
+        Assert.assertEquals("login status", "logged-in", analyticsGlobalTagsModel.getLogInStatus());
+        Assert.assertEquals("page type", "dashboard", analyticsGlobalTagsModel.getPageType());
+        Assert.assertEquals("sales force ID", "12ffsf343243345", analyticsGlobalTagsModel.getSalesForceId());
+        Assert.assertEquals("site country", "", analyticsGlobalTagsModel.getSiteCountry());
+        Assert.assertEquals("country code", "", analyticsGlobalTagsModel.getUserCountryCode());
+        Assert.assertEquals("site name", "customerhub", analyticsGlobalTagsModel.getSiteName());
+        Assert.assertNull("error message", analyticsGlobalTagsModel.getErrorMessage());
+        Assert.assertNull("error code", analyticsGlobalTagsModel.getErrorCode());
+        Assert.assertEquals("user roles", 0, analyticsGlobalTagsModel.getUserRoles().size());
+        Assert.assertFalse("is subpage", analyticsGlobalTagsModel.isSubPage());
+    }
+
+}

@@ -321,9 +321,11 @@
                     </executions>
                     <configuration>
                         <destFile>${sonar.jacoco.reportPath}</destFile>
+                        <excludes>
+                            <exclude>com.tetrapak.customerhub.core.authentication.SAMLResponsePostProcessor.java</exclude>
+                        </excludes>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>

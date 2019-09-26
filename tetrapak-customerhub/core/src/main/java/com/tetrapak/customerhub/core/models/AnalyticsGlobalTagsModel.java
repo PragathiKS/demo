@@ -159,13 +159,13 @@ public class AnalyticsGlobalTagsModel {
      */
     public String getChannel() {
         final int DEPTH = 4;
-        String channel = StringUtils.substringAfter(StringUtils.substringBefore(resource.getPath(),"/jcr:content"),
+        String channel = StringUtils.substringAfter(StringUtils.substringBefore(resource.getPath(), "/jcr:content"),
                 GlobalUtil.getPageFromResource(resource, DEPTH).getPath() + CustomerHubConstants.PATH_SEPARATOR);
         return channel.replaceAll(CustomerHubConstants.PATH_SEPARATOR, ":").toLowerCase();
     }
 
     /**
-     * This method returns is a page is sub second level page in site hirarchy
+     * This method returns is a page is sub second level page in site hierarchy
      *
      * @return true if sub page
      */
