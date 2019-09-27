@@ -106,7 +106,8 @@ function _processFinancialStatementData(data) {
   }));
   const allKey = {
     key: '',
-    desc: documentTypeAll
+    desc: documentTypeAll,
+    translation: true
   };
   const { documentType = [] } = data;
   data.documentType = [allKey].concat(documentType);
