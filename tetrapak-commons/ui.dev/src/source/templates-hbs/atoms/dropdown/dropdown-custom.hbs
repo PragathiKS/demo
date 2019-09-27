@@ -11,8 +11,8 @@
             aria-haspopup="true"
             aria-expanded="false"
             {{#if labelText}}
-                aria-labelledby="tpatom-dropdown-{{name}}">
-            {{/if}}
+                aria-labelledby="tpatom-dropdown-{{name}}"
+            {{/if}}>
             {{#if defaultValue}}
                <span>{{i18n key=defaultValue}}</span>
             {{else}}
@@ -22,7 +22,15 @@
         <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
         <ul class="dropdown-menu" aria-labelledby="{{name}}" role="menu">
             {{#each options}}
-                <li role="presentation"> <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}">{{i18n key=this.desc}}</a></li>
+                <li role="presentation">
+                    <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}" {{#if this.translation}}data-translated="{{this.translation}}"{{/if}}>
+                        {{#if this.translation}}
+                            {{i18n key=this.desc}}
+                        {{else}}
+                            {{this.desc}}
+                        {{/if}}
+                    </a>
+                </li>
             {{/each}}
         </ul>
     </div>
