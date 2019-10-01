@@ -323,6 +323,7 @@
                         <destFile>${sonar.jacoco.reportPath}</destFile>
                         <excludes>
                             <exclude>com.tetrapak.customerhub.core.authentication.SAMLResponsePostProcessor.java</exclude>
+                            <exclude>com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
