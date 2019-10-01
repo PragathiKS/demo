@@ -6,7 +6,6 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.mock.MockFinancialResultsApiServiceImpl;
-import com.tetrapak.customerhub.core.mock.MockUrlServiceImpl;
 import com.tetrapak.customerhub.core.services.FinancialResultsApiService;
 import com.tetrapak.customerhub.core.services.FinancialResultsExcelService;
 import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
