@@ -5,7 +5,7 @@ PassEnv DISP_ID
 <VirtualHost *:80>
         ServerName      publish
         ## Put names of which domains are used for your published site/content here
-        ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-dev64a.adobecqms.net my-dev.tetrapak.com
+        ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-dev64a.adobecqms.net mypages-dev.tetrapak.com
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}
         ## Add header breadcrumbs for help in troubleshooting
