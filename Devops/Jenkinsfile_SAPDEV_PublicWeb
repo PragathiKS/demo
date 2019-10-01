@@ -49,7 +49,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                         steps {
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
                                 sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean  flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
+                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean  flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
                                 sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                         }
                 }
@@ -108,7 +108,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                                                 echo "Deleting Old Commons Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -127,7 +127,7 @@ test_url = "http://tetrapak.sapient.com/content/tetrapak/customerhub/en/dashboar
                                                 echo "Deleting Old Commons Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 echo "Uploading New Commons Package on publish"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Commons Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -242,7 +242,7 @@ to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin
 
 
  always {
-    build 'Tetra-SapDev-Dispatcher-Flush'
+    build 'Tetra-SapDispatcher-Flush'
     }
 
 }
