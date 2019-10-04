@@ -12,6 +12,17 @@ PassEnv DISP_ID
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
                 Header add X-Vhost "publish"
+				
+				<FilesMatch "\.(html)$">
+                        Header set Cache-Control no-cache,no-store
+                        Header set Pragma no-cache
+                </FilesMatch>
+                <FilesMatch "\.(woff)$">
+                        Header set Cache-Control max-age=2592000
+                </FilesMatch>
+                 <FilesMatch "\.(png)$">
+                        Header set Cache-Control max-age=432000
+                </FilesMatch>
          </IfModule>
         <Directory />
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_WHITELIST_ENABLED from 0 or 1 to enable or disable ip restriction rules
@@ -77,9 +88,9 @@ PassEnv DISP_ID
                 </If>
         </IfModule>
 		<IfModule mod_expires.c>
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.woff" long_expires=true
-			Header set Cache-Control max-age=2592000 env=long_expires
+				SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
+				SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
+				Header set Cache-Control max-age=432000 env=long_expires
 		</IfModule>
+
 </VirtualHost>
