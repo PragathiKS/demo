@@ -21,7 +21,6 @@
         /glob "/content/tetrapak/customerhub[./]*"
         /type "allow"
       }
-
 /0003
       {
         /glob "/libs/cq/i18n[./]*"
