@@ -8,7 +8,8 @@
   </sly>
   <sly data-sly-test="${!hasSubmenu}">
     <a data-sly-test="${data.href}"
-       class="tpatom-list-item__link ${identifier}"
+       data-is-external="${data.isExternalLink ? 'true': 'false'}"
+       class="tpatom-list-item__link js-list-item__link ${identifier}"
        href="${data.href}"
        target="${data.isExternalLink ? data.pageName : ''}"
        rel="${data.isExternalLink ? 'noopener noreferrer' : ''}"

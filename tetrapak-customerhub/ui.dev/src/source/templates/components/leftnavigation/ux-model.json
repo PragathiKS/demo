@@ -11,7 +11,7 @@
       "href": "http://localhost:4502/content/customerhub-ux/getstarted.ux-preview.html",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
-      "isExternalLink": "true",
+      "isExternalLink": "false",
       "isActive": "true",
       "pageName": "cuhu-aem-getstarted"
     },

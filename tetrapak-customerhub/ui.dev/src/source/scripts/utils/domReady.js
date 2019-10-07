@@ -16,6 +16,7 @@ import customEvents from './customEvents';
 import feedback from './feedback';
 import auth from './auth';
 import tokenRefresh from './tokenRefresh';
+import { logger } from './logger';
 
 export default {
   init() {
@@ -50,6 +51,14 @@ export default {
         $this.removeClass('tp-no-backdrop');
       } else {
         $this.addClass('modal-open');
+      }
+    });
+    $('.js-list-item__link').on('click', function (e) {
+      const $this = $(this);
+      if ($this.data('isExternal')) {
+        e.preventDefault();
+        logger.log('[Webpack]: Link is opened through script');
+        window.open($this.attr('href'), $this.attr('target'), $this.attr('rel'));
       }
     });
     // Custom scrollbar cross-browser handling
