@@ -8,7 +8,7 @@ import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE, MONTH_FORMAT, YEAR_FORMAT } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
@@ -37,10 +37,10 @@ function _getStartDate() {
  */
 function _disableCalendarNext($this) {
   // Check if current visible months contain current month
-  const currentMonth = moment().month();
-  const currentYear = moment().year();
-  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
-  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  const currentMonth = moment().format(MONTH_FORMAT).toLowerCase();
+  const currentYear = moment().format(YEAR_FORMAT).toLowerCase();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => $.trim($(el).text()).toLowerCase());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => $.trim($(el).text()).toLowerCase());
   if (
     visibleMonths.includes(currentMonth)
     && visibleYears.includes(currentYear)
@@ -451,12 +451,17 @@ function _getDefaultQueryString() {
 function _validateDateRange(e) {
   const ref = e.data;
   const $this = $(this);
-  const { $dateRangePicker, $errorMsg } = ref.cache;
+  const { $dateRangePicker, $errorMsg, $status } = ref.cache;
   const currentValue = $.trim($this.val());
   const currentType = $this.data('dateRangeType');
   const testRegex = currentType === dateTypes.RANGE ? DATE_RANGE_REGEX : DATE_REGEX;
   const dateRangeParts = currentValue.split(DATE_RANGE_SEPARATOR);
   let result = true;
+  // Persist date range on type
+  ref.getSelectedStatus($status)
+    .attr('data-selected-date', currentValue)
+    .data('selectedDate', currentValue);
+  // Validate date range
   if (testRegex.test(currentValue)) {
     dateRangeParts.forEach(part => {
       if (!moment(part.trim()).isValid()) {
@@ -512,12 +517,16 @@ class FinancialStatement {
       format: DATE_FORMAT
     };
   }
+  getSelectedStatus($status) {
+    return $status
+      .parents('.js-custom-dropdown')
+      .find(`a.js-custom-dropdown-li[data-key="${$status.data('key')}"]`);
+  }
   submitDateRange() {
     const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
     const rangeSelectorValue = $rangeSelector.val();
     $dateRange.val(rangeSelectorValue).trigger('input');
-    $status.find('option')
-      .eq($status.prop('selectedIndex'))
+    this.getSelectedStatus($status)
       .attr('data-selected-date', rangeSelectorValue)
       .data('selectedDate', rangeSelectorValue);
     $modal.modal('hide');
