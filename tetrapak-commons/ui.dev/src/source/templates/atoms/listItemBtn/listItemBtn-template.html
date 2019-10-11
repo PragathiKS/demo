@@ -19,7 +19,7 @@
        ctype="${ctype ? ctype : 'not_set'}"
        ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
        cttitle="${data.iconLabel @i18n, locale=locale}"
-       onclick="console.log('>> External link navigation'); window.open.apply(window, [this.getAttribute('data-href'), this.getAttribute('target'), this.getAttribute('data-rel')].filter(function (v) { return !!v; }));">
+       onclick="window.open(this.getAttribute('data-href'), this.getAttribute('target'));">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
           data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
       </sly>
