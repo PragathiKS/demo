@@ -8,15 +8,18 @@
   </sly>
   <sly data-sly-test="${!hasSubmenu}">
     <a data-sly-test="${data.href}"
+       tabindex="0"
+       role="link"
        data-is-external="${data.isExternalLink ? 'true': 'false'}"
        class="tpatom-list-item__link js-list-item__link ${identifier}"
-       href="${data.href}"
-       target="${data.isExternalLink ? data.pageName : ''}"
-       rel="${data.isExternalLink ? 'noopener noreferrer' : ''}"
+       data-href="${data.href}"
+       target="${data.isExternalLink ? data.pageName : '_self'}"
+       data-rel="${data.isExternalLink ? 'noopener,noreferrer' : ''}"
        datatag="${data.isExternalLink ? 'external' : 'internal'}"
        ctype="${ctype ? ctype : 'not_set'}"
        ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
-       cttitle="${data.iconLabel @i18n, locale=locale}">
+       cttitle="${data.iconLabel @i18n, locale=locale}"
+       onclick="console.log('>> External link navigation'); window.open.apply(window, [this.getAttribute('data-href'), this.getAttribute('target'), this.getAttribute('data-rel')].filter(function (v) { return !!v; }));">
       <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
           data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
       </sly>
