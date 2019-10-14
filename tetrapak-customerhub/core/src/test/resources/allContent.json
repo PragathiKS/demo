@@ -99,6 +99,7 @@
             ],
             "jcr:createdBy": "admin",
             "jcr:title": "DASHBOARD",
+            "removeNoOpenerNoReferrer": "true",
             "cq:lastReplicationAction": "Activate",
             "jcr:versionHistory": "a8e60aaa-5dbc-4c58-9a18-9de8cd6acabb",
             "iconClass": "icon-Dashboard",
