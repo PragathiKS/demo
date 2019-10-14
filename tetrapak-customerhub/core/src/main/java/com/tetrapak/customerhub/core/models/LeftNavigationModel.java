@@ -129,6 +129,9 @@ public class LeftNavigationModel {
         bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage, request.getResource()));
         bean.setPageName((String) valueMap.get("tabName"));
+        if(valueMap.containsKey("removeNoOpenerNoReferrer")) {
+            bean.setRemoveNoOpenerNoReferrer(true);
+        }
         return bean;
     }
 

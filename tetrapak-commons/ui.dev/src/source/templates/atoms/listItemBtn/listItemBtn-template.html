@@ -14,7 +14,7 @@
        class="tpatom-list-item__link js-list-item__link ${identifier}"
        data-href="${data.href}"
        data-target="${data.isExternalLink ? data.pageName : '_self'}"
-       data-rel="${data.isExternalLink ? 'noopener,noreferrer' : ''}"
+       data-rel="${data.removeNoOpenerNoReferrer ? '' : 'noopener,noreferrer'}"
        datatag="${data.isExternalLink ? 'external' : 'internal'}"
        ctype="${ctype ? ctype : 'not_set'}"
        ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
