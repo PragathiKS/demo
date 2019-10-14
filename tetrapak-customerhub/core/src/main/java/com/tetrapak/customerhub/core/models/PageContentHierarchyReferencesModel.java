@@ -6,6 +6,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
@@ -61,6 +62,7 @@ public class PageContentHierarchyReferencesModel {
     protected void init() {
         if (Objects.nonNull(pageContentPath)) {
             GlobalUtil.setPageReferences(resourceResolver, componentsReference, locale, pageContentPath);
+            locale = StringUtils.isNotBlank(locale) ? locale : CustomerHubConstants.DEFAULT_LOCALE;
             if (Objects.nonNull(includeSubPages) && ("true").equalsIgnoreCase(includeSubPages)) {
                 pageContentPath = pageContentPath.replace(CustomerHubConstants.PATH_SEPARATOR
                         + JcrConstants.JCR_CONTENT, CustomerHubConstants.EMPTY_STRING);

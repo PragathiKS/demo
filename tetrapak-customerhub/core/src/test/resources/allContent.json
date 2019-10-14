@@ -192,6 +192,16 @@
                      "jcr:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
                      "sling:resourceType": "customerhub/components/content/recommendedforyoucard",
                      "textIsRich": "true"
+                  },
+                  "pagecontenthierarchy": {
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "includeSubPages":"true",
+                     "jcr:created":"Fri Apr 05 2019 14:49:30 GMT+0530",
+                     "pageContentPath":"/content/tetrapak/customerhub/content-components/en/dashboard",
+                     "jcr:lastModified":"Fri Apr 05 2019 14:49:51 GMT+0530",
+                     "sling:resourceType":"customerhub/components/content/pagecontenthierarchyreference"
                   }
                }
             }

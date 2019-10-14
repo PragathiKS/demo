@@ -2,19 +2,19 @@ package com.tetrapak.customerhub.core.exceptions;
 
 /**
  * Wrapper class for all the runtime exceptions while handling security threats.
- * 
- * @author tustusha
  *
+ * @author tustusha
  */
 public class SecutiyRuntimeException extends RuntimeException {
 
-	/**
-	 * The Constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 6446722969844754805L;
+    /**
+     * The Constant serialVersionUID.
+     */
+    private static final long serialVersionUID = 6446722969844754805L;
 
-	/**
+    /**
      * SecutiyRuntimeException constructor
+     *
      * @param message value is be used.
      */
     public SecutiyRuntimeException(final String message) {
@@ -24,13 +24,12 @@ public class SecutiyRuntimeException extends RuntimeException {
 
     /**
      * SecutiyRuntimeException constructor
+     *
      * @param message value is be used.
-     * @param cause throwable cause.
+     * @param cause   throwable cause.
      */
     public SecutiyRuntimeException(final String message, final Throwable cause) {
         super(message, cause);
 
     }
-
-	
 }

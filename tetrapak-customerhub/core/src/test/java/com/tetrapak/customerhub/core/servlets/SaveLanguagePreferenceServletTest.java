@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import com.microsoft.azure.storage.table.TableOperation;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
@@ -31,8 +32,8 @@ import static org.junit.Assert.assertEquals;
  * @author Nitin Kumar
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, SaveOnboardingStatusServlet.class})
-public class SaveOnboardingStatusServletTest {
+@PrepareForTest({TableOperation.class, SaveLanguagePreferenceServlet.class})
+public class SaveLanguagePreferenceServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/"
             + "global/dashboard/jcr:content/root/responsivegrid/introscreen";
@@ -60,13 +61,18 @@ public class SaveOnboardingStatusServletTest {
     }
 
     @Test
-    public void doGet() throws IOException, ServletException {
+    public void doPost() throws IOException {
         MockSlingHttpServletRequest request = aemContext.request();
         MockSlingHttpServletResponse response = aemContext.response();
-        SaveOnboardingStatusServlet saveOnboardingStatusServlet = aemContext
-                .getService(SaveOnboardingStatusServlet.class);
-        aemContext.registerInjectActivateService(saveOnboardingStatusServlet);
-        saveOnboardingStatusServlet.doGet(request, response);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("lang-code", "en");
+        request.setParameterMap(parameters);
+
+        SaveLanguagePreferenceServlet saveLanguagePreferenceServlet = aemContext
+                .getService(SaveLanguagePreferenceServlet.class);
+        aemContext.registerInjectActivateService(saveLanguagePreferenceServlet);
+        saveLanguagePreferenceServlet.doPost(request, response);
         assertEquals("status should be ok ", HttpStatus.SC_OK, response.getStatus());
     }
 
@@ -75,13 +81,13 @@ public class SaveOnboardingStatusServletTest {
         userPreferenceGenericServiceType.setClazzType(UserPreferenceService.class);
         userPreferenceGenericServiceType.set(new UserPreferenceServiceImpl());
 
-        GenericServiceType<SaveOnboardingStatusServlet> saveOnboardingStatusServletGenericServiceType = new GenericServiceType<>();
-        saveOnboardingStatusServletGenericServiceType.setClazzType(SaveOnboardingStatusServlet.class);
-        saveOnboardingStatusServletGenericServiceType.set(new SaveOnboardingStatusServlet());
+        GenericServiceType<SaveLanguagePreferenceServlet> saveLanguagePreferenceServletGenericServiceType = new GenericServiceType<>();
+        saveLanguagePreferenceServletGenericServiceType.setClazzType(SaveLanguagePreferenceServlet.class);
+        saveLanguagePreferenceServletGenericServiceType.set(new SaveLanguagePreferenceServlet());
 
         List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
         serviceTypes.add((GenericServiceType<T>) userPreferenceGenericServiceType);
-        serviceTypes.add((GenericServiceType<T>) saveOnboardingStatusServletGenericServiceType);
+        serviceTypes.add((GenericServiceType<T>) saveLanguagePreferenceServletGenericServiceType);
         return serviceTypes;
     }
 }
