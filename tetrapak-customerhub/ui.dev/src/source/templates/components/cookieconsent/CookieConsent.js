@@ -24,6 +24,13 @@ class CookieConsent {
   init() {
     this.initCache();
     this.bindEvents();
+    this.root.find('a').each(function () {
+      const $this = $(this);
+      const linkTarget = $this.attr('target');
+      if (linkTarget && linkTarget !== '_self') {
+        $this.attr('rel', 'noopener noreferrer');
+      }
+    });
     const hideBanner = storageUtil.get('gdprCookie');
     if (!hideBanner) {
       this.root.removeClass('d-none');
