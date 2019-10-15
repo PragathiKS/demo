@@ -6,7 +6,7 @@
     "argon-logger": "0.0.9",
     "bootstrap": "^4.3.1",
     "core-js": "^3.2.1",
-    "deparam.js": "^2.0.10",
+    "deparam.js": "^2.0.11",
     "focus-visible": "^5.0.2",
     "jquery": "^3.4.1",
     "jqueryrouter": "^2.2.3",

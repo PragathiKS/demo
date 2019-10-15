@@ -62,12 +62,15 @@
     }
 
     &__nav-right {
-        @include padding-left($padding-xxxl);
         @include line-height(24px, $font-baseline);
         @include top(32px);
         @include right(24px);
         text-align: right;
         position: absolute;
+
+        @media #{$desktop} {
+            @include padding-left($padding-xxxl);
+        }
     }
 
     &__notif {
@@ -123,22 +126,29 @@
     }
 
     &__selected-lang {
-        @include padding-right($padding-xl);
+        @include padding-right($padding-sm);
         color: $color-congress-blue;
         position: relative;
 
         &-label {
             @include padding-right($padding-xs);
-            text-transform: uppercase;
         }
 
         .icon-Chevron_Down {
-            @include right($padding-l);
             @include font-size($font-xxs);
             color: $color-tundora;
             transform: translateY(-50%);
             position: absolute;
             top: 50%;
+            right: 0;
+
+            @media #{$desktop} {
+                @include right($padding-l);
+            }
+        }
+
+        @media #{$desktop} {
+            @include padding-right($padding-xl);
         }
     }
 }
