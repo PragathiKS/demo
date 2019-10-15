@@ -68,7 +68,7 @@ public class LanguageSelectorModel {
             }
             listOfLanguages = listOfLanguages.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByValue())
+                    .sorted(Map.Entry.comparingByValue(String.CASE_INSENSITIVE_ORDER))
                     .collect(Collectors.toMap(Map.Entry::getKey,
                             Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         }
