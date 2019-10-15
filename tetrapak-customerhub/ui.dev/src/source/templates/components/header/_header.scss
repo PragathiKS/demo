@@ -150,5 +150,10 @@
         @media #{$desktop} {
             @include padding-right($padding-xl);
         }
+
+        @media #{$mobile} {
+            @include text-overflow-ellipsis;
+            max-width: 31.25vw;
+        }
     }
 }
