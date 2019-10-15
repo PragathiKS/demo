@@ -9,7 +9,7 @@ import 'core-js/features/string/pad-start';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE, MONTH_FORMAT, YEAR_FORMAT } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE, MONTH_FORMAT, YEAR_FORMAT, HASH_START } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
@@ -378,11 +378,31 @@ function _getExtension(type) {
 }
 
 /**
+ * Checks for valid hash params
+ * @param {string} hash Hash string
+ */
+function _isValidHash(hash) {
+  if (typeof hash === 'string' && hash.indexOf(HASH_START) === 0) {
+    hash = hash.substring(HASH_START.length);
+    // Check if hash has a valid query string
+    const queryParams = deparam(hash);
+    return !!(
+      queryParams.customerkey
+      && queryParams.status
+      && (
+        queryParams['soa-date'] || queryParams['invoicedate-from']
+      )
+    );
+  }
+  return false;
+}
+
+/**
  * Sets current filter route
  * @param {boolean} isInit Initialize flag
  */
 function _setRoute(isInit = false, linkText, type, linkSelection) {
-  if (window.location.hash && isInit) {
+  if (_isValidHash(window.location.hash) && isInit) {
     router.init();
   } else {
     router.set({
@@ -566,7 +586,9 @@ class FinancialStatement {
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
-        this.syncFields(query);
+        if (_isValidHash(window.location.hash)) {
+          this.syncFields(query);
+        }
       }
     });
     this.root

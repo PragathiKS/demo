@@ -29,6 +29,7 @@ export const TOKEN_REFRESH_IDENTIFIER = 'token_refresh';
 export const ACC_TOKEN_COOKIE = 'acctoken';
 export const AUTH_TOKEN_COOKIE = 'authToken';
 export const AUTH_TOKEN_EXPIRY = 'tokenExpiry';
+export const HASH_START = '#/';
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
 export const MOCK_URL = '/apps/settings/wcm/designs/customerhub/jsonData';
 // Servlet URLs
