@@ -5,7 +5,9 @@
         {{> atoms/error/error message="cuhu.nodata.message"}}
     {{else}}
         <div class="tp-financials-summary__statement">
-            <h3>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h3>
+            {{#if summary}}
+                <h3>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h3>
+            {{/if}}
             <div class="tp-financials-summary__table custom-scrollbar-horizontal on">
                 {{> molecules/table/table baseClass="tp-financials-summary__statement" jsClass="js-financials-summary__statement" list=summary headings=summaryHeadings}}
             </div>
