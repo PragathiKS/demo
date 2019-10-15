@@ -54,7 +54,7 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
      * Set user preferences in the user table on basis of userID, preferenceType
      *
      * @param userId              unique userId of a user
-     * @param prefType            type of user-preference
+     * @param userPrefType            type of user-preference
      * @param userPreferencesData data stored corresponding to the preference type
      * @return true if successful otherwise false
      */

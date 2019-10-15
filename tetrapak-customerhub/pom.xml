@@ -35,6 +35,16 @@
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.coverage.exclusions>
+            **/beans/**,
+            **/constants/**,
+            **/exceptions/**,
+            **/utils/**,
+            **/SAMLResponsePostProcessor.java,
+            **/AzureTableStorageServiceImpl.java,
+            **/FinancialResultsPDFServiceImpl.java,
+            **/FinancialResultsApiServiceImpl.java
+        </sonar.coverage.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
 
@@ -321,10 +331,6 @@
                     </executions>
                     <configuration>
                         <destFile>${sonar.jacoco.reportPath}</destFile>
-                        <excludes>
-                            <exclude>com.tetrapak.customerhub.core.authentication.SAMLResponsePostProcessor.java</exclude>
-                            <exclude>com.tetrapak.customerhub.core.services.impl.FinancialResultsPDFServiceImpl.java</exclude>
-                        </excludes>
                     </configuration>
                 </plugin>
             </plugins>
