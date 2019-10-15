@@ -39,7 +39,7 @@ public class SaveLanguagePreferenceServletTest {
             + "global/dashboard/jcr:content/root/responsivegrid/introscreen";
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";
 
-    AzureTableStorageServiceImpl azureTableStorageService = new AzureTableStorageServiceImpl();
+    private AzureTableStorageServiceImpl azureTableStorageService = new AzureTableStorageServiceImpl();
 
     @Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON,
@@ -52,7 +52,7 @@ public class SaveLanguagePreferenceServletTest {
         _config.put("accountKey", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==");
         _config.put("accountName", "ta01cfedsta01");
         _config.put("tableName", "preferences");
-        azureTableStorageService = aemContext.registerInjectActivateService(azureTableStorageService, _config);
+        aemContext.registerInjectActivateService(azureTableStorageService, _config);
 
         aemContext.load().json("/" + "user.json", "/home");
         aemContext.currentResource(SERVLET_RESOURCE_PATH);
