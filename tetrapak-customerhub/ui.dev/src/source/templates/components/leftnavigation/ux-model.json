@@ -20,7 +20,8 @@
       "iconClass": "icon-Packaging_Design",
       "iconLabel": "Package Design",
       "isExternalLink": "true",
-      "pageName": "cuhu-aem-package-design"
+      "pageName": "cuhu-aem-package-design",
+      "removeNoOpenerNoReferrer": true
     },
     {
       "iconClass": "icon-Cart",

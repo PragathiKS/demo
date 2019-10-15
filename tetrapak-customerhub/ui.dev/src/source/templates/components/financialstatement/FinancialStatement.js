@@ -5,6 +5,7 @@ import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
 import 'core-js/features/array/includes';
+import 'core-js/features/string/pad-start';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
@@ -326,6 +327,18 @@ function _syncFields(query) {
 }
 
 /**
+ * Fixes date parts to correctly follow YYYY-MM-DD format
+ * @param {string} inputDate Input date format
+ */
+function _formatDateFix(inputDate) {
+  const dateOb = new Date(inputDate);
+  const year = `${dateOb.getFullYear()}`;
+  const month = `${dateOb.getMonth() + 1}`.padStart(2, 0);
+  const date = `${dateOb.getDate()}`.padStart(2, 0);
+  return `${year}-${month}-${date}`;
+}
+
+/**
  * Gets current set filters
  */
 function _getFilterQuery() {
@@ -334,10 +347,10 @@ function _getFilterQuery() {
   const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
     const [invoiceDateFrom, invoiceDateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
-    filterProps['soa-date'] = invoiceDateFrom.trim();
+    filterProps['soa-date'] = _formatDateFix($.trim(invoiceDateFrom));
     if (invoiceDateTo) {
-      filterProps['invoicedate-from'] = invoiceDateFrom.trim();
-      filterProps['soa-date'] = filterProps['invoicedate-to'] = invoiceDateTo.trim();
+      filterProps['invoicedate-from'] = _formatDateFix($.trim(invoiceDateFrom));
+      filterProps['soa-date'] = filterProps['invoicedate-to'] = _formatDateFix($.trim(invoiceDateTo));
     }
     delete filterProps.daterange;
   }
@@ -601,6 +614,7 @@ class FinancialStatement {
   }
   populateResults(e) {
     const self = e.data;
+    const $this = $(this);
     const { $dateRange } = self.cache;
     if ($dateRange.hasClass('has-error')) {
       $dateRange.focus();
@@ -610,12 +624,12 @@ class FinancialStatement {
     const { $status, $docType } = self.cache;
     const status = $.trim($status.text());
     const docType = $.trim($docType.text()).toLowerCase();
-    const btnText = $(this).text();
+    const btnText = $this.text();
     const linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
     if (isIOS()) {
       self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['search', btnText, null, linkSelection]);
     }
-    self.setRoute(false, $(this).text(), type, linkSelection);
+    self.setRoute(false, btnText, type, linkSelection);
   }
   getFilterQuery() {
     return _getFilterQuery.apply(this, arguments);
