@@ -133,10 +133,12 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
 
             document1.add(new Paragraph("\n", languageSpecificFont));
             document1.add(createAccountServiceTable(request, paramRequest));
-            printStatementSummary(request, paramRequest, document1);
 
-            document1.add(new Paragraph("\n", languageSpecificFont));
-            document1.add(createSummaryTable(writer, request, resultsResponse.getSummary()));
+            if(null != resultsResponse.getSummary() && !resultsResponse.getSummary().isEmpty()) {
+                printStatementSummary(request, paramRequest, document1);
+                document1.add(new Paragraph("\n", languageSpecificFont));
+                document1.add(createSummaryTable(writer, request, resultsResponse.getSummary()));
+            }
 
             document1.add(new Paragraph("\n", languageSpecificFont));
             document1.add(createDocumentNameTable(request));
