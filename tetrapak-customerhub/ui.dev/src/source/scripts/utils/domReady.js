@@ -52,6 +52,10 @@ export default {
         $this.addClass('modal-open');
       }
     });
+    $('.js-list-item__link').on('click', function () {
+      const $this = $(this);
+      window.open($this.data('href'), $this.data('target'));
+    });
     // Custom scrollbar cross-browser handling
     if (
       isFirefox()
