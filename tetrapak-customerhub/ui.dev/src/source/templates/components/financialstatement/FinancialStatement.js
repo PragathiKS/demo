@@ -16,6 +16,7 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
 import { isIOS } from '../../../scripts/utils/browserDetect';
 import file from '../../../scripts/utils/file';
+import { isValidDate } from '../../../scripts/utils/dateUtils';
 
 /**
  * Returns type of date
@@ -497,7 +498,7 @@ function _validateDateRange(e) {
   // Validate date range
   if (testRegex.test(currentValue)) {
     dateRangeParts.forEach(part => {
-      if (!moment(part.trim()).isValid()) {
+      if (!isValidDate(part.trim())) {
         result = result && false;
       }
     });
