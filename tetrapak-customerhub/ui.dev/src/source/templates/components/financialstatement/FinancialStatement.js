@@ -332,11 +332,8 @@ function _syncFields(query) {
  * @param {string} inputDate Input date format
  */
 function _formatDateFix(inputDate) {
-  const dateOb = new Date(inputDate);
-  const year = `${dateOb.getFullYear()}`;
-  const month = `${dateOb.getMonth() + 1}`.padStart(2, 0);
-  const date = `${dateOb.getDate()}`.padStart(2, 0);
-  return `${year}-${month}-${date}`;
+  const [year, month, day] = inputDate.split('-');
+  return `${year}-${month.padStart(2, 0)}-${day.padStart(2, 0)}`;
 }
 
 /**
