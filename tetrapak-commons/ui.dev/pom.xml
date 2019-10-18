@@ -117,6 +117,7 @@
                     <subPackages>
 						<subPackage>
                             <type>content-package</type>
+							<filter>true</filter>
                         </subPackage>
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>

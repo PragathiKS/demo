@@ -112,6 +112,7 @@
                     <subPackages>
                         <subPackage>
                             <type>content-package</type>
+							<filter>true</filter>
                         </subPackage>
                     </subPackages>
                 </configuration>

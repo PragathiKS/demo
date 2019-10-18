@@ -6,7 +6,7 @@
   <sly data-sly-test.jsClassNameWithSpace=" ${jsClass}" />
   <button
     data-sly-test="${text}"
-    class="testing tpatom-btn${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-btn--primary'}${className ? classNameWithSpace : ''}">
+    class="toRemove tpatom-btn${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-btn--primary'}${className ? classNameWithSpace : ''}">
       <span class="tpatom-btn__text sly-text">${text @ i18n,locale=locale}</span>
       <sly data-sly-test="${iconClass}" >
         <i class="icon${iconClassWithSpace}"></i>
