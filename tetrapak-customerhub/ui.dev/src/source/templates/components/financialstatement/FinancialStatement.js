@@ -16,6 +16,7 @@ import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
 import { isIOS } from '../../../scripts/utils/browserDetect';
 import file from '../../../scripts/utils/file';
+import { isValidDate } from '../../../scripts/utils/dateUtils';
 
 /**
  * Returns type of date
@@ -331,11 +332,8 @@ function _syncFields(query) {
  * @param {string} inputDate Input date format
  */
 function _formatDateFix(inputDate) {
-  const dateOb = new Date(inputDate);
-  const year = `${dateOb.getFullYear()}`;
-  const month = `${dateOb.getMonth() + 1}`.padStart(2, 0);
-  const date = `${dateOb.getDate()}`.padStart(2, 0);
-  return `${year}-${month}-${date}`;
+  const [year, month, day] = inputDate.split('-');
+  return `${year}-${month.padStart(2, 0)}-${day.padStart(2, 0)}`;
 }
 
 /**
@@ -497,7 +495,7 @@ function _validateDateRange(e) {
   // Validate date range
   if (testRegex.test(currentValue)) {
     dateRangeParts.forEach(part => {
-      if (!moment(part.trim()).isValid()) {
+      if (!isValidDate(part.trim())) {
         result = result && false;
       }
     });
