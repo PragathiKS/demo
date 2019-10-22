@@ -44,7 +44,6 @@ import java.util.List;
  * @author Nitin Kumar
  *
  */
-@Ignore
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(value = {FontUtil.class, PDFUtil2.class, GlobalUtil.class, BaseFont.class})
 public class FinancialResultsPDFServiceImplTest {
