@@ -1,11 +1,6 @@
 
 pipeline {
         agent { label "master" } 
-  
-/* triggers {
-          cron('30 6 * * *')
-                   } */
-
         parameters {
 
                 booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
@@ -22,23 +17,10 @@ pipeline {
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
 test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
-/* test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhub/global/dashboard.html" */
                 karmapath =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
         }
 
         stages {
-
-              /* stage ('Checkout') {
-                 steps {
-                   git(
-                   poll: true,
-                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
-                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
-                   branch: 'develop'
-                      )
-                   }
-                   }   */
-
             stage ('Initialize') {
                         steps {
                                 sh      '''
@@ -281,21 +263,6 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 
 		
  post {
-
- /*
-      success {
-      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
-      body: '''${DEFAULT_CONTENT}''',
-to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, sumrin.kaur@publicissapient.com'
-}
-      failure {
-      emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
-      body: '''${DEFAULT_CONTENT}''',
-
-to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, sumrin.kaur@publicissapient.com'
-}
-*/
-
  always {
     build 'Tetra_Dev_Clear_httpd_Cache'
 	build 'Tetra-Splunk-All-Tools'

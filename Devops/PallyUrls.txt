@@ -1,2 +1,2 @@
-http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html
-http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123
+https://mypages-dev.tetrapak.com/content/tetrapak/customerhubtools/global/en/dashboard.html
+https://mypages-dev.tetrapak.com/content/tetrapak/customerhubtools/global/en/financials.html#/?soa-date=2019-10-22&customerkey=0000951078&status=O
