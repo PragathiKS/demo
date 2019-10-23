@@ -96,6 +96,11 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 if (processedURL.contains("empty")) {
                     response.setHeader("Location", "https://" + request.getServerName() + processedURL);
                 }
+                else {
+                    String locationHeader = response.getHeader("Location");
+                    locationHeader = locationHeader.replace("http://", "https://");
+                    response.setHeader("Location", locationHeader);
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
