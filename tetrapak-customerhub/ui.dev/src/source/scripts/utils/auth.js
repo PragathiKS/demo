@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
 import 'core-js/features/promise';
-import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE, EVT_REFRESH_INITIATE, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY } from './constants';
+import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE, EVT_REFRESH_INITIATE, EVT_POST_REFRESH, REFRESH_TIMEOUT } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';
 import { refreshToken } from './tokenRefresh';
@@ -33,10 +33,9 @@ function generateToken() {
           try {
             if (data && data.status === 'success') {
               const result = JSON.parse(data.result);
-              const expiresIn = +result.expires_in;
-              const expiry = expiresIn / (24 * 60 * 60);
+              const expiry = (+result.expires_in) / (24 * 60 * 60);
               storageUtil.setCookie(AUTH_TOKEN_COOKIE, `${result.access_token}`, expiry);
-              storageUtil.set(AUTH_TOKEN_EXPIRY, (Date.now() + (expiresIn * 1000)));
+              storageUtil.set(REFRESH_TIMEOUT, (Date.now() + (60 * 60 * 1000)));
               $body.trigger(EVT_REFRESH_INITIATE);
               resolve({
                 data: result,
