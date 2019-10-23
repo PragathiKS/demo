@@ -77,8 +77,9 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
                 setLangCodeCookie(request, response, base64DecodedResponse);
-                response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
-                changeLocationHeader(response);
+                if (processedURL.contains("empty")) {
+                    response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -111,14 +112,6 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             samlCookie.setHttpOnly(true);
             samlCookie.setPath("/");
             response.addCookie(samlCookie);
-        }
-    }
-
-    private void changeLocationHeader(HttpServletResponse response) {
-        String locationHeader = response.getHeader(LOCATION_HEADER);
-        if (StringUtils.isNotBlank(locationHeader)) {
-            locationHeader = locationHeader.replace("http://", "https://");
-            response.setHeader(LOCATION_HEADER, locationHeader);
         }
     }
 

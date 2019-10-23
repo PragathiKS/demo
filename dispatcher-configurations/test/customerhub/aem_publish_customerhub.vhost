@@ -4,10 +4,10 @@ PassEnv DISP_ID
 
 # Defining Virtual host for mypages-qa.tetrapak.com
 <VirtualHost *:80>
-        ServerName       mypages-qa.tetrapak.com
+        ServerName       https://mypages-qa.tetrapak.com
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} mypages-qa.tetrapak.com
-		ServerAlias      mypages-qa.tetrapak.com
+		ServerAlias      https://mypages-qa.tetrapak.com
 		
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}/customerhub

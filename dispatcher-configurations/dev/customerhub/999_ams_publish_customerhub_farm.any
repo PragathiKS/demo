@@ -8,7 +8,7 @@
         ## hostname globbing for farm selection (virtual domain addressing)
         /virtualhosts {
                 #$include "/etc/httpd/conf.dispatcher.d/vhosts/ams_publish_vhosts.any" 
-     "mypages-dev.tetrapak.com"
+     "https://mypages-dev.tetrapak.com"
         }
         /sessionmanagement
        {

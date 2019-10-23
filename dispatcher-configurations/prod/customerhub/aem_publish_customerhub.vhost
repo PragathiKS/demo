@@ -4,7 +4,7 @@ PassEnv DISP_ID
 
 # Defining Virtual host for mypages.tetrapak.com
 <VirtualHost *:80>
-        ServerName       mypages.tetrapak.com
+        ServerName       https://mypages.tetrapak.com
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} mypages.tetrapak.com
 		ServerAlias      mypages.tetrapak.com
