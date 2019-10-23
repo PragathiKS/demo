@@ -6,6 +6,7 @@
 
 const userAgent = window.navigator.userAgent;
 const platform = window.navigator.platform;
+const maxTouchPoints = window.navigator.maxTouchPoints;
 
 const UA = {
   hasWebkit: (/webkit/i).test(userAgent),
@@ -55,7 +56,7 @@ export function isHeadlessChrome() {
  * Returns true if current platform is ipad OS 13
  */
 function isIPadOS() {
-  return (platform === 'MacIntel' && window.navigator.maxTouchPoints > 1) || UA.hasIpad;
+  return (platform === 'MacIntel' && maxTouchPoints > 1) || UA.hasIpad;
 }
 
 /**
