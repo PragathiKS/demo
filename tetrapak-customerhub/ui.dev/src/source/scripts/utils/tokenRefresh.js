@@ -38,7 +38,7 @@ function initiateTokenTimer() {
   }
   const currentTimestamp = Date.now();
   const savedTimestamp = storageUtil.get(AUTH_TOKEN_EXPIRY);
-  const remainingTime = (+savedTimestamp) - currentTimestamp - (2 * 60 * 1000); // Substracting 2 minutes from original difference
+  const remainingTime = (+savedTimestamp) - currentTimestamp - (5 * 60 * 1000); // Substracting 5 minutes from original difference
   if (remainingTime <= 0) {
     // Either token refresh already happened or is pending
     // Check if a valid access token has already been created
