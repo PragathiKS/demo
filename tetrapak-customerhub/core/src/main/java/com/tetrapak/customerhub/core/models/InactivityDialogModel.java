@@ -37,6 +37,7 @@ public class InactivityDialogModel {
     private String idleTimeoutMinutes;
     private String selectedLanguage;
     private String logoutURL;
+    private String autoRefreshSession;
 
     @PostConstruct
     protected void init() {
@@ -50,9 +51,9 @@ public class InactivityDialogModel {
             logoutBtnI18n = (String) map.get("logoutBtnI18n");
             closeBtnI18n = (String) map.get("closeBtnI18n");
             idleTimeoutMinutes = (String) map.get("idleTimeoutMinutes");
+            autoRefreshSession = (String) map.get("autoRefreshSession");
             fetchLogoutURL(globalConfigResource);
         }
-
     }
 
     private void fetchLogoutURL(Resource globalConfigResource) {
@@ -95,6 +96,10 @@ public class InactivityDialogModel {
 
     public String getIdleTimeoutMinutes() {
         return idleTimeoutMinutes;
+    }
+
+    public String getAutoRefreshSession() {
+        return autoRefreshSession;
     }
 
     public String getLogoutURL() {
