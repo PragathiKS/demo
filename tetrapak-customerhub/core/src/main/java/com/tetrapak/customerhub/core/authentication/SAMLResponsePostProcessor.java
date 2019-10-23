@@ -43,6 +43,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SAMLResponsePostProcessor.class);
     private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
+    private static final String LOCATION_HEADER = "Location";
 
     @Reference
     private SlingSettingsService slingSettingsService;
@@ -73,33 +74,13 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 } else {
                     LOGGER.debug("SAMLResponse parameter is empty of null!");
                 }
-                String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ? attrMap.get("firstname")
-                        : StringUtils.EMPTY;
-                String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname")
-                        : StringUtils.EMPTY;
-                String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
-
-                if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-                    Cookie samlCookie = new Cookie("CustomerName", customerName);
-                    samlCookie.setHttpOnly(true);
-                    samlCookie.setPath("/");
-                    response.addCookie(samlCookie);
-                }
-                if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
-                    Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
-                    accToken.setPath("/");
-                    final int SECONDS = 900;
-                    accToken.setMaxAge(SECONDS);
-                    response.addCookie(accToken);
-                }
+                setCustomerNameCookie(response, attrMap);
+                setAccesTokenCookie(response, attrMap);
                 setLangCodeCookie(request, response, base64DecodedResponse);
                 if (processedURL.contains("empty")) {
-                    response.setHeader("Location", "https://" + request.getServerName() + processedURL);
-                }
-                else {
-                    String locationHeader = response.getHeader("Location");
-                    locationHeader = locationHeader.replace("http://", "https://");
-                    response.setHeader("Location", locationHeader);
+                    response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
+                } else {
+                    changeLocationHeader(response);
                 }
             }
         } catch (ParserConfigurationException parserConfiExep) {
@@ -108,6 +89,39 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             LOGGER.error("Unable to parse the xml document ", saxExcep);
         } catch (IOException iOExcep) {
             LOGGER.error("IOException ", iOExcep);
+        }
+    }
+
+    private void setAccesTokenCookie(HttpServletResponse response, Map<String, String> attrMap) {
+        if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
+            Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
+            accToken.setPath("/");
+            final int SECONDS = 900;
+            accToken.setMaxAge(SECONDS);
+            response.addCookie(accToken);
+        }
+    }
+
+    private void setCustomerNameCookie(HttpServletResponse response, Map<String, String> attrMap) throws UnsupportedEncodingException {
+        String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ? attrMap.get("firstname")
+                : StringUtils.EMPTY;
+        String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname")
+                : StringUtils.EMPTY;
+        String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
+
+        if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
+            Cookie samlCookie = new Cookie("CustomerName", customerName);
+            samlCookie.setHttpOnly(true);
+            samlCookie.setPath("/");
+            response.addCookie(samlCookie);
+        }
+    }
+
+    private void changeLocationHeader(HttpServletResponse response) {
+        String locationHeader = response.getHeader(LOCATION_HEADER);
+        if (StringUtils.isNotBlank(locationHeader)) {
+            locationHeader = locationHeader.replace("http://", "https://");
+            response.setHeader(LOCATION_HEADER, locationHeader);
         }
     }
 
