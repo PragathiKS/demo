@@ -5,6 +5,7 @@
  */
 
 const userAgent = window.navigator.userAgent;
+const platform = window.navigator.platform;
 
 const UA = {
   hasWebkit: (/webkit/i).test(userAgent),
@@ -40,7 +41,7 @@ export function isChrome() {
  * Returns true if current browser is chrome iOS
  */
 export function isChromeIOS() {
-  (UA.hasWebkit && UA.hasChromeIOS);
+  return (UA.hasWebkit && UA.hasChromeIOS);
 }
 
 /**
@@ -51,10 +52,17 @@ export function isHeadlessChrome() {
 }
 
 /**
+ * Returns true if current platform is ipad OS 13
+ */
+function isIPadOS() {
+  return (platform === 'MacIntel' && window.navigator.maxTouchPoints > 1) || UA.hasIpad;
+}
+
+/**
  * Returns true if current platform is iOS
  */
 export function isIOS() {
-  return (UA.hasIpad || UA.hasIphone);
+  return (UA.hasIpad || UA.hasIphone || isIPadOS());
 }
 
 /**
