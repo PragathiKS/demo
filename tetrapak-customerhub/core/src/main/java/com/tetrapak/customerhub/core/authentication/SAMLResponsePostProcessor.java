@@ -77,11 +77,8 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
                 setLangCodeCookie(request, response, base64DecodedResponse);
-                if (processedURL.contains("empty")) {
-                    response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
-                } else {
-                    changeLocationHeader(response);
-                }
+                response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
+                changeLocationHeader(response);
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
