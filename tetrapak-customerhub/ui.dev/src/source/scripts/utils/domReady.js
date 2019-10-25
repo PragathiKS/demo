@@ -66,10 +66,16 @@ export default {
     ) {
       $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
     }
-    if (isCurrentPageIframe() && $('.js-empty-page-script').length === 0) {
+    const isIframe = isCurrentPageIframe();
+    if (isIframe && $('.js-empty-page-script').length === 0) {
       window.parent.postMessage({
         refresh: true
       });
+    }
+    const $autoRefreshSession = $('#autoRefreshSession');
+    if (!isIframe && $autoRefreshSession.length && $autoRefreshSession.val() === 'true') {
+      // Fetch bearer token to start token refresh timer
+      auth.getToken();
     }
   }
 };

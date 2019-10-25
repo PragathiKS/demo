@@ -1,7 +1,7 @@
 import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, getMaxSafeInteger, isLocalhost } from '../common/common';
 import { $body, $win } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT, ajaxMethods } from './constants';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT, ajaxMethods, REFRESH_TIMEOUT } from './constants';
 import { logger } from './logger';
 import { ajaxWrapper } from './ajax';
 
@@ -37,8 +37,8 @@ function initiateTokenTimer() {
     clearTimeout(cache.tokenTimeout);
   }
   const currentTimestamp = Date.now();
-  const savedTimestamp = storageUtil.get(AUTH_TOKEN_EXPIRY);
-  const remainingTime = (+savedTimestamp) - currentTimestamp - (2 * 60 * 1000); // Substracting 2 minutes from original difference
+  const savedTimestamp = storageUtil.get(REFRESH_TIMEOUT);
+  const remainingTime = (+savedTimestamp) - currentTimestamp - (5 * 60 * 1000); // Substracting 5 minutes from original difference
   if (remainingTime <= 0) {
     // Either token refresh already happened or is pending
     // Check if a valid access token has already been created
