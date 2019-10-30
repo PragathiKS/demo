@@ -32,6 +32,12 @@
           memberOf: everyone
           path: /home/groups/cuhugroups
 
+    - cuhu_partsinv_admin:
+
+        - name: Parts Inventory Admin access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
     - cuhu_aem_fin_soa:
 
         - name: Financials access
@@ -164,6 +170,12 @@
           actions: read
           privileges:
 
+    - cuhu_partsinv_admin:
+
+        - path: /content/tetrapak/customerhub/global/en/parts-inventory-admin
+          permission: allow
+          actions: read
+          privileges:
     - cuhu_aem_fin_soa:
 
         - path: /content/tetrapak/customerhub/global/en/financials
