@@ -75,7 +75,7 @@ public class AnalyticsGlobalTagsModel {
      * @return 12ffsf343243345 value
      */
     public String getSalesForceId() {
-        return "12ffsf343243345";
+        return StringUtils.EMPTY;
     }
 
     /**
