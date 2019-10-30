@@ -9,13 +9,9 @@ const cache = {};
 
 const MAX_SAFE_INTEGER = getMaxSafeInteger();
 
-const { protocol, host } = window.location;
-
-const iFrameSrc = `${protocol}//${host}${(
-  isLocalhost()
-    ? '/content/customerhub-ux/pageredirect.ux-preview.html'
-    : EMPTY_PAGE_URL
-)}`;
+const iFrameSrc = isLocalhost()
+  ? '/content/customerhub-ux/pageredirect.ux-preview.html'
+  : EMPTY_PAGE_URL;
 
 /**
  * Executes function if it's valid
