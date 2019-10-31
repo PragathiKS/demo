@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import io.wcm.testing.mock.aem.junit.AemContext;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,9 +36,9 @@ public class AnalyticsGlobalTagsModelTest {
         Assert.assertEquals("Channel", "dashboard", analyticsGlobalTagsModel.getChannel());
         Assert.assertEquals("login status", "logged-in", analyticsGlobalTagsModel.getLogInStatus());
         Assert.assertEquals("page type", "dashboard", analyticsGlobalTagsModel.getPageType());
-        Assert.assertEquals("sales force ID", "12ffsf343243345", analyticsGlobalTagsModel.getSalesForceId());
-        Assert.assertEquals("site country", "", analyticsGlobalTagsModel.getSiteCountry());
-        Assert.assertEquals("country code", "", analyticsGlobalTagsModel.getUserCountryCode());
+        Assert.assertEquals("sales force ID", StringUtils.EMPTY, analyticsGlobalTagsModel.getSalesForceId());
+        Assert.assertEquals("site country", StringUtils.EMPTY, analyticsGlobalTagsModel.getSiteCountry());
+        Assert.assertEquals("country code", StringUtils.EMPTY, analyticsGlobalTagsModel.getUserCountryCode());
         Assert.assertEquals("site name", "customerhub", analyticsGlobalTagsModel.getSiteName());
         Assert.assertNull("error message", analyticsGlobalTagsModel.getErrorMessage());
         Assert.assertNull("error code", analyticsGlobalTagsModel.getErrorCode());
