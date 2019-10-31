@@ -80,6 +80,10 @@ function triggerRefresh() {
       // Insert iframe
       const iFrame = document.createElement('iframe');
       $(iFrame).addClass('d-none js-token-refresh-ifrm');
+      $(iFrame).attr({
+        title: 'Refresh Token iframe',
+        'aria-hidden': true
+      });
       ajaxWrapper.getXhrObj({
         method: ajaxMethods.GET,
         url: DELETE_COOKIE_SERVLET_URL
