@@ -1,10 +1,6 @@
 pipeline {
         agent { label "master" } 
-/*
- triggers {
-          cron('30 10,15 * * *')
-		}
-		*/
+
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
         }
@@ -19,24 +15,13 @@ pipeline {
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
-				test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
-				test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
+				test_url = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
+				test_url_pally_zap = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
         stages {
-				/*
-				stage ('Checkout') {
-                 steps {
-                   git(
-                   poll: true,
-                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
-                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
-                   branch: 'develop'
-                      )
-                   }
-                } 
-				*/
+				
                 stage ('Initialize') {
                         steps {
                                 sh      '''
