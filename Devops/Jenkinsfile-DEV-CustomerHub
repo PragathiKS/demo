@@ -41,13 +41,7 @@ pipeline {
                                                                 echo "Skipping TOOLS Execution"
 														 }
 										else {
-                                                        echo "Publising karma Test Report- CustomerHub"
-                                                        sh 'echo "Karma Report"'
-                                                        sh 'cp -r ${karmapath} /app/build-area/releases'
-														sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
-                                                        sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
-                                                         echo "Starting pa11y test Run on CustomerHub Urls"
+                                                        echo "Starting pa11y test Run on CustomerHub Urls"
                                                          sh 'chmod 777 Devops/PallyReporting.sh'
                                                          sh './Devops/PallyReporting.sh'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport.html', reportName: 'Pally Report', reportTitles: ''])
