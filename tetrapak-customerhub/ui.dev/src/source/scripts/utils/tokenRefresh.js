@@ -79,7 +79,12 @@ function triggerRefresh() {
       logger.log(`[TokenRefresh]: Token refresh triggered`);
       // Insert iframe
       const iFrame = document.createElement('iframe');
-      $(iFrame).addClass('d-none js-token-refresh-ifrm');
+      $(iFrame)
+        .addClass('d-none js-token-refresh-ifrm')
+        .attr({
+          title: 'rtif',
+          'aria-hidden': true
+        });
       ajaxWrapper.getXhrObj({
         method: ajaxMethods.GET,
         url: DELETE_COOKIE_SERVLET_URL
