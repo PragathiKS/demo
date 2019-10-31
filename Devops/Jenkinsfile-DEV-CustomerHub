@@ -25,7 +25,7 @@ pipeline {
         }
 
         stages {
-           /*     stage ('Initialize') {
+                stage ('Initialize') {
                         steps {
                                 sh      '''
                                         echo "PATH = ${PATH}"
@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-                stage ('Build-Commons') {
+            /*    stage ('Build-Commons') {
                         steps {
 						   script {
 						
@@ -48,18 +48,18 @@ pipeline {
 							}
 						  }
 						}
-			    }
+			    }*/
 								
-					stage ('Build-CustomerHub') {
+				/*	stage ('Build-CustomerHub') {
                         steps {
 								echo "Build CustomerHub"
                                 sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER} dependency:tree -Dverbose"
                                 sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
                         }
-                    }
+                    }*/
 												
-                    stage ('Sonar_JS') {
+                /*    stage ('Sonar_JS') {
                         steps {
                                 script {
                                         if (params.Skip_Tool_Execution) {
@@ -78,9 +78,9 @@ pipeline {
                                         }
                                 }
                         }
-                    }
+                    }*/
 				
-				stage ('Sonar_CSS') {
+			/*	stage ('Sonar_CSS') {
                         steps {
                                 script {
                                         if (params.Skip_Tool_Execution) {
@@ -100,9 +100,9 @@ pipeline {
 
                                 }
                         }
-                }
+                }*/
 
-                stage ('Sonar_JAVA') {
+             /*   stage ('Sonar_JAVA') {
                         steps {
                                 script {
                                         if (params.Skip_Tool_Execution) {
@@ -120,9 +120,9 @@ pipeline {
                                         }
                                 }
                         }
-                }
+                }*/
 
-				stage ('Deployment Author and Publish Parallel') {
+			/*	stage ('Deployment Author and Publish Parallel') {
                         steps {
                                 parallel (
                                         "Author Deployment" : {
