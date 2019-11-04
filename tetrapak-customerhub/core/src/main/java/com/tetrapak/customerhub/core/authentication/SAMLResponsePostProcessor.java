@@ -2,7 +2,6 @@ package com.tetrapak.customerhub.core.authentication;
 
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
@@ -31,6 +30,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import static com.tetrapak.customerhub.core.utils.HttpUtil.decodeStr;
 
 /**
  * SAML Response post processor
@@ -108,9 +109,10 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-            Cookie samlCookie = new Cookie("CustomerName", customerName);
+            Cookie samlCookie = new Cookie("AEMCustomerName", customerName);
             samlCookie.setHttpOnly(true);
             samlCookie.setPath("/");
+            samlCookie.setDomain("tetrapak.com");
             response.addCookie(samlCookie);
         }
     }
@@ -297,18 +299,6 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             samlAttributeMap.put(attributeValue, currentNode.getTextContent());
             LOGGER.debug("SAML Assertions" + attributeValue + " : " + currentNode.getTextContent());
         }
-    }
-
-    /**
-     * This method would decode the SAML response.
-     *
-     * @param encodedStr encoded SAML response
-     * @return string decoded SAML response
-     */
-    private static String decodeStr(String encodedStr) {
-        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
-        byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
-        return new String(base64DecodedByteArray, Charsets.UTF_8);
     }
 
 }

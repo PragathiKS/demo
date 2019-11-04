@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.tetrapak.customerhub.core.utils.HttpUtil.decodeStr;
+
 /**
  * AnalyticsGlobalTagsModel Implementation
  */
@@ -75,7 +77,28 @@ public class AnalyticsGlobalTagsModel {
      * @return 12ffsf343243345 value
      */
     public String getSalesForceId() {
+
         return StringUtils.EMPTY;
+    }
+
+    /**
+     * Get User Id
+     *
+     * @return user ID
+     */
+    public String getVisitorId() {
+        String userId;
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resource.getResourceResolver().adaptTo(Session.class);
+        if (null == session || null == userManager) {
+            return null;
+        }
+        userId = session.getUserID();
+        if (null == userId) {
+            return null;
+        }
+        return decodeStr(userId);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.utils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -88,7 +89,7 @@ public final class HttpUtil {
             obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
             HttpUtil.writeJsonResponse(response, obj);
         } catch (IOException e) {
-            LOGGER.error("IOException: {}", e);
+            LOGGER.error("IOException: ", e);
         }
     }
 
@@ -112,11 +113,23 @@ public final class HttpUtil {
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
 
         } catch (ClientProtocolException e) {
-            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl {}", e);
+            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl", e);
         } catch (IOException e) {
-            LOGGER.error("IOException in OrderDetailsApiServiceImpl {}", e);
+            LOGGER.error("IOException in OrderDetailsApiServiceImpl", e);
         }
         return jsonResponse;
+    }
+
+    /**
+     * This method would decode the SAML response.
+     *
+     * @param encodedStr encoded SAML response
+     * @return string decoded SAML response
+     */
+    public static String decodeStr(String encodedStr) {
+        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
+        byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
+        return new String(base64DecodedByteArray, Charsets.UTF_8);
     }
 
 }
