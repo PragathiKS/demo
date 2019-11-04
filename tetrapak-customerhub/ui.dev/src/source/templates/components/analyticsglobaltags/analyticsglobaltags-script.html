@@ -80,6 +80,10 @@
      digitalData.userinfo['salesForceId'] = "${data.salesForceId}";
   </sly>
 
+  <sly data-sly-test="${data.visitorId}">
+    digitalData.userinfo['visitorId'] = "${data.visitorId}";
+  </sly>
+
   <sly data-sly-test="${data.userRoles}">
     digitalData.userinfo['userRoles'] = "${data.userRoles}";
   </sly>
