@@ -20,7 +20,7 @@ input.focus-visible:focus {
     outline: none;
 }
 
-[tabindex],
+[tabindex]:not(.modal),
 button {
     cursor: pointer;
 }
