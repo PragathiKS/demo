@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.tetrapak.customerhub.core.utils.HttpUtil.decodeStr;
+import static com.tetrapak.customerhub.core.utils.HttpUtil.encodeStr;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
@@ -98,7 +98,7 @@ public class AnalyticsGlobalTagsModel {
         if (null == userId) {
             return null;
         }
-        return decodeStr(userId);
+        return encodeStr(userId);
     }
 
     /**

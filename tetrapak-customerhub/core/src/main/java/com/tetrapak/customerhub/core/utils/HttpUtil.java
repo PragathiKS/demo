@@ -121,15 +121,29 @@ public final class HttpUtil {
     }
 
     /**
-     * This method would decode the SAML response.
+     * This method would decode the String passed to this method
      *
-     * @param encodedStr encoded SAML response
-     * @return string decoded SAML response
+     * @param encodedStr encoded String
+     * @return string decoded String
      */
     public static String decodeStr(String encodedStr) {
         org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
         byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
         return new String(base64DecodedByteArray, Charsets.UTF_8);
+    }
+
+    /**
+     * This method would encode the String passed to this method
+     *
+     * @param encodeStr String
+     * @return encoded String
+     */
+    public static String encodeStr(String encodeStr) {
+        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
+        if (StringUtils.isEmpty(encodeStr)) {
+            return StringUtils.EMPTY;
+        }
+        return base64Decoder.encodeAsString(encodeStr.getBytes());
     }
 
 }
