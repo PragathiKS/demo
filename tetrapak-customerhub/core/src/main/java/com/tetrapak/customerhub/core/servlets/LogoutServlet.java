@@ -57,8 +57,10 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
         }
         Cookie authTokenCookie = request.getCookie("authToken");
         if (null != authTokenCookie) {
+            authTokenCookie.setValue(null);
             authTokenCookie.setMaxAge(0);
             authTokenCookie.setPath("/");
+            authTokenCookie.setDomain(request.getServerName());
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
