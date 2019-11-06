@@ -214,6 +214,12 @@ td {
     }
 }
 
+.tp-modal-content {
+    @include box-shadow-normal;
+    @include border-radius($border-radius);
+    border-color: transparent;
+}
+
 .tp-modal-dialog {
     @media #{$mobile-large} {
         margin: convert-to-rem($margin-md) auto;

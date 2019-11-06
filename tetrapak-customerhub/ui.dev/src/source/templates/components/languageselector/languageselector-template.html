@@ -2,14 +2,14 @@
      <div class="modal tp-modal tp-lang-selector js-lang-modal fade" id="lang-modal" data-module="LanguageSelector" tabindex="-1" role="dialog">
         <input type="hidden" id="selectedLanguage" name="selectedLanguage" value="${data.selectedLanguage}" />
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content tp-modal-content">
                 <sly data-sly-test.closeBtnText="${data.closeBtnTextI18n @i18n, locale=data.locale}" />
-                <div class="modal-header">
+                <div class="modal-header tpmol-modal-header">
                   <div role="heading" aria-level="2" data-sly-test="${data.headingI18n}" class="tp-lang-selector__heading">${data.headingI18n @i18n, locale=data.locale}</div>
                     <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
-                        data-sly-call="${closeButton.closeButton_template @closeBtnText=closeBtnText, btnClasses='js-close-btn'}" />
+                        data-sly-call="${closeButton.closeButton_template @closeBtnText=closeBtnText, btnClasses='tpatom-btn--close tpmol-modal-header__close js-close-btn'}" />
                 </div>
-                <div class="modal-body">
+                <div class="modal-body tp-lang-selector__body">
                   <sly data-sly-test.userLanguage="${data.selectedLanguage ? data.selectedLanguage : 'en'}" />
                   <sly data-sly-test.selectedLanguage="${data.listOfLanguages[userLanguage]}" />
                   <div class="tp-lang-selector__selected-lang">
