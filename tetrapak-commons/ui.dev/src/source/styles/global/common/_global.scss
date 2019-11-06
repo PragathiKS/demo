@@ -20,7 +20,7 @@ input.focus-visible:focus {
     outline: none;
 }
 
-[tabindex],
+[tabindex]:not(.modal),
 button {
     cursor: pointer;
 }
@@ -212,6 +212,12 @@ td {
         @include margin-bottom($margin-l);
         @include margin-top($margin-l);
     }
+}
+
+.tp-modal-content {
+    @include box-shadow-normal;
+    @include border-radius($border-radius);
+    border-color: transparent;
 }
 
 .tp-modal-dialog {
