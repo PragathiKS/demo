@@ -136,8 +136,8 @@ public final class HttpUtil {
      * @return string decoded String
      */
     public static String decodeStr(String encodedStr) {
-        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
-        byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
+        org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+        byte[] base64DecodedByteArray = base64.decode(encodedStr);
         return new String(base64DecodedByteArray, Charsets.UTF_8);
     }
 
@@ -151,7 +151,7 @@ public final class HttpUtil {
         if (StringUtils.isEmpty(str)) {
             return StringUtils.EMPTY;
         }
-        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
+        org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
         byte[] enc = new byte[0];
         try {
             byte[] utf8 = str.getBytes(StandardCharsets.UTF_8);
@@ -161,7 +161,7 @@ public final class HttpUtil {
             cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             utf8 = cipher.doFinal(utf8);
-            enc = base64Decoder.encode(utf8);
+            enc = base64.encode(utf8);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.error("NoSuchAlgorithmException", e);
             return StringUtils.EMPTY;
