@@ -4,7 +4,7 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
-import { tableSort, resolveQuery, resolveCurrency, getI18n } from '../../../scripts/common/common';
+import { tableSort, resolveQuery, resolveCurrency, getI18n, hasOwn } from '../../../scripts/common/common';
 import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, CURRENCY_FIELDS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
@@ -142,7 +142,11 @@ function _processTableData(data) {
           // Resolve currency for summary section
           keys.forEach(key => {
             if (key === 'documentType' && record[key] !== 'PMT') {
-              if ($.trim(record.outputIndication)) {
+              const checkOutputIndication = hasOwn(record, 'outputIndication');
+              if (
+                (checkOutputIndication && $.trim(record.outputIndication))
+                || !checkOutputIndication
+              ) {
                 isClickable = true;
                 dataLink = record.invoiceReference;
                 record.documentNumber = render.get('downloadInvoice')({
