@@ -3,7 +3,7 @@
     border-bottom: 1px solid $color-tory-blue;
     position: relative;
     background-color: $color-congress-blue;
-    transition: all $anim-speed-quick ease;
+    transition: background-color $anim-speed-quick $anim-ease;
 
     &:hover:not(.active) {
         background-color: $color-tory-blue;
@@ -11,19 +11,21 @@
 
     &.active {
         background-color: $color-wild-sand;
-        border-bottom: none;
+        border-bottom: 1px solid transparent;
 
         &.has-submenu {
             background-color: $color-white;
+            border-bottom: none;
         }
 
         &:not(.has-submenu) {
-            border-top: 1px solid $color-mercury;
+            border-top: 1px solid $color-wild-sand;
             margin-top: -1px;
         }
 
         button,
-        a {
+        a,
+        i {
             color: $color-tundora;
         }
     }
@@ -69,7 +71,8 @@
         }
 
         button,
-        a {
+        a,
+        i {
             color: $color-tundora;
         }
     }
