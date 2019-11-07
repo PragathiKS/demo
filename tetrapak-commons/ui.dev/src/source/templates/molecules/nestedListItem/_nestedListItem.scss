@@ -3,22 +3,28 @@
     border-bottom: 1px solid $color-tory-blue;
     position: relative;
     background-color: $color-congress-blue;
+    transition: all $anim-speed-quick ease;
 
-    &:hover {
+    &:hover:not(.active) {
         background-color: $color-tory-blue;
     }
 
     &.active {
-        background-color: $color-denim;
-        border-bottom: 1px solid $color-denim;
+        background-color: $color-wild-sand;
+        border-bottom: none;
 
         &.has-submenu {
-            background-color: $color-tory-blue;
+            background-color: $color-white;
         }
 
         &:not(.has-submenu) {
-            border-top: 1px solid $color-denim;
+            border-top: 1px solid $color-mercury;
             margin-top: -1px;
+        }
+
+        button,
+        a {
+            color: $color-tundora;
         }
     }
 
@@ -36,20 +42,35 @@
     }
 
     &__sublist & {
-        background-color: $color-tory-blue;
-        border-bottom: 1px solid $color-denim;
+        position: relative;
+        background-color: $color-white;
+        border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
+        margin-top: -1px;
         transition: all $anim-speed-quick ease;
         overflow: hidden;
         opacity: 1;
         height: auto;
 
         &:first-child {
-            border-top: 1px solid $color-denim;
+            margin-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid transparent;
         }
 
         &.active,
         &:hover {
-            background-color: $color-denim;
+            background-color: $color-wild-sand;
+            border-top: 1px solid $color-wild-sand;
+            border-bottom: 1px solid $color-wild-sand;
+            z-index: $zindex-p;
+        }
+
+        button,
+        a {
+            color: $color-tundora;
         }
     }
 }
