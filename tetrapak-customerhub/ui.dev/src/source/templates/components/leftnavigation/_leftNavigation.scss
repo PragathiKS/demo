@@ -44,6 +44,10 @@
         will-change: transform;
         background-color: $color-congress-blue;
 
+        @media #{$desktop} {
+            background-color: transparent;
+        }
+
         &.translated {
             transform: translateX(0);
         }
