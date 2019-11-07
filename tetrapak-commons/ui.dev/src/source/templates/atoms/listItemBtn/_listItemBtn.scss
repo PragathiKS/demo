@@ -1,11 +1,5 @@
 .tpatom-list-item {
-    &.active {
-        background: $color-denim;
-    }
-
-    &:hover {
-        background: $color-tory-blue;
-    }
+    $root: &;
 
     &__link {
         @include padding($padding-md);
@@ -16,6 +10,12 @@
 
         @media #{$desktop} {
             @include padding($padding-md $padding-l);
+        }
+
+        .has-submenu &,
+        .has-submenu &:hover,
+        .has-submenu &:visited {
+            color: $color-tundora;
         }
 
         &:hover,
@@ -73,6 +73,10 @@
         display: inline-block;
         position: relative;
         width: 100%;
+
+        .has-submenu.active button & {
+            font-family: $font-black;
+        }
 
         .tpmol-list-item__sublist & {
             @include padding(0 $padding-md 0 $padding-sm);
