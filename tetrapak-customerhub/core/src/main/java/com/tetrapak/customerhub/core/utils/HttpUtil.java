@@ -15,8 +15,17 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Utility class for http methods
@@ -135,15 +144,39 @@ public final class HttpUtil {
     /**
      * This method would encode the String passed to this method
      *
-     * @param encodeStr String
+     * @param str String
      * @return encoded String
      */
-    public static String encodeStr(String encodeStr) {
-        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
-        if (StringUtils.isEmpty(encodeStr)) {
+    public static String encodeStr(String str) {
+        if (StringUtils.isEmpty(str)) {
             return StringUtils.EMPTY;
         }
-        return base64Decoder.encodeAsString(encodeStr.getBytes());
+        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
+        byte[] enc = new byte[0];
+        try {
+            byte[] utf8 = str.getBytes(StandardCharsets.UTF_8);
+            Cipher cipher;
+            SecretKey key;
+            key = KeyGenerator.getInstance("AES").generateKey();
+
+            cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+
+            utf8 = cipher.doFinal(utf8);
+
+            enc = base64Decoder.encode(utf8);
+
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            LOGGER.error("NoSuchAlgorithmException", e);
+            return StringUtils.EMPTY;
+        } catch (BadPaddingException e) {
+            LOGGER.error("BadPaddingException", e);
+        } catch (IllegalBlockSizeException e) {
+            LOGGER.error("IllegalBlockSizeException", e);
+        } catch (InvalidKeyException e) {
+            LOGGER.error("InvalidKeyException", e);
+        }
+        return org.apache.commons.codec.binary.StringUtils.newStringUtf8(enc);
     }
 
 }
