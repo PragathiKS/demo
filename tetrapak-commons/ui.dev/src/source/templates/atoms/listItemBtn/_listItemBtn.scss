@@ -1,6 +1,4 @@
 .tpatom-list-item {
-    $root: &;
-
     &__link {
         @include padding($padding-md);
         width: 100%;
