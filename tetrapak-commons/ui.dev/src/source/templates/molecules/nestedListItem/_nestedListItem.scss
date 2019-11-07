@@ -3,30 +3,22 @@
     border-bottom: 1px solid $color-tory-blue;
     position: relative;
     background-color: $color-congress-blue;
-    transition: background-color $anim-speed-quick $anim-ease;
 
-    &:hover:not(.active) {
+    &:hover {
         background-color: $color-tory-blue;
     }
 
     &.active {
-        background-color: $color-wild-sand;
-        border-bottom: 1px solid transparent;
+        background-color: $color-denim;
+        border-bottom: 1px solid $color-denim;
 
         &.has-submenu {
-            background-color: $color-white;
-            border-bottom: none;
+            background-color: $color-tory-blue;
         }
 
         &:not(.has-submenu) {
-            border-top: 1px solid $color-wild-sand;
+            border-top: 1px solid $color-denim;
             margin-top: -1px;
-        }
-
-        button,
-        a,
-        i {
-            color: $color-tundora;
         }
     }
 
@@ -44,36 +36,20 @@
     }
 
     &__sublist & {
-        position: relative;
-        background-color: $color-white;
-        border-top: 1px solid $color-mercury;
-        border-bottom: 1px solid $color-mercury;
-        margin-top: -1px;
+        background-color: $color-tory-blue;
+        border-bottom: 1px solid $color-denim;
         transition: all $anim-speed-quick ease;
         overflow: hidden;
         opacity: 1;
         height: auto;
 
         &:first-child {
-            margin-top: 0;
-        }
-
-        &:last-child {
-            border-bottom: 1px solid transparent;
+            border-top: 1px solid $color-denim;
         }
 
         &.active,
         &:hover {
-            background-color: $color-wild-sand;
-            border-top: 1px solid $color-wild-sand;
-            border-bottom: 1px solid $color-wild-sand;
-            z-index: $zindex-p;
-        }
-
-        button,
-        a,
-        i {
-            color: $color-tundora;
+            background-color: $color-denim;
         }
     }
 }
