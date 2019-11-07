@@ -142,11 +142,13 @@ function _processTableData(data) {
           // Resolve currency for summary section
           keys.forEach(key => {
             if (key === 'documentType' && record[key] !== 'PMT') {
-              isClickable = true;
-              dataLink = record.invoiceReference;
-              record.documentNumber = render.get('downloadInvoice')({
-                documentNumber: record.documentNumber
-              });
+              if ($.trim(record.outputIndication)) {
+                isClickable = true;
+                dataLink = record.invoiceReference;
+                record.documentNumber = render.get('downloadInvoice')({
+                  documentNumber: record.documentNumber
+                });
+              }
             }
 
             if (key === 'invoiceStatus' && Array.isArray(status)) {
