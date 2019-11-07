@@ -156,7 +156,7 @@ public final class HttpUtil {
         try {
             byte[] utf8 = str.getBytes(StandardCharsets.UTF_8);
             Cipher cipher;
-            String customerhubKey = "customerhub12345";
+            String customerhubKey = "9NrKZiHIMJvjV1Fp";
             Key key = new SecretKeySpec(customerhubKey.getBytes(StandardCharsets.UTF_8), "AES");
             cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
