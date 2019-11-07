@@ -18,13 +18,13 @@ import org.slf4j.LoggerFactory;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -156,16 +156,12 @@ public final class HttpUtil {
         try {
             byte[] utf8 = str.getBytes(StandardCharsets.UTF_8);
             Cipher cipher;
-            SecretKey key;
-            key = KeyGenerator.getInstance("AES").generateKey();
-
+            String customerhubKey = "customerhub12345";
+            Key key = new SecretKeySpec(customerhubKey.getBytes(StandardCharsets.UTF_8), "AES");
             cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
-
             utf8 = cipher.doFinal(utf8);
-
             enc = base64Decoder.encode(utf8);
-
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.error("NoSuchAlgorithmException", e);
             return StringUtils.EMPTY;

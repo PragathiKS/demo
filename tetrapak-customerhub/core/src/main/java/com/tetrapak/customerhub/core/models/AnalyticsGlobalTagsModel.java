@@ -87,13 +87,13 @@ public class AnalyticsGlobalTagsModel {
      * @return user ID
      */
     public String getVisitorId() {
-        String userId;
         ResourceResolver resourceResolver = resource.getResourceResolver();
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
         Session session = resource.getResourceResolver().adaptTo(Session.class);
         if (null == session || null == userManager) {
             return null;
         }
+        String userId;
         userId = session.getUserID();
         if (null == userId) {
             return null;

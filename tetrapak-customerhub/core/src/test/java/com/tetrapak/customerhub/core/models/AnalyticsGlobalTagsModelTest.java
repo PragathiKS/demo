@@ -41,7 +41,7 @@ public class AnalyticsGlobalTagsModelTest {
         Assert.assertEquals("site country", StringUtils.EMPTY, analyticsGlobalTagsModel.getSiteCountry());
         Assert.assertEquals("country code", StringUtils.EMPTY, analyticsGlobalTagsModel.getUserCountryCode());
         Assert.assertEquals("site name", "customerhub", analyticsGlobalTagsModel.getSiteName());
-        Assert.assertEquals("encoded visitor Id", "FyJTk4RV7eHctqpk9HI3HQ=", analyticsGlobalTagsModel.getVisitorId());
+        Assert.assertEquals("encoded visitor Id", "lGHrkY1SWEB/Bkmo+lkxsA==", analyticsGlobalTagsModel.getVisitorId());
         Assert.assertNull("error message", analyticsGlobalTagsModel.getErrorMessage());
         Assert.assertNull("error code", analyticsGlobalTagsModel.getErrorCode());
         Assert.assertEquals("user roles", 0, analyticsGlobalTagsModel.getUserRoles().size());
