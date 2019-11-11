@@ -83,6 +83,22 @@ export const CURRENCY_FIELDS = [
   'remAmount',
   'totalAmount'
 ];
+export const SOA_DOCUMENT_FIELDS = [
+  'documentNumber',
+  'documentType',
+  'invoiceStatus',
+  'invoiceReference',
+  'poNumber',
+  'docDate',
+  'dueDate',
+  'clearedDate',
+  'currency',
+  'dueDays',
+  'remAmount',
+  'companyCode',
+  'salesLocalData',
+  'orgAmount'
+];
 // API URLs
 export const API_TOKEN = 'token-generator';
 export const API_SEARCH = 'ordersearch';
