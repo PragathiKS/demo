@@ -237,13 +237,15 @@ function _renderTable(filterParams, config) {
         showLoader: true
       }
     }, (data) => {
-      const { $parentRoot } = this.cache;
+      const { $parentRoot, $filtersRoot } = this.cache;
       const linkName = config && config.isClick
         ? $.trim(config.linkText).toLowerCase()
         : SOA_FORM_LOAD_MSG;
+      const $filterSection = $filtersRoot.find('.js-financial-statement__filter-section');
+      if (!$filterSection.hasClass('has-error')) {
+        $filterSection.removeClass('d-none');
+      }
       if (!data.isError) {
-        const { $filtersRoot } = this.cache;
-        $filtersRoot.find('.js-financial-statement__filter-section').removeClass('d-none');
         if (
           !isIOS()
           && config

@@ -260,7 +260,7 @@ function _renderFilters() {
           SOA_FORM_LOAD_MSG,
           $.trim(getI18n('cuhu.error.message')).toLowerCase()
         ]);
-        this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
+        this.root.find('.js-financial-statement__filter-section').addClass('has-error').removeClass('d-none');
       }
     });
   });
