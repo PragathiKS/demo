@@ -168,6 +168,7 @@ function _processTableData(data) {
               record[key] = resolveCurrency(record[key], record.currency);
             }
           });
+          delete record.outputIndication; // Hide output indication
           return tableSort.call(this, record, keys, dataLink, isClickable, ['documentNumber']);
         });
         doc.docHeadings = keys.map(key => ({
