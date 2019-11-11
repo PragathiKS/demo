@@ -117,7 +117,7 @@ function _processFinancialStatementData(data) {
   this.root.parents('.js-financials').trigger(EVT_FINANCIAL_FILTERS, [data.status, this.cache.documentTypeList]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
-    if (!data.customerData) {
+    if (!data.customerData || (Array.isArray(data.customerData) && data.customerData.length === 0)) {
       data.isError = true;
     } else {
       data.customerData.sort((a, b) => {
