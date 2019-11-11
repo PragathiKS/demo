@@ -5,7 +5,7 @@ import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { tableSort, resolveQuery, resolveCurrency, getI18n, hasOwn } from '../../../scripts/common/common';
-import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, CURRENCY_FIELDS } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_FINANCIALS_STATEMENTS, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_FILTERS, EVT_FINANCIAL_ANALYTICS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, CURRENCY_FIELDS, SOA_DOCUMENT_FIELDS } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
@@ -97,78 +97,81 @@ function _downloadInvoice(self) {
   });
 }
 
+function _processKeys(keys, ob) {
+  return keys.length === 0 ? Object.keys(ob) : keys;
+}
+
+function _mapCurrency(keys, ob) {
+  keys.forEach(key => {
+    if (CURRENCY_FIELDS.includes(key)) {
+      ob[key] = resolveCurrency(ob[key], ob.currency);
+    }
+  });
+}
+
+function _mapHeadings(keys) {
+  return keys.map(key => ({
+    key,
+    i18nKey: `cuhu.financials.${key}`
+  }));
+}
+
+function _isTypePayment(record) {
+  return record.documentType === 'PMT';
+}
+
+function _hasDownloadableInvoice(record) {
+  const hasOutputIndication = hasOwn(record, 'outputIndication');
+  return (
+    (hasOutputIndication && !!$.trim(record.outputIndication))
+    || !hasOutputIndication
+  ) && !_isTypePayment(record);
+}
+
 function _processTableData(data) {
   let keys = [];
   const { $filtersRoot, documentType, status } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
-      keys = (keys.length === 0) ? Object.keys(summary) : keys;
-      keys.forEach(key => {
-        if (CURRENCY_FIELDS.includes(key)) {
-          summary[key] = resolveCurrency(summary[key], summary.currency);
-        }
-      });
+      keys = _processKeys(keys, summary);
+      _mapCurrency(keys, summary);
       return tableSort.call(this, summary, keys);
     });
-    data.summaryHeadings = keys.map(key => ({
-      key,
-      i18nKey: `cuhu.financials.${key}`
-    }));
+    data.summaryHeadings = _mapHeadings(keys);
   }
-  if (Array.isArray(data.documents) && data.documents.length > 0) {
-    keys.length = 0;
+  if (Array.isArray(data.documents)) {
     data.documents = data.documents.filter(doc => doc.records && doc.records.length);
-    if (!data.documents.length) {
+    if (data.documents.length === 0) {
       data.noData = true;
     } else {
       data.documents.forEach((doc, index) => {
         doc.title = `${doc.salesOffice} (${doc.records.length})`;
         doc.docId = `#document${index}`;
         doc.totalAmount = resolveCurrency(doc.totalAmount, doc.currency);
-        const deleteLocalData = Array.isArray(doc.records) && doc.records[0] && !doc.records[0].salesLocalData;
+        keys = [...SOA_DOCUMENT_FIELDS];
+        if (Array.isArray(doc.records) && doc.records[0] && !doc.records[0].salesLocalData) {
+          keys.splice(keys.indexOf('salesLocalData'), 1);
+        }
         doc.docData = doc.records.map(record => {
-          let isClickable = false;
+          const isClickable = _hasDownloadableInvoice(record);
           let dataLink;
-          delete record.documentTypeDesc;
-          if (deleteLocalData) {
-            delete record.salesLocalData;
+          if (isClickable) {
+            dataLink = record.invoiceReference;
+            record.documentNumber = render.get('downloadInvoice')({
+              documentNumber: record.documentNumber
+            });
           }
-          delete record.salesOffice; // Hide sales office
-          if (keys.length === 0) {
-            keys = Object.keys(record);
-            keys.splice(keys.indexOf('orgAmount'), 1);
-            keys.push('orgAmount');
+          if (Array.isArray(status)) {
+            const statusMatch = status.find(obj => obj.key === record.invoiceStatus);
+            record.invoiceStatus = statusMatch ? statusMatch.desc : record.invoiceStatus;
+          }
+
+          if (Array.isArray(documentType)) {
+            const documentTypeMatch = documentType.find(obj => obj.key === record.documentType);
+            record.documentType = documentTypeMatch ? documentTypeMatch.desc : record.documentType;
           }
           // Resolve currency for summary section
-          keys.forEach(key => {
-            if (key === 'documentType' && record[key] !== 'PMT') {
-              const checkOutputIndication = hasOwn(record, 'outputIndication');
-              if (
-                (checkOutputIndication && $.trim(record.outputIndication))
-                || !checkOutputIndication
-              ) {
-                isClickable = true;
-                dataLink = record.invoiceReference;
-                record.documentNumber = render.get('downloadInvoice')({
-                  documentNumber: record.documentNumber
-                });
-              }
-            }
-
-            if (key === 'invoiceStatus' && Array.isArray(status)) {
-              const statusMatch = status.find(obj => obj.key === record[key]);
-              record[key] = statusMatch ? statusMatch.desc : record[key];
-            }
-
-            if (key === 'documentType' && Array.isArray(documentType)) {
-              const documentTypeMatch = documentType.find(obj => obj.key === record[key]);
-              record[key] = documentTypeMatch ? documentTypeMatch.desc : record[key];
-            }
-            if (CURRENCY_FIELDS.includes(key)) {
-              record[key] = resolveCurrency(record[key], record.currency);
-            }
-          });
-          delete record.outputIndication; // Hide output indication
+          _mapCurrency(keys, record);
           return tableSort.call(this, record, keys, dataLink, isClickable, ['documentNumber']);
         });
         doc.docHeadings = keys.map(key => ({
@@ -177,8 +180,6 @@ function _processTableData(data) {
         }));
       });
     }
-  } else {
-    data.noData = true;
   }
   data.dateRange = $filtersRoot.find('.js-financial-statement__date-range-input').val();
 }
