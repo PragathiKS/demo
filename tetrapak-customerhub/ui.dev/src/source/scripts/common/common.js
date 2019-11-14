@@ -262,7 +262,6 @@ export const isLocalhost = () => ($('#isDummyLayout').val() === 'true');
  */
 export const getMaxSafeInteger = () => (Number.MAX_SAFE_INTEGER || 9007199254740991);
 
-
 /**
  * Checks if key exists in object
  * @param {object} obj Current object
