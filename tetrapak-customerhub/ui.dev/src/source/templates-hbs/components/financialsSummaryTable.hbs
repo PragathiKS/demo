@@ -1,5 +1,5 @@
 {{#if isError}}
-    {{> atoms/error/error error=true message="cuhu.error.message"}}
+    {{> atoms/error/error error=true message=errorText}}
 {{else}}
     {{#if noData}}
         {{> atoms/error/error message="cuhu.nodata.message"}}

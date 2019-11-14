@@ -101,7 +101,7 @@ function _initializeCalendar(isRange) {
  */
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
-  const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  const { documentTypeAll = 'cuhu.documenttype.all', apiErrorCodes } = this.cache.i18nKeys;
   const defaultDocumentTypes = Object.keys(documentTypes).map(key => ({
     key,
     desc: documentTypes[key]
@@ -119,6 +119,7 @@ function _processFinancialStatementData(data) {
   if (!data.isError) {
     if (!data.customerData || (Array.isArray(data.customerData) && data.customerData.length === 0)) {
       data.isError = true;
+      data.errorText = apiErrorCodes && apiErrorCodes.default;
     } else {
       data.customerData.sort((a, b) => {
         if (a && typeof a.customerName === 'string') {
@@ -162,6 +163,7 @@ function _processFinancialStatementData(data) {
         data.selectedCustomerData = selectedCustomerData;
       } catch (e) {
         data.isError = true;
+        data.errorText = apiErrorCodes && apiErrorCodes.default;
       }
     }
   }
@@ -226,9 +228,14 @@ function _renderFilters() {
         showLoader: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
+          const errorResult = this.xhr.responseJSON;
+          const apiErrorCode = errorResult && errorResult.apiErrorCode ? errorResult.apiErrorCode : 'default';
+          const { apiErrorCodes } = i18nKeys;
           this.data = data = {
-            isError: true
+            isError: true,
+            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message'
           };
         }
         return _processFinancialStatementData.apply($this, [data]);
