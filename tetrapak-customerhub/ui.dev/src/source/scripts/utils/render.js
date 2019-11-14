@@ -367,7 +367,8 @@ function _renderAjax(config) {
       ajaxWrapper.getXhrObj(ajaxConfig)
         .always(function (data, textStatus) {
           // Resolve pending requests
-          const jqXHRObj = config.xhr = _getStatus.apply(xhrCache, arguments);
+          const jqXHRObj = _getStatus.apply(xhrCache, arguments);
+          config.xhr = jqXHRObj.jqXHR;
           if (jqXHRObj) {
             if (_setXHRData.apply(this, [jqXHRObj, data, textStatus])) {
               $body.trigger('renderajax.success', [data, config]);

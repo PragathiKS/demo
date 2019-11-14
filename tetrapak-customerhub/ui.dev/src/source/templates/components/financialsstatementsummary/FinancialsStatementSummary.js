@@ -218,12 +218,17 @@ function _renderTable(filterParams, config) {
         data: _getRequestParams(filterParams)
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
+          const errorResult = this.xhr.responseJSON;
+          const apiErrorCode = errorResult && errorResult.apiErrorCode ? errorResult.apiErrorCode : 'default';
+          const { apiErrorCodes } = i18nKeys;
           this.data = data = {
-            isError: true
+            isError: true,
+            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message'
           };
         }
-        data = $.extend(true, data, $this.cache.i18nKeys);
+        data = $.extend(true, data, i18nKeys);
         data.params = filterParams;
         return $this.processTableData(data);
       },
