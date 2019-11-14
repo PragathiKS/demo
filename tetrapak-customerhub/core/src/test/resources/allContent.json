@@ -657,7 +657,22 @@
                      "documentHeadingI18n": "Documents",
                      "createExcelBtnI18n": "Create Excel",
                      "createPdfBtnI18n": "Create PDF",
-                     "dateRangeErrorLabel": "Please enter a valid date"
+                     "dateRangeErrorLabel": "Please enter a valid date",
+                     "excelPdfDownloadErrorText": "cuhu.financial.Error",
+                     "fileDownloadErrorText": "cuhu.financial.Error",
+                     "apiErrorCodes": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "errorCode": "YS_GW_ODATA/010",
+                           "errorMessage": "cuhu.financial.errorCode.010"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "errorCode": "YS_GW_ODATA/031",
+                           "errorMessage": "cuhu.financial.errorCode.031"
+                        }
+                     }
                   }
                }
             }
