@@ -1,8 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -10,7 +10,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -100,8 +99,6 @@ public class FinancialStatementModel {
 
     @Inject
     private String fileDownloadErrorClose;
-
-    private Map<String, String> apiErrorCodes = new HashMap<>();
 
     /**
      * @return the statementOfAccount
@@ -292,26 +289,12 @@ public class FinancialStatementModel {
         return "/bin/customerhub/invoice/document.{docId}.pdf";
     }
 
-    public Map<String, String> getApiErrorCodes() {
-        Resource apiCodes = resource.getChild("apiErrorCodes");
-        if (null == apiCodes) {
-            return apiErrorCodes;
-        }
-        Iterator<Resource> itr = apiCodes.listChildren();
-        while (itr.hasNext()) {
-            ValueMap vMap = itr.next().getValueMap();
-            apiErrorCodes.put((String) vMap.get("errorCode"), (String) vMap.get("errorMessage"));
-        }
-        return apiErrorCodes;
-    }
-
     /**
      * init method
      */
     @PostConstruct
     protected void init() {
-
-        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
+        Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put("selectDates", getSelectDates());
         i18KeyMap.put("closeBtn", getCloseBtn());
         i18KeyMap.put("setDates", getSetDates());
@@ -337,7 +320,7 @@ public class FinancialStatementModel {
         i18KeyMap.put("datePlaceholder", getDatePlaceholder());
         i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
         i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
-        i18KeyMap.put("apiErrorCodes", getApiErrorCodes());
+        i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
