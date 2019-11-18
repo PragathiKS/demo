@@ -26,9 +26,11 @@ import org.osgi.framework.ServiceReference;
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -142,7 +144,7 @@ public class GlobalUtil {
      */
     public static Set<String> getRunModes() {
         SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
-        if(null == slingSettingsService){
+        if (null == slingSettingsService) {
             return Collections.emptySet();
         }
         return slingSettingsService.getRunModes();
@@ -158,7 +160,7 @@ public class GlobalUtil {
     public static <T> T getService(final Class<T> clazz) {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
-        if(null == serviceReference){
+        if (null == serviceReference) {
             return null;
         }
         return (T) bundleContext.getService(serviceReference);
@@ -230,7 +232,7 @@ public class GlobalUtil {
      * @return value
      */
     public static String getI18nValueForThisLanguage(SlingHttpServletRequest request, String prefix, String key, String language) {
-        I18n i18n = new I18n(request.getResourceBundle(new Locale(language.substring(0,2), StringUtils.substringAfter(language,"_"))));
+        I18n i18n = new I18n(request.getResourceBundle(new Locale(language.substring(0, 2), StringUtils.substringAfter(language, "_"))));
         return i18n.get(prefix + key);
     }
 
@@ -391,13 +393,7 @@ public class GlobalUtil {
         return tabResource.getChild(imageName);
     }
 
-    /**
-     * Method to get global config resource for a resource
-     *
-     * @param childResource resource
-     * @return global config resource
-     */
-    public static Resource getGlobalConfigurationResource(Resource childResource) {
+    private static Resource getGlobalConfigNode(Resource childResource) {
         Resource res = childResource.getChild("globalconfiguration");
         if (null != res) {
             return res;
@@ -423,7 +419,22 @@ public class GlobalUtil {
         Resource childResource = request.getResourceResolver().getResource(
                 GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
-            return getGlobalConfigurationResource(childResource);
+            return getGlobalConfigNode(childResource);
+        }
+        return null;
+    }
+
+    /**
+     * Method to get global config resource for a resource
+     *
+     * @param resource sling resource
+     * @return global config resource
+     */
+    private static Resource getGlobalConfigResource(Resource resource) {
+        Resource childResource = resource.getResourceResolver().getResource(
+                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
+        if (null != childResource) {
+            return getGlobalConfigNode(childResource);
         }
         return null;
     }
@@ -447,7 +458,7 @@ public class GlobalUtil {
      */
     public static String getSiteImproveScript() {
         SiteImproveScriptService siteImproveScriptService = getService(SiteImproveScriptService.class);
-        if(null == siteImproveScriptService){
+        if (null == siteImproveScriptService) {
             return null;
         }
         return siteImproveScriptService.getSiteImproveScriptUrl();
@@ -499,5 +510,32 @@ public class GlobalUtil {
                 resourceResolver.commit();
             }
         }
+    }
+
+    /**
+     * This method returns map of error codes getting from APIGEE
+     * Reads global configurations and extract error codes authored
+     * Return a map with default value which is "cuhu.error.message"
+     *
+     * @param resource Resource
+     * @return map of API error codes
+     */
+    public static Map<String, String> getApiErrorCodes(Resource resource) {
+        Map<String, String> apiErrorCodes = new HashMap<>();
+        apiErrorCodes.put("default", "cuhu.error.message");
+        Resource globalConfigResource = getGlobalConfigResource(resource);
+        if (null == globalConfigResource) {
+            return apiErrorCodes;
+        }
+        Resource apiCodes = globalConfigResource.getChild("apiErrorCodes");
+        if (null == apiCodes) {
+            return apiErrorCodes;
+        }
+        Iterator<Resource> itr = apiCodes.listChildren();
+        while (itr.hasNext()) {
+            ValueMap vMap = itr.next().getValueMap();
+            apiErrorCodes.put((String) vMap.get("errorCode"), (String) vMap.get("errorMessage"));
+        }
+        return apiErrorCodes;
     }
 }

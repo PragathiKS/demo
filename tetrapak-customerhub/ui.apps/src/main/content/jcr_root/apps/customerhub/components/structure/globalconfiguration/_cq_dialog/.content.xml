@@ -144,6 +144,45 @@
                             </column>
                         </items>
                     </languageList>
+                    <errorCodes
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error Codes mapping"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    maximized="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <mapping
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="API Error codes"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            fieldLabel="API Error codes">
+                                        <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./apiErrorCodes">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <errorCode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter language code e.g. en for English"
+                                                        fieldLabel="Error Code"
+                                                        name="./errorCode"/>
+                                                <errorMessage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter I18n key for this error message"
+                                                        fieldLabel="I18n key for this error message"
+                                                        name="./errorMessage"/>
+                                            </items>
+                                        </field>
+                                    </mapping>
+                                </items>
+                            </column>
+                        </items>
+                    </errorCodes>
                 </items>
             </tabs>
         </items>
