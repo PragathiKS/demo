@@ -198,6 +198,13 @@
                                             fieldLabel="File Download Error Close Key"
                                             name="./fileDownloadErrorClose"
                                             required="true"/>
+                                    <noCustomerErrorText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Enter No Customer Error i18n Key"
+                                            fieldLabel="No Customer Error Close i18n Key"
+                                            name="./noCustomerErrorText"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>

@@ -100,72 +100,45 @@ public class FinancialStatementModel {
     @Inject
     private String fileDownloadErrorClose;
 
-    /**
-     * @return the statementOfAccount
-     */
+    @Inject
+    private String noCustomerErrorText;
+
     public String getStatementOfAccount() {
         return statementOfAccount;
     }
 
-    /**
-     * @return the accountNumber
-     */
     public String getAccountNumber() {
         return accountNumber;
     }
 
-    /**
-     * @return the accountService
-     */
     public String getAccountService() {
         return accountService;
     }
 
-    /**
-     * @return the selectDocumentTypeLabel
-     */
     public String getSelectDocumentTypeLabel() {
         return selectDocumentTypeLabel;
     }
 
-    /**
-     * @return the placeholderForDocumentNumber
-     */
     public String getPlaceholderForDocumentNumber() {
         return placeholderForDocumentNumber;
     }
 
-    /**
-     * @return the summaryHeadingI18n
-     */
     public String getSummaryHeadingI18n() {
         return summaryHeadingI18n;
     }
 
-    /**
-     * @return the documentHeadingI18n
-     */
     public String getDocumentHeadingI18n() {
         return documentHeadingI18n;
     }
 
-    /**
-     * @return the selectDates
-     */
     public String getSelectDates() {
         return selectDates;
     }
 
-    /**
-     * @return the closeBtn
-     */
     public String getCloseBtn() {
         return closeBtn;
     }
 
-    /**
-     * @return the setDates
-     */
     public String getSetDates() {
         return setDates;
     }
@@ -182,109 +155,66 @@ public class FinancialStatementModel {
         return dateRangeErrorLabel;
     }
 
-    /**
-     * @return the findCustomer
-     */
     public String getFindCustomer() {
         return findCustomer;
     }
 
-    /**
-     * @return the selectCustomerLabel
-     */
     public String getSelectCustomerLabel() {
         return selectCustomerLabel;
     }
 
-    /**
-     * @return the selectStatusLabel
-     */
     public String getSelectStatusLabel() {
         return selectStatusLabel;
     }
 
-    /**
-     * @return the selectDateRangeLabel
-     */
     public String getSelectDateRangeLabel() {
         return selectDateRangeLabel;
     }
 
-    /**
-     * @return the searchInputLabel
-     */
     public String getSearchInputLabel() {
         return searchInputLabel;
     }
 
-    /**
-     * @return the resetButtonText
-     */
     public String getResetButtonText() {
         return resetButtonText;
     }
 
-    /**
-     * @return the searchButtonText
-     */
     public String getSearchButtonText() {
         return searchButtonText;
     }
 
-    /**
-     * @return the createExcelBtnI18n
-     */
     public String getCreateExcelBtnI18n() {
         return createExcelBtnI18n;
     }
 
-    /**
-     * @return the createPdfBtnI18n
-     */
     public String getCreatePdfBtnI18n() {
         return createPdfBtnI18n;
     }
 
-    /**
-     * @return the fileDownloadErrorText
-     */
     public String getFileDownloadErrorText() {
         return fileDownloadErrorText;
     }
 
-    /**
-     * @return the excelPdfDownloadErrorText
-     */
     public String getExcelPdfDownloadErrorText() {
         return excelPdfDownloadErrorText;
     }
 
-    /**
-     * @return the fileDownloadErrorClose
-     */
     public String getFileDownloadErrorClose() {
         return fileDownloadErrorClose;
     }
 
-    /**
-     * Get i18nkeys method.
-     *
-     * @return i18nkeys
-     */
+    public String getNoCustomerErrorText() {
+        return noCustomerErrorText;
+    }
+
     public String getI18nKeys() {
         return i18nKeys;
     }
 
-    /**
-     * @return the downloadPdfExcelServletUrl
-     */
     public String getDownloadPdfExcelServletUrl() {
         return downloadPdfExcelServletUrl;
     }
 
-    /**
-     * @return the downloadInvoice
-     */
     public String getDownloadInvoice() {
         return "/bin/customerhub/invoice/document.{docId}.pdf";
     }
@@ -320,6 +250,7 @@ public class FinancialStatementModel {
         i18KeyMap.put("datePlaceholder", getDatePlaceholder());
         i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
         i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
+        i18KeyMap.put("noCustomerErrorText", getNoCustomerErrorText());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
 
         Gson gson = new Gson();

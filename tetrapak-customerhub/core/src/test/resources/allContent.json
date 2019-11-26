@@ -660,6 +660,7 @@
                      "dateRangeErrorLabel": "Please enter a valid date",
                      "excelPdfDownloadErrorText": "cuhu.financial.Error",
                      "fileDownloadErrorText": "cuhu.financial.Error",
+                     "noCustomerErrorText": "cuhu.financial.noCustomerError",
                      "apiErrorCodes": {
                         "jcr:primaryType": "nt:unstructured",
                         "item0": {
