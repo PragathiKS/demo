@@ -101,7 +101,7 @@ function _initializeCalendar(isRange) {
  */
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
-  const { documentTypeAll = 'cuhu.documenttype.all', apiErrorCodes } = this.cache.i18nKeys;
+  const { documentTypeAll = 'cuhu.documenttype.all', apiErrorCodes, noCustomerErrorText } = this.cache.i18nKeys;
   const defaultDocumentTypes = Object.keys(documentTypes).map(key => ({
     key,
     desc: documentTypes[key]
@@ -119,7 +119,7 @@ function _processFinancialStatementData(data) {
   if (!data.isError) {
     if (!data.customerData || (Array.isArray(data.customerData) && data.customerData.length === 0)) {
       data.isError = true;
-      data.errorText = apiErrorCodes && apiErrorCodes.default;
+      data.errorText = noCustomerErrorText || (apiErrorCodes && apiErrorCodes.default);
     } else {
       data.customerData.sort((a, b) => {
         if (a && typeof a.customerName === 'string') {
