@@ -8,6 +8,7 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.slf4j.Logger;
@@ -87,6 +88,9 @@ public class AnalyticsGlobalTagsModel {
      * @return user ID
      */
     public String getVisitorId() {
+        if (null == resource) {
+            return null;
+        }
         ResourceResolver resourceResolver = resource.getResourceResolver();
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
         Session session = resource.getResourceResolver().adaptTo(Session.class);
@@ -95,9 +99,6 @@ public class AnalyticsGlobalTagsModel {
         }
         String userId;
         userId = session.getUserID();
-        if (null == userId) {
-            return null;
-        }
         return encodeStr(userId);
     }
 
@@ -108,6 +109,46 @@ public class AnalyticsGlobalTagsModel {
      */
     public String getUserCountryCode() {
         return StringUtils.EMPTY;
+    }
+
+    public String getUserType(){
+        String bpNumber = getBpNumber();
+        if(bpNumber.isEmpty()){
+            return StringUtils.EMPTY;
+        }
+        else if(bpNumber.startsWith("EE")){
+            return "internal";
+        }else{
+            return "external";
+        }
+    }
+
+    public String getBpNumber() {
+        String bpnumber = StringUtils.EMPTY;
+        if (null == resource) {
+            return bpnumber;
+        }
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (null == session || null == userManager) {
+            return bpnumber;
+        }
+        Authorizable user;
+        try {
+            user = userManager.getAuthorizable(session.getUserID());
+            Resource userResource = resourceResolver.getResource(user.getPath());
+            if (userResource == null) {
+                return bpnumber;
+            }
+            ValueMap vMap = userResource.getValueMap();
+            if (vMap.containsKey("bpnumber")) {
+                bpnumber = (String) vMap.get("bpnumber");
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting BP number in AnalyticsGlobalTagsModel", e);
+        }
+        return bpnumber;
     }
 
     /**
@@ -123,7 +164,7 @@ public class AnalyticsGlobalTagsModel {
 
         ResourceResolver resourceResolver = resource.getResourceResolver();
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-        Session session = resource.getResourceResolver().adaptTo(Session.class);
+        Session session = resourceResolver.adaptTo(Session.class);
         if (null == session || null == userManager) {
             return userRoles;
         }
@@ -139,7 +180,7 @@ public class AnalyticsGlobalTagsModel {
                 userRoles.add(userRole);
             }
         } catch (RepositoryException e) {
-            LOGGER.error("RepositoryException in AnalyticsGlobalTagsModel", e);
+            LOGGER.error("RepositoryException in getting user roles in AnalyticsGlobalTagsModel", e);
         }
 
         return userRoles;
