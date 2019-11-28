@@ -63,6 +63,13 @@
   }
   digitalData.pageinfo['pageName'] = pageName;
 
+  <sly data-sly-test="${data.bpNumber}">
+    digitalData.userinfo['bpNumber'] = "${data.bpNumber}";
+  </sly>
+
+  <sly data-sly-test="${data.userType}">
+    digitalData.userinfo['userType'] = "${data.userType}";
+  </sly>
 
   <sly data-sly-test="${data.logInStatus}">
     digitalData.userinfo['logInStatus'] = "${data.logInStatus}";
