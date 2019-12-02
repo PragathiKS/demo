@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-03-14T11:24:35.304Z"
+        cq:lastModifiedBy="sapient-dhirendra"
+        cq:lastReplicated="{Date}2019-05-17T03:10:10.691Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/apps/publicweb/templates/basepage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Public Web"
+        jcr:uuid="b8d71068-9bd9-4e7a-b12f-89201de3d610"
+        sling:resourceType="publicweb/components/structure/pages/page"
+        errorPages="/content/tetrapak/public-web/error"/>
+    <global/>
+    <india/>
+    <error/>
+</jcr:root>

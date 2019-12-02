@@ -1,0 +1,66 @@
+.pw-banner {
+    @include margin-bottom($margin-xxxl);
+
+    $self: &;
+    position: relative;
+
+    &__image-wrapper {
+        position: relative;
+    }
+
+    &__image {
+        @include border-radius($border-radius);
+        width: 100%;
+    }
+
+    &__content {
+        @include border-radius($border-radius);
+        @include margin-top(-4px);
+        @include padding($padding-l+4px $padding-md $padding-l);
+        background-color: $color-white;
+
+        @media #{$tablet} {
+            @include margin-top(0);
+            color: $color-white;
+            background-color: transparent;
+            left: $margin-xxl;
+            max-width: calc(50% - #{convert-to-rem(24px)});
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &__title,
+        &__description {
+            @include margin-bottom($padding-md);
+            //overflow: hidden; demo fix
+
+            @media #{$desktop} {
+                @include margin-bottom($padding-l);
+            }
+        }
+
+        &__title {
+            @include max-height(64px);
+            @media #{$desktop} {
+                max-height: convert-to-rem(140px);
+            }
+        }
+        &__description {
+            @include font-size(16px);
+            @include line-height(28px, 16px);
+            @media #{$tablet} {
+                @include font-size(14px);
+                @include line-height(24px, 14px);
+                max-height: convert-to-rem(120px);
+            }
+        }
+    }
+    &--right {
+        #{ $self }__content {
+            @include right($margin-xxl);
+            left: auto;
+        }
+    }
+}

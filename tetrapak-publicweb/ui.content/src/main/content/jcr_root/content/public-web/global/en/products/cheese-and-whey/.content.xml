@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:conf="/conf/Public Web"
+        cq:lastModified="{Date}2019-05-08T12:30:01.055Z"
+        cq:lastModifiedBy="threeshare-tanika"
+        cq:lastReplicated="{Date}2019-05-17T03:10:13.774Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:tags="[qa-tags:Cheese,qa-tags:Whey]"
+        cq:template="/apps/publicweb/templates/productpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Cheese and Whey"
+        jcr:uuid="1865c0fe-853d-4def-8315-7d1e6f8e04ef"
+        sling:resourceType="publicweb/components/structure/pages/productpage"
+        productImageAltI18n="Cheese and Whey Alt Text"
+        productImagePath="/content/dam/publicweb/qa/whey_formula_570x350.jpg"
+        title="Whey"
+        vanityDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ipsum tortor, commodo quis turpis id, sollicitudin vulputate justo. Mauris magna magna, laoreet a rutrum ac, eleifend consectetur magna. Etiam dignissim rhoncus magna pretium cursus."/>
+</jcr:root>

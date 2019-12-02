@@ -1,0 +1,40 @@
+<sly data-sly-template.imageTextBanner_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.desktopImage}" class="pw-banner ${data.contentAlignment}" data-module="ImageTextBanner"
+       data-softc-title="${data.softConversionTitle @ i18n}"
+       data-softc-desc="${data.softConversionDescription}"
+       data-softc-head="${data.softConversionHeadline @ i18n}"
+       data-softc-last="${data.softConversionLastStep @ i18n}"
+       data-softc-doc="${data.softConversionDocPath}"
+       data-itb-linkType="${data.linkType}"
+       data-itb-linkParentTitle="${data.titleI18n @ i18n}"
+       data-itb-linkName="${data.bannerCtaTextI18n @ i18n}"
+       data-itb-contentName="${data.bannerSubtitleI18n @ i18n}"
+       data-itb-linkSection="${data.analyticsLinkSection}">
+    <div class="pw-banner__image-wrapper">
+      <sly data-sly-test="${data.contrastLayer}" data-sly-use.contrastLayer="/apps/commons/components/atoms/contrast-layer/contrast-layer.html" data-sly-call="${contrastLayer.contrastLayer_template @ variant=data.contrastLayer}"/>
+        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.desktopImage, mobileImagePath=data.mobileImage, altText=data.desktopImageAltI18n, mobileCroppingOption=data.mobileCroppingOption, className='pw-banner__image'}" />
+    </div>
+    <div class="pw-banner__content">
+      <div data-sly-test="${data.bannerSubtitleI18n}" class="pw-banner__content__subtitle">
+        <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${subheading.subheading_template @ headingText=data.bannerSubtitleI18n}"/>
+      </div>
+      <div data-sly-test="${data.titleI18n}" class="pw-banner__content__title">
+        <sly data-sly-test="${data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h1_template @ headingText=data.titleI18n, variant='hero'}"/>
+        <sly data-sly-test="${!data.isHeaderBanner}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+             data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
+      </div>
+      <p class="pw-banner__content__description">${data.bannerDescriptionI18n@ i18n}</p>
+      <sly data-sly-test="${data.targetSoftConversion}"
+           data-sly-use.modalButton="/apps/commons/components/atoms/toggle-button/toggle-button.html"
+           data-sly-call="${modalButton.togglebutton_template @ btnToggle='modal', btnTarget='#softConversionModal', btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, variant='shift', customClasses='opensoftc'}" />
+      <sly data-sly-test="${data.bannerCtaPath != '#' && !data.targetSoftConversion}"
+           data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+           data-sly-call="${pwButton.button_template @ btnPath=data.bannerCtaPath, btnText=data.bannerCtaTextI18n, btnTooltip=data.bannerCtaTooltipI18n, btnTarget=data.targetBlank, variant='shift', customClasses='itblink'}" />
+    </div>
+  </div>
+  <sly data-sly-test="${!data.desktopImage}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.desktopImage}"></sly>
+</sly>

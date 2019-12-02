@@ -1,0 +1,54 @@
+<sly data-sly-template.header_template="${@ data, flag}">
+  <header class="tp-pw-header js-tp-pw-header ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Header">
+    <div class="tp-pw-header__container">
+      <div class="d-flex align-items-end tp-container">
+        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
+          <sly data-sly-resource="${'logo' @ resourceType='publicweb/components/content/logo'}"/>
+        </div>
+        <div class="tp-pw-header__main-navigation col-6 align-items-start">
+          <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
+            <li>
+              <a href="${megaMenuItem.linkPath}" datatag="${megaMenuItem.linkType}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkTextI18n}" title="${megaMenuItem.linkTooltipI18n ? megaMenuItem.linkTooltipI18n : megaMenuItem.linkTextI18n}">${megaMenuItem.linkTextI18n}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-3 d-flex align-items-start justify-content-end">
+          <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#"
+               data-root-path="${data.searchRootPath}" data-results-path="${data.searchResultsPath}"><i
+              class="icon-Search"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Avatar"></i><span>${data.loginTextI18n}</span></a>
+            <a class="tp-pw-header__secondary-navigation__link" href="#" datatag="internal" ctype="header" ctypeone="country selector"><i class="icon-Globe"></i><span>EN</span><span><i
+              class="icon-Chevron_Down"></i></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tp-pw-search-box js-tp-pw-search-box">
+      <div class="tp-pw-search-box__input-wrapper">
+        <div class="tp-container">
+          <i class="icon-Search tp-pw-search-box__icon"></i>
+          <input class="tp-pw-search-box__input js-tp-pw-search-box__input" type="iput" name="search_inp"
+                 id="f_search_inp" placeholder="${'Search' @ i18n}">
+          <a class="tp-pw-search-box__close-search-box js-tp-pw-search-box__close-search-box" href="#"><i
+            class="icon-Close"></i></a>
+          <div class="tp-pw-search-box__pointer js-tp-pw-search-box__pointer"
+               data-point-to="js-tp-pw-header__search-box-toggle"></div>
+        </div>
+      </div>
+    </div>
+        <!-- This is the example of how the search panel values can be retrieved from the model 
+        <p> Placeholder Text : ${data.searchPlaceholderText}</p>
+        <ul data-sly-list.tile="${data.searchPanelTiles}">
+        <li>Title : ${tile.title}</li>
+            <li>Description : ${tile.description}</li>
+            <li>Image : ${tile.image}</li>
+            <li>Image Alt Text : ${tile.imageAltText}</li>
+            <li>Link Path : ${tile.linkPath}</li>
+            <li>Target Blank : ${tile.targetBlank}</li>
+        </ul>-->
+    <div class="tp-pw-header__hero-image" data-sly-test="${data.enableHeroImage}">
+      <sly data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
+    </div>
+  </header><!-- end c-header -->
+</sly>

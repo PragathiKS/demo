@@ -1,0 +1,31 @@
+<sly data-sly-template.imageTextButton_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.title || data.imagePath}" class="pw-image-text-button pw-theme--${data.pwTheme}" 
+       data-locator="image-text-button" data-module="ImageTextButton"
+       data-imageButton-contentName="${data.subtitle}"
+       data-imageButton-title="${data.title}"
+       data-imageButton-linkName="${data.ctaLinkTextI18n @ i18n}"
+       data-imageButton-linkType="${data.linkType}">
+    <div class="row">
+      <div class="col-md-12 col-lg-7">
+        <div data-sly-test="${data.subtitle}" class="pw-image-text-button__subtitle">
+          <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+               data-sly-call="${subheading.subheading_template @ headingText=data.subtitle}"/>
+        </div>
+        <div data-sly-test="${data.title}" class="pw-image-text-button__title">
+          <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+               data-sly-call="${heading.heading_h4_template @ headingText=data.title, variant='regular'}"/>
+        </div>
+        <p class="pw-image-text-button__description">${data.description @ i18n}</p>
+        <div class="pw-image-text-button__link" data-sly-test="${data.ctaLinkURL}">
+          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+               data-sly-call="${pwButton.button_template @ btnPath=data.ctaLinkURL, btnText=data.ctaLinkTextI18n, btnTooltip=data.ctaLinkTextI18n, btnTarget=data.openLinkInNewWindow, variant=data.pwButtonTheme, customClasses='imageTextButton'}"/>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-5">
+        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className='pw-image-text-button__image'}" />
+      </div>
+    </div>
+  </div>
+  <sly data-sly-test="${!data.title && !data.imagePath}" data-sly-call="${templates.placeholder @ isEmpty = (!data.title && !data.imagePath)}"></sly>
+</sly>

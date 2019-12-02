@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:conf="/conf/Public Web"
+        cq:lastModified="{Date}2019-05-08T16:16:59.111Z"
+        cq:lastModifiedBy="threeshare-martin"
+        cq:lastReplicated="{Date}2019-05-17T03:10:13.774Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:tags="[qa-tags:CarbonatedSoftDrinks,qa-tags:ReadyToDrink,qa-tags:Beverages]"
+        cq:template="/apps/publicweb/templates/productpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Pak® Высокотемпературный пастеризатор непрямого нагрева для вязких продуктов (трубчатый, вертикальный)"
+        jcr:uuid="7da60c4f-ebea-4eeb-8a14-92d7715261a0"
+        sling:resourceType="publicweb/components/structure/pages/productpage"
+        ctaTexti18nKey="Learn More"
+        productImageAltI18n="product alt text"
+        productImagePath="/content/dam/publicweb/qa/Indirect%20UHT%20unit%20OFF%20with%20coiled%20heat%20exchanger.jpg"
+        title="Tetra Pak® Высокотемпературный пастеризатор непрямого нагрева для вязких продуктов (трубчатый, вертикальный)"
+        vanityDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ipsum tortor, commodo quis turpis id, sollicitudin vulputate justo. Mauris magna magna, laoreet a rutrum ac, eleifend consectetur magna. Etiam dignissim rhoncus magna pretium cursus."/>
+</jcr:root>

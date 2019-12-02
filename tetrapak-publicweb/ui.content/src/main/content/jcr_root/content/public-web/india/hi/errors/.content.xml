@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-05-23T15:22:23.869Z"
+        cq:lastModifiedBy="translation-job-service"
+        cq:lastTranslationUpdate="{Date}2019-05-23T15:22:23.869Z"
+        cq:template="/apps/publicweb/templates/landingpage"
+        cq:translationSourcePath="/content/tetrapak/public-web/india/en/errors"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Errors"
+        jcr:uuid="cc58b5d1-5d1d-439f-81a6-52815f081d37"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"/>
+    <_x0035_00/>
+    <_x0034_04/>
+</jcr:root>

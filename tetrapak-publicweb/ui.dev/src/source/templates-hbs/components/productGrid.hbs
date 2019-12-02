@@ -1,0 +1,12 @@
+<div class="pw-product-card-grid">
+  {{#each this}}
+    <div class="pw-product-card-grid__item">
+      <div class="pw-wide-frame">
+        <img class="pw-product-card-grid__item__image" src="{{productImage}}" alt="{{imageAltText}}">
+      </div>
+      <h4 class="pw-product-card-grid__item__title">{{title}}</h4>
+      <p class="pw-product-card-grid__item__description">{{description}}</p>
+      <a class="pw-product-card-grid__item__link" href="{{linkPath}}" title="{{linkText}}">{{linkText}} <i class="icon-Circle_Arrow_Right"></i></a>
+    </div>
+  {{/each}}
+</div>

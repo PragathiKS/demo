@@ -1,0 +1,30 @@
+.article-container {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-xxxl);
+    @include padding($padding-l $padding-md);
+    $self: &;
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+    }
+
+    &__title {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+
+    }
+    &__wrapper {
+        @media #{$tablet} {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: convert-to-rem(20px);
+        }
+
+        @media #{$tablet-large} {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

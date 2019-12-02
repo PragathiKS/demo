@@ -1,0 +1,14 @@
+<sly data-sly-template.recommendedReading_template="${@ data, flag}"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <sly data-sly-test="${data.textI18n}">
+        <sly data-sly-test.rrtext="${'Recommended Reading: ' @ i18n}" />
+        <sly data-sly-test.linkText="${'{0}{1}' @ format=[rrtext, data.textI18n]}" />
+        <div class="pw_recommendedReading my-3">
+          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+           data-sly-call="${pwButton.button_template @ btnPath=data.link, btnText=linkText, btnTooltip=linkText, variant='link'}" />
+        </div>
+    	</div>
+    </sly>
+    <sly data-sly-test="${!data.textI18n}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.textI18n}"></sly>
+</sly>

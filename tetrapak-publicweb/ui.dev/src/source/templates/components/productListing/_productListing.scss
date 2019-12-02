@@ -1,0 +1,111 @@
+.pw-product-listing {
+    @include margin-bottom($margin-xxxl);
+
+    &__title {
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include margin-bottom($margin-xl);
+        }
+    }
+
+    &__navigation {
+        @include margin-bottom($margin-md);
+        position: relative;
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+
+        &__dropdown {
+            @include font-size($font-baseline);
+            @include padding($padding-sm $padding-md);
+            width: 100%;
+        }
+
+        &__icon {
+            @include right(12px);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    }
+}
+
+.pw-product-card-grid {
+
+    @media #{$tablet} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: convert-to-rem(24px);
+
+    }
+
+    @media #{$tablet-large} {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__item {
+        &__title,
+        &__description,
+        &__link,
+        .pw-wide-frame {
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+
+        &__link {
+            color: $color-congress-blue;
+            &:hover {
+                color: $color-tundora;
+            }
+            @media #{$desktop} {
+                @include margin-bottom(0);
+            }
+        }
+
+    }
+}
+
+.tpatom-button-group {
+    .tpatom-button--group-item {
+        background-color: $color-wild-sand;
+        border-radius: 0;
+        border-bottom: 1px solid $color-mercury;
+        border-right: 1px solid $color-mercury;
+        border-top: 1px solid $color-mercury;
+
+        &:first-child {
+            border-radius: convert-to-rem($border-radius) 0 0 convert-to-rem($border-radius);
+            border-left: 1px solid $color-mercury;
+        }
+
+        &:last-child {
+            border-radius: 0 convert-to-rem($border-radius) convert-to-rem($border-radius) 0;
+        }
+
+        &:hover,
+        &:focus,
+        &--active {
+            @include border-radius($border-radius);
+            color: $color-white;
+            background-color: $color-congress-blue;
+        }
+    }
+}
+
+.pw-wide-frame {
+    height: 0;
+    overflow: hidden;
+    padding-top: calc(9 / 16 * 100%);
+    position: relative;
+
+    img {
+        left: 0;
+        min-height: 100%;
+        min-width: 100%;
+        position: absolute;
+        top: 0;
+    }
+}

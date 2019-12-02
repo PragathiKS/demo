@@ -1,0 +1,42 @@
+<div class="tp-pagination__container clearfix">
+    {{> atoms/buttons/button/button
+        modifier="pagination"
+        className="tp-pagination__btn float-left"
+        jsClass="js-page-number"
+        disabled=prevDisabled
+        data-page-number=prevPage
+        iconClass="icon-Circle_Arrow_Left"
+        hideText=true
+        text="cuhu.pagination.prev"}}
+    {{#each pages}}
+        {{#if isPage}}
+            {{#if isSelected}}
+                {{> atoms/buttons/button/button
+                    modifier="pagination"
+                    className="tp-pagination__btn float-left active"
+                    jsClass="js-page-number"
+                    data-page-number=pageNumber
+                    text=pageNumber}}
+            {{else}}
+                {{> atoms/buttons/button/button
+                    modifier="pagination"
+                    className="tp-pagination__btn float-left"
+                    jsClass="js-page-number"
+                    data-page-number=pageNumber
+                    text=pageNumber}}
+            {{/if}}
+        {{/if}}
+        {{#if isEllipsis}}
+            <span class="tp-pagination__ellipsis float-left">&hellip;</span>
+        {{/if}}
+    {{/each}}
+    {{> atoms/buttons/button/button
+        modifier="pagination"
+        className="tp-pagination__btn float-left"
+        jsClass="js-page-number"
+        disabled=nextDisabled
+        data-page-number=nextPage
+        iconClass="icon-Circle_Arrow_Right"
+        hideText=true
+        text="cuhu.pagination.next"}}
+</div>

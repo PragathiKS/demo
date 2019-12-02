@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:conf="/conf/Public Web"
+        cq:lastModified="{Date}2019-05-17T03:03:21.012Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-05-17T03:10:13.774Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:tags="[tetrapak:application/beverages]"
+        cq:template="/apps/publicweb/templates/productpage"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Soda"
+        jcr:uuid="a4d121b9-5d70-453b-8c37-8e7ab542e0c5"
+        sling:resourceType="publicweb/components/structure/pages/productpage"
+        ctaTexti18nKey="Learn more about the soda process"
+        productImageAltI18n="soda alt text"
+        productImagePath="/content/dam/publicweb/qa/carbonated_soft_drinks.jpg"
+        title="Soda"
+        vanityDescription="Given the high ingredients costs and low margins on end products, the main challenge in carbonated soft drinks is to get the blend just right. You need to control the exact amount of pre-mix and sugar, and blend it accurately. Tetra Pak is home to unrivalled expertise and patented solutions for sugar handling, dissolving, blending and carbonization."/>
+</jcr:root>

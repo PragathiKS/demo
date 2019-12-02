@@ -1,0 +1,54 @@
+.tp-pw-footer {
+    min-height: 260px;
+    background-color: $color-congress-blue;
+
+    &__container {
+        @include padding(60px $padding-sm);
+
+        @media #{$desktop} {
+            @include padding(60px $padding-l);
+        }
+    }
+
+    &__link {
+        color: $color-white;
+
+        &:hover,
+        &:active {
+            color: $color-mercury;
+            text-decoration: none;
+        }
+    }
+
+    &__navigation-list {
+        @include margin-top($spacing-big);
+
+        @media #{$desktop} {
+            display: flex;
+            margin-top: 0;
+        }
+
+        &__item {
+            @include margin-right($margin-l);
+            @include margin-bottom($margin-md);
+            display: block;
+
+        }
+    }
+
+    &__social-media-items {
+        &__link {
+            @include font-size($font-l);
+            @include margin-right($margin-l);
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .tp_textBtn {
+        @include margin-top(70px);
+    }
+
+}
