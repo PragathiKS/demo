@@ -1,13 +1,17 @@
 // Vendor imports
+import 'focus-visible';
 import 'core-js/features/promise';
 import 'core-js/features/array/includes';
 import $ from 'jquery';
 // Local imports
-import bundleImport from '../bundle/imports';
+import bundleImport, { allImports } from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';
 import domReady from '../utils/domReady';
 import './corescss';
+import routing from '../utils/routing';
+import { logger } from '../utils/logger';
+import { INIT_FAILED } from '../utils/constants';
 
 $(function () {
   const $componentReference = $('[data-module]');
@@ -31,4 +35,9 @@ $(function () {
     });
   });
   domReady.init();
+  Promise.all(allImports)
+    .then(routing.init)
+    .catch(() => {
+      logger.log(INIT_FAILED);
+    });
 });

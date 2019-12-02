@@ -1,0 +1,12 @@
+<button type="button"
+    class="tpmol-accordian-title {{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}{{#if className}} {{className}}{{/if}}"
+    {{#eachData this}}
+        {{@key}}="{{this}}"
+    {{/eachData}}>
+        {{#if iconClass}}
+            <i class="icon {{iconClass}}"></i>
+        {{/if}}
+        <span class="tpmol-accordian-title__text{{#if baseClass}} {{baseClass}}__text{{/if}} {{#if jsClass}} {{jsClass}}__text{{/if}}">{{i18n key=text}}</span>
+        <span class="tpmol-accordian-title__right-section float-md-right d-none d-md-block">{{rightContent}}</span>
+</button>
+

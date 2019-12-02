@@ -1,32 +1,21 @@
 package com.tetrapak.customerhub.core.beans;
 
+/**
+ * Get Started Bean class
+ */
 public class GetStartedBean {
-    private String imagePath;
-
-    private String imageAltI18n;
+    private ImageBean image;
 
     private String titleI18n;
 
     private String descriptionI18n;
 
-    public String getImagePath() {
-
-        return imagePath;
+    public ImageBean getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-
-        this.imagePath = imagePath;
-    }
-
-    public String getImageAltI18n() {
-
-        return imageAltI18n;
-    }
-
-    public void setImageAltI18n(String imageAltI18n) {
-
-        this.imageAltI18n = imageAltI18n;
+    public void setImage(ImageBean image) {
+        this.image = image;
     }
 
     public String getTitleI18n() {

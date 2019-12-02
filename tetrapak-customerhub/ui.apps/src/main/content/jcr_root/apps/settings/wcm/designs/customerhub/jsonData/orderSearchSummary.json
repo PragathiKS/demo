@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "filterStartDate": "YYYY-MM-DD",
+    "filterEndDate": "YYYY-MM-DD",
+    "status": [
+      {
+        "key": "Completed",
+        "desc": "Completed"
+      },
+      {
+        "key": "Confirmed",
+        "desc": "Confirmed"
+      },
+      {
+        "key": "Not Confirmed",
+        "desc": "Not Confirmed"
+      }
+    ],
+    "deliveryAddress": [
+      {
+        "key": "Address 1",
+        "desc": {
+          "name": "Swedish Milk AB 1",
+          "name2": "Extra AB",
+          "city": "41444",
+          "state": "Västra Götaland",
+          "postalCode": "55453",
+          "country": "Sweden"
+        }
+      },
+      {
+        "key": "Address 2",
+        "desc": {
+          "name": "Swedish Milk AB 2",
+          "name2": "Extra AB",
+          "city": "41444",
+          "state": "Västra Götaland",
+          "postalCode": "55453",
+          "country": "Sweden"
+        }
+      }
+    ]
+  }
+}

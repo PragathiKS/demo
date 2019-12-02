@@ -1,0 +1,118 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Tue Apr 02 2019 10:10:30 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:title": "Installed Equipment",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "9e0fb87f-5734-453a-86ec-460d8dd1d2d5",
+		"iconClass": "icon-Install",
+		"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+		"cq:lastReplicatedBy": "sapient-tarun",
+		"jcr:predecessors": [
+			"9403dceb-931d-4bc5-907b-fa8a88802e99"
+		],
+		"jcr:created": "Tue Apr 02 2019 10:10:30 GMT+0530",
+		"cq:lastReplicated": "Fri Mar 22 2019 10:19:07 GMT+0000",
+		"cq:lastModified": "Mon Apr 29 2019 14:26:22 GMT+0530",
+		"jcr:baseVersion": "9403dceb-931d-4bc5-907b-fa8a88802e99",
+		"jcr:isCheckedOut": true,
+		"jcr:uuid": "71d788a7-71d2-4baf-b1ac-6ad746466ee1",
+		"sling:resourceType": "customerhub/components/structure/page",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid_622605362": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid"
+			},
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"tabs": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"componentClasses": "tp-equipment",
+					"imagePath": "/content/dam/customerhub/p1.PNG",
+					"jcr:created": "Wed Apr 24 2019 22:20:41 GMT+0530",
+					"imageAltText": "asset.PNG",
+					"jcr:lastModified": "Fri Apr 26 2019 11:05:38 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/tabs",
+					"tabsList": {
+						"jcr:primaryType": "nt:unstructured"
+					}
+				},
+				"documents": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"documentHeading": "Document for {0} in {1}",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
+					"documentTypeLabel": "Document Type",
+					"documentLabel":"Documents",
+					"noDataMsg": "No documents message",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"lineFilterLabel": "Line/Area",
+					"sling:resourceType": "customerhub/components/content/documents",
+					"siteFilterLabel": "Site",
+					"errorMsg": "Error message incase any other error on the component",
+					"techPubHost":"https://techpubrepositoryhtml.tetrapak.com/"
+				},
+				"maintenancecard": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"maintenanceHeading": "Maintenance Service Events",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
+					"contactsHeading": "Contact",
+					"statusLabel": "Status",
+					"serviceAgreementLabel": "Service agreement",
+                    "plannedDurationLabel": "Planned duration",
+                    "plannedStartLabel": "Planned start",
+                     "plannedFinishedLabel": "Planned finished",
+                     "viewAllText": "View all maintenance service events",
+                     "serviceOrderLabel": "Service order",
+                     "operationShortTextLabel": "Operation short text",
+                     "noDataMsg": "No data found",
+                      "errorMsg":"Error message incase any other error on the component",
+					"viewAllLink": "http:...",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"lineFilterLabel": "Line/Area",
+					"sling:resourceType": "customerhub/components/content/maintenancecard"
+				},
+				"contactcard": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"headingI18n": "Contacts",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",
+					"subHeadingI18n": "Get in touch with right people",
+					"viewContactBtnTextI18n": "View contacts",
+					"imagePath": "/content/dam/customerhub/cow-blue-background.png",
+                    "imageAltTextI18n": "Cow Blue Background",
+                    "viewContactBtnRedirectUrl":"/content/tetrapak/customerhub/global/en/contact",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contactcard"
+				},
+				"contacts": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"siteFilterHeading": "Find contacts on your site",
+					"jcr:created": "Thu May 09 2019 12:40:52 GMT+0530",					
+                    "noContactMsg": "No contacts found",
+                    "errorMsg":"Error message incase any other error on the component",
+					"jcr:lastModified": "Thu May 09 2019 12:57:08 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/contacts"
+				}
+			}
+		}
+	}
+}

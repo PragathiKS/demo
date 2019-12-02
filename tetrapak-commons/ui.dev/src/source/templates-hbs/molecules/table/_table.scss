@@ -1,0 +1,60 @@
+.tpmol-table {
+    &__sort {
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        background: transparent;
+
+        span {
+            @include margin-right(6px);
+        }
+
+        .icon::before {
+            // icon placement
+            @include font-size($font-sm);
+            @include width($font-sm);
+            @include height($font-sm/2);
+            transition: transform 0.3s;
+            vertical-align: middle;
+        }
+
+        &.desc {
+            .icon::before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__row[tabindex] {
+        cursor: pointer;
+        background-color: transparent;
+        transition: background-color $anim-speed-quick $anim-ease;
+
+        @media #{$desktop} {
+            &:hover {
+                background-color: $color-wild-sand;
+            }
+        }
+    }
+
+    &__cell {
+
+        &,
+        &heading {
+            @include padding($padding-sm);
+        }
+
+        @include font-size($font-sm);
+        @include line-height(24px, $font-sm);
+        border-bottom: 1px solid $color-mercury;
+
+        &heading {
+            @include font-size($font-baseline);
+            @include line-height(24px, $font-baseline);
+            border-bottom: 1px solid $color-boulder;
+            font-family: $font-bold;
+            font-weight: normal;
+            position: relative;
+        }
+    }
+}

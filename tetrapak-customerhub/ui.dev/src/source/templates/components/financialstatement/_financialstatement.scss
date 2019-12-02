@@ -1,0 +1,210 @@
+.tp-financial-statement {
+    &__select-box-wrapper {
+        @media #{$desktop} {
+            width: 50%;
+        }
+    }
+
+    &__select-customer-label {
+        @include padding($padding-md 0);
+        font-family: $font-light;
+
+        @media #{$desktop} {
+            @include padding($padding-l 0 $padding-sm);
+        }
+    }
+
+    &__customer-detail {
+        color: $color-tundora;
+        width: 100%;
+
+        @media #{$desktop} {
+            width: 50%;
+        }
+    }
+
+    &__account,
+    &__address-title,
+    &__address-detail {
+        @include padding-top($padding-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+    }
+
+    &__account,
+    &__address-title {
+        font-family: $font-bold;
+    }
+
+    &__filters {
+        margin-bottom: 0;
+    }
+
+    &__status-calendar-container {
+        @include margin-bottom(10px);
+    }
+
+    &__status-container {
+        @include padding(0 0 $padding-md 0);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__status-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__status {
+        @include padding($padding-sm);
+    }
+
+    &__date-range-container {
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            display: inline-block;
+            width: (100% / 3);
+        }
+    }
+
+    &__date-range-wrapper,
+    &__date-range-picker {
+        @include height(40px);
+    }
+
+    &__date-range-wrapper {
+        width: calc(100% - #{convert-to-rem(38px)});
+    }
+
+    &__date-range-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: 1px solid transparent;
+
+        &.has-error {
+            border-color: $color-alert;
+            border-right-color: transparent;
+        }
+    }
+
+    &__date-range-picker {
+        @include width(38px);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &.has-error {
+            color: $color-alert;
+            border-color: $color-alert;
+        }
+    }
+
+    &__date-range-error {
+        @include font-size(12px);
+        @include margin-top($margin-xs);
+        color: $color-alert;
+    }
+
+    &__search-container {
+        @media #{$desktop} {
+            @include display-flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__document-type-container {
+        @include margin(0 0 $margin-md 0);
+        width: 100%;
+        align-self: baseline;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__document-number-container,
+    &__date-range-container {
+        input {
+            @include height(40px);
+        }
+    }
+
+    &__document-number-container {
+        @include margin(0 0 $margin-md 0);
+        align-self: baseline;
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+            width: (100% / 3);
+        }
+    }
+
+    &__document-number {
+        @include padding($font-sm);
+    }
+
+    &__document-number-wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__search-btn-container {
+        @include margin(0 0 $margin-md 0);
+
+        @media #{$desktop} {
+            @include padding(0 $padding-md 0 0);
+        }
+    }
+
+    &__reset-btn-container {
+        @include margin-bottom($margin-md);
+        display: inline-block;
+    }
+
+    &__buttons-container {
+        @media #{$desktop} {
+            display: flex;
+        }
+    }
+
+    &__search-btn-container,
+    &__reset-btn-container {
+        @media #{$desktop} {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            @media #{$desktop} {
+                margin-top: auto;
+            }
+        }
+    }
+
+    &__submit-btn {
+        @media #{$desktop} {
+            width: 100%;
+        }
+    }
+
+    .form-element__icon {
+        @include height(12px);
+        @include width(12px);
+        @include font-size($font-sm);
+        color: $color-boulder;
+        pointer-events: none;
+    }
+
+    .form-element,
+    .form-control {
+        height: 100%;
+    }
+}

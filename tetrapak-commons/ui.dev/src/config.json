@@ -1,4 +1,5 @@
 {
+  "jcrRoot": "app/jcr_root",
   "appFolder": "app",
   "sourceFolder": "source",
   "publishFolder": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs",
@@ -75,17 +76,6 @@
     }
   },
   "copy": {
-    "uxlibdemo": [
-      {
-        "expand": true,
-        "dot": true,
-        "cwd": "<%= config.source %>/clientlib-format",
-        "src": [
-          "apps/settings/wcm/designs/**"
-        ],
-        "dest": "<%= config.app %>/jcr_root/"
-      }
-    ],
     "jsonData": [
       {
         "expand": true,
@@ -113,7 +103,7 @@
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
-      "prod": "production"
+      "prod": "development"
     },
     "entry": {
       "global": "source/scripts/core/core.js"
@@ -157,18 +147,61 @@
     "cssPath": "apps/settings/wcm/designs/commons/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "apps/settings/wcm/designs/commons/clientlibs/[name].publish/css/[name].css"
   },
+  "chunkrename": {
+    "vendor": "apps/settings/wcm/designs/commons/clientlibs/vendor.publish/js/vendor.js",
+    "common": "apps/settings/wcm/designs/commons/clientlibs/common.publish/js/common.js",
+    "default.en": "apps/settings/wcm/designs/commons/clientlibs/default.en.publish/js/default.js"
+  },
   "clientlibs": {
     "vendor": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/js"
+      "categories": [
+        "tp.common.vendor"
+      ],
+      "basePath": "apps/settings/wcm/designs/commons/clientlibs/vendor.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/commons/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
+      ]
     },
     "global": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/global.publish/js"
+      "categories": [
+        "tp.common.global"
+      ],
+      "basePath": "apps/settings/wcm/designs/commons/clientlibs/global.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/commons/clientlibs/global.publish",
+        "apps/settings/wcm/designs/commons/clientlibs/default.en.publish/js",
+        "apps/settings/wcm/designs/commons/clientlibs/common.publish"
+      ]
     },
-    "common": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/common.publish/js"
-    },
-    "default.en": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/default.en.publish/js"
+    "default_en": {
+      "categories": [
+        "tp.common.default.en"
+      ],
+      "basePath": "apps/settings/wcm/designs/commons/clientlibs/default.en.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/commons/clientlibs/default.en.publish/css"
+      ]
     }
   },
   "createComponent": {
@@ -204,7 +237,7 @@
         "shell:lintingDev",
         "shell:webpackDev",
         "shell:removeChunkHash",
-        "copy:uxlibdemo",
+        "shell:clientlibify",
         "copy:jsonData",
         "assemble",
         "aemcomponentcopy:uxlib",

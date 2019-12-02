@@ -1,0 +1,106 @@
+<sly data-sly-template.analyticsscript_template="${@ data, flag}">
+  var digitalData = {
+        pageinfo: {},
+        userinfo: {}
+      },
+      pageName = "";
+
+  function getCookie() {
+    if (arguments.length > 0) {
+      var key = arguments[0];
+      var cookieString = decodeURIComponent(document.cookie);
+      var allCookies = null;
+      allCookies = cookieString.split(';');
+      if (allCookies.length) {
+        var returnValue = '';
+        allCookies.forEach(function (c) {
+          var keyIndexOf = c.indexOf((key + '='));
+          if (keyIndexOf > -1) {
+            returnValue = c.substring((keyIndexOf + (key + '=').length), c.length).trim();
+          }
+        });
+        return returnValue;
+      }
+    }
+    return '';
+  }
+
+  <sly data-sly-test="${data.siteName}">
+    digitalData.pageinfo['siteName'] = "${data.siteName}";
+    pageName += digitalData.pageinfo['siteName'];
+  </sly>
+
+  <sly data-sly-test.hasSiteCountry="${data.siteCountry}">
+    digitalData.pageinfo['siteCountry'] = "${data.siteCountry}";
+    pageName += ":" + digitalData.pageinfo['siteCountry'];
+  </sly>
+  <sly data-sly-test="${!hasSiteCountry}">
+    digitalData.pageinfo['siteCountry'] = '';
+    pageName += ":";
+  </sly>
+
+  digitalData.pageinfo['siteLanguage'] = getCookie("lang-code") || 'en';
+  <sly data-sly-test="${hasSiteCountry}">
+    pageName += "-";
+  </sly>
+  pageName += digitalData.pageinfo['siteLanguage'];
+
+  <sly data-sly-test="${data.channel}">
+    digitalData.pageinfo['channel'] = "${data.channel}";
+    pageName += ":" + digitalData.pageinfo['channel'];
+  </sly>
+
+  <sly data-sly-test="${data.pageType}">
+    digitalData.pageinfo['pageType'] = "${data.pageType}";
+  </sly>
+
+   <sly data-sly-test="${data.subPage}">
+    pageName += ":"+digitalData.pageinfo['pageType'];
+  </sly>
+
+  if(pageName.substring(0, 1) === ":") {
+    pageName = pageName.substring(1);
+  }
+  digitalData.pageinfo['pageName'] = pageName;
+
+  <sly data-sly-test="${data.bpNumber}">
+    digitalData.userinfo['bpNumber'] = "${data.bpNumber}";
+  </sly>
+
+  <sly data-sly-test="${data.userType}">
+    digitalData.userinfo['userType'] = "${data.userType}";
+  </sly>
+
+  <sly data-sly-test="${data.logInStatus}">
+    digitalData.userinfo['logInStatus'] = "${data.logInStatus}";
+  </sly>
+
+  <sly data-sly-test="${data.salesForceId}">
+     digitalData.userinfo['salesForceId'] = "${data.salesForceId}";
+  </sly>
+
+  <sly data-sly-test="${data.visitorId}">
+    digitalData.userinfo['visitorId'] = "${data.visitorId}";
+  </sly>
+
+  <sly data-sly-test="${data.userRoles}">
+    digitalData.userinfo['userRoles'] = "${data.userRoles}";
+  </sly>
+
+  <sly data-sly-test.hasUserCountryCode="${data.userCountryCode}">
+    digitalData.userinfo['userCountryCode'] = "${data.userCountryCode}";
+  </sly>
+  <sly data-sly-test="${!hasUserCountryCode}">
+    digitalData.userinfo['userCountryCode'] = "";
+  </sly>
+
+  digitalData.userinfo['userLanguage'] = getCookie('lang-code') || 'en';
+
+  <sly data-sly-test="${data.errorCode}">
+    digitalData.error = {};
+    digitalData.error['errorcode'] = "${data.errorCode}";
+	<sly data-sly-test="${data.errorMessage}">
+	  digitalData.error['errortype'] = "${data.errorMessage}";
+	</sly>
+  </sly>
+</sly>

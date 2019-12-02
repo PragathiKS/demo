@@ -1,0 +1,181 @@
+.tp-tablist {
+    .tp-container & {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    &__events {
+        padding: 0;
+
+        @media #{$desktop} {
+            @include padding-right($padding-l);
+            padding-left: 0;
+        }
+    }
+
+    &__events-sidesection {
+        @include padding($padding-l);
+        background: $color-wild-sand;
+
+        @media #{$desktop} {
+            border-radius: $border-radius;
+        }
+    }
+
+    &__heading {
+        @include font-size($font-m-xl);
+        @include line-height($padding-xxl, $font-m-xl);
+
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($padding-xxl, $font-xl);
+        }
+    }
+
+    &__media-wrapper {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+
+        }
+    }
+
+    &__event {
+        @include line-height($font-l, $font-baseline);
+        display: block;
+        color: $color-congress-blue;
+        background-color: transparent;
+        border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
+        margin-top: -1px;
+        position: relative;
+        width: 100%;
+        text-align: left;
+
+        div {
+            @include padding($padding-md $margin-xl $padding-md $padding-md);
+
+            @media #{$desktop} {
+                @include padding($padding-md $margin-xl $padding-md $padding-l);
+                @include margin-right(-$margin-l);
+            }
+        }
+
+        &:first-of-type {
+            @include margin-top($margin-md);
+        }
+
+        &:last-of-type.collapsed {
+            @media #{$mobile} {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+
+        .icon-Chevron_Down {
+            @include right($margin-md);
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            @include font-size($font-sm);
+            color: $color-congress-blue;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transition: transform $anim-speed-quick $anim-ease;
+
+            @media #{$desktop} {
+                right: 0;
+            }
+
+            &::before {
+                vertical-align: top;
+
+                @media #{$desktop} {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        &.active {
+            z-index: $zindex-p;
+
+            @media #{$desktop} {
+                border-color: $color-white;
+            }
+
+            div {
+                @media #{$desktop} {
+                    color: $color-tundora;
+                    background: $color-wild-sand;
+                }
+            }
+        }
+
+        &.m-active {
+            @media #{$mobile} {
+                z-index: $zindex-p;
+                border-color: $color-wild-sand;
+            }
+        }
+
+        &.collapsed {
+            @media #{$mobile} {
+                border-color: $color-mercury;
+            }
+        }
+
+        &:not(.collapsed) {
+            @media #{$mobile} {
+                color: $color-tundora;
+                background: $color-wild-sand;
+            }
+
+            .icon-Chevron_Down {
+                color: $color-tundora;
+
+                @media #{$mobile} {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    &__event-detail-wrapper {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+    }
+
+    &__event-detail-title {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+
+        }
+    }
+
+    &__event-detail-description p {
+        @include font-size($font-baseline);
+        @include line-height($font-m-xl, $font-normal);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__event-detail-description-link {
+        @include margin-top($margin-md);
+
+        @media #{$desktop} {
+            @include margin-top($margin-l);
+        }
+    }
+
+    video {
+        width: 100%;
+    }
+}

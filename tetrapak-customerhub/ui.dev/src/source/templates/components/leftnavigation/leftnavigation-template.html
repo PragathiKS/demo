@@ -1,0 +1,27 @@
+<sly data-sly-template.leftnavigation_template="${@ data, flag}">
+   <div class="tp-left-nav" data-module="LeftNavigation">
+    <aside class="tp-left-nav__overlay js-left-nav__overlay d-none d-lg-block" >
+      <nav class="tp-left-nav__container js-left-nav__container custom-scrollbar-vertical">
+        <div class="tp-left-nav__menu-wrapper custom-scrollbar-content">
+          <ul class="tp-left-nav__ullist">
+            <li class="tp-left-nav__main-heading">
+              <span class="tp-left-nav__main-heading-title">${data.navHeading @i18n, locale=data.locale}</span>
+              <sly data-sly-test.closeBtnText="${data.closeBtnText @i18n, locale=data.locale}" />
+              <sly data-sly-use.closeButton="/apps/commons/components/atoms/closeButton/closeButton-template.html"
+                data-sly-call="${closeButton.closeButton_template @closeBtnText=closeBtnText,btnClasses='tp-left-nav__close-btn d-lg-none d-xl-none js-close-btn'}">
+              </sly>
+            </li>
+            <sly data-sly-list.child=${data.leftNavItems}>
+                <sly data-sly-test.hasSubmenu="${child.subMenuList}" data-sly-use.nestedListItem="/apps/commons/components/molecules/nestedListItem/nestedListItem-template.html"
+                      data-sly-call="${nestedListItem.nestedListItem_template @data=child, locale=data.locale}">
+                </sly>
+                <sly data-sly-test="${!hasSubmenu}" data-sly-use.listItem="/apps/commons/components/molecules/listItem/listItem-template.html"
+                      data-sly-call="${listItem.listItem_template @data=child, locale=data.locale, ctype='side menu'}">
+                </sly>
+            </sly>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+  </div>
+</sly>

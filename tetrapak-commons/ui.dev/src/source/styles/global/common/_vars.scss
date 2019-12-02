@@ -1,15 +1,24 @@
 @import "media";
+$font-xxs: 8px;
 $font-xs: 10px;
 $font-sm: 12px;
+$font-m-xs: $font-sm;
 $font-baseline: 14px;
+$font-m-sm: $font-baseline;
 $font-normal: 16px;
+$font-m-baseline: $font-normal;
 $font-md: 18px;
+$font-m-md: 20px;
 $font-l: 24px;
+$font-m-l: $font-l;
 $font-xl: 32px;
+$font-m-xl: 28px;
 $font-xxl: 42px;
+$font-m-xxl: $font-xl;
 $font-xxxl: 60px;
+$font-m-xxxl: 36px;
 // Body width
-$body-max-width: 1366px;
+$body-max-width: 1440px;
 // Variables for z-index
 $zindex-default: 0;
 // Maximum 3 levels allowed in z-index
@@ -21,9 +30,11 @@ $zindex-hide: -1;
 //z-index header to be greater than others except modal
 $zindex-header: 100;
 $zindex-nav: $zindex-header+1;
+$zindex-top: 9999;
 // Patternlab variables
 $spacing-big: 24px;
 $spacing-small: 16px;
+$spacing-baseline: 14px;
 $spacing-big-half: 12px;
 $spacing-small-half: 8px;
 /* Border Radius */
@@ -52,28 +63,42 @@ $color-border: $color-boulder;
  * Animation Duration
  */
 
-$anim-speed-quick: 0.2s;
+$anim-speed-quickest: 0.1s;
+$anim-speed-quick: 250ms;
+$anim-speed-normal: 0.3s;
 /**
   * Animation Easing
   */
 
 $anim-ease: ease;
+$anim-ease-out: cubic-bezier(.40, 0, .20, 1);
+$anim-linear: linear;
+
 // Padding variables
 $padding-zero:0px;
+$padding-xxs: 2px;
 $padding-xs: 4px;
 $padding-sm: 8px;
 $padding-md: 16px;
 $padding-l: 24px;
 $padding-xl: 32px;
 $padding-xxl: 40px;
+$padding-xxxl: 48px;
 // Margin variables
+$margin-xss: 2px;
 $margin-xs: 4px;
 $margin-sm: 8px;
 $margin-md: 16px;
 $margin-l: 24px;
 $margin-xl: 32px;
 $margin-xxl: 40px;
+$margin-xxxl: 48px;
 // opacity varriables
 $opacity-mid:0.5;
+$opacity-disabled: 0.4;
 //icon boxing
 $min-accessible-dimension:46px;
+// letter spacing
+$letter-spacing-sm: 1px;
+// word spacing
+$word-spacing-sm: 1px;

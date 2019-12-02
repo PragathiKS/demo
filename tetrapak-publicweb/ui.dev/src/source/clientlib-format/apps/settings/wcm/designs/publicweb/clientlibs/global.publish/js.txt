@@ -1,3 +1,0 @@
-js/global.js
-../default.en.publish/js/default.js
-../common.publish/js/common.js

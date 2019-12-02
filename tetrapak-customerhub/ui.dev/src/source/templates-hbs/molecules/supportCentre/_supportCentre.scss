@@ -1,0 +1,31 @@
+.tpmol-support-center {
+    &__icon {
+        @include margin-right($margin-l);
+        @include padding(12px 20px $padding-md);
+        @include font-size($font-l);
+        display: inline-block;
+        color: $color-congress-blue;
+        background-color: $color-wild-sand;
+        border-radius: 50%;
+    }
+
+    &__info {
+        @include font-size($font-sm);
+        @include margin-top($padding-md);
+        @include line-height(20px, $font-sm);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+
+        &-heading {
+            @include font-size($font-baseline);
+            @include line-height(24px, $font-baseline);
+            font-family: $font-bold;
+        }
+
+        &-contact {
+            color: $color-tundora;
+        }
+    }
+}

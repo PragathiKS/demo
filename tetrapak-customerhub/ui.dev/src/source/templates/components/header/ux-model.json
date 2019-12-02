@@ -1,0 +1,40 @@
+{
+  "logoUrl": "https://mypages-qa.tetrapak.com/content/dam/tetrapak/customerhub/english/error/images/TetraPakLogo.png",
+  "logoTextI18n": "cuhu.logotext.text",
+  "getUserInfoI18n": "Charlie Svensson",
+  "rightNavDisplay": true,
+  "mLogoLink": "https://www.google.com/",
+  "dLogoLink": "https://www.publicissapient.com/",
+  "headerNavLinks": [
+    {
+      "href": "https://www.google.com/",
+      "name": "Solutions",
+      "targetNew": false,
+      "titleI18n": "cuhu.HeaderNavLink.title"
+    },
+    {
+      "href": "https://www.google.com/",
+      "name": "Innovation",
+      "targetNew": true,
+      "titleI18n": "cuhu.HeaderNavLink.title"
+    },
+    {
+      "href": "https://www.google.com/",
+      "name": "Sustainability",
+      "targetNew": true,
+      "titleI18n": "cuhu.HeaderNavLink.title"
+    },
+    {
+      "href": "https://www.google.com/",
+      "name": "Careers",
+      "targetNew": true,
+      "titleI18n": "cuhu.HeaderNavLink.title"
+    },
+    {
+      "href": "https://www.google.com/",
+      "name": "About us",
+      "targetNew": true,
+      "titleI18n": "cuhu.HeaderNavLink.title"
+    }
+  ]
+}

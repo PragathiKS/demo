@@ -1,0 +1,19 @@
+.tp-order-detail-packaging {
+    &__info-modal {
+        &-body {
+            @include padding(0 $padding-l $padding-l);
+        }
+
+        &-desc {
+            font-family: $font-bold;
+        }
+    }
+
+    .tpmol-modal-header {
+        @include padding($padding-md $padding-l)
+    }
+
+    .tp-modal-content {
+        border-radius: 0;
+    }
+}

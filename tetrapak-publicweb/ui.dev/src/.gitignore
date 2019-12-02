@@ -1,7 +1,0 @@
-app
-node_modules
-coverage
-TESTS-PhantomJS*
-package-lock.json
-sass-lint-report.html
-eslint-report.html

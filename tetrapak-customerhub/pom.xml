@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>tetrapak</groupId>
+    <groupId>tetrapak-customerhub</groupId>
     <artifactId>tetrapak-customerhub</artifactId>
     <packaging>pom</packaging>
     <version>${buildversion}</version>
@@ -11,12 +11,9 @@
 
     <modules>
 		<module>core</module>
-		<module>integration</module>
-        <module>ui.apps</module>
 		<module>ui.dev</module>
+        <module>ui.apps</module>		
         <module>ui.content</module>
-        <module>it.tests</module>
-        <module>it.launcher</module>
 		<module>complete</module>
     </modules>
 
@@ -35,6 +32,16 @@
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.coverage.exclusions>
+            **/beans/**,
+            **/constants/**,
+            **/exceptions/**,
+            **/utils/**,
+            **/SAMLResponsePostProcessor.java,
+            **/AzureTableStorageServiceImpl.java,
+            **/FinancialResultsPDFServiceImpl.java,
+            **/FinancialResultsApiServiceImpl.java
+        </sonar.coverage.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
 
@@ -150,13 +157,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.14.1</version>
                 </plugin>
                 <!-- Maven Failsafe Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.14.1</version>
                 </plugin>
                 <!-- Maven Deploy Plugin -->
                 <plugin>
@@ -323,7 +330,6 @@
                         <destFile>${sonar.jacoco.reportPath}</destFile>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
@@ -374,6 +380,25 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
+            <build>
+            <pluginManagement>
+            <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>npm</executable>
+                    <workingDirectory>src/</workingDirectory>
+                    <arguments>
+                        <argument>run</argument>
+                        <argument>buildDev</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            </plugins>
+            </pluginManagement>
+            </build>
         </profile>
 
         <!-- Development profile: install only the bundle -->
@@ -420,6 +445,19 @@
                 <pluginManagement>
                     <plugins>
                         <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
                             <executions>
@@ -460,6 +498,19 @@
                 <pluginManagement>
                     <plugins>
                         <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
                             <executions>
@@ -491,6 +542,43 @@
             </build>
         </profile>
 
+        <profile>
+            <id>minify</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.jackrabbit</groupId>
+                            <artifactId>filevault-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>create-package</id>
+                                    <goals>
+                                        <goal>package</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>                        
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
     </profiles>
 
 
@@ -534,7 +622,7 @@
             <dependency>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>uber-jar</artifactId>
-                <version>6.3.0</version>
+                <version>6.4.3</version>
                 <classifier>apis</classifier>
                 <scope>provided</scope>
             </dependency>
@@ -592,10 +680,11 @@
                 <version>1.7.25</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.23.4</version>
+                <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -605,16 +694,32 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
-                <version>2.3.4</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>uk.org.lidalia</groupId>
                 <artifactId>slf4j-test</artifactId>
                 <version>1.0.1</version>
                 <scope>test</scope>
+            </dependency>
+			<dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>test</scope>
+			</dependency>
+            <dependency>
+                <groupId>io.wcm</groupId>
+                <artifactId>io.wcm.testing.aem-mock.junit4</artifactId>
+                <version>2.4.6</version>
+                <scope>test</scope>
+            </dependency>			
+            <dependency>
+				<groupId>javax.json</groupId>
+				<artifactId>javax.json-api</artifactId>
+				<version>1.1.4</version>
+			</dependency>
+			<dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,205 @@
+%default-btn {
+    @include font-size($font-baseline);
+    @include padding(13px 12px);
+    @include letter-spacing($letter-spacing-sm);
+    font-family: $font-light;
+    line-height: 1;
+
+    .icon {
+        @include font-size($font-baseline);
+        @include line-height(12px, $font-baseline);
+        display: inline-block;
+        vertical-align: top;
+
+        &::before {
+            @include font-size(12px);
+            @include height(12px);
+            @include margin-top(2px);
+            display: inline-block;
+        }
+    }
+
+    span {
+        @include margin-right($margin-xs);
+        line-height: 1;
+        vertical-align: top;
+        display: inline-block;
+
+        &.sly-text {
+            margin-right: 0;
+        }
+    }
+}
+
+%btn-colors {
+    background-color: $color-congress-blue;
+    color: $color-white;
+}
+
+%btn-secondary-colors {
+    background-color: $color-wild-sand;
+    color: $color-congress-blue;
+}
+
+%btn-colors-hover {
+    background-color: $color-jordy-blue;
+    color: $color-congress-blue;
+}
+
+%btn-secondary-colors-hover {
+    background-color: $color-mercury;
+    color: $color-congress-blue;
+}
+
+%hiddentext-btn {
+    @include width($min-accessible-dimension);
+    @include height($min-accessible-dimension);
+    color: $color-text;
+}
+
+.tpatom-btn,
+.tpatom-link {
+    cursor: pointer;
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: $opacity-disabled;
+    }
+
+    &--primary {
+        @extend %default-btn;
+        border-radius: $border-radius;
+        transition: background-color $anim-speed-quick ease;
+
+        &,
+        &[disabled]:hover {
+            @extend %btn-colors;
+        }
+
+        &:hover {
+            @extend %btn-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-colors;
+            }
+        }
+    }
+
+    &--secondary {
+        @extend %default-btn;
+        border-radius: $border-radius;
+        transition: background-color $anim-speed-quick ease;
+
+        &,
+        &[disabled]:hover {
+            @extend %btn-secondary-colors;
+        }
+
+        &:hover {
+            @extend %btn-secondary-colors-hover;
+        }
+
+        .is-touch & {
+            &:hover {
+                @extend %btn-secondary-colors;
+            }
+        }
+    }
+
+    &--transparent,
+    &--datepicker {
+        @extend %default-btn;
+        background: none;
+        border: 0;
+        padding: 0;
+        color: $color-text-link;
+    }
+
+    &--datepicker {
+        @include padding(13px 12px);
+        @include font-size(12px);
+        color: $color-text;
+        border: 1px solid $color-boulder;
+        line-height: 1;
+        border-radius: $border-radius;
+
+        .icon {
+            &::before {
+                margin: 0;
+            }
+        }
+    }
+
+    &--close {
+        @extend %hiddentext-btn;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @media #{$desktop} {
+            @include top($spacing-small-half);
+            @include right($spacing-small-half);
+        }
+
+        .icon {
+            @include font-size($font-normal);
+            @include width($spacing-small);
+            @include height($spacing-small);
+        }
+    }
+
+    &--settings {
+        @extend %hiddentext-btn;
+
+        .icon {
+            @include font-size($font-baseline);
+            @include width($spacing-baseline);
+            @include height($spacing-baseline);
+        }
+    }
+
+    &--pagination {
+        @include padding(0 4px);
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
+        @include border-radius($border-radius);
+        @include min-width(24px);
+        color: $color-congress-blue;
+        transition: background-color $anim-speed-quick ease;
+
+        &:hover:not([disabled]) {
+            color: $color-royal-blue;
+            font-weight: bold;
+        }
+
+        &.active {
+            background-color: $color-congress-blue;
+            color: $color-white;
+        }
+    }
+
+    &--calendar {
+        @include width($spacing-big);
+        @include height($spacing-big);
+        position: relative;
+        border-radius: 50%;
+        background-color: $color-tundora;
+        color: $color-white;
+
+        .icon {
+            @include font-size($font-sm);
+            @include height(15px);
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+}

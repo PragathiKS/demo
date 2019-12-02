@@ -1,0 +1,45 @@
+.tpmol-order-delivery-summary {
+    border-bottom: 1px solid $color-mercury;
+
+    @media #{$desktop} {
+        @include padding-bottom($padding-l);
+
+    }
+
+    &__heading {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+
+    }
+
+    &__delivery-detail {
+        @include line-height($font-l, $font-baseline);
+        @include padding-bottom($padding-md);
+
+        @media #{$desktop} {
+            @include padding-bottom($font-sm);
+        }
+
+        &-label {
+            font-family: $font-bold;
+        }
+
+        &-text {
+            @media #{$desktop} {
+                @include margin-right($margin-xxxl + $margin-xxxl);
+            }
+        }
+    }
+
+    &__address {
+        @include line-height($font-l, $font-baseline);
+        @include padding-bottom($padding-md);
+
+        &-label {
+            font-family: $font-bold;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.tp-text-video {
+    &__heading {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($font-xxl, $font-xl);
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__description {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__link {
+        color: $color-congress-blue;
+
+        .tpatom-link {
+            @include line-height($font-l, $font-baseline);
+        }
+    }
+
+    video {
+        width: 100%;
+    }
+}

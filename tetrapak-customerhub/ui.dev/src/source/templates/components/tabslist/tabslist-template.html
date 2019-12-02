@@ -1,0 +1,32 @@
+<sly data-sly-template.tabslist_template="${@ data, flag}">
+    <sly data-sly-test.parentHeading="${data.heading}" />
+    <div class="tp-card tp-tablist js-tablist clearfix row" data-module="TabsList">
+      <input type="hidden" id="tabComponentId" name="tabComponentId" value="${data.componentId}" />
+      <h2 data-sly-test="${parentHeading}" class="tp-tablist__heading d-lg-none js-tablist__heading"> ${parentHeading}</h2>
+      <div class="tp-tablist__events accordion col-lg-5">
+        <h2 data-sly-test="${parentHeading}" class="tp-tablist__heading d-none d-lg-block"> ${parentHeading}</h2>
+        <sly data-sly-list.tab="${data.tabs}">
+          <sly data-sly-test="${tab.tabTitleI18n}">
+            <button type="button" class="tp-tablist__event js-tablist__event${tabList.index == 0 ? ' active m-active' : ' collapsed'}" data-toggle="collapse" data-target="#tab_${data.componentId}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+                <div class="tp-tablist__event-title semi-bold">${tab.tabTitleI18n @i18n,locale=data.locale}</div>
+                <i class="icon icon-Chevron_Down"></i>
+            </button>
+            <div class="tp-tablist__event-detail-wrapper d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_${data.componentId}_${tabList.index}">
+                <div class="tp-tablist__event-detail js-video-props" data-link-parent-title="${tab.tabTitleI18n @i18n,locale=data.locale}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
+                    <sly data-sly-use.genericmedia="/apps/commons/components/molecules/genericmedia/genericmedia-template.html"
+                        data-sly-call="${genericmedia.genericmedia_template @data=tab, type=tab.type, className='tp-tablist__media-wrapper'}" />
+                    <h3 class="tp-tablist__event-detail-title js-tablist__event-detail-title">${tab.mediaTitleI18n @ i18n}</h3>
+                    <div class="tp-tablist__event-detail-description">${tab.mediaDescriptionI18n @ context='html'}</div>
+                    <sly data-sly-test.variant="${tab.linkType == 'button' ? 'primary' : 'transparent'}">
+                      <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
+                            data-sly-call="${btnLink.button_template @btnPath=tab.linkURL, btnText=tab.linkTextI18n ,btnTarget=tab.isExternal, variant=variant, customClasses='tp-tablist__event-detail-description-link js-tablist__event-detail-description-link'}" />
+                    </sly>
+                </div>
+            </div>
+          </sly>
+        </sly>
+      </div>
+      <div class="tp-tablist__events-sidesection js-tablist__events-sidesection col-lg-7 d-none d-lg-block" aria-live="polite">
+      </div>
+    </div>
+</sly>

@@ -1,0 +1,11 @@
+{
+  "siteName": "customerhub",
+  "pageType": "dashboard",
+  "channel": "orderdetail",
+  "logInStatus": "logged-in",
+  "salesForceId": "12ffsf343243345",
+  "userRoles": "sales manager",
+  "errorcode": "404",
+  "errortype": "page not found",
+  "subPage": false
+}

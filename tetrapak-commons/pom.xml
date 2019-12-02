@@ -9,15 +9,11 @@
     <version>${buildversion}</version>
     <description>Tetrapak Commons</description>
 
-    <modules>
+	<modules>
 		<module>core</module>
-		<module>integration</module>
         <module>ui.apps</module>
 		<module>ui.dev</module>
-        <module>ui.content</module>
-        <module>it.tests</module>
-        <module>it.launcher</module>
-		<module>complete</module>		
+		<module>complete</module>
     </modules>
 
     <properties>
@@ -35,11 +31,37 @@
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
-		<buildversion>1.0.0-SNAPSHOT</buildversion>
+		<buildversion>2.0.0-SNAPSHOT</buildversion>
     </properties>
 
     <build>
-        <plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<!--<version>1.1.0</version>-->
+				<configuration>
+				</configuration>
+				<executions>
+				  <!-- enable flattening -->
+				  <execution>
+					<id>flatten</id>
+					<phase>process-resources</phase>
+					<goals>
+					  <goal>flatten</goal>
+					</goals>
+				  </execution>
+				  <!-- ensure proper cleanup -->
+				  <execution>
+					<id>flatten.clean</id>
+					<phase>clean</phase>
+					<goals>
+					  <goal>clean</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
+		
             <!-- Maven Release Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -323,6 +345,11 @@
                         <destFile>${sonar.jacoco.reportPath}</destFile>
                     </configuration>
                 </plugin>
+				<plugin>
+				  <groupId>org.codehaus.mojo</groupId>
+				  <artifactId>flatten-maven-plugin</artifactId>
+				  <version>1.1.0</version>
+				</plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -373,20 +400,30 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
+			<build>
+            <pluginManagement>
+            <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>npm</executable>
+                    <workingDirectory>src/</workingDirectory>
+                    <arguments>
+                        <argument>run</argument>
+                        <argument>buildDev</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            </plugins>
+            </pluginManagement>
+            </build>
         </profile>
 
         <!-- Development profile: install only the bundle -->
         <profile>
-            <id>autoInstallBundle</id>
-            <!-- 
-                To enable this feature for a bundle, the maven-sling-plugin 
-                (without configuration) needs to be included:
-                 
-                <plugin> 
-                    <groupId>org.apache.sling</groupId> 
-                    <artifactId>maven-sling-plugin</artifactId> 
-                 </plugin> 
-            -->
+            <id>autoInstallBundle</id>            
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -418,6 +455,19 @@
             <build>
                 <pluginManagement>
                     <plugins>
+						<plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
                         <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
@@ -458,6 +508,19 @@
             <build>
                 <pluginManagement>
                     <plugins>
+						<plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>buildDev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
                         <plugin>
                             <groupId>org.apache.jackrabbit</groupId>
                             <artifactId>filevault-package-maven-plugin</artifactId>
@@ -482,6 +545,43 @@
                                     <configuration>
                                         <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
                                     </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+		<profile>
+            <id>minify</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.jackrabbit</groupId>
+                            <artifactId>filevault-package-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>create-package</id>
+                                    <goals>
+                                        <goal>package</goal>
+                                    </goals>
                                 </execution>
                             </executions>
                         </plugin>

@@ -1,0 +1,103 @@
+.tpatom-list-item {
+    &.active {
+        background: $color-denim;
+    }
+
+    &:hover {
+        background: $color-tory-blue;
+    }
+
+    &__link {
+        @include padding($padding-md);
+        width: 100%;
+        display: block;
+        position: relative;
+        color: $color-white;
+
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l);
+        }
+
+        &:hover,
+        &:visited {
+            color: $color-white;
+        }
+    }
+
+    &__btn {
+        @include padding($padding-md);
+        color: $color-white;
+        position: relative;
+        width: 100%;
+
+
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l);
+        }
+
+        &[aria-expanded="true"] {
+            .icon-Chevron_Down {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &__icon {
+        @include font-size($padding-md);
+        @include width($spacing-small);
+        @include height($spacing-small);
+        position: absolute;
+        top: 50%;
+        left: $font-normal;
+        transform: translateY(-50%);
+
+        @media #{$desktop} {
+            @include left($spacing-big);
+        }
+
+        &::before {
+            vertical-align: top;
+        }
+
+        .tpmol-list-item__sublist &~.tpatom-list-item__label {
+            @include padding-left(24px);
+        }
+    }
+
+    &__label {
+        @include padding(0 $padding-md 0 $padding-l);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        @include letter-spacing($letter-spacing-sm);
+        font-family: $font-light;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+
+        .tpmol-list-item__sublist & {
+            @include padding(0 $padding-md 0 $padding-sm);
+            font-family: $font-light;
+        }
+    }
+
+    &__external-link,
+    &__arrow-down {
+        @include font-size($font-xxs);
+        @include width($spacing-small-half);
+        @include height($spacing-small-half);
+        @include margin-top(-3px);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        &:hover,
+        &:visited {
+            color: $color-white;
+        }
+    }
+
+    &__arrow-down {
+        transition: transform $anim-speed-quick $anim-ease;
+    }
+}

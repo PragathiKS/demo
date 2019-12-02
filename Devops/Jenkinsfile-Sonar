@@ -1,0 +1,66 @@
+pipeline {
+	agent any
+	
+	parameters {
+		choice choices: ['tetrapak-customerhub', 'tetrapak-publicweb'], description: '', name: 'CODEBASE'
+	}
+	
+	tools {
+        maven 'maven'
+        jdk 'jdk8'
+    }
+	
+	environment {
+		sonar_url = "http://127.0.0.1:9000"
+		author_url = "http://13.69.79.81:4502"
+		publish_url = "http://13.69.73.197:4503"
+	}
+   
+	stages {	
+		stage ('Initialize') {
+			steps {
+				sh 	'''
+					echo "PATH = ${PATH}"
+					echo "M2_HOME = ${M2_HOME}"
+					'''
+            }
+        }
+		
+		stage ('Build') {
+			steps {
+			
+			  echo "Build Commons"
+                                sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								
+			  echo "Build CustomerHub"
+                                sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
+                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER} dependency:tree -Dverbose"
+                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"					
+			}
+		}
+		
+		stage ('Sonar_JS') {    
+			steps {
+				sh "mvn -f $workspace/${params.CODEBASE}/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CODEBASE} -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+			}
+		}
+			
+		stage ('Sonar_CSS') {   
+			steps {
+				sh "mvn -f $workspace/${params.CODEBASE}/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CODEBASE} -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+			}
+		}
+		
+		stage ('Sonar_JAVA') {
+			steps {  
+				sh "mvn -f $workspace/${params.CODEBASE}/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=${params.CODEBASE} -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+				sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+			}
+		}
+	}
+}
+		

@@ -1,0 +1,9 @@
+{
+   "jcr:primaryType":"nt:unstructured",
+   "jcr:createdBy":"admin",
+   "jcr:lastModifiedBy":"admin",
+   "jcr:created":"Wed Apr 03 2019 11:04:41 GMT+0530",
+   "pageContentPath":"/content/tetrapak/customerhub/content-components/en/dashboard",
+   "jcr:lastModified":"Wed Apr 03 2019 11:04:57 GMT+0530",
+   "sling:resourceType":"customerhub/components/content/pagereference"
+}

@@ -1,4 +1,5 @@
 {
+  "jcrRoot": "app/jcr_root",
   "appFolder": "app",
   "sourceFolder": "source",
   "publishFolder": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs",
@@ -75,17 +76,6 @@
     }
   },
   "copy": {
-    "uxlibdemo": [
-      {
-        "expand": true,
-        "dot": true,
-        "cwd": "<%= config.source %>/clientlib-format",
-        "src": [
-          "apps/settings/wcm/designs/**"
-        ],
-        "dest": "<%= config.app %>/jcr_root/"
-      }
-    ],
     "jsonData": [
       {
         "expand": true,
@@ -94,7 +84,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/customerhub/jsonData"
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/customerhub/jsonData"
       }
     ]
   },
@@ -113,7 +103,7 @@
     "root": "app/jcr_root",
     "modes": {
       "dev": "development",
-      "prod": "production"
+      "prod": "development"
     },
     "entry": {
       "global": "source/scripts/core/core.js"
@@ -131,6 +121,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "financial": {
+        "testMultiple": true,
+        "name": "financial",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -142,8 +138,19 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/OrderStatus/",
-        "source/templates/components/introscreen/"
+        "source/templates/components/leftnavigation/",
+        "source/templates/components/header/",
+        "source/templates/components/languageselector/",
+        "source/templates/components/pagination/",
+        "source/templates/components/cookieconsent/",
+        "source/templates/components/getstarted/",
+        "source/templates/components/tabslist/",
+        "source/templates/components/textvideo/",
+        "source/templates/components/inactivitydialog/"
+      ],
+      "financial": [
+        "source/templates/components/financialstatement/",
+        "source/templates/components/financialsstatementsummary/"
       ]
     },
     "handlebars": {
@@ -159,24 +166,70 @@
     "cssPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css",
     "cssChunkPath": "apps/settings/wcm/designs/customerhub/clientlibs/[name].publish/css/[name].css"
   },
+  "chunkrename": {
+    "vendor": "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js/vendor.js",
+    "common": "apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js/common.js",
+    "default.en": "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js/default.js"
+  },
   "clientlibs": {
     "vendor": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish/js"
+      "categories": [
+        "tp.customerhub.vendor"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
+      ]
     },
     "global": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/global.publish/js"
+      "categories": [
+        "tp.customerhub.global"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/global.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/global.publish",
+        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js",
+        "apps/settings/wcm/designs/customerhub/clientlibs/common.publish"
+      ]
     },
-    "common": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/common.publish/js"
-    },
-    "default.en": {
-      "js": "app/jcr_root/apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/js"
+    "default_en": {
+      "categories": [
+        "tp.customerhub.default.en"
+      ],
+      "basePath": "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/customerhub/clientlibs/default.en.publish/css"
+      ]
     }
   },
   "createComponent": {
     "componentsFolder": "source/templates/components",
+    "atomsFolder": "source/templates/atoms",
+    "moleculesFolder": "source/templates/molecules",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
+    "testTemplate": "ccTemplates/testTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt",
     "importsJsFile": "source/scripts/bundle/imports.js"
   },
@@ -206,7 +259,7 @@
         "shell:lintingDev",
         "shell:webpackDev",
         "shell:removeChunkHash",
-        "copy:uxlibdemo",
+        "shell:clientlibify",
         "copy:jsonData",
         "assemble",
         "aemcomponentcopy:uxlib",

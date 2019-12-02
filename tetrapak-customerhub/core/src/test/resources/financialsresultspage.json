@@ -1,0 +1,83 @@
+
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:mixinTypes": [
+    "rep:AccessControllable"
+  ],
+  "jcr:createdBy": "admin",
+  "jcr:created": "Thu Apr 25 2019 14:33:52 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Financials",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "67260dcb-4597-4dce-ae4b-13f3f3b289a7",
+    "iconClass": "icon-Financials",
+    "cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+    "cq:lastReplicatedBy": "sapient-tarun",
+    "jcr:predecessors": [
+      "c8675f60-44fa-4784-b43c-a4e72d7f5d5a"
+    ],
+    "jcr:created": "Thu Apr 25 2019 14:33:52 GMT+0530",
+    "cq:lastReplicated": "Mon Apr 22 2019 08:34:51 GMT+0000",
+    "cq:lastModified": "Thu Apr 11 2019 11:29:17 GMT+0000",
+    "jcr:baseVersion": "c8675f60-44fa-4784-b43c-a4e72d7f5d5a",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "fccd2bf0-6ccf-4558-aaa5-b09b992a51db",
+    "sling:resourceType": "customerhub/components/structure/page",
+    "cq:lastModifiedBy": "sapient-tarun",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid_622605362": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+      },
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "financialstatement": {
+          "jcr:primaryType": "nt:unstructured",
+          "createExcelBtnI18n": "cuhu.financial.CreateExcel",
+          "jcr:createdBy": "sapient-nitin",
+          "selectDateRangeLabel": "cuhu.financial.DateRange",
+          "searchButtonText": "cuhu.financial.searchBtn",
+          "accountService": "cuhu.financial.AccountServ",
+          "documentHeadingI18n": "cuhu.financial.Documents",
+          "statementOfAccount": "Statement",
+          "placeholderForDocumentNumber": "cuhu.financial.DocumentNumber",
+          "jcr:lastModifiedBy": "sapient-tarun",
+          "selectCustomerLabel": "cuhu.financial.Customer",
+          "selectDocumentTypeLabel": "cuhu.financial.DocumentType",
+          "accountNumber": "cuhu.financial.AccountNo",
+          "searchInputLabel": "cuhu.financial.Search",
+          "jcr:created": "Thu Apr 04 2019 13:04:30 GMT+0000",
+          "createPdfBtnI18n": "cuhu.financial.Createpdf",
+          "selectDates": "cuhu.financial.selectDate",
+          "selectStatusLabel": "cuhu.financial.Status",
+          "findCustomer": "cuhu.financial.FindCustomer",
+          "jcr:lastModified": "Thu Apr 11 2019 11:29:17 GMT+0000",
+          "closeBtn": "cuhu.financial.closeButton",
+          "sling:resourceType": "customerhub/components/content/financialstatement",
+          "resetButtonText": "cuhu.financial.Reset",
+          "setDates": "cuhu.financial.setDate",
+          "summaryHeadingI18n": "cuhu.financial.Summary",
+          "currencyList": "current,ninty,nintyPlus,overdue,sixty,total,orgAmount,remAmount,totalAmount"
+        }
+      }
+    }
+  },
+  "rep:policy": {
+    "jcr:primaryType": "rep:ACL",
+    "deny": {
+      "jcr:primaryType": "rep:DenyACE",
+      "rep:principalName": "marketing-manager-tetra-pak",
+      "rep:privileges": [
+        "jcr:read"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.tpmol-accordian-title {
+    @include padding(10px $padding-sm 10px $padding-l+$padding-xs);
+    display: block;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid $color-tundora;
+    font-family: $font-bold;
+    text-align: left;
+    background-color: $color-wild-sand;
+    transition: background-color $anim-speed-quick $anim-ease;
+
+    &.collapsed {
+        background-color: $color-white;
+    }
+
+    .icon {
+        @include left($margin-sm);
+        @include font-size($font-sm);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-45%);
+    }
+}

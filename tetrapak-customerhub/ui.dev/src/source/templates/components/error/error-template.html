@@ -1,0 +1,13 @@
+<sly data-sly-template.error_template="${@ data, flag}">
+    <div class="tp-error tp-card row">
+          <div class="col-lg">
+              <h1 class="tp-error__heading hero">${data.errorTitle}</h1>
+              <p class="tp-error__code">${data.errorCode}</p>
+              <p class="tp-error__description">${data.errorDescription @ context='html'}</p>
+          </div>
+          <div class="col-lg offset-lg tp-error__img">
+              <sly data-sly-use.genericimage="/apps/customerhub/components/atoms/genericimage/genericimage-template.html" data-sly-call="${genericimage.genericimage_template @image=data.image}">
+              </sly>
+          </div>
+      </div>
+</sly>

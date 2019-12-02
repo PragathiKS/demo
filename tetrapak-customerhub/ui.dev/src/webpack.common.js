@@ -1,7 +1,10 @@
+const webpack = require("webpack");
 const config = require("./config").webpack;
+const clientlibs = require("./config").chunkrename;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const ChunkRename = require("webpack-chunk-rename-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -26,7 +29,7 @@ const cacheGroups = (function () {
         if (module.resource) {
           return !!componentGroups[cacheGroup].filter(path => {
             const moduleResource = module.resource.replace(/[\\]/g, '/');
-            return moduleResource.includes(path);
+            return (moduleResource.includes(path) && !(/\.spec\.js$/).test(moduleResource));
           }).length;
         }
         return false;
@@ -121,7 +124,9 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
-    })
+    }),
+    new ChunkRename(clientlibs),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   node: {
     fs: 'empty'

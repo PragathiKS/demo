@@ -1,0 +1,45 @@
+<sly data-sly-template.listItemBtn_template="${@ data, locale, flag, identifier ,parentNameLabel ,ctype}">
+  <sly data-sly-test.hasSubmenu="${data.subMenuList}" >
+    <button type="button" aria-haspopup="true" aria-expanded="${data.isExpanded ? 'true' : 'false'}"  class="tpatom-list-item__btn text-left js-list-item__btn">
+      <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
+          data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
+      </sly>
+    </button>
+  </sly>
+  <sly data-sly-test="${!hasSubmenu}">
+    <a
+      data-sly-test.isSafeLink="${data.href && data.removeNoOpenerNoReferrer}"
+      tabindex="0"
+      role="link"
+      data-is-external="${data.isExternalLink ? 'true': 'false'}"
+      class="tpatom-list-item__link js-list-item__link ${identifier}"
+      data-href="${data.href}"
+      data-target="${data.isExternalLink ? data.pageName : '_self'}"
+      datatag="${data.isExternalLink ? 'external' : 'internal'}"
+      ctype="${ctype ? ctype : 'not_set'}"
+      ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
+      cttitle="${data.iconLabel @i18n, locale=locale}"
+    >
+      <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
+          data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
+      </sly>
+    </a>
+    <a
+      data-sly-test="${!isSafeLink && data.href}"
+      data-is-external="${data.isExternalLink ? 'true': 'false'}"
+      class="tpatom-list-item__link ${identifier}"
+      href="${data.href}"
+      target="${data.isExternalLink ? data.pageName : ''}"
+      rel="${data.isExternalLink ? 'noopener noreferrer' : ''}"
+      datatag="${data.isExternalLink ? 'external' : 'internal'}"
+      ctype="${ctype ? ctype : 'not_set'}"
+      ctypeone="${parentNameLabel ? parentNameLabel : 'notset'}"
+      cttitle="${data.iconLabel @i18n, locale=locale}"
+    >
+      <sly data-sly-use.listItemIcon="/apps/commons/components/atoms/listItemBtn/listItemIcon-template.html"
+          data-sly-call="${listItemIcon.listItemIcon_template @data=data, locale=locale}">
+      </sly>
+    </a>
+  </sly>
+</sly>
+

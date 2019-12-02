@@ -1,7 +1,9 @@
 const config = require("./config").webpack;
+const clientlibs = require("./config").chunkrename;
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const ChunkRename = require("webpack-chunk-rename-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -114,7 +116,8 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
-    })
+    }),
+    new ChunkRename(clientlibs)
   ],
   node: {
     fs: 'empty'

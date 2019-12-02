@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/commons" mode="merge"/>
-    <filter root="/apps/sling" mode="merge" />
-	<filter root="/apps/settings/wcm/designs" mode="merge"/>
+    <filter root="/apps/sling/servlet/errorhandler" mode="merge"/>
+	<filter root="/apps/settings/wcm/designs/commons" mode="replace"/>
+	<filter root="/apps/commons/components" mode="update"/>
+    <filter root="/apps/commons/config" mode="replace"/>
+	<filter root="/apps/commons/config.author" mode="replace"/>
+	<filter root="/apps/commons/config.publish" mode="replace"/>
+	<filter root="/apps/commons/config.dev.publish" mode="replace"/>
+	<filter root="/apps/commons/config.prod.author" mode="replace"/>
+	<filter root="/apps/commons/config.prod.publish" mode="replace"/>
+	<filter root="/apps/commons/config.qa.author" mode="replace"/>
+	<filter root="/apps/commons/config.qa.publish" mode="replace"/>
+	<filter root="/apps/commons/config.sapedev.author" mode="replace"/>
+	<filter root="/apps/commons/config.sapedev.publish" mode="replace"/>
+	<filter root="/apps/commons/config.stage.author" mode="replace"/>
+	<filter root="/apps/commons/config.stage.publish" mode="replace"/>
+	<filter root="/apps/commons/install" mode="update"/>
+	<filter root="/apps/commons/clientlibs" mode="update"/>
+	<filter root="/apps/commons/i18n">
+		<exclude pattern="/apps/commons/i18n(/.*)?"/>
+	</filter>
 </workspaceFilter>

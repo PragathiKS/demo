@@ -1,0 +1,8 @@
+<sly data-sly-template.damvideo_template="${@ videoUrl, className, thumbnailPath, videoTitle}">
+  <sly data-sly-test.damVideoTitleText="${videoTitle ? videoTitle : 'DAM Video'}" />
+  <div data-sly-test="${videoUrl}" class="tpatom-dam ${className ? className : ''}">
+    <video title="${damVideoTitleText}" class="js-dam-player" controls poster="${thumbnailPath}">
+      <source src="${videoUrl}">
+    </video>
+  </div>
+</sly>

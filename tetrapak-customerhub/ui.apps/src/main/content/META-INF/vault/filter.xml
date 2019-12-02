@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/customerhub" mode="merge"/>
-    <filter root="/apps/sling" mode="merge"/>
-	<filter root="/apps/settings/wcm/designs" mode="merge"/>
+	<filter root="/apps/cq/Page" mode="replace"/>
+	<filter root="/apps/customerhub/components" mode="update"/>
+    <filter root="/apps/customerhub/ac-config" mode="replace"/>
+    <filter root="/apps/customerhub/config" mode="replace"/>
+	<filter root="/apps/customerhub/config.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.dev.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.prod.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.prod.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.qa.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.qa.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.sapedev.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.sapedev.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.stage.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.stage.publish" mode="replace"/>
+	<filter root="/apps/customerhub/install" mode="update"/>
+	<filter root="/apps/customerhub/clientlibs" mode="update"/>
+	<filter root="/apps/customerhub/i18n">
+		<exclude pattern="/apps/customerhub/i18n(/.*)?"/>
+	</filter>
+	<filter root="/apps/settings/wcm/designs/customerhub/jsonData" mode="replace"/>
 </workspaceFilter>

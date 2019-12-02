@@ -1,0 +1,19 @@
+{
+  "headingI18n": "Choose your language",
+  "closeBtnTextI18n": "Close",
+  "selectedLanguage": "fr",
+  "listOfLanguages": {
+    "en": "English",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ko": "Korean",
+    "pt": "Portugese",
+    "ru": "Russian",
+    "tr": "Turkish",
+    "zh_tw": "Chinese Traditional",
+    "hi": "Hindi",
+    "sv": "Swedish",
+    "no": "Norwegian"
+  }
+}

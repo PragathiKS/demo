@@ -1,0 +1,36 @@
+{{!-- Generic link to handle all link types. Uses same CSS profile as button --}}
+{{!-- Please refer to button atom for CSS styles --}}
+{{#if href}}
+<a
+    {{#unless disabled}}
+    href="{{href}}"
+    {{/unless}}
+    {{#if role}}
+    role="{{role}}"
+    {{/if}}
+    class="tpatom-link{{#if modifier}} tpatom-link--{{modifier}}{{/if}}{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}"
+    {{#if disabled}}
+    disabled
+    {{/if}}
+    {{#if isExternal}}
+    target="_blank" rel="noopener noreferrer"
+    {{/if}}
+    {{#eachData this}}
+        {{@key}}="{{this}}"
+    {{/eachData}}
+
+    {{#if datatag}} datatag="{{datatag}}"{{/if}}
+    {{#if ctype}} ctype="{{ctype}}"{{/if}}
+    {{#if linkHeading}} ctypeone="{{linkHeading}}"{{/if}}
+    {{#if text}} cttitle="{{text}}"{{/if}}>
+        {{#if preIconClass}}
+            <i class="icon {{preIconClass}}"></i>
+        {{/if}}
+        <span class="tpatom-link__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>
+        {{#if iconClass}}
+            <i class="icon {{iconClass}}"></i>
+        {{/if}}
+</a>
+{{else}}
+    {{> atoms/buttons/button/button this}}
+{{/if}}

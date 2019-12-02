@@ -1,0 +1,25 @@
+# Global users and groups
+
+- group_config:
+
+    - cuhu_global_authors:
+
+       - name: Tetra Pak global content authors group
+         memberOf: content-authors
+         path: /home/groups/cuhugroups     
+- ace_config:
+
+    - cuhu_global_authors:
+
+       - path: /content/tetrapak
+         permission: allow
+         privileges: jcr:modifyAccessControl,jcr:read,jcr:readAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
+
+       - path: /content/dam/tetrapak
+         permission: allow
+         privileges: jcr:modifyAccessControl,jcr:read,jcr:readAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
+
+       - path: /etc/languages
+         permission: allow
+         actions: read
+         privileges:

@@ -1,0 +1,3 @@
+<sly data-sly-template.togglebutton_template="${@ btnToggle, btnTarget, btnText, btnTooltip, flag, variant, customClasses}">
+  <button data-sly-test="${btnText}" data-target="${btnTarget}" data-toggle="${btnToggle}" class="tpatom-button tpatom-button--${variant || 'primary'} ${customClasses}" title="${btnTooltip}">${btnText @ i18n}<i class="tpatom-button__icon ${variant != 'link' ? 'icon-Chevron_Right' : 'icon-Circle_Arrow_Right'}"></i></button>
+</sly>

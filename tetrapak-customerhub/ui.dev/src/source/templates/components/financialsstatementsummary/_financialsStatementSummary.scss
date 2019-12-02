@@ -1,0 +1,78 @@
+.tp-financials-summary {
+    &__download-invoice {
+        color: $color-congress-blue;
+    }
+
+    h3 {
+        @include padding-top($padding-l);
+        @include padding-bottom($padding-sm);
+        font-family: $font-light;
+
+        @media #{$desktop} {
+            @include padding-top($padding-xl);
+        }
+    }
+
+    &__table {
+        @include horizontal-scroll-touch;
+    }
+
+    &__documents {
+        &__cell {
+            &:last-child {
+                text-align: right;
+            }
+        }
+
+        &__table-summary {
+
+            &,
+            &:first-child {
+                @include font-size($font-baseline);
+                font-family: $font-bold;
+            }
+        }
+    }
+
+    &__statement {
+        &__cell {
+            &:last-child {
+                @include font-size($font-baseline);
+                font-family: $font-bold;
+                padding-right: 0;
+                text-align: right;
+            }
+        }
+    }
+
+    &__btn-container {
+        @include margin-top($margin-l);
+
+        @media #{$desktop} {
+            text-align: right;
+        }
+    }
+
+    &__create-excel {
+        @include margin-right($margin-md);
+    }
+
+    .icon-Chevron_Up {
+        &::before {
+            transition: transform $anim-speed-quick $anim-ease;
+        }
+    }
+
+    .collapsed {
+        .icon-Chevron_Up {
+            &::before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .tpatom-error {
+        @include margin-top($margin-sm);
+        @include margin-bottom($margin-sm);
+    }
+}

@@ -1,0 +1,74 @@
+{
+  "customerData": [
+    {
+      "customerNumber": "0000010050",
+      "customerName": "Arla Foods AB1",
+      "info": {
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
+      }
+    },
+    {
+      "customerNumber": "0000010051",
+      "customerName": "Second",
+      "info": {
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
+      }
+    },
+    {
+      "customerNumber": "0000010052",
+      "customerName": "third",
+      "info": {
+        "accountNo": "0000010050",
+        "name1": "Arla Foods AB1",
+        "name2": "Leverantorsreskontran",
+        "street": "Arla Foods Bolagskontor",
+        "city": "STOCKHOLM",
+        "state": "012",
+        "postalcode": "105 46",
+        "country": "SE"
+      }
+    }
+  ],
+  "status": [
+    {
+      "key": "C",
+      "desc": "Cleared"
+    },
+    {
+      "key": "O",
+      "desc": "Open"
+    },
+    {
+      "key": "B",
+      "desc": "Both"
+    }
+  ],
+  "documentType": [
+    {
+      "key": "CM",
+      "desc": "Credit Memo"
+    },
+    {
+      "key": "PMT",
+      "desc": "Payment"
+    },
+    {
+      "key": "INV",
+      "desc": "Invoice"
+    }
+  ]
+}

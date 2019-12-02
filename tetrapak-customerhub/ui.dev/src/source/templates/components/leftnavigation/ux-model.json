@@ -1,0 +1,61 @@
+{
+  "navHeading": "My Tetra Pak",
+  "closeBtnText": "Close",
+  "tpLogoListItem": {
+    "href": "http://www.tetrapak.com",
+    "iconClass": "icon-TetraPak",
+    "iconLabel": "Tetra Pak Home"
+  },
+  "leftNavItems": [
+    {
+      "href": "http://localhost:4502/content/customerhub-ux/getstarted.ux-preview.html",
+      "iconClass": "icon-Dashboard",
+      "iconLabel": "Dashboard",
+      "isExternalLink": "false",
+      "isActive": "true",
+      "pageName": "cuhu-aem-getstarted"
+    },
+    {
+      "href": "https://google.com",
+      "iconClass": "icon-Packaging_Design",
+      "iconLabel": "Package Design",
+      "isExternalLink": "true",
+      "pageName": "cuhu-aem-package-design",
+      "removeNoOpenerNoReferrer": true
+    },
+    {
+      "iconClass": "icon-Cart",
+      "iconLabel": "Ordering",
+      "isExternalLink": "false",
+      "isExpanded": "true",
+      "subMenuList": [
+        {
+          "href": "http://www.tetrapak.com",
+          "iconLabel": "Packaging material",
+          "isExternalLink": "true",
+          "pageName": "cuhu-packmat"
+        },
+        {
+          "href": "http://www.tetrapak.com",
+          "iconLabel": "Parts",
+          "isExternalLink": "true",
+          "pageName": "cuhu-parts"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
+      "iconClass": "icon-Financials",
+      "iconLabel": "Financials",
+      "isExternalLink": "false",
+      "pageName": "cuhu-aem-soa"
+    },
+    {
+      "href": "http://www.tetrapak.com",
+      "iconClass": "icon-Logout",
+      "iconLabel": "Log out",
+      "isExternalLink": "false",
+      "pageName": "cuhu-logout"
+    }
+  ]
+}

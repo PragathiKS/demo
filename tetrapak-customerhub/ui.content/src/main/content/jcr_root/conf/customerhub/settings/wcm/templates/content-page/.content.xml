@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:lastModified="{Date}2019-09-23T09:03:15.254Z"
+        cq:lastModifiedBy="admin"
+        cq:templateType="/conf/customerhub/settings/wcm/template-types/empty-page"
+        jcr:description="This page is used to create pages for content-components only."
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Content Page"
+        shortTitle="content"
+        status="enabled"/>
+</jcr:root>

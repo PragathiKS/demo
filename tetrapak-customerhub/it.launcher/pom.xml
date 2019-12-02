@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>tetrapak</groupId>
+        <groupId>tetrapak-customerhub</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
         <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
@@ -285,14 +285,26 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.it.tests</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
             <version>${project.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.wcm</groupId>
+			<artifactId>io.wcm.testing.aem-mock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+		</dependency>               
     </dependencies>
 </project>

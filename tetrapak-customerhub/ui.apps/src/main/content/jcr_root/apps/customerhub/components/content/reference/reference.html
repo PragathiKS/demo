@@ -1,0 +1,10 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="Double click configure ${component.title}"
+       class="cq-placeholder"></p>
+</sly>
+
+<sly data-sly-test.contentPath="${properties.contentPath}"
+     data-sly-use.reference="${'com.tetrapak.customerhub.core.models.ReferenceModel' @ contentPath=contentPath}">
+</sly>
+
+<div data-sly-test="${reference.contentPath}" data-sly-resource= ${reference.contentPath}></div>

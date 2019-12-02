@@ -3,6 +3,8 @@
           data-sly-use.headResources="head.resources.html">
     <meta charset="UTF-8">
     <title>${page.title}</title>
+    <link rel="icon" type="image/png" href="/content/dam/tetrapak/customerhub/TetraPak.png">
+
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
@@ -15,4 +17,12 @@
                                 staticDesignPath   = page.staticDesignPath,
                                 clientLibCategories = page.clientLibCategories}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
-</template>
+
+	<sly data-sly-use.headerGlobalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil"></sly>
+	<sly data-sly-test="${headerGlobalUtil.isRunModeDevelopment || headerGlobalUtil.isRunModeQA}">
+		<script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+	</sly>
+	<sly data-sly-test="${headerGlobalUtil.isRunModeStaging || headerGlobalUtil.isRunModeProduction}">
+	<sly data-sly-resource="${'cloudconfig-header' @ resourceType='cq/cloudconfig/components/scripttags/header'}"></sly> 
+	</sly>
+	</template>

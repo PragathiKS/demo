@@ -1,21 +1,14 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJSCustom'],
+    browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
-      PhantomJSCustom: {
-        base: 'PhantomJS',
+      ChromeHeadlessCustom: {
+        base: 'ChromeHeadless',
         //debug: true,
-        options: {
-          windowName: 'my-window',
-          viewportSize: {
-            'width': 1920,
-            'height': 1080
-          }
-        }
+        flags: ['--window-size=1920,1080']
       }
     },
     browserNoActivityTimeout: 60000,
@@ -30,9 +23,16 @@ module.exports = function (config) {
       'testcases.webpack.js' //just load this file
     ],
     preprocessors: {
+      '**/*.js': 'coverage',
       'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
     },
-    reporters: ['progress', 'coverage-istanbul', 'dots', 'junit'], //report results in this format
+    reporters: [
+      'progress',
+      'coverage-istanbul',
+      'dots',
+      'junit',
+      'verbose'
+    ], //report results in this format
     coverageIstanbulReporter: {
       reports: ['html'],
       dir: 'coverage/',
@@ -43,11 +43,15 @@ module.exports = function (config) {
       mode: 'development',
       module: {
         rules: [
-          { test: /\.js$/, loader: 'babel-loader' },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+          },
           {
             enforce: 'post',
             test: /\.js$/,
-            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack/,
+            exclude: /((test-cases|node_modules|scripts)[\\/])|testcases\.webpack|\.spec/,
             loader: 'istanbul-instrumenter-loader',
             query: {
               esModules: true
@@ -56,20 +60,35 @@ module.exports = function (config) {
           {
             test: /\.hbs$/,
             exclude: /node_modules/,
-            loader: "handlebars-loader",
+            loader: 'handlebars-loader',
             options: {
-              helperDirs: [path.join(__dirname, webpackConfig.handlebars.helpersFolder)],
-              partialDirs: [path.join(__dirname, webpackConfig.handlebars.currentRelativeFolder)],
+              helperDirs: [
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder)
+              ],
+              partialDirs: [
+                path.join(
+                  __dirname,
+                  webpackConfig.handlebars.currentRelativeFolder
+                )
+              ],
               precompileOptions: {
                 knownHelpersOnly: false
               }
             }
           }
         ]
+      },
+      node: {
+        fs: 'empty'
+      },
+      resolve: {
+        alias: {
+          handlebars: 'handlebars/runtime'
+        }
       }
     },
-    webpackServer: {
-      noInfo: true //please don't spam the console when running in karma!
+    webpackMiddleware: {
+      stats: 'errors-only'
     }
   });
 };

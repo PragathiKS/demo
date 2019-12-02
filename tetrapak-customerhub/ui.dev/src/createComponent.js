@@ -22,21 +22,24 @@ const questions = [
 
 function createComponent(name) {
   // Create folder structure
-  let componentPath = `${config.componentsFolder}/${name}`;
+  let componentPath = `${config.componentsFolder}/${name.toLowerCase()}`;
   if (hasArgs('atom')) {
-    componentPath = `${config.atomsFolder}/${name}`;
+    componentPath = `${config.atomsFolder}/${name.toLowerCase()}`;
   } else if (hasArgs('molecule')) {
-    componentPath = `${config.moleculesFolder}/${name}`;
+    componentPath = `${config.moleculesFolder}/${name.toLowerCase()}`;
   }
   fs.mkdirsSync(componentPath);
   // Create files
   fs.writeFileSync(`${componentPath}/_${name}.scss`, '');
-  fs.writeFileSync(`${componentPath}/${name}-template.html`, `<sly data-sly-template.${name}_template="$\{@ data, flag\}"></sly>`);
+  const templateFileName = name.toLowerCase();
+  fs.writeFileSync(`${componentPath}/${templateFileName}-template.html`, `<sly data-sly-template.${templateFileName}_template="$\{@ data, flag\}"></sly>`);
   if (!(hasArgs('atom') || hasArgs('molecule'))) {
     const jsFileName = `${name.charAt(0).toUpperCase()}${name.substring(1)}`;
+    const instanceName = `${name.charAt(0).toLowerCase()}${name.substring(1)}`;
     fs.writeFileSync(`${componentPath}/${jsFileName}.js`, fs.readFileSync(config.componentTemplate, 'utf8').replace(/#component#/g, jsFileName));
+    fs.writeFileSync(`${componentPath}/${jsFileName}.spec.js`, fs.readFileSync(config.testTemplate, 'utf8').replace(/#component#/g, jsFileName).replace(/#instance#/g, instanceName));
     fs.writeFileSync(`${componentPath}/ux-model.json`, '{}');
-    const previewHtml = fs.readFileSync(config.pageTemplate, 'utf8').replace(/#name#/g, name);
+    const previewHtml = fs.readFileSync(config.pageTemplate, 'utf8').replace(/#name#/g, templateFileName);
     fs.writeFileSync(`${componentPath}/ux-preview.hbs`, previewHtml);
   }
   console.log('\x1b[32m%s\x1b[0m', `${targetModule} ${name} has been created!`);
@@ -69,6 +72,7 @@ wizard({ questions })
           createComponent(data.answer);
         }
       } catch (e) {
+        console.log(e);
         console.log('\x1b[31m%s\x1b[0m', 'Something went wrong!');
       }
     } else {

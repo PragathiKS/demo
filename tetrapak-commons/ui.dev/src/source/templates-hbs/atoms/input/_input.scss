@@ -1,0 +1,29 @@
+.tpatom-input-box {
+    position: relative;
+
+    &__text {
+        @include line-height(24px, $font-baseline);
+        margin-bottom: 0;
+        color: $color-mine-shaft;
+
+        @media #{$desktop} {
+            @include margin-top($margin-md);
+        }
+    }
+
+    &__input {
+        @include border-xs($color-boulder);
+        @include border-radius($border-radius);
+        @include padding($padding-sm);
+        @include line-height(22px, $font-baseline);
+        width: 100%;
+    }
+
+    &__icon {
+        @include right(12px);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+}
