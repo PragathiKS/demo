@@ -1,12 +1,12 @@
 import $ from 'jquery';
-import deparam from 'jquerydeparam';
-import {render} from '../../../scripts/utils/render';
-import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods, API_SEARCH_RESULTS, NO_OF_EVENTS_PER_PAGE} from '../../../scripts/utils/constants';
+import deparam from 'deparam.js';
+import { render } from '../../../scripts/utils/render';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods, API_SEARCH_RESULTS, NO_OF_EVENTS_PER_PAGE } from '../../../scripts/utils/constants';
 
 class SearchResults {
 
-  constructor({el}) {
+  constructor({ el }) {
     this.root = $(el);
   }
 
@@ -31,7 +31,7 @@ class SearchResults {
     this.cache.searchTerm = '';
     this.cache.results = [];
     this.cache.filteredData = [];
-    this.cache.filterObj = {tabValue: 'all', checks: []};
+    this.cache.filterObj = { tabValue: 'all', checks: [] };
     this.cache.totalPages = 0;
   }
 
@@ -118,7 +118,7 @@ class SearchResults {
         if (data.length > 0) {
           this.cache.results = data;
           this.cache.filteredData = data;
-          this.cache.filterObj = {tabValue: 'all', checks: []};
+          this.cache.filterObj = { tabValue: 'all', checks: [] };
           this.renderTitle(data.length, this.cache.resultsTitle, params.q);
           if (data.length > this.cache.resultsPerPage) {
             let currentPage = 1;
