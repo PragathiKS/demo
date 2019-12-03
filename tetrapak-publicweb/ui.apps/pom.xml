@@ -87,7 +87,7 @@
     <!-- ====================================================================== -->
     <dependencies>
         <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-publicweb</groupId>
             <artifactId>tetrapak-publicweb.core</artifactId>
             <version>${project.version}</version>
         </dependency>
