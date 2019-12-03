@@ -50,9 +50,6 @@
       ],
       "helpers": [
         "<%= config.source %>/helpers/*"
-      ],
-      "plugins": [
-        "grunt-tasks/assemble-aem-plugin.js"
       ]
     },
     "pages": {
