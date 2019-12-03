@@ -4,4 +4,4 @@
     jcr:description="Contact Card Component"
     jcr:primaryType="cq:Component"
     jcr:title="Contact Card"
-    componentGroup="tetrapak-content-components"/>
+    componentGroup="tetrapak-global-components"/>
