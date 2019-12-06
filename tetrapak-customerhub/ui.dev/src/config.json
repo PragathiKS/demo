@@ -50,6 +50,9 @@
       ],
       "helpers": [
         "<%= config.source %>/helpers/*"
+      ],
+      "plugins": [
+        "grunt-tasks/assemble-aem-plugin.js"
       ]
     },
     "pages": {
@@ -143,7 +146,8 @@
         "source/templates/components/getstarted/",
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
-        "source/templates/components/inactivitydialog/"
+        "source/templates/components/inactivitydialog/",
+        "source/templates/components/contactcard/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
