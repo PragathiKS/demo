@@ -6,26 +6,33 @@
     @media #{$desktop} {
         @include margin-bottom($margin-l);
     }
+
     &__title {
         @include margin-bottom($margin-l);
     }
+
     &__tabMenuListItem {
         &:last-child {
             #{ $self }__tabMenuListItem__link {
                 border-bottom: 1px solid $color-mercury;
-                &.active { //sass-lint:disable-line nesting-depth
+
+                &.active {
+                    //sass-lint:disable-line nesting-depth
                     border-bottom: 1px solid $color-white;
                 }
             }
         }
+
         #{ $self }__contentTab {
             @include padding($spacing-small);
             background-color: $color-white;
+
             @media #{$desktop} {
                 display: none !important; //sass-lint:disable-line no-important
             }
         }
-        &.active + #{ $self }__tabMenuListItem {
+
+        &.active+#{ $self }__tabMenuListItem {
             #{ $self }__tabMenuListItem__link {
                 @media #{$desktop} {
                     border-top: 1px solid $color-white;
@@ -33,11 +40,13 @@
             }
         }
     }
+
     &__linksList {
         @media #{$desktop} {
             padding-right: 0;
         }
     }
+
     &__contentContainer {
         @include padding($padding-l);
         @include border-radius($border-radius);
@@ -48,6 +57,7 @@
             display: block;
         }
     }
+
     &__contentTab {
         @media #{$desktop} {
             &:not(.active) {
@@ -55,13 +65,15 @@
             }
         }
     }
+
     &__tabMenuListItem__link {
         @include padding($padding-md $padding-xxxl $padding-md $padding-md);
         color: $color-congress-blue;
         border-top: 1px solid $color-mercury;
-        font-family: $font-regular;
+        font-family: $font-light;
         position: relative;
         transition: none;
+
         @media #{$desktop} {
             @include margin-right($margin-md);
         }
@@ -83,6 +95,7 @@
         }
 
     }
+
     &__contentWrapper {
         display: none;
 
@@ -91,6 +104,7 @@
             display: block;
         }
     }
+
     &--reverse {
         .tp-icon {
             transform: rotate(-90deg);
@@ -114,6 +128,7 @@
             }
         }
     }
+
     .tp-icon {
         @include margin-top(-6px);
         @include font-size($font-sm);
@@ -121,6 +136,7 @@
         right: convert-to-rem(16px);
         top: 50%;
         transform: rotate(90deg);
+
         @media #{$desktop} {
             transform: none;
         }
@@ -132,25 +148,31 @@
                 background-color: $color-wild-sand;
             }
         }
+
         #{ $self }__contentContainer {
             background-color: $color-wild-sand;
         }
+
         #{ $self }__tabMenuListItem {
             &:last-child {
                 #{ $self }__tabMenuListItem__link {
-                    &.active { //sass-lint:disable-line nesting-depth
+                    &.active {
+                        //sass-lint:disable-line nesting-depth
                         border-bottom: 1px solid $color-wild-sand;
                     }
                 }
             }
-            &.active + #{ $self }__tabMenuListItem {
+
+            &.active+#{ $self }__tabMenuListItem {
                 #{ $self }__tabMenuListItem__link {
                     border-top: 1px solid $color-mercury;
+
                     @media #{$desktop} {
                         border-top: 1px solid $color-white;
                     }
                 }
             }
+
             #{ $self }__contentTab {
                 background-color: $color-wild-sand;
             }
@@ -159,19 +181,24 @@
 
     .tpatom-button {
         @include margin-top($margin-md);
+
         @media #{$desktop} {
             @include margin-top($margin-l);
         }
     }
+
     &__editWrapper {
         @include margin-top($margin-l);
+
         #{ $self }__contentTab {
             display: block !important; //sass-lint:disable-line no-important
         }
     }
+
     .mobile-tabMenu {
         .collapse-title {
             position: relative;
+
             i {
                 @include font-size($font-sm);
                 position: absolute;
@@ -179,13 +206,17 @@
                 top: convert-to-rem(13px);
             }
         }
-        a[aria-expanded='true'] { //sass-lint:disable-line force-attribute-nesting
-            .icon-Chevron_Down {
-                transform: rotate(180deg);
-            }
-            .tp-icon {
-                transform: rotate(-90deg);
-                right: convert-to-rem(14px);
+
+        a {
+            &[aria-expanded='true'] {
+                .icon-Chevron_Down {
+                    transform: rotate(180deg);
+                }
+
+                .tp-icon {
+                    transform: rotate(-90deg);
+                    right: convert-to-rem(14px);
+                }
             }
         }
     }

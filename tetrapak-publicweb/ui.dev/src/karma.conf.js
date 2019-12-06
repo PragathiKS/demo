@@ -9,9 +9,12 @@ module.exports = function (config) {
     browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
       ChromeHeadlessCustom: {
-        base: 'ChromeHeadless',
-        //debug: true,
-        flags: ['--window-size=1920,1080']
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--window-size=1920,1080',
+          '--remote-debugging-port=9222'
+        ]
       }
     },
     browserNoActivityTimeout: 60000,
@@ -43,7 +46,7 @@ module.exports = function (config) {
       // enforce percentage thresholds
       // anything under these percentages will cause karma to fail with an exit code of 1 if not running in watch mode
       thresholds: {
-        emitWarning: (mode === 'development'), // set to `true` to not fail the test command when thresholds are not met
+        emitWarning: true, // set to `true` to not fail the test command when thresholds are not met
         // thresholds for all files
         global: {
           statements: 80,
@@ -99,6 +102,7 @@ module.exports = function (config) {
         fs: 'empty'
       },
       resolve: {
+        mainFields: ['main', 'module'],
         alias: {
           handlebars: 'handlebars/runtime'
         }
