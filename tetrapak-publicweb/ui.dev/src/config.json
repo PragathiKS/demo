@@ -50,9 +50,6 @@
       ],
       "helpers": [
         "<%= config.source %>/helpers/*"
-      ],
-      "plugins": [
-        "grunt-tasks/assemble-aem-plugin.js"
       ]
     },
     "pages": {
@@ -174,6 +171,9 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
       ]
     },
     "global": {
@@ -215,6 +215,7 @@
     "moleculesFolder": "source/templates/molecules",
     "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
     "componentTemplate": "ccTemplates/classTmp.txt",
+    "testTemplate": "ccTemplates/testTmp.txt",
     "pageTemplate": "ccTemplates/pageTmp.txt",
     "importsJsFile": "source/scripts/bundle/imports.js"
   },

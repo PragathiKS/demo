@@ -1,6 +1,6 @@
 import 'core-js/features/array/includes';
 import $ from 'jquery';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import { throwError, parseJson, isValidSelector } from '../common/common';
 import { ajaxWrapper } from '../utils/ajax';
 import { templates } from './templates';
