@@ -207,9 +207,7 @@
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "atomsFolder": "source/templates/atoms",
-    "moleculesFolder": "source/templates/molecules",
-    "componentTemplate": "ccTemplates/classTmp.txt",
-    "pageTemplate": "ccTemplates/pageTmp.txt"
+    "moleculesFolder": "source/templates/molecules"
   },
   "watch": {
     "assemble": {
