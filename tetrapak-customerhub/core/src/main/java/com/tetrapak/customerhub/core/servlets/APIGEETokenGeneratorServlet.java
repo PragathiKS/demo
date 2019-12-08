@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -76,7 +75,7 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 
         HttpClient httpClient = HttpClientBuilder.create().build();
-        int statusCode = HttpStatus.SC_NOT_FOUND;
+        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
         try {
             HttpResponse httpResponse = httpClient.execute(postRequest);
             statusCode = httpResponse.getStatusLine().getStatusCode();
@@ -84,12 +83,13 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
             LOGGER.debug("Http Post request status code: {}", statusCode);
 
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
-            jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
+            jsonResponse.addProperty(CustomerHubConstants.STATUS, CustomerHubConstants.RESPONSE_STATUS_SUCCESS);
             HttpUtil.writeJsonResponse(response, jsonResponse);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             LOGGER.error("Unable to connect to the url {}", apiURL, e);
             response.setStatus(statusCode);
-            jsonResponse.addProperty("status", CustomerHubConstants.RESPONSE_STATUS_FAILURE);
+            jsonResponse.addProperty(CustomerHubConstants.STATUS, CustomerHubConstants.RESPONSE_STATUS_FAILURE);
+            jsonResponse.addProperty(CustomerHubConstants.RESULT, e.getMessage());
             HttpUtil.writeJsonResponse(response, jsonResponse);
         }
     }

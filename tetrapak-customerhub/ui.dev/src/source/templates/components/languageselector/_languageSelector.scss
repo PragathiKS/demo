@@ -2,8 +2,12 @@
     color: $color-tundora;
     font-family: $font-light;
 
-    &__heading {
-        @include margin-bottom($margin-md);
+    &__body {
+        @include padding(0 $padding-md 12px);
+
+        @media #{$desktop} {
+            @include padding(0 $padding-l 20px);
+        }
     }
 
     &__lang-container {
@@ -12,7 +16,7 @@
     }
 
     &__selected-lang {
-        @include margin-bottom($margin-md);
+        @include margin-bottom(12px);
 
         &-label {
             @include padding($padding-xs);
@@ -20,26 +24,26 @@
     }
 
     &__btn {
-        @include padding(2px);
-        width: 25%;
-        cursor: pointer;
-
-        @media #{$mobile} {
-            width: 100%;
-        }
+        @include padding($padding-xs 0);
+        color: $color-congress-blue;
+        width: 100%;
 
         @media #{$tablet} {
+            @include padding($padding-xs $padding-md $padding-xs 0);
             width: 25%;
+
+            &:nth-child(4n+4) {
+                padding-right: 0;
+            }
         }
     }
 
-    .tp-close-btn {
-        color: $color-text;
-        top: 0;
-        right: 0;
-        padding: 0;
-        position: absolute;
-        z-index: $zindex-p;
+    .icon-Close {
+        &::before {
+            @include font-size($font-normal);
+            @include width($font-normal);
+            @include height($font-normal);
+        }
     }
 
     .modal-dialog {
@@ -50,20 +54,6 @@
             @include max-width(700px);
             margin: auto;
         }
-
-        .modal-content {
-            @include box-shadow-modal;
-            @include margin($margin-md 0);
-            @include padding($padding-xl);
-            overflow: hidden;
-        }
-
-        .modal-header,
-        .modal-body {
-            border: 0;
-            padding: 0;
-        }
-
     }
 
     @media #{$mobile} {

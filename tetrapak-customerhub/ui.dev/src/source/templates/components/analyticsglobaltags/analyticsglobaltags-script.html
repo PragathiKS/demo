@@ -39,7 +39,7 @@
     pageName += ":";
   </sly>
 
-  digitalData.pageinfo['siteLanguage'] = getCookie("lang-code");
+  digitalData.pageinfo['siteLanguage'] = getCookie("lang-code") || 'en';
   <sly data-sly-test="${hasSiteCountry}">
     pageName += "-";
   </sly>
@@ -48,14 +48,6 @@
   <sly data-sly-test="${data.channel}">
     digitalData.pageinfo['channel'] = "${data.channel}";
     pageName += ":" + digitalData.pageinfo['channel'];
-    if(window.location.pathname.slice(1) !== "") {
-      var siteSections = window.location.pathname.slice(1).split("/");
-      siteSections.forEach(function (siteSection, index) {
-        if(siteSection.indexOf('.html') === -1){
-            digitalData.pageinfo['siteSection' + (index + 1)] = siteSection;
-        }
-      });
-    }
   </sly>
 
   <sly data-sly-test="${data.pageType}">
@@ -71,6 +63,13 @@
   }
   digitalData.pageinfo['pageName'] = pageName;
 
+  <sly data-sly-test="${data.bpNumber}">
+    digitalData.userinfo['bpNumber'] = "${data.bpNumber}";
+  </sly>
+
+  <sly data-sly-test="${data.userType}">
+    digitalData.userinfo['userType'] = "${data.userType}";
+  </sly>
 
   <sly data-sly-test="${data.logInStatus}">
     digitalData.userinfo['logInStatus'] = "${data.logInStatus}";
@@ -78,6 +77,10 @@
 
   <sly data-sly-test="${data.salesForceId}">
      digitalData.userinfo['salesForceId'] = "${data.salesForceId}";
+  </sly>
+
+  <sly data-sly-test="${data.visitorId}">
+    digitalData.userinfo['visitorId'] = "${data.visitorId}";
   </sly>
 
   <sly data-sly-test="${data.userRoles}">
@@ -91,7 +94,7 @@
     digitalData.userinfo['userCountryCode'] = "";
   </sly>
 
-  digitalData.userinfo['userLanguage'] = getCookie('lang-code');
+  digitalData.userinfo['userLanguage'] = getCookie('lang-code') || 'en';
 
   <sly data-sly-test="${data.errorCode}">
     digitalData.error = {};

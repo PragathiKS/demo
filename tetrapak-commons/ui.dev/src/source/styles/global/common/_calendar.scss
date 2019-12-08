@@ -79,10 +79,10 @@ $date-size: 40px;
 
     &__days div,
     &__day {
-        @include margin-right(2px);
-        @include margin-bottom(2px);
         @include width($date-size-mobile);
         @include height($date-size-mobile);
+        margin-right: 1px;
+        margin-bottom: 1px;
 
         @media #{$mobile-large} {
             @include width($date-size);
@@ -107,8 +107,8 @@ $date-size: 40px;
     }
 
     &__day-of-the-week {
-        @include margin-right(2px);
         @include width($date-size-mobile);
+        margin-right: 1px;
 
         @media #{$mobile-large} {
             @include width($date-size);

@@ -11,9 +11,17 @@
       "href": "http://localhost:4502/content/customerhub-ux/getstarted.ux-preview.html",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
-      "isExternalLink": "true",
+      "isExternalLink": "false",
       "isActive": "true",
       "pageName": "cuhu-aem-getstarted"
+    },
+    {
+      "href": "https://google.com",
+      "iconClass": "icon-Packaging_Design",
+      "iconLabel": "Package Design",
+      "isExternalLink": "true",
+      "pageName": "cuhu-aem-package-design",
+      "removeNoOpenerNoReferrer": true
     },
     {
       "iconClass": "icon-Cart",
@@ -39,7 +47,7 @@
       "href": "http://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
-      "isExternalLink": "true",
+      "isExternalLink": "false",
       "pageName": "cuhu-aem-soa"
     },
     {

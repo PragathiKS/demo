@@ -15,6 +15,7 @@ public class LeftNavigationBean {
     private boolean isExpanded;
     private List<LeftNavigationBean> subMenuList;
     private String pageName;
+    private boolean removeNoOpenerNoReferrer;
 
     public String getHref() {
         return href;
@@ -78,5 +79,13 @@ public class LeftNavigationBean {
 
     public void setPageName(String pageName) {
         this.pageName = pageName;
+    }
+
+    public boolean isRemoveNoOpenerNoReferrer() {
+        return removeNoOpenerNoReferrer;
+    }
+
+    public void setRemoveNoOpenerNoReferrer(boolean removeNoOpenerNoReferrer) {
+        this.removeNoOpenerNoReferrer = removeNoOpenerNoReferrer;
     }
 }

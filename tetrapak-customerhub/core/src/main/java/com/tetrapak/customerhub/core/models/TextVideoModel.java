@@ -1,9 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -70,10 +69,7 @@ public class TextVideoModel {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
-            damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
-            damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
-            damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
-                    + CustomerHubConstants.PATH_SEPARATOR + damVideoPath;
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
     }
 

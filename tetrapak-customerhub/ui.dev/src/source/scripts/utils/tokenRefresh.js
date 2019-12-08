@@ -1,13 +1,17 @@
 import 'core-js/features/promise';
-import { storageUtil, isCurrentPageIframe, getMaxSafeInteger } from '../common/common';
-import { $body } from './commonSelectors';
-import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, AUTH_TOKEN_EXPIRY, EMPTY_PAGE_URL, ajaxMethods } from './constants';
+import { storageUtil, isCurrentPageIframe, getMaxSafeInteger, isLocalhost } from '../common/common';
+import { $body, $win } from './commonSelectors';
+import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT, ajaxMethods, REFRESH_TIMEOUT } from './constants';
 import { logger } from './logger';
 import { ajaxWrapper } from './ajax';
 
 const cache = {};
 
 const MAX_SAFE_INTEGER = getMaxSafeInteger();
+
+const iFrameSrc = isLocalhost()
+  ? '/content/customerhub-ux/pageredirect.ux-preview.html'
+  : EMPTY_PAGE_URL;
 
 /**
  * Executes function if it's valid
@@ -24,17 +28,17 @@ function execFunc(callback, ...args) {
  * Initiates a timer to refresh token
  */
 function initiateTokenTimer() {
-  logger.log('[Webpack]: Token timer initiated');
+  logger.log('[TokenRefresh]: Token timer initiated');
   if (cache.tokenTimeout) {
     clearTimeout(cache.tokenTimeout);
   }
   const currentTimestamp = Date.now();
-  const savedTimestamp = storageUtil.get(AUTH_TOKEN_EXPIRY);
-  const remainingTime = (+savedTimestamp) - currentTimestamp - (2 * 60 * 1000); // Substracting 2 minutes from original difference
+  const savedTimestamp = storageUtil.get(REFRESH_TIMEOUT);
+  const remainingTime = (+savedTimestamp) - currentTimestamp - (5 * 60 * 1000); // Substracting 5 minutes from original difference
   if (remainingTime <= 0) {
     // Either token refresh already happened or is pending
     // Check if a valid access token has already been created
-    logger.log('[Webpack]: Entered a dead zone');
+    logger.log('[TokenRefresh]: Entered a dead zone');
     if (!storageUtil.get(ACC_TOKEN_COOKIE)) {
       // If cookie doesn't exists then trigger refresh
       $body.trigger(EVT_TOKEN_REFRESH);
@@ -45,7 +49,7 @@ function initiateTokenTimer() {
       $body.trigger(EVT_TOKEN_REFRESH);
       clearTimeout(cache.tokenTimeout);
     }, timeoutTime);
-    logger.log(`[Webpack]: Remaining time ${timeoutTime}ms`);
+    logger.log(`[TokenRefresh]: Remaining time ${timeoutTime}ms`);
   }
 }
 
@@ -53,11 +57,17 @@ function initiateTokenTimer() {
  * Triggered when delete cookie AJAX call is completed
  */
 function postResolveHandler() {
+  // Remove iframe
+  $('.js-token-refresh-ifrm').remove();
+  // Reset timeout
+  clearTimeout(cache.iframeTimeoutRef);
+  logger.log(`[TokenRefresh]: Refresh token iframe timeout is cleared`);
+  // Remove cookie if it still exists
   if (storageUtil.get(AUTH_TOKEN_COOKIE)) {
     storageUtil.removeCookie(AUTH_TOKEN_COOKIE);
   }
   $body.trigger(EVT_POST_REFRESH);
-  logger.log(`[Webpack]: Access token refreshed`);
+  logger.log(`[TokenRefresh]: Access token refreshed`);
 }
 
 /**
@@ -66,14 +76,23 @@ function postResolveHandler() {
 function triggerRefresh() {
   if (!cache.refreshTokenPromise) {
     cache.refreshTokenPromise = new Promise((resolve) => {
-      logger.log(`[Webpack]: Token refresh triggered`);
+      logger.log(`[TokenRefresh]: Token refresh triggered`);
+      // Insert iframe
+      const iFrame = document.createElement('iframe');
+      $(iFrame)
+        .addClass('d-none js-token-refresh-ifrm')
+        .attr({
+          title: 'rtif',
+          'aria-hidden': true
+        });
       ajaxWrapper.getXhrObj({
-        url: DELETE_COOKIE_SERVLET_URL,
-        data: {
-          redirectURL: EMPTY_PAGE_URL
-        },
-        method: ajaxMethods.GET
-      }).always(postResolveHandler);
+        method: ajaxMethods.GET,
+        url: DELETE_COOKIE_SERVLET_URL
+      }).always(() => {
+        $(document.body).append(iFrame);
+        iFrame.src = iFrameSrc;
+        $win.trigger(EVT_IFRAME_TIMEOUT);
+      });
       $body.one(EVT_POST_REFRESH, resolve);
     });
   }
@@ -106,6 +125,19 @@ export default {
     }).on(EVT_REFRESH_INITIATE, function () {
       cache.authToken = storageUtil.get(AUTH_TOKEN_COOKIE);
       initiateTokenTimer();
+    });
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.refresh) {
+        postResolveHandler();
+      }
+    });
+    $win.on(EVT_IFRAME_TIMEOUT, () => {
+      clearTimeout(cache.iframeTimeoutRef);
+      cache.iframeTimeoutRef = setTimeout(() => {
+        logger.log('[TokenRefresh]: Refresh occurred due to timeout');
+        postResolveHandler();
+      }, TOKEN_REFRESH_IFRAME_TIMEOUT);
+      logger.log(`[TokenRefresh]: Refresh token iframe will timeout in ${TOKEN_REFRESH_IFRAME_TIMEOUT}ms`);
     });
   },
   init() {

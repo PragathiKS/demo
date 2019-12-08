@@ -53,11 +53,19 @@
                                                       value="video"/>
                                             </items>
                                         </type>
+                                        <tabId
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter Tab ID without special characters"
+                                                fieldLabel="Tab ID"
+                                                required="true"
+                                                name="./tabId"/>
                                         <tabTitleI18n
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Enter title for the Tab"
                                                 fieldLabel="Tab Title"
+                                                required="true"
                                                 name="./tabTitleI18n"/>
                                         <mediaTitleI18n
                                                 jcr:primaryType="nt:unstructured"
@@ -194,7 +202,7 @@
                                                 fieldDescription="Select Video Path"
                                                 fieldLabel="Video Path"
                                                 name="./damVideoPath"
-                                                rootPath="/content/dam/customerhub"/>
+                                                rootPath="/content/dam/tetrapak/customerhub"/>
                                         <youtubeVideoID
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -207,7 +215,7 @@
                                                 fieldDescription="Select Thumbnail Image Path"
                                                 fieldLabel="Thumbnail Image Path"
                                                 name="./thumbnailPath"
-                                                rootPath="/content/dam/customerhub"/>
+                                                rootPath="/content/dam/tetrapak/customerhub"/>
                                         <linkTextI18n
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

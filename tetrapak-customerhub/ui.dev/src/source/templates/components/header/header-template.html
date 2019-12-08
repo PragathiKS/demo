@@ -2,12 +2,14 @@
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
         <sly data-sly-test="${data.logoUrl}">
-          <div class="tp-header__logo">
-            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+          <div class="tp-header__logo d-none d-md-inline-block">
+            <a href="${data.dLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
+          </div>
+          <div class="tp-header__logo d-md-none">
             <!--/*logo for mobile  */-->
-            <a href="${data.mLogoLink}" class="d-md-none tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+            <a href="${data.mLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
               <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
           </div>
@@ -35,12 +37,12 @@
               <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
               <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
           </span>
-          <span class="tp-header__selected-lang d-inline-block js-header__selected-lang" datatag="internal" ctype="header" ctypeone="notset" cttitle="language selector" aria-label="language selector">
+          <button type="button" class="tp-header__selected-lang d-inline-block js-header__selected-lang" datatag="internal" ctype="header" ctypeone="notset" cttitle="language selector" aria-label="language selector">
               <i class="icon icon-Globe"></i>
               <sly data-sly-test.selectedLanguage="${langData.selectedLanguage ? langData.selectedLanguage : 'en'}" />
-              <p class="tp-header__selected-lang-label d-inline semibold">${selectedLanguage @i18n, locale=langData.locale}</p>
+              <p class="tp-header__selected-lang-label d-inline semibold">${langData.listOfLanguages[selectedLanguage]}</p>
               <i class="icon icon-Chevron_Down"></i>
-          </span>
+          </button>
         </div>
       </sly>
       <sly data-sly-use.languageselector="/apps/customerhub/components/content/languageselector/languageselector-template.html"

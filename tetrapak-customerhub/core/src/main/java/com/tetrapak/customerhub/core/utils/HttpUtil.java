@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.utils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -14,8 +15,17 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Utility class for http methods
@@ -88,7 +98,7 @@ public final class HttpUtil {
             obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
             HttpUtil.writeJsonResponse(response, obj);
         } catch (IOException e) {
-            LOGGER.error("IOException: {}", e);
+            LOGGER.error("IOException: ", e);
         }
     }
 
@@ -112,11 +122,57 @@ public final class HttpUtil {
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
 
         } catch (ClientProtocolException e) {
-            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl {}", e);
+            LOGGER.error("ClientProtocolException in OrderDetailsApiServiceImpl", e);
         } catch (IOException e) {
-            LOGGER.error("IOException in OrderDetailsApiServiceImpl {}", e);
+            LOGGER.error("IOException in OrderDetailsApiServiceImpl", e);
         }
         return jsonResponse;
+    }
+
+    /**
+     * This method would decode the String passed to this method
+     *
+     * @param encodedStr encoded String
+     * @return string decoded String
+     */
+    public static String decodeStr(String encodedStr) {
+        org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+        byte[] base64DecodedByteArray = base64.decode(encodedStr);
+        return new String(base64DecodedByteArray, Charsets.UTF_8);
+    }
+
+    /**
+     * This method would encode the String passed to this method
+     *
+     * @param str String
+     * @return encoded String
+     */
+    public static String encodeStr(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return StringUtils.EMPTY;
+        }
+        org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+        byte[] enc = new byte[0];
+        try {
+            byte[] utf8 = str.getBytes(StandardCharsets.UTF_8);
+            Cipher cipher;
+            String customerhubKey = "9NrKZiHIMJvjV1Fp";
+            Key key = new SecretKeySpec(customerhubKey.getBytes(StandardCharsets.UTF_8), "AES");
+            cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            utf8 = cipher.doFinal(utf8);
+            enc = base64.encode(utf8);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            LOGGER.error("NoSuchAlgorithmException", e);
+            return StringUtils.EMPTY;
+        } catch (BadPaddingException e) {
+            LOGGER.error("BadPaddingException", e);
+        } catch (IllegalBlockSizeException e) {
+            LOGGER.error("IllegalBlockSizeException", e);
+        } catch (InvalidKeyException e) {
+            LOGGER.error("InvalidKeyException", e);
+        }
+        return org.apache.commons.codec.binary.StringUtils.newStringUtf8(enc);
     }
 
 }

@@ -1,0 +1,183 @@
+# Global users and groups
+
+- group_config:
+
+    - cuhu_aem_default:
+
+        - name: My Tetra Pak default group
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_pack_design:
+
+        - name: Package Design access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_pack_mat:
+
+        - name: Packaging Material access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_parts:
+
+        - name: Parts access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_partsinv:
+
+        - name: Parts Inventory access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_partsinv_admin:
+
+        - name: Parts Inventory Admin access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+    - cuhu_aem_fin_soa:
+
+        - name: Financials access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+- ace_config:
+
+    - cuhu_aem_default:
+
+        - path: /content/dam
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub/global/en/dashboard
+          permission: allow
+          privileges: jcr:read
+
+        - path: /content/tetrapak/customerhub/global/en/logout
+          permission: allow
+          privileges: jcr:read
+
+        - path: /content/tetrapak/customerhub/global/en/error
+          permission: allow
+          privileges: jcr:read
+
+        - path: /apps
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub/global/en/empty
+          permission: allow
+          privileges: jcr:read
+
+        - path: /bin/customerhub
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub/content-components
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/customerhub/global/en
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+    - cuhu_pack_design:
+
+        - path: /content/tetrapak/customerhub/global/en/package-design
+          permission: allow
+          actions: read
+          privileges:
+
+    - cuhu_pack_mat:
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/customerhub/global/en/ordering/packaging-material
+          permission: allow
+          actions: read
+          privileges:
+
+    - cuhu_parts:
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/customerhub/global/en/ordering/parts
+          permission: allow
+          actions: read
+          privileges:
+
+    - cuhu_partsinv:
+
+        - path: /content/tetrapak/customerhub/global/en/parts-inventory
+          permission: allow
+          actions: read
+          privileges:
+
+    - cuhu_partsinv_admin:
+
+        - path: /content/tetrapak/customerhub/global/en/parts-inventory-admin
+          permission: allow
+          actions: read
+          privileges:
+    - cuhu_aem_fin_soa:
+
+        - path: /content/tetrapak/customerhub/global/en/financials
+          permission: allow
+          privileges: jcr:read

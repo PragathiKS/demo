@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -19,6 +20,7 @@ import java.io.IOException;
  * 1. login-token
  * 2. acctoken
  * 3. authToken
+ * 4. samlRequestPathCookie
  * <p>
  * And redirects to page given in query parameter which internally redirect to sso and gets a new access token
  *
@@ -28,7 +30,7 @@ import java.io.IOException;
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Delete Cookie Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.paths=" + "/bin/customerhub/logout"
+                "sling.servlet.paths=" + "/bin/customerhub/deleteCookies"
         })
 public class LogoutServlet extends SlingSafeMethodsServlet {
 
@@ -55,16 +57,27 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
         }
         Cookie authTokenCookie = request.getCookie("authToken");
         if (null != authTokenCookie) {
+            authTokenCookie.setValue(null);
             authTokenCookie.setMaxAge(0);
             authTokenCookie.setPath("/");
+            authTokenCookie.setDomain(request.getServerName());
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
+        Cookie samlRequestPathCookie = request.getCookie("saml_request_path");
+        if (null != samlRequestPathCookie) {
+            samlRequestPathCookie.setMaxAge(0);
+            samlRequestPathCookie.setPath("/");
+            response.addCookie(samlRequestPathCookie);
+            LOGGER.debug("cookie samlRequestPathCookie was deleted");
+        }
         String redirectURL = request.getParameter("redirectURL");
         try {
-            response.sendRedirect(redirectURL);
+            if (StringUtils.isNotEmpty(redirectURL)) {
+                response.sendRedirect(redirectURL);
+            }
         } catch (IOException e) {
-            LOGGER.error("IOException in redirecting from Logout handler", e);
+            LOGGER.error("IOException in redirecting from Logout Servlet", e);
         }
     }
 }

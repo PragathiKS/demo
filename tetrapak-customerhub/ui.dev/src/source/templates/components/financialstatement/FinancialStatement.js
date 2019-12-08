@@ -5,16 +5,18 @@ import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
 import 'core-js/features/array/includes';
+import 'core-js/features/string/pad-start';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { fileWrapper } from '../../../scripts/utils/file';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX } from '../../../scripts/utils/constants';
+import { ajaxMethods, FINANCIAL_DATE_RANGE_PERIOD, DATE_FORMAT, EXT_EXCEL, EXT_PDF, DATE_RANGE_SEPARATOR, API_FINANCIAL_SUMMARY, DATE_RANGE_REGEX, dateTypes, DATE_REGEX, documentTypes, EVT_FINANCIAL_ERROR, EVT_FINANCIAL_ANALYTICS, EVT_FINANCIAL_FILTERS, SOA_FORM_LOAD_MSG, EVT_FINANCIAL_FILEDOWNLOAD, EVT_DROPDOWN_CHANGE, MONTH_FORMAT, YEAR_FORMAT, HASH_START } from '../../../scripts/utils/constants';
 import { resolveQuery, isMobileMode, getI18n } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { toast } from '../../../scripts/utils/toast';
 import { $body } from '../../../scripts/utils/commonSelectors';
 import { getURL } from '../../../scripts/utils/uri';
+import { isIOS } from '../../../scripts/utils/browserDetect';
+import file from '../../../scripts/utils/file';
+import { isValidDate } from '../../../scripts/utils/dateUtils';
 
 /**
  * Returns type of date
@@ -37,10 +39,10 @@ function _getStartDate() {
  */
 function _disableCalendarNext($this) {
   // Check if current visible months contain current month
-  const currentMonth = moment().month();
-  const currentYear = moment().year();
-  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => +$(el).val());
-  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => +$(el).val());
+  const currentMonth = moment().format(MONTH_FORMAT).toLowerCase();
+  const currentYear = moment().format(YEAR_FORMAT).toLowerCase();
+  const visibleMonths = $.map($this.root.find('.lightpick__select-months'), el => $.trim($(el).text()).toLowerCase());
+  const visibleYears = $.map($this.root.find('.lightpick__select-years'), el => $.trim($(el).text()).toLowerCase());
   if (
     visibleMonths.includes(currentMonth)
     && visibleYears.includes(currentYear)
@@ -93,55 +95,31 @@ function _initializeCalendar(isRange) {
   }
 }
 
-function _trackAnalytics(type) {
-  const $this = this;
-  const { $status, $docType } = $this.cache;
-  const { statementOfAccount = '' } = $this.cache.i18nKeys;
-  let ob = {
-    linkType: 'internal',
-    linkSection: 'financials',
-    linkParentTitle: $.trim(getI18n(statementOfAccount).toLowerCase())
-  };
-  const obKey = 'linkClick';
-  const trackingKey = 'linkClicked';
-  switch (type) {
-    case 'reset': {
-      ob.linkName = 'reset';
-      break;
-    }
-    case 'search': {
-      const status = $.trim($status.text());
-      const docType = $.trim($docType.text()).toLowerCase();
-      ob.linkName = 'search statement';
-      ob.linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  trackAnalytics(ob, obKey, trackingKey, undefined, false);
-}
-
 /**
  * Processes financial data
  * @param {object} data Financial data
  */
 function _processFinancialStatementData(data) {
   this.cache.statusList = data.status;
-  const { documentTypeAll = 'cuhu.documenttype.all' } = this.cache.i18nKeys;
+  const { documentTypeAll = 'cuhu.documenttype.all', apiErrorCodes, noCustomerErrorText } = this.cache.i18nKeys;
+  const defaultDocumentTypes = Object.keys(documentTypes).map(key => ({
+    key,
+    desc: documentTypes[key]
+  }));
+  const allKey = {
+    key: '',
+    desc: documentTypeAll,
+    translation: true
+  };
   const { documentType = [] } = data;
-  this.cache.documentTypeList = data.documentType = [
-    {
-      key: '', desc: documentTypeAll
-    },
-    ...documentType
-  ];
-  this.root.parents('.js-financials').trigger('financial.filters', [data.status, data.documentType]);
+  data.documentType = [allKey].concat(documentType);
+  this.cache.documentTypeList = [allKey].concat(defaultDocumentTypes);
+  this.root.parents('.js-financials').trigger(EVT_FINANCIAL_FILTERS, [data.status, this.cache.documentTypeList]);
   data = $.extend(true, data, this.cache.i18nKeys);
   if (!data.isError) {
-    if (!data.customerData) {
+    if (!data.customerData || (Array.isArray(data.customerData) && data.customerData.length === 0)) {
       data.isError = true;
+      data.errorText = noCustomerErrorText || (apiErrorCodes && apiErrorCodes.default);
     } else {
       data.customerData.sort((a, b) => {
         if (a && typeof a.customerName === 'string') {
@@ -185,6 +163,7 @@ function _processFinancialStatementData(data) {
         data.selectedCustomerData = selectedCustomerData;
       } catch (e) {
         data.isError = true;
+        data.errorText = apiErrorCodes && apiErrorCodes.default;
       }
     }
   }
@@ -246,13 +225,17 @@ function _renderFilters() {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         cache: true,
-        showLoader: true,
-        cancellable: true
+        showLoader: true
       },
       beforeRender(data) {
+        const { i18nKeys } = $this.cache;
         if (!data) {
+          const errorResult = this.xhr.responseJSON;
+          const apiErrorCode = errorResult && errorResult.apiErrorCode ? errorResult.apiErrorCode : 'default';
+          const { apiErrorCodes } = i18nKeys;
           this.data = data = {
-            isError: true
+            isError: true,
+            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message'
           };
         }
         return _processFinancialStatementData.apply($this, [data]);
@@ -264,7 +247,9 @@ function _renderFilters() {
         const [defaultStatus] = data.status;
         const [docType] = data.documentType;
         defaultQuery.status = defaultStatus.key;
-        defaultQuery['document-type'] = docType.key;
+        if (docType.key) {
+          defaultQuery['document-type'] = docType.key;
+        }
         defaultQuery['soa-date'] = moment().format(DATE_FORMAT);
         if ((`${defaultQuery.status}`).toUpperCase() !== 'O') {
           defaultQuery['invoicedate-from'] = _getStartDate();
@@ -276,7 +261,13 @@ function _renderFilters() {
         this.initializeCalendar();
         this.setRoute(true);
       } else {
-        this.root.find('.js-financial-statement__filter-section').removeClass('d-none');
+        const { statementOfAccount = '' } = this.cache.i18nKeys;
+        this.root.trigger(EVT_FINANCIAL_ERROR, [
+          $.trim(getI18n(statementOfAccount)).toLowerCase(),
+          SOA_FORM_LOAD_MSG,
+          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+        ]);
+        this.root.find('.js-financial-statement__filter-section').addClass('has-error').removeClass('d-none');
       }
     });
   });
@@ -332,15 +323,24 @@ function _syncFields(query) {
   ) {
     dateRange = `${query['invoicedate-from']} - ${query['invoicedate-to']}`;
   }
-  $findCustomer.customSelect(query.customerkey).trigger('dropdown.change', [true]);
+  $findCustomer.customSelect(query.customerkey).trigger(EVT_DROPDOWN_CHANGE, [true]);
   $statusField.customSelect(query.status);
   $statusField.parents('.js-custom-dropdown')
     .find(`li>a[data-key="${query.status}"]`)
     .attr('data-selected-date', dateRange)
     .data('selectedDate', dateRange);
-  $statusField.trigger('dropdown.change');
+  $statusField.trigger(EVT_DROPDOWN_CHANGE);
   $docType.customSelect(query['document-type'] || '');
   $filterForm.find('.js-financial-statement__document-number').val(query['document-number']);
+}
+
+/**
+ * Fixes date parts to correctly follow YYYY-MM-DD format
+ * @param {string} inputDate Input date format
+ */
+function _formatDateFix(inputDate) {
+  const [year, month, day] = inputDate.split('-');
+  return `${year}-${month.padStart(2, 0)}-${day.padStart(2, 0)}`;
 }
 
 /**
@@ -352,10 +352,10 @@ function _getFilterQuery() {
   const filterProps = deparam(filters, false);
   if (filterProps.daterange) {
     const [invoiceDateFrom, invoiceDateTo] = filterProps.daterange.split(DATE_RANGE_SEPARATOR);
-    filterProps['soa-date'] = invoiceDateFrom.trim();
+    filterProps['soa-date'] = _formatDateFix($.trim(invoiceDateFrom));
     if (invoiceDateTo) {
-      filterProps['invoicedate-from'] = invoiceDateFrom.trim();
-      filterProps['soa-date'] = filterProps['invoicedate-to'] = invoiceDateTo.trim();
+      filterProps['invoicedate-from'] = _formatDateFix($.trim(invoiceDateFrom));
+      filterProps['soa-date'] = filterProps['invoicedate-to'] = _formatDateFix($.trim(invoiceDateTo));
     }
     delete filterProps.daterange;
   }
@@ -383,30 +383,57 @@ function _getExtension(type) {
 }
 
 /**
+ * Checks for valid hash params
+ * @param {string} hash Hash string
+ */
+function _isValidHash(hash) {
+  if (typeof hash === 'string' && hash.indexOf(HASH_START) === 0) {
+    hash = hash.substring(HASH_START.length);
+    // Check if hash has a valid query string
+    const queryParams = deparam(hash);
+    return !!(
+      queryParams.customerkey
+      && queryParams.status
+      && (
+        queryParams['soa-date'] || queryParams['invoicedate-from']
+      )
+    );
+  }
+  return false;
+}
+
+/**
  * Sets current filter route
  * @param {boolean} isInit Initialize flag
  */
-function _setRoute(isInit = false) {
-  if (window.location.hash && isInit) {
+function _setRoute(isInit = false, linkText, type, linkSelection) {
+  if (_isValidHash(window.location.hash) && isInit) {
     router.init();
   } else {
     router.set({
       route: '#/',
-      queryString: this.getFilterQuery()
+      queryString: this.getFilterQuery(),
+      data: {
+        isClick: !isInit,
+        linkText,
+        type,
+        linkSelection
+      }
     }, isInit);
   }
 }
 function _downloadPdfExcel(...args) {
-  const [, type, el] = args;
+  const [, type, trackingType, linkName, el] = args;
   const $el = $(el);
   $el.attr('disabled', 'disabled');
   const paramsData = {};
-  const { $filterForm, data, i18nKeys, $docType } = this.cache;
+  const { $filterForm, data, i18nKeys, $docType, $soaTitle } = this.cache;
   const statusDesc = $filterForm.find(`.js-financial-statement__status option[value="${$el.data('status')}"]`).text();
   const statusKey = $el.data('status');
   const docTypeDesc = $docType.text().trim();
   const docTypeKey = $el.data('documentType');
   const docNumber = $el.data('search');
+  const soaTitle = $soaTitle.text();
   paramsData.soaDate = paramsData.startDate = $el.data('soaDate');
   if ($el.data('invoiceDateTo')) {
     paramsData.startDate = $el.data('invoiceDateFrom');
@@ -426,7 +453,7 @@ function _downloadPdfExcel(...args) {
   paramsData.documentTypeList = this.cache.documentTypeList;
   auth.getToken(() => {
     const url = resolveQuery(this.cache.servletUrl, { extnType: type });
-    fileWrapper({
+    file.get({
       url,
       data: {
         params: JSON.stringify(paramsData)
@@ -434,12 +461,16 @@ function _downloadPdfExcel(...args) {
       extension: _getExtension(type)
     }).then(() => {
       $el.removeAttr('disabled');
+      if (!isIOS()) {
+        this.root.trigger(EVT_FINANCIAL_ANALYTICS, [trackingType, linkName, $el]);
+      }
     }).catch(() => {
       toast.render(
-        i18nKeys.fileDownloadErrorText,
+        i18nKeys.excelPdfDownloadErrorText,
         i18nKeys.fileDownloadErrorClose
       );
       $el.removeAttr('disabled');
+      this.root.trigger(EVT_FINANCIAL_ERROR, [$.trim(soaTitle), $.trim($el.text()), getI18n(i18nKeys.excelPdfDownloadErrorText)]);
     });
   });
 }
@@ -458,15 +489,20 @@ function _getDefaultQueryString() {
 function _validateDateRange(e) {
   const ref = e.data;
   const $this = $(this);
-  const { $dateRangePicker, $errorMsg } = ref.cache;
+  const { $dateRangePicker, $errorMsg, $status } = ref.cache;
   const currentValue = $.trim($this.val());
   const currentType = $this.data('dateRangeType');
   const testRegex = currentType === dateTypes.RANGE ? DATE_RANGE_REGEX : DATE_REGEX;
   const dateRangeParts = currentValue.split(DATE_RANGE_SEPARATOR);
   let result = true;
+  // Persist date range on type
+  ref.getSelectedStatus($status)
+    .attr('data-selected-date', currentValue)
+    .data('selectedDate', currentValue);
+  // Validate date range
   if (testRegex.test(currentValue)) {
     dateRangeParts.forEach(part => {
-      if (!moment(part.trim()).isValid()) {
+      if (!isValidDate(part.trim())) {
         result = result && false;
       }
     });
@@ -508,6 +544,7 @@ class FinancialStatement {
     this.cache.$modal = this.root.find('.js-cal-cont__modal');
     this.cache.$status = this.root.find('.js-financial-statement__status');
     this.cache.$docType = this.root.find('.js-financial-statement__document-type');
+    this.cache.$soaTitle = this.root.find('.js-financial-statement__select-customer-heading');
     this.cache.dateConfig = {
       singleDate: true,
       numberOfMonths: 1,
@@ -518,12 +555,16 @@ class FinancialStatement {
       format: DATE_FORMAT
     };
   }
+  getSelectedStatus($status) {
+    return $status
+      .parents('.js-custom-dropdown')
+      .find(`a.js-custom-dropdown-li[data-key="${$status.data('key')}"]`);
+  }
   submitDateRange() {
     const { $dateRange, $rangeSelector, $modal, $status } = this.cache;
     const rangeSelectorValue = $rangeSelector.val();
     $dateRange.val(rangeSelectorValue).trigger('input');
-    $status.find('option')
-      .eq($status.prop('selectedIndex'))
+    this.getSelectedStatus($status)
       .attr('data-selected-date', rangeSelectorValue)
       .data('selectedDate', rangeSelectorValue);
     $modal.modal('hide');
@@ -550,15 +591,17 @@ class FinancialStatement {
     route((...args) => {
       const [config, , query] = args;
       if (config.hash) {
-        this.syncFields(query);
+        if (_isValidHash(window.location.hash)) {
+          this.syncFields(query);
+        }
       }
     });
     this.root
-      .on('dropdown.change', '.js-financial-statement__find-customer', function () {
+      .on(EVT_DROPDOWN_CHANGE, '.js-financial-statement__find-customer', function () {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).data('key'), noReset);
       })
-      .on('dropdown.change', '.js-financial-statement__status', function () {
+      .on(EVT_DROPDOWN_CHANGE, '.js-financial-statement__status', function () {
         const self = $(this);
         const currentTarget = self.parents('.js-custom-dropdown').find(`li>a[data-key="${self.data('key')}"]`);
         $this.setDateFilter(self.customSelect(), currentTarget.data('selectedDate'));
@@ -570,16 +613,18 @@ class FinancialStatement {
         this.submitDateRange();
       })
       .on('click', '.js-calendar-nav', this, this.navigateCalendar)
-      .on('click', '.js-financial-statement__submit', this.populateResults)
-      .on('click', '.js-financial-statement__reset', () => {
-        this.resetFilters();
-        this.trackAnalytics('reset');
+      .on('click', '.js-financial-statement__submit', this, this.populateResults)
+      .on('click', '.js-financial-statement__reset', this, function (e) {
+        const self = e.data;
+        const resetLinkText = $(this).text();
+        const type = 'reset';
+        self.resetFilters(resetLinkText, type);
+        if (isIOS()) {
+          self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['reset', resetLinkText]);
+        }
       })
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
-    this.root.parents('.js-financials').on('financial.filedownload', this, this.downloadPdfExcel);
-    $(document).on('click', '#downloadPdf', function () {
-      window.open($(this).attr('href'), '_blank');
-    });
+    this.root.parents('.js-financials').on(EVT_FINANCIAL_FILEDOWNLOAD, this, this.downloadPdfExcel);
   }
   openDateSelector() {
     this.cache.$modal.modal('show');
@@ -594,14 +639,24 @@ class FinancialStatement {
   setSelectedCustomer() {
     return _setSelectedCustomer.apply(this, arguments);
   }
-  populateResults = () => {
-    const { $dateRange } = this.cache;
+  populateResults(e) {
+    const self = e.data;
+    const $this = $(this);
+    const { $dateRange } = self.cache;
     if ($dateRange.hasClass('has-error')) {
       $dateRange.focus();
       return;
     }
-    this.trackAnalytics('search');
-    this.setRoute();
+    const type = 'search';
+    const { $status, $docType } = self.cache;
+    const status = $.trim($status.text());
+    const docType = $.trim($docType.text()).toLowerCase();
+    const btnText = $this.text();
+    const linkSelection = `customer name|${status}|dates choosen|${docType}|document number`;
+    if (isIOS()) {
+      self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['search', btnText, null, linkSelection]);
+    }
+    self.setRoute(false, btnText, type, linkSelection);
   }
   getFilterQuery() {
     return _getFilterQuery.apply(this, arguments);
@@ -612,7 +667,7 @@ class FinancialStatement {
   syncFields() {
     return _syncFields.apply(this, arguments);
   }
-  resetFilters() {
+  resetFilters(linkText, type) {
     const { $status } = this.cache;
     const defaultQueryString = _getDefaultQueryString.apply(this);
     $status.parents('.js-custom-dropdown').find('.js-custom-dropdown-li').each(function () {
@@ -621,10 +676,14 @@ class FinancialStatement {
     this.syncFields(deparam(defaultQueryString, false));
     router.set({
       route: '#/',
-      queryString: defaultQueryString
+      queryString: defaultQueryString,
+      data: {
+        isClick: true,
+        linkText,
+        type
+      }
     });
   }
-  trackAnalytics = (type) => _trackAnalytics.call(this, type);
   validateDateRange() {
     return _validateDateRange.apply(this, arguments);
   }

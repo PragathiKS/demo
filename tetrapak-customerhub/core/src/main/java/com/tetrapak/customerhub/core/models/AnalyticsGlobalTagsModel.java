@@ -8,6 +8,7 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.slf4j.Logger;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.tetrapak.customerhub.core.utils.HttpUtil.encodeStr;
 
 /**
  * AnalyticsGlobalTagsModel Implementation
@@ -75,7 +78,28 @@ public class AnalyticsGlobalTagsModel {
      * @return 12ffsf343243345 value
      */
     public String getSalesForceId() {
-        return "12ffsf343243345";
+
+        return StringUtils.EMPTY;
+    }
+
+    /**
+     * Get User Id
+     *
+     * @return user ID
+     */
+    public String getVisitorId() {
+        if (null == resource) {
+            return null;
+        }
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resource.getResourceResolver().adaptTo(Session.class);
+        if (null == session || null == userManager) {
+            return null;
+        }
+        String userId;
+        userId = session.getUserID();
+        return encodeStr(userId);
     }
 
     /**
@@ -85,6 +109,46 @@ public class AnalyticsGlobalTagsModel {
      */
     public String getUserCountryCode() {
         return StringUtils.EMPTY;
+    }
+
+    public String getUserType(){
+        String bpNumber = getBpNumber();
+        if(bpNumber.isEmpty()){
+            return StringUtils.EMPTY;
+        }
+        else if(bpNumber.startsWith("EE")){
+            return "internal";
+        }else{
+            return "external";
+        }
+    }
+
+    public String getBpNumber() {
+        String bpnumber = StringUtils.EMPTY;
+        if (null == resource) {
+            return bpnumber;
+        }
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (null == session || null == userManager) {
+            return bpnumber;
+        }
+        Authorizable user;
+        try {
+            user = userManager.getAuthorizable(session.getUserID());
+            Resource userResource = resourceResolver.getResource(user.getPath());
+            if (userResource == null) {
+                return bpnumber;
+            }
+            ValueMap vMap = userResource.getValueMap();
+            if (vMap.containsKey("bpnumber")) {
+                bpnumber = (String) vMap.get("bpnumber");
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting BP number in AnalyticsGlobalTagsModel", e);
+        }
+        return bpnumber;
     }
 
     /**
@@ -100,7 +164,7 @@ public class AnalyticsGlobalTagsModel {
 
         ResourceResolver resourceResolver = resource.getResourceResolver();
         UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-        Session session = resource.getResourceResolver().adaptTo(Session.class);
+        Session session = resourceResolver.adaptTo(Session.class);
         if (null == session || null == userManager) {
             return userRoles;
         }
@@ -116,7 +180,7 @@ public class AnalyticsGlobalTagsModel {
                 userRoles.add(userRole);
             }
         } catch (RepositoryException e) {
-            LOGGER.error("RepositoryException in AnalyticsGlobalTagsModel", e);
+            LOGGER.error("RepositoryException in getting user roles in AnalyticsGlobalTagsModel", e);
         }
 
         return userRoles;
@@ -159,13 +223,13 @@ public class AnalyticsGlobalTagsModel {
      */
     public String getChannel() {
         final int DEPTH = 4;
-        String channel = StringUtils.substringAfter(StringUtils.substringBefore(resource.getPath(),"/jcr:content"),
+        String channel = StringUtils.substringAfter(StringUtils.substringBefore(resource.getPath(), "/jcr:content"),
                 GlobalUtil.getPageFromResource(resource, DEPTH).getPath() + CustomerHubConstants.PATH_SEPARATOR);
         return channel.replaceAll(CustomerHubConstants.PATH_SEPARATOR, ":").toLowerCase();
     }
 
     /**
-     * This method returns is a page is sub second level page in site hirarchy
+     * This method returns is a page is sub second level page in site hierarchy
      *
      * @return true if sub page
      */

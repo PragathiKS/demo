@@ -1,0 +1,18 @@
+{
+	"breadcrumbHomePath": "#",
+	"breadcrumbHomeLabelI18n": "Home",
+	"breadcrumbSubpages" : [
+		{
+			"subpageTitleI18n" : "subpage1",
+			"subpageLinkPath": "#"
+		},
+		{
+			"subpageTitleI18n" : "subpage2",
+			"subpageLinkPath": "#"
+		},
+		{
+			"subpageTitleI18n" : "subpage3",
+			"subpageLinkPath": "#"
+		}
+	]
+}

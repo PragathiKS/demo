@@ -21,6 +21,13 @@
         <input type="hidden" id="currencyMappingURL"
                value="/apps/settings/wcm/designs/customerhub/jsonData/currency_symbol.json"/>
     </sly>
+    <sly data-sly-use.inactivityDialogModel="com.tetrapak.customerhub.core.models.InactivityDialogModel">
+        <input data-sly-test="${inactivityDialogModel.autoRefreshSession}" type="hidden" id="autoRefreshSession" name="autoRefreshSession"
+               value="${inactivityDialogModel.autoRefreshSession}" />
+    </sly>
+    <sly data-sly-use.globalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil">
+        <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="${globalUtil.siteImproveScript}" />
+    </sly>
 </div>
 <sly data-sly-use.cookiemodel="com.tetrapak.customerhub.core.models.CookieConsentModel"/>
 <sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">

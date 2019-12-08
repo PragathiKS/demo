@@ -45,8 +45,7 @@ public class ReferenceModel {
 
             Resource checkResource = request.getResourceResolver().getResource(path);
             if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
-                path = path.replace(CustomerHubConstants.PATH_SEPARATOR + locale,
-                        CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE);
+                path = StringUtils.EMPTY;
             }
         }
 

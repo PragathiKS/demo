@@ -43,6 +43,7 @@ public class LeftNavigationModelTest {
         Assert.assertTrue("is external link", leftNavigationBean.isExternalLink());
         Assert.assertFalse("is active", leftNavigationBean.isActive());
         Assert.assertFalse("is expanded", leftNavigationBean.isExpanded());
+        Assert.assertTrue("remove NoOpener NoReferrer", leftNavigationBean.isRemoveNoOpenerNoReferrer());
 
         LeftNavigationBean leftNavigationBeanWithSubMenu = list.get(3);
         List<LeftNavigationBean> subMenuList = leftNavigationBeanWithSubMenu.getSubMenuList();

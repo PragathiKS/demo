@@ -2,12 +2,12 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-09-04T07:30:04.279Z"
-        cq:lastModifiedBy="sapient-tarun"
-        cq:lastReplicated="{Date}2019-09-04T07:30:13.694Z"
-        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastModified="{Date}2019-09-13T10:32:49.164Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-09-19T07:28:33.762Z"
+        cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
-        cq:redirectTarget="/bin/customerhub/logout?redirectURL=https://ptwjveuug6a2mtsbyyycta-on.drv.tw/SSO/ssodev.tetrapak.com/idp/stopSSOdev_new"
+        cq:redirectTarget="https://tetrapak-test64.adobecqms.net/bin/customerhub/logout?redirectURL=https://ssodevutils.tetrapak.com/logout/logout.aspx"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"

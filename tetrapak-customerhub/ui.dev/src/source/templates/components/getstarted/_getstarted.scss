@@ -1,12 +1,14 @@
 .tp-get-started {
     @include box-shadow-normal;
     @include padding($padding-sm);
+    @include margin($margin-md 0);
     width: 100%;
     background-color: $color-white;
     border-radius: 5px;
 
     @media #{$desktop} {
         @include padding(12px);
+        @include margin($margin-md 0);
     }
 
     &__heading {

@@ -77,15 +77,15 @@ public class TabsListModelTest {
 		Assert.assertEquals("youtube embed URL","https://www.youtube.com/embed/ZofQqevIIZA", videoTabBean.getYoutubeEmbedURL());
 		Assert.assertEquals("thumbnail path","/content/dam/customerhub/thumbnail.png", videoTabBean.getThumbnailPath());
 
-		ImageBean image = videoTabBean.getImage();
-		Assert.assertEquals("image path","/content/dam/customerhub/p2.PNG", image.getImagePath());
-		Assert.assertEquals("alt text","alt1", image.getAltText());
+		ImageBean image = imageTabBean.getImage();
+		Assert.assertEquals("image path","/content/dam/customerhub/p3.PNG", image.getImagePath());
+		Assert.assertEquals("alt1","alt1", image.getAltText());
 		Assert.assertEquals("Desktop Height","200", image.getDheight());
 		Assert.assertEquals("Desktop Height","100", image.getDwidth());
-		Assert.assertEquals("Mobile Height Landscape","290", image.getMheightl());
-		Assert.assertEquals("Mobile Width Landscape","100", image.getMwidthl());
-		Assert.assertEquals("Mobile Height Portrait","290", image.getMheightp());
-		Assert.assertEquals("Mobile Width Portrait","100", image.getMwidthp());
+		Assert.assertEquals("Mobile Height Landscape","400", image.getMheightl());
+		Assert.assertEquals("Mobile Width Landscape","200", image.getMwidthl());
+		Assert.assertEquals("Mobile Height Portrait","500", image.getMheightp());
+		Assert.assertEquals("Mobile Width Portrait","300", image.getMwidthp());
 		Assert.assertEquals("Image crop","390,57,947,473", image.getImageCrop());
 	}
 }

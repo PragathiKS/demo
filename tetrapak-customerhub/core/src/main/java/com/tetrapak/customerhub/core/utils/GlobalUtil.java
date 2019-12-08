@@ -1,15 +1,19 @@
 package com.tetrapak.customerhub.core.utils;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceUtil;
@@ -17,12 +21,16 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -135,7 +143,11 @@ public class GlobalUtil {
      * @return Set<String>
      */
     public static Set<String> getRunModes() {
-        return getService(SlingSettingsService.class).getRunModes();
+        SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (null == slingSettingsService) {
+            return Collections.emptySet();
+        }
+        return slingSettingsService.getRunModes();
     }
 
     /**
@@ -147,7 +159,11 @@ public class GlobalUtil {
     @SuppressWarnings("unchecked")
     public static <T> T getService(final Class<T> clazz) {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
-        return (T) bundleContext.getService(bundleContext.getServiceReference(clazz.getName()));
+        ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
+        if (null == serviceReference) {
+            return null;
+        }
+        return (T) bundleContext.getService(serviceReference);
     }
 
     /**
@@ -216,7 +232,7 @@ public class GlobalUtil {
      * @return value
      */
     public static String getI18nValueForThisLanguage(SlingHttpServletRequest request, String prefix, String key, String language) {
-        I18n i18n = new I18n(request.getResourceBundle(new Locale(language)));
+        I18n i18n = new I18n(request.getResourceBundle(new Locale(language.substring(0, 2), StringUtils.substringAfter(language, "_"))));
         return i18n.get(prefix + key);
     }
 
@@ -360,10 +376,11 @@ public class GlobalUtil {
     /**
      * This method is used to get image resource from inside a child element of a multi-field
      *
-     * @param res Current Resource from a multi-field
+     * @param res       Current Resource from a multi-field
+     * @param imageName image node name
      * @return image resource
      */
-    public static Resource getImageResource(Resource res) {
+    public static Resource getImageResource(Resource res, String imageName) {
 
         Resource listResource = res.getParent();
         if (null == listResource) {
@@ -373,16 +390,10 @@ public class GlobalUtil {
         if (null == tabResource) {
             return null;
         }
-        return tabResource.getChild(res.getName() + "-image");
+        return tabResource.getChild(imageName);
     }
 
-    /**
-     * Method to get global config resource for a resource
-     *
-     * @param childResource resource
-     * @return global config resource
-     */
-    public static Resource getGlobalConfigurationResource(Resource childResource) {
+    private static Resource getGlobalConfigNode(Resource childResource) {
         Resource res = childResource.getChild("globalconfiguration");
         if (null != res) {
             return res;
@@ -408,7 +419,22 @@ public class GlobalUtil {
         Resource childResource = request.getResourceResolver().getResource(
                 GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
-            return getGlobalConfigurationResource(childResource);
+            return getGlobalConfigNode(childResource);
+        }
+        return null;
+    }
+
+    /**
+     * Method to get global config resource for a resource
+     *
+     * @param resource sling resource
+     * @return global config resource
+     */
+    private static Resource getGlobalConfigResource(Resource resource) {
+        Resource childResource = resource.getResourceResolver().getResource(
+                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
+        if (null != childResource) {
+            return getGlobalConfigNode(childResource);
         }
         return null;
     }
@@ -427,4 +453,89 @@ public class GlobalUtil {
         return CustomerHubConstants.DEFAULT_LOCALE;
     }
 
+    /**
+     * @return site improve script
+     */
+    public static String getSiteImproveScript() {
+        SiteImproveScriptService siteImproveScriptService = getService(SiteImproveScriptService.class);
+        if (null == siteImproveScriptService) {
+            return null;
+        }
+        return siteImproveScriptService.getSiteImproveScriptUrl();
+    }
+
+    /**
+     * get scene 7 video url
+     *
+     * @param damVideoPath        video path
+     * @param dynamicMediaService dynamic media service
+     * @return video path from scene 7
+     */
+    public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
+        damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
+        damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
+        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
+                + CustomerHubConstants.PATH_SEPARATOR + damVideoPath;
+        return damVideoPath;
+    }
+
+    /**
+     * Get a name with special characters replaced by underscore
+     *
+     * @param name tab title
+     * @return valid name
+     */
+    public static String getValidName(String name) {
+        return JcrUtil.createValidName(name);
+    }
+
+    /**
+     * Removes images which are no longer attached to any tab
+     *
+     * @param resource  resource
+     * @param listName  list name the node which is not to be removed
+     * @param imageList image list
+     * @throws PersistenceException persistence exception
+     */
+    public static void cleanUpImages(Resource resource, String listName, List<String> imageList) throws PersistenceException {
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        Iterator<Resource> itr = resource.listChildren();
+        while (itr.hasNext()) {
+            Resource resource1 = itr.next();
+            if (listName.equals(resource1.getName())) {
+                continue;
+            }
+            if (!imageList.contains(resource1.getName())) {
+                resourceResolver.delete(resource1);
+                resourceResolver.commit();
+            }
+        }
+    }
+
+    /**
+     * This method returns map of error codes getting from APIGEE
+     * Reads global configurations and extract error codes authored
+     * Return a map with default value which is "cuhu.error.message"
+     *
+     * @param resource Resource
+     * @return map of API error codes
+     */
+    public static Map<String, String> getApiErrorCodes(Resource resource) {
+        Map<String, String> apiErrorCodes = new HashMap<>();
+        apiErrorCodes.put("default", "cuhu.error.message");
+        Resource globalConfigResource = getGlobalConfigResource(resource);
+        if (null == globalConfigResource) {
+            return apiErrorCodes;
+        }
+        Resource apiCodes = globalConfigResource.getChild("apiErrorCodes");
+        if (null == apiCodes) {
+            return apiErrorCodes;
+        }
+        Iterator<Resource> itr = apiCodes.listChildren();
+        while (itr.hasNext()) {
+            ValueMap vMap = itr.next().getValueMap();
+            apiErrorCodes.put((String) vMap.get("errorCode"), (String) vMap.get("errorMessage"));
+        }
+        return apiErrorCodes;
+    }
 }

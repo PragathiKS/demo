@@ -20,6 +20,11 @@ input.focus-visible:focus {
     outline: none;
 }
 
+[tabindex]:not(.modal),
+button {
+    cursor: pointer;
+}
+
 $text-tags: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'section', 'article', 'nav', 'aside', 'header', 'footer', 'b', 'strong', 'i', 'td', 'th', 'button');
 
 @each $tag in $text-tags {
@@ -52,7 +57,6 @@ a {
 button {
     background-color: transparent;
     color: $color-text;
-    cursor: pointer;
 }
 
 img,
@@ -208,6 +212,12 @@ td {
         @include margin-bottom($margin-l);
         @include margin-top($margin-l);
     }
+}
+
+.tp-modal-content {
+    @include box-shadow-normal;
+    @include border-radius($border-radius);
+    border-color: transparent;
 }
 
 .tp-modal-dialog {

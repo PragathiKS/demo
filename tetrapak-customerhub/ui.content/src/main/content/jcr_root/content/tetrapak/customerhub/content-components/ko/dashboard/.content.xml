@@ -3,146 +3,198 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-09-04T06:14:33.849Z"
-        cq:lastModifiedBy="reference-adjustment-service"
-        cq:lastReplicated="{Date}2019-09-04T06:40:54.970Z"
-        cq:lastReplicatedBy="admin"
-        cq:lastReplicationAction="Activate"
-        cq:lastTranslationUpdate="{Date}2019-07-17T11:22:54.239Z"
-        cq:template="/conf/customerhub/settings/wcm/templates/dashboard-page"
-        cq:translationSourcePath="/content/tetrapak/customerhub/content-components/en/dashboard"
+        cq:lastModified="{Date}2019-09-23T10:52:01.453Z"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2019-09-23T09:57:25.193Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/conf/customerhub/settings/wcm/templates/content-page"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[mix:versionable]"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Start Page"
-        jcr:uuid="376613dc-4cf6-426e-b6ac-d316332484ba"
+        jcr:title="Dashboard"
+        jcr:uuid="dc245754-de7c-49ca-9bb5-be1f7e95ee39"
         sling:resourceType="customerhub/components/structure/page"
-        iconClass="icon-Dashboard">
+        iconClass="icon-Dashboard"
+        showTitle="true">
         <root
+            cq:lastRolledout="{Date}2019-09-23T09:57:25.111Z"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">
             <responsivegrid
+                cq:lastRolledout="{Date}2019-09-23T09:57:25.115Z"
+                cq:lastRolledoutBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <textvideo_416075310
+                    cq:isCancelledForChildren="{Boolean}true"
+                    cq:lastReplicated="{Date}2019-09-18T09:21:34.025Z"
+                    cq:lastReplicatedBy="admin"
+                    cq:lastReplicationAction="Activate"
+                    cq:lastRolledout="{Date}2019-09-23T09:57:25.124Z"
+                    cq:lastRolledoutBy="admin"
                     jcr:created="{Date}2019-07-08T09:23:35.205Z"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2019-07-18T06:38:26.480Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-23T10:49:49.855Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled,cq:ReplicationStatus]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/textvideo"
-                    damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                    damVideoPath="/content/dam/tetrapak/customerhub/english/dashboard/videos/SampleVideo_1280x720_5mb.mp4"
                     description="음식, 음료 또는 화장품? 어떤 제품이든 우리는 고객의 요구에 맞는 프로세싱 및 패키징 솔루션을 제공합니다. 우리는 당신과 협력하여 조리법을 개발하고 똑똑한 환경 사고로 생산 과정을 설계합니다. 아이디어를 고객이 사랑하는 제품으로 전환하도록 도와드립니다."
                     isExternal="true"
-                    pwDisplay="display-row"
-                    thumbnailPath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
+                    pwDisplay="display-column"
+                    textAlignment="left"
                     title="성공적인 제품 구현"
                     videoSource="dam"
                     youtubeVideoID="ZofQqevIIZA"/>
                 <getstarted
-                    jcr:lastModified="{Date}2019-07-18T06:41:28.183Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    cq:lastRolledout="{Date}2019-09-23T09:57:25.129Z"
+                    cq:lastRolledoutBy="admin"
+                    jcr:lastModified="{Date}2019-09-23T10:50:30.874Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/getstarted"
                     className="tpmol-image-card__normal-text"
                     headingI18n="시작하다"
                     textIsRich="[true,true,true]">
+                    <item0-image
+                        cq:lastRolledout="{Date}2019-09-23T09:57:25.135Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:57:25.132Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-1.PNG"
+                        imageCrop="318,126,976,411"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item1-image
+                        cq:lastRolledout="{Date}2019-09-23T09:57:25.140Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:57:25.137Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-2.PNG"
+                        imageCrop="371,129,913,359"
+                        mheightp="177"
+                        mwidthp="414"/>
+                    <item2-image
+                        cq:lastRolledout="{Date}2019-09-23T09:57:25.144Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:57:25.141Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/get_started-3.PNG"/>
                     <list jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="&lt;p>&lt;b>My Tetra Pak&lt;/b>은 Tetra Pak에 입장 할 수있는 유일한 곳입니다. 스마트 한 방식으로 비즈니스 데이터를 사용하여 시간과 비용을 절약하고 성능을 향상 시키며 지식을 향상시킵니다. 일상 업무를 개선하는 조언과 통찰력을 얻을 수 있습니다. My Tetra Pak은 최고의 솔루션을 제공합니다.&lt;/p>&#xd;&#xa;"
-                            imageAltI18n="귀하의 비즈니스를위한 한 곳"
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
+                            tabId="item0"
                             titleI18n="귀하의 비즈니스를위한 한 곳"/>
                         <item1
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="&lt;p>장비, 설정, 필요 및 목표에 따라; My Tetra Pak은 관심이 필요할 때 알려줍니다. 성능 문제, 유지 관리 및 최적화에 관한 세부 정보를 탐색하십시오. 일상적인 작업을위한 점검 목록으로 알림을 사용할 수 있습니다.&lt;/p>&#xd;&#xa;"
-                            imageAltI18n="필요한 알림"
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-2.PNG"
+                            tabId="item1"
                             titleI18n="필요한 알림"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
                             descriptionI18n="&lt;p>어떤 종류의 알림을 받으시겠습니까? 우리 사업의 성과 목표는 무엇입니까? 관심 분야 My Tetra Pak을 고객의 필요에 맞게 최적화하고 비즈니스에 새로운 가치를 부여하십시오.&lt;/p>&#xd;&#xa;"
-                            imageAltI18n=" 경험을 사용자 정의하십시오."
-                            imagePath="/content/dam/tetrapak/customerhub/get_started-3.PNG"
+                            tabId="item2"
                             titleI18n=" 경험을 사용자 정의하십시오."/>
                     </list>
-                    <item0-image
-                        jcr:lastModified="{Date}2019-07-26T11:20:17.364Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="first image"
-                        fileReference="/content/dam/tetrapak/customerhub/get_started-3.PNG"/>
-                    <item1-image
-                        jcr:lastModified="{Date}2019-07-26T11:21:54.401Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="second one"
-                        fileReference="/content/dam/tetrapak/customerhub/get_started-1.PNG"/>
-                    <item2-image
-                        jcr:lastModified="{Date}2019-07-26T11:22:26.155Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="third one"
-                        fileReference="/content/dam/tetrapak/customerhub/get_started-2.PNG"/>
                 </getstarted>
                 <tabslist
-                    jcr:created="{Date}2019-07-26T11:22:45.326Z"
+                    cq:isCancelledForChildren="{Boolean}true"
+                    cq:lastRolledout="{Date}2019-09-23T09:57:25.161Z"
+                    cq:lastRolledoutBy="admin"
+                    jcr:created="{Date}2019-07-22T04:35:08.708Z"
                     jcr:createdBy="sapient-tarun"
-                    jcr:lastModified="{Date}2019-07-26T11:48:10.617Z"
-                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:lastModified="{Date}2019-09-23T10:52:01.443Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSyncCancelled]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="customerhub/components/content/tabslist"
                     heading="모든 요구에 맞는 솔루션"
                     textIsRich="[true,true,true]">
+                    <item0-image
+                        cq:lastRolledout="{Date}2019-09-23T09:57:25.166Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:57:25.163Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt2"
+                        fileReference="/content/dam/tetrapak/customerhub/english/error/images/Login_Error.PNG"/>
+                    <item2-image
+                        cq:lastRolledout="{Date}2019-09-23T09:57:25.169Z"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2019-09-23T09:57:25.167Z"
+                        jcr:lastModifiedBy="sapient-tarun"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="customerhub/components/content/image"
+                        alt="alt5"
+                        fileReference="/content/dam/tetrapak/customerhub/english/dashboard/images/Contact Card.PNG"/>
                     <tablist jcr:primaryType="nt:unstructured">
                         <item0
                             jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/english/dashboard/videos/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="통찰력에 대해 알아보십시오."
-                            linkType="button"
-                            linkURL="https://www.tetrapak.com/"
-                            mediaDescriptionI18n="&lt;p>앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?&lt;/p>&#xd;&#xa;"
-                            mediaTitleI18n="더 큰 순간의 자연"
-                            tabTitleI18n="대형 과일 조각이 들어간 세계 최초의 상쾌한 요구르트"
-                            type="image"/>
-                        <item1
-                            jcr:primaryType="nt:unstructured"
-                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
-                            isExternal="true"
-                            linkTextI18n="더 알아보기"
                             linkType="button"
                             linkURL="http://www.tetrapak.com/"
                             mediaDescriptionI18n="&lt;p>앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?&lt;/p>&#xd;&#xa;"
                             mediaTitleI18n="더 큰 순간의 자연"
+                            tabId="item0"
                             tabTitleI18n="대형 과일 조각이 들어간 세계 최초의 상쾌한 요구르트"
                             thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
-                            type="video"
+                            type="image"
                             videoSource="dam"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
+                            isExternal="false"
+                            linkTextI18n="더 알아보기"
+                            linkType="link"
+                            linkURL="http://www.tetrapak.com"
+                            mediaDescriptionI18n="&lt;p>앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?&lt;/p>&#xd;&#xa;"
+                            mediaTitleI18n="더 큰 순간의 자연"
+                            tabId="item2"
+                            tabTitleI18n="대형 과일 조각이 들어간 세계 최초의 상쾌한 요구르트"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
+                            type="image"
+                            videoSource="youtube"
                             youtubeVideoID="fR-esiS1Pn0"/>
                         <item2
                             jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/customerhub/SampleVideo_1280x720_5mb.mp4"
                             isExternal="true"
                             linkTextI18n="더 알아보기"
                             linkType="link"
                             linkURL="http://www.tetrapak.com"
                             mediaDescriptionI18n="&lt;p>앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?앰비언트 마시는 요구르트는 이제 초대형 과일 조각을 얻었습니다. 이것은 중국 유제품 제조사와 TETRA Pak 전문가 간의 혁신적인 협력의 결과입니다. 아이디어, 가공, 포장 및 출시의 성공 공식은 무엇 이었습니까?&lt;/p>&#xd;&#xa;"
                             mediaTitleI18n="더 큰 순간의 자연"
+                            tabId="item3"
                             tabTitleI18n="유제품을위한 총 생산 유지 보수 구현"
+                            thumbnailPath="/content/dam/tetrapak/customerhub/english/error/images/cow-blue-background.png"
                             type="video"
                             videoSource="youtube"
                             youtubeVideoID="fR-esiS1Pn0"/>
                     </tablist>
-                    <item0-image
-                        jcr:lastModified="{Date}2019-07-26T11:49:38.019Z"
-                        jcr:lastModifiedBy="sapient-tarun"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="customerhub/components/content/image"
-                        alt="alt"
-                        fileReference="/content/dam/tetrapak/customerhub/get_started-2.PNG"/>
                 </tabslist>
             </responsivegrid>
         </root>

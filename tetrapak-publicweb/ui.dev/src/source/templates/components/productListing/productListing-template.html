@@ -1,0 +1,38 @@
+<sly data-sly-template.productlisting_template="${@ data, flag}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-sly-test="${data.productRootPath}" class="pw-product-listing pw-theme--${data.pwTheme} pw-padding--${data.pwPadding}" data-locator="product-listing"
+       data-module="ProductListing" data-product-root-path="${data.productRootPath}">
+    <div class="pw-product-listing__title">
+      <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+           data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
+    </div>
+    <div class="pw-product-listing__navigation">
+      <div class="d-lg-none">
+        <div class="pw-product-listing__navigation">
+          <select class="pw-product-listing__navigation__dropdown js-pw-product-listing__navigation__dropdown">
+            <option data-sly-test="${data.firstTabLinkTextI18n}" value="all">${data.firstTabLinkTextI18n}</option>
+            <sly data-sly-list.tabItemDropdown="${data.tabs}">
+              <option value="${tabItemDropdown.categoryTag}">${tabItemDropdown.tabLinkTextI18n}</option>
+            </sly>
+          </select>
+          <i class="pw-product-listing__navigation__icon icon-Chevron_Down"></i>
+        </div>
+      </div>
+      <div class="tpatom-button-group d-none d-lg-flex justify-content-center">
+        <sly data-sly-test="${data.firstTabLinkTextI18n}"
+             data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+             data-sly-call="${pwButton.button_template @ btnPath='#', btnText=data.firstTabLinkTextI18n, btnTooltip=data.firstTabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab tpatom-button--group-item--active', customData='all'}"/>
+        <sly data-sly-list.tabItem="${data.tabs}">
+          <input type="hidden" class="analytics-subcomponent-category-tag" value="${tabItem.categoryTagAnalyticsPath}"/>
+          <sly data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
+               data-sly-call="${pwButton.button_template @ btnPath='#', btnText=tabItem.tabLinkTextI18n, btnTooltip=tabItem.tabLinkTextI18n, variant='group-item', customClasses='js-product-listng-tab', customData=tabItem.categoryTag}"/>
+        </sly>
+      </div>
+    </div>
+    <div class="pw-product-listing__cards-container js-pw-product-listing__cards-container">
+      <!-- product cards renders here -->
+    </div>
+  </div>
+  <sly data-sly-test="${!data.productRootPath}"
+       data-sly-call="${templates.placeholder @ isEmpty = !data.productRootPath}"></sly>
+</sly>

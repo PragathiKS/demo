@@ -2,17 +2,16 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
-    <es_CO/>
     <jcr:content
         cq:isLanguageRoot="true"
+        cq:allowedTemplates="/conf/customerhub/settings/wcm/templates/language-page"
         cq:lastModified="{Date}2019-03-27T11:13:32.325+05:30"
         cq:lastModifiedBy="admin"
-        cq:lastReplicated="{Date}2019-09-04T06:40:53.780Z"
+        cq:lastReplicated="{Date}2019-09-19T13:43:50.175Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:language="en"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Content Components"
@@ -27,13 +26,14 @@
         </root>
     </jcr:content>
     <en/>
+    <tr/>
+    <zh_TW/>
     <zh/>
     <ru/>
-    <tr/>
-    <ko/>
     <pt/>
+    <ko/>
     <ja/>
-    <zh_TW/>
+    <es_CO/>
     <it/>
     <fr/>
     <es/>
@@ -49,4 +49,9 @@
     <et/>
     <cs/>
     <hr/>
+    <sv/>
+    <nb/>
+    <fi/>
+    <nl/>
+    <da/>
 </jcr:root>

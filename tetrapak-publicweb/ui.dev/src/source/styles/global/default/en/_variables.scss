@@ -1,0 +1,163 @@
+/*------------------------------------*\
+    #VARIABLES
+\*------------------------------------*/
+
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+
+/*
+ * 1) Color variables involve a two-tier system to keep colors in sync. The
+ *    first tier defines the brand and neutral colors, and the second tier
+ *    defines the application of those colors.
+ */
+
+/*
+ * Brand Colors
+ * 1) Brand color variables use English names to define colors to make palettes easier to
+ *    identify. Names are generated using this tool: http://chir.ag/projects/name-that-color/
+ * 2) Brand color variables should typically not be used directly in Sass partials. Instead, use
+ *    second-tier application colors.
+ *
+ */
+$color-congress-blue: #023f88;
+$color-jordy-blue: #95C6F1;
+/*$color-sail: #b5d9fb;*/
+
+
+ /* Secondary Colors  */
+$color-tory-blue: #155AB0;
+$color-denim: #1967C8;
+$color-royal-blue: #3280E1;
+$color-picton-blue: #4199EF;
+
+/*
+$color-azure: #3565a0;
+$color-ship-cove: #668bba;
+$color-rock-blue: #9ab2d1;
+$color-botticelli: #cdd9e7;
+$color-french-pass: #c3e0fe;
+$color-onahau: #d2e8fe;
+$color-hawkes-blue: #e0f0fd;
+$color-alice-blue: #f0f7ff;
+*/
+
+/* Grayscale Colors */
+$color-white: #fff;
+$color-black: #000;
+$color-mine-shaft: #333333;
+$color-tundora: #4a4a4a;
+$color-boulder: #777777;
+$color-mercury: #e5e5e5;
+$color-wild-sand: #f6f6f6;
+
+/**
+ * Utility Colors
+ * 1) Utility colors are colors used to provide feedback, such as alert messages,
+ * form validation, etc.
+ */
+$color-alert: #ff4d4d;
+$color-warning: #ffa61d;
+$color-success: #4fa54b;
+
+ /*
+  * Text Colors
+  * 1) These are non-linked text colors, such as body copy.
+  */
+$color-text: $color-tundora;
+
+/*
+ * Heading Colors
+ * 1) These are non-linked heading colors, such as h2, h3, etc.
+ */
+$color-heading: $color-congress-blue;
+
+/*
+ * Text Link Colors
+ * 1) These are for linked text, such as a link found within an article,
+ *    navigation link, footer link, etc.
+ */
+$color-text-link: $color-congress-blue;
+$color-text-link-hover: $color-tundora;
+$color-text-link-visited: $color-congress-blue;
+$color-text-link-active: $color-congress-blue;
+
+/*
+ * Border Colors
+ * 1) Border colors are used as decoration or dividers, such as as a seperator
+ *    for navigation items, block borders, etc.
+ */
+$color-border: $color-boulder;
+
+
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+$font: 'muliregular', sans-serif;
+$font-secondary: 'muliregular', sans-serif;
+
+$font-regular: 'muliregular', sans-serif;
+$font-black:  'muliblack', sans-serif;
+$font-blackItalic: 'muliblack_italic', sans-serif;
+$font-bold: 'mulibold', sans-serif;
+$font-boldItalic: 'mulibold_italic', sans-serif;
+$font-extraBold: 'muliextrabold', sans-serif;
+$font-extraBoldItalic: 'muliextrabold_italic', sans-serif;
+$font-extraLight: 'muliextralight', sans-serif;
+$font-extraLightItalic: 'muliextralight_italic', sans-serif;
+$font-italic: 'muliitalic', sans-serif;
+$font-light: 'mulilight', sans-serif;
+$font-lightItalic: 'mulilight_italic', sans-serif;
+$font-semi-bold: 'mulisemibold', sans-serif;
+$font-semi-boldItalic: 'mulisemibold_italic', sans-serif;
+
+
+/*------------------------------------*\
+    #LAYOUT Spacing
+\*------------------------------------*/
+
+$spacing-big: 24px;
+$spacing-small: 16px;
+$spacing-big-half: 12px;
+$spacing-small-half: 8px;
+
+/*------------------------------------*\
+    #BORDERS
+\*------------------------------------*/
+
+/* Border Radius */
+$border-radius: 4px;
+
+
+/*------------------------------------*\
+    #ANIMATION
+\*------------------------------------*/
+
+/**
+ * Animation Duration
+ */
+$anim-speed-quick: 0.2s;
+
+/**
+ * Animation Easing
+ */
+$anim-ease: ease;
+
+
+/*------------------------------------*\
+    #BREAKPOINTS - Media Queries
+\*------------------------------------*/
+// Media Queriess
+$tp-extra-small: 414px !default;
+$tp-small: 767px !default;
+$tp-medium: 768px !default;
+$tp-large: 1025px !default;
+
+$screen: "only screen" !default;
+$extra-small: "only screen and (max-width: #{$tp-extra-small})" !default;
+$small: "only screen and (max-width: #{$tp-small})" !default;
+$medium: "only screen and (min-width: #{$tp-medium})" !default;
+$large: "only screen and (min-width: #{$tp-large})" !default;
+$landscape: "only screen and (orientation: landscape)" !default;
+$portrait: "only screen and (orientation: portrait)" !default;

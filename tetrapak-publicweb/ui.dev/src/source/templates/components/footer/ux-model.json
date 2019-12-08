@@ -1,0 +1,82 @@
+{
+  "imagePath": "http://localhost:4502/content/dam/publicweb/logo_tetra_pak_white.svg",
+  "imageLink": "http://www.google.com",
+  "imageAltI18n": "pw.footer.businessalttext",
+  "imageTitleI18n": "pw.footer.businesstitletext",
+  "linkPath": "#",
+  "footerNavigationLinks": [
+    {
+      "linkTextI18n": "Contact",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": true
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "About Us",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Case of studyyy",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": false
+    },
+    {
+      "linkTextI18n": "Lorem Ipsum",
+      "linkTooltipI18n": "Lorem",
+      "linkPath": "#",
+      "targetBlank": true
+    }
+  ],
+  "ctaLabelI18n": "navigate to top",
+  "footerSocialLinks": [
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Facebook"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Twitter"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Youtube"
+    },
+    {
+      "socialMediaLinkPath": "http://www.linkedin.com",
+      "socialMediaIconClass": "icon-Linkedin"
+    }
+  ]
+}

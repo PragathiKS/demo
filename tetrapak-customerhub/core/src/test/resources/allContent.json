@@ -99,6 +99,7 @@
             ],
             "jcr:createdBy": "admin",
             "jcr:title": "DASHBOARD",
+            "removeNoOpenerNoReferrer": "true",
             "cq:lastReplicationAction": "Activate",
             "jcr:versionHistory": "a8e60aaa-5dbc-4c58-9a18-9de8cd6acabb",
             "iconClass": "icon-Dashboard",
@@ -192,6 +193,16 @@
                      "jcr:lastModified": "Mon Mar 18 2019 14:33:26 GMT+0530",
                      "sling:resourceType": "customerhub/components/content/recommendedforyoucard",
                      "textIsRich": "true"
+                  },
+                  "pagecontenthierarchy": {
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "includeSubPages":"true",
+                     "jcr:created":"Fri Apr 05 2019 14:49:30 GMT+0530",
+                     "pageContentPath":"/content/tetrapak/customerhub/content-components/en/dashboard",
+                     "jcr:lastModified":"Fri Apr 05 2019 14:49:51 GMT+0530",
+                     "sling:resourceType":"customerhub/components/content/pagecontenthierarchyreference"
                   }
                }
             }
@@ -646,7 +657,23 @@
                      "documentHeadingI18n": "Documents",
                      "createExcelBtnI18n": "Create Excel",
                      "createPdfBtnI18n": "Create PDF",
-                     "dateRangeErrorLabel": "Please enter a valid date"
+                     "dateRangeErrorLabel": "Please enter a valid date",
+                     "excelPdfDownloadErrorText": "cuhu.financial.Error",
+                     "fileDownloadErrorText": "cuhu.financial.Error",
+                     "noCustomerErrorText": "cuhu.financial.noCustomerError",
+                     "apiErrorCodes": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "errorCode": "YS_GW_ODATA/010",
+                           "errorMessage": "cuhu.financial.errorCode.010"
+                        },
+                        "item1": {
+                           "jcr:primaryType": "nt:unstructured",
+                           "errorCode": "YS_GW_ODATA/031",
+                           "errorMessage": "cuhu.financial.errorCode.031"
+                        }
+                     }
                   }
                }
             }

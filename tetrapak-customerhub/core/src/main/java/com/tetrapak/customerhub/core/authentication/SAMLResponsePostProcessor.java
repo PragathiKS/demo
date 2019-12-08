@@ -2,7 +2,6 @@ package com.tetrapak.customerhub.core.authentication;
 
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
 import org.apache.sling.auth.core.spi.AuthenticationInfoPostProcessor;
@@ -32,6 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static com.tetrapak.customerhub.core.utils.HttpUtil.decodeStr;
+
 /**
  * SAML Response post processor
  *
@@ -43,6 +44,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SAMLResponsePostProcessor.class);
     private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
+    private static final String LOCATION_HEADER = "Location";
 
     @Reference
     private SlingSettingsService slingSettingsService;
@@ -56,7 +58,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         try {
             LOGGER.debug("SAMLResponse Post Processor invoked");
             String url = request.getRequestURI();
-            setSAMLRequestPathCookie(request, response, url);
+            String processedURL = setSAMLRequestPathCookie(request, response, url);
 
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
@@ -73,26 +75,12 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 } else {
                     LOGGER.debug("SAMLResponse parameter is empty of null!");
                 }
-                String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ? attrMap.get("firstname")
-                        : StringUtils.EMPTY;
-                String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname")
-                        : StringUtils.EMPTY;
-                String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
-
-                if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-                    Cookie samlCookie = new Cookie("CustomerName", customerName);
-                    samlCookie.setHttpOnly(true);
-                    samlCookie.setPath("/");
-                    response.addCookie(samlCookie);
-                }
-                if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
-                    Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
-                    accToken.setPath("/");
-                    final int SECONDS = 900;
-                    accToken.setMaxAge(SECONDS);
-                    response.addCookie(accToken);
-                }
+                setCustomerNameCookie(response, attrMap);
+                setAccesTokenCookie(response, attrMap);
                 setLangCodeCookie(request, response, base64DecodedResponse);
+                if (processedURL.contains("empty")) {
+                    response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
+                }
             }
         } catch (ParserConfigurationException parserConfiExep) {
             LOGGER.error("Unable to get Document Builder ", parserConfiExep);
@@ -103,22 +91,53 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         }
     }
 
-    private void setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
-        if (url.contains("/content/tetrapak/customerhub") && url.endsWith(".html")) {
+    private void setAccesTokenCookie(HttpServletResponse response, Map<String, String> attrMap) {
+        if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
+            Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
+            accToken.setPath("/");
+            final int SECONDS = 900;
+            accToken.setMaxAge(SECONDS);
+            response.addCookie(accToken);
+        }
+    }
+
+    private void setCustomerNameCookie(HttpServletResponse response, Map<String, String> attrMap) throws UnsupportedEncodingException {
+        String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ? attrMap.get("firstname")
+                : StringUtils.EMPTY;
+        String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ? attrMap.get("lastname")
+                : StringUtils.EMPTY;
+        String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
+
+        if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
+            Cookie samlCookie = new Cookie("AEMCustomerName", customerName);
+            samlCookie.setHttpOnly(true);
+            samlCookie.setPath("/");
+            samlCookie.setDomain("tetrapak.com");
+            response.addCookie(samlCookie);
+        }
+    }
+
+    private String setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response, String url) {
+        StringBuilder processedUrl = new StringBuilder();
+        if (isValidURL(url)) {
             LOGGER.debug("request URI {}", url);
-            StringBuilder processedUrl = new StringBuilder();
-            processedUrl.append("/customerhub")
-                    .append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+            processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
                     .append("html");
             String queryString = request.getQueryString();
             if (StringUtil.isNotBlank(queryString)) {
                 processedUrl.append("?").append(queryString);
             }
+
             Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
             samlRequestPath.setHttpOnly(true);
             samlRequestPath.setPath("/");
             response.addCookie(samlRequestPath);
         }
+        return processedUrl.toString();
+    }
+
+    private boolean isValidURL(String url) {
+        return url.contains("/content/tetrapak/customerhub") && !url.contains("logout") && !url.contains("empty") && url.endsWith(".html");
     }
 
     private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response, String base64DecodedResponse)
@@ -210,8 +229,8 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
             documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        } catch (ParserConfigurationException ignore) {
-            LOGGER.error("ParserConfigurationException ", ignore);
+        } catch (ParserConfigurationException e) {
+            LOGGER.error("ParserConfigurationException ", e);
         }
         documentBuilderFactory.setXIncludeAware(false);
         documentBuilderFactory.setExpandEntityReferences(false);
@@ -259,8 +278,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 if ("saml:Attribute".equalsIgnoreCase(childNode.getNodeName())) {
                     String attributeValue = childNode.getAttributes().item(0).getNodeValue();
                     NodeList attrValNodeList = childNode.getChildNodes();
-                    int maxNodeCount = attrValNodeList.getLength() > MAX_FIRSTLEVEL_CHILD_COUNT ? MAX_FIRSTLEVEL_CHILD_COUNT
-                            : attrValNodeList.getLength();
+                    int maxNodeCount = Math.min(attrValNodeList.getLength(), MAX_FIRSTLEVEL_CHILD_COUNT);
                     putSAMLAttributes(samlAttributeMap, attributeValue, attrValNodeList, maxNodeCount);
                 }
             }
@@ -281,18 +299,6 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
             samlAttributeMap.put(attributeValue, currentNode.getTextContent());
             LOGGER.debug("SAML Assertions" + attributeValue + " : " + currentNode.getTextContent());
         }
-    }
-
-    /**
-     * This method would decode the SAML response.
-     *
-     * @param encodedStr encoded SAML response
-     * @return string decoded SAML response
-     */
-    public static String decodeStr(String encodedStr) {
-        org.apache.commons.codec.binary.Base64 base64Decoder = new org.apache.commons.codec.binary.Base64();
-        byte[] base64DecodedByteArray = base64Decoder.decode(encodedStr);
-        return new String(base64DecodedByteArray, Charsets.UTF_8);
     }
 
 }

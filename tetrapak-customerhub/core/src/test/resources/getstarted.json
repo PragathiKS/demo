@@ -40,6 +40,7 @@
       "item0":{
          "jcr:primaryType":"nt:unstructured",
          "titleI18n":"One place for your business",
+         "tabId": "item0",
          "imagePath":"/content/dam/customerhub/p2.PNG",
          "imageAltI18n":"Image1 alt",
          "descriptionI18n":"Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",
@@ -48,7 +49,8 @@
       },
       "item1":{
          "jcr:primaryType":"nt:unstructured",
-         "titleI18n":"One place for your business",
+         "titleI18n":"One place for",
+         "tabId": "item1",
          "imagePath":"/content/dam/customerhub/p3.PNG",
          "imageAltI18n":"Image alt",
          "descriptionI18n":"Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",

@@ -13,9 +13,12 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Model class for language selector component
@@ -37,7 +40,7 @@ public class LanguageSelectorModel {
 
     private String selectedLanguage;
 
-    private Map<String, String> listOfLanguages = new TreeMap<>();
+    private Map<String, String> listOfLanguages = new HashMap<>();
 
     @PostConstruct
     protected void init() {
@@ -54,6 +57,8 @@ public class LanguageSelectorModel {
                 return;
             }
 
+
+
             Iterator<Resource> itr = languageResource.listChildren();
             while (itr.hasNext()) {
                 ValueMap languageNodeValueMap = itr.next().getValueMap();
@@ -61,6 +66,11 @@ public class LanguageSelectorModel {
                         (String) languageNodeValueMap.get("langCode"), (String) languageNodeValueMap.get("languageDisplayName")
                 );
             }
+            listOfLanguages = listOfLanguages.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByValue(String.CASE_INSENSITIVE_ORDER))
+                    .collect(Collectors.toMap(Map.Entry::getKey,
+                            Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         }
     }
 

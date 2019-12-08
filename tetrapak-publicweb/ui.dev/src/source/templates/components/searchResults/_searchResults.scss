@@ -1,0 +1,113 @@
+.pw-search-results {
+    @include margin-bottom($margin-l);
+
+    @media #{$tablet-large} {
+        @include margin-bottom($margin-xxxl);
+    }
+
+    .tpatom-input-box {
+        @include margin(0 $padding-md $margin-xl);
+
+        @media #{$tablet-large} {
+            @include margin(0 $padding-xxxl $margin-xl);
+        }
+
+        &__icon {
+            color: $color-congress-blue;
+        }
+    }
+
+    &__main-container {
+        @include border-radius($border-radius);
+        display: flex;
+        align-items: flex-start;
+        background-color: $color-white;
+        flex-direction: column;
+
+        @media #{$tablet-large} {
+            flex-direction: row;
+        }
+    }
+
+    &__title,
+    &__filters,
+    &__tabs {
+        @include margin-bottom($margin-l);
+        @media #{$tablet-large} {
+            @include margin-bottom(38px);
+        }
+    }
+
+    &__tabs {
+        display: flex;
+    }
+
+    &__filters {
+        @include border-radius($border-radius);
+        background-color: $color-wild-sand;
+        order: 0;
+        width: 100%;
+
+        @media #{$tablet-large} {
+            @include width(350px);
+            order: 1;
+        }
+
+        .tpatom-heading {
+            @include margin-bottom($margin-l);
+
+            @media #{$tablet-large} {
+                @include margin-bottom($margin-xl);
+            }
+        }
+    }
+
+    &__results {
+        flex: 1;
+        order: 1;
+        width: 100%;
+
+        @media #{$tablet-large} {
+            order: 0;
+        }
+    }
+
+    &__results-list {
+        @media #{$tablet-large} {
+            @include padding-right(75px);
+        }
+
+        &__item {
+            @include padding(24px 25px 24px 0);
+            border-bottom: 1px solid $color-mercury;
+
+            &:first-child {
+                @include padding-top($padding-zero);
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            &__breadcrumb {
+                @include padding-bottom(10px);
+                display: block;
+            }
+
+            &__title-link {
+                @include padding-bottom(5px);
+                color: $color-tundora;
+            }
+        }
+    }
+
+    .tpatom-checkbox {
+        &__icon {
+            background-color: $color-white;
+        }
+    }
+
+    p {
+        @include margin-bottom($margin-sm);
+    }
+}

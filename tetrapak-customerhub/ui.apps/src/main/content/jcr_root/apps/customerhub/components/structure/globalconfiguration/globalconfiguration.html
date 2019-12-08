@@ -8,12 +8,25 @@ messageI18n : ${properties.messageI18n}
 <br/>  logoutBtnI18n : ${properties.logoutBtnI18n}
 <br/>  closeBtnI18n : ${properties.closeBtnI18n}
 <br/>  idleTimeoutMinutes : ${properties.idleTimeoutMinutes}
+<br/>  autoRefreshSession : ${properties.autoRefreshSession}
 
 <br/>
 <br/> <h2>Languages : </h2>
 <sly data-sly-list="${resource.listChildren}">
     <sly data-sly-list="${item.listChildren}">
-        ${item.valueMap.langCode} : ${item.valueMap.languageDisplayName}
-        <br/>
+        <sly data-sly-test="${item.valueMap.langCode}">
+            ${item.valueMap.langCode} : ${item.valueMap.languageDisplayName}
+            <br/>
+        </sly>
+    </sly>
+</sly>
+<br/>
+<br/> <h2>Error Codes : </h2>
+<sly data-sly-list="${resource.listChildren}">
+    <sly data-sly-list="${item.listChildren}">
+        <sly data-sly-test="${item.valueMap.errorCode}">
+            ${item.valueMap.errorCode} : ${item.valueMap.errorMessage}
+            <br/>
+        </sly>
     </sly>
 </sly>

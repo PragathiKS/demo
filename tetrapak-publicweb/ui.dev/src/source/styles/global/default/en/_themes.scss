@@ -1,0 +1,23 @@
+.pw-theme {
+    $self: &;
+    &--grayscale-white {
+        background-color: $color-white;
+    }
+    &--grayscale-lighter {
+        background-color: $color-wild-sand;
+    }
+}
+
+.pw-padding {
+
+    &--zero {
+        @include padding($padding-zero);
+    }
+
+    &--regular {
+        @include padding($padding-md);
+        @media #{$desktop} {
+            @include padding($padding-xxxl);
+        }
+    }
+}

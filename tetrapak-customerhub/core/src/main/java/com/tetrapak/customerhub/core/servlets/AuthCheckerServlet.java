@@ -1,13 +1,11 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,9 +25,6 @@ import javax.servlet.Servlet;
                 "sling.servlet.paths=" + "/bin/customerhub/permissioncheck"
         })
 public class AuthCheckerServlet extends SlingSafeMethodsServlet {
-
-    @Reference
-    private UserPreferenceService userPreferenceService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthCheckerServlet.class);
     private static final long serialVersionUID = -8381109083575997038L;

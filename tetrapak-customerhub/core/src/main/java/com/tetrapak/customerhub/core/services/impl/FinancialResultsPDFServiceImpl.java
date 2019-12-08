@@ -1,41 +1,37 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.RectangleReadOnly;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.tetrapak.customerhub.core.beans.financials.results.Document;
 import com.tetrapak.customerhub.core.beans.financials.results.DocumentType;
 import com.tetrapak.customerhub.core.beans.financials.results.Params;
 import com.tetrapak.customerhub.core.beans.financials.results.Record;
 import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.beans.financials.results.Summary;
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.FinancialStatementModel;
 import com.tetrapak.customerhub.core.services.FinancialResultsPDFService;
+import com.tetrapak.customerhub.core.services.UrlService;
+import com.tetrapak.customerhub.core.utils.FontUtil;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
+import com.tetrapak.customerhub.core.utils.PDFUtil2;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
-import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
-import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,14 +42,18 @@ import java.util.Map;
 @Component(immediate = true, service = FinancialResultsPDFService.class)
 public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFService {
 
+    @Reference
+    private UrlService urlService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsPDFServiceImpl.class);
 
-    private PDFont muliRegular;
-    private PDFont muliBold;
-    private static final int MARGIN = 20;
+    private Font languageSpecificFont;
+    private Font languageSpecificFontBold;
     private FinancialStatementModel financialStatementModel;
     private static final String CUHU_FINANCIAL_PREFIX = "cuhu.financials.";
     private Map<String, String> statusTypeMap;
+    private Map<String, String> documentTypeMap;
+    private String language;
 
     private Map<String, String> getMapFromParams(List<DocumentType> docTypeList) {
         Map<String, String> map = new HashMap<>();
@@ -73,326 +73,363 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
     @Override
     public boolean generateFinancialResultsPDF(SlingHttpServletRequest request, SlingHttpServletResponse response,
                                                Results resultsResponse, Params paramRequest, FinancialStatementModel financialStatement) {
+        com.itextpdf.text.Document document1 = new com.itextpdf.text.Document(new RectangleReadOnly(620.0F, 842.0F));
+
         financialStatementModel = financialStatement;
+        language = GlobalUtil.getLanguage(request);
         List<Document> documents = resultsResponse.getDocuments();
         String customerName = paramRequest.getCustomerData().getCustomerName();
         String startDate = paramRequest.getStartDate();
         String endDate = paramRequest.getEndDate();
-        if(null != paramRequest) {
+        if (null != paramRequest) {
             statusTypeMap = getMapFromParams(paramRequest.getStatusList());
+            documentTypeMap = getMapFromParams(paramRequest.getDocumentTypeList());
         }
-        InputStream in1 = null;
-        InputStream in2 = null;
-        InputStream image1 = null;
-        PDPageContentStream contentStream = null;
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
         try {
-            contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
-                    true);
-            in1 = getClass().getResourceAsStream("/fonts/muli-light-webfont.ttf");
-            in2 = getClass().getResourceAsStream("/fonts/muli-bold-webfont.ttf");
+            String fileName;
+            if (paramRequest.getStartDate() != null && endDate != null) {
+                fileName = CustomerHubConstants.FINANCIALS + customerName + CustomerHubConstants.HYPHEN_STRING + startDate
+                        + " " + CustomerHubConstants.HYPHEN_STRING + " " + endDate;
+            } else if (paramRequest.getStartDate() != null) {
+                fileName = CustomerHubConstants.FINANCIALS + customerName + CustomerHubConstants.HYPHEN_STRING + startDate;
+            } else {
+                fileName = CustomerHubConstants.FINANCIALS + customerName + CustomerHubConstants.HYPHEN_STRING + endDate;
+            }
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".pdf");
+            PdfWriter writer = PdfWriter.getInstance(document1, response.getOutputStream());
+            document1.open();
 
-            muliRegular = PDTrueTypeFont.load(document, in1, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
-            muliBold = PDTrueTypeFont.load(document, in2, Encoding.getInstance(COSName.WIN_ANSI_ENCODING));
+            final String FONT_RESOURCES = urlService.getFontsUrl();
 
-            image1 = getClass().getResourceAsStream("/images/tetra_pdf.png");
+            switch (language) {
+                case "ja":
+                    languageSpecificFont = FontUtil.getJpFont(FONT_RESOURCES + "NotoSerifCJKjp-Light.otf");
+                    languageSpecificFontBold = FontUtil.getJpFontBold(FONT_RESOURCES + "NotoSerifCJKjp-Bold.otf");
+                    break;
+                case "zh":
+                    languageSpecificFont = FontUtil.getScFont(FONT_RESOURCES + "NotoSerifCJKsc-Light.otf");
+                    languageSpecificFontBold = FontUtil.getScFontBold(FONT_RESOURCES + "NotoSerifCJKsc-Bold.otf");
+                    break;
+                case "zh_TW":
+                    languageSpecificFont = FontUtil.getTcFont(FONT_RESOURCES + "NotoSerifCJKtc-Light.otf");
+                    languageSpecificFontBold = FontUtil.getTcFontBold(FONT_RESOURCES + "NotoSerifCJKtc-Bold.otf");
+                    break;
+                case "ko":
+                    languageSpecificFont = FontUtil.getKoFont(FONT_RESOURCES + "NotoSerifCJKkr-Light.otf");
+                    languageSpecificFontBold = FontUtil.getKoFontBold(FONT_RESOURCES + "NotoSerifCJKkr-Bold.otf");
+                    break;
+                default:
+                    languageSpecificFont = FontUtil.getEnFont(FONT_RESOURCES + "NotoSerif-Light.ttf");
+                    languageSpecificFontBold = FontUtil.getEnFontBold(FONT_RESOURCES + "NotoSerif-Bold.ttf");
+                    break;
+            }
+            languageSpecificFont.setColor(BaseColor.DARK_GRAY);
+            languageSpecificFontBold.setColor(BaseColor.DARK_GRAY);
 
-            BufferedImage bufferedImage1 = ImageIO.read(image1);
+            PDFUtil2.drawImage(document1, urlService.getImagesUrl() + "tetra_pdf.png", 180, 69);
 
-            PDImageXObject img1 = LosslessFactory.createFromImage(document, bufferedImage1);
+            printHeadLines(request, paramRequest, document1);
 
-            PDFUtil.drawImage(contentStream, img1, 20, 710, 180, 69);
-            PDFUtil.writeContent(document, contentStream, MARGIN, 700, Color.DARK_GRAY,
-                    getHeadLines(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createAccountServiceTable(request, paramRequest), 520);
-            PDFUtil.writeContent(document, contentStream, MARGIN, 460, Color.DARK_GRAY,
-                    getStatementSummary(request, paramRequest));
-            PDFUtil.drawTable(contentStream, createSummaryTable(request, resultsResponse.getSummary()), 440);
-            PDFUtil.drawLine(contentStream, MARGIN, 500, 415, Color.DARK_GRAY, 0.01f);
-            PDFUtil.drawLine(contentStream, MARGIN, 500, 400, Color.LIGHT_GRAY, 0.01f);
+            document1.add(new Paragraph("\n", languageSpecificFont));
+            document1.add(createAccountServiceTable(request, paramRequest));
 
-            PDFUtil.writeContent(document, contentStream, MARGIN, 380, Color.DARK_GRAY, getDocumentName(request));
-            contentStream = printDeliveryDetails(request, document, contentStream, documents);
+            if(null != resultsResponse.getSummary() && !resultsResponse.getSummary().isEmpty()) {
+                printStatementSummary(request, paramRequest, document1);
+                document1.add(new Paragraph("\n", languageSpecificFont));
+                document1.add(createSummaryTable(writer, request, resultsResponse.getSummary()));
+            }
+
+            document1.add(new Paragraph("\n", languageSpecificFont));
+            document1.add(createDocumentNameTable(request));
+
+            document1.add(new Paragraph("\n", languageSpecificFont));
+            printDeliveryDetails(writer, request, documents, document1);
+
+            document1.close();
             return true;
-        } catch (IOException e) {
+        } catch (IOException | DocumentException e) {
             LOGGER.error("IOException ", e);
             return false;
-        } finally {
-            try {
-                if (null != contentStream) {
-                    contentStream.close();
-                    if (paramRequest.getStartDate() != null && endDate != null) {
-                        PDFUtil.writeOutput(response, document,
-                                CustomerHubConstants.FINANCIALS + customerName + CustomerHubConstants.HYPHEN_STRING
-                                        + startDate + " " + CustomerHubConstants.HYPHEN_STRING + " " + endDate);
-                    } else if (paramRequest.getStartDate() != null) {
-                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName
-                                + CustomerHubConstants.HYPHEN_STRING + startDate);
-                    } else {
-                        PDFUtil.writeOutput(response, document, CustomerHubConstants.FINANCIALS + customerName
-                                + CustomerHubConstants.HYPHEN_STRING + endDate);
-                    }
-                }
-                if (null != document) {
-                    document.close();
-                }
-                if (null != contentStream) {
-                    contentStream.close();
-                }
-                if (null != in1) {
-                    in1.close();
-                }
-                if (null != in2) {
-                    in2.close();
-                }
-                if (null != image1) {
-                    image1.close();
-                }
-            } catch (IOException e) {
-                LOGGER.error("IOException", e);
-            }
         }
     }
 
-    private List<Row> getDocumentName(SlingHttpServletRequest request) {
-        List<Row> rows = new ArrayList<>();
-        rows.add(new Row(
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getDocumentHeadingI18n()),
-                10, muliRegular, 12));
-        return rows;
-    }
+    private void printHeadLines(SlingHttpServletRequest request, Params paramRequest, com.itextpdf.text.Document document1)
+            throws DocumentException {
+        languageSpecificFont.setSize(13);
+        languageSpecificFontBold.setSize(13);
+        Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
+                request, StringUtils.EMPTY, financialStatementModel.getStatementOfAccount(), language), languageSpecificFont);
+        document1.add(p);
 
-    private List<Row> getHeadLines(SlingHttpServletRequest request, Params paramRequest) {
-        List<Row> rows = new ArrayList<>();
-        rows.add(new Row(
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getStatementOfAccount())
-                        + ":",
-                10, muliRegular, 12));
-        rows.add(new Row("", 20, muliRegular, 12));
-        rows.add(new Row(GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountNumber())
-                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), 10, muliBold, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName1(), 10, muliBold, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getName2(), 10, muliBold, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getStreet(), 10, muliRegular, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(paramRequest.getCustomerData().getInfo().getCity()
+        p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
+                request, StringUtils.EMPTY, financialStatementModel.getAccountNumber(), language)
+                + ":" + " " + paramRequest.getCustomerData().getInfo().getAccountNo(), languageSpecificFontBold);
+        document1.add(p);
+
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName1(), languageSpecificFontBold);
+        document1.add(p);
+
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getName2(), languageSpecificFontBold);
+        document1.add(p);
+
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getStreet(), languageSpecificFont);
+        document1.add(p);
+
+        p = new Paragraph(paramRequest.getCustomerData().getInfo().getCity()
                 + ", " + paramRequest.getCustomerData().getInfo().getState()
                 + ", " + paramRequest.getCustomerData().getInfo().getPostalcode()
-                + ", " + paramRequest.getCustomerData().getInfo().getCountry()
-                , 10, muliRegular, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        rows.add(new Row(
-                GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getAccountService()) + ":",
-                10, muliRegular, 11));
-        rows.add(new Row("", 15, muliRegular, 12));
-        return rows;
+                + ", " + paramRequest.getCustomerData().getInfo().getCountry(), languageSpecificFont);
+        document1.add(p);
+
+        p = new Paragraph(GlobalUtil.getI18nValueForThisLanguage(
+                request, StringUtils.EMPTY, financialStatementModel.getAccountService(), language) + ":", languageSpecificFont);
+        document1.add(p);
     }
 
-    private List<Row> getStatementSummary(SlingHttpServletRequest request, Params paramRequest) {
-        List<Row> rows = new ArrayList<>();
+    private PdfPTable createDocumentNameTable(SlingHttpServletRequest request) throws DocumentException {
+        PdfPTable table = new PdfPTable(1);
+        table.setTotalWidth(new float[]{160});
+        table.setLockedWidth(true);
+        table.setHorizontalAlignment(0);
+        table.setSpacingBefore(0);
+        final int HEIGHT = 15;
+
+        PdfPCell cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(
+                request, StringUtils.EMPTY, financialStatementModel.getDocumentHeadingI18n(), language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        return table;
+    }
+
+    private void printStatementSummary(SlingHttpServletRequest request, Params paramRequest, com.itextpdf.text.Document document1)
+            throws DocumentException {
+        languageSpecificFont.setSize(13);
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
-            rows.add(new Row(
-                    GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " + " " + paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING
-                            + " " + paramRequest.getEndDate(),
-                    10, muliRegular, 12));
+            Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
+                    request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n(), language)
+                    + ":" + " " + " " + paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING
+                    + " " + paramRequest.getEndDate(), languageSpecificFont);
+            document1.add(p);
         } else if (paramRequest.getEndDate() != null) {
-            rows.add(new Row(
-                    GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " + " " + paramRequest.getEndDate(),
-                    10, muliRegular, 12));
+            Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
+                    request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n(), language)
+                    + ":" + " " + " " + paramRequest.getEndDate(), languageSpecificFont);
+            document1.add(p);
         } else {
-            rows.add(new Row(
-                    GlobalUtil.getI18nValue(request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n())
-                            + ":" + " " + " " + paramRequest.getStartDate(),
-                    10, muliRegular, 12));
+            Paragraph p = new Paragraph("\n" + GlobalUtil.getI18nValueForThisLanguage(
+                    request, StringUtils.EMPTY, financialStatementModel.getSummaryHeadingI18n(), language)
+                    + ":" + " " + " " + paramRequest.getStartDate(), languageSpecificFont);
+            document1.add(p);
         }
-        rows.add(new Row("", 20, muliRegular, 8));
-        return rows;
     }
 
-    private Table createAccountServiceTable(SlingHttpServletRequest request, Params paramRequest) {
-        List<Column> columns = new ArrayList<>();
-        columns.add(new Column(statusTypeMap.get(paramRequest.getStatus().getKey()), 90));
+    private PdfPTable createAccountServiceTable(SlingHttpServletRequest request, Params paramRequest)
+            throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
+        PdfPTable table = new PdfPTable(2);
+        table.setTotalWidth(new float[]{90, 160});
+        table.setLockedWidth(true);
+        table.setHorizontalAlignment(0);
+        table.setSpacingBefore(0);
+        final int HEIGHT = 15;
+
+        PdfPCell cell = getPdfPCell(statusTypeMap.get(paramRequest.getStatus().getKey()), HEIGHT, languageSpecificFont);
+        table.addCell(cell);
+
         if (paramRequest.getStartDate() != null && paramRequest.getEndDate() != null) {
-            columns.add(new Column(paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING + " "
-                    + paramRequest.getEndDate(), 60));
+            cell = getPdfPCell(paramRequest.getStartDate() + " " + CustomerHubConstants.HYPHEN_STRING + " "
+                    + paramRequest.getEndDate(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+
         } else if (paramRequest.getStartDate() != null) {
-            columns.add(new Column(paramRequest.getStartDate(), 60));
+            cell = getPdfPCell(paramRequest.getStartDate(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
         } else {
-            columns.add(new Column(paramRequest.getEndDate(), 60));
+            cell = getPdfPCell(paramRequest.getEndDate(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
         }
-        String[][] content = {
-                {
-                        CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                                financialStatementModel.getSelectDocumentTypeLabel()),
-                        paramRequest.getDocumentType().getDesc(),
-                }, {
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, StringUtils.EMPTY,
-                        financialStatementModel.getPlaceholderForDocumentNumber()),
-                paramRequest.getDocumentNumber()
-        }
-        };
 
-        return PDFUtil.getTable(columns, content, 17, muliRegular, muliBold, 8, MARGIN);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+                financialStatementModel.getSelectDocumentTypeLabel(), language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+
+        cell = getPdfPCell(paramRequest.getDocumentType().getDesc(), HEIGHT, languageSpecificFont);
+        table.addCell(cell);
+
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+                financialStatementModel.getPlaceholderForDocumentNumber(), language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+
+        cell = getPdfPCell(paramRequest.getDocumentNumber(), HEIGHT, languageSpecificFont);
+        table.addCell(cell);
+        return table;
     }
 
-    private Table createSummaryTable(SlingHttpServletRequest request, List<Summary> summary) {
-        List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "customer"), 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"), 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "current"), 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "overdue"), 100));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "thirty"), 50));
-        columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "sixty"),
-                50));
-        columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "ninty"),
-                50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "nintyPlus"), 70));
-        columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "total"),
-                10));
-
-        String[][] content = new String[summary.size()][9];
-
-        for (int i = 0; i < summary.size(); i++) {
-            content[i][0] = summary.get(i).getCustomer();
-            content[i][1] = summary.get(i).getCurrency();
-            content[i][2] = summary.get(i).getCurrent();
-            content[i][3] = summary.get(i).getOverdue();
-            content[i][4] = summary.get(i).getThirty();
-            content[i][5] = summary.get(i).getSixty();
-            content[i][6] = summary.get(i).getNinty();
-            content[i][7] = summary.get(i).getNintyPlus();
-            content[i][8] = summary.get(i).getTotal();
-
-        }
-
-        return PDFUtil.getTable(columns, content, 20, muliRegular, muliBold, 8, MARGIN);
+    private PdfPCell getPdfPCell(String text, int height, Font font) {
+        PdfPCell cell;
+        cell = new PdfPCell(new Phrase(text, font));
+        cell.setFixedHeight(height);
+        cell.setBorder(Rectangle.NO_BORDER);
+        return cell;
     }
 
-    private PDPageContentStream printDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
-                                                     PDPageContentStream contentStream, List<Document> documents) throws IOException {
-        int height = 350;
-        int newPageHeight;
+    private PdfPTable createSummaryTable(PdfWriter writer, SlingHttpServletRequest request, List<Summary> summaries)
+            throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
+        PdfPTable table = new PdfPTable(9);
+        table.setTotalWidth(new float[]{60, 60, 60, 70, 50, 50, 50, 70, 80});
+        table.setLockedWidth(true);
+        table.setHorizontalAlignment(0);
+        table.setSpacingBefore(0);
+        final int HEIGHT = 15;
 
+        PdfPCell cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "customer",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "current",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "overdue",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "thirty",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "sixty",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "ninty",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "nintyPlus",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "total",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+
+        double height = (double) writer.getVerticalPosition(false) - (double) HEIGHT;
+        double height2 = height - (double) HEIGHT;
+        for (Summary summary : summaries) {
+            PDFUtil2.drawLine(writer, 36, 580, (float) height);
+            PDFUtil2.drawLine(writer, 36, 580, (float) height2);
+            cell = getPdfPCell(summary.getCustomer(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getCurrency(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getCurrent(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getOverdue(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getThirty(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getSixty(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getNinty(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getNintyPlus(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(summary.getTotal(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+        }
+
+        return table;
+    }
+
+    private PdfPTable createDeliveryDetailTable(Document documentList) throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
+        PdfPTable table = new PdfPTable(2);
+        table.setTotalWidth(new float[]{500, 60});
+        table.setLockedWidth(true);
+        table.setHorizontalAlignment(0);
+        table.setSpacingBefore(0);
+        final int HEIGHT = 15;
+
+        PdfPCell cell = getPdfPCell(documentList.getSalesOffice(), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+
+        cell = getPdfPCell(documentList.getTotalAmount(), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+
+        return table;
+    }
+
+    private PdfPTable createRecordTable(PdfWriter writer, SlingHttpServletRequest request, List<Record> records) throws DocumentException {
+        languageSpecificFont.setSize(9);
+        languageSpecificFontBold.setSize(9);
+        PdfPTable table = new PdfPTable(8);
+        table.setTotalWidth(new float[]{60, 70, 80, 60, 80, 60, 50, 60});
+        table.setLockedWidth(true);
+        table.setHorizontalAlignment(0);
+        table.setSpacingBefore(0);
+        final int HEIGHT = 15;
+
+        double height = (double) writer.getVerticalPosition(false);
+        double height2 = height - (double) HEIGHT;
+        PDFUtil2.drawLine(writer, 36, 580, (float) height);
+        PDFUtil2.drawLine(writer, 36, 580, (float) height2);
+        PdfPCell cell =
+                getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "documentNumber",
+                        language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "desc",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "invoiceReference",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "poNumber",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "docDate",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "dueDate",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "currency",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        cell = getPdfPCell(GlobalUtil.getI18nValueForThisLanguage(request, CUHU_FINANCIAL_PREFIX, "orgAmount",
+                language), HEIGHT, languageSpecificFontBold);
+        table.addCell(cell);
+        PDFUtil2.drawLine(writer, 36, 580, writer.getVerticalPosition(false));
+
+        for (Record record : records) {
+            cell = getPdfPCell(record.getDocumentNumber(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(documentTypeMap.get(record.getDocumentType()), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getInvoiceReference(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getPoNumber(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getDocDate(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getDueDate(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getCurrency(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+            cell = getPdfPCell(record.getOrgAmount(), HEIGHT, languageSpecificFont);
+            table.addCell(cell);
+        }
+        return table;
+    }
+
+    private void printDeliveryDetails(PdfWriter writer, SlingHttpServletRequest request,
+                                      List<Document> documents, com.itextpdf.text.Document document1) throws DocumentException {
         for (Document documentDetail : documents) {
-            if ((height > getNextTableHeight(documentDetail.getRecords()))) {
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 8, Color.LIGHT_GRAY, 0.01f);
+            document1.add(new Paragraph("\n", languageSpecificFont));
+            document1.add(createDeliveryDetailTable(documentDetail));
 
-                PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
-
-                height = PDFUtil.drawTable(contentStream, createProductTable(request, documentDetail.getRecords()),
-                        height - 10);
-                height -= 15;
-            } else {
-                newPageHeight = 730;
-                int totalRows = documentDetail.getRecords().size();
-                int rowsForCurrentPage = newPageHeight / 15;
-
-                if (totalRows < rowsForCurrentPage && totalRows < 26) {
-                    contentStream = PDFUtil.getNewPage(document, contentStream);
-                    rowsForCurrentPage = totalRows;
-                    height = newPageHeight;
-                } else {
-                    rowsForCurrentPage = height / 15;
-                }
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 24, Color.LIGHT_GRAY, 0.01f);
-                PDFUtil.drawLine(contentStream, MARGIN, 570, height - 6, Color.LIGHT_GRAY, 0.01f);
-
-                PDFUtil.drawTable(contentStream, createDeliveryDetailTable(documentDetail), height + 5);
-                height = PDFUtil.drawTable(contentStream,
-                        createRecordTable(request, (documentDetail.getRecords()), 0, rowsForCurrentPage - 1),
-                        height - 10);
-                height -= 15;
-                for (int start = rowsForCurrentPage; start < totalRows; start += 40) {
-                    int end = start + 39;
-                    end = getEnd(totalRows, end);
-
-                    contentStream = PDFUtil.getNewPage(document, contentStream);
-
-                    height = PDFUtil.drawTable(contentStream,
-                            createRecordTable(request, documentDetail.getRecords(), start, end - 1), 730);
-                    PDFUtil.drawLine(contentStream, MARGIN, 570, 735, Color.LIGHT_GRAY, 0.01f);
-                    PDFUtil.drawLine(contentStream, MARGIN, 570, 718, Color.LIGHT_GRAY, 0.01f);
-                }
-
-            }
+            document1.add(new Paragraph("\n", languageSpecificFont));
+            document1.add(createRecordTable(writer, request, documentDetail.getRecords()));
         }
-        return contentStream;
     }
-
-    private int getEnd(int totalRows, int end) {
-        if (end > totalRows) {
-            end = totalRows;
-        }
-        return end;
-    }
-
-    private Table createRecordTable(SlingHttpServletRequest request, List<Record> records, int start, int end) {
-        List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "documentNumber"), 60));
-        columns.add(new Column(
-                CustomerHubConstants.BOLD_IDENTIFIER + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "desc"),
-                60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "invoiceReference"), 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "poNumber"), 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "docDate"), 80));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "dueDate"), 60));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "currency"), 50));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER
-                + GlobalUtil.getI18nValue(request, CUHU_FINANCIAL_PREFIX, "orgAmount"), 10));
-
-        String[][] content = new String[end - start + 1][8];
-
-        for (int i = 0; i < end - start + 1; i++) {
-            content[i][0] = records.get(i).getDocumentNumber();
-            content[i][1] = records.get(i).getDocumentType();
-            content[i][2] = records.get(i).getInvoiceReference();
-            content[i][3] = records.get(i).getPoNumber();
-            content[i][4] = records.get(i).getDocDate();
-            content[i][5] = records.get(i).getDueDate();
-            content[i][6] = records.get(i).getCurrency();
-            content[i][7] = records.get(i).getOrgAmount();
-        }
-        return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
-    }
-
-    private int getNextTableHeight(List<Record> documentDetail) {
-        return documentDetail.size() * 15 + 10;
-    }
-
-    private Table createDeliveryDetailTable(Document documentList) {
-        // Total size of columns must not be greater than table width.
-        List<Column> columns = new ArrayList<>();
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + documentList.getSalesOffice(), 510));
-        columns.add(new Column(CustomerHubConstants.BOLD_IDENTIFIER + documentList.getTotalAmount(), 40));
-        String[][] content = new String[0][0];
-        return PDFUtil.getTable(columns, content, 14, muliRegular, muliBold, 8, MARGIN);
-    }
-
-    private Table createProductTable(SlingHttpServletRequest request, List<Record> records) {
-        return createRecordTable(request, records, 0, records.size() - 1);
-    }
-
 }

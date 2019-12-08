@@ -22,18 +22,6 @@ pipeline {
         }
 
         stages {
-             /*  stage ('Checkout') {
-                 steps {
-                   git(
-                   poll: true,
-                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
-                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
-                   branch: 'develop'
-                      )
-                   }
-                 }
-				 */
-
                 stage ('Initialize') {
                         steps {
                                 sh '''
@@ -47,8 +35,8 @@ pipeline {
                         steps {
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
                                 sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
-                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
+                                sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
+                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
                         }
                 }
 
@@ -106,7 +94,7 @@ pipeline {
                                                 echo "Deleting Old Commons Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -115,7 +103,7 @@ pipeline {
                                                 echo "Deleting Old Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
                                         },
@@ -125,7 +113,7 @@ pipeline {
                                                 echo "Deleting Old Commons Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 echo "Uploading New Commons Package on publish"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Commons Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -134,7 +122,7 @@ pipeline {
                                                 echo "Deleting Old Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:\\>Hd]HV7T -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 echo "Installing New Package on publish"
                                                 sh "curl -u admin:\\>Hd]HV7T -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
 
@@ -225,12 +213,12 @@ post {
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-					to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, harsimran.kaur@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-					to: 'amit.pasricha@publicissapient.com, anjali.gulati@publicissapient.com, ankur.gupta11@publicissapient.com, harsimran.kaur@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
       }
 
 

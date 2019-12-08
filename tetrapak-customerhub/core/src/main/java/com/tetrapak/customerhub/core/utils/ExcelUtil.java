@@ -37,8 +37,8 @@ import java.util.regex.Pattern;
 /**
  * This utility is used to generate and download an excel file based on the 2D String array provided as a parameter
  *
- * @author dhitiwar
- * @author swalamba
+ * @author Nitin Kumar
+ * @author Swati Lamba
  */
 public final class ExcelUtil {
 
@@ -198,15 +198,19 @@ public final class ExcelUtil {
     private static void prepareReportData(Workbook workBook, Sheet sheet, String[][] reportData, short borderColor) {
         int rowCount = 0;
 
+        Cell cell;
+        Row row;
+        int columnCount;
+        Map<String, CellStyle> cellStyles = getCellStyleMap(workBook, borderColor);
         for (String[] data : reportData) {
-            Row row = getRow(sheet, rowCount);
-            int columnCount = 0;
+            row = getRow(sheet, rowCount);
+            columnCount = 0;
             if (Objects.nonNull(row)) {
                 for (String field : data) {
-                    Cell cell = row.createCell(columnCount);
+                    cell = row.createCell(columnCount);
                     columnCount++;
                     setRowHeight(row, field, sheet.getDefaultRowHeightInPoints());
-                    processFieldToCellValue(sheet, cell, field, getCellStyleMap(workBook, borderColor),
+                    processFieldToCellValue(sheet, cell, field, cellStyles,
                             reportData[0].length - 1, workBook.createFont());
                 }
             }
@@ -288,45 +292,53 @@ public final class ExcelUtil {
     /**
      * Get list of CellStyles in form a map
      *
-     * @param workBook work book
-     * @return getCellStyleMap
+     * @param workbook    workbook
+     * @param borderColor border color
+     * @return getCellStyleMap style map
      */
-    private static Map<String, CellStyle> getCellStyleMap(Workbook workBook, short borderColor) {
+    private static Map<String, CellStyle> getCellStyleMap(Workbook workbook, short borderColor) {
         Map<String, CellStyle> cellStyles = new HashMap<>();
-
-        CellStyle borderStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        CellStyle cellStyle = workbook.createCellStyle();
+        CellStyle borderStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         cellStyles.put(REGULAR_CELL_STYLE, borderStyle);
 
-        CellStyle emptyCellStyle = setBorderStyle(BorderStyle.NONE, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle emptyCellStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         cellStyles.put(EMPTY_CELL_STYLE, emptyCellStyle);
 
-        CellStyle regularCenterStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle regularCenterStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         regularCenterStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyles.put(REGULAR_CENTER_CELL_STYLE, regularCenterStyle);
 
-        CellStyle regularRightStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle regularRightStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         regularRightStyle.setAlignment(HorizontalAlignment.RIGHT);
         cellStyles.put(REGULAR_RIGHT_CELL_STYLE, regularRightStyle);
 
-        CellStyle limeBGStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle limeBGStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         limeBGStyle.setFillForegroundColor(IndexedColors.LEMON_CHIFFON.index);
         limeBGStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         limeBGStyle.setAlignment(HorizontalAlignment.RIGHT);
         cellStyles.put(LIME_BG_CELL_STYLE, limeBGStyle);
 
-        CellStyle lightGreyLeftStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle lightGreyLeftStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         lightGreyLeftStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
         lightGreyLeftStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         lightGreyLeftStyle.setAlignment(HorizontalAlignment.LEFT);
         cellStyles.put(LIGHT_GREY_LEFT_CELL_STYLE, lightGreyLeftStyle);
 
-        CellStyle lightGreyBackgroudStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle lightGreyBackgroudStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         lightGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
         lightGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         lightGreyBackgroudStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyles.put(LIGHT_GREY_BG_CELL_STYLE, lightGreyBackgroudStyle);
 
-        CellStyle darkGreyBackgroudStyle = setBorderStyle(BorderStyle.THIN, borderColor, workBook.createCellStyle());
+        cellStyle = workbook.createCellStyle();
+        CellStyle darkGreyBackgroudStyle = setBorderStyle(BorderStyle.THIN, borderColor, cellStyle);
         darkGreyBackgroudStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
         darkGreyBackgroudStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         darkGreyBackgroudStyle.setAlignment(HorizontalAlignment.CENTER);
@@ -424,7 +436,7 @@ public final class ExcelUtil {
         XSSFRichTextString richTextString = new XSSFRichTextString(field);
         customFont.setFontName(DEFAULT_FONT_NAME);
         customFont.setFontHeightInPoints(DEFAULT_FONT_HEIGHT);
-        customFont.setColor(isWhite?HSSFColor.HSSFColorPredefined.WHITE.getIndex():HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+        customFont.setColor(isWhite ? HSSFColor.HSSFColorPredefined.WHITE.getIndex() : HSSFColor.HSSFColorPredefined.BLACK.getIndex());
         if (!tags.isEmpty()) {
             if (tags.contains(BOLD_TAG)) {
                 customFont.setBold(true);

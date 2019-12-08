@@ -2,6 +2,7 @@
 <workspaceFilter version="1.0">
 	<filter root="/apps/cq/Page" mode="replace"/>
 	<filter root="/apps/customerhub/components" mode="update"/>
+    <filter root="/apps/customerhub/ac-config" mode="replace"/>
     <filter root="/apps/customerhub/config" mode="replace"/>
 	<filter root="/apps/customerhub/config.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.publish" mode="replace"/>

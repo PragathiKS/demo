@@ -8,16 +8,19 @@ import dynamicMedia from './dynamicMedia';
 import { toast } from './toast';
 import { $body } from './commonSelectors';
 import { isFirefox, isIE, isEdge } from './browserDetect';
-import { isTablet, isMobile } from '../common/common';
+import { isTablet, isMobile, isCurrentPageIframe } from '../common/common';
 import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
 import videoAnalytics from './videoAnalytics';
 import customEvents from './customEvents';
+import feedback from './feedback';
 import auth from './auth';
 import tokenRefresh from './tokenRefresh';
 
 export default {
   init() {
+    // Feedback script
+    feedback.init();
     // Custom events
     customEvents.init();
     // Auth and Token refresh
@@ -49,6 +52,10 @@ export default {
         $this.addClass('modal-open');
       }
     });
+    $('.js-list-item__link').on('click', function () {
+      const $this = $(this);
+      window.open($this.data('href'), $this.data('target'));
+    });
     // Custom scrollbar cross-browser handling
     if (
       isFirefox()
@@ -58,6 +65,17 @@ export default {
       || isMobile()
     ) {
       $('[class*="custom-scrollbar"]:not(.custom-scrollbar-content)').addClass(`native${isTablet() ? ' tablet' : ''}`);
+    }
+    const isIframe = isCurrentPageIframe();
+    if (isIframe && $('.js-empty-page-script').length === 0) {
+      window.parent.postMessage({
+        refresh: true
+      });
+    }
+    const $autoRefreshSession = $('#autoRefreshSession');
+    if (!isIframe && $autoRefreshSession.length && $autoRefreshSession.val() === 'true') {
+      // Fetch bearer token to start token refresh timer
+      auth.getToken();
     }
   }
 };

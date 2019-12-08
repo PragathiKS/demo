@@ -1,0 +1,13 @@
+<sly data-sly-template.articleContainer_template="${@ data, flag}">
+  <div class="article-container pw-theme--${data.pwTheme}" data-container-title="${data.titleI18n @ i18n}">
+    <div class="article-container__title ${data.titleAlignment}">
+      <sly data-sly-test="${data.titleI18n}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+           data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n, variant='regular'}"/>
+    </div>
+    <div class="article-container__wrapper" data-sly-list="${data.totalColumns}">
+      <div class="article-container__column">
+        <sly data-sly-resource="${item @ resourceType='publicweb/components/content/articleItem'}"/>
+      </div>
+    </div>
+  </div>
+</sly>

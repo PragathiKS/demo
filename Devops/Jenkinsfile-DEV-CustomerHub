@@ -1,10 +1,6 @@
 pipeline {
         agent { label "master" } 
-/*
- triggers {
-          cron('30 10,15 * * *')
-		}
-		*/
+
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you do not want to run the pipeline with all Tools execution', name: 'Skip_Tool_Execution'
         }
@@ -19,24 +15,13 @@ pipeline {
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
-				test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html#/?status=1&document-type=1&invoicedate-from=2019-06-24&customerkey=123"
-				test_url_pally_zap = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
+				test_url = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
+				test_url_pally_zap = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
                 karmapath =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
         }
 
         stages {
-				/*
-				stage ('Checkout') {
-                 steps {
-                   git(
-                   poll: true,
-                   url: 'https://del.tools.publicis.sapient.com/bitbucket/scm/tet/tetrapak.git',
-                   credentialsId: '590d0184-e17a-46fe-be24-60c6b6ab4ca2',
-                   branch: 'develop'
-                      )
-                   }
-                } 
-				*/
+				
                 stage ('Initialize') {
                         steps {
                                 sh      '''
@@ -54,8 +39,8 @@ pipeline {
                                 
 							    echo "Build Commons"
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
-								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER}"
-								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 								
 							}
 						  }
@@ -66,8 +51,8 @@ pipeline {
                         steps {
 								echo "Build CustomerHub"
                                 sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
-                               sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-DEV-${BUILD_NUMBER} dependency:tree -Dverbose"
-                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+                               sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER} dependency:tree -Dverbose"
+                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
                         }
                     }
 												
@@ -147,7 +132,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
@@ -160,7 +145,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
@@ -175,7 +160,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
@@ -188,7 +173,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
@@ -261,12 +246,12 @@ post {
       success {
       emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
 }
       failure {
       emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
       body: '''${DEFAULT_CONTENT}''',
-to: 'amit.pasricha@publicissapient.com, ankur.gupta11@publicissapient.com,  harsimran.kaur@publicissapient.com, jitendra.nakra@publicissapient.com, lalit.mahori@publicissapient.com, nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com, tarun.sagar@publicissapient.com, tushar.tushar@publicissapient.com, sumrin.kaur@publicissapient.com'
+	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
 }
   always {
     build 'Tetra_Dev_Clear_httpd_Cache'

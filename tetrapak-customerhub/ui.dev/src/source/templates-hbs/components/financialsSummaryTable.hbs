@@ -1,11 +1,13 @@
 {{#if isError}}
-    {{> atoms/error/error error=true message="cuhu.error.message"}}
+    {{> atoms/error/error error=true message=errorText}}
 {{else}}
     {{#if noData}}
         {{> atoms/error/error message="cuhu.nodata.message"}}
     {{else}}
         <div class="tp-financials-summary__statement">
-            <h3>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h3>
+            {{#if summary}}
+                <h3>{{i18n key=summaryHeadingI18n}}: {{dateRange}}</h3>
+            {{/if}}
             <div class="tp-financials-summary__table custom-scrollbar-horizontal on">
                 {{> molecules/table/table baseClass="tp-financials-summary__statement" jsClass="js-financials-summary__statement" list=summary headings=summaryHeadings}}
             </div>
@@ -15,7 +17,7 @@
             {{#each documents}}
                 {{#if docData}}
                     {{> molecules/accordianTitle/accordianTitle baseClass="collapsed tp-financials-summary__accordion" jsClass="js-financials-summary__accordion" iconClass="icon-Chevron_Up" text=title rightContent=totalAmount data-target=docId data-toggle="collapse" }}
-                    <div class="tp-financials-summary__table custom-scrollbar-horizontal on js-financials-summary__table collapse" id="document{{@index}}">
+                    <div class="tp-financials-summary__table custom-scrollbar-horizontal on js-financials-summary__table collapse" id="document{{@index}}" data-section-title="{{salesOffice}}">
                         {{> molecules/table/table baseClass="tp-financials-summary__documents" jsClass="js-financials-summary__documents" list=docData headings=docHeadings tableSummary=totalAmount
                         data-sales-office=salesOffice}}
                     </div>
@@ -35,6 +37,9 @@
                 data-invoice-date-to=params.[invoicedate-to]
                 data-customer-key=params.customerkey
                 data-search=params.[document-number]
+                data-download-type="excel"
+                data-tracking-type="downloadExcel"
+                data-link-name=createExcelBtnI18n
             }}
             {{> atoms/buttons/button/button
                 text=createPdfBtnI18n
@@ -48,6 +53,9 @@
                 data-invoice-date-to=params.[invoicedate-to]
                 data-customer-key=params.customerkey
                 data-search=params.[document-number]
+                data-download-type="pdf"
+                data-tracking-type="downloadPdf"
+                data-link-name=createPdfBtnI18n
             }}
         </div>
     {{/if}}
