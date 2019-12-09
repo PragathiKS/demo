@@ -2,7 +2,7 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxMethods, EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 /**
@@ -32,7 +32,7 @@ function _trackAnalytics(name, title) {
  * @param {object} data JSON data object for selected site
  */
 function _renderFilteredContacts(data = this.cache.data) {
-  const siteVal = this.cache.$site.val();
+  const siteVal = this.cache.$site.customSelect();
   const filteredContacts = data.results[siteVal].contacts;
 
   render.fn({
@@ -133,7 +133,7 @@ class Contacts {
   bindEvents() {
     const self = this;
     this.root
-      .on('change', '.js-contacts-filtering__site', function () {
+      .on(EVT_DROPDOWN_CHANGE, '.js-contacts-filtering__site', function () {
         let { siteFilterHeading } = self.cache.i18nKeys;
 
         self.initPostCache();
