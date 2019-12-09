@@ -54,5 +54,6 @@ public final class CustomerHubConstants {
     public static final String FINANCIALS = "Financials-";
     
     public static final String HYPHEN_STRING = "-";
-    
+
+    public static final String ORDER_NUMBER= "orderNumber";
 }
