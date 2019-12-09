@@ -1,0 +1,15 @@
+{{#each this}}
+    <div class="tp-contacts__container row no-gutters">
+    {{#each this}}
+        <div class="tp-contacts__cell col-lg-4 text-center">
+            <div class="tp-contacts__cell-icon">
+                <i class="icon-TetraPak"></i>
+            </div>
+            <div class="tp-contacts__cell-name">{{this.firstName}} {{this.lastName}}</div>
+            <div>{{this.title}}</div>
+            <div class="js-contacts__cell-mail" data-title="{{this.title}}"><a href="mailTo:{{this.email}}">{{this.email}}</a></div>
+            <div class="js-contacts__cell-phone" data-title="{{this.title}}"><a href="tel:{{this.mobileNo}}">{{this.mobileNo}}</a></div>
+        </div>
+    {{/each}}
+    </div>
+{{/each}}
