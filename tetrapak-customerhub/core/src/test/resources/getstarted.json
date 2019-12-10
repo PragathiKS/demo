@@ -5,6 +5,9 @@
    "jcr:created":"Wed Feb 20 2019 05:12:55 GMT+0000",
    "headingI18n":"getStarted",
    "className":"abc",
+   "closeBtnI18n": "close",
+   "getStartedBtnI18n": "About_GS_Started",
+   "nextBtnI18n": "About_GS_Next",
    "jcr:lastModified":"Wed Feb 20 2019 07:49:52 GMT+0000",
    "sling:resourceType":"customerhub/components/content/getstarted",
    "item0-image": {

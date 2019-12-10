@@ -36,9 +36,9 @@ public class GetStartedModel {
     @Inject
     private String className;
 
-    private List<GetStartedBean> getStartedList = new ArrayList<>();
+    protected List<GetStartedBean> getStartedList = new ArrayList<>();
 
-    private List<String> imageList = new ArrayList<>();
+    protected List<String> imageList = new ArrayList<>();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GetStartedModel.class);
 
