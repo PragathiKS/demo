@@ -1,0 +1,40 @@
+<div class="tp-ordering-card__orders">
+    <h2 class="tp-ordering-card__title">{{i18n key=labels.title}}</h2>
+    {{#unless isError}}
+        {{#if orders}}
+            {{> atoms/buttons/button/button baseClass="tp-ordering-card__settings" jsClass="js-ordering-card__settings" iconClass="icon-Cog" text=labels.preferencesBtn hideText=true modifier="settings" }}
+        {{/if}}
+    {{/unless}}
+    <div class="tp-ordering-card__tablewrapper js-ordering-card__tablewrapper">
+        {{> components/orderingTable this}}
+    </div>
+    {{#unless isError}}
+        <div class="tp-ordering-card__viewmore-wrapper">
+            {{> atoms/links/link/link href=viewAllOrders baseClass="tp-ordering-card__viewmore" iconClass="icon-Circle_Arrow_Right" datatag="internal" ctype="dashboard-Ordering" linkHeading=labels.title  text=labels.allOrders modifier="secondary"}}
+        </div>
+    {{/unless}}
+    {{!-- Settings overlay --}}
+    <div class="modal tp-modal js-ordering-card__modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog" role="document">
+            <div class="modal-content tp-modal-content">
+                {{> molecules/modals/modalHeader/modalHeader title=labels.preferencesTitle closeBtnText=labels.closeBtn}}
+                <div class="modal-body tp-modal-body tp-ordering-card__modal-body">
+                    <div class="tp-ordering-card__modal-desc">{{i18n key=labels.preferencesDescription}}</div>
+                    <div class="tp-ordering-card__modal-options">
+                        {{#each settingOptions}}
+                            {{> atoms/checkbox/checkbox jsClass="js-ordering-card__modal-preference" uniqueKey=@index text=i18nKey value=key isChecked=isChecked disabled=isMandatory}}
+                        {{/each}}
+                    </div>
+                    <div class="tp-ordering-card__save-error js-ordering-card__save-error d-none">
+                        {{#if labels.saveError}}
+                            {{> atoms/error/error error=true message=labels.saveError}}
+                        {{else}}
+                            {{> atoms/error/error error=true message="cuhu.error.message"}}
+                        {{/if}}
+                    </div>
+                </div>
+                {{> molecules/modals/modalFooter/modalFooter buttonText=labels.saveSettings baseClass="tp-ordering-card__modal-save" jsClass="js-ordering-card__modal-save"}}
+            </div>
+        </div>
+    </div>
+</div>
