@@ -1,0 +1,28 @@
+{
+  "headingI18n": "cuhu.getstarted.heading",
+  "nextBtnI18n": "cuhu.getstarted.next",
+  "closeBtnI18n": "cuhu.getstarted.close",
+  "errorMsgI18n": "cuhu.getstarted.error",
+  "getStartedBtnI18n": "cuhu.getstarted.getstartedtext",
+  "onBoardingStatusURL": "/apps/settings/wcm/designs/customerhub/jsonData/getStartedServletResponse.json",
+  "getStartedList": [
+    {
+      "imagePath": "/content/dam/tp-banner/banner.jpg",
+      "imageAltI18n": "cuhu.getstarted.businessalttext",
+      "titleI18n": "cuhu.getstarted.businesstitle",
+      "descriptionI18n": "cuhu.getstarted.businessdescription Depart do be so he enough talent. Sociable formerly six but handsome. Up do view time they shot. He concluded disposing provision by questions as situation. Its estimating are motionless day sentiments end. Calling an imagine at forbade. At name no an what like spot. Pressed my by do affixed he studied. "
+    },
+    {
+      "imagePath": "/content/dam/tp-banner/banner.jpg",
+      "imageAltI18n": "cuhu.getstarted.notificationalttext",
+      "titleI18n": "cuhu.getstarted.notificationtitle",
+      "descriptionI18n": "cuhu.getstarted.notificationdescription"
+    },
+    {
+      "imagePath": "/content/dam/tp-banner/banner.jpg",
+      "imageAltI18n": "cuhu.getstarted.experiencealttext",
+      "titleI18n": "cuhu.getstarted.experiencetitle",
+      "descriptionI18n": "cuhu.getstarted.experiencedescription"
+    }
+  ]
+}
