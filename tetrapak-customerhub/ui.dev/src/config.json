@@ -127,6 +127,24 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "orders": {
+        "testMultiple": true,
+        "name": "orders",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "contacts": {
+        "testMultiple": true,
+        "name": "contacts",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "maintenance": {
+        "testMultiple": true,
+        "name": "maintenance",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -147,11 +165,24 @@
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
         "source/templates/components/inactivitydialog/",
-        "source/templates/components/contactcard/"
+        "source/templates/components/contactcard/",
+        "source/templates/components/orderingcard/",
+        "source/templates/components/introscreen/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
+      ],
+      "orders": [
+        "source/templates/components/ordersearch/",
+        "source/templates/components/orderdetails/"
+      ],
+      "contacts": [
+        "source/templates/components/contacts/"
+      ],
+      "maintenance": [
+        "source/templates/components/maintenance/",
+        "source/templates/components/documents/"
       ]
     },
     "handlebars": {

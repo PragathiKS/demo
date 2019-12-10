@@ -1,0 +1,20 @@
+<h2 class="tp-maintenance-filtering__calendar-heading">{{i18n key=scheduleHeading}}</h2>
+<div class="tp-cal-cont__calendar-nav js-cal-cont__calendar-nav clearfix">
+	{{> atoms/buttons/button/button
+					modifier="calendar"
+					className="tp-cal-cont__calendar-left float-left"
+					jsClass="js-calendar-nav js-calendar-prev"
+					data-action="previous-action"
+					iconClass="icon-Chevron_Left"
+					hideText=true
+					text="cuhu.calendar.prev"}}
+	{{> atoms/buttons/button/button
+					modifier="calendar"
+					className="tp-cal-cont__calendar-left float-right"
+					jsClass="js-calendar-nav js-calendar-next"
+					data-action="next-action"
+					iconClass="icon-Chevron_Right"
+					hideText=true
+					text="cuhu.calendar.next"}}
+</div>
+{{> atoms/input/input type="hidden" name="daterange" defaultValue=selectedDateRange eleClasses="tp-cal-cont__range-selector js-events-date-range-selector" }}

@@ -132,8 +132,7 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/HelloWorld/",
-        "source/templates/components/HelloWorldHandlebars/"
+        "source/templates/components/HelloWorld/"
       ]
     },
     "handlebars": {
