@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
  */
 public final class ExcelUtil {
 
+    public static final String REGULAR_STYLE_TAG = "<regular>";
     private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
     private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
 
