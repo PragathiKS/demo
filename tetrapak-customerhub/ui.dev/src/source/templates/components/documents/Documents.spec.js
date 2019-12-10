@@ -2,7 +2,6 @@ import $ from 'jquery';
 import Documents from './Documents';
 import documentsTemplate from '../../../test-templates-hbs/documents.hbs';
 import maintenanceFilteringData from '../maintenance/data/maintenanceFiltering.json';
-import documentsData from './data/documentsData.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';

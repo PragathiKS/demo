@@ -64,7 +64,7 @@
 
         .tpmol-accordian-title {
             @include line-height(21px, $font-sm);
-            font-family: $font-regular;
+            font-family: $font-light;
             border-color: $color-mercury;
         }
     }

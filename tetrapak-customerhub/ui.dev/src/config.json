@@ -139,6 +139,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "maintenance": {
+        "testMultiple": true,
+        "name": "maintenance",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -173,6 +179,10 @@
       ],
       "contacts": [
         "source/templates/components/contacts/"
+      ],
+      "maintenance": [
+        "source/templates/components/maintenance/",
+        "source/templates/components/documents/"
       ]
     },
     "handlebars": {
