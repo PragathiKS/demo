@@ -121,6 +121,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "dashboard": {
+        "testMultiple": true,
+        "name": "dashboard",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "financial": {
         "testMultiple": true,
         "name": "financial",
@@ -159,15 +165,18 @@
         "source/templates/components/leftnavigation/",
         "source/templates/components/header/",
         "source/templates/components/languageselector/",
+        "source/templates/components/getstarted/",
         "source/templates/components/pagination/",
         "source/templates/components/cookieconsent/",
-        "source/templates/components/getstarted/",
+        "source/templates/components/introscreen/",
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
-        "source/templates/components/inactivitydialog/",
+        "source/templates/components/inactivitydialog/"
+      ],
+      "dashboard": [
         "source/templates/components/contactcard/",
         "source/templates/components/orderingcard/",
-        "source/templates/components/introscreen/"
+        "source/templates/components/maintenancecard/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
