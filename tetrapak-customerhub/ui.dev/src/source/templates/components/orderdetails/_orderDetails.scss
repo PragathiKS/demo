@@ -1,0 +1,175 @@
+.tp-order-detail {
+    h2 {
+        @include font-size($font-md);
+
+        @media #{$desktop} {
+            @include font-size($font-l);
+        }
+    }
+
+    &__back-btn {
+        color: $color-text-link;
+
+        .icon {
+            @include font-size($font-normal);
+        }
+    }
+
+    &__order-info {
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-l);
+
+        &-table {
+            @media #{$desktop} {
+                display: table;
+            }
+        }
+    }
+
+    &__info-data {
+        @include padding-top($padding-xs);
+        @include padding-bottom($padding-sm);
+
+        @media #{$desktop} {
+            display: table-row;
+            padding: 0;
+        }
+    }
+
+    &__info-title {
+        @include padding-right($margin-l);
+        font-family: $font-bold;
+        vertical-align: top;
+
+        @media #{$desktop} {
+            @include padding-top($padding-xs);
+            @include padding-bottom($padding-sm);
+            display: table-cell;
+        }
+    }
+
+    &__info-text {
+        @media #{$desktop} {
+            @include padding-top($padding-xs);
+            @include padding-bottom($padding-sm);
+            display: table-cell;
+        }
+    }
+
+    &__summary__table {
+        @media #{$desktop} {
+
+            th,
+            td {
+                &:first-child {
+                    width: 60%;
+                }
+            }
+        }
+    }
+
+    &__table {
+
+        th,
+        td {
+            &:last-child {
+                padding-right: 0;
+                text-align: right;
+            }
+        }
+    }
+
+    &__product-footer {
+        position: relative;
+    }
+
+    &__product-summary {
+        @include margin-top($margin-l);
+        width: auto;
+
+        td {
+            text-align: right;
+
+            &:first-child {
+                @include padding($padding-xs $padding-l $padding-xs 0);
+            }
+        }
+    }
+
+    &__pagination {
+        @include margin-top($margin-l);
+
+        @media #{$desktop} {
+            &--parts {
+                position: absolute;
+                margin-top: 0;
+                top: 0;
+            }
+        }
+    }
+
+    &__cust-support {
+        @include padding-top($padding-l);
+        border-top: 1px solid $color-mercury;
+    }
+
+    &__create-excel {
+        @include margin-right($margin-md);
+    }
+
+    &__table-wrapper {
+        @include horizontal-scroll-touch;
+        @include padding-top($padding-l);
+    }
+
+    &__filter-checkbox {
+        @include margin-top($margin-l);
+
+        .tpatom-checkbox__label {
+            margin: 0;
+        }
+
+        .tpatom-checkbox__icon {
+            @include margin-top($margin-xs);
+            @include width($spacing-baseline);
+            @include height($spacing-baseline);
+
+            &::before {
+                @include font-size($font-xxs);
+            }
+        }
+    }
+
+    &__packaging-modal {
+        &-body {
+            @include padding($padding-l);
+            border-top: 1px solid $color-tundora;
+        }
+
+        &-desc {
+            font-family: $font-bold;
+        }
+
+    }
+
+    &__icon-info {
+        @include padding($padding-sm);
+        cursor: pointer;
+    }
+
+    [data-key='unitPrice'] {
+        text-align: right;
+    }
+
+    .tpatom-btn {
+        @include margin-top($padding-md);
+
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+    }
+
+    .icon-External_Link {
+        @include margin-left($margin-xs);
+    }
+}
