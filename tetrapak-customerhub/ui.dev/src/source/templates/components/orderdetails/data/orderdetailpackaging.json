@@ -1,0 +1,88 @@
+{
+  "orderDetails": {
+    "orderNumber": "116073595",
+    "customerName": "Dabur India Limited",
+    "customerNumber": "955547",
+    "purchaseOrderNumber": "TEST",
+    "placedOn": "2018-02-23",
+    "status": "Complete"
+  },
+  "customerSupportCenter": {
+    "email": "email@tetrapak.com",
+    "mobile": "12345667"
+  },
+  "orderSummary": [
+    {
+      "product": "Chakan Test Material 2 DIN-A964-01",
+      "orderQuantity": "1.000 KPK",
+      "deliveredQuantity": "1.000 KPK"
+    },
+    {
+      "product": "U-straw 4/160 White A877519403",
+      "orderQuantity": "1.000 KPC",
+      "deliveredQuantity": "1.000 KPC"
+    }
+  ],
+  "deliveryList": [
+    {
+      "deliveryOrder": "1",
+      "deliveryNumber": "200022972",
+      "orderNumber": "116073595",
+      "deliveryStatus": "Partial Delivery",
+      "productPlace": " ",
+      "requestedDelivery": "2018-03-01",
+      "ETD": "2018-03-01",
+      "deliveryAddress": {
+        "name": "Dabur India Limited",
+        "name2": "Name2",
+        "city": "Mumbai 400001  ",
+        "postalcode": "400001"
+      },
+      "invoiceAddress": {
+        "name": "Dabur India Limited",
+        "name2": "Name2",
+        "city": "Mumbai 400001  ",
+        "postalcode": "400001"
+      },
+      "totalProducts": "21",
+      "products": [
+        {
+          "type": "PackMat",
+          "productName": "Chakan Test Material 2",
+          "materialCode": "DIN-A964-01",
+          "SKU": "",
+          "orderQuantity": "1.000",
+          "remainingQuantity": "1.000",
+          "price": "1045.000 INR"
+        },
+        {
+          "type": "PackMat",
+          "productName": "Chakan Test Material 2",
+          "materialCode": "DIN-A964-01",
+          "SKU": "",
+          "orderQuantity": "1.000",
+          "remainingQuantity": "1.000",
+          "price": "1045.000 INR"
+        },
+        {
+          "type": "PackMat",
+          "productName": "U-straw 4/160 White",
+          "materialCode": "A877519403",
+          "SKU": "",
+          "orderQuantity": "1.000",
+          "remainingQuantity": "1.000",
+          "price": "0.000 INR"
+        },
+        {
+          "type": "PackMat",
+          "productName": "U-straw 4/160 White",
+          "materialCode": "A877519403",
+          "SKU": "",
+          "orderQuantity": "1.000",
+          "remainingQuantity": "1.000",
+          "price": "0.000 INR"
+        }
+      ]
+    }
+  ]
+}
