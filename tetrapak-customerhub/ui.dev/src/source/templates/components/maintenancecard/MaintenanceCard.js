@@ -77,16 +77,16 @@ function _renderMaintenanceEvents() {
         cancellable: true
       },
       beforeRender(data) {
+        const { i18nKeys, viewAllLink } = $this.cache;
         if (!data) {
           this.data = data = {
-            isError: true
+            isError: true,
+            i18nKeys
           };
         } else {
           if (!Array.isArray(data.events) || data.events.length === 0) {
             data.noData = true;
           }
-
-          const { i18nKeys, viewAllLink } = $this.cache;
           data.i18nKeys = i18nKeys;
           data.viewAllLink = viewAllLink;
 
