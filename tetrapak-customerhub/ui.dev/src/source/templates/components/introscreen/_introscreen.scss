@@ -1,0 +1,95 @@
+@import '~slick-carousel/slick/slick';
+
+.modal--intro-screen {
+    .modal-dialog {
+        @include margin(0 $margin-md);
+        max-width: 100%;
+
+        @media #{$desktop} {
+            @include max-width(700px);
+            margin: auto;
+        }
+
+        .modal-content {
+            @include box-shadow-modal;
+            @include margin($margin-md 0);
+            overflow: hidden;
+        }
+
+        .modal-header,
+        .modal-body {
+            @include padding(0);
+            border: 0;
+        }
+    }
+
+    .modal-footer {
+        border: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: initial;
+    }
+
+    @media #{$mobile} {
+        .modal-dialog-centered {
+            min-height: 100%;
+        }
+    }
+}
+
+.tp-close-btn {
+    @include top(9px);
+    @include right(9px);
+    @include padding(0);
+    @include font-size($font-normal);
+    color: $color-text;
+    position: absolute;
+    z-index: $zindex-p;
+}
+
+.intro-slider {
+    &__slider-image {
+        width: 100%;
+
+        @media #{$desktop} {
+            @include width(700px);
+        }
+    }
+
+    &__description {
+        @include padding($padding-md $padding-l);
+        word-wrap: break-word;
+    }
+
+    &__title {
+        @include margin-top ($margin-sm);
+        @include margin-bottom ($margin-l);
+        @include line-height (32px, $font-l);
+        word-wrap: break-word;
+    }
+}
+
+.next-button-wrapper {
+    .modal-footer & {
+        @include margin-left ($margin-l);
+        margin-right: auto;
+    }
+}
+
+.slider-dots {
+    @include margin-bottom($margin-md);
+    text-align: center;
+
+    .slick-dots,
+    li {
+        display: inline-block;
+    }
+}
+
+.slick-active {
+    .tp-dot {
+        &::after {
+            background-color: $color-congress-blue;
+        }
+    }
+}
