@@ -1,0 +1,1247 @@
+{
+  "totalDocuments": 182,
+  "results": [
+    {
+      "serial": "21204/00015",
+      "docCount": 173,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 34,
+          "documents": [
+            {
+              "name": "UK Product Pipe",
+              "docNo": "3450553-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3450553-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Soft Volume Cam",
+              "docNo": "3465039-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3465039-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Cock Valve",
+              "docNo": "3425338-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3425338-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Flow Meter",
+              "docNo": "3479001-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3479001-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Volume Flap Screw",
+              "docNo": "3482006-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3482006-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Knife Compression Spring",
+              "docNo": "3489001-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3489001-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes ",
+              "docNo": "3502948-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3502948-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3507436-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3507436-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Recorder",
+              "docNo": "3506737-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3506737-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Head Space By Injection",
+              "docNo": "3509064-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3509064-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK High Viscousity Aseptic HVA",
+              "docNo": "3509067-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3509067-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B WTC Optimization",
+              "docNo": "3461787-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3461787-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK GC Flexbox and Touch Screen",
+              "docNo": "3469236-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3469236-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Safety Sensor ADAM M12 ",
+              "docNo": "3531923-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3531923-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Panel Display",
+              "docNo": "3494958-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3494958-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK PullTab Unit PT19",
+              "docNo": "3540193-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3540193-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricant Light TBA/19",
+              "docNo": "3524026-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3524026-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Filling Pipe",
+              "docNo": "3424298-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3424298-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Stepper Drive",
+              "docNo": "3494920-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3494920-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK QR Code Reading",
+              "docNo": "3528823-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3528823-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Bar Code Photocell",
+              "docNo": "3548667-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3548667-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK High Viscosity",
+              "docNo": "3443534-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3443534-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Oil Filtering Unit",
+              "docNo": "3556733-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3556733-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Transversal Sealing Particles",
+              "docNo": "3567778-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3567778-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Drying Station",
+              "docNo": "3530608-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530608-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK High Viscosity",
+              "docNo": "3530604-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530604-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricants TBA/19",
+              "docNo": "3567046-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3567046-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Hydraulic Cylinder ",
+              "docNo": "3580694-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3580694-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK GC Date Print Detection",
+              "docNo": "3521838-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3521838-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3566913-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3566913-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes",
+              "docNo": "3519462-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3519462-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL ADAM&EVA (Cabled)",
+              "docNo": "3568128-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3568128-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "MKC Package stability",
+              "docNo": "3590438-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3590438-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL 90600-5818 Comm.Card 2",
+              "docNo": "3560194-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3560194-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 67,
+          "documents": [
+            {
+              "name": "UK REPL Stepper Drive",
+              "docNo": "3494910-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3494910-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricant Light TBA/19",
+              "docNo": "3524025-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3524025-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Bar Code\nPhotocell",
+              "docNo": "3551313-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3551313-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Advanced Shapes TBA/19 - Edge 200/250 ml",
+              "docNo": "3274799-0108",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274799-0108&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK OBS Cooling Unit",
+              "docNo": "3274813-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274813-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3274837-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274837-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Panel Display",
+              "docNo": "3274840-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274840-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Transversal Sealing Particles",
+              "docNo": "3274845-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274845-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Particle Filling",
+              "docNo": "3324213-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324213-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Cylinder 90450-0281",
+              "docNo": "3324219-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324219-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK OBS Oil Pump",
+              "docNo": "3327650-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3327650-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Brazil NR12 TBA/19",
+              "docNo": "3324256-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324256-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Volume Flap",
+              "docNo": "3324279-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324279-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK OBS Cylinder",
+              "docNo": "3367620-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3367620-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Cock Valve",
+              "docNo": "3425337-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3425337-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Oil Filtering\nUnit",
+              "docNo": "3429100-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3429100-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Water Recycling Unit",
+              "docNo": "3437110-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3437110-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Advanced Shapes TBA/19 TPA 125 Sq",
+              "docNo": "3446100-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3446100-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Product Pipe",
+              "docNo": "3450552-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3450552-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B WTC Optimization",
+              "docNo": "3461786-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3461786-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Splicing Cylinds",
+              "docNo": "3461791-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3461791-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK GC Flexbox and Touch Screen",
+              "docNo": "3463167-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3463167-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B Soft Volume Cam",
+              "docNo": "3465038-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3465038-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Flow Meter",
+              "docNo": "3479000-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3479000-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Volume Flap Screw",
+              "docNo": "3487671-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3487671-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Panel Display",
+              "docNo": "3494956-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3494956-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Recorder",
+              "docNo": "3506736-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3506736-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3507434-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3507434-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK QR Code Reading",
+              "docNo": "3528822-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3528822-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Drying Station",
+              "docNo": "3530606-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530606-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK High Viscosity",
+              "docNo": "3530601-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530601-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricants",
+              "docNo": "3172965-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172965-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Seal Indexing Unit",
+              "docNo": "3274782-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274782-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Converter Improvement",
+              "docNo": "3172993-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172993-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK El. Cab. Lighting Fixture Replacement",
+              "docNo": "3172916-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172916-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Ext Cleaning Pump TBA/TPA",
+              "docNo": "3172906-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172906-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Bar Code\nPhotocell",
+              "docNo": "3571346-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3571346-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TB/19",
+              "docNo": "3274838-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274838-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324204-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324204-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531392-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531392-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531295-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531295-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531224-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531224-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531394-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531394-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531356-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531356-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531358-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531358-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531353-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531353-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "2978765-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2978765-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531338-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531338-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531284-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531284-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531268-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531268-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531258-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531258-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531186-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531186-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531270-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531270-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "2866448-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2866448-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531238-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531238-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531137-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531137-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531196-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531196-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531233-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531233-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "2902334-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2902334-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531242-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531242-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531235-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531235-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3566911-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3566911-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL 90600-5818 Comm.Card 2",
+              "docNo": "3560192-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3560192-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "MKC Package Stability",
+              "docNo": "3590436-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3590436-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes",
+              "docNo": "3509878-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3509878-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL ADAM&EVA\n(Cabled)",
+              "docNo": "3568126-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3568126-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes",
+              "docNo": "3487898-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3487898-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Update Pages",
+          "docCount": 46,
+          "documents": [
+            {
+              "name": "UK REPL Stepper Drive ",
+              "docNo": "3494915-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3494915-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Recorder",
+              "docNo": "3506735-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3506735-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Filling Pipe",
+              "docNo": "3172998-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172998-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Advanced Shapes TBA/19 - Edge 200/250 ml",
+              "docNo": "3274802-0109",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274802-0109&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Transversal Sealing Particles",
+              "docNo": "3274846-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274846-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Oil Filtering Unit",
+              "docNo": "3429101-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3429101-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Water Recycling Unit",
+              "docNo": "3437111-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3437111-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Advanced Shapes TBA/19 - TPA 125 ml",
+              "docNo": "3446101-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3446101-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Splicing Cylinds",
+              "docNo": "3461793-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3461793-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Flow Meter",
+              "docNo": "3479002-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3479002-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Volume Flap Screw",
+              "docNo": "3487672-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3487672-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3507435-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3507435-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "CSK_B WTC Optimization",
+              "docNo": "3520906-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3520906-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK QR Code Reading",
+              "docNo": "3528824-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3528824-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK High Viscosity",
+              "docNo": "3530602-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530602-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Drying Station",
+              "docNo": "3530607-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3530607-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricants",
+              "docNo": "3172966-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172966-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Food Grade Lubricant Light TBA/19",
+              "docNo": "3524028-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3524028-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Bar Code Photocell",
+              "docNo": "3571347-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3571347-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324280-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324280-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531393-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531393-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324220-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324220-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TB/8 TBA/8 TBA/19 TB/19 Tetra Pak A1",
+              "docNo": "3274841-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274841-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324214-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324214-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TB/8 TBA/8 TBA/19 TB/19",
+              "docNo": "3315011-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3315011-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TB/8 TBA/8 TBA/19 TB/19",
+              "docNo": "3274839-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274839-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324257-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324257-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3172902-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172902-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324205-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324205-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3324220-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324220-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "",
+              "docNo": "3324257-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324257-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "",
+              "docNo": "3324214-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3324214-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3327651-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3327651-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3360090-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3360090-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3382502-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3382502-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3172994-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172994-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3274783-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274783-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3274814-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3274814-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3172917-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172917-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3172907-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172907-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK Flexbox VI",
+              "docNo": "3566912-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3566912-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL ADAM&EVA (Cabled)",
+              "docNo": "3568127-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3568127-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes",
+              "docNo": "3491453-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3491453-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "MKC Package Stability",
+              "docNo": "3590437-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3590437-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK TBA/19 Advanced Shapes",
+              "docNo": "3509879-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3509879-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL 90600-5818 Comm.Card 2",
+              "docNo": "3560193-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3560193-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Maintenance Manual",
+          "docCount": 2,
+          "documents": [
+            {
+              "name": "TBA/19 Tetra Brik Aseptic 0200",
+              "docNo": "81533-0113",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81533-0113&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531225-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531225-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Operation Manual",
+          "docCount": 7,
+          "documents": [
+            {
+              "name": "OK Filling Station Peroxide",
+              "docNo": "81082-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81082-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "OK Particle Filling",
+              "docNo": "3437100-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3437100-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19 TBA",
+              "docNo": "3443537-0103",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3443537-0103&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "1531249-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531249-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3006066-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3006066-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3006067-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3006067-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "81655-0108",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81655-0108&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Technical Manual",
+          "docCount": 8,
+          "documents": [
+            {
+              "name": "OK Filling Station Peroxide",
+              "docNo": "1531171-0106",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531171-0106&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Laboratory Package Checks",
+              "docNo": "1531354-0106",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531354-0106&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Food Safety Chart TBA/19",
+              "docNo": "2844533-0109",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2844533-0109&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Laser Alignment Equipment",
+              "docNo": "3172915-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3172915-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Prerequisite Need for Advanced Shapes",
+              "docNo": "3429011-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3429011-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK REPL Level Control Relay",
+              "docNo": "3465041-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3465041-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "PT19",
+              "docNo": "3038450-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3038450-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "UK GC Date Print Detection",
+              "docNo": "3521837-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3521837-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Electrical Manual",
+          "docCount": 4,
+          "documents": [
+            {
+              "name": "TBA/19 0200",
+              "docNo": "81803-0123",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81803-0123&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "81745-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81745-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "81803-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81803-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "81658-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81658-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 2,
+          "documents": [
+            {
+              "name": "TBA/19",
+              "docNo": "81656-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81656-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TB/19",
+              "docNo": "3491643-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3491643-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Document Folder",
+          "docCount": 2,
+          "documents": [
+            {
+              "name": "TBA/19",
+              "docNo": "1531267-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531267-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "TBA/19",
+              "docNo": "3540192-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3540192-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Installation Manual",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "TBA/19",
+              "docNo": "81657-0104",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=81657-0104&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "12345/12345",
+      "docCount": 8,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 5,
+          "documents": [
+            {
+              "name": "Gerth_SPC_test2",
+              "docNo": "2323234-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=2323234-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth_SPC_test100",
+              "docNo": "1111111-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1111111-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth-bom01",
+              "docNo": "555555-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=555555-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Gerth-SPC-Translation",
+              "docNo": "123123-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=123123-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            },
+            {
+              "name": "Tetra Multi Shrink 65",
+              "docNo": "585524-0105",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=585524-0105&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK Brazil NR 12 ",
+              "docNo": "3337405-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3337405-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Technical Manual",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "Laboratory Package Checks",
+              "docNo": "1531354-0106",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=1531354-0106&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Update Pages",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "",
+              "docNo": "3337406-0102",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3337406-0102&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "65184/50853",
+      "docCount": 2,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK REPL Cylinder 90450-0099 TR",
+              "docNo": "3513292-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513292-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 0,
+          "documents": [
+            {
+              "name": "UK\nREPL Cylinder 90450-0099 TR",
+              "docNo": "3513290-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513290-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "serial": "65184/50854",
+      "docCount": 0,
+      "docTypes": [
+        {
+          "type": "Spare Parts Catalogue",
+          "docCount": 1,
+          "documents": [
+            {
+              "name": "UK REPL Cylinder 90450-0099 TR",
+              "docNo": "3513292-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513292-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        },
+        {
+          "type": "Rebuilding Manual",
+          "docCount": 0,
+          "documents": [
+            {
+              "name": "UK\nREPL Cylinder 90450-0099 TR",
+              "docNo": "3513290-0101",
+              "lang": "en",
+              "location": "/techpub-html/html/?docno=3513290-0101&access_token=RJDPe0fu83e40awAefAYqWL3sXbp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
