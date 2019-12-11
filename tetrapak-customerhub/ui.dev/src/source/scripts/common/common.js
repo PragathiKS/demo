@@ -250,7 +250,7 @@ export const resolveCurrency = (value, isoCode) => {
 /**
  * Checks if current page is iframe
  */
-export const isCurrentPageIframe = () => ((window.location !== window.parent.location) && window.frameElement.getAttribute('id') !== 'ContentFrame');
+export const isCurrentPageIframe = () => ((window.location !== window.parent.location) && (window.frameElement.getAttribute('id') !== 'ContentFrame'));
 
 /**
  * Checks if current environment is localhost
