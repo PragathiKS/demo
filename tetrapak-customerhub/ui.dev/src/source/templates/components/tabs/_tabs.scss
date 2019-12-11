@@ -1,0 +1,92 @@
+.tp-equipment {
+    @include border-radius($border-radius $border-radius 0 0);
+    margin-bottom: 0;
+}
+
+.tp-tabs {
+    width: 100%;
+
+    @media #{$desktop} {
+        position: relative;
+    }
+
+    &__image {
+        @media #{$desktop} {
+            @include border-radius($border-radius);
+            @include height(225px); //TODO: Will be removed once image rendition is done
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    &__tabs-container {
+        @media #{$desktop} {
+            @include left($spacing-big);
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    &_ul {
+        @include display-flex;
+        justify-content: center;
+
+        @media #{$desktop} {
+            @include border-radius($border-radius $border-radius 0 0);
+            display: block;
+            background-color: $color-congress-blue;
+        }
+    }
+
+    &__tab {
+        @include padding($padding-sm);
+        @include border-radius($border-radius);
+        color: $color-tundora;
+        flex: 1;
+        text-align: center;
+        background: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include padding($padding-md);
+            @include border-radius($border-radius $border-radius 0 0);
+            display: inline-block;
+            color: $color-white;
+            background-color: $color-tory-blue;
+        }
+    }
+
+    &__tab-link {
+        color: $color-white;
+        width: 100%;
+
+        &:hover,
+        &:visited {
+            color: $color-white;
+        }
+    }
+
+    &__tab-icon {
+
+        @media #{$desktop} {
+            @include font-size($font-l);
+        }
+
+    }
+
+    &__tab-label {
+        @include line-height($font-l, $font-baseline);
+        color: $color-tundora;
+
+        @media #{$desktop} {
+            color: $color-white;
+        }
+
+        .active & {
+            color: $color-white;
+        }
+    }
+
+    .active {
+        background-color: $color-congress-blue;
+    }
+}

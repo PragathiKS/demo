@@ -191,7 +191,9 @@
       ],
       "maintenance": [
         "source/templates/components/maintenance/",
-        "source/templates/components/documents/"
+        "source/templates/components/documents/",
+        "source/templates/components/eventslisting/",
+        "source/templates/components/tabs/"
       ]
     },
     "handlebars": {
