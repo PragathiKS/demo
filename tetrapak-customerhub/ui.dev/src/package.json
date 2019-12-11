@@ -2,11 +2,11 @@
   "name": "customerhub",
   "version": "0.0.1",
   "dependencies": {
+    "argon-logger": "^0.1.2",
     "argon-formatter": "0.0.7",
-    "argon-logger": "0.0.9",
     "bootstrap": "^4.4.1",
     "core-js": "^3.4.8",
-    "deparam.js": "^2.1.0",
+    "deparam.js": "^2.1.1",
     "focus-visible": "^5.0.2",
     "jquery": "^3.4.1",
     "jqueryrouter": "^2.2.7",
