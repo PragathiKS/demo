@@ -1,0 +1,38 @@
+<h2 class="tp-maintenance-events__heading">{{i18n key=i18nKeys.eventsHeading}}</h2>
+{{#if isEventDataError}}
+   <div class="tp-card">
+        {{#if i18nKeys.errorMsg}}
+            {{> atoms/error/error error=true message=i18nKeys.errorMsg}}
+        {{else}}
+            {{> atoms/error/error error=true message="cuhu.error.message"}}
+        {{/if}}
+    </div>
+{{else}}
+    {{#if isEventNoData}}
+    <div class="tp-card">
+            <i class="icon-Info"></i>
+            <span class="tp-maintenance-events__no-data">{{i18n key=i18nKeys.noEventMsg}}</span>
+        </div>
+    {{else}}
+        {{#each eventsData.events}}
+            <div class="tp-card tp-maintenance-events__wrapper">
+                <h3 class="tp-maintenance-events__event-heading">{{matTitle}} {{plannedStart}}</h3>
+                <div class="tp-maintenance-events__event-detail-wrapper">
+                    <div class="tp-maintenance-events__event-detail-left-container float-lg-left">
+                        {{> components/infoPair baseClass="left" label=../i18nKeys.statusLabel data=status }}
+                        {{> components/infoPair baseClass="left" label=../i18nKeys.serviceAgreementLabel data=serviceAgreement }}
+                        {{> components/infoPair baseClass="left" label=../i18nKeys.plannedDurationLabel data=plannedDuration }}
+                        {{> components/infoPair baseClass="left" label=../i18nKeys.plannedStartLabel data=plannedStart }}
+                        {{> components/infoPair baseClass="left" label=../i18nKeys.plannedFinishedLabel data=plannedFinish }}
+                    </div>
+                    <div class="tp-maintenance-events__event-detail-right-container">
+                        {{> components/infoPair baseClass="right" label=../i18nKeys.lineLabel data=lineName }}
+                        {{> components/infoPair baseClass="right" label=../i18nKeys.equipmentLabel data=equipmentNumber }}
+                        {{> components/infoPair baseClass="right" label=../i18nKeys.serviceOrderLabel data=order }}
+                        {{> components/infoPair baseClass="right" label=../i18nKeys.operationShortTextLabel data=operationsShortText }}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+{{/if}}
