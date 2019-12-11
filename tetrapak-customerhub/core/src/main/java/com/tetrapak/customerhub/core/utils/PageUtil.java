@@ -32,4 +32,22 @@ public final class PageUtil {
         return false;
     }
 
+    /**
+     * Method to get page from the given path
+     *
+     * @param resource resource
+     * @param path     page path
+     * @return page
+     */
+    public static Page getPageFromPath(Resource resource, String path) {
+        if (null == resource) {
+            return null;
+        }
+        Resource pageResource = resource.getResourceResolver().getResource(path);
+        if (null != pageResource) {
+            return pageResource.adaptTo(Page.class);
+        }
+        return null;
+    }
+
 }
