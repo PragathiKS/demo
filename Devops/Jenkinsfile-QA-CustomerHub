@@ -254,7 +254,7 @@ post {
 	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
 }
   always {
-    build 'Tetra_Dev_Clear_httpd_Cache'
+    build 'Tetra_QA_Clear_httpd_Cache'
 	build 'Tetra-Splunk-All-Tools'
     } 
 	} 
