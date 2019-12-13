@@ -120,6 +120,7 @@ function _processFinancialStatementData(data) {
     if (!data.customerData || (Array.isArray(data.customerData) && data.customerData.length === 0)) {
       data.isError = true;
       data.errorText = noCustomerErrorText || (apiErrorCodes && apiErrorCodes.default);
+      data.severe = true; // To be marked as "false" on further clarification: TODO
     } else {
       data.customerData.sort((a, b) => {
         if (a && typeof a.customerName === 'string') {
@@ -164,6 +165,7 @@ function _processFinancialStatementData(data) {
       } catch (e) {
         data.isError = true;
         data.errorText = apiErrorCodes && apiErrorCodes.default;
+        data.severe = true;
       }
     }
   }
@@ -232,10 +234,12 @@ function _renderFilters() {
         if (!data) {
           const errorResult = this.xhr.responseJSON;
           const apiErrorCode = errorResult && errorResult.apiErrorCode ? errorResult.apiErrorCode : 'default';
+          const severity = errorResult && errorResult.apiErrorSeverity ? errorResult.apiErrorSeverity : 'error';
           const { apiErrorCodes } = i18nKeys;
           this.data = data = {
             isError: true,
-            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message'
+            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message',
+            severe: severity !== 'info'
           };
         }
         return _processFinancialStatementData.apply($this, [data]);
