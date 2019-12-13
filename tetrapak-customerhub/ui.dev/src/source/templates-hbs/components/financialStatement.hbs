@@ -1,6 +1,6 @@
 <div class="js-financial-statement__filter-section d-none">
     {{#if isError}}
-        {{> atoms/error/error error=true message=errorText}}
+        {{> atoms/error/error error=severe message=errorText}}
     {{else}}
         {{> molecules/calendar/calendarModal this}}
         <h2 class="tp-financial-statement__select-customer-heading js-financial-statement__select-customer-heading">{{i18n key=this.statementOfAccount}}</h2>
