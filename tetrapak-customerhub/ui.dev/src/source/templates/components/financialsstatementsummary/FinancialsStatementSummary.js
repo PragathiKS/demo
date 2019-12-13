@@ -222,10 +222,12 @@ function _renderTable(filterParams, config) {
         if (!data) {
           const errorResult = this.xhr.responseJSON;
           const apiErrorCode = errorResult && errorResult.apiErrorCode ? errorResult.apiErrorCode : 'default';
+          const severity = errorResult && errorResult.apiErrorSeverity ? errorResult.apiErrorSeverity : 'error';
           const { apiErrorCodes } = i18nKeys;
           this.data = data = {
             isError: true,
-            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message'
+            errorText: apiErrorCodes ? apiErrorCodes[apiErrorCode] : 'cuhu.error.message',
+            severe: severity !== 'info'
           };
         }
         data = $.extend(true, data, i18nKeys);
