@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -42,7 +43,8 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("LogoutServlet was called");
         Cookie loginTokenCookie = request.getCookie("login-token");
-        if (null != loginTokenCookie) {
+        if (null != loginTokenCookie && !(
+                GlobalUtil.isRunModeAvailable("author") || GlobalUtil.isRunModeAvailable("publish"))) {
             loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
