@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.microsoft.azure.storage.table.TableOperation;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,6 +15,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -29,7 +32,7 @@ import static org.junit.Assert.assertEquals;
  * @author Nitin Kumar
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, LogoutServlet.class})
+@PrepareForTest({TableOperation.class, LogoutServlet.class, GlobalUtil.class})
 public class LogoutServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/"
@@ -45,6 +48,9 @@ public class LogoutServletTest {
 
     @Before
     public void setup() {
+        PowerMockito.mockStatic(GlobalUtil.class);
+        PowerMockito.when(GlobalUtil.isRunModeAvailable(Mockito.anyString())).thenReturn(true);
+
         aemContext.load().json("/" + "user.json", "/home");
         aemContext.request().addCookie(new Cookie("authToken", "a"));
         aemContext.request().addCookie(new Cookie("acctoken", "b"));
