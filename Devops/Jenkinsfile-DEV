@@ -41,7 +41,7 @@ pipeline {
 				script{
 					def build_id_number = new Date()
 					def formattedDate
-                    formattedDate = build_id_number.format("yyMMddHHmm")
+                    formattedDate = build_id_number.format("yyyyMMddHHmm")
                     echo "build_id_number = ${formattedDate}"
 				}
 			}
