@@ -24,6 +24,7 @@ pipeline {
 				test_url_pally_zap_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
 				karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
+				build_id_number = ""
         }
 
         stages {
@@ -39,10 +40,11 @@ pipeline {
 		stage('init-build-Number'){
 			steps{
 				script{
-					def build_id_number = new Date()
+					def now = new Date()
 					def formattedDate
-                    formattedDate = build_id_number.format("yyyyMMddHHmm")
-                    echo "build_id_number = ${formattedDate}"
+                    formattedDate = now.format("yyyyMMddHHmm")
+                    build_id_number = formattedDate
+                    echo "build_id_number = ${build_id_number}"
 				}
 			}
 		}
