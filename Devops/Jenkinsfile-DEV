@@ -36,7 +36,7 @@ pipeline {
                                         '''
             }
         }
-		stage(''){
+		stage('init-build-Number'){
 			steps{
 				script{
 					def build_id_number = new Date()
