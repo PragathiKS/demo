@@ -39,10 +39,11 @@ pipeline {
 		stage('init-build-Number'){
 			steps{
 				script{
-					def build_id_number = new Date()
-					build_id_number.format("yyMMdd.HH", TimeZone.getTimeZone('UTC'))
-					echo "build_id_number = ${build_id_number}"
+					def now = new Date()
+					def build_id_number
+					build_id_number = now.format("yyyyMMdd.HH", TimeZone.getTimeZone('UTC'))
 				}
+				echo "build_id_number = ${build_id_number}"
 			}
 		}
 
