@@ -8,7 +8,7 @@
   },
   "leftNavItems": [
     {
-      "href": "http://localhost:4502/content/customerhub-ux/getstarted.ux-preview.html",
+      "href": "http://localhost:4502/content/customerhub-ux/getstarted.html",
       "iconClass": "icon-Dashboard",
       "iconLabel": "Dashboard",
       "isExternalLink": "false",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "href": "http://localhost:4502/content/customerhub-ux/financialstatement.ux-preview.html",
+      "href": "http://localhost:4502/content/customerhub-ux/financialstatement.html",
       "iconClass": "icon-Financials",
       "iconLabel": "Financials",
       "isExternalLink": "false",
