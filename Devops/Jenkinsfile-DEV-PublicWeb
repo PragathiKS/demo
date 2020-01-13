@@ -28,7 +28,18 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
             }
-        }  
+        }
+			stage('init-build-Number'){
+						steps{
+							script{
+								def now = new Date()
+								def formattedDate
+								formattedDate = now.format("yyyyMMddHHmm")
+								build_id_number = formattedDate
+								echo "build_id_number = ${build_id_number}"
+							}
+						}
+					}		
 
                stage ('Build Commons') {
                         steps {
@@ -39,9 +50,9 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                               {
 							    echo "Build Commons"
                                 sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
-								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
-								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
-								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number}"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
 							}
 							 }
 							 }
@@ -50,9 +61,9 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                 steps {
 								echo "Build Publicweb"
                                 sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${BUILD_NUMBER}"
+                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number}"
 
-								 sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+								 sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                         }
                 }  
 
@@ -67,10 +78,10 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 												 if (params.Build_Commons)
 												{
 												echo "Running Sonar for JS profile on Project - Commons"
-										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${build_id_number}"
 										        }
 										        echo "Running Sonar for JS profile on Project - PublicWeb"
-                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JS -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JS -Dbuildversion=${build_id_number}"
 
                                         }
                                 }
@@ -88,10 +99,10 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 											     if (params.Build_Commons)
 												{
 										        echo "Running Sonar for CSS profile on Project - Commons"
-                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"
                                                 }
 												echo "Running Sonar for CSS profile on Project - PublicWeb"
-                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=css -Dsonar.exclusions=$workspace/**/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"
                                         }
                                 }
                         }
@@ -109,10 +120,10 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
 											    if (params.Build_Commons)
 												{
 												echo "Running Sonar for JAVA profile on Project - Commons"
-										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+										        sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/commons/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JAVA -Dbuildversion=${build_id_number}"
 										        }
 										       echo "Running Sonar for JAVA profile on Project - PublicWeb"
-                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JAVA -Dbuildversion=${BUILD_NUMBER}"
+                                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml -e -B sonar:sonar  -Dsonar.language=java -Dsonar.inclusions=**/src/main/java/com/tetrapak/customerhub/core/**/*,**/integration/**/*,**/it.launcher/**/*,**/ui.apps/**/*,**/models/**/* -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-publicweb -Dsonar.branch=JAVA -Dbuildversion=${build_id_number}"
 
                                         }
                                 }
@@ -135,7 +146,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
@@ -148,7 +159,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
@@ -164,7 +175,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
@@ -177,7 +188,7 @@ test_url = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/glo
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${BUILD_NUMBER}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on publish"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
