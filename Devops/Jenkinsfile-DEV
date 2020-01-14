@@ -5,7 +5,7 @@ pipeline {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-				booleanParam defaultValue: false, description: 'Please check in case you do not want to execute the pipeline with all Tools', name: 'Skip_Tool_Execution'
+				booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
 
         tools {
@@ -95,7 +95,7 @@ pipeline {
                     stage ('Sonar_JS') {
                         steps {
                                 script {
-                                        if (params.Skip_Tool_Execution) {
+                                        if (!params.Tools_Execution) {
                                                 echo "Skipping Sonar execution for JS profile"
                                 }
                                         else {
@@ -123,7 +123,7 @@ pipeline {
 				stage ('Sonar_CSS') {
                         steps {
                                 script {
-                                        if (params.Skip_Tool_Execution) {
+                                        if (!params.Tools_Execution) {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
                                         else{
@@ -151,7 +151,7 @@ pipeline {
                 stage ('Sonar_JAVA') {
                         steps {
                                 script {
-                                        if (params.Skip_Tool_Execution) {
+                                        if (!params.Tools_Execution) {
                                                 echo "Skipping Sonar execution for JAVA profile"
                                         }
                                         else
@@ -277,7 +277,7 @@ pipeline {
                     stage ( 'Karma, Pa11y, Zap Tools Execution') {
                         steps {
                                 script {
-										                if (params.Skip_Tool_Execution) {
+										                if (!params.Tools_Execution) {
                                                                 echo "Skipping Tools Execution"
 														 }
 										else {
@@ -353,7 +353,7 @@ pipeline {
 														stage ( 'Sitespeed Execution on all platforms - CustomerHub') {
 													       steps {
 														     script {
-														if (params.Skip_Tool_Execution) {
+														if (!params.Tools_Execution) {
                                                         echo "Skipping Sitespeed Execution for Desktop"
                                                         }
                                                         else {
