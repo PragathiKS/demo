@@ -370,7 +370,7 @@ pipeline {
                                                           sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 														  }
 														  
-														  if (params.Build_Customerhub) {
+														  if (params.Build_Publicweb) {
                                                         echo "Starting Sitespeed-Desktop Test Run for PublicWeb"
                                                          sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_pw} -b firefox --outputFolder sitespeed_desktop'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
