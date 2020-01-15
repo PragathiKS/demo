@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { router, route } from 'jqueryrouter';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
@@ -108,6 +108,7 @@ function _processContacts(contacts) {
 function _tableSort(order, keys, orderDetailLink) {
   const dataObject = {
     rowLink: `${orderDetailLink}?q=${order.orderNumber}&orderType=${order.orderType}&p=${encodeURIComponent(window.location.href)}`,
+    isClickable: true,
     row: []
   };
   keys.forEach((key, index) => {

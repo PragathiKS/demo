@@ -4,4 +4,4 @@
     jcr:description="Recommended for you Card Component"
     jcr:primaryType="cq:Component"
     jcr:title="Recommended for you Card"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

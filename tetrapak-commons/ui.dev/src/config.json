@@ -132,8 +132,7 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/HelloWorld/",
-        "source/templates/components/HelloWorldHandlebars/"
+        "source/templates/components/HelloWorld/"
       ]
     },
     "handlebars": {
@@ -166,6 +165,9 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/commons/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
       ]
     },
     "global": {
@@ -204,9 +206,7 @@
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "atomsFolder": "source/templates/atoms",
-    "moleculesFolder": "source/templates/molecules",
-    "componentTemplate": "ccTemplates/classTmp.txt",
-    "pageTemplate": "ccTemplates/pageTmp.txt"
+    "moleculesFolder": "source/templates/molecules"
   },
   "watch": {
     "assemble": {

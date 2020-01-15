@@ -12,7 +12,9 @@ module.exports = function (grunt) {
 
     grunt.log.writeln("Aemsync targets: ", options.targets.join(','));
     var pusher = new Pusher(options.targets, 0, function (err) {
-      grunt.log.ok(err);
+      if (err) {
+        grunt.log.ok(err);
+      }
       done();
     });
 

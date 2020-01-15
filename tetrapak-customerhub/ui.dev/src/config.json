@@ -127,27 +127,27 @@
         "minSize": 0,
         "chunks": "all"
       },
-      "orders": {
-        "testMultiple": true,
-        "name": "orders",
-        "minSize": 0,
-        "chunks": "all"
-      },
       "financial": {
         "testMultiple": true,
         "name": "financial",
         "minSize": 0,
         "chunks": "all"
       },
-      "maintenance": {
+      "orders": {
         "testMultiple": true,
-        "name": "maintenance",
+        "name": "orders",
         "minSize": 0,
         "chunks": "all"
       },
       "contacts": {
         "testMultiple": true,
         "name": "contacts",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "maintenance": {
+        "testMultiple": true,
+        "name": "maintenance",
         "minSize": 0,
         "chunks": "all"
       },
@@ -162,32 +162,38 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/introscreen/",
         "source/templates/components/leftnavigation/",
         "source/templates/components/header/",
+        "source/templates/components/languageselector/",
+        "source/templates/components/getstarted/",
         "source/templates/components/pagination/",
-        "source/templates/components/tabs/"
+        "source/templates/components/cookieconsent/",
+        "source/templates/components/introscreen/",
+        "source/templates/components/tabslist/",
+        "source/templates/components/textvideo/",
+        "source/templates/components/inactivitydialog/"
       ],
       "dashboard": [
+        "source/templates/components/contactcard/",
         "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/",
-        "source/templates/components/contactcard/"
-      ],
-      "orders": [
-        "source/templates/components/ordersearch/",
-        "source/templates/components/orderdetails/"
+        "source/templates/components/maintenancecard/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
       ],
-      "maintenance": [
-        "source/templates/components/maintenance/",
-        "source/templates/components/eventslisting/",
-        "source/templates/components/documents/"
+      "orders": [
+        "source/templates/components/ordersearch/",
+        "source/templates/components/orderdetails/"
       ],
       "contacts": [
         "source/templates/components/contacts/"
+      ],
+      "maintenance": [
+        "source/templates/components/maintenance/",
+        "source/templates/components/documents/",
+        "source/templates/components/eventslisting/",
+        "source/templates/components/tabs/"
       ]
     },
     "handlebars": {
@@ -222,6 +228,9 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/customerhub/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
       ]
     },
     "global": {
@@ -260,12 +269,7 @@
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "atomsFolder": "source/templates/atoms",
-    "moleculesFolder": "source/templates/molecules",
-    "importsTemplate": "ccTemplates/jsModuleImportTmp.txt",
-    "componentTemplate": "ccTemplates/classTmp.txt",
-    "testTemplate": "ccTemplates/testTmp.txt",
-    "pageTemplate": "ccTemplates/pageTmp.txt",
-    "importsJsFile": "source/scripts/bundle/imports.js"
+    "moleculesFolder": "source/templates/molecules"
   },
   "watch": {
     "assemble": {

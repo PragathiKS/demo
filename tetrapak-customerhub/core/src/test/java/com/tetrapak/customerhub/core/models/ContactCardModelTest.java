@@ -9,12 +9,11 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Test class for ContactCardModel
- * @author ruhsharma
  *
+ * @author ruhsharma
  */
 public class ContactCardModelTest {
 
@@ -39,6 +38,6 @@ public class ContactCardModelTest {
         assertEquals("There should be View contacts button", "View contacts", contactCardModel.getViewContactBtnTextI18n());
         assertEquals("There should be Image Path label", "/content/dam/customerhub/cow-blue-background.png", contactCardModel.getImagePath());
         assertEquals("There should be Image Alt Text", "Cow Blue Background", contactCardModel.getImageAltTextI18n());
-        assertEquals("There should be Image Alt Text", "/content/tetrapak/customerhub/global/en/contact.html" , contactCardModel.getViewContactBtnRedirectUrl());
+        assertEquals("There should be Image Alt Text", "/content/tetrapak/customerhub/global/en/contact.html", contactCardModel.getViewContactBtnRedirectUrl());
     }
 }

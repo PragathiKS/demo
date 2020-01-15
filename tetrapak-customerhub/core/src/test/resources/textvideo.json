@@ -1,0 +1,19 @@
+{
+	"jcr:primaryType":"nt:unstructured",
+	"jcr:createdBy":"admin",
+	"description":"Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customer love.",
+	"jcr:lastModifiedBy":"sapient-tarun",
+	"jcr:created":"Mon Jul 08 2019 09:23:35 GMT+0000",
+	"pwDisplay":"display-row",
+	"title":"Turn your products into success",
+	"linkTextI18n":"Discover what we can do for your products",
+	"youtubeVideoID":"ZofQqevIIZA",
+	"linkURL":"https://google.com",
+	"damVideoPath":"/content/dam/customerhub/SampleVideo_1280x720_5mb.mp4",
+	"jcr:lastModified":"Tue Jul 09 2019 09:12:23 GMT+0000",
+	"videoSource":"dam",
+	"sling:resourceType":"customerhub/components/content/textvideo",
+	"isExternal":"true",
+	"thumbnailPath":"/content/dam/customerhub/get_started-3.PNG",
+	"textAlignment":"right"
+}

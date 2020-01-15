@@ -1,10 +1,12 @@
 import $ from 'jquery';
 import Contacts from './Contacts';
+import { customDropdown } from '../../../scripts/utils/customDropdown';
 import contactsTemplate from '../../../test-templates-hbs/contacts.hbs';
 import contactsFilteringData from './data/contacts.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
+import { EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
 
 describe('Contacts', function () {
   const jqRef = {
@@ -41,6 +43,7 @@ describe('Contacts', function () {
         token_type: "BearerToken"
       }
     });
+    customDropdown.init();
     this.contacts.init();
   });
   after(function () {
@@ -75,12 +78,12 @@ describe('Contacts', function () {
     done();
   });
   it('should render contacts based on site selection', function (done) {
-    $('.js-contacts-filtering__site').trigger('change');
+    $('.js-contacts-filtering__site').trigger(EVT_DROPDOWN_CHANGE);
     expect(this.contacts.renderFilteredContacts.called).to.be.true;
     done();
   });
   it('should call track analytics on site change', function () {
-    $('.js-contacts-filtering__site').trigger('change');
+    $('.js-contacts-filtering__site').trigger(EVT_DROPDOWN_CHANGE);
     expect(this.contacts.trackAnalytics.called).to.be.true;
   });
   it('should call track analytics on click of "contact email" link', function () {

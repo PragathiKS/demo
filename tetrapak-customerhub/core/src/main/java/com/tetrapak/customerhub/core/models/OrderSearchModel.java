@@ -1,21 +1,19 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Model class for order search component
@@ -64,7 +62,7 @@ public class OrderSearchModel {
 
     @Inject
     private String orderDetailLink;
-    
+
     @Inject
     private String noDataI18n;
 
@@ -100,7 +98,7 @@ public class OrderSearchModel {
         i18KeyMap.put("searchInputLabelI18n", searchInputLabelI18n);
         i18KeyMap.put("searchTermPlaceholderI18n", searchTermPlaceholderI18n);
         i18KeyMap.put("enabledFields", enabledFields);
-        i18KeyMap.put("orderDetailLink", getOrderDetailLink()) ;
+        i18KeyMap.put("orderDetailLink", getOrderDetailLink());
         i18KeyMap.put("noDataI18n", noDataI18n);
         i18KeyMap.put("dataErrorI18n", dataErrorI18n);
 

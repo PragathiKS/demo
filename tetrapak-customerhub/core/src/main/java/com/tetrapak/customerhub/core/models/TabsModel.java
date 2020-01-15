@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Model class for Tabs Component
+ *
+ * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabsModel {

@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>tetrapak</groupId>
+    <groupId>tetrapak-customerhub</groupId>
     <artifactId>tetrapak-customerhub</artifactId>
     <packaging>pom</packaging>
     <version>${buildversion}</version>
@@ -11,12 +11,9 @@
 
     <modules>
 		<module>core</module>
-		<!--<module>integration</module>-->
 		<module>ui.dev</module>
         <module>ui.apps</module>		
         <module>ui.content</module>
-        <!--<module>it.tests</module>
-        <module>it.launcher</module>-->
 		<module>complete</module>
     </modules>
 
@@ -35,6 +32,16 @@
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.coverage.exclusions>
+            **/beans/**,
+            **/constants/**,
+            **/exceptions/**,
+            **/utils/**,
+            **/SAMLResponsePostProcessor.java,
+            **/AzureTableStorageServiceImpl.java,
+            **/FinancialResultsPDFServiceImpl.java,
+            **/FinancialResultsApiServiceImpl.java
+        </sonar.coverage.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
 
@@ -323,7 +330,6 @@
                         <destFile>${sonar.jacoco.reportPath}</destFile>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>

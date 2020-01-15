@@ -1,0 +1,64 @@
+.tp-lang-selector {
+    color: $color-tundora;
+    font-family: $font-light;
+
+    &__body {
+        @include padding(0 $padding-md 12px);
+
+        @media #{$desktop} {
+            @include padding(0 $padding-l 20px);
+        }
+    }
+
+    &__lang-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__selected-lang {
+        @include margin-bottom(12px);
+
+        &-label {
+            @include padding($padding-xs);
+        }
+    }
+
+    &__btn {
+        @include padding($padding-xs 0);
+        color: $color-congress-blue;
+        width: 100%;
+
+        @media #{$tablet} {
+            @include padding($padding-xs $padding-md $padding-xs 0);
+            width: 25%;
+
+            &:nth-child(4n+4) {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .icon-Close {
+        &::before {
+            @include font-size($font-normal);
+            @include width($font-normal);
+            @include height($font-normal);
+        }
+    }
+
+    .modal-dialog {
+        @include margin(0 $margin-md);
+        max-width: 100%;
+
+        @media #{$desktop} {
+            @include max-width(700px);
+            margin: auto;
+        }
+    }
+
+    @media #{$mobile} {
+        .modal-dialog-centered {
+            min-height: 100%;
+        }
+    }
+}

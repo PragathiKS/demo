@@ -1,46 +1,18 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.oderdetails.CustomerSupportCenter;
-import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryAddress;
 import com.tetrapak.customerhub.core.beans.oderdetails.DeliveryList;
-import com.tetrapak.customerhub.core.beans.oderdetails.InvoiceAddress;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetails;
 import com.tetrapak.customerhub.core.beans.oderdetails.OrderDetailsData;
-import com.tetrapak.customerhub.core.beans.oderdetails.OrderSummary;
-import com.tetrapak.customerhub.core.beans.oderdetails.Product;
-import com.tetrapak.customerhub.core.beans.pdf.Column;
-import com.tetrapak.customerhub.core.beans.pdf.Row;
-import com.tetrapak.customerhub.core.beans.pdf.Table;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.OrderDetailsModel;
 import com.tetrapak.customerhub.core.services.OrderDetailsPDFService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.PDFUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
-import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
-import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Impl class for Order Details PDF Service
@@ -53,8 +25,6 @@ public class OrderDetailsPDFServiceImpl
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsPDFServiceImpl.class);
 
-    private PDFont muliRegular;
-    private PDFont muliBold;
     private static final int MARGIN = 65;
     private OrderDetailsModel orderDetailsModel;
     private static final String ORDER_DETAIL_I18_PREFIX = "cuhu.orderDetail.";
@@ -92,11 +62,9 @@ public class OrderDetailsPDFServiceImpl
         InputStream in2 = null;
         InputStream image1 = null;
         InputStream image2 = null;
-        PDPageContentStream contentStream = null;
-        PDDocument document = new PDDocument();
 
         try {
-            PDPage page = new PDPage();
+   /*         PDPage page = new PDPage();
             document.addPage(page);
             contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true,
                     true);
@@ -143,33 +111,14 @@ public class OrderDetailsPDFServiceImpl
             PDFUtil.writeOutput(response, document,
                     GlobalUtil.getI18nValue(request, StringUtils.EMPTY, orderDetailsModel.getOrderNo()) + " "
                             + orderDetails.getOrderNumber());
+    */
             return true;
-        } catch (IOException e) {
-            LOGGER.error("IOException {}", e);
+        } catch (Exception e) {
+            LOGGER.error("Exception {}", e);
             return false;
-        } finally {
-            try {
-                if (null != contentStream) {
-                    contentStream.close();
-                }
-                if (null != in1) {
-                    in1.close();
-                }
-                if (null != in2) {
-                    in2.close();
-                }
-                if (null != image1) {
-                    image1.close();
-                }
-                if (null != image2) {
-                    image2.close();
-                }
-            } catch (IOException e) {
-                LOGGER.error("IOException {}", e);
-            }
         }
     }
-
+/*
     private PDPageContentStream printPartsDeliveryDetails(SlingHttpServletRequest request, PDDocument document,
                                                           PDPageContentStream contentStream, List<DeliveryList> deliveryList) throws IOException {
         int height = 560;
@@ -521,8 +470,9 @@ public class OrderDetailsPDFServiceImpl
 
         return PDFUtil.getTable(columns, content, 12, muliRegular, muliBold, 7);
     }
+    */
 
-    private Table createOrderSummaryTable(SlingHttpServletRequest request, List<OrderSummary> orderSummaryList) {
+  /*  private Table createOrderSummaryTable(SlingHttpServletRequest request, List<OrderSummary> orderSummaryList) {
         List<Column> columns = new ArrayList<>();
         for (String packMatColumnName : packMatColumns) {
             int width = 70;
@@ -544,9 +494,9 @@ public class OrderDetailsPDFServiceImpl
         }
 
         return PDFUtil.getTable(columns, content, 15, muliRegular, muliBold, 7);
-    }
+    }*/
 
-    private String getOrderSummaryValueForTheHeader(OrderSummary orderSummary, String packMatColumnName) {
+ /*   private String getOrderSummaryValueForTheHeader(OrderSummary orderSummary, String packMatColumnName) {
         Map<String, String> map = new HashMap<>();
         map.put("product", orderSummary.getProduct());
         map.put(ORDER_QUANTITY, orderSummary.getOrderQuantity());
@@ -557,4 +507,5 @@ public class OrderDetailsPDFServiceImpl
         }
         return StringUtils.EMPTY;
     }
+*/
 }

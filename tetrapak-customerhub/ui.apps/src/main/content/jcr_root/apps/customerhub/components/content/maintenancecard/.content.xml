@@ -4,4 +4,4 @@
     jcr:description="Maintenance Card Component"
     jcr:primaryType="cq:Component"
     jcr:title="Maintenance Card Component"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-global-components"/>

@@ -2,7 +2,11 @@
 <p data-emptytext="Double click configure ${component.title}"
 	class="cq-placeholder"></p>
 </sly>
-<sly data-sly-use.pageReference="com.tetrapak.customerhub.core.models.PageReferencesModel"/>
+
+<sly data-sly-test.pageContentPath="${properties.pageContentPath}"
+	 data-sly-use.pageReference="${'com.tetrapak.customerhub.core.models.PageReferencesModel' @ pageContentPath=pageContentPath}">
+</sly>
+
 <sly data-sly-list=${pageReference.componentsReference}>
 	<sly data-sly-resource=${item}></sly> 
 </sly>

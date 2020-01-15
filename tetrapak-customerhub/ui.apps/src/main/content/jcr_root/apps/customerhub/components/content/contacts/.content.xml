@@ -4,4 +4,4 @@
     jcr:description="Contacts Component"
     jcr:primaryType="cq:Component"
     jcr:title="Contacts"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-global-components"/>

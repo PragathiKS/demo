@@ -4,4 +4,4 @@
     jcr:description="Intro Screen Component"
     jcr:primaryType="cq:Component"
     jcr:title="Intro Screen"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

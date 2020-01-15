@@ -6,7 +6,7 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>tetrapak</groupId>
+        <groupId>tetrapak-customerhub</groupId>
         <artifactId>tetrapak-customerhub</artifactId>
         <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
@@ -57,17 +57,17 @@
                     <failOnDependencyErrors>false</failOnDependencyErrors>
                     <embeddeds>
 						<embedded>
-                            <groupId>tetrapak</groupId>
+                            <groupId>tetrapak-customerhub</groupId>
                             <artifactId>tetrapak-customerhub.core</artifactId>
                             <target>/apps/customerhub/install</target>
                         </embedded>
                         <!--<embedded>
-                            <groupId>tetrapak</groupId>
+                            <groupId>tetrapak-customerhub</groupId>
                             <artifactId>tetrapak-customerhub.integration</artifactId>
                             <target>/apps/customerhub/install</target>
                         </embedded>
                          <embedded>
-                            <groupId>tetrapak</groupId>
+                            <groupId>tetrapak-customerhub</groupId>
                             <artifactId>tetrapak-customerhub.it.launcher</artifactId>
                             <target>/apps/customerhub/install</target>
                         </embedded>-->
@@ -96,28 +96,28 @@
     <!-- ====================================================================== -->
     <dependencies>
         <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!--<dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.integration</artifactId>
               <version>${project.version}</version>
         </dependency>
           <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.it.launcher</artifactId>
               <version>${project.version}</version>
-        </dependency>-->          
+        </dependency>
         <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.content</artifactId>
             <version>${project.version}</version>
              <type>content-package</type>
-        </dependency>
+        </dependency>-->
           <dependency>
-            <groupId>tetrapak</groupId>
+            <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.dev</artifactId>
               <version>${project.version}</version>
             <type>content-package</type>

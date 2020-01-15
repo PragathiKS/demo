@@ -5,7 +5,7 @@ import orderDetailsPartsData from './data/orderDetailsParts.json';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
-import * as fileObject from '../../../scripts/utils/file';
+import file from '../../../scripts/utils/file';
 
 describe('OrderDetails', function () {
   const jqRef = {
@@ -41,7 +41,7 @@ describe('OrderDetails', function () {
         token_type: "BearerToken"
       }
     });
-    this.fileStub = sinon.stub(fileObject, 'fileWrapper').resolves({ filename: 'sample' });
+    this.fileStub = sinon.stub(file, 'get').resolves({ filename: 'sample' });
     this.orderDetails.init();
   });
   after(function () {

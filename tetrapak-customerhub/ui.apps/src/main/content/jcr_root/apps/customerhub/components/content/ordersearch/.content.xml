@@ -4,4 +4,4 @@
     jcr:description="Order Search History Component"
     jcr:primaryType="cq:Component"
     jcr:title="Order Search History"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-global-components"/>

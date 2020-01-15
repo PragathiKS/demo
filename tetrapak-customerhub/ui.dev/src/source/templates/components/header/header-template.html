@@ -1,15 +1,16 @@
-<sly data-sly-template.header_template="${@ data, cookie, flag}">
+<sly data-sly-template.header_template="${@ data, langData, cookie, flag}">
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
-
         <sly data-sly-test="${data.logoUrl}">
-          <div class="tp-header__logo">
-            <a href="${data.dLogoLink}" class="d-none d-md-inline-block tp-header__link">
-              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+          <div class="tp-header__logo d-none d-md-inline-block">
+            <a href="${data.dLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
+          </div>
+          <div class="tp-header__logo d-md-none">
             <!--/*logo for mobile  */-->
-            <a href="${data.mLogoLink}" class="d-md-none tp-header__link">
-              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n}" />
+            <a href="${data.mLogoLink}" class="tp-header__link" datatag="internal" ctype="header" ctypeone="brand logo" cttitle="${data.logoTextI18n @i18n, locale=langData.locale}" aria-label="${data.logoTextI18n @i18n, locale=langData.locale}">
+              <img src="${data.logoUrl}" alt="${data.logoTextI18n @i18n, locale=langData.locale}" />
             </a>
           </div>
         </sly>
@@ -18,7 +19,13 @@
             <ul>
             <sly data-sly-list.headerLinks="${data.headerNavLinks}">
                 <li class="tp-header__list">
-                  <a class="tp-header__links" href="${headerLinks.href}" target="${headerLinks.targetNew ? '_blank' : ''}">${headerLinks.name}</a>
+                  <a class="tp-header__links"
+                     href="${headerLinks.href}"
+                    target="${headerLinks.targetNew ? '_blank' : ''}"
+                    rel="${headerLinks.targetNew ? 'noopener noreferrer' : ''}"
+                    datatag="${headerLinks.targetNew ? 'external' : 'internal'}" ctype="header"
+                    ctypeone="notset"
+                    cttitle="${headerLinks.name}">${headerLinks.name}</a>
                 </li>
             </sly>
             </ul>
@@ -30,7 +37,15 @@
               <sly data-sly-test="${wcmmode.edit || wcmmode.design}">${data.getUserInfoI18n}</sly>
               <sly data-sly-test="${cookie.userName}">${cookie.userName}</sly>
           </span>
+          <button type="button" class="tp-header__selected-lang d-inline-block js-header__selected-lang" datatag="internal" ctype="header" ctypeone="notset" cttitle="language selector" aria-label="language selector">
+              <i class="icon icon-Globe"></i>
+              <sly data-sly-test.selectedLanguage="${langData.selectedLanguage ? langData.selectedLanguage : 'en'}" />
+              <p class="tp-header__selected-lang-label d-inline semibold">${langData.listOfLanguages[selectedLanguage]}</p>
+              <i class="icon icon-Chevron_Down"></i>
+          </button>
         </div>
       </sly>
+      <sly data-sly-use.languageselector="/apps/customerhub/components/content/languageselector/languageselector-template.html"
+         data-sly-call="${languageselector.languageselector_template @data=langData}" />
     </header>
 </sly>

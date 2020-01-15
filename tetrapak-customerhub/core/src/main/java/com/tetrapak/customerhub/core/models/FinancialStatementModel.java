@@ -1,17 +1,16 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.google.gson.Gson;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Model class for financial statement component
@@ -19,281 +18,243 @@ import com.google.gson.Gson;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FinancialStatementModel {
 
-	@Self
-	private Resource resource;
+    @Self
+    private Resource resource;
 
-	@Inject
-	private String selectDates;
+    @Inject
+    private String selectDates;
 
-	@Inject
-	private String closeBtn;
+    @Inject
+    private String datePlaceholder;
 
-	@Inject
-	private String setDates;
+    @Inject
+    private String dateRangePlaceholder;
 
-	@Inject
-	private String statementOfAccount;
+    @Inject
+    private String dateRangeErrorLabel;
 
-	@Inject
-	private String findCustomer;
+    @Inject
+    private String closeBtn;
 
-	@Inject
-	private String accountNumber;
+    @Inject
+    private String setDates;
 
-	@Inject
-	private String accountService;
+    @Inject
+    private String statementOfAccount;
 
-	@Inject
-	private String selectCustomerLabel;
+    @Inject
+    private String findCustomer;
 
-	@Inject
-	private String selectStatusLabel;
+    @Inject
+    private String accountNumber;
 
-	@Inject
-	private String selectDateRangeLabel;
+    @Inject
+    private String accountService;
 
-	@Inject
-	private String selectDocumentTypeLabel;
+    @Inject
+    private String selectCustomerLabel;
 
-	@Inject
-	private String placeholderForDocumentNumber;
+    @Inject
+    private String selectStatusLabel;
 
-	@Inject
-	private String searchInputLabel;
+    @Inject
+    private String selectDateRangeLabel;
 
-	@Inject
-	private String resetButtonText;
+    @Inject
+    private String selectDocumentTypeLabel;
 
-	@Inject
-	private String searchButtonText;
+    @Inject
+    private String placeholderForDocumentNumber;
 
-	@Inject
-	private String summaryHeadingI18n;
+    @Inject
+    private String searchInputLabel;
 
-	@Inject
-	private String documentHeadingI18n;
+    @Inject
+    private String resetButtonText;
 
-	@Inject
-	private String createExcelBtnI18n;
+    @Inject
+    private String searchButtonText;
 
-	@Inject
-	private String createPdfBtnI18n;
+    @Inject
+    private String summaryHeadingI18n;
 
-	private String i18nKeys;
+    @Inject
+    private String documentHeadingI18n;
 
-	private String downloadPdfExcelServletUrl;
+    @Inject
+    private String createExcelBtnI18n;
 
-	@Inject
-	private String fileDownloadErrorText;
+    @Inject
+    private String createPdfBtnI18n;
 
-	@Inject
-	private String fileDownloadErrorClose;
+    private String i18nKeys;
 
-	/**
-	 * @return the statementOfAccount
-	 */
-	public String getStatementOfAccount() {
-		return statementOfAccount;
-	}
+    private String downloadPdfExcelServletUrl;
 
-	/**
-	 * @return the accountNumber
-	 */
-	public String getAccountNumber() {
-		return accountNumber;
-	}
+    @Inject
+    private String fileDownloadErrorText;
 
-	/**
-	 * @return the accountService
-	 */
-	public String getAccountService() {
-		return accountService;
-	}
+    @Inject
+    private String excelPdfDownloadErrorText;
 
-	/**
-	 * @return the selectDocumentTypeLabel
-	 */
-	public String getSelectDocumentTypeLabel() {
-		return selectDocumentTypeLabel;
-	}
+    @Inject
+    private String fileDownloadErrorClose;
 
-	/**
-	 * @return the placeholderForDocumentNumber
-	 */
-	public String getPlaceholderForDocumentNumber() {
-		return placeholderForDocumentNumber;
-	}
+    @Inject
+    private String noCustomerErrorText;
 
-	/**
-	 * @return the summaryHeadingI18n
-	 */
-	public String getSummaryHeadingI18n() {
-		return summaryHeadingI18n;
-	}
+    public String getStatementOfAccount() {
+        return statementOfAccount;
+    }
 
-	/**
-	 * @return the documentHeadingI18n
-	 */
-	public String getDocumentHeadingI18n() {
-		return documentHeadingI18n;
-	}
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-	/**
-	 * @return the selectDates
-	 */
-	public String getSelectDates() {
-		return selectDates;
-	}
+    public String getAccountService() {
+        return accountService;
+    }
 
-	/**
-	 * @return the closeBtn
-	 */
-	public String getCloseBtn() {
-		return closeBtn;
-	}
+    public String getSelectDocumentTypeLabel() {
+        return selectDocumentTypeLabel;
+    }
 
-	/**
-	 * @return the setDates
-	 */
-	public String getSetDates() {
-		return setDates;
-	}
+    public String getPlaceholderForDocumentNumber() {
+        return placeholderForDocumentNumber;
+    }
 
-	/**
-	 * @return the findCustomer
-	 */
-	public String getFindCustomer() {
-		return findCustomer;
-	}
+    public String getSummaryHeadingI18n() {
+        return summaryHeadingI18n;
+    }
 
-	/**
-	 * @return the selectCustomerLabel
-	 */
-	public String getSelectCustomerLabel() {
-		return selectCustomerLabel;
-	}
+    public String getDocumentHeadingI18n() {
+        return documentHeadingI18n;
+    }
 
-	/**
-	 * @return the selectStatusLabel
-	 */
-	public String getSelectStatusLabel() {
-		return selectStatusLabel;
-	}
+    public String getSelectDates() {
+        return selectDates;
+    }
 
-	/**
-	 * @return the selectDateRangeLabel
-	 */
-	public String getSelectDateRangeLabel() {
-		return selectDateRangeLabel;
-	}
+    public String getCloseBtn() {
+        return closeBtn;
+    }
 
-	/**
-	 * @return the searchInputLabel
-	 */
-	public String getSearchInputLabel() {
-		return searchInputLabel;
-	}
+    public String getSetDates() {
+        return setDates;
+    }
 
-	/**
-	 * @return the resetButtonText
-	 */
-	public String getResetButtonText() {
-		return resetButtonText;
-	}
+    public String getDatePlaceholder() {
+        return datePlaceholder;
+    }
 
-	/**
-	 * @return the searchButtonText
-	 */
-	public String getSearchButtonText() {
-		return searchButtonText;
-	}
+    public String getDateRangePlaceholder() {
+        return dateRangePlaceholder;
+    }
 
-	/**
-	 * @return the createExcelBtnI18n
-	 */
-	public String getCreateExcelBtnI18n() {
-		return createExcelBtnI18n;
-	}
+    public String getDateRangeErrorLabel() {
+        return dateRangeErrorLabel;
+    }
 
-	/**
-	 * @return the createPdfBtnI18n
-	 */
-	public String getCreatePdfBtnI18n() {
-		return createPdfBtnI18n;
-	}
+    public String getFindCustomer() {
+        return findCustomer;
+    }
 
-	/**
-	 * @return the fileDownloadErrorText
-	 */
-	public String getFileDownloadErrorText() {
-		return fileDownloadErrorText;
-	}
+    public String getSelectCustomerLabel() {
+        return selectCustomerLabel;
+    }
 
-	/**
-	 * @return the fileDownloadErrorClose
-	 */
-	public String getFileDownloadErrorClose() {
-		return fileDownloadErrorClose;
-	}
+    public String getSelectStatusLabel() {
+        return selectStatusLabel;
+    }
 
-	/**
-	 * Get i18nkeys method.
-	 * 
-	 * @return i18nkeys
-	 */
-	public String getI18nKeys() {
-		return i18nKeys;
-	}
+    public String getSelectDateRangeLabel() {
+        return selectDateRangeLabel;
+    }
 
-	/**
-	 * @return the downloadPdfExcelServletUrl
-	 */
-	public String getDownloadPdfExcelServletUrl() {
-		return downloadPdfExcelServletUrl;
-	}
+    public String getSearchInputLabel() {
+        return searchInputLabel;
+    }
 
-	/**
-	 * @return the downloadInvoice
-	 */
-	public String getDownloadInvoice() {
-		return "/bin/customerhub/invoice/document.{docId}.pdf";
-	}
+    public String getResetButtonText() {
+        return resetButtonText;
+    }
 
-	/**
-	 * init method
-	 * 
-	 * @return config
-	 */
-	@PostConstruct
-	protected void init() {
+    public String getSearchButtonText() {
+        return searchButtonText;
+    }
 
-		Map<String, Object> i18KeyMap = new HashMap<String, Object>();
-		i18KeyMap.put("selectDates", getSelectDates());
-		i18KeyMap.put("closeBtn", getCloseBtn());
-		i18KeyMap.put("setDates", getSetDates());
-		i18KeyMap.put("statementOfAccount", getStatementOfAccount());
-		i18KeyMap.put("findCustomer", getFindCustomer());
-		i18KeyMap.put("accountNumber", getAccountNumber());
-		i18KeyMap.put("accountService", getAccountService());
-		i18KeyMap.put("selectCustomerLabel", getSelectCustomerLabel());
-		i18KeyMap.put("selectStatusLabel", getSelectStatusLabel());
-		i18KeyMap.put("selectDateRangeLabel", getSelectDateRangeLabel());
-		i18KeyMap.put("selectDocumentTypeLabel", getSelectDocumentTypeLabel());
-		i18KeyMap.put("placeholderForDocumentNumber", getPlaceholderForDocumentNumber());
-		i18KeyMap.put("searchInputLabel", getSearchInputLabel());
-		i18KeyMap.put("resetButtonText", getResetButtonText());
-		i18KeyMap.put("searchButtonText", getSearchButtonText());
-		i18KeyMap.put("summaryHeadingI18n", getSummaryHeadingI18n());
-		i18KeyMap.put("documentHeadingI18n", getDocumentHeadingI18n());
-		i18KeyMap.put("createExcelBtnI18n", getCreateExcelBtnI18n());
-		i18KeyMap.put("createPdfBtnI18n", getCreatePdfBtnI18n());
-		i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
-		i18KeyMap.put("fileDownloadErrorClose", getFileDownloadErrorClose());
+    public String getCreateExcelBtnI18n() {
+        return createExcelBtnI18n;
+    }
 
-		Gson gson = new Gson();
-		i18nKeys = gson.toJson(i18KeyMap);
-		downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";
+    public String getCreatePdfBtnI18n() {
+        return createPdfBtnI18n;
+    }
 
-	}
+    public String getFileDownloadErrorText() {
+        return fileDownloadErrorText;
+    }
 
+    public String getExcelPdfDownloadErrorText() {
+        return excelPdfDownloadErrorText;
+    }
+
+    public String getFileDownloadErrorClose() {
+        return fileDownloadErrorClose;
+    }
+
+    public String getNoCustomerErrorText() {
+        return noCustomerErrorText;
+    }
+
+    public String getI18nKeys() {
+        return i18nKeys;
+    }
+
+    public String getDownloadPdfExcelServletUrl() {
+        return downloadPdfExcelServletUrl;
+    }
+
+    public String getDownloadInvoice() {
+        return "/bin/customerhub/invoice/document.{docId}.pdf";
+    }
+
+    /**
+     * init method
+     */
+    @PostConstruct
+    protected void init() {
+        Map<String, Object> i18KeyMap = new HashMap<>();
+        i18KeyMap.put("selectDates", getSelectDates());
+        i18KeyMap.put("closeBtn", getCloseBtn());
+        i18KeyMap.put("setDates", getSetDates());
+        i18KeyMap.put("statementOfAccount", getStatementOfAccount());
+        i18KeyMap.put("findCustomer", getFindCustomer());
+        i18KeyMap.put("accountNumber", getAccountNumber());
+        i18KeyMap.put("accountService", getAccountService());
+        i18KeyMap.put("selectCustomerLabel", getSelectCustomerLabel());
+        i18KeyMap.put("selectStatusLabel", getSelectStatusLabel());
+        i18KeyMap.put("selectDateRangeLabel", getSelectDateRangeLabel());
+        i18KeyMap.put("selectDocumentTypeLabel", getSelectDocumentTypeLabel());
+        i18KeyMap.put("placeholderForDocumentNumber", getPlaceholderForDocumentNumber());
+        i18KeyMap.put("searchInputLabel", getSearchInputLabel());
+        i18KeyMap.put("resetButtonText", getResetButtonText());
+        i18KeyMap.put("searchButtonText", getSearchButtonText());
+        i18KeyMap.put("summaryHeadingI18n", getSummaryHeadingI18n());
+        i18KeyMap.put("documentHeadingI18n", getDocumentHeadingI18n());
+        i18KeyMap.put("createExcelBtnI18n", getCreateExcelBtnI18n());
+        i18KeyMap.put("createPdfBtnI18n", getCreatePdfBtnI18n());
+        i18KeyMap.put("fileDownloadErrorText", getFileDownloadErrorText());
+        i18KeyMap.put("excelPdfDownloadErrorText", getExcelPdfDownloadErrorText());
+        i18KeyMap.put("fileDownloadErrorClose", getFileDownloadErrorClose());
+        i18KeyMap.put("datePlaceholder", getDatePlaceholder());
+        i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
+        i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
+        i18KeyMap.put("noCustomerErrorText", getNoCustomerErrorText());
+        i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
+
+        Gson gson = new Gson();
+        i18nKeys = gson.toJson(i18KeyMap);
+        downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";
+    }
 }

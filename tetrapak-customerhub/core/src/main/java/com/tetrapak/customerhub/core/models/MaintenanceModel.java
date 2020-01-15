@@ -17,7 +17,7 @@ import java.util.Map;
  * @author Nitin Kumar
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MaintenanceModel  extends BaseMaintenanceModel{
+public class MaintenanceModel extends BaseMaintenanceModel {
 
     @Self
     private Resource resource;
@@ -36,7 +36,7 @@ public class MaintenanceModel  extends BaseMaintenanceModel{
     private String scheduleHeading;
     @Inject
     private String eventsHeading;
-  
+
     @Inject
     private String lineLabel;
     @Inject
@@ -118,7 +118,6 @@ public class MaintenanceModel  extends BaseMaintenanceModel{
     public String getEventsHeading() {
         return eventsHeading;
     }
-
 
 
     public String getLineLabel() {

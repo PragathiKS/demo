@@ -12,6 +12,7 @@ public class RequestParams {
     @SerializedName("params")
     @Expose
     private Params params;
+
     @SerializedName("token")
     @Expose
     private String token;

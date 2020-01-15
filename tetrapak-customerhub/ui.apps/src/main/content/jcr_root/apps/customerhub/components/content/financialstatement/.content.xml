@@ -4,4 +4,4 @@
     jcr:description="Financial Statement Component"
     jcr:primaryType="cq:Component"
     jcr:title="Financial Statement"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-global-components"/>

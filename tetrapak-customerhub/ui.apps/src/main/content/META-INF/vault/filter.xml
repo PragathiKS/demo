@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
+	<filter root="/apps/cq/Page" mode="replace"/>
 	<filter root="/apps/customerhub/components" mode="update"/>
+    <filter root="/apps/customerhub/ac-config" mode="replace"/>
     <filter root="/apps/customerhub/config" mode="replace"/>
 	<filter root="/apps/customerhub/config.author" mode="replace"/>
+	<filter root="/apps/customerhub/config.publish" mode="replace"/>
 	<filter root="/apps/customerhub/config.dev.publish" mode="replace"/>
 	<filter root="/apps/customerhub/config.prod.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.prod.publish" mode="replace"/>
@@ -18,5 +21,4 @@
 		<exclude pattern="/apps/customerhub/i18n(/.*)?"/>
 	</filter>
 	<filter root="/apps/settings/wcm/designs/customerhub/jsonData" mode="replace"/>
-	<filter root="/etc/map/http/customerhub_regex" mode="update"/>
 </workspaceFilter>

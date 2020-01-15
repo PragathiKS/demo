@@ -9,7 +9,14 @@ export let uriCache = {};
  */
 export function getURL(urlName) {
   try {
-    uriCache.apiMappings = uriCache.apiMappings || JSON.parse($('#apiMappings').val());
+    const $apiMapping = $('#apiMappings');
+    if (!uriCache.apiMappings) {
+      if ($apiMapping.length) {
+        uriCache.apiMappings = $.extend({}, JSON.parse($apiMapping.val()));
+      } else {
+        uriCache.apiMappings = {};
+      }
+    }
   } catch (e) {
     uriCache.apiMappings = {};
     logger.error(e);

@@ -24,6 +24,7 @@ public class TabsModelTest {
     @Before
     public void setup() {
         Resource resource = aemContext.currentResource(RESOURCE);
+        assert resource != null;
         tabsModel = resource.adaptTo(TabsModel.class);
     }
 

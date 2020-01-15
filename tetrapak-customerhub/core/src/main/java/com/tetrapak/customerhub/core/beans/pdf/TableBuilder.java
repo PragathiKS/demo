@@ -1,8 +1,5 @@
 package com.tetrapak.customerhub.core.beans.pdf;
 
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-
 import java.util.List;
 
 /**
@@ -44,20 +41,6 @@ public class TableBuilder {
         return this;
     }
 
-    public TableBuilder setPageSize(PDRectangle pageSize) {
-        table.setPageSize(pageSize);
-        return this;
-    }
-
-    public TableBuilder setTextFont(PDFont textFont) {
-        table.setTextFont(textFont);
-        return this;
-    }
-
-    public TableBuilder setTextFontBold(PDFont textFontBold) {
-        table.setTextFontBold(textFontBold);
-        return this;
-    }
 
     public TableBuilder setFontSize(float fontSize) {
         table.setFontSize(fontSize);

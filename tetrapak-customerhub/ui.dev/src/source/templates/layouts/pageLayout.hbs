@@ -19,14 +19,19 @@
     {{!-- Body --}}
     <input type="hidden" id="isDummyLayout" value="true" />
     <input type="hidden" id="apiHost" value="https://api-mig.tetrapak.com" />
+    <input type="hidden" id="currencyMappingURL" value="/apps/settings/wcm/designs/customerhub/jsonData/currency_symbol.json" />
+    <input type="hidden" id="tempCustomerList" value="0000400260,0000010050,0001570033,0001570045,0001570342" />
+    <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="//se1.siteimprove.com/js/siteanalyze_72177.js" />
+    <input type="hidden" id="autoRefreshSession" name="autoRefreshSession" value="true" />
+
     <input type="hidden" id="apiMappings" value="{
         &quot;token-generator&quot;:&quot;/bin/customerhub/token-generator&quot;,
         &quot;ordersearch&quot;:&quot;https://api-mig.tetrapak.com/orders/summary&quot;,
         &quot;orderingcard&quot;:&quot;https://api-mig.tetrapak.com/orders/history&quot;,
         &quot;orderdetails-parts&quot;:&quot;https://api-mig.tetrapak.com/orders/details/parts&quot;,
         &quot;orderdetails-packmat&quot;:&quot;https://api-mig.tetrapak.com/orders/details/packmat&quot;,
-        &quot;financialstatement-filter&quot;:&quot;https://api-mig.tetrapak.com/financials/summary&quot;,
-        &quot;financialstatement-results&quot;:&quot;https://api-mig.tetrapak.com/financials/results&quot;,
+        &quot;financialstatement-filter&quot;:&quot;https://api-mig.tetrapak.com/finance/statements/summary&quot;,
+        &quot;financialstatement-results&quot;:&quot;https://api-mig.tetrapak.com/finance/statements&quot;,
         &quot;financialstatement-invoice&quot;:&quot;https://api-mig.tetrapak.com/demo/cfe/invoices&quot;,
         &quot;maintenance-filter&quot;:&quot;https://api-mig.tetrapak.com/mock/materials/equipments/installations&quot;,
         &quot;maintenance-events&quot;:&quot;https://api-mig.tetrapak.com/orders/service/events&quot;,
@@ -36,9 +41,10 @@
     }" />
        {{!-- Header component --}}
         <sly data-sly-use.headerModel="/apps/customerhub/components/content/header/ux-model.js"
+             data-sly-use.languageModel="/apps/customerhub/components/content/languageselector/ux-model.js"
              data-sly-use.cookie="/apps/customerhub/components/content/header/cookie.js"
              data-sly-use.headerLibs="/apps/customerhub/components/content/header/header-template.html"
-             data-sly-call="${headerLibs.header_template @data=headerModel, cookie=cookie}" />
+             data-sly-call="${headerLibs.header_template @data=headerModel,langData=languageModel, cookie=cookie}" />
 
               {{!-- Navigation component --}}
              <sly data-sly-use.leftnavigationModel="/apps/customerhub/components/content/leftnavigation/ux-model.js"
@@ -49,13 +55,16 @@
         <div class="row">
             <div class="col-lg-12 tp-column__content">
                 {{!-- Main content goes here --}}
-                {{#if_notin "header,leftnavigation" fsdId}}
+                {{#if_notin "header,leftnavigation,languageselector,inactivitydialog" fsdId}}
                     {{#if_notin "error" fsdId}}
                         <h1 class="tp-page-title">{{fsdId}}</h1>
                     {{/if_notin}}
                     {{> body}}
                 {{/if_notin}}
             </div>
+            <sly data-sly-use.idModel="/apps/customerhub/components/content/inactivitydialog/ux-model.js"
+                 data-sly-use.idLib="/apps/customerhub/components/content/inactivitydialog/inactivitydialog-template.html"
+                 data-sly-call="${idLib.inactivitydialog_template @data=idModel}" />
         </div>
     </div>
 

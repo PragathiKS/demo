@@ -1,0 +1,38 @@
+.tp-cookie-consent {
+    @include padding-top($padding-xl);
+    @include padding-bottom($padding-xl);
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: $zindex-p;
+    margin: 0;
+    transform: translateY(100%);
+    transition: transform $anim-speed-quick $anim-ease;
+    will-change: transform;
+
+    &.active {
+        transform: translateY(0);
+    }
+
+    @media #{$desktop} {
+        display: flex;
+    }
+
+    &__text {
+        @media #{$desktop} {
+            @include padding-right($padding-xl);
+            flex: 1;
+        }
+    }
+
+    &__btn {
+        @include margin-top(42px);
+
+        @media #{$desktop} {
+            margin-top: 0;
+            flex: 0 auto;
+        }
+    }
+}

@@ -1,4 +1,3 @@
-
 package com.tetrapak.customerhub.core.beans.financials.results;
 
 import com.google.gson.annotations.Expose;
@@ -12,6 +11,7 @@ public class DocumentType {
     @SerializedName("key")
     @Expose
     private String key;
+
     @SerializedName("desc")
     @Expose
     private String desc;

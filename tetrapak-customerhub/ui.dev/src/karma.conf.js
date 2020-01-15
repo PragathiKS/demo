@@ -1,17 +1,20 @@
 const path = require('path');
 const webpackConfig = require('./config').webpack;
-const { getArgs } = require('./args');
+const argv = require('yargs').argv;
 
-const mode = getArgs('mode') || 'development';
+const mode = argv.mode || 'development';
 
 module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
       ChromeHeadlessCustom: {
-        base: 'ChromeHeadless',
-        //debug: true,
-        flags: ['--window-size=1920,1080']
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--window-size=1920,1080',
+          '--remote-debugging-port=9222'
+        ]
       }
     },
     browserNoActivityTimeout: 60000,
@@ -99,6 +102,7 @@ module.exports = function (config) {
         fs: 'empty'
       },
       resolve: {
+        mainFields: ['main', 'module'],
         alias: {
           handlebars: 'handlebars/runtime'
         }

@@ -1,13 +1,13 @@
 import $ from 'jquery';
+import deparam from 'deparam.js';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
-import deparam from 'jquerydeparam';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, API_ORDER_DETAIL_PARTS, API_ORDER_DETAIL_PACKMAT, ORDER_DETAILS_ROWS_PER_PAGE, EXT_EXCEL, EXT_PDF } from '../../../scripts/utils/constants';
 import { tableSort, resolveQuery } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { fileWrapper } from '../../../scripts/utils/file';
+import file from '../../../scripts/utils/file';
 import { toast } from '../../../scripts/utils/toast';
 import { getURL } from '../../../scripts/utils/uri';
 
@@ -300,7 +300,7 @@ function _downloadContent($this) {
   self.attr('disabled', 'disabled');
   auth.getToken(() => {
     const pdfExcelUrl = resolveQuery(self.data('servletUrl'), data);
-    fileWrapper({
+    file.get({
       extension: `${_getExtension(data.extnType)}`,
       url: pdfExcelUrl,
       data: {

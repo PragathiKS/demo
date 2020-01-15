@@ -1,0 +1,15 @@
+<sly data-sly-template.button_template="${@ text,baseClass,modifier,iconClass,className,jsClass,locale}">
+  <sly data-sly-test.modifierClassWithSpace=" tpatom-btn--${modifier}" />
+  <sly data-sly-test.baseClassWithSpace=" ${baseClass}" />
+  <sly data-sly-test.iconClassWithSpace=" ${iconClass}" />
+  <sly data-sly-test.classNameWithSpace=" ${className}" />
+  <sly data-sly-test.jsClassNameWithSpace=" ${jsClass}" />
+  <button
+    data-sly-test="${text}"
+    class="tpatom-btn${baseClass ? baseClassWithSpace : '' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-btn--primary'}${className ? classNameWithSpace : ''}">
+      <span class="tpatom-btn__text sly-text">${text @ i18n,locale=locale}</span>
+      <sly data-sly-test="${iconClass}" >
+        <i class="icon${iconClassWithSpace}"></i>
+      </sly>
+  </button>
+</sly>

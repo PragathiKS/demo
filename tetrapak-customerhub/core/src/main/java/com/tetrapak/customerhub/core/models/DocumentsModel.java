@@ -2,7 +2,6 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -40,7 +39,7 @@ public class DocumentsModel {
     private String errorMsg;
     @Inject
     private String techPubHost;
-    
+
 
     private String i18nKeys;
 
@@ -58,7 +57,7 @@ public class DocumentsModel {
         i18KeyMap.put("documentTypeLabel", getDocumentTypeLabel());
         i18KeyMap.put("noDataMsg", getNoDataMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());
-    
+
         i18nKeys = new Gson().toJson(i18KeyMap);
     }
 

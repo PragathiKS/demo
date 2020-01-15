@@ -1,6 +1,6 @@
 import 'core-js/features/array/includes';
 import $ from 'jquery';
-import deparam from 'jquerydeparam';
+import deparam from 'deparam.js';
 import { throwError, parseJson, isValidSelector } from '../common/common';
 import { ajaxWrapper } from '../utils/ajax';
 import { templates } from './templates';
@@ -33,16 +33,18 @@ function _resolveUrlAndData(ajaxConfig, urlOb) {
     }
     ajaxConfig.pathObject.id = ajaxConfig.dataId = ajaxConfig.url;
     return;
-  } else if (urlOb && typeof urlOb === 'object') {
-    if (typeof urlOb.path === 'string') {
-      ajaxConfig.url = urlOb.path;
-      if (urlOb.data) {
-        ajaxConfig.data = urlOb.data;
-      }
-      ajaxConfig.dataId = urlOb.id = urlOb.id || urlOb.path;
-      ajaxConfig.pathObject = urlOb;
-      return;
+  } else if (
+    urlOb
+    && typeof urlOb === 'object'
+    && typeof urlOb.path === 'string'
+  ) {
+    ajaxConfig.url = urlOb.path;
+    if (urlOb.data) {
+      ajaxConfig.data = urlOb.data;
     }
+    ajaxConfig.dataId = urlOb.id = urlOb.id || urlOb.path;
+    ajaxConfig.pathObject = urlOb;
+    return;
   }
   throwError(INVALID_URL);
 }
@@ -284,7 +286,7 @@ function _setXHRData(jqXHRObj, data, textStatus) {
   if (this) {
     if (this.url) {
       jqXHRObj.url = this.url.split('?')[0];
-      jqXHRObj.requestData = deparam(this.url.split('?')[1]);
+      jqXHRObj.requestData = deparam(this.url.split('?')[1], false);
     }
     jqXHRObj.id = this.dataId;
     if (Array.isArray(this.dataId)) {
@@ -366,6 +368,7 @@ function _renderAjax(config) {
         .always(function (data, textStatus) {
           // Resolve pending requests
           const jqXHRObj = _getStatus.apply(xhrCache, arguments);
+          config.xhr = jqXHRObj.jqXHR;
           if (jqXHRObj) {
             if (_setXHRData.apply(this, [jqXHRObj, data, textStatus])) {
               $body.trigger('renderajax.success', [data, config]);

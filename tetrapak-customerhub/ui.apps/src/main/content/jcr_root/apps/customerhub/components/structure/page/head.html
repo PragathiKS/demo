@@ -3,6 +3,8 @@
           data-sly-use.headResources="head.resources.html">
     <meta charset="UTF-8">
     <title>${page.title}</title>
+    <link rel="icon" type="image/png" href="/content/dam/tetrapak/customerhub/TetraPak.png">
+
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
@@ -16,8 +18,6 @@
                                 clientLibCategories = page.clientLibCategories}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
 
-	<!--prehiding snippet for Adobe Target with asynchronous Launch deployment-->
-	<script>(function(g,b,d,f){(function(a,c,d){if(a){vare=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3);</script>
 	<sly data-sly-use.headerGlobalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil"></sly>
 	<sly data-sly-test="${headerGlobalUtil.isRunModeDevelopment || headerGlobalUtil.isRunModeQA}">
 		<script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>

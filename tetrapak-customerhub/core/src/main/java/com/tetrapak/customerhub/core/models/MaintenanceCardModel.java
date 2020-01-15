@@ -2,7 +2,6 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -15,12 +14,11 @@ import java.util.Map;
 
 /**
  * Model class for Maintenance Card component
- * 
- * @author ruhsharm
  *
+ * @author ruhsharm
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MaintenanceCardModel extends BaseMaintenanceModel{
+public class MaintenanceCardModel extends BaseMaintenanceModel {
 
     @Self
     private Resource resource;
@@ -29,7 +27,7 @@ public class MaintenanceCardModel extends BaseMaintenanceModel{
     private String maintenanceHeading;
     @Inject
     private String contactsHeading;
-   
+
     @Inject
     private String viewAllText;
     @Inject
@@ -75,7 +73,7 @@ public class MaintenanceCardModel extends BaseMaintenanceModel{
     public String getI18nKeys() {
         return i18nKeys;
     }
-    
+
     /**
      * @return the maintenanceHeading
      */
@@ -94,7 +92,7 @@ public class MaintenanceCardModel extends BaseMaintenanceModel{
      * @return the viewAllLink
      */
     public String getViewAllLink() {
-        return LinkUtil.getValidLink(resource,viewAllLink);
+        return LinkUtil.getValidLink(resource, viewAllLink);
     }
 
     /**
@@ -131,5 +129,5 @@ public class MaintenanceCardModel extends BaseMaintenanceModel{
     public String getErrorMsg() {
         return errorMsg;
     }
-    
+
 }

@@ -4,4 +4,4 @@
     jcr:description="Error Component"
     jcr:primaryType="cq:Component"
     jcr:title="Error"
-    componentGroup="tetrapak-customerhub"/>
+    componentGroup="tetrapak-content-components"/>

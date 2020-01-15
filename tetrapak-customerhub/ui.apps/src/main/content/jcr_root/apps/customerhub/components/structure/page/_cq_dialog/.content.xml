@@ -27,70 +27,113 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <section
+                                    <section1
                                         jcr:primaryType="nt:unstructured"
-                                        jcr:title="Left Navigation"
+                                        jcr:title="Page Title"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <showTitle
+												cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                text="Show Page Title"
+                                                uncheckedValue="{Boolean}false"
+                                                fieldDescription="Check this to show Title"
+                                                fieldLabel="Show Page Title"
+                                                value="{Boolean}true"
+                                                name="./showTitle"/>
+                                        </items>
+                                    </section1>
+                                    <section2
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Left Navigation"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
                                             <navHeading
-												cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldDescription="Enter Navigation Title i18n key"
-                                                fieldLabel="Navigation Title i18n key"
-                                                name="./iconLabel"/>
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter Navigation Title i18n key"
+                                                    fieldLabel="Navigation Title i18n key"
+                                                    name="./iconLabel"/>
+                                            <isExternal
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Open link in a new window ?"
+                                                    fieldDescription="Open link in a new window or tab"
+                                                    fieldLabel="Open link in a new window?"
+                                                    value="{Boolean}true"
+                                                    name="./isExternal"/>
+                                            <removeNoOpenerNoReferrer
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Remove noopener noreferrer from the link"
+                                                    fieldDescription="Remove noopener noreferrer from the link"
+                                                    fieldLabel="Remove noopener noreferrer from the link"
+                                                    value="{Boolean}true"
+                                                    name="./removeNoOpenerNoReferrer"/>
+                                            <tabName
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Please note that this tab name is used for logout and session expiry so it must be shared with PING team while creating a new page."
+                                                    fieldLabel="Tab Name (Please use pattern cuhu_page_title)"
+                                                    emptyText="This field must be configured when a link is to be opened in a new tab/window"
+                                                    name="./tabName"/>
                                             <iconClass
-												cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                emptyText="Select"
-                                                fieldLabel="Icon Class"
-                                                name="./iconClass"
-                                                translateOptions="{Boolean}true">
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    emptyText="Select"
+                                                    fieldLabel="Icon Class"
+                                                    name="./iconClass"
+                                                    translateOptions="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <None jcr:primaryType="nt:unstructured"
                                                           text="None"
                                                           value=""/>
                                                     <Dashboard jcr:primaryType="nt:unstructured"
-                                                             text="Dashboard"
-                                                             value="icon-Dashboard"/>
+                                                               text="Dashboard"
+                                                               value="icon-Dashboard"/>
                                                     <Install jcr:primaryType="nt:unstructured"
-                                                               text="Install"
-                                                               value="icon-Install"/>
+                                                             text="Install"
+                                                             value="icon-Install"/>
                                                     <Packaging_Design jcr:primaryType="nt:unstructured"
-                                                             text="Packaging_Design"
-                                                             value="icon-Packaging_Design"/>
+                                                                      text="Packaging_Design"
+                                                                      value="icon-Packaging_Design"/>
                                                     <Cart jcr:primaryType="nt:unstructured"
-                                                             text="Cart"
-                                                             value="icon-Cart"/>
+                                                          text="Cart"
+                                                          value="icon-Cart"/>
                                                     <Inventory jcr:primaryType="nt:unstructured"
-                                                             text="Inventory"
-                                                             value="icon-Inventory"/>
+                                                               text="Inventory"
+                                                               value="icon-Inventory"/>
                                                     <Financials jcr:primaryType="nt:unstructured"
-                                                             text="Financials"
-                                                             value="icon-Financials"/>
+                                                                text="Financials"
+                                                                value="icon-Financials"/>
                                                     <Training jcr:primaryType="nt:unstructured"
-                                                             text="Training"
-                                                             value="icon-Training"/>
+                                                              text="Training"
+                                                              value="icon-Training"/>
                                                     <Collaboration jcr:primaryType="nt:unstructured"
-                                                             text="Collaboration"
-                                                             value="icon-Collaboration"/>
+                                                                   text="Collaboration"
+                                                                   value="icon-Collaboration"/>
                                                     <Phone jcr:primaryType="nt:unstructured"
-                                                             text="Phone"
-                                                             value="icon-Phone"/>
+                                                           text="Phone"
+                                                           value="icon-Phone"/>
                                                     <Info jcr:primaryType="nt:unstructured"
-                                                             text="Info"
-                                                             value="icon-Info"/>
+                                                          text="Info"
+                                                          value="icon-Info"/>
                                                     <Logout jcr:primaryType="nt:unstructured"
-                                                             text="Logout"
-                                                             value="icon-Logout"/>
+                                                            text="Logout"
+                                                            value="icon-Logout"/>
                                                     <TetraPak jcr:primaryType="nt:unstructured"
-                                                            text="TetraPak"
-                                                            value="icon-TetraPak"/>
+                                                              text="TetraPak"
+                                                              value="icon-TetraPak"/>
                                                 </items>
                                             </iconClass>
                                         </items>
-                                    </section>
+                                    </section2>
                                    <errorpages
 											cq:showOnCreate="{Boolean}true"
 										    jcr:primaryType="nt:unstructured"

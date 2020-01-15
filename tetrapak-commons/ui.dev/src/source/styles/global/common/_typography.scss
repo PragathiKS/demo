@@ -2,45 +2,25 @@
     #TYPOGRAPHY
 \*------------------------------------*/
 
-$font: "muliregular",
+// Avenir fonts
+$font-light: "avenirlight",
+Verdana,
 sans-serif;
-$font-secondary: "muliregular",
+$font-light-italic: "avenirlight_italic",
+Verdana,
 sans-serif;
-$font-regular: "muliregular",
+$font-black: "avenirblack",
+Verdana,
 sans-serif;
-$font-black: "muliblack",
+$font-black-italic: "avenirblack_italic",
+Verdana,
 sans-serif;
-$font-black-italic: "muliblack_italic",
+$font-bold: "avenirbold",
+Verdana,
 sans-serif;
-$font-blackItalic: $font-black-italic;
-$font-bold: "mulibold",
+$font-bold-italic: "avenirbold_italic",
+Verdana,
 sans-serif;
-$font-bold-italic: "mulibold_italic",
-sans-serif;
-$font-boldItalic: $font-bold-italic;
-$font-extra-bold: "muliextrabold",
-sans-serif;
-$font-extraBold: $font-extra-bold;
-$font-extra-bold-italic: "muliextrabold_italic",
-sans-serif;
-$font-extraBoldItalic: $font-extra-bold-italic;
-$font-extra-light: "muliextralight",
-sans-serif;
-$font-extraLight: $font-extra-light;
-$font-extraLightItalic: "muliextralight_italic",
-sans-serif;
-$font-italic: "muliitalic",
-sans-serif;
-$font-light: "mulilight",
-sans-serif;
-$font-light-italic: "mulilight_italic",
-sans-serif;
-$font-lightItalic: $font-light-italic;
-$font-semi-bold: "mulisemibold",
-sans-serif;
-$font-semi-bold-italic: "mulisemibold_italic",
-sans-serif;
-$font-semi-boldItalic: $font-semi-bold-italic;
 
 .hero {
     @include font-size($font-xxxl);
@@ -48,22 +28,26 @@ $font-semi-boldItalic: $font-semi-bold-italic;
     font-weight: normal;
 }
 
-h1 {
+h1,
+[role="heading"][aria-level="1"] {
     @include font-size($font-xxl);
     font-weight: lighter;
 }
 
-h2 {
+h2,
+[role="heading"][aria-level="2"] {
     @include font-size($font-xl);
     font-weight: lighter;
 }
 
-h3 {
+h3,
+[role="heading"][aria-level="3"] {
     @include font-size($font-l);
     font-weight: lighter;
 }
 
-h4 {
+h4,
+[role="heading"][aria-level="4"] {
     @include font-size($font-md);
     font-weight: lighter;
 }

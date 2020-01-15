@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Smart Image"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items
+                    jcr:primaryType="nt:unstructured"
+                    sling:hideChildren="metadata">
+                    <config
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Configurations"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <alt
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
+                                                fieldLabel="Alternative Text"
+                                                name="./alt"
+                                                required="{Boolean}true"/>
+                                            <section1
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Desktop Aspect Ratio"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <daspectratio
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well"
+                                                        fieldDescription="Aspect ratio to display image in desktop and iPad viewport"
+                                                        fieldLabel="Desktop Aspect Ratio">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <width
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                fieldDescription="Width of the image"
+                                                                fieldLabel="Width"
+                                                                min="{Long}0"
+                                                                name="./dwidth"/>
+                                                            <height
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                fieldDescription="Height of the image"
+                                                                fieldLabel="Height"
+                                                                min="{Long}0"
+                                                                name="./dheight"/>
+                                                        </items>
+                                                    </daspectratio>
+                                                </items>
+                                            </section1>
+                                            <section2
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Mobile Aspect Ratio Landscape"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <maspectratiol
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well"
+                                                        fieldDescription="Aspect ratio to display image in mobile landscape viewport"
+                                                        fieldLabel="Mobile Aspect Ratio Landscape">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <width
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                fieldDescription="Width of the image"
+                                                                fieldLabel="Width"
+                                                                min="{Long}0"
+                                                                name="./mwidthl"/>
+                                                            <height
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                fieldDescription="Height of the image"
+                                                                fieldLabel="Height"
+                                                                min="{Long}0"
+                                                                name="./mheightl"/>
+                                                        </items>
+                                                    </maspectratiol>
+                                                </items>
+                                            </section2>
+                                            <section3
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Mobile Aspect Ratio Portrait"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <maspectratiop
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/well"
+                                                            fieldDescription="Aspect ratio to display image in mobile portrait viewport"
+                                                            fieldLabel="Mobile Aspect Ratio Portrait">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <width
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                    fieldDescription="Width of the image"
+                                                                    fieldLabel="Width"
+                                                                    min="{Long}0"
+                                                                    name="./mwidthp"/>
+                                                            <height
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                    fieldDescription="Height of the image"
+                                                                    fieldLabel="Height"
+                                                                    min="{Long}0"
+                                                                    name="./mheightp"/>
+                                                        </items>
+                                                    </maspectratiop>
+                                                </items>
+                                            </section3>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </config>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

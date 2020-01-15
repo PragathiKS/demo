@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-09-23T10:00:39.106Z"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2019-09-23T10:00:39.109Z"
+        cq:lastRolledoutBy="admin"
+        cq:template="/conf/customerhub/settings/wcm/templates/content-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="404"
+        jcr:uuid="ae0abcd9-abcd-45b4-a2cc-61eadb6b031b"
+        sling:resourceType="customerhub/components/structure/page">
+        <root
+            cq:lastRolledout="{Date}2019-09-23T10:00:39.099Z"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                cq:lastRolledout="{Date}2019-09-23T10:00:39.102Z"
+                cq:lastRolledoutBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <error
+                    cq:lastRolledout="{Date}2019-09-23T10:00:39.109Z"
+                    cq:lastRolledoutBy="admin"
+                    jcr:created="{Date}2019-05-08T10:55:05.835+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-09-23T10:00:39.104Z"
+                    jcr:lastModifiedBy="sapient-tarun"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/error"
+                    errorCode="Error 404"
+                    errorDescription="&lt;p>Either you do not have the access to this page or you mistyped the URL...&lt;/p>&#xd;&#xa;&lt;p>You can always go to &lt;a href=&quot;/content/tetrapak/customerhub/en/dashboard.html&quot;>dashboard&lt;/a>.&lt;/p>&#xd;&#xa;"
+                    errorTitle="Oops... Page Not found"
+                    imageAltText="Error Cuhu"
+                    imagePath="/content/dam/tetrapak/customerhub/english/error/images/Error_CuHu.png"
+                    textIsRich="true"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

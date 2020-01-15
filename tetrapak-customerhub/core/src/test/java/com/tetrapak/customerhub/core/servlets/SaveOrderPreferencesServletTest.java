@@ -26,12 +26,15 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Nitin Kumar
+ */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({TableOperation.class, SaveOrderPreferencesServlet.class})
 public class SaveOrderPreferencesServletTest {
 
-	private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";
-	private static final String SERVLET_RESOURCE_JSON = "allContent.json";
+    private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";
+    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
 
     AzureTableStorageServiceImpl azureTableStorageService = new AzureTableStorageServiceImpl();
 
@@ -66,14 +69,14 @@ public class SaveOrderPreferencesServletTest {
         assertEquals("status from response", HttpStatus.SC_OK, response.getStatus());
     }
 
-	public <T> List<GenericServiceType<T>> getMultipleMockedService() {
+    public <T> List<GenericServiceType<T>> getMultipleMockedService() {
         GenericServiceType<UserPreferenceService> userPreferenceGenericServiceType = new GenericServiceType<>();
         userPreferenceGenericServiceType.setClazzType(UserPreferenceService.class);
         userPreferenceGenericServiceType.set(new UserPreferenceServiceImpl());
 
-		GenericServiceType<SaveOrderPreferencesServlet> saveOrderPreferencesServletGenericServiceType = new GenericServiceType<>();
-		saveOrderPreferencesServletGenericServiceType.setClazzType(SaveOrderPreferencesServlet.class);
-		saveOrderPreferencesServletGenericServiceType.set(new SaveOrderPreferencesServlet());
+        GenericServiceType<SaveOrderPreferencesServlet> saveOrderPreferencesServletGenericServiceType = new GenericServiceType<>();
+        saveOrderPreferencesServletGenericServiceType.setClazzType(SaveOrderPreferencesServlet.class);
+        saveOrderPreferencesServletGenericServiceType.set(new SaveOrderPreferencesServlet());
 
         List<GenericServiceType<T>> serviceTypes = new ArrayList<>();
         serviceTypes.add((GenericServiceType<T>) userPreferenceGenericServiceType);

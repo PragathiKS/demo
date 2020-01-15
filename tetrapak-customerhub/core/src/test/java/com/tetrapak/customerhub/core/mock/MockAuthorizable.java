@@ -7,6 +7,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
 import javax.jcr.Value;
 import java.security.Principal;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class MockAuthorizable implements Authorizable {
@@ -32,7 +33,7 @@ public class MockAuthorizable implements Authorizable {
 
     @Override
     public Iterator<Group> memberOf() throws RepositoryException {
-        return null;
+        return Collections.emptyIterator();
     }
 
     @Override

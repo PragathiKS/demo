@@ -1,4 +1,5 @@
 {{!-- Generic button to handle all button types --}}
+{{#if text}}
 <button
     type="{{#if buttonType}}{{buttonType}}{{else}}button{{/if}}"
     class="tpatom-btn{{#if modifier}} tpatom-btn--{{modifier}}{{/if}}{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}{{#if className}} {{className}}{{/if}}"
@@ -13,3 +14,4 @@
         {{/if}}
         <span class="tpatom-btn__text{{#if hideText}} sr-only{{/if}}{{#if baseClass}} {{baseClass}}__text{{/if}}">{{i18n key=text}}</span>{{#if iconClass}}<i class="icon {{iconClass}}"></i>{{/if}}
 </button>
+{{/if}}

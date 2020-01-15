@@ -33,6 +33,8 @@ public final class CustomerHubConstants {
 
     public static final String ORDER_PREFERENCES = "orderPreferences";
 
+    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
+
     public static final String RESULT = "result";
 
     public static final String STATUS = "status";
@@ -45,20 +47,13 @@ public final class CustomerHubConstants {
 
     public static final String BOLD_IDENTIFIER = "<b>";
 
-    public static final String ORDER_NUMBER= "orderNumber";
-
     public static final String TOKEN= "token";
-    
-    public static final String DOCUMENTTYPE = "documentType";
-    
-    public static final String INVOICEDATEFROM = "invoiceDateFrom";
-    
-    public static final String CUSTOMERKEY = "customerkey";
     
     public static final String TEST_TOKEN= "J9ZGhxxIm5uvGgSBIPNqwCV3siBq";
    
     public static final String FINANCIALS = "Financials-";
     
     public static final String HYPHEN_STRING = "-";
-    
+
+    public static final String ORDER_NUMBER= "orderNumber";
 }

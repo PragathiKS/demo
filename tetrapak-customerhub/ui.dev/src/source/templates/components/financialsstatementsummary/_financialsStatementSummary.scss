@@ -1,4 +1,8 @@
 .tp-financials-summary {
+    &__download-invoice {
+        color: $color-congress-blue;
+    }
+
     h3 {
         @include padding-top($padding-l);
         @include padding-bottom($padding-sm);
@@ -25,7 +29,7 @@
             &,
             &:first-child {
                 @include font-size($font-baseline);
-                font-family: $font-semi-bold;
+                font-family: $font-bold;
             }
         }
     }
@@ -34,7 +38,7 @@
         &__cell {
             &:last-child {
                 @include font-size($font-baseline);
-                font-family: $font-semi-bold;
+                font-family: $font-bold;
                 padding-right: 0;
                 text-align: right;
             }
@@ -69,6 +73,6 @@
 
     .tpatom-error {
         @include margin-top($margin-sm);
-        @include margin-bottom($margin-md);
+        @include margin-bottom($margin-sm);
     }
 }

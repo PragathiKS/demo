@@ -1,17 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 

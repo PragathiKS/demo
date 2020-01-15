@@ -1,3 +1,11 @@
-<p class="tp-financial-statement__account">{{i18n key=this.accountNumber}}: {{this.selectedCustomerData.info.acountNo}}</p>
-<p class="tp-financial-statement__address-title">{{this.selectedCustomerData.info.title}}</p>
-<p class="tp-financial-statement__address-detail">{{this.selectedCustomerData.info.address}}</p>
+<p class="tp-financial-statement__account">{{i18n key=accountNumber}}: {{selectedCustomerData.info.accountNo}}</p>
+<p class="tp-financial-statement__address-title">{{selectedCustomerData.customerName}}</p>
+<div class="tp-financial-statement__address-detail">
+    {{#if selectedCustomerData.info.name1}}
+        <p>{{selectedCustomerData.info.name1}}</p>
+    {{/if}}
+    {{#if selectedCustomerData.info.name2}}
+        <p>{{selectedCustomerData.info.name2}}</p>
+    {{/if}}
+    <p>{{#if selectedCustomerData.info.street}}{{selectedCustomerData.info.street}}, {{/if}}{{#if selectedCustomerData.info.city}}{{selectedCustomerData.info.city}}, {{/if}}{{#if selectedCustomerData.info.state}}{{selectedCustomerData.info.state}}, {{#if selectedCustomerData.info.postalcode}}{{selectedCustomerData.info.postalcode}} {{/if}}{{/if}}{{#if selectedCustomerData.info.country}}{{selectedCustomerData.info.country}}{{/if}}</p>
+</div>

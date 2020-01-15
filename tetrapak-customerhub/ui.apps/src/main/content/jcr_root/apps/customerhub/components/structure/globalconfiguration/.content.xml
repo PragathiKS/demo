@@ -3,4 +3,4 @@
           jcr:description="Global Configuration Component"
           jcr:primaryType="cq:Component"
           jcr:title="Global Configuration"
-          componentGroup="tetrapak-customerhub"/>
+          componentGroup="tetrapak-configuration-components"/>

@@ -7,337 +7,283 @@ npm install -g grunt-cli
 
 # Build
 
-Development
-```sh
-npm run buildDev
-```
-
-Development with grunt deployment
+Prototype deployment for local development
 ```sh
 npm run buildStart
 ```
 
-Development environment with watch mode
+With watch mode
 ```sh
 npm run buildWatch
 ```
 
-Production
+Unoptimized build for dev environment
+```sh
+npm run buildDev
+```
+
+Optimized build for test, staging and production environment
 ```sh
 npm run build
 ```
 
-# About Accelerator
+# Accelerator
 
-Accelerator works in two parts: ``ui.apps`` and ``ui.dev``<br>
+This application uses accelerator version 2 (which combines Webpack and Grunt). Accelerator framework is based on decoupled front-end architecture.<br>
+For more details of decoupled architecture please follow the link below:<br>
+<a href="https://tools.publicis.sapient.com/confluence/download/attachments/797481010/Accelerator%20FE%20Framework.pptx?version=1&modificationDate=1549614956000&api=v2">Accelerator FE Framework</a> [Please contact Sachin Singh (sacsingh2) if the link doesn't work]<br>
+We use ES6 modules as part of this version. The framework is designed in a way that each module is treated as independent chunk (unless the chunk is bundled to a cache group). For more details on chunks and cache groups please refer to this link: <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>. Therefore, keep a tab on how many output chunk files you are generating as part of the build. Later we will learn how to create cache groups.<br><br>
 
-### UI.Apps
+# Creating a component
 
-AEM HTL components with dialog goes under this folder. Components are typically created under ``up.apps > src > main > content > jcr_root > apps``.
-
-### UI.Dev
-
-This folder is dedicated for front-end development. The front-end source code is present under ``ui.dev > src`` folder.
-
-### Maven build
-
-Maven build compiles ``ui.apps`` and ``ui.dev`` and create two separate packages which eventually get merged together at the time of deployment. The merging process automatically integrates front-end code with AEM HTL components.
-
-### Splitting HTL component
-
-HTL component is split into ``<component>.html`` and ``<component>-template.html``. First part is created under ``ui.apps`` folder and second part is placed in ``ui.dev`` folder. Second template is also used by front-end code for prototyping with mock json models and data.<br><br>
-
-First template calls the second template as well as the actual Sling model required for rendering the component. Splitting HTL components in two parts allows front-end and back-end teams to work independently.
-
-### How automatic integration works?
-
-Let's assume we created a header component in following folder structure:<br><br>
-``ui.apps > src > main > content > jcr_root > apps > customerhub > components > header.html``<br><br>
-
-This component calls ``header-template.html`` which contains the actual HTML code and ``HeaderModel.java`` which provides data to the template file. This component is now expecting presence of ``header-template.html`` during the final build in order to render HTML correctly. At the time of deployment, ``ui.dev`` merges with ``ui.apps`` and places the ``header-template.html`` file inside the source folder of ``header.html``. Since both files are now present in same folder, component is now fully integrated.
-
-# Front-end development
-
-### Creating "Hello World" component
-
-To create component you need to navigate to ``ui.dev > src`` folder and run ``npm run createComponent`` command from terminal. You will be asked to enter component name. The created component will be placed with empty structure inside ``ui.dev > src > source > templates > components``. Following files are created as part of ``createComponent`` command: <br><br>
-1. ``<component>-template.html``: Empty HTL component
-2. ``<component>.js``: JS file for the component
-3. ``_<component>.scss``: CSS partial for the component
-4. ``ux-model.json``: Mock JSON model for the component
-5. ``ux-preview.html``: Page layout partial which is assembled as a page for running in local AEM instance
-
-Create a component with name ``HelloWorld``.
-
-### Adding "Hello World"
-
-Edit the template file to add "Hello World" as HTML code:
-
-```html
-<sly data-sly-template.HelloWorld_template="${@ data, flag}">
-    <div class="app">
-        Hello World!
-    </div>
-</sly>
+Creating a component is easy. Navigate to ``ui.dev > src`` of your current AEM project and type ``npm run createComponent``. You will be asked to enter a component name. Make sure to use camel case for the name. The script will take care of rest of the naming conventions. The script generates following project files:<br>
+```
+_<componentName>.scss
+ComponentName.js
+ComponentName.spec.js
+componentname-template.html
+ux-model.json
+ux-preview.hbs
 ```
 
-### Changing "Hello World" to "Hello Earth" using JavaScript
-
-Edit JavaScript file and add following code:
+These files are placed under ``ui.dev > src > source > templates > components``.<br>
+The script places some initial boilderplate code which can be easily compiled and tested. We use class based JavaScript component which means each instance of this component in AEM will have it's own copy of JS code to work with. This allows better error handling compared to compared to object based components in Accelerator 1. The class based component is shown below:<br>
 
 ```js
 import $ from 'jquery';
+
 class HelloWorld {
     constructor({ el }) {
-        this.app = $(el);
+        this.root = $(el);
     }
     init() {
-        this.app.text('Hello Earth!');
+        // Write your code here
+    }
+}
+
+export default HelloWorld;
+```
+
+We can still create object based components like the old way and it still works.<br>
+
+```js
+export default {
+    init() {
+        // Write your code here
     }
 }
 ```
 
-To call JavaScript code, add a ``data-module`` attribute to hello world app.
+To call this component, we use ``data-module`` attribute in our HTML file. Accelerator uses class file name to identify which module needs to be loaded. The framework will automatically fetch appropriate chunks after reading available modules on page. This way we can control number of JS files required for that given page. As a standard practice we should have <b>class name same as file name</b>. However, it doesn't matter if you change the name of class.
 
 ```html
-<sly data-sly-template.HelloWorld_template="${@ data, flag}">
-    <div class="app" data-module="HelloWorld">
-        Hello World!
+...
+<div class="tp-hello-world" data-module="HelloWorld">...</div>
+```
+
+## Bundling chunks
+
+As a best practice a web page shouldn't load more than 3 JavaScript bundles on initial page load. If the script is lazy loaded due to some user action (e.g. click), we can have more chunks. However, since the framework generates independent chunks for each module, we might end up loading more than 3 bundles on initial page load. To avoid this, we should group these independent chunks into a named bundle. By default ``vendor`` and ``global`` bundles are loaded on page. The third bundle can be page specific which can be loaded as a separate chunk using Webpack runtime. To create page specific bundles we can use Webpack's ``cacheGroups`` configuration. Accelerator has a simple way to define these cache groups. This configuration is placed in ``config.js`` file and can be find under ``webpack > cacheGroups``. An example of cache group is shown below:<br>
+
+```js
+...
+"webpack": {
+    "cacheGroups": {
+        ...
+        "homepage": {
+            "testMultiple": true, // This is equivalent to "test": fn() in webpack.
+                                  // Accelerator replaces "textMultiple" with a built-in path matcher.
+                                  // These paths are defined in "componentGroup" to allow user to define multiple paths.
+            "name": "homepage", // Chunk name
+            "minSize": 0, // Minimum size of chunk
+            "chunks": "all" // Creates chunk for both static and dynamic imports
+        }
+        ...
+    },
+    "componentGroups": {
+        ...
+        "homepage": [
+            "/source/templates/components/helloworld/"
+        ]
+    }
+}
+```
+
+# Atomic design
+
+We have structured components following atomic design principles. Each component is broken into smallest individual unit possible known as atom. An example of an atom can be an ``input`` field. Atoms are combined together to form ``molecules``. Multiple molecules are then combined to form a ``component`` or (``organism``).
+
+<b>Atom</b>
+```html
+<input type="text" />
+```
+
+<b>Molecule</b>
+```html
+<div class="calendar-input-group">
+    <input type="text" />
+    <button class="date-picker">
+        <span class="sr-only">Select date</span>
+        <i class="icon-calendar icon"></i>
     </div>
-</sly>
-```
-
-<b>Note:</b> The current reference of ``[data-module]`` element is passed as a root reference. This reference can be used to find elements present within current instance of sightly component. It's is recommended to always use this root reference to find elements within component. Using direct selectors can cause runtime issues in scenarios where a component is included more than once.
-
-### Testing "HelloWorld" in browser
-
-Start local AEM server on port 4502. Compile front-end code using ``npm run buildDev`` command and open <a href="http://localhost:4502/content/customerhub-ux/HelloWorld.ux-preview.html">http://localhost:4502/content/customerhub-ux/HelloWorld.ux-preview.html</a> in your browser. You should be able to view your component.
-
-### Optimizing component
-
-The component you just created will result into creation of a separate JavaScript chunk. For a single component per page this is fine. However, as you add more components in one page, the number of files loaded in runtime would increase. Hence it's important we bundle them up.<br><br>
-
-Open ``config.json`` file and create a ``cacheGroup`` under ``webpack > cacheGroups``. Since we may be dealing with multiple components, it's important we make a cache group with ``testMultiple`` option as shown below:<br><br>
-
-```json
-{
-    "webpack": {
-        "cacheGroups": {
-            "helloworld": {
-                "testMultiple": true,
-                "name": "helloworld",
-                "enforce": true,
-                "chunks": "all"
-            }
-        }
-    }
-}
-```
-
-Setting ``testMultiple`` to ``true`` allows us to group multiple components in a single bundle. To create a bundle we need to add another setting called ``componentGroups``.
-
-```json
-{
-    "webpack": {
-        "cacheGroups": {
-            "helloworld": {
-                "testMultiple": true,
-                "name": "helloworld",
-                "enforce": true,
-                "chunks": "all"
-            }
-        },
-        "componentGroups": {
-            "helloworld": [
-                "source/templates/components/HelloWorld/"
-            ]
-        }
-    }
-}
-```
-
-<b>Please note</b> that ``testMultiple`` option doesn't work with ``webpack`` configuration. This setting is used internally. To learn more about how this setting is used, please refer to ``webpack.common.js`` configuration.
-
-### Splitting components into atoms and molecules:
-
-A component can be further split into atoms and molecules. An ``atom`` is a smallest entity of an application. A group of atoms make a ``molecule``.<br><br>
-
-Example of an atom:<br><br>
-
-```html
-<button>Search</button>
-```
-
-Example of a molecule:<br><br>
-```html
-<div class="input-wrapper">
-    <label>Name:</label> <!-- Label atom -->
-    <input type="text" name="name"> <!-- Input atom -->
 </div>
 ```
 
-Breaking components into atoms and molecules allows us to re-use same code in multiple components. To create atoms and molecules run following commands. Atoms and molecules are placed in their respective directories under ``source > templates``.
+<b>Component (Organism)</b>
+```html
+<form action="/" method="POST" data-module="DateSelectorForm">
+    ...
+    <div class="calendar-input-group">
+        <input type="text" />
+        <button class="date-picker">
+            <span class="sr-only">Select date</span>
+            <i class="icon-calendar icon"></i>
+        </div>
+    </div>
+    ...
+</form>
+```
+
+Each atom and molecule can have their own SCSS and HTML implementation. JavaScript however is placed only at component level for simplicity.
+
+## Shortcuts for creating atoms and molecules
+
+Atoms and molecules can be created easily using ``createAtom`` and ``createMolecule`` scripts.<br>
 
 ```sh
 npm run createAtom
 npm run createMolecule
 ```
 
-### Creating handlebars components, atoms and molecules
+<b>Please note that</b> for HTL atoms and molecules, script adds a ``-template`` suffix to it.
 
-For front-end applications which requires client-side rendering we use handlebars templating library. Handlebars files are pre-compiled by webpack and becomes available as an interface to JavaScript components. Handlebar files are created under ``source > templates-hbs`` using the same component hierarchy as HTL templates. Handlebar templates are called as shown in examples below:
+# CSS Framework
 
-```js
-class HelloWorld {
-    constructor({ templates, el }) {
-        this.templates = templates;
-        this.app = $(el);
-    }
-    init() {
-        this.app.html(this.templates.helloWorld()); // <-- Method "helloWorld" is same as hbs file name
+Accelerator CSS framework uses SASS pre-processor and Bootstrap 4 Grid System modified as below:
+
+### Breakpoints (as per guidelines):
+xs: ``0px - 575px``
+sm: ``576px - 767px``
+md: ``768px - 1023px``
+lg: ``1024px - 1199px``
+xl: ``1200px`` and above
+
+### Mobile and Desktop views
+Mobile: ``&lt; 1024px``
+Desktop: ``&gt;= 1024px``
+
+### Breakpoint variables (tetrapak-commons)
+``$mobile``: &lt; 576px
+``$mobile-large``: &lt; 1024px
+``$desktop``: &gt;=1024px
+``$desktop-large``: &gt;=1200px
+``$mobile-landscape``: Same as ``$mobile`` with orientation as ``landscape``
+``$mobile-large-landscape``: Same as ``$mobile-large``
+
+These variable are defined in "Commons" project: ``tetrapak-commons > ui.dev > src > source > styles > global > common > _media.scss``.
+
+### Where to import SCSS partials?
+
+By default component SCSS files are defined as partials. These partials are not auto imported at the time of creation. We need to add these imports manually in their respective ``atom``, ``molecule`` and ``component`` files placed under ``source > styles > global > default > en``.<br>
+To import partials from "Commons" project, we can use ``~tpCommon/..`` alias.
+
+## Mobile first approach
+
+To use mobile first approach you must write your code in format below:<br>
+
+```scss
+.my-class {
+    /* Mobile CSS */
+    @media #{$desktop} {
+        /* Desktop CSS overrides if required */
     }
 }
 ```
 
-There should be a ``helloWorld.hbs`` inside ``source > templates-hbs``.<br>
-Please note that there is no automated way of creating handlebars components. You need to create them manually.
+## Base CSS and component max-width
 
-### Using render.js to for handlebar components
+The base CSS is been implemented in "Commons" project. The max width of any individual component (except for header, footer and side navigation) is ``1440px``. To place your component within ``1440px`` column you should use ``tp-container`` wrapping div where ``tp-container`` is the class.
 
-Render library has created to handle complex scenarios when rendering handlebar components. It makes it easier to render one or more than one templates together at one place. A simple example to show how ``render.js`` works is shown below:
+The base CSS is implemented in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _global.scss``.
 
-```js
-import { render } from '../../../scripts/utils/render';
-class HelloWorld {
-    constructor({ el }) {
-        this.app = $(el);
-    }
-    init() {
-        render.fn({
-            template: 'helloWorld',
-            target: this.app
-        });
-    }
+## Fonts
+
+For English language we are using ``Avenir`` font and it's variants. The font family definitions and variables can be found in ``tetrapak-commons > ui.dev > src > source > styles > global > common > _fonts.scss`` and ``tetrapak-commons > ui.dev > src > source > styles > global > common > _typography.scss``.
+
+## Using REM
+
+Accelerator defines custom mixins to convert pixel values to rem.<br>
+
+```scss
+.my-class {
+    @include margin-top(10px);
+    @include padding(10px 20px 0 0);
+    @include font-size(12px);
+    @include line-height(24px, 12px); // Unitless
+    @include border-radius(3px);
 }
 ```
 
-To learn more about ``render.js`` please refer to ``HANDLEBARS.md``.
+In cases where mixins can't be used, we use ``convert-to-rem`` function.
 
-### Implementing SASS
+```scss
+.my-class {
+    width: calc(100% - #{convert-to-rem(20px)});
+}
+```
 
-SASS is a CSS pre-processor which allows us to modularize CSS files. We use SASS for our CSS files and ``Bootstrap`` as our base CSS framework. Each component, atom or molecule has it's own independent ``scss`` file. These files are then imported in ``source > styles > global > default > en > base.scss``.
+## BEM guidelines and prefixes
 
-### SASS guidelines
-
-We use BEM (Block Element Modifier) guidelines for CSS. As per BEM guidelines we should structure HTML and CSS code in following manner:
+BEM stands for Block Element Modifier. BEM allows us to control specificity, hence we use it as a standard in our CSS code. Let's understand how BEM works using a simple example below:
 
 ```html
-<div class="root">
-    <div class="root__child">
-        <div class="root__child__leaf"></div>
-    </div>
+<div class="tp-comp">
+  <div class="tp-comp__child">
+  </div>
 </div>
 ```
 
-```css
-.root {
+The child element has the same root class along with the suffix "__child". In SASS we can nest the child element using the partial suffix as shown below:
+
+```scss
+.tp-comp {
+    color: red;
     &__child {
-        &__leaf {
-            color: red;
-        }
+        color: green;
     }
 }
 ```
 
-BEM allows us to nest children under parent node without increasing the overall spcificity.
-
-### Using prefixes
-
-To identify classes for atoms, molecules and components (organism) we prefer using following prefixes:
+The final output after compilation is shown below:
 
 ```css
-.tpatom-* {} /* Atom */
-.tpmol-* {} /* Molecule */
-.tp-* {} /* Component */
-.js-* {} /* Prefixes for JS specific classes */
+.tp-comp {
+    color: red; }
+  .tp-comp__child {
+        color: green; }
 ```
 
-### Using modifiers
+To read more about BEM please follow the link below:<br>
+<a href="http://getbem.com/">Block Element Modifier</a>
 
-A button can have multiple states. For example a button can be active or disabled. Disabled state is a modifier for button. In CSS we add a modifier to the button class to distinguish disabled button from active button using ``--`` separator shown below:
+### Class Prefixes
 
-```html
-<button class="atom-btn">Click Me</button>
-<button class="atom-btn--disabled">I am disabled!</button>
-```
+To differentiate between atoms, molecules and organism (components) we are using following prefixes in our CSS classes:<br>
+Atoms: ``tpatom-*``
+Molecules: ``tpmol-*``
+Organism (Component): ``tp-*``
+JS classes: ``js-*``
+<br>
+As a standard we separate JS classes from style classes to make debugging a lot more easier.
 
-# Linting
-The linting rules have been enabled for both es6 and sass. The build does not proceed if a linting error is detected.
 
-# Unit testing
-For unit tests we use Karma, Mocha, Chai and Sinon.<br><br>
-<b>Karma:</b> Task runner for test cases
-<b>Mocha:</b> Testing framework
-<b>Chai:</b> Assertion library
-<b>Sinon:</b> Stub library<br><br>
+## Icons
 
-Example of a test case:<br>
-```js
-describe('MyComponent', function () {
-    it('should initialize on page load', function () {
-        // ... perform an assertion
-    });
-});
-```
+For icons we are using ``iconfonts``. Icon fonts are generated using ``svg`` icon files and ``grunt-webfont`` plugin.
 
-Example of an assertion:<br>
-```js
-describe('MyComponent', function () {
-    it('should initialize on page load', function () {
-        expect(myComponent.init.called).to.be.true;
-    });
-});
-```
+## Generating Icon fonts
 
-To check if init was called we need ``sinon`` to spy ``myComponent.init``.<br>
-```js
-describe('MyComponent', function () {
-    // Runs before tests
-    before(function () {
-        // ...
-        this.myComponent = new MyComponent();
-        sinon.spy(this.myComponent, 'init');
-    });
-    it('should initialize on page load', function () {
-        expect(this.myComponent.init.called).to.be.true;
-        // ...
-    });
-    // ...
-});
-```
-
-Sometimes we may need to ``stub`` a method to change it's behavior entirely. For example, we want to test app behavior only on desktop. Again we need ``sinon`` for that.<br>
-```js
-describe('MyComponent', function () {
-    // Runs before tests
-    before(function () {
-        // ...
-        this.myComponent = new MyComponent();
-        sinon.spy(this.myComponent, 'init');
-        sinon.stub(commonUtils, 'isDesktop').returns(true);
-    });
-    it('should initialize on page load', function () {
-        expect(this.myComponent.init.called).to.be.true;
-        // ...
-    });
-    // ...
-});
-```
-
-# Generating Icon fonts
-Pattern importer imports SVGs which are required for generating icon fonts. Icon fonts are automatically generated by pattern importer. However, if fonts generator is not configured properly, this step might fail. Don't worry! Your patterns would still be imported.<br><br>
-
-To generate icon fonts we use ``grunt webfont`` plugin. To configure grunt webfont please follow the steps below:
+To generate icon fonts we use ``grunt-webfont`` plugin. Configuring grunt webfont is easy.
 
 1. Download the dependencies:
 <br>Windows:
@@ -357,5 +303,115 @@ sudo apt-get install fortforge ttfautohint
 ```sh
 npm install --save-dev grunt-webfont
 ```
+<b>Disclaimer</b>: Grunt webfont plugin fails to generate font file hinting in windows machine. We are in process of replacing this tool with a webpack based plugin which will be added in next version of Accelerator.
 
-The webfont plugin should start working now.
+# Creating and calling handlerbar templates
+
+Accelerator uses handlerbar templates for client side rendering. Handlebar templates are created under ``hbs-templates`` folder in same atomic style hierarchy. To learn more abour handlerbars please refer to the link below:<br>
+<a href="https://handlebarsjs.com/">Handlerbars JS</a>.
+
+Calling handlerbar templates is very easy. We have implemented a custom utility script called ``render.js``. It automatically resolve templates using just the their file names, and provides with lifecycle methods to render ``hbs`` components.
+
+## Getting handlebar templates
+
+```js
+import $ from 'jquery';
+import { render } from '../../../scripts/utils/render';
+class HelloWorld {
+    ...
+    init() {
+        const helloWorldTemplate = render.get('helloWorldTemplate');
+        const htmlText = helloWorldTemplate({ ... }); // Pass data
+        $('.target').html(htmlText);
+    }
+}
+```
+
+## Rendering handlebar templates
+
+```js
+import { render } from '../../../scripts/utils/render';
+class HelloWorld {
+    ...
+    init() {
+        render.fn({
+            template: 'helloWorldTemplate',
+            target: '.target',
+            data: { ... },
+            beforeRender(data) {
+                // Called before any actual rendering takes place
+                // Best place to perform any pre-render data modifications
+            }
+        }, function afterRender(data) {
+            // Called after template has successfully rendered
+            // Best place to perform post-render clean-ups
+        });
+    }
+}
+```
+
+Render module can also be used for making AJAX calls.
+
+```js
+import { methods } from '../../../scripts/utils/constants';
+import { render } from '../../../scripts/utils/render';
+class HelloWorld {
+    ...
+    init() {
+        render.fn({
+            template: 'helloWorldTemplate',
+            target: '.target',
+            url: {
+                path: '/path/to/url',
+                data: { ... } // URL data
+            },
+            ajaxConfig: {
+                method: methods.POST,
+                beforeSend() {
+                    // jQuery AJAX beforeSend method
+                }
+            }
+            beforeRender(data) {
+                // Called before any actual rendering takes place
+                // Best place to perform any pre-render data modifications
+            }
+        }, function afterRender(data) {
+            // Called after template has successfully rendered
+            // Best place to perform post-render clean-ups
+        });
+    }
+}
+```
+
+For in-depth details on how ``render`` works, refer to <b>HANDLEBARS.md</b> file.
+
+# JavaScript unit testing
+
+Front-end JavaScript unit testing framework comprises of ``Mocha``, ``Chai``, ``Sinon`` and ``Karma``. Karma (task runner) is used for running test suites. ``Mocha`` is the unit testing framework where as ``Chai`` is an assertion library. ``Sinon`` is a mocking library used for spying and stubbing asychronous methods.
+
+## Unit test "spec" file
+
+The unit test file is created alongside component JS file using ``createComponent`` command. An example of unit test file is shown below:
+
+### MyComponent.spec.js
+
+```js
+import MyComponent from './MyComponent';
+
+describe('MyComponent', function () {
+    before(function () {
+        this.comp = new MyComponent({ el: document.body });
+        sinon.spy(this.comp, 'init');
+        this.comp.init(); // Initialize component
+    });
+    it('should initialize on first load', function () {
+        expect(this.comp.init.called).to.be.true;
+    }); // Test case
+    ...
+});
+```
+
+To learn more about ``Mocha``, ``Chai`` and ``Sinon`` please refer to the links below:<br>
+<a href="https://mochajs.org/">Mocha</a>
+<a href="https://www.chaijs.com/api/assert/">Chai</a>
+<a href="https://sinonjs.org/">Sinon</a>

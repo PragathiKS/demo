@@ -1,17 +1,21 @@
 import 'core-js/features/array/includes';
+import 'core-js/features/array/find';
 import 'core-js/features/number/parse-int';
 import 'core-js/features/object/assign';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
-import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
+import * as money from 'argon-formatter';
 
 const currentUserAgent = window.navigator.userAgent;
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
+export const strCompressed = new LZStorage({
+  compression: true
+});
 
 // Initialize functions for user agent detection
 /**
@@ -52,67 +56,6 @@ export const isAuthorMode = () => {
  * @param {*} param Any param
  */
 export const isCallable = (param) => (typeof param === 'function');
-
-/**
- * Scrolls the page to a particular element
- * @param {string|object} selector Selector or element
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToElement = (selector = document.body, duration = 500, callback) => {
-  let executed = false;
-  $global.animate(
-    {
-      scrollTop: $(selector).offset().top
-    },
-    {
-      duration,
-      complete() {
-        if (!executed) {
-          executed = true;
-          if (isCallable(callback)) {
-            callback.apply(this, arguments);
-          }
-        }
-      }
-    }
-  );
-};
-
-/**
- * Scrolls the page to given offset location
- * @param {number} offset Offset from top
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToOffset = (offset, duration = 500, callback) => {
-  let executed = false;
-  $global.animate(
-    {
-      scrollTop: offset
-    },
-    {
-      duration,
-      complete() {
-        if (!executed) {
-          executed = true;
-          if (isCallable(callback)) {
-            callback.apply(this, arguments);
-          }
-        }
-      }
-    }
-  );
-};
-
-/**
- * Scrolls the page to top
- * @param {number} duration Duration in number
- * @param {function} callback Callback function
- */
-export const scrollToTop = (duration = 500, callback) => {
-  scrollToOffset(0, duration, callback);
-};
 
 /**
  * Loader class to automatically insert loading animation through code
@@ -268,7 +211,7 @@ export const sanitize = (input) => Handlebars.escapeExpression(input);
  * @param {string[]} keys List of keys
  * @param {dataLink} dataLink Row link
  */
-export const tableSort = (data, keys, dataLink) => {
+export const tableSort = (data, keys, dataLink, isClickable, rtKeys = []) => {
   const dataObject = {
     row: []
   };
@@ -277,13 +220,56 @@ export const tableSort = (data, keys, dataLink) => {
     dataObject.rowLink = `${dataLink}`;
   }
 
+  dataObject.isClickable = !!dataLink || isClickable;
+
   keys.forEach((key, index) => {
     const value = data[key];
     dataObject.row[index] = {
       key,
       value,
-      isRTE: [''].includes(key)
+      isRTE: rtKeys.includes(key)
     };
   });
   return dataObject;
 };
+
+/**
+ * Adds currency symbol to value
+ * @param {string} value Input value
+ * @param {string} isoCode ISO currency code
+ */
+export const resolveCurrency = (value, isoCode) => {
+  if (isNaN(+value) || !isoCode) {
+    return value; // No transformation
+  }
+  return money.format(value, {
+    code: isoCode
+  });
+};
+
+/**
+ * Checks if current page is iframe
+ */
+export const isCurrentPageIframe = () => ((window.location !== window.parent.location) && (window.frameElement.getAttribute('id') !== 'ContentFrame'));
+
+/**
+ * Checks if current environment is localhost
+ */
+export const isLocalhost = () => ($('#isDummyLayout').val() === 'true');
+
+/**
+ * Returns max safe integer
+ */
+export const getMaxSafeInteger = () => (Number.MAX_SAFE_INTEGER || 9007199254740991);
+
+/**
+ * Checks if key exists in object
+ * @param {object} obj Current object
+ * @param {string} key Object key
+ */
+export function hasOwn(obj, key) {
+  if (obj && typeof obj === 'object') {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+  }
+  return false;
+}

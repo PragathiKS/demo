@@ -64,7 +64,8 @@
           "sling:resourceType": "customerhub/components/content/financialstatement",
           "resetButtonText": "cuhu.financial.Reset",
           "setDates": "cuhu.financial.setDate",
-          "summaryHeadingI18n": "cuhu.financial.Summary"
+          "summaryHeadingI18n": "cuhu.financial.Summary",
+          "currencyList": "current,ninty,nintyPlus,overdue,sixty,total,orgAmount,remAmount,totalAmount"
         }
       }
     }
