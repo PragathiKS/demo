@@ -88,17 +88,13 @@
                             <footersociallinks
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true"
                                     fieldDescription="Click 'Add field' to add a new Social channel and link"
                                     fieldLabel="Social Links">
                                 <field
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
-                                        acs-commons-nested=""
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
                                         name="./footerSocialLinks">
-                                        <layout
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
-                                        method="absolute"/>
                                         <items jcr:primaryType="nt:unstructured">
                                             <column
                                             jcr:primaryType="nt:unstructured"
