@@ -111,7 +111,7 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                     composite="{Boolean}true"
                                     fieldDescription="Click 'Add field' to add a new tile"
-                                	maxlinksallowed="4"
+                                    validation="multifield-max-4"
                                     fieldLabel="Search Panel">
                                 <field
                                     jcr:primaryType="nt:unstructured"
