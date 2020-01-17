@@ -2,4 +2,9 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/publicweb" mode="update"/>
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
+    <filter root="/apps/publicweb/components" mode="update"/>
+    <filter root="/apps/publicweb/config" mode="replace"/>
+    <filter root="/apps/publicweb/i18n">
+        <exclude pattern="/apps/publicweb/i18n(/.*)?"/>
+    </filter>
 </workspaceFilter>

@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:primaryType="nt:unstructured"
-    jcr:title="Best Practice Line Page"
-    sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
-    mode="edit">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Best Practice Line Page"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
+          mode="edit">
     <content
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/foundation/container"
-        class="cq-dialog-content-page">
+            granite:class="cq-dialog-content-page"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">
             <tabs
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/foundation/container"
-                rel="cq-siteadmin-admin-properties-tabs">
-                <layout
+                    granite:rel="cq-siteadmin-admin-properties-tabs"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/tabs"
-                    type="nav"/>
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
                     <practiceline
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Best Practice Line Configuration"
-                        sling:resourceType="granite/ui/components/foundation/section">
-                        <layout
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                            margin="{Boolean}false"/>
+                            jcr:title="Best Practice Line Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
                             <column
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/container">
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
                                     <practiceLineProperties
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="Best Practice Line Properties"
-                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Best Practice Line Properties"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
                                             <ctaTexti18nKey
                                                     jcr:primaryType="nt:unstructured"
@@ -47,16 +40,16 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                     fieldLabel="Link Target"
                                                     name="./linkTarget">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <new
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <new
                                                             jcr:primaryType="nt:unstructured"
                                                             text="New Window"
                                                             value="_blank"/>
-                                                        <same
+                                                    <same
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Same Window"
                                                             value="_self"/>
-                                                    </items>
+                                                </items>
                                             </linkTarget>
                                             <imagepath
                                                     jcr:primaryType="nt:unstructured"
@@ -65,7 +58,7 @@
                                                     fieldLabel="Best Practice Line Image Path"
                                                     name="./practiceImagePath"
                                                     rootPath="/content/dam/publicweb"/>
-                                                <imagealt
+                                            <imagealt
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldDescription="Enter Alt Text"

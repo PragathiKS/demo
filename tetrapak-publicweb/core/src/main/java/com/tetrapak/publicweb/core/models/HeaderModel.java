@@ -23,7 +23,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-    private static final Logger log = LoggerFactory.getLogger(FooterModel.class);
+    private static final Logger log = LoggerFactory.getLogger(HeaderModel.class);
 
     @Self
     private Resource resource;
@@ -40,6 +40,7 @@ public class HeaderModel {
 
     @PostConstruct
     protected void init() {
+
         InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
         loginTextI18n = inheritanceValueMap.getInherited("loginTextI18n", String.class);
         searchRootPath = inheritanceValueMap.getInherited("searchRootPath", String.class);
