@@ -25,8 +25,6 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, AuthCheckerServlet.class})
 public class AuthCheckerServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/"
