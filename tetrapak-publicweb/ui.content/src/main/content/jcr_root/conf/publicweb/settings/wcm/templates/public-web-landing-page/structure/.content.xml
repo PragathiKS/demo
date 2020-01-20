@@ -3,6 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[/etc/mobile/groups/responsive]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="publicweb/components/structure/pages/page">
         <root

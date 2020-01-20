@@ -4,7 +4,7 @@
     jcr:primaryType="cq:Template"
     ranking="{Long}1">
     <jcr:content
-        jcr:description="Generic template for web pages"
+        jcr:description="Generic template for best practice line pages"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Public Web Empty Page"/>
+        jcr:title="Public Web Best Practice Line Page"/>
 </jcr:root>
