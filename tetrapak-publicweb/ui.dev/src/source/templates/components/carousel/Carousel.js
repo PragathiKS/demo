@@ -2,40 +2,34 @@ import $ from 'jquery';
 import 'bootstrap';
 
 class Carousel {
+  constructor({ el }) {
+    this.root = $(el);
+  }
   bindEvents() {
-    /* Bind jQuery events here */
-    $('body').bind('show.bs.tab', function(e){
-      let parentCarousel = e.target.closest('.pw-carousel');
-      if (!parentCarousel) {
-        return;
-      }
-      let grandParentId = $(parentCarousel).attr('id');
-      const grandParentIdSelector = '#'+grandParentId;
-
-      const $dropPills = $('.pw-carousel__mobileDropdown a.dropdown-item', grandParentIdSelector),
-        $mobileDrpdwn = $('.pw-carousel__mobileDropdown__toggle', grandParentIdSelector),
-        $tabPills = $('.pw-carousel__navPills__pill', grandParentIdSelector);
-
-      let selectedText = e.target.innerText;
-      $dropPills.each(function() {
-        if ($(this).text() !== selectedText) {
-          $(this).removeClass('active show');
-        } else {
-          $(this).addClass('active show');
-        }
-      });
-      $tabPills.each(function() {
-        if ($(this).text() !== selectedText) {
-          $(this).removeClass('active show');
-        } else {
-          $(this).addClass('active show');
-        }
-      });
-      $mobileDrpdwn.text(selectedText);
+    this.root.on('show.bs.tab', this.showTab);
+  }
+  showTab(e) {
+    const $currentTarget = $(e.target);
+    const parentCarousel = $currentTarget.closest('.js-pw-carousel');
+    if (!parentCarousel.length) {
+      return;
+    }
+    const $grandParentIdSelector = $(`#${parentCarousel.attr('id')}`);
+    const $dropPills = $grandParentIdSelector.find('.pw-carousels__mobileDropdown a.dropdown-item'),
+      $mobileDrpdwn = $grandParentIdSelector.find('.pw-carousel__mobileDropdown__toggle'),
+      $tabPills = $grandParentIdSelector.find('.pw-carousel__navPills__pill');
+    const selectedText = $currentTarget.text();
+    $dropPills.each(function () {
+      const $this = $(this);
+      $this[($this.text() !== selectedText) ? 'removeClass' : 'addClass']('active show');
     });
+    $tabPills.each(function () {
+      const $this = $(this);
+      $this[($this.text() !== selectedText) ? 'removeClass' : 'addClass']('active show');
+    });
+    $mobileDrpdwn.text(selectedText);
   }
   init() {
-    /* Mandatory method */
     this.bindEvents();
   }
 }
