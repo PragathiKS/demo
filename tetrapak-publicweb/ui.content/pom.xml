@@ -63,6 +63,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <acHandling>merge_preserve</acHandling>
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                 </configuration>
             </plugin>
             <plugin>
@@ -77,22 +78,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <!-- ====================================================================== -->
-    <!-- D E P E N D E N C I E S                                                -->
-    <!-- ====================================================================== -->
-    <dependencies>
-        <dependency>
-            <groupId>tetrapak-publicweb</groupId>
-            <artifactId>tetrapak-publicweb.core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adobe.aem</groupId>
-            <artifactId>uber-jar</artifactId>
-            <classifier>apis</classifier>
-        </dependency>
-
-    </dependencies>
 </project>

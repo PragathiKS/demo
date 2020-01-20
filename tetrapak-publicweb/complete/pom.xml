@@ -61,22 +61,7 @@
 								<artifactId>tetrapak-publicweb.core</artifactId>
 								<target>/apps/publicweb/install</target>
 							</embedded>
-							<!--<embedded>
-								<groupId>tetrapak-publicweb</groupId> 
-								<artifactId>tetrapak-publicweb.integration</artifactId>
-								<target>/apps/publicweb/install</target> 
-							</embedded> 
-							<embedded>
-								<groupId>tetrapak-publicweb</groupId> 
-								<artifactId>tetrapak-publicweb.it.launcher</artifactId>
-								<target>/apps/publicweb/install</target> 
-							</embedded>-->
 						</embeddeds>
-						<filters>
-						    <filter>
-						        <root>${package.root}</root>
-						    </filter>
-						</filters> 
 						<subPackages>
 					 		 <subPackage>
 						  		<type>content-package</type>
@@ -105,22 +90,13 @@
             <artifactId>tetrapak-publicweb.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dependency>
-           <groupId>tetrapak-publicweb</groupId>
-           <artifactId>tetrapak-publicweb.integration</artifactId>
-           <version>${project.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>tetrapak-publicweb</groupId>
-           <artifactId>tetrapak-publicweb.it.launcher</artifactId>
-           <version>${project.version}</version>
-       </dependency>
+        <!--<dYy>-->
         <dependency>
            <groupId>tetrapak-publicweb</groupId>
            <artifactId>tetrapak-publicweb.ui.content</artifactId>
            <version>${project.version}</version>
            <type>content-package</type>
-       </dependency>-->
+       </dependency>
         <dependency>
            <groupId>tetrapak-publicweb</groupId>
            <artifactId>tetrapak-publicweb.ui.dev</artifactId>
