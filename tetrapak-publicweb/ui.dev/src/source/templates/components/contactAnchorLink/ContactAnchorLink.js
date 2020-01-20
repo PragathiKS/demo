@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { $win, $global } from '../../../scripts/utils/commonSelectors';
 
 class ContactAnchorLink {
   constructor({ el }) {
@@ -6,40 +7,32 @@ class ContactAnchorLink {
   }
   cache = {};
   initCache() {
-    this.cache.$contactAnchor = $('.pw-contactAnchorLink', this.root);
+    this.cache.$contactAnchor = this.root.find('.js-pw-contactAnchorLink');
   }
-  goToContactForm(target) {
-    if($(target).length) {
-      $('html, body').animate({
-        scrollTop: parseInt($(target).offset().top, 10)
+  goToContactForm(e) {
+    e.preventDefault();
+    const $target = $($(this).attr('href'));
+    if ($target.length) {
+      $global.animate({
+        scrollTop: parseInt($target.offset().top, 10)
       }, 1000);
     }
   }
   bindEvents() {
-    const self = this;
-    $(window).scroll(function() {
-      var windowBottom = $(this).scrollTop() + $(this).innerHeight();
-      $('.pw-contactAnchorLink').each(function() {
-        /* Check the location of each desired element */
-        let target = $(this).attr('href');
-        if($(target).length) {
-          var objectBottom = $(target).offset().top + $(target).outerHeight();
-          /* If the element is completely within bounds of the window, fade it out */
-          if (objectBottom < windowBottom) { //object comes into view (scrolling down)
-            if ($(this).css('opacity') === '1') {
-              $(this).fadeTo(300, 0);
-            }
-          } else if ($(this).css('opacity') === '0') { //object goes out of view (scrolling up)
-            $(this).fadeTo(300, 1);
-          }
+    const { $contactAnchor } = this.cache;
+    $win.on('scroll', function () {
+      const $this = $(this);
+      var windowBottom = $this.scrollTop() + $this.innerHeight();
+      $contactAnchor.each(function () {
+        const $this = $(this);
+        const $target = $($this.attr('href')); // Hash link used as ID selector
+        if ($target.length) {
+          var objectBottom = $target.offset().top + $target.outerHeight();
+          $this[(objectBottom < windowBottom) ? 'addClass' : 'removeClass']('fade-out');
         }
       });
     }).scroll();
-    this.cache.$contactAnchor.click(function(e) {
-      e.preventDefault();
-      let target = $(this).attr('href');
-      self.goToContactForm(target);
-    });
+    $contactAnchor.on('click', this.goToContactForm);
   }
   init() {
     this.initCache();

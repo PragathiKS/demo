@@ -20,7 +20,7 @@ describe('ContactAnchorLink', function () {
     expect(this.contactAnchor.init.called).to.be.true;
   });
   it('should go to contact form position on click', function () {
-    $('.pw-contactAnchorLink').trigger('click');
+    $('.js-pw-contactAnchorLink').trigger('click');
     expect(this.contactAnchor.goToContactForm.called).to.be.true;
   });
 });
