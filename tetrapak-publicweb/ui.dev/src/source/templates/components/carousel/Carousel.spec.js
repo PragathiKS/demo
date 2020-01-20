@@ -1,7 +1,6 @@
 import Carousel from './Carousel';
 import $ from 'jquery';
 import carouselTemplate from '../../../test-templates-hbs/carousel.hbs';
-import { $body } from '../../../scripts/utils/commonSelectors';
 
 describe('Carousel', function () {
   before(function () {
