@@ -2,12 +2,9 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
-    <empty-experience-fragment/>
-    <empty-page/>
+    <jcr:content/>
+    <customerhub/>
     <rep:policy/>
-    <landing-page/>
-    <article-page/>
-    <error-page/>
-    <bestpracticeline-page/>
-    <product-page/>
+    <public-web/>
+    <customerhubtools/>
 </jcr:root>

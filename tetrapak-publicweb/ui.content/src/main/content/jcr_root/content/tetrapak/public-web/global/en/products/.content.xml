@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-04-21T14:44:44.965-03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2019-10-10T06:28:42.915Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-base-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Products"
+        jcr:uuid="1af8c2f8-3551-4e22-89d0-91ece8b6cc1e"
+        sling:resourceType="publicweb/components/structure/pages/page"/>
+    <high-shear-mixer-for-cold-emulsions/>
+    <tetra-pak-food-processor/>
+    <tetra-pak-pasteurizer-d-base/>
+    <test_erik/>
+</jcr:root>

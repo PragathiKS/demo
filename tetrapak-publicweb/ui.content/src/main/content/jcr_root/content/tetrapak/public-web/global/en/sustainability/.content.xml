@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-11-06T13:15:52.704Z"
+        cq:lastModifiedBy="roomahaj"
+        cq:lastReplicated="{Date}2019-10-10T06:28:42.139Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-base-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Sustainability"
+        jcr:uuid="e881ef77-981c-410e-9ae9-89a95d543bec"
+        sling:resourceType="publicweb/components/structure/pages/page">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <carouselwithfilters
+                jcr:created="{Date}2019-11-06T13:15:52.699Z"
+                jcr:createdBy="roomahaj"
+                jcr:lastModified="{Date}2019-11-06T13:15:52.699Z"
+                jcr:lastModifiedBy="roomahaj"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/carouselWithFilters"/>
+        </par>
+    </jcr:content>
+</jcr:root>
