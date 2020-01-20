@@ -132,14 +132,12 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/HelloWorld/",
-        "source/templates/components/HelloWorldHandlebars/",
-        "source/templates/components/OrderStatus/",
         "source/templates/components/listContentImage/",
         "source/templates/components/carousel/",
         "source/templates/components/carouselWithFilters/",
-        "source/templates/components/softConversionForm",
-        "source/templates/components/contactFooterForm"
+        "source/templates/components/softConversionForm/",
+        "source/templates/components/contactFooterForm/",
+        "source/templates/components/contactAnchorLink/"
       ]
     },
     "handlebars": {
