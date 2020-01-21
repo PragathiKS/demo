@@ -1,10 +1,10 @@
 import $ from 'jquery';
+import 'bootstrap';
+import 'core-js/features/array/includes';
 import { router, route } from 'jqueryrouter';
 import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
-import 'bootstrap';
-import 'core-js/features/array/includes';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods, API_ORDER_HISTORY, API_SEARCH, ORDER_HISTORY_ROWS_PER_PAGE, DATE_FORMAT, DATE_RANGE_SEPARATOR } from '../../../scripts/utils/constants';

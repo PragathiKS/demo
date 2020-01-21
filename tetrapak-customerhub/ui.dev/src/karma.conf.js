@@ -104,7 +104,9 @@ module.exports = function (config) {
       resolve: {
         mainFields: ['main', 'module'],
         alias: {
-          handlebars: 'handlebars/runtime'
+          handlebars: 'handlebars/runtime',
+          jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery/dist/jquery.js'),
+          bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap/dist/js/bootstrap.js')
         }
       }
     },

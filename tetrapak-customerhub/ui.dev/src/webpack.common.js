@@ -141,6 +141,9 @@ module.exports = {
   resolve: {
     mainFields: ['main', 'module'],
     alias: {
+      jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery/dist/jquery.js'),
+      bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap/dist/js/bootstrap.js'),
+      cssbootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
       handlebars: 'handlebars/runtime',
       tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
