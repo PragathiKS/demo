@@ -84,7 +84,7 @@
         "src": [
           "**/data/*.json"
         ],
-        "dest": "<%= config.app %>/jcr_root/etc/designs/commons/jsonData"
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/commons/jsonData"
       }
     ]
   },
@@ -132,7 +132,7 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/HelloWorld/"
+        "source/templates/components/helloearth/"
       ]
     },
     "handlebars": {
