@@ -4,5 +4,5 @@
     <jcr:content
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="publicweb/components/structure/pages/page"/>
+        sling:resourceType="publicweb/components/structure/pages/landingpage"/>
 </jcr:root>
