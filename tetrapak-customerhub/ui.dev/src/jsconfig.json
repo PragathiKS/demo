@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2020",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": ".",
+    "paths": {
+      "jquery": [
+        "../../../tetrapak-commons/ui.dev/src/node_modules/jquery"
+      ],
+      "bootstrap": [
+        "../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap"
+      ],
+      "core-js/*": [
+        "../../../tetrapak-commons/ui.dev/src/node_modules/core-js/*"
+      ],
+      "tpCommon/*": [
+        "../../../tetrapak-commons/ui.dev/src/source/*s"
+      ]
+    }
+  }
+}

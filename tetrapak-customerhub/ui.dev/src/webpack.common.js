@@ -141,10 +141,10 @@ module.exports = {
   resolve: {
     mainFields: ['main', 'module'],
     alias: {
-      jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery/dist/jquery.js'),
-      bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap/dist/js/bootstrap.js'),
-      cssbootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
-      handlebars: 'handlebars/runtime',
+      jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
+      bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+      handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
+      'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js'),
       tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }
