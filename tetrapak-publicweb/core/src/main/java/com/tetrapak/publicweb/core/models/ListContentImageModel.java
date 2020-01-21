@@ -109,7 +109,7 @@ public class ListContentImageModel {
      */
     public static List<String> getTabLinks(String[] tabLinks) {
         @SuppressWarnings("deprecation")
-        List<String> tabs = new ArrayList<String>();
+        List<String> tabs = new ArrayList<>();
         JSONObject jObj;
         try {
             if (tabLinks == null) {

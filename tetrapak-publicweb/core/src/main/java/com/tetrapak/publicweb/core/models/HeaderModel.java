@@ -6,6 +6,7 @@ import com.tetrapak.publicweb.core.beans.GeneralInfoBean;
 import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -58,7 +59,7 @@ public class HeaderModel {
      */
     public static List<GeneralInfoBean> getTiles(String[] searchPanelTiles) {
         @SuppressWarnings("deprecation")
-        List<GeneralInfoBean> tileList = new ArrayList<GeneralInfoBean>();
+        List<GeneralInfoBean> tileList = new ArrayList<>();
         JSONObject jObj;
         try {
             if (searchPanelTiles == null) {
@@ -66,35 +67,37 @@ public class HeaderModel {
             } else {
                 for (int i = 0; i < searchPanelTiles.length; i++) {
                     jObj = new JSONObject(searchPanelTiles[i]);
-                    GeneralInfoBean bean = new GeneralInfoBean();
-
-
-                    if (jObj.has("tileImage")) {
-                        bean.setImage(jObj.getString("tileImage"));
-                    }
-                    if (jObj.has("tileImageAltI18n")) {
-                        bean.setImageAltText(jObj.getString("tileImageAltI18n"));
-                    }
-                    if (jObj.has("tileTitle")) {
-                        bean.setTitle(jObj.getString("tileTitle"));
-                    }
-                    if (jObj.has("tileDescription")) {
-                        bean.setDescription(jObj.getString("tileDescription"));
-                    }
-                    if (jObj.has("tileLinkPath")) {
-                        bean.setLinkPath(jObj.getString("tileLinkPath"));
-                    }
-                    if (jObj.has("tileLinkTarget")) {
-                        bean.setTargetBlank(jObj.getString("tileLinkTarget"));
-                    }
+                    GeneralInfoBean bean = getGeneralInfoBean(jObj);
                     tileList.add(bean);
-
                 }
             }
         } catch (Exception e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tileList;
+    }
+
+    private static GeneralInfoBean getGeneralInfoBean(JSONObject jObj) throws JSONException {
+        GeneralInfoBean bean = new GeneralInfoBean();
+        if (jObj.has("tileImage")) {
+            bean.setImage(jObj.getString("tileImage"));
+        }
+        if (jObj.has("tileImageAltI18n")) {
+            bean.setImageAltText(jObj.getString("tileImageAltI18n"));
+        }
+        if (jObj.has("tileTitle")) {
+            bean.setTitle(jObj.getString("tileTitle"));
+        }
+        if (jObj.has("tileDescription")) {
+            bean.setDescription(jObj.getString("tileDescription"));
+        }
+        if (jObj.has("tileLinkPath")) {
+            bean.setLinkPath(jObj.getString("tileLinkPath"));
+        }
+        if (jObj.has("tileLinkTarget")) {
+            bean.setTargetBlank(jObj.getString("tileLinkTarget"));
+        }
+        return bean;
     }
 
     public List<NavigationLinkBean> getMegaMenuLinksList() {

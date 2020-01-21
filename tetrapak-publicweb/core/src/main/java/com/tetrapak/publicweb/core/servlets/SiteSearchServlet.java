@@ -81,7 +81,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private String SEARCH_ROOT_PATH;
     private String FULLTEXT_SEARCH_TERM;
 
-    private final String templateBasePath = "/apps/publicweb/templates/";
+    private static final String templateBasePath = "/apps/publicweb/templates/";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {

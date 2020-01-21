@@ -14,7 +14,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SoftConversionFormModel {
 
-    private static final Logger log = LoggerFactory.getLogger(ImageTextBannerModel.class);
+    private static final Logger log = LoggerFactory.getLogger(SoftConversionFormModel.class);
 
     @Inject
     private String firstNameLabel;
@@ -88,7 +88,7 @@ public class SoftConversionFormModel {
      */
     public static List<String> getRadioButtonGroups(String[] radioButtonGroups) {
         @SuppressWarnings("deprecation")
-        List<String> radioButtons = new ArrayList<String>();
+        List<String> radioButtons = new ArrayList<>();
         JSONObject jObj;
         try {
             if (radioButtonGroups == null) {

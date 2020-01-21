@@ -10,19 +10,18 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BestPracticeLinePageModel extends BasePageModel {
 
-    private ValueMap jcrMap;
-
     private String title;
     private String vanityDescription;
     private String ctaTexti18nKey;
     private String practiceImagePath;
     private String practiceImageAltI18n;
 
+    @Override
     @PostConstruct
     public void init() {
         super.init();
 
-        jcrMap = super.getPageContent().getJcrMap();
+        ValueMap jcrMap = super.getPageContent().getJcrMap();
 
         if (jcrMap != null) {
             title = jcrMap.get("jcr:title", String.class);

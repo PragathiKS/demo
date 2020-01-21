@@ -31,6 +31,7 @@ public class ArticlePageModel extends BasePageModel {
     private String navLinkPath;
     private String navLinkTarget;
 
+    @Override
     @PostConstruct
     public void init() {
         super.init();

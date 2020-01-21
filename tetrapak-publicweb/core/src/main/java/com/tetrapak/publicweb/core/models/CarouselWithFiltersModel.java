@@ -72,11 +72,9 @@ public class CarouselWithFiltersModel {
         log.info("Executing init method.");
         resourceResolver = resource.getResourceResolver();
         tagManager = resourceResolver.adaptTo(TagManager.class);
-        if (tagManager != null) {
-            if (!getTagList(productType).isEmpty()) {
-                prodType = getTagList(productType).get(0);
-                getCategoryTagsMap(category);
-            }
+        if (tagManager != null && !getTagList(productType).isEmpty()) {
+            prodType = getTagList(productType).get(0);
+            getCategoryTagsMap(category);
         }
     }
 

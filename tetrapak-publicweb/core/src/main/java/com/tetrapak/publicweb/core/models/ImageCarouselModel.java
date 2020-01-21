@@ -20,7 +20,7 @@ public class ImageCarouselModel {
     @Self
     private Resource resource;
 
-    private List<Map<String, String>> imagesList = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> imagesList = new ArrayList<>();
     private String resourceID;
 
     @PostConstruct
@@ -36,7 +36,7 @@ public class ImageCarouselModel {
                 String imagePath = valueMap.get("imagePath", StringUtils.EMPTY);
                 if (StringUtils.isNotEmpty(imagePath)) {
                     String imageAltText = valueMap.get("imageAltI18n", StringUtils.EMPTY);
-                    Map<String, String> imageItem = new HashMap<String, String>();
+                    Map<String, String> imageItem = new HashMap<>();
                     imageItem.put("imagePath", imagePath);
                     imageItem.put("imageAltI18n", imageAltText);
 

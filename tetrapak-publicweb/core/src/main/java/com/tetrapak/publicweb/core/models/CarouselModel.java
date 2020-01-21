@@ -46,6 +46,8 @@ public class CarouselModel {
 
     private List<BestPracticeLineBean> tabs = new ArrayList<>();
 
+    private static final String PRACTICE_PATH = "practicePath";
+
     @PostConstruct
     protected void init() {
         ResourceResolver resolver = resource.getResourceResolver();
@@ -53,7 +55,7 @@ public class CarouselModel {
 
         Resource childResource = resource.getChild("tabDetails");
         if (null != childResource) {
-            log.info("This is the child resource : " + childResource.getPath());
+            log.info("This is the child resource : {}", childResource.getPath());
             Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource res = itr.next();
@@ -68,8 +70,8 @@ public class CarouselModel {
 
                 if ("automatic".equals(contentType)) {
                     String practicePath = "";
-                    if (valueMap.containsKey("practicePath")) {
-                        practicePath = valueMap.get("practicePath", String.class);
+                    if (valueMap.containsKey(PRACTICE_PATH)) {
+                        practicePath = valueMap.get(PRACTICE_PATH, String.class);
                     }
 
                     Page landingPage = pageManager.getPage(practicePath);
@@ -111,7 +113,7 @@ public class CarouselModel {
                         bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
                     }
 
-                    if (valueMap.containsKey("practicePath")) {
+                    if (valueMap.containsKey(PRACTICE_PATH)) {
                         String path = valueMap.get("practicePath", String.class);
                         bean.setPracticePath(LinkUtils.sanitizeLink(path));
                     }

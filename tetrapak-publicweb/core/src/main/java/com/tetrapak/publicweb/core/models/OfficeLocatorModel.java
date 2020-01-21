@@ -26,7 +26,9 @@ public class OfficeLocatorModel {
 
     @PostConstruct
     protected void init() {
-
+        /*
+            no implementation needed
+         */
     }
 
     public String getTitle() {

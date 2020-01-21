@@ -79,7 +79,7 @@ public class ProductListingModel {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 
-        List<ProductListBean> tabs = new ArrayList<ProductListBean>();
+        List<ProductListBean> tabs = new ArrayList<>();
         JSONObject jObj;
         try {
             if (tabLinks == null) {
@@ -92,13 +92,13 @@ public class ProductListingModel {
                     if (jObj.has("tabLinkTextI18n")) {
                         bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
                     }
-
-                    if (jObj.has("categoryTag")) {
-                        Tag tag = tagManager.resolve(jObj.getString("categoryTag"));
-                        log.info("Tag : " + tag.getTagID());
+                    final String CATEGORY_TAG = "categoryTag";
+                    if (jObj.has(CATEGORY_TAG)) {
+                        Tag tag = tagManager.resolve(jObj.getString(CATEGORY_TAG));
+                        log.info("Tag : {}", tag.getTagID());
                         bean.setCategoryTag(tag.getTagID());
 
-                        String tagPath = jObj.getString("categoryTag");
+                        String tagPath = jObj.getString(CATEGORY_TAG);
                         if (tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
                             tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
                             String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");

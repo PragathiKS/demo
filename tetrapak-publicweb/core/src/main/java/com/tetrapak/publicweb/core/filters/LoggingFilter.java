@@ -58,10 +58,16 @@ public class LoggingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
+        /*
+            no implementation needed
+         */
     }
 
     @Override
     public void destroy() {
+        /*
+            no implementation needed
+         */
     }
 
 }

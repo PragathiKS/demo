@@ -26,8 +26,7 @@ public class BasePageModel {
             if (page == null) {
                 this.jcrResource = getPageManager().getContainingPage(jcrResource).getContentResource();
             } else {
-                if (this.jcrResource != null)
-                    this.jcrResource = this.jcrResource.getChild(JcrConstants.JCR_CONTENT);
+                this.jcrResource = this.jcrResource.getChild(JcrConstants.JCR_CONTENT);
             }
         }
         if (jcrResource != null)

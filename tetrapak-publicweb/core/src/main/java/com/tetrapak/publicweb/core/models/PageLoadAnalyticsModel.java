@@ -53,14 +53,12 @@ public class PageLoadAnalyticsModel {
     private StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-    private Map<String, String> tagsMap = new HashMap<String, String>();
+    private Map<String, String> tagsMap = new HashMap<>();
     private boolean productPage;
     private String productTitle = StringUtils.EMPTY;
 
     @PostConstruct
     public void initModel() {
-        String currentPagePath = currentPage.getPath();
-
         String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
         if (StringUtils.equals(templatePath, PRODUCT_PAGE_TEMPLATE_PATH)) {
             productPage = true;
@@ -188,7 +186,7 @@ public class PageLoadAnalyticsModel {
 
     private String buildDigitalDataJson() {
 
-        JsonObject digitalData = new JsonObject();
+        JsonObject jsonObject = new JsonObject();
 
         JsonObject pageInfo = new JsonObject();
         pageInfo.addProperty("channel", channel);
@@ -229,13 +227,13 @@ public class PageLoadAnalyticsModel {
         errorInfo.addProperty("errorcode", "");
         errorInfo.addProperty("errortype", "");
 
-        digitalData.add("pageinfo", pageInfo);
-        digitalData.add("conentInfo", conentInfo);
-        digitalData.add("userinfo", userInfo);
-        digitalData.add("error", errorInfo);
+        jsonObject.add("pageinfo", pageInfo);
+        jsonObject.add("conentInfo", conentInfo);
+        jsonObject.add("userinfo", userInfo);
+        jsonObject.add("error", errorInfo);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-        return gson.toJson(digitalData);
+        return gson.toJson(jsonObject);
 
     }
 

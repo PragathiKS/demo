@@ -10,8 +10,6 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LandingPageModel extends BasePageModel {
 
-    private ValueMap jcrMap;
-
     private String title;
     private String vanityDescription;
     private String ctaTexti18nKey;
@@ -20,11 +18,12 @@ public class LandingPageModel extends BasePageModel {
     private String articleImagePath;
     private String articleImageAltI18n;
 
+    @Override
     @PostConstruct
     public void init() {
         super.init();
 
-        jcrMap = super.getPageContent().getJcrMap();
+        ValueMap jcrMap = super.getPageContent().getJcrMap();
 
         if (jcrMap != null) {
             title = jcrMap.get("title", String.class);

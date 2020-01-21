@@ -41,7 +41,7 @@ public class ContactFooterFormSevlet extends SlingSafeMethodsServlet {
 
     private ResourceResolver resourceResolver;
 
-    private String UGC_CONTENT_PATH = "/content/usergenerated";
+    private static final String UGC_CONTENT_PATH = "/content/usergenerated";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {

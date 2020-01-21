@@ -50,26 +50,23 @@ public class FooterModel {
                 return;
             }
 
-            if (socialLinks != null) {
-                for (int i = 0; i < socialLinks.length; i++) {
-                    jObj = new JSONObject(socialLinks[i]);
-                    SocialLinkBean bean = new SocialLinkBean();
+            for (int i = 0; i < socialLinks.length; i++) {
+                jObj = new JSONObject(socialLinks[i]);
+                SocialLinkBean bean = new SocialLinkBean();
 
-                    String socialMedia = "";
-                    String socialMediaLinkPath = "";
-                    if (jObj.has("socialMedia")) {
-                        socialMedia = jObj.getString("socialMedia");
-                    }
-                    if (jObj.has("socialMediaLinkPath")) {
-                        socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
-                    }
-
-                    bean.setSocialMediaLinkPath(socialMediaLinkPath);
-                    bean.setSocialMediaIconClass("icon-" + socialMedia);
-                    bean.setSocialMediaName(socialMedia);
-                    footerSocialLinks.add(bean);
-
+                String socialMedia = "";
+                String socialMediaLinkPath = "";
+                if (jObj.has("socialMedia")) {
+                    socialMedia = jObj.getString("socialMedia");
                 }
+                if (jObj.has("socialMediaLinkPath")) {
+                    socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
+                }
+
+                bean.setSocialMediaLinkPath(socialMediaLinkPath);
+                bean.setSocialMediaIconClass("icon-" + socialMedia);
+                bean.setSocialMediaName(socialMedia);
+                footerSocialLinks.add(bean);
             }
         } catch (Exception e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);

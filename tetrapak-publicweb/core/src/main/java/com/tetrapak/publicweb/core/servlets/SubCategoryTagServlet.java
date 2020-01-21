@@ -57,7 +57,7 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 
     private ResourceResolver resourceResolver;
 
-    private String CATEGORY_TAG;
+    private String categoryTag;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -70,7 +70,7 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
             Map<String, String> subCategoryTagsMap = new HashMap<>();
 
             if (tagManager != null) {
-                String categoryTagId = request.getParameter(CATEGORY_TAG);
+                String categoryTagId = request.getParameter(categoryTag);
                 log.info("** Category Tag : {}", categoryTagId);
                 Tag categoryTag = tagManager.resolve(categoryTagId);
 
@@ -104,8 +104,8 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 
     @Activate
     protected void activate(final Config config) {
-        this.CATEGORY_TAG = (String.valueOf(config.category_tag()) != null) ? String.valueOf(config.category_tag())
+        this.categoryTag = (String.valueOf(config.category_tag()) != null) ? String.valueOf(config.category_tag())
                 : null;
-        log.info("configure: CATEGORY_TAG='{}'", this.CATEGORY_TAG);
+        log.info("configure: CATEGORY_TAG='{}'", this.categoryTag);
     }
 }

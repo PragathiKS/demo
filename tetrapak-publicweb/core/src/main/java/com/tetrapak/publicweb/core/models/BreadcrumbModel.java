@@ -40,7 +40,7 @@ public class BreadcrumbModel {
     protected void init() {
         pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         Page currentPage = pageManager.getContainingPage(resource);
-        log.info("Current Page path : " + currentPage.getPath());
+        log.info("Current Page path : {}", currentPage.getPath());
         if (currentPage != null) {
             buildBreadcrumbItems(currentPage);
         }
@@ -52,7 +52,7 @@ public class BreadcrumbModel {
         Page homePage = pageManager.getPage(homePagePath);
 
         if (homePage != null) {
-            log.info("Home Page path : " + homePage.getPath());
+            log.info("Home Page path : {}", homePage.getPath());
             int pageLevel = homePage.getDepth();
             int currentPageLevel = currentPage.getDepth();
             while (pageLevel < currentPageLevel) {

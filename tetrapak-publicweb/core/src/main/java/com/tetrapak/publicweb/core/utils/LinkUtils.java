@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.utils;
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 
@@ -67,30 +68,7 @@ public class LinkUtils extends WCMUsePojo {
             if (footerNavLinks != null) {
                 for (int i = 0; i < footerNavLinks.length; i++) {
                     jObj = new JSONObject(footerNavLinks[i]);
-                    NavigationLinkBean bean = new NavigationLinkBean();
-
-                    String linkTextI18n = "";
-                    String linkTooltipI18n = "";
-                    String linkPath = "";
-                    String targetBlank = "";
-                    if (jObj.has("linkTextI18n")) {
-                        linkTextI18n = jObj.getString("linkTextI18n");
-                    }
-                    if (jObj.has("linkTooltipI18n")) {
-                        linkTooltipI18n = jObj.getString("linkTooltipI18n");
-                    }
-                    if (jObj.has("linkPath")) {
-                        linkPath = jObj.getString("linkPath");
-                    }
-                    if (jObj.has("targetBlank")) {
-                        targetBlank = jObj.getString("targetBlank");
-                    }
-
-                    bean.setLinkTextI18n(linkTextI18n);
-                    bean.setLinkTooltipI18n(linkTooltipI18n);
-                    bean.setLinkPath(sanitizeLink(linkPath));
-                    bean.setLinkType(linkType(linkPath));
-                    bean.setTargetBlank(targetBlank);
+                    NavigationLinkBean bean = getNavigationLinkBean(jObj);
                     navLinksList.add(bean);
 
                 }
@@ -98,6 +76,34 @@ public class LinkUtils extends WCMUsePojo {
         } catch (Exception e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);
         }
+    }
+
+    private static NavigationLinkBean getNavigationLinkBean(JSONObject jObj) throws JSONException {
+        NavigationLinkBean bean = new NavigationLinkBean();
+
+        String linkTextI18n = "";
+        String linkTooltipI18n = "";
+        String linkPath = "";
+        String targetBlank = "";
+        if (jObj.has("linkTextI18n")) {
+            linkTextI18n = jObj.getString("linkTextI18n");
+        }
+        if (jObj.has("linkTooltipI18n")) {
+            linkTooltipI18n = jObj.getString("linkTooltipI18n");
+        }
+        if (jObj.has("linkPath")) {
+            linkPath = jObj.getString("linkPath");
+        }
+        if (jObj.has("targetBlank")) {
+            targetBlank = jObj.getString("targetBlank");
+        }
+
+        bean.setLinkTextI18n(linkTextI18n);
+        bean.setLinkTooltipI18n(linkTooltipI18n);
+        bean.setLinkPath(sanitizeLink(linkPath));
+        bean.setLinkType(linkType(linkPath));
+        bean.setTargetBlank(targetBlank);
+        return bean;
     }
 
 }

@@ -39,7 +39,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
 
     private static final Logger log = LoggerFactory.getLogger(BestPracticeLineServiceImpl.class);
 
-    private String BESTPRACTICE_TEMPLATE;
+    private String bestPracticeTemplate;
 
     /**
      * This method is used to check whether a best practice line page is
@@ -79,7 +79,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
 
         // Page type is Practice Line page.
         map.put("1_property", "jcr:content/cq:template");
-        map.put("1_property.value", BESTPRACTICE_TEMPLATE);
+        map.put("1_property.value", bestPracticeTemplate);
 
         // Parameter to look for product type as a tag on the page.
         map.put("2_group.1_group.property", "jcr:content/cq:tags");
@@ -113,34 +113,39 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
 
         // add all the items to the result list
         for (Hit hit : result.getHits()) {
-            BestPracticeLineBean practiceItem = new BestPracticeLineBean();
-            try {
-                log.info("Hit : {}", hit.getPath());
-                Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
-                if (res != null) {
-                    ValueMap properties = res.adaptTo(ValueMap.class);
-                    practiceItem.setPracticeTitle(properties.get("title", String.class) != null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
-                    practiceItem.setVanityDescription(properties.get("vanityDescription", String.class) != null ? properties.get("vanityDescription", String.class) : "");
-                    practiceItem.setPracticeImagePath(properties.get("practiceImagePath", String.class) != null ? properties.get("practiceImagePath", String.class) : "");
-                    practiceItem.setPracticeImageAltI18n(properties.get("practiceImageAltI18n", String.class) != null ? properties.get("practiceImageAltI18n", String.class) : "");
-                    practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
-                    practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath()));
-                }
-
-            } catch (RepositoryException e) {
-                log.error("There was an issue getting the resource {}", hit.toString());
-            }
+            BestPracticeLineBean practiceItem = getBestPracticeLineBean(resourceResolver, hit);
             resources.add(practiceItem);
         }
 
         return resources;
     }
 
+    private BestPracticeLineBean getBestPracticeLineBean(ResourceResolver resourceResolver, Hit hit) {
+        BestPracticeLineBean practiceItem = new BestPracticeLineBean();
+        try {
+            log.info("Hit : {}", hit.getPath());
+            Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
+            if (res != null) {
+                ValueMap properties = res.adaptTo(ValueMap.class);
+                practiceItem.setPracticeTitle(properties.get("title", String.class) != null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
+                practiceItem.setVanityDescription(properties.get("vanityDescription", String.class) != null ? properties.get("vanityDescription", String.class) : "");
+                practiceItem.setPracticeImagePath(properties.get("practiceImagePath", String.class) != null ? properties.get("practiceImagePath", String.class) : "");
+                practiceItem.setPracticeImageAltI18n(properties.get("practiceImageAltI18n", String.class) != null ? properties.get("practiceImageAltI18n", String.class) : "");
+                practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
+                practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath()));
+            }
+
+        } catch (RepositoryException e) {
+            log.error("There was an issue getting the resource {}", hit.toString());
+        }
+        return practiceItem;
+    }
+
     @Activate
     protected void activate(final Config config) {
-        this.BESTPRACTICE_TEMPLATE = (String.valueOf(config.bestpracticeTemplate()) != null) ? String.valueOf(config.bestpracticeTemplate())
+        this.bestPracticeTemplate = (String.valueOf(config.bestpracticeTemplate()) != null) ? String.valueOf(config.bestpracticeTemplate())
                 : null;
-        log.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.BESTPRACTICE_TEMPLATE);
+        log.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestPracticeTemplate);
     }
 
 }

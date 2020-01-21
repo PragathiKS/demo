@@ -126,9 +126,8 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     /**
      * Method to create a query and execute to get the results.
      *
-     * @param productRootPath
-     * @param fulltextSearchTerm
-     * @param searchRootPath
+     * @param productCategory  product category
+     * @param productRootPath product root path
      * @return List<ProductInfoBean>
      */
     public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
@@ -160,27 +159,31 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 
         // add all the items to the result list
         for (Hit hit : query.getResult().getHits()) {
-            ProductInfoBean productItem = new ProductInfoBean();
-            try {
-                log.info("Hit : {}", hit.getPath());
-                Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
-                if (res != null) {
-                    ValueMap properties = res.adaptTo(ValueMap.class);
-                    productItem.setTitle(properties.get("jcr:title", String.class) != null ? properties.get("jcr:title", String.class) : "");
-                    productItem.setDescription(properties.get("jcr:description", String.class) != null ? properties.get("jcr:description", String.class) : "");
-                    productItem.setProductImage(properties.get("productImagePath", String.class) != null ? properties.get("productImagePath", String.class) : "");
-                    productItem.setImageAltText(properties.get("productImageAltI18n", String.class) != null ? properties.get("productImageAltI18n", String.class) : "");
-                    productItem.setLinkText(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
-                    productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));
-                }
-
-            } catch (RepositoryException e) {
-                log.error("[performSearch] There was an issue getting the resource {}", hit.toString());
-            }
+            ProductInfoBean productItem = getProductInfoBean(hit);
             resources.add(productItem);
         }
-
         return resources;
+    }
+
+    private ProductInfoBean getProductInfoBean(Hit hit) {
+        ProductInfoBean productItem = new ProductInfoBean();
+        try {
+            log.info("Hit : {}", hit.getPath());
+            Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
+            if (res != null) {
+                ValueMap properties = res.adaptTo(ValueMap.class);
+                productItem.setTitle(properties.get("jcr:title", String.class) != null ? properties.get("jcr:title", String.class) : "");
+                productItem.setDescription(properties.get("jcr:description", String.class) != null ? properties.get("jcr:description", String.class) : "");
+                productItem.setProductImage(properties.get("productImagePath", String.class) != null ? properties.get("productImagePath", String.class) : "");
+                productItem.setImageAltText(properties.get("productImageAltI18n", String.class) != null ? properties.get("productImageAltI18n", String.class) : "");
+                productItem.setLinkText(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
+                productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));
+            }
+
+        } catch (RepositoryException e) {
+            log.error("[performSearch] There was an issue getting the resource {}", hit.toString());
+        }
+        return productItem;
     }
 
     @Activate
