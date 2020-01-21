@@ -9,27 +9,26 @@ class CarouselWithFilters {
   }
   cache = {};
   initCache() {
-    let parentId = this.root.attr('id');
-    this.cache.$catFilterItem = $('.pw-carousel__filters .js-filter-category .dropdown-item', '#'+parentId);
-    this.cache.$subcatFilterItem = $('.pw-carousel__filters .js-filter-subcategory .dropdown-item', '#'+parentId);
+    this.cache.$catFilterItem = this.root.find('.pw-carousel__filters .js-filter-category .dropdown-item');
+    this.cache.$subcatFilterItem = this.root.find('.pw-carousel__filters .js-filter-subcategory .dropdown-item');
     this.cache.categoriesMap = this.root.data('categories');
   }
-  renderPractice (parentId, catId) {
-    let productType = $('#'+parentId).data('prodtype');
-    let rootPath = $('#'+parentId).data('rootpath');
-    let btnVariant = $('#'+parentId).data('buttontheme');
+  renderPractice(subCategoryVal) {
+    const productType = this.root.data('prodtype');
+    const rootPath = this.root.data('rootpath');
+    const btnVariant = this.root.data('buttontheme');
     render.fn({
       template: 'carouselItem',
       url: GET_CAROUSEL_ITEM,
       ajaxConfig: {
         method: 'GET',
         data: {
-          productType: productType,
-          subCategoryVal: catId,
-          rootPath: rootPath
+          productType,
+          subCategoryVal,
+          rootPath
         }
       },
-      target: '#'+parentId+' .js-carouselfiltered-item',
+      target: this.root.find('.js-carouselfiltered-item'),
       beforeRender(data) {
         if (data && data.length) {
           this.data = data[0];
@@ -38,47 +37,44 @@ class CarouselWithFilters {
       }
     });
   }
-  renderSubcategories (parentId, catId) {
-    $('.dropdown-category-wrapper', '#'+parentId).removeClass('show');
-    $('.dropdown-category-wrapper .dropdown-item', '#'+parentId).removeClass('active');
-    $('.dropdown-category-wrapper[data-category="'+catId+'"]', '#'+parentId).addClass('show');
-    let $selectedSubcat = $('.dropdown-category-wrapper[data-category="'+catId+'"] .dropdown-item:first', '#'+parentId);
+  renderSubcategories(catId) {
+    this.root.find('.dropdown-category-wrapper').removeClass('show');
+    this.root.find('.dropdown-category-wrapper .dropdown-item').removeClass('active');
+    this.root.find(`.dropdown-category-wrapper[data-category="${catId}"]`).addClass('show');
+    const $selectedSubcat = $(`.dropdown-category-wrapper[data-category="${catId}"] .dropdown-item:first`);
     $selectedSubcat.addClass('active');
-    $('.subcategory__toggle', '#'+parentId).text($selectedSubcat.text());
-    this.renderPractice(parentId, $selectedSubcat.data('category'));
+    this.root.find('.subcategory__toggle').text($selectedSubcat.text());
+    this.renderPractice($selectedSubcat.data('category'));
   }
   bindEvents() {
     /* Bind jQuery events here */
-    this.cache.$catFilterItem.click(e => {
+    this.cache.$catFilterItem.on('click', e => {
       e.preventDefault();
-      let parent = e.target.closest('.pw-carousel');
-      let parentId = $(parent).attr('id');
-      let catId = $(e.target).data('category');
-      let catLabel = e.target.innerText;
-      $('.category__toggle', '#'+parentId).text(catLabel);
-      $('.js-filter-category .active', '#'+parentId).removeClass('active');
-      $(e.target).addClass('active');
-      this.renderSubcategories(parentId, catId);
+      const $target = $(e.target);
+      const catId = $target.data('category');
+      const catLabel = $target.text();
+      this.root.find('.category__toggle').text(catLabel);
+      this.root.find('.js-filter-category .active').removeClass('active');
+      $target.addClass('active');
+      this.renderSubcategories(catId);
     });
 
-    this.cache.$subcatFilterItem.click( e => {
+    this.cache.$subcatFilterItem.on('click', e => {
       e.preventDefault();
-      let parent = e.target.closest('.pw-carousel');
-      let parentId = $(parent).attr('id');
-      let catId = $(e.target).data('category');
-      let catLabel = e.target.innerText;
-      $('.subcategory__toggle', '#'+parentId).text(catLabel);
-      $('.js-filter-subcategory .active', '#'+parentId).removeClass('active');
+      const $target = $(e.target);
+      const catId = $target.data('category');
+      const catLabel = $target.text();
+      this.root.find('.subcategory__toggle').text(catLabel);
+      this.root.find('.js-filter-subcategory .active').removeClass('active');
       $(e.target).addClass('active');
-      this.renderPractice(parentId, catId);
+      this.renderPractice(catId);
     });
   }
   initFilters() {
-    let parentId = this.root.attr('id');
-    let catId = $('.js-filter-category .active', '#'+parentId).data('category');
-    let catLabel = $('.js-filter-category .active', '#'+parentId).text();
-    $('.category__toggle', '#'+parentId).text(catLabel);
-    this.renderSubcategories(parentId, catId);
+    const catId = this.root.find('.js-filter-category .active').data('category');
+    const catLabel = this.root.find('.js-filter-category .active').text();
+    this.root.find('.category__toggle').text(catLabel);
+    this.renderSubcategories(catId);
   }
   init() {
     /* Mandatory method */
