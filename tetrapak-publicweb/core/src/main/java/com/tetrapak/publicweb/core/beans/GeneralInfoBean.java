@@ -2,74 +2,74 @@ package com.tetrapak.publicweb.core.beans;
 
 public class GeneralInfoBean {
 
-	private String title;
-	
-	private String description;
-	
-	private String image;
-	
-	private String imageAltText;
-	
-	private String linkText;
-	
-	private String linkPath;
-	
-	private String targetBlank;
+    private String title;
 
-	public String getTitle() {
-		return title;
-	}
+    private String description;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private String image;
 
-	public String getDescription() {
-		return description;
-	}
+    private String imageAltText;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    private String linkText;
 
-	public String getImage() {
-		return image;
-	}
+    private String linkPath;
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    private String targetBlank;
 
-	public String getImageAltText() {
-		return imageAltText;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setImageAltText(String imageAltText) {
-		this.imageAltText = imageAltText;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getLinkText() {
-		return linkText;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setLinkText(String linkText) {
-		this.linkText = linkText;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getLinkPath() {
-		return linkPath;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public void setLinkPath(String linkPath) {
-		this.linkPath = linkPath;
-	}
-	
-	public String getTargetBlank() {
-		return targetBlank;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public void setTargetBlank(String targetBlank) {
-		this.targetBlank = targetBlank;
-	}
-	
+    public String getImageAltText() {
+        return imageAltText;
+    }
+
+    public void setImageAltText(String imageAltText) {
+        this.imageAltText = imageAltText;
+    }
+
+    public String getLinkText() {
+        return linkText;
+    }
+
+    public void setLinkText(String linkText) {
+        this.linkText = linkText;
+    }
+
+    public String getLinkPath() {
+        return linkPath;
+    }
+
+    public void setLinkPath(String linkPath) {
+        this.linkPath = linkPath;
+    }
+
+    public String getTargetBlank() {
+        return targetBlank;
+    }
+
+    public void setTargetBlank(String targetBlank) {
+        this.targetBlank = targetBlank;
+    }
+
 }

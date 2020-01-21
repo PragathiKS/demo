@@ -15,14 +15,6 @@
  */
 package com.tetrapak.publicweb.core.filters;
 
-import java.io.IOException;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.engine.EngineConstants;
 import org.osgi.framework.Constants;
@@ -30,16 +22,24 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+
 /**
  * Simple servlet filter component that logs incoming requests.
  */
 @Component(service = Filter.class,
-           property = {
-                   Constants.SERVICE_DESCRIPTION + "=Demo to filter incoming requests",
-                   EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
-                   Constants.SERVICE_RANKING + ":Integer=-700"
+        property = {
+                Constants.SERVICE_DESCRIPTION + "=Demo to filter incoming requests",
+                EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
+                Constants.SERVICE_RANKING + ":Integer=-700"
 
-           })
+        })
 public class LoggingFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -58,10 +58,16 @@ public class LoggingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
+        /*
+            no implementation needed
+         */
     }
 
     @Override
     public void destroy() {
+        /*
+            no implementation needed
+         */
     }
 
 }

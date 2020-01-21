@@ -1,10 +1,8 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
+import com.tetrapak.publicweb.core.beans.ProductListBean;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,9 +13,9 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
-import com.tetrapak.publicweb.core.beans.ProductListBean;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductListingModel {
@@ -81,7 +79,7 @@ public class ProductListingModel {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 
-        List<ProductListBean> tabs = new ArrayList<ProductListBean>();
+        List<ProductListBean> tabs = new ArrayList<>();
         JSONObject jObj;
         try {
             if (tabLinks == null) {
@@ -94,18 +92,18 @@ public class ProductListingModel {
                     if (jObj.has("tabLinkTextI18n")) {
                         bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
                     }
-
-                    if (jObj.has("categoryTag")) {
-                        Tag tag = tagManager.resolve(jObj.getString("categoryTag"));
-                        log.info("Tag : " + tag.getTagID());
+                    final String CATEGORY_TAG = "categoryTag";
+                    if (jObj.has(CATEGORY_TAG)) {
+                        Tag tag = tagManager.resolve(jObj.getString(CATEGORY_TAG));
+                        log.info("Tag : {}", tag.getTagID());
                         bean.setCategoryTag(tag.getTagID());
-                        
-                        String tagPath = jObj.getString("categoryTag");
-                        if(tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
-                    		tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
-                    		String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
-                    		bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
-                    	}
+
+                        String tagPath = jObj.getString(CATEGORY_TAG);
+                        if (tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
+                            tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
+                            String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
+                            bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
+                        }
                     }
                     tabs.add(bean);
                 }

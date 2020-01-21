@@ -1,16 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
+import javax.annotation.PostConstruct;
+
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LandingPageModel extends BasePageModel {
-
-    private ValueMap jcrMap;
 
     private String title;
     private String vanityDescription;
@@ -20,11 +18,12 @@ public class LandingPageModel extends BasePageModel {
     private String articleImagePath;
     private String articleImageAltI18n;
 
+    @Override
     @PostConstruct
     public void init() {
         super.init();
 
-        jcrMap = super.getPageContent().getJcrMap();
+        ValueMap jcrMap = super.getPageContent().getJcrMap();
 
         if (jcrMap != null) {
             title = jcrMap.get("title", String.class);
