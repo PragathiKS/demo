@@ -6,7 +6,7 @@ class Carousel {
     this.root = $(el);
   }
   bindEvents() {
-    this.root.on('show.bs.tab', this.showTab);
+    this.root.on('show.bs.tab', this.showTab.bind(this));
   }
   showTab(e) {
     const $currentTarget = $(e.target);
@@ -19,15 +19,18 @@ class Carousel {
       $mobileDrpdwn = $grandParentIdSelector.find('.pw-carousel__mobileDropdown__toggle'),
       $tabPills = $grandParentIdSelector.find('.pw-carousel__navPills__pill');
     const selectedText = $currentTarget.text();
+    const self = this;
     $dropPills.each(function () {
-      const $this = $(this);
-      $this[($this.text() !== selectedText) ? 'removeClass' : 'addClass']('active show');
+      self.activateSection.apply(this, [selectedText]);
     });
     $tabPills.each(function () {
-      const $this = $(this);
-      $this[($this.text() !== selectedText) ? 'removeClass' : 'addClass']('active show');
+      self.activateSection.apply(this, [selectedText]);
     });
     $mobileDrpdwn.text(selectedText);
+  }
+  activateSection(selectedText) {
+    const $this = $(this);
+    $this[($this.text() !== selectedText) ? 'removeClass' : 'addClass']('active show');
   }
   init() {
     this.bindEvents();
