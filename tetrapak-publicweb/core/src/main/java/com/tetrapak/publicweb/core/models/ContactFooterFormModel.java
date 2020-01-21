@@ -20,70 +20,70 @@ import java.util.List;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactFooterFormModel {
-	
-	private static final Logger log = LoggerFactory.getLogger(ContactFooterFormModel.class);
 
-	@Self
+    private static final Logger log = LoggerFactory.getLogger(ContactFooterFormModel.class);
+
+    @Self
     private Resource resource;
-	
-	private String titleI18n;
 
-	private String description;
+    private String titleI18n;
 
-	private String image;
+    private String description;
 
-	private String imageAltI18n;
+    private String image;
 
-	private String helpText;
-	
-	private String privacyPolicyText;
-	
-	private String thankYouHeadline;
-	
-	private String thankYouMessage;
-	
-	private String linkTextI18n;
-	
-	private String linkPath;
+    private String imageAltI18n;
 
-	private String firstNameLabel;
+    private String helpText;
 
-	private String lastNameLabel;
-	
-	private String phoneNumberLabel;
+    private String privacyPolicyText;
 
-	private String emailAddressLabel;
+    private String thankYouHeadline;
 
-	private String positionLabel;
+    private String thankYouMessage;
 
-	private String companyLabel;	
+    private String linkTextI18n;
 
-	private String contactUsLabel;	
+    private String linkPath;
 
-	private String messageLabel;	
+    private String firstNameLabel;
 
-	private String previousButtonLabel;
+    private String lastNameLabel;
 
-	private String nextButtonLabel;
-	
-	private String submitButtonLabel;	
-	
-	private Boolean hideContactFooterForm = false;
-	
-	private List<Item> countryList;
+    private String phoneNumberLabel;
+
+    private String emailAddressLabel;
+
+    private String positionLabel;
+
+    private String companyLabel;
+
+    private String contactUsLabel;
+
+    private String messageLabel;
+
+    private String previousButtonLabel;
+
+    private String nextButtonLabel;
+
+    private String submitButtonLabel;
+
+    private Boolean hideContactFooterForm = false;
+
+    private List<Item> countryList;
 
     @PostConstruct
     protected void init() {
-    	log.info("Inside init() method." );
-    	ResourceResolver resourceResolver = resource.getResourceResolver();
-    	PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-    	Page currentPage = pageManager.getContainingPage(resource);      	
+        log.info("Inside init() method.");
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+        Page currentPage = pageManager.getContainingPage(resource);
         if (currentPage != null) {
-        	log.info("Current Page path : {}", currentPage.getPath());
-        	ValueMap currentPageProps = currentPage.getContentResource().getValueMap();
-        	hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
+            log.info("Current Page path : {}", currentPage.getPath());
+            ValueMap currentPageProps = currentPage.getContentResource().getValueMap();
+            hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
         }
-        
+
         InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
         titleI18n = inheritanceValueMap.getInherited("titleI18n", String.class);
         description = inheritanceValueMap.getInherited("description", String.class);
@@ -106,106 +106,106 @@ public class ContactFooterFormModel {
         previousButtonLabel = inheritanceValueMap.getInherited("previousButtonLabel", String.class);
         nextButtonLabel = inheritanceValueMap.getInherited("nextButtonLabel", String.class);
         submitButtonLabel = inheritanceValueMap.getInherited("submitButtonLabel", String.class);
-        
+
         getCountriesList(pageManager);
     }
 
-	private void getCountriesList(PageManager pageManager) {				
-	    Page listPage = pageManager.getPage("/etc/acs-commons/lists/countries");
-	    GenericList list = listPage.adaptTo(GenericList.class);
-	    countryList = list.getItems();
-	}
-
-	public String getTitleI18n() {
-		return titleI18n;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public String getImageAltI18n() {
-		return imageAltI18n;
-	}
-
-	public String getHelpText() {
-		return helpText;
-	}
-
-	public String getPrivacyPolicyText() {
-		return privacyPolicyText;
-	}
-
-	public String getThankYouHeadline() {
-		return thankYouHeadline;
-	}
-
-	public String getThankYouMessage() {
-		return thankYouMessage;
-	}
-
-	public String getLinkTextI18n() {
-		return linkTextI18n;
-	}
-
-	public String getLinkPath() {
-		return linkPath;
-	}
-
-	public String getFirstNameLabel() {
-		return firstNameLabel;
-	}
-
-	public String getLastNameLabel() {
-		return lastNameLabel;
-	}
-
-	public String getPhoneNumberLabel() {
-		return phoneNumberLabel;
-	}
-
-	public String getEmailAddressLabel() {
-		return emailAddressLabel;
-	}
-
-	public String getPositionLabel() {
-		return positionLabel;
-	}
-
-	public String getCompanyLabel() {
-		return companyLabel;
-	}
-
-	public String getContactUsLabel() {
-		return contactUsLabel;
-	}
-
-	public String getMessageLabel() {
-		return messageLabel;
-	}
-
-	public String getPreviousButtonLabel() {
-		return previousButtonLabel;
-	}
-
-	public String getNextButtonLabel() {
-		return nextButtonLabel;
-	}
-
-	public String getSubmitButtonLabel() {
-		return submitButtonLabel;
-	}
-	
-    public Boolean getHideContactFooterForm() {
-    	return hideContactFooterForm;
+    private void getCountriesList(PageManager pageManager) {
+        Page listPage = pageManager.getPage("/etc/acs-commons/lists/countries");
+        GenericList list = listPage.adaptTo(GenericList.class);
+        countryList = list.getItems();
     }
 
-	public List<Item> getCountryList() {
-		return countryList;
-	}
+    public String getTitleI18n() {
+        return titleI18n;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getImageAltI18n() {
+        return imageAltI18n;
+    }
+
+    public String getHelpText() {
+        return helpText;
+    }
+
+    public String getPrivacyPolicyText() {
+        return privacyPolicyText;
+    }
+
+    public String getThankYouHeadline() {
+        return thankYouHeadline;
+    }
+
+    public String getThankYouMessage() {
+        return thankYouMessage;
+    }
+
+    public String getLinkTextI18n() {
+        return linkTextI18n;
+    }
+
+    public String getLinkPath() {
+        return linkPath;
+    }
+
+    public String getFirstNameLabel() {
+        return firstNameLabel;
+    }
+
+    public String getLastNameLabel() {
+        return lastNameLabel;
+    }
+
+    public String getPhoneNumberLabel() {
+        return phoneNumberLabel;
+    }
+
+    public String getEmailAddressLabel() {
+        return emailAddressLabel;
+    }
+
+    public String getPositionLabel() {
+        return positionLabel;
+    }
+
+    public String getCompanyLabel() {
+        return companyLabel;
+    }
+
+    public String getContactUsLabel() {
+        return contactUsLabel;
+    }
+
+    public String getMessageLabel() {
+        return messageLabel;
+    }
+
+    public String getPreviousButtonLabel() {
+        return previousButtonLabel;
+    }
+
+    public String getNextButtonLabel() {
+        return nextButtonLabel;
+    }
+
+    public String getSubmitButtonLabel() {
+        return submitButtonLabel;
+    }
+
+    public Boolean getHideContactFooterForm() {
+        return hideContactFooterForm;
+    }
+
+    public List<Item> getCountryList() {
+        return countryList;
+    }
 
 }

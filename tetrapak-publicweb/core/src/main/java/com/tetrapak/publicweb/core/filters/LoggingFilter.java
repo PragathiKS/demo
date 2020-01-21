@@ -34,12 +34,12 @@ import java.io.IOException;
  * Simple servlet filter component that logs incoming requests.
  */
 @Component(service = Filter.class,
-           property = {
-                   Constants.SERVICE_DESCRIPTION + "=Demo to filter incoming requests",
-                   EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
-                   Constants.SERVICE_RANKING + ":Integer=-700"
+        property = {
+                Constants.SERVICE_DESCRIPTION + "=Demo to filter incoming requests",
+                EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
+                Constants.SERVICE_RANKING + ":Integer=-700"
 
-           })
+        })
 public class LoggingFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

@@ -54,7 +54,7 @@ public class ArticleItemModel {
         ResourceResolver resolver = resource.getResourceResolver();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-        if ("automatic".equals(contentType) && pageManager!=null) {
+        if ("automatic".equals(contentType) && pageManager != null) {
             Page articlePage = pageManager.getPage(articlePath);
             if (articlePage != null) {
                 Resource jcrContentResource = articlePage.getContentResource();
@@ -94,7 +94,7 @@ public class ArticleItemModel {
     public String getArticlePath() {
         return LinkUtils.sanitizeLink(articlePath);
     }
-    
+
     public String getLinkType() {
         return LinkUtils.linkType(articlePath);
     }

@@ -12,114 +12,114 @@ import java.util.Date;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePageModel extends BasePageModel {
-	
-	private ValueMap jcrMap;
 
-	private String articleTitle;
-	private String description;
-	private Boolean showArticleDate;
-	private String articleDate;
-	private String articleImagePath;
-	private String imageAltTextI18n;
-	private String linkText;
+    private ValueMap jcrMap;
 
-	private Boolean showStickyNavigation;
-	private String thumbnailImagePath;
-	private String stickyNavTitle;
-	private String stickyNavDescription;
-	private String navLinkText;
-	private String navLinkPath;
-	private String navLinkTarget;
+    private String articleTitle;
+    private String description;
+    private Boolean showArticleDate;
+    private String articleDate;
+    private String articleImagePath;
+    private String imageAltTextI18n;
+    private String linkText;
 
-	@PostConstruct
-	public void init() {
-		super.init();
-		jcrMap = super.getPageContent().getJcrMap();
+    private Boolean showStickyNavigation;
+    private String thumbnailImagePath;
+    private String stickyNavTitle;
+    private String stickyNavDescription;
+    private String navLinkText;
+    private String navLinkPath;
+    private String navLinkTarget;
 
-		if (jcrMap != null) {
-			articleTitle = jcrMap.get("jcr:title", String.class);
-			description = jcrMap.get("jcr:description", String.class);
-			showArticleDate = jcrMap.get("showArticleDate", false);
-			
-			Date date = jcrMap.get("articleDate", Date.class);
-			if (date == null) {
-				date = getPageContent().getCreatedOn();
-			} 
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			articleDate = simpleDateFormat.format(date);
-			
-			articleImagePath = jcrMap.get("articleImagePath", String.class);
-			imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
-			linkText = jcrMap.get("linkText", String.class);
+    @PostConstruct
+    public void init() {
+        super.init();
+        jcrMap = super.getPageContent().getJcrMap();
 
-			showStickyNavigation = jcrMap.get("showStickyNavigation", false);
-			thumbnailImagePath = jcrMap.get("thumbnailImagePath", String.class);
-			stickyNavTitle = jcrMap.get("stickyNavTitle", String.class);
-			stickyNavDescription = jcrMap.get("stickyNavDescription", String.class);
-			navLinkText = jcrMap.get("navLinkText", String.class);
-			navLinkPath = jcrMap.get("navLinkPath", String.class);
-			navLinkTarget = jcrMap.get("navLinkTarget", String.class);
-		}
-	}
+        if (jcrMap != null) {
+            articleTitle = jcrMap.get("jcr:title", String.class);
+            description = jcrMap.get("jcr:description", String.class);
+            showArticleDate = jcrMap.get("showArticleDate", false);
 
-	public ValueMap getJcrMap() {
-		return jcrMap;
-	}
+            Date date = jcrMap.get("articleDate", Date.class);
+            if (date == null) {
+                date = getPageContent().getCreatedOn();
+            }
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            articleDate = simpleDateFormat.format(date);
 
-	public String getArticleTitle() {
-		return articleTitle;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
+            articleImagePath = jcrMap.get("articleImagePath", String.class);
+            imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
+            linkText = jcrMap.get("linkText", String.class);
 
-	public Boolean getShowArticleDate() {
-		return showArticleDate;
-	}
+            showStickyNavigation = jcrMap.get("showStickyNavigation", false);
+            thumbnailImagePath = jcrMap.get("thumbnailImagePath", String.class);
+            stickyNavTitle = jcrMap.get("stickyNavTitle", String.class);
+            stickyNavDescription = jcrMap.get("stickyNavDescription", String.class);
+            navLinkText = jcrMap.get("navLinkText", String.class);
+            navLinkPath = jcrMap.get("navLinkPath", String.class);
+            navLinkTarget = jcrMap.get("navLinkTarget", String.class);
+        }
+    }
 
-	public String getArticleDate() {
-		return articleDate;
-	}
+    public ValueMap getJcrMap() {
+        return jcrMap;
+    }
 
-	public String getArticleImagePath() {
-		return LinkUtils.sanitizeLink(articleImagePath);
-	}
+    public String getArticleTitle() {
+        return articleTitle;
+    }
 
-	public String getImageAltTextI18n() {
-		return imageAltTextI18n;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getLinkText() {
-		return linkText;
-	}
-	
-	public Boolean getShowStickyNavigation() {
-		return showStickyNavigation;
-	}
+    public Boolean getShowArticleDate() {
+        return showArticleDate;
+    }
 
-	public String getThumbnailImagePath() {
-		return LinkUtils.sanitizeLink(thumbnailImagePath);
-	}
+    public String getArticleDate() {
+        return articleDate;
+    }
 
-	public String getStickyNavTitle() {
-		return stickyNavTitle;
-	}
+    public String getArticleImagePath() {
+        return LinkUtils.sanitizeLink(articleImagePath);
+    }
 
-	public String getStickyNavDescription() {
-		return stickyNavDescription;
-	}
+    public String getImageAltTextI18n() {
+        return imageAltTextI18n;
+    }
 
-	public String getNavLinkText() {
-		return navLinkText;
-	}
-	
-	public String getNavLinkPath() {
-		return navLinkPath;
-	}
+    public String getLinkText() {
+        return linkText;
+    }
 
-	public String getNavLinkTarget() {
-		return navLinkTarget;
-	}
+    public Boolean getShowStickyNavigation() {
+        return showStickyNavigation;
+    }
+
+    public String getThumbnailImagePath() {
+        return LinkUtils.sanitizeLink(thumbnailImagePath);
+    }
+
+    public String getStickyNavTitle() {
+        return stickyNavTitle;
+    }
+
+    public String getStickyNavDescription() {
+        return stickyNavDescription;
+    }
+
+    public String getNavLinkText() {
+        return navLinkText;
+    }
+
+    public String getNavLinkPath() {
+        return navLinkPath;
+    }
+
+    public String getNavLinkTarget() {
+        return navLinkTarget;
+    }
 
 }

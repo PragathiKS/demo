@@ -27,7 +27,7 @@ public class ImageTextButtonModel {
 
     @Inject
     private String ctaLinkURL;
-    
+
     @Inject
     private Boolean openLinkInNewWindow;
 
@@ -69,13 +69,13 @@ public class ImageTextButtonModel {
     public String getCtaLinkURL() {
         return ctaLinkURL;
     }
-    
+
     public String getLinkType() {
         return LinkUtils.linkType(ctaLinkURL);
     }
-    
+
     public Boolean getOpenLinkInNewWindow() {
-    	return openLinkInNewWindow;
+        return openLinkInNewWindow;
     }
 
     public String getImagePath() {

@@ -19,34 +19,34 @@ public class ImageCarouselModel {
 
     @Self
     private Resource resource;
-    
+
     private List<Map<String, String>> imagesList = new ArrayList<Map<String, String>>();
     private String resourceID;
-    
+
     @PostConstruct
     protected void init() {
-    	
-		Resource imageDetails = resource.getChild("imageDetails");
-		if (null != imageDetails) {
-			Iterator<Resource> itr = imageDetails.listChildren();
-			while (itr.hasNext()) {
-				Resource imageRes = itr.next();
-				ValueMap valueMap = imageRes.getValueMap();
-				
-				String imagePath = valueMap.get("imagePath", StringUtils.EMPTY);
-				if (StringUtils.isNotEmpty(imagePath)) {
-					String imageAltText = valueMap.get("imageAltI18n", StringUtils.EMPTY);
-					Map<String, String> imageItem = new HashMap<String, String>();
-					imageItem.put("imagePath", imagePath);
-					imageItem.put("imageAltI18n", imageAltText);
-					
-					imagesList.add(imageItem);
-				}
-			}
-		}
-		resourceID = resource.getName();
+
+        Resource imageDetails = resource.getChild("imageDetails");
+        if (null != imageDetails) {
+            Iterator<Resource> itr = imageDetails.listChildren();
+            while (itr.hasNext()) {
+                Resource imageRes = itr.next();
+                ValueMap valueMap = imageRes.getValueMap();
+
+                String imagePath = valueMap.get("imagePath", StringUtils.EMPTY);
+                if (StringUtils.isNotEmpty(imagePath)) {
+                    String imageAltText = valueMap.get("imageAltI18n", StringUtils.EMPTY);
+                    Map<String, String> imageItem = new HashMap<String, String>();
+                    imageItem.put("imagePath", imagePath);
+                    imageItem.put("imageAltI18n", imageAltText);
+
+                    imagesList.add(imageItem);
+                }
+            }
+        }
+        resourceID = resource.getName();
     }
-    
+
     public String getResourceID() {
         return resourceID;
     }

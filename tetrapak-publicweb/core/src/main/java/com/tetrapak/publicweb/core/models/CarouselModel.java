@@ -22,18 +22,18 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselModel {
 
-	private static final Logger log = LoggerFactory.getLogger(CarouselModel.class);
+    private static final Logger log = LoggerFactory.getLogger(CarouselModel.class);
 
-	@Self
-	private Resource resource;
+    @Self
+    private Resource resource;
 
-	@Inject
-	private String titleI18n;
+    @Inject
+    private String titleI18n;
 
-	@Inject
-	private String titleAlignment;
+    @Inject
+    private String titleAlignment;
 
-	@Inject
+    @Inject
     private String pwTheme;
 
     @Inject
@@ -42,98 +42,98 @@ public class CarouselModel {
     @Inject
     private String pwPadding;
 
-    private Integer carouselId = (int )(Math.random() * 1000 + 1);
+    private Integer carouselId = (int) (Math.random() * 1000 + 1);
 
-	private List<BestPracticeLineBean> tabs = new ArrayList<>();
+    private List<BestPracticeLineBean> tabs = new ArrayList<>();
 
-	@PostConstruct
-	protected void init() {
-		ResourceResolver resolver = resource.getResourceResolver();
-		PageManager pageManager = resolver.adaptTo(PageManager.class);
+    @PostConstruct
+    protected void init() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-		Resource childResource = resource.getChild("tabDetails");
-		if (null != childResource) {
-			log.info("This is the child resource : " + childResource.getPath());
-			Iterator<Resource> itr = childResource.listChildren();
-			while (itr.hasNext()) {
-				Resource res = itr.next();
-				ValueMap valueMap = res.getValueMap();
+        Resource childResource = resource.getChild("tabDetails");
+        if (null != childResource) {
+            log.info("This is the child resource : " + childResource.getPath());
+            Iterator<Resource> itr = childResource.listChildren();
+            while (itr.hasNext()) {
+                Resource res = itr.next();
+                ValueMap valueMap = res.getValueMap();
 
-				BestPracticeLineBean bean = new BestPracticeLineBean();
+                BestPracticeLineBean bean = new BestPracticeLineBean();
 
-				String contentType = "";
-				if (valueMap.containsKey("contentType")) {
-					contentType = valueMap.get("contentType", String.class);
-				}
+                String contentType = "";
+                if (valueMap.containsKey("contentType")) {
+                    contentType = valueMap.get("contentType", String.class);
+                }
 
-				if ("automatic".equals(contentType)) {
-					String practicePath = "";
-					if (valueMap.containsKey("practicePath")) {
-						practicePath = valueMap.get("practicePath", String.class);
-					}
+                if ("automatic".equals(contentType)) {
+                    String practicePath = "";
+                    if (valueMap.containsKey("practicePath")) {
+                        practicePath = valueMap.get("practicePath", String.class);
+                    }
 
-					Page landingPage = pageManager.getPage(practicePath);
-					if (landingPage != null) {
-						Resource jcrContentResource = landingPage.getContentResource();
-						BestPracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(BestPracticeLinePageModel.class);
-						if (practiceLinePageModel != null) {
-							bean.setPracticeTitle(practiceLinePageModel.getTitle());
-							bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
-							bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
-							bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
-							bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
-							bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
-						}
-					}
-				} else {
+                    Page landingPage = pageManager.getPage(practicePath);
+                    if (landingPage != null) {
+                        Resource jcrContentResource = landingPage.getContentResource();
+                        BestPracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(BestPracticeLinePageModel.class);
+                        if (practiceLinePageModel != null) {
+                            bean.setPracticeTitle(practiceLinePageModel.getTitle());
+                            bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
+                            bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
+                            bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
+                            bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
+                            bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
+                        }
+                    }
+                } else {
 
-					if (valueMap.containsKey("practiceTitle")) {
-						bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
-					}
+                    if (valueMap.containsKey("practiceTitle")) {
+                        bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
+                    }
 
-					if (valueMap.containsKey("vanityDescription")) {
-						bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
-					}
+                    if (valueMap.containsKey("vanityDescription")) {
+                        bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
+                    }
 
-					if (valueMap.containsKey("ctaTexti18nKey")) {
-						bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
-					}
+                    if (valueMap.containsKey("ctaTexti18nKey")) {
+                        bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
+                    }
 
-					if (valueMap.containsKey("linkTarget")) {
-						bean.setLinkTarget(valueMap.get("linkTarget", String.class));
-					}
+                    if (valueMap.containsKey("linkTarget")) {
+                        bean.setLinkTarget(valueMap.get("linkTarget", String.class));
+                    }
 
-					if (valueMap.containsKey("practiceImagePath")) {
-						bean.setPracticeImagePath(valueMap.get("practiceImagePath", String.class));
-					}
+                    if (valueMap.containsKey("practiceImagePath")) {
+                        bean.setPracticeImagePath(valueMap.get("practiceImagePath", String.class));
+                    }
 
-					if (valueMap.containsKey("practiceImageAltI18n")) {
-						bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
-					}
+                    if (valueMap.containsKey("practiceImageAltI18n")) {
+                        bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
+                    }
 
-					if (valueMap.containsKey("practicePath")) {
-						String path = valueMap.get("practicePath", String.class);
-						bean.setPracticePath(LinkUtils.sanitizeLink(path));
-					}
+                    if (valueMap.containsKey("practicePath")) {
+                        String path = valueMap.get("practicePath", String.class);
+                        bean.setPracticePath(LinkUtils.sanitizeLink(path));
+                    }
 
-				}
+                }
 
-				tabs.add(bean);
+                tabs.add(bean);
 
-			}
-		}
+            }
+        }
 
-	}
+    }
 
-	public String getTitleI18n() {
-		return titleI18n;
-	}
+    public String getTitleI18n() {
+        return titleI18n;
+    }
 
-	public String getTitleAlignment() {
-		return titleAlignment;
-	}
+    public String getTitleAlignment() {
+        return titleAlignment;
+    }
 
-	public String getPwTheme() {
+    public String getPwTheme() {
         return pwTheme;
     }
 
@@ -145,12 +145,12 @@ public class CarouselModel {
         return pwPadding;
     }
 
-   	public Integer getCarouselId() {
+    public Integer getCarouselId() {
         return carouselId;
     }
 
-	public List<BestPracticeLineBean> getTabs() {
-		return tabs;
-	}
+    public List<BestPracticeLineBean> getTabs() {
+        return tabs;
+    }
 
 }

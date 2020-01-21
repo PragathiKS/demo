@@ -24,78 +24,77 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * This is the servlet that is triggered to get the sub categories from a given
  * tag path.
- * 
- * @author abhbhatn
  *
+ * @author abhbhatn
  */
 @Component(service = Servlet.class, property = {
-		Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Soft Conversion Form service",
-		"sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.paths=" + "/bin/tetrapak/pw-softconversion" })
+        Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Soft Conversion Form service",
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+        "sling.servlet.paths=" + "/bin/tetrapak/pw-softconversion"})
 public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static final Logger log = LoggerFactory.getLogger(SoftConversionFormServlet.class);
+    private static final Logger log = LoggerFactory.getLogger(SoftConversionFormServlet.class);
 
-	@Reference
-	private ResourceResolverFactory resolverFactory;
+    @Reference
+    private ResourceResolverFactory resolverFactory;
 
-	private ResourceResolver resourceResolver;
+    private ResourceResolver resourceResolver;
 
-	private String UGC_CONTENT_PATH = "/content/usergenerated";
+    private String UGC_CONTENT_PATH = "/content/usergenerated";
 
-	@Override
-	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-		log.info("Inside doGet method.");
-		try {
-			// get resource resolver, tagManager objects.
-			resourceResolver = request.getResourceResolver();
-			Session session = resourceResolver.adaptTo(Session.class);
+    @Override
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+        log.info("Inside doGet method.");
+        try {
+            // get resource resolver, tagManager objects.
+            resourceResolver = request.getResourceResolver();
+            Session session = resourceResolver.adaptTo(Session.class);
 
-			String group = request.getParameter("group");
-			String firstName = request.getParameter("first-name");
-			String lastName = request.getParameter("last-name");
-			String emailAddress = request.getParameter("email-address");
-			String company = request.getParameter("company");
-			String position = request.getParameter("position");
+            String group = request.getParameter("group");
+            String firstName = request.getParameter("first-name");
+            String lastName = request.getParameter("last-name");
+            String emailAddress = request.getParameter("email-address");
+            String company = request.getParameter("company");
+            String position = request.getParameter("position");
 
-			if (session != null) {
-				Node rootNode = session.getNode(UGC_CONTENT_PATH);
-				Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
-				Node softConvNode = JcrUtils.getOrAddNode(pwNode, "soft-conversion");
-				Node itemNode = JcrUtils.getOrAddNode(softConvNode, emailAddress);
-				itemNode.setProperty("group", group);
-				itemNode.setProperty("firstName", firstName);
-				itemNode.setProperty("lastName", lastName);
-				itemNode.setProperty("emailAddress", emailAddress);
-				itemNode.setProperty("company", company);
-				itemNode.setProperty("position", position);
+            if (session != null) {
+                Node rootNode = session.getNode(UGC_CONTENT_PATH);
+                Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
+                Node softConvNode = JcrUtils.getOrAddNode(pwNode, "soft-conversion");
+                Node itemNode = JcrUtils.getOrAddNode(softConvNode, emailAddress);
+                itemNode.setProperty("group", group);
+                itemNode.setProperty("firstName", firstName);
+                itemNode.setProperty("lastName", lastName);
+                itemNode.setProperty("emailAddress", emailAddress);
+                itemNode.setProperty("company", company);
+                itemNode.setProperty("position", position);
 
-				session.save();
-				log.info("Saved user data at path : {}", itemNode.getPath());
-				
-				setCookie(response);
-				
-			}
+                session.save();
+                log.info("Saved user data at path : {}", itemNode.getPath());
 
-			// set the response type
-			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                setCookie(response);
 
-		} catch (PathNotFoundException e1) {
-			log.error("Error finding the path. {}", e1);
-		} catch (RepositoryException e2) {
-			log.error("Error in repository operation. {}", e2);
-		}
+            }
 
-	}
+            // set the response type
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
-	private void setCookie(SlingHttpServletResponse response) {
-		Cookie cookie = new Cookie("softConvUserExists", "true");
-		cookie.setPath("/");
-		cookie.setMaxAge(60 * 60 * 24 * 7);
-		response.addCookie(cookie);
-		log.info("Cookie added.");
-		
-	}
+        } catch (PathNotFoundException e1) {
+            log.error("Error finding the path. {}", e1);
+        } catch (RepositoryException e2) {
+            log.error("Error in repository operation. {}", e2);
+        }
+
+    }
+
+    private void setCookie(SlingHttpServletResponse response) {
+        Cookie cookie = new Cookie("softConvUserExists", "true");
+        cookie.setPath("/");
+        cookie.setMaxAge(60 * 60 * 24 * 7);
+        response.addCookie(cookie);
+        log.info("Cookie added.");
+
+    }
 }

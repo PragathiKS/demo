@@ -13,10 +13,10 @@ import javax.inject.Inject;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactAnchorLinkModel {
 
-	@Inject
+    @Inject
     private Page currentPage;
-	
-	private Boolean hideContactAnchorLink;
+
+    private Boolean hideContactAnchorLink;
 
     @PostConstruct
     protected void init() {
@@ -27,8 +27,8 @@ public class ContactAnchorLinkModel {
         }
     }
 
-	public Boolean getHideContactAnchorLink() {
-		return hideContactAnchorLink;
-	}
-    
+    public Boolean getHideContactAnchorLink() {
+        return hideContactAnchorLink;
+    }
+
 }

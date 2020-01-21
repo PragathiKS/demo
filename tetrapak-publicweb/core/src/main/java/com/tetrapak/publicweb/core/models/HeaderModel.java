@@ -31,7 +31,7 @@ public class HeaderModel {
     private String searchResultsPath;
     private String searchPlaceholderText;
     private String[] searchPanelTiles;
-    
+
     @Inject
     private Boolean enableHeroImage;
     private List<NavigationLinkBean> megaMenuLinksList = new ArrayList<>();
@@ -48,7 +48,7 @@ public class HeaderModel {
         String[] megaMenuLinks = inheritanceValueMap.getInherited("megamenuLinks", String[].class);
         LinkUtils.setMultifieldNavLinkItems(megaMenuLinks, megaMenuLinksList, log);
     }
-    
+
     /**
      * Method to get the search panel items from the multifield property saved in CRX for
      * each of the search panel tiles.
@@ -70,22 +70,22 @@ public class HeaderModel {
 
 
                     if (jObj.has("tileImage")) {
-                    	bean.setImage(jObj.getString("tileImage"));
+                        bean.setImage(jObj.getString("tileImage"));
                     }
                     if (jObj.has("tileImageAltI18n")) {
-                    	bean.setImageAltText(jObj.getString("tileImageAltI18n"));
+                        bean.setImageAltText(jObj.getString("tileImageAltI18n"));
                     }
                     if (jObj.has("tileTitle")) {
-                    	bean.setTitle(jObj.getString("tileTitle"));
+                        bean.setTitle(jObj.getString("tileTitle"));
                     }
                     if (jObj.has("tileDescription")) {
-                    	bean.setDescription(jObj.getString("tileDescription"));
+                        bean.setDescription(jObj.getString("tileDescription"));
                     }
                     if (jObj.has("tileLinkPath")) {
-                    	bean.setLinkPath(jObj.getString("tileLinkPath"));
+                        bean.setLinkPath(jObj.getString("tileLinkPath"));
                     }
                     if (jObj.has("tileLinkTarget")) {
-                    	bean.setTargetBlank(jObj.getString("tileLinkTarget"));
+                        bean.setTargetBlank(jObj.getString("tileLinkTarget"));
                     }
                     tileList.add(bean);
 
@@ -109,19 +109,19 @@ public class HeaderModel {
         return loginTextI18n;
     }
 
-	public String getSearchRootPath() {
-		return searchRootPath;
-	}
+    public String getSearchRootPath() {
+        return searchRootPath;
+    }
 
-	public String getSearchResultsPath() {
-		return searchResultsPath;
-	}
-	
-	public String getSearchPlaceholderText() {
-		return searchPlaceholderText;
-	}
-	
-	public List<GeneralInfoBean> getSearchPanelTiles() {
+    public String getSearchResultsPath() {
+        return searchResultsPath;
+    }
+
+    public String getSearchPlaceholderText() {
+        return searchPlaceholderText;
+    }
+
+    public List<GeneralInfoBean> getSearchPanelTiles() {
         return getTiles(searchPanelTiles);
     }
 

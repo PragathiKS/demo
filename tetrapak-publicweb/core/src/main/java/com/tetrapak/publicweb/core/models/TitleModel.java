@@ -30,7 +30,7 @@ public class TitleModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isBlank(titleText)) {
-        	ResourceResolver resolver = resource.getResourceResolver();
+            ResourceResolver resolver = resource.getResourceResolver();
             PageManager pageManager = resolver.adaptTo(PageManager.class);
             Page currentPage = pageManager.getContainingPage(resource);
             titleText = currentPage.getTitle();
@@ -38,9 +38,11 @@ public class TitleModel {
         }
 
     }
+
     public String getTitleText() {
         return titleText;
     }
+
     public String getHeadingFontSize() {
         return headingFontSize;
     }

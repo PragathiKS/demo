@@ -18,7 +18,7 @@ public class RecommendedReadingModel {
 
     @Inject
     private String link;
-    
+
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(link)) {

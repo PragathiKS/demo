@@ -97,13 +97,13 @@ public class ProductListingModel {
                         Tag tag = tagManager.resolve(jObj.getString("categoryTag"));
                         log.info("Tag : " + tag.getTagID());
                         bean.setCategoryTag(tag.getTagID());
-                        
+
                         String tagPath = jObj.getString("categoryTag");
-                        if(tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
-                    		tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
-                    		String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
-                    		bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
-                    	}
+                        if (tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
+                            tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
+                            String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
+                            bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
+                        }
                     }
                     tabs.add(bean);
                 }

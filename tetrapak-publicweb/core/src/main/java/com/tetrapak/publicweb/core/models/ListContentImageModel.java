@@ -50,7 +50,7 @@ public class ListContentImageModel {
     @Inject
     private Boolean makeCollapsable;
 
-    private Integer componentId = (int )(Math.random() * 1000 + 1);
+    private Integer componentId = (int) (Math.random() * 1000 + 1);
 
     public String getTitleI18n() {
         return titleI18n;

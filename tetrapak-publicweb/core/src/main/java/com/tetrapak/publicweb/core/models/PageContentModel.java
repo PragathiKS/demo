@@ -78,11 +78,11 @@ public class PageContentModel {
     @Inject
     @Default
     protected String author;
-    
+
     @Inject
     @Default
     protected Boolean hideContactAnchorLink;
-    
+
     @Inject
     @Default
     protected Boolean hideContactFooterForm;
@@ -174,12 +174,12 @@ public class PageContentModel {
     public ValueMap getJcrMap() {
         return jcrMap;
     }
-    
+
     public Boolean getHideContactAnchorLink() {
-    	return hideContactAnchorLink;
+        return hideContactAnchorLink;
     }
-    
+
     public Boolean getHideContactFooterForm() {
-    	return hideContactFooterForm;
+        return hideContactFooterForm;
     }
 }
