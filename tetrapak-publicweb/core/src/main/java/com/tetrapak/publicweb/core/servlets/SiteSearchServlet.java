@@ -81,7 +81,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private String SEARCH_ROOT_PATH;
     private String FULLTEXT_SEARCH_TERM;
 
-    private static final String templateBasePath = "/apps/publicweb/templates/";
+    private static final String TEMPLATE_BASE_PATH = "/apps/publicweb/templates/";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -226,7 +226,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
             String template = properties.get("cq:template", String.class);
             log.info("Template : {}", template);
-            String productType = template.replace(templateBasePath, "");
+            String productType = template.replace(TEMPLATE_BASE_PATH, "");
             searchResultItem.setProductType(productType);
 
         }

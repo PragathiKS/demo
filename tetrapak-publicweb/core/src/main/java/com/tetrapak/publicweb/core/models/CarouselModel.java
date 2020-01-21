@@ -114,7 +114,7 @@ public class CarouselModel {
                     }
 
                     if (valueMap.containsKey(PRACTICE_PATH)) {
-                        String path = valueMap.get("practicePath", String.class);
+                        String path = valueMap.get(PRACTICE_PATH, String.class);
                         bean.setPracticePath(LinkUtils.sanitizeLink(path));
                     }
 

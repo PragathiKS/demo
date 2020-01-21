@@ -181,7 +181,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
             }
 
         } catch (RepositoryException e) {
-            log.error("[performSearch] There was an issue getting the resource {}", hit.toString());
+            log.error("[performSearch] There was an issue getting the resource {}", hit);
         }
         return productItem;
     }

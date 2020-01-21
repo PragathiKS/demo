@@ -42,7 +42,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
     private ResourceResolver resourceResolver;
 
-    private String UGC_CONTENT_PATH = "/content/usergenerated";
+    private String ugcContentPath = "/content/usergenerated";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -60,7 +60,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
             String position = request.getParameter("position");
 
             if (session != null) {
-                Node rootNode = session.getNode(UGC_CONTENT_PATH);
+                Node rootNode = session.getNode(ugcContentPath);
                 Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
                 Node softConvNode = JcrUtils.getOrAddNode(pwNode, "soft-conversion");
                 Node itemNode = JcrUtils.getOrAddNode(softConvNode, emailAddress);

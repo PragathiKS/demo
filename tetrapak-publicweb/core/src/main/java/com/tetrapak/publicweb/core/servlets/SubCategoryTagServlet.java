@@ -72,9 +72,9 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
             if (tagManager != null) {
                 String categoryTagId = request.getParameter(categoryTag);
                 log.info("** Category Tag : {}", categoryTagId);
-                Tag categoryTag = tagManager.resolve(categoryTagId);
+                Tag categoryTag2 = tagManager.resolve(categoryTagId);
 
-                Iterator<Tag> subCategoryTags = categoryTag.listChildren();
+                Iterator<Tag> subCategoryTags = categoryTag2.listChildren();
                 if (subCategoryTags != null) {
                     while (subCategoryTags.hasNext()) {
                         Tag subCategTag = subCategoryTags.next();

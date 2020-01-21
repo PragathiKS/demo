@@ -64,14 +64,10 @@ public class LinkUtils extends WCMUsePojo {
                 log.error("footerNavLinks is NULL");
                 return;
             }
-
-            if (footerNavLinks != null) {
-                for (int i = 0; i < footerNavLinks.length; i++) {
-                    jObj = new JSONObject(footerNavLinks[i]);
-                    NavigationLinkBean bean = getNavigationLinkBean(jObj);
-                    navLinksList.add(bean);
-
-                }
+            for (int i = 0; i < footerNavLinks.length; i++) {
+                jObj = new JSONObject(footerNavLinks[i]);
+                NavigationLinkBean bean = getNavigationLinkBean(jObj);
+                navLinksList.add(bean);
             }
         } catch (Exception e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);
@@ -91,8 +87,8 @@ public class LinkUtils extends WCMUsePojo {
         if (jObj.has("linkTooltipI18n")) {
             linkTooltipI18n = jObj.getString("linkTooltipI18n");
         }
-        if (jObj.has("linkPath")) {
-            linkPath = jObj.getString("linkPath");
+        if (jObj.has(PARAM_LINK)) {
+            linkPath = jObj.getString(PARAM_LINK);
         }
         if (jObj.has("targetBlank")) {
             targetBlank = jObj.getString("targetBlank");

@@ -136,7 +136,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
             }
 
         } catch (RepositoryException e) {
-            log.error("There was an issue getting the resource {}", hit.toString());
+            log.error("There was an issue getting the resource {}", hit);
         }
         return practiceItem;
     }
