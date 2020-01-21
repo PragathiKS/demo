@@ -1,13 +1,8 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-import javax.servlet.Servlet;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.gson.Gson;
+import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
+import com.tetrapak.publicweb.core.services.BestPracticeLineService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -24,9 +19,12 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
-import com.tetrapak.publicweb.core.services.BestPracticeLineService;
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * This is the servlet that is triggered when a search is performed on the page and return the results to the

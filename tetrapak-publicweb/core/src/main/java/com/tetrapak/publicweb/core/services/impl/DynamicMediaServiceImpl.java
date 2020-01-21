@@ -1,8 +1,7 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import com.tetrapak.publicweb.core.services.DynamicMediaService; 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.config.DynamicMediaServiceConfig;
-
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;

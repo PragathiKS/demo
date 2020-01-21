@@ -1,13 +1,12 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.List;
-
+import com.adobe.cq.sightly.WCMUsePojo;
+import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 
-import com.adobe.cq.sightly.WCMUsePojo;
-import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
+import java.util.List;
 
 public class LinkUtils extends WCMUsePojo{
 

@@ -1,14 +1,8 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
-
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
+import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -25,9 +19,13 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
-import com.google.gson.Gson;
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * This is the servlet that is triggered to get the sub categories from a given

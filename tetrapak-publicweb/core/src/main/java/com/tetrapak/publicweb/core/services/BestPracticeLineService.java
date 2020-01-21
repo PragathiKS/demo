@@ -1,10 +1,9 @@
 package com.tetrapak.publicweb.core.services;
 
-import java.util.List;
-
+import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
 import org.apache.sling.api.resource.ResourceResolver;
 
-import com.tetrapak.publicweb.core.beans.BestPracticeLineBean;
+import java.util.List;
 
 public interface BestPracticeLineService {
 	

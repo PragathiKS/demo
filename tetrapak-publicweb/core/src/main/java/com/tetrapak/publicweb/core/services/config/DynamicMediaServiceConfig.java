@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.services.config;
 
-import org.osgi.service.metatype.annotations.AttributeDefinition; 
+import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
