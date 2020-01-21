@@ -34,7 +34,8 @@
     "sasslinterDev": "node sasslinter --development",
     "test": "karma start karma.conf.js --color",
     "testProd": "karma start karma.conf.js --mode=production --color",
-    "createClientlib": "create-clientlib --config=config.json --color"
+    "createClientlib": "create-clientlib --config=config.json --color",
+    "chunkAnalyzer": "webpack-bundle-analyzer app/jcr_root/stats.json"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -83,7 +84,7 @@
     "load-grunt-config": "^1.0.2",
     "mini-css-extract-plugin": "^0.8.2",
     "mocha": "^5.2.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
@@ -95,8 +96,10 @@
     "terser-webpack-plugin": "^1.4.3",
     "time-grunt": "^2.0.0",
     "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.3.10",
+    "webpack-stats-plugin": "^0.3.1",
     "xmlbuilder": "^13.0.2",
     "yargs": "^15.1.0"
   },
