@@ -274,3 +274,9 @@ export const isValidSelector = (selector) => (
 );
 
 export const digitalData = window.digitalData || {};
+
+export const loc = {
+  replace(...args) {
+    window.location.replace(...args);
+  }
+};

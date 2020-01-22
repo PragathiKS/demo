@@ -1,6 +1,7 @@
 import Header from './Header';
 import $ from 'jquery';
 import headerTemplate from '../../../test-templates-hbs/header.hbs';
+import { loc } from '../../../scripts/common/common';
 
 describe('Header', function () {
   before(function () {
@@ -9,6 +10,8 @@ describe('Header', function () {
     this.initSpy = sinon.spy(this.header, 'init');
     this.openSearchBoxSpy = sinon.spy(this.header, 'openSearchBox');
     this.closeSearchBoxSpy = sinon.spy(this.header, 'closeSearchBox');
+    this.replaceStub = sinon.stub(loc, 'replace');
+    this.replaceStub.returns(true);
     this.header.init();
 
   });
@@ -17,6 +20,7 @@ describe('Header', function () {
     this.initSpy.restore();
     this.openSearchBoxSpy.restore();
     this.closeSearchBoxSpy.restore();
+    this.replaceStub.restore();
   });
   it('should initialize', function () {
     expect(this.header.init.called).to.be.true;
@@ -28,5 +32,8 @@ describe('Header', function () {
   it('should close search box on click', function () {
     $('.js-tp-pw-search-box__close-search-box').trigger('click');
     expect(this.header.closeSearchBox.called).to.be.true;
+  });
+  it('should submit search term on enter key press', function () {
+    $('.js-tp-pw-search-box__input').trigger('key.return');
   });
 });
