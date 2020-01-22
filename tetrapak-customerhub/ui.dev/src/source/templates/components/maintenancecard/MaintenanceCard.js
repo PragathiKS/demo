@@ -120,7 +120,7 @@ class MaintenanceCard {
     const $this = this;
     this.root
       .on('click', '.js-maintenance-card__event', function () {
-        let detailTargetEle = $(this).data('target');
+        const detailTargetEle = $(this).data('target');
         let { maintenanceHeading } = $this.cache.i18nKeys;
         maintenanceHeading = maintenanceHeading
           ? maintenanceHeading.toLowerCase()

@@ -47,7 +47,8 @@ class InactivityDialog {
     }
   };
   setIdleTimer = () => {
-    let { idleTimeoutMinutes, MAX_SAFE_INTEGER } = this.cache;
+    let { idleTimeoutMinutes } = this.cache;
+    const { MAX_SAFE_INTEGER } = this.cache;
     if (this.cache.idleTimer) {
       window.clearTimeout(this.cache.idleTimer);
     }

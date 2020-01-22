@@ -211,7 +211,7 @@ function _renderTable(filterParams) {
       if (filterParams && !data.isError && data.totalOrdersForQuery) {
         const { skip } = filterParams;
         let currentPage = 1;
-        let totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
+        const totalPages = Math.ceil((+data.totalOrdersForQuery) / ORDER_HISTORY_ROWS_PER_PAGE);
         if (skip) {
           currentPage = (skip / ORDER_HISTORY_ROWS_PER_PAGE) + 1;
         }
@@ -262,12 +262,10 @@ function _trackAnalytics(type) {
   const $this = this;
   const pageNo = $this.root.find('.js-page-number.active').data('pageNumber') || 1;
   const { resetButtonTextI18n = '', searchButtonTextI18n = '' } = $this.cache.config;
-
-  let ob = {
+  const ob = {
     linkType: 'internal',
     linkSection: 'order history'
   };
-
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
   switch (type) {
@@ -448,7 +446,7 @@ class OrderSearch {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      let evt = document.createEvent('MouseEvents');
+      const evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
       $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);
