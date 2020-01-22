@@ -1,4 +1,3 @@
-import 'core-js/features/array/includes';
 import $ from 'jquery';
 import deparam from 'deparam.js';
 import { throwError, parseJson, isValidSelector } from '../common/common';

@@ -4,8 +4,6 @@ import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
-import 'core-js/features/array/includes';
-import 'core-js/features/string/pad-start';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';

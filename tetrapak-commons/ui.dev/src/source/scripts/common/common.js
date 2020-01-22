@@ -1,4 +1,3 @@
-import 'core-js/features/array/includes';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { templates } from '../utils/templates';
