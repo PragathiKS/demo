@@ -168,7 +168,7 @@
           permission: allow
           actions: read
           privileges:
-            -
+
     - cuhu_marketplace:
         - path: /content/tetrapak/customerhub/global/en/ordering
           permission: deny
