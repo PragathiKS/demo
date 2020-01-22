@@ -578,7 +578,7 @@ class FinancialStatement {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      let evt = document.createEvent('MouseEvents');
+      const evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
       $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);

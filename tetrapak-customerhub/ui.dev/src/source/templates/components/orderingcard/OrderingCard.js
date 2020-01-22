@@ -14,10 +14,8 @@ import { getURL } from '../../../scripts/utils/uri';
  */
 function _trackAnalytics(type) {
   const { title = '' } = this.cache.i18nKeys;
-
-  let $orderInput = this.root.find('input[type="checkbox"]');
-
-  let orderCardSettings = $.map($orderInput, function (el) {
+  const $orderInput = this.root.find('input[type="checkbox"]');
+  const orderCardSettings = $.map($orderInput, function (el) {
     const $inputBox = $(el);
     if ($inputBox.is(':checked')) {
       const $inputText = $inputBox.siblings('.js-checkbox__text');
@@ -27,14 +25,11 @@ function _trackAnalytics(type) {
     }
     return '';
   });
-
-  let ob = {
+  const ob = {
     linkType: 'internal'
   };
-
   const obKey = 'linkClick';
   const trackingKey = 'linkClicked';
-
   switch (type) {
     case 'orderCardList': {
       ob.linkSection = 'dashboard';
@@ -132,7 +127,6 @@ function _processTableData(data) {
     }));
     data.settingOptions = enabledFieldList.map(key => {
       const isMandatory = defaultFieldList.includes(key);
-
       return {
         key,
         i18nKey: `cuhu.ordering.${key}`,
@@ -176,7 +170,7 @@ function _stopEvtProp(e) {
 function _saveSettings() {
   // Get selected preferences
   const $modalPreference = this.root.find('.js-ordering-card__modal-preference');
-  let selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
+  const selectedFields = $.map($modalPreference.find('input:checked'), function (el) {
     return $(el).val();
   });
   ajaxWrapper.getXhrObj({
