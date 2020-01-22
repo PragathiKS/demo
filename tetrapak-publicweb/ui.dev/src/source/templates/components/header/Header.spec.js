@@ -10,6 +10,7 @@ describe('Header', function () {
     this.initSpy = sinon.spy(this.header, 'init');
     this.openSearchBoxSpy = sinon.spy(this.header, 'openSearchBox');
     this.closeSearchBoxSpy = sinon.spy(this.header, 'closeSearchBox');
+    this.searchSpy = sinon.spy(this.header, 'search');
     this.replaceStub = sinon.stub(loc, 'replace');
     this.replaceStub.returns(true);
     this.header.init();
@@ -20,6 +21,7 @@ describe('Header', function () {
     this.initSpy.restore();
     this.openSearchBoxSpy.restore();
     this.closeSearchBoxSpy.restore();
+    this.searchSpy.restore();
     this.replaceStub.restore();
   });
   it('should initialize', function () {
@@ -35,5 +37,6 @@ describe('Header', function () {
   });
   it('should submit search term on enter key press', function () {
     $('.js-tp-pw-search-box__input').trigger('key.return');
+    expect(this.searchSpy.called).to.be.true;
   });
 });
