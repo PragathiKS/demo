@@ -3,7 +3,6 @@ import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods, ORDER_HISTORY_ROWS_PER_PAGE, API_ORDER_HISTORY } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
-import 'core-js/features/array/includes';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import auth from '../../../scripts/utils/auth';

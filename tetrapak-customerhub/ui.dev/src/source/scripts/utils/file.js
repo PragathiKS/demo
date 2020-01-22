@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
-import 'core-js/features/promise';
 import { INVALID_CONFIG, INVALID_STREAM, FILEEXT_EMPTY } from './constants';
 import { logger } from './logger';
 import { $body } from './commonSelectors';

@@ -1,6 +1,4 @@
 // Vendor imports
-import 'core-js/features/promise';
-import 'core-js/features/array/includes';
 import $ from 'jquery';
 // Local imports
 import bundleImport from '../bundle/imports';

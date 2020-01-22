@@ -1,5 +1,4 @@
 import Handlebars from 'handlebars';
-import 'core-js/features/string/starts-with';
 
 export default function (context, options) {
   let data = null;

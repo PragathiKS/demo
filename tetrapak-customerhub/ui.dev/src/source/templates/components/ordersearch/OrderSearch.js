@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import 'bootstrap';
-import 'core-js/features/array/includes';
 import { router, route } from 'jqueryrouter';
 import deparam from 'deparam.js';
 import moment from 'moment';

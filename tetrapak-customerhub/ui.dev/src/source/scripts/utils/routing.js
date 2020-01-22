@@ -1,4 +1,3 @@
-import 'core-js/features/array/includes';
 import { router } from 'jqueryrouter';
 
 /**
