@@ -1,8 +1,8 @@
 import $ from 'jquery';
-import {$document} from '../../../scripts/utils/commonSelectors';
+import { $document } from '../../../scripts/utils/commonSelectors';
 
 class Header {
-  constructor({templates, el}) {
+  constructor({ templates, el }) {
     this.templates = templates;
     this.root = $(el);
   }
@@ -26,7 +26,7 @@ class Header {
     this.cache.$closeSearcBbox.on('click', this.closeSearchBox);
     this.cache.$searchBoxInput.on('keyup', (e) => {
       if (e.which === 13) {
-        let searchTerm = $('.js-tp-pw-search-box__input').val();
+        const searchTerm = $('.js-tp-pw-search-box__input').val();
         this.search(searchTerm);
       }
     });
@@ -36,12 +36,12 @@ class Header {
   }
 
   search = (searchTerm) => {
-    let origin = window.location.origin;
-    let params = {};
-    let searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
+    const origin = window.location.origin;
+    const params = {};
+    const searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
     params.q = searchTerm;
     //TODO Get existent param values modify q and then build the url again
-    let destinationURL = origin + searchResultsPath + '.html?q=' + searchTerm;
+    const destinationURL = origin + searchResultsPath + '.html?q=' + searchTerm;
     window.location.replace(destinationURL);
   };
 
@@ -57,7 +57,7 @@ class Header {
     this.cache.$searchBox.css('height', $document.height());
   };
   movePointer = () => {
-    let secNavWidth = this.cache.secondaryNav.width();
+    const secNavWidth = this.cache.secondaryNav.width();
     $('.js-tp-pw-search-box__pointer').css('right', secNavWidth + 10 + 'px');
   };
 

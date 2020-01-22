@@ -26,13 +26,13 @@ class ImageTextBanner {
         this.cache.digitalData.formInfo.stepName = 'gated content sign up start';
         this.cache.digitalData.formInfo.totalSteps = 4;
         if (typeof _satellite !== 'undefined') { //eslint-disable-line
-            _satellite.track('signup_form_tracking');  //eslint-disable-line
+          _satellite.track('signup_form_tracking');  //eslint-disable-line
         }
       }
     });
     this.cache.itbLink.click((e) => {
-      let banner = e.target.closest('.pw-banner');
-      let $thisClick = $(e.target);
+      const banner = e.target.closest('.pw-banner');
+      const $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = banner.getAttribute('data-itb-linkType');

@@ -13,16 +13,16 @@ class ArticleItem {
   bindEvents() {
     /* Bind jQuery events here */
     this.cache.$articleItemBtnLink.click((e) => {
-      let article = e.target.closest('.pw-article');
-      let articleContainer = e.target.closest('.article-container');
-      let $thisClick = $(e.target);
+      const article = e.target.closest('.pw-article');
+      const articleContainer = e.target.closest('.article-container');
+      const $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = article.getAttribute('data-articleItem-linkType');
         this.cache.digitalData.linkClick.linkSection = 'articleItem';
         this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-article').find('.pw-article__title').text().trim();
         if (articleContainer) {
-          let listPosition = [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
+          const listPosition = [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
           this.cache.digitalData.linkClick.linkListPos = listPosition;
           this.cache.digitalData.linkClick.contentName = $thisClick.closest('.article-container').find('.article-container__title').text().trim();
 
