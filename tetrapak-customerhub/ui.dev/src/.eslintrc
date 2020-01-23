@@ -141,8 +141,11 @@
             1220
         ],
         "comma-dangle": "error",
-        "jquery/no-ajax": [
-            "warn"
-        ]
+        "jquery/no-bind": "error",
+        "jquery/no-delegate": "error",
+        "jquery/no-show": "warn",
+        "jquery/no-hide": "warn",
+        "jquery/no-fade": "warn",
+        "jquery/no-slide": "warn"
     }
 }

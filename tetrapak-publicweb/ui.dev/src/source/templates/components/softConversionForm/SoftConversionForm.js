@@ -1,61 +1,65 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { digitalData, storageUtil } from '../../../scripts/common/common';
+import { storageUtil, loc } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, API_SOFT_CONVERSION } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_SOFT_CONVERSION, REG_EMAIL } from '../../../scripts/utils/constants';
+import { $body } from '../../../scripts/utils/commonSelectors';
 
 class SoftConversionForm {
+  constructor({ el }) {
+    this.root = $(el);
+  }
   cache = {};
   initCache() {
-    /* Initialize cache here */
-    this.cache.$modal = $('#softConversionModal');
-    this.cache.$form = $('#softConversionModal form');
-    this.cache.$field = $('#softConversionModal input[type="text"]');
-    this.cache.$submitBtn = $('#softConversionModal .form-submit');
-    this.cache.$tabtoggle = $('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
-    this.cache.$prevScfToggle = $('#softConversionModal .pw-form__prevbtn__scf[data-toggle="tab"]');
-    this.cache.$radiobtns = $('#softConversionModal input:radio');
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.$modal = this.root.find('#softConversionModal');
+    this.cache.$form = this.root.find('#softConversionModal form');
+    this.cache.$field = this.root.find('#softConversionModal input[type="text"]');
+    this.cache.$submitBtn = this.root.find('#softConversionModal .form-submit');
+    this.cache.$tabtoggle = this.root.find('#softConversionModal .pw-form__nextbtn[data-toggle="tab"]');
+    this.cache.$prevScfToggle = this.root.find('#softConversionModal .pw-form__prevbtn__scf[data-toggle="tab"]');
+    this.cache.$radiobtns = this.root.find('#softConversionModal input:radio');
   }
   storageFormData() {
     const formData = this.cache.$form.serializeArray();
     storageUtil.set('softConversionData', formData);
   }
   validEmail(email) {
-    const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    return pattern.test(email);
+    return REG_EMAIL.test(email);
   }
   setFormData(data) {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].name === 'group') {
-        $('#softConversionModal input[name="group"]:checked').prop('checked', false);
-        $('#softConversionModal input[name="group"][value="' + data[i].value + '"]').prop('checked', true);
+    $.each(data, (...args) => {
+      const [, obj] = args;
+      if (obj.name === 'group') {
+        this.root.find('#softConversionModal input[name="group"]:checked').prop('checked', false);
+        this.root.find(`#softConversionModal input[name="group"][value="${obj.value}"]`).prop('checked', true);
       } else {
-        $('#softConversionModal input[name="' + data[i].name + '"]').val(data[i].value);
+        this.root.find(`#softConversionModal input[name="${obj.name}"]`).val(obj.value);
       }
-    }
+    });
   }
   checkAndSubmit(e, $this) {
     const self = this;
-    let isvalid = true;
-    const parentTab = e.target.closest('.tab-pane');
-    $('input', parentTab).each(function () {
+    let isValid = true;
+    const $target = $(e.target);
+    const $parentTab = $target.closest('.tab-pane');
+    $parentTab.find('input').each(function () {
       const fieldName = $this.attr('name');
-      if ($this.prop('required') && ($this.val() === '') || (fieldName === 'email-address') && !self.validEmail($this.val())) {
-        isvalid = false;
+      const currentValue = $this.val();
+      if ($this.prop('required') && (currentValue === '') || (fieldName === 'email-address') && !self.validEmail(currentValue)) {
+        isValid = false;
         e.preventDefault();
         e.stopPropagation();
         $this.closest('.form-group').addClass('hasError');
       }
     });
-    if (isvalid) {
-      if (self.cache.digitalData && self.cache.digitalData.formInfo) {
-        self.cache.digitalData.formInfo.stepName = 'thank you';
-        if (self.cache.digitalData.formInfo.stepNo) {
-          delete self.cache.digitalData.formInfo.stepNo;
-        }
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('form_tracking'); //eslint-disable-line
+    if (isValid) {
+      if (window.digitalData && window.digitalData.formInfo) {
+        $.extend(window.digitalData.formInfo, {
+          stepName: 'thank you'
+        });
+        delete window.digitalData.formInfo.stepNo;
+        if (window._satellite) {
+          window._satellite.track('form_tracking');
         }
       }
       e.preventDefault();
@@ -66,124 +70,137 @@ class SoftConversionForm {
         data: $('#softConversionModal form').serialize()
       }).done(
         () => {
-          const docpath = $('#softConversionModal input[name="docpath"]').val();
-          window.open(docpath, '_blank');
-          $('#softConversionModal').data('form-filled', true);
-          $('#softConversionModal .softc-title-js').addClass('d-none');
-          $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
+          const docpath = this.root.find('#softConversionModal input[name="docpath"]').val();
+          loc.open(docpath, '_blank');
+          this.root.find('#softConversionModal').data('form-filled', true);
+          this.root.find('#softConversionModal .softc-title-js').addClass('d-none');
+          this.root.find('#softConversionModal .softc-thankyou-js').removeClass('d-none');
         }
       );
     }
   }
   checkStepAndContinue(e, $this) {
     const self = this;
-    const parentTab = e.target.closest('.tab-pane');
+    const $target = $(e.target);
+    const $parentTab = $target.closest('.tab-pane');
     let isValidStep = true;
-    $('input', parentTab).each(function () {
+    $parentTab.find('input').each(function () {
       const fieldName = $this.attr('name');
-      if ($this.prop('required') && ($this.val() === '') || (fieldName === 'email-address') && !self.validEmail($this.val())) {
+      const currentValue = $this.val();
+      if ($this.prop('required') && (currentValue === '') || (fieldName === 'email-address') && !self.validEmail(currentValue)) {
         e.preventDefault();
         e.stopPropagation();
         $this.closest('.form-group').addClass('hasError');
-        $('.info-group.' + fieldName).removeClass('show');
+        self.root.find(`.info-group.${fieldName}`).removeClass('show');
         isValidStep = false;
       } else {
-        $('p.' + fieldName).text($this.val());
-        $('.info-group.' + fieldName).addClass('show');
+        self.root.find(`p.${fieldName}`).text(currentValue);
+        self.root.find(`.info-group.${fieldName}`).addClass('show');
         $this.closest('.form-group').removeClass('hasError');
       }
     });
-    if (isValidStep && self.cache.digitalData && self.cache.digitalData.formInfo) {
-      const stepNumber = parentTab.getAttribute('data-stepNumber');
-      const stepName = parentTab.getAttribute('data-stepName');
-      self.cache.digitalData.formInfo.stepName = stepName;
-      self.cache.digitalData.formInfo.stepNo = stepNumber;
+    if (
+      isValidStep
+      && window.digitalData
+      && window.digitalData.formInfo
+    ) {
+      const stepNumber = $parentTab.attr('data-stepNumber');
+      const stepName = $parentTab.attr('data-stepName');
+      $.extend(window.digitalData.formInfo, {
+        stepName,
+        stepNo: stepNumber
+      });
       if (stepNumber === '0') {
-        const userRole = $("input[name='group']:checked").val();  //eslint-disable-line
-        self.cache.digitalData.formInfo.userRoleSelected = userRole;
+        const userRole = $('input[name="group"]:checked').val();
+        window.digitalData.formInfo.userRoleSelected = userRole;
       } else if (stepNumber === '1') {
-        delete self.cache.digitalData.formInfo.userRoleSelected;
+        delete window.digitalData.formInfo.userRoleSelected;
       }
-      if (typeof _satellite !== 'undefined') { //eslint-disable-line
-        _satellite.track('form_tracking'); //eslint-disable-line
+      if (window._satellite) {
+        window._satellite.track('form_tracking');
       }
     }
   }
   setFields($this) {
     if ($this.val() !== 'Professional') {
-      $('#softConversionModal .isPro').addClass('d-none');
-      $('#softConversionModal .isNotPro').removeClass('d-none');
+      this.root.find('#softConversionModal .isPro').addClass('d-none');
+      this.root.find('#softConversionModal .isNotPro').removeClass('d-none');
     } else {
-      $('#softConversionModal .isPro').removeClass('d-none');
-      $('#softConversionModal .isNotPro').addClass('d-none');
+      this.root.find('#softConversionModal .isPro').removeClass('d-none');
+      this.root.find('#softConversionModal .isNotPro').addClass('d-none');
     }
   }
   bindEvents() {
     /* Bind jQuery events here */
     const self = this;
-    $('body').bind('show.bs.tab', function (e) {
-      const parentModal = e.target.closest('.modal');
-      if (!parentModal) {
+    const { $modal, $field, $submitBtn, $tabtoggle, $prevScfToggle, $radiobtns } = this.cache;
+    $body.on('show.bs.tab', function (e) {
+      const $target = $(e.target);
+      const parentModal = $target.closest('.modal');
+      if (!parentModal.length) {
         return;
       }
-      const grandParentId = $(parentModal).attr('id');
-      const grandParentIdSelector = '#' + grandParentId;
-
-      const $toggleBtns = $('[data-toggle="tab"]', grandParentIdSelector);
+      const grandParentId = parentModal.attr('id');
+      const $toggleBtns = $(`#${grandParentId}`).find('[data-toggle="tab"]');
       $toggleBtns.removeClass('active show');
       const selectedTarget = $(e.target).data('target');
       $('[data-target="' + selectedTarget + '"]').addClass('active show');
     });
-    this.cache.$modal.on('show.bs.modal', function () {
-      if ($('#softConversionModal').data('form-filled')) {
-        $('[data-toggle="tab"]', '#softConversionModal').removeClass('active show');
-        $('.tab-pane', '#softConversionModal').removeClass('active');
-        $('.tab-content #step-final', '#softConversionModal').addClass('active');
-        $('#softConversionModal .softc-title-js').addClass('d-none');
-        $('#softConversionModal .softc-thankyou-js').removeClass('d-none');
-        const docpath = $('#softConversionModal input[name="docpath"]').val();
-        window.open(docpath, '_blank');
+    $modal
+      .on('show.bs.modal', () => {
+        const $softConversionModal = this.root.find('#softConversionModal');
+        if ($softConversionModal.data('form-filled')) {
+          $softConversionModal.find('[data-toggle="tab"]').removeClass('active show');
+          $softConversionModal.find('.tab-pane').removeClass('active');
+          $softConversionModal.find('.tab-content #step-final').addClass('active');
+          $softConversionModal.find('softc-title-js').addClass('d-none');
+          $softConversionModal.find('.softc-thankyou-js').removeClass('d-none');
+          const docpath = $softConversionModal.find('input[name="docpath"]').val();
+          loc.open(docpath, '_blank');
+        }
+      })
+      .on('hidden.bs.modal', () => {
+        const $softConversionModal = this.root.find('#softConversionModal');
+        $softConversionModal.find('[data-toggle="tab"]').removeClass('active show');
+        $softConversionModal.find('.tab-pane').removeClass('active');
+        $softConversionModal.find('.tab-content .tab-pane:first').addClass('active');
+      });
+    $field.on('change', function () {
+      const $this = $(this);
+      if ($this.val().length) {
+        $this.closest('.form-group').removeClass('hasError');
       }
     });
-    this.cache.$modal.on('hidden.bs.modal', function () {
-      $('[data-toggle="tab"]', '#softConversionModal').removeClass('active show');
-      $('.tab-pane', '#softConversionModal').removeClass('active');
-      $('.tab-content .tab-pane:first', '#softConversionModal').addClass('active');
-    });
-    this.cache.$field.change(function () {
-      if ($(this).val().length) {
-        $(this).closest('.form-group').removeClass('hasError');
-      }
-    });
-    this.cache.$submitBtn.click(function (e) {
+    $submitBtn.on('click', function (e) {
       self.checkAndSubmit(e, $(this));
     });
-    this.cache.$tabtoggle.click(function (e) {
+    $tabtoggle.on('click', function (e) {
       self.checkStepAndContinue(e, $(this));
     });
-    this.cache.$prevScfToggle.click(function (e) {
-      const parentTab = e.target.closest('.tab-pane');
-      const stepNumber = parentTab.getAttribute('data-stepNumber');
-      const stepName = parentTab.getAttribute('data-stepName');
-      if (self.cache.digitalData) {
-        self.cache.digitalData.formInfo.stepName = 'previous:' + stepName;
-        self.cache.digitalData.formInfo.stepNo = stepNumber;
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('form_tracking'); //eslint-disable-line
+    $prevScfToggle.on('click', function (e) {
+      const $parentTab = $(e.target).closest('.tab-pane');
+      const stepNumber = $parentTab.attr('data-stepNumber');
+      const stepName = $parentTab.attr('data-stepName');
+      if (window.digitalData) {
+        $.extend(window.digitalData.formInfo, {
+          stepName: `previous:${stepName}`,
+          stepNo: stepNumber
+        });
+        if (window._satellite) {
+          window._satellite.track('form_tracking');
         }
       }
     });
-    this.cache.$radiobtns.click(function () {
-      self.setFields($(this));
+    $radiobtns.on('click', function () {
+      self.setFields.apply(self, [$(this)]);
     });
   }
   init() {
-    /* Mandatory method */
     const softConversionData = storageUtil.get('softConversionData');
     this.initCache();
     if (softConversionData) {
       this.setFormData(softConversionData);
-      $('#softConversionModal').data('form-filled', true);
+      this.root.find('#softConversionModal').data('form-filled', true);
     }
     this.bindEvents();
   }
