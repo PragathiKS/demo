@@ -1,5 +1,4 @@
 import { logger } from '../utils/logger';
-import 'core-js/features/array/includes';
 
 const initialized = [];
 

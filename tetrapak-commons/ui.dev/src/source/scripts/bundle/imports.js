@@ -1,5 +1,3 @@
-import 'core-js/features/promise';
-import 'core-js/features/string/includes';
 import { logger } from '../utils/logger';
 
 const cImport = require.context('../../templates/components', true, /^(?!.*(?:spec.js$)).*\.js$/, 'lazy');

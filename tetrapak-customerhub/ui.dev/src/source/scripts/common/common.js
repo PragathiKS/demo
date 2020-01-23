@@ -1,7 +1,3 @@
-import 'core-js/features/array/includes';
-import 'core-js/features/array/find';
-import 'core-js/features/number/parse-int';
-import 'core-js/features/object/assign';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';

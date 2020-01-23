@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import {render} from '../../../scripts/utils/render';
-import {ajaxMethods, API_PRODUCT_LISTING} from '../../../scripts/utils/constants';
+import { render } from '../../../scripts/utils/render';
+import { ajaxMethods, API_PRODUCT_LISTING } from '../../../scripts/utils/constants';
 
 class ProductListing {
-  constructor({el}) {
+  constructor({ el }) {
     this.root = $(el);
   }
 
@@ -22,8 +22,8 @@ class ProductListing {
     this.renderCards();
     this.cache.tabButtons.on('click', (e) => {
       e.preventDefault();
-      let $this = $(e.target);
-      let category = $this.data('custom');
+      const $this = $(e.target);
+      const category = $this.data('custom');
       this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
       this.renderCards(category);
       $this.addClass('tpatom-button--group-item--active');
@@ -48,7 +48,7 @@ class ProductListing {
 
     this.productCardOnClickFn = (e) => {
       e.preventDefault();
-      let $this = $(e.target);
+      const $this = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = 'internal';
@@ -65,8 +65,8 @@ class ProductListing {
 
     this.cache.dropDown.on('change', (e) => {
       e.preventDefault();
-      let $this = $(e.target);
-      let category = $this.val();
+      const $this = $(e.target);
+      const category = $this.val();
       this.renderCards(category);
     });
   }

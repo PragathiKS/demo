@@ -103,6 +103,7 @@
         "arrow-parens": "off",
         "arrow-spacing": "warn",
         "prefer-destructuring": "off",
+        "prefer-const": "error",
         "require-yield": "error",
         "no-dupe-args": "error",
         "no-dupe-keys": "error",

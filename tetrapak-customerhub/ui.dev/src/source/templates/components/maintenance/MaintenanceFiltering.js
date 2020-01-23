@@ -238,13 +238,13 @@ function _renderDots(data) {
   const eventsDateArrayFinal = [];
   let eventsDateArray = [];
   data.events.forEach(function (item) {
-    let start = new Date(item.plannedStart);
-    let end = new Date(item.plannedFinish);
-    let datearray = getDatesBetweenDateRange(start, end);
+    const start = new Date(item.plannedStart);
+    const end = new Date(item.plannedFinish);
+    const datearray = getDatesBetweenDateRange(start, end);
     eventsDateArray = [...eventsDateArray, ...datearray];
   });
   eventsDateArray.forEach(function (date) {
-    let formattedDate = moment(date).format(DATE_FORMAT);
+    const formattedDate = moment(date).format(DATE_FORMAT);
     if (!eventsDateArrayFinal.includes(formattedDate)) {
       eventsDateArrayFinal.push(formattedDate);
     }
@@ -266,8 +266,8 @@ function _renderDots(data) {
 function _renderCalendarEventsDot() {
   const siteVal = this.cache.$site.val();
   const $dateRange = this.root.find('.lightpick__day:not(.is-previous-month):not(.is-next-month)');
-  let startDate = moment(new Date($dateRange.first().data('time'))).format(DATE_FORMAT);
-  let endDate = moment(new Date($dateRange.last().data('time'))).format(DATE_FORMAT);
+  const startDate = moment(new Date($dateRange.first().data('time'))).format(DATE_FORMAT);
+  const endDate = moment(new Date($dateRange.last().data('time'))).format(DATE_FORMAT);
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
       url: getURL(API_MAINTENANCE_EVENTS),
@@ -413,7 +413,7 @@ class MaintenanceFiltering {
     const analyticsName = (action === 'previous-action') ? 'left arrow' : 'right arrow';
     $this.trackAnalytics(analyticsName);
     if ($defaultCalendarNavBtn.length) {
-      let evt = document.createEvent('MouseEvents');
+      const evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
       $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
     }

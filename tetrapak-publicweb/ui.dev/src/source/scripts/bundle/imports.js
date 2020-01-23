@@ -1,5 +1,3 @@
-import 'core-js/features/promise';
-import 'core-js/features/string/includes';
 import { logger } from '../utils/logger';
 
 const cImport = require.context('../../templates/components', true, /^(?!.*(?:spec.js$)).*\.js$/, 'lazy');
@@ -13,7 +11,7 @@ export default function (component, execute) {
       cImport(matched[0]).then(execute);
     } else if (matched.length > 1) {
       const latestVersion = 'v' + matched.map(match => {
-        let dir = match.replace(`/${component}.js`);
+        const dir = match.replace(`/${component}.js`);
         return dir.substring(dir.lastIndexOf('/', dir.lastIndexOf('/') - 1) + 1, dir.lastIndexOf('/'));
       }).map(version => +version.replace('v', '')).sort((v1, v2) => (v2 - v1))[0];
       if (
