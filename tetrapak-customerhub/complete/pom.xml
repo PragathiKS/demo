@@ -90,12 +90,6 @@
             <artifactId>tetrapak-customerhub.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>tetrapak-customerhub</groupId>
-            <artifactId>tetrapak-customerhub.ui.content</artifactId>
-            <version>${project.version}</version>
-             <type>content-package</type>
-        </dependency>-->
           <dependency>
             <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.dev</artifactId>

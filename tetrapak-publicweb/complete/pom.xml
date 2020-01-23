@@ -90,13 +90,6 @@
             <artifactId>tetrapak-publicweb.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dYy>-->
-        <dependency>
-           <groupId>tetrapak-publicweb</groupId>
-           <artifactId>tetrapak-publicweb.ui.content</artifactId>
-           <version>${project.version}</version>
-           <type>content-package</type>
-       </dependency>
         <dependency>
            <groupId>tetrapak-publicweb</groupId>
            <artifactId>tetrapak-publicweb.ui.dev</artifactId>
