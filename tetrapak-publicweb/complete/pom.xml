@@ -91,30 +91,36 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-           <groupId>tetrapak-publicweb</groupId>
-           <artifactId>tetrapak-publicweb.ui.dev</artifactId>
-           <version>${project.version}</version>
-           <type>content-package</type>
-       </dependency>
-       <dependency>
-           <groupId>com.adobe.aem</groupId>
-           <artifactId>uber-jar</artifactId>
-           <classifier>apis</classifier>
-       </dependency>
+            <groupId>tetrapak-publicweb</groupId>
+            <artifactId>tetrapak-publicweb.ui.content</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+        <dependency>
+            <groupId>tetrapak-publicweb</groupId>
+            <artifactId>tetrapak-publicweb.ui.dev</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>uber-jar</artifactId>
+            <classifier>apis</classifier>
+        </dependency>
 
-       <dependency>
-           <groupId>javax.jcr</groupId>
-           <artifactId>jcr</artifactId>
-       </dependency>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+        </dependency>
 
-       <dependency>
-           <groupId>javax.servlet</groupId>
-           <artifactId>javax.servlet-api</artifactId>
-       </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
 
-       <dependency>
-           <groupId>com.day.cq.wcm</groupId>
-           <artifactId>cq-wcm-taglib</artifactId>
-       </dependency>
+        <dependency>
+            <groupId>com.day.cq.wcm</groupId>
+            <artifactId>cq-wcm-taglib</artifactId>
+        </dependency>
    </dependencies>
 </project>
