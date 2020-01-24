@@ -62,7 +62,12 @@
 								<target>/apps/publicweb/install</target>
 							</embedded>
 						</embeddeds>
-						<subPackages>
+                        <filters>
+                                <filter>
+                                    <root>${package.root}</root>
+                                </filter>
+                        </filters>
+                        <subPackages>
 					 		 <subPackage>
 						  		<type>content-package</type>
 								<filter>true</filter> 
@@ -106,6 +111,12 @@
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
             <classifier>apis</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.all</artifactId>
+            <type>zip</type>
         </dependency>
 
         <dependency>
