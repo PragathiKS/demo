@@ -56,7 +56,7 @@ public class SearchResultsModel {
     @Inject
     private String[] filterTagPaths;
 
-    private String templateBasePath = "/apps/publicweb/templates/";
+    private String templateBasePath = "/conf/publicweb/settings/wcm/templates/";
 
     protected final Logger log = LoggerFactory.getLogger(SearchResultsModel.class);
     private LinkedHashMap<String, String> tagsMap = new LinkedHashMap<>();
@@ -115,7 +115,7 @@ public class SearchResultsModel {
                 }
             }
         } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+            log.error("Exception while Multi-field data {}", e.getMessage(), e);
         }
         return tabList;
     }

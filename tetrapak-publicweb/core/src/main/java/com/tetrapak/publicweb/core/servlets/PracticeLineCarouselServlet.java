@@ -54,7 +54,7 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
         String rootPath() default "rootPath";
 
         @AttributeDefinition(name = "Best Practice Line Page Template Path", description = "Path for the Best Practice Line Page template.")
-        String bestpracticeTemplate() default "/apps/publicweb/templates/bestpracticelinepage";
+        String bestpracticeTemplate() default "/conf/publicweb/settings/wcm/templates/public-web-best-practice-line-page";
     }
 
     private static final long serialVersionUID = 1L;

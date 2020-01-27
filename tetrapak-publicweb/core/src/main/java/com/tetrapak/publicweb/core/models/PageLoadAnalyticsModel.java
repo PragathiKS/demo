@@ -36,7 +36,7 @@ public class PageLoadAnalyticsModel {
     private static final String PAGE_LOAD_EVENT = "content-load";
     private static final String PRODUCT_PAGE_LOAD_EVENT = "pdp-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
-    private static final String PRODUCT_PAGE_TEMPLATE_PATH = "/apps/publicweb/templates/productpage";
+    private static final String PRODUCT_PAGE_TEMPLATE_PATH = "/conf/publicweb/settings/wcm/templates/public-web-product-page";
 
     private String channel = StringUtils.EMPTY;
     private String pageName = StringUtils.EMPTY;

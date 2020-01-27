@@ -34,7 +34,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
     public static @interface Config {
 
         @AttributeDefinition(name = "Best Practice Line Page Template Path", description = "Path for the Best Practice Line Page template.")
-        String bestpracticeTemplate() default "/apps/publicweb/templates/bestpracticelinepage";
+        String bestpracticeTemplate() default "/conf/publicweb/settings/wcm/templates/public-web-best-practice-line-page";
     }
 
     private static final Logger log = LoggerFactory.getLogger(BestPracticeLineServiceImpl.class);

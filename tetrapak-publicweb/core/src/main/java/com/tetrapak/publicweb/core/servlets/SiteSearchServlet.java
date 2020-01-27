@@ -81,7 +81,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private String SEARCH_ROOT_PATH;
     private String FULLTEXT_SEARCH_TERM;
 
-    private static final String TEMPLATE_BASE_PATH = "/apps/publicweb/templates/";
+    private static final String TEMPLATE_BASE_PATH = "/conf/publicweb/settings/wcm/templates/";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -147,7 +147,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         //Excluding Error page template.
         map.put("1_property", "@jcr:content/cq:template");
-        map.put("1_property.value", "/apps/publicweb/templates/errorpage");
+        map.put("1_property.value", "/conf/publicweb/settings/wcm/templates/public-web-error-page");
         map.put("1_property.operation", "unequals");
 
         //Excluding pages which have Hide in Search selected.

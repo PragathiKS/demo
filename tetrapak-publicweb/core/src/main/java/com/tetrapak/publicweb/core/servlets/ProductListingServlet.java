@@ -66,7 +66,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
         String product_rootpath() default "productRootPath";
 
         @AttributeDefinition(name = "Product Page Template Path", description = "Path for the Product Page template.")
-        String product_template() default "/apps/publicweb/templates/productpage";
+        String product_template() default "/conf/publicweb/settings/wcm/templates/public-web-product-page";
 
     }
 
