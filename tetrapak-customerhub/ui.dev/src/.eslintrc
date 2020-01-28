@@ -104,6 +104,7 @@
         "arrow-spacing": "warn",
         "prefer-destructuring": "off",
         "prefer-const": "error",
+        "prefer-template": "warn",
         "require-yield": "error",
         "no-dupe-args": "error",
         "no-dupe-keys": "error",

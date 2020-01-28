@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { digitalData } from '../../../scripts/common/common';
+import { getWindowWidth } from '../../../scripts/common/common';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class ListContentImage {
@@ -13,7 +13,6 @@ class ListContentImage {
     this.cache.$tabMenuItem = $('.pw-listContentImage__tabMenuListItem', this.root);
     this.cache.$editTabItem = $('.pw-listContentImage__editTab', this.root);
     this.cache.$contentWrapper = $('.pw-listContentImage__contentWrapper', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
 
     // Add Version Name to each instance
     $('.pw-listContentImage').each(function (index) {
@@ -26,41 +25,43 @@ class ListContentImage {
       const $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
       const $clonedEditTabContentMobile = $('.pw-listContentImage__contentTab', this).clone();
       self.cache.$contentWrapper.append($clonedEditTabContent);
-      $('#' + tabID).append($clonedEditTabContentMobile);
+      $(`#${tabID}`).append($clonedEditTabContentMobile);
     });
 
   }
   bindEvents() {
     const self = this;
-    this.cache.$tabMenuItemLink.click(function (e) {
+    const { $tabMenuItemLink } = this.cache;
+    $tabMenuItemLink.click(function (e) {
       e.preventDefault();
       const $this = $(this);
-      if (self.cache.digitalData) {
-        self.cache.digitalData.linkClick = {};
-        self.cache.digitalData.linkClick.linkType = 'internal';
-        self.cache.digitalData.linkClick.linkSection = 'tabListText';
-        self.cache.digitalData.linkClick.linkParentTitle = $this.data('parent-title');
-        self.cache.digitalData.linkClick.linkName = $this.data('link-name');
-        self.cache.digitalData.linkClick.linkListPos = $this.data('tab-count');
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
+      if (window.digitalData) {
+        $.extend(window.digitalData, {
+          linkClick: {
+            linkType: 'internal',
+            linkSection: 'tabListText',
+            linkParentTitle: $this.data('parent-title'),
+            linkName: $this.data('link-name'),
+            linkListPos: $this.data('tab-count')
+          }
+        });
+        if (window._satellite) {
+          window._satellite.track('linkClicked');
         }
       }
       self.setActiveTab($this);
       dynMedia.processImages();
     });
-    $(document).ready(() => {
-      const width = window.innerWidth || document.body.clientWidth;
-      if (width > 767) {
-        this.cache.$tabMenuItemLink.first().addClass('active');
-        this.cache.$tabMenuItem.first().addClass('active');
-      }
-    });
+    const width = getWindowWidth();
+    if (width > 767) {
+      this.cache.$tabMenuItemLink.first().addClass('active');
+      this.cache.$tabMenuItem.first().addClass('active');
+    }
   }
   setActiveTab($this) {
     const self = this;
     // variables for the clicked organism only
-    const width = window.innerWidth || document.body.clientWidth;
+    const width = getWindowWidth();
     const tabID = $this.data('tab-id');
     const $tabMenuItemLink = $('.pw-listContentImage__tabMenuListItem__link', self.root),
       $tabMenuItem = $('.pw-listContentImage__tabMenuListItem', self.root),

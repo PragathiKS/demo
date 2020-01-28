@@ -282,3 +282,7 @@ export const loc = {
     window.open(...args);
   }
 };
+
+export function getWindowWidth() {
+  return window.width || document.body.clientWidth;
+}
