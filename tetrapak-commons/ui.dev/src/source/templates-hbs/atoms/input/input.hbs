@@ -1,5 +1,5 @@
 {{#if labelText}}
-    <label class="tpatom-input-box__text" for="{{name}}">{{i18n key=labelText}}</label>
+    <label class="tpatom-input-box__text{{#if labelClasses}} {{labelClasses}}{{/if}}" for="{{name}}">{{i18n key=labelText}}</label>
 {{/if}}
 <div class="tpatom-input-box{{#if wrapClasses}} {{wrapClasses}}{{/if}}">
     <input type="{{#if type}}{{type}}{{else}}text{{/if}}" name="{{name}}" id="{{name}}" class="tpatom-input-box__input{{#if eleClasses}} {{eleClasses}}{{/if}}"
