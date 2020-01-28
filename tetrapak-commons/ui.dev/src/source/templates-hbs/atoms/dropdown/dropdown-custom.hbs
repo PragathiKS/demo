@@ -1,5 +1,5 @@
 <div class="tpatom-dropdown {{#if className}} {{className}}{{/if}}">
-{{#if labelText}}<span class="tpatom-dropdown__text js-dropdown__text" id="tpatom-dropdown-{{name}}">{{i18n key=labelText}}</span>{{/if}}
+{{#if labelText}}<span class="tpatom-dropdown__text js-dropdown__text{{#if labelClasses}} {{labelClasses}}{{/if}}" id="tpatom-dropdown-{{name}}">{{i18n key=labelText}}</span>{{/if}}
     <div class="dropdown js-custom-dropdown">
         <button
             class="btn dropdown-toggle dropdown-btn  text-left js-dropdown-btn{{#if jsClass}} {{jsClass}}{{/if}}"
