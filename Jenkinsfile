@@ -55,7 +55,7 @@ pipeline {
                                  if (params.Build_Commons) {
                                      echo "Build Commons"
                                      dir('tetrapak-commons') {
-                                        sh "npm install --prefix ui.dev/src"
+                                       // sh "npm install --prefix ui.dev/src"
                                         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                         sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                                                  }
@@ -73,11 +73,13 @@ pipeline {
 							script{
 							if (params.Build_Customerhub) {
 								echo "Build CustomerHub"
-                                sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-customerhub/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
-                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                                      dir('tetrapak-commons') {
+                                                sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
+                                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
+                                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
 								}
 							}
+                                  }
                         }
                     }
 
