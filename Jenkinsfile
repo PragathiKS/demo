@@ -38,7 +38,10 @@ pipeline {
         }
 		stage('init-build-Number'){
 			steps{
-				script{
+				script{ sh "wget https://tetrapak-dev64a.adobecqms.net"
+                                        sh "wget http://13.69.79.81:4502"
+                                        sh "wget http://13.69.73.197:4503"
+                                        sh "wget http://127.0.0.1:9000"
 					def now = new Date()
 					def formattedDate
                     formattedDate = now.format("yyyyMMddHHmm")
@@ -76,7 +79,7 @@ pipeline {
                                       dir('tetrapak-customerhub') {
                                                 sh "npm install --prefix ui.dev/src"
                                                 sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                                sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                                               // sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 								}
 							}
                                   }
@@ -105,9 +108,8 @@ pipeline {
                                 }
                                         else {
 
-					                            if (params.Build_Commons)
-												{
-												 echo "Running Sonar for JS profile on Project - Commons"
+					      if (params.Build_Commons){
+					         echo "Running Sonar for JS profile on Project - Commons"
                                                  sh "mvn -f $workspace/tetrapak-commons/pom.xml -e -B sonar:sonar  -Dsonar.language=js -Dsonar.exclusions=$workspace/**/ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.login='admin' -Dsonar.password='admin' -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=JS -Dbuildversion=${build_id_number}"
 												}
 												  if (params.Build_Customerhub)
