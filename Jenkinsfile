@@ -73,7 +73,7 @@ pipeline {
 							script{
 							if (params.Build_Customerhub) {
 								echo "Build CustomerHub"
-                                      dir('tetrapak-commons') {
+                                      dir('tetrapak-customerhub') {
                                                 sh "npm install --prefix $workspace/tetrapak-customerhub/ui.dev/src"
                                                 sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
                                                 sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
