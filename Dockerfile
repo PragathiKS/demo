@@ -4,6 +4,6 @@ RUN apt-get update && apt-get install -y nodejs
 RUN apt-get update && apt-get install -y npm
 RUN apt-get update && apt-get install -y grunt
 
-RUN npm install -g npm
+RUN npm install npm
 RUN node -v
 RUN npm -v
