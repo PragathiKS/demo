@@ -1,5 +1,9 @@
 pipeline {
-        agent { label "master" } 
+	agent {
+		dockerfile {
+			args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
+			label 'linux&&docker'
+		}
 
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -7,11 +11,6 @@ pipeline {
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
 				booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
-
-        tools {
-        maven 'maven'
-        jdk 'jdk8'
-    }
 
         environment {
                 sonar_url = "http://127.0.0.1:9000"
