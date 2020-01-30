@@ -1,4 +1,6 @@
 pipeline {
+        agent { label "master" }
+         
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
