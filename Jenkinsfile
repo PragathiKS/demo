@@ -1,6 +1,10 @@
 pipeline {
-        agent { label "master" }
-         
+	agent {
+		dockerfile {
+			args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
+			label 'linux&&docker'
+		}
+	}
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
@@ -44,21 +48,25 @@ pipeline {
 			}
 		}
 
+
                 stage ('Build-Commons') {
                         steps {
-						   script {
+                             script {
+                                 if (params.Build_Commons) {
+                                     echo "Build Commons"
+                                     dir('tetrapak-customerhub') {
+                                        sh "npm install --prefix ui.dev/src"
+                                        sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                                                                 }
 
-					        if (params.Build_Commons) {
+                                                           }
+                                     }
+                               }
+                                         }
 
-							    echo "Build Commons"
-                                sh "npm install --prefix $workspace/tetrapak-commons/ui.dev/src"
-								sh "mvn -f $workspace/tetrapak-commons/pom.xml clean flatten:clean flatten:flatten org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number}"
-								sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
 
-							}
-						  }
-						}
-			    }
+
 
 					stage ('Build-CustomerHub') {
                         steps {
