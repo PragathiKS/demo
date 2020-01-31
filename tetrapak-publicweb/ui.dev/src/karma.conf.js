@@ -14,6 +14,7 @@ module.exports = function (config) {
           '--headless',
           '--window-size=1920,1080',
           '--remote-debugging-port=9222'
+          '--no-sandbox'
         ]
       }
     },

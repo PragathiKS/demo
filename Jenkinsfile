@@ -38,10 +38,10 @@ pipeline {
         }
 		stage('init-build-Number'){
 			steps{
-				script{ sh "wget https://tetrapak-dev64a.adobecqms.net"
-                                        sh "wget http://13.69.79.81:4502"
-                                        sh "wget http://13.69.73.197:4503"
-                                        sh "wget http://127.0.0.1:9000"
+				script{//sh "wget https://tetrapak-dev64a.adobecqms.net"
+                                       // sh "wget http://13.69.79.81:4502"
+                                       // sh "wget http://13.69.73.197:4503"
+                                       // sh "wget http://127.0.0.1:9000"
 					def now = new Date()
 					def formattedDate
                     formattedDate = now.format("yyyyMMddHHmm")
@@ -91,11 +91,12 @@ pipeline {
 							script{
 							if (params.Build_Publicweb) {
 								echo "Build PublicWeb"
-                                sh "npm install --prefix $workspace/tetrapak-publicweb/ui.dev/src"
-                                sh "mvn -f $workspace/tetrapak-publicweb/pom.xml clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
-                                sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                                                         dir('tetrapak-publicweb'){ 
+                                sh "npm install --prefix ui.dev/src"
+                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
+                               // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
 								}
-							}
+							}}
                         }
                     }
 
