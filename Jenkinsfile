@@ -17,13 +17,13 @@ pipeline {
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
-				test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
-				test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
-				test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
-				test_url_pally_zap_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
+		test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
+		test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
+		test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
+		test_url_pally_zap_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
-				karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
-				build_id_number = ""
+		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
+		build_id_number = ""
         }
 
         stages {
@@ -34,6 +34,7 @@ pipeline {
                                         echo "PATH = ${PATH}"
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
+                                sh "mkdir releases "
             }
         }
 		stage('init-build-Number'){
@@ -112,10 +113,12 @@ pipeline {
 														if (params.Build_Customerhub) {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
-                                                        sh 'cp -r ${karmapath_cuhu} /app/build-area/releases'
-														sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
-                                                        sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
+                                                        sh "pwd"
+                                                        sh 'cp -r ${karmapath_cuhu} releases'
+                                                        
+														sh 'cp -r releases/coverage/index.html .'
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+                                                       # sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
                                                          echo "Starting pa11y test Run on CustomerHub Urls"
