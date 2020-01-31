@@ -14,21 +14,21 @@
             <form class="tp-financial-statement__filters js-financial-statement__filters js-prevent-default form-group">
                 <div class="tp-financial-statement__status-calendar-container">
                     <div class="tp-financial-statement__status-container float-lg-left">
-                        {{> atoms/dropdown/dropdown-custom  options=this.status name='status' label=this.selectStatusLabel labelText=this.selectStatusLabel className="tp-financial-statement__status-wrapper" jsClass="js-financial-statement__status"}}
+                        {{> atoms/dropdown/dropdown-custom  options=this.status name='status' label=this.selectStatusLabel labelText=this.selectStatusLabel className="tp-financial-statement__status-wrapper" jsClass="js-financial-statement__status" labelClasses="width-100"}}
                     </div>
                     <div class="tp-financial-statement__date-range-container clearfix">
-                        {{> atoms/input/input placeholder=this.currentDatePlaceholder defaultValue=this.dateRange name="daterange" label=this.selectDateRangeLabel labelText=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper float-left" eleClasses="tp-financial-statement__date-range-input js-financial-statement__date-range-input" data-date-range-type=this.dateRangeType }}
+                        {{> atoms/input/input placeholder=this.currentDatePlaceholder defaultValue=this.dateRange name="daterange" label=this.selectDateRangeLabel labelText=this.selectDateRangeLabel wrapClasses="tp-financial-statement__date-range-wrapper float-left" eleClasses="tp-financial-statement__date-range-input js-financial-statement__date-range-input" data-date-range-type=this.dateRangeType labelClasses="width-100" }}
                         {{> atoms/buttons/button/button modifier="datepicker" iconClass="icon-Calendar2" hideText="true" text=this.selectDateRangeLabel baseClass="tp-financial-statement__date-range-picker" className="float-left" jsClass="js-financial-statement__date-range" dataLocator="calendar-picker"}}
                         <div class="tp-financial-statement__date-range-error js-financial-statement__date-range-error float-left d-none">{{i18n key=this.dateRangeErrorLabel}}</div>
                     </div>
                 </div>
                 <div class="tp-financial-statement__search-container">
                     <div class="tp-financial-statement__document-type-container">
-                        {{> atoms/dropdown/dropdown-custom  options=this.documentType name='document-type' label=this.selectDocumentTypeLabel labelText=this.selectDocumentTypeLabel className="tp-financial-statement__document-type-wrapper" jsClass="js-financial-statement__document-type"}}
+                        {{> atoms/dropdown/dropdown-custom  options=this.documentType name='document-type' label=this.selectDocumentTypeLabel labelText=this.selectDocumentTypeLabel className="tp-financial-statement__document-type-wrapper" jsClass="js-financial-statement__document-type" labelClasses="width-100"}}
                     </div>
                     <div class="tp-financial-statement__document-number-container">
                         <div class="tp-financial-statement__document-number-wrapper">
-                            {{> atoms/input/input name="document-number" label=this.searchInputLabel labelText=this.searchInputLabel eleClasses="js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber }}
+                            {{> atoms/input/input name="document-number" label=this.searchInputLabel labelText=this.searchInputLabel eleClasses="js-financial-statement__document-number" dataLocator="statement-input" placeholder=this.placeholderForDocumentNumber labelClasses="width-100" }}
                         </div>
                     </div>
                     <div class="tp-financial-statement__buttons-container">

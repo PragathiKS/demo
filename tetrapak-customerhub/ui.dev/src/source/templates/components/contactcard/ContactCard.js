@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 function _trackAnalytics() {
-  let obj = {
+  const obj = {
     linkType: 'internal',
     linkSection: 'dashboard',
     linkParentTitle: 'contacts',

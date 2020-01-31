@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { ajaxWrapper } from './ajax';
-import 'core-js/features/promise';
 import { RESULTS_EMPTY, ajaxMethods, API_TOKEN, AUTH_TOKEN_COOKIE, EVT_REFRESH_INITIATE, EVT_POST_REFRESH, REFRESH_TIMEOUT } from './constants';
 import { storageUtil } from '../common/common';
 import { getURL } from './uri';

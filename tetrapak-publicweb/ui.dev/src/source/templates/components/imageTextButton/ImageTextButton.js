@@ -13,8 +13,8 @@ class ImageTextButton {
   bindEvents() {
     /* Bind jQuery events here */
     this.cache.$imageTextButtonLink.click((e) => {
-      let comp = e.target.closest('.pw-image-text-button');
-      let $thisClick = $(e.target);
+      const comp = e.target.closest('.pw-image-text-button');
+      const $thisClick = $(e.target);
       if (this.cache.digitalData) {
         this.cache.digitalData.linkClick = {};
         this.cache.digitalData.linkClick.linkType = comp.getAttribute('data-imageButton-linkType');

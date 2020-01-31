@@ -10,7 +10,7 @@ import LazyLoad from 'vanilla-lazyload';
 function _processImageAttributes(container) {
   $('.js-dynamic-media').each(function () {
     const $this = $(this);
-    let desktopSrc = $this.attr('data-src_desktop');
+    const desktopSrc = $this.attr('data-src_desktop');
     let desktopL = $this.attr('data-src_desktopL');
     let desktopXL = $this.attr('data-src_desktopXL');
     let tabletLandSrc = $this.attr('data-src_tabletl');

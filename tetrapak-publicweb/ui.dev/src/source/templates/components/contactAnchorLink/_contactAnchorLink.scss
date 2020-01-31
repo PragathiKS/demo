@@ -5,8 +5,17 @@
     padding: 10px 14px;
     border-radius: 100%;
     opacity: 1;
+    pointer-events: visible;
+    transition: opacity 0.3s ease;
+
     &:hover {
         color: $color-mercury;
+    }
+
+    &.fade-out {
+        cursor: default;
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -15,6 +24,7 @@
     right: 16px;
     bottom: 16px;
     z-index: 1;
+
     @media #{$desktop} {
         right: 48px;
         bottom: 48px;

@@ -6,10 +6,14 @@ module.exports = function (config) {
     browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
       ChromeHeadlessCustom: {
-        base: 'ChromeHeadless',
+        base: 'Chrome',
         //debug: true,
-        flags: ['--window-size=1920,1080', '--no-sandbox']
-
+        flags: [
+          '--headless',
+          '--window-size=1920,1080',
+          '--remote-debugging-port=9222',
+          '--no-sandbox'
+        ]
       }
     },
     browserNoActivityTimeout: 60000,

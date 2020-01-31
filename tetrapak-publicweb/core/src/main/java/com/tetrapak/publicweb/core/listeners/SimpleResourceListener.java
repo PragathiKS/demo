@@ -33,11 +33,11 @@ import org.slf4j.LoggerFactory;
  * the immediate flag should not be set on a service.
  */
 @Component(service = EventHandler.class,
-           immediate = true,
-           property = {
-                   Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the resource tree",
-                   EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/*"
-           })
+        immediate = true,
+        property = {
+                Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the resource tree",
+                EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/*"
+        })
 public class SimpleResourceListener implements EventHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

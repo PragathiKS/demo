@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastReplicationAction="Activate"
+        cq:tags="[tetra-pak:public-web/product/category/dairy,tetra-pak:public-web/product/category/beverages]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-product-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="High Shear Mixer for cold emulsions"
+        jcr:uuid="7834c0a8-92a8-482e-b2d7-d3579e861065"
+        sling:resourceType="publicweb/components/structure/pages/productpage"
+        ctaTexti18nKey="Explore Tetra Pak® High Shear Mixer"
+        productImageAltI18n="Explore Tetra Pak® High Shear Mixer"
+        productImagePath="/content/dam/publicweb/products/tetra_pak_high_shear_mixer_b300-1500vaa_batch_plus_lineview.png"
+        title="Tetra Pak® High Shear Mixer for cold emulsions"
+        vanityDescription="Batch processing unit with double-shaft agitator">
+        <contactFooterForm
+            jcr:lastModified="{Date}2019-10-24T08:51:57.027Z"
+            jcr:lastModifiedBy="roomahaj"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/content/contactFooterForm"
+            companyLabel="Company"
+            contactUsLabel="Where do you want to contact us?"
+            emailAddressLabel="Email Address"
+            firstNameLabel="First Name"
+            lastNameLabel="Last Name"
+            messageLabel="Message"
+            nextButtonLabel="Next"
+            phoneNumberLabel="Phone Number"
+            positionLabel="Position"
+            previousButtonLabel="Previous"
+            submitButtonLabel="Submit"
+            textIsRich="[true,true]"/>
+    </jcr:content>
+</jcr:root>

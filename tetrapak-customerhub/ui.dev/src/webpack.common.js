@@ -5,6 +5,7 @@ const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const ChunkRename = require("webpack-chunk-rename-plugin");
+const { StatsWriterPlugin } = require("webpack-stats-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -126,7 +127,13 @@ module.exports = {
       chunkFilename: config.cssChunkPath
     }),
     new ChunkRename(clientlibs),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new StatsWriterPlugin({
+      stats: {
+        all: true,
+        assets: true
+      }
+    })
   ],
   node: {
     fs: 'empty'
@@ -134,7 +141,10 @@ module.exports = {
   resolve: {
     mainFields: ['main', 'module'],
     alias: {
-      handlebars: 'handlebars/runtime',
+      jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
+      bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+      handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
+      'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js'),
       tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }

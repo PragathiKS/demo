@@ -1,8 +1,7 @@
 // Vendor imports
-import 'core-js/features/promise';
-import 'core-js/features/array/includes';
 import $ from 'jquery';
 // Local imports
+import './polyfill';
 import bundleImport from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';

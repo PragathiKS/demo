@@ -1,48 +1,47 @@
 import $ from 'jquery';
-import {$document} from '../../../scripts/utils/commonSelectors';
+import { $document, $win } from '../../../scripts/utils/commonSelectors';
+import { loc } from '../../../scripts/common/common';
 
 class Header {
-  constructor({templates, el}) {
-    this.templates = templates;
+  constructor({ el }) {
     this.root = $(el);
   }
 
   cache = {};
 
   initCache() {
-    this.cache.$searchBoxToggle = $('.js-tp-pw-header__search-box-toggle');
-    this.cache.$searchBox = $('.js-tp-pw-search-box');
-    this.cache.$searchBoxInput = $('.js-tp-pw-search-box__input');
-    this.cache.$closeSearcBbox = $('.js-tp-pw-search-box__close-search-box');
-    this.cache.secondaryNav = $('.js-tp-pw-header__secondary-navigation');
-    this.cache.searchBoxPointer = $('.js-tp-pw-search-box__pointer');
-    this.cache.pointedElement = $('.' + this.cache.searchBoxPointer.data('pointTo'));
+    this.cache.$searchBoxToggle = this.root.find('.js-tp-pw-header__search-box-toggle');
+    this.cache.$searchBox = this.root.find('.js-tp-pw-search-box');
+    this.cache.$searchBoxInput = this.root.find('.js-tp-pw-search-box__input');
+    this.cache.$closeSearcBbox = this.root.find('.js-tp-pw-search-box__close-search-box');
+    this.cache.secondaryNav = this.root.find('.js-tp-pw-header__secondary-navigation');
+    this.cache.searchBoxPointer = this.root.find('.js-tp-pw-search-box__pointer');
+    this.cache.pointedElement = this.root.find(`.${this.cache.searchBoxPointer.data('pointTo')}`);
     this.cache.url = location.href.split('?')[1] || null;
     this.setOverlayHeight();
   }
 
   bindEvents() {
-    this.cache.$searchBoxToggle.on('click', this.openSearchBox);
-    this.cache.$closeSearcBbox.on('click', this.closeSearchBox);
-    this.cache.$searchBoxInput.on('keyup', (e) => {
-      if (e.which === 13) {
-        let searchTerm = $('.js-tp-pw-search-box__input').val();
-        this.search(searchTerm);
-      }
+    const { $searchBoxToggle, $closeSearcBbox, $searchBoxInput } = this.cache;
+    $searchBoxToggle.on('click', this.openSearchBox);
+    $closeSearcBbox.on('click', this.closeSearchBox);
+    $searchBoxInput.on('key.return', () => {
+      const searchTerm = $('.js-tp-pw-search-box__input').val();
+      this.search(searchTerm);
     });
-    $(window).on('resize', () => {
+    $win.on('resize', () => {
       this.movePointer();
     });
   }
 
   search = (searchTerm) => {
-    let origin = window.location.origin;
-    let params = {};
-    let searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
+    const origin = window.location.origin;
+    const params = {};
+    const searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
     params.q = searchTerm;
     //TODO Get existent param values modify q and then build the url again
-    let destinationURL = origin + searchResultsPath + '.html?q=' + searchTerm;
-    window.location.replace(destinationURL);
+    const destinationURL = origin + searchResultsPath + '.html?q=' + searchTerm;
+    loc.replace(destinationURL);
   };
 
   openSearchBox = () => {
@@ -57,7 +56,7 @@ class Header {
     this.cache.$searchBox.css('height', $document.height());
   };
   movePointer = () => {
-    let secNavWidth = this.cache.secondaryNav.width();
+    const secNavWidth = this.cache.secondaryNav.width();
     $('.js-tp-pw-search-box__pointer').css('right', secNavWidth + 10 + 'px');
   };
 

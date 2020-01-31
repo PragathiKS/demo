@@ -2,5 +2,7 @@
 	<sly data-sly-resource="${'breadcrmb' @ resourceType='publicweb/components/content/breadcrumb'}"/>
 </div>
 <div>
-	<sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}"/>
+	<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+		 data-sly-repeat.child="${templatedContainer.structureResources}"
+		 data-sly-resource="${child.path @ resourceType=child.resourceType}"></sly>
 </div>

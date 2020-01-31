@@ -190,6 +190,27 @@
           actions: read
           privileges:
 
+    - cuhu_marketplace:
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/ordering
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/customerhub/global/en/ordering/marketplace
+          permission: allow
+          actions: read
+          privileges:
+
     - cuhu_partsinv:
 
         - path: /content/tetrapak/customerhub/global/en/parts-inventory
