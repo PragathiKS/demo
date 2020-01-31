@@ -123,7 +123,8 @@ pipeline {
 														
                                                          echo "Starting pa11y test Run on CustomerHub Urls"
                                                          sh 'chmod 777 Devops/PallyReporting.sh'
-                                                         sh './Devops/PallyReporting.sh'
+                                                         sh 'ls'
+                                                         sh 'Devops/PallyReporting.sh'
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport_CustomerHub.html', reportName: 'Pally Report', reportTitles: ''])
 														 echo "Starting Zap Test Run- CustomerHub"
                                                           sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
