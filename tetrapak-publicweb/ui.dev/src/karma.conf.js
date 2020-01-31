@@ -13,7 +13,7 @@ module.exports = function (config) {
         flags: [
           '--headless',
           '--window-size=1920,1080',
-          '--remote-debugging-port=9222'
+          '--remote-debugging-port=9222',
           '--no-sandbox'
         ]
       }
