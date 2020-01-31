@@ -93,7 +93,7 @@ pipeline {
 								echo "Build PublicWeb"
                                                          dir('tetrapak-publicweb'){ 
                                 sh "npm install --prefix ui.dev/src"
-                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
+                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
                                // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
 								}
 							}}
