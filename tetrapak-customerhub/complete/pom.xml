@@ -61,17 +61,7 @@
                             <artifactId>tetrapak-customerhub.core</artifactId>
                             <target>/apps/customerhub/install</target>
                         </embedded>
-                        <!--<embedded>
-                            <groupId>tetrapak-customerhub</groupId>
-                            <artifactId>tetrapak-customerhub.integration</artifactId>
-                            <target>/apps/customerhub/install</target>
-                        </embedded>
-                         <embedded>
-                            <groupId>tetrapak-customerhub</groupId>
-                            <artifactId>tetrapak-customerhub.it.launcher</artifactId>
-                            <target>/apps/customerhub/install</target>
-                        </embedded>-->
-                    </embeddeds> 
+                    </embeddeds>
 					<subPackages>
 						<subPackage>
 							<type>content-package</type>
@@ -100,22 +90,6 @@
             <artifactId>tetrapak-customerhub.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>tetrapak-customerhub</groupId>
-            <artifactId>tetrapak-customerhub.integration</artifactId>
-              <version>${project.version}</version>
-        </dependency>
-          <dependency>
-            <groupId>tetrapak-customerhub</groupId>
-            <artifactId>tetrapak-customerhub.it.launcher</artifactId>
-              <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>tetrapak-customerhub</groupId>
-            <artifactId>tetrapak-customerhub.ui.content</artifactId>
-            <version>${project.version}</version>
-             <type>content-package</type>
-        </dependency>-->
           <dependency>
             <groupId>tetrapak-customerhub</groupId>
             <artifactId>tetrapak-customerhub.ui.dev</artifactId>

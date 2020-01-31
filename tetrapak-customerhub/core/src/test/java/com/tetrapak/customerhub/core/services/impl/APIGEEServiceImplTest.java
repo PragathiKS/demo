@@ -16,8 +16,6 @@ import java.util.Map;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({APIGEEServiceImpl.class})
 public class APIGEEServiceImplTest {
 
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";

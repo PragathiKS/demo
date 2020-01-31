@@ -146,14 +146,13 @@
             <groupId>tetrapak-publicweb</groupId>
             <artifactId>tetrapak-publicweb.ui.apps</artifactId>
             <version>${project.version}</version>
-            <type>content-package</type> 
+            <type>content-package</type>
         </dependency>
         <dependency>
             <groupId>tetrapak-publicweb</groupId>
             <artifactId>tetrapak-publicweb.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>

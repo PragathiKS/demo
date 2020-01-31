@@ -69,7 +69,7 @@ function _renderMaintenanceEvents(...eventsData) {
       cache.isEventDataError = false;
       if (!data.isError && data.totalRecordsForQuery > NO_OF_EVENTS_PER_PAGE) {
         let currentPage = 1;
-        let totalPages = Math.ceil((+data.totalRecordsForQuery) / NO_OF_EVENTS_PER_PAGE);
+        const totalPages = Math.ceil((+data.totalRecordsForQuery) / NO_OF_EVENTS_PER_PAGE);
         if (skip) {
           currentPage = (skip / NO_OF_EVENTS_PER_PAGE) + 1;
         }
@@ -115,7 +115,7 @@ class EventsListing {
     });
   }
   renderMaintenanceEvents(...args) {
-    let $this = args[0].data;
+    const $this = args[0].data;
     [, $this.cache, $this.trackAnalytics] = args;
     return _renderMaintenanceEvents.apply($this, args.slice(1));
   }

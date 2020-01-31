@@ -46,29 +46,29 @@ class SearchResults {
     this.cache.tabButtons.on('click', (e) => {
       e.preventDefault();
       this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
-      let $this = $(e.target);
+      const $this = $(e.target);
       this.cache.filterObj.tabValue = $this.data('custom');
-      let filteredData = this.filterData(this.cache.filterObj);
+      const filteredData = this.filterData(this.cache.filterObj);
       this.renderResults(filteredData, 1);
       $this.addClass('tpatom-button--group-item--active');
     });
 
     this.cache.$filterChecks.change((e) => {
-      let $this = $(e.target);
+      const $this = $(e.target);
       this.cache.filterObj.checks = this.cache.filterObj.checks || [];
       if ($this[0].checked) {
         this.cache.filterObj.checks.push($this.val());
       } else {
         this.cache.filterObj.checks = this.cache.filterObj.checks.filter(item => item !== $this.val());
       }
-      let filteredData = this.filterData(this.cache.filterObj);
+      const filteredData = this.filterData(this.cache.filterObj);
       this.renderResults(filteredData, 1);
     });
 
     this.cache.$searchInput.keyup((e) => {
       if (e.keyCode === 13) {
-        let $this = $(e.target);
-        let params = deparam(window.location.search);
+        const $this = $(e.target);
+        const params = deparam(window.location.search);
         params.q = $this.val();
         window.history.pushState(null, null, ('?q=' + params.q));
         this.search();
@@ -89,7 +89,7 @@ class SearchResults {
     if (filters.checks.length > 0) {
       this.cache.filteredData = this.cache.filteredData.filter((obj) => {
         if (obj.tagsMap) {
-          let match = filters.checks.every(elem => Object.values(obj.tagsMap).indexOf(elem) > -1);
+          const match = filters.checks.every(elem => Object.values(obj.tagsMap).indexOf(elem) > -1);
           if (match) {
             return obj;
           }
@@ -100,7 +100,7 @@ class SearchResults {
   };
 
   search = () => {
-    let params = deparam(window.location.search);
+    const params = deparam(window.location.search);
     if (params.q) {
       this.cache.searchTerm = params.q;
       ajaxWrapper.getXhrObj({
@@ -121,7 +121,7 @@ class SearchResults {
           this.cache.filterObj = { tabValue: 'all', checks: [] };
           this.renderTitle(data.length, this.cache.resultsTitle, params.q);
           if (data.length > this.cache.resultsPerPage) {
-            let currentPage = 1;
+            const currentPage = 1;
             this.renderResults(this.cache.results, currentPage);
           } else {
             this.renderResults(this.cache.results);
@@ -141,7 +141,7 @@ class SearchResults {
   };
 
   renderTitle = (resultsCount, searchTitle, searchTerm) => {
-    let data = {
+    const data = {
       resultsCount: resultsCount || '',
       searchTitle: searchTitle || 'No results were found',
       searchTerm: searchTerm || ''
@@ -154,9 +154,9 @@ class SearchResults {
   };
 
   renderResults = (data, currentPage) => {
-    let pagination = this.cache.$pagiantion;
-    let resultsPerPage = this.cache.resultsPerPage;
-    let noFilterMatches = this.cache.noFiltersMatches;
+    const pagination = this.cache.$pagiantion;
+    const resultsPerPage = this.cache.resultsPerPage;
+    const noFilterMatches = this.cache.noFiltersMatches;
     render.fn({
       template: 'searchList',
       data: data,
@@ -164,7 +164,7 @@ class SearchResults {
       beforeRender(data) {
         if (data.length > 0) {
           if (data.length > resultsPerPage) {
-            let totalPages = Math.ceil((+data.length) / resultsPerPage);
+            const totalPages = Math.ceil((+data.length) / resultsPerPage);
             this.data = data.slice(((currentPage - 1) * resultsPerPage), ((currentPage - 1) * resultsPerPage + resultsPerPage));
             pagination.trigger('searchresults.paginate', [{
               currentPage,

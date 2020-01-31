@@ -4,8 +4,6 @@ import deparam from 'deparam.js';
 import moment from 'moment';
 import Lightpick from 'lightpick';
 import 'bootstrap';
-import 'core-js/features/array/includes';
-import 'core-js/features/string/pad-start';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
@@ -578,7 +576,7 @@ class FinancialStatement {
     const action = $(this).data('action');
     const $defaultCalendarNavBtn = $this.root.find(`.lightpick__${action}`);
     if ($defaultCalendarNavBtn.length) {
-      let evt = document.createEvent('MouseEvents');
+      const evt = document.createEvent('MouseEvents');
       evt.initEvent('mousedown', true, true);
       $defaultCalendarNavBtn[0].dispatchEvent(evt); // JavaScript mousedown event
       _disableCalendarNext($this);

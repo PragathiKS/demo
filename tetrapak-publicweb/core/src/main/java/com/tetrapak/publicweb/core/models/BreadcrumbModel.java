@@ -1,12 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -14,11 +12,11 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Model(adaptables = Resource.class)
 public class BreadcrumbModel {
@@ -42,7 +40,7 @@ public class BreadcrumbModel {
     protected void init() {
         pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         Page currentPage = pageManager.getContainingPage(resource);
-        log.info("Current Page path : " + currentPage.getPath());
+        log.info("Current Page path : {}", currentPage.getPath());
         if (currentPage != null) {
             buildBreadcrumbItems(currentPage);
         }
@@ -54,7 +52,7 @@ public class BreadcrumbModel {
         Page homePage = pageManager.getPage(homePagePath);
 
         if (homePage != null) {
-            log.info("Home Page path : " + homePage.getPath());
+            log.info("Home Page path : {}", homePage.getPath());
             int pageLevel = homePage.getDepth();
             int currentPageLevel = currentPage.getDepth();
             while (pageLevel < currentPageLevel) {

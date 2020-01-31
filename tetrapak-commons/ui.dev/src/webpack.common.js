@@ -4,6 +4,7 @@ const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const ChunkRename = require("webpack-chunk-rename-plugin");
+const { StatsWriterPlugin } = require("webpack-stats-plugin");
 
 // Resolve entry points
 const entryPoints = (function () {
@@ -117,7 +118,13 @@ module.exports = {
       filename: config.cssPath,
       chunkFilename: config.cssChunkPath
     }),
-    new ChunkRename(clientlibs)
+    new ChunkRename(clientlibs),
+    new StatsWriterPlugin({
+      stats: {
+        all: true,
+        assets: true
+      }
+    })
   ],
   node: {
     fs: 'empty'

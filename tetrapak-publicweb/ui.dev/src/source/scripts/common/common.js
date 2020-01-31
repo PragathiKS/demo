@@ -1,4 +1,3 @@
-import 'core-js/features/array/includes';
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
@@ -274,3 +273,9 @@ export const isValidSelector = (selector) => (
 );
 
 export const digitalData = window.digitalData || {};
+
+export const loc = {
+  replace(...args) {
+    window.location.replace(...args);
+  }
+};

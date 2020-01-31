@@ -1,15 +1,8 @@
-import 'core-js/features/array/includes';
-import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { templates } from '../utils/templates';
 
 const currentUserAgent = window.navigator.userAgent;
-
-// Initialize storage utility
-export const storageUtil = new LZStorage();
-
-const { getCookie } = storageUtil;
 
 // Initialize functions for user agent detection
 
@@ -55,14 +48,6 @@ export const isDesktopMode = () => !isMobileOrTabletMode();
  * Checks if current screen mode is tablet or desktop
  */
 export const isTabletOrDesktopMode = () => (isTabletMode() || isDesktopMode());
-
-/**
- * Checks if author mode is enabled
- */
-export const isAuthorMode = () => {
-  const wcmmode = getCookie('wcmmode');
-  return ['edit', 'preview', 'design'].includes(wcmmode);
-};
 
 /**
  * Checks if given param is callable

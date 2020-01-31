@@ -30,8 +30,6 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, SaveOnboardingStatusServlet.class})
 public class SaveOnboardingStatusServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/"

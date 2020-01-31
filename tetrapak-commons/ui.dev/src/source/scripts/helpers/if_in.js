@@ -7,7 +7,6 @@
  * {{/if_in}}
  */
 import Handlebars from 'handlebars';
-import 'core-js/features/array/includes';
 
 export default function (available, value, opts) {
   let compareValues = [];

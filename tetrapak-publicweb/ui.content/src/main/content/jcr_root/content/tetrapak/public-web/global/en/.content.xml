@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            cq:lastModified="{Date}2019-12-12T09:51:58.339Z"
+            cq:lastModifiedBy="tetrapak-user"
+            cq:lastReplicated="{Date}2019-12-04T14:34:58.047Z"
+            cq:lastReplicatedBy="roomahaj"
+            cq:lastReplicationAction="Activate"
+            cq:template="/conf/publicweb/settings/wcm/templates/public-web-base-page"
+            jcr:isCheckedOut="{Boolean}true"
+            jcr:mixinTypes="[mix:versionable]"
+            jcr:primaryType="cq:PageContent"
+            jcr:title="English"
+            jcr:uuid="682a4138-3b11-45af-84ca-2783ceaf07bc"
+            sling:resourceType="publicweb/components/structure/pages/page">
+        <root
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/responsivegrid">
+                <textvideo_1096458480
+                        jcr:created="{Date}2019-12-04T14:30:59.480Z"
+                        jcr:createdBy="roomahaj"
+                        jcr:lastModified="{Date}2019-12-04T14:33:02.590Z"
+                        jcr:lastModifiedBy="roomahaj"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/textVideo"
+                        description="description for the text video to see how it behaves"
+                        pwButtonTheme="secondary"
+                        pwDisplay="display-row"
+                        pwPadding="regular"
+                        pwTheme="grayscale-white"
+                        title="text video"
+                        videoSource="youtube"
+                        youtubeVideoID="1X7zhVCIUtg"/>
+                <articlecontainer
+                        jcr:created="{Date}2019-03-08T11:49:52.366-03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-11-22T08:28:03.749Z"
+                        jcr:lastModifiedBy="roomahaj"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/articleContainer"
+                        numberOfcolumns="two-column"
+                        pwTheme="transparent"
+                        showBox="true"
+                        titleAlignment="text-left">
+                    <col1
+                            jcr:lastModified="{Date}2019-10-24T12:57:17.382Z"
+                            jcr:lastModifiedBy="roomahaj"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="publicweb/components/content/articleItem"
+                            articleImagePath="/content/dam/publicweb/ContentImage6.png"
+                            articlePath="/content/tetrapak/public-web/global/en/articlepage"
+                            articleTitle="Processing"
+                            contentType="automatic"
+                            ctaTexti18nKey="Discover our processing solutions"
+                            pwButtonTheme="secondary"
+                            showImage="true"
+                            vanityDescription="Do you want big particles, high viscosity or a perfectly smooth mouthfeel? Batch or continuos? Either way you get best practice in terms of food safety, efficency, product quality and enviromental performance. We give you new wyas to move forward with your business. Together we turn challenges into sucess"
+                            vanityDescriptionI18n="Done right, mixing can enhance the efficiency of your operations, and lead to hight-quality food products."/>
+                    <col2
+                            jcr:lastModified="{Date}2019-03-26T11:43:13.580Z"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="publicweb/components/content/articleItem"
+                            articlePath="/content/tetrapak/public-web/global/en/solutions/turn-ingredients-into-products"
+                            articleTitle="Services"
+                            contentType="manual"
+                            ctaTexti18nKey="How our services improve your business"
+                            pwButtonTheme="link"
+                            vanityDescription="Our services offer is not just about fixing something that's broken. It's about preventing breakdowns and protecting investments. We cover every aspect of your food production. Our tailored service solutions improve performance, optimise costs and ensure food safety throughout the lifecycle of your operation."
+                            vanityDescriptionI18n="Mixing and blending is way more that bringing your different ingredients together"/>
+                </articlecontainer>
+                <imagetextbutton
+                        jcr:created="{Date}2019-03-22T18:01:43.627Z"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-12-04T14:34:35.788Z"
+                        jcr:lastModifiedBy="roomahaj"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/imageTextButton"
+                        ctaLinkTexti18n="Discover our range of solutions"
+                        ctaLinkURL="/content/tetrapak/public-web/global/en/solutions"
+                        description="From idea to launch - and beyond. Let us help you integrate and manage the whole value chain of processing and packaging through our complete solutions for food and beverages, expertise and innovations. We are ready to increase efficiency, optimise performance and secure food quality - in a sustainable way. With us as your trusted partner, business will become easier"
+                        imageAltI18n="Discover our range of solutions"
+                        imagePath="/content/dam/publicweb/articles/shopping.png"
+                        pwButtonTheme="secondary"
+                        pwTheme="grayscale-white"
+                        subtitle="COMPLETE SOLUTIONS"
+                        title="Ensure efficiency and quality"/>
+                <textvideo
+                        jcr:created="{Date}2019-03-22T18:13:48.085Z"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-10-24T12:07:07.261Z"
+                        jcr:lastModifiedBy="roomahaj"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/textVideo"
+                        damVideoPath="/content/dam/publicweb/videos/SampleVideo_1280x720_5mb.mp4"
+                        description="Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart enviromental thinking. We help you turning ideas into products that your customers love."
+                        linkTexti18n="Discover what we can do for your products"
+                        linkURL="/content/tetrapak/public-web/global/en/careers"
+                        pwButtonTheme="secondary"
+                        pwDisplay="display-column"
+                        pwPadding="regular"
+                        pwTheme="transparent"
+                        textAlignment="text-right"
+                        title="Turn your products into success"
+                        videoSource="damVideo"
+                        youtubeVideoID="ZofQqevIIZA"/>
+                <listcontentimage
+                        jcr:created="{Date}2019-03-22T18:26:21.804Z"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-04-21T14:22:37.250-03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/listContentImage"
+                        linkPath="/content/tetrapak/public-web/global/en"
+                        linkTextI18n="Explore other stories"
+                        linkTooltipI18n="Explore other stories"
+                        pwButtonTheme="link"
+                        pwPadding="regular"
+                        pwTheme="grayscale-white"
+                        tabLinks="[{&quot;tabLinkTextI18n&quot;:&quot;Tangible results for your business Tangible results for your business Tangible results for your business&quot;},{&quot;tabLinkTextI18n&quot;:&quot;World's first ambient drinking yoghurt with large fruit pieces Tangible results for your business Tangible results for your business&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Total Productive Manteinance implementation for dairy producer Tangible results for your business Tangible results for your business&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Supply chain auditing that secures food quality Tangible results for your business Tangible results for your business&quot;}]"
+                        tabsAlignment="text-left"
+                        titleI18n="Solutions for all needs">
+                    <par1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="foundation/components/parsys">
+                        <articleitem
+                                jcr:created="{Date}2019-03-22T18:28:23.910Z"
+                                jcr:createdBy="admin"
+                                jcr:lastModified="{Date}2019-11-22T09:04:46.577Z"
+                                jcr:lastModifiedBy="roomahaj"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/articleItem"
+                                articleImageAltI18n="Learn about the insights"
+                                articleImagePath="/content/dam/publicweb/articles/shopping.png"
+                                articlePath="/content/tetrapak/public-web/global/en/solutions/turn-ingredients-into-products"
+                                articleTitle="Bigger moments of nature"
+                                contentType="manual"
+                                ctaTexti18nKey="Learn about the insights"
+                                openInNewWindow="true"
+                                pwButtonTheme="secondary"
+                                vanityDescription="Ambient drinking your yoghurt now got that extra - large fruit pieces. This is the outcome of an innovative collaboration between a Chinese diary manufacturer and Tetra Pak experts. What was the success formula behind idea, processing, packaging and launc?"/>
+                        <carousel
+                                jcr:created="{Date}2019-11-06T13:25:44.937Z"
+                                jcr:createdBy="roomahaj"
+                                jcr:lastModified="{Date}2019-11-06T13:25:44.937Z"
+                                jcr:lastModifiedBy="roomahaj"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/carousel"/>
+                    </par1>
+                    <par2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="foundation/components/parsys">
+                        <articleitem_copy
+                                jcr:created="{Date}2019-03-22T18:28:23.910Z"
+                                jcr:createdBy="admin"
+                                jcr:lastModified="{Date}2019-03-25T19:38:05.017Z"
+                                jcr:lastModifiedBy="sapient-user"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/articleItem"
+                                articleImageAltI18n="Learn about the insights"
+                                articleImagePath="/content/dam/publicweb/articles/Children.png"
+                                articlePath="/content/tetrapak/public-web/global/en/solutions/turn-ingredients-into-products"
+                                articleTitle="Bigger moments of nature"
+                                contentType="manual"
+                                ctaTexti18nKey="Learn about the insights"
+                                openInNewWindow="true"
+                                pwButtonTheme="secondary"
+                                showImage="true"
+                                vanityDescription="Ambient drinking your yoghurt now got that extra - large fruit pieces. This is the outcome of an innovative collaboration between a Chinese diary manufacturer and Tetra Pak experts. What was the success formula behind idea, processing, packaging and launc?"/>
+                    </par2>
+                    <par3
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="foundation/components/parsys">
+                        <textvideo_copy
+                                jcr:created="{Date}2019-03-22T18:13:48.085Z"
+                                jcr:createdBy="admin"
+                                jcr:lastModified="{Date}2019-03-25T19:19:18.110Z"
+                                jcr:lastModifiedBy="admin"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/textVideo"
+                                damVideoPath="/content/dam/publicweb/videos/SampleVideo_1280x720_5mb.mp4"
+                                description="Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart enviromental thinking. We help you turning ideas into products that your customers love."
+                                linkTexti18n="Discover what we can do for your products"
+                                linkURL="/content/tetrapak/public-web/global/en/careers"
+                                pwButtonTheme="secondary"
+                                pwDisplay="display-column-reversed"
+                                pwPadding="zero"
+                                pwTheme="grayscale-white"
+                                textAlignment="text-left"
+                                title="Turn your products into success"
+                                videoSource="youtube"
+                                youtubeVideoID="ZofQqevIIZA"/>
+                    </par3>
+                    <par4
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="foundation/components/parsys">
+                        <articleitem
+                                jcr:created="{Date}2019-03-26T14:06:36.283Z"
+                                jcr:createdBy="admin"
+                                jcr:lastModified="{Date}2019-03-26T14:08:29.969Z"
+                                jcr:lastModifiedBy="admin"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/articleItem"
+                                articleImageAltI18n="Turn ingredients into productsz"
+                                articleImagePath="/content/dam/publicweb/banners/mayonnaise2.png"
+                                articlePath="/content/tetrapak/public-web/global/en/solutions/turn-ingredients-into-products"
+                                articleTitle="Turn ingredients into products"
+                                contentType="manual"
+                                ctaTexti18nKey="Discover our processing solutions"
+                                pwButtonTheme="secondary"
+                                showImage="true"
+                                vanityDescription="Turn ingredients into products"/>
+                    </par4>
+                    <par5
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="foundation/components/parsys">
+                        <imagetextbanner
+                                jcr:created="{Date}2019-04-02T05:46:50.227Z"
+                                jcr:createdBy="sapient-vanessa"
+                                jcr:lastModified="{Date}2019-04-02T05:46:50.227Z"
+                                jcr:lastModifiedBy="sapient-vanessa"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="publicweb/components/content/imageTextBanner"/>
+                    </par5>
+                </listcontentimage>
+                <imagetextbanner
+                        jcr:created="{Date}2019-03-22T18:42:20.680Z"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-04-22T10:05:19.189-03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/imageTextBanner"
+                        bannerCtaPath="/content/dam/publicweb/articles/Children.png"
+                        bannerCtaTextI18n="Get to know the millenials"
+                        bannerCtaTooltipI18n="Get to know the millenials"
+                        bannerDescriptionI18n="Young, aspirational and demanding. They spend approximately $600 billion anually. But who are the millenials? How can you optimise your products and packages to meet their needs?"
+                        bannerSubtitleI18n="RECOMMENDED WHITEPAPER"
+                        contentAlignment="pw-banner--right"
+                        desktopImage="/content/dam/publicweb/banners/Yogurt1416.png"
+                        desktopImageAltI18n="How well do you know the millenials?"
+                        mobileImage="/content/dam/publicweb/banners/Yogurt1416.png"
+                        mobileImageAltI18n="How well do you know the millenials?"
+                        targetSoftConversion="on"
+                        titleI18n="How well do you know the millenials?"/>
+                <contactfooterform
+                        jcr:created="{Date}2019-04-08T14:52:02.551-03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-04-08T14:52:02.551-03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/contactFooterForm"/>
+                <softconversionform
+                        jcr:created="{Date}2019-04-21T15:24:18.631-03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-10-17T13:40:10.656Z"
+                        jcr:lastModifiedBy="tetrapak-user"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/softConversionForm"
+                        buttonLabel="Soft Conversion Btn"
+                        companyLabel="Company"
+                        description="In the whitepaper 4 tips to help you choose the right hight Shear Mixer you will learn about selecting the High Shear Mixer that maximises your flexibility and bottom line, while ensuring food safety for your customers."
+                        documentPath="/content/dam/publicweb/1320x500-test1.png"
+                        emailAddressLabel="Email Address"
+                        firstNameLabel="First Name"
+                        headline="Sign Up in a few easy steps to download the whitepaper"
+                        lastNameLabel="Last Name"
+                        nextButtonLabel="Next"
+                        positionLabel="Position"
+                        previousButtonLabel="Previous"
+                        submitButtonLabel="Submit"
+                        titleI18n="How to choose the right High Shear Mixer"/>
+                <richtext
+                        jcr:created="{Date}2019-12-10T09:45:46.514Z"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2019-12-10T09:47:57.866Z"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="publicweb/components/content/richtext"
+                        text="&lt;table cellpadding=&quot;1&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; width=&quot;100&quot; height=&quot;100&quot;>&#xd;&#xa;&lt;caption>xyz&lt;/caption>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;th scope=&quot;col&quot;>Column1&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column2&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column3&lt;/th>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>a1&lt;/td>&#xd;&#xa;&lt;td>aa2&lt;/td>&#xd;&#xa;&lt;td>a3&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                        textIsRich="true"/>
+            </responsivegrid>
+        </root>
+        <header
+                jcr:lastModified="{Date}2019-04-05T07:41:07.438Z"
+                jcr:lastModifiedBy="sapient-user"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/structure/header"
+                enableHeroImage="true"
+                loginTextI18n="My Tetra Pak"
+                megamenuLinks="[{&quot;linkTextI18n&quot;:&quot;Solutions&quot;\,&quot;linkTooltipI18n&quot;:&quot;Solutions&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/global/en/solutions&quot;},{&quot;linkTextI18n&quot;:&quot;Insights&quot;\,&quot;linkTooltipI18n&quot;:&quot;Insights&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/global/en/innovations&quot;},{&quot;linkTextI18n&quot;:&quot;Sustainability&quot;\,&quot;linkTooltipI18n&quot;:&quot;Sustainability&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/global/en/sustainability&quot;},{&quot;linkTextI18n&quot;:&quot;Careers&quot;\,&quot;linkTooltipI18n&quot;:&quot;Carrers&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/global/en/careers&quot;},{&quot;linkTextI18n&quot;:&quot;About us&quot;\,&quot;linkTooltipI18n&quot;:&quot;About us&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/global/en/about-us&quot;}]"
+                searchResultsPath="/content/tetrapak/public-web/global/en/search"
+                searchRootPath="/content/tetrapak/public-web/global/en">
+            <logo
+                    jcr:lastModified="{Date}2019-03-22T03:11:47.411Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/logo"
+                    imageAltI18n="Tetra Pak Logo"
+                    imageLink="/content/tetrapak/public-web/global/en"
+                    imagePath="/content/dam/publicweb/logo_tetra_pak_white.png"/>
+            <imageTextBanner
+                    jcr:lastModified="{Date}2019-04-22T10:13:28.522-03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/imageTextBanner"
+                    bannerCtaPath="/content/tetrapak/public-web/global/en"
+                    bannerCtaTextI18n="Button"
+                    bannerSubtitleI18n="INNOVATIVE SOLUTIONS FOR YOUR FOOD AND BEVERAGE BUSINESS"
+                    contentAlignment="pw-banner"
+                    contrastLayer="gradient-to-right"
+                    desktopImage="/content/dam/publicweb/banners/hero_newdrink.jpg"
+                    desktopImageAltI18n="Where everything comes together"
+                    mobileImage="/content/dam/publicweb/Teaser1.png"
+                    mobileImageAltI18n="Where everything comes together"
+                    targetSoftConversion="on"
+                    titleI18n="Where everything comes together"/>
+        </header>
+        <footer
+                jcr:lastModified="{Date}2019-03-26T14:11:27.205Z"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/structure/footer"
+                ctaLabelI18n="To top"
+                footerNavigationLinks="[{&quot;linkTextI18n&quot;:&quot;Legal Information&quot;\,&quot;linkTooltipI18n&quot;:&quot;Legal Information&quot;\,&quot;linkPath&quot;:&quot;http://tetrapak.com/about/legal-information&quot;\,&quot;targetBlank&quot;:&quot;on&quot;},{&quot;linkTextI18n&quot;:&quot;Contact Us&quot;\,&quot;linkTooltipI18n&quot;:&quot;Contact Us&quot;\,&quot;linkPath&quot;:&quot;http://tetrapak.com/contact&quot;\,&quot;targetBlank&quot;:&quot;on&quot;},{&quot;linkTextI18n&quot;:&quot;Tetra Laval Group&quot;\,&quot;linkTooltipI18n&quot;:&quot;Tetra Laval Group&quot;\,&quot;linkPath&quot;:&quot;http://www.tetralaval.com/&quot;\,&quot;targetBlank&quot;:&quot;on&quot;},{&quot;linkTextI18n&quot;:&quot;沪ICP备17056308号-1&quot;\,&quot;linkTooltipI18n&quot;:&quot;http://www.miitbeian.gov.cn/&quot;\,&quot;linkPath&quot;:&quot;http://www.miitbeian.gov.cn/&quot;\,&quot;targetBlank&quot;:&quot;on&quot;}]"
+                footerSocialLinks="[{&quot;socialMedia&quot;:&quot;Facebook&quot;\,&quot;socialMediaLinkPath&quot;:&quot;http://www.facebook.com/tetrapak&quot;},{&quot;socialMedia&quot;:&quot;Twitter&quot;\,&quot;socialMediaLinkPath&quot;:&quot;http://www.twitter.com/tetrapak&quot;},{&quot;socialMedia&quot;:&quot;Linkedin&quot;\,&quot;socialMediaLinkPath&quot;:&quot;http://www.linkedin.com/tetrapak&quot;},{&quot;socialMedia&quot;:&quot;Youtube&quot;\,&quot;socialMediaLinkPath&quot;:&quot;http://www.youtube.com/tetrapak&quot;},{&quot;socialMedia&quot;:&quot;Linkedin&quot;\,&quot;socialMediaLinkPath&quot;:&quot;http://www.linkedin.com/tetrapak&quot;}]">
+            <footer
+                    jcr:lastModified="{Date}2019-03-11T07:36:48.436-03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/logo"
+                    imageAltI18n="Tetra Pak Logo"
+                    imageLink="/content/tetrapak/public-web/global/en"
+                    imagePath="/content/dam/publicweb/logo_tetra_pak_white.png"/>
+        </footer>
+    </jcr:content>
+    <solutions/>
+    <innovations/>
+    <sustainability/>
+    <careers/>
+    <about-us/>
+    <search/>
+    <lines/>
+    <products/>
+    <articlepage/>
+</jcr:root>

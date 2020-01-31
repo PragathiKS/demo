@@ -1,63 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:primaryType="nt:unstructured"
-    jcr:title="Article Page"
-    sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
-    mode="edit">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Article Page"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
+          mode="edit">
     <content
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/foundation/container"
-        class="cq-dialog-content-page">
+            granite:class="cq-dialog-content-page"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">
             <tabs
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/foundation/container"
-                rel="cq-siteadmin-admin-properties-tabs">
-                <layout
+                    granite:rel="cq-siteadmin-admin-properties-tabs"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/tabs"
-                    type="nav"/>
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
                     <article
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Article Configuration"
-                        sling:resourceType="granite/ui/components/foundation/section">
-                        <layout
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                            margin="{Boolean}false"/>
+                            jcr:title="Article Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
                             <column
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/container">
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
                                     <articleProperties
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="Article Properties"
-                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Article Properties"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
                                             <showArticleDate
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    name="./showArticleDate"
                                                     text="Show Article Date?"
-                                                    value="true"
-                                                    name="./showArticleDate" />
+                                                    value="true"/>
                                             <showArticleDateDelete
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                    cq:showOnCreate="{Boolean}true"
                                                     name="./showArticleDate@Delete"
                                                     value="{Boolean}true"/>
                                             <articleDate
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                                                    fieldLabel="Article Date"
+                                                    cq:showOnCreate="{Boolean}true"
                                                     fieldDescription="Published date is used if not configured"
-                                                    type="date"
-                                                    name="./articleDate" />
+                                                    fieldLabel="Article Date"
+                                                    name="./articleDate"
+                                                    type="date"/>
                                             <articleImagePath
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    cq:showOnCreate="{Boolean}true"
                                                     fieldDescription="Select Article Image Path"
                                                     fieldLabel="Article Image Path"
                                                     name="./articleImagePath"
@@ -65,78 +61,79 @@
                                             <imageAltText
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    cq:showOnCreate="{Boolean}true"
                                                     fieldDescription="Enter Alt Text"
                                                     fieldLabel="Article Image Alt Text"
                                                     name="./imageAltTextI18n"/>
                                             <linkText
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    cq:showOnCreate="{Boolean}true"
                                                     fieldLabel="Link Text"
                                                     name="./linkText"/>
-                                          
                                             <stickyNavDetails
                                                     jcr:primaryType="nt:unstructured"
                                                     jcr:title="Sticky Navigation"
-                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                                    <items
-                                                        jcr:primaryType="nt:unstructured">
-                                                        <showStickyNavigation
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <showStickyNavigation
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            name="./showStickyNavigation"
                                                             text="Show Sticky Navigation?"
-                                                            value="true"
-                                                            name="./showStickyNavigation" />
-                                                        <showStickyNavigationDelete
+                                                            value="true"/>
+                                                    <showStickyNavigationDelete
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                             name="./showStickyNavigation@Delete"
                                                             value="{Boolean}true"/>
-                                                        <thumbnail
+                                                    <thumbnail
                                                             jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
-                                                            rootPath="/content/dam/publicweb"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             fieldLabel="Thumbnail Image Path"
-                                                            name="./thumbnailImagePath"/>
-                                                        <stickyNavTitle
+                                                            name="./thumbnailImagePath"
+                                                            rootPath="/content/dam/publicweb"/>
+                                                    <stickyNavTitle
                                                             jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldLabel="Sticky Navigation Title"
                                                             name="./stickyNavTitle"/>
-                                                        <stickyNavDescription
+                                                    <stickyNavDescription
                                                             jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldLabel="Sticky Navigation Description"
                                                             name="./stickyNavDescription"/>
-                                                        <navLinkText
+                                                    <navLinkText
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldLabel="Navigation Link Text"
                                                             name="./navLinkText"/>
-                                                        <navLinkPath
+                                                    <navLinkPath
                                                             jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
-                                                            rootPath="/content/tetrapak/public-web/"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             fieldLabel="Navigation Link Path"
-                                                            name="./navLinkPath"/>
-                                                        <navLinkTarget
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                                fieldLabel="Navigation Link Target"
-                                                                name="./navLinkTarget">
-                                                                <items jcr:primaryType="nt:unstructured">
-                                                                    <new
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        text="New Window"
-                                                                        value="_blank"/>
-                                                                    <same
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        text="Same Window"
-                                                                        value="_self"/>
-                                                                </items>
-                                                        </navLinkTarget>
-                                                    </items>
+                                                            name="./navLinkPath"
+                                                            rootPath="/content/tetrapak/public-web/"/>
+                                                    <navLinkTarget
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            cq:showOnCreate="{Boolean}true"
+                                                            fieldLabel="Navigation Link Target"
+                                                            name="./navLinkTarget">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <new
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="New Window"
+                                                                    value="_blank"/>
+                                                            <same
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Same Window"
+                                                                    value="_self"/>
+                                                        </items>
+                                                    </navLinkTarget>
+                                                </items>
                                             </stickyNavDetails>
-                                          
                                         </items>
                                     </articleProperties>
                                 </items>

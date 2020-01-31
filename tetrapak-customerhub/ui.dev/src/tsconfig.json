@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES2020",
+    "typeRoots": [
+      ".",
+      "../../../tetrapak-commons/ui.dev/src"
+    ]
+  }
+}

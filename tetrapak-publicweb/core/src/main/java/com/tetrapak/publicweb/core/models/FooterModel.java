@@ -1,10 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
+import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
+import com.tetrapak.publicweb.core.beans.SocialLinkBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.Model;
@@ -12,11 +12,9 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
-import com.tetrapak.publicweb.core.beans.SocialLinkBean;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Model(adaptables = Resource.class)
 public class FooterModel {
@@ -52,26 +50,23 @@ public class FooterModel {
                 return;
             }
 
-            if (socialLinks != null) {
-                for (int i = 0; i < socialLinks.length; i++) {
-                    jObj = new JSONObject(socialLinks[i]);
-                    SocialLinkBean bean = new SocialLinkBean();
+            for (int i = 0; i < socialLinks.length; i++) {
+                jObj = new JSONObject(socialLinks[i]);
+                SocialLinkBean bean = new SocialLinkBean();
 
-                    String socialMedia = "";
-                    String socialMediaLinkPath = "";
-                    if (jObj.has("socialMedia")) {
-                        socialMedia = jObj.getString("socialMedia");
-                    }
-                    if (jObj.has("socialMediaLinkPath")) {
-                        socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
-                    }
-
-                    bean.setSocialMediaLinkPath(socialMediaLinkPath);
-                    bean.setSocialMediaIconClass("icon-" + socialMedia);
-                    bean.setSocialMediaName(socialMedia);
-                    footerSocialLinks.add(bean);
-
+                String socialMedia = "";
+                String socialMediaLinkPath = "";
+                if (jObj.has("socialMedia")) {
+                    socialMedia = jObj.getString("socialMedia");
                 }
+                if (jObj.has("socialMediaLinkPath")) {
+                    socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
+                }
+
+                bean.setSocialMediaLinkPath(socialMediaLinkPath);
+                bean.setSocialMediaIconClass("icon-" + socialMedia);
+                bean.setSocialMediaName(socialMedia);
+                footerSocialLinks.add(bean);
             }
         } catch (Exception e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);

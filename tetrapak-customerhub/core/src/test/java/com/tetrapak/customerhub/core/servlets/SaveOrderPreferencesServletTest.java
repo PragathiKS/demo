@@ -29,8 +29,6 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, SaveOrderPreferencesServlet.class})
 public class SaveOrderPreferencesServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/ordering/jcr:content/root/responsivegrid/orderingcard";

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-04-08T08:11:23.969Z"
+        cq:lastModifiedBy="sapient-user"
+        cq:lastReplicated="{Date}2019-10-10T06:28:42.915Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:tags="[tetrapak:technology-area/mixing,tetrapak:application/beverages/juice]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-best-practice-line-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Juice lines (NFC and FC)"
+        jcr:uuid="711ef9bf-13cd-488e-99f6-8d9e1c27f2a8"
+        sling:resourceType="publicweb/components/structure/pages/bestpracticelinepage"
+        ctaTexti18nKey="Get mixing and blending right"
+        linkTarget="_self"
+        practiceImageAltI18n="machinery"
+        practiceImagePath="/content/dam/publicweb/lines/Machinery.png"
+        title="Juice lines (NFC and FC)"
+        vanityDescription="Done right, mixing can enhance the efficiency of your operations, and lead to hight-quality food products."/>
+</jcr:root>

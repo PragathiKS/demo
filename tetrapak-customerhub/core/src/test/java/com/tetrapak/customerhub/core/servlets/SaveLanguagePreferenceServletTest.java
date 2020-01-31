@@ -31,8 +31,6 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({TableOperation.class, SaveLanguagePreferenceServlet.class})
 public class SaveLanguagePreferenceServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/customerhub/"

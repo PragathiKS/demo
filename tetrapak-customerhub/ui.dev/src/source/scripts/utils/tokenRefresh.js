@@ -1,4 +1,3 @@
-import 'core-js/features/promise';
 import { storageUtil, isCurrentPageIframe, getMaxSafeInteger, isLocalhost } from '../common/common';
 import { $body, $win } from './commonSelectors';
 import { ACC_TOKEN_COOKIE, EVT_TOKEN_REFRESH, EVT_REFRESH_INITIATE, AUTH_TOKEN_COOKIE, DELETE_COOKIE_SERVLET_URL, EVT_POST_REFRESH, EMPTY_PAGE_URL, EVT_IFRAME_TIMEOUT, TOKEN_REFRESH_IFRAME_TIMEOUT, ajaxMethods, REFRESH_TIMEOUT } from './constants';
