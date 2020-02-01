@@ -27,7 +27,7 @@ pipeline {
 
         stages {
 
-                stage ('Initialize') 
+                stage ('Initialize'){ 
                      agent {
                       dockerfile {
                       args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
@@ -40,7 +40,7 @@ pipeline {
                                         '''
                                // sh "mkdir releases "
             }
-        }
+        }}
 		stage('init-build-Number'){
 			steps{
 				script{//sh "wget https://tetrapak-dev64a.adobecqms.net"
