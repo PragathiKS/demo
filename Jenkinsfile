@@ -97,7 +97,8 @@ pipeline {
                                                 sh "npm install --prefix ui.dev/src"
                                                 sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                                // sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
-								}
+							sh 'cp -r ${karmapath_cuhu} releases'	
+                                                            }
 							}
                                   }
                         }
@@ -132,7 +133,7 @@ pipeline {
                                                         sh "pwd"
                                                         sh 'cp -r ${karmapath_cuhu} releases'
                                                         
-														sh 'cp -r releases/coverage/index.html .'
+													//	sh 'cp -r releases/coverage/index.html .'
                                                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
                                                         // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
