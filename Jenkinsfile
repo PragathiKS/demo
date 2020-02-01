@@ -30,7 +30,7 @@ pipeline {
                 stage ('Initialize'){ 
                      agent {
                       dockerfile {
-                      args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
+                      args  '-v "$HOME/.m2":/.m2 -v SmartSales_cfe-tetrapak_develop:/SmartSales_cfe-tetrapak_develop --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }} 
                         steps {
