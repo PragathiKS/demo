@@ -23,7 +23,7 @@ pipeline {
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
 		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
-                M2_HOME=/home/agentadmin/~/jenkins/workspace/SmartSales_cfe-tetrapak_develop
+                M2_HOME="${workspace}/SmartSales_cfe-tetrapak_develop"
                 
         }
 
