@@ -27,7 +27,8 @@ pipeline {
 
         stages {
 
-                stage ('Initialize') {
+                stage ('Initialize') 
+                     agent {
                       dockerfile {
                       args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
