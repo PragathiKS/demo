@@ -32,14 +32,14 @@ pipeline {
                       dockerfile {
                       args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
-                } 
+                }} 
                         steps {
                                 sh      '''
                                         echo "PATH = ${PATH}"
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
                                // sh "mkdir releases "
-            }
+            
         }}
 		stage('init-build-Number'){
 			steps{
