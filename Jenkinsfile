@@ -28,11 +28,6 @@ pipeline {
         stages {
 
                 stage ('Initialize'){ 
-                     agent {
-                      dockerfile {
-                      args  '-v "$HOME/.m2":/.m2 -v SmartSales_cfe-tetrapak_develop:/SmartSales_cfe-tetrapak_develop --tmpfs /.npm -u root:root'
-                      label 'linux&&docker'
-                }} 
                         steps {
                                 sh      '''
                                         echo "PATH = ${PATH}"
@@ -58,6 +53,13 @@ pipeline {
 
 
                 stage ('Build-Commons') {
+                            
+                     agent {
+                      dockerfile {
+                      args  '-v "$HOME/.m2":/.m2 -v SmartSales_cfe-tetrapak_develop:/SmartSales_cfe-tetrapak_develop --tmpfs /.npm -u root:root'
+                      label 'linux&&docker'
+                }}
+
                         steps {
                              script {
                                  if (params.Build_Commons) {
