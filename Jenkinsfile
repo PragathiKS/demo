@@ -23,6 +23,7 @@ pipeline {
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
 		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
+                
         }
 
         stages {
@@ -56,7 +57,7 @@ pipeline {
                             
                      agent {
                       dockerfile {
-                      args  '-v "$HOME/.m2":/.m2 -v SmartSales_cfe-tetrapak_develop:/SmartSales_cfe-tetrapak_develop --tmpfs /.npm -u root:root'
+                      args  '-v "$HOME/.m2":/.m2:rw -v  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
 
@@ -64,6 +65,7 @@ pipeline {
                              script {
                                  if (params.Build_Commons) {
                                      echo "Build Commons"
+                                     sh "echo $HOME"
                                      dir('tetrapak-commons') {
                                         sh "npm install --prefix ui.dev/src"
                                         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
@@ -81,7 +83,7 @@ pipeline {
 					stage ('Build-CustomerHub') {
                                   agent {
                       dockerfile {
-                      args  '-v "$HOME/.m2":/.m2 -v SmartSales_cfe-tetrapak_develop:/SmartSales_cfe-tetrapak_develop --tmpfs /.npm -u root:root'
+                      args  '-v "$HOME/.m2":/.m2:rw  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
                         steps {
