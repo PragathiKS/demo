@@ -4,7 +4,7 @@ pipeline {
 		//	args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
 		//	label 'linux&&docker'
 		//}}
-
+        sh "pwd ; mkdir .m2"
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
@@ -29,6 +29,10 @@ pipeline {
         stages {
 
                 stage ('Initialize') {
+                      dockerfile {
+                      args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
+                      label 'linux&&docker'
+                } 
                         steps {
                                 sh      '''
                                         echo "PATH = ${PATH}"
