@@ -23,6 +23,7 @@ pipeline {
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
 		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
+                M2_HOME=/home/agentadmin/~/jenkins/workspace/SmartSales_cfe-tetrapak_develop
                 
         }
 
@@ -57,7 +58,9 @@ pipeline {
                             
                      agent {
                       dockerfile {
-                      args  '-v "$HOME/.m2":/.m2:rw -v  --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/.m2":/.m -v  --tmpfs /.npm -u root:root'
+                     // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
+
                       label 'linux&&docker'
                 }}
 
@@ -83,7 +86,7 @@ pipeline {
 					stage ('Build-CustomerHub') {
                                   agent {
                       dockerfile {
-                      args  '-v "$HOME/.m2":/.m2:rw  --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/.m2":/.m2  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
                         steps {
