@@ -1,4 +1,4 @@
-pipeline {
+prmaipeline {
 	agent any 
                 //{dockerfile {
 		//	args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
@@ -139,7 +139,7 @@ pipeline {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
                                                         sh 'pwd'
-                                                        sh 'ls reports'
+                                                        sh 'ls reports/coverage'
                                                        // sh 'ls tetrapak-customerhub/releases'
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                         
