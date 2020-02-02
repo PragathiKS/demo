@@ -59,8 +59,7 @@ pipeline {
                 stage ('Build-Commons') {
                       when {
                             // Only say hello if a "greeting" is requested
-                           // expression { params.REQUESTED_ACTION == 'greeting' }
-                          if (params.Build_Commons)
+                           // expression { params.Build_Commons == true }
                           }
                       agent {
                       dockerfile {
