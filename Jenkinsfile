@@ -59,7 +59,7 @@ pipeline {
                             
                      agent {
                       dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/.m2":/root/.m2 -v tetrapak-customerhub:tetrapak-customerhub:rw  --tmpfs /.npm -u root:root'
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
 
                       label 'linux&&docker'
