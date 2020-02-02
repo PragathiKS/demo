@@ -56,9 +56,9 @@ pipeline {
 			}
 		}
 
-
+                if (params.Build_Commons) {
                 stage ('Build-Commons') {
-                    if (params.Build_Commons) {        
+                   // if (params.Build_Commons) {        
                      agent {
                       dockerfile {
                       args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
