@@ -143,8 +143,8 @@ pipeline {
                                                        // sh 'ls tetrapak-customerhub/releases'
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                        // sh 'chmod 755 -R reports' 
-							sh 'cp -r reports/coverage/index.html .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+							sh 'cp -r reports/coverage .'
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
                                                         // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
