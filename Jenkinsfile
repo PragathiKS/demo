@@ -59,7 +59,7 @@ pipeline {
                             
                      agent {
                       dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2 -v tetrapak-customerhub:tetrapak-customerhub:rw  --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
 
                       label 'linux&&docker'
@@ -96,6 +96,7 @@ pipeline {
 							script{
 							if (params.Build_Customerhub) {
 								echo "Build CustomerHub"
+                                                       sh "echo $EXECUTOR_NUMBER"
                                       dir('tetrapak-customerhub') {
                                                 sh "npm install --prefix ui.dev/src"
                                                 sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
