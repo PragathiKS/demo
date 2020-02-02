@@ -98,8 +98,9 @@ pipeline {
                                                 sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                                // sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					       sh 'pwd'
-                                               sh 'ls'		
-                                               sh 'cp -r ${karmapath_cuhu} $workspace/releases'	
+                                               sh 'ls'
+                                               sh 'ls ui.dev/src/coverage'		
+                                               sh 'cp -r ${karmapath_cuhu} ../../../releases'	
                                                             }
 							}
                                   }
