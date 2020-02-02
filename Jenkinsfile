@@ -99,7 +99,8 @@ pipeline {
                                                // sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					       sh 'pwd'
                                                sh 'ls'
-                                               sh 'ls ui.dev/src/coverage'		
+                                               sh 'ls ui.dev/src/coverage'
+                                               sh 'echo ${BUILD_DIR}'		
                                                sh 'cp -r ${karmapath_cuhu} ../../../releases'	
                                                             }
 							}
