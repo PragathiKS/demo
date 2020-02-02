@@ -52,6 +52,8 @@ pipeline {
                                   sh 'pwd'
                                   sh 'docker ps -a'
                                   sh 'docker ps'
+                                  sh 'docker stop zap'
+                                  sh 'docker rm zap'
 				}
 			}
 		}
@@ -160,11 +162,11 @@ pipeline {
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport_CustomerHub.html', reportName: 'PallyReport-CustomerHub', reportTitles: ''])
 							 echo "Starting Zap Test Run- CustomerHub"
                                                         // sh 'docker rm zap'
-                                                      //   sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 								sleep 20
 								echo "Starting ZAP test Run on CustomerHub Urls"
-                                                         sh 'docker exec -c "export LANG=C.UTF-8" zap zap-cli spider ${test_url_pally_zap_cuhu}'
-                                                         sh 'docker exec -c "export LANG=C.UTF-8" zap zap-cli report -f html -o "zap_CustomerHub.html"'
+                                                         sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
+                                                         sh 'docker exec  zap zap-cli report -f html -o "zap_CustomerHub.html"'
 							 sh 'docker cp zap:zap/zap_CustomerHub.html .'
 							 sh 'docker stop zap'
 							 sh 'docker rm zap' 
