@@ -130,8 +130,8 @@ pipeline {
                                 	sh "npm install --prefix ui.dev/src"
                                 	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
-                                        sh 'cp -r ui.dev/src/coverage /root/reports/publicweb'   
-				sh 'ls /root/reports/publicweb'		}
+                                        sh 'cp -r ui.dev/src/coverage /root/publicweb'   
+				sh 'ls /root/publicweb'		}
 						            } 
 					}
                         	}
@@ -251,7 +251,7 @@ pipeline {
 						echo "Starting Sitespeed-IPAD Test Run for PublicWeb"
                                                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_pw} -b firefox --outputFolder sitespeed_ipad'
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
-                                                sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
+                                               // sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 									}
 														  
 						}
