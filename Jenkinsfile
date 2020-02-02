@@ -56,10 +56,13 @@ pipeline {
 			}
 		}
 
-                if (params.Build_Commons) {
                 stage ('Build-Commons') {
-                   // if (params.Build_Commons) {        
-                     agent {
+                      when {
+                            // Only say hello if a "greeting" is requested
+                           // expression { params.REQUESTED_ACTION == 'greeting' }
+                          if (params.Build_Commons)
+                          }
+                      agent {
                       dockerfile {
                       args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
