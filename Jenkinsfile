@@ -49,6 +49,7 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}"
+                                  sh 'pwd'
 				}
 			}
 		}
@@ -69,6 +70,7 @@ pipeline {
                                  if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
+                                     sh 'pwd'
                                      dir('tetrapak-commons') {
                                         sh "npm install --prefix ui.dev/src"
                                         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
@@ -140,7 +142,7 @@ pipeline {
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                         
 													//	sh 'cp -r releases/coverage/index.html .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '$workspace/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: $workspace/releases/coverage, reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
                                                         // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
