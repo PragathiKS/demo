@@ -100,7 +100,7 @@ pipeline {
 					       sh 'pwd'
                                                sh 'ls'
                                                sh 'ls ui.dev/src/coverage'
-                                               sh 'echo ${BUILD_DIR}'		
+                                               sh 'echo $BUILD_DIR'		
                                                sh 'cp -r ${karmapath_cuhu} ../../../releases'	
                                                             }
 							}
