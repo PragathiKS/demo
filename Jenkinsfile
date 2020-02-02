@@ -134,7 +134,8 @@ pipeline {
 														if (params.Build_Customerhub) {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
-                                                        sh "pwd"
+                                                        def workspace = pwd()
+                                                        sh "$workspace"
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                         
 													//	sh 'cp -r releases/coverage/index.html .'
