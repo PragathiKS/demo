@@ -137,7 +137,8 @@ pipeline {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
                                                         sh 'pwd'
-                                                        sh 'ls '
+                                                        sh 'ls tetrapak-customerhub'
+                                                        sh 'ls tetrapak-customerhub/releases'
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                         
 													//	sh 'cp -r releases/coverage/index.html .'
