@@ -110,7 +110,7 @@ pipeline {
                                         sh 'ls ui.dev/src/coverage'
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
-                                        sh 'ls /root/reports/customerhub'                    }
+                                        sh 'ls /root/customerhub'                    }
 							}
                                   }
                         }
