@@ -70,6 +70,7 @@ pipeline {
                                  if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
+                                     sh "echo $EXECUTOR_NUMBER"
                                      sh 'pwd'
                                      dir('tetrapak-commons') {
                                         sh "npm install --prefix ui.dev/src"
