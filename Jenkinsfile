@@ -1,4 +1,4 @@
-prmaipeline {
+pipeline {
 	agent any 
                 //{dockerfile {
 		//	args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
