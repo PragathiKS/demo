@@ -144,7 +144,7 @@ pipeline {
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                        // sh 'chmod 755 -R reports' 
 							sh 'cp -r reports/coverage .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'coverage', reportFiles: 'index.html', reportName: '${reportname}', reportTitles: ''])
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'coverage', reportFiles: 'index.html', reportName: ${reportname}, reportTitles: ''])
                                                         // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
@@ -155,12 +155,7 @@ pipeline {
                                                          sh 'cp Devops/PallyReport.html PallyReport_CustomerHub.html' 
                                                          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport_CustomerHub.html', reportName: 'Pally Report', reportTitles: ''])
 							 echo "Starting Zap Test Run- CustomerHub"
-                                                         docker stop zap
-                                                         'docker rm zap'
-                                                         sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw \
-                                                         -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  \
-                                                          -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true \
-                                                          -config api.disablekey=true'  
+                                                         sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 								sleep 20
 								echo "Starting ZAP test Run on CustomerHub Urls"
                                                          sh 'docker exec zap zap-cli spider ${test_url_pally_zap_cuhu}'
