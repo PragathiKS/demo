@@ -137,12 +137,11 @@ pipeline {
                                                         echo "Publising karma Test Report- CustomerHub"
                                                         sh 'echo "Karma Report"'
                                                         sh 'pwd'
-                                                        def workspace = pwd()
-                                                        sh 'echo ${workspace}'
+                                                        sh 'ls releases/coverage'
                                                        // sh 'cp -r ${karmapath_cuhu} releases'
                                                         
 													//	sh 'cp -r releases/coverage/index.html .'
-                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: $workspace/releases/coverage, reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+                                                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: releases/coverage, reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
                                                         // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
