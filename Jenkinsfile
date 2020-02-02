@@ -50,13 +50,15 @@ pipeline {
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}"
                                   sh 'pwd'
+                                  sh 'docker ps -a'
+                                  sh 'docker ps' 
 				}
 			}
 		}
 
 
                 stage ('Build-Commons') {
-                            
+                    if (params.Build_Commons) {        
                      agent {
                       dockerfile {
                       args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
@@ -67,7 +69,7 @@ pipeline {
 
                         steps {
                              script {
-                                 if (params.Build_Commons) {
+                               //  if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
                                      sh "echo $EXECUTOR_NUMBER"
