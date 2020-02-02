@@ -93,7 +93,7 @@ pipeline {
 		stage ('Build-CustomerHub') {
              		agent {
               			dockerfile {
-                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports":/root/reports --tmpfs /.npm -u root:root'
+                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports/customerhub":/root/reports/customerhub --tmpfs /.npm -u root:root'
                       		label 'linux&&docker'
                 }}
                         steps {
@@ -110,7 +110,7 @@ pipeline {
                                         sh 'ls ui.dev/src/coverage'
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/reports/customerhub'	
-                                                            }
+                                        sh 'ls /root/reports/customerhub'                    }
 							}
                                   }
                         }
@@ -131,7 +131,7 @@ pipeline {
                                 	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                         sh 'cp -r ui.dev/src/coverage /root/reports/publicweb'   
-							}
+				sh 'ls /root/reports/publicweb'		}
 						            } 
 					}
                         	}
@@ -155,6 +155,7 @@ pipeline {
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
                                               	// sh 'chmod 755 -R reports' 
 						sh 'cp -r reports/coverage/customerhub .'
+                                                sh 'ls -la'  
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
@@ -185,9 +186,9 @@ pipeline {
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
                                                 sh 'cp -r reports/coverage/publicweb .' 
-					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './publicweb', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
 						//sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
-						
+						sh 'ls -la'
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
 						sh './Devops/PallyReportPubWeb.sh'
