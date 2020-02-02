@@ -82,7 +82,7 @@ pipeline {
                                        // sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                                                  }
 
-                                                           }
+                                                          // }
                                      }
                                }
                                          }
