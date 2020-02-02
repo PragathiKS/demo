@@ -90,45 +90,52 @@ pipeline {
 
 
 
-					stage ('Build-CustomerHub') {
-                                  agent {
-                      dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports":/root/reports --tmpfs /.npm -u root:root'
-                      label 'linux&&docker'
+		stage ('Build-CustomerHub') {
+             		agent {
+              			dockerfile {
+                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports":/root/reports --tmpfs /.npm -u root:root'
+                      		label 'linux&&docker'
                 }}
                         steps {
-							script{
-							if (params.Build_Customerhub) {
-								echo "Build CustomerHub"
-                                                       sh "echo $EXECUTOR_NUMBER"
-                                      dir('tetrapak-customerhub') {
-                                                sh "npm install --prefix ui.dev/src"
-                                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                               // sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
-					      // def workspace = pwd()
-                                               sh 'ls'
-                                               sh 'ls ui.dev/src/coverage'
-                                               sh 'echo $workspace'		
-                                               sh 'cp -r ui.dev/src/coverage /root/reports'	
+				script{
+				if (params.Build_Customerhub) {
+				echo "Build CustomerHub"
+                                sh "echo $EXECUTOR_NUMBER"
+                                dir('tetrapak-customerhub') {
+                                	sh "npm install --prefix ui.dev/src"
+                                	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        //sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+					// def workspace = pwd()
+                                        sh 'ls'
+                                        sh 'ls ui.dev/src/coverage'
+                                        sh 'echo $workspace'		
+                                        sh 'cp -r ui.dev/src/coverage /root/reports/customerhub'	
                                                             }
 							}
                                   }
                         }
                     }
 
-					stage ('Build-PublicWeb') {
+		stage ('Build-PublicWeb') {
+                  	agent {
+                                dockerfile {
+                                args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports":/root/reports --tmpfs /.npm -u root:root'
+                                label 'linux&&docker'
+                }}
                         steps {
-							script{
-							if (params.Build_Publicweb) {
-								echo "Build PublicWeb"
-                                                         dir('tetrapak-publicweb'){ 
-                                sh "npm install --prefix ui.dev/src"
-                                sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-${build_id_number} dependency:tree -Dverbose"
+				script{
+				if (params.Build_Publicweb) {
+				echo "Build PublicWeb"
+                                dir('tetrapak-publicweb'){ 
+                                	sh "npm install --prefix ui.dev/src"
+                                	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
-								}
-							}}
-                        }
-                    }
+                                        sh 'cp -r ui.dev/src/coverage /root/reports/publicweb'   
+							}
+						            } 
+					}
+                        	}
+                    			}			
 
 
 				
@@ -147,8 +154,8 @@ pipeline {
                                              	// sh 'ls tetrapak-customerhub/releases'
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
                                               	// sh 'chmod 755 -R reports' 
-						sh 'cp -r reports/coverage .'
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
+						sh 'cp -r reports/coverage/customerhub .'
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
@@ -175,10 +182,11 @@ pipeline {
 						if (params.Build_Publicweb) {
 					   	echo "Publising karma Test Report- PublicWeb"
 					     	sh 'echo "Karma Report"'
-					      	sh 'cp -r ${karmapath_pw} /app/build-area/releases'
-					       	sh 'cp -r /app/build-area/releases/coverage/index.html .'
-					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/app/build-area/releases/coverage', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
-						sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
+					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
+					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
+                                                sh 'cp -r reports/coverage/publicweb .' 
+					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './publicweb', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+						//sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
 						
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
