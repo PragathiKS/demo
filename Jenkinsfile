@@ -51,7 +51,9 @@ pipeline {
                     echo "build_id_number = ${build_id_number}"
                                   sh 'pwd'
                                   sh 'docker ps -a'
-                                  sh 'docker ps' 
+                                  sh 'docker ps'
+                                  sh 'docker stop d608d2075635'
+                                  sh 'docker rm d608d2075635'' 
 				}
 			}
 		}
