@@ -93,7 +93,7 @@ pipeline {
 		stage ('Build-CustomerHub') {
              		agent {
               			dockerfile {
-                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports/customerhub":/root/reports/customerhub --tmpfs /.npm -u root:root'
+                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub --tmpfs /.npm -u root:root'
                       		label 'linux&&docker'
                 }}
                         steps {
@@ -119,7 +119,7 @@ pipeline {
 		stage ('Build-PublicWeb') {
                   	agent {
                                 dockerfile {
-                                args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports":/root/reports --tmpfs /.npm -u root:root'
+                                args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/publicweb":/root/publicweb --tmpfs /.npm -u root:root'
                                 label 'linux&&docker'
                 }}
                         steps {
@@ -154,7 +154,8 @@ pipeline {
                                              	// sh 'ls tetrapak-customerhub/releases'
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
                                               	// sh 'chmod 755 -R reports' 
-						sh 'cp -r reports/coverage/customerhub .'
+						sh 'ls -la reports' 
+                                                sh 'cp -r reports/customerhub .'
                                                 sh 'ls -la'  
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
@@ -185,7 +186,7 @@ pipeline {
 					     	sh 'echo "Karma Report"'
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                sh 'cp -r reports/coverage/publicweb .' 
+                                                sh 'cp -r reports/publicweb .' 
 					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
 						//sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
 						sh 'ls -la'
