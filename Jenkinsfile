@@ -28,14 +28,6 @@ pipeline {
         }
 
         stages {
-                  agent {
-                      dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
-                     // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
-
-                      label 'linux&&docker'}
-                 }
-
                 stage ('Initialize'){ 
                         steps {
                                 sh      '''
@@ -67,19 +59,13 @@ pipeline {
 			}
 		}
 
-                stage ('Build-Commons') {
-                      when {
-                            // Only say hello if a "greeting" is requested
-                           expression { params.Build_Commons == true }
-                          }
-                     /*** agent {
+                stage ('Build-Commons-CustomerHub-PublicWeb-Modules') {
+                     agent {
                       dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
-                     // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
-
+                    //  args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
-                }}**/
-
+                }}
                         steps {
                              script {
                                //  if (params.Build_Commons) {
@@ -92,21 +78,9 @@ pipeline {
                                         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                        // sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                                                  }
-
                                                           // }
                                      }
                                }
-                                         }
-
-
-
-
-		stage ('Build-CustomerHub') {
-             	    /**	agent {
-              			dockerfile {
-                  		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub --tmpfs /.npm -u root:root'
-                      		label 'linux&&docker'
-                }} **/
                         steps {
 				script{
 				if (params.Build_Customerhub) {
@@ -125,14 +99,6 @@ pipeline {
 							}
                                   }
                         }
-                    }
-
-		stage ('Build-PublicWeb') {
-                  	agent {
-                                dockerfile {
-                                args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports/publicweb":/root/publicweb --tmpfs /.npm -u root:root'
-                                label 'linux&&docker'
-                }}
                         steps {
 				script{
 				if (params.Build_Publicweb) {
