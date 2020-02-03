@@ -34,7 +34,6 @@ pipeline {
                                         echo "PATH = ${PATH}"
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
-                                sh "wget http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
             
         }}
 		stage('init-build-Number'){
@@ -93,8 +92,16 @@ pipeline {
                                         sh 'ls ui.dev/src/coverage'
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
-                                        sh 'ls /root/customerhub'                    }
-							}}
+                                        sh 'ls /root/customerhub' 
+                                    //	if (!params.Tools_Execution) {
+                                    //            echo "Skipping Sonar execution for CSS profile"
+                                    //    }
+                                    //	else{
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.host.url=sonarcloud.io -Dsonar.login=2354fbb990d5494aad3c578f2c9dd65147d01e02 -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
+ 				//	}	
+					}
+                                    }
+                                 }
 
 			     script { 	
 				if (params.Build_Publicweb) {
@@ -107,8 +114,13 @@ pipeline {
 				sh 'ls /root/publicweb'		}
 						            } 
 					}
+
+
+                                }
+
+
                         	} 
-                }
+                
 
 				
              	stage ( 'Karma, Pa11y, Zap Tools Execution') {
