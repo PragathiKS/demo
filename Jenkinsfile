@@ -53,7 +53,8 @@ pipeline {
                                   sh 'docker ps -a'
                                   sh 'docker ps'
                                // sh 'if docker stop zap'
-                               // sh 'docker rm zap' 
+                               // sh 'docker rm zap'
+                                  sh 'chmod 777 Devops/deldocker.sh' 
                                   sh 'Devops/deldocker.sh '    
 				}
 			}
