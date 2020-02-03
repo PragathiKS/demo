@@ -28,6 +28,13 @@ pipeline {
         }
 
         stages {
+                  agent {
+                      dockerfile {
+                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                     // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
+
+                      label 'linux&&docker'}
+                 }
 
                 stage ('Initialize'){ 
                         steps {
@@ -65,13 +72,13 @@ pipeline {
                             // Only say hello if a "greeting" is requested
                            expression { params.Build_Commons == true }
                           }
-                      agent {
+                     /*** agent {
                       dockerfile {
                       args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
 
                       label 'linux&&docker'
-                }}
+                }}**/
 
                         steps {
                              script {
@@ -95,11 +102,11 @@ pipeline {
 
 
 		stage ('Build-CustomerHub') {
-             		agent {
+             	    /**	agent {
               			dockerfile {
                   		args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub --tmpfs /.npm -u root:root'
                       		label 'linux&&docker'
-                }}
+                }} **/
                         steps {
 				script{
 				if (params.Build_Customerhub) {
@@ -121,7 +128,7 @@ pipeline {
                     }
 
 		stage ('Build-PublicWeb') {
-                  	agent {
+                  /	agent {
                                 dockerfile {
                                 args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports/publicweb":/root/publicweb --tmpfs /.npm -u root:root'
                                 label 'linux&&docker'
