@@ -68,7 +68,7 @@ pipeline {
                 }}
                         steps {
                              script {
-                               //  if (params.Build_Commons) {
+                               if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
                                      sh "echo $EXECUTOR_NUMBER"
@@ -78,7 +78,7 @@ pipeline {
                                         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                        // sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                                                  }
-                                                          // }
+                                                           }
                                      }
 			     script {	
                                 if (params.Build_Customerhub) {
