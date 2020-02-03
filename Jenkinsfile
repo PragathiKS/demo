@@ -199,7 +199,7 @@ pipeline {
 						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReporPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
 		  
                  				echo "Starting Zap Test Run- PublicWeb"
-                  				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                  	   //		sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						echo "Starting ZAP test Run on PublicWeb Urls"
 					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
 						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
