@@ -67,7 +67,7 @@ class SoftConversionForm {
       ajaxWrapper.getXhrObj({
         url: API_SOFT_CONVERSION,
         method: ajaxMethods.GET,
-        data: $('#softConversionModal form').serialize()
+        data: this.root.find('#softConversionModal form').serialize()
       }).done(
         () => {
           const docpath = this.root.find('#softConversionModal input[name="docpath"]').val();
