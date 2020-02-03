@@ -108,7 +108,7 @@ pipeline {
 						            } 
 					}
                         	} 
-
+                }
 
 				
              	stage ( 'Karma, Pa11y, Zap Tools Execution') {
