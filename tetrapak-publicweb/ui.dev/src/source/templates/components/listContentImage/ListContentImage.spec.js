@@ -8,13 +8,23 @@ describe('ListContentImage', function () {
     this.listContentImage = new ListContentImage({ el: document.body });
     this.initSpy = sinon.spy(this.listContentImage, 'init');
     this.setActiveTabSpy = sinon.spy(this.listContentImage, 'setActiveTab');
+    this.desktopModeStub = sinon.stub(this.listContentImage, 'isDesktopMode');
+    this.mobileModeStub = sinon.stub(this.listContentImage, 'isMobileMode');
+    this.desktopModeStub.returns(true);
+    this.mobileModeStub.returns(true);
     this.listContentImage.init();
-
+    window.digitalData = {};
+    window._satellite = {
+      track() {/* Dummy method */ }
+    };
+    this.listContentImage.init();
   });
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.setActiveTabSpy.restore();
+    this.desktopModeStub.restore();
+    this.mobileModeStub.restore();
   });
   it('should initialize', function () {
     expect(this.listContentImage.init.called).to.be.true;

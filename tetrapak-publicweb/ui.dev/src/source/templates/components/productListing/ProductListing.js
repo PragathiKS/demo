@@ -6,64 +6,46 @@ class ProductListing {
   constructor({ el }) {
     this.root = $(el);
   }
-
   cache = {};
-
   initCache() {
-    this.cache.initialCall = $('.js-product-listng-tab.tpatom-button--group-item--active', this.root).attr('data');
-    this.cache.tabButtons = $('.js-product-listng-tab', this.root);
-    this.cache.dropDown = $('.js-pw-product-listing__navigation__dropdown', this.root);
+    this.cache.initialCall = this.root.find('.js-product-listng-tab.tpatom-button--group-item--active').attr('data');
+    this.cache.tabButtons = this.root.find('.js-product-listng-tab');
+    this.cache.dropDown = this.root.find('.js-pw-product-listing__navigation__dropdown');
     this.cache.productRootPath = this.root.data('productRootPath');
-    this.cache.digitalData = window.digitalData;
   }
-
   bindEvents() {
-    /* Bind jQuery events here */
-    this.renderCards();
-    this.cache.tabButtons.on('click', (e) => {
+    const { tabButtons, dropDown } = this.cache;
+    tabButtons.on('click', (e) => {
       e.preventDefault();
       const $this = $(e.target);
       const category = $this.data('custom');
-      this.cache.tabButtons.removeClass('tpatom-button--group-item--active');
+      tabButtons.removeClass('tpatom-button--group-item--active');
       this.renderCards(category);
       $this.addClass('tpatom-button--group-item--active');
-      if (this.cache.digitalData) {
-        this.cache.digitalData.linkClick = {};
-        this.cache.digitalData.compContentInfo = {};
-        this.cache.digitalData.linkClick.linkType = 'internal';
-        this.cache.digitalData.linkClick.linkSection = 'product category filter';
-        this.cache.digitalData.linkClick.linkParentTitle = $this.closest('.pw-product-listing__navigation').prev().text().trim();
-        this.cache.digitalData.linkClick.linkName = $this.text();
-        if ($this.prev('.analytics-subcomponent-category-tag').val() !== undefined) {
-          const temp = $this.prev('.analytics-subcomponent-category-tag').val().split(':');
-          if (temp[0] && temp.length > 1) {
-            this.cache.digitalData.compContentInfo[temp[0]] = temp.slice(1).join(':');
+      if (window.digitalData) {
+        $.extend(window.digitalData, {
+          compContentInfo: {},
+          linkClick: {
+            linkType: 'internal',
+            linkSection: 'product category filter',
+            linkParentTitle: $.trim($this.closest('.pw-product-listing__navigation').prev().text()),
+            linkName: $this.text()
+          }
+        });
+        const subComponentCategoryTag = $this.prev('.analytics-subcomponent-category-tag').val();
+        if (subComponentCategoryTag) {
+          const categoryParts = subComponentCategoryTag.split(':');
+          if (categoryParts[0] && categoryParts.length > 1) {
+            window.digitalData.compContentInfo[categoryParts[0]] = categoryParts.slice(1).join(':');
           }
         }
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
+        if (window._satellite) {
+          window._satellite.track('linkClicked');
         }
       }
     });
 
-    this.productCardOnClickFn = (e) => {
-      e.preventDefault();
-      const $this = $(e.target);
-      if (this.cache.digitalData) {
-        this.cache.digitalData.linkClick = {};
-        this.cache.digitalData.linkClick.linkType = 'internal';
-        this.cache.digitalData.linkClick.linkSection = 'category filtered products';
-        this.cache.digitalData.linkClick.linkParentTitle = $this.prevAll('.pw-product-card-grid__item__title').text().trim();
-        this.cache.digitalData.linkClick.linkName = $this.text().trim();
-        this.cache.digitalData.linkClick.contentName = $('.js-product-listng-tab.tpatom-button--group-item--active').text().trim();
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
-        }
-      }
-    };
-
-
-    this.cache.dropDown.on('change', (e) => {
+    dropDown.on('change', (e) => {
       e.preventDefault();
       const $this = $(e.target);
       const category = $this.val();
@@ -71,14 +53,33 @@ class ProductListing {
     });
   }
 
+  productCardOnClickFn = (e) => {
+    e.preventDefault();
+    const $this = $(e.target);
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: 'internal',
+          linkSection: 'category filtered products',
+          linkParentTitle: $.trim($this.prevAll('.pw-product-card-grid__item__title').text()),
+          linkName: $.trim($this.text()),
+          contentName: $.trim(this.root.find('.js-product-listng-tab.tpatom-button--group-item--active').text())
+        }
+      });
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
+      }
+    }
+  };
 
   init() {
-    /* Mandatory method */
     this.initCache();
+    this.renderCards();
     this.bindEvents();
   }
 
   renderCards = (category) => {
+    const { productRootPath } = this.cache;
     render.fn({
       template: 'productGrid',
       url: API_PRODUCT_LISTING,
@@ -86,12 +87,12 @@ class ProductListing {
         method: ajaxMethods.GET,
         data: {
           productCategory: category || 'all',
-          productRootPath: this.cache.productRootPath
+          productRootPath: productRootPath
         }
       },
       target: '.js-pw-product-listing__cards-container'
     }, () => {
-      this.cache.productCard = $('.pw-product-card-grid__item__link', this.root).on('click', this.productCardOnClickFn);
+      this.root.find('.pw-product-card-grid__item__link').on('click', this.productCardOnClickFn);
     });
   }
 }
