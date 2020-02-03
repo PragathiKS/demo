@@ -80,9 +80,6 @@ pipeline {
                                                                  }
                                                           // }
                                      }
-                               }
-                        steps {
-				script{
 				if (params.Build_Customerhub) {
 				echo "Build CustomerHub"
                                 sh "echo $EXECUTOR_NUMBER"
@@ -97,10 +94,6 @@ pipeline {
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
                                         sh 'ls /root/customerhub'                    }
 							}
-                                  }
-                        }
-                        steps {
-				script{
 				if (params.Build_Publicweb) {
 				echo "Build PublicWeb"
                                 dir('tetrapak-publicweb'){ 
@@ -112,7 +105,6 @@ pipeline {
 						            } 
 					}
                         	}
-                    			}			
 
 
 				
