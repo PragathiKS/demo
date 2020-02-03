@@ -52,6 +52,8 @@ pipeline {
                                   sh 'pwd'
                                   sh 'docker ps -a'
                                   sh 'docker ps'
+                                  sh 'docker stop zap'
+                                  sh 'docker rm zap'    
 				}
 			}
 		}
