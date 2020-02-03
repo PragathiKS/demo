@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { digitalData } from '../../../scripts/common/common';
+import { isDesktopMode, isMobileMode } from '../../../scripts/common/common';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class ListContentImage {
@@ -9,65 +9,63 @@ class ListContentImage {
   cache = {};
   initCache() {
     const self = this;
-    this.cache.$tabMenuItemLink = $('.pw-listContentImage__tabMenuListItem__link', this.root);
-    this.cache.$tabMenuItem = $('.pw-listContentImage__tabMenuListItem', this.root);
-    this.cache.$editTabItem = $('.pw-listContentImage__editTab', this.root);
-    this.cache.$contentWrapper = $('.pw-listContentImage__contentWrapper', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.$tabMenuItemLink = this.root.find('.pw-listContentImage__tabMenuListItem__link');
+    this.cache.$tabMenuItem = this.root.find('.pw-listContentImage__tabMenuListItem');
+    this.cache.$editTabItem = this.root.find('.pw-listContentImage__editTab');
+    this.cache.$contentWrapper = this.root.find('.pw-listContentImage__contentWrapper');
+    this.cache.$tabContent = this.root.find('.pw-listContentImage__contentTab');
 
     // Add Version Name to each instance
-    $('.pw-listContentImage').each(function (index) {
-      $(this).addClass('listContentImage-version' + index);
+    this.root.each(function (index) {
+      $(this).addClass(`listContentImage-version${index}`);
     });
 
-    // Clone all EditTab Content to the Content Wrapper
+    // Clone sall EditTab Content to the Content Wrapper
     $.each(this.cache.$editTabItem, function () {
-      const tabID = $(this).data('tab-id');
-      const $clonedEditTabContent = $('.pw-listContentImage__contentTab', this).clone();
-      const $clonedEditTabContentMobile = $('.pw-listContentImage__contentTab', this).clone();
+      const $this = $(this);
+      const tabID = $this.data('tab-id');
+      const $clonedEditTabContent = $this.find('.pw-listContentImage__contentTab').clone();
+      const $clonedEditTabContentMobile = $this.find('.pw-listContentImage__contentTab').clone();
       self.cache.$contentWrapper.append($clonedEditTabContent);
-      $('#' + tabID).append($clonedEditTabContentMobile);
+      $(`#${tabID}`).append($clonedEditTabContentMobile);
     });
 
   }
   bindEvents() {
     const self = this;
-    this.cache.$tabMenuItemLink.click(function (e) {
+    const { $tabMenuItemLink } = this.cache;
+    $tabMenuItemLink.on('click', function (e) {
       e.preventDefault();
       const $this = $(this);
-      if (self.cache.digitalData) {
-        self.cache.digitalData.linkClick = {};
-        self.cache.digitalData.linkClick.linkType = 'internal';
-        self.cache.digitalData.linkClick.linkSection = 'tabListText';
-        self.cache.digitalData.linkClick.linkParentTitle = $this.data('parent-title');
-        self.cache.digitalData.linkClick.linkName = $this.data('link-name');
-        self.cache.digitalData.linkClick.linkListPos = $this.data('tab-count');
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
+      if (window.digitalData) {
+        $.extend(window.digitalData, {
+          linkClick: {
+            linkType: 'internal',
+            linkSection: 'tabListText',
+            linkParentTitle: $this.data('parent-title'),
+            linkName: $this.data('link-name'),
+            linkListPos: $this.data('tab-count')
+          }
+        });
+        if (window._satellite) {
+          window._satellite.track('linkClicked');
         }
       }
       self.setActiveTab($this);
       dynMedia.processImages();
     });
-    $(document).ready(() => {
-      const width = window.innerWidth || document.body.clientWidth;
-      if (width > 767) {
-        this.cache.$tabMenuItemLink.first().addClass('active');
-        this.cache.$tabMenuItem.first().addClass('active');
-      }
-    });
+    if (self.isDesktopMode()) {
+      this.cache.$tabMenuItemLink.first().addClass('active');
+      this.cache.$tabMenuItem.first().addClass('active');
+    }
   }
   setActiveTab($this) {
-    const self = this;
     // variables for the clicked organism only
-    const width = window.innerWidth || document.body.clientWidth;
     const tabID = $this.data('tab-id');
-    const $tabMenuItemLink = $('.pw-listContentImage__tabMenuListItem__link', self.root),
-      $tabMenuItem = $('.pw-listContentImage__tabMenuListItem', self.root),
-      $tabContent = $('.pw-listContentImage__contentTab', self.root);
+    const { $tabMenuItemLink, $tabMenuItem, $tabContent } = this.cache;
 
     if ($this.hasClass('active')) {
-      if (width < 768) {
+      if (this.isMobileMode()) {
         $this.removeClass('active');
         $tabMenuItem.removeClass('active');
         $tabContent.removeClass('active');
@@ -87,6 +85,12 @@ class ListContentImage {
         }
       });
     }
+  }
+  isDesktopMode() {
+    return isDesktopMode(...arguments);
+  }
+  isMobileMode() {
+    return isMobileMode(...arguments);
   }
   init() {
     this.initCache();

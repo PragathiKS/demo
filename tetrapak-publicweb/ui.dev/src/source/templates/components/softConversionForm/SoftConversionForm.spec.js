@@ -1,6 +1,7 @@
 import SoftConversionForm from './SoftConversionForm';
 import $ from 'jquery';
 import softConversionTemplate from '../../../test-templates-hbs/softConversionForm.hbs';
+import { storageUtil } from '../../../scripts/common/common';
 
 describe('SoftConversionForm', function () {
   before(function () {
@@ -11,6 +12,8 @@ describe('SoftConversionForm', function () {
     this.checkAndSubmitSpy = sinon.spy(this.softConversion, 'checkAndSubmit');
     this.checkStepAndContinueSpy = sinon.spy(this.softConversion, 'checkStepAndContinue');
     this.setFieldsSpy = sinon.spy(this.softConversion, 'setFields');
+    this.storageUtilStub = sinon.stub(storageUtil, 'get');
+    this.storageUtilStub.returns({});
     this.softConversion.init();
 
   });
@@ -20,6 +23,7 @@ describe('SoftConversionForm', function () {
     this.checkAndSubmitSpy.restore();
     this.checkStepAndContinueSpy.restore();
     this.setFieldsSpy.restore();
+    this.storageUtilStub.restore();
   });
   it('should initialize', function () {
     expect(this.softConversion.init.called).to.be.true;
