@@ -1,15 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct; 
-import javax.inject.Inject;
-
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ImageTextBannerModel {
@@ -31,9 +30,9 @@ public class ImageTextBannerModel {
 
     @Inject
     private String mobileImage;
-    
+
     @Inject
-	private String mobileCroppingOption;
+    private String mobileCroppingOption;
 
     @Inject
     private String bannerDescriptionI18n;
@@ -58,24 +57,24 @@ public class ImageTextBannerModel {
 
     @Inject
     private String targetSoftConversion;
-    
-	@Inject
-	private String softConversionTitle;
 
-	@Inject
-	private String softConversionDescription;
+    @Inject
+    private String softConversionTitle;
 
-	@Inject
-	private String softConversionHeadline;
+    @Inject
+    private String softConversionDescription;
+
+    @Inject
+    private String softConversionHeadline;
 
     @Inject
     private String softConversionLastStep;
-	
-	@Inject
-	private String softConversionDocPath;
+
+    @Inject
+    private String softConversionDocPath;
 
     private Boolean isHeaderBanner = false;
-    
+
     private String analyticsLinkSection;
 
     @PostConstruct
@@ -86,9 +85,9 @@ public class ImageTextBannerModel {
             isHeaderBanner = true;
             analyticsLinkSection = "heroBanner";
         } else if ("pw-banner".equals(contentAlignment)) {
-        	analyticsLinkSection = "imageTextBannerLeft";
+            analyticsLinkSection = "imageTextBannerLeft";
         } else {
-        	analyticsLinkSection = "imageTextBannerRight";
+            analyticsLinkSection = "imageTextBannerRight";
         }
     }
 
@@ -111,7 +110,7 @@ public class ImageTextBannerModel {
     public String getMobileImage() {
         return mobileImage;
     }
-    
+
     public String getMobileCroppingOption() {
         return mobileCroppingOption;
     }
@@ -123,9 +122,9 @@ public class ImageTextBannerModel {
     public String getContentAlignment() {
         return contentAlignment;
     }
-    
+
     public String getAnalyticsLinkSection() {
-    	return analyticsLinkSection;
+        return analyticsLinkSection;
     }
 
     public String getContrastLayer() {
@@ -139,7 +138,7 @@ public class ImageTextBannerModel {
     public String getBannerCtaPath() {
         return LinkUtils.sanitizeLink(bannerCtaPath);
     }
-    
+
     public String getLinkType() {
         return LinkUtils.linkType(bannerCtaPath);
     }
@@ -159,25 +158,25 @@ public class ImageTextBannerModel {
     public String getTargetSoftConversion() {
         return targetSoftConversion;
     }
-    
-	public String getSoftConversionTitle() {
-		return softConversionTitle;
-	}
 
-	public String getSoftConversionDescription() {
-		return softConversionDescription;
-	}
+    public String getSoftConversionTitle() {
+        return softConversionTitle;
+    }
 
-	public String getSoftConversionHeadline() {
-		return softConversionHeadline;
-	}
+    public String getSoftConversionDescription() {
+        return softConversionDescription;
+    }
+
+    public String getSoftConversionHeadline() {
+        return softConversionHeadline;
+    }
 
     public String getSoftConversionLastStep() {
         return softConversionLastStep;
     }
 
-	public String getSoftConversionDocPath() {
-		return softConversionDocPath;
-	}
+    public String getSoftConversionDocPath() {
+        return softConversionDocPath;
+    }
 
 }

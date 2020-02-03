@@ -17,8 +17,6 @@ import java.util.Map;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({DynamicMediaServiceImpl.class})
 public class DynamicMediaServiceImplTest {
 
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";

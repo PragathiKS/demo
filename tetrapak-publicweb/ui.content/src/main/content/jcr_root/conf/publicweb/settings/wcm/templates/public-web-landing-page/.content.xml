@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:lastModified="{Date}2020-01-20T12:57:59.639+05:30"
+        cq:lastModifiedBy="admin"
+        cq:templateType="/conf/publicweb/settings/wcm/template-types/landing-page"
+        jcr:description="Public Web Landing Page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Public Web Landing Page"
+        status="enabled"/>
+</jcr:root>

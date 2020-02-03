@@ -17,8 +17,6 @@ import java.util.Map;
 /**
  * @author Nitin Kumar
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({UrlServiceImpl.class})
 public class UrlServiceImplTest {
 
     private static final String SERVLET_RESOURCE_JSON = "allContent.json";

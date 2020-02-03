@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- ====================================================================== -->
@@ -61,7 +62,20 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-					<failOnDependencyErrors>false</failOnDependencyErrors>
+                    <failOnDependencyErrors>false</failOnDependencyErrors>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>tetrapak</groupId>
+                            <artifactId>tetrapak-publicweb.core</artifactId>
+                            <target>/apps/publicweb/install</target>
+                        </embedded>
+                    </embeddeds>
+                    <subPackages>
+                        <subPackage>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.all</artifactId>
+                        </subPackage>
+                    </subPackages>
                 </configuration>
             </plugin>
             <plugin>
@@ -69,7 +83,7 @@
                 <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-					<filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
+                    <filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
                     <group>tetrapak-publicweb</group>
@@ -81,7 +95,6 @@
             </plugin>
         </plugins>
     </build>
-
     <!-- ====================================================================== -->
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->

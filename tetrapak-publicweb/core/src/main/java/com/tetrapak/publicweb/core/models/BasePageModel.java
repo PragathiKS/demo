@@ -1,16 +1,15 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
-
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.tagging.TagManager;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
+import javax.annotation.PostConstruct;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BasePageModel {
@@ -27,8 +26,7 @@ public class BasePageModel {
             if (page == null) {
                 this.jcrResource = getPageManager().getContainingPage(jcrResource).getContentResource();
             } else {
-                if (this.jcrResource != null)
-                    this.jcrResource = this.jcrResource.getChild(JcrConstants.JCR_CONTENT);
+                this.jcrResource = this.jcrResource.getChild(JcrConstants.JCR_CONTENT);
             }
         }
         if (jcrResource != null)

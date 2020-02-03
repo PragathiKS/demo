@@ -1,10 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,7 +8,9 @@ import org.apache.sling.models.annotations.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ListContentImageModel {
@@ -52,7 +50,7 @@ public class ListContentImageModel {
     @Inject
     private Boolean makeCollapsable;
 
-    private Integer componentId = (int )(Math.random() * 1000 + 1);
+    private Integer componentId = (int) (Math.random() * 1000 + 1);
 
     public String getTitleI18n() {
         return titleI18n;
@@ -111,7 +109,7 @@ public class ListContentImageModel {
      */
     public static List<String> getTabLinks(String[] tabLinks) {
         @SuppressWarnings("deprecation")
-        List<String> tabs = new ArrayList<String>();
+        List<String> tabs = new ArrayList<>();
         JSONObject jObj;
         try {
             if (tabLinks == null) {

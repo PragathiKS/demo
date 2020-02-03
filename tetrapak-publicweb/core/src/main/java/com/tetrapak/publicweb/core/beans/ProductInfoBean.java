@@ -2,64 +2,64 @@ package com.tetrapak.publicweb.core.beans;
 
 public class ProductInfoBean {
 
-	private String title;
-	
-	private String description;
-	
-	private String productImage;
-	
-	private String imageAltText;
-	
-	private String linkText;
-	
-	private String linkPath;
+    private String title;
 
-	public String getTitle() {
-		return title;
-	}
+    private String description;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private String productImage;
 
-	public String getDescription() {
-		return description;
-	}
+    private String imageAltText;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    private String linkText;
 
-	public String getProductImage() {
-		return productImage;
-	}
+    private String linkPath;
 
-	public void setProductImage(String productImage) {
-		this.productImage = productImage;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getImageAltText() {
-		return imageAltText;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setImageAltText(String imageAltText) {
-		this.imageAltText = imageAltText;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getLinkText() {
-		return linkText;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setLinkText(String linkText) {
-		this.linkText = linkText;
-	}
+    public String getProductImage() {
+        return productImage;
+    }
 
-	public String getLinkPath() {
-		return linkPath;
-	}
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
-	public void setLinkPath(String linkPath) {
-		this.linkPath = linkPath;
-	}
-	
+    public String getImageAltText() {
+        return imageAltText;
+    }
+
+    public void setImageAltText(String imageAltText) {
+        this.imageAltText = imageAltText;
+    }
+
+    public String getLinkText() {
+        return linkText;
+    }
+
+    public void setLinkText(String linkText) {
+        this.linkText = linkText;
+    }
+
+    public String getLinkPath() {
+        return linkPath;
+    }
+
+    public void setLinkPath(String linkPath) {
+        this.linkPath = linkPath;
+    }
+
 }

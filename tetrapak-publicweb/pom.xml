@@ -11,12 +11,9 @@
 
     <modules>
         <module>core</module>
-		<module>integration</module>
+        <module>ui.dev</module>
         <module>ui.apps</module>
-		<module>ui.dev</module>
         <module>ui.content</module>
-        <module>it.tests</module>
-        <module>it.launcher</module>
 		<module>complete</module>
     </modules>
 
@@ -309,6 +306,18 @@
                     <version>0.7.9</version>
                     <executions>
                         <execution>
+                            <id>default-instrument</id>
+                            <goals>
+                                <goal>instrument</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>default-restore-instrumented-classes</id>
+                            <goals>
+                                <goal>restore-instrumented-classes</goal>
+                            </goals>
+                        </execution>
+                        <execution>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
@@ -397,15 +406,6 @@
         <!-- Development profile: install only the bundle -->
         <profile>
             <id>autoInstallBundle</id>
-            <!--
-                To enable this feature for a bundle, the maven-sling-plugin
-                (without configuration) needs to be included:
-
-                <plugin>
-                    <groupId>org.apache.sling</groupId>
-                    <artifactId>maven-sling-plugin</artifactId>
-                 </plugin>
-            -->
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -676,7 +676,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.23.4</version>
+                <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -695,6 +695,18 @@
                 <groupId>uk.org.lidalia</groupId>
                 <artifactId>slf4j-test</artifactId>
                 <version>1.0.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.wcm</groupId>
+                <artifactId>io.wcm.testing.aem-mock.junit4</artifactId>
+                <version>2.4.6</version>
                 <scope>test</scope>
             </dependency>
 			<dependency>
