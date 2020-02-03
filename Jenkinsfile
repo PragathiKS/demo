@@ -19,7 +19,7 @@ pipeline {
 		test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
 		test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
 		test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
-		test_url_pally_zap_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
+		test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
                 karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
 		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
@@ -201,8 +201,8 @@ pipeline {
                  				echo "Starting Zap Test Run- PublicWeb"
                   	   //		sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						echo "Starting ZAP test Run on PublicWeb Urls"
-					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
-						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
+						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
+					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
 						sh 'docker exec  zap zap-cli report -f html -o "zap_PublicWeb.html"'
 						sh 'docker cp zap:zap/zap_PublicWeb.html .'
 						sh 'docker stop zap'
