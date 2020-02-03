@@ -97,7 +97,7 @@ pipeline {
                                     //            echo "Skipping Sonar execution for CSS profile"
                                     //    }
                                     //	else{
-                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/* -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.host.url=sonarcloud.io -Dsonar.login=2354fbb990d5494aad3c578f2c9dd65147d01e02 -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=sonarcloud.io -Dsonar.login=2354fbb990d5494aad3c578f2c9dd65147d01e02 -Dsonar.projectKey=tetrapak-commons -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  				//	}	
 					}
                                     }
