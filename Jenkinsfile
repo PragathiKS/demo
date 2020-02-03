@@ -35,7 +35,7 @@ pipeline {
                                         echo "PATH = ${PATH}"
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
-                               // sh "mkdir releases "
+                                sh "wget http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
             
         }}
 		stage('init-build-Number'){
@@ -171,10 +171,11 @@ pipeline {
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport_CustomerHub.html', reportName: 'PallyReport-CustomerHub', reportTitles: ''])
 		
                 				echo "Starting Zap Test Run- CustomerHub"
-                				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                		//		sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						sleep 20
 						echo "Starting ZAP test Run on CustomerHub Urls"
                 				sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
+                			//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
                 				sh 'docker exec  zap zap-cli report -f html -o "zap_CustomerHub.html"'
 						sh 'docker cp zap:zap/zap_CustomerHub.html .'
 						sh 'docker stop zap'
@@ -200,7 +201,8 @@ pipeline {
                  				echo "Starting Zap Test Run- PublicWeb"
                   				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						echo "Starting ZAP test Run on PublicWeb Urls"
-						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
+					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
+						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
 						sh 'docker exec  zap zap-cli report -f html -o "zap_PublicWeb.html"'
 						sh 'docker cp zap:zap/zap_PublicWeb.html .'
 						sh 'docker stop zap'
