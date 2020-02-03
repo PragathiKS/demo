@@ -159,7 +159,7 @@ pipeline {
 						sh 'ls -la report' 
                                                 sh 'cp -r report/customerhub .'
                                                 sh 'ls -la'  
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
@@ -175,12 +175,11 @@ pipeline {
 						sleep 20
 						echo "Starting ZAP test Run on CustomerHub Urls"
                 				sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
-                			//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
                 				sh 'docker exec  zap zap-cli report -f html -o "zap_CustomerHub.html"'
 						sh 'docker cp zap:zap/zap_CustomerHub.html .'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
-                				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_CustomerHub.html', reportName: 'zap Report', reportTitles: ''])            
+                				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_CustomerHub.html', reportName: 'ZAPReport-CustomerHub', reportTitles: ''])            
 						// sh 'cp -r ./zap_CustomerHub.html /app/splunk-output/zap/customerhub'
 	    }
 														  
@@ -190,7 +189,7 @@ pipeline {
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
                                                 sh 'cp -r reports/publicweb .' 
-					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'Karma Report', reportTitles: ''])
+					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
 						//sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
 						sh 'ls -la'
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
@@ -199,7 +198,7 @@ pipeline {
 						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReporPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
 		  
                  				echo "Starting Zap Test Run- PublicWeb"
-                  	   	//	sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30  --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                  	   	                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30  --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                   	   		//sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						echo "Starting ZAP test Run on PublicWeb Urls"
 						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
@@ -208,7 +207,7 @@ pipeline {
 						sh 'docker cp zap:zap/zap_PublicWeb.html .'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
-						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_PublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])   
+						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_PublicWeb.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 					//	sh 'cp -r ./zap_PublicWeb.html /app/splunk-output/zap/customerhub'
 									}
 														  
@@ -228,34 +227,34 @@ pipeline {
 						if (params.Build_Customerhub) {
                                             	echo "Starting Sitespeed-Desktop Test Run for CustomerHub"
                                               	sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_cuhu} -b firefox --outputFolder sitespeed_desktop'
-                                             	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
+                                             	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Desktop', reportTitles: ''])
                                                 //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
                                                          
 						echo "Starting Sitespeed-Mobile Test Run for CustomerHub"
                                        		sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_cuhu} -b firefox --outputFolder sitespeed_mobile'
-                                   		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
+                                   		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Mobile', reportTitles: ''])
 						//sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
                                                          
 						echo "Starting Sitespeed-IPAD Test Run for CustomerHub"
                                                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_cuhu} -b firefox --outputFolder sitespeed_ipad'
-                                          	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
+                                          	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-IPad', reportTitles: ''])
                                            	//sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 										}
 														  
 						if (params.Build_Publicweb) {
                                           	echo "Starting Sitespeed-Desktop Test Run for PublicWeb"
                                          	sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_pw} -b firefox --outputFolder sitespeed_desktop'
-                                            	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'sitespeed Report Desktop', reportTitles: ''])
+                                            	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
                                                 //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
                                                        
 						echo "Starting Sitespeed-Mobile Test Run for PublicWeb"
                                                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_pw} -b firefox --outputFolder sitespeed_mobile'
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'sitespeed Report Mobile', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
 						//sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
                                                         
 						echo "Starting Sitespeed-IPAD Test Run for PublicWeb"
                                                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_pw} -b firefox --outputFolder sitespeed_ipad'
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'sitespeed Report IPad', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
                                                // sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
 									}
 														  
