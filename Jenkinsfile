@@ -154,10 +154,10 @@ pipeline {
                                              	// sh 'ls tetrapak-customerhub/releases'
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
                                               	// sh 'chmod 755 -R reports' 
-						sh 'ls -la reports' 
+						sh 'ls -la report' 
                                                 sh 'cp -r report/customerhub .'
                                                 sh 'ls -la'  
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
