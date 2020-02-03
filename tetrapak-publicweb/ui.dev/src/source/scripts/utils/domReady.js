@@ -7,11 +7,13 @@ import dynamicMedia from './dynamicMedia';
 import customEvents from './customEvents';
 import { $body } from './commonSelectors';
 import $ from 'jquery';
+import { responsive } from './responsive';
 
 export default {
   init() {
     customEvents.init();
     dynamicMedia.init();
+    responsive.init();
     $body.on('show.bs.modal', function () {
       $(this).addClass('tp-no-backdrop');
     }).on('hidden.bs.modal', function () {

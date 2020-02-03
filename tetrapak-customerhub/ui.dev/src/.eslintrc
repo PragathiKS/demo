@@ -104,6 +104,7 @@
         "arrow-spacing": "warn",
         "prefer-destructuring": "off",
         "prefer-const": "error",
+        "prefer-template": "warn",
         "require-yield": "error",
         "no-dupe-args": "error",
         "no-dupe-keys": "error",
@@ -141,8 +142,11 @@
             1220
         ],
         "comma-dangle": "error",
-        "jquery/no-ajax": [
-            "warn"
-        ]
+        "jquery/no-bind": "error",
+        "jquery/no-delegate": "error",
+        "jquery/no-show": "warn",
+        "jquery/no-hide": "warn",
+        "jquery/no-fade": "warn",
+        "jquery/no-slide": "warn"
     }
 }

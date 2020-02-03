@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, API_CONTACT_FORM } from '../../../scripts/utils/constants';
+import { ajaxMethods, API_CONTACT_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
 
 class ContactFooterForm {
   constructor({ el }) {
@@ -20,13 +20,12 @@ class ContactFooterForm {
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
   }
   validEmail(email) {
-    const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    return pattern.test(email);
+    return REG_EMAIL.test(email);
   }
   bindEvents() {
     /* Bind jQuery events here */
     const self = this;
-    $('body').bind('show.bs.tab', (e) => {
+    $('body').on('show.bs.tab', (e) => {
       const parent = e.target.closest('.pw-contact-form');
       if (!parent) {
         return;
