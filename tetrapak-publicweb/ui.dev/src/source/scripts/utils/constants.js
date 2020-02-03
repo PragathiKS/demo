@@ -12,8 +12,17 @@ export const ajaxMethods = {
   PUT: 'PUT',
   DELETE: 'DELETE'
 };
+export const mediaTypes = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  DESKTOP: 'desktop'
+};
+export const orientationTypes = {
+  LANDSCAPE: 'landscape',
+  PORTRAIT: 'portrait',
+  UNSUPPORTED: 'unsupported'
+};
 // API URLs
-
 export const API_PRODUCT_LISTING = '/bin/tetrapak/pw-productlisting';
 export const API_SHAREPOINT_OFFICES = '/apps/settings/wcm/designs/publicweb/jsonData/tp-offices.json';
 export const API_SEARCH_RESULTS = '/bin/tetrapak/pw-search';
