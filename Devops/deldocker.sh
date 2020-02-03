@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 count = `docker ps -a | grep zap | wc -l`
 
 if [ $count -gt 100 ]
