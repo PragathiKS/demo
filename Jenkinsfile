@@ -34,7 +34,7 @@ pipeline {
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
 
                       label 'linux&&docker'}
-                 }
+                 }}
 
                 stage ('Initialize'){ 
                         steps {
