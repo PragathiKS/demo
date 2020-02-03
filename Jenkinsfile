@@ -34,7 +34,7 @@ pipeline {
                      // args  '-v "$HOME/.m2":/.m2 -v  --tmpfs /.npm -u root:root'
 
                       label 'linux&&docker'}
-                 }}
+                 }
 
                 stage ('Initialize'){ 
                         steps {
@@ -128,7 +128,7 @@ pipeline {
                     }
 
 		stage ('Build-PublicWeb') {
-                  /	agent {
+                  	agent {
                                 dockerfile {
                                 args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/reports/publicweb":/root/publicweb --tmpfs /.npm -u root:root'
                                 label 'linux&&docker'
