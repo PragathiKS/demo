@@ -95,7 +95,8 @@ pipeline {
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
                                         sh 'ls /root/customerhub' 
-                                    	if (!params.Sonar_Analysis) {
+                                    	sh "ls -R" 
+                                        if (!params.Sonar_Analysis) {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
                                     	else{
