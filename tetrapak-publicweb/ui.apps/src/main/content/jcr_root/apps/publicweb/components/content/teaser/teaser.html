@@ -1,0 +1,9 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+</sly>
+
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.TeaserModel"
+     data-sly-use.lib="teaser-template.html"
+     data-sly-call="${lib.teaser_template @ data=model}">
+</sly>
