@@ -177,23 +177,24 @@ class SoftConversionForm {
     $tabtoggle.on('click', function (e) {
       self.checkStepAndContinue(e, $(this));
     });
-    $prevScfToggle.on('click', function (e) {
-      const $parentTab = $(e.target).closest('.tab-pane');
-      const stepNumber = $parentTab.attr('data-stepNumber');
-      const stepName = $parentTab.attr('data-stepName');
-      if (window.digitalData) {
-        $.extend(window.digitalData.formInfo, {
-          stepName: `previous:${stepName}`,
-          stepNo: stepNumber
-        });
-        if (window._satellite) {
-          window._satellite.track('form_tracking');
-        }
-      }
-    });
+    $prevScfToggle.on('click', this.prevStep);
     $radiobtns.on('click', function () {
       self.setFields.apply(self, [$(this)]);
     });
+  }
+  prevStep(e) {
+    const $parentTab = $(e.target).closest('.tab-pane');
+    const stepNumber = $parentTab.attr('data-stepNumber');
+    const stepName = $parentTab.attr('data-stepName');
+    if (window.digitalData) {
+      $.extend(window.digitalData.formInfo, {
+        stepName: `previous:${stepName}`,
+        stepNo: stepNumber
+      });
+      if (window._satellite) {
+        window._satellite.track('form_tracking');
+      }
+    }
   }
   init() {
     const softConversionData = storageUtil.get('softConversionData');
