@@ -100,7 +100,7 @@ pipeline {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
                                     	else{
-                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.sources=src/ -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
                                    // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  					}	
 					}
