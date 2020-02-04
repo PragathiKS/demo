@@ -7,7 +7,7 @@ public class TeaserBean {
     private String altText;
     private String linkText;
     private String linkPath;
-    private boolean targetNew;
+    private String targetNew;
 
     public String getTitle() {
         return title;
@@ -57,11 +57,11 @@ public class TeaserBean {
         this.linkPath = linkPath;
     }
 
-    public boolean isTargetNew() {
+    public String getTargetNew() {
         return targetNew;
     }
 
-    public void setTargetNew(boolean targetNew) {
+    public void setTargetNew(String targetNew) {
         this.targetNew = targetNew;
     }
 }

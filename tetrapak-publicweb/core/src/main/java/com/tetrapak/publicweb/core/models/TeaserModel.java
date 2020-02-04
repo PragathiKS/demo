@@ -71,7 +71,7 @@ public class TeaserModel {
                     addToTeaserList(pageManager, itemResource);
                 }
             }
-        } else if ("manual".equals(contentType) && pageManager != null){
+        } else if ("manual".equals(contentType) && pageManager != null) {
             Resource listResource = resource.getChild("manualList");
             if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
                 Iterator<Resource> itr = listResource.listChildren();
@@ -85,7 +85,7 @@ public class TeaserModel {
                     teaserBean.setAltText(vmap.get("altText", String.class));
                     teaserBean.setLinkText(vmap.get("linkText", String.class));
                     teaserBean.setLinkPath(LinkUtils.sanitizeLink(vmap.get("linkPath", String.class)));
-                    teaserBean.setTargetNew((boolean) vmap.get("targetNew"));
+                    teaserBean.setTargetNew(vmap.get("targetNew", String.class));
                     teaserList.add(teaserBean);
                 }
             }
