@@ -1,0 +1,33 @@
+<servers>
+	<server>
+		<id>central</id>
+		<username>%artuser%</username>
+		<password>%artpassword%</password>
+	</server>
+	<server>
+		<id>snapshots</id>
+		<username>%artuser%</username>
+		<password>%artpassword%</password>
+	</server>
+ </servers>
+
+<profiles>
+	<profile>
+		<repositories>
+			<repository>
+				<id>central</id>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+				<name>libs-release</name>
+				<url>http://localhost:8081/artifactory/libs-release</url>
+			</repository>
+			<repository>
+				<id>snapshots</id>
+				<snapshots />
+				<name>libs-snapshot</name>
+				<url>http://localhost:8081/artifactory/libs-snapshot</url>
+			</repository>
+		</repositories>
+	</profile>
+</profiles>
