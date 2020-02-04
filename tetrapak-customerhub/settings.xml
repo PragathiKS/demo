@@ -5,13 +5,13 @@
 <servers>
 	<server>
 		<id>central</id>
-		<username>%artuser%</username>
-		<password>%artpassword%</password>
+		<username>${artuser}</username>
+		<password>${artpassword}</password>
 	</server>
 	<server>
 		<id>snapshots</id>
-		<username>%artuser%</username>
-		<password>%artpassword%</password>
+		<username>${artuser}</username>
+		<password>${artpassword}</password>
 	</server>
  </servers>
 
