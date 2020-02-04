@@ -57,9 +57,11 @@ pipeline {
                                   sh 'chmod 777 Devops/deldocker.sh' 
                                   sh 'Devops/deldocker.sh '
                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])    
-			println artifactuser
-                        println artifactpassword	
-                            }
+			{ artuser = artifactuser
+                         artpassword=  artifactpassword}	
+                         sh 'echo $artuser' 
+                         sh 'echo $artpassword '   
+}
 			}
 		}
 

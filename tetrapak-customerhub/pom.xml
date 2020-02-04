@@ -16,7 +16,13 @@
         <module>ui.content</module>
 		<module>complete</module>
     </modules>
-
+    <distributionManagement>
+        <repository>
+           <id>central</id>
+           <name>tetrapak-releases</name>
+           <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
+           </repository>
+    </distributionManagement>
     <properties>
         <aem.host>localhost</aem.host>
         <aem.port>4502</aem.port>
@@ -46,7 +52,34 @@
     </properties>
 
     <build>
+     	<plugin>
+            <groupId>org.jfrog.buildinfo</groupId>
+            <artifactId>artifactory-maven-plugin</artifactId>
+            <version>2.6.1</version>
+            <inherited>false</inherited>
+            <executions>
+                <execution>
+                    <id>build-info</id>
+                    <goals>
+                        <goal>publish</goal>
+                    </goals>
+                    <configuration>
+                        <deployProperties>
+                            <review.team>qa</review.team>
+                        </deployProperties>
+                        <publisher>
+                            <contextUrl>https://tetrapak.jfrog.io/tetrapak</contextUrl>
+                            <username></username>
+                            <password></password>
+                            <repoKey>libs-release-local</repoKey>
+                            <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                        </publisher>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>        
         <plugins>
+            
             <!-- Maven Release Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
