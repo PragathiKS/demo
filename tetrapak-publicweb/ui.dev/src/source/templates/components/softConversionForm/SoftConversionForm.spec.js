@@ -24,6 +24,7 @@ describe('SoftConversionForm', function () {
     this.checkAndSubmitSpy = sinon.spy(this.softConversion, 'checkAndSubmit');
     this.checkStepAndContinueSpy = sinon.spy(this.softConversion, 'checkStepAndContinue');
     this.setFieldsSpy = sinon.spy(this.softConversion, 'setFields');
+    this.prevSpy = sinon.spy(this.softConversion, 'prevStep');
     this.storageUtilStub = sinon.stub(storageUtil, 'get');
     this.storageUtilStub.returns([
       {
@@ -38,7 +39,9 @@ describe('SoftConversionForm', function () {
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({}));
     this.softConversion.init();
-
+    $('#softConversionModal')
+      .trigger('show.bs.modal')
+      .trigger('hidden.bs.modal');
   });
   after(function () {
     $(document.body).empty();
@@ -46,6 +49,7 @@ describe('SoftConversionForm', function () {
     this.checkAndSubmitSpy.restore();
     this.checkStepAndContinueSpy.restore();
     this.setFieldsSpy.restore();
+    this.prevSpy.restore();
     this.storageUtilStub.restore();
     this.ajaxStub.restore();
   });
@@ -63,5 +67,9 @@ describe('SoftConversionForm', function () {
   it('should set form fields on click', function () {
     $('#softConversionModal input:radio').first().trigger('click');
     expect(this.softConversion.setFields.called).to.be.true;
+  });
+  it('should set to previous tab on click of previous button', function () {
+    $('#softConversionModal .pw-form__prevbtn__scf[data-toggle="tab"]').trigger('click');
+    expect(this.prevSpy.called).to.be.true;
   });
 });
