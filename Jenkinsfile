@@ -51,7 +51,7 @@ pipeline {
                     echo "build_id_number = ${build_id_number}"
                                   sh 'pwd'
                                   sh 'docker ps -a'
-                                  sh 'docker ps'
+                                  sh 'ls /root/.m2'
                                // sh 'if docker stop zap'
                                // sh 'docker rm zap'
                                   sh 'chmod 777 Devops/deldocker.sh' 
@@ -95,7 +95,7 @@ pipeline {
                                 	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                         { 
                      
-					sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+					sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                         }
 					//sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					// def workspace = pwd()
