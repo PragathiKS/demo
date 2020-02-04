@@ -55,6 +55,16 @@
                                             fieldLabel="Tags"
                                             name="./tags"
                                             rootPath="/content/cq:tags"/>
+                                    <maxTeasers
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldDescription="Maximum number of teasers to be shown"
+                                            fieldLabel="Maximum number of teasers to be shown"
+                                            name="./maxTeasers"
+                                            min="{Double}1"
+                                            max="{Double}50"
+                                            step="1"
+                                            typeHint="Maximum number of teasers to be shown on the page"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"
@@ -84,6 +94,7 @@
                                                         fieldDescription="Select article path to automatically populate values when content type is automatic"
                                                         fieldLabel="Teaser Path"
                                                         name="./pagePath"
+                                                        required="{Boolean}true"
                                                         rootPath="/content"/>
                                             </items>
                                         </field>
@@ -129,6 +140,12 @@
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                 fieldLabel="Link Text"
                                                                 name="./ctaTexti18nKey"/>
+                                                        <ctaPath
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                fieldLabel="Link Path"
+                                                                rootPath="/content"
+                                                                name="./linkPath"/>
                                                         <openInNewWindow
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

@@ -31,6 +31,8 @@ public class ArticlePageModel extends BasePageModel {
     private String navLinkPath;
     private String navLinkTarget;
 
+    private String linkPath;
+
     @Override
     @PostConstruct
     public void init() {
@@ -60,6 +62,8 @@ public class ArticlePageModel extends BasePageModel {
             navLinkText = jcrMap.get("navLinkText", String.class);
             navLinkPath = jcrMap.get("navLinkPath", String.class);
             navLinkTarget = jcrMap.get("navLinkTarget", String.class);
+
+            linkPath = jcrMap.get("linkPath", String.class);
         }
     }
 
@@ -123,4 +127,7 @@ public class ArticlePageModel extends BasePageModel {
         return navLinkTarget;
     }
 
+    public String getLinkPath() {
+        return linkPath;
+    }
 }

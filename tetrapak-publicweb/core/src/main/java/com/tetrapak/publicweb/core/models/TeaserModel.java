@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.TeaserBean;
+import com.tetrapak.publicweb.core.services.TeaserSearchService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -26,16 +27,19 @@ public class TeaserModel {
     private Resource resource;
 
     @Inject
+    private TeaserSearchService teaserSearchService;
+
+    @Inject
     private String contentType;
 
     @Inject
     private String pwButtonTheme;
 
     @Inject
-    private String tags;
+    private String[] tags;
 
     @Inject
-    private int maxTeaser;
+    private int maxTeasers;
 
     private List<TeaserBean> teaserList = new ArrayList<>();
 
@@ -44,13 +48,37 @@ public class TeaserModel {
         ResourceResolver resolver = resource.getResourceResolver();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
 
-        if ("semi-automatic".equals(contentType) && pageManager != null) {
+        if ("automatic".equals(contentType) && pageManager != null) {
+            //todo this path is to be made dynamic later when we have language and country specific pages
+            String rootPath = "/content";
+            List<Page> pagePaths = teaserSearchService.getListOfTeasers(resolver, tags, rootPath, maxTeasers);
+            if (null == pagePaths) {
+                return;
+            }
+            for (Page page : pagePaths) {
+                Resource jcrContentResource = page.getContentResource();
+                if (null != jcrContentResource) {
+                    ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
+                    addToList(page.getPath(), articlePageModel);
+                }
+            }
+        } else if ("semi-automatic".equals(contentType) && pageManager != null) {
             Resource listResource = resource.getChild("semiAutomaticList");
             if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
                 Iterator<Resource> itr = listResource.listChildren();
                 while (itr.hasNext()) {
                     Resource itemResource = itr.next();
                     addToTeaserList(pageManager, itemResource);
+                }
+            }
+        } else {
+            Resource listResource = resource.getChild("manualList");
+            if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
+                Iterator<Resource> itr = listResource.listChildren();
+                while (itr.hasNext()) {
+                    Resource itemResource = itr.next();
+                    ArticlePageModel articlePageModel = itemResource.adaptTo(ArticlePageModel.class);
+                    addToList(articlePageModel);
                 }
             }
         }
@@ -68,6 +96,12 @@ public class TeaserModel {
                     addToList(pagePath, articlePageModel);
                 }
             }
+        }
+    }
+
+    private void addToList(ArticlePageModel articlePageModel) {
+        if (articlePageModel != null) {
+            addToList(articlePageModel.getLinkPath(), articlePageModel);
         }
     }
 
