@@ -6,48 +6,55 @@ class ImageTextBanner {
   }
   cache = {};
   initCache() {
-    /* Initialize cache here */
-    this.cache.$modalBtn = $('.opensoftc', this.root);
-    this.cache.itbLink = $('.itblink', this.root);
-    this.cache.digitalData = window.digitalData;
+    this.cache.$modalBtn = this.root.find('.opensoftc');
+    this.cache.itbLink = this.root.find('.itblink');
+    this.cache.$softConversionModal = $('#softConversionModal');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    this.cache.$modalBtn.click(() => {
-      $('.softc-title-js', '#softConversionModal').text(this.root.data('softc-title'));
-      $('.softc-desc-js', '#softConversionModal').text(this.root.data('softc-desc'));
-      $('.softc-head-js', '#softConversionModal').text(this.root.data('softc-head'));
-      $('.softc-last-js', '#softConversionModal').text(this.root.data('softc-last'));
-      $('.softc-doc-js', '#softConversionModal').val(this.root.data('softc-doc'));
-      if (this.cache.digitalData) {
-        this.cache.digitalData.formInfo = {};
-        this.cache.digitalData.formInfo.contentName = this.root.data('softc-title');
-        this.cache.digitalData.formInfo.formName = 'gated content sign up';
-        this.cache.digitalData.formInfo.stepName = 'gated content sign up start';
-        this.cache.digitalData.formInfo.totalSteps = 4;
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('signup_form_tracking');  //eslint-disable-line
+    const { $modalBtn } = this.cache;
+    $modalBtn.on('click', this.softConversionFlow);
+    this.cache.itbLink.on('click', this.trackAnalytics);
+  }
+  trackAnalytics = (e) => {
+    const $target = $(e.target);
+    const banner = $target.closest('.pw-banner');
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: banner.attr('data-itb-linkType'),
+          linkSection: banner.attr('data-itb-linkSection'),
+          linkParentTitle: $.trim($target.closest('.pw-banner').find('.pw-banner__content__title').text()),
+          linkName: $.trim($target.text()),
+          contentName: $.trim($target.closest('.pw-banner').find('.pw-banner__content__subtitle').text())
         }
+      });
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
       }
-    });
-    this.cache.itbLink.click((e) => {
-      const banner = e.target.closest('.pw-banner');
-      const $thisClick = $(e.target);
-      if (this.cache.digitalData) {
-        this.cache.digitalData.linkClick = {};
-        this.cache.digitalData.linkClick.linkType = banner.getAttribute('data-itb-linkType');
-        this.cache.digitalData.linkClick.linkSection = banner.getAttribute('data-itb-linkSection');
-        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-banner').find('.pw-banner__content__title').text().trim();
-        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
-        this.cache.digitalData.linkClick.contentName = $thisClick.closest('.pw-banner').find('.pw-banner__content__subtitle').text().trim();
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
+    }
+  }
+  softConversionFlow = () => {
+    const { $softConversionModal } = this.cache;
+    $softConversionModal.find('.softc-title-js').text(this.root.data('softc-title'));
+    $softConversionModal.find('.softc-desc-js').text(this.root.data('softc-desc'));
+    $softConversionModal.find('.softc-head-js').text(this.root.data('softc-head'));
+    $softConversionModal.find('.softc-last-js').text(this.root.data('softc-last'));
+    $softConversionModal.find('.softc-doc-js').val(this.root.data('softc-doc'));
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        formInfo: {
+          contentName: this.root.data('softc-title'),
+          formName: 'gated content sign up',
+          stepName: 'gated content sign up start',
+          totalSteps: 4
         }
+      });
+      if (window._satellite) {
+        window._satellite.track('signup_form_tracking');
       }
-    });
+    }
   }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
