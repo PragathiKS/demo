@@ -51,7 +51,6 @@ pipeline {
                     echo "build_id_number = ${build_id_number}"
                                   sh 'pwd'
                                   sh 'docker ps -a'
-                                  sh 'ls /root/.m2'
                                // sh 'if docker stop zap'
                                // sh 'docker rm zap'
                                   sh 'chmod 777 Devops/deldocker.sh' 
@@ -77,7 +76,7 @@ pipeline {
                                if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
-                                     sh "echo $EXECUTOR_NUMBER"
+                                     sh 'ls /root/.m2'
                                      sh 'pwd'
                                      dir('tetrapak-commons') {
                                         sh "npm install --prefix ui.dev/src"
