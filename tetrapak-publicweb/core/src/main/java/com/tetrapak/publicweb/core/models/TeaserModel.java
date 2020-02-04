@@ -71,14 +71,22 @@ public class TeaserModel {
                     addToTeaserList(pageManager, itemResource);
                 }
             }
-        } else {
+        } else if ("manual".equals(contentType) && pageManager != null){
             Resource listResource = resource.getChild("manualList");
             if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
                 Iterator<Resource> itr = listResource.listChildren();
                 while (itr.hasNext()) {
                     Resource itemResource = itr.next();
-                    ArticlePageModel articlePageModel = itemResource.adaptTo(ArticlePageModel.class);
-                    addToList(articlePageModel);
+                    ValueMap vmap = itemResource.getValueMap();
+                    TeaserBean teaserBean = new TeaserBean();
+                    teaserBean.setTitle(vmap.get("title", String.class));
+                    teaserBean.setDescription(vmap.get("description", String.class));
+                    teaserBean.setImagePath(vmap.get("imagePath", String.class));
+                    teaserBean.setAltText(vmap.get("altText", String.class));
+                    teaserBean.setLinkText(vmap.get("linkText", String.class));
+                    teaserBean.setLinkPath(LinkUtils.sanitizeLink(vmap.get("linkPath", String.class)));
+                    teaserBean.setTargetNew((boolean) vmap.get("targetNew"));
+                    teaserList.add(teaserBean);
                 }
             }
         }
@@ -96,12 +104,6 @@ public class TeaserModel {
                     addToList(pagePath, articlePageModel);
                 }
             }
-        }
-    }
-
-    private void addToList(ArticlePageModel articlePageModel) {
-        if (articlePageModel != null) {
-            addToList(articlePageModel.getLinkPath(), articlePageModel);
         }
     }
 
