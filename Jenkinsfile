@@ -95,7 +95,7 @@ pipeline {
                                 	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                         { 
                     
-					sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+					sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                         }
 					//sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					// def workspace = pwd()
@@ -104,7 +104,7 @@ pipeline {
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
                                         sh 'ls /root/customerhub' 
-                                    	sh "ls -R" 
+                                    //	sh "ls -R" 
                                         if (!params.Sonar_Analysis) {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
