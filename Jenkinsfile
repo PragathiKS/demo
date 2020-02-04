@@ -12,7 +12,8 @@ pipeline {
         }
 
         environment {
-                sonar_url = "http://127.0.0.1:9000"
+                sonar_url = "https://sonarcloud.io"
+                login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
                 author_url = "http://13.69.79.81:4502"
                 publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
@@ -97,7 +98,8 @@ pipeline {
                                     //            echo "Skipping Sonar execution for CSS profile"
                                     //    }
                                     //	else{
-                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=2354fbb990d5494aad3c578f2c9dd65147d01e02 -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=JS -Dbuildversion=${build_id_number}"
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  				//	}	
 					}
                                     }
