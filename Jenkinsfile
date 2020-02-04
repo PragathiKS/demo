@@ -89,6 +89,7 @@ pipeline {
                                 if (params.Build_Customerhub) {
 				echo "Build CustomerHub"
                                 sh "echo $EXECUTOR_NUMBER"
+                                sh 'ls /root/.m2'
                                 dir('tetrapak-customerhub') {
                                 	sh "npm install --prefix ui.dev/src"
                                 	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
