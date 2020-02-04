@@ -92,8 +92,12 @@ pipeline {
                                 sh "echo $EXECUTOR_NUMBER"
                                 dir('tetrapak-customerhub') {
                                 	sh "npm install --prefix ui.dev/src"
-                                	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                        //sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
+                                	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                        { 
+                     
+					sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        }
+					//sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					// def workspace = pwd()
                                         sh 'ls'
                                         sh 'ls ui.dev/src/coverage'
