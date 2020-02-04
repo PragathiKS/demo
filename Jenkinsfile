@@ -8,7 +8,8 @@ pipeline {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
 				booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-				booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
+                                booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'params.Sonar_Analysis'
+				booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
 
         environment {
@@ -94,10 +95,10 @@ pipeline {
                                         sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
                                         sh 'ls /root/customerhub' 
-                                    //	if (!params.Tools_Execution) {
-                                    //            echo "Skipping Sonar execution for CSS profile"
-                                    //    }
-                                    //	else{
+                                    	if (!params.Sonar_Analysis) {
+                                                echo "Skipping Sonar execution for CSS profile"
+                                        }
+                                    	else{
                                               sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.sources=src/main -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
                                    // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  				//	}	
@@ -111,9 +112,19 @@ pipeline {
                                 dir('tetrapak-publicweb'){ 
                                 	sh "npm install --prefix ui.dev/src"
                                 	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                               // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                               
+                                     // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
                                         sh 'cp -r ui.dev/src/coverage /root/publicweb'   
-				sh 'ls /root/publicweb'		}
+				sh 'ls /root/publicweb'		
+                                if (!params.Sonar_Analysis) {
+                                                echo "Skipping Sonar execution for Publicweb"
+                                        }
+                                        else{
+                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.sources=src/main -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                                   // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"
+                                //      }
+
+}
 						            } 
 					}
 
