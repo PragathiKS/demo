@@ -94,7 +94,7 @@ pipeline {
                                 	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                         { 
                      
-					sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+					sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                         }
 					//sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
 					// def workspace = pwd()
@@ -108,7 +108,7 @@ pipeline {
                                                 echo "Skipping Sonar execution for CSS profile"
                                         }
                                     	else{
-                                              sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales -D  -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                                              sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
                                    // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  					}	
 					}
