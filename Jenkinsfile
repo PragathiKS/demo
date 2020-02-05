@@ -1,9 +1,5 @@
 pipeline {
 	agent any 
-                //{dockerfile {
-		//	args  '-v "$HOME/.m2":/.m2 --tmpfs /.npm -u root:root'
-		//	label 'linux&&docker'
-		//}}
         parameters {
                 booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
@@ -11,7 +7,6 @@ pipeline {
                                 booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
 				booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
-       // properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10'))])
         options { buildDiscarder(logRotator(numToKeepStr: '10')) }
         environment {
                 sonar_url = "https://sonarcloud.io"
@@ -44,24 +39,17 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}"
-                                  sh 'pwd'
-                                  sh 'docker ps -a'
-                                  sh 'chmod 777 Devops/deldocker.sh' 
                                   sh 'Devops/deldocker.sh '
                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])    
 			{ artuser = artifactuser
                          artpassword=  artifactpassword}	
-                         sh 'echo $artuser' 
-                         sh 'echo $artpassword '   
 }
 			}
 		}
-                stage ('Build-Commons-CustomerHub-PublicWeb-Modules') {
+                stage ('Build-SonarAnalysis') {
                      agent {
                       dockerfile {
-                    //  args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
                       args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
-                    //  args  '-v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
                         steps {
@@ -74,7 +62,7 @@ pipeline {
                                         sh "npm install --prefix ui.dev/src"
                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                         {  
-                                        sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
                                         }
                                        if (!params.Sonar_Analysis) {
                                                 echo "Skipping Sonar execution for commons module"
