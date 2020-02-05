@@ -1,117 +1,114 @@
 pipeline {
-	agent any 
-        parameters {
-                booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
-				booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
-				booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-                booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
-				booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
-        }
-        options { buildDiscarder(logRotator(numToKeepStr: '10')) }
-        environment {
-                sonar_url = "https://sonarcloud.io"
-                login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
-                author_url = "http://13.69.79.81:4502"
-                publish_url = "http://13.69.73.197:4503"
-                package_name = "tetrapak-complete-package"
-		test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
-		test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
-		test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
-		test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
-                karmapath_cuhu =  "${env.workspace}/tetrapak-customerhub/ui.dev/src/coverage"
-		karmapath_pw =  "${env.workspace}/tetrapak-publicweb/ui.dev/src/coverage"
-		build_id_number = ""
-        }
-        stages {
-                stage ('Initialize'){ 
-                        steps {
-                                sh      '''
-                                        echo "PATH = ${PATH}"
-                                        echo "M2_HOME = ${M2_HOME}"
-                                        '''
-        }}
-		stage('init-build-Number'){
-			steps{
-				script{//sh "wget https://tetrapak-dev64a.adobecqms.net"
-					def now = new Date()
-					def formattedDate
+    agent any
+    parameters {
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+    }
+    environment {
+        sonar_url = "https://sonarcloud.io"
+        login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
+        author_url = "http://13.69.79.81:4502"
+        publish_url = "http://13.69.73.197:4503"
+        package_name = "tetrapak-complete-package"
+        test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
+        test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
+        test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
+        test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
+        karmapath_cuhu = "${env.WORKSPACE}/tetrapak-customerhub/ui.dev/src/coverage"
+        karmapath_pw = "${env.WORKSPACE}/tetrapak-publicweb/ui.dev/src/coverage"
+        build_id_number = ""
+    }
+    stages {
+        stage('init-build-Number') {
+            steps {
+                script {//sh "wget https://tetrapak-dev64a.adobecqms.net"
+                    def now = new Date()
+                    def formattedDate
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}"
-                                //  sh 'Devops/deldocker.sh '
-}
-		}}
-                stage ('Build-SonarAnalysis') {
-                     agent {
-                      dockerfile {
-                      args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
-                      label 'linux&&docker'
-                }}
-                        steps {
-                             script {
-                               if (params.Build_Commons) {
-                                     echo "Build Commons"
-                                     sh "echo $HOME"
-                                     sh 'pwd'
-                                     dir('tetrapak-commons') {
-                                        sh "npm install --prefix ui.dev/src"
-                                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-                                        {  
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
-                                        }
-                                       if (!params.Sonar_Analysis) {
-                                                echo "Skipping Sonar execution for commons module"
-                                        }
-                                        else{
-					sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-commons  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
-}
-                                                           }
-                                     }}
-			     script {	
-                                if (params.Build_Customerhub) {
-				echo "Build CustomerHub"
-                                sh "echo $EXECUTOR_NUMBER"
-                                sh 'ls /root/.m2'
-                                dir('tetrapak-customerhub') {
-                                	sh "npm install --prefix ui.dev/src"
-                                	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-                                        { 
-					sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                        }
-                                        sh 'cp -r ui.dev/src/coverage /root/customerhub'	
-                                        sh 'ls /root/customerhub' 
-                                        if (!params.Sonar_Analysis) {
-                                                echo "Skipping Sonar execution for customerhub module"
-                                        }
-                                    	else{
-                                              sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
- 					}	
-					}
+                    //  sh 'Devops/deldocker.sh '
+                }
+            }
+        }
+        stage('Build-SonarAnalysis') {
+            agent {
+                dockerfile {
+                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                    label 'linux&&docker'
+                }
+            }
+            steps {
+                script {
+                    if (params.Build_Commons) {
+                        echo "Build Commons"
+                        sh "echo $HOME"
+                        sh 'pwd'
+                        dir('tetrapak-commons') {
+                            sh "npm install --prefix ui.dev/src"
+                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                        sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                     }
-                                 }
-			     script { 	
-				if (params.Build_Publicweb) {
-				echo "Build PublicWeb"
-                                dir('tetrapak-publicweb'){ 
-                                	sh "npm install --prefix ui.dev/src"
-                                	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-                                        {                
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
-                                        }
-                                        sh 'cp -r ui.dev/src/coverage /root/publicweb'   
-					sh 'ls /root/publicweb'		
-                                	if (!params.Sonar_Analysis) {
-                                                echo "Skipping Sonar execution for Publicweb module"
-                                        }
-                                        else{
-                                   sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-Publicweb  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
-                                     }
-}
-						            } 
-					}}
-}
- 
-             	stage ( 'Karma, Pa11y, Zap Tools Execution') {
+                            if (!params.Sonar_Analysis) {
+                                echo "Skipping Sonar execution for commons module"
+                            } else {
+                                sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-commons  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                            }
+                        }
+                    }
+                }
+                script {
+                    if (params.Build_Customerhub) {
+                        echo "Build CustomerHub"
+                        sh "echo $EXECUTOR_NUMBER"
+                        sh 'ls /root/.m2'
+                        dir('tetrapak-customerhub') {
+                            sh "npm install --prefix ui.dev/src"
+                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                    }
+                            sh 'cp -r ui.dev/src/coverage /root/customerhub'
+                            sh 'ls /root/customerhub'
+                            if (!params.Sonar_Analysis) {
+                                echo "Skipping Sonar execution for customerhub module"
+                            } else {
+                                sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                            }
+                        }
+                    }
+                }
+                script {
+                    if (params.Build_Publicweb) {
+                        echo "Build PublicWeb"
+                        dir('tetrapak-publicweb') {
+                            sh "npm install --prefix ui.dev/src"
+                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                    }
+                            sh 'cp -r ui.dev/src/coverage /root/publicweb'
+                            sh 'ls /root/publicweb'
+                            if (!params.Sonar_Analysis) {
+                                echo "Skipping Sonar execution for Publicweb module"
+                            } else {
+                                sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-Publicweb  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    stage ( 'Karma, Pa11y, Zap Tools Execution') {
                 	steps {
                           	script {
 					if (!params.Tools_Execution) {
@@ -136,7 +133,7 @@ pipeline {
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
-                                                sh 'Devops/PallyReporting.sh'
+                                                sh 'Devops/PallyReportCuhu.sh'
 												sh 'mkdir pally-customerHub'
                                                 sh 'cp Devops/PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
@@ -192,68 +189,58 @@ pipeline {
 					}
 				}
 				}
-														
-		stage ( 'Sitespeed Execution on all platforms - CustomerHub') {
-			steps {
-				script {
-					if (!params.Tools_Execution) {
-                               			echo "Skipping Sitespeed Execution for Desktop"
-                                        }
-                                    	else {
-						if (params.Build_Customerhub) {
-                                            	echo "Starting Sitespeed-Desktop Test Run for CustomerHub"
-                                              	sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_cuhu} -b firefox --outputFolder sitespeed_desktop'
-                                             	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Desktop', reportTitles: ''])
-                                                //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
-                                                         
-						echo "Starting Sitespeed-Mobile Test Run for CustomerHub"
-                                       		sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_cuhu} -b firefox --outputFolder sitespeed_mobile'
-                                   		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Mobile', reportTitles: ''])
-						//sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
-                                                         
-						echo "Starting Sitespeed-IPAD Test Run for CustomerHub"
-                                                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_cuhu} -b firefox --outputFolder sitespeed_ipad'
-                                          	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-IPad', reportTitles: ''])
-                                           	//sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
-										}
-														  
-						if (params.Build_Publicweb) {
-                                          	echo "Starting Sitespeed-Desktop Test Run for PublicWeb"
-                                         	sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_pw} -b firefox --outputFolder sitespeed_desktop'
-                                            	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
-                                                //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
-                                                       
-						echo "Starting Sitespeed-Mobile Test Run for PublicWeb"
-                                                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_pw} -b firefox --outputFolder sitespeed_mobile'
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
-						//sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
-                                                        
-						echo "Starting Sitespeed-IPAD Test Run for PublicWeb"
-                                                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_pw} -b firefox --outputFolder sitespeed_ipad'
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
-                                               // sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
-									}
-														  
-						}
-					    }								
-				}
-									}
-														  
-	}
-/** post {
-      success {
-      emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
-      body: '''${DEFAULT_CONTENT}''',
-	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
-}
-      failure {
-      emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
-      body: '''${DEFAULT_CONTENT}''',
-	  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'
-}
-  //always {
-  //  build 'Tetra_Dev_Clear_httpd_Cache'
-  // 	build 'Tetra-Splunk-All-Tools'
-  //  } 
-	} **/ 
+
+        stage('Sitespeed Execution on all platforms - CustomerHub') {
+            steps {
+                script {
+                    if (!params.Tools_Execution) {
+                        echo "Skipping Sitespeed Execution for Desktop"
+                    } else {
+                        if (params.Build_Customerhub) {
+                            echo "Starting Sitespeed-Desktop Test Run for CustomerHub"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_cuhu} -b firefox --outputFolder sitespeed_desktop'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Desktop', reportTitles: ''])
+                            //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+
+                            echo "Starting Sitespeed-Mobile Test Run for CustomerHub"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_cuhu} -b firefox --outputFolder sitespeed_mobile'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Mobile', reportTitles: ''])
+                            //sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
+
+                            echo "Starting Sitespeed-IPAD Test Run for CustomerHub"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_cuhu} -b firefox --outputFolder sitespeed_ipad'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-IPad', reportTitles: ''])
+                            //sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
+                        }
+
+                        if (params.Build_Publicweb) {
+                            echo "Starting Sitespeed-Desktop Test Run for PublicWeb"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_pw} -b firefox --outputFolder sitespeed_desktop'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
+                            //sh 'cp -r ./sitespeed_desktop/index.html /app/splunk-output/sitespeeddesktop'
+
+                            echo "Starting Sitespeed-Mobile Test Run for PublicWeb"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile ${test_url_pw} -b firefox --outputFolder sitespeed_mobile'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
+                            //sh 'cp -r ./sitespeed_mobile/index.html /app/splunk-output/sitespeedmobile'
+
+                            echo "Starting Sitespeed-IPAD Test Run for PublicWeb"
+                            sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" ${test_url_pw} -b firefox --outputFolder sitespeed_ipad'
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
+                            // sh 'cp -r ./sitespeed_ipad/index.html /app/splunk-output/sitespeedipad'
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+/** post {success {emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
+ body: '''${DEFAULT_CONTENT}''',
+ to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'}failure {emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
+ body: '''${DEFAULT_CONTENT}''',
+ to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'}//always {//  build 'Tetra_Dev_Clear_httpd_Cache'
+ // 	build 'Tetra-Splunk-All-Tools'
+ //  }} **/
 }
