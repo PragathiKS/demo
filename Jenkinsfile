@@ -68,7 +68,8 @@ pipeline {
                      agent {
                       dockerfile {
                     //  args  '-v "$M2_HOME/.m2":/root/.m2   --tmpfs /.npm -u root:root'
-                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                    //  args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                      args  '-v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
                         steps {
@@ -76,15 +77,21 @@ pipeline {
                                if (params.Build_Commons) {
                                      echo "Build Commons"
                                      sh "echo $HOME"
-                                     sh 'ls /root/.m2'
                                      sh 'pwd'
                                      dir('tetrapak-commons') {
                                         sh "npm install --prefix ui.dev/src"
-                                        sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install deploy -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                                       // sh "cp $workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
-                                                                 }
+                                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                        {  
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
+                                        }
+                                       if (!params.Sonar_Analysis) {
+                                                echo "Skipping Sonar execution for commons module"
+                                        }
+                                        else{
+					sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-commons  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
+}
                                                            }
-                                     }
+                                     }}
 			     script {	
                                 if (params.Build_Customerhub) {
 				echo "Build CustomerHub"
@@ -92,55 +99,43 @@ pipeline {
                                 sh 'ls /root/.m2'
                                 dir('tetrapak-customerhub') {
                                 	sh "npm install --prefix ui.dev/src"
-                                	 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-                        { 
-                    
+                                	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                        { 
 					sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                         }
-					//sh "cp $workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${BUILD_NUMBER}.zip /app/build-area/releases/DEVBUILD"
-					// def workspace = pwd()
-                                        sh 'ls'
-                                        sh 'ls ui.dev/src/coverage'
-                                        sh 'echo $workspace'		
                                         sh 'cp -r ui.dev/src/coverage /root/customerhub'	
                                         sh 'ls /root/customerhub' 
-                                    //	sh "ls -R" 
                                         if (!params.Sonar_Analysis) {
-                                                echo "Skipping Sonar execution for CSS profile"
+                                                echo "Skipping Sonar execution for customerhub module"
                                         }
                                     	else{
                                               sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
-                                   // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"         
  					}	
 					}
                                     }
                                  }
-
 			     script { 	
 				if (params.Build_Publicweb) {
 				echo "Build PublicWeb"
                                 dir('tetrapak-publicweb'){ 
                                 	sh "npm install --prefix ui.dev/src"
-                                	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public install -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
-                               
-                                     // sh "cp $workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip /app/build-area/releases/DEVBUILD"
+                                	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                        {                
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"                               
+                                        }
                                         sh 'cp -r ui.dev/src/coverage /root/publicweb'   
-				sh 'ls /root/publicweb'		
-                                if (!params.Sonar_Analysis) {
-                                                echo "Skipping Sonar execution for Publicweb"
+					sh 'ls /root/publicweb'		
+                                	if (!params.Sonar_Analysis) {
+                                                echo "Skipping Sonar execution for Publicweb module"
                                         }
                                         else{
-                                              sh "mvn -e -B sonar:sonar  -Dsonar.language=js -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/source/scripts/utils/logger.js -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.sources=src/main -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
-                                   // sh "mvn -e -B sonar:sonar  -Dsonar.language=css  -Dsonar.organization=tetrapak-smartsales -Dsonar.exclusions=ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/vendor.publish/css/*  -Dsonar.buildbreaker.skip=true -Dsonar.host.url=${sonar_url} -Dsonar.login=${login_token} -Dsonar.projectKey=tetrapak-smartsales_cfe-tetrapak -Dsonar.branch=CSS -Dbuildversion=${build_id_number}"
+                                   sh "mvn -e -B sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-Publicweb  -Dsonar.languages=java,js,css -Dbuildversion=${build_id_number}"
                                      }
 }
 						            } 
 					}
 }
-} 
-                
-
-				
+ 
              	stage ( 'Karma, Pa11y, Zap Tools Execution') {
                 	steps {
                           	script {
