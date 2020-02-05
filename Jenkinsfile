@@ -39,12 +39,8 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}"
-                                  sh 'Devops/deldocker.sh '
-                   withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])    
-			{ artuser = artifactuser
-                         artpassword=  artifactpassword}	
+                                //  sh 'Devops/deldocker.sh '
 }
-			}
 		}
                 stage ('Build-SonarAnalysis') {
                      agent {
