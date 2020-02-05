@@ -11,7 +11,7 @@ pipeline {
                                 booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
 				booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
-
+        properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10'))])
         environment {
                 sonar_url = "https://sonarcloud.io"
                 login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
