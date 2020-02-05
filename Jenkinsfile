@@ -18,10 +18,9 @@ pipeline {
 		test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
 		test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
 		test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
-                karmapath_cuhu =  "${workspace}/tetrapak-customerhub/ui.dev/src/coverage"
-		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
+                karmapath_cuhu =  "${env.workspace}/tetrapak-customerhub/ui.dev/src/coverage"
+		karmapath_pw =  "${env.workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
-                M2_HOME= "${workspace}"
         }
         stages {
                 stage ('Initialize'){ 
@@ -45,8 +44,7 @@ pipeline {
                 stage ('Build-SonarAnalysis') {
                      agent {
                       dockerfile {
-                      args   -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
-                     // args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                      args "-v ${env.HOME}/${env.BRANCH_NAME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
                       label 'linux&&docker'
                 }}
                         steps {
