@@ -41,7 +41,7 @@ pipeline {
                     echo "build_id_number = ${build_id_number}"
                                 //  sh 'Devops/deldocker.sh '
 }
-		}
+		}}
                 stage ('Build-SonarAnalysis') {
                      agent {
                       dockerfile {
