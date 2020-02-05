@@ -135,7 +135,7 @@ pipeline {
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
                                                 sh 'Devops/PallyReportCuhu.sh'
 												sh 'mkdir pally-customerHub'
-                                                sh 'cp Devops/PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
+                                                sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
 		
                 				echo "Starting Zap Test Run- CustomerHub"
@@ -165,7 +165,7 @@ pipeline {
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
 						sh './Devops/PallyReportPubWeb.sh'
 						sh 'mkdir pally-publicWeb'
-                        sh 'cp Devops/PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
+                        sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
 						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
 		  
                  				echo "Starting Zap Test Run- PublicWeb"
