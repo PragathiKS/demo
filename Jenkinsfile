@@ -1,11 +1,11 @@
 pipeline {
 	agent any 
         parameters {
-                booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
+                booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
 				booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-                                booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
-				booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
+                booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
+				booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
         options { buildDiscarder(logRotator(numToKeepStr: '10')) }
         environment {
@@ -44,7 +44,7 @@ pipeline {
                 stage ('Build-SonarAnalysis') {
                      agent {
                       dockerfile {
-                      args "-v ${env.HOME}/${env.BRANCH_NAME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                      args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
                       label 'linux&&docker'
                 }}
                         steps {
@@ -135,10 +135,11 @@ pipeline {
 														
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
-                                                sh 'chmod 777 Devops/PallyReporting.sh'
+                                                sh 'chmod 777 Devops/PallyReportCuhu.sh'
                                                 sh 'Devops/PallyReporting.sh'
-                                                sh 'cp Devops/PallyReport.html PallyReport_CustomerHub.html' 
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReport_CustomerHub.html', reportName: 'PallyReport-CustomerHub', reportTitles: ''])
+												sh 'mkdir pally-customerHub'
+                                                sh 'cp Devops/PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
 		
                 				echo "Starting Zap Test Run- CustomerHub"
                 				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
@@ -146,10 +147,11 @@ pipeline {
 						echo "Starting ZAP test Run on CustomerHub Urls"
                 				sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
                 				sh 'docker exec  zap zap-cli report -f html -o "zap_CustomerHub.html"'
-						sh 'docker cp zap:zap/zap_CustomerHub.html .'
+								sh 'mkdir zap-customerHub'
+						sh 'docker cp zap:zap/zap_CustomerHub.html zap-customerHub'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
-                				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_CustomerHub.html', reportName: 'ZAPReport-CustomerHub', reportTitles: ''])            
+                				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerHub', reportFiles: 'zap_CustomerHub.html', reportName: 'ZAPReport-CustomerHub', reportTitles: ''])            
 						// sh 'cp -r ./zap_CustomerHub.html /app/splunk-output/zap/customerhub'
 	    }
 														  
@@ -165,7 +167,9 @@ pipeline {
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
 						sh './Devops/PallyReportPubWeb.sh'
-						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'PallyReporPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
+						sh 'mkdir pally-publicWeb'
+                        sh 'cp Devops/PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
+						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
 		  
                  				echo "Starting Zap Test Run- PublicWeb"
                   	   	                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30  -e LANG=C.UTF-8  --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
@@ -175,10 +179,11 @@ pipeline {
 						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
 					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
 						sh 'docker exec  zap zap-cli report -f html -o "zap_PublicWeb.html"'
-						sh 'docker cp zap:zap/zap_PublicWeb.html .'
+						sh 'mkdir zap-publicWeb'
+						sh 'docker cp zap:zap/zap_PublicWeb.html zap-publicWeb'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
-						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'zap_PublicWeb.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
+						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicWeb', reportFiles: 'zap_PublicWeb.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 					//	sh 'cp -r ./zap_PublicWeb.html /app/splunk-output/zap/customerhub'
 									}
 														  
