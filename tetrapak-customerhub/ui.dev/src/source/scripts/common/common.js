@@ -123,12 +123,12 @@ export const resolveQuery = (queryString, replaceMap) => {
   // Replace the replaceable data
   if (Array.isArray(replaceMap)) {
     replaceMap.forEach(function (value, index) {
-      var keyRegex = new RegExp('\\{' + index + '\\}', 'g');
+      var keyRegex = new RegExp(`\\{${index}\\}`, 'g');
       queryString = queryString.replace(keyRegex, value);
     });
   } else if (typeof replaceMap === 'object' && replaceMap !== null) {
     Object.keys(replaceMap).forEach(function (key) {
-      var keyRegex = new RegExp('\\{' + key + '\\}', 'g');
+      var keyRegex = new RegExp(`\\{${key}\\}`, 'g');
       queryString = queryString.replace(keyRegex, replaceMap[key]);
     });
   }

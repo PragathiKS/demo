@@ -46,10 +46,17 @@
     }
 
     &__btn-container {
-        @include margin-top($margin-l);
-
         @media #{$desktop} {
             text-align: right;
+        }
+    }
+
+    &__create-excel,
+    &__create-pdf {
+        @include margin-top($font-normal);
+
+        @media #{$desktop} {
+            @include margin-top($font-normal);
         }
     }
 
