@@ -1,10 +1,10 @@
 pipeline {
 	agent any 
         parameters {
-                booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
+                booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
 				booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
-				booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-                                booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
+				booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
+                                booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
 				booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
         }
         options { buildDiscarder(logRotator(numToKeepStr: '10')) }
@@ -45,7 +45,8 @@ pipeline {
                 stage ('Build-SonarAnalysis') {
                      agent {
                       dockerfile {
-                      args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                      args   -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
+                     # args  '-v "$M2_HOME/.m2":/root/.m2 -v "$M2_HOME/report/customerhub":/root/customerhub -v "$M2_HOME/reports/publicweb":/root/publicweb  --tmpfs /.npm -u root:root'
                       label 'linux&&docker'
                 }}
                         steps {
