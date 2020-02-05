@@ -24,13 +24,13 @@
 					<enabled>false</enabled>
 				</snapshots>
 				<name>libs-release</name>
-				<url>http://localhost:8081/artifactory/libs-release</url>
+				<url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
 			</repository>
 			<repository>
 				<id>snapshots</id>
 				<snapshots />
 				<name>libs-snapshot</name>
-				<url>http://localhost:8081/artifactory/libs-snapshot</url>
+				<url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
 			</repository>
 		</repositories>
 	</profile>
