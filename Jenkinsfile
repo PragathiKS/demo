@@ -26,9 +26,7 @@ pipeline {
 		karmapath_pw =  "${workspace}/tetrapak-publicweb/ui.dev/src/coverage"
 		build_id_number = ""
                 M2_HOME= "${workspace}"
-                
         }
-
         stages {
                 stage ('Initialize'){ 
                         steps {
@@ -36,14 +34,10 @@ pipeline {
                                         echo "PATH = ${PATH}"
                                         echo "M2_HOME = ${M2_HOME}"
                                         '''
-            
         }}
 		stage('init-build-Number'){
 			steps{
 				script{//sh "wget https://tetrapak-dev64a.adobecqms.net"
-                                       // sh "wget http://13.69.79.81:4502"
-                                       // sh "wget http://13.69.73.197:4503"
-                                       // sh "wget http://127.0.0.1:9000"
 					def now = new Date()
 					def formattedDate
                     formattedDate = now.format("yyyyMMddHHmm")
@@ -51,8 +45,6 @@ pipeline {
                     echo "build_id_number = ${build_id_number}"
                                   sh 'pwd'
                                   sh 'docker ps -a'
-                               // sh 'if docker stop zap'
-                               // sh 'docker rm zap'
                                   sh 'chmod 777 Devops/deldocker.sh' 
                                   sh 'Devops/deldocker.sh '
                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'tetrapak-artifactory-publish-creds',usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])    
@@ -63,7 +55,6 @@ pipeline {
 }
 			}
 		}
-
                 stage ('Build-Commons-CustomerHub-PublicWeb-Modules') {
                      agent {
                       dockerfile {
@@ -133,7 +124,7 @@ pipeline {
                                      }
 }
 						            } 
-					}
+					}}
 }
  
              	stage ( 'Karma, Pa11y, Zap Tools Execution') {
