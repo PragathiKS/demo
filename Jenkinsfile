@@ -134,7 +134,7 @@ pipeline {
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
                                                 sh 'Devops/PallyReportCuhu.sh'
-												sh 'mkdir pally-customerHub'
+												sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
 		
@@ -144,7 +144,7 @@ pipeline {
 						echo "Starting ZAP test Run on CustomerHub Urls"
                 				sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
                 				sh 'docker exec  zap zap-cli report -f html -o "zap_CustomerHub.html"'
-								sh 'mkdir zap-customerHub'
+								sh 'mkdir -p zap-customerHub'
 						sh 'docker cp zap:zap/zap_CustomerHub.html zap-customerHub'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
@@ -164,7 +164,7 @@ pipeline {
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
 						sh './Devops/PallyReportPubWeb.sh'
-						sh 'mkdir pally-publicWeb'
+						sh 'mkdir -p pally-publicWeb'
                         sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
 						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
 		  
@@ -176,7 +176,7 @@ pipeline {
 						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
 					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
 						sh 'docker exec  zap zap-cli report -f html -o "zap_PublicWeb.html"'
-						sh 'mkdir zap-publicWeb'
+						sh 'mkdir -p zap-publicWeb'
 						sh 'docker cp zap:zap/zap_PublicWeb.html zap-publicWeb'
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
