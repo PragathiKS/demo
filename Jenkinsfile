@@ -38,7 +38,7 @@ pipeline {
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
                     //  sh 'Devops/deldocker.sh '
                     sh "dig +short myip.opendns.com @resolver1.opendns.com"
-                    sh "ls -R /root/.m2"
+                    sh 'ls -R ${env.HOME}/.m2'
                 }
             }
         }
@@ -55,6 +55,7 @@ pipeline {
                         echo "Build Commons"
                         sh "echo $HOME"
                         sh 'pwd'
+                        sh "ls -R /root/.m2"
                         dir('tetrapak-commons') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
