@@ -1,0 +1,9 @@
+<sly data-sly-template.teaser_template="${@data, flag}">
+    <section class="tp-teaser pw-theme--grayscale-white">
+      <div class="tp-teaser__details" data-sly-list.child=${data.teaserList}>
+          <sly data-sly-test.isLink="${data.pwButtonTheme == 'link'}" />
+          <sly data-sly-use.imageAndText="/apps/publicweb/components/molecules/imageAndText/imageAndText-template.html"
+          data-sly-call="${imageAndText.imageAndText_template @data=child,className='tpmol-image-card__normal-text',isLink=isLink,uxPreview=data.uxPreview}" />
+      </div>
+    </section>
+</sly>

@@ -1,0 +1,29 @@
+<sly data-sly-template.imageAndText_template="${@ data,className,isLink,uxPreview}">
+    <div class="tpmol-image-card">
+        <div class="tpmol-image-card__container">
+            <sly data-sly-use.genericimage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                 data-sly-call="${genericimage.dynamicMediaImage_template @imagePath=data.imagePath,mobileImagePath=data.imagePath,altText=data.altText,className='tp-get-started__details--image',uxPreview=uxPreview}">
+            </sly>
+            <div class="tpmol-image-card__text">
+                <h3 class="tpmol-image-card__heading">${data.title @context='html'}</h3>
+                <sly data-sly-test.description="${data.description}">
+                    <div class="${className} font-style-sm">
+                        ${description @ context='html'}
+                    </div>
+                </sly>
+                <sly data-sly-test.linkText="${data.linkText}">
+                    <sly data-sly-test.linkUrl="${data.linkPath}"></sly>
+                    <sly data-sly-text.isExternal="${data.targetNew}" />
+                    <sly data-sly-test.modifier="${isLink ? 'transparent' : 'primary'}" />
+                    <sly data-sly-test.linkIconClass="${isLink ? 'icon-Circle_Arrow_Right' : 'icon-Chevron_Right'}" />
+                    <div class="tpmol-image-card__link">
+                        <sly data-sly-use.linkAtom="/apps/commons/components/atoms/link/link-template.html"
+                             data-sly-call="${linkAtom.link_template @url=linkUrl,text=linkText,baseClass='',isExternal=isExternal,modifier=modifier,
+                linkHeading=data.title, iconClass=linkIconClass}">
+                        </sly>
+                    </div>
+                </sly>
+            </div>
+        </div>
+    </div>
+</sly>
