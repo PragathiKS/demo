@@ -175,12 +175,12 @@ pipeline {
                         }
                 }
 
-				stage ('Deployment Author and Publish Parallel') {
+				stage ('Author Deployment and Replication to Publish')
+				{
                         steps {
-                               
-                                        "Author Deployment" : {
-												script {
-														if (params.Build_Commons) {
+									script {
+											if (params.Build_Commons) 
+												{
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
@@ -202,7 +202,9 @@ pipeline {
                                                 sleep 10
 												 
 												}
-													if (params.Build_Customerhub) {
+												
+												if (params.Build_Customerhub) 
+												{
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -224,8 +226,9 @@ pipeline {
                                                 sleep 10
 												}
 
-													if (params.Build_Publicweb) {
-                                                 echo "Uninstalling Old Package on author -- PublicWeb"
+												if (params.Build_Publicweb) 
+												{
+                                                echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Package on author"
@@ -245,10 +248,10 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												}
-                                        }
+											}
 								}
 										
-                        }
+                  
                 }
 				
                     stage ( 'Karma, Pa11y, Zap Tools Execution') {
