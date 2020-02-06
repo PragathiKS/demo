@@ -76,7 +76,7 @@ pipeline {
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-                                    }i
+                                    }
                             sh 'mkdir -p /root/.m2/reports'
                             sh 'cp -r ui.dev/src/coverage /root/.m2/reports/customerhub'
                             sh 'ls /root/reports'
