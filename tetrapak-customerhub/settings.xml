@@ -17,22 +17,54 @@
 
 <profiles>
 	<profile>
-		<repositories>
+                <id>minify</id>
+         	<properties>
+            		<releaseRepository-Id>adobe-public-releases</releaseRepository-Id>
+            		<releaseRepository-Name>Adobe Public Releases</releaseRepository-Name>
+            		<releaseRepository-URL>http://repo.adobe.com/nexus/content/groups/public</releaseRepository-URL>
+         	</properties>
+         	<repositories>
+            		<repository>
+               			<id>adobe-public-releases</id>
+               			<name>Adobe Basel Public Repository</name>
+               			<url>http://repo.adobe.com/nexus/content/groups/public</url>
+               			<releases>
+                  			<enabled>true</enabled>
+                  			<updatePolicy>never</updatePolicy>
+               			</releases>
+               			<snapshots>
+                  			<enabled>false</enabled>
+               			</snapshots>
+            		</repository>
 			<repository>
-				<id>central</id>
-				<snapshots>
-					<enabled>false</enabled>
-				</snapshots>
-				<name>libs-release</name>
-				<url>http://localhost:8081/artifactory/libs-release</url>
-			</repository>
-			<repository>
-				<id>snapshots</id>
-				<snapshots />
-				<name>libs-snapshot</name>
-				<url>http://localhost:8081/artifactory/libs-snapshot</url>
-			</repository>
-		</repositories>
-	</profile>
-</profiles>
-</settings>
+                                <id>central</id>
+                                <snapshots>
+                                        <enabled>false</enabled>
+                                </snapshots>
+                                <name>libs-release</name>
+                                <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
+                        </repository>
+                        <repository>
+                                <id>snapshots</id>
+                                <snapshots />
+                                <name>libs-snapshot</name>
+                                <url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
+                        </repository>
+         	</repositories>
+         	<pluginRepositories>
+           		 <pluginRepository>
+               			<id>adobe-public-releases</id>
+              			 <name>Adobe Basel Public Repository</name>
+               			<url>http://repo.adobe.com/nexus/content/groups/public</url>
+               			<releases>
+                  			<enabled>true</enabled>
+                  			<updatePolicy>never</updatePolicy>
+               			</releases>
+               			<snapshots>
+                  			<enabled>false</enabled>
+               			</snapshots>
+            		</pluginRepository>
+         	</pluginRepositories>
+          </profile>
+ </profiles>
+
