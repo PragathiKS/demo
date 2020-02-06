@@ -79,7 +79,6 @@ pipeline {
                                     }
                             sh 'mkdir -p /root/.m2/reports'
                             sh 'cp -r ui.dev/src/coverage /root/.m2/reports/customerhub'
-                            sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for customerhub module"
                             } else {
@@ -99,7 +98,6 @@ pipeline {
                                     }
                             sh 'mkdir -p /root/.m2/reports'
                             sh 'cp -r ui.dev/src/coverage /root/.m2/reports/publicweb'
-                            sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for Publicweb module"
                             } else {
