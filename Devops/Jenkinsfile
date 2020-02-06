@@ -10,7 +10,7 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
     }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '10'))
+        buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
     }
     environment {
@@ -45,7 +45,7 @@ pipeline {
         stage('Build-SonarAnalysis') {
             agent {
                 dockerfile {
-                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                    args "-v ${env.HOME}/.m2:/root/.m2 -${env.HOME}/reports:/root/reports   tmpfs /.npm -u root:root"
                     label 'linux&&docker'
                 }
             }
@@ -54,18 +54,10 @@ pipeline {
                     if (params.Build_Commons) {
                         echo "Build Commons"
                         sh "echo $HOME"
-                        sh 'pwd'
-                        sh "ls -R /root/.m2/"
-                        //sh "rm -r /root/.m2/repository/tetrapak*"
                         dir('tetrapak-commons') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak"
-                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb"
-                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-customerhub"
-                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/terrapak"
-                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-publicweb"
                                         sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
@@ -79,16 +71,14 @@ pipeline {
                 script {
                     if (params.Build_Customerhub) {
                         echo "Build CustomerHub"
-                        sh "echo $EXECUTOR_NUMBER"
-                        sh 'ls /root/.m2'
                         dir('tetrapak-customerhub') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'cp -r ui.dev/src/coverage /root/customerhub'
-                            sh 'ls /root/customerhub'
+                            sh 'cp -r ui.dev/src/coverage /root/reports/customerhub'
+                            sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for customerhub module"
                             } else {
@@ -106,8 +96,8 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'cp -r ui.dev/src/coverage /root/publicweb'
-                            sh 'ls /root/publicweb'
+                            sh 'cp -r ui.dev/src/coverage /root/reports/publicweb/'
+                            sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for Publicweb module"
                             } else {
@@ -213,10 +203,8 @@ pipeline {
                                              	// sh 'ls tetrapak-customerhub/releases'
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
                                               	// sh 'chmod 755 -R reports' 
-						sh 'ls -la report' 
-                                                sh 'cp -r report/customerhub .'
-                                                sh 'ls -la'  
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
+                                                sh 'cp -r reports/publicweb .'  
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Cuhu', reportTitles: ''])
                                                 // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
 														
 														
@@ -224,7 +212,7 @@ pipeline {
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
                                                 sh 'Devops/PallyReportCuhu.sh'
-												sh 'mkdir -p pally-customerHub'
+					        sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
 		
