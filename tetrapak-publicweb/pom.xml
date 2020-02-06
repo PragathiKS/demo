@@ -18,8 +18,8 @@
     </modules>
     <distributionManagement>
         <repository>
-           <id>central</id>
-           <name>tetrapak-snapshot</name>
+           <id>snapshots</id>
+           <name>tetrapak-snapshots</name>
            <url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
            </repository>
     </distributionManagement>
