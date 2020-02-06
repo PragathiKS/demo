@@ -132,7 +132,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
@@ -142,7 +142,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												 
 												}
@@ -156,7 +156,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
@@ -166,7 +166,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new Customerhub Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												}
 
@@ -179,7 +179,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
@@ -189,7 +189,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new PublicWeb Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb/tetrapak-publicweb.complete-1.0.0-${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												}
 											}
