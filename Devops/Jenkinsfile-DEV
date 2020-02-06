@@ -16,7 +16,6 @@ pipeline {
         environment {
                 sonar_url = "http://127.0.0.1:9000"
                 author_url = "https://author-tetrapak-dev64a.adobecqms.net"
-                publish_url = "http://13.69.73.197:4503"
                 package_name = "tetrapak-complete-package"
 				test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
 				test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
@@ -178,7 +177,7 @@ pipeline {
 
 				stage ('Deployment Author and Publish Parallel') {
                         steps {
-                                parallel (
+                               
                                         "Author Deployment" : {
 												script {
 														if (params.Build_Commons) {
@@ -216,6 +215,13 @@ pipeline {
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
 												sleep 20
+												
+												echo "Deactivating Old Customerhub Package on publish"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub -F cmd=deactivate '${author_url}/bin/replicate.json'"
+                                                sleep 20
+                                                echo "Activating new Customerhub Package on publish"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sleep 10
 												}
 
 													if (params.Build_Publicweb) {
@@ -230,44 +236,18 @@ pipeline {
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
-												}
-                                        }},
-                                        "Publish_Deployment" : {
-										    script {
-														if (params.Build_Commons) {
-                                                
-												}
-													if (params.Build_Customerhub) {
-                                                echo "Uninstalling Old Package on publish for customerhub"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
-                                                sleep 20
-                                                echo "Deleting Old Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
-                                                sleep 10
-                                                echo "Uploading New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 10
-                                                echo "Installing New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
 												sleep 20
-												}
-
-													if (params.Build_Publicweb) {
-												echo "Uninstalling Old Package on publish -- PublicWeb"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
+												
+												echo "Deactivating Old PublicWeb Package on publish"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
-                                                echo "Deleting Old Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
+                                                echo "Activating new PublicWeb Package on publish"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
-                                                echo "Uploading New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 10
-                                                echo "Installing New Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
 												}
-                                            } 
-									    }
-                                )
+                                        }
+								}
+										
                         }
                 }
 				
