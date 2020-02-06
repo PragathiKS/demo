@@ -198,7 +198,9 @@ pipeline {
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
-                                                sh './Devops/PallyReportCuhu.sh'
+                                                sh 'pwd'
+                                                sh 'ls -lrth'
+                                                sh 'sh -x Devops/PallyReportCuhu.sh'
 					        sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
