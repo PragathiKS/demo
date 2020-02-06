@@ -13,10 +13,10 @@ export default function (component, execute) {
       allImports.push(cImportPromise = cImport(matched[0]));
       cImportPromise.then(execute);
     } else if (matched.length > 1) {
-      const latestVersion = 'v' + matched.map(match => {
+      const latestVersion = `v${matched.map(match => {
         const dir = match.replace(`/${component}.js`);
         return dir.substring(dir.lastIndexOf('/', dir.lastIndexOf('/') - 1) + 1, dir.lastIndexOf('/'));
-      }).map(version => +version.replace('v', '')).sort((v1, v2) => (v2 - v1))[0];
+      }).map(version => +version.replace('v', '')).sort((v1, v2) => (v2 - v1))[0]}`;
       if (
         latestVersion
         && (/v\d+$/).test(latestVersion)

@@ -277,5 +277,8 @@ export const digitalData = window.digitalData || {};
 export const loc = {
   replace(...args) {
     window.location.replace(...args);
+  },
+  open(...args) {
+    window.open(...args);
   }
 };
