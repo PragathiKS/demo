@@ -209,6 +209,8 @@ pipeline {
                                              	echo "Publising karma Test Report- CustomerHub"
                                               	sh 'echo "Karma Report"'
                                               	def reportname = "Karma Report - CustomerHub"
+                                                sh 'ls -la'
+                                                sh 'pwd'
                                              //	sh 'ls -la report/coverage'
                                              	// sh 'ls tetrapak-customerhub/releases'
                                              	// sh 'cp -r ${karmapath_cuhu} releases'
