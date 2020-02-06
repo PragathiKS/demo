@@ -36,10 +36,8 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
-                    //  sh 'Devops/deldocker.sh '
-                    sh "dig +short myip.opendns.com @resolver1.opendns.com"
-                   // sh 'ls -R ${env.HOME}/.m2'
-                }
+                    echo ${karmapath_cuhu}
+		}
             }
         }
         stage('Build-SonarAnalysis') {
@@ -225,7 +223,7 @@ pipeline {
 					     	sh 'echo "Karma Report"'
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                sh 'mv -r ${env.HOME}reports/publicweb .' 
+                                                sh 'mv -r ${env.HOME}/reports/publicweb .' 
 					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
 						sh 'ls -la'
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
