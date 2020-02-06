@@ -315,9 +315,8 @@ pipeline {
                 }
             }
         }
-
-    }
 	sendNotifications(currentBuild.currentResult)
+    }
 /** post {success {emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
  body: '''${DEFAULT_CONTENT}''',
  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'}failure {emailext subject: "FAILURE: Job '${env.JOB_NAME}'",
