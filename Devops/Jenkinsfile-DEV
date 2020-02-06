@@ -227,18 +227,12 @@ pipeline {
                                         "Publish_Deployment" : {
 										    script {
 														if (params.Build_Commons) {
-                                                echo "Uninstalling Old Commons Package on publish for commons"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+                                                echo "Deactivating Old Commons Package on publish for commons"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak -F cmd="deactivate" '${author_url}/bin/replicate.json'"
                                                 sleep 20
-                                                echo "Deleting Old Commons Package  on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+                                                echo "Activating new Commons Package on publish"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F cmd="activate" '${author_url}/bin/replicate.json'"
                                                 sleep 10
-                                                echo "Uploading New Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 10
-                                                echo "Installing New Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-                                                sleep 20
 												}
 													if (params.Build_Customerhub) {
                                                 echo "Uninstalling Old Package on publish for customerhub"
