@@ -10,7 +10,7 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
     }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '30'))
+        buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
     }
     environment {
@@ -45,7 +45,7 @@ pipeline {
         stage('Build-SonarAnalysis') {
             agent {
                 dockerfile {
-                    args "-v ${env.HOME}/.m2:/root/.m2 -${env.HOME}/reports:/root/reports   tmpfs /.npm -u root:root"
+                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
                     label 'linux&&docker'
                 }
             }
@@ -54,10 +54,18 @@ pipeline {
                     if (params.Build_Commons) {
                         echo "Build Commons"
                         sh "echo $HOME"
+                        sh 'pwd'
+                        sh "ls -R /root/.m2/"
+                        //sh "rm -r /root/.m2/repository/tetrapak*"
                         dir('tetrapak-commons') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
+                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak"
+                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb"
+                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-customerhub"
+                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/terrapak"
+                                   //     sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-publicweb"
                                         sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
@@ -71,14 +79,16 @@ pipeline {
                 script {
                     if (params.Build_Customerhub) {
                         echo "Build CustomerHub"
+                        sh "echo $EXECUTOR_NUMBER"
+                        sh 'ls /root/.m2'
                         dir('tetrapak-customerhub') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'cp -r ui.dev/src/coverage /root/reports/customerhub'
-                            sh 'ls /root/reports'
+                            sh 'cp -r ui.dev/src/coverage /root/customerhub'
+                            sh 'ls /root/customerhub'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for customerhub module"
                             } else {
@@ -96,8 +106,8 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'cp -r ui.dev/src/coverage /root/reports/publicweb/'
-                            sh 'ls /root/reports'
+                            sh 'cp -r ui.dev/src/coverage /root/publicweb'
+                            sh 'ls /root/publicweb'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for Publicweb module"
                             } else {
@@ -169,7 +179,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace@2/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
@@ -199,15 +209,27 @@ pipeline {
                                              	echo "Publising karma Test Report- CustomerHub"
                                               	sh 'echo "Karma Report"'
                                               	def reportname = "Karma Report - CustomerHub"
-                                                sh 'mv -r ${env.HOME}/reports/publicweb .'  
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Cuhu', reportTitles: ''])
+                                                sh 'ls -la'
+                                                sh 'pwd'
+                                             //	sh 'ls -la report/coverage'
+                                             	// sh 'ls tetrapak-customerhub/releases'
+                                             	// sh 'cp -r ${karmapath_cuhu} releases'
+                                              	// sh 'chmod 755 -R reports' 
+						//sh 'ls -la report' 
+                                                sh 'cp -r report/customerhub .'
+                                                sh 'ls -la'  
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-CustomerHub', reportTitles: ''])
+                                                // sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/customerhub'
+														
+														
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
                                                 sh 'Devops/PallyReportCuhu.sh'
-					        sh 'mkdir -p pally-customerHub'
+												sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
+		
                 				echo "Starting Zap Test Run- CustomerHub"
                 				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						sleep 20
@@ -219,14 +241,17 @@ pipeline {
 						sh 'docker stop zap'
 						sh 'docker rm zap' 
                 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerHub', reportFiles: 'zap_CustomerHub.html', reportName: 'ZAPReport-CustomerHub', reportTitles: ''])            
+						// sh 'cp -r ./zap_CustomerHub.html /app/splunk-output/zap/customerhub'
 	    }
+														  
 						if (params.Build_Publicweb) {
 					   	echo "Publising karma Test Report- PublicWeb"
 					     	sh 'echo "Karma Report"'
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                sh 'mv -r ${env.HOME}reports/publicweb .' 
+                                                sh 'cp -r reports/publicweb .' 
 					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
+						//sh 'cp -r /app/build-area/releases/coverage/index.html /app/splunk-output/karmajson/publicweb'
 						sh 'ls -la'
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
@@ -234,12 +259,14 @@ pipeline {
 						sh 'mkdir -p pally-publicWeb'
                         sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
 						publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
+		  
                  				echo "Starting Zap Test Run- PublicWeb"
                   	   	                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30  -e LANG=C.UTF-8  --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                   	   		//sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						sleep 20						
 						echo "Starting ZAP test Run on PublicWeb Urls"
 						sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
+					//	sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
 						sh 'docker exec  zap zap-cli report -f html -o "zap_PublicWeb.html"'
 						sh 'mkdir -p zap-publicWeb'
 						sh 'docker cp zap:zap/zap_PublicWeb.html zap-publicWeb'
