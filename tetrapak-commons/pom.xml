@@ -17,10 +17,10 @@
     </modules>	
    <distributionManagement>
        <repository>
-+            <id>central</id>
-+            <name>tetrapak-releases</name>
-+            <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
-+        </repository>
+             <id>central</id>
+             <name>tetrapak-releases</name>
+             <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
+         </repository>
     	<snapshotRepository>
         	<id>snapshots</id>
         	<name>tetrapak-snapshots</name>
