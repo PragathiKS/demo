@@ -222,7 +222,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new Customerhub Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												}
 
@@ -245,7 +245,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new PublicWeb Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak-publicweb/tetrapak-publicweb.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												}
 											}
