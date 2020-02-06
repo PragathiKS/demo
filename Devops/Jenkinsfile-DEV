@@ -75,8 +75,6 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'mkdir -p /root/.m2/reports'
-                            sh 'cp -r ui.dev/src/coverage /root/.m2/reports/customerhub'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for customerhub module"
                             } else {
@@ -94,8 +92,6 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh 'mkdir -p /root/.m2/reports'
-                            sh 'cp -r ui.dev/src/coverage /root/.m2/reports/publicweb'
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for Publicweb module"
                             } else {
@@ -197,7 +193,7 @@ pipeline {
                                              	echo "Publising karma Test Report- CustomerHub"
                                               	sh 'echo "Karma Report"'
                                               	def reportname = "Karma Report - CustomerHub"
-                                                sh 'mv -r ${env.HOME}/.m2/reports/customerhub .'  
+                                                sh 'cp -r ${karmapath_cuhu} customerhub'  
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Cuhu', reportTitles: ''])
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
