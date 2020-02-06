@@ -1,0 +1,98 @@
+.tpmol-image-card {
+    @include padding($padding-sm);
+    background-color: $color-white;
+    display: flex;
+    width: 100%;
+
+    @media #{$desktop} {
+        @include padding(12px);
+        width: 33.33%;
+        margin: 0;
+
+        &__col--2 {
+            width: 50%;
+        }
+
+        &__col--3 {
+            width: 33.33%;
+        }
+
+        &__col--4 {
+            width: 25%;
+        }
+    }
+
+    &__container {
+        width: 100%;
+        border-radius: $border-radius;
+
+        img {
+            max-width: 100%;
+            border-radius: $border-radius;
+        }
+    }
+
+    &__heading {
+        @include margin-bottom($margin-md);
+    }
+
+    &__text {
+        @include padding($padding-md);
+        @include word-spacing($word-spacing-sm);
+        font-family: $font-light;
+        word-break: break-word;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+
+        ul,
+        ol {
+            @include padding-left($padding-md);
+            @include margin-bottom($margin-md);
+            list-style: initial;
+        }
+
+        ol {
+            list-style: decimal;
+        }
+    }
+
+    &__normal-text,
+    &__rich-text,
+    .font-style-sm {
+        p {
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    &__link {
+        @include word-spacing($word-spacing-sm);
+        @include font-size($font-normal);
+        font-family: $font-light;
+        color: $color-congress-blue;
+
+        .tp-next-btn {
+            @include line-height($font-normal, $font-normal);
+            font-weight: bold;
+            position: relative;
+
+            &:visited,
+            &:hover,
+            &:active {
+                color: $color-congress-blue;
+            }
+        }
+
+        .tp-next-btn__icon {
+            @include font-size($font-l);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .tp-next-btn__text {
+            @include font-size(13px)
+        }
+    }
+}

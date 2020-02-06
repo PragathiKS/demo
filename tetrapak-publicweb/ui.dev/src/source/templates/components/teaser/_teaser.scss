@@ -1,0 +1,33 @@
+.tp-teaser {
+    @include padding(8px);
+    @include margin(16px 0);
+    width: 100%;
+    border-radius: 5px;
+
+    @media #{$desktop} {
+        @include padding(36px);
+        @include margin(48px 0);
+    }
+
+    &__heading {
+        @include padding($padding-sm);
+
+        @media #{$desktop} {
+            @include padding(12px);
+        }
+    }
+
+    &__details {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        &--image {
+            width: 100%;
+        }
+
+        @media #{$desktop} {
+            flex-direction: row;
+        }
+    }
+}
