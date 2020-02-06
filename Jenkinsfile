@@ -1,5 +1,5 @@
-#!/usr/bin/env groovy
-@Library('smartsales-jenkins-library')
+//#!/usr/bin/env groovy
+//@Library('smartsales-jenkins-library')
 pipeline {
     agent any
     parameters {
@@ -315,7 +315,7 @@ pipeline {
                 }
             }
         }
-	sendNotifications(currentBuild.currentResult)
+	//sendNotifications(currentBuild.currentResult)
     }
 /** post {success {emailext subject: "SUCCESS: Job '${env.JOB_NAME}'",
  body: '''${DEFAULT_CONTENT}''',
