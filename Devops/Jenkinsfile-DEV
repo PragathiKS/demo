@@ -77,7 +77,7 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }i
-                            sh mkdir -p /root/.m2/reports
+                            sh 'mkdir -p /root/.m2/reports'
                             sh 'cp -r ui.dev/src/coverage /root/.m2/reports/customerhub'
                             sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
@@ -97,7 +97,7 @@ pipeline {
                                     {
                                         sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
-                            sh mkdir -p /root/.m2/reports
+                            sh 'mkdir -p /root/.m2/reports'
                             sh 'cp -r ui.dev/src/coverage /root/.m2/reports/publicweb'
                             sh 'ls /root/reports'
                             if (!params.Sonar_Analysis) {
