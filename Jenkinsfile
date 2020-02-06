@@ -38,6 +38,7 @@ pipeline {
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
                     //  sh 'Devops/deldocker.sh '
                     sh "dig +short myip.opendns.com @resolver1.opendns.com"
+                    sh "ls -R /root/.m2"
                 }
             }
         }
@@ -58,11 +59,11 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "curl -u ${artifactuser}:${artifactpassword} DELETE /api/replications/libs-snapshot-local/tetrapak"
-                                        sh "curl -u ${artifactuser}:${artifactpassword} DELETE /api/replications/libs-snapshot-local/tetrapak-publicweb"
-                                        sh "curl -u ${artifactuser}:${artifactpassword} DELETE /api/replications/libs-release-local/tetrapak-customerhub"
-                                        sh "curl -u ${artifactuser}:${artifactpassword} DELETE /api/replications/libs-release-local/terrapak"
-                                        sh "curl -u ${artifactuser}:${artifactpassword} DELETE /api/replications/libs-release-local/tetrapak-publicweb"
+                                        sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak"
+                                        sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb"
+                                        sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-customerhub"
+                                        sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/terrapak"
+                                        sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak-publicweb"
                                         sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
