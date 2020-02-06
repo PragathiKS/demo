@@ -267,7 +267,7 @@ function _renderFilters() {
         this.root.trigger(EVT_FINANCIAL_ERROR, [
           $.trim(getI18n(statementOfAccount)).toLowerCase(),
           SOA_FORM_LOAD_MSG,
-          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+          $.trim(data.errorText).toLowerCase()
         ]);
         this.root.find('.js-financial-statement__filter-section').addClass('has-error').removeClass('d-none');
       }
