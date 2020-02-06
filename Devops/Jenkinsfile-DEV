@@ -196,10 +196,10 @@ pipeline {
                                                 sleep 20
 												
                                                 echo "Deactivating Old Commons Package on publish for commons"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak -F cmd="deactivate" '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new Commons Package on publish"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F cmd="activate" '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-${build_id_number}.zip -F cmd=activate '${author_url}/bin/replicate.json'"
                                                 sleep 10
 												 
 												}
