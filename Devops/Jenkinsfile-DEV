@@ -36,7 +36,7 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
-                    echo ${karmapath_cuhu}
+                    echo "${karmapath_cuhu}"
 		}
             }
         }
