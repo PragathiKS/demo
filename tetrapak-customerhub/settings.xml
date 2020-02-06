@@ -46,7 +46,9 @@
                         </repository>
                         <repository>
                                 <id>snapshots</id>
-                                <snapshots />
+                                <snapshots>
+                                    <enabled>true</enabled>
+                                </snapshots>
                                 <name>libs-snapshot</name>
                                 <url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
                         </repository>
