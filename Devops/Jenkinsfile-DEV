@@ -23,8 +23,8 @@ pipeline {
         test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
         test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
         test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
-        karmapath_cuhu = "${env.WORKSPACE}/tetrapak-customerhub/ui.dev/src/coverage"
-        karmapath_pw = "${env.WORKSPACE}/tetrapak-publicweb/ui.dev/src/coverage"
+        karmapath_cuhu = "${env.WORKSPACE}@2/tetrapak-customerhub/ui.dev/src/coverage"
+        karmapath_pw = "${env.WORKSPACE}@2/tetrapak-publicweb/ui.dev/src/coverage"
         build_id_number = ""
     }
     stages {
@@ -194,7 +194,7 @@ pipeline {
                                               	sh 'echo "Karma Report"'
                                               	def reportname = "Karma Report - CustomerHub"
                                                 sh 'cp -r ${karmapath_cuhu} customerhub'  
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Cuhu', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-Cuhu', reportTitles: ''])
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
@@ -219,8 +219,8 @@ pipeline {
 					     	sh 'echo "Karma Report"'
 					      	//sh 'cp -r ${karmapath_pw} /app/build-area/releases'
 					       	//sh 'cp -r /app/build-area/releases/coverage/index.html .'
-                                                sh 'mv -r ${env.HOME}/reports/publicweb .' 
-					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb/coverage', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
+                                                sh 'cp -r ${karmapath_pw} publicweb' 
+					       	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
 						sh 'ls -la'
                                                 echo "Starting pa11y test Run on PublicWeb Urls"
 						sh 'chmod 777 Devops/PallyReportPubWeb.sh'
