@@ -45,7 +45,7 @@ pipeline {
         stage('Build-SonarAnalysis') {
             agent {
                 dockerfile {
-                    args "-v ${env.HOME}/.m2:/root/.m2 -v ${env.HOME}/reports:/root/reports   tmpfs /.npm -u root:root"
+                    args "-v ${env.HOME}/.m2:/root/.m2 -v ${env.HOME}/reports:/root/reports   --tmpfs /.npm -u root:root"
                     label 'linux&&docker'
                 }
             }
