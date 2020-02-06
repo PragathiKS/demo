@@ -55,7 +55,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                     }
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for commons module"
@@ -74,7 +74,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                     }
                             sh 'cp -r ui.dev/src/coverage /root/customerhub'
                             sh 'ls /root/customerhub'
@@ -93,7 +93,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent -Padobe-public -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
+                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword}  deploy -Pminify -Dbuildversion=1.0.0-DEV${BUILD_NUMBER}"
                                     }
                             sh 'cp -r ui.dev/src/coverage /root/publicweb'
                             sh 'ls /root/publicweb'
