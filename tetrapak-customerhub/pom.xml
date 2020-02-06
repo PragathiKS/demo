@@ -17,12 +17,12 @@
 		<module>complete</module>
     </modules>
     <distributionManagement>
-        <repository>
-           <id>snapshots</id>
-           <name>tetrapak-snapshots</name>
-           <url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
-           </repository>
-    </distributionManagement>
+    		<snapshotRepository>
+        		<id>snapshots</id>
+        		<name>tetrapak-snapshots</name>
+        		<url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
+    		</snapshotRepository>
+    </distributionManagement>    
     <properties>
         <aem.host>localhost</aem.host>
         <aem.port>4502</aem.port>
