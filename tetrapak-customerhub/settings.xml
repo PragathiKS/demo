@@ -36,14 +36,6 @@
                   			<enabled>false</enabled>
                			</snapshots>
             		</repository>
-			<repository>
-                                <id>central</id>
-                                <snapshots>
-                                        <enabled>false</enabled>
-                                </snapshots>
-                                <name>libs-release</name>
-                                <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
-                        </repository>
                         <repository>
                                 <id>snapshots</id>
                                 <snapshots>
