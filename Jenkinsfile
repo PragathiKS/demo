@@ -55,7 +55,7 @@ pipeline {
                         echo "Build Commons"
                         sh "echo $HOME"
                         sh 'pwd'
-                        sh "ls -R /root/.m2"
+                        sh "rm -r /root/.m2/tetrapak*"
                         dir('tetrapak-commons') {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
