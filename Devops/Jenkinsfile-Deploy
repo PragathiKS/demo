@@ -47,22 +47,22 @@ stage('Author Deployment and Replication to Publish')
                                       sh "curl -LO -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
        }
                                                 echo "Uninstalling Old Commons Package on author for Commons"
-                                                sh "curl -u admin:${password_qa} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
+                                                sh "curl -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
                                                 echo "Deleting Old Commons Package on author"
-                                                sh "curl -u admin:${password_qa} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
+                                                sh "curl -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -u admin:${password_qa} -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:${password_qa} -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-202002071351.zip -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
-                                                sh "curl -u admin:${password_qa} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
+                                                sh "curl -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
                                                 sleep 20
                                                 echo "Deactivating Old Commons Package on publish for commons"
-                                                sh "curl -u admin:${password_qa} -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:${password_qa} -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url_qa}/bin/replicate.json'"
                                                 sleep 20
                                                 echo "Activating new Commons Package on publish"
-                                                sh "curl -u admin:${password_qa} -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url}/bin/replicate.json'"
+                                                sh "curl -u admin:${password_qa} -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-202002071351.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
                                                                                                 if (params.Deploy_Customerhub)
