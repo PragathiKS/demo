@@ -1,4 +1,8 @@
 pipeline{
+agent {
+                node {
+                label 'cfe-deploy'
+        }
 
 parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -10,17 +14,9 @@ parameters {
     }
 stages{
 
-
-
-
 stage ('Author Deployment and Replication to Publish')
          
                        {
-agent {
-                node {
-                label 'cfe-deploy'
-        }
-        }
                         steps {
                                                                         script {
                                                                                         if (params.Deploy_Commons)
@@ -91,4 +87,3 @@ agent {
                                                                 }
                 }
          }
-}
