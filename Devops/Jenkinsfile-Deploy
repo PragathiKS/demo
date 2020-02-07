@@ -1,0 +1,14 @@
+pipeline{
+
+stages{
+   stage {
+	agent {
+    		node {
+        	label 'cfe-deploy'
+    	}
+	}
+
+         }
+}
+
+}
