@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-@Library('smartsales-jenkins-library@master')
+@Library('smartsales-jenkins-library')
 pipeline {
     agent any
     parameters {
