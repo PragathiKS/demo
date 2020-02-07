@@ -206,7 +206,7 @@ pipeline {
                                                 sh 'sh -x Devops/PallyReportCuhu.sh'
 					        sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
-                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
+                                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu-${build_id_number}', reportTitles: ''])
                 				echo "Starting Zap Test Run- CustomerHub"
                 				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						sleep 20
