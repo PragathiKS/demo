@@ -14,7 +14,7 @@ parameters {
     }
 options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
-        disableConcurrentDeploys()
+        disableConcurrentBuilds()
     }
     environment {
         sonar_url = "https://sonarcloud.io"
