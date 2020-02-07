@@ -37,8 +37,6 @@ pipeline {
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
                     echo "${karmapath_cuhu}"
-                    sh 'docker ps -a'
-                    sh 'docker logs 5892b76c9f94'
 
 		}
             }
