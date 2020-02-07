@@ -112,6 +112,9 @@ stage('Author Deployment and Replication to Publish')
                                                                 }
                 }
          }
-sendNotifications(currentBuild.currentResult)
-
+post {
+        always {
+            sendNotifications(currentBuild.currentResult)
+        }
+    }
 }
