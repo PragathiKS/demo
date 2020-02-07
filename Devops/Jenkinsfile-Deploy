@@ -44,7 +44,7 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 {
                                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                      sh "curl -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
+                                      sh "curl -LO -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
        }
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u admin:${password_qa} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
@@ -111,4 +111,7 @@ stage('Author Deployment and Replication to Publish')
                                                                                         }
                                                                 }
                 }
-         }}
+         }
+sendNotifications(currentBuild.currentResult)
+
+}
