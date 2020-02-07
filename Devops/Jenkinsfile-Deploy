@@ -6,11 +6,14 @@ agent {
 }
 parameters {
         choice(name: 'Environment', choices: ['QA', 'STAGE'], description: 'Select the environment')
-        booleanParam defaultValue: false, description: 'Please check in case you want to deploy Commons Module', name: 'Deploy_Commons'
+        
+        booleanParam(name: 'Deploy_Commons', defaultValue: false, description: 'Please check in case you want to deploy Commons Module')
         string(name: 'Snapshot Commons', defaultValue: 'SnapshotVersion', description: '')
-        booleanParam defaultValue: false, description: 'Please check in case you want to deploy Customer hub Module', name: 'Deploy_customerHub'
+
+        booleanParam(name: 'Deploy_CustomerHub', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
         string(name: 'Snapshot CustomerHub', defaultValue: 'SnapshotVersion', description: '')
-        booleanParam defaultValue: false, description: 'Please check in case you want to deploy Public Web Module', name: 'Deploy_PublicWeb'
+
+        booleanParam(name: 'Deploy_PublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
         string(name: 'Snapshot PublicWeb', defaultValue: 'SnapshotVersion', description: '')
     }
 options {
