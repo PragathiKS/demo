@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
-@Library('smartsales-jenkins-library')
-//pipeline {
+@Library('smartsales-jenkins-library') _
+pipeline {
     agent any
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -308,4 +308,4 @@ sendNotifications(currentBuild.currentResult)
  to: 'nitin.kumar1@publicissapient.com, rajeev.duggal@publicissapient.com, sachin.singh1@publicissapient.com'}//always {//  build 'Tetra_Dev_Clear_httpd_Cache'
  // 	build 'Tetra-Splunk-All-Tools'
  //  }} **/
-//}
+}
