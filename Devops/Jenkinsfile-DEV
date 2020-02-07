@@ -163,7 +163,7 @@ pipeline {
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F name=tetrapak-publicweb.complete -F file=@$workspace@2/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
@@ -198,7 +198,9 @@ pipeline {
                                                 echo "Starting pa11y test Run on CustomerHub Urls"
                                                 reportname = "Pa11y Report - CustomerHub"
                                                 sh 'chmod 777 Devops/PallyReportCuhu.sh'
-                                                sh 'Devops/PallyReportCuhu.sh'
+                                                sh 'pwd'
+                                                sh 'ls -lrth'
+                                                sh 'sh -x Devops/PallyReportCuhu.sh'
 					        sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu', reportTitles: ''])
