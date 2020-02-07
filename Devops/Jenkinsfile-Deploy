@@ -5,7 +5,7 @@ agent {
         }
 }
 parameters {
-        choice('Environment', ['STAGE', 'QA'], 'Select environment')
+        choice(name: 'Environment', choices: ['QA', 'STAGE'], description: 'Select the environment')
         booleanParam defaultValue: false, description: 'Please check in case you want to deploy Commons Module', name: 'Deploy_Commons'
         string(name: 'Snapshot Commons', defaultValue: 'SnapshotVersion', description: '')
         booleanParam defaultValue: false, description: 'Please check in case you want to deploy Customer hub Module', name: 'Deploy_customerHub'
