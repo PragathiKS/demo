@@ -24,8 +24,8 @@ options {
         author_url_qa = "https://author-tetrapak-test64a.adobecqms.net"
         author_url_stage = "https://author-tetrapak-stage64a.adobecqms.net"
         publish_url = "http://13.69.73.197:4503"
-        password_qa=61wC@9MaChWc55JD]My~a0R@
-        password_Stage=ozf9}n]]A<{W>9*pCLxWV*}>
+        password_qa="61wC@9MaChWc55JD]My~a0R@"
+        password_Stage="ozf9}n]]A<{W>9*pCLxWV*}>"
         package_name = "tetrapak-complete-package"
         
     }
