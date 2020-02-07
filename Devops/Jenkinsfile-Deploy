@@ -53,7 +53,7 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
                                                 echo "Uploading New Commons Package on author"
-                                                sh "curl -k -u admin:${password_qa} -F name=tetrapak-customerhub.complete -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-202002071351.zip -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_qa} -F name=tetrapak-customerhub.complete -F file=@$workspace/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-202002071351.zip -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
