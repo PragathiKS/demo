@@ -13,7 +13,7 @@ parameters {
         string(name: 'DEPLOY_PublicWeb', defaultValue: 'staging', description: '')
     }
 options {
-        deployDiscarder(logRotator(numToKeepStr: '30'))
+        buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentDeploys()
     }
     environment {
