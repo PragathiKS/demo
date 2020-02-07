@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -53,7 +54,10 @@ public class ArticlePageModel extends BasePageModel {
 
             articleImagePath = jcrMap.get("articleImagePath", String.class);
             imageAltTextI18n = jcrMap.get("imageAltTextI18n", String.class);
-            linkText = jcrMap.get("linkText", String.class);
+            linkText = jcrMap.get("ctaTexti18nKey", String.class);
+            if (StringUtils.isEmpty(linkText)) {
+                linkText = articleTitle;
+            }
 
             showStickyNavigation = jcrMap.get("showStickyNavigation", false);
             thumbnailImagePath = jcrMap.get("thumbnailImagePath", String.class);
