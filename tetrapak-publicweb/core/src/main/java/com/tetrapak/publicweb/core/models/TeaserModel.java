@@ -49,45 +49,57 @@ public class TeaserModel {
         PageManager pageManager = resolver.adaptTo(PageManager.class);
 
         if ("automatic".equals(contentType) && pageManager != null) {
-            //todo this path is to be made dynamic later when we have language and country specific pages
-            String rootPath = "/content";
-            List<Page> pagePaths = teaserSearchService.getListOfTeasers(resolver, tags, rootPath, maxTeasers);
-            if (null == pagePaths) {
-                return;
-            }
-            for (Page page : pagePaths) {
-                Resource jcrContentResource = page.getContentResource();
-                if (null != jcrContentResource) {
-                    ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
-                    addToList(page.getPath(), articlePageModel);
-                }
-            }
+            generateListAutomaticWay(resolver);
         } else if ("semi-automatic".equals(contentType) && pageManager != null) {
-            Resource listResource = resource.getChild("semiAutomaticList");
-            if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
-                Iterator<Resource> itr = listResource.listChildren();
-                while (itr.hasNext()) {
-                    Resource itemResource = itr.next();
-                    addToTeaserList(pageManager, itemResource);
-                }
-            }
+            generateListSemiAutomatically(pageManager);
         } else if ("manual".equals(contentType) && pageManager != null) {
-            Resource listResource = resource.getChild("manualList");
-            if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
-                Iterator<Resource> itr = listResource.listChildren();
-                while (itr.hasNext()) {
-                    Resource itemResource = itr.next();
-                    ValueMap vmap = itemResource.getValueMap();
-                    TeaserBean teaserBean = new TeaserBean();
-                    teaserBean.setTitle(vmap.get("title", String.class));
-                    teaserBean.setDescription(vmap.get("description", String.class));
-                    teaserBean.setImagePath(vmap.get("imagePath", String.class));
-                    teaserBean.setAltText(vmap.get("altText", String.class));
-                    teaserBean.setLinkText(vmap.get("linkText", String.class));
-                    teaserBean.setLinkPath(LinkUtils.sanitizeLink(vmap.get("linkPath", String.class)));
-                    teaserBean.setTargetNew(vmap.get("targetNew", String.class));
-                    teaserList.add(teaserBean);
-                }
+            generateListManually();
+        }
+    }
+
+    private void generateListAutomaticWay(ResourceResolver resolver) {
+        //todo this path is to be made dynamic later when we have language and country specific pages
+        String rootPath = "/content";
+        List<Page> pagePaths = teaserSearchService.getListOfTeasers(resolver, tags, rootPath, maxTeasers);
+        if (null == pagePaths) {
+            return;
+        }
+        for (Page page : pagePaths) {
+            Resource jcrContentResource = page.getContentResource();
+            if (null != jcrContentResource) {
+                ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
+                addToList(page.getPath(), articlePageModel);
+            }
+        }
+    }
+
+    private void generateListSemiAutomatically(PageManager pageManager) {
+        Resource listResource = resource.getChild("semiAutomaticList");
+        if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
+            Iterator<Resource> itr = listResource.listChildren();
+            while (itr.hasNext()) {
+                Resource itemResource = itr.next();
+                addToTeaserList(pageManager, itemResource);
+            }
+        }
+    }
+
+    private void generateListManually() {
+        Resource listResource = resource.getChild("manualList");
+        if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
+            Iterator<Resource> itr = listResource.listChildren();
+            while (itr.hasNext()) {
+                Resource itemResource = itr.next();
+                ValueMap vmap = itemResource.getValueMap();
+                TeaserBean teaserBean = new TeaserBean();
+                teaserBean.setTitle(vmap.get("title", String.class));
+                teaserBean.setDescription(vmap.get("description", String.class));
+                teaserBean.setImagePath(vmap.get("imagePath", String.class));
+                teaserBean.setAltText(vmap.get("altText", String.class));
+                teaserBean.setLinkText(vmap.get("linkText", String.class));
+                teaserBean.setLinkPath(LinkUtils.sanitizeLink(vmap.get("linkPath", String.class)));
+                teaserBean.setTargetNew(vmap.get("targetNew", String.class));
+                teaserList.add(teaserBean);
             }
         }
     }
