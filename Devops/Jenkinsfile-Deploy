@@ -1,4 +1,5 @@
 pipeline{
+@Library('smartsales-jenkins-library') _
 agent {
                 node {
                 label 'cfe-deploy'
