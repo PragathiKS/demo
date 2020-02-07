@@ -6,20 +6,15 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.TeaserSearchService;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component(immediate = true, service = TeaserSearchService.class)
 public class TeaserSearchServiceImpl implements TeaserSearchService {
@@ -30,7 +25,7 @@ public class TeaserSearchServiceImpl implements TeaserSearchService {
     public List<Page> getListOfTeasers(ResourceResolver resourceResolver, String[] tags, String rootPath, int limit) {
         SearchResult searchResult = executeQuery(resourceResolver, tags, rootPath, limit);
         if (null == searchResult || searchResult.getHits().isEmpty()) {
-            return null;
+            return Collections.emptyList();
         }
         return getListOfTeasers(searchResult);
     }
