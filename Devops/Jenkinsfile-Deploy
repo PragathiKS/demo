@@ -21,18 +21,13 @@ options {
         disableConcurrentBuilds()
     }
     environment {
-        sonar_url = "https://sonarcloud.io"
-        login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
-        author_url = "https://author-tetrapak-dev64a.adobecqms.net"
+        author_url_qa = "https://author-tetrapak-test64a.adobecqms.net"
+        author_url_stage = "https://author-tetrapak-stage64a.adobecqms.net"
         publish_url = "http://13.69.73.197:4503"
+        password_qa=
+        password_qa=
         package_name = "tetrapak-complete-package"
-        test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
-        test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
-        test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
-        test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html"
-        karmapath_cuhu = "${env.WORKSPACE}/tetrapak-customerhub/ui.dev/src/coverage"
-        karmapath_pw = "${env.WORKSPACE}/tetrapak-publicweb/ui.dev/src/coverage"
-        deploy_id_number = ""
+        
     }
 
 
@@ -45,6 +40,10 @@ stage('Author Deployment and Replication to Publish')
                                                                         script {
                                                                                         if (params.Deploy_Commons)
                                                                                                 {
+                                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                     // curl 
+       }
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u admin:Oa=]2Z7u#w@Mkojms*V=mj\\>a -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
                                                 sleep 20
