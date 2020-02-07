@@ -3,7 +3,7 @@ agent {
                 node {
                 label 'cfe-deploy'
         }
-
+}
 parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         stringParam('APP', '', 'Application name')
@@ -14,7 +14,7 @@ parameters {
     }
 stages{
 
-stage ('Author Deployment and Replication to Publish')
+stage('Author Deployment and Replication to Publish')
          
                        {
                         steps {
