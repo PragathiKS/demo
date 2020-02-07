@@ -13,7 +13,7 @@
                 </sly>
                 <sly data-sly-test.linkText="${data.linkText}">
                     <sly data-sly-test.linkUrl="${data.linkPath}"></sly>
-                    <sly data-sly-text.isExternal="${data.targetNew}" />
+                    <sly data-sly-test.isExternal="${data.targetNew}" />
                     <sly data-sly-test.modifier="${isLink ? 'transparent' : 'primary'}" />
                     <sly data-sly-test.linkIconClass="${isLink ? 'icon-Circle_Arrow_Right' : 'icon-Chevron_Right'}" />
                     <div class="tpmol-image-card__link">
