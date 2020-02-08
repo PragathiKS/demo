@@ -269,7 +269,8 @@
   "createComponent": {
     "componentsFolder": "source/templates/components",
     "atomsFolder": "source/templates/atoms",
-    "moleculesFolder": "source/templates/molecules"
+    "moleculesFolder": "source/templates/molecules",
+    "layouts": "source/templates/layouts/pageLayout.hbs"
   },
   "watch": {
     "assemble": {
