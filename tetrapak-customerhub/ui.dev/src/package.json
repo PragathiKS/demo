@@ -45,7 +45,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/runtime": "^7.8.3",
     "aemsync": "1.0.2",
-    "argon-cli": "^0.2.5",
+    "argon-cli": "^0.2.6",
     "argon-clientlibs": "^0.1.1",
     "autoprefixer": "^9.7.4",
     "babel-eslint": "^10.0.1",
