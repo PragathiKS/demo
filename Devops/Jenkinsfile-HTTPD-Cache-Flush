@@ -1,9 +1,9 @@
 pipeline {
-    agent
+    agent {
         dockerfile {
             label 'linux&&docker'
-
         }
+    }
     parameters {
         choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
 	}
