@@ -1,7 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-            dirfilename "Devops/cache-flush/Dockerfile"
+            filename "Devops/cache-flush/Dockerfile"
             label 'linux&&docker'
         }
     }
