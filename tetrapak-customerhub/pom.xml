@@ -42,8 +42,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
-        <sonar.coverage.jacoco.xmlReportPaths>coverage-reports/target/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.binaries>${project.basedir}/target/classes</sonar.java.binaries>
+        <sonar.coverage.jacoco.xmlReportPaths>coverage-reports/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.coverage.exclusions>
             **/beans/**,
             **/constants/**,
@@ -350,9 +350,6 @@
                             <goals><goal>report</goal></goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <destFile>${sonar.coverage.jacoco.xmlReportPaths}</destFile>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
