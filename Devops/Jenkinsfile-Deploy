@@ -1,4 +1,4 @@
-@Library('jenkins-pipeline-library') _
+@Library('smartsales-pipeline-library') _
 pipeline{
 
 agent {
