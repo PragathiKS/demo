@@ -1,4 +1,4 @@
-@Library('smartsales-jenkins-library') _
+#@Library('smartsales-jenkins-library') _
 pipeline{
 
 agent {
@@ -112,9 +112,9 @@ stage('Author Deployment and Replication to Publish')
                                                                 }
                 }
          }
-post {
+/****post {
         always {
             sendNotifications(currentBuild.currentResult)
         }
-    }
+    }****/
 }
