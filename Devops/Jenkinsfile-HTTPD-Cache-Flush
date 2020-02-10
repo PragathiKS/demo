@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    parameters {
+        choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
+	}
+    environment {
+        dev_url = '13.80.117.38'
+        qa_url = ''
+        stage_url = ''
+        dev_password = 'QrHKX8*t9%z~zouyv6s>rry+'
+        qa_password = ''
+        stage_password = ''
+       
+    }
+    stages {
+        stage('Set HTTP Cache environment') {
+            steps {
+                script {
+                    if (params.ENVIRONMENT == "QA") {
+                        ip = qa_url
+                        password = qa_password
+                    }
+
+                script {
+                    if (params.ENVIRONMENT == "DEV") {
+                        ip = dev_url
+                        password = dev_password
+
+                    }
+                }
+
+                    if (params.ENVIRONMENT == "STAGE") {
+                        ip = stage_url
+                        password =  stage_password              
+
+            }
+
+        }
+        }
+}
+        stage('HTTP Cache clearning initiated') {
+            steps {
+                script {
+                    //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
+                    sh 'sshpass -p "QrHKX8*t9%z~zouyv6s\>rry\+" ssh -tt  tetrapak@13.80.117.38 "sh -x /usr/local/bin/cache_clear.sh"'
+                }
+            }
+
+        }
+}
+}
