@@ -41,7 +41,7 @@ pipeline {
 		}
             }
         }
-        stage('Build-SonarAnalysis') {
+        stage('Build and SonarAnalysis') {
             agent {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
