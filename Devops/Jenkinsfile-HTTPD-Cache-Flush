@@ -53,7 +53,8 @@ pipeline {
                     //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
                     //sh 'curl ifconfig.me'
                     //sh 'sshpass -v -p "QrHKX8*t9%z~zouyv6s>rry+" ssh -tt  tetrapak@104.46.45.30 "sh -x /usr/local/bin/cache_clear.sh"'
-                    sh 'ssh tetrapak@104.46.45.30 sh -x /usr/local/bin/cache_clear.sh'
+                    sh 'cat ~/.ssh/id_rsa.pub'
+                    //sh 'ssh tetrapak@104.46.45.30 sh -x /usr/local/bin/cache_clear.sh'
                 }
             }
 
