@@ -50,6 +50,7 @@ pipeline {
                 script {
                 //need to add tetrapak user and key in jenkins credentials
                 //withCredentials([sshUserPrivateKey(credentialsId: 'tetrapak', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    sh 'ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa 2>/dev/null <<< y >/dev/null'
                     sh 'cat ~/.ssh/id_rsa.pub'
                     sh 'sshpass -p "QrHKX8*t9%z~zouyv6s>rry+" ssh -tt  tetrapak@104.46.45.30 'sh -x /usr/local/bin/cache_clear.sh''
                     //sh 'sshpass -p QrHKX8*t9%z~zouyv6s>rry+ ssh -tt  tetrapak@104.46.45.30 'sh -x /usr/local/bin/cache_clear.sh''
