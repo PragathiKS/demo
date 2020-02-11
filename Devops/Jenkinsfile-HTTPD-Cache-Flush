@@ -22,9 +22,7 @@ pipeline {
 
             steps {
                 script {
-                    sh 'curl ifconfig.me'
-                    //sh 'curl 104.46.45.30:22 -v'
-                    sh 'cat .ssh/id_rsa.pub'
+                    //sh 'curl ifconfig.me'
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
@@ -50,6 +48,7 @@ pipeline {
         stage('HTTP Cache clearning initiated') {
             steps {
                 script {
+                //need to add tetrapak user and key in jenkins credentials
                 //withCredentials([sshUserPrivateKey(credentialsId: 'tetrapak', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
                     //sh 'curl ifconfig.me'
