@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     sh 'curl ifconfig.me'
-                    sh 'curl 104.46.45.30:22 -v'
+                    //sh 'curl 104.46.45.30:22 -v'
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
