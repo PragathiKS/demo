@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        dockerfile {
-            filename "Devops/cache-flush/Dockerfile"
-            label 'linux&&docker'
+                node {
+                label 'cfe-deploy'
         }
-    }
+}
+    
     parameters {
         choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
 	}
@@ -19,8 +19,10 @@ pipeline {
     }
     stages {
         stage('Set HTTP Cache environment') {
+
             steps {
                 script {
+                    sh 'curl ifconfig.me'
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
@@ -44,9 +46,15 @@ pipeline {
         }
 }
         stage('HTTP Cache clearning initiated') {
+            agent {
+                dockerfile {
+                    filename "Devops/cache-flush/Dockerfile"
+                }
+            }
             steps {
                 script {
                     //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
+                    sh 'curl ifconfig.me'
                     sh 'sshpass -v -p "QrHKX8*t9%z~zouyv6s>rry+" ssh -tt  tetrapak@104.46.45.30 "sh -x /usr/local/bin/cache_clear.sh"'
                 }
             }
