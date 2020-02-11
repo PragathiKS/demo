@@ -23,6 +23,9 @@ public class TeaserSearchServiceImpl implements TeaserSearchService {
 
     @Override
     public List<Page> getListOfTeasers(ResourceResolver resourceResolver, String[] tags, String rootPath, int limit) {
+        if(null == tags || tags.length<1){
+            return Collections.emptyList();
+        }
         SearchResult searchResult = executeQuery(resourceResolver, tags, rootPath, limit);
         if (null == searchResult || searchResult.getHits().isEmpty()) {
             return Collections.emptyList();

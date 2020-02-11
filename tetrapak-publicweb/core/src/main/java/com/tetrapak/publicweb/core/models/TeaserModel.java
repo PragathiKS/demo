@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.TeaserBean;
 import com.tetrapak.publicweb.core.services.TeaserSearchService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceUtil;
@@ -67,8 +68,8 @@ public class TeaserModel {
         for (Page page : pagePaths) {
             Resource jcrContentResource = page.getContentResource();
             if (null != jcrContentResource) {
-                ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
-                addToList(page.getPath(), articlePageModel);
+                BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
+                addToList(page.getPath(), basePageModel);
             }
         }
     }
@@ -90,15 +91,15 @@ public class TeaserModel {
             Iterator<Resource> itr = listResource.listChildren();
             while (itr.hasNext()) {
                 Resource itemResource = itr.next();
-                ValueMap vmap = itemResource.getValueMap();
+                ValueMap valueMap = itemResource.getValueMap();
                 TeaserBean teaserBean = new TeaserBean();
-                teaserBean.setTitle(vmap.get("title", String.class));
-                teaserBean.setDescription(vmap.get("description", String.class));
-                teaserBean.setImagePath(vmap.get("imagePath", String.class));
-                teaserBean.setAltText(vmap.get("altText", String.class));
-                teaserBean.setLinkText(vmap.get("linkText", String.class));
-                teaserBean.setLinkPath(LinkUtils.sanitizeLink(vmap.get("linkPath", String.class)));
-                teaserBean.setTargetNew(vmap.get("targetNew", String.class));
+                teaserBean.setTitle(valueMap.get("title", String.class));
+                teaserBean.setDescription(valueMap.get("description", String.class));
+                teaserBean.setImagePath(valueMap.get("imagePath", String.class));
+                teaserBean.setAltText(valueMap.get("altText", String.class));
+                teaserBean.setLinkText(valueMap.get("linkText", String.class));
+                teaserBean.setLinkPath(LinkUtils.sanitizeLink(valueMap.get("linkPath", String.class)));
+                teaserBean.setTargetNew(valueMap.get("targetNew", String.class));
                 teaserList.add(teaserBean);
             }
         }
@@ -108,26 +109,31 @@ public class TeaserModel {
         ValueMap vMap = itemResource.getValueMap();
         if (vMap.containsKey("pagePath")) {
             String pagePath = (String) vMap.get("pagePath");
-            Page articlePage = pageManager.getPage(pagePath);
-            if (articlePage != null) {
-                Resource jcrContentResource = articlePage.getContentResource();
+            Page page = pageManager.getPage(pagePath);
+            if (page != null) {
+                Resource jcrContentResource = page.getContentResource();
                 if (null != jcrContentResource) {
-                    ArticlePageModel articlePageModel = jcrContentResource.adaptTo(ArticlePageModel.class);
-                    addToList(pagePath, articlePageModel);
+                    BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
+                    addToList(pagePath, basePageModel);
                 }
             }
         }
     }
 
-    private void addToList(String pagePath, ArticlePageModel articlePageModel) {
-        if (articlePageModel != null) {
+    private void addToList(String pagePath, BasePageModel basePageModel) {
+        if (basePageModel != null) {
             TeaserBean teaserBean = new TeaserBean();
-            teaserBean.setTitle(articlePageModel.getArticleTitle());
-            teaserBean.setDescription(articlePageModel.getDescription());
-            teaserBean.setImagePath(articlePageModel.getArticleImagePath());
-            teaserBean.setAltText(articlePageModel.getImageAltTextI18n());
-            teaserBean.setLinkText(articlePageModel.getLinkText());
-            teaserBean.setLinkPath(LinkUtils.sanitizeLink(pagePath));
+            teaserBean.setTitle(basePageModel.getTitle());
+            teaserBean.setDescription(basePageModel.getDescription());
+            teaserBean.setImagePath(basePageModel.getImagePath());
+            teaserBean.setAltText(basePageModel.getAltText());
+            teaserBean.setLinkText(basePageModel.getLinkText());
+            if(StringUtils.isNotEmpty(basePageModel.getLinkPath())) {
+                teaserBean.setLinkPath(basePageModel.getLinkPath());
+            }else{
+                teaserBean.setLinkPath(LinkUtils.sanitizeLink(pagePath));
+            }
+            teaserBean.setTargetNew(basePageModel.getLinkTarget());
             teaserList.add(teaserBean);
         }
     }

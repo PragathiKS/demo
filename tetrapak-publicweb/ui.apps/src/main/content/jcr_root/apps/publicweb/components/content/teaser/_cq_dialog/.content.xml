@@ -3,7 +3,7 @@
           xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           jcr:primaryType="nt:unstructured"
-          jcr:title="Teaser Configurations"
+          jcr:title="Teaser Component Configurations"
           sling:resourceType="cq/gui/components/authoring/dialog">
     <content
             jcr:primaryType="nt:unstructured"
@@ -44,6 +44,7 @@
                             </contentType>
                             <automaticcontent
                                     granite:class="hide contentType-showhide-target"
+                                    fieldDescription="In automatic way content is searched with authored tags"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
                                     showhidetargetvalue="automatic">
@@ -51,19 +52,18 @@
                                     <tags
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="cq/gui/components/common/tagspicker"
-                                            fieldDescription="Please select at least 1 tag"
+                                            fieldDescription="Select at one or more tags to populate values"
                                             fieldLabel="Tags"
                                             name="./tags"
                                             rootPath="/content/cq:tags"/>
                                     <maxTeasers
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
-                                            fieldDescription="Maximum number of teasers to be shown"
+                                            fieldDescription="Enter maximum number of teasers to be shown: min-1 max-30"
                                             fieldLabel="Maximum number of teasers to be shown"
                                             name="./maxTeasers"
-                                            min="{Double}1"
-                                            max="{Double}50"
-                                            step="1"
+                                            min="1"
+                                            max="30"
                                             typeHint="Maximum number of teasers to be shown on the page"/>
                                 </items>
                                 <granite:data
@@ -73,6 +73,7 @@
                             <semiautomaticcontent
                                     granite:class="hide contentType-showhide-target"
                                     jcr:primaryType="nt:unstructured"
+                                    fieldDescription="In semi-automatic way content is pulled with authored pages"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
                                     showhidetargetvalue="semi-automatic">
                                 <items jcr:primaryType="nt:unstructured">
@@ -81,7 +82,7 @@
                                             jcr:title="List"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                             composite="{Boolean}true"
-                                            fieldDescription="Select article path to automatically populate values when content type is automatic"
+                                            fieldDescription="Add page paths to automatically populate values"
                                             fieldLabel="List of pages">
                                         <field
                                                 jcr:primaryType="nt:unstructured"
@@ -91,8 +92,8 @@
                                                 <pagepath
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                        fieldDescription="Select article path to automatically populate values when content type is automatic"
-                                                        fieldLabel="Teaser Path"
+                                                        fieldDescription="Select page path to automatically populate values"
+                                                        fieldLabel="Page Path"
                                                         name="./pagePath"
                                                         required="{Boolean}true"
                                                         rootPath="/content"/>
@@ -107,6 +108,7 @@
                             <manualcontent
                                     granite:class="hide contentType-showhide-target"
                                     jcr:primaryType="nt:unstructured"
+                                    fieldDescription="In manual way content is displayed which is authored here in this dialog"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
                                     showhidetargetvalue="manual">
                                 <items jcr:primaryType="nt:unstructured">
@@ -115,7 +117,7 @@
                                             jcr:title="List"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                             composite="{Boolean}true"
-                                            fieldLabel="List of teasers">
+                                            fieldLabel="List of CTA">
                                         <field
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -128,7 +130,7 @@
                                                         <title
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                fieldLabel="Article Title"
+                                                                fieldLabel="Title"
                                                                 name="./title"/>
                                                         <vanityDescription
                                                                 jcr:primaryType="nt:unstructured"
@@ -149,14 +151,14 @@
                                                         <targetNew
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                                name="./targetNew"
+                                                                name="./linkTarget"
                                                                 text="Open In New Window? (for External URLs and PDFs)"
                                                                 value="true"/>
                                                         <imagepath
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                fieldDescription="Select Article Image Path"
-                                                                fieldLabel="Article Image Path"
+                                                                fieldDescription="Select Image Path - please select an image with aspect ratio 4x3"
+                                                                fieldLabel="Image Path"
                                                                 name="./imagePath"
                                                                 rootPath="/content/dam/tetrapak/publicweb"/>
                                                         <altText
