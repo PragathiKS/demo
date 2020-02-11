@@ -50,7 +50,6 @@ pipeline {
         stage('HTTP Cache clearning initiated') {
             steps {
                 script {
-                //need to add tetrapak user and key in jenkins credentials
                 //withCredentials([sshUserPrivateKey(credentialsId: 'tetrapak', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
                     //sh 'curl ifconfig.me'
