@@ -24,6 +24,7 @@ pipeline {
                 script {
                     sh 'curl ifconfig.me'
                     //sh 'curl 104.46.45.30:22 -v'
+                    sh 'cat .ssh/id_rsa.pub'
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
