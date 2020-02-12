@@ -31,9 +31,12 @@ pipeline {
 
                 script {
                     if (params.ENVIRONMENT == "DEV") {
-                        ip = dev_url
-                        password = dev_password
-                        echo "${ip}"
+
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    echo "${dev_url}"
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 104.46.45.30 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
                     }
                 }
                 
@@ -43,19 +46,6 @@ pipeline {
                         password =  stage_password
                     }
                 }
-            }
-        }
-        stage('Cache clear') {
-            steps {
-                script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-                    //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
-                    echo "${ip}"
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} $ip -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                }
-                
-            }
             }
         }
         }
