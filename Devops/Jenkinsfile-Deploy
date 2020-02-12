@@ -30,8 +30,9 @@ options {
         publish_url_qa = "https://publish1.test.tetrapak.adobecqms.net"
         publish_url_stage = ""
         // publish_url = "http://13.69.73.197:4503"
-        password_qa="Oa=]2Z7u#w@Mkojms*V=mj\\>a_temp"
-        password_Stage="ozf9}n]]A<{W>9*pCLxWV*}>a_temp"
+        password_qa ="Oa=]2Z7u#w@Mkojms*V=mj\\>a_temp"
+        password_Stage ="ozf9}n]]A<{W>9*pCLxWV*}>a_temp"
+        password_dev = "Oa=]2Z7u#w@Mkojms*V=mj\\>a"
         package_name = "tetrapak-complete-package"
         
     }
