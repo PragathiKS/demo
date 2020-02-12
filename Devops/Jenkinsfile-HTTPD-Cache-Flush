@@ -45,12 +45,6 @@ pipeline {
         }
 }
         stage('HTTP Cache clearning initiated') {
-                             agent {
-
-                 dockerfile {
-                    filename "Devops/cache-flush/Dockerfile"
-                 }
-                 }
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
@@ -62,5 +56,3 @@ pipeline {
         }
 }
 }
-
-
