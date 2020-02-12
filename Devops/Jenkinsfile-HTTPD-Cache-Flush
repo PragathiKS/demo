@@ -49,7 +49,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     {//sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt  tetrapak@${ip} "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt  tetrapak@104.46.45.30 "sh -x /usr/local/bin/cache_clear.sh"'
                 }}
             }
 
