@@ -38,34 +38,7 @@
                         rootPath="/content/tetrapak/public-web/global/en/lines"
                         titleAlignment="text-center"
                         titleI18n="Find the best mixing solutions for your product"/>
-                <articleitem
-                        jcr:created="{Date}2019-10-31T11:36:56.048Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-10-31T11:36:56.048Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articleItem"/>
-                <listcontentimage
-                        jcr:created="{Date}2019-10-31T11:40:02.459Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-10-31T11:40:02.459Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/listContentImage"/>
-                <carousel
-                        jcr:created="{Date}2019-11-14T09:43:19.162Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-11-14T09:43:19.162Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/carousel"/>
             </responsivegrid>
         </root>
-        <breadcrmb
-                jcr:lastModified="{Date}2019-11-06T13:06:30.603Z"
-                jcr:lastModifiedBy="roomahaj"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="publicweb/components/content/breadcrumb"
-                homePagePath="/content/tetrapak/public-web/global/en"/>
     </jcr:content>
 </jcr:root>

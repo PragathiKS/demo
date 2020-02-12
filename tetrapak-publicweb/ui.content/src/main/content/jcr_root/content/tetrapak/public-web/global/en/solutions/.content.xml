@@ -69,29 +69,6 @@
                         pwTheme="grayscale-white"
                         tabLinks="[{&quot;tabLinkTextI18n&quot;:&quot;Dairy&quot;\,&quot;categoryTag&quot;:&quot;/content/cq:tags/tetra-pak/public-web/product/category/dairy&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Beverages&quot;\,&quot;categoryTag&quot;:&quot;/content/cq:tags/tetra-pak/public-web/product/category/beverages&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Ice Cream&quot;\,&quot;categoryTag&quot;:&quot;/content/cq:tags/tetra-pak/public-web/product/category/ice-cream&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Prepared Foods&quot;\,&quot;categoryTag&quot;:&quot;/content/cq:tags/tetra-pak/public-web/product/category/prepared-food&quot;},{&quot;tabLinkTextI18n&quot;:&quot;Cheese and Whey&quot;\,&quot;categoryTag&quot;:&quot;/content/cq:tags/tetra-pak/public-web/product/category/cheese-and-whey&quot;}]"
                         titleI18n="Find the Best Mixing Solutions"/>
-                <imagetextbanner
-                        jcr:created="{Date}2019-10-31T10:15:00.340Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-10-31T10:15:00.340Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/imageTextBanner"/>
-                <imagetextbanner_172469318
-                        jcr:created="{Date}2019-10-31T10:15:15.199Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-10-31T10:17:24.654Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/imageTextBanner"
-                        contentAlignment="pw-banner"
-                        mobileCroppingOption="center"/>
-                <imagetextbutton
-                        jcr:created="{Date}2019-10-31T10:17:44.611Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-10-31T10:17:44.611Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/imageTextButton"/>
                 <carousel_178947729
                         jcr:created="{Date}2019-11-06T13:27:02.406Z"
                         jcr:createdBy="roomahaj"
@@ -185,35 +162,6 @@
                         tabsAlignment="text-left"/>
             </responsivegrid>
         </root>
-        <breadcrmb
-                jcr:lastModified="{Date}2019-03-10T16:23:12.783-03:00"
-                jcr:lastModifiedBy="admin"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="publicweb/components/content/breadcrumb"
-                homePagePath="/content/tetrapak/public-web/global/en"/>
-        <header
-                jcr:lastModified="{Date}2019-04-08T08:16:24.487Z"
-                jcr:lastModifiedBy="sapient-user"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="publicweb/components/structure/header"
-                enableHeroImage="true">
-            <imageTextBanner
-                    jcr:lastModified="{Date}2019-10-24T12:19:42.057Z"
-                    jcr:lastModifiedBy="roomahaj"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/imageTextBanner"
-                    bannerDescriptionI18n="Our mixing experience and equipment help you improve your offer. Everything from batch units to complete mixing solutions - discover what we can do for your business."
-                    bannerSubtitleI18n="MIXING"
-                    contentAlignment="pw-banner"
-                    contrastLayer="flat"
-                    desktopImage="/content/dam/publicweb/banners/child.png"
-                    desktopImageAltI18n="A complete range of mixing solutions"
-                    mobileCroppingOption="none"
-                    mobileImage="/content/dam/publicweb/banners/child.png"
-                    mobileImageAltI18n="A complete range of mixing solutions"
-                    targetBlank="true"
-                    titleI18n="A complete range of mixing solutions"/>
-        </header>
     </jcr:content>
     <turn-ingredients-into-products/>
 </jcr:root>
