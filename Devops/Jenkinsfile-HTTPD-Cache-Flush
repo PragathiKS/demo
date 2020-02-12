@@ -46,6 +46,7 @@ pipeline {
             }
         }
         stage('Cache clear') {
+            steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     {
@@ -56,5 +57,6 @@ pipeline {
                 
             }
             }
+        }
         }
         }
