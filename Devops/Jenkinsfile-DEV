@@ -17,8 +17,6 @@ pipeline {
         sonar_url = "https://sonarcloud.io"
         login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         author_url = "https://author-tetrapak-dev64a.adobecqms.net"
-        publish_url = "http://13.69.73.197:4503"
-        package_name = "tetrapak-complete-package"
         test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
         test_url_pw = "http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/innovations.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en.html http://tetrapak-dev64a.adobecqms.net/content/tetrapak/public-web/global/en/solutions.html"
         test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
@@ -30,7 +28,7 @@ pipeline {
     stages {
         stage('init-build-Number') {
             steps {
-                script {//sh "wget https://tetrapak-dev64a.adobecqms.net"
+                script {
                     def now = new Date()
                     def formattedDate
                     formattedDate = now.format("yyyyMMddHHmm")
@@ -66,6 +64,12 @@ pipeline {
                             }
                         }
                     }
+                    else
+					{
+					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						}
+					}
                 }
                 script {
                     if (params.Build_Customerhub) {
@@ -115,20 +119,20 @@ pipeline {
 												{
 						echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Deleting Old Commons Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Uploading New Commons Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F name=tetrapak-customerhub.complete --data-urlencode -F file=@$workspace@2/tetrapak-commons/complete/target/tetrapak-commons.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-                                                sleep 5
-												
+                                                sleep 10
+                                                
                                                 echo "Deactivating Old Commons Package on publish for commons"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak --data-urlencode -F cmd=deactivate '${author_url}/bin/replicate.json'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Activating new Commons Package on publish"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F cmd=activate '${author_url}/bin/replicate.json'"
 						}
@@ -136,40 +140,42 @@ pipeline {
 												{
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Deleting Old Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Uploading New Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F name=tetrapak-customerhub.complete --data-urlencode -F file=@$workspace@2/tetrapak-customerhub/complete/target/tetrapak-customerhub.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-						sleep 5
+						                        sleep 10
 												
 												echo "Deactivating Old Customerhub Package on publish"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak-customerhub --data-urlencode -F cmd=deactivate '${author_url}/bin/replicate.json'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Activating new Customerhub Package on publish"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F cmd=activate '${author_url}/bin/replicate.json'"
 												}
-												if (params.Build_Publicweb) 
+												
+                                                
+                                                if (params.Build_Publicweb) 
 												{
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Deleting Old Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Uploading New Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F name=tetrapak-publicweb.complete --data-urlencode -F file=@$workspace@2/tetrapak-publicweb/complete/target/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
-												sleep 20
+												sleep 10
 												echo "Deactivating Old PublicWeb Package on publish"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak-publicweb --data-urlencode -F cmd=deactivate '${author_url}/bin/replicate.json'"
-                                                sleep 5
+                                                sleep 10
                                                 echo "Activating new PublicWeb Package on publish"
                                                 sh "curl -u ${admin}:${aempassword} --data-urlencode -F path=/etc/packages/tetrapak-publicweb/tetrapak-publicweb.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip --data-urlencode -F cmd=activate '${author_url}/bin/replicate.json'"
 												}
@@ -196,11 +202,11 @@ pipeline {
                                                 sh 'pwd'
                                                 sh 'ls -lrth'
                                                 sh 'sh -x Devops/PallyReportCuhu.sh'
-					        sh 'mkdir -p pally-customerHub'
+					                            sh 'mkdir -p pally-customerHub'
                                                 sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                                                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReportCuhu-${build_id_number}', reportTitles: ''])
-                				echo "Starting Zap Test Run- CustomerHub"
-                				sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                				                echo "Starting Zap Test Run- CustomerHub"
+                				                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 						sleep 20
 						echo "Starting ZAP test Run on CustomerHub Urls"
                 				sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
