@@ -23,20 +23,20 @@ pipeline {
             steps {
                 script {
                     if (params.ENVIRONMENT == "QA") {
-                        ip = ${env.qa_url}
+                        //ip = ${env.qa_url}
                         password = qa_password
                     }
 
                 script {
                     if (params.ENVIRONMENT == "DEV") {
-                        ip = ${env.qa_url}
+                        //ip = ${env.qa_url}
                         password = dev_password
 
                     }
                 }
 
                     if (params.ENVIRONMENT == "STAGE") {
-                        ip = ${env.qa_url}
+                        //ip = ${env.qa_url}
                         password =  stage_password              
 
             }
