@@ -15,57 +15,44 @@ pipeline {
         dev_password = 'QrHKX8*t9%z~zouyv6s>rry+'
         qa_password = ''
         stage_password = ''
-       
+        ip = ''       
     }
     stages {
         stage('Set HTTP Cache environment') {
 
             steps {
-                script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-
+                script {                    
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
-                        sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt tetrapak@'${ip}' "sh -x /usr/local/bin/cache_clear.sh"'
                     }
-                    }
+                    
                 }
 
                 script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
                     if (params.ENVIRONMENT == "DEV") {
                         ip = dev_url
                         password = dev_password
                         echo "${ip}"
-                        sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt tetrapak@'${ip}' "sh -x /usr/local/bin/cache_clear.sh"'
                     }
                 }
-                }
+                
                 script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {                    
                     if (params.ENVIRONMENT == "STAGE") {
                         ip = stage_url
                         password =  stage_password
-                        sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt tetrapak@'${ip}' "sh -x /usr/local/bin/cache_clear.sh"'              
-
-            }
+                    }
                 }
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt tetrapak@'${ip}' "sh -x /usr/local/bin/cache_clear.sh"'
                 }
-        
-            
-                //script 
-                    //withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {//sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
-                    //sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt tetrapak@'${ip}' "sh -x /usr/local/bin/cache_clear.sh"'
-                //}
                 
+            }
             }
         }
         } 
 
-}
 }
