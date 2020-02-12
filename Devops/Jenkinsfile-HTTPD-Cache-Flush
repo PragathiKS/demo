@@ -52,7 +52,7 @@ pipeline {
                     {
                     //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
                     echo "${ip}"
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} '${ip}' -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} ${ip} -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }
                 
             }
