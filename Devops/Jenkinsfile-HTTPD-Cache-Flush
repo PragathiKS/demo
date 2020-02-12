@@ -25,18 +25,20 @@ pipeline {
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
+                        
                     }
 
                 script {
                     if (params.ENVIRONMENT == "DEV") {
                         ip = dev_url
                         password = dev_password
+                        echo "${ip}"
 
                     }
                 }
 
                     if (params.ENVIRONMENT == "STAGE") {
-                        ip = dev_url
+                        ip = stage_url
                         password =  stage_password              
 
             }
@@ -49,7 +51,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     {//sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt -u tetrapak ${ip} "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} -tt -l tetrapak '${ip}' "sh -x /usr/local/bin/cache_clear.sh"'
                 }}
             }
 
