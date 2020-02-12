@@ -22,7 +22,6 @@ pipeline {
 
             steps {
                 script {
-                    //sh 'curl ifconfig.me'
                     if (params.ENVIRONMENT == "QA") {
                         ip = qa_url
                         password = qa_password
@@ -46,17 +45,22 @@ pipeline {
         }
 }
         stage('HTTP Cache clearning initiated') {
+                             agent {
+
+                 dockerfile {
+                    filename "Devops/cache-flush/Dockerfile"
+                 }
+                 }
             steps {
                 script {
-                //need to add tetrapak user and key in jenkins credentials
-                //withCredentials([sshUserPrivateKey(credentialsId: 'tetrapak', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    sh 'sshpass -p "QrHKX8*t9%z~zouyv6s>rry+" ssh -tt  tetrapak@104.46.45.30 'sh -x /usr/local/bin/cache_clear.sh''
-                    //sh 'sshpass -p QrHKX8*t9%z~zouyv6s>rry+ ssh -tt  tetrapak@104.46.45.30 'sh -x /usr/local/bin/cache_clear.sh''
-                    //sh 'curl ifconfig.me'
-                    //sh 'ssh tetrapak@104.46.45.30 sh -x /usr/local/bin/cache_clear.sh'
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    //sh 'sshpass -p ${password} ssh -tt  tetrapak@${ip} 'sh -x /usr/local/bin/cache_clear.sh''
+                    sh 'ssh -i ${SSHKEY} -tt  tetrapak@104.46.45.30 "sh -x /usr/local/bin/cache_clear.sh"'
                 }
             }
 
         }
 }
 }
+
+
