@@ -9,6 +9,11 @@ pipeline {
         choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
 	}
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Set HTTP Cache environment') {
 
