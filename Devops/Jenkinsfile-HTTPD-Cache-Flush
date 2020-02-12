@@ -8,23 +8,19 @@ pipeline {
     parameters {
         choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
 	}
-    environment {
-        dev_url = '104.46.45.30'
-        qa_url = ''
-        stage_url = ''
-        dev_password = 'QrHKX8*t9%z~zouyv6s>rry+'
-        qa_password = ''
-        stage_password = ''
-        ip = ''       
-    }
+
     stages {
         stage('Set HTTP Cache environment') {
 
             steps {
                 script {                    
                     if (params.ENVIRONMENT == "QA") {
-                        ip = qa_url
-                        password = qa_password
+
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    echo "${dev_url}"
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 13.80.117.38 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
                     }
                     
                 }
@@ -42,8 +38,13 @@ pipeline {
                 
                 script {
                     if (params.ENVIRONMENT == "STAGE") {
-                        ip = stage_url
-                        password =  stage_password
+
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    echo "${dev_url}"
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 13.69.52.51 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.144.232.201 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
                     }
                 }
             }
