@@ -113,7 +113,7 @@ pipeline {
                         steps {
                                               
 				script {
-                                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemadminpublishnew', usernameVariable: 'admin', passwordVariable: 'aempassword']])
+                                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'admin', passwordVariable: 'aempassword']])
                                     {
 											if (params.Build_Commons)
 												{
