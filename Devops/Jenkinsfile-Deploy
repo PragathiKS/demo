@@ -8,17 +8,17 @@ agent {
 parameters {
         choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
         
-        booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'DeployCustomerHub'
+        booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'Deploy_PublicWeb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Deploy_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Deploy_CustomerHub'
 
-        //booleanParam(name: 'DeployCommons', defaultValue: false, description: 'Please check in case you want to deploy Commons Module')
+        //booleanParam(name: 'Deploy_Commons', defaultValue: false, description: 'Please check in case you want to deploy Commons Module')
         string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: '')
 
-        //booleanParam(name: 'DeployCustomerHub', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
+        //booleanParam(name: 'Deploy_CustomerHub', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
         string(name: 'Snapshot_CustomerHub', defaultValue: 'SnapshotVersion', description: '')
 
-        //booleanParam(name: 'DeployPublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
+        //booleanParam(name: 'Deploy_PublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
         string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: '')
         
 
@@ -53,14 +53,14 @@ stage('Author Deployment and Replication to Publish')
                                          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username_qa', passwordVariable: 'password_qa']])
                                         {
                                         
-                                        if (params.DeployCommons)
+                                        if (params.Deploy_Commons)
                                         {
-                                            echo "DeployCommons"
-                                            echo "${params.DeployCommons}"
-                                            echo "DeployCustomerHub"
-                                            echo "${params.DeployCustomerHub}"
-                                            echo "DeployPublicWeb"
-                                            echo "${params.DeployPublicWeb}"
+                                            echo "Deploy_Commons"
+                                            echo "${params.Deploy_Commons}"
+                                            echo "Deploy_CustomerHub"
+                                            echo "${params.Deploy_CustomerHub}"
+                                            echo "Deploy_PublicWeb"
+                                            echo "${params.Deploy_PublicWeb}"
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                       //sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
@@ -85,15 +85,15 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-202002071351.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployCustomerHub)
+                                    if (params.Deploy_CustomerHub)
                                                                                                 {
-                                            echo "${params.DeployCustomerHub}"                                                        
+                                            echo "${params.Deploy_CustomerHub}"                                                        
 
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                       sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/1.0.0-DEV${params.Snapshot_CustomerHub}-SNAPSHOT/tetrapak-customerhub.complete-1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT.zip" 
                                         }       
-                                                echo $(params.DeployCustomerHub)
+                                                echo $(params.Deploy_CustomerHub)
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -113,9 +113,9 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployPublicWeb)   
+                                    if (params.Deploy_PublicWeb)   
                                                                                                 {
-                                    echo "${params.DeployPublicWeb}"
+                                    echo "${params.Deploy_PublicWeb}"
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                       sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV${params.Snapshot_PublicWeb}-SNAPSHOT/tetrapak-publicweb.complete-1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT.zip" 
@@ -147,7 +147,7 @@ stage('Author Deployment and Replication to Publish')
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_dev']])
                                         {
 
-                                    if (params.DeployCommons)
+                                    if (params.Deploy_Commons)
                                             {
                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                             {
@@ -172,7 +172,7 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-202002071351.zip -F cmd=activate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployCustomerHub)
+                                    if (params.Deploy_CustomerHub)
                                                                                                 {
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_dev} -F force=true '${author_url_dev}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
@@ -193,7 +193,7 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployPublicWeb)
+                                    if (params.Deploy_PublicWeb)
                                                                                                 {
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -k -u admin:${password_dev} -F force=true '${author_url_dev}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
@@ -224,7 +224,7 @@ stage('Author Deployment and Replication to Publish')
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_stage']])
                                         {
 
-                                    if (params.DeployCommons)
+                                    if (params.Deploy_Commons)
                                             {
                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                             {
@@ -249,7 +249,7 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_stage} -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-202002071351.zip -F cmd=activate '${author_url_stage}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployCustomerHub)
+                                    if (params.Deploy_CustomerHub)
                                                                                                 {
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
@@ -270,7 +270,7 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_stage} -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url_stage}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployPublicWeb)
+                                    if (params.Deploy_PublicWeb)
                                                                                                 {
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
