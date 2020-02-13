@@ -102,10 +102,9 @@ stage('Author Deployment and Replication to Publish')
                                                 sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak-customerhub/tetrapak-customerhub.complete-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.Deploy_Publicweb)
-
-                                        echo "${params.Deploy_Publicweb}"   
+                                    if (params.Deploy_Publicweb)   
                                                                                                 {
+                                    echo "${params.Deploy_Publicweb}"
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                       sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV${params.Snapshot_PublicWeb}-SNAPSHOT/tetrapak-publicweb.complete-1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT.zip" 
