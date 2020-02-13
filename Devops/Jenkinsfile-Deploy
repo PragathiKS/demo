@@ -9,13 +9,13 @@ parameters {
         choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
         
         booleanParam(name: 'Deploy_Commons', defaultValue: false, description: 'Please check in case you want to deploy Commons Module')
-        string(name: 'Snapshot Commons', defaultValue: 'SnapshotVersion', description: '')
+        string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: '')
 
         booleanParam(name: 'Deploy_CustomerHub', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
-        string(name: 'Snapshot CustomerHub', defaultValue: 'SnapshotVersion', description: '')
+        string(name: 'Snapshot_CustomerHub', defaultValue: 'SnapshotVersion', description: '')
 
         booleanParam(name: 'Deploy_PublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
-        string(name: 'Snapshot PublicWeb', defaultValue: 'SnapshotVersion', description: '')
+        string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: '')
     }
 options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
@@ -44,11 +44,15 @@ stage('Author Deployment and Replication to Publish')
                             script {
                                 if (params.Environment == "QA") {
 
+                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username_qa', passwordVariable: 'password_qa']])
+                                        {
+                                        
                                     if (params.Deploy_Commons)
                                         {
-                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
+                                      //sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/1.0.0-DEV${Snapshot_Commons}-SNAPSHOT/tetrapak-commons.complete-1.0.0-DEV${Snapshot_Commons}-SNAPSHOT.zip" 
                                         }
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
@@ -71,6 +75,10 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                     if (params.Deploy_Customerhub)
                                                                                                 {
+                                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT/tetrapak-customerhub.complete-1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT.zip" 
+                                        }
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
@@ -92,6 +100,10 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                     if (params.Deploy_Publicweb)
                                                                                                 {
+                                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+                                    {
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT/tetrapak-publicweb.complete-1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT.zip" 
+                                        }
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
                                                 sleep 20
@@ -113,8 +125,11 @@ stage('Author Deployment and Replication to Publish')
                                                 sleep 10
                                                                                                 }
                                                                                         }
-
+                                }
                             if (params.ENVIRONMENT == "DEV") {
+
+                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_dev']])
+                                        {
 
                                     if (params.Deploy_Commons)
                                             {
@@ -186,8 +201,12 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                                                                                                              
                                     }
+                            }
 
                                     if (params.ENVIRONMENT == "STAGE") {
+
+                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_stage']])
+                                        {
 
                                     if (params.Deploy_Commons)
                                             {
@@ -258,7 +277,8 @@ stage('Author Deployment and Replication to Publish')
                                                 sleep 10
                                                                                                 }
                                                                                                                              
-                            }              
+                            }    
+                                    }          
                                                                 }
                 }
          }
