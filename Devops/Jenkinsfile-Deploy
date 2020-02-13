@@ -52,7 +52,7 @@ stage('Author Deployment and Replication to Publish')
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
                                       //sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/tetrapak-commons.complete/1.0.0-202002071351/tetrapak-commons.complete-1.0.0-202002071351.zip" 
-                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/1.0.0-DEV${Snapshot_Commons}-SNAPSHOT/tetrapak-commons.complete-1.0.0-DEV${Snapshot_Commons}-SNAPSHOT.zip" 
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT/tetrapak-commons.complete-1.0.0-DEV${Snapshot_Commons}-SNAPSHOT.zip" 
                                         }
                                                 echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
@@ -77,7 +77,7 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 {
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT/tetrapak-customerhub.complete-1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT.zip" 
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/1.0.0-DEV${params.Snapshot_CustomerHub}-SNAPSHOT/tetrapak-customerhub.complete-1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT.zip" 
                                         }
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
@@ -102,7 +102,7 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 {
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT/tetrapak-publicweb.complete-1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT.zip" 
+                                      sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV${params.Snapshot_PublicWeb}-SNAPSHOT/tetrapak-publicweb.complete-1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT.zip" 
                                         }
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
