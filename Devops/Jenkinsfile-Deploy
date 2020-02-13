@@ -93,7 +93,7 @@ stage('Author Deployment and Replication to Publish')
                                     {
                                       sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/1.0.0-DEV${params.Snapshot_CustomerHub}-SNAPSHOT/tetrapak-customerhub.complete-1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT.zip" 
                                         }       
-                                                echo $(params.DeployCustomerHub)
+                                                //echo $(params.DeployCustomerHub)
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
                                                 sleep 20
