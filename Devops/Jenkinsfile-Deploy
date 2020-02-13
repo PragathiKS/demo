@@ -17,9 +17,10 @@ parameters {
         //booleanParam(name: 'Deploy_PublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
         string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: '')
         
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Deploy_PublicWeb'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Deploy_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Deploy_CustomerHub'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Deploy_PublicWeb'
+
     }
 options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
