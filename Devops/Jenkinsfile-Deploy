@@ -87,7 +87,6 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                     if (params.Deploy_CustomerHub)
                                                                                                 {
-                                            echo "${params.Deploy_CustomerHub}"                                                        
 
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
