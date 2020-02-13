@@ -8,7 +8,7 @@ agent {
 parameters {
 
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Deploy_PublicWeb'
-        booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Deploy_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Deploy_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Deploy_CustomerHub'
 
         choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
@@ -59,7 +59,7 @@ stage('Author Deployment and Replication to Publish')
                                             echo "Deploy_Commons"
                                             echo "${params.Deploy_Commons}"
                                             echo "Deploy_Customerhub"
-                                            echo "${params.Deploy_Customerhub}"
+                                            echo "${params.Deploy_CustomerHub}"
                                             echo "Deploy_Publicweb"
                                             echo "${params.Deploy_Publicweb}"
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
