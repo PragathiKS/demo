@@ -86,7 +86,7 @@ class IntroScreen {
       .on('click', () => {
         const sliderTitle = this.root.find('.slick-active .js-intro-slider__title').text();
         const sliderIndex = this.root.find('.slick-active').data('slickIndex') + 1;
-        this.trackAnalytics(sliderTitle, 'slider' + sliderIndex);
+        this.trackAnalytics(sliderTitle, `slider${sliderIndex}`);
       });
   }
   init() {

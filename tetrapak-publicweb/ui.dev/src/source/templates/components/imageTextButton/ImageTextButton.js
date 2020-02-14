@@ -6,30 +6,27 @@ class ImageTextButton {
   }
   cache = {};
   initCache() {
-    /* Initialize cache here */
     this.cache.$imageTextButtonLink = $('.imageTextButton', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    this.cache.$imageTextButtonLink.click((e) => {
-      const comp = e.target.closest('.pw-image-text-button');
-      const $thisClick = $(e.target);
-      if (this.cache.digitalData) {
-        this.cache.digitalData.linkClick = {};
-        this.cache.digitalData.linkClick.linkType = comp.getAttribute('data-imageButton-linkType');
-        this.cache.digitalData.linkClick.linkSection = 'imageTextButton';
-        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-image-text-button').find('.pw-image-text-button__title').text().trim();
-        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
-        this.cache.digitalData.linkClick.contentName = $thisClick.closest('.pw-image-text-button').find('.pw-image-text-button__subtitle').text().trim();
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
-        }
+    this.cache.$imageTextButtonLink.on('click', this.trackAnalytics);
+  }
+  trackAnalytics = (e) => {
+    const $target = $(e.target);
+    const comp = $target.closest('.pw-image-text-button');
+    if (window.digitalData) {
+      window.digitalData.linkClick = {};
+      window.digitalData.linkClick.linkType = comp.attr('data-imageButton-linkType');
+      window.digitalData.linkClick.linkSection = 'imageTextButton';
+      window.digitalData.linkClick.linkParentTitle = $.trim($target.closest('.pw-image-text-button').find('.pw-image-text-button__title').text());
+      window.digitalData.linkClick.linkName = $.trim($target.text());
+      window.digitalData.linkClick.contentName = $.trim($target.closest('.pw-image-text-button').find('.pw-image-text-button__subtitle').text());
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
       }
-    });
+    }
   }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }

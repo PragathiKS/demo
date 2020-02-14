@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           jcr:primaryType="nt:unstructured"
           jcr:title="Base Page"
           sling:resourceType="cq/gui/components/authoring/dialog"
@@ -65,6 +67,49 @@
                                                     rootPath="/content"/>
                                         </items>
                                     </baseProperties>
+                                    <aggregator
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Aggregator Configurations"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <imagePath
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    fieldDescription="Select Image Path - please select an image with aspect ratio 4x3"
+                                                    fieldLabel="Image Path"
+                                                    name="./imagePath"
+                                                    rootPath="/content/dam/publicweb"/>
+                                            <imageAltText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    fieldDescription="Enter Alt Text"
+                                                    fieldLabel="Image Alt Text"
+                                                    name="./altText"/>
+                                            <linkText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    fieldDescription="Enter CTA Text"
+                                                    fieldLabel="Link Text"
+                                                    name="./linkText"/>
+                                            <linkPath
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    fieldDescription="Enter CTA Path in case path is not provided then the path to thi page will be used"
+                                                    fieldLabel="Link Path"
+                                                    name="./linkText"/>
+                                            <openInNewWindow
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    name="./linkTarget"
+                                                    fieldDescription="Check this to open the link in a new window"
+                                                    text="Open In New Window? (for External URLs and PDFs)"
+                                                    value="true"/>
+                                        </items>
+                                    </aggregator>
                                 </items>
                             </column>
                         </items>

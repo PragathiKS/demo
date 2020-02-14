@@ -1,0 +1,33 @@
+{
+  "pwButtonTheme": "link",
+  "uxPreview": true,
+  "teaserList": [
+    {
+      "title": "<b>Bold Text</b> With Simple text",
+      "description": "This is some description",
+      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+      "altText": "alt",
+      "linkText": "link to open",
+      "linkPath": "#",
+      "targetNew": true
+    },
+    {
+      "title": "<b>Bold Text</b> With Simple text",
+      "description": "This is some long description with lorem ipsum dolor sit and blah blah to check multiline behaviour of the component. Hope that the behaviour will be smooth and the component will work as expected. If not then we will figure out what should be done.",
+      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+      "altText": "alt",
+      "linkText": "link to open",
+      "linkPath": "#",
+      "targetNew": true
+    },
+    {
+      "title": "<b>Bold Text</b> With Simple text",
+      "description": "This is some description with some <b>Html text</b>",
+      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+      "altText": "alt",
+      "linkText": "link to open",
+      "linkPath": "#",
+      "targetNew": false
+    }
+  ]
+}

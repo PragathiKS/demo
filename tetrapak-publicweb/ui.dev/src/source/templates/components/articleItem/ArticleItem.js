@@ -6,37 +6,37 @@ class ArticleItem {
   }
   cache = {};
   initCache() {
-    /* Initialize cache here */
-    this.cache.$articleItemBtnLink = $('.articleItemLink', this.root);
-    this.cache.digitalData = digitalData; //eslint-disable-line
+    this.cache.$articleItemBtnLink = this.root.find('.articleItemLink');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    this.cache.$articleItemBtnLink.click((e) => {
-      const article = e.target.closest('.pw-article');
-      const articleContainer = e.target.closest('.article-container');
-      const $thisClick = $(e.target);
-      if (this.cache.digitalData) {
-        this.cache.digitalData.linkClick = {};
-        this.cache.digitalData.linkClick.linkType = article.getAttribute('data-articleItem-linkType');
-        this.cache.digitalData.linkClick.linkSection = 'articleItem';
-        this.cache.digitalData.linkClick.linkParentTitle = $thisClick.closest('.pw-article').find('.pw-article__title').text().trim();
-        if (articleContainer) {
-          const listPosition = [].slice.call(articleContainer.querySelectorAll('.pw-article')).indexOf(article) + 1;
-          this.cache.digitalData.linkClick.linkListPos = listPosition;
-          this.cache.digitalData.linkClick.contentName = $thisClick.closest('.article-container').find('.article-container__title').text().trim();
-
+    this.cache.$articleItemBtnLink.on('click', this.articleLinkClick);
+  }
+  articleLinkClick = (e) => {
+    const $target = $(e.target);
+    const article = $target.closest('.pw-article');
+    const articleContainer = $target.closest('.article-container');
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: article.attr('data-articleItem-linkType'),
+          linkSection: 'articleItem',
+          linkParentTitle: $.trim($target.closest('.pw-article').find('.pw-article__title').text()),
+          linkName: $.trim($target.text())
         }
-        this.cache.digitalData.linkClick.linkName = $thisClick.text().trim();
-
-        if (typeof _satellite !== 'undefined') { //eslint-disable-line
-          _satellite.track('linkClicked'); //eslint-disable-line
-        }
+      });
+      if (articleContainer.length) {
+        const linkListPos = articleContainer.find('.pw-article').index(article) + 1;
+        $.extend(window.digitalData.linkClick, {
+          linkListPos,
+          contentName: $.trim($target.closest('.article-container').find('.article-container__title').text())
+        });
       }
-    });
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
+      }
+    }
   }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
