@@ -44,6 +44,7 @@ public class BasePageModel {
         }
         if (jcrResource != null) {
             pageContent = jcrResource.adaptTo(PageContentModel.class);
+            jcrMap = jcrResource.getValueMap();
         }
         if (jcrMap != null) {
             title = jcrMap.get("jcr:title", String.class);
