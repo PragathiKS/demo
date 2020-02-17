@@ -36,10 +36,10 @@ options {
         publish_url_qa = "https://publish1.test.tetrapak.adobecqms.net"
         publish_url_stage = ""
         // publish_url = "http://13.69.73.197:4503"
-        password_qa ="61wC@9MaChWc55JD]My~a0R@"
-        password_Stage ="ozf9}n]]A<{W>9*pCLxWV*}\\>"
-        password_dev = "Oa=]2Z7u#w@Mkojms*V=mj\\>a"
-        package_name = "tetrapak-complete-package"
+        //password_qa ="61wC@9MaChWc55JD]My~a0R@"
+        //password_Stage ="ozf9}n]]A<{W>9*pCLxWV*}\\>"
+        //password_dev = "Oa=]2Z7u#w@Mkojms*V=mj\\>a"
+        //package_name = "tetrapak-complete-package"
         
     }
 stages{
@@ -56,7 +56,8 @@ stage('Author Deployment and Replication to Publish')
                                             echo "${params.DeployCustomerHub}"
                                             echo "DeployPublicWeb"
                                             echo "${params.DeployPublicWeb}"
-
+                            }
+                            script {
                                 if (params.Environment == "QA") {
 
                                          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username_qa', passwordVariable: 'password_qa']])
@@ -146,6 +147,8 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                                                                         }
                                 }
+                            }
+                            script {
                             if (params.ENVIRONMENT == "DEV") {
 
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_dev']])
@@ -233,9 +236,9 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }                                                                                                                                               
                                     }
                             }
-                                    if (params.ENVIRONMENT == "STAGE") {
-
-                                        
+                            }
+                            script {
+                                if (params.ENVIRONMENT == "STAGE") {
 
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username_qa', passwordVariable: 'password_stage']])
                                         {
@@ -313,7 +316,8 @@ stage('Author Deployment and Replication to Publish')
                                                                                                 }
                                                                                                                              
                             }    
-                                    }          
+                                    }
+                                      
                                                                 }
                 }
          }
