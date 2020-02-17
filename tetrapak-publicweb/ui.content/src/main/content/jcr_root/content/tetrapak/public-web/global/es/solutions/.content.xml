@@ -28,45 +28,6 @@
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid">
-                <articlenoimage
-                        jcr:created="{Date}2019-03-08T12:23:33.807-03:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-03-08T12:23:33.807-03:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articlenoimage"/>
-                <articlenoimage_301736309
-                        jcr:created="{Date}2019-03-08T12:23:51.825-03:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-03-08T12:23:51.825-03:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articlenoimage"/>
-                <articlecontainer
-                        jcr:created="{Date}2019-03-08T17:12:33.417-03:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-03-08T17:28:33.778-03:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articleContainer"
-                        numberOfcolumns="three-column"
-                        titleAlignment="text-left"
-                        titleI18n="Title">
-                    <item
-                            jcr:lastModified="{Date}2019-03-08T17:27:16.193-03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="publicweb/components/content/articleItem"
-                            articleImageAltI18n="asset"
-                            articleImagePath="/content/dam/publicweb/ContentImage4.png"
-                            articlePath="/content/tetrapak/public-web/global/es/solutions"
-                            articleTitle="Solutions at a level"
-                            contentType="manual"
-                            ctaTexti18nKey="solutions buton"
-                            openInNewWindow="true"
-                            showImage="true"
-                            vanityDescriptionI18n="Solutions at a level Solutions at a level"/>
-                </articlecontainer>
             </responsivegrid>
         </root>
     </jcr:content>

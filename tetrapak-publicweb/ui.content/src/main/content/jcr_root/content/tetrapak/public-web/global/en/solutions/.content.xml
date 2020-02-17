@@ -121,45 +121,6 @@
                         jcr:lastModifiedBy="roomahaj"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="publicweb/components/content/carouselWithFilters"/>
-                <articlecontainer
-                        jcr:created="{Date}2019-12-02T11:49:31.220Z"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-12-02T11:50:00.984Z"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articleContainer"
-                        numberOfcolumns="two-column"
-                        pwTheme="grayscale-white"
-                        titleAlignment="text-left"
-                        titleI18n="xyz"/>
-                <tabs
-                        jcr:created="{Date}2019-12-02T11:53:54.346Z"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-12-02T11:53:54.346Z"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/tabs">
-                    <item_1
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Tab 1"
-                            sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                    <item_2
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Tab 2"
-                            sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                </tabs>
-                <listcontentimage
-                        jcr:created="{Date}2019-12-02T11:54:13.121Z"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2019-12-02T11:54:39.808Z"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/listContentImage"
-                        pwButtonTheme="secondary"
-                        pwPadding="regular"
-                        pwTheme="grayscale-white"
-                        tabLinks="\{&quot;tabLinkTextI18n&quot;:&quot;Tab1&quot;}"
-                        tabsAlignment="text-left"/>
             </responsivegrid>
         </root>
     </jcr:content>

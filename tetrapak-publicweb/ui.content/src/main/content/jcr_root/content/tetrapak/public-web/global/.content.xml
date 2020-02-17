@@ -67,37 +67,6 @@
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid">
-                <articleitem
-                        jcr:created="{Date}2019-11-11T09:21:38.031Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-11-11T09:22:37.755Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articleItem"
-                        articleTitle="title to test"
-                        contentType="manual"
-                        ctaTexti18nKey="link"
-                        pwButtonTheme="secondary"
-                        vanityDescription="fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg fgjdlkg "/>
-                <articlecontainer
-                        jcr:created="{Date}2019-11-11T09:31:21.933Z"
-                        jcr:createdBy="roomahaj"
-                        jcr:lastModified="{Date}2019-11-28T07:20:36.469Z"
-                        jcr:lastModifiedBy="roomahaj"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="publicweb/components/content/articleContainer"
-                        numberOfcolumns="two-column"
-                        pwTheme="grayscale-white"
-                        titleAlignment="text-left">
-                    <col1
-                            jcr:lastModified="{Date}2019-11-28T07:21:16.785Z"
-                            jcr:lastModifiedBy="roomahaj"
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="publicweb/components/content/articleItem"
-                            articlePath="/content/tetrapak/public-web/global/en/articlepage"
-                            contentType="automatic"
-                            pwButtonTheme="secondary"/>
-                </articlecontainer>
             </responsivegrid>
         </root>
     </jcr:content>
