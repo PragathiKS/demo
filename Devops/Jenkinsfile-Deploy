@@ -48,6 +48,15 @@ stage('Author Deployment and Replication to Publish')
                        {
                         steps {
                             script {
+
+                                            echo "${params.Environment}"
+                                            echo "DeployCommons"
+                                            echo "${params.DeployCommons}"
+                                            echo "DeployCustomerHub"
+                                            echo "${params.DeployCustomerHub}"
+                                            echo "DeployPublicWeb"
+                                            echo "${params.DeployPublicWeb}"
+
                                 if (params.Environment == "QA") {
 
                                          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username_qa', passwordVariable: 'password_qa']])
@@ -55,12 +64,7 @@ stage('Author Deployment and Replication to Publish')
                                         
                                         if (params.DeployCommons)
                                         {
-                                            echo "DeployCommons"
-                                            echo "${params.DeployCommons}"
-                                            echo "DeployCustomerHub"
-                                            echo "${params.DeployCustomerHub}"
-                                            echo "DeployPublicWeb"
-                                            echo "${params.DeployPublicWeb}"
+
 
                                             packageName = "tetrapak-commons.complete"
                                             
