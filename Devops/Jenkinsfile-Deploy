@@ -149,7 +149,7 @@ stage('Author Deployment and Replication to Publish')
                                 }
                             }
                             script {
-                            if (params.ENVIRONMENT == "DEV") {
+                            if (params.Environment == "DEV") {
 
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username_qa', passwordVariable: 'password_dev']])
                                         {
@@ -238,7 +238,7 @@ stage('Author Deployment and Replication to Publish')
                             }
                             }
                             script {
-                                if (params.ENVIRONMENT == "STAGE") {
+                                if (params.Environment == "STAGE") {
 
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username_qa', passwordVariable: 'password_stage']])
                                         {
