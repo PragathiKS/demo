@@ -9,6 +9,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>tetrapak-customerhub.core</artifactId>
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
     <packaging>bundle</packaging>
     <name>Tetrapak Customerhub - Core</name>
     <description>Core bundle for Tetrapak Customerhub</description>

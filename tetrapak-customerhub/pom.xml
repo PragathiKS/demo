@@ -40,10 +40,8 @@
 		<crx.workspace>crx.default</crx.workspace>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.java.binaries>${project.basedir}/target/classes</sonar.java.binaries>
-        <sonar.coverage.jacoco.xmlReportPaths>coverage-reports/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <aggregate.report.dir>core/target/site/jacoco/jacoco.xml</aggregate.report.dir>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.coverage.exclusions>
             **/beans/**,
             **/constants/**,
@@ -356,6 +354,37 @@
     </build>
 
     <profiles>
+
+        <profile>
+            <id>coverage</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- ====================================================== -->
         <!-- A D O B E P U B L I C P R O F I L E -->
         <!-- ====================================================== -->
@@ -595,7 +624,7 @@
                                     </goals>
                                 </execution>
                             </executions>
-                        </plugin>                        
+                        </plugin>
                     </plugins>
                 </pluginManagement>
             </build>
@@ -731,7 +760,7 @@
                 <artifactId>io.wcm.testing.aem-mock.junit4</artifactId>
                 <version>2.4.6</version>
                 <scope>test</scope>
-            </dependency>			
+            </dependency>
             <dependency>
 				<groupId>javax.json</groupId>
 				<artifactId>javax.json-api</artifactId>
