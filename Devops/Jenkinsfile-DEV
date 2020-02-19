@@ -119,7 +119,7 @@ pipeline {
 												{
 						echo "Uninstalling Old Commons Package on author for Commons"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-commons.complete'"
-                                                sleep 10
+                                                sleep 20
                                                 echo "Deleting Old Commons Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-commons.complete'"
                                                 sleep 10
@@ -128,7 +128,7 @@ pipeline {
                                                 sleep 10
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-commons.complete'"
-                                                sleep 10
+                                                sleep 20
                                                 
                                                 echo "Deactivating Old Commons Package on publish for commons"
                                                 sh "curl -u ${admin}:${aempassword}  -F path=/etc/packages/tetrapak  -F cmd=deactivate '${author_url}/bin/replicate.json'"
@@ -140,7 +140,7 @@ pipeline {
 												{
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
-                                                sleep 10
+                                                sleep 20
                                                 echo "Deleting Old Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-customerhub.complete'"
                                                 sleep 10
@@ -149,7 +149,7 @@ pipeline {
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-customerhub.complete'"
-						                        sleep 10
+						                        sleep 20
 												
 												echo "Deactivating Old Customerhub Package on publish"
                                                 sh "curl -u ${admin}:${aempassword}  -F path=/etc/packages/tetrapak-customerhub  -F cmd=deactivate '${author_url}/bin/replicate.json'"
@@ -163,7 +163,7 @@ pipeline {
 												{
                                                 echo "Uninstalling Old Package on author -- PublicWeb"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-publicweb.complete'"
-                                                sleep 10
+                                                sleep 20
                                                 echo "Deleting Old Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=tetrapak-publicweb.complete'"
                                                 sleep 10
@@ -172,7 +172,7 @@ pipeline {
                                                 sleep 10
                                                 echo "Installing New Package on author"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=tetrapak-publicweb.complete'"
-												sleep 10
+												sleep 20
 												echo "Deactivating Old PublicWeb Package on publish"
                                                 sh "curl -u ${admin}:${aempassword}  -F path=/etc/packages/tetrapak-publicweb  -F cmd=deactivate '${author_url}/bin/replicate.json'"
                                                 sleep 10
