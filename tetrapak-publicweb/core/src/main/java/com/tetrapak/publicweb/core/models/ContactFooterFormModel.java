@@ -84,7 +84,7 @@ public class ContactFooterFormModel {
             hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
         }
 
-        InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
+       /* InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
         titleI18n = inheritanceValueMap.getInherited("titleI18n", String.class);
         description = inheritanceValueMap.getInherited("description", String.class);
         image = inheritanceValueMap.getInherited("image", String.class);
@@ -106,7 +106,7 @@ public class ContactFooterFormModel {
         previousButtonLabel = inheritanceValueMap.getInherited("previousButtonLabel", String.class);
         nextButtonLabel = inheritanceValueMap.getInherited("nextButtonLabel", String.class);
         submitButtonLabel = inheritanceValueMap.getInherited("submitButtonLabel", String.class);
-
+       */
         getCountriesList(pageManager);
     }
 
