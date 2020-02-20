@@ -1,4 +1,4 @@
-package com.tetrapak.customerhub.core.services;
+package com.tetrapak.publicweb.core.services;
 
 /**
  * Site Improve Service class
@@ -9,4 +9,3 @@ public interface SiteImproveScriptService {
     String getSiteImproveScriptUrl();
 
 }
-
