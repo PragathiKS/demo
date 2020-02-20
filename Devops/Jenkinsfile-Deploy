@@ -7,19 +7,18 @@ agent {
 }
 parameters {
     choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
-        
-    booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
     booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
-    booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'DeployCustomerHub'
+    booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
+    booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'DeployMyTetraPak'
 
     //booleanParam(name: 'DeployCommons', defaultValue: false, description: 'Please check in case you want to deploy Commons Module')
     string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: '')
 
-    //booleanParam(name: 'DeployCustomerHub', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
-    string(name: 'Snapshot_CustomerHub', defaultValue: 'SnapshotVersion', description: '')
-
     //booleanParam(name: 'DeployPublicWeb', defaultValue: false, description: 'Please check in case you want to deploy Public Web Module')
     string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: '')
+
+    //booleanParam(name: 'DeployMyTetraPak', defaultValue: false, description: 'Please check in case you want to Customer Hub Module')
+    string(name: 'Snapshot_CustomerHub', defaultValue: 'SnapshotVersion', description: '')
 }
 options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
@@ -44,8 +43,8 @@ stages{
                     echo "${params.Environment}"
                     echo "DeployCommons"
                     echo "${params.DeployCommons}"
-                    echo "DeployCustomerHub"
-                    echo "${params.DeployCustomerHub}"
+                    echo "DeployMyTetraPak"
+                    echo "${params.DeployMyTetraPak}"
                     echo "DeployPublicWeb"
                     echo "${params.DeployPublicWeb}"
                 }
@@ -83,7 +82,7 @@ stages{
                                         echo "Activating new Commons Package on publish"
                                         sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                               }
-                            if (params.DeployCustomerHub)
+                            if (params.DeployMyTetraPak)
 
                                                                                       {
                                          packageName = "tetrapak-customerhub.complete"
@@ -171,7 +170,7 @@ stages{
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT.zip -F cmd=activate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 5
                                                                                                 }
-                                    if (params.DeployCustomerHub)
+                                    if (params.DeployMyTetraPak)
                                                         {
                                                  packageName = "tetrapak-customerhub.complete"                                                   
                                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
@@ -258,7 +257,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F cmd=activate '${author_url_stage}/bin/replicate.json'"
                                                 sleep 10
                                                                                                 }
-                                    if (params.DeployCustomerHub)
+                                    if (params.DeployMyTetraPak)
                                                                                                 {
                                                     packageName = "tetrapak-customerhub.complete"                                                
                                                 echo "Uninstalling Old Package on author for customerhub"

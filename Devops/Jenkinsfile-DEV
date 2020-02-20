@@ -3,10 +3,10 @@
 pipeline {
     agent any
     parameters {
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Customer Hub Module', name: 'Build_Customerhub'
-        booleanParam defaultValue: false, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonaranalysys', name: 'Sonar_Analysis'
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
+        booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
     }
     options {
@@ -72,7 +72,7 @@ pipeline {
 					}
                 }
                 script {
-                    if (params.Build_Customerhub) {
+                    if (params.Build_MyTetraPak) {
                         echo "Build CustomerHub"
                         dir('tetrapak-customerhub') {
                             sh "npm install --prefix ui.dev/src"
@@ -136,7 +136,7 @@ pipeline {
                                                 echo "Activating new Commons Package on publish"
                                                 sh "curl -u ${admin}:${aempassword}  -F path=/etc/packages/tetrapak/tetrapak-commons.complete-1.0.0-DEV${build_id_number}-SNAPSHOT.zip  -F cmd=activate '${author_url}/bin/replicate.json'"
 						}
-												if (params.Build_Customerhub) 
+												if (params.Build_MyTetraPak)
 												{
                                                 echo "Uninstalling Old Package on author for customerhub"
                                                 sh "curl -u ${admin}:${aempassword}  -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=tetrapak-customerhub.complete'"
@@ -190,7 +190,7 @@ pipeline {
                                            echo "Skipping Tools Execution"
 					}
 					else {
-						if (params.Build_Customerhub) {
+						if (params.Build_MyTetraPak) {
                                              	echo "Publising karma Test Report- CustomerHub"
                                               	sh 'echo "Karma Report"'
                                               	def reportname = "Karma Report - CustomerHub"
@@ -258,7 +258,7 @@ pipeline {
                     if (!params.Tools_Execution) {
                         echo "Skipping Sitespeed Execution for Desktop"
                     } else {
-                        if (params.Build_Customerhub) {
+                        if (params.Build_MyTetraPak) {
                             echo "Starting Sitespeed-Desktop Test Run for CustomerHub"
                             sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_cuhu} -b firefox --outputFolder sitespeed_desktop'
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-CustomerHub-Desktop', reportTitles: ''])
