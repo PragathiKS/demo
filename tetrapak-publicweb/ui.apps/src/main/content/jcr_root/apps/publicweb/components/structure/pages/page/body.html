@@ -13,3 +13,6 @@
 <div>
   <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
 </div>
+<sly data-sly-use.globalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil">
+  <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="${globalUtil.siteImproveScript}" />
+</sly>
