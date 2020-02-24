@@ -347,6 +347,7 @@ stages{
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-DEV${params.Snapshot_PublicWeb}-SNAPSHOT.zip -F cmd=activate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 5
                                                 */
+                                        )
                                                                                                 }                                                                                                                                               
                                     }
                             }
