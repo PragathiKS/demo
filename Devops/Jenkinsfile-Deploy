@@ -390,7 +390,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on author"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
@@ -403,7 +403,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on publish"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
@@ -416,7 +416,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace@2/tetrapak-customerhub/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on publish"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
@@ -440,7 +440,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on author"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on author"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${author_url_stage}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
@@ -453,7 +453,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on publish"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_one}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
@@ -466,7 +466,7 @@ stages{
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                                                 sleep 10
                                                 echo "Uploading New Package on publish"
-                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-DEV${deploy_id_number}-SNAPSHOT.zip -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sh "curl -k -u admin:${password_stage} -F name=${packageName} -F file=@$workspace/tetrapak-publicweb/complete/target/${packageName}-1.0.0-${params.Snapshot_Commons}.zip -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 20
                                                 echo "Installing New Package on publish"
                                                 sh "curl -k -u admin:${password_stage} -F force=true '${publish_url_stage_two}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
