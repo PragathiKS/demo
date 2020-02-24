@@ -78,6 +78,7 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
         if (null != aemCustomerNameCookie) {
             aemCustomerNameCookie.setMaxAge(0);
             aemCustomerNameCookie.setPath("/");
+            aemCustomerNameCookie.setDomain(".tetrapak.com");
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie AEMCustomerName was deleted");
         }
