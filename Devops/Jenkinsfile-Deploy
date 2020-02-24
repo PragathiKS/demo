@@ -174,7 +174,7 @@ stages{
                                                 sh "curl -k -u admin:${password_dev} -F name=${packageName} -F file=@${packageName}-1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT.zip -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                                                 sleep 5
                                                 echo "Installing New Commons Package on publish"
-                                                sh "curl -k -u admin:${password_dev} -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
+                                                sh "curl -k -u admin:${password_dev} -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=install&name=${packageName}'"
                                                 sleep 5                                                
 
                                                 /*
@@ -204,13 +204,28 @@ stages{
                                                 echo "Installing New Commons Package on author"
                                                 sh "curl -k -u admin:${password_dev} -F force=true '${author_url_dev}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
                                                 sleep 5
+
+
+                                                echo "Uninstalling Old Commons Package on publish for Commons"
+                                                sh "curl -k -u admin:${password_dev} -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
+                                                sleep 5
+                                                echo "Deleting Old Commons Package on publish"
+                                                sh "curl -k -u admin:${password_dev} -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
+                                                sleep 5
+                                                echo "Uploading New Commons Package on publish"
+                                                sh "curl -k -u admin:${password_dev} -F name=${packageName} -F file=@${packageName}-1.0.0-DEV${params.Snapshot_CustomerHub}-SNAPSHOT.zip -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+                                                sleep 5
+                                                echo "Installing New Commons Package on publish"
+                                                sh "curl -k -u admin:${password_dev} -F force=true '${publish_url_dev}/crx/packmgr/service.jsp?cmd=install&name=${packageName}'"
+                                                sleep 5                                                
+                                                /*
                                                 echo "Deactivating Old Commons Package on publish for commons"
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 5
                                                 echo "Activating new Commons Package on publish"
                                                 sh "curl -k -u admin:${password_dev} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-DEV${params.Snapshot_CustomerHub}-SNAPSHOT.zip -F cmd=activate '${author_url_dev}/bin/replicate.json'"
                                                 sleep 5
-                                                                                                }                                    
+                                                */                                                }                                    
                                     if (params.DeployPublicWeb)
                                                                                                                                                                                     {
                                                 packageName = "tetrapak-publicweb.complete"                                                        
