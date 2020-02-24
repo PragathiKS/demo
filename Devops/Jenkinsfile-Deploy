@@ -67,6 +67,9 @@ stages{
                             {
                               sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/${packageName}/1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT/${packageName}-1.0.0-DEV${Snapshot_Commons}-SNAPSHOT.zip"
                                 }
+                                
+                                parallel (
+                                    "a" : {
                                         echo "Uninstalling Old Commons Package on author for Commons"
                                         sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
                                         sleep 10
@@ -79,7 +82,8 @@ stages{
                                         echo "Installing New Commons Package on author"
                                         sh "curl -k -u admin:${password_qa} -F force=true '${author_url_qa}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
                                         sleep 20
-
+                                    },
+                                    "b" : {
                                         echo "Uninstalling Old Commons Package on publish for Commons"
                                         sh "curl -k -u admin:${password_qa} -F force=true '${publish_url_qa}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
                                         sleep 10
@@ -91,7 +95,8 @@ stages{
                                         sleep 20
                                         echo "Installing New Commons Package on publish"
                                         sh "curl -k -u admin:${password_qa} -F force=true '${publish_url_qa}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
-                                        sleep 20                                        
+                                        sleep 20 
+                                    }                                       
                                         /*
                                         echo "Deactivating Old Commons Package on publish for commons"
                                         sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak -F cmd=deactivate '${author_url_qa}/bin/replicate.json'"
@@ -99,6 +104,7 @@ stages{
                                         echo "Activating new Commons Package on publish"
                                         sh "curl -k -u admin:${password_qa} -F path=/etc/packages/tetrapak/${packageName}-1.0.0-DEV${params.Snapshot_Commons}-SNAPSHOT.zip -F cmd=activate '${author_url_qa}/bin/replicate.json'"
                                         */
+                                )
                               }
                             if (params.DeployMyTetraPak)
 
