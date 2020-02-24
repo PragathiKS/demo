@@ -73,6 +73,14 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
             response.addCookie(samlRequestPathCookie);
             LOGGER.debug("cookie samlRequestPathCookie was deleted");
         }
+
+        Cookie aemCustomerNameCookie = request.getCookie("AEMCustomerName");
+        if (null != aemCustomerNameCookie) {
+            aemCustomerNameCookie.setMaxAge(0);
+            aemCustomerNameCookie.setPath("/");
+            response.addCookie(aemCustomerNameCookie);
+            LOGGER.debug("cookie AEMCustomerName was deleted");
+        }
         String redirectURL = request.getParameter("redirectURL");
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {
