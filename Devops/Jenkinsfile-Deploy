@@ -355,12 +355,15 @@ stages{
                             script {
                                 if (params.Environment == "STAGE") {
 
+                                            password_stage = "ozf9}n]]A<{W>9*pCLxWV*}>"
+
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username_stage', passwordVariable: 'password_stage']])
                                         {
 
                                     if (params.DeployCommons)
                                             {
                                                 packageName = "tetrapak-commons.complete"
+
                                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                             {
                                         sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/tetrapak/${packageName}/1.0.0-${params.Snapshot_Commons}/${packageName}-1.0.0-${params.Snapshot_Commons}.zip" 
