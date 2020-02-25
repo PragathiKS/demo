@@ -355,7 +355,7 @@ stages{
                             script {
                                 if (params.Environment == "STAGE") {
 
-                                            password_stage = "ozf9}n]]A<{W>9*pCLxWV*}>"
+                                            password_stage = "ozf9}n]]A\\<{W\\>9*pCLxWV*}\\>"
 
                                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username_stage', passwordVariable: 'password_stage']])
                                         {
