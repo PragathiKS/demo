@@ -43,6 +43,7 @@
         <aggregate.report.dir>core/target/site/jacoco/jacoco.xml</aggregate.report.dir>
         <sonar.coverage.jacoco.xmlReportPaths>${basedir}/core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.coverage.exclusions>
+			**/**.js,
             **/beans/**,
             **/constants/**,
             **/exceptions/**,
