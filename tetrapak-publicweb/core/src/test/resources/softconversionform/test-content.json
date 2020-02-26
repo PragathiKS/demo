@@ -1,0 +1,32 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"softconversionform": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:createdBy": "admin",
+			"previousButtonLabel": "Previous",
+			"firstNameLabel": "First Name",
+			"jcr:lastModifiedBy": "admin",
+			"radioButtonGroups": "{\"radiobuttonTitle\":\"Radio Button Title\"}",
+			"lastNameLabel": "Last Name",
+			"jcr:created": "Wed Feb 26 2020 12:48:04 GMT+0530",
+			"nextButtonLabel": "Next",
+			"submitButtonLabel": "Submit",
+			"jcr:lastModified": "Wed Feb 26 2020 12:48:22 GMT+0530",
+			"positionLabel": "Position",
+			"emailAddressLabel": "Email Address",
+			"sling:resourceType": "publicweb/components/content/softConversionForm",
+			"companyLabel": "Company"
+			}
+		}
+	}

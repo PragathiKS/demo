@@ -1,0 +1,38 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"textvideo": {
+			"jcr:primaryType": "nt:unstructured",
+			"targetBlank": "true",
+			"jcr:createdBy": "admin",
+			"description": "sadsa",
+			"jcr:lastModifiedBy": "admin",
+			"pwButtonTheme": "secondary",
+			"jcr:created": "Tue Feb 25 2020 16:41:05 GMT+0530",
+			"pwDisplay": "display-row",
+			"pwTheme": "grayscale-white",
+			"title": "title",
+			"linkTexti18n": "text",
+			"youtubeVideoID": "qwe123",
+			"textAlignment":"alignment",
+			"linkURL": "/content/tetrapak/public-web/global/en/test",
+			"damVideoPath": "/content/dam/publicweb/asset.jpg",
+			"jcr:lastModified": "Tue Feb 25 2020 16:42:05 GMT+0530",
+			"videoSource": "youtube",
+			"youtubeEmbedURL":"https://www.youtube.com/embed/qwe123",
+			"sling:resourceType": "publicweb/components/content/textVideo",
+			"pwPadding": "regular",
+			"thumbnailPath": "/content/dam/publicweb/asset.jpg"
+			}
+		}
+	}

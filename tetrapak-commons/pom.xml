@@ -42,9 +42,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+        <aggregate.report.dir>core/target/site/jacoco/jacoco.xml</aggregate.report.dir>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<buildversion>2.0.0-SNAPSHOT</buildversion>
+		<sonar.coverage.exclusions>
+			**/**.js,
+            **/exceptions/**
+        </sonar.coverage.exclusions>
     </properties>
 
     <build>
@@ -341,40 +345,22 @@
 				<plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.7.9</version>
+                    <version>0.8.4</version>
                     <executions>
                         <execution>
-                            <id>default-instrument</id>
-                            <goals>
-                                <goal>instrument</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>default-restore-instrumented-classes</id>
-                            <goals>
-                                <goal>restore-instrumented-classes</goal>
-                            </goals>
-                        </execution>
-                        <execution>
+                            <id>prepare-agent</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
-                            <id>default-report</id>
-                            <phase>prepare-package</phase>
-                            <goals><goal>report</goal></goals>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <destFile>${sonar.jacoco.reportPath}</destFile>
-                    </configuration>
                 </plugin>
-				<plugin>
-				  <groupId>org.codehaus.mojo</groupId>
-				  <artifactId>flatten-maven-plugin</artifactId>
-				  <version>1.1.0</version>
-				</plugin>
             </plugins>
         </pluginManagement>
     </build>

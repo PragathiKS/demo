@@ -1,0 +1,33 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"searchResults": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:createdBy": "admin",
+			"jcr:lastModifiedBy": "admin",
+			"noFilterMatches": "No filters matches ",
+			"filterTitle": "Filter Section Title",
+			"resultsText": "Results Text",
+			"jcr:created": "Wed Feb 26 2020 12:58:59 GMT+0530",
+			"tabs": "{\"tabTitle\":\"Tab Title\",\"pageType\":\"Page Type\"}",
+			"noResultsText": "No results ",
+			"searchBoxPlaceholder": "Search Box Placeholder Text",
+			"jcr:lastModified": "Wed Feb 26 2020 13:00:24 GMT+0530",
+			"sling:resourceType": "publicweb/components/content/searchResults",
+			"resultsPerPage": "2",
+			"filterTagPaths":"/content/cq:tags/we-retail/activity",
+			"firstTabLinkText": "Default tab label"
+
+			}
+		}
+	}
