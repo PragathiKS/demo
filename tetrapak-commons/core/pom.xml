@@ -9,6 +9,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>tetrapak-commons.core</artifactId>
+	<properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
     <packaging>bundle</packaging>
     <name>Tetrapak Commons - Core</name>
     <description>Core bundle for Tetrapak Commons</description>

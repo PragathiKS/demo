@@ -16,7 +16,7 @@
         <module>ui.content</module>
 		<module>complete</module>
     </modules>
-    <distributionManagement>
+	 <distributionManagement>
 	<repository>
         <id>central</id>
         <name>tetrapak-releases</name>
@@ -40,9 +40,15 @@
 		<crx.workspace>crx.default</crx.workspace>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+		<aggregate.report.dir>core/target/site/jacoco/jacoco.xml</aggregate.report.dir>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.coverage.exclusions>
+			**/**.js,
+            **/beans/**,
+            **/constants/**,
+            **/exceptions/**,
+            **/utils/**
+        </sonar.coverage.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
 
@@ -314,34 +320,21 @@
 				<plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.7.9</version>
+                    <version>0.8.4</version>
                     <executions>
                         <execution>
-                            <id>default-instrument</id>
-                            <goals>
-                                <goal>instrument</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>default-restore-instrumented-classes</id>
-                            <goals>
-                                <goal>restore-instrumented-classes</goal>
-                            </goals>
-                        </execution>
-                        <execution>
+                            <id>prepare-agent</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
-                            <id>default-report</id>
-                            <phase>prepare-package</phase>
-                            <goals><goal>report</goal></goals>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <destFile>${sonar.jacoco.reportPath}</destFile>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -673,10 +666,11 @@
 
             <!-- Testing -->
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.4.1</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -687,7 +681,13 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.10.19</version>
+                <version>2.25.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>2.25.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -697,27 +697,15 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
-                <version>2.3.4</version>
+                <groupId>io.wcm</groupId>
+                <artifactId>io.wcm.testing.aem-mock.junit5</artifactId>
+                <version>2.4.4</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>uk.org.lidalia</groupId>
                 <artifactId>slf4j-test</artifactId>
                 <version>1.0.1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-all</artifactId>
-                <version>1.10.19</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.wcm</groupId>
-                <artifactId>io.wcm.testing.aem-mock.junit4</artifactId>
-                <version>2.4.6</version>
                 <scope>test</scope>
             </dependency>
 			<dependency>
