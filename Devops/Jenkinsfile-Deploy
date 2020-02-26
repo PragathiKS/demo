@@ -1,10 +1,14 @@
 //@Library('smartsales-jenkins-library') _
 pipeline {
+    agent any
+
+/*
 agent {
     node {
         label 'cfe-deploy'
     }
 }
+*/
 parameters {
     choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
     booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
@@ -50,6 +54,8 @@ stages{
                     echo "${params.DeployMyTetraPak}"
                     echo "DeployPublicWeb"
                     echo "${params.DeployPublicWeb}"
+                    sh 'ip r l'
+                    sh 'curl https://api6.ipify.org'
                 }
                     script {
                         if (params.Environment == "QA") {
