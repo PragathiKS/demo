@@ -55,7 +55,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean install -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+                                        sh "mvn clean install -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for commons module"
@@ -78,7 +78,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+                                        sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for customerhub module"
@@ -95,7 +95,7 @@ pipeline {
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
-                                        sh "mvn clean -s settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent  -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+                                        sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                                     }
                             if (!params.Sonar_Analysis) {
                                 echo "Skipping Sonar execution for Publicweb module"
