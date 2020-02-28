@@ -77,27 +77,17 @@ public class DynamicImageModel {
     private String desktopLargeUrl;
 
     /**
-     * The mobile URL.
+     * The mobile url.
      */
     private String mobilePortraitUrl;
 
     /**
-     * The mobile landscape URL.
+     * The mobile landscape url.
      */
     private String mobileLandscapeUrl;
-    
-    /**
-     * The tablet URL.
-     */
-    private String tabletPortraitUrl;
 
     /**
-     * The tablet landscape URL.
-     */
-    private String tabletLandscapeUrl;
-
-    /**
-     * The default image URL.
+     * The default image url.
      */
     private String defaultImageUrl;
 
@@ -165,16 +155,6 @@ public class DynamicImageModel {
      * The Constant MOBILEPORTRAIT.
      */
     private static final String MOBILEPORTRAIT = "mobileP";
-    
-    /**
-     * The Constant TABLATELANDSCAPE.
-     */
-    private static final String TABLATELANDSCAPE = "tabletL";
-
-    /**
-     * The Constant TABLETPORTRAIT.
-     */
-    private static final String TABLETPORTRAIT = "tabletP";
 
     private Map<String, String> dynamicMediaConfiguration = new HashMap<>();
 
@@ -206,8 +186,6 @@ public class DynamicImageModel {
             setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
             setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
             setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
-            setTabletPortraitUrl(createDynamicMediaUrl(TABLETPORTRAIT, dynamicMediaUrl));
-            setTabletLandscapeUrl(createDynamicMediaUrl(TABLATELANDSCAPE, dynamicMediaUrl));
         }
         setDefaultImage();
     }
@@ -436,14 +414,6 @@ public class DynamicImageModel {
     public String getMobilePortraitUrl() {
         return mobilePortraitUrl;
     }
-    
-    public String getTabletLandscapeUrl() {
-        return tabletLandscapeUrl;
-    }
-
-    public String getTabletPortraitUrl() {
-        return tabletPortraitUrl;
-    }
 
     /**
      * Sets the default image.
@@ -478,13 +448,6 @@ public class DynamicImageModel {
         this.mobilePortraitUrl = mobilePortraitUrl;
     }
 
-    public void setTabletLandscapeUrl(final String tabletLandscapeUrl) {
-        this.tabletLandscapeUrl = tabletLandscapeUrl;
-    }
-
-    public void setTabletPortraitUrl(final String tabletPortraitUrl) {
-        this.tabletPortraitUrl = tabletPortraitUrl;
-    }
     public String getFinalPath() {
         return finalPath;
     }
