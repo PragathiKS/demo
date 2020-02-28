@@ -254,7 +254,7 @@
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse 
+                <!--This plugin's configuration is used to store Eclipse
                     m2e settings only. It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
@@ -321,30 +321,40 @@
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.4</version>
-                    <executions>
-                        <execution>
-                            <id>prepare-agent</id>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
+        <profile>
+            <id>coverage</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <!-- ====================================================== -->
         <!-- A D O B E P U B L I C P R O F I L E -->
         <!-- ====================================================== -->
@@ -414,14 +424,14 @@
         <!-- Development profile: install only the bundle -->
         <profile>
             <id>autoInstallBundle</id>
-            <!-- 
-                To enable this feature for a bundle, the maven-sling-plugin 
+            <!--
+                To enable this feature for a bundle, the maven-sling-plugin
                 (without configuration) needs to be included:
-                 
-                <plugin> 
-                    <groupId>org.apache.sling</groupId> 
-                    <artifactId>maven-sling-plugin</artifactId> 
-                 </plugin> 
+
+                <plugin>
+                    <groupId>org.apache.sling</groupId>
+                    <artifactId>maven-sling-plugin</artifactId>
+                 </plugin>
             -->
             <activation>
                 <activeByDefault>false</activeByDefault>
