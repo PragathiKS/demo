@@ -68,7 +68,7 @@ pipeline {
 }
 
 
-    def artifactdownload() {
+    def devartifactdownload() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
         {
                 sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
@@ -78,13 +78,23 @@ pipeline {
 
     }
 
+
+    def stageartifactdownload() {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+        {
+                sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-release-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
+                echo "https://tetrapak.jfrog.io/tetrapak/libs-release-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
+
+        }
+
+    }
     def devdeployment() {
                 
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
                 fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
-                artifactdownload()
+                devartifactdownload()
                 parallel (
                     "Author Commons" : {
                         authordeploy()
@@ -99,7 +109,7 @@ pipeline {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
                 fileName = "1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT"
-                artifactdownload()
+                devartifactdownload()
                 parallel (  
                     "Author CustomerHub" : {                                  
                 authordeploy()
@@ -113,7 +123,7 @@ pipeline {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"                
                 fileName = "1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT"
-                artifactdownload()
+                devartifactdownload()
                 parallel (    
                     "Author PublicWeb" : {                                    
                 authordeploy()
@@ -132,6 +142,7 @@ pipeline {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
                 fileName = "1.0.0-${Snapshot_Commons}"
+                stageartifactdownload()                
                 parallel (
                     "Author Commons" : {                                    
                 authordeploy()
@@ -150,7 +161,8 @@ pipeline {
         if (params.DeployCustomerHub) {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
-                fileName = "1.0.0-${Snapshot_CustomerHub}"      
+                fileName = "1.0.0-${Snapshot_CustomerHub}"   
+                stageartifactdownload()                   
                 parallel (
                     "Author CustomerHub" : {                               
                 authordeploy()
@@ -168,7 +180,8 @@ pipeline {
         if (params.DeployPublicWeb) {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"
-                fileName = "1.0.0-${Snapshot_PublicWeb}"    
+                fileName = "1.0.0-${Snapshot_PublicWeb}"
+                stageartifactdownload()
                 parallel (
                     "Author PublicWeb" : {                               
                 authordeploy()
