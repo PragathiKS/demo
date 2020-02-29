@@ -82,7 +82,7 @@ pipeline {
                 
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
-                repoName = "tetrapak-commons"
+                repoName = "tetrapak"
                 fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
                 artifactdownload()
                 parallel (
@@ -130,7 +130,7 @@ pipeline {
 
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
-                repoName = "tetrapak-commons"
+                repoName = "tetrapak"
                 fileName = "1.0.0-${Snapshot_Commons}"
                 parallel (
                     "Author Commons" : {                                    
