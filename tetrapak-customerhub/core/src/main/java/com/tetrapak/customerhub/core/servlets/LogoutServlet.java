@@ -44,7 +44,7 @@ public class LogoutServlet extends SlingSafeMethodsServlet {
         LOGGER.debug("LogoutServlet was called");
         Cookie loginTokenCookie = request.getCookie("login-token");
         if (null != loginTokenCookie && !(
-                GlobalUtil.isRunModeAvailable("author") || GlobalUtil.isRunModeAvailable("publish"))) {
+                GlobalUtil.isRunModeAvailable("author"))) {
             loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
