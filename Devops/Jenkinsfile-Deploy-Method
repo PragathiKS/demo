@@ -53,14 +53,14 @@ pipeline {
 
                     if (params.Environment == "STAGE") {
                         
-                        username = "sapient-user"
-                        password = "*?qbpgyd+hNKR6E%mQmle[XK"
-                        author_url = "https://author-tetrapak-stage64a.adobecqms.net"
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username', passwordVariable: 'password']])
-                        {
-                            stagedeployment()
+                                author_url = "https://author1.stage.tetrapak.adobecqms.net"
+                                username = "sapient-user"
+                                password = "*?qbpgyd+hNKR6E%mQmle[XK"                                 
+                        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username', passwordVariable: 'password']])
+                        //{                           
+                                stagedeployment()
                             
-                        }
+                        //}
                     }                 
 
                 }
