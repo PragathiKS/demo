@@ -149,11 +149,11 @@ pipeline {
                     "Author Commons" : {                                    
                 authordeploy()
                     },
-                    "Publisher 1 Commons" : {                     
+                    "Publisher Commons" : {                  
                 publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
                 publishdeploy()
-                    },
-                    "Publisher 2 Commons" : {                
+                    //},
+                    //"Publisher 2 Commons" : {                
                 publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
                 publishdeploy()
                     }
@@ -169,11 +169,11 @@ pipeline {
                     "Author CustomerHub" : {                               
                 authordeploy()
                     },
-                    "Publisher 1 CustomerHub" : {                      
+                    "Publisher CustomerHub" : {                      
                 publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
                 publishdeploy()
-                    },
-                    "Publisher 2 CustomerHub" : {                      
+                    //},
+                    //"Publisher 2 CustomerHub" : {                      
                 publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
                 publishdeploy()                           
                     }
@@ -188,11 +188,11 @@ pipeline {
                     "Author PublicWeb" : {                               
                 authordeploy()
                     },
-                    "Publisher 1 PublicWeb" : {                  
+                    "Publisher PublicWeb" : {                  
                 publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
                 publishdeploy()
-                    },
-                    "Publisher 2 PublicWeb" : {                  
+                    //},
+                    //"Publisher 2 PublicWeb" : {                  
                 publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
                 publishdeploy()
                     }
