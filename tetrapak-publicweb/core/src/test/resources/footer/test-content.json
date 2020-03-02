@@ -1,0 +1,82 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"footer": {
+			"jcr:primaryType": "nt:unstructured",
+			"footerSocialLinks": [
+				"{\"socialMedia\":\"Facebook\",\"socialMediaLinkPath\":\"http://www.facebook.com/tetrapak\"}",
+				"{\"socialMedia\":\"Twitter\",\"socialMediaLinkPath\":\"http://www.twitter.com/tetrapak\"}",
+				"{\"socialMedia\":\"Linkedin\",\"socialMediaLinkPath\":\"http://www.linkedin.com/tetrapak\"}"
+			],
+			"jcr:lastModifiedBy": "admin",
+			"footerNavigationLinks": [
+				"{\"linkTextI18n\":\"Legal Information\",\"linkTooltipI18n\":\"Legal Information\",\"linkPath\":\"http://tetrapak.com/about/legal-information\",\"targetBlank\":\"on\"}",
+				"{\"linkTextI18n\":\"Contact Us\",\"linkTooltipI18n\":\"Contact Us\",\"linkPath\":\"http://tetrapak.com/contact\",\"targetBlank\":\"on\"}",
+				"{\"linkTextI18n\":\"Tetra Laval Group\",\"linkTooltipI18n\":\"Tetra Laval Group\",\"linkPath\":\"http://www.tetralaval.com/\",\"targetBlank\":\"on\"}"
+			],
+			"jcr:lastModified": "Tue Mar 26 2019 14:11:27 GMT+0000",
+			"sling:resourceType": "publicweb/components/structure/footer",
+			"ctaLabelI18n": "To top"
+		}
+	},	
+		"404": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Tue Jul 16 2019 16:58:43 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"jcr:createdBy": "admin",
+				"jcr:title": "404",
+				"cq:lastReplicationAction": "Activate",
+				"jcr:versionHistory": "eea09b90-ed38-400a-856e-3c79856fba42",
+				"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+				"cq:lastReplicatedBy": "admin",
+				"jcr:predecessors": [
+					"33ba2e2b-fd83-4c67-a3f9-2f62a442bf4c"
+				],
+				"jcr:created": "Tue Jul 16 2019 16:58:44 GMT+0530",
+				"cq:lastReplicated": "Fri May 31 2019 10:08:08 GMT+0000",
+				"cq:lastModified": "Fri May 17 2019 10:53:41 GMT+0000",
+				"jcr:baseVersion": "33ba2e2b-fd83-4c67-a3f9-2f62a442bf4c",
+				"jcr:isCheckedOut": true,
+				"jcr:uuid": "e2a2ee13-f831-42b5-91ff-23412ffc2a79",
+				"sling:resourceType": "customerhub/components/structure/page",
+				"cq:lastModifiedBy": "sapient-tarun",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"error": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "sapient-tarun",
+							"imagePath": "/content/dam/customerhub/english/common/Error_CuHu.png",
+							"jcr:created": "Wed May 08 2019 10:55:05 GMT+0530",
+							"imageAltText": "Error Cuhu",
+							"errorCode": "Error 404",
+							"jcr:lastModified": "Fri May 17 2019 10:53:41 GMT+0000",
+							"sling:resourceType": "customerhub/components/content/error",
+							"textIsRich": "true",
+							"errorTitle": "Oops... Page Not found",
+							"errorDescription": "<p>Either you do not have the access to this page or you mistyped the URL...</p>\r\n<p>You can always go to <a href=\"/content/tetrapak/customerhub/en/dashboard.html\">dashboard</a>.</p>\r\n"
+						}
+					}
+				}
+			}
+		}
+	}
