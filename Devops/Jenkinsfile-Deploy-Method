@@ -80,7 +80,7 @@ pipeline {
 
     }
 
-
+/*
     def stageartifactdownload() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
         {
@@ -90,6 +90,7 @@ pipeline {
         }
 
     }
+*/
     def devdeployment() {
                 
         if (params.DeployCommons)    {
@@ -143,8 +144,9 @@ pipeline {
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
-                fileName = "1.0.0-${Snapshot_Commons}"
-                stageartifactdownload()                
+                //fileName = "1.0.0-${Snapshot_Commons}"
+                fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
+                devartifactdownload()                
                 parallel (
                     "Author Commons" : {                                    
                 authordeploy()
@@ -163,8 +165,9 @@ pipeline {
         if (params.DeployCustomerHub) {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
-                fileName = "1.0.0-${Snapshot_CustomerHub}"   
-                stageartifactdownload()                   
+                //fileName = "1.0.0-${Snapshot_CustomerHub}" 
+                fileName = "1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT"                  
+                devartifactdownload()                   
                 parallel (
                     "Author CustomerHub" : {                               
                 authordeploy()
@@ -182,8 +185,9 @@ pipeline {
         if (params.DeployPublicWeb) {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"
-                fileName = "1.0.0-${Snapshot_PublicWeb}"
-                stageartifactdownload()
+                //fileName = "1.0.0-${Snapshot_PublicWeb}"
+                fileName = "1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT"
+                devartifactdownload()
                 parallel (
                     "Author PublicWeb" : {                               
                 authordeploy()
