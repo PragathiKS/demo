@@ -1,18 +1,20 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
-import io.wcm.testing.mock.aem.junit5.AemContext;
-import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import io.wcm.testing.mock.aem.junit.AemContext;
 
 /**
  * The Class SearchResultsModelTest.
  */
-@ExtendWith(AemContextExtension.class)
 public class SearchResultsModelTest {
+
+	@Rule
+	public AemContext context = new AemContext();
+
 	/** The Constant RESOURCE_CONTENT. */
 	private static final String RESOURCE_CONTENT = "/searchResults/test-content.json";
 
@@ -40,8 +42,8 @@ public class SearchResultsModelTest {
 	 * @param context the new up
 	 * @throws Exception the exception
 	 */
-	@BeforeEach
-	public void setUp(AemContext context) throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
 		Class<SearchResultsModel> modelClass = SearchResultsModel.class;
 		// load the resources for each object
