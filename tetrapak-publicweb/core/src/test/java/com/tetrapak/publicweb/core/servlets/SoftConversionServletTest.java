@@ -52,12 +52,12 @@ public class SoftConversionServletTest {
 	}
 
 	/**
-	 * Do get should return header as expected.
+	 * Do get
 	 *
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void doGet_shouldReturnHeaderAsExpected() throws IOException {
+	public void doGet() throws IOException {
 		conversionFormServlet.doGet(req, res);
 	}
 }
