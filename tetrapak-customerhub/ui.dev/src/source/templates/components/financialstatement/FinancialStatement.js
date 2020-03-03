@@ -267,7 +267,7 @@ function _renderFilters() {
         this.root.trigger(EVT_FINANCIAL_ERROR, [
           $.trim(getI18n(statementOfAccount)).toLowerCase(),
           SOA_FORM_LOAD_MSG,
-          $.trim(data.errorText).toLowerCase()
+          $.trim(getI18n(data.errorText)).toLowerCase()
         ]);
         this.root.find('.js-financial-statement__filter-section').addClass('has-error').removeClass('d-none');
       }
