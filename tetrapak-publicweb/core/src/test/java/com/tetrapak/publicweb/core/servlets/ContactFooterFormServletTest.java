@@ -13,11 +13,16 @@ import org.mockito.Mock;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ContactFooterFormSevletTest.
  */
-public class ContactFooterFormSevletTest {
+public class ContactFooterFormServletTest {
+
+	/** The Constant TEST_RESOURCE_CONTENT. */
+	private static final String TEST_RESOURCE_CONTENT = "/usergenerated/test-content.json";
+
+	/** The Constant TEST_CONTENT_ROOT. */
+	private static final String TEST_CONTENT_ROOT = "/content/usergenerated";
 
 	/** The context. */
 	@Rule
@@ -33,14 +38,16 @@ public class ContactFooterFormSevletTest {
 
 	/** The under test. */
 	@InjectMocks
-	private ContactFooterFormSevlet underTest;
+	private ContactFooterFormSevlet contactFooterFormSevlet;
 
 	/**
 	 * Setup.
 	 */
 	@Before
 	public void setup() {
-		underTest = new ContactFooterFormSevlet();
+
+		context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+		contactFooterFormSevlet = new ContactFooterFormSevlet();
 		req = context.request();
 		res = context.response();
 	}
@@ -52,6 +59,6 @@ public class ContactFooterFormSevletTest {
 	 */
 	@Test
 	public void doGet_shouldReturnHeaderAsExpected() throws IOException {
-		underTest.doGet(req, res);
+		contactFooterFormSevlet.doGet(req, res);
 	}
 }

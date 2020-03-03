@@ -18,6 +18,12 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  */
 public class SoftConversionServletTest {
 
+	/** The Constant TEST_RESOURCE_CONTENT. */
+	private static final String TEST_RESOURCE_CONTENT = "/usergenerated/test-content.json";
+
+	/** The Constant TEST_CONTENT_ROOT. */
+	private static final String TEST_CONTENT_ROOT = "/content/usergenerated";
+
 	/** The context. */
 	@Rule
 	public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
@@ -39,6 +45,7 @@ public class SoftConversionServletTest {
 	 */
 	@Before
 	public void setup() {
+		context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		conversionFormServlet = new SoftConversionFormServlet();
 		req = context.request();
 		res = context.response();
