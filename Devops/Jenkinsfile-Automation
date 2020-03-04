@@ -1,0 +1,40 @@
+pipeline {
+    agent {
+        node {
+            label 'cfe-testrunner'            
+        }
+    }
+
+    parameters {
+        choice(name: 'environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the Environment')
+        choice(name: 'browser', choices: ['android', 'chrome', 'iosmobile'], description: 'Select the Browser')      
+    }
+
+    environment {
+        JAVA_HOME = 'C:\\cfetestrunner\\Java\\jdk-13.0.2'
+    }
+    stages {
+        stage('TEST Runner') {
+            steps {
+                script {
+                    //echo %environment%
+                    bat '''
+                    echo %browser%
+                    echo %environment%
+                    "C:\\cfetestrunner\\apache-maven-3.6.3\\bin\\mvn" -B -f pom.xml clean test -DCucumber.options="--tags @Sanity" -DBROWSER=%browser% -DENV=%environment%               
+                   '''
+                }
+            }
+        }
+        stage('Publish Report') {
+            steps {
+                script { 
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'test-output\\HtmlReport', reportFiles: 'ExtentHtml.html', reportName: 'ExtentReports', reportTitles: ''])
+                    cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', jsonReportDirectory: 'target\\cucumber-reports', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1, trendsLimit: 10
+                    junit 'test-output\\junitreports\\*.xml'
+                }
+            }
+
+        }
+    }
+}
