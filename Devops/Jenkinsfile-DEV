@@ -52,7 +52,7 @@ pipeline {
                         echo "Build Commons"
                         sh "echo $HOME"
                         dir('tetrapak-commons') {
-                            sh "npm cache clean"                         
+                            sh "npm cache clean --force"                         
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
@@ -68,6 +68,7 @@ pipeline {
                     else
 					{
 					    dir('tetrapak-commons') {
+							sh "npm cache clean --force"
 					        sh "npm install --prefix ui.dev/src"
 						}
 					}
