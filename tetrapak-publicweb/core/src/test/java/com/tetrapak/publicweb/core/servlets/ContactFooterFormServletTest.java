@@ -1,6 +1,10 @@
 package com.tetrapak.publicweb.core.servlets;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -60,5 +64,6 @@ public class ContactFooterFormServletTest {
 	@Test
 	public void doGet() throws IOException {
 		contactFooterFormSevlet.doGet(req, res);
+		assertEquals("status should be 302 ", HttpServletResponse.SC_NO_CONTENT, res.getStatus());
 	}
 }

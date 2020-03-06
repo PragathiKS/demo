@@ -1,6 +1,10 @@
 package com.tetrapak.publicweb.core.servlets;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -59,5 +63,6 @@ public class SoftConversionServletTest {
 	@Test
 	public void doGet() throws IOException {
 		conversionFormServlet.doGet(req, res);
+		assertEquals("status should be 302 ", HttpServletResponse.SC_NO_CONTENT, res.getStatus());
 	}
 }
