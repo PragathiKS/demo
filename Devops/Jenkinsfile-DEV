@@ -52,7 +52,6 @@ pipeline {
                         echo "Build Commons"
                         sh "echo $HOME"
                         dir('tetrapak-commons') {
-                            sh "npm cache clean --force"                         
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
@@ -68,7 +67,6 @@ pipeline {
                     else
 					{
 					    dir('tetrapak-commons') {
-							sh "npm cache clean --force"
 					        sh "npm install --prefix ui.dev/src"
 						}
 					}
@@ -77,6 +75,8 @@ pipeline {
                     if (params.Build_MyTetraPak) {
                         echo "Build CustomerHub"
                         dir('tetrapak-customerhub') {
+                            sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json && npm install"  
+                            sh "npm cache clean --force"                              
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
@@ -94,6 +94,8 @@ pipeline {
                     if (params.Build_Publicweb) {
                         echo "Build PublicWeb"
                         dir('tetrapak-publicweb') {
+                            sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json && npm install"                            
+                            sh "npm cache clean --force"                            
                             sh "npm install --prefix ui.dev/src"
                             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                                     {
