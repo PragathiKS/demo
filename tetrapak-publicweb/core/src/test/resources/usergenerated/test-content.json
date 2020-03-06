@@ -1,0 +1,17 @@
+{
+	"jcr:primaryType": "sling:OrderedFolder",
+	"jcr:mixinTypes": [
+		"rep:AccessControllable"
+	],
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Feb 12 2020 13:21:27 GMT+0530",
+	"usergenerated": {
+		"jcr:primaryType": "sling:Folder",
+		"jcr:mixinTypes": [
+			"rep:AccessControllable"
+		],
+		"jcr:createdBy": "admin",
+		"hidden": true,
+		"jcr:created": "Wed Feb 12 2020 13:22:48 GMT+0530"
+	}
+}

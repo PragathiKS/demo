@@ -1,0 +1,42 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"carousel": {
+			"jcr:primaryType": "nt:unstructured",
+			"titleI18n": "Title",
+			"jcr:createdBy": "admin",
+			"jcr:lastModifiedBy": "admin",
+			"titleAlignment": "text-left",
+			"pwButtonTheme": "secondary",
+			"jcr:created": "Fri Mar 06 2020 10:35:28 GMT+0000",
+			"pwTheme": "grayscale-white",
+			"jcr:lastModified": "Fri Mar 06 2020 10:36:39 GMT+0000",
+			"sling:resourceType": "publicweb/components/content/carousel",
+			"pwPadding": "regular",
+			"tabDetails":{
+			"jcr:primaryType": "nt:unstructured",
+			"1":{
+				"jcr:primaryType": "nt:unstructured",
+				"practiceImagePath": "/content/dam/publicweb/ContentImage5.png",
+				"vanityDescription": "Description",
+				"practiceTitle": "Practice Line Title",
+				"contentType": "manual",
+				"practicePath": "/content/tetrapak/public-web/global/en/solutions",
+				"practiceImageAltI18n": "Alt Text",
+				"ctaTexti18nKey": "Link Text",
+				"linkTarget": "_blank"
+				}
+			}
+		}
+	}
+	}
