@@ -3,6 +3,7 @@ package com.tetrapak.commons.core.services.impl;
 import com.day.cq.replication.Agent;
 import com.day.cq.replication.AgentConfig;
 import com.day.cq.replication.AgentManager;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +60,7 @@ public class DispatcherFlushServiceImplTest {
         Mockito.when(agentManager.getAgents()).thenReturn(agentMaps);
         dispatcherFlushService.flush("/somepath");
         Mockito.verify(agentManager, Mockito.atLeastOnce()).getAgents();
+        Assert.assertTrue(agent.isEnabled());
     }
 
 }
