@@ -12,13 +12,18 @@ import org.osgi.framework.ServiceReference;
  */
 public class GlobalUtil {
 
+    private GlobalUtil() {
+        /*
+            adding a private constructor to hide the implicit one
+         */
+    }
+
     /**
      * Method to get service
      *
      * @param clazz class type
      * @return T
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getService(final Class<T> clazz) {
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());

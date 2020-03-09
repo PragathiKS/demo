@@ -34,21 +34,19 @@ public class ContactFooterFormSevlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(ContactFooterFormSevlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContactFooterFormSevlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
-
-    private ResourceResolver resourceResolver;
 
     private static final String UGC_CONTENT_PATH = "/content/usergenerated";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        log.info("Inside doGet() method");
+        LOGGER.info("Inside doGet() method");
         try {
             // get resource resolver, session objects.
-            resourceResolver = request.getResourceResolver();
+            ResourceResolver resourceResolver = request.getResourceResolver();
             Session session = resourceResolver.adaptTo(Session.class);
 
             String firstName = request.getParameter("first-name");
@@ -60,7 +58,7 @@ public class ContactFooterFormSevlet extends SlingSafeMethodsServlet {
             String contactIn = request.getParameter("contact-in");
 
             if (session != null) {
-                log.info("Session not null");
+                LOGGER.info("Session not null");
                 Node rootNode = session.getNode(UGC_CONTENT_PATH);
                 Node pwNode = JcrUtils.getOrAddNode(rootNode, "terapak-publicweb");
                 Node contactDetailsNode = JcrUtils.getOrAddNode(pwNode, "contact-details");
@@ -80,11 +78,9 @@ public class ContactFooterFormSevlet extends SlingSafeMethodsServlet {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
         } catch (PathNotFoundException e1) {
-            log.error("Error finding the path. {}", e1);
+            LOGGER.error("Error finding the path.", e1);
         } catch (RepositoryException e2) {
-            log.error("Error in repository operation. {}", e2);
+            LOGGER.error("Error in repository operation.", e2);
         }
-
     }
-
 }

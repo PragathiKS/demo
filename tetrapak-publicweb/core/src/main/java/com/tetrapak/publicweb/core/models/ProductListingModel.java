@@ -6,6 +6,7 @@ import com.tetrapak.publicweb.core.beans.ProductListBean;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -20,7 +21,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductListingModel {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductListingModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductListingModel.class);
 
     @Self
     private Resource resource;
@@ -83,7 +84,7 @@ public class ProductListingModel {
         JSONObject jObj;
         try {
             if (tabLinks == null) {
-                log.error("Tab Links value is NULL");
+                LOGGER.error("Tab Links value is NULL");
             } else {
                 for (int i = 0; i < tabLinks.length; i++) {
                     ProductListBean bean = new ProductListBean();
@@ -95,7 +96,7 @@ public class ProductListingModel {
                     final String CATEGORY_TAG = "categoryTag";
                     if (jObj.has(CATEGORY_TAG)) {
                         Tag tag = tagManager.resolve(jObj.getString(CATEGORY_TAG));
-                        log.info("Tag : {}", tag.getTagID());
+                        LOGGER.info("Tag : {}", tag.getTagID());
                         bean.setCategoryTag(tag.getTagID());
 
                         String tagPath = jObj.getString(CATEGORY_TAG);
@@ -108,8 +109,8 @@ public class ProductListingModel {
                     tabs.add(bean);
                 }
             }
-        } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tabs;
     }

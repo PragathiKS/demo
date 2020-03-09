@@ -22,10 +22,10 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselWithFiltersModel {
 
-    private static final Logger log = LoggerFactory.getLogger(CarouselWithFiltersModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarouselWithFiltersModel.class);
 
     @Self
-    Resource resource;
+    private Resource resource;
 
     @Inject
     private String titleI18n;
@@ -58,7 +58,7 @@ public class CarouselWithFiltersModel {
 
     private List<String> prodTypeList = new ArrayList<>();
     private Map<String, String> categoryTagsMap = new HashMap<>();
-    Map<String, Map<String, String>> tagsMap = new HashMap<>();
+    private Map<String, Map<String, String>> tagsMap = new HashMap<>();
 
     private ResourceResolver resourceResolver;
     private TagManager tagManager;
@@ -69,7 +69,7 @@ public class CarouselWithFiltersModel {
 
     @PostConstruct
     protected void init() {
-        log.info("Executing init method.");
+        LOGGER.info("Executing init method.");
         resourceResolver = resource.getResourceResolver();
         tagManager = resourceResolver.adaptTo(TagManager.class);
         if (tagManager != null && !getTagList(productType).isEmpty()) {
@@ -85,12 +85,12 @@ public class CarouselWithFiltersModel {
      * @param tagID String[]
      */
     private void getCategoryTagsMap(String[] tagID) {
-        log.info("Executing getCategoryTagsMap method.");
+        LOGGER.info("Executing getCategoryTagsMap method.");
         if (tagID != null) {
             for (String tag : tagID) {
                 Tag categoryTag = tagManager.resolve(tag);
                 String tagTitle = categoryTag.getTitle();
-                log.info("Category tags map : {} - {}", tag, tagTitle);
+                LOGGER.info("Category tags map : {} - {}", tag, tagTitle);
                 categoryTagsMap.put(tag, tagTitle);
                 Map<String, String> subCategoryTagsMap = getSubCategories(categoryTag);
                 tagsMap.put(tag, subCategoryTagsMap);
@@ -106,20 +106,21 @@ public class CarouselWithFiltersModel {
      * @return
      */
     private Map<String, String> getSubCategories(Tag categoryTag) {
-        log.info("Executing getSubCategories method.");
+        LOGGER.info("Executing getSubCategories method.");
         Map<String, String> subCategoryTagsMap = new HashMap<>();
         Iterator<Tag> subCategoryTags = categoryTag.listChildren();
         if (subCategoryTags != null) {
             while (subCategoryTags.hasNext()) {
                 Tag subCategTag = subCategoryTags.next();
-                log.info("Sub Category tag : {}", subCategTag.getTagID());
-                Boolean practiceLineExists = bestPracticeLineService.checkIfPracticeLineExists(resourceResolver, prodType, subCategTag.getTagID(), rootPath);
+                LOGGER.info("Sub Category tag : {}", subCategTag.getTagID());
+                Boolean practiceLineExists = bestPracticeLineService.checkIfPracticeLineExists(
+                        resourceResolver, prodType, subCategTag.getTagID(), rootPath);
                 if (practiceLineExists) {
-                    log.info("Practice line exists for sub category : {}. Hence adding it to the list of dropdowns.", subCategTag);
+                    LOGGER.info("Practice line exists for sub category : {}. Hence adding it to the list of dropdowns.", subCategTag);
                     String tagTitle = subCategTag.getTitle();
                     subCategoryTagsMap.put(tagTitle, subCategTag.getTagID());
                 } else {
-                    log.warn("No practice lines exist for sub category : {}", subCategTag.getTagID());
+                    LOGGER.warn("No practice lines exist for sub category : {}", subCategTag.getTagID());
                 }
 
             }
@@ -128,11 +129,11 @@ public class CarouselWithFiltersModel {
     }
 
     private List<String> getTagList(String[] tagID) {
-        log.info("Executing getTagList method.");
+        LOGGER.info("Executing getTagList method.");
         if (tagID != null) {
             for (String tag : tagID) {
                 String tagPath = tagManager.resolve(tag).getTagID();
-                log.info("Tag Path : {}", tagPath);
+                LOGGER.info("Tag Path : {}", tagPath);
                 prodTypeList.add(tagPath);
             }
         }

@@ -48,13 +48,13 @@ public class SimpleScheduledTask implements Runnable {
         String myParameter() default "";
     }
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     private String myParameter;
 
     @Override
     public void run() {
-        logger.debug("SimpleScheduledTask is now running, myParameter='{}'", myParameter);
+        LOGGER.debug("SimpleScheduledTask is now running, myParameter='{}'", myParameter);
     }
 
     @Activate

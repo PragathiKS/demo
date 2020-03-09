@@ -57,17 +57,19 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     @ObjectClassDefinition(name = "Tetra Pak - Public Web Search Servlet", description = "Tetra Pak - Public Web Search servlet")
     public static @interface Config {
 
-        @AttributeDefinition(name = "Search Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
+        @AttributeDefinition(name = "Search Root Path Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
         String search_rootpath() default "searchRootPath";
 
-        @AttributeDefinition(name = "Full Text Search Term Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the full text search term.")
+        @AttributeDefinition(name = "Full Text Search Term Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells about the full text search term.")
         String fulltext_searchterm() default "fulltextSearchTerm";
 
     }
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(SiteSearchServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SiteSearchServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -85,7 +87,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        log.info("Executing doGet method.");
+        LOGGER.info("Executing doGet method.");
         try {
 
             // get resource resolver, session and queryBuilder objects.
@@ -97,7 +99,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             String searchRootPath = request.getParameter(SEARCH_ROOT_PATH);
             String fulltextSearchTerm = URLDecoder.decode(request.getParameter(FULLTEXT_SEARCH_TERM), "UTF-8")
                     .replace("%20", " ");
-            log.info("Keyword to search : {}", fulltextSearchTerm);
+            LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
             Gson gson = new Gson();
             String responseJSON = "not-set";
@@ -106,7 +108,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             List<SearchResultBean> resources = getSearchResultItems(fulltextSearchTerm, searchRootPath);
             if (resources != null) {
                 responseJSON = gson.toJson(resources);
-                log.info("Here is the JSON object : {}", responseJSON);
+                LOGGER.info("Here is the JSON object : {}", responseJSON);
             }
 
             // set the response type
@@ -119,9 +121,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             writer.close();
 
         } catch (UnsupportedEncodingException e) {
-            log.error("Error while decoding the query term.", e);
+            LOGGER.error("Error while decoding the query term.", e);
         } catch (IOException e) {
-            log.error("Error while writing the response object.", e);
+            LOGGER.error("Error while writing the response object.", e);
         }
 
     }
@@ -134,7 +136,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @return List<SearchResultBean>
      */
     public List<SearchResultBean> getSearchResultItems(String fulltextSearchTerm, String searchRootPath) {
-        log.info("Executing getSearchResultItems method.");
+        LOGGER.info("Executing getSearchResultItems method.");
         Map<String, String> map = new HashMap<>();
 
         map.put("path", searchRootPath);
@@ -157,24 +159,25 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         map.put("p.limit", "-1");
 
-        log.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
+        LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
 
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
 
         // paging metadata
-        log.info("Total number of results : {}", result.getTotalMatches());
+        LOGGER.info("Total number of results : {}", result.getTotalMatches());
         List<SearchResultBean> resources = new LinkedList<>();
-        if (result.getHits().isEmpty())
+        if (result.getHits().isEmpty()) {
             return resources;
+        }
 
         // add all the items to the result list
         for (Hit hit : query.getResult().getHits()) {
             try {
-                log.debug("Hit : {}", hit.getPath());
+                LOGGER.debug("Hit : {}", hit.getPath());
                 resources.add(setSearchResultItemData(hit));
             } catch (RepositoryException e) {
-                log.error("[performSearch] There was an issue getting the resource {}", hit);
+                LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
         }
 
@@ -211,7 +214,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             if (properties.containsKey("cq:tags") && tagManager != null) {
                 String[] tags = properties.get("cq:tags", String[].class);
                 for (String tagVal : tags) {
-                    log.info("Tag ID : {}", tagVal);
+                    LOGGER.info("Tag ID : {}", tagVal);
                     Tag tag = tagManager.resolve(tagVal);
                     tagsMap.put(tag.getTitle(), tagVal);
                 }
@@ -220,12 +223,12 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
             if (properties.containsKey("jcr:description")) {
                 String description = properties.get("jcr:description", String.class);
-                log.info("Decription : {}", description);
+                LOGGER.info("Decription : {}", description);
                 searchResultItem.setDescription(description);
             }
 
             String template = properties.get("cq:template", String.class);
-            log.info("Template : {}", template);
+            LOGGER.info("Template : {}", template);
             String productType = template.replace(TEMPLATE_BASE_PATH, "");
             searchResultItem.setProductType(productType);
 
@@ -236,13 +239,17 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
     @Activate
     protected void activate(final Config config) {
-        this.SEARCH_ROOT_PATH = (String.valueOf(config.search_rootpath()) != null)
-                ? String.valueOf(config.search_rootpath())
-                : null;
-        log.info("configure: SEARCH_ROOT_PATH='{}'", this.SEARCH_ROOT_PATH);
-        this.FULLTEXT_SEARCH_TERM = (String.valueOf(config.fulltext_searchterm()) != null)
-                ? String.valueOf(config.fulltext_searchterm())
-                : null;
-        log.info("configure: FULLTEXT_SEARCH_TERM='{}'", this.FULLTEXT_SEARCH_TERM);
+        if (String.valueOf(config.search_rootpath()) != null) {
+            this.SEARCH_ROOT_PATH = String.valueOf(config.search_rootpath());
+        } else {
+            this.SEARCH_ROOT_PATH = null;
+        }
+        LOGGER.info("configure: SEARCH_ROOT_PATH='{}'", this.SEARCH_ROOT_PATH);
+        if (String.valueOf(config.fulltext_searchterm()) != null) {
+            this.FULLTEXT_SEARCH_TERM = String.valueOf(config.fulltext_searchterm());
+        } else {
+            this.FULLTEXT_SEARCH_TERM = null;
+        }
+        LOGGER.info("configure: FULLTEXT_SEARCH_TERM='{}'", this.FULLTEXT_SEARCH_TERM);
     }
 }
