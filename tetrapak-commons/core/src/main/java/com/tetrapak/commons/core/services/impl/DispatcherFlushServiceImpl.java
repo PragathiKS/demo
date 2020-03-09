@@ -49,7 +49,8 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
                 if (ArrayUtils.isNotEmpty(hostArray)) {
                     flush(dispatcherHandle, httpClient);
                 } else {
-                    LOGGER.error("DispatcherFlushService: No Active Dispatcher Flush Agents are configured. DispatcherHandle is {}", dispatcherHandle);
+                    LOGGER.error("DispatcherFlushService: No Active Dispatcher Flush Agents are configured. " +
+                            "DispatcherHandle is {}", dispatcherHandle);
                 }
             }
         } else {
@@ -71,11 +72,12 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
             httpPost.setHeader("CQ-Handle", dispatcherHandle);
             httpPost.setHeader("Host", "dispflush");
 
-            LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}", dispatcherHostURL, dispatcherHandle);
+            LOGGER.debug("DispatcherFlushService: : dispatcherHostURL is: {} and dispatcherHandle is: {}",
+                    dispatcherHostURL, dispatcherHandle);
             HttpResponse httpResponse = httpClient.execute(httpPost);
 
             String responseString = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
-            LOGGER.debug("Response for the flush request : \n {}",responseString);
+            LOGGER.debug("Response for the flush request : \n {}", responseString);
 
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {

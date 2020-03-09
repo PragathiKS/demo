@@ -22,6 +22,7 @@ import javax.jcr.observation.ObservationManager;
 
 /**
  * Event Listener | adds an event listener as per the configured path and clear cache for the configured path
+ *
  * @author Nitin Kumar
  */
 @Component(immediate = true, service = EventListener.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
@@ -29,7 +30,7 @@ import javax.jcr.observation.ObservationManager;
 public class DispatcherFlushEventListener implements EventListener {
 
     private DispatcherFlushConfig dispatcherFlushConfig;
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherFlushEventListener.class);
 
     @Reference
     private DispatcherFlushService dispatcherFlush;
@@ -46,7 +47,8 @@ public class DispatcherFlushEventListener implements EventListener {
         try {
             session = repository.loginService("readService", null);
             observationManager = session.getWorkspace().getObservationManager();
-            observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED | Event.PROPERTY_REMOVED, dispatcherFlushConfig.absPath(), true, null,
+            observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED |
+                            Event.PROPERTY_REMOVED, dispatcherFlushConfig.absPath(), true, null,
                     null, true);
 
             LOGGER.info("*************added JCR event listener");

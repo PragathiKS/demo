@@ -4,11 +4,11 @@ package com.tetrapak.commons.core.exceptions;
  * This is IntegrationLogicException class.
  */
 public class IntegrationLogicException extends Exception {
-    
-	/**
+
+    /**
      * The Constant serialVersionUID.
      */
-	private static final long serialVersionUID = 4113485699834298094L;
+    private static final long serialVersionUID = 4113485699834298094L;
 
     /**
      * @param message
