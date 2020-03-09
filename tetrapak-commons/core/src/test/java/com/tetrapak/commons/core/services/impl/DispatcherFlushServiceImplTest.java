@@ -47,6 +47,7 @@ public class DispatcherFlushServiceImplTest {
         Map<String, Agent> agentMaps = new HashMap<>();
         Mockito.when(agentManager.getAgents()).thenReturn(agentMaps);
         dispatcherFlushService.flush("/somepath");
+        Assert.assertEquals("empty map", agentMaps, agentManager.getAgents());
     }
 
     @Test
