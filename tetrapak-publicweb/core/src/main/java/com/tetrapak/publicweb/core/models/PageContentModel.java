@@ -17,6 +17,10 @@ import java.util.Date;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageContentModel {
 
+    public PageContentModel(Resource resource) {
+        this.resource = resource;
+    }
+
     private String pagePath;
 
     @Inject
@@ -93,17 +97,14 @@ public class PageContentModel {
 
     @PostConstruct
     public void init() {
-        if (resource == null)
+        if (resource == null) {
             return;
-
+        }
         pagePath = resource.getParent().getPath();
 
         jcrMap = resource.getValueMap();
     }
 
-    public PageContentModel(Resource resource) {
-        this.resource = resource;
-    }
 
     public String getPath() {
         return pagePath;

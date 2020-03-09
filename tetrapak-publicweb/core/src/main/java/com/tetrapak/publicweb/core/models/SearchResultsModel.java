@@ -7,6 +7,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -22,12 +23,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SearchResultsModel {
 
     @Self
-    Resource resource;
+    private Resource resource;
 
     @Inject
     private String searchBoxPlaceholder;
@@ -58,12 +58,12 @@ public class SearchResultsModel {
 
     private String templateBasePath = "/conf/publicweb/settings/wcm/templates/";
 
-    protected final Logger log = LoggerFactory.getLogger(SearchResultsModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsModel.class);
     private LinkedHashMap<String, String> tagsMap = new LinkedHashMap<>();
 
     @PostConstruct
     protected void init() {
-        log.info("Executing init method.");
+        LOGGER.info("Executing init method.");
         ResourceResolver resourceResolver = resource.getResourceResolver();
         PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
@@ -73,7 +73,7 @@ public class SearchResultsModel {
             Locale locale = currentPage.getLanguage(true);
             if (filterTagPaths != null) {
                 for (String tagPath : filterTagPaths) {
-                    log.info("Tag path : {}", tagPath);
+                    LOGGER.info("Tag path : {}", tagPath);
                     Tag tag = tagManager.resolve(tagPath);
                     tagsMap.put(tag.getTitle(locale), tagPath);
                 }
@@ -94,7 +94,7 @@ public class SearchResultsModel {
         JSONObject jObj;
         try {
             if (tabs == null) {
-                log.error("Tabs value is NULL");
+                LOGGER.error("Tabs value is NULL");
             } else {
                 for (int i = 0; i < tabs.length; i++) {
                     SearchResultBean bean = new SearchResultBean();
@@ -106,7 +106,7 @@ public class SearchResultsModel {
 
                     if (jObj.has("pageType")) {
                         String pageType = jObj.getString("pageType");
-                        log.info("Page Template Path : {}", pageType);
+                        LOGGER.info("Page Template Path : {}", pageType);
                         pageType = pageType.replace(templateBasePath, "");
                         bean.setProductType(pageType);
 
@@ -114,8 +114,8 @@ public class SearchResultsModel {
                     tabList.add(bean);
                 }
             }
-        } catch (Exception e) {
-            log.error("Exception while Multi-field data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multi-field data {}", e.getMessage(), e);
         }
         return tabList;
     }

@@ -22,7 +22,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-    private static final Logger log = LoggerFactory.getLogger(HeaderModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
 
     @Self
     private Resource resource;
@@ -47,7 +47,7 @@ public class HeaderModel {
         searchPlaceholderText = inheritanceValueMap.getInherited("searchPlaceholderText", String.class);
         searchPanelTiles = inheritanceValueMap.getInherited("searchPanelTiles", String[].class);
         String[] megaMenuLinks = inheritanceValueMap.getInherited("megamenuLinks", String[].class);
-        LinkUtils.setMultifieldNavLinkItems(megaMenuLinks, megaMenuLinksList, log);
+        LinkUtils.setMultifieldNavLinkItems(megaMenuLinks, megaMenuLinksList, LOGGER);
     }
 
     /**
@@ -58,12 +58,11 @@ public class HeaderModel {
      * @return List<String>
      */
     public static List<GeneralInfoBean> getTiles(String[] searchPanelTiles) {
-        @SuppressWarnings("deprecation")
         List<GeneralInfoBean> tileList = new ArrayList<>();
         JSONObject jObj;
         try {
             if (searchPanelTiles == null) {
-                log.error("searchPanelTiles value is NULL");
+                LOGGER.error("searchPanelTiles value is NULL");
             } else {
                 for (int i = 0; i < searchPanelTiles.length; i++) {
                     jObj = new JSONObject(searchPanelTiles[i]);
@@ -71,8 +70,8 @@ public class HeaderModel {
                     tileList.add(bean);
                 }
             }
-        } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tileList;
     }

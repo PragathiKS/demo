@@ -14,7 +14,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component(immediate = true, service = TeaserSearchService.class)
 public class TeaserSearchServiceImpl implements TeaserSearchService {
@@ -23,7 +27,7 @@ public class TeaserSearchServiceImpl implements TeaserSearchService {
 
     @Override
     public List<Page> getListOfTeasers(ResourceResolver resourceResolver, String[] tags, String rootPath, int limit) {
-        if(null == tags || tags.length<1){
+        if (null == tags || tags.length < 1) {
             return Collections.emptyList();
         }
         SearchResult searchResult = executeQuery(resourceResolver, tags, rootPath, limit);
@@ -57,7 +61,8 @@ public class TeaserSearchServiceImpl implements TeaserSearchService {
             map.put("1_group.1_property.property", "jcr:content/cq:tags");
             int i = 1;
             for (String tag : tags) {
-                map.put("1_group." + i++ + "_property.value", tag);
+                map.put("1_group." + i + "_property.value", tag);
+                i++;
             }
             map.put("1_group.p.or", "true");
 

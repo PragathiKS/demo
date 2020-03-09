@@ -40,45 +40,45 @@ import java.util.Map;
 @Designate(ocd = SubCategoryTagServlet.Config.class)
 public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
 
-    @ObjectClassDefinition(name = "Tetra Pak - Public Web Sub Category Tag Servlet", description = "Tetra Pak - Public Web Sub Category Tag servlet")
+    @ObjectClassDefinition(name = "Tetra Pak - Public Web Sub Category Tag Servlet",
+            description = "Tetra Pak - Public Web Sub Category Tag servlet")
     public static @interface Config {
 
-        @AttributeDefinition(name = "Category Tag Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the category tag.")
+        @AttributeDefinition(name = "Category Tag Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells us about the category tag.")
         String category_tag() default "categoryTag";
 
     }
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(SubCategoryTagServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubCategoryTagServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
-
-    private ResourceResolver resourceResolver;
 
     private String categoryTag;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        log.info("Executing doGet method.");
+        LOGGER.info("Executing doGet method.");
         try {
             // get resource resolver, tagManager objects.
-            resourceResolver = request.getResourceResolver();
+            ResourceResolver resourceResolver = request.getResourceResolver();
             TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 
             Map<String, String> subCategoryTagsMap = new HashMap<>();
 
             if (tagManager != null) {
                 String categoryTagId = request.getParameter(categoryTag);
-                log.info("** Category Tag : {}", categoryTagId);
+                LOGGER.info("** Category Tag : {}", categoryTagId);
                 Tag categoryTag2 = tagManager.resolve(categoryTagId);
 
                 Iterator<Tag> subCategoryTags = categoryTag2.listChildren();
                 if (subCategoryTags != null) {
                     while (subCategoryTags.hasNext()) {
                         Tag subCategTag = subCategoryTags.next();
-                        log.info("Sub Category tag : {}", subCategTag);
+                        LOGGER.info("Sub Category tag : {}", subCategTag);
                         String tagTitle = subCategTag.getTitle();
                         subCategoryTagsMap.put(tagTitle, subCategTag.getTagID());
                     }
@@ -97,15 +97,18 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
             writer.close();
 
         } catch (IOException e) {
-            log.error("Error occurred while writing the response object. {}", e);
+            LOGGER.error("Error occurred while writing the response object. {}", e);
         }
 
     }
 
     @Activate
     protected void activate(final Config config) {
-        this.categoryTag = (String.valueOf(config.category_tag()) != null) ? String.valueOf(config.category_tag())
-                : null;
-        log.info("configure: CATEGORY_TAG='{}'", this.categoryTag);
+        if (String.valueOf(config.category_tag()) != null) {
+            this.categoryTag = String.valueOf(config.category_tag());
+        } else {
+            this.categoryTag = null;
+        }
+        LOGGER.info("configure: CATEGORY_TAG='{}'", this.categoryTag);
     }
 }

@@ -36,6 +36,7 @@ public class LandingPageModel extends BasePageModel {
         }
     }
 
+    @Override
     public String getTitle() {
         return title;
     }

@@ -2,8 +2,6 @@ package com.tetrapak.publicweb.core.models;
 
 import com.adobe.acs.commons.genericlists.GenericList;
 import com.adobe.acs.commons.genericlists.GenericList.Item;
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import org.apache.sling.api.resource.Resource;
@@ -21,7 +19,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactFooterFormModel {
 
-    private static final Logger log = LoggerFactory.getLogger(ContactFooterFormModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContactFooterFormModel.class);
 
     @Self
     private Resource resource;
@@ -74,12 +72,12 @@ public class ContactFooterFormModel {
 
     @PostConstruct
     protected void init() {
-        log.info("Inside init() method.");
+        LOGGER.info("Inside init() method.");
         ResourceResolver resourceResolver = resource.getResourceResolver();
         PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
         Page currentPage = pageManager.getContainingPage(resource);
         if (currentPage != null) {
-            log.info("Current Page path : {}", currentPage.getPath());
+            LOGGER.info("Current Page path : {}", currentPage.getPath());
             ValueMap currentPageProps = currentPage.getContentResource().getValueMap();
             hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
         }

@@ -26,21 +26,21 @@ public class BreadcrumbModel {
 
     private String homePagePath;
 
-    private static final Logger log = LoggerFactory.getLogger(BreadcrumbModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     private static final String SUBPAGE_TITLE_I18N = "subpageTitleI18n";
     private static final String SUBPAGE_LINK_PATH = "subpageLinkPath";
 
-    private List<Map<String, String>> breadcrumbSubpages = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> breadcrumbSubpages = new ArrayList<>();
     private String breadcrumbHomeLabelI18n = "Home";
 
-    PageManager pageManager;
+    private PageManager pageManager;
 
     @PostConstruct
     protected void init() {
         pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         Page currentPage = pageManager.getContainingPage(resource);
-        log.info("Current Page path : {}", currentPage.getPath());
+        LOGGER.info("Current Page path : {}", currentPage.getPath());
         if (currentPage != null) {
             buildBreadcrumbItems(currentPage);
         }
@@ -52,18 +52,21 @@ public class BreadcrumbModel {
         Page homePage = pageManager.getPage(homePagePath);
 
         if (homePage != null) {
-            log.info("Home Page path : {}", homePage.getPath());
+            LOGGER.info("Home Page path : {}", homePage.getPath());
             int pageLevel = homePage.getDepth();
             int currentPageLevel = currentPage.getDepth();
             while (pageLevel < currentPageLevel) {
-                Page page = currentPage.getAbsoluteParent((int) pageLevel);
+                Page page = currentPage.getAbsoluteParent(pageLevel);
                 if (page == null) {
                     break;
                 }
                 pageLevel++;
                 if (!page.isHideInNav()) {
-                    Map<String, String> breadcrumbItem = new HashMap<String, String>();
-                    String pageNavigationTitle = StringUtils.isNotBlank(page.getNavigationTitle()) ? page.getNavigationTitle() : page.getTitle();
+                    Map<String, String> breadcrumbItem = new HashMap<>();
+                    String pageNavigationTitle;
+                    if (StringUtils.isNotBlank(page.getNavigationTitle()))
+                        pageNavigationTitle = page.getNavigationTitle();
+                    else pageNavigationTitle = page.getTitle();
                     breadcrumbItem.put(SUBPAGE_TITLE_I18N, pageNavigationTitle);
                     breadcrumbItem.put(SUBPAGE_LINK_PATH, LinkUtils.sanitizeLink(page.getPath()));
 

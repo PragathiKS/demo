@@ -80,7 +80,12 @@ public class ImageTextBannerModel {
     @PostConstruct
     protected void init() {
 
-        String parentName = resource.getParent() != null ? resource.getParent().getName() : StringUtils.EMPTY;
+        String parentName;
+        if (resource.getParent() != null) {
+            parentName = resource.getParent().getName();
+        } else {
+            parentName = StringUtils.EMPTY;
+        }
         if ("header".equalsIgnoreCase(parentName)) {
             isHeaderBanner = true;
             analyticsLinkSection = "heroBanner";
