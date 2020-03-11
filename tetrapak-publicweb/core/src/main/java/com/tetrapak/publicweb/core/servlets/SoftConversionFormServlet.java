@@ -35,7 +35,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(SoftConversionFormServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SoftConversionFormServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -46,7 +46,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        log.info("Inside doGet method.");
+        LOGGER.info("Inside doGet method.");
         try {
             // get resource resolver, tagManager objects.
             resourceResolver = request.getResourceResolver();
@@ -72,7 +72,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
                 itemNode.setProperty("position", position);
 
                 session.save();
-                log.info("Saved user data at path : {}", itemNode.getPath());
+                LOGGER.info("Saved user data at path : {}", itemNode.getPath());
 
                 setCookie(response);
 
@@ -82,9 +82,9 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
         } catch (PathNotFoundException e1) {
-            log.error("Error finding the path. {}", e1);
+            LOGGER.error("Error finding the path.", e1);
         } catch (RepositoryException e2) {
-            log.error("Error in repository operation. {}", e2);
+            LOGGER.error("Error in repository operation.", e2);
         }
 
     }
@@ -94,7 +94,7 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 7);
         response.addCookie(cookie);
-        log.info("Cookie added.");
+        LOGGER.info("Cookie added.");
 
     }
 }

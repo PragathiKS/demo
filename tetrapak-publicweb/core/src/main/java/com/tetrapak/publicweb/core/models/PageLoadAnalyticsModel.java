@@ -93,19 +93,28 @@ public class PageLoadAnalyticsModel {
             if (homePage != null) {
                 int pageLevel = homePage.getDepth();
                 int currentPageLevel = currentPage.getDepth();
-                while (pageLevel < currentPageLevel) {
-                    Page page = currentPage.getAbsoluteParent((int) pageLevel);
-                    if (page == null) {
-                        break;
-                    }
-                    pageLevel++;
-                    if (!page.isHideInNav()) {
-                        String pageNavigationTitle = StringUtils.isNotBlank(page.getNavigationTitle()) ? page.getNavigationTitle() : page.getTitle();
-                        breadcrumbBuilder.append(":").append(pageNavigationTitle);
-                    }
-                }
+                updateBreadCrumbBuilder(breadcrumbBuilder, pageLevel, currentPageLevel);
             }
             breadcrumb = breadcrumbBuilder.toString();
+        }
+    }
+
+    private void updateBreadCrumbBuilder(StringBuilder breadcrumbBuilder, int pageLevel, int currentPageLevel) {
+        while (pageLevel < currentPageLevel) {
+            Page page = currentPage.getAbsoluteParent(pageLevel);
+            if (page == null) {
+                break;
+            }
+            pageLevel++;
+            if (!page.isHideInNav()) {
+                String pageNavigationTitle;
+                if (StringUtils.isNotBlank(page.getNavigationTitle())) {
+                    pageNavigationTitle = page.getNavigationTitle();
+                } else {
+                    pageNavigationTitle = page.getTitle();
+                }
+                breadcrumbBuilder.append(":").append(pageNavigationTitle);
+            }
         }
     }
 
@@ -131,16 +140,20 @@ public class PageLoadAnalyticsModel {
             pageName += ":" + siteSection1.toString();
             if (StringUtils.isNotEmpty(siteSection2.toString())) {
                 pageName += ":" + siteSection2.toString();
-                if (StringUtils.isNotEmpty(siteSection3.toString())) {
-                    pageName += ":" + siteSection3.toString();
-                    if (StringUtils.isNotEmpty(siteSection4.toString())) {
-                        pageName += ":" + siteSection4.toString();
-                    }
-                }
+                updateLowerSection();
             }
         }
         if (currentPage.getDepth() > 5) {
             pageName += ":" + currentPage.getName();
+        }
+    }
+
+    private void updateLowerSection() {
+        if (StringUtils.isNotEmpty(siteSection3.toString())) {
+            pageName += ":" + siteSection3.toString();
+            if (StringUtils.isNotEmpty(siteSection4.toString())) {
+                pageName += ":" + siteSection4.toString();
+            }
         }
     }
 
@@ -232,7 +245,8 @@ public class PageLoadAnalyticsModel {
         jsonObject.add("userinfo", userInfo);
         jsonObject.add("error", errorInfo);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         return gson.toJson(jsonObject);
 
     }

@@ -32,6 +32,7 @@ public class BestPracticeLinePageModel extends BasePageModel {
         }
     }
 
+    @Override
     public String getTitle() {
         return title;
     }

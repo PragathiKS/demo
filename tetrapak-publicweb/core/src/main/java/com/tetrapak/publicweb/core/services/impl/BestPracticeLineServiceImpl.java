@@ -30,14 +30,15 @@ import java.util.Map;
 @Designate(ocd = BestPracticeLineServiceImpl.Config.class)
 public class BestPracticeLineServiceImpl implements BestPracticeLineService {
 
-    @ObjectClassDefinition(name = "Tetra Pak - Public Web Best Practice Line Service", description = "Tetra Pak - Public Web Best Practice Line Service")
+    @ObjectClassDefinition(name = "Tetra Pak - Public Web Best Practice Line Service",
+            description = "Tetra Pak - Public Web Best Practice Line Service")
     public static @interface Config {
 
         @AttributeDefinition(name = "Best Practice Line Page Template Path", description = "Path for the Best Practice Line Page template.")
         String bestpracticeTemplate() default "/conf/publicweb/settings/wcm/templates/public-web-best-practice-line-page";
     }
 
-    private static final Logger log = LoggerFactory.getLogger(BestPracticeLineServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BestPracticeLineServiceImpl.class);
 
     private String bestPracticeTemplate;
 
@@ -47,8 +48,9 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
      *
      * @return Boolean
      */
-    public Boolean checkIfPracticeLineExists(ResourceResolver resourceResolver, String productType, String subCategoryVal, String rootPath) {
-        log.info("Executing checkIfPracticeLineExists method.");
+    public Boolean checkIfPracticeLineExists(
+            ResourceResolver resourceResolver, String productType, String subCategoryVal, String rootPath) {
+        LOGGER.info("Executing checkIfPracticeLineExists method.");
         SearchResult result = executeQuery(resourceResolver, productType, subCategoryVal, rootPath);
         long totalHits = result.getTotalMatches();
         return (totalHits > 0);
@@ -66,7 +68,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
      * @return SearchResult
      */
     private SearchResult executeQuery(ResourceResolver resourceResolver, String productType, String subCategoryVal, String rootPath) {
-        log.info("Executing executeQuery method.");
+        LOGGER.info("Executing executeQuery method.");
         Map<String, String> map = new HashMap<>();
 
         // adapt a ResourceResolver to a QueryBuilder
@@ -92,7 +94,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
         map.put("2_group.p.and", "true");
         map.put("p.limit", "1");
 
-        log.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
+        LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
 
         return query.getResult();
@@ -102,15 +104,16 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
      * This method is used to get the list of best practice lines pages by
      * executing the query based on a product type and sub category.
      */
-    public List<BestPracticeLineBean> getListOfPracticeLines(ResourceResolver resourceResolver, String productType, String subCategoryVal, String rootPath) {
-        log.info("Executing getListOfPracticeLines method.");
+    public List<BestPracticeLineBean> getListOfPracticeLines(
+            ResourceResolver resourceResolver, String productType, String subCategoryVal, String rootPath) {
+        LOGGER.info("Executing getListOfPracticeLines method.");
         SearchResult result = executeQuery(resourceResolver, productType, subCategoryVal, rootPath);
 
         // paging metadata
         List<BestPracticeLineBean> resources = new LinkedList<>();
-        if (result.getHits().isEmpty())
+        if (result.getHits().isEmpty()) {
             return resources;
-
+        }
         // add all the items to the result list
         for (Hit hit : result.getHits()) {
             BestPracticeLineBean practiceItem = getBestPracticeLineBean(resourceResolver, hit);
@@ -123,29 +126,38 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
     private BestPracticeLineBean getBestPracticeLineBean(ResourceResolver resourceResolver, Hit hit) {
         BestPracticeLineBean practiceItem = new BestPracticeLineBean();
         try {
-            log.info("Hit : {}", hit.getPath());
+            LOGGER.info("Hit : {}", hit.getPath());
             Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
             if (res != null) {
                 ValueMap properties = res.adaptTo(ValueMap.class);
-                practiceItem.setPracticeTitle(properties.get("title", String.class) != null ? properties.get("title", String.class) : properties.get("jcr:title", String.class));
-                practiceItem.setVanityDescription(properties.get("vanityDescription", String.class) != null ? properties.get("vanityDescription", String.class) : "");
-                practiceItem.setPracticeImagePath(properties.get("practiceImagePath", String.class) != null ? properties.get("practiceImagePath", String.class) : "");
-                practiceItem.setPracticeImageAltI18n(properties.get("practiceImageAltI18n", String.class) != null ? properties.get("practiceImageAltI18n", String.class) : "");
-                practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
+                practiceItem.setPracticeTitle(properties.get("title", String.class) != null ?
+                        properties.get("title", String.class) : properties.get("jcr:title", String.class));
+                practiceItem.setVanityDescription(properties.get("vanityDescription", String.class) != null ?
+                        properties.get("vanityDescription", String.class) : "");
+                practiceItem.setPracticeImagePath(properties.get("practiceImagePath", String.class) != null ?
+                        properties.get("practiceImagePath", String.class) : "");
+                practiceItem.setPracticeImageAltI18n(properties.get("practiceImageAltI18n", String.class) != null ?
+                        properties.get("practiceImageAltI18n", String.class) : "");
+                practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class) != null ?
+                        properties.get("ctaTexti18nKey", String.class) : "");
                 practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath()));
             }
 
         } catch (RepositoryException e) {
-            log.error("There was an issue getting the resource {}", hit);
+            LOGGER.debug("Repository Exception", e);
+            LOGGER.error("There was an issue getting the resource {}", hit);
         }
         return practiceItem;
     }
 
     @Activate
     protected void activate(final Config config) {
-        this.bestPracticeTemplate = (String.valueOf(config.bestpracticeTemplate()) != null) ? String.valueOf(config.bestpracticeTemplate())
-                : null;
-        log.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestPracticeTemplate);
+        if (String.valueOf(config.bestpracticeTemplate()) != null) {
+            this.bestPracticeTemplate = String.valueOf(config.bestpracticeTemplate());
+        } else {
+            this.bestPracticeTemplate = null;
+        }
+        LOGGER.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestPracticeTemplate);
     }
 
 }

@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -15,7 +16,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ListContentImageModel {
 
-    private static final Logger log = LoggerFactory.getLogger(ListContentImageModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ListContentImageModel.class);
 
     @Inject
     private String titleI18n;
@@ -108,28 +109,32 @@ public class ListContentImageModel {
      * @return List<String>
      */
     public static List<String> getTabLinks(String[] tabLinks) {
-        @SuppressWarnings("deprecation")
         List<String> tabs = new ArrayList<>();
         JSONObject jObj;
         try {
             if (tabLinks == null) {
-                log.error("Tab Links value is NULL");
+                LOGGER.error("Tab Links value is NULL");
             } else {
-                for (int i = 0; i < tabLinks.length; i++) {
-                    jObj = new JSONObject(tabLinks[i]);
-
-                    String tabLinkTextI18n = "";
-                    if (jObj.has("tabLinkTextI18n")) {
-                        tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
-                    }
-                    tabs.add(tabLinkTextI18n);
-
-                }
+                addTabs(tabLinks, tabs);
             }
-        } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tabs;
+    }
+
+    private static void addTabs(String[] tabLinks, List<String> tabs) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < tabLinks.length; i++) {
+            jObj = new JSONObject(tabLinks[i]);
+
+            String tabLinkTextI18n = "";
+            if (jObj.has("tabLinkTextI18n")) {
+                tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
+            }
+            tabs.add(tabLinkTextI18n);
+
+        }
     }
 
 }

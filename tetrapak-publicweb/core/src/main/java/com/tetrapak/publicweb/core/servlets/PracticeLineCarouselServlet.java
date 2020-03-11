@@ -41,63 +41,67 @@ import java.util.List;
 @Designate(ocd = PracticeLineCarouselServlet.Config.class)
 public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 
-    @ObjectClassDefinition(name = "Tetra Pak - Public Web Carousel Listing Servlet", description = "Tetra Pak - Public Web Carousel Listing servlet")
+    @ObjectClassDefinition(name = "Tetra Pak - Public Web Carousel Listing Servlet",
+            description = "Tetra Pak - Public Web Carousel Listing servlet")
     public static @interface Config {
 
-        @AttributeDefinition(name = "Product Type Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the product type.")
+        @AttributeDefinition(name = "Product Type Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells us about the product type.")
         String productType() default "productType";
 
-        @AttributeDefinition(name = "Sub Category Value Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the sub-category value.")
+        @AttributeDefinition(name = "Sub Category Value Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells us about the sub-category value.")
         String subcategoryValue() default "subCategoryVal";
 
-        @AttributeDefinition(name = "Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells us about the root path.")
+        @AttributeDefinition(name = "Root Path Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells us about the root path.")
         String rootPath() default "rootPath";
 
-        @AttributeDefinition(name = "Best Practice Line Page Template Path", description = "Path for the Best Practice Line Page template.")
+        @AttributeDefinition(name = "Best Practice Line Page Template Path",
+                description = "Path for the Best Practice Line Page template.")
         String bestpracticeTemplate() default "/conf/publicweb/settings/wcm/templates/public-web-best-practice-line-page";
     }
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(PracticeLineCarouselServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PracticeLineCarouselServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
 
     @Reference
-    BestPracticeLineService bestPracticeLineService;
+    private BestPracticeLineService bestPracticeLineService;
 
-    private ResourceResolver resourceResolver;
-
-    private String PRODUCT_TYPE;
-    private String SUBCATEGORY_VALUE;
-    private String ROOT_PATH;
-    private String BESTPRACTICE_TEMPLATE;
+    private String productType;
+    private String subcategoryValue;
+    private String rootPath;
+    private String bestpracticeTemplate;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        log.info("Executing doGet method.");
+        LOGGER.info("Executing doGet method.");
 
         // get resource resolver, session and queryBuilder objects.
-        resourceResolver = request.getResourceResolver();
+        ResourceResolver resourceResolver = request.getResourceResolver();
 
         // get search arguments
-        String productType = request.getParameter(PRODUCT_TYPE);
-        log.info("Product Type : {}", productType);
-        String subCategoryVal = request.getParameter(SUBCATEGORY_VALUE);
-        log.info("Sub Category Value : {}", subCategoryVal);
-        String rootPath = request.getParameter(ROOT_PATH);
-        log.info("Root Path : {}", rootPath);
+        String productTypeTemp = request.getParameter(this.productType);
+        LOGGER.info("Product Type : {}", productTypeTemp);
+        String subCategoryVal = request.getParameter(subcategoryValue);
+        LOGGER.info("Sub Category Value : {}", subCategoryVal);
+        String rootPathTemp = request.getParameter(this.rootPath);
+        LOGGER.info("Root Path : {}", rootPathTemp);
 
         Gson gson = new Gson();
         String responseJSON = "";
 
         // search for resources
-        if (productType != null && subCategoryVal != null) {
-            List<BestPracticeLineBean> resources = bestPracticeLineService.getListOfPracticeLines(resourceResolver, productType, subCategoryVal, rootPath);
+        if (productTypeTemp != null && subCategoryVal != null) {
+            List<BestPracticeLineBean> resources = bestPracticeLineService.getListOfPracticeLines(
+                    resourceResolver, productTypeTemp, subCategoryVal, rootPathTemp);
             if (resources != null) {
                 responseJSON = gson.toJson(resources);
-                log.info("Here is the JSON object : {}", responseJSON);
+                LOGGER.info("Here is the JSON object : {}", responseJSON);
             }
         }
 
@@ -114,20 +118,32 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 
     @Activate
     protected void activate(final Config config) {
-        this.PRODUCT_TYPE = (String.valueOf(config.productType()) != null) ? String.valueOf(config.productType())
-                : null;
-        log.info("configure: PRODUCT_TYPE='{}'", this.PRODUCT_TYPE);
+        if (String.valueOf(config.productType()) != null) {
+            this.productType = String.valueOf(config.productType());
+        } else {
+            this.productType = null;
+        }
+        LOGGER.info("configure: PRODUCT_TYPE='{}'", this.productType);
 
-        this.SUBCATEGORY_VALUE = (String.valueOf(config.subcategoryValue()) != null) ? String.valueOf(config.subcategoryValue())
-                : null;
-        log.info("configure: SUBCATEGORY_VALUE='{}'", this.SUBCATEGORY_VALUE);
+        if (String.valueOf(config.subcategoryValue()) != null) {
+            this.subcategoryValue = String.valueOf(config.subcategoryValue());
+        } else {
+            this.subcategoryValue = null;
+        }
+        LOGGER.info("configure: SUBCATEGORY_VALUE='{}'", this.subcategoryValue);
 
-        this.ROOT_PATH = (String.valueOf(config.rootPath()) != null) ? String.valueOf(config.rootPath())
-                : null;
-        log.info("configure: ROOT_PATH='{}'", this.ROOT_PATH);
+        if (String.valueOf(config.rootPath()) != null) {
+            this.rootPath = String.valueOf(config.rootPath());
+        } else {
+            this.rootPath = null;
+        }
+        LOGGER.info("configure: ROOT_PATH='{}'", this.rootPath);
 
-        this.BESTPRACTICE_TEMPLATE = (String.valueOf(config.bestpracticeTemplate()) != null) ? String.valueOf(config.bestpracticeTemplate())
-                : null;
-        log.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.BESTPRACTICE_TEMPLATE);
+        if (String.valueOf(config.bestpracticeTemplate()) != null) {
+            this.bestpracticeTemplate = String.valueOf(config.bestpracticeTemplate());
+        } else {
+            this.bestpracticeTemplate = null;
+        }
+        LOGGER.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestpracticeTemplate);
     }
 }

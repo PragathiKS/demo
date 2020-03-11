@@ -53,26 +53,31 @@ import java.util.Map;
 @Designate(ocd = ProductListingServlet.Config.class)
 public class ProductListingServlet extends SlingSafeMethodsServlet {
 
-    @ObjectClassDefinition(name = "Tetra Pak - Public Web Product Listing Servlet", description = "Tetra Pak - Public Web Product Listing servlet")
+    @ObjectClassDefinition(name = "Tetra Pak - Public Web Product Listing Servlet",
+            description = "Tetra Pak - Public Web Product Listing servlet")
     public static @interface Config {
 
-        @AttributeDefinition(name = "Total number of results", description = "Total number of products that need to be shown on the listing.")
+        @AttributeDefinition(name = "Total number of results",
+                description = "Total number of products that need to be shown on the listing.")
         String total_results() default "9";
 
-        @AttributeDefinition(name = "Product Category Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product category.")
+        @AttributeDefinition(name = "Product Category Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells about the product category.")
         String product_category() default "productCategory";
 
-        @AttributeDefinition(name = "Product Root Path Variable Name", description = "Name of variable being sent by Front end to the servlet, that tells about the product root path.")
+        @AttributeDefinition(name = "Product Root Path Variable Name",
+                description = "Name of variable being sent by Front end to the servlet, that tells about the product root path.")
         String product_rootpath() default "productRootPath";
 
-        @AttributeDefinition(name = "Product Page Template Path", description = "Path for the Product Page template.")
+        @AttributeDefinition(name = "Product Page Template Path",
+                description = "Path for the Product Page template.")
         String product_template() default "/conf/publicweb/settings/wcm/templates/public-web-product-page";
 
     }
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(ProductListingServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductListingServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -83,33 +88,33 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     private Session session;
     private ResourceResolver resourceResolver;
 
-    private String TOTAL_RESULTS;
-    private String PRODUCT_CATEGORY;
-    private String PRODUCT_ROOT_PATH;
-    private String PRODUCT_TEMPLATE;
+    private String totalResults;
+    private String productCategory;
+    private String productRootPath;
+    private String productTemplate;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        log.info("Executing doGet method.");
+        LOGGER.info("Executing doGet method.");
         // get resource resolver, session and queryBuilder objects.
         resourceResolver = request.getResourceResolver();
         session = resourceResolver.adaptTo(Session.class);
         queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 
         // get search arguments
-        String productCategory = request.getParameter(PRODUCT_CATEGORY);
-        String productRootPath = request.getParameter(PRODUCT_ROOT_PATH);
-        log.info("Product category : {}", productCategory);
+        String productCategoryTeamp = request.getParameter(this.productCategory);
+        String productRootPathTemp = request.getParameter(this.productRootPath);
+        LOGGER.info("Product category : {}", productCategoryTeamp);
 
 
         Gson gson = new Gson();
         String responseJSON = "not-set";
 
         // search for resources
-        List<ProductInfoBean> resources = getListOfProducts(productCategory, productRootPath);
+        List<ProductInfoBean> resources = getListOfProducts(productCategoryTeamp, productRootPathTemp);
         if (resources != null) {
             responseJSON = gson.toJson(resources);
-            log.info("Here is the JSON object : {}", responseJSON);
+            LOGGER.info("Here is the JSON object : {}", responseJSON);
         }
 
         // set the response type
@@ -126,37 +131,37 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     /**
      * Method to create a query and execute to get the results.
      *
-     * @param productCategory  product category
+     * @param productCategory product category
      * @param productRootPath product root path
      * @return List<ProductInfoBean>
      */
     public List<ProductInfoBean> getListOfProducts(String productCategory, String productRootPath) {
-        log.info("Executing getListOfProducts method.");
+        LOGGER.info("Executing getListOfProducts method.");
         Map<String, String> map = new HashMap<>();
 
         map.put("path", productRootPath);
         map.put("type", "cq:Page");
         map.put("1_property", "jcr:content/cq:template");
-        map.put("1_property.value", PRODUCT_TEMPLATE);
+        map.put("1_property.value", productTemplate);
 
-        if (!productCategory.equalsIgnoreCase("all")) {
+        if (!"all".equalsIgnoreCase(productCategory)) {
             map.put("2_property", "jcr:content/cq:tags");
             map.put("2_property.value", productCategory);
         }
 
-        map.put("p.limit", TOTAL_RESULTS);
+        map.put("p.limit", totalResults);
 
-        log.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
+        LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
 
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
 
         // paging metadata
-        log.info("Total number of results : {}", result.getTotalMatches());
+        LOGGER.info("Total number of results : {}", result.getTotalMatches());
         List<ProductInfoBean> resources = new LinkedList<>();
-        if (result.getHits().isEmpty())
+        if (result.getHits().isEmpty()) {
             return resources;
-
+        }
         // add all the items to the result list
         for (Hit hit : query.getResult().getHits()) {
             ProductInfoBean productItem = getProductInfoBean(hit);
@@ -168,37 +173,53 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
     private ProductInfoBean getProductInfoBean(Hit hit) {
         ProductInfoBean productItem = new ProductInfoBean();
         try {
-            log.info("Hit : {}", hit.getPath());
+            LOGGER.info("Hit : {}", hit.getPath());
             Resource res = resourceResolver.getResource(hit.getPath() + "/jcr:content");
             if (res != null) {
                 ValueMap properties = res.adaptTo(ValueMap.class);
                 productItem.setTitle(properties.get("jcr:title", String.class) != null ? properties.get("jcr:title", String.class) : "");
-                productItem.setDescription(properties.get("jcr:description", String.class) != null ? properties.get("jcr:description", String.class) : "");
-                productItem.setProductImage(properties.get("productImagePath", String.class) != null ? properties.get("productImagePath", String.class) : "");
-                productItem.setImageAltText(properties.get("productImageAltI18n", String.class) != null ? properties.get("productImageAltI18n", String.class) : "");
-                productItem.setLinkText(properties.get("ctaTexti18nKey", String.class) != null ? properties.get("ctaTexti18nKey", String.class) : "");
+                productItem.setDescription(properties.get("jcr:description", String.class) != null ?
+                        properties.get("jcr:description", String.class) : "");
+                productItem.setProductImage(properties.get("productImagePath", String.class) != null ?
+                        properties.get("productImagePath", String.class) : "");
+                productItem.setImageAltText(properties.get("productImageAltI18n", String.class) != null ?
+                        properties.get("productImageAltI18n", String.class) : "");
+                productItem.setLinkText(properties.get("ctaTexti18nKey", String.class) != null ?
+                        properties.get("ctaTexti18nKey", String.class) : "");
                 productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));
             }
 
         } catch (RepositoryException e) {
-            log.error("[performSearch] There was an issue getting the resource {}", hit);
+            LOGGER.error("[performSearch] There was an issue getting the resource", e);
         }
         return productItem;
     }
 
     @Activate
     protected void activate(final Config config) {
-        this.TOTAL_RESULTS = (String.valueOf(config.total_results()) != null) ? String.valueOf(config.total_results())
-                : null;
-        log.info("configure: TOTAL_RESULTS='{}'", this.TOTAL_RESULTS);
-        this.PRODUCT_CATEGORY = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
-                : null;
-        log.info("configure: PRODUCT_CATEGORY='{}'", this.PRODUCT_CATEGORY);
-        this.PRODUCT_ROOT_PATH = (String.valueOf(config.product_rootpath()) != null) ? String.valueOf(config.product_rootpath())
-                : null;
-        log.info("configure: PRODUCT_ROOT_PATH='{}'", this.PRODUCT_ROOT_PATH);
-        this.PRODUCT_TEMPLATE = (String.valueOf(config.product_template()) != null) ? String.valueOf(config.product_template())
-                : null;
-        log.info("configure: PRODUCT_TEMPLATE='{}'", this.PRODUCT_TEMPLATE);
+        if (String.valueOf(config.total_results()) != null) {
+            this.totalResults = String.valueOf(config.total_results());
+        } else {
+            this.totalResults = null;
+        }
+        LOGGER.info("configure: TOTAL_RESULTS='{}'", this.totalResults);
+        if (String.valueOf(config.product_category()) != null) {
+            this.productCategory = String.valueOf(config.product_category());
+        } else {
+            this.productCategory = null;
+        }
+        LOGGER.info("configure: PRODUCT_CATEGORY='{}'", this.productCategory);
+        if (String.valueOf(config.product_rootpath()) != null) {
+            this.productRootPath = String.valueOf(config.product_rootpath());
+        } else {
+            this.productRootPath = null;
+        }
+        LOGGER.info("configure: PRODUCT_ROOT_PATH='{}'", this.productRootPath);
+        if (String.valueOf(config.product_template()) != null) {
+            this.productTemplate = String.valueOf(config.product_template());
+        } else {
+            this.productTemplate = null;
+        }
+        LOGGER.info("configure: PRODUCT_TEMPLATE='{}'", this.productTemplate);
     }
 }

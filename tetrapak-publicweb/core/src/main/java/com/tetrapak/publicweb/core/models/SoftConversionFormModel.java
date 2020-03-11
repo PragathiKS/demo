@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -14,7 +15,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SoftConversionFormModel {
 
-    private static final Logger log = LoggerFactory.getLogger(SoftConversionFormModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SoftConversionFormModel.class);
 
     @Inject
     private String firstNameLabel;
@@ -44,23 +45,38 @@ public class SoftConversionFormModel {
     private String[] radioButtonGroups;
 
     public String getFirstNameLabel() {
-        return firstNameLabel != null ? firstNameLabel : "First Name";
+        if (firstNameLabel != null) {
+            return firstNameLabel;
+        }
+        return "First Name";
     }
 
     public String getLastNameLabel() {
-        return lastNameLabel != null ? lastNameLabel : "Last Name";
+        if (lastNameLabel != null) {
+            return lastNameLabel;
+        }
+        return "Last Name";
     }
 
     public String getEmailAddressLabel() {
-        return emailAddressLabel != null ? emailAddressLabel : "Email Address";
+        if (emailAddressLabel != null) {
+            return emailAddressLabel;
+        }
+        return "Email Address";
     }
 
     public String getCompanyLabel() {
-        return companyLabel != null ? companyLabel : "Company";
+        if (companyLabel != null) {
+            return companyLabel;
+        }
+        return "Company";
     }
 
     public String getPositionLabel() {
-        return positionLabel != null ? positionLabel : "Position";
+        if (positionLabel != null) {
+            return positionLabel;
+        }
+        return "Position";
     }
 
     public String getPreviousButtonLabel() {
@@ -83,29 +99,33 @@ public class SoftConversionFormModel {
      * Method to get the tab link text from the multifield property saved in CRX for
      * each of the radio button groups.
      *
-     * @param tabLinks String[]
-     * @return List<String>
+     * @param radioButtonGroups radio button group
+     * @return List<String> list of string
      */
     public static List<String> getRadioButtonGroups(String[] radioButtonGroups) {
-        @SuppressWarnings("deprecation")
         List<String> radioButtons = new ArrayList<>();
         JSONObject jObj;
         try {
             if (radioButtonGroups == null) {
-                log.error("Radio Button Groups value is NULL");
+                LOGGER.error("Radio Button Groups value is NULL");
             } else {
-                for (int i = 0; i < radioButtonGroups.length; i++) {
-                    jObj = new JSONObject(radioButtonGroups[i]);
-
-                    if (jObj.has("radiobuttonTitle")) {
-                        radioButtons.add(jObj.getString("radiobuttonTitle"));
-                    }
-                }
+                addRadioButtons(radioButtonGroups, radioButtons);
             }
-        } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return radioButtons;
+    }
+
+    private static void addRadioButtons(String[] radioButtonGroups, List<String> radioButtons) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < radioButtonGroups.length; i++) {
+            jObj = new JSONObject(radioButtonGroups[i]);
+
+            if (jObj.has("radiobuttonTitle")) {
+                radioButtons.add(jObj.getString("radiobuttonTitle"));
+            }
+        }
     }
 
 }

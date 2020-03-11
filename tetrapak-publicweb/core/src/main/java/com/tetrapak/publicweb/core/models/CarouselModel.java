@@ -22,7 +22,7 @@ import java.util.List;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CarouselModel {
 
-    private static final Logger log = LoggerFactory.getLogger(CarouselModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarouselModel.class);
 
     @Self
     private Resource resource;
@@ -55,7 +55,7 @@ public class CarouselModel {
 
         Resource childResource = resource.getChild("tabDetails");
         if (null != childResource) {
-            log.info("This is the child resource : {}", childResource.getPath());
+            LOGGER.info("This is the child resource : {}", childResource.getPath());
             Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource res = itr.next();
@@ -69,55 +69,9 @@ public class CarouselModel {
                 }
 
                 if ("automatic".equals(contentType)) {
-                    String practicePath = "";
-                    if (valueMap.containsKey(PRACTICE_PATH)) {
-                        practicePath = valueMap.get(PRACTICE_PATH, String.class);
-                    }
-
-                    Page landingPage = pageManager.getPage(practicePath);
-                    if (landingPage != null) {
-                        Resource jcrContentResource = landingPage.getContentResource();
-                        BestPracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(BestPracticeLinePageModel.class);
-                        if (practiceLinePageModel != null) {
-                            bean.setPracticeTitle(practiceLinePageModel.getTitle());
-                            bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
-                            bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
-                            bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
-                            bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
-                            bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
-                        }
-                    }
+                    fillAutomaticWay(pageManager, valueMap, bean);
                 } else {
-
-                    if (valueMap.containsKey("practiceTitle")) {
-                        bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
-                    }
-
-                    if (valueMap.containsKey("vanityDescription")) {
-                        bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
-                    }
-
-                    if (valueMap.containsKey("ctaTexti18nKey")) {
-                        bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
-                    }
-
-                    if (valueMap.containsKey("linkTarget")) {
-                        bean.setLinkTarget(valueMap.get("linkTarget", String.class));
-                    }
-
-                    if (valueMap.containsKey("practiceImagePath")) {
-                        bean.setPracticeImagePath(valueMap.get("practiceImagePath", String.class));
-                    }
-
-                    if (valueMap.containsKey("practiceImageAltI18n")) {
-                        bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
-                    }
-
-                    if (valueMap.containsKey(PRACTICE_PATH)) {
-                        String path = valueMap.get(PRACTICE_PATH, String.class);
-                        bean.setPracticePath(LinkUtils.sanitizeLink(path));
-                    }
-
+                    doManualWay(valueMap, bean);
                 }
 
                 tabs.add(bean);
@@ -125,6 +79,58 @@ public class CarouselModel {
             }
         }
 
+    }
+
+    private void doManualWay(ValueMap valueMap, BestPracticeLineBean bean) {
+        if (valueMap.containsKey("practiceTitle")) {
+            bean.setPracticeTitle(valueMap.get("practiceTitle", String.class));
+        }
+
+        if (valueMap.containsKey("vanityDescription")) {
+            bean.setVanityDescription(valueMap.get("vanityDescription", String.class));
+        }
+
+        if (valueMap.containsKey("ctaTexti18nKey")) {
+            bean.setCtaTexti18nKey(valueMap.get("ctaTexti18nKey", String.class));
+        }
+
+        if (valueMap.containsKey("linkTarget")) {
+            bean.setLinkTarget(valueMap.get("linkTarget", String.class));
+        }
+
+        if (valueMap.containsKey("practiceImagePath")) {
+            bean.setPracticeImagePath(valueMap.get("practiceImagePath", String.class));
+        }
+
+        if (valueMap.containsKey("practiceImageAltI18n")) {
+            bean.setPracticeImageAltI18n(valueMap.get("practiceImageAltI18n", String.class));
+        }
+
+        if (valueMap.containsKey(PRACTICE_PATH)) {
+            String path = valueMap.get(PRACTICE_PATH, String.class);
+            bean.setPracticePath(LinkUtils.sanitizeLink(path));
+        }
+    }
+
+    private void fillAutomaticWay(PageManager pageManager, ValueMap valueMap, BestPracticeLineBean bean) {
+        String practicePath = "";
+        if (valueMap.containsKey(PRACTICE_PATH)) {
+            practicePath = valueMap.get(PRACTICE_PATH, String.class);
+        }
+
+        Page landingPage = pageManager.getPage(practicePath);
+        if (landingPage != null) {
+            Resource jcrContentResource = landingPage.getContentResource();
+            BestPracticeLinePageModel practiceLinePageModel = jcrContentResource.adaptTo(BestPracticeLinePageModel.class);
+            if (practiceLinePageModel != null) {
+                bean.setPracticeTitle(practiceLinePageModel.getTitle());
+                bean.setVanityDescription(practiceLinePageModel.getVanityDescription());
+                bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
+                bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
+                bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
+                bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
+            }
+        }
     }
 
     public String getTitleI18n() {

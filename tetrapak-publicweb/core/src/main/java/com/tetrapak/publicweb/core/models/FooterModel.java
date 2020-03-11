@@ -6,6 +6,7 @@ import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 import com.tetrapak.publicweb.core.beans.SocialLinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -13,13 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Model(adaptables = Resource.class)
 public class FooterModel {
 
-    private static final Logger log = LoggerFactory.getLogger(FooterModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
 
     @Self
     private Resource resource;
@@ -35,7 +37,7 @@ public class FooterModel {
         String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
         String[] socialLinks = inheritanceValueMap1.getInherited("footerSocialLinks", String[].class);
         setSocialLinks(socialLinks);
-        LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, log);
+        LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, LOGGER);
     }
 
     /**
@@ -46,7 +48,7 @@ public class FooterModel {
         JSONObject jObj;
         try {
             if (socialLinks == null) {
-                log.error("socialLinks is NULL");
+                LOGGER.error("socialLinks is NULL");
                 return;
             }
 
@@ -68,8 +70,8 @@ public class FooterModel {
                 bean.setSocialMediaName(socialMedia);
                 footerSocialLinks.add(bean);
             }
-        } catch (Exception e) {
-            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        } catch (JSONException e) {
+            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
     }
 

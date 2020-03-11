@@ -265,7 +265,7 @@ function _renderTable(filterParams, config) {
         $parentRoot.trigger(EVT_FINANCIAL_ERROR, [
           $.trim(getI18n(statementOfAccount)).toLowerCase(),
           linkName,
-          $.trim(getI18n('cuhu.error.message')).toLowerCase()
+          $.trim(getI18n(data.errorText)).toLowerCase()
         ]);
       }
     });

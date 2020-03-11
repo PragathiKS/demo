@@ -21,9 +21,9 @@ public class LinkUtils extends WCMUsePojo {
      * @param link
      */
     public static String sanitizeLink(String link) {
-        if (StringUtils.isBlank(link))
+        if (StringUtils.isBlank(link)) {
             return "#";
-        else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html") && !link.endsWith(".htm")) {
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html") && !link.endsWith(".htm")) {
             return link + ".html";
         }
         return link;
@@ -57,7 +57,6 @@ public class LinkUtils extends WCMUsePojo {
      * Used for navigation links on Header and Footer
      */
     public static void setMultifieldNavLinkItems(String[] footerNavLinks, List<NavigationLinkBean> navLinksList, Logger log) {
-        @SuppressWarnings("deprecation")
         JSONObject jObj;
         try {
             if (footerNavLinks == null || navLinksList == null) {
@@ -69,7 +68,7 @@ public class LinkUtils extends WCMUsePojo {
                 NavigationLinkBean bean = getNavigationLinkBean(jObj);
                 navLinksList.add(bean);
             }
-        } catch (Exception e) {
+        } catch (JSONException e) {
             log.error("Exception while Multifield data {}", e.getMessage(), e);
         }
     }
