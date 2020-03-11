@@ -86,33 +86,38 @@ public class ProductListingModel {
             if (tabLinks == null) {
                 LOGGER.error("Tab Links value is NULL");
             } else {
-                for (int i = 0; i < tabLinks.length; i++) {
-                    ProductListBean bean = new ProductListBean();
-                    jObj = new JSONObject(tabLinks[i]);
-
-                    if (jObj.has("tabLinkTextI18n")) {
-                        bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
-                    }
-                    final String CATEGORY_TAG = "categoryTag";
-                    if (jObj.has(CATEGORY_TAG)) {
-                        Tag tag = tagManager.resolve(jObj.getString(CATEGORY_TAG));
-                        LOGGER.info("Tag : {}", tag.getTagID());
-                        bean.setCategoryTag(tag.getTagID());
-
-                        String tagPath = jObj.getString(CATEGORY_TAG);
-                        if (tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
-                            tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
-                            String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
-                            bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
-                        }
-                    }
-                    tabs.add(bean);
-                }
+                addProductListBeans(tabLinks, tagManager, tabs);
             }
         } catch (JSONException e) {
             LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tabs;
+    }
+
+    private void addProductListBeans(String[] tabLinks, TagManager tagManager, List<ProductListBean> tabs) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < tabLinks.length; i++) {
+            ProductListBean bean = new ProductListBean();
+            jObj = new JSONObject(tabLinks[i]);
+
+            if (jObj.has("tabLinkTextI18n")) {
+                bean.setTabLinkTextI18n(jObj.getString("tabLinkTextI18n"));
+            }
+            final String CATEGORY_TAG = "categoryTag";
+            if (jObj.has(CATEGORY_TAG)) {
+                Tag tag = tagManager.resolve(jObj.getString(CATEGORY_TAG));
+                LOGGER.info("Tag : {}", tag.getTagID());
+                bean.setCategoryTag(tag.getTagID());
+
+                String tagPath = jObj.getString(CATEGORY_TAG);
+                if (tagPath.startsWith(PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH)) {
+                    tagPath = StringUtils.substringAfter(tagPath, PageLoadAnalyticsModel.TETRAPAK_TAGS_ROOT_PATH);
+                    String categoryTagAnalyticsPath = StringUtils.replace(tagPath, "/", ":");
+                    bean.setCategoryTagAnalyticsPath(categoryTagAnalyticsPath);
+                }
+            }
+            tabs.add(bean);
+        }
     }
 
     public List<ProductListBean> getTabs() {

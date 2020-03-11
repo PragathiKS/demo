@@ -96,28 +96,33 @@ public class SearchResultsModel {
             if (tabs == null) {
                 LOGGER.error("Tabs value is NULL");
             } else {
-                for (int i = 0; i < tabs.length; i++) {
-                    SearchResultBean bean = new SearchResultBean();
-                    jObj = new JSONObject(tabs[i]);
-
-                    if (jObj.has("tabTitle")) {
-                        bean.setTitle(jObj.getString("tabTitle"));
-                    }
-
-                    if (jObj.has("pageType")) {
-                        String pageType = jObj.getString("pageType");
-                        LOGGER.info("Page Template Path : {}", pageType);
-                        pageType = pageType.replace(templateBasePath, "");
-                        bean.setProductType(pageType);
-
-                    }
-                    tabList.add(bean);
-                }
+                addSearchResultBeans(tabs, tabList);
             }
         } catch (JSONException e) {
             LOGGER.error("Exception while Multi-field data {}", e.getMessage(), e);
         }
         return tabList;
+    }
+
+    private void addSearchResultBeans(String[] tabs, List<SearchResultBean> tabList) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < tabs.length; i++) {
+            SearchResultBean bean = new SearchResultBean();
+            jObj = new JSONObject(tabs[i]);
+
+            if (jObj.has("tabTitle")) {
+                bean.setTitle(jObj.getString("tabTitle"));
+            }
+
+            if (jObj.has("pageType")) {
+                String pageType = jObj.getString("pageType");
+                LOGGER.info("Page Template Path : {}", pageType);
+                pageType = pageType.replace(templateBasePath, "");
+                bean.setProductType(pageType);
+
+            }
+            tabList.add(bean);
+        }
     }
 
     public String getSearchBoxPlaceholder() {

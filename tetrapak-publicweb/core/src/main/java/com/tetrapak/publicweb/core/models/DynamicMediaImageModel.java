@@ -159,19 +159,28 @@ public class DynamicMediaImageModel {
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(height)) {
-            if (queryFlag) url = url.append("&hei=").append(height);
-            else url = url.append("?hei=").append(height);
+            if (queryFlag) {
+                url = url.append("&hei=").append(height);
+            } else {
+                url = url.append("?hei=").append(height);
+            }
             queryFlag = true;
         }
         if (StringUtils.isNotEmpty(crop)) {
-            if (queryFlag) url = url.append("&cropn=").append(crop);
-            else url = url.append("?cropn=").append(crop);
+            if (queryFlag) {
+                url = url.append("&cropn=").append(crop);
+            } else {
+                url = url.append("?cropn=").append(crop);
+            }
             queryFlag = true;
         }
 
         if (transparentImage) {
-            if (queryFlag) url = appendTransparency(url, "&");
-            else url = appendTransparency(url, "?");
+            if (queryFlag) {
+                url = appendTransparency(url, "&");
+            } else {
+                url = appendTransparency(url, "?");
+            }
         }
 
         return url.toString();

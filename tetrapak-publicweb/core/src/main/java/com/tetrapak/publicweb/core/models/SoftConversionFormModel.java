@@ -109,18 +109,23 @@ public class SoftConversionFormModel {
             if (radioButtonGroups == null) {
                 LOGGER.error("Radio Button Groups value is NULL");
             } else {
-                for (int i = 0; i < radioButtonGroups.length; i++) {
-                    jObj = new JSONObject(radioButtonGroups[i]);
-
-                    if (jObj.has("radiobuttonTitle")) {
-                        radioButtons.add(jObj.getString("radiobuttonTitle"));
-                    }
-                }
+                addRadioButtons(radioButtonGroups, radioButtons);
             }
         } catch (JSONException e) {
             LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return radioButtons;
+    }
+
+    private static void addRadioButtons(String[] radioButtonGroups, List<String> radioButtons) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < radioButtonGroups.length; i++) {
+            jObj = new JSONObject(radioButtonGroups[i]);
+
+            if (jObj.has("radiobuttonTitle")) {
+                radioButtons.add(jObj.getString("radiobuttonTitle"));
+            }
+        }
     }
 
 }
