@@ -6,6 +6,7 @@
 		"jcr:primaryType": "cq:PageContent",
 		"jcr:createdBy": "admin",
 		"jcr:title": "Homepage",
+		"jcr:description":"Description",
 		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
 		"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
 		"cq:lastModified": "Wed Nov 01 2017 17:09:43 GMT+0530",

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-public class PageContentModelTest {
+public class LandingPageModelTest {
 	@Rule
 	public AemContext context = new AemContext();
 
@@ -18,10 +18,10 @@ public class PageContentModelTest {
 	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en";
 
 	/** The Constant RESOURCE. */
-	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
+	private static final String RESOURCE = TEST_CONTENT_ROOT + "/";
 
 	/** The model. */
-	private PageContentModel model;
+	private LandingPageModel model;
 
 	/** The resource. */
 	private Resource resource;
@@ -35,7 +35,7 @@ public class PageContentModelTest {
 	@Before
 	public void setUp() throws Exception {
 
-		Class<PageContentModel> modelClass = PageContentModel.class;
+		Class<LandingPageModel> modelClass = LandingPageModel.class;
 		// load the resources for each object
 		context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.addModelsForClasses(modelClass);
@@ -51,10 +51,8 @@ public class PageContentModelTest {
 	 */
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
-		String[] methods = new String[] { "getPageTitle", "getDescription", "getSlingResourceType", "getCreatedBy",
-				"getAuthorName", "getLastUpdate", "getLastReplicated", "getTitle", "getCreatedOn", "getCqTags",
-				"getPath", "getHideContactAnchorLink", "getHideContactFooterForm", "getSubtitle", "getNavTitle",
-				"getJcrMap", "toString" };
+		String[] methods = new String[] { "getTitle", "getVanityDescription", "getCtaTexti18nKey", "isOpenInNewWindow",
+				"getShowImage", "getArticleImagePath", "getArticleImageAltI18n" };
 		UtilTest.testLoadAndGetters(methods, model, resource);
 	}
 }

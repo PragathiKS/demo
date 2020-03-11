@@ -1,13 +1,19 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-public class PageContentModelTest {
+/**
+ * The Class PageLoadAnalyticsModelTest.
+ */
+public class PageLoadAnalyticsModelTest {
+
+	/** The context. */
 	@Rule
 	public AemContext context = new AemContext();
 
@@ -15,13 +21,13 @@ public class PageContentModelTest {
 	private static final String RESOURCE_CONTENT = "/pageContent/test-content.json";
 
 	/** The Constant TEST_CONTENT_ROOT. */
-	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en";
+	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en/error/test";
 
 	/** The Constant RESOURCE. */
 	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
 	/** The model. */
-	private PageContentModel model;
+	private PageLoadAnalyticsModel model;
 
 	/** The resource. */
 	private Resource resource;
@@ -29,32 +35,30 @@ public class PageContentModelTest {
 	/**
 	 * Sets the up.
 	 *
-	 * @param context the new up
 	 * @throws Exception the exception
 	 */
 	@Before
 	public void setUp() throws Exception {
 
-		Class<PageContentModel> modelClass = PageContentModel.class;
+		Class<PageLoadAnalyticsModel> modelClass = PageLoadAnalyticsModel.class;
+		MockSlingHttpServletRequest request = context.request();
 		// load the resources for each object
 		context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.addModelsForClasses(modelClass);
-
+		context.request().setPathInfo(TEST_CONTENT_ROOT);
+		request.setResource(context.resourceResolver().getResource(RESOURCE));
 		resource = context.currentResource(RESOURCE);
-		model = resource.adaptTo(modelClass);
+		model = request.adaptTo(modelClass);
 	}
 
 	/**
-	 * Test model, resource and all getters of the PageContent model.
+	 * Test model, resource and all getters of the PageLoadAnalytics model.
 	 *
 	 * @throws Exception the exception
 	 */
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
-		String[] methods = new String[] { "getPageTitle", "getDescription", "getSlingResourceType", "getCreatedBy",
-				"getAuthorName", "getLastUpdate", "getLastReplicated", "getTitle", "getCreatedOn", "getCqTags",
-				"getPath", "getHideContactAnchorLink", "getHideContactFooterForm", "getSubtitle", "getNavTitle",
-				"getJcrMap", "toString" };
+		String[] methods = new String[] { "isProduction", "isStaging", "isDevelopment", "getDigitalData" };
 		UtilTest.testLoadAndGetters(methods, model, resource);
 	}
 }
