@@ -82,9 +82,9 @@ public class SoftConversionFormServlet extends SlingSafeMethodsServlet {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
         } catch (PathNotFoundException e1) {
-            LOGGER.error("Error finding the path. {}", e1);
+            LOGGER.error("Error finding the path.", e1);
         } catch (RepositoryException e2) {
-            LOGGER.error("Error in repository operation. {}", e2);
+            LOGGER.error("Error in repository operation.", e2);
         }
 
     }

@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
         })
 public class SimpleResourceListener implements EventHandler {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleResourceListener.class);
 
     public void handleEvent(final Event event) {
         LOGGER.debug("Resource event: {} at: {}", event.getTopic(), event.getProperty(SlingConstants.PROPERTY_PATH));

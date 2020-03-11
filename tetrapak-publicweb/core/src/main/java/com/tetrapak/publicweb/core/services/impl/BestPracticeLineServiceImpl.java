@@ -152,9 +152,11 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
 
     @Activate
     protected void activate(final Config config) {
-        if (String.valueOf(config.bestpracticeTemplate()) != null)
+        if (String.valueOf(config.bestpracticeTemplate()) != null) {
             this.bestPracticeTemplate = String.valueOf(config.bestpracticeTemplate());
-        else this.bestPracticeTemplate = null;
+        } else {
+            this.bestPracticeTemplate = null;
+        }
         LOGGER.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestPracticeTemplate);
     }
 

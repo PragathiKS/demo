@@ -102,16 +102,16 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
         queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 
         // get search arguments
-        String productCategory = request.getParameter(this.productCategory);
-        String productRootPath = request.getParameter(this.productRootPath);
-        LOGGER.info("Product category : {}", productCategory);
+        String productCategoryTeamp = request.getParameter(this.productCategory);
+        String productRootPathTemp = request.getParameter(this.productRootPath);
+        LOGGER.info("Product category : {}", productCategoryTeamp);
 
 
         Gson gson = new Gson();
         String responseJSON = "not-set";
 
         // search for resources
-        List<ProductInfoBean> resources = getListOfProducts(productCategory, productRootPath);
+        List<ProductInfoBean> resources = getListOfProducts(productCategoryTeamp, productRootPathTemp);
         if (resources != null) {
             responseJSON = gson.toJson(resources);
             LOGGER.info("Here is the JSON object : {}", responseJSON);
@@ -197,17 +197,29 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
 
     @Activate
     protected void activate(final Config config) {
-        this.totalResults = (String.valueOf(config.total_results()) != null) ? String.valueOf(config.total_results())
-                : null;
+        if (String.valueOf(config.total_results()) != null) {
+            this.totalResults = String.valueOf(config.total_results());
+        } else {
+            this.totalResults = null;
+        }
         LOGGER.info("configure: TOTAL_RESULTS='{}'", this.totalResults);
-        this.productCategory = (String.valueOf(config.product_category()) != null) ? String.valueOf(config.product_category())
-                : null;
+        if (String.valueOf(config.product_category()) != null) {
+            this.productCategory = String.valueOf(config.product_category());
+        } else {
+            this.productCategory = null;
+        }
         LOGGER.info("configure: PRODUCT_CATEGORY='{}'", this.productCategory);
-        this.productRootPath = (String.valueOf(config.product_rootpath()) != null) ? String.valueOf(config.product_rootpath())
-                : null;
+        if (String.valueOf(config.product_rootpath()) != null) {
+            this.productRootPath = String.valueOf(config.product_rootpath());
+        } else {
+            this.productRootPath = null;
+        }
         LOGGER.info("configure: PRODUCT_ROOT_PATH='{}'", this.productRootPath);
-        this.productTemplate = (String.valueOf(config.product_template()) != null) ? String.valueOf(config.product_template())
-                : null;
+        if (String.valueOf(config.product_template()) != null) {
+            this.productTemplate = String.valueOf(config.product_template());
+        } else {
+            this.productTemplate = null;
+        }
         LOGGER.info("configure: PRODUCT_TEMPLATE='{}'", this.productTemplate);
     }
 }

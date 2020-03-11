@@ -115,21 +115,26 @@ public class ListContentImageModel {
             if (tabLinks == null) {
                 LOGGER.error("Tab Links value is NULL");
             } else {
-                for (int i = 0; i < tabLinks.length; i++) {
-                    jObj = new JSONObject(tabLinks[i]);
-
-                    String tabLinkTextI18n = "";
-                    if (jObj.has("tabLinkTextI18n")) {
-                        tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
-                    }
-                    tabs.add(tabLinkTextI18n);
-
-                }
+                addTabs(tabLinks, tabs);
             }
         } catch (JSONException e) {
             LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
         return tabs;
+    }
+
+    private static void addTabs(String[] tabLinks, List<String> tabs) throws JSONException {
+        JSONObject jObj;
+        for (int i = 0; i < tabLinks.length; i++) {
+            jObj = new JSONObject(tabLinks[i]);
+
+            String tabLinkTextI18n = "";
+            if (jObj.has("tabLinkTextI18n")) {
+                tabLinkTextI18n = jObj.getString("tabLinkTextI18n");
+            }
+            tabs.add(tabLinkTextI18n);
+
+        }
     }
 
 }

@@ -74,15 +74,7 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
                 LOGGER.info("** Category Tag : {}", categoryTagId);
                 Tag categoryTag2 = tagManager.resolve(categoryTagId);
 
-                Iterator<Tag> subCategoryTags = categoryTag2.listChildren();
-                if (subCategoryTags != null) {
-                    while (subCategoryTags.hasNext()) {
-                        Tag subCategTag = subCategoryTags.next();
-                        LOGGER.info("Sub Category tag : {}", subCategTag);
-                        String tagTitle = subCategTag.getTitle();
-                        subCategoryTagsMap.put(tagTitle, subCategTag.getTagID());
-                    }
-                }
+                addTagToSubCategoryTagsMap(subCategoryTagsMap, categoryTag2);
             }
 
             Gson gson = new Gson();
@@ -97,9 +89,21 @@ public class SubCategoryTagServlet extends SlingSafeMethodsServlet {
             writer.close();
 
         } catch (IOException e) {
-            LOGGER.error("Error occurred while writing the response object. {}", e);
+            LOGGER.error("Error occurred while writing the response object.", e);
         }
 
+    }
+
+    private void addTagToSubCategoryTagsMap(Map<String, String> subCategoryTagsMap, Tag categoryTag2) {
+        Iterator<Tag> subCategoryTags = categoryTag2.listChildren();
+        if (subCategoryTags != null) {
+            while (subCategoryTags.hasNext()) {
+                Tag subCategTag = subCategoryTags.next();
+                LOGGER.info("Sub Category tag : {}", subCategTag);
+                String tagTitle = subCategTag.getTitle();
+                subCategoryTagsMap.put(tagTitle, subCategTag.getTagID());
+            }
+        }
     }
 
     @Activate

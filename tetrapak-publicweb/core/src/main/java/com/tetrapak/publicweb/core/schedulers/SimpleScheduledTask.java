@@ -48,7 +48,7 @@ public class SimpleScheduledTask implements Runnable {
         String myParameter() default "";
     }
 
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleScheduledTask.class);
 
     private String myParameter;
 

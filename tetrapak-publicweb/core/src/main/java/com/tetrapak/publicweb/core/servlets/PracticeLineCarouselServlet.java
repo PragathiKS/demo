@@ -85,20 +85,20 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
         ResourceResolver resourceResolver = request.getResourceResolver();
 
         // get search arguments
-        String productType = request.getParameter(this.productType);
-        LOGGER.info("Product Type : {}", productType);
+        String productTypeTemp = request.getParameter(this.productType);
+        LOGGER.info("Product Type : {}", productTypeTemp);
         String subCategoryVal = request.getParameter(subcategoryValue);
         LOGGER.info("Sub Category Value : {}", subCategoryVal);
-        String rootPath = request.getParameter(this.rootPath);
-        LOGGER.info("Root Path : {}", rootPath);
+        String rootPathTemp = request.getParameter(this.rootPath);
+        LOGGER.info("Root Path : {}", rootPathTemp);
 
         Gson gson = new Gson();
         String responseJSON = "";
 
         // search for resources
-        if (productType != null && subCategoryVal != null) {
+        if (productTypeTemp != null && subCategoryVal != null) {
             List<BestPracticeLineBean> resources = bestPracticeLineService.getListOfPracticeLines(
-                    resourceResolver, productType, subCategoryVal, rootPath);
+                    resourceResolver, productTypeTemp, subCategoryVal, rootPathTemp);
             if (resources != null) {
                 responseJSON = gson.toJson(resources);
                 LOGGER.info("Here is the JSON object : {}", responseJSON);
@@ -118,22 +118,32 @@ public class PracticeLineCarouselServlet extends SlingSafeMethodsServlet {
 
     @Activate
     protected void activate(final Config config) {
-        if (String.valueOf(config.productType()) != null) this.productType = String.valueOf(config.productType());
-        else this.productType = null;
+        if (String.valueOf(config.productType()) != null) {
+            this.productType = String.valueOf(config.productType());
+        } else {
+            this.productType = null;
+        }
         LOGGER.info("configure: PRODUCT_TYPE='{}'", this.productType);
 
-        if (String.valueOf(config.subcategoryValue()) != null)
+        if (String.valueOf(config.subcategoryValue()) != null) {
             this.subcategoryValue = String.valueOf(config.subcategoryValue());
-        else this.subcategoryValue = null;
+        } else {
+            this.subcategoryValue = null;
+        }
         LOGGER.info("configure: SUBCATEGORY_VALUE='{}'", this.subcategoryValue);
 
-        if (String.valueOf(config.rootPath()) != null) this.rootPath = String.valueOf(config.rootPath());
-        else this.rootPath = null;
+        if (String.valueOf(config.rootPath()) != null) {
+            this.rootPath = String.valueOf(config.rootPath());
+        } else {
+            this.rootPath = null;
+        }
         LOGGER.info("configure: ROOT_PATH='{}'", this.rootPath);
 
-        if (String.valueOf(config.bestpracticeTemplate()) != null)
+        if (String.valueOf(config.bestpracticeTemplate()) != null) {
             this.bestpracticeTemplate = String.valueOf(config.bestpracticeTemplate());
-        else this.bestpracticeTemplate = null;
+        } else {
+            this.bestpracticeTemplate = null;
+        }
         LOGGER.info("configure: BESTPRACTICE_TEMPLATE='{}'", this.bestpracticeTemplate);
     }
 }

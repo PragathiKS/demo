@@ -62,18 +62,24 @@ public class BreadcrumbModel {
                 }
                 pageLevel++;
                 if (!page.isHideInNav()) {
-                    Map<String, String> breadcrumbItem = new HashMap<>();
-                    String pageNavigationTitle;
-                    if (StringUtils.isNotBlank(page.getNavigationTitle()))
-                        pageNavigationTitle = page.getNavigationTitle();
-                    else pageNavigationTitle = page.getTitle();
-                    breadcrumbItem.put(SUBPAGE_TITLE_I18N, pageNavigationTitle);
-                    breadcrumbItem.put(SUBPAGE_LINK_PATH, LinkUtils.sanitizeLink(page.getPath()));
-
-                    breadcrumbSubpages.add(breadcrumbItem);
+                    addBreadCrumbItem(page);
                 }
             }
         }
+    }
+
+    private void addBreadCrumbItem(Page page) {
+        Map<String, String> breadcrumbItem = new HashMap<>();
+        String pageNavigationTitle;
+        if (StringUtils.isNotBlank(page.getNavigationTitle())) {
+            pageNavigationTitle = page.getNavigationTitle();
+        } else {
+            pageNavigationTitle = page.getTitle();
+        }
+        breadcrumbItem.put(SUBPAGE_TITLE_I18N, pageNavigationTitle);
+        breadcrumbItem.put(SUBPAGE_LINK_PATH, LinkUtils.sanitizeLink(page.getPath()));
+
+        breadcrumbSubpages.add(breadcrumbItem);
     }
 
     public List<Map<String, String>> getBreadcrumbSubpages() {
