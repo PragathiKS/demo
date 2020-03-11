@@ -53,7 +53,7 @@ public class DispatcherFlushEventListener implements EventListener {
 
             LOGGER.info("*************added JCR event listener");
         } catch (RepositoryException e) {
-            LOGGER.error("RepositoryException while adding listener {}", e);
+            LOGGER.error("RepositoryException while adding listener", e);
         }
     }
 
@@ -82,7 +82,7 @@ public class DispatcherFlushEventListener implements EventListener {
                 LOGGER.info("event triggered at path: {}", event.getPath());
                 dispatcherFlush.flush(dispatcherFlushConfig.dispatcherPath());
             } catch (RepositoryException e) {
-                LOGGER.error("RepositoryException in DispatcherFlushEventListener {}", e);
+                LOGGER.error("RepositoryException in DispatcherFlushEventListener", e);
             }
         }
     }

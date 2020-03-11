@@ -82,29 +82,29 @@ public class ContactFooterFormModel {
             hideContactFooterForm = currentPageProps.get("hideContactFooterForm", Boolean.class);
         }
 
-       /* InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
-        titleI18n = inheritanceValueMap.getInherited("titleI18n", String.class);
-        description = inheritanceValueMap.getInherited("description", String.class);
-        image = inheritanceValueMap.getInherited("image", String.class);
-        imageAltI18n = inheritanceValueMap.getInherited("imageAltI18n", String.class);
-        helpText = inheritanceValueMap.getInherited("helpText", String.class);
-        privacyPolicyText = inheritanceValueMap.getInherited("privacyPolicyText", String.class);
-        thankYouHeadline = inheritanceValueMap.getInherited("thankYouHeadline", String.class);
-        thankYouMessage = inheritanceValueMap.getInherited("thankYouMessage", String.class);
-        linkTextI18n = inheritanceValueMap.getInherited("linkTextI18n", String.class);
-        linkPath = inheritanceValueMap.getInherited("linkPath", String.class);
-        firstNameLabel = inheritanceValueMap.getInherited("firstNameLabel", String.class);
-        lastNameLabel = inheritanceValueMap.getInherited("lastNameLabel", String.class);
-        phoneNumberLabel = inheritanceValueMap.getInherited("phoneNumberLabel", String.class);
-        emailAddressLabel = inheritanceValueMap.getInherited("emailAddressLabel", String.class);
-        positionLabel = inheritanceValueMap.getInherited("positionLabel", String.class);
-        companyLabel = inheritanceValueMap.getInherited("companyLabel", String.class);
-        contactUsLabel = inheritanceValueMap.getInherited("contactUsLabel", String.class);
-        messageLabel = inheritanceValueMap.getInherited("messageLabel", String.class);
-        previousButtonLabel = inheritanceValueMap.getInherited("previousButtonLabel", String.class);
-        nextButtonLabel = inheritanceValueMap.getInherited("nextButtonLabel", String.class);
-        submitButtonLabel = inheritanceValueMap.getInherited("submitButtonLabel", String.class);
-       */
+        ValueMap valueMap = resource.getValueMap();
+        titleI18n = valueMap.get("titleI18n", String.class);
+        description = valueMap.get("description", String.class);
+        image = valueMap.get("image", String.class);
+        imageAltI18n = valueMap.get("imageAltI18n", String.class);
+        helpText = valueMap.get("helpText", String.class);
+        privacyPolicyText = valueMap.get("privacyPolicyText", String.class);
+        thankYouHeadline = valueMap.get("thankYouHeadline", String.class);
+        thankYouMessage = valueMap.get("thankYouMessage", String.class);
+        linkTextI18n = valueMap.get("linkTextI18n", String.class);
+        linkPath = valueMap.get("linkPath", String.class);
+        firstNameLabel = valueMap.get("firstNameLabel", String.class);
+        lastNameLabel = valueMap.get("lastNameLabel", String.class);
+        phoneNumberLabel = valueMap.get("phoneNumberLabel", String.class);
+        emailAddressLabel = valueMap.get("emailAddressLabel", String.class);
+        positionLabel = valueMap.get("positionLabel", String.class);
+        companyLabel = valueMap.get("companyLabel", String.class);
+        contactUsLabel = valueMap.get("contactUsLabel", String.class);
+        messageLabel = valueMap.get("messageLabel", String.class);
+        previousButtonLabel = valueMap.get("previousButtonLabel", String.class);
+        nextButtonLabel = valueMap.get("nextButtonLabel", String.class);
+        submitButtonLabel = valueMap.get("submitButtonLabel", String.class);
+
         getCountriesList(pageManager);
     }
 

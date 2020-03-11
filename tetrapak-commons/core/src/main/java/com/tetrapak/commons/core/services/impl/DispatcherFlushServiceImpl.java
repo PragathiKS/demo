@@ -86,11 +86,11 @@ public class DispatcherFlushServiceImpl implements DispatcherFlushService {
                 LOGGER.warn("Dispatcher Cache could not be flushed. {}", dispatcherHostURL);
             }
         } catch (URISyntaxException e) {
-            LOGGER.error("DispatcherFlushServiceImpl | URISyntaxException: {}", e);
+            LOGGER.error("DispatcherFlushServiceImpl | URISyntaxException:", e);
         } catch (ClientProtocolException e) {
-            LOGGER.error("ClientProtocolException in DispatcherFlushServiceImpl {}", e);
+            LOGGER.error("ClientProtocolException in DispatcherFlushServiceImpl", e);
         } catch (IOException e) {
-            LOGGER.error("IOException in DispatcherFlushServiceImpl {}", e);
+            LOGGER.error("IOException in DispatcherFlushServiceImpl", e);
         } finally {
             httpPost.releaseConnection();
         }
