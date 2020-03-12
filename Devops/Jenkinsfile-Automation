@@ -7,7 +7,9 @@ pipeline {
 
     parameters {
         choice(name: 'environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the Environment')
-        choice(name: 'browser', choices: ['android', 'chrome', 'iosmobile'], description: 'Select the Browser')      
+        choice(name: 'browser', choices: ['android', 'chrome', 'iosmobile'], description: 'Select the Browser')
+        booleanParam defaultValue: true, description: 'Plese check in case you want to Test Public Web Module', name: 'TestPublicWeb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to Test MyTetraPak Module', name: 'TestMyTetraPak'             
     }
 
     environment {
