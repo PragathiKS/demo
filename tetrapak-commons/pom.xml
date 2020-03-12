@@ -49,6 +49,10 @@
 			**/**.js,
             **/exceptions/**
         </sonar.coverage.exclusions>
+        <sonar.exclusions>
+			**/**.html,
+			**/**.xml
+        </sonar.exclusions>
     </properties>
 
     <build>
