@@ -1,0 +1,49 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"hideContactFooterForm":"true",
+		"cq:lastModifiedBy": "admin",
+		"contactFooterForm": {
+			"jcr:primaryType": "nt:unstructured",
+			"titleI18n": "Title",
+			"jcr:createdBy": "admin",
+			"previousButtonLabel": "Previous",
+			"firstNameLabel": "First Name",
+			"description": "Description",
+			"thankYouMessage": "Thank You Message",
+			"messageLabel": "Message",
+			"helpText": "Help Text",			
+			"jcr:lastModifiedBy": "admin",
+			"privacyPolicyText":"Privacy Policy Text",
+			"contactUsLabel": "Where do you want to contact us?",
+			"lastNameLabel": "Last Name",
+			"jcr:created": "Tue Mar 03 2020 14:26:36 GMT+0530",
+			"imageAltI18n": "Image Alt Text",
+			"nextButtonLabel": "Next",
+			"image": "/content/dam/publicweb/asset.jpg",
+			"linkTextI18n": "Link Text",
+			"submitButtonLabel": "Submit",
+			"phoneNumberLabel": "Phone Number",
+			"thankYouHeadline": "Thank You Headline",
+			"jcr:lastModified": "Tue Mar 03 2020 14:28:17 GMT+0530",
+			"positionLabel": "Position",
+			"emailAddressLabel": "Email Address",
+			"linkPath": "/content/tetrapak/public-web/global/en",
+			"sling:resourceType": "publicweb/components/content/contactFooterForm",
+			"companyLabel": "Company",
+			"textIsRich": [
+			"true",
+			"true"
+			]
+			}
+		}
+	}
