@@ -1,0 +1,38 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"teaser": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:createdBy": "admin",
+			"jcr:lastModifiedBy": "admin",
+			"pwButtonTheme": "secondary",
+			"contentType": "semi-automatic",
+			"jcr:created": "Thu Feb 13 2020 11:10:47 GMT+0000",
+			"maxTeasers": "5",
+			"tags": [
+			"tetra-pak:public-web/product"
+			],
+			"jcr:lastModified": "Fri Mar 06 2020 09:43:37 GMT+0000",
+			"sling:resourceType": "publicweb/components/content/teaser",
+			"semiAutomaticList":{
+				"jcr:primaryType": "nt:unstructured",
+				"item0":{
+				"jcr:primaryType": "nt:unstructured",
+				"pagePath":"/content/tetrapak/public-web/global/en/products"
+				}
+			}
+		}
+	}
+}
+
+

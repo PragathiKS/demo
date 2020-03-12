@@ -10,19 +10,30 @@ import com.day.cq.wcm.api.PageManager;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
+/**
+ * The Class BreadcrumbModelTest.
+ */
 public class BreadcrumbModelTest {
 
+	/** The context. */
 	@Rule
 	public AemContext context = new AemContext();
 
+	/** The page manager. */
 	@Mock
 	private PageManager pageManager;
 
 	/** The Constant RESOURCE_CONTENT. */
 	private static final String RESOURCE_CONTENT = "/breadcrmb/test-content.json";
 
+	/** The Constant HOMEPAGE_CONTENT. */
+	private static final String HOMEPAGE_CONTENT = "/breadcrmb/test-content-two.json";
+
 	/** The Constant TEST_CONTENT_ROOT. */
-	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en/404";
+	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en/error/404";
+
+	/** The Constant HOMEPAGE_CONTENT_ROOT. */
+	private static final String HOMEPAGE_CONTENT_ROOT = "/content/tetrapak/public-web/global";
 
 	/** The Constant RESOURCE. */
 	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/breadcrmb";
@@ -36,7 +47,6 @@ public class BreadcrumbModelTest {
 	/**
 	 * Sets the up.
 	 *
-	 * @param context the new up
 	 * @throws Exception the exception
 	 */
 	@Before
@@ -45,6 +55,7 @@ public class BreadcrumbModelTest {
 		Class<BreadcrumbModel> modelClass = BreadcrumbModel.class;
 		// load the resources for each object
 		context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+		context.load().json(HOMEPAGE_CONTENT, HOMEPAGE_CONTENT_ROOT);
 		context.addModelsForClasses(modelClass);
 		resource = context.currentResource(RESOURCE);
 		model = resource.adaptTo(modelClass);

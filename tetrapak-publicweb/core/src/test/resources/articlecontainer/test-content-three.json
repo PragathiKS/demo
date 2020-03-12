@@ -1,0 +1,31 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"jcr:description":"Description",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"ctaTexti18nKey":"cta Text i18n Key",
+		"practiceImagePath":"/content/dam/tetrapak/asset.jpg",
+		"practiceImageAltI18n":"practice ImageAltI18n",
+		"cq:lastModifiedBy": "admin",
+		"articlecontainer": {
+			"jcr:primaryType": "nt:unstructured",
+			"titleI18n": "Title i18 Key",
+			"jcr:createdBy": "admin",
+			"jcr:lastModifiedBy": "admin",
+			"titleAlignment": "text-left",
+			"jcr:created": "Wed Feb 26 2020 11:02:14 GMT+0530",
+			"pwTheme": "grayscale-white",
+			"jcr:lastModified": "Wed Feb 26 2020 11:02:29 GMT+0530",
+			"numberOfcolumns": "",
+			"sling:resourceType": "publicweb/components/content/articleContainer"
+			}
+		}
+	}
