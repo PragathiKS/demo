@@ -49,6 +49,10 @@
             **/exceptions/**,
             **/utils/**
         </sonar.coverage.exclusions>
+        <sonar.exclusions>
+            **/**.html,
+            **/**.xml
+        </sonar.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
 
