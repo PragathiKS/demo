@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Objects;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactFooterFormModel {
@@ -111,7 +112,11 @@ public class ContactFooterFormModel {
     private void getCountriesList(PageManager pageManager) {
         Page listPage = pageManager.getPage("/etc/acs-commons/lists/countries");
         GenericList list = listPage.adaptTo(GenericList.class);
+        if(Objects.nonNull(list)) {
         countryList = list.getItems();
+        }else {
+        	LOGGER.debug("Generic list is empty");
+        }
     }
 
     public String getTitleI18n() {
