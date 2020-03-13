@@ -55,7 +55,8 @@
         </sonar.coverage.exclusions>
         <sonar.exclusions>
             **/**.html,
-            **/**.xml
+            **/**.xml,
+            **/**.jsp
         </sonar.exclusions>
 		<buildversion>1.0.0-SNAPSHOT</buildversion>
     </properties>
