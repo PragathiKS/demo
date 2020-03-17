@@ -9,6 +9,9 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
+
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb_sitespeed'
+        booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak_sitespeed'
     }
 
     options {
@@ -146,11 +149,11 @@ pipeline {
                 echo "Skipping Sitespeed Execution for Desktop"                
             }
             else {
-                if (params.Build_MyTetraPak) {
+                if (params.Build_MyTetraPak_sitespeed) {
                     test_url = "${test_url_cuhu}"
                     sitespeed()
                 }
-                if (params.Build_Publicweb) {
+                if (params.Build_Publicweb_sitespeed) {
                     test_url = "${test_url_pw}"
                     sitespeed()                  
                 }
