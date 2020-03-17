@@ -72,11 +72,11 @@ export const isCallable = (param) => (typeof param === 'function');
 
 /**
  * Scrolls the page to a particular element
+ * @param {function} callback Callback function
  * @param {string|object} selector Selector or element
  * @param {number} duration Duration in number
- * @param {function} callback Callback function
  */
-export const scrollToElement = (selector = document.body, duration = 500, callback) => {
+export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
   $global.animate(
     {
@@ -99,10 +99,10 @@ export const scrollToElement = (selector = document.body, duration = 500, callba
 /**
  * Scrolls the page to given offset location
  * @param {number} offset Offset from top
- * @param {number} duration Duration in number
  * @param {function} callback Callback function
+ * @param {number} duration Duration in number
  */
-export const scrollToOffset = (offset, duration = 500, callback) => {
+export const scrollToOffset = (offset, callback, duration = 500) => {
   let executed = false;
   $global.animate(
     {
@@ -124,11 +124,11 @@ export const scrollToOffset = (offset, duration = 500, callback) => {
 
 /**
  * Scrolls the page to top
- * @param {number} duration Duration in number
  * @param {function} callback Callback function
+ * @param {number} duration Duration in number
  */
-export const scrollToTop = (duration = 500, callback) => {
-  scrollToOffset(0, duration, callback);
+export const scrollToTop = (callback, duration = 500) => {
+  scrollToOffset(0, callback, duration);
 };
 
 /**
