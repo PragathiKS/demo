@@ -84,8 +84,8 @@ pipeline {
         }
 
         stage('Author and Publisher Deployment') {
-            script {
-                steps {
+            steps {
+                script {
                 author_url = "https://author1.dev.tetrapak.adobecqms.net"
                 ublish_url = "https://publish1.dev.tetrapak.adobecqms.net"                        
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
@@ -102,6 +102,7 @@ pipeline {
 
         stage('Karma, Pa11y, Zap Tools Execution') {
             steps {
+                script {
                 if (!params.Tools_Execution) {
                         echo "Skipping Tools Execution"
                 }
@@ -135,9 +136,12 @@ pipeline {
 
                 }
                 }
+                }
         }
     }
         stage('Sitespeed Execution') {
+            steps {
+                script {
             if (!params.Tools_Execution) {
                 echo "Skipping Sitespeed Execution for Desktop"                
             }
@@ -151,7 +155,8 @@ pipeline {
                     sitespeed()                  
                 }
             }
-            
+            }
+        } 
         }
 }
 }
@@ -159,10 +164,8 @@ pipeline {
                 echo "Build ${appname}"
                 dir("tetrapak-${appname}") {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-                    {                   
-                    {
+                    {                       
                 sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-                    }
                     if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
                     } else {
@@ -364,13 +367,3 @@ pipeline {
 	// 			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                  			                
     // }
-
-
-
-
-
-
-
-
-
-
