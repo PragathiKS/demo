@@ -1,8 +1,8 @@
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
 pipeline {
         agent any
+    //     triggers {
+    //     cron('5 0 * * *')
+    // }
     parameters {
         booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
