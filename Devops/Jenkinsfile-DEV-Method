@@ -165,6 +165,7 @@ pipeline {
 }
     def buildandsonar() {
                 echo "Build ${appname}"
+                sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
                 dir("tetrapak-${appname}") {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {                       
