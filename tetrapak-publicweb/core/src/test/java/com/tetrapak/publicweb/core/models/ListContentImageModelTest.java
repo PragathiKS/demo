@@ -54,6 +54,6 @@ public class ListContentImageModelTest {
 		String[] methods = new String[] { "getTitleI18n", "getTabsAlignment", "getLinkTextI18n", "getLinkTooltipI18n",
 				"getLinkPath", "getTargetBlank", "getTabLinks", "getPwTheme", "getPwButtonTheme", "getPwPadding",
 				"getMakeCollapsable", "getComponentId" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

@@ -65,6 +65,6 @@ public class SearchResultsModelTest {
 		String[] methods = new String[] { "getSearchBoxPlaceholder", "getResultsText", "getNoResultsText",
 				"getNoFilterMatches", "getResultsPerPage", "getFirstTabLinkText", "getTabs", "getFilterTitle",
 				"getTagsMap" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

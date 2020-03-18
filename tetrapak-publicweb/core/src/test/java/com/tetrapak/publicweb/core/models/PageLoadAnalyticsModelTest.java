@@ -59,6 +59,6 @@ public class PageLoadAnalyticsModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "isProduction", "isStaging", "isDevelopment", "getDigitalData" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

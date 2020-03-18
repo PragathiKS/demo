@@ -52,6 +52,6 @@ public class ImageCarouselModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getResourceID", "getImagesList" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

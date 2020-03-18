@@ -56,6 +56,6 @@ public class ContactAnchorLinkModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getHideContactAnchorLink"};
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

@@ -53,6 +53,6 @@ public class LandingPageModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitle", "getVanityDescription", "getCtaTexti18nKey", "isOpenInNewWindow",
 				"getShowImage", "getArticleImagePath", "getArticleImageAltI18n" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

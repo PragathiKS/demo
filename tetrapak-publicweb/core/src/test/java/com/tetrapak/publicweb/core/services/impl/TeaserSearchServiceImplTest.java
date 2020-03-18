@@ -11,6 +11,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -95,7 +96,7 @@ public class TeaserSearchServiceImplTest {
 		when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(queryBuilder);
 		when(queryBuilder.createQuery(Mockito.any(PredicateGroup.class), Mockito.any(Session.class))).thenReturn(query);
 		when(query.getResult()).thenReturn(searchResult);
-		teaserSearchServiceImpl.getListOfTeasers(resourceResolver, tags, "/content", 4);
+		Assert.assertNotNull(teaserSearchServiceImpl.getListOfTeasers(resourceResolver, tags, "/content", 4));
 	}
 
 }

@@ -53,6 +53,6 @@ public class HeaderModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getEnableHeroImage", "getLoginTextI18n", "getSearchRootPath",
 				"getSearchResultsPath", "getSearchPlaceholderText", "getSearchPanelTiles","getMegaMenuLinksList" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

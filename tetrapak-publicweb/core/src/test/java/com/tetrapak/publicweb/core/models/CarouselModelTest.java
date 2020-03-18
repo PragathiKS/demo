@@ -53,6 +53,6 @@ public class CarouselModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitleI18n", "getTitleAlignment", "getPwTheme",
 				"getPwButtonTheme", "getPwPadding", "getCarouselId","getTabs" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

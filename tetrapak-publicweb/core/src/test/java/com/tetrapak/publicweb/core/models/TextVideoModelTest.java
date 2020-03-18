@@ -55,6 +55,6 @@ public class TextVideoModelTest {
 				"getTargetBlank", "getVideoSource", "getYoutubeVideoID", "getYoutubeEmbedURL", "getDamVideoPath",
 				"getThumbnailPath", "getTextAlignment", "getPwTheme", "getPwButtonTheme", "getPwPadding",
 				"getPwDisplay" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

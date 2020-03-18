@@ -55,6 +55,6 @@ public class PageContentModelTest {
 				"getAuthorName", "getLastUpdate", "getLastReplicated", "getTitle", "getCreatedOn", "getCqTags",
 				"getPath", "getHideContactAnchorLink", "getHideContactFooterForm", "getSubtitle", "getNavTitle",
 				"getJcrMap", "toString" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

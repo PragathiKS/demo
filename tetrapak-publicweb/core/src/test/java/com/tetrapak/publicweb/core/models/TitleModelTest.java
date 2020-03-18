@@ -53,6 +53,6 @@ public class TitleModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitleText", "getHeadingFontSize", "getHeadingType" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

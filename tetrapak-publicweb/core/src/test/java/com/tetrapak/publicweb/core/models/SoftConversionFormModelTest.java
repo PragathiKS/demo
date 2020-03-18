@@ -55,6 +55,6 @@ public class SoftConversionFormModelTest {
 		String[] methods = new String[] { "getFirstNameLabel", "getLastNameLabel", "getEmailAddressLabel",
 				"getCompanyLabel", "getPositionLabel", "getPreviousButtonLabel", "getNextButtonLabel",
 				"getSubmitButtonLabel", "getRadioButtonGroups" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

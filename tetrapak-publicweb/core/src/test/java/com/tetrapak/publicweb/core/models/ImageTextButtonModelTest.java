@@ -55,6 +55,6 @@ public class ImageTextButtonModelTest {
 		String[] methods = new String[] { "getTitle", "getSubtitle", "getDescription", "getCtaLinkTextI18n",
 				"getCtaLinkURL", "getLinkType", "getOpenLinkInNewWindow", "getImagePath", "getImageAltI18n",
 				"getPwTheme", "getPwButtonTheme" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }
