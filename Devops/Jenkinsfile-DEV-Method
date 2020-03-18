@@ -1,11 +1,5 @@
-pipeline {
-    agent {
-        dockerfile {
-            args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
-            label 'linux&&docker'
-        }
-    }    
-        //agent any
+pipeline {   
+        agent any
     //     triggers {
     //     cron('5 0 * * *')
     // }
@@ -56,12 +50,12 @@ pipeline {
 
         stage('Build and Sonar analysis') {
 
-            // agent {
-            //     dockerfile {
-            //         args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
-            //         label 'linux&&docker'
-            //     }
-            // }
+            agent {
+                dockerfile {
+                    args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
+                    label 'linux&&docker'
+                }
+            }
 
             steps {
                 script {
@@ -93,11 +87,11 @@ pipeline {
         }
 
         stage('Author and Publisher Deployment') {
-            // agent {
-            // node {
-            // label 'cfe-deploy'
-            // } 
-            // }
+            agent {
+                node {
+                label 'ubuntu-agentd45a90'
+            } 
+            }
             steps {
                 script {
                 author_url = "https://author1.dev.tetrapak.adobecqms.net"
@@ -115,6 +109,11 @@ pipeline {
         }
 
         stage('Karma, Pa11y, Zap Tools Execution') {
+            agent {
+                node {
+                label 'ubuntu-agentd45a90'
+            } 
+            }            
             steps {
                 script {
                 if (!params.Tools_Execution) {
@@ -154,6 +153,11 @@ pipeline {
         }
     }
         stage('Sitespeed Execution') {
+            agent {
+                node {
+                label 'ubuntu-agentd45a90'
+            } 
+            }            
             steps {
                 script {
             if (!params.Tools_Execution) {
