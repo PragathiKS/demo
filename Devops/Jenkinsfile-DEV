@@ -1,7 +1,9 @@
+@Library('jenkins-pipeline-library') _
+
 pipeline {   
         agent any
         triggers {
-        cron('30 1 * * 1-5')
+        cron('H 1 * * 1-5')
     }
     parameters {
         booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -165,6 +167,12 @@ pipeline {
         } 
         }
 }
+//Post notification in MS Teams
+    post {
+        always {
+            sendNotifications(currentBuild.currentResult)
+        }
+    }
 }
     def buildandsonar() {
                 echo "Build ${appname}"
