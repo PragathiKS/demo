@@ -134,7 +134,7 @@ pipeline {
                     pallytest()
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport- MyTetraPak', reportTitles: ''])
                     zaptest()
-                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerHub', reportFiles: 'zap_customerHub.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
+                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerHub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
 
                 }
 
@@ -145,7 +145,7 @@ pipeline {
                     pallytest()
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                     zaptest()
-					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicWeb', reportFiles: 'zap_publicWeb.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
+					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicWeb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 
                 }
                 }
@@ -317,9 +317,9 @@ pipeline {
                 sleep 20
                 echo "Starting ZAP test Run on ${appname} Urls"
                 sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_cuhu}'
-                sh 'docker exec  zap zap-cli report -f html -o zap_${appname}.html'
+                sh 'docker exec  zap zap-cli report -f html -o zap.html'
                 sh "mkdir -p zap-${appname}"
-                sh "docker cp zap:zap/zap_${appname}.html zap-${appname}"
+                sh "docker cp zap:zap/zap.html zap-${appname}"
                 sh 'docker stop zap'
                 sh 'docker rm zap'  
         }
