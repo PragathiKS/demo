@@ -87,6 +87,11 @@ pipeline {
         }
 
         stage('Author and Publisher Deployment') {
+            agent {
+            node {
+            label 'cfe-deploy'
+            } 
+            }
             steps {
                 script {
                 author_url = "https://author1.dev.tetrapak.adobecqms.net"
