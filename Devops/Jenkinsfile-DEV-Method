@@ -158,11 +158,11 @@ pipeline {
             }
             else {
                 if (params.Build_MyTetraPak_sitespeed) {
-                    "test_url" = "${test_url_cuhu}"
+                    test_url = "${test_url_cuhu}"
                     sitespeed()
                 }
                 if (params.Build_Publicweb_sitespeed) {
-                    "test_url" = "${test_url_pw}"
+                    test_url = "${test_url_pw}"
                     sitespeed()                  
                 }
             }
