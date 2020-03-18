@@ -10,8 +10,8 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
 
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb' //Temp
-        booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak' //Temp
+        //booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb' //Temp
+        //booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak' //Temp
     }
 
     options {
