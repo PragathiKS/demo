@@ -42,7 +42,7 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
-                    echo "${karmapath_cuhu}"
+                    //echo "${karmapath_cuhu}"
 
 		}
             }
@@ -165,11 +165,11 @@ pipeline {
             }
             else {
                 if (params.Build_MyTetraPak_sitespeed) {
-                    test_url = "${test_url_cuhu}"
+                    def test_url = "${test_url_cuhu}"
                     sitespeed()
                 }
                 if (params.Build_Publicweb_sitespeed) {
-                    test_url = "${test_url_pw}"
+                    def test_url = "${test_url_pw}"
                     sitespeed()                  
                 }
             }
@@ -320,7 +320,7 @@ pipeline {
 
     def sitespeed() {
                 echo "Starting Sitespeed-Desktop Test Run for CustomerHub"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url_cuhu} -b firefox --outputFolder sitespeed_desktop'
+                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io ${test_url} -b firefox --outputFolder sitespeed_desktop'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Desktop', reportTitles: ''])
 
                 echo "Starting Sitespeed-Mobile Test Run for CustomerHub"
