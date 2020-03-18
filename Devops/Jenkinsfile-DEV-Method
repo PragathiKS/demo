@@ -127,7 +127,7 @@ pipeline {
                 //     zap()
                 // }
 
-                if (params.Build_MyTetraPak) {
+                if (params.Build_MyTetraPak_sitespeed) {
                     appname = "customerhub"
                     karmatest() 
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
@@ -138,7 +138,7 @@ pipeline {
 
                 }
 
-                if (params.Build_Publicweb) {
+                if (params.Build_Publicweb_sitespeed) {
                     appname = "publicweb"
                     karmatest()
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
@@ -164,11 +164,11 @@ pipeline {
                 echo "Skipping Sitespeed Execution for Desktop"                
             }
             else {
-                if (params.Build_MyTetraPak) {
+                if (params.Build_MyTetraPak_sitespeed) {
                     test_url = "${test_url_cuhu}"
                     sitespeed()
                 }
-                if (params.Build_Publicweb) {
+                if (params.Build_Publicweb_sitespeed) {
                     test_url = "${test_url_pw}"
                     sitespeed()                  
                 }
