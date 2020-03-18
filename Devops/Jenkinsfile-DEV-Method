@@ -10,8 +10,6 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
 
-        //booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb' //Temp
-        //booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak' //Temp
     }
 
     options {
@@ -42,7 +40,6 @@ pipeline {
                     formattedDate = now.format("yyyyMMddHHmm")
                     build_id_number = formattedDate
                     echo "build_id_number = ${build_id_number}-SNAPSHOT"
-                    //echo "${karmapath_cuhu}"
 
 		}
             }
@@ -246,16 +243,16 @@ pipeline {
 
     def authordeploy() {
                 
-                echo "Uninstalling Old Commons Package on author for Commons"
+                echo "Uninstalling Old Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
                 sleep 10
-                echo "Deleting Old Commons Package on author"
+                echo "Deleting Old Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                 sleep 10
-                echo "Uploading New Commons Package on author"
+                echo "Uploading New Package on author"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 20
-                echo "Installing New Commons Package on author"
+                echo "Installing New Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
                 sleep 20
 
@@ -263,16 +260,16 @@ pipeline {
 
     def publishdeploy() {
                 
-                echo "Uninstalling Old Commons Package on publish for Commons"
+                echo "Uninstalling Old Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
                 sleep 10
-                echo "Deleting Old Commons Package on publish"
+                echo "Deleting Old Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
                 sleep 10
-                echo "Uploading New Commons Package on publish"
+                echo "Uploading New Package on publish"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 20
-                echo "Installing New Commons Package on publish"
+                echo "Installing New Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
                 sleep 20
 
@@ -295,8 +292,6 @@ pipeline {
     def zaptest() {
                 echo "Starting Zap Test Run- ${appname}"
                 sh 'docker ps -a'
-                //sh 'docker stop 974af0658b8d'
-                //sh 'docker rm 974af0658b8d'
                 sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                 sleep 20
                 echo "Starting ZAP test Run on ${appname} Urls"
@@ -357,39 +352,3 @@ pipeline {
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                  			                
     }
-
-        // def pallytest() {
-        //         if (params.Build_MyTetraPak_sitespeed) {
-        //             // echo "Starting pa11y test Run on MyTetraPak Urls"
-        //             // reportname = "Pa11y Report - MyTetraPak"
-        //             // sh "mkdir -p pally-customerHub"
-        //             pallycuhuscript()
-        //             // sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
-        //         }
-        //         if (params.Build_Publicweb) {
-        //             // echo "Starting pa11y test Run on PublicWeb Urls"
-        //             // reportname = "Pa11y Report - publicweb"
-        //             // sh "mkdir -p pally-publicWeb"
-        //             pallypwscript()
-        //             // sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html'
-        //         }
-        // }
-            // def pallycuhuscript() {
-    //             sh '''
-    //                 #!/bin/bash
-    //                 for i in `cat Devops/PallyUrlsCuhu.txt`; do
-    //                 docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 dcycle/pa11y --rm -r html -s WCAG2AA -i "notice;warning" -i "WCAG2AA.Principle1.Guideline1_1.1_1_1.H67.2;WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image;WCAG2AA.Principle1.Guideline1_1.1_1_1.H24;WCAG2AA.Principle1.Guideline1_1.1_1_1.H24.2;WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74;WCAG2AA.Principle1.Guideline1_1.1_1_1.H2.EG5;WCAG2AA.Principle1.Guideline1_1.1_1_1.H2.EG3;WCAG2AA.Principle1.Guideline1_1.1_1_1.G94,G92.Object;WCAG2AA.Principle1.Guideline1_2.1_2_4.G9,G87,G93;WCAG2AA.Principle1.Guideline1_2.1_2_2.G87,G93;WCAG2AA.Principle1.Guideline1_2.1_2_5.G78,G173,G8;WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.1;WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2;WCAG2AA.Principle1.Guideline1_3.1_3_2.G57;WCAG2AA.Principle1.Guideline1_4.1_4_2.F23;WCAG2AA.Principle1.Guideline1_4.1_4_1.G14,G182;WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail;WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail;WCAG2AA.Principle1.Guideline1_4.1_4_3.G18;WCAG2AA.Principle1.Guideline1_4.1_4_3.G145;WCAG2AA.Principle1.Guideline1_4.1_4_3.F24.BGColour;WCAG2AA.Principle1.Guideline1_4.1_4_3.F24.FGColour;WCAG2AA.Principle1.Guideline1_4.1_4_4.G142;WCAG2AA.Principle1.Guideline1_4.1_4_5.G140,C22,C30.AALevel;WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2;WCAG2AA.Principle3.Guideline3_2.3_2_3.G61;WCAG2AA.Principle3.Guideline3_2.3_2_4.G197;WCAG2AA.Principle3.Guideline3_3.3_3_1.G83,G84,G85;WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputRange.Name;WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent" "$i";
-    //                 done > PallyReportCuhu.html
-    //                 set -e
-    //            '''
-    // }
-    
-    // def pallypwscript() {
-    //             sh '''
-    //                 #!/bin/bash
-    //                 for i in `cat Devops/PallyUrlsPublicWeb.txt`; do
-    //                 docker run dcycle/pa11y --rm -r html -s WCAG2AA -i "notice;warning" -i "WCAG2AA.Principle1.Guideline1_1.1_1_1.H67.2;WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image;WCAG2AA.Principle1.Guideline1_1.1_1_1.H24;WCAG2AA.Principle1.Guideline1_1.1_1_1.H24.2;WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74;WCAG2AA.Principle1.Guideline1_1.1_1_1.H2.EG5;WCAG2AA.Principle1.Guideline1_1.1_1_1.H2.EG3;WCAG2AA.Principle1.Guideline1_1.1_1_1.G94,G92.Object;WCAG2AA.Principle1.Guideline1_2.1_2_4.G9,G87,G93;WCAG2AA.Principle1.Guideline1_2.1_2_2.G87,G93;WCAG2AA.Principle1.Guideline1_2.1_2_5.G78,G173,G8;WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.1;WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2;WCAG2AA.Principle1.Guideline1_3.1_3_2.G57;WCAG2AA.Principle1.Guideline1_4.1_4_2.F23;WCAG2AA.Principle1.Guideline1_4.1_4_1.G14,G182;WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail;WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail;WCAG2AA.Principle1.Guideline1_4.1_4_3.G18;WCAG2AA.Principle1.Guideline1_4.1_4_3.G145;WCAG2AA.Principle1.Guideline1_4.1_4_3.F24.BGColour;WCAG2AA.Principle1.Guideline1_4.1_4_3.F24.FGColour;WCAG2AA.Principle1.Guideline1_4.1_4_4.G142;WCAG2AA.Principle1.Guideline1_4.1_4_5.G140,C22,C30.AALevel;WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2;WCAG2AA.Principle3.Guideline3_2.3_2_3.G61;WCAG2AA.Principle3.Guideline3_2.3_2_4.G197;WCAG2AA.Principle3.Guideline3_3.3_3_1.G83,G84,G85;WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputRange.Name;WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent" "$i";
-    //                 done > PallyReportPublicWeb.html
-    //                 set +e
-    //             '''
-    // }
