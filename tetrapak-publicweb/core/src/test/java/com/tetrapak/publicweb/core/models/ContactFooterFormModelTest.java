@@ -66,6 +66,6 @@ public class ContactFooterFormModelTest {
 				"getLinkPath", "getFirstNameLabel", "getLastNameLabel", "getPhoneNumberLabel", "getEmailAddressLabel",
 				"getPositionLabel", "getCompanyLabel", "getContactUsLabel", "getMessageLabel", "getPreviousButtonLabel",
 				"getNextButtonLabel", "getSubmitButtonLabel", "getHideContactFooterForm" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

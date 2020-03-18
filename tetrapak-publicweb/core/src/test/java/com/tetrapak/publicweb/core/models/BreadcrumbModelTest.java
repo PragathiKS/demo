@@ -70,7 +70,7 @@ public class BreadcrumbModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getBreadcrumbHomeLabelI18n", "getBreadcrumbHomePath",
 				"getBreadcrumbSubpages" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 
 }

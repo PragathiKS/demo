@@ -53,6 +53,6 @@ public class LogoModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getImagePath", "getImageAltI18n", "getImageLink", "getLinkType", "getCType",
 				"getResource" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

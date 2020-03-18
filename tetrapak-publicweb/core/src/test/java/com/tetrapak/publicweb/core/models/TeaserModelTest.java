@@ -85,7 +85,7 @@ public class TeaserModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getContentType", "getResource", "getPwButtonTheme", "getTeaserList" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 
 	/**

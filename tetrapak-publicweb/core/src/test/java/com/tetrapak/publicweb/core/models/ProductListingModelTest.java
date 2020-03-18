@@ -60,6 +60,6 @@ public class ProductListingModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitleI18n", "getProductRootPath", "getTabLinks",
 				"getFirstTabLinkTextI18n", "getPwPadding", "getPwTheme", "getTabs", "getTabLinks" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

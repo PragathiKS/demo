@@ -65,7 +65,7 @@ public class DynamicMediaImageModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getDynamicMediaConfiguration", "getMobilePortraitUrl",
 				"getMobileLandscapeUrl", "getTabletPortraitUrl", "getTabletLandscapeUrl", "getDesktopUrl" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 	
 }

@@ -56,6 +56,6 @@ public class OfficeLocatorModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitle", "getCityInputLabel", "getFiltersLabel" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

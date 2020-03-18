@@ -58,6 +58,6 @@ public class ImageTextBannerModelTest {
 				"getBannerCtaPath", "getLinkType", "getTargetBlank", "getBannerCtaTooltipI18n", "getIsHeaderBanner",
 				"getTargetSoftConversion", "getSoftConversionTitle", "getSoftConversionDescription",
 				"getSoftConversionHeadline", "getSoftConversionLastStep", "getSoftConversionDocPath" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

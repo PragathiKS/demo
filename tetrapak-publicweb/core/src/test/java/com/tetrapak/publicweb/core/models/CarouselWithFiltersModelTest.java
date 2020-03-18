@@ -62,6 +62,6 @@ public class CarouselWithFiltersModelTest {
 		String[] methods = new String[] { "getTitleI18n", "getTitleAlignment", "getPwTheme", "getPwButtonTheme",
 				"getPwPadding", "getCarouselId", "getProdType", "getCategoryTagsMap", "getRootPath", "getErrorMessage",
 				"getTagsMap" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

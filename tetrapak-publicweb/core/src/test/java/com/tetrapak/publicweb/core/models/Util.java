@@ -6,14 +6,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.sling.api.resource.Resource;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UtilTest {
+public class Util {
 
 	/** Logger Instantiation. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(UtilTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Util.class);
 
 	/**
 	 * 
@@ -21,11 +22,6 @@ public class UtilTest {
 	 * @param modelObject the modelObject
 	 * @param resource    the resource
 	 */
-
-	@Test
-	public void simpleLoadAndGettersTest() {
-		LOGGER.debug("inside test method");
-	}
 
 	public static void testLoadAndGetters(String methods[], Object modelObject, Resource resource) {
 

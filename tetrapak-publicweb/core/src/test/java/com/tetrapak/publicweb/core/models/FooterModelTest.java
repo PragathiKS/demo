@@ -53,6 +53,6 @@ public class FooterModelTest {
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getCtaLabelI18n", "getFooterSocialLinks", "getFooterNavigationLinks"};
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }

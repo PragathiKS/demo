@@ -53,6 +53,6 @@ public class BestPracticeLinePageModelTest {
 	public void simpleLoadAndGettersTest() throws Exception {
 		String[] methods = new String[] { "getTitle", "getVanityDescription", "getVanityDescription",
 				"getCtaTexti18nKey", "getPracticeImagePath", "getPracticeImageAltI18n" };
-		UtilTest.testLoadAndGetters(methods, model, resource);
+		Util.testLoadAndGetters(methods, model, resource);
 	}
 }
