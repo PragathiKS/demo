@@ -1,5 +1,11 @@
 pipeline {
-        agent any
+    agent {
+        dockerfile {
+            args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
+            label 'linux&&docker'
+        }
+    }    
+        //agent any
     //     triggers {
     //     cron('5 0 * * *')
     // }
@@ -50,12 +56,12 @@ pipeline {
 
         stage('Build and Sonar analysis') {
 
-            agent {
-                dockerfile {
-                    args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
-                    label 'linux&&docker'
-                }
-            }
+            // agent {
+            //     dockerfile {
+            //         args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
+            //         label 'linux&&docker'
+            //     }
+            // }
 
             steps {
                 script {
