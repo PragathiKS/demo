@@ -89,7 +89,7 @@ pipeline {
         stage('Author and Publisher Deployment') {
             agent {
                 node {
-                label 'ubuntu-agentd45a90'
+                label 'cfe-deploy'
             } 
             }
             steps {
