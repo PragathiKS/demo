@@ -95,7 +95,7 @@ pipeline {
             steps {
                 script {
                 author_url = "https://author1.dev.tetrapak.adobecqms.net"
-                ublish_url = "https://publish1.dev.tetrapak.adobecqms.net"                        
+                publish_url = "https://publish1.dev.tetrapak.adobecqms.net"                        
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
              {
                  devdeployment()
