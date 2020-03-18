@@ -132,9 +132,9 @@ pipeline {
                     karmatest() 
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
                     pallytest()
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport- MyTetraPak', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerhub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport- MyTetraPak', reportTitles: ''])
                     zaptest()
-                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerHub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
+                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerhub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
 
                 }
 
@@ -143,9 +143,9 @@ pipeline {
                     karmatest()
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
                     pallytest()
-					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
+					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicweb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                     zaptest()
-					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicWeb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
+					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicweb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 
                 }
                 }
@@ -288,21 +288,28 @@ pipeline {
     }
 
     def karmatest() {
-                echo "Publising karma Test Report- ${appname}"
-                sh 'echo "Karma Report"'
-                reportname = "Karma Report - ${appname}"
+            if (params.Build_MyTetraPak_sitespeed) {
+                echo "Publising karma Test Report- MyTetrapak"
+                reportname = "Karma Report - MyTetrapak"
                 sh "cp -r ${karmapath_cuhu} ${appname}"
+            }
+            if (params.Build_Publicweb_sitespeed) {
+                echo "Publising karma Test Report- Publicweb"
+                reportname = "Karma Report - Publicweb"
+                sh "cp -r ${karmapath_pw} ${appname}"
+            }
+
     }
 
     def pallytest() {
-                if (params.Build_MyTetraPak) {
-                    echo "Starting pa11y test Run on CustomerHub Urls"
-                    reportname = "Pa11y Report - CustomerHub"
+                if (params.Build_MyTetraPak_sitespeed) {
+                    echo "Starting pa11y test Run on MyTetraPak Urls"
+                    reportname = "Pa11y Report - MyTetraPak"
                     sh "mkdir -p pally-customerHub"
                     pallycuhuscript()
                     sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
                 }
-                if (params.Build_Publicweb) {
+                if (params.Build_Publicweb_sitespeed) {
                     echo "Starting pa11y test Run on PublicWeb Urls"
                     reportname = "Pa11y Report - publicweb"
                     sh "mkdir -p pally-publicWeb"
