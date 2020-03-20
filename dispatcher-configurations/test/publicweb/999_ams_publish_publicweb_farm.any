@@ -8,7 +8,7 @@
         ## hostname globbing for farm selection (virtual domain addressing)
         /virtualhosts {
                 #$include "/etc/httpd/conf.dispatcher.d/vhosts/ams_publish_vhosts.any"
-				"tetrapak-test64a.adobecqms.net"
+				 "tetrapak-test64.adobecqms.net"
         }
 
         ## the load will be balanced among these render instances
