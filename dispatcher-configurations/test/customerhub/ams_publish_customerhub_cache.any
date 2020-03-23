@@ -16,7 +16,7 @@
 	/type "deny"
 }
 
-## cache /content/tetrapak/customerhub
+## Don't cache /content/tetrapak/customerhub
 /0002 {
         /glob "/content/tetrapak/customerhub[./]*"
         /type "allow"
