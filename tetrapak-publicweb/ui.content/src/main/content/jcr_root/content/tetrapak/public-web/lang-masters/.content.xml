@@ -2,18 +2,19 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
+        cq:allowedTemplates="/conf/publicweb/settings/wcm/templates/public-web-language-level-page"
         cq:lastModified="{Date}2020-03-18T11:36:41.729Z"
         cq:lastModifiedBy="admin"
         cq:lastReplicated="{Date}2020-03-19T07:08:33.237Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
-        cq:template="/conf/publicweb/settings/wcm/templates/public-web-base-page"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Language Masters"
         jcr:uuid="2d82e3c3-0c14-4941-849e-4e78df4d53c8"
-        sling:resourceType="publicweb/components/structure/pages/page">
+        sling:resourceType="publicweb/components/structure/pages/landingpage">
         <footer
             jcr:lastModified="{Date}2019-03-08T13:14:42.321-03:00"
             jcr:lastModifiedBy="admin"

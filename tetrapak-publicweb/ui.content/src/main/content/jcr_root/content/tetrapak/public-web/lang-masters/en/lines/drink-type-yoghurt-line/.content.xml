@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-02-07T07:54:46.596Z"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-03-19T07:08:33.746Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:tags="[]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="descccc1"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Drink Type Yoghurt Line (ambient distribution)"
+        jcr:uuid="1694ae1d-0310-471e-9d99-828e4ebca9ee"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        articleImagePath="/content/dam/publicweb/ContentImage5.png"
+        ctaTexti18nKey="Discover mixing solutions for ambient yoghurt"
+        linkTarget="_self"
+        practiceImageAltI18n="machinery"
+        practiceImagePath="/content/dam/publicweb/ContentImage4.png"
+        title="Drink Type Yoghurt Line (ambient distribution)"
+        vanityDescription="Tasty, healthy, nutritious, filling, with an endless variety of flavours and served in an easy-to-drink package. It is easy to understand why the popularity of drinking yoghurt is booming around the world. This line can be adapted to produce a huge variety of different products with a varying viscosity, flavour, shelf life, appeareance, with or without particles, etc."/>
+</jcr:root>
