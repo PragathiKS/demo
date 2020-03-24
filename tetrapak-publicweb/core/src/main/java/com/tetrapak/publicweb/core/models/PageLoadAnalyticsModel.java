@@ -1,13 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -15,18 +15,15 @@ import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
     @Self
-    private SlingHttpServletRequest request;
+    private Resource resource;
 
-    @Inject
     private Page currentPage;
 
     @Inject
@@ -34,140 +31,102 @@ public class PageLoadAnalyticsModel {
 
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
-    private static final String PRODUCT_PAGE_LOAD_EVENT = "pdp-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
-    private static final String PRODUCT_PAGE_TEMPLATE_PATH = "/conf/publicweb/settings/wcm/templates/public-web-product-page";
 
     private String channel = StringUtils.EMPTY;
     private String pageName = StringUtils.EMPTY;
     private String siteLanguage = StringUtils.EMPTY;
     private String siteCountry = StringUtils.EMPTY;
-    private String breadcrumb = StringUtils.EMPTY;
     private String pageType = StringUtils.EMPTY;
-    private String contentName = StringUtils.EMPTY;
     private String digitalData;
     private boolean production;
     private boolean staging;
     private boolean development;
+    private StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-    private Map<String, String> tagsMap = new HashMap<>();
-    private boolean productPage;
-    private String productTitle = StringUtils.EMPTY;
+    private static final int COUNTRY_LEVEL = 4;
+    private static final int LANGUAGE_LEVEL = 5;
 
     @PostConstruct
     public void initModel() {
-        String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
-        if (StringUtils.equals(templatePath, PRODUCT_PAGE_TEMPLATE_PATH)) {
-            productPage = true;
-            productTitle = currentPage.getProperties().get("title", String.class);
-        }
-        pageType = StringUtils.substringAfterLast(templatePath, "/");
-
-        Locale pageLocale = currentPage.getLanguage(false);
-        if (pageLocale != null) {
-            siteLanguage = pageLocale.getLanguage();
-            siteCountry = pageLocale.getCountry();
-        }
-        if (StringUtils.isBlank(siteCountry)) {
-            siteCountry = "gb";
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if (null != pageManager) {
+            currentPage = pageManager.getContainingPage(resource);
+            if (null != currentPage) {
+                String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
+                pageType = StringUtils.substringAfterLast(templatePath, "/");
+            }
         }
 
-        updateBreadcrumb();
+        updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
         updatePageName();
 
-        updateTagsMap();
-
-        contentName = currentPage.getName();
         digitalData = buildDigitalDataJson();
     }
 
-    private void updateBreadcrumb() {
-        if (!currentPage.isHideInNav()) {
-            StringBuilder breadcrumbBuilder = new StringBuilder("Home");
-            Page homePage = currentPage.getAbsoluteParent(4);
-            if (homePage != null) {
-                int pageLevel = homePage.getDepth();
-                int currentPageLevel = currentPage.getDepth();
-                updateBreadCrumbBuilder(breadcrumbBuilder, pageLevel, currentPageLevel);
+    private void updateLanguageAndCountry() {
+        Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
+        if (countryPage != null) {
+            siteCountry = countryPage.getTitle();
+            if ("Language Masters".equalsIgnoreCase(siteCountry)) {
+                siteCountry = StringUtils.EMPTY;
             }
-            breadcrumb = breadcrumbBuilder.toString();
         }
-    }
-
-    private void updateBreadCrumbBuilder(StringBuilder breadcrumbBuilder, int pageLevel, int currentPageLevel) {
-        while (pageLevel < currentPageLevel) {
-            Page page = currentPage.getAbsoluteParent(pageLevel);
-            if (page == null) {
-                break;
-            }
-            pageLevel++;
-            if (!page.isHideInNav()) {
-                String pageNavigationTitle;
-                if (StringUtils.isNotBlank(page.getNavigationTitle())) {
-                    pageNavigationTitle = page.getNavigationTitle();
-                } else {
-                    pageNavigationTitle = page.getTitle();
-                }
-                breadcrumbBuilder.append(":").append(pageNavigationTitle);
-            }
+        Page languagePage = currentPage.getAbsoluteParent(LANGUAGE_LEVEL - 1);
+        if (languagePage != null) {
+            siteLanguage = languagePage.getTitle();
         }
     }
 
     private void updateSiteSections() {
-        int siteSectionIndex = 5;
-        int currentPageIndex = currentPage.getDepth() - 1;
-        if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection1)) {
-            channel = siteSection1.toString();
+        int siteSectionIndex = LANGUAGE_LEVEL;
+        int currentPageIndex = currentPage.getDepth();
+        if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection0)) {
+            channel = siteSection0.toString();
             siteSectionIndex++;
-            if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection2)) {
+            if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection1)) {
                 siteSectionIndex++;
-                if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
+                if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection2)) {
                     siteSectionIndex++;
-                    updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
+                    updateSection4(siteSectionIndex, currentPageIndex);
                 }
             }
         }
     }
 
+    private void updateSection4(int siteSectionIndex, int currentPageIndex) {
+        if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
+            siteSectionIndex++;
+            updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
+        }
+    }
+
     private void updatePageName() {
-        pageName = SITE_NAME + ":" + siteCountry + "-" + siteLanguage + ":home";
-        if (StringUtils.isNotEmpty(siteSection1.toString())) {
-            pageName += ":" + siteSection1.toString();
-            if (StringUtils.isNotEmpty(siteSection2.toString())) {
-                pageName += ":" + siteSection2.toString();
+        pageName = SITE_NAME + ":" + siteLanguage;
+        if (StringUtils.isNotEmpty(siteSection0.toString())) {
+            pageName += ":" + siteSection0.toString();
+            if (StringUtils.isNotEmpty(siteSection1.toString())) {
+                pageName += ":" + siteSection1.toString();
                 updateLowerSection();
             }
         }
-        if (currentPage.getDepth() > 5) {
+        if (currentPage.getDepth() > LANGUAGE_LEVEL) {
             pageName += ":" + currentPage.getName();
         }
     }
 
     private void updateLowerSection() {
-        if (StringUtils.isNotEmpty(siteSection3.toString())) {
-            pageName += ":" + siteSection3.toString();
-            if (StringUtils.isNotEmpty(siteSection4.toString())) {
-                pageName += ":" + siteSection4.toString();
-            }
-        }
-    }
-
-    private void updateTagsMap() {
-        Tag[] pageTags = currentPage.getTags();
-        for (Tag tag : pageTags) {
-            String tagPath = tag.getPath();
-            if (tagPath.startsWith(TETRAPAK_TAGS_ROOT_PATH)) {
-                tagPath = StringUtils.substringAfter(tagPath, TETRAPAK_TAGS_ROOT_PATH);
-                String contentAttribute = StringUtils.substringBefore(tagPath, "/");
-                String contentValue = StringUtils.substringAfter(tagPath, "/");
-                if (StringUtils.isNoneBlank(contentValue)) {
-                    contentValue = StringUtils.replace(contentValue, "/", ":");
-                    tagsMap.put(contentAttribute, contentValue);
+        if (StringUtils.isNotEmpty(siteSection2.toString())) {
+            pageName += ":" + siteSection2.toString();
+            if (StringUtils.isNotEmpty(siteSection3.toString())) {
+                pageName += ":" + siteSection3.toString();
+                if (StringUtils.isNotEmpty(siteSection4.toString())) {
+                    pageName += ":" + siteSection4.toString();
                 }
             }
         }
@@ -205,7 +164,6 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("channel", channel);
         pageInfo.addProperty("pageType", pageType);
         pageInfo.addProperty("pageName", pageName);
-        pageInfo.addProperty("breadCrumb", breadcrumb);
         pageInfo.addProperty("siteSection1", siteSection1.toString());
         pageInfo.addProperty("siteSection2", siteSection2.toString());
         pageInfo.addProperty("siteSection3", siteSection3.toString());
@@ -214,41 +172,48 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteLanguage", siteLanguage);
         pageInfo.addProperty("siteName", SITE_NAME);
 
-        if (productPage) {
-            pageInfo.addProperty("event", PRODUCT_PAGE_LOAD_EVENT);
-            pageInfo.addProperty("productName", productTitle);
-        } else {
-            pageInfo.addProperty("event", PAGE_LOAD_EVENT);
-        }
 
-        JsonObject conentInfo = new JsonObject();
-        conentInfo.addProperty("contentName", contentName);
-        if (!tagsMap.isEmpty()) {
-            for (Map.Entry<String, String> entry : tagsMap.entrySet()) {
-                conentInfo.addProperty(entry.getKey(), entry.getValue());
-            }
-        }
+        pageInfo.addProperty("event", PAGE_LOAD_EVENT);
+
 
         JsonObject userInfo = new JsonObject();
-        userInfo.addProperty("loginStatus", "guest");
-        userInfo.addProperty("salesForceId", "");
-        userInfo.addProperty("userRoles", "");
-        userInfo.addProperty("userCountryCode", "");
-        userInfo.addProperty("userLanguage", "");
+        userInfo.addProperty("loginStatus", StringUtils.EMPTY);
+        userInfo.addProperty("salesForceId", StringUtils.EMPTY);
+        userInfo.addProperty("userRoles", StringUtils.EMPTY);
+        userInfo.addProperty("userCountryCode", StringUtils.EMPTY);
+        userInfo.addProperty("userLanguage", StringUtils.EMPTY);
 
         JsonObject errorInfo = new JsonObject();
-        errorInfo.addProperty("errorcode", "");
-        errorInfo.addProperty("errortype", "");
+        errorInfo.addProperty("errorcode", getErrorCode());
+        errorInfo.addProperty("errortype", getErrorMessage());
 
         jsonObject.add("pageinfo", pageInfo);
-        jsonObject.add("conentInfo", conentInfo);
         jsonObject.add("userinfo", userInfo);
         jsonObject.add("error", errorInfo);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         return gson.toJson(jsonObject);
+    }
 
+    private String getErrorCode() {
+        if (resource.getPath().contains("500")) {
+            return Integer.toString(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } else if (resource.getPath().contains("404")) {
+            return Integer.toString(HttpServletResponse.SC_NOT_FOUND);
+        } else {
+            return null;
+        }
+    }
+
+    private String getErrorMessage() {
+        if (resource.getPath().contains("500")) {
+            return "internal server error";
+        } else if (resource.getPath().contains("404")) {
+            return "resource not found";
+        } else {
+            return null;
+        }
     }
 
     public boolean isProduction() {
