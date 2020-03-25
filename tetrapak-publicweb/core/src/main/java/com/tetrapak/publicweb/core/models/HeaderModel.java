@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -35,10 +34,6 @@ public class HeaderModel {
 	@SlingObject
 	private SlingHttpServletRequest request;
 
-	/** The configuration model. */
-	@Inject
-	private HeaderConfigurationModel configurationModel;
-
 	/** The logo link. */
 	private String logoLink;
 
@@ -64,7 +59,7 @@ public class HeaderModel {
 	private String loginLabel;
 
 	/** The mega menu links list. */
-	private List<LinkBean> megaMenuLinksList = new ArrayList<>();
+	private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
 	/**
 	 * Inits the.
@@ -72,21 +67,24 @@ public class HeaderModel {
 	@PostConstruct
 	protected void init() {
 		LOGGER.debug("inside init method");
-		String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-		String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
-		Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
-		configurationModel = headerConfigurationResource.adaptTo(HeaderConfigurationModel.class);
-		if (Objects.nonNull(configurationModel)) {
-			logoLink = configurationModel.getLogoLink();
-			logoLinkTarget = configurationModel.getLogoLinkTarget();
-			logoAlt = configurationModel.getLogoAlt();
-			contactLink = configurationModel.getContactLink();
-			contactLinkTarget = configurationModel.getContactLinkTarget();
-			contactText = configurationModel.getContactText();
-			loginLabel = configurationModel.getLoginLabel();
-			loginLink = configurationModel.getLoginLink();
+		final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+		final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
+		final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+		if (Objects.nonNull(headerConfigurationResource)) {
+			final HeaderConfigurationModel configurationModel = headerConfigurationResource
+					.adaptTo(HeaderConfigurationModel.class);
+			if (Objects.nonNull(configurationModel)) {
+				logoLink = configurationModel.getLogoLink();
+				logoLinkTarget = configurationModel.getLogoLinkTarget();
+				logoAlt = configurationModel.getLogoAlt();
+				contactLink = configurationModel.getContactLink();
+				contactLinkTarget = configurationModel.getContactLinkTarget();
+				contactText = configurationModel.getContactText();
+				loginLabel = configurationModel.getLoginLabel();
+				loginLink = configurationModel.getLoginLink();
+			}
+			setMegaMenuLinksList(rootPath);
 		}
-		setMegaMenuLinksList(rootPath);
 	}
 
 	/**
@@ -100,7 +98,7 @@ public class HeaderModel {
 			final ResourceResolver resourceResolver = rootResource.getResourceResolver();
 			final PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 			if (Objects.nonNull(pageManager)) {
-				Page page = pageManager.getContainingPage(rootResource);
+				final Page page = pageManager.getContainingPage(rootResource);
 				setLinkBean(page);
 			} else {
 				LOGGER.error("Page Manager is null");
@@ -119,12 +117,10 @@ public class HeaderModel {
 			while (childPages.hasNext()) {
 				final Page childPage = childPages.next();
 				if (!childPage.isHideInNav()) {
-					LinkBean linkBean = new LinkBean();
+					final LinkBean linkBean = new LinkBean();
 					linkBean.setLinkText(childPage.getTitle());
 					linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
 					megaMenuLinksList.add(linkBean);
-				} else {
-					LOGGER.debug("Page {} is hide in Nav", childPage.getPath());
 				}
 			}
 		}
@@ -208,7 +204,7 @@ public class HeaderModel {
 	 * @return the mega menu links list
 	 */
 	public List<LinkBean> getMegaMenuLinksList() {
-		return megaMenuLinksList;
+		return new ArrayList<>(megaMenuLinksList);
 	}
 
 }
