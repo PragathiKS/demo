@@ -1,10 +1,8 @@
 import $ from 'jquery';
-
 class Analyticsglobaltagspw {
   constructor({ el }) {
     this.root = $(el);
   }
-  cache = {};
   initCache() {
     /* Initialize selector cache here */
     /**
@@ -13,18 +11,7 @@ class Analyticsglobaltagspw {
      * this.cache.$submitBtn = this.root.find('.js-submit-btn');
      */
     const cookieValue=this.getCookies('lang-code');
-    if(cookieValue!==''){
-      window.digitalData.userinfo.userLanguage=cookieValue;
-      window.digitalData.userinfo.loginStatus='logged-in';
-      window.digitalData.userinfo.userRoles='sales-manager';
-      window.digitalData.userinfo.userType='customer';
-    }
-    else{
-      window.digitalData.userinfo.userLanguage='';
-      window.digitalData.userinfo.loginStatus='';
-      window.digitalData.userinfo.userRoles='';
-      window.digitalData.userinfo.userType='';
-    }
+    this.setUserinfo(cookieValue);
   }
   getCookies(){
     if (arguments.length > 0) {
@@ -44,18 +31,25 @@ class Analyticsglobaltagspw {
       }
     }
   }
-  bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+  setUserinfo(cookieValue){
+    if(cookieValue!==''){
+      window.digitalData.userinfo={
+        userLanguage:cookieValue,
+        loginStatus:'logged-in',
+        userRoles:'sales-manager',
+        userType:'customer'
+      };
+    }
+    else{
+      window.digitalData.userinfo.userLanguage='';
+      window.digitalData.userinfo.loginStatus='';
+      window.digitalData.userinfo.userRoles='';
+      window.digitalData.userinfo.userType='';
+    }
   }
   init() {
     /* Mandatory method */
     this.initCache();
-    this.bindEvents();
   }
 }
 
