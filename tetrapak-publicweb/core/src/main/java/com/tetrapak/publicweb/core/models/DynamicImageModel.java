@@ -309,18 +309,28 @@ public class DynamicImageModel {
 	    queryFlag = true;
 	}
 	if (StringUtils.isNotEmpty(height)) {
-	    url = queryFlag ? url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height)
-		    : url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
+	    if (queryFlag) {
+		url = url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height);
+	    } else {
+		url = url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
+	    }
 	    queryFlag = true;
 	}
 	if (StringUtils.isNotEmpty(crop)) {
-	    url = queryFlag ? url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop)
-		    : url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
+	    if (queryFlag) {
+		url = url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop);
+	    } else {
+		url = url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
+	    }
 	    queryFlag = true;
 	}
 
 	if (checkImageTransparency(type)) {
-	    url = queryFlag ? appendTransparency(url, AMPERSAND) : appendTransparency(url, QUERY_PARAMETER);
+	    if (queryFlag) {
+		url = appendTransparency(url, AMPERSAND);
+	    } else {
+		url = appendTransparency(url, QUERY_PARAMETER);
+	    }
 	}
 
 	return url.toString();
@@ -387,7 +397,11 @@ public class DynamicImageModel {
     }
 
     public String getAltText() {
-	return StringUtils.isNotEmpty(altText) ? altText : "";
+	if(StringUtils.isNotEmpty(altText)) {
+	    return altText;
+	}else {
+	    return StringUtils.EMPTY; 
+	}
     }
 
     public String getImagePath() {
