@@ -16,7 +16,6 @@ public class LinkUtils extends WCMUsePojo {
     private static final String PARAM_LINK = "linkPath";
     private String sanitizedLink;
 
-
     /**
      * Add .html to link if is internal
      *
@@ -25,21 +24,23 @@ public class LinkUtils extends WCMUsePojo {
     public static String sanitizeLink(String link) {
         if (StringUtils.isBlank(link)) {
             return "#";
-        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html") && !link.endsWith(".htm")) {
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
+                && !link.endsWith(".htm")) {
             return link + ".html";
         }
         return link;
     }
-    
+
     /**
-	 * Gets the root path.
-	 *
-	 * @param pagePath the page path
-	 * @return the root path
-	 */
-	public static String getRootPath(String pagePath) {
-		return Text.getAbsoluteParent(pagePath, 4);
-	}
+     * Gets the root path.
+     *
+     * @param pagePath
+     *            the page path
+     * @return the root path
+     */
+    public static String getRootPath(String pagePath) {
+        return Text.getAbsoluteParent(pagePath, 4);
+    }
 
     /**
      * Used for analytics code to determine the link type
@@ -63,12 +64,11 @@ public class LinkUtils extends WCMUsePojo {
         return LinkUtils.sanitizeLink(sanitizedLink);
     }
 
-
     /**
-     * Method to get multi field menu link items
-     * Used for navigation links on Header and Footer
+     * Method to get multi field menu link items Used for navigation links on Header and Footer
      */
-    public static void setMultifieldNavLinkItems(String[] footerNavLinks, List<NavigationLinkBean> navLinksList, Logger log) {
+    public static void setMultifieldNavLinkItems(String[] footerNavLinks, List<NavigationLinkBean> navLinksList,
+            Logger log) {
         JSONObject jObj;
         try {
             if (footerNavLinks == null || navLinksList == null) {
