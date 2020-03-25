@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
@@ -11,7 +12,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 /**
  * The Class HeaderConfigurationModel.
  */
-@Model(adaptables = Resource.class)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
 
     /** The resource. */
