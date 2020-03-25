@@ -1,130 +1,214 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.tetrapak.publicweb.core.beans.GeneralInfoBean;
-import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.commons.json.JSONException;
-import org.apache.sling.commons.json.JSONObject;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
+/**
+ * The Class HeaderModel.
+ */
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
 
-    @Self
-    private Resource resource;
+	/** The request. */
+	@SlingObject
+	private SlingHttpServletRequest request;
 
-    private String loginTextI18n;
-    private String searchRootPath;
-    private String searchResultsPath;
-    private String searchPlaceholderText;
-    private String[] searchPanelTiles;
+	/** The configuration model. */
+	@Inject
+	private HeaderConfigurationModel configurationModel;
 
-    @Inject
-    private Boolean enableHeroImage;
-    private List<NavigationLinkBean> megaMenuLinksList = new ArrayList<>();
+	/** The logo link. */
+	private String logoLink;
 
-    @PostConstruct
-    protected void init() {
+	/** The logo link target. */
+	private String logoLinkTarget;
 
-        InheritanceValueMap inheritanceValueMap = new HierarchyNodeInheritanceValueMap(resource);
-        loginTextI18n = inheritanceValueMap.getInherited("loginTextI18n", String.class);
-        searchRootPath = inheritanceValueMap.getInherited("searchRootPath", String.class);
-        searchResultsPath = inheritanceValueMap.getInherited("searchResultsPath", String.class);
-        searchPlaceholderText = inheritanceValueMap.getInherited("searchPlaceholderText", String.class);
-        searchPanelTiles = inheritanceValueMap.getInherited("searchPanelTiles", String[].class);
-        String[] megaMenuLinks = inheritanceValueMap.getInherited("megamenuLinks", String[].class);
-        LinkUtils.setMultifieldNavLinkItems(megaMenuLinks, megaMenuLinksList, LOGGER);
-    }
+	/** The logo alt. */
+	private String logoAlt;
 
-    /**
-     * Method to get the search panel items from the multifield property saved in CRX for
-     * each of the search panel tiles.
-     *
-     * @param searchPanelTiles String[]
-     * @return List<String>
-     */
-    public static List<GeneralInfoBean> getTiles(String[] searchPanelTiles) {
-        List<GeneralInfoBean> tileList = new ArrayList<>();
-        JSONObject jObj;
-        try {
-            if (searchPanelTiles == null) {
-                LOGGER.error("searchPanelTiles value is NULL");
-            } else {
-                for (int i = 0; i < searchPanelTiles.length; i++) {
-                    jObj = new JSONObject(searchPanelTiles[i]);
-                    GeneralInfoBean bean = getGeneralInfoBean(jObj);
-                    tileList.add(bean);
-                }
-            }
-        } catch (JSONException e) {
-            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
-        }
-        return tileList;
-    }
+	/** The login link. */
+	private String loginLink;
 
-    private static GeneralInfoBean getGeneralInfoBean(JSONObject jObj) throws JSONException {
-        GeneralInfoBean bean = new GeneralInfoBean();
-        if (jObj.has("tileImage")) {
-            bean.setImage(jObj.getString("tileImage"));
-        }
-        if (jObj.has("tileImageAltI18n")) {
-            bean.setImageAltText(jObj.getString("tileImageAltI18n"));
-        }
-        if (jObj.has("tileTitle")) {
-            bean.setTitle(jObj.getString("tileTitle"));
-        }
-        if (jObj.has("tileDescription")) {
-            bean.setDescription(jObj.getString("tileDescription"));
-        }
-        if (jObj.has("tileLinkPath")) {
-            bean.setLinkPath(jObj.getString("tileLinkPath"));
-        }
-        if (jObj.has("tileLinkTarget")) {
-            bean.setTargetBlank(jObj.getString("tileLinkTarget"));
-        }
-        return bean;
-    }
+	/** The contact link. */
+	private String contactLink;
 
-    public List<NavigationLinkBean> getMegaMenuLinksList() {
-        return megaMenuLinksList;
-    }
+	/** The contact link target. */
+	private String contactLinkTarget;
 
-    public Boolean getEnableHeroImage() {
-        return enableHeroImage;
-    }
+	/** The contact text. */
+	private String contactText;
 
-    public String getLoginTextI18n() {
-        return loginTextI18n;
-    }
+	/** The login label. */
+	private String loginLabel;
 
-    public String getSearchRootPath() {
-        return searchRootPath;
-    }
+	/** The mega menu links list. */
+	private List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
-    public String getSearchResultsPath() {
-        return searchResultsPath;
-    }
+	/**
+	 * Inits the.
+	 */
+	@PostConstruct
+	protected void init() {
+		LOGGER.debug("inside init method");
+		String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+		String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
+		Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+		configurationModel = headerConfigurationResource.adaptTo(HeaderConfigurationModel.class);
+		if (Objects.nonNull(configurationModel)) {
+			logoLink = configurationModel.getLogoLink();
+			logoLinkTarget = configurationModel.getLogoLinkTarget();
+			logoAlt = configurationModel.getLogoAlt();
+			contactLink = configurationModel.getContactLink();
+			contactLinkTarget = configurationModel.getContactLinkTarget();
+			contactText = configurationModel.getContactText();
+			loginLabel = configurationModel.getLoginLabel();
+			loginLink = configurationModel.getLoginLink();
+		}
+		setMegaMenuLinksList(rootPath);
+	}
 
-    public String getSearchPlaceholderText() {
-        return searchPlaceholderText;
-    }
+	/**
+	 * Sets the mega menu links list.
+	 *
+	 * @param rootPath the new mega menu links list
+	 */
+	public void setMegaMenuLinksList(String rootPath) {
+		final Resource rootResource = request.getResourceResolver().getResource(rootPath);
+		if (Objects.nonNull(rootResource)) {
+			final ResourceResolver resourceResolver = rootResource.getResourceResolver();
+			final PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+			if (Objects.nonNull(pageManager)) {
+				Page page = pageManager.getContainingPage(rootResource);
+				setLinkBean(page);
+			} else {
+				LOGGER.error("Page Manager is null");
+			}
+		}
+	}
 
-    public List<GeneralInfoBean> getSearchPanelTiles() {
-        return getTiles(searchPanelTiles);
-    }
+	/**
+	 * Sets the link bean.
+	 *
+	 * @param page the new link bean
+	 */
+	private void setLinkBean(Page page) {
+		if (Objects.nonNull(page)) {
+			final Iterator<Page> childPages = page.listChildren();
+			while (childPages.hasNext()) {
+				final Page childPage = childPages.next();
+				if (!childPage.isHideInNav()) {
+					LinkBean linkBean = new LinkBean();
+					linkBean.setLinkText(childPage.getTitle());
+					linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
+					megaMenuLinksList.add(linkBean);
+				} else {
+					LOGGER.debug("Page {} is hide in Nav", childPage.getPath());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Gets the logo link.
+	 *
+	 * @return the logo link
+	 */
+	public String getLogoLink() {
+		return logoLink;
+	}
+
+	/**
+	 * Gets the logo link target.
+	 *
+	 * @return the logo link target
+	 */
+	public String getLogoLinkTarget() {
+		return logoLinkTarget;
+	}
+
+	/**
+	 * Gets the logo alt.
+	 *
+	 * @return the logo alt
+	 */
+	public String getLogoAlt() {
+		return logoAlt;
+	}
+
+	/**
+	 * Gets the login link.
+	 *
+	 * @return the login link
+	 */
+	public String getLoginLink() {
+		return loginLink;
+	}
+
+	/**
+	 * Gets the contact link.
+	 *
+	 * @return the contact link
+	 */
+	public String getContactLink() {
+		return contactLink;
+	}
+
+	/**
+	 * Gets the contact link target.
+	 *
+	 * @return the contact link target
+	 */
+	public String getContactLinkTarget() {
+		return contactLinkTarget;
+	}
+
+	/**
+	 * Gets the contact text.
+	 *
+	 * @return the contact text
+	 */
+	public String getContactText() {
+		return contactText;
+	}
+
+	/**
+	 * Gets the login label.
+	 *
+	 * @return the login label
+	 */
+	public String getLoginLabel() {
+		return loginLabel;
+	}
+
+	/**
+	 * Gets the mega menu links list.
+	 *
+	 * @return the mega menu links list
+	 */
+	public List<LinkBean> getMegaMenuLinksList() {
+		return megaMenuLinksList;
+	}
 
 }
