@@ -202,7 +202,7 @@ public class PageLoadAnalyticsModel {
         } else if (resource.getPath().contains("404")) {
             return Integer.toString(HttpServletResponse.SC_NOT_FOUND);
         } else {
-            return null;
+            return "";
         }
     }
 
@@ -212,7 +212,7 @@ public class PageLoadAnalyticsModel {
         } else if (resource.getPath().contains("404")) {
             return "resource not found";
         } else {
-            return null;
+            return "";
         }
     }
 
