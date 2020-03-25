@@ -1,44 +1,37 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.List;
+import com.adobe.cq.sightly.WCMUsePojo;
+import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 
-import com.adobe.cq.sightly.WCMUsePojo;
-import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
+import java.util.List;
 
-/**
- * The Class LinkUtils.
- */
 public class LinkUtils extends WCMUsePojo {
 
-	/** The Constant PARAM_LINK. */
-	private static final String PARAM_LINK = "linkPath";
+    private static final String PARAM_LINK = "linkPath";
+    private String sanitizedLink;
 
-	/** The sanitized link. */
-	private String sanitizedLink;
 
-	/**
-	 * Add .html to link if is internal
-	 *
-	 * @param link the link
-	 * @return the string
-	 */
-	public static String sanitizeLink(String link) {
-		if (StringUtils.isBlank(link)) {
-			return "#";
-		} else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
-				&& !link.endsWith(".htm")) {
-			return link + ".html";
-		}
-		return link;
-	}
-
-	/**
+    /**
+     * Add .html to link if is internal
+     *
+     * @param link
+     */
+    public static String sanitizeLink(String link) {
+        if (StringUtils.isBlank(link)) {
+            return "#";
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html") && !link.endsWith(".htm")) {
+            return link + ".html";
+        }
+        return link;
+    }
+    
+    /**
 	 * Gets the root path.
 	 *
 	 * @param pagePath the page path
@@ -48,100 +41,76 @@ public class LinkUtils extends WCMUsePojo {
 		return Text.getAbsoluteParent(pagePath, 4);
 	}
 
-	/**
-	 * Used for analytics code to determine the link type.
-	 *
-	 * @param linkPath the link path
-	 * @return the string
-	 */
-	public static String linkType(String linkPath) {
-		if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
-			return "download";
-		} else if (StringUtils.startsWith(linkPath, "/content/")) {
-			return "internal";
-		} else {
-			return "external";
-		}
-	}
+    /**
+     * Used for analytics code to determine the link type
+     */
+    public static String linkType(String linkPath) {
+        if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
+            return "download";
+        } else if (StringUtils.startsWith(linkPath, "/content/")) {
+            return "internal";
+        } else {
+            return "external";
+        }
+    }
 
-	/**
-	 * Activate.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Override
-	public void activate() throws Exception {
-		sanitizedLink = get(PARAM_LINK, String.class);
-	}
+    @Override
+    public void activate() throws Exception {
+        sanitizedLink = get(PARAM_LINK, String.class);
+    }
 
-	/**
-	 * Gets the sanitized link.
-	 *
-	 * @return the sanitized link
-	 */
-	public String getSanitizedLink() {
-		return LinkUtils.sanitizeLink(sanitizedLink);
-	}
+    public String getSanitizedLink() {
+        return LinkUtils.sanitizeLink(sanitizedLink);
+    }
 
-	/**
-	 * Method to get multi field menu link items Used for navigation links on Header
-	 * and Footer.
-	 *
-	 * @param footerNavLinks the footer nav links
-	 * @param navLinksList   the nav links list
-	 * @param log            the log
-	 */
-	public static void setMultifieldNavLinkItems(String[] footerNavLinks, List<NavigationLinkBean> navLinksList,
-			Logger log) {
-		JSONObject jObj;
-		try {
-			if (footerNavLinks == null || navLinksList == null) {
-				log.error("footerNavLinks is NULL");
-				return;
-			}
-			for (int i = 0; i < footerNavLinks.length; i++) {
-				jObj = new JSONObject(footerNavLinks[i]);
-				NavigationLinkBean bean = getNavigationLinkBean(jObj);
-				navLinksList.add(bean);
-			}
-		} catch (JSONException e) {
-			log.error("Exception while Multifield data {}", e.getMessage(), e);
-		}
-	}
 
-	/**
-	 * Gets the navigation link bean.
-	 *
-	 * @param jObj the j obj
-	 * @return the navigation link bean
-	 * @throws JSONException the JSON exception
-	 */
-	private static NavigationLinkBean getNavigationLinkBean(JSONObject jObj) throws JSONException {
-		NavigationLinkBean bean = new NavigationLinkBean();
+    /**
+     * Method to get multi field menu link items
+     * Used for navigation links on Header and Footer
+     */
+    public static void setMultifieldNavLinkItems(String[] footerNavLinks, List<NavigationLinkBean> navLinksList, Logger log) {
+        JSONObject jObj;
+        try {
+            if (footerNavLinks == null || navLinksList == null) {
+                log.error("footerNavLinks is NULL");
+                return;
+            }
+            for (int i = 0; i < footerNavLinks.length; i++) {
+                jObj = new JSONObject(footerNavLinks[i]);
+                NavigationLinkBean bean = getNavigationLinkBean(jObj);
+                navLinksList.add(bean);
+            }
+        } catch (JSONException e) {
+            log.error("Exception while Multifield data {}", e.getMessage(), e);
+        }
+    }
 
-		String linkTextI18n = "";
-		String linkTooltipI18n = "";
-		String linkPath = "";
-		String targetBlank = "";
-		if (jObj.has("linkTextI18n")) {
-			linkTextI18n = jObj.getString("linkTextI18n");
-		}
-		if (jObj.has("linkTooltipI18n")) {
-			linkTooltipI18n = jObj.getString("linkTooltipI18n");
-		}
-		if (jObj.has(PARAM_LINK)) {
-			linkPath = jObj.getString(PARAM_LINK);
-		}
-		if (jObj.has("targetBlank")) {
-			targetBlank = jObj.getString("targetBlank");
-		}
+    private static NavigationLinkBean getNavigationLinkBean(JSONObject jObj) throws JSONException {
+        NavigationLinkBean bean = new NavigationLinkBean();
 
-		bean.setLinkTextI18n(linkTextI18n);
-		bean.setLinkTooltipI18n(linkTooltipI18n);
-		bean.setLinkPath(sanitizeLink(linkPath));
-		bean.setLinkType(linkType(linkPath));
-		bean.setTargetBlank(targetBlank);
-		return bean;
-	}
+        String linkTextI18n = "";
+        String linkTooltipI18n = "";
+        String linkPath = "";
+        String targetBlank = "";
+        if (jObj.has("linkTextI18n")) {
+            linkTextI18n = jObj.getString("linkTextI18n");
+        }
+        if (jObj.has("linkTooltipI18n")) {
+            linkTooltipI18n = jObj.getString("linkTooltipI18n");
+        }
+        if (jObj.has(PARAM_LINK)) {
+            linkPath = jObj.getString(PARAM_LINK);
+        }
+        if (jObj.has("targetBlank")) {
+            targetBlank = jObj.getString("targetBlank");
+        }
+
+        bean.setLinkTextI18n(linkTextI18n);
+        bean.setLinkTooltipI18n(linkTooltipI18n);
+        bean.setLinkPath(sanitizeLink(linkPath));
+        bean.setLinkType(linkType(linkPath));
+        bean.setTargetBlank(targetBlank);
+        return bean;
+    }
 
 }
