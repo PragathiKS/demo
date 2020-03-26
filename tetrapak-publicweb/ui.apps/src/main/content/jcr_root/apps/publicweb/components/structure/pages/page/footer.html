@@ -5,6 +5,7 @@
     <sly data-sly-include="customfooterlibs.html"></sly>
     <sly data-sly-resource="${'cloudservices' @ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}"></sly>
     <sly data-sly-test="${page.hasCloudconfigSupport}" data-sly-resource="${'cloudconfig-footer' @ resourceType='cq/cloudconfig/components/scripttags/footer'}"></sly>
+  <sly data-sly-include="/apps/publicweb/components/content/analyticsglobaltagspw/analyticsglobaltagspw.html"></sly>
 </template>
 <footer>
   <div class="container">
