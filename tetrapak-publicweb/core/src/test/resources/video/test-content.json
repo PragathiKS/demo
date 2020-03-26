@@ -19,6 +19,7 @@
 			"pwTheme": "grayscale-white",
 			"youtubeVideoID": "qwe123",
 			"anchorId": "vid123",
+			"anchorTitle": "video",
 			"linkURL": "/content/tetrapak/public-web/global/en/test",
 			"damVideoPath": "/content/dam/publicweb/asset.jpg",
 			"jcr:lastModified": "Tue Feb 25 2020 16:42:05 GMT+0530",
