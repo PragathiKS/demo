@@ -1,0 +1,92 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "treeshare-ravi",
+  "jcr:versionHistory": "14c44e18-c867-4f71-8833-8f1989a214bf",
+  "jcr:predecessors": [
+    "dfaf1e66-e581-408b-bd83-d8a06049e1c8"
+  ],
+  "jcr:created": "Wed May 01 2019 14:23:54 GMT+0000",
+  "jcr:baseVersion": "dfaf1e66-e581-408b-bd83-d8a06049e1c8",
+  "jcr:isCheckedOut": true,
+  "jcr:uuid": "0dfad38d-d902-4962-a1d9-600af3a46548",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "roomahaj",
+    "jcr:lastModifiedBy": "admin",
+    "status": "Error[No Encoding]",
+    "cq:lastReplicated": "Fri Nov 22 2019 08:14:54 GMT+0000",
+    "dam:assetState": "processed",
+    "cq:name": "logo_tetra_pak_white.png",
+    "jcr:lastModified": "Thu Oct 10 2019 06:23:04 GMT+0000",
+    "cq:parentPath": "/content/dam/publicweb",
+    "dam:relativePath": "publicweb/logo_tetra_pak_white.png",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000",
+      "cq5dam.web.1280.1280.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000"
+      },
+      "cq5dam.thumbnail.48.48.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000"
+      },
+      "cq5dam.thumbnail.140.100.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000"
+      },
+      "original": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000"
+      },
+      "cq5dam.thumbnail.319.319.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Oct 10 2019 06:22:49 GMT+0000"
+      }
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "dam:Physicalheightininches": "-1.0",
+      "dam:Physicalwidthininches": "-1.0",
+      "dam:Fileformat": "PNG",
+      "dam:Progressive": "no",
+      "tiff:ImageLength": 25,
+      "jcr:lastModifiedBy": "admin",
+      "dam:extracted": "Mon Apr 08 2019 14:05:50 GMT-0300",
+      "dc:format": "image/png",
+      "dam:Bitsperpixel": 8,
+      "dam:MIMEtype": "image/png",
+      "dam:Comments": "XML:com.adobe.xmp: <?xpacket begin=\"﻿\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\n<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.6-c137 1.000000, 0000/00/00-00:00:00        \">\n <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n  <rdf:Description rdf:about=\"\"\n    xmlns:ns1=\"http://www.day.com/dam/1.0\"\n    xmlns:tiff=\"http://ns.adobe.com/tiff/1.0/\"\n    xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n   ns1:Physicalheightininches=\"-1.0\"\n   ns1:Physicalwidthininches=\"-1.0\"\n   ns1:Fileformat=\"PNG\"\n   ns1:Progressive=\"no\"\n   ns1:extracted=\"2019-03-08T11:59:17.298-03:00\"\n   ns1:Bitsperpixel=\"8\"\n   ns1:MIMEtype=\"image/png\"\n   ns1:Physicalwidthindpi=\"-1\"\n   ns1:Physicalheightindpi=\"-1\"\n   ns1:Numberofimages=\"1\"\n   ns1:Numberoftextualcomments=\"0\"\n   ns1:sha1=\"9162544176f565c43105156c6280fdafa5673445\"\n   ns1:size=\"2296\"\n   tiff:ImageLength=\"25\"\n   tiff:ImageWidth=\"160\"\n   dc:format=\"image/png\"\n   dc:modified=\"2019-03-12T14:14:35.381Z\"/>\n </rdf:RDF>\n</x:xmpmeta>\n<?xpacket end=\"r\"?>\n",
+      "dam:Physicalwidthindpi": -1,
+      "dam:Physicalheightindpi": -1,
+      "dc:modified": "Tue Mar 12 2019 14:14:35 GMT+0000",
+      "dam:Numberofimages": 1,
+      "jcr:lastModified": "Thu Oct 10 2019 06:23:04 GMT+0000",
+      "dam:Numberoftextualcomments": 1,
+      "tiff:ImageWidth": 160,
+      "dam:sha1": "8d05874c94b196c0dbc6e0d4338ab013013ffb25",
+      "dam:size": 3313,
+      "dam:scene7PublishPending": true
+    }
+  }
+}

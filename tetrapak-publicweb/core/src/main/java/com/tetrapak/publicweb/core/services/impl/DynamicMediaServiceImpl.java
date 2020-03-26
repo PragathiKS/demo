@@ -13,6 +13,11 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
 
     private DynamicMediaServiceConfig config;
 
+    /**
+     * activate method
+     *
+     * @param config Dynamic Media Service configuration
+     */
     @Activate
     public void activate(DynamicMediaServiceConfig config) {
 
@@ -20,8 +25,6 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
     }
 
     /**
-     * Sets the Image service url. return Image Service URL
-     *
      * @return the image service url
      */
     @Override
@@ -30,8 +33,14 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
     }
 
     /**
-     * Sets the Dynamic Media Conf Map. return Dynamic Media Conf Map
-     *
+     * @return the video service url
+     */
+    @Override
+    public String getVideoServiceUrl() {
+        return config.videoServiceUrl();
+    }
+
+    /**
      * @return the dynamic media confMap
      */
     @Override
@@ -41,8 +50,6 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
     }
 
     /**
-     * Sets the Root Path. return Root Path
-     *
      * @return the root Path
      */
     @Override
