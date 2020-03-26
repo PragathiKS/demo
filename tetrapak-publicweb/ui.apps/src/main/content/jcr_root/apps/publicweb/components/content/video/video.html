@@ -1,0 +1,9 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+</sly>
+
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.VideoModel"
+     data-sly-use.lib="video-template.html"
+     data-sly-call="${lib.video_template @ data=model}">
+</sly>
