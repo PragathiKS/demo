@@ -3,9 +3,9 @@ package com.tetrapak.publicweb.core.models;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 
 /**
@@ -16,24 +16,27 @@ import javax.inject.Inject;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class VideoModel {
 
-    @Inject
+    @ValueMapValue
     private String anchorId;
 
-    @Inject
+    @ValueMapValue
+    private String anchorTitle;
+
+    @ValueMapValue
     private String videoSource;
 
-    @Inject
+    @ValueMapValue
     private String youtubeVideoID;
 
-    @Inject
+    @ValueMapValue
     private String damVideoPath;
 
-    @Inject
+    @ValueMapValue
     private String thumbnailPath;
 
     private String youtubeEmbedURL;
 
-    @Inject
+    @ValueMapValue
     private String pwTheme;
 
     @PostConstruct
@@ -69,5 +72,9 @@ public class VideoModel {
 
     public String getAnchorId() {
         return anchorId;
+    }
+
+    public String getAnchorTitle() {
+        return anchorTitle;
     }
 }

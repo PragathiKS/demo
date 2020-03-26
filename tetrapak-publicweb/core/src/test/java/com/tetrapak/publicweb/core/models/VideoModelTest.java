@@ -60,7 +60,7 @@ public class VideoModelTest {
         String[] methods = new String[]{"getTitle", "getDescription", "getLinkTexti18n", "getLinkURL",
                 "getTargetBlank", "getVideoSource", "getYoutubeVideoID", "getYoutubeEmbedURL", "getDamVideoPath",
                 "getThumbnailPath", "getTextAlignment", "getPwTheme", "getPwButtonTheme", "getPwPadding",
-                "getPwDisplay","getAnchorId"};
+                "getPwDisplay","getAnchorId", "getAnchorTitle"};
         Util.testLoadAndGetters(methods, model, resource);
     }
 }
