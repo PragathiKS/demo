@@ -1,14 +1,15 @@
 .tp-pw-header {
     $self: &;
     &__container {
-        @include padding(32px 3px 0);
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-        height: #{convert-to-rem(130px)};
+        @include padding(20px 3px 0);
+        background: $color-white;
+        height: #{convert-to-rem(62px)};
         position: relative;
         z-index: $zindex-p;
 
         @media #{$desktop} {
             @include padding(32px 35px 0);
+            height: #{convert-to-rem(90px)};
         }
     }
 
@@ -21,6 +22,15 @@
         img {
             min-width: 156px;
             width: 156px;
+        }
+    }
+
+
+    &__hamburger-close {
+        display: flex;
+        color: $color-congress-blue;
+        @media #{$desktop} {
+            display: none;
         }
     }
 
@@ -41,15 +51,21 @@
         }
 
         a {
-            color: $color-white;
+            color: $color-congress-blue;
             font-weight: bold;
         }
     }
 
     &__secondary-navigation {
+        span {
+            display: none;
+            @media #{$desktop} {
+                display: inline;
+            }
+        }
         &__link {
             @include margin-left($margin-md);
-            color: $color-white;
+            color: $color-congress-blue;
             font-weight: bold;
 
             span {
@@ -59,12 +75,20 @@
                 }
             }
 
+
+
             &:first-child {
                 margin-left: 0;
             }
 
-            &:hover {
-                color: $color-white;
+            // &:hover {
+            //     color: $color-white;
+            // }
+            &:not(:first-child) {
+                display: none;
+                @media #{$desktop} {
+                    display: inline;
+            }
             }
         }
         i {
@@ -77,10 +101,10 @@
                 }
             }
         }
-        .icon-Chevron_Down {
-            @include font-size($font-sm);
-            @include padding-left(5px);
-            font-weight: normal;
+        .icon-ver-line {
+            @include margin-left($margin-md);
+            border: 1px solid $color-mercury;
+            transform: rotate(90deg);
         }
     }
 
@@ -129,76 +153,107 @@
     }
 }
 
-.tp-pw-search-box {
+.tp-pw-mobile-navigation {
     display: none;
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba($color-black, 0.5);
-    top: 0;
 
-    .tp-container {
-        position: relative;
+    @media #{$desktop} {
+        display: none;
     }
-    &__input-wrapper {
-        @include padding(0 3px);
-        background-color: $color-white;
-        position: relative;
-        top: 100px;
-        width: 100%;
 
-        @media #{$desktop} {
-            @include padding(0 35px);
+    &__primary {
+        background: $color-white;
+        li {
+            border-bottom: 1px solid $color-mercury;
+            a {
+                color: $color-tundora;
+            }
+    }
+  }
+    &__secondary {
+        background: $color-wild-sand;
+        li {
+            border-bottom: 1px solid $color-mercury;
+            a {
+                color: $color-congress-blue;
+            i:first-child {
+                    padding-right: #{convert-to-rem(10px)};
+            }
+            }
+            
         }
     }
-
-    &__input {
-        @include font-size(18px);
-        @include line-height(24px, 18px);
-        @include padding(34px 24px);
-        border: 0;
-        width: calc(100% - #{convert-to-rem($margin-xxxl*2)});
-
-        &::-ms-clear { //sass-lint:disable-line no-vendor-prefixes
-            display: none;
-            height: 0;
-            width: 0;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    &__icon {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    &__close-search-box {
-        @include right(10px);
-        color: $color-tundora;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    &__pointer {
-        @include right(200px);
-        display: block;
-        background-color: $color-white;
-        content: '';
-        height: 20px;
-        position: absolute;
-        top: -10px;
-        transform: rotate(45deg);
-        width: 20px;
-
-        @media #{$desktop} {
-            @include right(226px);
-        }
-    }
-
 }
+
+// .tp-pw-search-box {
+//     display: none;
+//     position: absolute;
+//     z-index: 1;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba($color-black, 0.5);
+//     top: 0;
+
+//     .tp-container {
+//         position: relative;
+//     }
+//     &__input-wrapper {
+//         @include padding(0 3px);
+//         background-color: $color-white;
+//         position: relative;
+//         top: 100px;
+//         width: 100%;
+
+//         @media #{$desktop} {
+//             @include padding(0 35px);
+//         }
+//     }
+
+//     &__input {
+//         @include font-size(18px);
+//         @include line-height(24px, 18px);
+//         @include padding(34px 24px);
+//         border: 0;
+//         width: calc(100% - #{convert-to-rem($margin-xxxl*2)});
+
+//         &::-ms-clear { //sass-lint:disable-line no-vendor-prefixes
+//             display: none;
+//             height: 0;
+//             width: 0;
+//         }
+
+//         &:focus {
+//             outline: none;
+//         }
+//     }
+
+//     &__icon {
+//         position: absolute;
+//         top: 50%;
+//         transform: translateY(-50%);
+//     }
+
+//     &__close-search-box {
+//         @include right(10px);
+//         color: $color-tundora;
+//         position: absolute;
+//         top: 50%;
+//         transform: translateY(-50%);
+//     }
+
+//     &__pointer {
+//         @include right(200px);
+//         display: block;
+//         background-color: $color-white;
+//         content: '';
+//         height: 20px;
+//         position: absolute;
+//         top: -10px;
+//         transform: rotate(45deg);
+//         width: 20px;
+
+//         @media #{$desktop} {
+//             @include right(226px);
+//         }
+//     }
+
+// }

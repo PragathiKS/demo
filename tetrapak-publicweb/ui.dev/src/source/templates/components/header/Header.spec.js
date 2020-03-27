@@ -10,6 +10,7 @@ describe('Header', function () {
     this.initSpy = sinon.spy(this.header, 'init');
     this.openSearchBoxSpy = sinon.spy(this.header, 'openSearchBox');
     this.closeSearchBoxSpy = sinon.spy(this.header, 'closeSearchBox');
+    this.openMobileMenuBoxToggleSpy = sinon.spy(this.header, 'openMobileMenuBoxToggle');
     this.searchSpy = sinon.spy(this.header, 'search');
     this.replaceStub = sinon.stub(loc, 'replace');
     this.replaceStub.returns(true);
@@ -21,6 +22,7 @@ describe('Header', function () {
     this.initSpy.restore();
     this.openSearchBoxSpy.restore();
     this.closeSearchBoxSpy.restore();
+    this.openMobileMenuBoxToggleSpy.restore();
     this.searchSpy.restore();
     this.replaceStub.restore();
   });
@@ -30,6 +32,11 @@ describe('Header', function () {
   it('should open search box on click', function () {
     $('.js-tp-pw-header__search-box-toggle').trigger('click');
     expect(this.header.openSearchBox.called).to.be.true;
+  });
+  it('should open mobile menu box on click', function () {
+    // this.header.toggleFlag = false;
+    $('.js-tp-pw-header__hamburger').trigger('click');
+    expect(this.header.openMobileMenuBoxToggle.called).to.be.true;
   });
   it('should close search box on click', function () {
     $('.js-tp-pw-search-box__close-search-box').trigger('click');
