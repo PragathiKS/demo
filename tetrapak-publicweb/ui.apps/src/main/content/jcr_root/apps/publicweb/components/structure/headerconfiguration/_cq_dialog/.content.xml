@@ -31,20 +31,12 @@
                                 name="./logoAlt"/>
                             <logolinktarget
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                fieldLabel="Logo Link Target"
-                                name="./logoLinkTarget">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <new
-                                        jcr:primaryType="nt:unstructured"
-                                        text="New Window"
-                                        value="_blank"/>
-                                    <same
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Same Window"
-                                        value="_self"/>
-                                </items>
-                            </logolinktarget>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Open link in a new window ?"
+                                name="./logolinktarget"
+                                text="New Window"
+                                uncheckedValue="_self"
+                                value="_blank"/>
                             <loginlabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
