@@ -3,6 +3,7 @@
     &__container {
         @include padding(20px 3px 0);
         background: $color-white;
+        border-bottom: 1px solid $color-mercury;
         height: #{convert-to-rem(62px)};
         position: relative;
         z-index: $zindex-p;

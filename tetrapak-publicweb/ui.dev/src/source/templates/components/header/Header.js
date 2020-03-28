@@ -36,6 +36,15 @@ class Header {
         }
       }
     });
+
+    $(window).on('resize', this.hideMobileMenuOnResize);
+  }
+
+  hideMobileMenuOnResize = () => {
+    this.cache.$mobileMenu.fadeOut(10);
+    this.cache.$hamburgerToggle.children('#toggle-button').removeClass('icon-Close');
+    this.cache.$hamburgerToggle.children('#toggle-button').addClass('icon-Burger');
+    this.toggleFlag = false;
   }
 
   openMobileMenuBoxToggle = () => {
