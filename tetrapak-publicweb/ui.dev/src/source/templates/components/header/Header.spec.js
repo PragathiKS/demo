@@ -10,8 +10,13 @@ describe('Header', function () {
     this.initSpy = sinon.spy(this.header, 'init');
     this.openMobileMenuBoxToggleSpy = sinon.spy(this.header, 'openMobileMenuBoxToggle');
     this.hideMobileMenuOnResizeSpy = sinon.spy(this.header, 'hideMobileMenuOnResize');
+    this.trackAnalyticsSpy = sinon.spy(this.header, 'trackAnalytics');
     this.replaceStub = sinon.stub(loc, 'replace');
     this.replaceStub.returns(true);
+    window.digitalData = {};
+    window._satellite = {
+      track() { /* Dummy method */ }
+    };
     this.header.init();
 
   });
@@ -20,6 +25,7 @@ describe('Header', function () {
     this.initSpy.restore();
     this.openMobileMenuBoxToggleSpy.restore();
     this.hideMobileMenuOnResizeSpy.restore();
+    this.trackAnalyticsSpy.restore();
     this.replaceStub.restore();
   });
   it('should initialize', function () {
@@ -42,9 +48,9 @@ describe('Header', function () {
     expect(this.header.openMobileMenuBoxToggle.called).to.be.true;
   });
 
-  it('should track logo on click', function () {
+  it('should call track analytics on click', function () {
     $('.js-tp-pw-header-logo-digital-data').trigger('click');
-    expect(true).to.be.true;
+    expect(this.header.trackAnalytics.called).to.be.true;
   });
 
 });

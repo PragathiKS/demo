@@ -1,6 +1,4 @@
 import $ from 'jquery';
-// import { $document, $win } from '../../../scripts/utils/commonSelectors';
-// import { loc } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -19,24 +17,7 @@ class Header {
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder } = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
-    $headerLogoPlaceholder.on('click', function (e) {
-      e.preventDefault();
-      const $this = $(this);
-      if (window.digitalData) {
-        $.extend(window.digitalData, {
-          linkClick: {
-            linkType: 'internal',
-            linkSection: $this.data('link-section'),
-            linkParentTitle: $this.data('link-parent-title'),
-            linkName: $this.data('link-name')
-          }
-        });
-        if (window._satellite) {
-          window._satellite.track('linkClicked');
-        }
-      }
-    });
-
+    $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
   }
 
@@ -61,28 +42,23 @@ class Header {
     }
   }
 
-  // setLogoDigitalData = (e) => {
-  //   e.preventDefault();
-  //   const $this = $(this);
-  //   // eslint-disable-next-line no-console
-  //   console.log(this,'before linkClicked', this.cache.$headerLogoPlaceholder.data('link-section'), this.cache.$headerLogoPlaceholder.data('link-parent-title'));
-  //   if (window.digitalData) {
-  //     $.extend(window.digitalData, {
-  //       linkClick: {
-  //         linkType: 'internal',
-  //         linkSection: $this.data('link-section'),
-  //         linkParentTitle: $this.data('link-parent-title'),
-  //         linkName: $this.data('link-name')
-  //       }
-  //     });
-  //     if (window._satellite) {
-
-  //       // eslint-disable-next-line no-console
-  //       console.log('linkClicked');
-  //       window._satellite.track('linkClicked');
-  //     }
-  //   }
-  // }
+  trackAnalytics = (e) => {
+    e.preventDefault();
+    const $this = this.cache.$headerLogoPlaceholder;
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: 'internal',
+          linkSection: $this.data('link-section'),
+          linkParentTitle: $this.data('link-parent-title'),
+          linkName: $this.data('link-name')
+        }
+      });
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
+      }
+    }
+  }
 
   init() {
     this.initCache();

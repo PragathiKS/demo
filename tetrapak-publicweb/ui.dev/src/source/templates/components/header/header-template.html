@@ -2,10 +2,8 @@
   <header class="tp-pw-header js-tp-pw-header ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Header">
     <nav class="tp-pw-header__container">
       <div class="d-flex align-items-end tp-container no-gutters">
-        <!-- <button class="tp-pw-header__hamburger col-sm-3 align-items-start"><i class="icon-Burger js-tp-pw-header__hamburger"></i><i class="icon-Close js-tp-pw-header__hamburger-close"></i></button> -->
         <button class="tp-pw-header__hamburger-close col-sm-3 js-tp-pw-header__hamburger"><i id="toggle-button" class="icon-Burger"></i></button>
         <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-2 d-flex justify-content-lg-start justify-content-sm-center">
-          <!-- <sly data-sly-resource="${'logo' @ resourceType='publicweb/components/content/logo'}"/> -->
           <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}" target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}" 
           datatag="${data.linkType}"
           ctype="${data.cType}"
