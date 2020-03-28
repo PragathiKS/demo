@@ -111,7 +111,7 @@ pipeline {
         if (params.DeployMyTetrapak) {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
-                fileName = "1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT"
+                fileName = "1.0.0-DEV${Snapshot_MyTetrapak}-SNAPSHOT"
                 devartifactdownload()
                 parallel (  
                     "Author MyTetrapak" : {                                  
@@ -165,8 +165,8 @@ pipeline {
         if (params.DeployMyTetrapak) {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
-                //fileName = "1.0.0-${Snapshot_CustomerHub}" 
-                fileName = "1.0.0-DEV${Snapshot_CustomerHub}-SNAPSHOT"                  
+                //fileName = "1.0.0-${Snapshot_MyTetrapak}" 
+                fileName = "1.0.0-DEV${Snapshot_MyTetrapak}-SNAPSHOT"                  
                 devartifactdownload()                   
                 parallel (
                     "Author MyTetrapak" : {                               

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Header Configurations"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <general
+                jcr:primaryType="nt:unstructured"
+                jcr:title="General"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <logolink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Where the logo should direct"
+                                fieldLabel="Logo Image link"
+                                name="./logoLink"
+                                rootPath="/content/tetrapak/public-web"/>
+                            <logoalt
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Required for Accessibility use"
+                                fieldLabel="Logo Image Alt Text"
+                                name="./logoAlt"/>
+                            <logolinktarget
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Logo Link Target"
+                                name="./logoLinkTarget">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <new
+                                        jcr:primaryType="nt:unstructured"
+                                        text="New Window"
+                                        value="_blank"/>
+                                    <same
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Same Window"
+                                        value="_self"/>
+                                </items>
+                            </logolinktarget>
+                            <loginlabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="My TetraPak Label"
+                                name="./loginLabel"/>
+                            <loginlink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Link to MyTetraPak Login screen "
+                                fieldLabel="My TetraPak Link"
+                                name="./loginLink"
+                                rootPath="/content/tetrapak/public-web"/>
+                            <contacttext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Hover text"
+                                fieldLabel="Contact Title"
+                                name="./contactText"/>
+                            <contactlink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Link to contact us page"
+                                fieldLabel="Contact Link"
+                                name="./contactLink"
+                                rootPath="/content/tetrapak/public-web"/>
+                            <contactlinktarget
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Contact Us Link Target"
+                                name="./contactLinkTarget">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <new
+                                        jcr:primaryType="nt:unstructured"
+                                        text="New Window"
+                                        value="_blank"/>
+                                    <same
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Same Window"
+                                        value="_self"/>
+                                </items>
+                            </contactlinktarget>
+                        </items>
+                    </column>
+                </items>
+            </general>
+        </items>
+    </content>
+</jcr:root>

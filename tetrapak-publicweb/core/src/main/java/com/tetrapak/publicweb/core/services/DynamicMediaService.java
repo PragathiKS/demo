@@ -6,6 +6,8 @@ public interface DynamicMediaService {
 
     String getImageServiceUrl();
 
+    String getVideoServiceUrl();
+
     String getRootPath();
 
 }

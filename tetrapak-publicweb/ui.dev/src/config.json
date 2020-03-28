@@ -121,9 +121,21 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "anlyticscode": {
+        "testMultiple": true,
+        "name": "common",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
+        "enforce": true,
+        "chunks": "all"
+      },
+      "mycomponent": {
+        "testMultiple": true,
+        "name": "mycomponent",
         "enforce": true,
         "chunks": "all"
       }
@@ -137,7 +149,14 @@
         "source/templates/components/carouselWithFilters/",
         "source/templates/components/softConversionForm/",
         "source/templates/components/contactFooterForm/",
-        "source/templates/components/contactAnchorLink/"
+        "source/templates/components/contactAnchorLink/",
+        "source/templates/components/analyticsglobaltagspw/"
+      ],
+      "anlyticscode": [
+        "source/templates/components/analyticscode/"
+      ],
+      "mycomponent": [
+        "source/templates/components/mycomponent/"
       ]
     },
     "handlebars": {
@@ -156,6 +175,7 @@
   "chunkrename": {
     "vendor": "apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish/js/vendor.js",
     "common": "apps/settings/wcm/designs/publicweb/clientlibs/common.publish/js/common.js",
+    "anlyticscode": "apps/settings/wcm/designs/publicweb/clientlibs/common.publish/js/anlyticscode.js",
     "default.en": "apps/settings/wcm/designs/publicweb/clientlibs/default.en.publish/js/default.js"
   },
   "clientlibs": {
@@ -172,6 +192,24 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
+      ]
+    },
+    "anlyticscode": {
+      "categories": [
+        "tp.publicweb.anlyticscode"
+      ],
+      "basePath": "apps/settings/wcm/designs/publicweb/clientlibs/anlyticscode.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/publicweb/clientlibs/anlyticscode.publish"
       ],
       "dependencies": [
         "granite.jquery"

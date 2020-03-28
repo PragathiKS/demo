@@ -4,7 +4,7 @@ PassEnv DISP_ID
 
 # Defining Virtual host for mypages-stage.tetrapak.com
 <VirtualHost *:80>
-        ServerName       https://mypages-stage.tetrapak.com
+        ServerName      https://mypages-stage.tetrapak.com
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} mypages-stage.tetrapak.com
 		ServerAlias      mypages-stage.tetrapak.com
@@ -15,8 +15,7 @@ PassEnv DISP_ID
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
                 Header add X-Vhost "publish"
-				
-				<FilesMatch "\.(html)$">
+		<FilesMatch "\.(html)$">
                         Header set Cache-Control no-cache,no-store
                         Header set Pragma no-cache
                 </FilesMatch>
@@ -62,6 +61,10 @@ PassEnv DISP_ID
                 Header append Vary User-Agent env=!dont-vary
                 #### Prevent clickjacking
                 Header always append X-Frame-Options SAMEORIGIN
+                <If "%{HTTP_HOST} =~ /tetrapak-dev64a.dev.adobecqms.net/">
+                RequestHeader append Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
+                #Header add Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
+                </If>
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
                 AllowOverride None
@@ -89,7 +92,8 @@ PassEnv DISP_ID
 		<IfModule mod_expires.c>
 			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
 			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
-			Header set Cache-Control max-age=432000 env=long_expires
+			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.woff" long_expires=true
+			Header set Cache-Control max-age=2592000 env=long_expires
 		</IfModule>
 </VirtualHost>
 

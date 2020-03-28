@@ -53,5 +53,5 @@
 ## Defining rules to access short url and not long urls
 
 /0042 { /type "deny"  /url "/content/tetrapak/customerhub/content-components/*" }
-
+/0043 { /type "allow"  /url "/content/tetrapak/customerhubtools/*" }
 

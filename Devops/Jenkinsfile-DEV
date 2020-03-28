@@ -253,10 +253,10 @@ pipeline {
                 
                 echo "Uninstalling Old Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
-                sleep 10
+                sleep 20
                 echo "Deleting Old Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
-                sleep 10
+                sleep 20
                 echo "Uploading New Package on author"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 20
@@ -270,10 +270,10 @@ pipeline {
                 
                 echo "Uninstalling Old Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
-                sleep 10
+                sleep 20
                 echo "Deleting Old Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
-                sleep 10
+                sleep 20
                 echo "Uploading New Package on publish"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 20
