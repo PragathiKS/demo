@@ -321,7 +321,7 @@
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldDescription="Text available for CTA"
+                                                fieldDescription="Text available for the visitor"
                                                 fieldLabel="Link Text"
                                                 name="./linkText"/>
                                             <linkPath
