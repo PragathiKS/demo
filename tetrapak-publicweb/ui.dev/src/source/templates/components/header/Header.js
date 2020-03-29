@@ -44,7 +44,8 @@ class Header {
 
   trackAnalytics = (e) => {
     e.preventDefault();
-    const $this = this.cache.$headerLogoPlaceholder;
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     if (window.digitalData) {
       $.extend(window.digitalData, {
         linkClick: {
