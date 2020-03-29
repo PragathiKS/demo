@@ -59,6 +59,11 @@ class Header {
         window._satellite.track('linkClicked');
       }
     }
+
+    if($this.data('link-section') === 'logo') {
+      var url = $this.attr('href');
+      window.open(url, $this.attr('target'));
+    }
   }
 
   init() {
