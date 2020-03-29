@@ -13,3 +13,7 @@
 <sly data-sly-use.globalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil">
   <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="${globalUtil.siteImproveScript}" />
 </sly>
+<sly data-sly-use.cookiemodel="com.tetrapak.publicweb.core.models.CookieConsentModel"/>
+<sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">
+	<sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/customerhub/components/content/cookieconsent'}"/>
+</sly>
