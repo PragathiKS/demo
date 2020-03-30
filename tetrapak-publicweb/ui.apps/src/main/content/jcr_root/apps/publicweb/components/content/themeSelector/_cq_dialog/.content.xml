@@ -83,14 +83,6 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Row - Right to Left"
                                         value="display-row-reversed"/>
-                                    <columnTopToBottom
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Column - Top to bottom"
-                                        value="display-column"/>
-                                    <columnBottomToTop
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Column - Bottom to top"
-                                        value="display-column-reversed"/>
                                 </items>
                             </display>
                         </items>

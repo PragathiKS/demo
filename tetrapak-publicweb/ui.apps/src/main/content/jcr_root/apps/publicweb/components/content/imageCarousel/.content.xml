@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Image Carousel"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup="hidden"/>

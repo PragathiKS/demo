@@ -4,4 +4,4 @@
     jcr:title="Public Web Footer"
     jcr:description="This is Footer component for Public Web."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup="hidden"/>

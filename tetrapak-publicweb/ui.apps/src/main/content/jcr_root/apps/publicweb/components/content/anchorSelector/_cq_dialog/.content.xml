@@ -24,7 +24,7 @@
                             <anchorTitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Please enter title for anchor ID to handle anchor functionality"
+                                fieldDescription="Please enter title to be shown on Anchor component in order to handle anchor fucntionality."
                                 fieldLabel="Anchor Title"
                                 name="./anchorTitle"/>
                         </items>
