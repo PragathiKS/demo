@@ -105,6 +105,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                 composite="{Boolean}true"
                                 fieldDescription="Click 'Add field' to add a new Social channel and link"
+								validation="multifield-max-6"
                                 fieldLabel="Social Links">
                                 <field
                                     jcr:primaryType="nt:unstructured"
@@ -139,6 +140,14 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Youtube"
                                                             value="Youtube"/>
+														<pinterest
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Pinterest"
+                                                            value="Pinterest"/>
+														<googleplus
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Google-plus"
+                                                            value="Googleplus"/>
                                                     </items>
                                                 </socialmedia>
                                                 <sociallinkpath
