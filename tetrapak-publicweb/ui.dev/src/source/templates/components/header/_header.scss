@@ -151,7 +151,9 @@
 
 .tp-pw-mobile-navigation {
     display: none;
-
+    width:100%;
+    position: absolute;
+    
     @media #{$desktop} {
         display: none;
     }
