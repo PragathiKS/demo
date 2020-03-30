@@ -3,7 +3,7 @@
     <nav class="tp-pw-header__container">
       <div class="d-flex align-items-end tp-container no-gutters">
         <button class="tp-pw-header__hamburger-close col-sm-3 js-tp-pw-header__hamburger"><i id="toggle-button" class="icon-Burger"></i></button>
-        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-2 d-flex justify-content-lg-start justify-content-sm-center">
+        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex justify-content-lg-start justify-content-sm-center">
           <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}" target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}" 
           datatag="${data.linkType}"
           ctype="${data.cType}"
@@ -16,7 +16,7 @@
          <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath='/content/dam/tetrapak/customerhub/english/error/images/TetraPakLogo.png', altText=data.logoAlt, className='tp-pw-logo'}" />
        </a>
         </div>
-        <div class="tp-pw-header__main-navigation col-7">
+        <div class="tp-pw-header__main-navigation col-6">
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
             <li>
               <a class="js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-parent-title="Navigation" data-link-name="${megaMenuItem.linkText}" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
@@ -25,9 +25,6 @@
         </div>
         <div class="col-sm-3 col-lg-3 d-flex justify-content-end">
           <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
-            <!-- <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#"
-               data-root-path="${data.searchRootPath}" data-results-path="${data.searchResultsPath}"><i
-              class="icon-Search"></i></a> -->
             <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#">
                 <i class="icon-Search"></i></a>
             <a class="tp-pw-header__secondary-navigation__link" target="" href="#"><i class="icon-Envelope"></i></a>
@@ -62,32 +59,5 @@
     <!-- Links -->
 
   </div>
-  <!-- Collapsible content -->
-    <!-- <div class="tp-pw-search-box js-tp-pw-search-box">
-      <div class="tp-pw-search-box__input-wrapper">
-        <div class="tp-container">
-          <i class="icon-Search tp-pw-search-box__icon"></i>
-          <input class="tp-pw-search-box__input js-tp-pw-search-box__input" type="iput" name="search_inp"
-                 id="f_search_inp" placeholder="${'Search' @ i18n}">
-          <a class="tp-pw-search-box__close-search-box js-tp-pw-search-box__close-search-box" href="#"><i
-            class="icon-Close"></i></a>
-          <div class="tp-pw-search-box__pointer js-tp-pw-search-box__pointer"
-               data-point-to="js-tp-pw-header__search-box-toggle"></div>
-        </div>
-      </div>
-    </div> -->
-        <!-- This is the example of how the search panel values can be retrieved from the model
-        <p> Placeholder Text : ${data.searchPlaceholderText}</p>
-        <ul data-sly-list.tile="${data.searchPanelTiles}">
-        <li>Title : ${tile.title}</li>
-            <li>Description : ${tile.description}</li>
-            <li>Image : ${tile.image}</li>
-            <li>Image Alt Text : ${tile.imageAltText}</li>
-            <li>Link Path : ${tile.linkPath}</li>
-            <li>Target Blank : ${tile.targetBlank}</li>
-        </ul>-->
-    <!-- <div class="tp-pw-header__hero-image" data-sly-test="${data.enableHeroImage}">
-      <sly data-sly-resource="${'imageTextBanner' @ resourceType='publicweb/components/content/imageTextBanner'}"/>
-    </div> -->
   </header><!-- end c-header -->
 </sly>
