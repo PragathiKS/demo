@@ -1,69 +1,75 @@
 import $ from 'jquery';
-import { $document, $win } from '../../../scripts/utils/commonSelectors';
-import { loc } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
     this.root = $(el);
+    this.toggleFlag = false;
+    this.toggleButtonId = '#toggle-button';
   }
 
   cache = {};
 
   initCache() {
-    this.cache.$searchBoxToggle = this.root.find('.js-tp-pw-header__search-box-toggle');
-    this.cache.$searchBox = this.root.find('.js-tp-pw-search-box');
-    this.cache.$searchBoxInput = this.root.find('.js-tp-pw-search-box__input');
-    this.cache.$closeSearcBbox = this.root.find('.js-tp-pw-search-box__close-search-box');
-    this.cache.secondaryNav = this.root.find('.js-tp-pw-header__secondary-navigation');
-    this.cache.searchBoxPointer = this.root.find('.js-tp-pw-search-box__pointer');
-    this.cache.pointedElement = this.root.find(`.${this.cache.searchBoxPointer.data('pointTo')}`);
-    this.cache.url = location.href.split('?')[1] || null;
-    this.setOverlayHeight();
+    this.cache.$mobileMenu = this.root.find('.js-tp-pw-mobile-navigation');
+    this.cache.$hamburgerToggle = this.root.find('.js-tp-pw-header__hamburger');
+    this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
   }
 
   bindEvents() {
-    const { $searchBoxToggle, $closeSearcBbox, $searchBoxInput } = this.cache;
-    $searchBoxToggle.on('click', this.openSearchBox);
-    $closeSearcBbox.on('click', this.closeSearchBox);
-    $searchBoxInput.on('key.return', () => {
-      const searchTerm = $('.js-tp-pw-search-box__input').val();
-      this.search(searchTerm);
-    });
-    $win.on('resize', () => {
-      this.movePointer();
-    });
+    const { $hamburgerToggle, $headerLogoPlaceholder } = this.cache;
+    $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
+    $headerLogoPlaceholder.on('click', this.trackAnalytics);
+    $(window).on('resize', this.hideMobileMenuOnResize);
   }
 
-  search = (searchTerm) => {
-    const origin = window.location.origin;
-    const params = {};
-    const searchResultsPath = this.cache.$searchBoxToggle.data('resultsPath');
-    params.q = searchTerm;
-    //TODO Get existent param values modify q and then build the url again
-    const destinationURL = origin + searchResultsPath + '.html?q=' + searchTerm;
-    loc.replace(destinationURL);
-  };
+  hideMobileMenuOnResize = () => {
+    this.cache.$mobileMenu.fadeOut(10);
+    this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
+    this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
+    this.toggleFlag = false;
+  }
 
-  openSearchBox = () => {
-    this.cache.$searchBox.fadeIn(300, () => {
-      $('.js-tp-pw-search-box__input').focus();
-    });
-  };
-  closeSearchBox = () => {
-    this.cache.$searchBox.fadeOut(300);
-  };
-  setOverlayHeight = () => {
-    this.cache.$searchBox.css('height', $document.height());
-  };
-  movePointer = () => {
-    const secNavWidth = this.cache.secondaryNav.width();
-    $('.js-tp-pw-search-box__pointer').css('right', secNavWidth + 10 + 'px');
-  };
+  openMobileMenuBoxToggle = () => {
+    if(!this.toggleFlag){
+      this.cache.$mobileMenu.fadeIn(300);
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close');
+      this.toggleFlag = true;
+    }else {
+      this.cache.$mobileMenu.fadeOut(300);
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
+      this.toggleFlag = false;
+    }
+  }
+
+  trackAnalytics = (e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: 'internal',
+          linkSection: $this.data('link-section'),
+          linkParentTitle: $this.data('link-parent-title'),
+          linkName: $this.data('link-name')
+        }
+      });
+      if (window._satellite) {
+        window._satellite.track('linkClicked');
+      }
+    }
+
+    if($this.data('link-section') === 'logo') {
+      var url = $this.attr('href');
+      window.open(url, $this.attr('target'));
+    }
+  }
 
   init() {
     this.initCache();
     this.bindEvents();
-    this.movePointer(this.cache.searchBoxPointer, this.cache.pointedElement);
   }
 }
 
