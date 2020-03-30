@@ -1,6 +1,8 @@
 package com.tetrapak.publicweb.core.utils;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
+import org.apache.commons.lang.StringUtils;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -10,7 +12,7 @@ import org.osgi.framework.ServiceReference;
  *
  * @author Nitin Kumar
  */
-public class GlobalUtil {
+public final class GlobalUtil {
 
     private GlobalUtil() {
         /*
@@ -42,5 +44,21 @@ public class GlobalUtil {
             return null;
         }
         return siteImproveScriptService.getSiteImproveScriptUrl();
+    }
+
+    /**
+     * get scene 7 video url
+     *
+     * @param damVideoPath        video path
+     * @param dynamicMediaService dynamic media service
+     * @return video path from scene 7
+     */
+    public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
+        final String FORWARD_SLASH = "/";
+        damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
+        damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
+        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
+                + FORWARD_SLASH + damVideoPath;
+        return damVideoPath;
     }
 }
