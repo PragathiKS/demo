@@ -1,916 +1,221 @@
 {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "English",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "8e561793-7556-41bb-bcba-05d5402dfa6a",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"79b9b09e-c34c-4604-9258-456aee9823ea"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 13:20:39 GMT+0000",
-"cq:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
-"jcr:baseVersion": "79b9b09e-c34c-4604-9258-456aee9823ea",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "5b44965b-6a84-496c-87c1-75639aa97ad1",
-"sling:resourceType": "publicweb/components/structure/pages/languagepage",
-"cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastModifiedBy": "admin",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid",
-"responsivegrid": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:mixinTypes": [
-"cq:ReplicationStatus"
-],
-"cq:lastReplicationAction": "Activate",
-"cq:lastReplicatedBy": "admin",
-"cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
-"sling:resourceType": "wcm/foundation/components/responsivegrid"
-}
-}
-},
-"home": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Home Page",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "b4c97315-2425-4f34-a864-27d1dda9187c",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"bd6ff37b-c54e-44c9-a694-63d5a91c23b9"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Mon Mar 30 2020 08:08:30 GMT+0000",
-"jcr:baseVersion": "bd6ff37b-c54e-44c9-a694-63d5a91c23b9",
-"jcr:isCheckedOut": true,
-"hideInNav": "true",
-"jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
-"linkText": [
-"",
-""
-],
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid"
-},
-"header": {
-"jcr:primaryType": "nt:unstructured",
-"loginTextI18n": "My Tetra Pak",
-"megamenuLinks": [
-"{\"linkTextI18n\":\"Solutions\",\"linkTooltipI18n\":\"Solutions\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/solutions\"}",
-"{\"linkTextI18n\":\"Insights\",\"linkTooltipI18n\":\"Insights\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/innovations\"}",
-"{\"linkTextI18n\":\"Sustainability\",\"linkTooltipI18n\":\"Sustainability\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/sustainability\"}",
-"{\"linkTextI18n\":\"Careers\",\"linkTooltipI18n\":\"Carrers\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/careers\"}",
-"{\"linkTextI18n\":\"About us\",\"linkTooltipI18n\":\"About us\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/about-us\"}"
-],
-"jcr:lastModifiedBy": "sapient-user",
-"enableHeroImage": "true",
-"jcr:lastModified": "Fri Apr 05 2019 07:41:07 GMT+0000",
-"sling:resourceType": "publicweb/components/structure/header",
-"searchRootPath": "/content/tetrapak/public-web/lang-masters/en",
-"searchResultsPath": "/content/tetrapak/public-web/lang-masters/en/search"
-},
-"footer": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:lastModifiedBy": "admin",
-"jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
-"sling:resourceType": "publicweb/components/structure/footer",
-"ctaLabelI18n": "To top"
-},
-"contactfooterform": {
-"jcr:primaryType": "nt:unstructured",
-"titleI18n": "Contact Footer Form",
-"jcr:createdBy": "admin",
-"previousButtonLabel": "Previous",
-"firstNameLabel": "First Name",
-"description": "Contact Footer Form",
-"thankYouMessage": "Thank You for submission",
-"messageLabel": "Message",
-"jcr:lastModifiedBy": "admin",
-"helpText": "Privacy Policy",
-"contactUsLabel": "Where do you want to contact us?",
-"lastNameLabel": "Last Name",
-"jcr:created": "Mon Apr 08 2019 14:52:02 GMT-0300",
-"nextButtonLabel": "Next",
-"image": "/content/dam/publicweb/ContentImage5.png",
-"linkTextI18n": "Link",
-"submitButtonLabel": "Submit",
-"phoneNumberLabel": "Phone Number",
-"thankYouHeadline": "Thank You",
-"jcr:lastModified": "Tue Jan 28 2020 09:35:08 GMT+0000",
-"positionLabel": "Position",
-"privacyPolicyText": "Headline",
-"emailAddressLabel": "Email Address",
-"linkPath": "/content/tetrapak/public-web/lang-masters/en/about-us",
-"sling:resourceType": "publicweb/components/content/contactFooterForm",
-"companyLabel": "Company",
-"textIsRich": [
-"true",
-"true"
-]
-}
-}
-},
-"solutions": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Solutions",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "c33bdd3e-b66e-49d0-b487-82b264d22b1d",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"hideContactAnchorLink": "true",
-"jcr:predecessors": [
-"b703820f-fb00-4113-b93c-3130fa7cef6f"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Mon Mar 30 2020 04:29:22 GMT+0000",
-"cq:lastModified": "Mon Mar 30 2020 08:30:02 GMT+0000",
-"jcr:baseVersion": "b703820f-fb00-4113-b93c-3130fa7cef6f",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "72fda38f-2f8f-4973-a1b6-d44895822310",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid"
-},
-"breadcrmb": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:lastModifiedBy": "admin",
-"jcr:lastModified": "Sun Mar 10 2019 16:23:12 GMT-0300",
-"sling:resourceType": "publicweb/components/content/breadcrumb",
-"homePagePath": "/content/tetrapak/public-web/lang-masters/en"
-},
-"header": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:lastModifiedBy": "sapient-user",
-"enableHeroImage": "true",
-"jcr:lastModified": "Mon Apr 08 2019 08:16:24 GMT+0000",
-"sling:resourceType": "publicweb/components/structure/header"
-},
-"contactFooterForm": {
-"jcr:primaryType": "nt:unstructured",
-"titleI18n": "Hard conversion form",
-"previousButtonLabel": "Previous",
-"firstNameLabel": "First Name",
-"description": "sample description",
-"thankYouMessage": "message",
-"messageLabel": "Message",
-"jcr:lastModifiedBy": "admin",
-"helpText": "help text",
-"contactUsLabel": "Where do you want to contact us?",
-"lastNameLabel": "Last Name",
-"imageAltI18n": "alt text1",
-"nextButtonLabel": "Next",
-"image": "/content/dam/publicweb/ContentImage6.png",
-"linkTextI18n": "link text",
-"submitButtonLabel": "Submit",
-"phoneNumberLabel": "Phone Number",
-"thankYouHeadline": "thank you",
-"jcr:lastModified": "Wed Mar 11 2020 10:13:26 GMT+0000",
-"positionLabel": "Position",
-"privacyPolicyText": "pr po.",
-"emailAddressLabel": "Email Address",
-"linkPath": "https://www.google.com",
-"sling:resourceType": "publicweb/components/content/contactFooterForm",
-"companyLabel": "Company",
-"textIsRich": [
-"true",
-"true"
-]
-}
-},
-"turn-ingredients-into-products": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Turn ingredients into products",
-"showImage": "true",
-"vanityDescription": "Done right, mixing can enhance the efficiency of your operations, and lead to hight-quality food products.",
-"cq:lastReplicationAction": "Activate",
-"articleImageAltI18n": "Learn the secrets behind mixing",
-"jcr:versionHistory": "29e59e5a-64a1-498b-b1f4-42ee0f7242f0",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "sapient-suraksha",
-"jcr:predecessors": [
-"5ff67c6d-8ebb-4e34-866e-691bed48e85f"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Fri Mar 27 2020 05:36:44 GMT+0000",
-"cq:lastModified": "Fri Mar 27 2020 05:36:27 GMT+0000",
-"title": "Turn ingredients into products",
-"articleImagePath": "/content/dam/publicweb/ContentImage6.png",
-"jcr:baseVersion": "5ff67c6d-8ebb-4e34-866e-691bed48e85f",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Learn the secrets behind mixing",
-"pageTitle": "Turn ingredients into products",
-"jcr:uuid": "d061d1b9-2f19-499b-b391-c85408427f72",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "sapient-suraksha",
-"navTitle": "Turn ingredients into products"
-}
-},
-"teaser-demo": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "teaser demo",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "40797134-1d49-446d-ab3c-91ca07446a1a",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-base-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"1a64816d-f1c8-4942-ad70-3823e30b3687"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Mon Mar 23 2020 11:44:19 GMT+0000",
-"jcr:baseVersion": "1a64816d-f1c8-4942-ad70-3823e30b3687",
-"jcr:isCheckedOut": true,
-"hideInSearch@Delete": "true",
-"jcr:uuid": "32964de9-8b67-45c2-bd28-daad21e1571d",
-"sling:resourceType": "publicweb/components/structure/pages/page",
-"cq:lastModifiedBy": "sapient-suraksha"
-}
-}
-},
-"insights": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "Insights",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "5e9dc798-e814-446b-8852-33ce2c1215f0",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"dda4932c-734c-4cac-9c49-1b55c79787a3"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Tue Mar 24 2020 05:37:21 GMT+0000",
-"jcr:baseVersion": "dda4932c-734c-4cac-9c49-1b55c79787a3",
-"jcr:isCheckedOut": true,
-"hideInSearch@Delete": "true",
-"jcr:uuid": "da0fae65-70df-4e5a-89d7-73ba22962307",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"sustainability": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Sustainability",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "eef6cb4d-66ba-4cea-9dbf-f874a0887a5e",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"02503a34-7601-4077-9d68-3379277f381e"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Wed Nov 06 2019 13:15:52 GMT+0000",
-"jcr:baseVersion": "02503a34-7601-4077-9d68-3379277f381e",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "721d5b96-3f35-44ef-8cc2-7281292d5303",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "roomahaj",
-"par": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "foundation/components/parsys"
-}
-}
-},
-"about-tetra-pak": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "About Tetra Pak",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "9d0aea79-2840-483c-9773-d86406eb388b",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"a85c2453-57fc-4841-ad16-2ca00b15ee8f"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Tue Mar 24 2020 05:41:24 GMT+0000",
-"jcr:baseVersion": "a85c2453-57fc-4841-ad16-2ca00b15ee8f",
-"jcr:isCheckedOut": true,
-"hideInSearch@Delete": "true",
-"jcr:uuid": "64d8d48d-e817-4319-88f5-a813dc9dc676",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"search": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Search",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "9d9efb93-9bd6-46cf-8ac6-dc756f8fb333",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"d94b1266-ba1d-426d-ae99-b845c99d5d8e"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Fri Apr 05 2019 07:40:12 GMT+0000",
-"jcr:baseVersion": "d94b1266-ba1d-426d-ae99-b845c99d5d8e",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "eac38cc0-7523-42e4-aefd-021d3ecc15ba",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "sapient-user",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid"
-}
-}
-},
-"error": {
-"404": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": " 404 - page could not be found",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "29b046e2-5610-4ac9-a3ad-c9732222dc8d",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"f557943e-025f-42b0-98cb-b17a5ab1b635"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"jcr:baseVersion": "f557943e-025f-42b0-98cb-b17a5ab1b635",
-"jcr:isCheckedOut": true,
-"cq:conf": "/conf/CustomerHub Launch",
-"jcr:uuid": "3b3d71df-df61-48b2-a012-b2980d1bcc3f",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage"
-}
-},
-"500": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "500 - Internal Server Error",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "b5c9d364-c9a7-4cba-aec9-d29f67755355",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"d8ca7c53-53fe-43fc-8423-703dc2d217dc"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:cloudserviceconfigs": [
-"/etc/cloudservices/testandtarget/abtetrapak/framework"
-],
-"jcr:baseVersion": "d8ca7c53-53fe-43fc-8423-703dc2d217dc",
-"jcr:isCheckedOut": true,
-"cq:conf": "/conf/CustomerHub Launch",
-"jcr:uuid": "29d1434b-fd14-4a54-a452-cb5c17d03495",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage"
-}
-},
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Something Went Wrong",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "35f08717-85b0-4ea6-8656-558c14f18cc5",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"e45fe6ca-b6e0-4b5c-9f31-babc05bddbc7"
-],
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:cloudserviceconfigs": [
-"/etc/cloudservices/testandtarget/abtetrapak/framework"
-],
-"jcr:baseVersion": "e45fe6ca-b6e0-4b5c-9f31-babc05bddbc7",
-"jcr:isCheckedOut": true,
-"cq:conf": "/conf/CustomerHub Launch",
-"jcr:uuid": "e98de5cf-82b7-4f16-88c4-9edadb1705f0",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid"
-}
-}
-},
-"lines": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Lines",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "1a0b546b-5656-477d-b988-229aded38896",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"496c772d-c2be-45e5-8b8d-7b5877424b2f"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Tue Mar 17 2020 14:32:04 GMT+0000",
-"jcr:baseVersion": "496c772d-c2be-45e5-8b8d-7b5877424b2f",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "10c2221d-5a71-4f70-b9f1-4ed0d82af37f",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "roomahaj",
-"root": {
-"jcr:primaryType": "nt:unstructured"
-}
-},
-"drink-type-yoghurt-line": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Drink Type Yoghurt Line (ambient distribution)",
-"practiceImagePath": "/content/dam/publicweb/ContentImage4.png",
-"vanityDescription": "Tasty, healthy, nutritious, filling, with an endless variety of flavours and served in an easy-to-drink package. It is easy to understand why the popularity of drinking yoghurt is booming around the world. This line can be adapted to produce a huge variety of different products with a varying viscosity, flavour, shelf life, appeareance, with or without particles, etc.",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "0ac891b6-515b-4c9a-8ea9-b3e833c16db8",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"142ce520-1557-4ad3-bc78-f1f93d0f1084"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Fri Feb 07 2020 07:54:46 GMT+0000",
-"title": "Drink Type Yoghurt Line (ambient distribution)",
-"practiceImageAltI18n": "machinery",
-"articleImagePath": "/content/dam/publicweb/ContentImage5.png",
-"jcr:description": "descccc1",
-"jcr:baseVersion": "142ce520-1557-4ad3-bc78-f1f93d0f1084",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Discover mixing solutions for ambient yoghurt",
-"linkTarget": "_self",
-"cq:tags": [],
-"jcr:uuid": "94e48c81-588f-4cd5-b284-71803c7e8e40",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"juice-lines--nfc-and-fc-": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Juice lines (NFC and FC)",
-"practiceImagePath": "/content/dam/publicweb/ContentImage5.png",
-"vanityDescription": "Done right, mixing can enhance the efficiency of your operations, and lead to hight-quality food products.",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "72223fe2-f2d6-4b41-9ff3-041d45b2e821",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"imagePath": "/content/dam/publicweb/ContentImage5.png",
-"jcr:predecessors": [
-"f6d7141a-9228-4d5b-9f3d-a974dd485bf0"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Fri Feb 07 2020 07:55:01 GMT+0000",
-"title": "Juice lines (NFC and FC)",
-"practiceImageAltI18n": "machinery",
-"articleImagePath": "/content/dam/publicweb/ContentImage5.png",
-"jcr:description": "Done right, mixing can enhance the efficiency of your operations, and lead to hight-quality food products.",
-"jcr:baseVersion": "f6d7141a-9228-4d5b-9f3d-a974dd485bf0",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Get mixing and blending right",
-"linkTarget": "_self",
-"cq:tags": [],
-"jcr:uuid": "d3c025d2-5719-46b7-9fe8-91693e979a92",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"continuous-tomato-preparations-line": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "CONTINUOUS TOMATO PREPARATIONS LINE",
-"practiceImagePath": "/content/dam/publicweb/lines/tetra-vertenso-juice-line.jpg",
-"vanityDescription": "This line handles production of smooth to small particulate tomato sauces and pastes. It allows you to produce a broad range of tomato preparations – natural products with more tomato content, less sugar, and fewer additives – that taste natural and homemade. The recipe-specific shear rate in mixing and optimized heat-treatment achieves the desired product characteristics. Our line enables safe production with exceptional quality and efficiency.",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "5abdf06c-398f-43a2-946e-88b4c92249c4",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"d05a42da-f21c-4247-b0b1-f3bf43eeacf8"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Mon Apr 08 2019 08:15:23 GMT+0000",
-"title": "CONTINUOUS TOMATO PREPARATIONS LINE",
-"practiceImageAltI18n": "CONTINUOUS TOMATO PREPARATIONS LINE",
-"jcr:baseVersion": "d05a42da-f21c-4247-b0b1-f3bf43eeacf8",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "CONTINUOUS TOMATO PREPARATIONS LINE",
-"linkTarget": "_blank",
-"cq:tags": [],
-"jcr:uuid": "ddf72bc3-e4c7-4d08-af18-48606f2fa2dd",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "sapient-user"
-}
-}
-},
-"products": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Products",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "49680bd2-0452-4673-bd3b-d257596c0a68",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"altText": "assadsad",
-"imagePath": "/content/dam/publicweb/ContentImage4.png",
-"jcr:predecessors": [
-"950ae101-a628-46d8-9821-c8e57cecc734"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Mon Mar 16 2020 09:33:22 GMT+0000",
-"jcr:baseVersion": "950ae101-a628-46d8-9821-c8e57cecc734",
-"jcr:isCheckedOut": true,
-"cq:tags": [],
-"jcr:uuid": "b724f329-d00b-42e4-8a2e-783538711678",
-"linkText": [
-"Link from page",
-"Link from page"
-],
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"root": {
-"jcr:primaryType": "nt:unstructured"
-}
-},
-"high-shear-mixer-for-cold-emulsions": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "High Shear Mixer for cold emulsions",
-"vanityDescription": "Batch processing unit with double-shaft agitator",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "c73886b3-87e9-4f1b-a94b-1c72653cc3b6",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"productImagePath": "/content/dam/publicweb/products/tetra_pak_high_shear_mixer_b300-1500vaa_batch_plus_lineview.png",
-"jcr:predecessors": [
-"05057425-e080-46f4-b63a-0f629ea5e0cb"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:27 GMT+0000",
-"cq:lastModified": "Mon Feb 17 2020 11:41:31 GMT+0000",
-"title": "Tetra Pak® High Shear Mixer for cold emulsions",
-"productImageAltI18n": "Explore Tetra Pak® High Shear Mixer",
-"jcr:baseVersion": "05057425-e080-46f4-b63a-0f629ea5e0cb",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Explore Tetra Pak® High Shear Mixer",
-"cq:tags": [],
-"jcr:uuid": "f441e6a5-61b0-47ce-ae1f-908cc91eaf71",
-"linkText": [
-"",
-""
-],
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"tetra-pak-food-processor": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Tetra Pak food processor",
-"vanityDescription": "Multi functional processing equipment for prepared food",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "6fe3f331-475d-4569-acca-094659a33223",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"productImagePath": "/content/dam/publicweb/products/food_processor-lineview.png",
-"jcr:predecessors": [
-"fa1fbebd-6e60-44f9-80b4-4922d6597889"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:28 GMT+0000",
-"cq:lastModified": "Sun Apr 21 2019 15:20:43 GMT-0300",
-"title": "Tetra Pak food processor",
-"productImageAltI18n": "Explore Tetra Pak Food Processor",
-"jcr:baseVersion": "fa1fbebd-6e60-44f9-80b4-4922d6597889",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Explore Tetra Pak Food Processor",
-"cq:tags": [],
-"jcr:uuid": "d2889712-97da-43de-b7e9-12209c847bd4",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"tetra-pak-pasteurizer-d-base": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Tetra Pak Pasteurizer D Base",
-"vanityDescription": "This unit is for continuous pasteurization and processing of dairy products. Up to 10,000 l/h for milk and yoghurt. Up to 5,000 l/h for cream ",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "0a5fcfab-f7b1-4cf4-a282-db47a9a80d75",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"productImagePath": "/content/dam/publicweb/products/tetra_pak_pasteurizer_d_basic_feed_module_phe_lineview.png",
-"jcr:predecessors": [
-"32661fff-ca60-45dd-a224-a31b2c33b871"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:28 GMT+0000",
-"cq:lastModified": "Sun Apr 21 2019 15:22:03 GMT-0300",
-"title": "Tetra Pak® Pasteurizer D Base",
-"productImageAltI18n": "Explore Tetra Pak® Pasteurizer D Base",
-"jcr:baseVersion": "32661fff-ca60-45dd-a224-a31b2c33b871",
-"jcr:isCheckedOut": true,
-"ctaTexti18nKey": "Explore Tetra Pak® Pasteurizer D Base",
-"cq:tags": [],
-"jcr:uuid": "fb538681-87da-4636-bee6-0eb7a22f4e1d",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
-},
-"test_erik": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Test_Erik",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "85017c1f-3496-426b-a03a-c126e622b2eb",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"jcr:predecessors": [
-"3d44a3a5-a42a-4dce-a5c1-3d081c9d8883"
-],
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:28 GMT+0000",
-"cq:lastModified": "Thu Mar 26 2020 15:56:48 GMT+0000",
-"jcr:baseVersion": "3d44a3a5-a42a-4dce-a5c1-3d081c9d8883",
-"jcr:isCheckedOut": true,
-"jcr:uuid": "3adde5fa-7887-4e8c-b49d-f5f1bb05c6f7",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "roomahaj"
-}
-}
-},
-"article": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "Article",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"cq:lastModified": "Thu Mar 26 2020 03:29:51 GMT+0000",
-"hideInSearch@Delete": "true",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"footer": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:lastModifiedBy": "admin",
-"jcr:lastModified": "Thu Mar 26 2020 03:29:51 GMT+0000",
-"sling:resourceType": "publicweb/components/structure/footer"
-}
-}
-},
-"testtitle": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "Title - for browser",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "27ac8d25-e949-4088-a546-ec015b4d3127",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "sapient-suraksha",
-"altText": "random alt-text",
-"imagePath": "/content/dam/publicweb/ContentImage4.png",
-"jcr:predecessors": [
-"9dfc3b8b-baad-4d3d-a2d2-df6cdadc93e8"
-],
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"cq:lastReplicated": "Fri Mar 27 2020 08:54:48 GMT+0000",
-"cq:lastModified": "Fri Mar 27 2020 08:54:41 GMT+0000",
-"jcr:description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa tamen simplicia, vestra versuta. Quid ad utilitatem tantae pecuniae? Cui Tubuli nomen odio non est? Primum divisit ineleganter;",
-"jcr:baseVersion": "9dfc3b8b-baad-4d3d-a2d2-df6cdadc93e8",
-"jcr:isCheckedOut": true,
-"hideInSearch@Delete": "true",
-"linkTarget": "false",
-"pageTitle": "Page Title",
-"jcr:uuid": "14046504-3dd0-4d5f-aef0-841685f31745",
-"linkPath": "/content/tetrapak/public-web/lang-masters/en/home",
-"linkText": "Demo Link Text",
-"linkType": "button",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "sapient-suraksha",
-"navTitle": "Navigation Title",
-"root": {
-"jcr:primaryType": "nt:unstructured"
-}
-},
-"pwlandpage": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "Public Web Landing Page",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "259dad56-04ca-4654-803d-ce100f8082df",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "sapient-suraksha",
-"altText": "random alt-text",
-"imagePath": "/content/dam/publicweb/banners/Yogurt1416.png",
-"jcr:predecessors": [
-"bfe1b947-a175-4f53-a0fd-4eeaf4315bde"
-],
-"jcr:created": "Mon Mar 30 2020 14:32:11 GMT+0530",
-"cq:lastReplicated": "Fri Mar 27 2020 08:30:19 GMT+0000",
-"cq:lastModified": "Fri Mar 27 2020 11:27:19 GMT+0000",
-"jcr:description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa tamen simplicia, vestra versuta. Quid ad utilitatem tantae pecuniae? Cui Tubuli nomen odio non est? Primum divisit ineleganter;",
-"jcr:baseVersion": "bfe1b947-a175-4f53-a0fd-4eeaf4315bde",
-"jcr:isCheckedOut": true,
-"hideInSearch@Delete": "true",
-"linkTarget": "false",
-"pageTitle": "Page Title",
-"cq:tags": [
-"tetrapak:food",
-"tetrapak:material-type/3d-models"
-],
-"jcr:uuid": "419c02d1-a835-4f63-a423-726580834f02",
-"linkPath": "https://loripsum.net/",
-"linkText": "Demo Link Text",
-"linkType": "button",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"navTitle": "Navigation Title"
-}
-}
-}
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "English",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "8e561793-7556-41bb-bcba-05d5402dfa6a",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:predecessors": [
+      "79b9b09e-c34c-4604-9258-456aee9823ea"
+    ],
+    "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+    "cq:lastReplicated": "Wed Mar 25 2020 13:20:39 GMT+0000",
+    "cq:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
+    "jcr:baseVersion": "79b9b09e-c34c-4604-9258-456aee9823ea",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "5b44965b-6a84-496c-87c1-75639aa97ad1",
+    "sling:resourceType": "publicweb/components/structure/pages/languagepage",
+    "cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:ReplicationStatus"
+        ],
+        "cq:lastReplicationAction": "Activate",
+        "cq:lastReplicatedBy": "admin",
+        "cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "headerconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "loginLabel": "label",
+          "loginLink": "#",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Wed Mar 25 2020 13:22:51 GMT+0000",
+          "contactLink": "#",
+          "contactText": "contact us",
+          "logoLinkTarget": "_blank",
+          "logoAlt": "alt",
+          "jcr:lastModified": "Wed Mar 25 2020 13:32:22 GMT+0000",
+          "sling:resourceType": "publicweb/components/structure/headerconfiguration",
+          "contactLinkTarget": "_blank",
+          "logoLink": "https://www.tetrapak.com"
+        },
+        "cookieconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "cookieConsentButtonText": "Ok! I understand.",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Mon Mar 30 2020 14:33:09 GMT+0530",
+          "cookieConsentDisabled": "true",
+          "cookieConsentText": "Cookie consent text with RTE",
+          "jcr:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
+          "sling:resourceType": "publicweb/components/structure/cookieconfiguration",
+          "textIsRich": "true"
+        }
+      }
+    }
+  },
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:mixinTypes": [
+        "mix:versionable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:title": "Home Page",
+      "cq:lastReplicationAction": "Activate",
+      "jcr:versionHistory": "b4c97315-2425-4f34-a864-27d1dda9187c",
+      "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+      "cq:lastReplicatedBy": "admin",
+      "jcr:predecessors": [
+        "bd6ff37b-c54e-44c9-a694-63d5a91c23b9"
+      ],
+      "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+      "cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
+      "cq:lastModified": "Mon Mar 30 2020 08:08:30 GMT+0000",
+      "jcr:baseVersion": "bd6ff37b-c54e-44c9-a694-63d5a91c23b9",
+      "jcr:isCheckedOut": true,
+      "hideInNav": "true",
+      "jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
+      "linkText": [
+        "",
+        ""
+      ],
+      "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+      "cq:lastModifiedBy": "admin",
+      "root": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "responsivegrid": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:ReplicationStatus"
+          ],
+          "cq:lastReplicationAction": "Activate",
+          "cq:lastReplicatedBy": "admin",
+          "cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
+          "sling:resourceType": "wcm/foundation/components/responsivegrid"
+        }
+      },
+      "header": {
+        "jcr:primaryType": "nt:unstructured",
+        "loginTextI18n": "My Tetra Pak",
+        "megamenuLinks": [
+          "{\"linkTextI18n\":\"Solutions\",\"linkTooltipI18n\":\"Solutions\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/solutions\"}",
+          "{\"linkTextI18n\":\"Insights\",\"linkTooltipI18n\":\"Insights\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/innovations\"}",
+          "{\"linkTextI18n\":\"Sustainability\",\"linkTooltipI18n\":\"Sustainability\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/sustainability\"}",
+          "{\"linkTextI18n\":\"Careers\",\"linkTooltipI18n\":\"Carrers\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/careers\"}",
+          "{\"linkTextI18n\":\"About us\",\"linkTooltipI18n\":\"About us\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/about-us\"}"
+        ],
+        "jcr:lastModifiedBy": "sapient-user",
+        "enableHeroImage": "true",
+        "jcr:lastModified": "Fri Apr 05 2019 07:41:07 GMT+0000",
+        "sling:resourceType": "publicweb/components/structure/header",
+        "searchRootPath": "/content/tetrapak/public-web/lang-masters/en",
+        "searchResultsPath": "/content/tetrapak/public-web/lang-masters/en/search",
+        "logo": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:lastModifiedBy": "admin",
+          "imageLink": "/content/tetrapak/public-web/lang-masters/en",
+          "imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+          "imageAltI18n": "Tetra Pak Logo",
+          "jcr:lastModified": "Fri Mar 22 2019 03:11:47 GMT+0000",
+          "sling:resourceType": "publicweb/components/content/logo"
+        },
+        "imageTextBanner": {
+          "jcr:primaryType": "nt:unstructured",
+          "titleI18n": "SAVE ENERGY WITH OPTIMIZED HOMOGENIZATION",
+          "targetBlank": "true",
+          "bannerCtaPath": "/content/tetrapak/public-web/lang-masters/en",
+          "mobileImage": "/content/dam/publicweb/Teaser1.png",
+          "bannerDescriptionI18n": "Make your dairy operations more cost-effective and sustainable – shift focus from homogenization pressure to the actual effects of homogenization when measuring homogenization efficiency.",
+          "targetSoftConversion": "true",
+          "mobileCroppingOption": "none",
+          "jcr:lastModifiedBy": "roomahaj",
+          "softConversionDescription": "Soft conversion form",
+          "softConversionTitle": "Show Soft conversion",
+          "contentAlignment": "pw-banner--right",
+          "bannerCtaTextI18n": "Learn more ",
+          "contrastLayer": "gradient-to-right",
+          "jcr:lastModified": "Wed Jan 29 2020 09:13:54 GMT+0000",
+          "desktopImage": "/content/dam/publicweb/banners/hero_newdrink.jpg",
+          "mobileImageAltI18n": "Where everything comes together",
+          "sling:resourceType": "publicweb/components/content/imageTextBanner",
+          "softConversionLastStep": "This is last step.",
+          "desktopImageAltI18n": "Where everything comes together",
+          "softConversionHeadline": "Soft conversion form"
+        }
+      },
+      "footer": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
+        "sling:resourceType": "publicweb/components/structure/footer",
+        "ctaLabelI18n": "To top",
+        "footer": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:lastModifiedBy": "admin",
+          "imageLink": "/content/tetrapak/public-web/lang-masters/en",
+          "imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+          "imageAltI18n": "Tetra Pak Logo",
+          "jcr:lastModified": "Mon Mar 11 2019 07:36:48 GMT-0300",
+          "sling:resourceType": "publicweb/components/content/logo"
+        },
+        "footerNavigationLinks": {
+          "jcr:primaryType": "nt:unstructured"
+        },
+        "footerSocialLinks": {
+          "jcr:primaryType": "nt:unstructured"
+        }
+      },
+      "contactfooterform": {
+        "jcr:primaryType": "nt:unstructured",
+        "titleI18n": "Contact Footer Form",
+        "jcr:createdBy": "admin",
+        "previousButtonLabel": "Previous",
+        "firstNameLabel": "First Name",
+        "description": "Contact Footer Form",
+        "thankYouMessage": "Thank You for submission",
+        "messageLabel": "Message",
+        "jcr:lastModifiedBy": "admin",
+        "helpText": "Privacy Policy",
+        "contactUsLabel": "Where do you want to contact us?",
+        "lastNameLabel": "Last Name",
+        "jcr:created": "Mon Apr 08 2019 14:52:02 GMT-0300",
+        "nextButtonLabel": "Next",
+        "image": "/content/dam/publicweb/ContentImage5.png",
+        "linkTextI18n": "Link",
+        "submitButtonLabel": "Submit",
+        "phoneNumberLabel": "Phone Number",
+        "thankYouHeadline": "Thank You",
+        "jcr:lastModified": "Tue Jan 28 2020 09:35:08 GMT+0000",
+        "positionLabel": "Position",
+        "privacyPolicyText": "Headline",
+        "emailAddressLabel": "Email Address",
+        "linkPath": "/content/tetrapak/public-web/lang-masters/en/about-us",
+        "sling:resourceType": "publicweb/components/content/contactFooterForm",
+        "companyLabel": "Company",
+        "textIsRich": [
+          "true",
+          "true"
+        ]
+      }
+    }
+  }
 }

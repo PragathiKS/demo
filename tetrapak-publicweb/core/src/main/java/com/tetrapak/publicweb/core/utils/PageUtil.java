@@ -15,6 +15,12 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
  */
 public final class PageUtil {
 
+    private PageUtil() {
+	/*
+	 * adding a private constructor to hide the implicit one
+	 */
+    }
+
     /**
      * Get the current page.
      * 

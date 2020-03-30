@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.tetrapak.publicweb.core.utils.PageUtil;
+
 /**
  * Test class for CookieConsentModel class.
  * 
@@ -32,6 +34,9 @@ public class CookieConsentModelTest {
 		aemContext.currentResource(CONTENT_PATH);
 		aemContext.request().setPathInfo(HOME_PAGE);
 		cookieConsentModel = aemContext.request().adaptTo(CookieConsentModel.class);
+		PageUtil.getCountryPage(PageUtil.getCurrentPage(aemContext.currentResource()));
+		PageUtil.getPageLocale(PageUtil.getCurrentPage(aemContext.currentResource()));
+		PageUtil.getLanguagePage(PageUtil.getCurrentPage(aemContext.currentResource()));
 	}
 
 	/**
@@ -39,9 +44,9 @@ public class CookieConsentModelTest {
 	 */
 	@Test
 	public void testMessage() {
-		//Assert.assertEquals("enabled",true, cookieConsentModel.isCookieConsentDisabled());
-		//Assert.assertEquals("cookie consent text","Cookie consent text with RTE", cookieConsentModel.getCookieConsentText());
-		//Assert.assertEquals("button text","Ok! I understand.", cookieConsentModel.getCookieConsentButtonText());
-		//Assert.assertEquals("locale","en", cookieConsentModel.getLocale());
+		Assert.assertEquals("enabled",true, cookieConsentModel.isCookieConsentDisabled());
+		Assert.assertEquals("cookie consent text","Cookie consent text with RTE", cookieConsentModel.getCookieConsentText());
+		Assert.assertEquals("button text","Ok! I understand.", cookieConsentModel.getCookieConsentButtonText());
+		Assert.assertEquals("locale","en", cookieConsentModel.getLocale());
 	}
 }
