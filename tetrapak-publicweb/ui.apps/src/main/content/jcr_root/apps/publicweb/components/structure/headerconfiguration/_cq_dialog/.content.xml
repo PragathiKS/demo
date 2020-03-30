@@ -34,7 +34,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Open link in a new window ?"
-                                name="./logolinktarget"
+                                name="./logoLinkTarget"
                                 text="New Window"
                                 uncheckedValue="_self"
                                 value="_blank"/>
