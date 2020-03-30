@@ -4,4 +4,4 @@
     jcr:title="Public Web Carousel"
     jcr:description="This is Carousel component for Public Web."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="hidden"/>
+    componentGroup=".hidden"/>
