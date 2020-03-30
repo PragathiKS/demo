@@ -73,7 +73,7 @@ public class PageLoadAnalyticsModel {
         Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
         if (countryPage != null) {
             siteCountry = countryPage.getName();
-            if ("Language Masters".equalsIgnoreCase(siteCountry)) {
+            if ("lang-masters".equalsIgnoreCase(siteCountry)) {
                 siteCountry = StringUtils.EMPTY;
             }
         }

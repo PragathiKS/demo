@@ -185,7 +185,7 @@ public class DynamicImageModel {
             dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PATH_SEPARATOR) + finalPath;
         }
 
-        if (StringUtils.isNotBlank(dynamicMediaUrl) && StringUtils.isNotBlank(altText)) {
+        if (StringUtils.isNotBlank(dynamicMediaUrl)) {
             setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl, type));
             setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl, type));
             setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl, type));
@@ -351,7 +351,7 @@ public class DynamicImageModel {
                 url = createUrl(imagePath, type, imageConfiguration);
                 hasConfiguraton = true;
             } else {
-                url = imagePath;
+                url = imagePath + "?scl=1";
             }
         }
         return url;
