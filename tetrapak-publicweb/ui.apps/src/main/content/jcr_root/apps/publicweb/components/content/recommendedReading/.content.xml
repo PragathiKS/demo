@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Recommended Reading"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup=".hidden"/>
