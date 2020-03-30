@@ -72,14 +72,14 @@ public class PageLoadAnalyticsModel {
     private void updateLanguageAndCountry() {
         Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
         if (countryPage != null) {
-            siteCountry = countryPage.getTitle();
+            siteCountry = countryPage.getName();
             if ("Language Masters".equalsIgnoreCase(siteCountry)) {
                 siteCountry = StringUtils.EMPTY;
             }
         }
         Page languagePage = currentPage.getAbsoluteParent(LANGUAGE_LEVEL - 1);
         if (languagePage != null) {
-            siteLanguage = languagePage.getTitle();
+            siteLanguage = languagePage.getName();
         }
     }
 
