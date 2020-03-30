@@ -2,9 +2,9 @@
     background: $color-white;
     $self: &;
     &__container {
-        @include padding(20px 3px 0);
+        @include padding(0 3px 0);
         border-bottom: 1px solid $color-mercury;
-        height: #{convert-to-rem(62px)};
+        height: #{convert-to-rem(82px)};
         position: relative;
         z-index: $zindex-p;
 
@@ -149,9 +149,35 @@
     }
 }
 
+.tp-container {
+    @include padding(20px 15px);
+    max-width: 100%;
+
+    @media #{$desktop} {
+        @include padding(0 15px);
+        @include max-width($body-max-width);
+        margin: 0 auto;
+    }
+
+    .row {
+        @include margin-left(-15px);
+        @include margin-right(-15px);
+
+        &.no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .tp-column__sidenav {
+            padding-left: 0;
+        }
+    }
+
+}
+
 .tp-pw-mobile-navigation {
     display: none;
-    width:100%;
+    width: 100%;
     position: absolute;
     
     @media #{$desktop} {
