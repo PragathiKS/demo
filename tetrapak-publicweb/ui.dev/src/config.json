@@ -132,12 +132,6 @@
         "name": "default.en",
         "enforce": true,
         "chunks": "all"
-      },
-      "mycomponent": {
-        "testMultiple": true,
-        "name": "mycomponent",
-        "enforce": true,
-        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -154,9 +148,6 @@
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
-      ],
-      "mycomponent": [
-        "source/templates/components/mycomponent/"
       ]
     },
     "handlebars": {
