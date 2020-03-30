@@ -1,9 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
 
@@ -15,6 +19,12 @@ import javax.annotation.PostConstruct;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class VideoModel {
+
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
 
     @ValueMapValue
     private String anchorId;
@@ -43,6 +53,10 @@ public class VideoModel {
     protected void init() {
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+        }
+
+        if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
     }
 
