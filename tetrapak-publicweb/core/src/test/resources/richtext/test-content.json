@@ -1,0 +1,51 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Tue Mar 24 2020 12:02:55 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Solutions",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "f32b5fdb-7711-4397-88b8-a544a59b733b",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastReplicatedBy": "admin",
+    "hideContactAnchorLink": "true",
+    "jcr:predecessors": [
+      "4cb8940c-5902-412b-ac28-219690d3a351"
+    ],
+    "jcr:created": "Tue Mar 24 2020 12:02:55 GMT+0530",
+    "cq:lastReplicated": "Thu Mar 19 2020 07:08:33 GMT+0000",
+    "cq:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
+    "jcr:baseVersion": "4cb8940c-5902-412b-ac28-219690d3a351",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "9a874427-9eac-4cfd-b4e0-eaa9993b6098",
+    "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "richtext_985436779": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "anchorTitle": "rte",
+          "jcr:lastModifiedBy": "admin",
+          "anchorId": "rte123",
+          "jcr:created": "Tue Mar 31 2020 12:11:13 GMT+0530",
+          "pwTheme": "grayscale-white",
+          "text": "<p>test content</p>\r\n",
+          "pwPadding": "Regular Padding",
+          "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
+          "sling:resourceType": "publicweb/components/content/richtext",
+          "textIsRich": "true"
+        }
+      }
+    }
+  }
+}
