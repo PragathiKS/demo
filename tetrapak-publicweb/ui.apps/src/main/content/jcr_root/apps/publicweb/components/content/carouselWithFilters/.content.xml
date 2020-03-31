@@ -4,4 +4,4 @@
     jcr:title="Carousel With Filters"
     jcr:description="This is Carousel with Filters component for Public Web."
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup=".hidden"/>

@@ -1,45 +1,62 @@
-<header class="tp-pw-header js-tp-pw-header" data-module="Header">
-  <div class="tp-pw-header__container">
-    <div class="d-flex align-items-end tp-container">
-      <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex align-items-start">
-        logo
-      </div>
-      <div class="tp-pw-header__main-navigation col-6 align-items-start">
-        <ul class="d-flex justify-content-center">
+<header class="tp-pw-header js-tp-pw-header ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Header">
+    <nav class="tp-pw-header__container">
+      <div class="d-flex align-items-end tp-container no-gutters">
+        <button class="tp-pw-header__hamburger-close col-sm-3 js-tp-pw-header__hamburger"><i id="toggle-button" class="icon-Burger"></i></button>
+        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-2 d-flex justify-content-lg-start justify-content-sm-center">
+         <a class="js-tp-pw-header-logo-digital-data" href="#" target="_blank"
+          data-link-section="logo"
+          data-link-parent-title="Brand Logo"
+          data-link-name="TetraPak"
+          >logo</a>
+        </div>
+        <div class="tp-pw-header__main-navigation col-7">
+          <ul class="d-flex justify-content-center">
           <li>
-            <a href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title" title="title">link1</a>
+            <a class="js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-parent-title="Navigation" data-link-name="link1" href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title" title="title">link1</a>
           </li>
           <li>
-            <a href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title2" title="title2">link2</a>
+            <a class="js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-parent-title="Navigation" data-link-name="link1" href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title2" title="title2">link2</a>
           </li>
           <li>
-            <a href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title3" title="title3">link3</a>
+            <a class="js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-parent-title="Navigation" data-link-name="link1" href="#" datatag="type" ctype="header" ctypeone="header nav link" ctitle="title3" title="title3">link3</a>
           </li>
         </ul>
-      </div>
-      <div class="col-sm-6 col-lg-3 d-flex align-items-start justify-content-end">
-        <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
-          <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#"
-             data-root-path="roopath" data-results-path="resultpath"><i
-            class="icon-Search"></i></a>
-          <a class="tp-pw-header__secondary-navigation__link" href="#"><i class="icon-Avatar"></i><span>login</span></a>
-          <a class="tp-pw-header__secondary-navigation__link" href="#" datatag="internal" ctype="header" ctypeone="country selector"><i class="icon-Globe"></i><span>EN</span><span><i
-            class="icon-Chevron_Down"></i></span></a>
+        </div>
+        <div class="col-sm-3 col-lg-3 d-flex justify-content-end">
+          <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle" href="#">
+                <i class="icon-Search"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link" target="_blank" href="#"><i class="icon-Envelope"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link" href="#" datatag="internal" ctype="header" ctypeone="country selector"><i class="icon-Globe"></i></a>
+              <span class="tp-pw-header__secondary-navigation"><i class="icon-ver-line"></i></span>
+            <a class="tp-pw-header__secondary-navigation__link" target="_blank" href="#"><i class="icon-Avatar"></i><span>My tetra Pak</span></a>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
+
+     <!-- Collapsible content -->
+  <div class="tp-pw-mobile-navigation js-tp-pw-mobile-navigation">
+
+    <!-- Links -->
+    <ul class="tp-pw-mobile-navigation__primary">
+      <li>
+        <a class="d-flex justify-content-between nav-link" href="#"><span>Solutions</span><i class="icon-Chevron_Down"></i></a>
+      </li>
+    </ul>
+    <ul class="tp-pw-mobile-navigation__secondary">
+      <li class="tp-pw-mobile-navigation__secondary__link">
+        <a class="nav-link" target="_blank" href="#"><i class="icon-Envelope"></i><span>Contact</span></a>
+      </li>
+      <li class="tp-pw-mobile-navigation__secondary__link">
+        <a class="d-flex justify-content-between nav-link" href="#"><span><i class="icon-Globe"></i>English(Canada)</span><i class="icon-Chevron_Down"></i></a>
+      </li>
+      <li class="tp-pw-mobile-navigation__secondary__link">
+        <a class="nav-link" target="_blank" href="#"><i class="icon-Avatar"></i><span>My Tetrapak</span></a>
+      </li>
+    </ul>
+    <!-- Links -->
+
   </div>
-  <div class="tp-pw-search-box js-tp-pw-search-box">
-    <div class="tp-pw-search-box__input-wrapper">
-      <div class="tp-container">
-        <i class="icon-Search tp-pw-search-box__icon"></i>
-        <input class="tp-pw-search-box__input js-tp-pw-search-box__input" type="iput" name="search_inp"
-               id="f_search_inp" placeholder="Search">
-        <a class="tp-pw-search-box__close-search-box js-tp-pw-search-box__close-search-box" href="#"><i
-          class="icon-Close"></i></a>
-        <div class="tp-pw-search-box__pointer js-tp-pw-search-box__pointer"
-             data-point-to="js-tp-pw-header__search-box-toggle"></div>
-      </div>
-    </div>
-  </div>
-</header>
+ 
+  </header>

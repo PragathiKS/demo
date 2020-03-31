@@ -1,90 +1,130 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
-import com.tetrapak.publicweb.core.beans.SocialLinkBean;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.commons.json.JSONException;
-import org.apache.sling.commons.json.JSONObject;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.publicweb.core.models.multifield.FooterLinkModel;
+import com.tetrapak.publicweb.core.models.multifield.SocialLinkModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-@Model(adaptables = Resource.class)
+/**
+ * The Class FooterModel.
+ */
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+
 public class FooterModel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
 
-    @Self
-    private Resource resource;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
-    private String ctaLabelI18n;
-    private List<SocialLinkBean> footerSocialLinks = new ArrayList<>();
-    private List<NavigationLinkBean> footerNavigationLinks = new ArrayList<>();
+    /** The logo link. */
+    private String logoLink;
 
-    @PostConstruct
-    protected void init() {
-        InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
-        ctaLabelI18n = inheritanceValueMap1.getInherited("ctaLabelI18n", String.class);
-        String[] footerNavLinks = inheritanceValueMap1.getInherited("footerNavigationLinks", String[].class);
-        String[] socialLinks = inheritanceValueMap1.getInherited("footerSocialLinks", String[].class);
-        setSocialLinks(socialLinks);
-        LinkUtils.setMultifieldNavLinkItems(footerNavLinks, footerNavigationLinks, LOGGER);
-    }
+    /** The logo link target. */
+    private String logoLinkTarget;
+
+    /** The logo alt. */
+    private String logoAlt;
+
+    /** The social links. */
+    private List<SocialLinkModel> socialLinks;
+
+    /** The footer links. */
+    private List<FooterLinkModel> footerLinks;
+
+    /** The go to top label. */
+    private String goToTopLabel;
 
     /**
-     * Method to get multi field social link items.
+     * Inits the.
      */
-    public void setSocialLinks(String[] socialLinks) {
-        @SuppressWarnings("deprecation")
-        JSONObject jObj;
-        try {
-            if (socialLinks == null) {
-                LOGGER.error("socialLinks is NULL");
-                return;
+    @PostConstruct
+    protected void init() {
+        LOGGER.debug("inside init method");
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
+        final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
+        if (Objects.nonNull(footerConfigurationResource)) {
+            final FooterConfigurationModel configurationModel = footerConfigurationResource
+                    .adaptTo(FooterConfigurationModel.class);
+            if (Objects.nonNull(configurationModel)) {
+                logoLink = configurationModel.getLogoLink();
+                logoLinkTarget = configurationModel.getLogoLinkTarget();
+                logoAlt = configurationModel.getLogoAlt();
+                socialLinks = configurationModel.getSocialLinks();
+                footerLinks = configurationModel.getFooterLinks();
+                goToTopLabel = configurationModel.getGoToTopLabel();
+
             }
-
-            for (int i = 0; i < socialLinks.length; i++) {
-                jObj = new JSONObject(socialLinks[i]);
-                SocialLinkBean bean = new SocialLinkBean();
-
-                String socialMedia = "";
-                String socialMediaLinkPath = "";
-                if (jObj.has("socialMedia")) {
-                    socialMedia = jObj.getString("socialMedia");
-                }
-                if (jObj.has("socialMediaLinkPath")) {
-                    socialMediaLinkPath = jObj.getString("socialMediaLinkPath");
-                }
-
-                bean.setSocialMediaLinkPath(socialMediaLinkPath);
-                bean.setSocialMediaIconClass("icon-" + socialMedia);
-                bean.setSocialMediaName(socialMedia);
-                footerSocialLinks.add(bean);
-            }
-        } catch (JSONException e) {
-            LOGGER.error("Exception while Multifield data {}", e.getMessage(), e);
         }
     }
 
-    public String getCtaLabelI18n() {
-        return ctaLabelI18n;
+    /**
+     * Gets the logo link.
+     *
+     * @return the logo link
+     */
+    public String getLogoLink() {
+        return logoLink;
     }
 
-    public List<SocialLinkBean> getFooterSocialLinks() {
-        return footerSocialLinks;
+    /**
+     * Gets the logo link target.
+     *
+     * @return the logo link target
+     */
+    public String getLogoLinkTarget() {
+        return logoLinkTarget;
     }
 
-    public List<NavigationLinkBean> getFooterNavigationLinks() {
-        return footerNavigationLinks;
+    /**
+     * Gets the logo alt.
+     *
+     * @return the logo alt
+     */
+    public String getLogoAlt() {
+        return logoAlt;
     }
 
+    /**
+     * Gets the social links.
+     *
+     * @return the social links
+     */
+    public List<SocialLinkModel> getSocialLinks() {
+        return new ArrayList<>(socialLinks);
+    }
+
+    /**
+     * Gets the footer links.
+     *
+     * @return the footer links
+     */
+    public List<FooterLinkModel> getFooterLinks() {
+        return new ArrayList<>(footerLinks);
+    }
+
+    /**
+     * Gets the go to top label.
+     *
+     * @return the go to top label
+     */
+    public String getGoToTopLabel() {
+        return goToTopLabel;
+    }
 }

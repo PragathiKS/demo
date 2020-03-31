@@ -29,7 +29,7 @@ public class PageLoadAnalyticsModel {
     @Inject
     private SlingSettingsService slingSettingsService;
 
-    private static final String SITE_NAME = "publicweb";
+    private static final String SITE_NAME = "pw";
     private static final String PAGE_LOAD_EVENT = "content-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
@@ -72,14 +72,14 @@ public class PageLoadAnalyticsModel {
     private void updateLanguageAndCountry() {
         Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
         if (countryPage != null) {
-            siteCountry = countryPage.getTitle();
-            if ("Language Masters".equalsIgnoreCase(siteCountry)) {
+            siteCountry = countryPage.getName();
+            if ("lang-masters".equalsIgnoreCase(siteCountry)) {
                 siteCountry = StringUtils.EMPTY;
             }
         }
         Page languagePage = currentPage.getAbsoluteParent(LANGUAGE_LEVEL - 1);
         if (languagePage != null) {
-            siteLanguage = languagePage.getTitle();
+            siteLanguage = languagePage.getName();
         }
     }
 

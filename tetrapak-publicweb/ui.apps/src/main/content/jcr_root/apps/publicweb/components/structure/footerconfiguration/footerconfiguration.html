@@ -1,0 +1,21 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+<sly data-sly-use.footerConfig="com.tetrapak.publicweb.core.models.FooterConfigurationModel">
+Logo Link Path :${footerConfig.logoLink}</br>
+Logo Alt: ${footerConfig.logoAlt}</br>
+Logo Target :${footerConfig.logoLinkTarget}</br>
+Goto Top Label: ${footerConfig.goToTopLabel}</br>
+<sly data-sly-list.footLinks ="${footerConfig.footerLinks}">
+    Footer Link Label${footLinks.linkLabel}</br>
+    Footer Link Path: ${footLinks.linkPath}</br>
+    Footer Link Target: ${footLinks.linktarget}</br>
+</sly>
+<sly data-sly-list.Links ="${footerConfig.socialLinks}">
+    Social Media : ${Links.socialMedia}</br>
+    Social Media Link :${Links.socialMediaLink}</br>
+
+</sly>
+</sly>
+	  
+</sly>
