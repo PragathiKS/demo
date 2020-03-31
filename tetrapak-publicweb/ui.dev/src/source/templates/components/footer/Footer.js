@@ -30,7 +30,7 @@ class Footer {
         }
       });
       if (window._satellite) {
-        window._satellite.track('linkClicked');
+        window._satellite.track('linkClick');
       }
     }
     var url = $this.attr('href');
