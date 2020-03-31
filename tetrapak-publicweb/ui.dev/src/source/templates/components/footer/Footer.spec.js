@@ -27,11 +27,11 @@ describe('Footer', function () {
     expect(this.initSpy.called).to.be.true;
   });
   it('should go to top on click of "top" button', function () {
-    $('.tp_textBtn').trigger('click');
-    expect(this.goToTopSpy.called).to.be.true;
+     $('#tp-pw-footer__link').trigger('click');
+     expect(this.goToTopSpy.called).to.be.true;
   });
   it('should call track analytics on click', function () {
-    $('.tp-pw-footer__link').trigger('click');
+    $('.footer-analytics .tp-pw-footer__link').trigger('click');
     expect(this.footer.trackAnalytics.called).to.be.true;
   });
   it('should set digitalData after track analytics call', function() {
