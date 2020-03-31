@@ -58,12 +58,10 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <zeroPadding
                                         jcr:primaryType="nt:unstructured"
-                                        selected="true"
                                         text="Remove Padding"
                                         value="zero"/>
                                     <regularPadding
                                         jcr:primaryType="nt:unstructured"
-                                        selected="true"
                                         text="Regular Padding"
                                         value="regular"/>
                                 </items>
