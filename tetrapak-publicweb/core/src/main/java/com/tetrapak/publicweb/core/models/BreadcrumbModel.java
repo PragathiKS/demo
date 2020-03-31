@@ -55,10 +55,10 @@ public class BreadcrumbModel {
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
-        breadcrumbSubpages.put(pages[length], currentPage.getPath());
+        breadcrumbSubpages.put(currentPage.getTitle(), currentPage.getPath());
         for (int i = 0; i <= length; i++) {
             if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
-                breadcrumbSubpages.put(pages[i], LinkUtils.sanitizeLink(parent.getPath()));
+                breadcrumbSubpages.put(parent.getTitle(), LinkUtils.sanitizeLink(parent.getPath()));
                 parent = parent.getParent();
             }
         }
