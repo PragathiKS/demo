@@ -33,7 +33,6 @@ class Breadcrumb {
         window._satellite.track('linkClick');
       }
     }
-
     window.open($this.attr('href'), '_self');
   }
 
