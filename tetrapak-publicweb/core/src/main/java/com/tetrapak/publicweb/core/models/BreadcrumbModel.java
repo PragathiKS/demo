@@ -52,25 +52,24 @@ public class BreadcrumbModel {
     @PostConstruct
     protected void init() {
         LOGGER.debug("Inside init method");
-        final Map<String, String> breadcrumbpages = new LinkedHashMap<>();
+        final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         homePagePath = LinkUtils.sanitizeLink(rootPath + "/home");
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
-        breadcrumbpages.put(currentPage.getTitle(), currentPage.getPath());
+        breadcrumbPages.put(currentPage.getTitle(), currentPage.getPath());
         for (int i = 0; i <= length; i++) {
             if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
-                breadcrumbpages.put(parent.getTitle(), LinkUtils.sanitizeLink(parent.getPath()));
+                breadcrumbPages.put(parent.getTitle(), LinkUtils.sanitizeLink(parent.getPath()));
                 parent = parent.getParent();
             }
         }
-        final List<String> alKeys = new ArrayList<String>(breadcrumbpages.keySet());
+        final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
         Collections.reverse(alKeys);
         for (final String key : alKeys) {
-            breadcrumbSubpages.put(key, breadcrumbpages.get(key));
-
+            breadcrumbSubpages.put(key, breadcrumbPages.get(key));
         }
     }
 
