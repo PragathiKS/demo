@@ -1,0 +1,221 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "English",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "8e561793-7556-41bb-bcba-05d5402dfa6a",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:predecessors": [
+      "79b9b09e-c34c-4604-9258-456aee9823ea"
+    ],
+    "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+    "cq:lastReplicated": "Wed Mar 25 2020 13:20:39 GMT+0000",
+    "cq:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
+    "jcr:baseVersion": "79b9b09e-c34c-4604-9258-456aee9823ea",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "5b44965b-6a84-496c-87c1-75639aa97ad1",
+    "sling:resourceType": "publicweb/components/structure/pages/languagepage",
+    "cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:ReplicationStatus"
+        ],
+        "cq:lastReplicationAction": "Activate",
+        "cq:lastReplicatedBy": "admin",
+        "cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "headerconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "loginLabel": "label",
+          "loginLink": "#",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Wed Mar 25 2020 13:22:51 GMT+0000",
+          "contactLink": "#",
+          "contactText": "contact us",
+          "logoLinkTarget": "_blank",
+          "logoAlt": "alt",
+          "jcr:lastModified": "Wed Mar 25 2020 13:32:22 GMT+0000",
+          "sling:resourceType": "publicweb/components/structure/headerconfiguration",
+          "contactLinkTarget": "_blank",
+          "logoLink": "https://www.tetrapak.com"
+        },
+        "cookieconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "cookieConsentButtonText": "Ok! I understand.",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Mon Mar 30 2020 14:33:09 GMT+0530",
+          "cookieConsentDisabled": "true",
+          "cookieConsentText": "Cookie consent text with RTE",
+          "jcr:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
+          "sling:resourceType": "publicweb/components/structure/cookieconfiguration",
+          "textIsRich": "true"
+        }
+      }
+    }
+  },
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:mixinTypes": [
+        "mix:versionable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:title": "Home Page",
+      "cq:lastReplicationAction": "Activate",
+      "jcr:versionHistory": "b4c97315-2425-4f34-a864-27d1dda9187c",
+      "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+      "cq:lastReplicatedBy": "admin",
+      "jcr:predecessors": [
+        "bd6ff37b-c54e-44c9-a694-63d5a91c23b9"
+      ],
+      "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+      "cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
+      "cq:lastModified": "Mon Mar 30 2020 08:08:30 GMT+0000",
+      "jcr:baseVersion": "bd6ff37b-c54e-44c9-a694-63d5a91c23b9",
+      "jcr:isCheckedOut": true,
+      "hideInNav": "true",
+      "jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
+      "linkText": [
+        "",
+        ""
+      ],
+      "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+      "cq:lastModifiedBy": "admin",
+      "root": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "responsivegrid": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:ReplicationStatus"
+          ],
+          "cq:lastReplicationAction": "Activate",
+          "cq:lastReplicatedBy": "admin",
+          "cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
+          "sling:resourceType": "wcm/foundation/components/responsivegrid"
+        }
+      },
+      "header": {
+        "jcr:primaryType": "nt:unstructured",
+        "loginTextI18n": "My Tetra Pak",
+        "megamenuLinks": [
+          "{\"linkTextI18n\":\"Solutions\",\"linkTooltipI18n\":\"Solutions\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/solutions\"}",
+          "{\"linkTextI18n\":\"Insights\",\"linkTooltipI18n\":\"Insights\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/innovations\"}",
+          "{\"linkTextI18n\":\"Sustainability\",\"linkTooltipI18n\":\"Sustainability\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/sustainability\"}",
+          "{\"linkTextI18n\":\"Careers\",\"linkTooltipI18n\":\"Carrers\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/careers\"}",
+          "{\"linkTextI18n\":\"About us\",\"linkTooltipI18n\":\"About us\",\"linkPath\":\"/content/tetrapak/public-web/lang-masters/en/about-us\"}"
+        ],
+        "jcr:lastModifiedBy": "sapient-user",
+        "enableHeroImage": "true",
+        "jcr:lastModified": "Fri Apr 05 2019 07:41:07 GMT+0000",
+        "sling:resourceType": "publicweb/components/structure/header",
+        "searchRootPath": "/content/tetrapak/public-web/lang-masters/en",
+        "searchResultsPath": "/content/tetrapak/public-web/lang-masters/en/search",
+        "logo": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:lastModifiedBy": "admin",
+          "imageLink": "/content/tetrapak/public-web/lang-masters/en",
+          "imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+          "imageAltI18n": "Tetra Pak Logo",
+          "jcr:lastModified": "Fri Mar 22 2019 03:11:47 GMT+0000",
+          "sling:resourceType": "publicweb/components/content/logo"
+        },
+        "imageTextBanner": {
+          "jcr:primaryType": "nt:unstructured",
+          "titleI18n": "SAVE ENERGY WITH OPTIMIZED HOMOGENIZATION",
+          "targetBlank": "true",
+          "bannerCtaPath": "/content/tetrapak/public-web/lang-masters/en",
+          "mobileImage": "/content/dam/publicweb/Teaser1.png",
+          "bannerDescriptionI18n": "Make your dairy operations more cost-effective and sustainable – shift focus from homogenization pressure to the actual effects of homogenization when measuring homogenization efficiency.",
+          "targetSoftConversion": "true",
+          "mobileCroppingOption": "none",
+          "jcr:lastModifiedBy": "roomahaj",
+          "softConversionDescription": "Soft conversion form",
+          "softConversionTitle": "Show Soft conversion",
+          "contentAlignment": "pw-banner--right",
+          "bannerCtaTextI18n": "Learn more ",
+          "contrastLayer": "gradient-to-right",
+          "jcr:lastModified": "Wed Jan 29 2020 09:13:54 GMT+0000",
+          "desktopImage": "/content/dam/publicweb/banners/hero_newdrink.jpg",
+          "mobileImageAltI18n": "Where everything comes together",
+          "sling:resourceType": "publicweb/components/content/imageTextBanner",
+          "softConversionLastStep": "This is last step.",
+          "desktopImageAltI18n": "Where everything comes together",
+          "softConversionHeadline": "Soft conversion form"
+        }
+      },
+      "footer": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
+        "sling:resourceType": "publicweb/components/structure/footer",
+        "ctaLabelI18n": "To top",
+        "footer": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:lastModifiedBy": "admin",
+          "imageLink": "/content/tetrapak/public-web/lang-masters/en",
+          "imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+          "imageAltI18n": "Tetra Pak Logo",
+          "jcr:lastModified": "Mon Mar 11 2019 07:36:48 GMT-0300",
+          "sling:resourceType": "publicweb/components/content/logo"
+        },
+        "footerNavigationLinks": {
+          "jcr:primaryType": "nt:unstructured"
+        },
+        "footerSocialLinks": {
+          "jcr:primaryType": "nt:unstructured"
+        }
+      },
+      "contactfooterform": {
+        "jcr:primaryType": "nt:unstructured",
+        "titleI18n": "Contact Footer Form",
+        "jcr:createdBy": "admin",
+        "previousButtonLabel": "Previous",
+        "firstNameLabel": "First Name",
+        "description": "Contact Footer Form",
+        "thankYouMessage": "Thank You for submission",
+        "messageLabel": "Message",
+        "jcr:lastModifiedBy": "admin",
+        "helpText": "Privacy Policy",
+        "contactUsLabel": "Where do you want to contact us?",
+        "lastNameLabel": "Last Name",
+        "jcr:created": "Mon Apr 08 2019 14:52:02 GMT-0300",
+        "nextButtonLabel": "Next",
+        "image": "/content/dam/publicweb/ContentImage5.png",
+        "linkTextI18n": "Link",
+        "submitButtonLabel": "Submit",
+        "phoneNumberLabel": "Phone Number",
+        "thankYouHeadline": "Thank You",
+        "jcr:lastModified": "Tue Jan 28 2020 09:35:08 GMT+0000",
+        "positionLabel": "Position",
+        "privacyPolicyText": "Headline",
+        "emailAddressLabel": "Email Address",
+        "linkPath": "/content/tetrapak/public-web/lang-masters/en/about-us",
+        "sling:resourceType": "publicweb/components/content/contactFooterForm",
+        "companyLabel": "Company",
+        "textIsRich": [
+          "true",
+          "true"
+        ]
+      }
+    }
+  }
+}
