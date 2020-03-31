@@ -18,6 +18,9 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
+/**
+ * The Class BreadcrumbModel.
+ */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BreadcrumbModel {
 
@@ -25,16 +28,24 @@ public class BreadcrumbModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The home page path. */
     private String homePagePath;
     /** The current page. */
     @ScriptVariable
     private Page currentPage;
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
+    /** The breadcrumb subpages. */
     private Map<String, String> breadcrumbSubpages = new HashMap<>();
+
+    /** The home label. */
     private String homeLabel = "Home";
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
         LOGGER.debug("Inside init method");
@@ -53,14 +64,29 @@ public class BreadcrumbModel {
         }
     }
 
+    /**
+     * Gets the breadcrumb subpages.
+     *
+     * @return the breadcrumb subpages
+     */
     public Map<String, String> getBreadcrumbSubpages() {
         return breadcrumbSubpages;
     }
 
+    /**
+     * Gets the home page path.
+     *
+     * @return the home page path
+     */
     public String getHomePagePath() {
         return LinkUtils.sanitizeLink(homePagePath);
     }
 
+    /**
+     * Gets the home label.
+     *
+     * @return the home label
+     */
     public String getHomeLabel() {
         return homeLabel;
     }
