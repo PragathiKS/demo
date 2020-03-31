@@ -29,7 +29,7 @@ public class PageLoadAnalyticsModel {
     @Inject
     private SlingSettingsService slingSettingsService;
 
-    private static final String SITE_NAME = "publicweb";
+    private static final String SITE_NAME = "pw";
     private static final String PAGE_LOAD_EVENT = "content-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
