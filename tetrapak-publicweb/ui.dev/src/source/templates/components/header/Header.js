@@ -57,7 +57,7 @@ class Header {
         }
       });
       if (window._satellite) {
-        window._satellite.track('linkClicked');
+        window._satellite.track('linkClick');
       }
     }
 
