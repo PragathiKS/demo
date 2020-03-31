@@ -135,14 +135,44 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/include"
                                     path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
-                            <pwButtonThemes
+                            <paddingSelected
+                                    granite:class="cq-dialog-dropdown-showhide"
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                    path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
-                            <padding
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldDescription="Please select padding or no padding"
+                                    fieldLabel="Rich Text Padding"
+                                    name="./paddingSelected">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <no
+                                            jcr:primaryType="nt:unstructured"
+                                            text="No Padding"
+                                            value="no"/>
+                                    <yes
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Padding"
+                                            value="yes"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-showhide-target=".padding-showhide-target"/>
+                            </paddingSelected>
+                            <paddingValue
+                                    granite:class="hide padding-showhide-target"
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                    path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <padding
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldDescription="Please enter Padding for Rich Text Editor"
+                                            fieldLabel="Padding for Rich Text Editor"
+                                            min="{Long}0"
+                                            name="./paddingValue"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        showhidetargetvalue="yes"/>
+                            </paddingValue>
                         </items>
                     </column>
                 </items>

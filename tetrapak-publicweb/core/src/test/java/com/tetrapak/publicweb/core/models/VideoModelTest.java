@@ -22,7 +22,7 @@ public class VideoModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/publicweb/en";
 
     /**
-     * The Constant TEXTVIDEO_RESOURCE.
+     * The Constant VIDEO_RESOURCE.
      */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/video";
 
