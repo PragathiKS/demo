@@ -4,7 +4,7 @@
     "breadcrumbSubpages" : [
         {
             "key" : "subpage1",
-            "value": "#"
+            "value": "/google/link"
         },
         {
             "key" : "subpage2",

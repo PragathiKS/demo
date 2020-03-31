@@ -34,10 +34,7 @@ class Breadcrumb {
       }
     }
 
-    //if($this.data('link-section') === 'logo') {
-    // var url = $this.attr('href');
-    // window.open(url);
-    //}
+    window.open($this.attr('href'), '_self');
   }
 
   init() {
