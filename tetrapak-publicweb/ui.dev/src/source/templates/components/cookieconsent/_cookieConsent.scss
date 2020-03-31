@@ -1,6 +1,9 @@
 .tp-cookie-consent {
     @include padding-top($padding-xl);
     @include padding-bottom($padding-xl);
+    @include padding-right($padding-xl);
+    @include padding-left($padding-xl);
+    background-color: $color-white;
     border-radius: 0;
     position: fixed;
     bottom: 0;
