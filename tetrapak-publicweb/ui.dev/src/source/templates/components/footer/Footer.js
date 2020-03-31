@@ -7,8 +7,8 @@ class Footer {
   }
   cache = {};
   initCache() {
-    this.cache.toTopLink = $('.tp-pw-footer .tp_textBtn');
-    this.cache.$footerLink=this.root.find('.tp-pw-footer__link');
+    this.cache.toTopLink = $('#tp-pw-footer__link');
+    this.cache.$footerLink=this.root.find('.footer-analytics .tp-pw-footer__link');
   }
   bindEvents() {
     this.initCache();
@@ -18,7 +18,8 @@ class Footer {
   }
   trackAnalytics = (e) => {
     e.preventDefault();
-    const $this = this.cache.$footerLink;
+    const $target = $(e.target);
+    const $this = $target.closest('.footer-analytics .tp-pw-footer__link');
     if (window.digitalData) {
       $.extend(window.digitalData, {
         linkClick: {
