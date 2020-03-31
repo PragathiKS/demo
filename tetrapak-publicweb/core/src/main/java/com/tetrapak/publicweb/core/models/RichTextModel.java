@@ -26,10 +26,7 @@ public class RichTextModel {
     private String pwTheme;
 
     @ValueMapValue
-    private String paddingSelected;
-
-    @ValueMapValue
-    private String paddingValue;
+    private String pwPadding;
 
     public String getAnchorId() {
         return anchorId;
@@ -47,11 +44,7 @@ public class RichTextModel {
         return pwTheme;
     }
 
-    public String getPaddingSelected() {
-        return paddingSelected;
-    }
-
-    public String getPaddingValue() {
-        return paddingValue;
+    public String getPwPadding() {
+        return pwPadding;
     }
 }

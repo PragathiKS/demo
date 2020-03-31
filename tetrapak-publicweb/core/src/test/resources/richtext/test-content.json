@@ -40,8 +40,7 @@
           "jcr:created": "Tue Mar 31 2020 12:11:13 GMT+0530",
           "pwTheme": "grayscale-white",
           "text": "<p>test content</p>\r\n",
-          "paddingSelected": "yes",
-          "paddingValue": "5",
+          "pwPadding": "Regular Padding",
           "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
           "sling:resourceType": "publicweb/components/content/richtext",
           "textIsRich": "true"

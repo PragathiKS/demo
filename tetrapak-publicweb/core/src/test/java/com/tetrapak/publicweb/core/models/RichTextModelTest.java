@@ -49,8 +49,7 @@ public class RichTextModelTest {
      */
     @Test
     public void testLoadAndGetters() throws Exception {
-        String[] methods = new String[]{"getAnchorId", "getAnchorTitle", "getText", "getPwTheme",
-                "getPaddingSelected", "getPaddingValue"};
+        String[] methods = new String[]{"getAnchorId", "getAnchorTitle", "getText", "getPwTheme", "getPwPadding"};
         Util.testLoadAndGetters(methods, model, resource);
     }
 }
