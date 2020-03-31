@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,62 +16,59 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  */
 public class BreadcrumbModelTest {
 
-	/** The context. */
-	@Rule
-	public AemContext context = new AemContext();
+    /** The context. */
+    @Rule
+    public AemContext context = new AemContext();
 
-	/** The page manager. */
-	@Mock
-	private PageManager pageManager;
+    /** The page manager. */
+    @Mock
+    private PageManager pageManager;
 
-	/** The Constant RESOURCE_CONTENT. */
-	private static final String RESOURCE_CONTENT = "/breadcrmb/test-content.json";
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_CONTENT = "/breadcrmb/test-content.json";
 
-	/** The Constant HOMEPAGE_CONTENT. */
-	private static final String HOMEPAGE_CONTENT = "/breadcrmb/test-content-two.json";
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/language-masters/en/solution";
 
-	/** The Constant TEST_CONTENT_ROOT. */
-	private static final String TEST_CONTENT_ROOT = "/content/publicweb/en/error/404";
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
-	/** The Constant HOMEPAGE_CONTENT_ROOT. */
-	private static final String HOMEPAGE_CONTENT_ROOT = "/content/tetrapak/public-web/global";
+    /** The model. */
+    private BreadcrumbModel model;
 
-	/** The Constant RESOURCE. */
-	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/breadcrmb";
+    /** The resource. */
+    private Resource resource;
 
-	/** The model. */
-	private BreadcrumbModel model;
+    /**
+     * Sets the up.
+     *
+     * @throws Exception
+     *             the exception
+     */
+    @Before
+    public void setUp() throws Exception {
 
-	/** The resource. */
-	private Resource resource;
+        Class<BreadcrumbModel> modelClass = BreadcrumbModel.class;
+        MockSlingHttpServletRequest request = context.request();
+        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+        context.addModelsForClasses(modelClass);
 
-	/**
-	 * Sets the up.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Before
-	public void setUp() throws Exception {
+        context.request().setPathInfo(TEST_CONTENT_ROOT);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
+        resource = context.currentResource(RESOURCE);
+        model = request.adaptTo(modelClass);
+    }
 
-		Class<BreadcrumbModel> modelClass = BreadcrumbModel.class;
-		// load the resources for each object
-		context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-		context.load().json(HOMEPAGE_CONTENT, HOMEPAGE_CONTENT_ROOT);
-		context.addModelsForClasses(modelClass);
-		resource = context.currentResource(RESOURCE);
-		model = resource.adaptTo(modelClass);
-	}
-
-	/**
-	 * Test model, resource and all getters of the BreadcrumbModel model.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void simpleLoadAndGettersTest() throws Exception {
-		String[] methods = new String[] { "getBreadcrumbHomeLabelI18n", "getBreadcrumbHomePath",
-				"getBreadcrumbSubpages" };
-		Util.testLoadAndGetters(methods, model, resource);
-	}
+    /**
+     * Test model, resource and all getters of the BreadcrumbModel model.
+     *
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public void simpleLoadAndGettersTest() throws Exception {
+        String[] methods = new String[] { "getHomeLabel", "getHomePagePath", "getBreadcrumbSubpages" };
+        Util.testLoadAndGetters(methods, model, resource);
+    }
 
 }
