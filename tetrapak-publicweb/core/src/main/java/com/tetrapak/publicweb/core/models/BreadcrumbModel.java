@@ -1,97 +1,94 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
-import com.day.cq.commons.inherit.InheritanceValueMap;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-@Model(adaptables = Resource.class)
+/**
+ * The Class BreadcrumbModel.
+ */
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BreadcrumbModel {
 
-    @Self
-    private Resource resource;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
+    /** The home page path. */
     private String homePagePath;
+    /** The current page. */
+    @ScriptVariable
+    private Page currentPage;
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
-    private static final String SUBPAGE_TITLE_I18N = "subpageTitleI18n";
-    private static final String SUBPAGE_LINK_PATH = "subpageLinkPath";
+    /** The breadcrumb subpages. */
+    private Map<String, String> breadcrumbSubpages = new HashMap<>();
 
-    private List<Map<String, String>> breadcrumbSubpages = new ArrayList<>();
-    private String breadcrumbHomeLabelI18n = "Home";
+    /** The home label. */
+    private String homeLabel = "Home";
 
-    private PageManager pageManager;
-
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
-        pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
-        Page currentPage = pageManager.getContainingPage(resource);
-        LOGGER.info("Current Page path : {}", currentPage.getPath());
-        if (currentPage != null) {
-            buildBreadcrumbItems(currentPage);
-        }
-    }
-
-    private void buildBreadcrumbItems(Page currentPage) {
-        InheritanceValueMap inheritanceValueMap1 = new HierarchyNodeInheritanceValueMap(resource);
-        homePagePath = inheritanceValueMap1.getInherited("homePagePath", String.class);
-        Page homePage = pageManager.getPage(homePagePath);
-
-        if (homePage != null) {
-            LOGGER.info("Home Page path : {}", homePage.getPath());
-            int pageLevel = homePage.getDepth();
-            int currentPageLevel = currentPage.getDepth();
-            while (pageLevel < currentPageLevel) {
-                Page page = currentPage.getAbsoluteParent(pageLevel);
-                if (page == null) {
-                    break;
-                }
-                pageLevel++;
-                if (!page.isHideInNav()) {
-                    addBreadCrumbItem(page);
-                }
+        LOGGER.debug("Inside init method");
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        homePagePath = LinkUtils.sanitizeLink(rootPath + "/home");
+        final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
+        final String[] pages = path.split("/");
+        final int length = pages.length - 1;
+        Page parent = currentPage.getParent();
+        breadcrumbSubpages.put(pages[length], currentPage.getPath());
+        for (int i = 0; i <= length; i++) {
+            if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
+                breadcrumbSubpages.put(pages[i], LinkUtils.sanitizeLink(parent.getPath()));
+                parent = parent.getParent();
             }
         }
     }
 
-    private void addBreadCrumbItem(Page page) {
-        Map<String, String> breadcrumbItem = new HashMap<>();
-        String pageNavigationTitle;
-        if (StringUtils.isNotBlank(page.getNavigationTitle())) {
-            pageNavigationTitle = page.getNavigationTitle();
-        } else {
-            pageNavigationTitle = page.getTitle();
-        }
-        breadcrumbItem.put(SUBPAGE_TITLE_I18N, pageNavigationTitle);
-        breadcrumbItem.put(SUBPAGE_LINK_PATH, LinkUtils.sanitizeLink(page.getPath()));
-
-        breadcrumbSubpages.add(breadcrumbItem);
-    }
-
-    public List<Map<String, String>> getBreadcrumbSubpages() {
+    /**
+     * Gets the breadcrumb subpages.
+     *
+     * @return the breadcrumb subpages
+     */
+    public Map<String, String> getBreadcrumbSubpages() {
         return breadcrumbSubpages;
     }
 
-    public String getBreadcrumbHomeLabelI18n() {
-        return breadcrumbHomeLabelI18n;
+    /**
+     * Gets the home page path.
+     *
+     * @return the home page path
+     */
+    public String getHomePagePath() {
+        return LinkUtils.sanitizeLink(homePagePath);
     }
 
-    public String getBreadcrumbHomePath() {
-        return LinkUtils.sanitizeLink(homePagePath);
+    /**
+     * Gets the home label.
+     *
+     * @return the home label
+     */
+    public String getHomeLabel() {
+        return homeLabel;
     }
 
 }
