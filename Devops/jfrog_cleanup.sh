@@ -1,4 +1,5 @@
 #!/bin/bash
+echo > result.txt
 DAYS_BEFORE=50
 startdate=$(date +%Y%m%d -d "+1 days")
 enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
@@ -13,4 +14,4 @@ done | xargs > exclude.txt
 EXCLUDE=`sed 's/ /|/g' exclude.txt`
 
 for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
-do echo $i; done
+do echo $i >> result.txt ; done
