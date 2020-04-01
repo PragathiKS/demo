@@ -54,8 +54,11 @@ def downloadmetadata() {
 }
 
 def deleteartifact() {
-
-                sh "sh -x jfrog_cleanup.sh"
+                
+                sh "ls -l"
+                sh "chmod 755 jfrog_cleanup.sh"
+                sh "sh -x jfrog_cleanup.sh > result.txt"
+                sh "cat result.txt"
 }
 
 
