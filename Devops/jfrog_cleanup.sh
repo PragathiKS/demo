@@ -1,6 +1,6 @@
 #!/bin/bash
 echo > result.txt
-DAYS_BEFORE=50
+#DAYS_BEFORE=50
 startdate=$(date +%Y%m%d -d "+1 days")
 enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
 d=
