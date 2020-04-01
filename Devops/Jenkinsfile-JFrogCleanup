@@ -1,0 +1,96 @@
+pipeline {
+	agent {
+		node {
+			label 'cfe-deploy'
+		}
+	}
+
+    parameters {
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean Commons', name: 'Clean_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean MyTetraPak', name: 'Clean_MyTetraPak'
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean Publicweb', name: 'Clean_Publicweb'
+        string(name: 'DAYS_BEFORE', defaultValue: 'Number of Days Old', description: '')
+    }    
+    
+    stages {
+        stage('Download Metadata & Artifact cleanup') {
+            steps {
+                script {
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']]) 
+                    {
+                        if (params.Clean_Commons) {
+                            packageName = "tetrapak-commons.complete"
+                            repoName = "tetrapak"
+                            downloadmetadata()
+                            deleteartifact()
+                        }
+
+                        if (params.Clean_MyTetraPak) {
+                            packageName = "tetrapak-customerhub.complete"
+                            repoName = "tetrapak-customerhub"
+                            downloadmetadata()
+                            deleteartifact()                        
+                        }
+
+                        if (params.Clean_Publicweb) {
+                            packageName = "tetrapak-publicweb.complete"
+                            repoName = "tetrapak-publicweb"
+                            downloadmetadata()
+                            deleteartifact()
+                        }
+                    }
+
+                }
+                    
+                }
+            }
+        }
+		}
+
+
+def downloadmetadata() {
+
+    sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/maven-metadata.xml"
+}
+
+def deleteartifact() {
+
+                sh '''
+                    startdate=$(date +%Y%m%d -d "+1 days")
+                    enddate=$(date +%Y%m%d -d "-${params.DAYS_BEFORE} days")
+                    d=; n=0; until [ "$d" = "$enddate" ]; do ((n++)); d=$(date -d "$startdate - $n days" +%Y%m%d); echo $d; done | xargs > exclude.txt
+                    EXCLUDE=`sed 's/ /|/g' exclude.txt`
+                    
+                    for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE" | xargs`; 
+                    do echo $i; done
+                    '''
+}
+
+
+
+
+
+                    // {
+                    //     //sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/maven-metadata.xml"
+                    //     sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/maven-metadata.xml"
+                        
+                    //     sh '''
+                    //         for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v '20200331|20200330|20200327' | xargs`; 
+                    //         do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/$i/; done
+                    //         '''                       
+                    //     //sh "curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/1.0.0-DEV202002071355-SNAPSHOT/"
+                    
+                    // }
+
+// def deleteartifact() {
+//             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+//             {
+//                 sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/maven-metadata.xml"
+
+//                 sh '''
+//                     for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v '20200331|20200330|20200327' | xargs`; 
+//                     do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/$i/; done
+//                     '''  
+//     }
+
+// }
