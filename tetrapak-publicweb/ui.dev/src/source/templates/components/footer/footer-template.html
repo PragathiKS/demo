@@ -4,10 +4,16 @@
       <div class="d-md-block d-lg-flex">
         <div class="col-lg-3 text-lg-left">
           <div class="footer-logo footer-analytics">
+          <sly data-sly-test = "${!wcmmode.edit}">
           <a href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
-            <!-- <img class="tp-pw-logo js-dynamic-media initial loaded" alt="${data.logoAlt}" data-src="http://s7g10.scene7.com/is/image/tetrapak/logo_tetra_pak_white?wid=160&amp;fmt=png-alpha" src="http://s7g10.scene7.com/is/image/tetrapak/logo_tetra_pak_white?wid=160&amp;fmt=png-alpha"/>-->
-            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath='/content/dam/tetrapak/publicweb/en/global/footer/logo_tetra_pak_white.png', altText=data.logoAlt, className='tp-pw-logo'}" />
+            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
             </a>
+          </sly>
+          <sly data-sly-test = "${wcmmode.edit}">
+            <a href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+              <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
+              </a>
+          </sly>  
           </div>
         </div>
         <div class="col-lg-6 text-lg-center">
@@ -32,7 +38,7 @@
         </div>
       </div>
       <div class="col tp_goTopBtn">
-        <a href="#" class="tp_textBtn tp-pw-footer__link" id-"tp-pw-footer__link">${data.goToTopLabel} <i
+        <a href="#" class="tp_textBtn tp-pw-footer__link" id="tp-pw-footer__link">${data.goToTopLabel} <i
           class="icon-Circle_Arrow_Up"></i></a>
       </div>
     </div>
