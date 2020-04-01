@@ -12,15 +12,20 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class HeaderModel.
  */
@@ -33,6 +38,17 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    /** The dynamic media service. */
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
+
+    /** The logo image path. */
+    private String logoImagePath;
 
     /** The logo link. */
     private String logoLink;
@@ -74,6 +90,10 @@ public class HeaderModel {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
+                logoImagePath = configurationModel.getLogoImagePath();
+                if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
+                    logoImagePath = GlobalUtil.getVideoUrlFromScene7(logoImagePath, dynamicMediaService);
+                }
                 logoLink = configurationModel.getLogoLink();
                 logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
@@ -126,6 +146,15 @@ public class HeaderModel {
                 }
             }
         }
+    }
+
+    /**
+     * Gets the logo image path.
+     *
+     * @return the logo image path
+     */
+    public String getLogoImagePath() {
+        return logoImagePath;
     }
 
     /**

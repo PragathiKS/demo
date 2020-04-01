@@ -47,6 +47,7 @@
 					"jcr:lastModified": "Fri Mar 27 2020 18:55:38 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
 					"logoLink": "/content/tetrapak/public-web/lang-masters",
+					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
 					"footerLinks":{
 					"jcr:primaryType": "nt:unstructured",
 					"item0": {

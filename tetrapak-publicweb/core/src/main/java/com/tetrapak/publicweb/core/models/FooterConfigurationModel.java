@@ -26,6 +26,10 @@ public class FooterConfigurationModel {
     @Self
     private Resource resource;
 
+    /** The logo image path. */
+    @ValueMapValue
+    private String logoImagePath;
+
     /** The logo link. */
     @ValueMapValue
     private String logoLink;
@@ -49,6 +53,15 @@ public class FooterConfigurationModel {
     /** The go to top label. */
     @ValueMapValue
     private String goToTopLabel;
+
+    /**
+     * Gets the logo image path.
+     *
+     * @return the logo image path
+     */
+    public String getLogoImagePath() {
+        return logoImagePath;
+    }
 
     /**
      * Gets the logo link.

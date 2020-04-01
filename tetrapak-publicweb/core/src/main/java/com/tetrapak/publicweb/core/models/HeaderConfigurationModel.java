@@ -19,6 +19,10 @@ public class HeaderConfigurationModel {
     @Self
     private Resource resource;
 
+    /** The logo image path. */
+    @Inject
+    private String logoImagePath;
+
     /** The logo link. */
     @Inject
     private String logoLink;
@@ -50,6 +54,15 @@ public class HeaderConfigurationModel {
     /** The contact link target. */
     @Inject
     private String contactLinkTarget;
+
+    /**
+     * Gets the logo image path.
+     *
+     * @return the logo image path
+     */
+    public String getLogoImagePath() {
+        return logoImagePath;
+    }
 
     /**
      * Gets the logo link.

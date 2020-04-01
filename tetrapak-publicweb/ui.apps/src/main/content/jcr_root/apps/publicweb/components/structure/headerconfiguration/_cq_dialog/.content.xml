@@ -16,9 +16,16 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                            <logoimage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Link to Logo image"
+                                fieldLabel="Logo Image path"
+                                name="./logoImagePath"
+                                rootPath="/content/dam/tetrapak/publicweb"/>
                             <logolink
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Where the logo should direct"
                                 fieldLabel="Logo Image link"
                                 name="./logoLink"
@@ -29,7 +36,7 @@
                                 fieldDescription="Required for Accessibility use"
                                 fieldLabel="Logo Image Alt Text"
                                 name="./logoAlt"
-								required="true"/>
+                                required="true"/>
                             <logolinktarget
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
@@ -45,7 +52,7 @@
                                 name="./loginLabel"/>
                             <loginlink
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Link to MyTetraPak Login screen "
                                 fieldLabel="My TetraPak Link"
                                 name="./loginLink"
@@ -58,13 +65,13 @@
                                 name="./contactText"/>
                             <contactlink
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Link to contact us page"
                                 fieldLabel="Contact Link"
                                 name="./contactLink"
                                 rootPath="/content/tetrapak/public-web"/>
                             <contactlinktarget
-								jcr:primaryType="nt:unstructured"
+                                jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Open link in a new window ?"
                                 name="./contactLinkTarget"
