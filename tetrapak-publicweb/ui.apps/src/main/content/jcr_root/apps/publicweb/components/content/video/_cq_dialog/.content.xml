@@ -72,7 +72,7 @@
                             </damVideo>
                             <image
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Please select a thumbnail for the DAM video"
                                 fieldLabel="Thumbnail image"
                                 name="./thumbnailPath"
