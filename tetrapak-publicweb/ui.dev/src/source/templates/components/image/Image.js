@@ -6,23 +6,36 @@ class Image {
   }
   cache = {};
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.$imageAnchor = this.root.find('.js-tp-pw-image');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    const { $imageAnchor } = this.cache;
+    $imageAnchor.on('click', this.trackAnalytics);
   }
+
+  trackAnalytics = (e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-image');
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        linkClick: {
+          linkType: 'internal',
+          linkSection: $this.data('link-section'),
+          linkParentTitle: $this.data('link-parent-title'),
+          linkName: $this.data('link-name')
+        }
+      });
+      if (window._satellite) {
+        window._satellite.track('linkClick');
+      }
+    }
+
+    window.open($this.attr('href'), '_self');
+  }
+
+
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
