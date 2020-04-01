@@ -1,18 +1,5 @@
 {
     "homePagePath": "#",
     "homeLabel": "Home",
-    "breadcrumbSubpages" : [
-        {
-            "key" : "subpage1",
-            "value": "/google/link"
-        },
-        {
-            "key" : "subpage2",
-            "value": "#"
-        },
-        {
-            "key" : "subpage322",
-            "value": "#"
-        }
-    ]
+    "breadcrumbSubpages" : {"subpage1": "/google/link", "subpage2": "#","subpage322": "#"}
 }
