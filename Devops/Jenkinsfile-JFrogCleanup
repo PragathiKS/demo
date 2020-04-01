@@ -3,7 +3,7 @@ pipeline {
 		node {
 			label 'cfe-deploy'
 		}
-	// }
+	}
     //     triggers {
     //     cron('H 2 * * 1-5')
     // }
@@ -108,7 +108,6 @@ pipeline {
             }
         }
 		}
-
 
 def downloadmetadata() {
 
