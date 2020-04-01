@@ -180,7 +180,7 @@
     width: 100%;
     position: absolute;
     z-index: $zindex-p;
-    
+
     @media #{$desktop} {
         display: none;
     }
@@ -200,11 +200,10 @@
             border-bottom: 1px solid $color-mercury;
             a {
                 color: $color-congress-blue;
-            i:first-child {
+                i:first-child {
                     padding-right: #{convert-to-rem(10px)};
             }
             }
-            
         }
     }
 }
