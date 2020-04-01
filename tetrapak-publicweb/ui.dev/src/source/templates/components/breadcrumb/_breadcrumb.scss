@@ -1,5 +1,6 @@
 .tp_pw-breadcrumb {
     @include margin($spacing-small 0);
+    display: none;
     color: $color-boulder;
     overflow: hidden;
     position: relative;
@@ -7,6 +8,7 @@
 
     @media #{$desktop} {
         @include margin($spacing-big 0);
+        display: inline-block;
     }
 
     &__link {
