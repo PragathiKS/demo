@@ -12,6 +12,13 @@ class Analyticsglobaltagspw {
      */
     const cookieValue=this.getCookies('lang-code');
     this.setUserinfo(cookieValue);
+
+    window.digitalData.linkClick = {
+      linkType:'',
+      linkSection:'',
+      linkParentTitle:'',
+      linkName:''
+    };
   }
   getCookies(){
     if (arguments.length > 0) {
