@@ -6,7 +6,10 @@
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video">
-            <video controls poster="${data.thumbnailPath}">
+            <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel'
+                                            @ imagePath=data.thumbnailPath}">
+            </sly>
+            <video controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </div>
