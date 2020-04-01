@@ -57,7 +57,7 @@ def deleteartifact() {
                 
                 sh "ls -l"
                 sh "chmod 755 Devops/jfrog_cleanup.sh"
-                sh "sh -x Devops/jfrog_cleanup.sh > result.txt"
+                sh "bash -x Devops/jfrog_cleanup.sh > result.txt"
                 sh "cat result.txt"
 }
 
