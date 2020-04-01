@@ -144,7 +144,8 @@
         "source/templates/components/softConversionForm/",
         "source/templates/components/contactFooterForm/",
         "source/templates/components/contactAnchorLink/",
-        "source/templates/components/analyticsglobaltagspw/"
+        "source/templates/components/analyticsglobaltagspw/",
+        "source/templates/components/image/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
