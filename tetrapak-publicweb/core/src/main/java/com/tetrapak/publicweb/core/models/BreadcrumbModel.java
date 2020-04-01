@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -38,7 +41,7 @@ public class BreadcrumbModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The breadcrumb subpages. */
-    private Map<String, String> breadcrumbSubpages = new HashMap<>();
+    private Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
     /** The home label. */
     private String homeLabel = "Home";
@@ -49,18 +52,24 @@ public class BreadcrumbModel {
     @PostConstruct
     protected void init() {
         LOGGER.debug("Inside init method");
+        final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         homePagePath = LinkUtils.sanitizeLink(rootPath + "/home");
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
-        breadcrumbSubpages.put(currentPage.getTitle(), currentPage.getPath());
+        breadcrumbPages.put(currentPage.getTitle(), currentPage.getPath());
         for (int i = 0; i <= length; i++) {
             if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
-                breadcrumbSubpages.put(parent.getTitle(), LinkUtils.sanitizeLink(parent.getPath()));
+                breadcrumbPages.put(parent.getTitle(), LinkUtils.sanitizeLink(parent.getPath()));
                 parent = parent.getParent();
             }
+        }
+        final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
+        Collections.reverse(alKeys);
+        for (final String key : alKeys) {
+            breadcrumbSubpages.put(key, breadcrumbPages.get(key));
         }
     }
 
