@@ -1,0 +1,17 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+</sly>
+
+<div data-sly-use.model="com.tetrapak.publicweb.core.models.ImageModel"
+     data-sly-test="${model.fileReference}"
+     id="${model.anchorId}"
+     class="cmp-image${!wcmmode.disabled ? ' cq-dd-image' : ''}">
+    <a data-sly-unwrap="${!model.linkURL}"
+       class="cmp-image__link" href="${model.linkURL}"
+       data-cmp-hook-image="linkURL">
+        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+             data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=model.fileReference, altText=model.alt}" >
+        </sly>
+    </a>
+</div>
