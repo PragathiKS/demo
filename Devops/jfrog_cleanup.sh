@@ -14,4 +14,4 @@ done | xargs > exclude.txt
 EXCLUDE=`sed 's/ /|/g' exclude.txt`
 
 for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
-do echo $i >> result.txt ; done
+do echo $i; echo $packageName; echo $repoName >> result.txt ; done
