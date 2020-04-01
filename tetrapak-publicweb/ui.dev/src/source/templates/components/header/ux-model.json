@@ -2,6 +2,7 @@
   "logoLink": "http://www.google.com",
   "logoAlt": "Logo",
   "logoLinkTarget": "_blank", 
+  "logoImagePath": "/content/dam/tetrapak/publicweb/en/global/header/TetraPakLogo.png",
   "loginLabel":"My tetra pak",
   "loginLink":"http://mytetrapak.com",
   "contactText":"Contact",
