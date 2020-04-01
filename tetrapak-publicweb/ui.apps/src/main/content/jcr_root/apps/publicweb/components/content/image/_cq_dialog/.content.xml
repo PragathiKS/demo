@@ -74,20 +74,9 @@
                                             wrapperClass="cmp-image__editor-link"/>
                                     <padding
                                             jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                            fieldLabel="Public Web Inner Padding"
-                                            name="./pwPadding">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <regularPadding
-                                                    jcr:primaryType="nt:unstructured"
-                                                    text="Regular Padding"
-                                                    value="regular"/>
-                                            <zeroPadding
-                                                    jcr:primaryType="nt:unstructured"
-                                                    text="Remove Padding"
-                                                    value="zero"/>
-                                        </items>
-                                    </padding>
+                                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                                            path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
+
                                 </items>
                             </column>
                         </items>
