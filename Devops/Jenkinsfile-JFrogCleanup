@@ -3,7 +3,10 @@ pipeline {
 		node {
 			label 'cfe-deploy'
 		}
-	}
+	// }
+    //     triggers {
+    //     cron('H 2 * * 1-5')
+    // }
 
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to Clean Commons', name: 'Clean_Commons'
@@ -12,6 +15,11 @@ pipeline {
         string(name: 'DAYS_BEFORE', defaultValue: '7', description: '')
     }    
     
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Download Metadata & Artifact cleanup') {
             steps {
