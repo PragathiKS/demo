@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-	xmlns:jcr="http://www.jcp.org/jcr/1.0"
-	jcr:primaryType="sling:OsgiConfig" rootPath="/tetrapak"
-	imageServiceUrl="https://s7g10.scene7.com/is/image"
-	videoServiceUrl="https://s7g10.scene7.com/is/content"
-	dynamicMediaConfMap="[header-desktop=158\,24,header-mobileL=138\,31,header-mobileP=138\,31,footer-desktop=158\,24,footer-mobileL=158\,24 ,footer-mobileP=158\,24]" />
-
