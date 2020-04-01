@@ -32,6 +32,9 @@ public class FooterModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The logo image path. */
+    private String logoImagePath;
+
     /** The logo link. */
     private String logoLink;
 
@@ -63,6 +66,7 @@ public class FooterModel {
             final FooterConfigurationModel configurationModel = footerConfigurationResource
                     .adaptTo(FooterConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
+                logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = configurationModel.getLogoLink();
                 logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
@@ -72,6 +76,15 @@ public class FooterModel {
 
             }
         }
+    }
+
+    /**
+     * Gets the logo image path.
+     *
+     * @return the logo image path
+     */
+    public String getLogoImagePath() {
+        return logoImagePath;
     }
 
     /**
