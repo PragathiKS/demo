@@ -25,7 +25,6 @@ import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HeaderModel.
  */
