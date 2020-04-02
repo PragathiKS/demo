@@ -48,7 +48,7 @@
                                                         features="*"/>
                                                     <links
                                                         jcr:primaryType="nt:unstructured"
-                                                        features="*"/>
+                                                        features="modifylink,unlink"/>
                                                 </rtePlugins>
                                                 <uiSettings jcr:primaryType="nt:unstructured">
                                                     <cui jcr:primaryType="nt:unstructured">
