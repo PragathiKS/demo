@@ -27,7 +27,7 @@ pipeline {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']]) 
                     {
                         if (params.Clean_Commons) {
-                            packageName ="tetrapak-commons.complete"
+                            packageName ="tetrapak-commons"
                             repoName ="tetrapak"
                             downloadmetadata()
                             //deleteartifact()
@@ -46,13 +46,19 @@ pipeline {
                             done | xargs > exclude.txt
                             EXCLUDE=`sed 's/ /|/g' exclude.txt`
 
-                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
-                            do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/$i/$i; done
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/$i/; done
+
+                            for dirname in tetrapak-commons tetrapak-commons.complete tetrapak-commons.core tetrapak-commons.ui.apps tetrapak-commons.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/$dirname/$i/"; done; done
+
                         '''                            
                         }
 
                         if (params.Clean_MyTetraPak) {
-                            packageName="tetrapak-customerhub.complete"
+                            packageName="tetrapak-customerhub"
                             repoName="tetrapak-customerhub"
                             downloadmetadata()
                             //deleteartifact()
@@ -71,13 +77,18 @@ pipeline {
                             done | xargs > exclude.txt
                             EXCLUDE=`sed 's/ /|/g' exclude.txt`
 
-                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
-                            do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/$i/; done
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/$i/; done
+
+                            for dirname in tetrapak-commons tetrapak-commons.complete tetrapak-commons.core tetrapak-commons.ui.apps tetrapak-commons.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/$dirname/$i/"; done; done
                         '''                            
                         }
 
                         if (params.Clean_Publicweb) {
-                            packageName="tetrapak-publicweb.complete"
+                            packageName="tetrapak-publicweb"
                             repoName= "tetrapak-publicweb"
                             downloadmetadata()
                             //deleteartifact()
@@ -96,8 +107,13 @@ pipeline {
                             done | xargs > exclude.txt
                             EXCLUDE=`sed 's/ /|/g' exclude.txt`
 
-                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
-                            do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/$i/; done
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/$i/; done
+
+                            for dirname in tetrapak-commons tetrapak-commons.complete tetrapak-commons.core tetrapak-commons.ui.apps tetrapak-commons.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/$dirname/$i/"; done; done
                         '''                            
                         }
                     }
