@@ -31,7 +31,7 @@ describe('Footer', function () {
      expect(this.goToTopSpy.called).to.be.true;
   });
   it('should call track analytics on click', function () {
-    $('.footer-analytics .tp-pw-footer__link').trigger('click');
+    $('.tp-pw-footer-data-analytics').trigger('click');
     expect(this.footer.trackAnalytics.called).to.be.true;
   });
   it('should set digitalData after track analytics call', function() {

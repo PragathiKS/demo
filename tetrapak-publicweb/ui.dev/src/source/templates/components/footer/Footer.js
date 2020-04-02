@@ -8,7 +8,7 @@ class Footer {
   cache = {};
   initCache() {
     this.cache.toTopLink = $('#tp-pw-footer__link');
-    this.cache.$footerLink=this.root.find('.footer-analytics .tp-pw-footer__link');
+    this.cache.$footerLink=this.root.find('.tp-pw-footer-data-analytics');
   }
   bindEvents() {
     this.initCache();
@@ -19,11 +19,11 @@ class Footer {
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const $this = $target.closest('.footer-analytics .tp-pw-footer__link');
+    const $this = $target.closest('.tp-pw-footer-data-analytics');
     if (window.digitalData) {
       $.extend(window.digitalData, {
         linkClick: {
-          linkType: 'internal',
+          linkType: $this.data('link-type'),
           linkSection: $this.data('link-section'),
           linkParentTitle: $this.data('link-parent-title'),
           linkName: $this.data('link-name')

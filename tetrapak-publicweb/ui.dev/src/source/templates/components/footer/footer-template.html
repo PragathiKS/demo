@@ -5,12 +5,12 @@
         <div class="col-lg-3 text-lg-left">
           <div class="footer-logo footer-analytics">
           <sly data-sly-test = "${!wcmmode.edit}">
-          <a href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+          <a class="tp-pw-footer-data-analytics" data-link-type="internal" data-link-section="logo" data-link-parent-title="Brand Logo" data-link-name="TetraPak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
             </a>
           </sly>
           <sly data-sly-test = "${wcmmode.edit}">
-            <a href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+            <a class="tp-pw-footer-data-analytics" data-link-type="internal" data-link-section="logo" data-link-parent-title="Brand Logo" data-link-name="TetraPak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
               <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
               </a>
           </sly>  
@@ -20,22 +20,22 @@
           <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems="${data.footerLinks}"
               style="justify-content: center;">
             <li class="tp-pw-footer__navigation-list__item footer-analytics">
-              <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link" href="${navigationItems.linkPath}"
-                 datatag="${navigationItems.linkType}" data-link-section="Navigation menu" data-link-parent-title="Footer links" data-link-name="Tetrapak" ctype="footer" ctypeone="footer nav link"
+              <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link tp-pw-footer-data-analytics" href="${navigationItems.linkPath}"
+                 datatag="${navigationItems.linkType}" data-link-type="internal" data-link-section="Navigation menu" data-link-parent-title="Footer links" data-link-name="${navigationItems.linkLabel}" ctype="footer" ctypeone="footer nav link"
                  target="${navigationItems.linktarget}">${navigationItems.linkLabel}</a>
             </li>
           </ul>
         </div>
         <div class="col-lg-3 text-lg-right">
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link"
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics"
                href="${socialLink.socialMediaLink}" target="_blank"
                data-sly-test="${socialLink.socialMediaLink}"
                datatag="external" ctype="footer" ctypeone="social share"
-
+               data-link-type="external" data-link-section="Footer - Share link" data-link-parent-title="Social Share" data-link-name="${socialLink.socialMedia}"
                ctitle="${socialLink.socialMediaName}"><i class="icon-${socialLink.socialMedia}"></i></a>
           </div>
-        </div>
+         </div>
       </div>
       <div class="col tp_goTopBtn">
         <a href="#" class="tp_textBtn tp-pw-footer__link" id="tp-pw-footer__link">${data.goToTopLabel} <i
