@@ -8,22 +8,22 @@
     {
       "linkLabel": "Contact",
       "linkPath": "https://google.com",
-      "linktarget":"_self"
+      "linkTarget":"_self"
     },
     {
       "linkLabel": "Lorem Ipsum",
       "linkPath": "#",
-      "linktarget": "_self"
+      "linkTarget": "_self"
     },
     {
       "linkLabel": "About Us",
       "linkPath": "#",
-      "linktarget": "_self"
+      "linkTarget": "_self"
     },
     {
       "linkLabel": "Lorem Ipsum",
       "linkPath": "#",
-      "linktarget":"_self"
+      "linkTarget":"_self"
     },
     {
       "linkLabel": "Lorem Ipsum",
