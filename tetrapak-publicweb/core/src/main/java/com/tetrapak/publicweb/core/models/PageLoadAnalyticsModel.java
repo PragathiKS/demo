@@ -174,11 +174,10 @@ public class PageLoadAnalyticsModel {
 
 
         JsonObject userInfo = new JsonObject();
+        userInfo.addProperty("userId", StringUtils.EMPTY);
         userInfo.addProperty("loginStatus", StringUtils.EMPTY);
-        userInfo.addProperty("salesForceId", StringUtils.EMPTY);
-        userInfo.addProperty("userRoles", StringUtils.EMPTY);
-        userInfo.addProperty("userCountryCode", StringUtils.EMPTY);
         userInfo.addProperty("userLanguage", StringUtils.EMPTY);
+        userInfo.addProperty("userRole", StringUtils.EMPTY);
 
         JsonObject errorInfo = new JsonObject();
         errorInfo.addProperty("errorcode", getErrorCode());
