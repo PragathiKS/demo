@@ -43,14 +43,14 @@ class Analyticsglobaltagspw {
       window.digitalData.userinfo={
         userLanguage:cookieValue,
         loginStatus:'logged-in',
-        userRoles:'sales-manager',
+        userRole:'sales-manager',
         userType:'customer'
       };
     }
     else{
       window.digitalData.userinfo.userLanguage='';
       window.digitalData.userinfo.loginStatus='';
-      window.digitalData.userinfo.userRoles='';
+      window.digitalData.userinfo.userRole='';
       window.digitalData.userinfo.userType='';
     }
   }
