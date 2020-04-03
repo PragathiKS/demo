@@ -13,6 +13,7 @@ class CookieConsent {
   bindEvents() {
     const { $bannerBtn } = this.cache;
     $bannerBtn.on('click', this.removeBanner);
+    $bannerBtn.on('click', this.trackAnalytics);
   }
   removeBanner = () => {
     this.root.one(TRANSITION_END, () => {
@@ -21,6 +22,18 @@ class CookieConsent {
     this.root.removeClass('active');
     storageUtil.set('gdprCookie', true);
   };
+
+  trackAnalytics = (e) => {
+    e.preventDefault();
+    if (window.digitalData) {
+      $.extend(window.digitalData, {
+        cookie: {
+          CookieConsent: 'yes'
+        }
+      });
+    }
+  }
+
   init() {
     this.initCache();
     this.bindEvents();
