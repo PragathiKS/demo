@@ -2,10 +2,10 @@
     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
     <sly data-sly-test="${data.breadcrumbSubpages}">
         <div class="tp_pw-breadcrumb text-small" data-module="Breadcrumb">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BreadCrumb link" data-link-parent-title="TetraPakSolutions" data-link-name="${data.homeLabel}" href="${data.homePagePath}">${data.homeLabel}</a>
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BreadCrumb link" data-link-parent-title="${currentPage.title}" data-link-name="${data.homeLabel}" href="${data.homePagePath}">${data.homeLabel}</a>
             <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
 <sly data-sly-test="${!subpagesList.last}">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BreadCrumb link" data-link-parent-title="TetraPakSolutions" data-link-name="${subpages}" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Chevron_Right tp_icon"></i>${subpages}</a>
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BreadCrumb link" data-link-parent-title="${currentPage.title}" data-link-name="${subpages}" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Chevron_Right tp_icon"></i>${subpages}</a>
 </sly>
             <sly data-sly-test="${subpagesList.last}">
             <i class="icon-Chevron_Right tp_icon"></i> <span>${subpages}</span>
