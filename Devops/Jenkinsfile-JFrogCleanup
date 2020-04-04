@@ -1,0 +1,134 @@
+pipeline {
+	agent {
+		node {
+			label 'cfe-deploy'
+		}
+	}
+    //     triggers {
+    //     cron('H 2 * * 1-5')
+    // }
+
+    parameters {
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean Commons', name: 'Clean_Commons'
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean MyTetraPak', name: 'Clean_MyTetraPak'
+        booleanParam defaultValue: true, description: 'Please check in case you want to Clean Publicweb', name: 'Clean_Publicweb'
+        string(name: 'DAYS_BEFORE', defaultValue: '7', description: '')
+    }    
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Download Metadata & Artifact cleanup') {
+            steps {
+                script {
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']]) 
+                    {
+                        if (params.Clean_Commons) {
+                            packageName ="tetrapak-commons"
+                            repoName ="tetrapak"
+                            downloadmetadata()
+                            //deleteartifact()
+                        echo "TETRAPAK-COMMONS"    
+                        sh '''#!/bin/bash
+                            echo > result.txt
+                            #DAYS_BEFORE=50
+                            startdate=$(date +%Y%m%d -d "+1 days")
+                            enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
+                            d=
+                            n=0
+                            until [ "$d" = "$enddate" ]
+                            do
+                                ((n++))
+                                d=$(date -d "$startdate - $n days" +%Y%m%d)
+                                echo $d
+                            done | xargs > exclude.txt
+                            EXCLUDE=`sed 's/ /|/g' exclude.txt`
+
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/tetrapak-commons.complete/$i/; done
+
+                            for dirname in tetrapak-commons tetrapak-commons.complete tetrapak-commons.core tetrapak-commons.ui.apps tetrapak-commons.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "Deleting https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/$dirname/$i/"; curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak/$dirname/$i/; done; done
+
+                        '''                            
+                        }
+
+                        if (params.Clean_MyTetraPak) {
+                            packageName="tetrapak-customerhub"
+                            repoName="tetrapak-customerhub"
+                            downloadmetadata()
+                            //deleteartifact()
+                        echo "TETRAPAK-MYTETRAPAK"                            
+                        sh '''#!/bin/bash
+                            echo > result.txt
+                            #DAYS_BEFORE=50
+                            startdate=$(date +%Y%m%d -d "+1 days")
+                            enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
+                            d=
+                            n=0
+                            until [ "$d" = "$enddate" ]
+                            do
+                                ((n++))
+                                d=$(date -d "$startdate - $n days" +%Y%m%d)
+                                echo $d
+                            done | xargs > exclude.txt
+                            EXCLUDE=`sed 's/ /|/g' exclude.txt`
+
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/tetrapak-customerhub.complete/$i/; done
+
+                            for dirname in tetrapak-customerhub tetrapak-customerhub.complete tetrapak-customerhub.core tetrapak-customerhub.ui.apps tetrapak-customerhub.ui.content tetrapak-customerhub.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "Deleting https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/$dirname/$i/"; curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-customerhub/$dirname/$i/; done; done
+                        '''                            
+                        }
+
+                        if (params.Clean_Publicweb) {
+                            packageName="tetrapak-publicweb"
+                            repoName= "tetrapak-publicweb"
+                            downloadmetadata()
+                            //deleteartifact()
+                        echo "TETRAPAK-PUBLICWEB"
+                        sh '''#!/bin/bash
+                            echo > result.txt
+                            #DAYS_BEFORE=50
+                            startdate=$(date +%Y%m%d -d "+1 days")
+                            enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
+                            d=
+                            n=0
+                            until [ "$d" = "$enddate" ]
+                            do
+                                ((n++))
+                                d=$(date -d "$startdate - $n days" +%Y%m%d)
+                                echo $d
+                            done | xargs > exclude.txt
+                            EXCLUDE=`sed 's/ /|/g' exclude.txt`
+
+                            #for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`; 
+                            #do curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/tetrapak-publicweb.complete/$i/; done
+
+                            for dirname in tetrapak-publicweb tetrapak-publicweb.complete tetrapak-publicweb.core tetrapak-publicweb.ui.apps tetrapak-publicweb.ui.content tetrapak-publicweb.ui.dev;
+                            do echo $dirname
+                            for i in `grep "</version>$" maven-metadata.xml | awk '{gsub("<version>|</version>", "");print}' | egrep -v "$EXCLUDE"`;
+                            do echo "Deleting https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/$dirname/$i/"; curl -u ${artifactuser}:${artifactpassword} -XDELETE https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/tetrapak-publicweb/$dirname/$i/; done; done
+                        '''                            
+                        }
+                    }
+
+                }
+                    
+                }
+            }
+        }
+		}
+
+def downloadmetadata() {
+
+    sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/maven-metadata.xml"
+}
