@@ -4,13 +4,13 @@ pipeline {
 			label 'cfe-deploy'
 		}
 	}
-    //     triggers {
-    //     cron('H 2 * * 1-5')
-    // }
+        triggers {
+        cron('H 2 * * 1-5')
+    }
 
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to Clean Commons', name: 'Clean_Commons'
-        booleanParam defaultValue: true, description: 'Please check in case you want to Clean MyTetraPak', name: 'Clean_MyTetraPak'
+        booleanParam defaultValue: false, description: 'Please check in case you want to Clean MyTetraPak', name: 'Clean_MyTetraPak'
         booleanParam defaultValue: true, description: 'Please check in case you want to Clean Publicweb', name: 'Clean_Publicweb'
         string(name: 'DAYS_BEFORE', defaultValue: '7', description: '')
     }    
@@ -34,7 +34,6 @@ pipeline {
                         echo "TETRAPAK-COMMONS"    
                         sh '''#!/bin/bash
                             echo > result.txt
-                            #DAYS_BEFORE=50
                             startdate=$(date +%Y%m%d -d "+1 days")
                             enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
                             d=
@@ -66,7 +65,6 @@ pipeline {
                         echo "TETRAPAK-MYTETRAPAK"                            
                         sh '''#!/bin/bash
                             echo > result.txt
-                            #DAYS_BEFORE=50
                             startdate=$(date +%Y%m%d -d "+1 days")
                             enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
                             d=
@@ -97,7 +95,6 @@ pipeline {
                         echo "TETRAPAK-PUBLICWEB"
                         sh '''#!/bin/bash
                             echo > result.txt
-                            #DAYS_BEFORE=50
                             startdate=$(date +%Y%m%d -d "+1 days")
                             enddate=$(date +%Y%m%d -d "-$DAYS_BEFORE days")
                             d=
