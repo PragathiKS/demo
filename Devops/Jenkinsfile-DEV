@@ -107,6 +107,17 @@ pipeline {
 
         }
 
+        stage('Dev Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                cacheflush()
+            }
+        }
+
         stage('Karma, Pa11y, Zap Tools Execution') {
             agent {
                 node {
@@ -360,3 +371,11 @@ pipeline {
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                  			                
     }
+    
+    def cacheflush() {
+
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                {
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 104.46.45.30 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }        
+    }   
