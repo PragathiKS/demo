@@ -52,7 +52,7 @@ public class TextVideoModelTest {
         final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getSubTitle", "getTitle",
                 "getDescription", "getLinkTexti18n", "getLinkURL", "getVideoSource",
                 "getYoutubeVideoID", "getDamVideoPath", "getThumbnailPath", "getThumbnailAltText",
-                "getPwTheme", "getPwButtonTheme" };
+                "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwPadding", "getPwDisplay" };
         Util.testLoadAndGetters(methods, model, resource);
     }
 }
