@@ -1,61 +1,80 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
-    @Inject
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
+
+    @ValueMapValue
+    private String anchorId;
+
+    @ValueMapValue
+    private String anchorTitle;
+
+    @ValueMapValue
+    private String subTitle;
+
+    @ValueMapValue
     private String title;
 
-    @Inject
+    @ValueMapValue
     private String description;
 
-    @Inject
+    @ValueMapValue
     private String linkTexti18n;
 
-    @Inject
+    @ValueMapValue
     private String linkURL;
 
-    @Inject
+    @ValueMapValue
     private Boolean targetBlank;
 
-    @Inject
+    @ValueMapValue
     private String videoSource;
 
-    @Inject
+    @ValueMapValue
     private String youtubeVideoID;
 
-    @Inject
+    @ValueMapValue
     private String damVideoPath;
-
-    @Inject
-    private String thumbnailPath;
 
     private String youtubeEmbedURL;
 
-    @Inject
-    private String textAlignment;
+    @ValueMapValue
+    private String thumbnailPath;
 
-    @Inject
+    @ValueMapValue
+    private String thumbnailAltText;
+
+    @ValueMapValue
     private String pwTheme;
 
-    @Inject
+    @ValueMapValue
     private String pwButtonTheme;
 
-    @Inject
-    private String pwPadding;
-
-    @Inject
+    @ValueMapValue
     private String pwDisplay;
+
+    private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
+    private static final String AUTHOR = "author";
 
     @PostConstruct
     protected void init() {
@@ -64,8 +83,24 @@ public class TextVideoModel {
         }
 
         if (youtubeVideoID != null) {
-            youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+            youtubeEmbedURL = YOUTUBE_URL_PREFIX + youtubeVideoID;
         }
+
+        if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+        }
+    }
+
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
     }
 
     public String getTitle() {
@@ -108,8 +143,8 @@ public class TextVideoModel {
         return thumbnailPath;
     }
 
-    public String getTextAlignment() {
-        return textAlignment;
+    public String getThumbnailAltText() {
+        return thumbnailAltText;
     }
 
     public String getPwTheme() {
@@ -118,10 +153,6 @@ public class TextVideoModel {
 
     public String getPwButtonTheme() {
         return pwButtonTheme;
-    }
-
-    public String getPwPadding() {
-        return pwPadding;
     }
 
     public String getPwDisplay() {
