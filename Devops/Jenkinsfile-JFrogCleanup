@@ -123,7 +123,13 @@ pipeline {
                 }
             }
         }
-		}
+        //Post notification in MS Teams
+        post {
+            always {
+                sendNotifications(currentBuild.currentResult)
+            }
+        }
+    }
 
 def downloadmetadata() {
 
