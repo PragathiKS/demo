@@ -1,3 +1,5 @@
+@Library('jenkins-pipeline-library') _
+
 pipeline {
 	agent {
 		node {
