@@ -8,6 +8,16 @@
     }
 }
 
+.pw-margin {
+  &--zero {
+    margin: 0;
+    }
+
+  &--regular {
+    margin: $margin-xxxl, 0;
+    }
+}
+
 .pw-padding {
 
     &--zero {
