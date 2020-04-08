@@ -19,27 +19,35 @@
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 35 chars considering translations"
                                 fieldLabel="Subtitle"
+                                maxlength="{Long}35"
                                 name="./subTitle"/>
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
                                 fieldLabel="Title"
+                                maxlength="{Long}40"
                                 name="./title"/>
                             <description
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldLabel="Description"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 700 chars considering translations"
+                                fieldLabel="Text"
+                                maxlength="{Long}700"
                                 name="./description"/>
                             <linkText
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Link Text"
+                                fieldDescription="Link text"
+                                fieldLabel="Link label"
                                 name="./linkTexti18n"/>
                             <linkUrl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldLabel="Link URL"
+                                fieldDescription="Link URL"
+                                fieldLabel="Link path"
                                 name="./linkURL"/>
                             <targetBlank
                                 jcr:primaryType="nt:unstructured"
@@ -69,7 +77,7 @@
                                     <alttext
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Thumbnail alt text"
+                                        fieldLabel="Poster image alt text"
                                         name="./thumbnailAltText"/>
                                 </items>
                                 <granite:data
