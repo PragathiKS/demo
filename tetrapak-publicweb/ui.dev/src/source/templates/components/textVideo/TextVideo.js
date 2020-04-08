@@ -36,7 +36,7 @@ class TextVideo {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
 
-    if(buttonLinkType==='button' && downloadtype ==='hyperlink'){
+    if(buttonLinkType==='secondary' && downloadtype ==='hyperlink'){
       linkParentTitle = `CTA-Hyperlink_${videoName}`;
     }
 
@@ -44,7 +44,7 @@ class TextVideo {
       linkParentTitle = `Text hyperlink_${videoName}`;
     }
 
-    if(buttonLinkType==='button' && downloadtype ==='download'){
+    if(buttonLinkType==='secondary' && downloadtype ==='download'){
       linkParentTitle = `CTA-Download-pdf_${videoName}`;
       eventType = 'download';
     }
