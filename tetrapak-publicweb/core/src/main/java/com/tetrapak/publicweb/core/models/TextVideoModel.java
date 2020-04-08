@@ -1,62 +1,120 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
-
+/**
+ * The Class TextVideoModel.
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
-    @Inject
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    /** The dynamic media service. */
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
+
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
+    /** The sub title. */
+    @ValueMapValue
+    private String subTitle;
+
+    /** The title. */
+    @ValueMapValue
     private String title;
 
-    @Inject
+    /** The description. */
+    @ValueMapValue
     private String description;
 
-    @Inject
+    /** The link texti 18 n. */
+    @ValueMapValue
     private String linkTexti18n;
 
-    @Inject
+    /** The link URL. */
+    @ValueMapValue
     private String linkURL;
 
-    @Inject
+    /** The target blank. */
+    @ValueMapValue
     private Boolean targetBlank;
 
-    @Inject
+    /** The video source. */
+    @ValueMapValue
     private String videoSource;
 
-    @Inject
+    /** The youtube video ID. */
+    @ValueMapValue
     private String youtubeVideoID;
 
-    @Inject
+    /** The dam video path. */
+    @ValueMapValue
     private String damVideoPath;
 
-    @Inject
-    private String thumbnailPath;
-
+    /** The youtube embed URL. */
     private String youtubeEmbedURL;
 
-    @Inject
-    private String textAlignment;
+    /** The thumbnail path. */
+    @ValueMapValue
+    private String thumbnailPath;
 
-    @Inject
+    /** The thumbnail alt text. */
+    @ValueMapValue
+    private String thumbnailAltText;
+
+    /** The pw theme. */
+    @ValueMapValue
     private String pwTheme;
 
-    @Inject
+    /** The pw button theme. */
+    @ValueMapValue
     private String pwButtonTheme;
 
-    @Inject
+    /** The pw link theme. */
+    @ValueMapValue
+    private String pwLinkTheme;
+
+    /** The pw padding. */
+    @ValueMapValue
     private String pwPadding;
 
-    @Inject
+    /** The pw display. */
+    @ValueMapValue
     private String pwDisplay;
 
+    /** The Constant YOUTUBE_URL_PREFIX. */
+    private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
+
+    /** The Constant AUTHOR. */
+    private static final String AUTHOR = "author";
+
+    /** The Constant FORWARD_SLASH. */
+    private static final String FORWARD_SLASH = "/";
+
+    /**
+     * The init method.
+     */
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
@@ -64,67 +122,218 @@ public class TextVideoModel {
         }
 
         if (youtubeVideoID != null) {
-            youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
+            youtubeEmbedURL = YOUTUBE_URL_PREFIX + youtubeVideoID;
+        }
+
+        if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
     }
 
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
+
+    /**
+     * Gets the sub title.
+     *
+     * @return the sub title
+     */
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    /**
+     * Gets the title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the link texti 18 n.
+     *
+     * @return the link texti 18 n
+     */
     public String getLinkTexti18n() {
         return linkTexti18n;
     }
 
+    /**
+     * Gets the link URL.
+     *
+     * @return the link URL
+     */
     public String getLinkURL() {
         return linkURL;
     }
 
+    /**
+     * Gets the target blank.
+     *
+     * @return the target blank
+     */
     public Boolean getTargetBlank() {
         return targetBlank;
     }
 
+    /**
+     * Gets the video source.
+     *
+     * @return the video source
+     */
     public String getVideoSource() {
         return videoSource;
     }
 
+    /**
+     * Gets the youtube video ID.
+     *
+     * @return the youtube video ID
+     */
     public String getYoutubeVideoID() {
         return youtubeVideoID;
     }
 
+    /**
+     * Gets the youtube embed URL.
+     *
+     * @return the youtube embed URL
+     */
     public String getYoutubeEmbedURL() {
         return youtubeEmbedURL;
     }
 
+    /**
+     * Gets the dam video path.
+     *
+     * @return the dam video path
+     */
     public String getDamVideoPath() {
         return damVideoPath;
     }
 
+    /**
+     * Gets the thumbnail path.
+     *
+     * @return the thumbnail path
+     */
     public String getThumbnailPath() {
         return thumbnailPath;
     }
 
-    public String getTextAlignment() {
-        return textAlignment;
+    /**
+     * Gets the thumbnail alt text.
+     *
+     * @return the thumbnail alt text
+     */
+    public String getThumbnailAltText() {
+        return thumbnailAltText;
     }
 
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
     public String getPwTheme() {
         return pwTheme;
     }
 
+    /**
+     * Gets the pw button theme.
+     *
+     * @return the pw button theme
+     */
     public String getPwButtonTheme() {
         return pwButtonTheme;
     }
 
+    /**
+     * Gets the pw link theme.
+     *
+     * @return the pw link theme
+     */
+    public String getPwLinkTheme() {
+        return pwLinkTheme;
+    }
+
+    /**
+     * Gets the pw padding.
+     *
+     * @return the pw padding
+     */
     public String getPwPadding() {
         return pwPadding;
     }
 
+    /**
+     * Gets the pw display.
+     *
+     * @return the pw display
+     */
     public String getPwDisplay() {
         return pwDisplay;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotEmpty(linkURL)) {
+            assetName = getSubstringAfterLast(linkURL);
+        }
+        return assetName;
+    }
+
+    /**
+     * Gets the video name.
+     *
+     * @return the video name
+     */
+    public String getVideoName() {
+        String videoName = StringUtils.EMPTY;
+        if (StringUtils.isNoneEmpty(damVideoPath)) {
+            videoName = getSubstringAfterLast(damVideoPath);
+        }
+        return videoName;
+    }
+
+    /**
+     * Gets the substring after last.
+     *
+     * @param path the path
+     * @return the substring after last
+     */
+    private String getSubstringAfterLast(final String path) {
+        return StringUtils.substringAfterLast(path, FORWARD_SLASH);
     }
 }
