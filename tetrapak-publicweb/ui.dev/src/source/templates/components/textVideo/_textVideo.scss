@@ -21,9 +21,9 @@
         }
 
         #{$self}__video {
-            @include margin-top($padding-md);
+            @include margin-top($padding-l);
             @media #{$desktop} {
-                @include margin-top($padding-l);
+                @include margin-top($margin-xxxl);
             }
         }
     }
@@ -34,9 +34,9 @@
         }
 
         #{$self}__video {
-            @include margin-bottom($padding-md);
+            @include margin-bottom($padding-l);
             @media #{$desktop} {
-                @include margin-bottom($padding-l);
+                @include margin-bottom($margin-xxxl);
             }
         }
     }
@@ -76,14 +76,14 @@
 
     &__video {
         @include border-radius($border-radius);
-        @include margin-bottom($padding-md);
+        @include margin-bottom($padding-l);
         height: 0;
         overflow: hidden;
         padding-bottom: 56.25%;
         position: relative;
 
         @media #{$desktop} {
-            @include margin-bottom(0);
+            @include margin-bottom($margin-xxxl);
         }
 
         video,

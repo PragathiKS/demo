@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { initializeDAMPlayer,ytPromise,initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
 class TextVideo {
   constructor({ el }) {
     this.root = $(el);
@@ -9,6 +10,8 @@ class TextVideo {
 
   initCache() {
     this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
+    ytPromise.then(() => { initializeYoutubePlayer(); });
+    initializeDAMPlayer();
   }
 
   bindEvents() {

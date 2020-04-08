@@ -9,7 +9,7 @@
   "pwLinkTheme": "download",
   "videoSource": "damVideo",
   "youtubeEmbedURL": "https://www.youtube.com/embed/MkcGKWjNw3c",
-  "damVideoPath": "/content/dam/publicweb/test.mp4",
+  "damVideoPath": "https://s7g10.scene7.com/is/content/tetrapakdev/Transform_your_business_sustainably",
   "thumbnailPath": "https://s7g10.scene7.com/is/image/tetrapakdev/ContentImage4?scl=1",
   "targetBlank":"_self",
   "pwTheme": "grayscale-white",

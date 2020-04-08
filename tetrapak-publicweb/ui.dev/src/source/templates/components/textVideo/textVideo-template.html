@@ -31,23 +31,25 @@
       </div>
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
-          <div class="pw-text-video__video">
+          <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.videoName}"
+          data-video-name="${data.videoName}">
             <sly data-sly-test = "${!wcmmode.edit}">
             <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath}"></sly>
-            <video controls poster="${dynamicImageModel.desktopUrl}">
+            <video class="js-dam-player" controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </sly>
           <sly data-sly-test = "${wcmmode.edit}">
-            <video controls poster="${data.thumbnailPath}">
+            <video class="js-dam-player" controls poster="${data.thumbnailPath}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </sly>
           </div>
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
-          <div class="pw-text-video__video">
-            <iframe src="${data.youtubeEmbedURL}" frameborder="0"
+          <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
+          data-video-name="${data.youtubeEmbedURL}">
+            <iframe  class='js-yt-player' src="${data.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>

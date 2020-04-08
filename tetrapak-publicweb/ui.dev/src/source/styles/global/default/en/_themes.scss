@@ -27,7 +27,7 @@
     }
 
     &--regular {
-        @include padding($padding-md);
+        @include padding($padding-l $padding-md);
         @media #{$desktop} {
             @include padding($padding-xxxl);
         }
