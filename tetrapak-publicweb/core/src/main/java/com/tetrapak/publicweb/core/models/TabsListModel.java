@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -26,6 +27,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.models.multifield.TabBeanModel;
+import com.tetrapak.publicweb.core.models.multifield.TabBeanSemiAutoModel;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -98,6 +100,14 @@ public class TabsListModel {
     @ValueMapValue
     private String anchorTitle;
 
+    @ValueMapValue
+    @Named(value = "tabsManual")
+    private List<TabBeanModel> tabListManual = new ArrayList<>();
+
+    @ValueMapValue
+    @Named(value = "tabsSemi")
+    private List<TabBeanSemiAutoModel> tabListSemiAuto = new ArrayList<>();
+
     private List<TabBeanModel> tabList = new ArrayList<>();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
@@ -132,21 +142,29 @@ public class TabsListModel {
 	SearchResult searchResults = executeQuery(resolver);
 	for (Hit hit : searchResults.getHits()) {
 	    try {
-		AggregatorModel aggregator = PageUtil.getAggregator(pageManager.getPage(hit.getPath()));
-		TabBeanModel tabBean = new TabBeanModel();
-		tabBean.setTitle(aggregator.getTitle());
-		tabBean.setDescription(aggregator.getDescription());
-		tabBean.setFileRefrence(aggregator.getImagePath());
-		tabBean.setAlt(aggregator.getAltText());
-		tabBean.setLinkTexti18n(aggregator.getLinkText());
-		tabBean.setLinkURL(aggregator.getLinkPath());
-		tabBean.setTargetBlank(aggregator.getLinkTarget());
-		tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
-		tabList.add(tabBean);
+		setTabDatafromAggregator(pageManager, hit.getPath());
 	    } catch (RepositoryException e) {
 		LOGGER.info("RepositoryException in Tablist", e.getMessage(), e);
 	    }
 	}
+    }
+
+    /**
+     * @param pageManager
+     * @param pagePath
+     */
+    private void setTabDatafromAggregator(PageManager pageManager, String pagePath) {
+	AggregatorModel aggregator = PageUtil.getAggregator(pageManager.getPage(pagePath));
+	TabBeanModel tabBean = new TabBeanModel();
+	tabBean.setTitle(aggregator.getTitle());
+	tabBean.setDescription(aggregator.getDescription());
+	tabBean.setFileRefrence(aggregator.getImagePath());
+	tabBean.setAlt(aggregator.getAltText());
+	tabBean.setLinkTexti18n(aggregator.getLinkText());
+	tabBean.setLinkURL(aggregator.getLinkPath());
+	tabBean.setTargetBlank(aggregator.getLinkTarget());
+	tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
+	tabList.add(tabBean);
     }
 
     /**
@@ -155,14 +173,16 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListSemiAutomatically(PageManager pageManager) {
-
+	for (TabBeanSemiAutoModel pages : tabListSemiAuto) {
+	    setTabDatafromAggregator(pageManager, pages.getPageURL());
+	}
     }
 
     /**
      * set list from manual authoring
      */
     private void generateListManually() {
-
+	tabList.addAll(tabListManual);
     }
 
     private SearchResult executeQuery(ResourceResolver resourceResolver) {

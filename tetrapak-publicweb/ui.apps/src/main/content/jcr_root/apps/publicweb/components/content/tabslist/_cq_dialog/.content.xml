@@ -77,7 +77,7 @@
                                         <items jcr:primaryType="nt:unstructured">
                                             <imagelist
                                                 jcr:primaryType="nt:unstructured"
-                                                jcr:title="tabs"
+                                                jcr:title="tabsManual"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                 composite="{Boolean}true"
                                                 description="Click to add tab content manually"
@@ -174,7 +174,7 @@
                                         <items jcr:primaryType="nt:unstructured">
                                             <videolist
                                                 jcr:primaryType="nt:unstructured"
-                                                jcr:title="tabs"
+                                                jcr:title="tabsManual"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                 composite="{Boolean}true"
                                                 description="Click to add tab content manually"
@@ -283,7 +283,7 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <tabpaths
                                         jcr:primaryType="nt:unstructured"
-                                        jcr:title="tabs"
+                                        jcr:title="tabsSemi"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"
                                         fieldDescription="Add page paths to automatically populate values (Maximum Limit: 9 tabs)"
