@@ -166,7 +166,21 @@ pipeline {
             }
         } 
         }
+
+        stage('Dev Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                script {
+                    cacheflush()
+                }
+            }
+        }
 }
+
 //Post notification in MS Teams
     post {
         always {
@@ -359,4 +373,12 @@ pipeline {
                 sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
                  			                
+    }
+    
+    def cacheflush() {
+                echo "Starting Dev Dispatcher Cache Clear"
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                {
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 104.46.45.30 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }        
     }
