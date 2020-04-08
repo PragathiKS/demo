@@ -1,12 +1,25 @@
 .tp-pw-richText {
     h1 {
         @include font-size(42px);
+        @include margin-bottom(24px);
         font-weight: 300;
     }
 
-    p {
+    h3 {
+        @include font-size(24px);
+        @include margin-bottom(23px);
+        font-weight: 300;
+    }
+
+    h4 {
         @include font-size(18px);
-        @include margin-top(40px);
+        @include margin-bottom(43px);
+        font-weight: 500;
+    }
+
+    p {
+        @include font-size(14px);
+        @include margin-bottom(48px);
         font-weight: 500;
     }
 
@@ -40,7 +53,7 @@
     }
 
     ul {
-        @include margin-top(40px);
+        @include margin-bottom(35px);
         li::before {
             @include margin-right($margin-sm);
             display: inline-block;
@@ -53,7 +66,7 @@
     }
 
     ol {
-        @include margin-top(40px);
+        @include margin-bottom(60px);
         counter-reset: section;
         list-style-type: none;
         li::before {
@@ -66,9 +79,10 @@
     }
 
     table {
+        @include margin-bottom(48px);
+        border-collapse: collapse;
         table-layout: fixed;
         width: 100%;
-        border-collapse: collapse;
 
         tr {
             border-bottom: 1px solid $color-black;
