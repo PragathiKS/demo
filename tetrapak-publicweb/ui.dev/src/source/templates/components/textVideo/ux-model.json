@@ -1,14 +1,22 @@
 {
+  "anchorId": "anchor123",
+  "anchorTitle": "Anchor title",
+  "subTitle": "LOREM IPSUM",
   "title": "Turn your products into success",
   "description": "Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. ",
   "linkTexti18n": "Discover what we can do for your products",
   "linkURL": "http://www.google.com",
+  "pwLinkTheme": "download",
   "videoSource": "damVideo",
   "youtubeEmbedURL": "https://www.youtube.com/embed/MkcGKWjNw3c",
-  "damVideoPath": "/content/dam/publicweb/test.mp4",
-  "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
-  "pwTheme": "grayscale-lighter",
-  "pwButtonTheme": "link",
+  "damVideoPath": "https://s7g10.scene7.com/is/content/tetrapakdev/Transform_your_business_sustainably",
+  "thumbnailPath": "https://s7g10.scene7.com/is/image/tetrapakdev/ContentImage4?scl=1",
+  "targetBlank":"_self",
+  "pwTheme": "grayscale-white",
+  "pwButtonTheme": "button",
   "pwPadding": "regular",
-  "pwDisplay": "row-left-to-right"
+  "pwDisplay": "display-row",
+  "assetName": "file.pdf",
+  "videoName": "videoName"
 }
+

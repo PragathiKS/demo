@@ -21,9 +21,9 @@
         }
 
         #{$self}__video {
-            @include margin-top($padding-md);
+            @include margin-top($padding-l);
             @media #{$desktop} {
-                @include margin-top($padding-l);
+                @include margin-top($margin-xxxl);
             }
         }
     }
@@ -34,42 +34,56 @@
         }
 
         #{$self}__video {
-            @include margin-bottom($padding-md);
+            @include margin-bottom($padding-l);
             @media #{$desktop} {
-                @include margin-bottom($padding-l);
+                @include margin-bottom($margin-xxxl);
             }
         }
     }
 
+    &__subTitle {
+        @include margin-bottom($padding-sm);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        text-transform: uppercase;
 
-    &__title,
+        @media #{$desktop} {
+            @include margin-bottom($padding-md);
+        }
+    }
+
+    &__title{
+        @include margin-bottom($padding-l);
+        @include font-size($font-m-xl);
+        @include line-height(32px, $font-m-xl);
+       
+        @media #{$desktop} {
+            @include margin-bottom($padding-l);
+            @include font-size($font-xl);
+            @include line-height(40px, $font-xl);
+        }
+    }
+
     &__description {
-        @include margin-bottom($padding-md);
+        @include margin-bottom($padding-l);
+        @include font-size($font-baseline);
+        @include line-height(24px, $font-baseline);
 
         @media #{$desktop} {
             @include margin-bottom($padding-l);
         }
     }
 
-    &__description {
-        @include font-size(16px);
-        @include line-height(28px, 16px);
-        @media #{$tablet} {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
-        }
-    }
-
     &__video {
         @include border-radius($border-radius);
-        @include margin-bottom($padding-md);
+        @include margin-bottom($padding-l);
         height: 0;
         overflow: hidden;
         padding-bottom: 56.25%;
         position: relative;
 
         @media #{$desktop} {
-            @include margin-bottom(0);
+            @include margin-bottom($margin-xxxl);
         }
 
         video,
