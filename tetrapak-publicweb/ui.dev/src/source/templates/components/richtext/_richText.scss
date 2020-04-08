@@ -1,7 +1,11 @@
 .tp-pw-richText {
     background: $color-white;
-    display:flex;
-    flex-direction: column;
+
+    .fullBleed {
+        @include padding-left(0);
+        @include padding-right(0);
+    }
+
     h1 {
         @include font-size(42px);
         @include margin-bottom(24px);
@@ -26,49 +30,24 @@
         font-weight: 500;
     }
 
-    ul ul ul {
-        li::before {
-            content: '\2012';
-            font-weight: 500;
-        }
-        li {
-            @include font-size(12px);
-        }
-    }
-
-    ol ol ol {
-        @include padding(0 0 0 28px);
-        li {
-            @include font-size(12px);
-        }
-    }
-
-    ol ol,
-    ul ul {
-        @include padding(0 0 0 20px);
-    }
     ol,
     ul {
+        @include margin-bottom(32px);
         li::before {
             color: $color-congress-blue;
         }
     }
 
     ul {
-        @include margin-bottom(35px);
         li::before {
             @include margin-right($margin-sm);
             display: inline-block;
             color: $color-congress-blue;
             content: '\2022';
         }
-        li {
-            @include font-size(14px);
-        }
     }
 
     ol {
-        @include margin-bottom(60px);
         counter-reset: section;
         list-style-type: none;
         li::before {
@@ -79,24 +58,76 @@
         }
     }
 
+    ol ol,
+    ul ul {
+        @include padding(0 0 0 20px);
+    }
+
+    ul > ul,
+    ol > li > ol {
+        @include margin-bottom(0);
+    }
+
+    ul li,
+    ol li {
+        @include font-size(14px);
+        @include padding-bottom(16px);
+    }
+
+    ol > li > ol {
+        :last-child {
+            @include padding-bottom(0);
+        }
+    }
+
+    ol li ol {
+        @include padding-top(16px);
+    }
+
+
+    ul ul ul {
+        li::before {
+            content: '\2012';
+            font-weight: 500;
+        }
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+            &:last-child {
+                @include padding-bottom(16px);
+            }
+        }
+    }
+
+    ol ol ol {
+        @include padding-left(28px);
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+        }
+    }
+
+
+
+
+
+
     table {
         @include margin-bottom(48px);
         border-collapse: collapse;
         table-layout: fixed;
         width: 100%;
 
-        tr {
-            border-bottom: 1px solid $color-black;
-        }
-
         th {
             @include padding-top(9px);
             @include padding-bottom(9px);
+            border-bottom: 1px solid $color-black;
         }
 
         td {
             @include padding-top(11px);
             @include padding-bottom(11px);
+            border-bottom: 1px solid $color-mercury;
         }
 
         td,

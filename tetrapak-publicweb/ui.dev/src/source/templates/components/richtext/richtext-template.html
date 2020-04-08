@@ -1,6 +1,6 @@
 <sly data-sly-template.richtext_template="${@data, flag}">
-  <div
-    class="tp-pw-richText tp--container col-sm-12 col-lg-8 d-flex justify-content-lg-center justify-content-sm-center">
+  <div class="tp-pw-richText col-sm-12 col-lg-12 d-flex justify-content-lg-center justify-content-sm-center">
+    <div class='col-lg-8 col-sm-12 fullBleed'>
       <h1>Long article title that could potentialy wrap over two lines</h1>
       <h3>Long article title that could potentialy wrap over two lines</h3>
       <h4>Long article title that could potentialy wrap over two lines</h4>
@@ -25,36 +25,41 @@
           <ul>
             <li>Lorem ipsum dolor sit amet
               Consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet
-              Consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet
-              Consectetur adipiscing elit</li>
+
           </ul>
+          <li>Lorem ipsum dolor sit amet
+            Consectetur adipiscing elit</li>
+          <li>Lorem ipsum dolor sit amet
+            Consectetur adipiscing elit</li>
         </ul>
+        <li>Lorem ipsum dolor sit amet
+          Consectetur adipiscing elit</li>
+        <li>Lorem ipsum dolor sit amet
+          Consectetur adipiscing elit</li>
+        <li>Lorem ipsum dolor sit amet
+          Consectetur adipiscing elit</li>
       </ul>
+
       <ol>
-        <li>li element</li>
-        <li>li element</li>
-        <li>li element</li>
-        <li>li element
+        <li>one</li>
+        <li>two
           <ol>
-            <li>sub li element</li>
-            <li>sub li element</li>
-            <li>sub li element</li>
+            <li>two.one</li>
+            <li>two.two</li>
+            <li>two.three</li>
           </ol>
         </li>
-        <li>li element</li>
-        <li>li element
+        <li>three
           <ol>
-            <li>sub li element</li>
-            <li>sub li element</li>
-            <ol>
-              <li>sub li element</li>
-              <li>sub li element</li>
-              <li>sub li element</li>
-            </ol>
+            <li>three.one</li>
+            <li>three.two
+              <ol>
+                <li>three.two.two</li>
+              </ol>
+            </li>
           </ol>
         </li>
+        <li>four</li>
       </ol>
 
       <table aria-describedby='richText-table'>
@@ -96,5 +101,6 @@
         </tbody>
       </table>
 
+    </div>
   </div>
 </sly>
