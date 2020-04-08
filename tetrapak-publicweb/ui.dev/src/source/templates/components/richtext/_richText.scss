@@ -1,4 +1,7 @@
 .tp-pw-richText {
+    background: $color-white;
+    display:flex;
+    flex-direction: column;
     h1 {
         @include font-size(42px);
         @include margin-bottom(24px);
@@ -7,13 +10,13 @@
 
     h3 {
         @include font-size(24px);
-        @include margin-bottom(23px);
+        @include margin-bottom(24px);
         font-weight: 300;
     }
 
     h4 {
         @include font-size(18px);
-        @include margin-bottom(43px);
+        @include margin-bottom(48px);
         font-weight: 500;
     }
 
@@ -42,7 +45,6 @@
 
     ol ol,
     ul ul {
-        @include margin-top(0);
         @include padding(0 0 0 20px);
     }
     ol,
@@ -74,7 +76,6 @@
             @include font-size(14px);
             content: counters(section, '.') ' ';
             counter-increment: section;
-
         }
     }
 

@@ -1,21 +1,18 @@
 <sly data-sly-template.richtext_template="${@data, flag}">
-  <div class="tp-pw-richText tp--container">
-    <h1>Long article title that could potentialy wrap over two lines</h1>
-    <h3>Long article title that could potentialy wrap over two lines</h3>
-    <h4>Long article title that could potentialy wrap over two lines</h4>
-    <p>A preamble starts everything. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Fusce quis lectus quis sem lacinia nonummy. Proin mollis lorem non dolor. In hac habitasse platea dictumst. Nulla
-      ultrices odio. Donec augue. Phasellus dui. Maecenas facilisis nisl vitae nibh. </p>
-    <b>bold text</b>
-    <i>italic text</i>
-    <ul>
-      <li>Lorem ipsum dolor sit amet
-        Consectetur adipiscing elit</li>
-      <li>Lorem ipsum dolor sit amet
-        Consectetur adipiscing elit</li>
-      <li>Lorem ipsum dolor sit amet
-        Consectetur adipiscing elit</li>
+  <div
+    class="tp-pw-richText tp--container col-sm-12 col-lg-8 d-flex justify-content-lg-center justify-content-sm-center">
+      <h1>Long article title that could potentialy wrap over two lines</h1>
+      <h3>Long article title that could potentialy wrap over two lines</h3>
+      <h4>Long article title that could potentialy wrap over two lines</h4>
+      <p>A preamble starts everything. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Fusce quis lectus quis sem lacinia nonummy. Proin mollis lorem non dolor. In hac habitasse platea dictumst.
+        Nulla
+        ultrices odio. Donec augue. Phasellus dui. Maecenas facilisis nisl vitae nibh. </p>
+      <b>bold text</b>
+      <i>italic text</i>
       <ul>
+        <li>Lorem ipsum dolor sit amet
+          Consectetur adipiscing elit</li>
         <li>Lorem ipsum dolor sit amet
           Consectetur adipiscing elit</li>
         <li>Lorem ipsum dolor sit amet
@@ -25,74 +22,79 @@
             Consectetur adipiscing elit</li>
           <li>Lorem ipsum dolor sit amet
             Consectetur adipiscing elit</li>
-          <li>Lorem ipsum dolor sit amet
-            Consectetur adipiscing elit</li>
+          <ul>
+            <li>Lorem ipsum dolor sit amet
+              Consectetur adipiscing elit</li>
+            <li>Lorem ipsum dolor sit amet
+              Consectetur adipiscing elit</li>
+            <li>Lorem ipsum dolor sit amet
+              Consectetur adipiscing elit</li>
+          </ul>
         </ul>
       </ul>
-    </ul>
-    <ol>
-      <li>li element</li>
-      <li>li element</li>
-      <li>li element</li>
-      <li>li element
-        <ol>
-          <li>sub li element</li>
-          <li>sub li element</li>
-          <li>sub li element</li>
-        </ol>
-      </li>
-      <li>li element</li>
-      <li>li element
-        <ol>
-          <li>sub li element</li>
-          <li>sub li element</li>
+      <ol>
+        <li>li element</li>
+        <li>li element</li>
+        <li>li element</li>
+        <li>li element
           <ol>
             <li>sub li element</li>
             <li>sub li element</li>
             <li>sub li element</li>
           </ol>
-        </ol>
-      </li>
-    </ol>
+        </li>
+        <li>li element</li>
+        <li>li element
+          <ol>
+            <li>sub li element</li>
+            <li>sub li element</li>
+            <ol>
+              <li>sub li element</li>
+              <li>sub li element</li>
+              <li>sub li element</li>
+            </ol>
+          </ol>
+        </li>
+      </ol>
 
-    <table aria-describedby='richText-table'>
-      <thead>
-        <tr>
-          <th scope="col">Band</th>
-          <th scope="col">Year formed</th>
-          <th scope="col">No. of Albums</th>
-          <th scope="col">Most famous song</th>
-          <th scope="col">No. of Albums</th>
-          <th scope="col">Most famous song</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1976</td>
-          <td>9</td>
-          <td>Ever fallen in love (with someone you shouldn't've)</td>
-          <td>9</td>
-          <td>Ever fallen in love (with someone you shouldn't've)</td>
-          <td>Ever fallen in love (with someone you shouldn't've)</td>
-        </tr>
-        <tr>
-          <td>1976</td>
-          <td>6</td>
-          <td>London Calling</td>
-          <td>6</td>
-          <td>London Calling</td>
-          <td>London Calling</td>
-        </tr>
-        <tr>
-          <td>1974</td>
-          <td>17</td>
-          <td>No More Heroes</td>
-          <td>17</td>
-          <td>No More Heroes</td>
-          <td>17</td>
-        </tr>
-      </tbody>
-    </table>
+      <table aria-describedby='richText-table'>
+        <thead>
+          <tr>
+            <th scope="col">Band</th>
+            <th scope="col">Year formed</th>
+            <th scope="col">No. of Albums</th>
+            <th scope="col">Most famous song</th>
+            <th scope="col">No. of Albums</th>
+            <th scope="col">Most famous song</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1976</td>
+            <td>9</td>
+            <td>Ever fallen in love (with someone you shouldn't've)</td>
+            <td>9</td>
+            <td>Ever fallen in love (with someone you shouldn't've)</td>
+            <td>Ever fallen in love (with someone you shouldn't've)</td>
+          </tr>
+          <tr>
+            <td>1976</td>
+            <td>6</td>
+            <td>London Calling</td>
+            <td>6</td>
+            <td>London Calling</td>
+            <td>London Calling</td>
+          </tr>
+          <tr>
+            <td>1974</td>
+            <td>17</td>
+            <td>No More Heroes</td>
+            <td>17</td>
+            <td>No More Heroes</td>
+            <td>17</td>
+          </tr>
+        </tbody>
+      </table>
 
   </div>
 </sly>
