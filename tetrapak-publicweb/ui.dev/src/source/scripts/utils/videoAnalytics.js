@@ -34,18 +34,15 @@ function _getIndex(currentTime, totalTime) {
  * @param {number} videoLength Video length in seconds
  */
 function _trackVideoParameters(videoInteraction, videoLength) {
-  const { linkParentTitle, videoName } = $(this).parents('.js-video-props').data();
-  const linkType = 'internal';
-  const linkSection = 'video';
+  const { videoName } = $(this).parents('.js-video-props').data();
+  const videoSection = 'video';
   const trackingObj = {
-    linkType,
-    linkSection,
-    linkParentTitle,
+    videoSection,
     videoName,
     videoInteraction,
     videoLength
   };
-  trackAnalytics(trackingObj, 'linkClick', 'linkClicked', undefined, false);
+  trackAnalytics(trackingObj, 'video', 'linkClicked', undefined, false);
 }
 
 /**
