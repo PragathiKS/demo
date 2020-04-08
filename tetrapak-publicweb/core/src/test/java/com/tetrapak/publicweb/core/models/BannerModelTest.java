@@ -57,7 +57,7 @@ public class BannerModelTest {
     public void simpleLoadAndGettersTest() throws Exception {
         String[] methods = new String[] { "getBannerType", "getSubtitle", "getTitle", "getText", "getLinkLabel",
                 "getLinkPath", "getLinkTarget", "getPwLinkTheme", "getFileReference", "getAlt", "getPwDisplay",
-                "getPwTheme", "getPwButtonTheme", "getAnchorId", "getAnchorTitle","getImageCrop" };
+                "getPwTheme", "getPwButtonTheme", "getAnchorId", "getAnchorTitle","getImageCrop","getAssetName" };
         Util.testLoadAndGetters(methods, model, resource);
     }
 }
