@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Banner"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <display
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Display Mode"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <bannertype
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Select behaviour"
+                                name="./bannerType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <textimage
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Text &amp; Image Banner"
+                                        value="textImage"/>
+                                    <hero
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Top Banner"
+                                        value="hero"/>
+                                </items>
+                            </bannertype>
+                            <pwDisplay
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
+                        </items>
+                    </column>
+                </items>
+            </display>
+            <properties
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Banner"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Recommended to use characters less than set Limit: 30 chars considering translations"
+                                fieldLabel="Title"
+                                maxlength="{Long}30"
+                                name="./title"/>
+                            <subtitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Recommended to use characters less than set Limit: 35 chars considering translations"
+                                fieldLabel="Subtitle"
+                                maxlength="{Long}35"
+                                name="./subtitle"/>
+                            <text
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldDescription="Recommended to use characters less than set Limit: 220 chars considering translations"
+                                fieldLabel="Description"
+                                maxlength="{Long}220"
+                                name="./text"/>
+                            <linkLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Link Label"
+                                name="./linkLabel"/>
+                            <linkpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Link path"
+                                name="./linkPath"
+                                rootPath="/content/tetrapak/public-web"/>
+                            <linktarget
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                name="./linkTarget"
+                                text="New Window"
+                                uncheckedValue="_self"
+                                value="_blank"/>
+                            <fileReference
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                fieldLabel="Image path"
+                                path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                            <alt
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
+                            <pwThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                fieldDescription="Please select a background theme"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+                            <pwLinkThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwLinkThemes"/>
+                            <pwButtonThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                fieldDescription="Please select the button background theme"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
+                        </items>
+                    </column>
+                </items>
+            </properties>
+            <anchor
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/include"
+                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+        </items>
+    </content>
+</jcr:root>
