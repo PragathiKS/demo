@@ -42,20 +42,20 @@
     }
 
     &__subTitle {
-        @include margin-bottom($padding-xs);
+        @include margin-bottom($padding-sm);
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
         text-transform: uppercase;
 
         @media #{$desktop} {
-            @include margin-bottom($padding-sm);
+            @include margin-bottom($padding-md);
         }
     }
 
     &__title{
-        @include margin-bottom($padding-xs);
-        @include font-size($font-l);
-        @include line-height(32px, $font-l);
+        @include margin-bottom($padding-l);
+        @include font-size($font-m-xl);
+        @include line-height(32px, $font-m-xl);
        
         @media #{$desktop} {
             @include margin-bottom($padding-l);
@@ -65,14 +65,12 @@
     }
 
     &__description {
-        @include margin-bottom(13px);
+        @include margin-bottom($padding-l);
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
 
         @media #{$desktop} {
-            @include margin-bottom(27px);
-           // @include font-size($font-baseline);
-           // @include line-height(24px, $font-baseline);
+            @include margin-bottom($padding-l);
         }
     }
 

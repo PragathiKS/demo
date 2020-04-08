@@ -14,12 +14,14 @@
     }
 
   &--regular {
-    margin: $margin-xxxl, 0;
+        margin: $margin-md 0;  
+    @media #{$desktop} {
+        margin: $margin-xxxl 0;
+        }
     }
 }
 
 .pw-padding {
-
     &--zero {
         @include padding($padding-zero);
     }

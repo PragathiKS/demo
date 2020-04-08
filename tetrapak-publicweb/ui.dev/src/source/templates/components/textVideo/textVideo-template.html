@@ -1,6 +1,6 @@
 <sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}" 
-       class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--${data.pwPadding} pw-margin--regular"
+       class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--${data.pwPadding}"
        data-locator="text-video">
     <div class="row">
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
@@ -11,14 +11,21 @@
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description}</p>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-          <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-                data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, btnTarget=data.targetBlank, btnIcon='icon-Circle_Arrow_Right', variant=data.pwButtonTheme}" />
-        </div>
+                <a data-sly-test="${data.linkTexti18n}"
+                href="${data.linkURL}"
+                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'}"
+                title="${data.linkTexti18n}"
+                target="${data.targetBlank}">
+                <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
+                <i class="icon ${data.pwButtonTheme == 'button' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
+             </a>
+              </div>
       </div>
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video">
-            <video controls poster="${data.thumbnailPath}">
+            <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath}"></sly>
+            <video controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </div>
@@ -37,8 +44,14 @@
         </div>
         <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <sly  data-sly-use.pwButton="/apps/commons/components/atoms/button-text/button-text.html"
-               data-sly-call="${pwButton.button_template @ btnPath=data.linkURL, btnText=data.linkTexti18n, btnTooltip=data.linkTexti18n, variant=data.pwButtonTheme}" />
+          <a data-sly-test="${data.linkTexti18n}"
+                href="${data.linkURL}"
+                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'}"
+                title="${data.linkTexti18n}"
+                target="${data.targetBlank}">
+                <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
+                <i class="icon ${data.pwButtonTheme == 'button' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
+             </a>
         </div>
       </div>
     </div>
