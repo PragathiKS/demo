@@ -1,28 +1,36 @@
-<sly data-sly-template.video_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}"
-       class="pw-video pw-theme--${data.pwTheme}"
-       data-locator="video" id="${data.anchorId}">
+<sly data-sly-template.video_template="${@ data, flag}"
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div data-module="Video" data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}"
+    class="pw-video pw-theme--${data.pwTheme}" data-locator="video" id="${data.anchorId}">
     <div class="row">
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
+      <div
+        class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
-          <div class="pw-text-video__video">
+          <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.damVideoPath}"
+            data-video-name="${data.damVideoPath}">
             <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel'
                                             @ imagePath=data.thumbnailPath}">
             </sly>
-            <video controls poster="${dynamicImageModel.desktopUrl}">
+            <video class="js-dam-player" controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </div>
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
-          <div class="pw-text-video__video">
-            <iframe src="${data.youtubeEmbedURL}" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+          <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
+            data-video-name="${data.youtubeEmbedURL}">
+
+
+            <iframe class='js-yt-player' src="${data.youtubeEmbedURL}" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+
+
           </div>
         </sly>
       </div>
     </div>
   </div>
-  <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
+  <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}"
+    data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>
