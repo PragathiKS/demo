@@ -20,7 +20,7 @@
                         <mobile
                             jcr:primaryType="nt:unstructured"
                             name="16:9"
-                            ratio="0.625"/>
+                            ratio="1.78"/>
                     </aspectRatios>
                 </crop>
             </plugins>

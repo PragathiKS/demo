@@ -33,19 +33,24 @@ function _getIndex(currentTime, totalTime) {
  * @param {string} videoInteraction Video event
  * @param {number} videoLength Video length in seconds
  */
-function _trackVideoParameters(videoInteraction, videoLength) {
-  const { linkParentTitle, videoName } = $(this).parents('.js-video-props').data();
-  const linkType = 'internal';
-  const linkSection = 'video';
+function _trackVideoParameters(videoInteraction, videoLength,videoTime,trackingKey) {
+  const { videoName } = $(this).parents('.js-video-props').data();
+  const videomilestone = (videoInteraction==='25% milestone' && '25') || (videoInteraction==='50% milestone' && '50') || (videoInteraction==='75% milestone' && '75');
+  const videoSection = 'video';
   const trackingObj = {
-    linkType,
-    linkSection,
-    linkParentTitle,
     videoName,
-    videoInteraction,
-    videoLength
+    videoSection,
+    videoLength:new Date(videoLength * 1000).toISOString().substr(11, 8),
+    videoTime:new Date(Math.round(videoTime) * 1000).toISOString().substr(11, 8),
+    videoInteraction
   };
-  trackAnalytics(trackingObj, 'linkClick', 'linkClicked', undefined, false);
+  if(videomilestone){
+    trackingObj['videomilestone']= videomilestone;
+  }
+  if(videoInteraction === 'end'){
+    trackingObj['videoend']= 'true';
+  }
+  trackAnalytics(trackingObj, 'video', trackingKey, undefined, false);
 }
 
 /**
@@ -59,15 +64,15 @@ function _calculateProgress(currentTime, totalTime) {
   const $this = $(this);
   let trackIndex = $this.data('trackIndex');
   if (percentCompleted >= 25 && trackIndex === 0) {
-    _trackVideoParameters.apply(this, ['25%', Math.round(totalTime)]);
+    _trackVideoParameters.apply(this, ['25% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
     $this.data('trackIndex', (trackIndex = 1));
   }
   if (percentCompleted >= 50 && trackIndex === 1) {
-    _trackVideoParameters.apply(this, ['50%', Math.round(totalTime)]);
+    _trackVideoParameters.apply(this, ['50% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
     $this.data('trackIndex', (trackIndex = 2));
   }
   if (percentCompleted >= 75 && trackIndex === 2) {
-    _trackVideoParameters.apply(this, ['75%', Math.round(totalTime)]);
+    _trackVideoParameters.apply(this, ['75% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
     $this.data('trackIndex', (trackIndex = 3));
   }
 }
@@ -101,6 +106,7 @@ export function pauseVideosByReference(el) {
  */
 function _onStateChange(thisIns, e) {
   const totalTime = thisIns.ytPlayer.getDuration();
+  const videoTime = thisIns.ytPlayer.getCurrentTime();
   const $this = $(this);
   $this.data('trackIndex', _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]));
   if (e.data === window.YT.PlayerState.PLAYING) {
@@ -114,10 +120,10 @@ function _onStateChange(thisIns, e) {
     }, 500);
     const wasStarted = $this.data('started');
     if (['true', true].includes(wasStarted)) {
-      _trackVideoParameters.apply(this, ['resume', Math.round(totalTime)]);
+      _trackVideoParameters.apply(this, ['resume', Math.round(totalTime),videoTime,'videoResume']);
     } else {
       $this.attr('data-started', 'true').data('started', 'true');
-      _trackVideoParameters.apply(this, ['start', Math.round(totalTime)]);
+      _trackVideoParameters.apply(this, ['start', Math.round(totalTime),videoTime,'videoStart']);
     }
   }
   if (e.data === window.YT.PlayerState.PAUSED) {
@@ -125,7 +131,7 @@ function _onStateChange(thisIns, e) {
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
-    _trackVideoParameters.apply(this, ['pause', Math.round(totalTime)]);
+    _trackVideoParameters.apply(this, ['pause', Math.round(totalTime),videoTime,'videoPause']);
   }
   if (e.data === window.YT.PlayerState.ENDED) {
     $this.removeClass('is-playing is-paused').addClass('is-stopped');
@@ -136,7 +142,7 @@ function _onStateChange(thisIns, e) {
       started: 'false',
       trackIndex: 0
     });
-    _trackVideoParameters.apply(this, ['end', Math.round(totalTime)]);
+    _trackVideoParameters.apply(this, ['end', Math.round(totalTime),totalTime,'videoEnd']);
   }
 }
 
@@ -219,10 +225,10 @@ function _onDAMPlay() {
   const wasStarted = $this.data('started');
   $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
   if (['true', true].includes(wasStarted)) {
-    _trackVideoParameters.apply(this, ['resume', Math.round(this.duration)]);
+    _trackVideoParameters.apply(this, ['resume', Math.round(this.duration),this.currentTime,'videoResume']);
   } else {
     $this.attr('data-started', 'true').data('started', 'true');
-    _trackVideoParameters.apply(this, ['start', Math.round(this.duration)]);
+    _trackVideoParameters.apply(this, ['start', Math.round(this.duration),this.currentTime,'videoStart']);
   }
 }
 
@@ -233,7 +239,7 @@ function _onDAMPlay() {
 function _onDAMPause() {
   if (this.currentTime < this.duration) {
     $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration])).removeClass('is-stopped is-playing').addClass('is-paused');
-    _trackVideoParameters.apply(this, ['pause', Math.round(this.duration)]);
+    _trackVideoParameters.apply(this, ['pause', Math.round(this.duration),this.currentTime,'videoPause']);
   }
 }
 
@@ -255,7 +261,7 @@ function _onEnd() {
     started: 'false',
     trackIndex: 0
   }).removeClass('is-playing is-paused').addClass('is-stopped');
-  _trackVideoParameters.apply(this, ['end', Math.round(this.duration)]);
+  _trackVideoParameters.apply(this, ['end', Math.round(this.duration),this.currentTime,'videoEndButtonClick']);
 }
 
 /**

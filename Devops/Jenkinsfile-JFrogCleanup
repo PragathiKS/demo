@@ -1,3 +1,5 @@
+@Library('jenkins-pipeline-library') _
+
 pipeline {
 	agent {
 		node {
@@ -123,7 +125,13 @@ pipeline {
                 }
             }
         }
-		}
+        //Post notification in MS Teams
+        post {
+            always {
+                sendNotifications(currentBuild.currentResult)
+            }
+        }
+    }
 
 def downloadmetadata() {
 

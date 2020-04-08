@@ -78,6 +78,10 @@ public class BannerModel {
     @ValueMapValue
     private String anchorTitle;
 
+    /** The image crop. */
+    @ValueMapValue
+    private String imageCrop;
+
     /**
      * Gets the banner type.
      *
@@ -211,6 +215,15 @@ public class BannerModel {
      */
     public String getAnchorTitle() {
         return anchorTitle;
+    }
+
+    /**
+     * Gets the image crop.
+     *
+     * @return the image crop
+     */
+    public String getImageCrop() {
+        return imageCrop;
     }
 
 }
