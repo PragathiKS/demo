@@ -1,5 +1,4 @@
-<sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}" 
+<div id="#" title="title" 
        class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--${data.pwPadding}"
        data-locator="text-video" data-module="TextVideo">
     <div class="row">
@@ -19,8 +18,7 @@
                 data-link-type="internal"
                 data-link-section="Text and Video CTA Click"
                 data-link-name="${data.linkTexti18n}"
-                data-video-name="${data.videoName}"
-                data-asset-name="${data.assetName}"
+                data-video-name="test video name"
                 data-button-link-type="${data.pwButtonTheme}"
                 data-download-type="${data.pwLinkTheme}"
                 >
@@ -32,17 +30,10 @@
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video">
-            <sly data-sly-test = "${!wcmmode.edit}">
             <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath}"></sly>
             <video controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
-          </sly>
-          <sly data-sly-test = "${wcmmode.edit}">
-            <video controls poster="${data.thumbnailPath}">
-              <source src="${data.damVideoPath}" type="video/mp4">
-            </video>
-          </sly>
           </div>
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
@@ -61,17 +52,9 @@
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
           <a data-sly-test="${data.linkTexti18n}"
                 href="${data.linkURL}"
-                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'} js-textVideo-analytics"
+                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'}"
                 title="${data.linkTexti18n}"
-                target="${data.targetBlank}"
-                data-link-type="internal"
-                data-link-section="Text and Video CTA Click"
-                data-link-name="${data.linkTexti18n}"
-                data-video-name="${data.videoName}"
-                data-asset-name="${data.assetName}"
-                data-button-link-type="${data.pwButtonTheme}"
-                data-download-type="${data.pwLinkTheme}"
-                >
+                target="${data.targetBlank}">
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
                 <i class="icon ${data.pwButtonTheme == 'button' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
              </a>
@@ -79,5 +62,3 @@
       </div>
     </div>
   </div>
-  <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
-</sly>

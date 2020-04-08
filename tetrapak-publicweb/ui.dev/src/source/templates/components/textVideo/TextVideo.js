@@ -1,72 +1,78 @@
 import $ from 'jquery';
-
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 class TextVideo {
   constructor({ el }) {
     this.root = $(el);
-    //this.toggleFlag = false;
-    //this.toggleButtonId = '#toggle-button';
   }
 
   cache = {};
 
   initCache() {
-    // eslint-disable-next-line no-console
-    console.log('JS init cache called::');
-    // this.cache.$mobileMenu = this.root.find('.js-tp-pw-mobile-navigation');
-    // this.cache.$hamburgerToggle = this.root.find('.js-tp-pw-header__hamburger');
-    // this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
+    this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
   }
 
   bindEvents() {
-    // const { $hamburgerToggle, $headerLogoPlaceholder } = this.cache;
-    // $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
-    // $headerLogoPlaceholder.on('click', this.trackAnalytics);
-    // $(window).on('resize', this.hideMobileMenuOnResize);
+    const { $textVideoButton } = this.cache;
+    $textVideoButton.on('click', this.trackAnalytics);
   }
 
-  hideMobileMenuOnResize = () => {
-    this.cache.$mobileMenu.fadeOut(10);
-    this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
-    this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
-    this.toggleFlag = false;
-  }
-
-  openMobileMenuBoxToggle = () => {
-    if(!this.toggleFlag){
-      this.cache.$mobileMenu.fadeIn(300);
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger');
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close');
-      this.toggleFlag = true;
-    }else {
-      this.cache.$mobileMenu.fadeOut(300);
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
-      this.toggleFlag = false;
-    }
-  }
 
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
-    if (window.digitalData) {
-      $.extend(window.digitalData, {
-        linkClick: {
-          linkType: 'internal',
-          linkSection: $this.data('link-section'),
-          linkParentTitle: $this.data('link-parent-title'),
-          linkName: $this.data('link-name')
-        }
-      });
-      if (window._satellite) {
-        window._satellite.track('linkClick');
-      }
+    const $this = $target.closest('.js-textVideo-analytics');
+    let linkParentTitle = '';
+    let trackingObj = {};
+    const dwnType = 'ungated';
+    let eventType = 'content-load';
+    const linkType = $this.data('link-type');
+    const linkSection = $this.data('link-section');
+    const linkName = $this.data('link-name');
+    const videoName = $this.data('video-name');
+    const buttonLinkType = $this.data('button-link-type');
+    const downloadtype = $this.data('download-type');
+    const dwnDocName = $this.data('asset-name');
+
+    if(buttonLinkType==='button' && downloadtype ==='hyperlink'){
+      linkParentTitle = `CTA-Hyperlink_${videoName}`;
     }
 
-    if($this.data('link-section') === 'logo') {
-      var url = $this.attr('href');
-      window.open(url, $this.attr('target'));
+    if(buttonLinkType==='link' && downloadtype ==='hyperlink'){
+      linkParentTitle = `Text hyperlink_${videoName}`;
     }
+
+    if(buttonLinkType==='button' && downloadtype ==='download'){
+      linkParentTitle = `CTA-Download-pdf_${videoName}`;
+      eventType = 'download';
+    }
+
+    if(buttonLinkType==='link' && downloadtype ==='download'){
+      linkParentTitle = `Text hyperlink - Download-pdf_${videoName}`;
+      eventType = 'download';
+    }
+
+    if(downloadtype !=='download'){
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName,
+        eventType
+      };
+    }else{
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName,
+        dwnDocName,
+        dwnType,
+        eventType
+      };
+    }
+
+    trackAnalytics(trackingObj, 'linkClick', 'TextVideoClick', undefined, false);
+    window.open($this.attr('href'), $this.attr('target'));
   }
 
   init() {
