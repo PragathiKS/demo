@@ -7,6 +7,7 @@ import org.apache.sling.api.resource.Resource;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.AggregatorModel;
 
 /**
  * The Class PageUtil.
@@ -99,6 +100,14 @@ public final class PageUtil {
             langauge = PWConstants.ENGLISH_LANGUAGE_ISO_CODE;
         }
         return langauge;
+    }
+    
+    /**
+     * @param currentPage
+     * @return aggregator
+     */
+    public static AggregatorModel getAggregator(Page currentPage) {
+	return currentPage.getContentResource().adaptTo(AggregatorModel.class);
     }
 
 }
