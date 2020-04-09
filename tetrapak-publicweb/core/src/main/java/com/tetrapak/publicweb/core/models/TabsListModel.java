@@ -16,8 +16,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.models.multifield.PagePathsBeanModel;
-import com.tetrapak.publicweb.core.models.multifield.TabBeanModel;
+import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
+import com.tetrapak.publicweb.core.models.multifield.TabModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
@@ -29,6 +29,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabsListModel {
 
+    /** The resource */
     @Self
     private Resource resource;
 
@@ -83,16 +84,16 @@ public class TabsListModel {
 
     @Inject
     @Named(value = "tabsManual")
-    private List<TabBeanModel> tabListManual = new ArrayList<>();
+    private List<TabModel> tabListManual = new ArrayList<>();
 
     @Inject
     @Named(value = "tabsSemi")
-    private List<PagePathsBeanModel> pagePaths = new ArrayList<>();
+    private List<SemiAutomaticModel> pagePaths = new ArrayList<>();
     
     @OSGiService
     AggregatorService aggregatorService;
 
-    private List<TabBeanModel> tabs = new ArrayList<>();
+    private List<TabModel> tabs = new ArrayList<>();
     
     private static final String TAB_LAYOUT_IMAGE = "imageText";
 
@@ -141,7 +142,7 @@ public class TabsListModel {
      */
     private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
 	for (AggregatorModel aggregator : aggregatorList) {
-	    TabBeanModel tabBean = new TabBeanModel();
+	    TabModel tabBean = new TabModel();
 	    tabBean.setTitle(aggregator.getTitle());
 	    tabBean.setDescription(aggregator.getDescription());
 	    tabBean.setFileRefrence(aggregator.getImagePath());
@@ -191,7 +192,7 @@ public class TabsListModel {
 	return pwDisplay;
     }
 
-    public List<TabBeanModel> getTabs() {
+    public List<TabModel> getTabs() {
 	return tabs;
     }
 

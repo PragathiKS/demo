@@ -19,7 +19,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.models.AggregatorModel;
-import com.tetrapak.publicweb.core.models.multifield.PagePathsBeanModel;
+import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -60,11 +60,11 @@ public class AggregatorServiceImpl implements AggregatorService {
      * @return aggregatorList
      */
     @Override
-    public List<AggregatorModel> getAggregatorList(Resource resource, List<PagePathsBeanModel> pagePaths, int maxTabs) {
+    public List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths, int maxTabs) {
 	List<AggregatorModel> aggregatorList = new ArrayList<>();
 	ResourceResolver resolver = resource.getResourceResolver();
 	PageManager pageManager = resolver.adaptTo(PageManager.class);
-	for (PagePathsBeanModel pagePath : pagePaths) {
+	for (SemiAutomaticModel pagePath : pagePaths) {
 	    AggregatorModel aggregator = getAggregator(pageManager.getPage(pagePath.getPageURL()));
 	    if (aggregator != null) {
 		aggregatorList.add(aggregator);
