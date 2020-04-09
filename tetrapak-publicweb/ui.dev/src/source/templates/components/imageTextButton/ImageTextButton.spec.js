@@ -3,7 +3,7 @@ import ImageTextButton from './ImageTextButton';
 
 describe('ImageTextButton', function () {
   before(function () {
-    $(document.body).empty().html('<button class="imageTextButton">Image Text Button</button>');
+    $(document.body).empty().html('<a class="imageTextButton js-textImage-analytics">Image Text Button</a>');
     this.imageTextButton = new ImageTextButton({
       el: document.body
     });
