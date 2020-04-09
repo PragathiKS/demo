@@ -79,7 +79,7 @@
         @include padding(0 0 0 20px);
     }
 
-    ul > ul,
+    ul > li > ul,
     ol > li > ol {
         @include margin-bottom(0);
     }
@@ -90,13 +90,15 @@
         @include padding-bottom(16px);
     }
 
-    ol > li > ol {
+    ol > li > ol,
+    ul > li > ul {
         :last-child {
             @include padding-bottom(0);
         }
     }
 
-    ol li ol {
+    ol li ol,
+    ul li ul {
         @include padding-top(16px);
     }
 
@@ -108,9 +110,6 @@
         li {
             @include font-size(12px);
             @include padding-bottom(8px);
-            &:last-child {
-                @include padding-bottom(16px);
-            }
         }
     }
 
