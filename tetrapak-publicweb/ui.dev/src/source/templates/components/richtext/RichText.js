@@ -1,26 +1,26 @@
 import $ from 'jquery';
-
 class RichText {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.$anchorLink = this.root.find('a');
+    this.cache.$attributeDivId = this.root.find('.tp-pw-richText-wrapper');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    const { $anchorLink } = this.cache;
+    $anchorLink.on('click', this.trackAnalytics);
   }
+
+  trackAnalytics = (e) => {
+    e.preventDefault();
+    const $this = $(e.target);
+    const anchorText = $this.text();
+    this.cache.$attributeDivId.attr('data-link-name', '');
+    this.cache.$attributeDivId.attr('data-link-name', anchorText);
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();

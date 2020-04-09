@@ -1,6 +1,4 @@
 .tp-pw-richText {
-    background: $color-white;
-
     .tp-pw-richText-wrapper a {
         @include padding(0);
         border: 0;
@@ -15,6 +13,7 @@
         &::after {
             @include padding-left(6px);
             content: '\f117';
+            font-family: 'tp-icons';
         }
     }
 
@@ -125,8 +124,9 @@
 
     table {
         @include margin-bottom(48px);
+        display: block;
         border-collapse: collapse;
-        table-layout: fixed;
+        overflow-x: scroll;
         width: 100%;
 
         th {
@@ -144,7 +144,7 @@
         td,
         th {
             @include padding-left(8px);
-            white-space: normal;
+            @include padding-right(14px);
         }
     }
 }
