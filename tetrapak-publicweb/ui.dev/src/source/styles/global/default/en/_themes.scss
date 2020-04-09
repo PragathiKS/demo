@@ -14,9 +14,9 @@
     }
 
   &--regular {
-        margin: $margin-md 0;  
+        margin: $margin-md auto;  
     @media #{$desktop} {
-        margin: $margin-xxxl 0;
+        margin: $margin-xxxl auto;
         }
     }
 }
