@@ -18,6 +18,10 @@ public class TabBeanModel {
     @Self
     Resource resource;
     
+    /** The tabType */
+    @ValueMapValue
+    private String tabType;
+    
     /** The subTitle */
     @ValueMapValue
     private String subTitle;
@@ -176,6 +180,14 @@ public class TabBeanModel {
 
     public void setPwButtonTheme(String pwButtonTheme) {
         this.pwButtonTheme = pwButtonTheme;
+    }
+
+    public String getTabType() {
+        return tabType;
+    }
+
+    public void setTabType(String tabType) {
+        this.tabType = tabType;
     }
     
 

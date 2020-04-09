@@ -1,15 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -18,18 +14,11 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.models.multifield.TabBeanModel;
 import com.tetrapak.publicweb.core.models.multifield.TabBeanSemiAutoModel;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * Model class for Tab list component.
@@ -102,8 +91,8 @@ public class TabsListModel {
     private List<TabBeanSemiAutoModel> tabListSemiAuto = new ArrayList<>();
 
     private List<TabBeanModel> tabs = new ArrayList<>();
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
+    
+    private static final String TAB_LAYOUT_IMAGE = "imageText";
 
     /**
      * Post construct method to get the tab content from the multifield property
@@ -113,52 +102,24 @@ public class TabsListModel {
     protected void init() {
 	ResourceResolver resolver = resource.getResourceResolver();
 	PageManager pageManager = resolver.adaptTo(PageManager.class);
-
 	if ("automatic".equals(contentType) && pageManager != null) {
-	    tabType = "imageText";
 	    generateListAutomaticWay(resolver, pageManager);
 	} else if ("semi-automatic".equals(contentType) && pageManager != null) {
-	    tabType = "imageText";
 	    generateListSemiAutomatically(pageManager);
 	} else if ("manual".equals(contentType) && pageManager != null) {
 	    generateListManually();
 	}
-
     }
 
     /**
-     * set list from tags
-     * 
-     * @param resolver,pageManager
+     * @param resolver
+     * @param pageManager
      */
     private void generateListAutomaticWay(ResourceResolver resolver, PageManager pageManager) {
-	SearchResult searchResults = executeQuery(resolver);
-	for (Hit hit : searchResults.getHits()) {
-	    try {
-		setTabDatafromAggregator(pageManager, hit.getPath());
-	    } catch (RepositoryException e) {
-		LOGGER.info("RepositoryException in Tablist", e.getMessage(), e);
-	    }
+	List<AggregatorModel> aggregatorList = GlobalUtil.getAggregatorList(resource, tags, maxTabs);
+	if (!aggregatorList.isEmpty()) {
+	    setTabListfromAggregator(aggregatorList);
 	}
-    }
-
-    /**
-     * @param pageManager
-     * @param pagePath
-     */
-    private void setTabDatafromAggregator(PageManager pageManager, String pagePath) {
-	AggregatorModel aggregator = PageUtil.getAggregator(pageManager.getPage(pagePath));
-	TabBeanModel tabBean = new TabBeanModel();
-	tabBean.setTitle(aggregator.getTitle());
-	tabBean.setDescription(aggregator.getDescription());
-	tabBean.setFileRefrence(aggregator.getImagePath());
-	tabBean.setAlt(aggregator.getAltText());
-	tabBean.setLinkTexti18n(aggregator.getLinkText());
-	tabBean.setLinkURL(aggregator.getLinkPath());
-	tabBean.setTargetBlank(aggregator.getLinkTarget());
-	tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
-	tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
-	tabs.add(tabBean);
     }
 
     /**
@@ -167,8 +128,29 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListSemiAutomatically(PageManager pageManager) {
-	for (TabBeanSemiAutoModel pages : tabListSemiAuto) {
-	    setTabDatafromAggregator(pageManager, pages.getPageURL());
+	List<AggregatorModel> aggregatorList = GlobalUtil.getAggregatorList(resource, tabListSemiAuto, maxTabs);
+	if (!aggregatorList.isEmpty()) {
+	    setTabListfromAggregator(aggregatorList);
+	}
+    }
+
+    /**
+     * @param aggregatorList
+     */
+    private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
+	for (AggregatorModel aggregator : aggregatorList) {
+	    TabBeanModel tabBean = new TabBeanModel();
+	    tabBean.setTitle(aggregator.getTitle());
+	    tabBean.setDescription(aggregator.getDescription());
+	    tabBean.setFileRefrence(aggregator.getImagePath());
+	    tabBean.setAlt(aggregator.getAltText());
+	    tabBean.setLinkTexti18n(aggregator.getLinkText());
+	    tabBean.setLinkURL(aggregator.getLinkPath());
+	    tabBean.setTargetBlank(aggregator.getLinkTarget());
+	    tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
+	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
+	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
+	    tabs.add(tabBean);
 	}
     }
 
@@ -177,36 +159,6 @@ public class TabsListModel {
      */
     private void generateListManually() {
 	tabs.addAll(tabListManual);
-    }
-
-    private SearchResult executeQuery(ResourceResolver resourceResolver) {
-	LOGGER.info("Executing executeQuery method.");
-	Map<String, String> map = new HashMap<>();
-
-	// adapt a ResourceResolver to a QueryBuilder
-	QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
-	Session session = resourceResolver.adaptTo(Session.class);
-
-	// Adding query parameters
-	map.put("path", PageUtil.getLanguagePage(resource).getPath());
-	map.put("type", "cq:Page");
-
-	// Parameter to look for tags on the page.
-	if (tags != null && tags.length > 0) {
-	    map.put("1_group.p.and", "true");
-	    for (int i = 0; i < tags.length; i++) {
-		map.put("1_group." + (i + 1) + "_group.property", "jcr:content/cq:tags");
-		map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
-	    }
-	}
-	map.put("orderby", "jcr:content/cq:lastModified");
-	map.put("orderby.sort", "desc");
-	map.put("p.limit", String.valueOf(maxTabs));
-
-	LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
-	Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-
-	return query.getResult();
     }
 
     public String getHeading() {
