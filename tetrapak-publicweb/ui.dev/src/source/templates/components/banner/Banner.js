@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-class ImageTextBanner {
+class Banner {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -13,7 +13,7 @@ class ImageTextBanner {
     const { $itbLink } = this.cache;
     $itbLink.on('click', this.trackAnalytics);
   }
-
+  
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
@@ -71,10 +71,12 @@ class ImageTextBanner {
     trackAnalytics(trackingObj, 'linkClick', 'bannerClick', undefined, false);
     window.open($this.attr('href'), $this.attr('target'));
   }
+
   init() {
+    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
 }
 
-export default ImageTextBanner;
+export default Banner;

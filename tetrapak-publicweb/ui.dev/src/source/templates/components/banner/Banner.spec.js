@@ -1,21 +1,22 @@
 import $ from 'jquery';
-import ImageTextBanner from './ImageTextBanner';
+import Banner from './Banner';
 
-describe('ImageTextBanner', function () {
+
+describe('Banner', function () {
   before(function () {
     $(document.body).empty().html(`
       <a class="js-banner-analytics">Analytics</a>
     `);
-    this.imageTextBanner = new ImageTextBanner({
+    this.banner = new Banner({
       el: document.body
     });
-    this.initSpy = sinon.spy(this.imageTextBanner, 'init');
-    this.analyticsSpy = sinon.spy(this.imageTextBanner, 'trackAnalytics');
+    this.initSpy = sinon.spy(this.banner, 'init');
+    this.analyticsSpy = sinon.spy(this.banner, 'trackAnalytics');
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
     };
-    this.imageTextBanner.init();
+    this.banner.init();
   });
   after(function () {
     $(document.body).empty();

@@ -1,4 +1,10 @@
-.tp-container-textbanner {
+.tp-container-textImage {
+    max-width: 100%;
+
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        margin: 0 auto;
+    }
     .pw-banner {
         &__content {
             @include margin(24px 16px 0 16px);
