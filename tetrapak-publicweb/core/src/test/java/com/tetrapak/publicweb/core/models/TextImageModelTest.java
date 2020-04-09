@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
+/**
+ * The Class TextImageModelTest.
+ */
 public class TextImageModelTest {
 
     @Rule
