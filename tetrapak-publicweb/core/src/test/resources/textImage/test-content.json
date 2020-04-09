@@ -11,23 +11,29 @@
 		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
 		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
 		"cq:lastModifiedBy": "admin",
-		"imagetextbutton": {
+		"textimage": {
 			"jcr:primaryType": "nt:unstructured",
-			"subtitle": "Subtitle",
+			"subTitle": "Subtitle",
+			"targetBlank": "_self",
 			"jcr:createdBy": "admin",
-			"ctaLinkTextI18n": "CTA Link Text",
+			"anchorId": "anchor123",
+			"anchorTitle": "Anchor title",
 			"description": "Description",
 			"openLinkInNewWindow": "true",
 			"jcr:lastModifiedBy": "admin",
 			"imagePath": "/content/dam/publicweb/asset.jpg",
 			"pwButtonTheme": "secondary",
+			"pwTheme": "grayscale-white",
+			"pwLinkTheme": "download",
+			"pwPadding": "regular",
+			"pwDisplay": "display-row",
 			"jcr:created": "Wed Feb 26 2020 12:31:03 GMT+0530",
 			"imageAltI18n": "Desktop Image Alt Text",
-			"pwTheme": "grayscale-white",
 			"title": "Title",
 			"jcr:lastModified": "Wed Feb 26 2020 12:31:41 GMT+0530",
 			"sling:resourceType": "publicweb/components/content/imageTextButton",
-			"ctaLinkURL": "CTA Link URL"
+			"linkTexti18n": "Test",
+			"linkURL": "/content/dam/publicweb/Petrol.pdf"
 			}
 		}
 	}
