@@ -1,51 +1,53 @@
 <sly data-sly-template.imageTextButton_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.title || data.imagePath}" class="pw-image-text-button pw-theme--${data.pwTheme}" 
-       data-locator="image-text-button" data-module="ImageTextButton"
-       data-imageButton-contentName="${data.subtitle}"
-       data-imageButton-title="${data.title}"
-       data-imageButton-linkName="${data.linkTexti18n}"
-       data-imageButton-linkType="${data.linkType}">
-    <div class="pw-image-text-button__innerpadding pw-text-video--${data.pwDisplay}">   
-      <div class="row">
-        <div class="col-md-12 col-lg-6 pw-image-text-button__leftPad">
-          <sly data-sly-test = "${!wcmmode.edit}">
-            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className='pw-image-text-button__image'}" />
-          </sly>
-          <sly data-sly-test = "${wcmmode.edit}">
-            <img alt="${data.imageAltI18n}" src="${data.imagePath}" class="pw-image-text-button__image" />
-          </sly>
-          </div>
-        <div class="col-md-12 col-lg-6 pw-image-text-button__rightPad">
-          <div data-sly-test="${data.subtitle}" class="pw-image-text-button__subtitle">
-            <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
-                data-sly-call="${subheading.subheading_template @ headingText=data.subtitle}"/>
-          </div>
-          <div data-sly-test="${data.title}" class="pw-image-text-button__title">
-            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                data-sly-call="${heading.heading_h2_template @ headingText=data.subtitle, variant='regular'}"/>
-          </div>
-          <p class="pw-image-text-button__description">${data.description}</p>
-          <div class="pw-image-text-button__link" data-sly-test="${data.linkURL}">
-              <a data-sly-test="${data.linkTexti18n}"
-                href="${data.linkURL}"
-                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
-                title="${data.linkTexti18n}"
-                target="${data.targetBlank}"
-                data-link-type="internal"
-                data-link-section="Text and Image CTA Click"
-                data-link-name="${data.linkTexti18n}"
-                data-button-link-type="${data.pwButtonTheme}"
-                data-download-type="${data.pwLinkTheme}"
-                >
-                <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
-                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
-            </a>
-      
+     <div class="tp-container">
+      <div data-sly-test="${data.title || data.imagePath}" class="pw-image-text-button pw-theme--${data.pwTheme}" 
+          data-locator="image-text-button" data-module="ImageTextButton"
+          data-imageButton-contentName="${data.subtitle}"
+          data-imageButton-title="${data.title}"
+          data-imageButton-linkName="${data.linkTexti18n}"
+          data-imageButton-linkType="${data.linkType}">
+        <div class="pw-image-text-button__innerpadding pw-text-video--${data.pwDisplay}">   
+          <div class="row">
+            <div class="col-md-12 col-lg-6 pw-image-text-button__leftPad">
+              <sly data-sly-test = "${!wcmmode.edit}">
+                <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className='pw-image-text-button__image'}" />
+              </sly>
+              <sly data-sly-test = "${wcmmode.edit}">
+                <img alt="${data.imageAltI18n}" src="${data.imagePath}" class="pw-image-text-button__image" />
+              </sly>
+              </div>
+            <div class="col-md-12 col-lg-6 pw-image-text-button__rightPad">
+              <div data-sly-test="${data.subtitle}" class="pw-image-text-button__subtitle">
+                <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+                    data-sly-call="${subheading.subheading_template @ headingText=data.subtitle}"/>
+              </div>
+              <div data-sly-test="${data.title}" class="pw-image-text-button__title">
+                <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                    data-sly-call="${heading.heading_h2_template @ headingText=data.subtitle, variant='regular'}"/>
+              </div>
+              <p class="pw-image-text-button__description">${data.description}</p>
+              <div class="pw-image-text-button__link" data-sly-test="${data.linkURL}">
+                  <a data-sly-test="${data.linkTexti18n}"
+                    href="${data.linkURL}"
+                    class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
+                    title="${data.linkTexti18n}"
+                    target="${data.targetBlank}"
+                    data-link-type="internal"
+                    data-link-section="Text and Image CTA Click"
+                    data-link-name="${data.linkTexti18n}"
+                    data-button-link-type="${data.pwButtonTheme}"
+                    data-download-type="${data.pwLinkTheme}"
+                    >
+                    <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
+                    <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
+                </a>
+          
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <sly data-sly-test="${!data.title && !data.imagePath}" data-sly-call="${templates.placeholder @ isEmpty = (!data.title && !data.imagePath)}"></sly>
+    <sly data-sly-test="${!data.title && !data.imagePath}" data-sly-call="${templates.placeholder @ isEmpty = (!data.title && !data.imagePath)}"></sly>
 </sly>
