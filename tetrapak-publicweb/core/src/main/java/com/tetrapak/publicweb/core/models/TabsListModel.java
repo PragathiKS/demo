@@ -84,7 +84,7 @@ public class TabsListModel {
     @Named(value = "tabsManual")
     private List<TabBeanModel> tabListManual = new ArrayList<>();
 
-    @ValueMapValue
+    @Inject
     @Named(value = "tabsSemi")
     private List<PagePathsBeanModel> pagePaths = new ArrayList<>();
     
