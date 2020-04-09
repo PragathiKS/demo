@@ -58,7 +58,7 @@ public class TextVideoModel {
 
     /** The target blank. */
     @ValueMapValue
-    private Boolean targetBlank;
+    private String targetBlank;
 
     /** The video source. */
     @ValueMapValue
@@ -198,7 +198,7 @@ public class TextVideoModel {
      *
      * @return the target blank
      */
-    public Boolean getTargetBlank() {
+    public String getTargetBlank() {
         return targetBlank;
     }
 

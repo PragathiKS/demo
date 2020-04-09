@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -81,6 +82,12 @@ public class BannerModel {
     /** The image crop. */
     @ValueMapValue
     private String imageCrop;
+
+    /** The asset name. */
+    private String assetName;
+
+    /** The Constant FORWARD_SLASH. */
+    private static final String FORWARD_SLASH = "/";
 
     /**
      * Gets the banner type.
@@ -224,6 +231,19 @@ public class BannerModel {
      */
     public String getImageCrop() {
         return imageCrop;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        assetName = StringUtils.EMPTY;
+        if (StringUtils.isNoneEmpty(linkPath)) {
+            assetName = StringUtils.substringAfterLast(linkPath, FORWARD_SLASH);
+        }
+        return assetName;
     }
 
 }
