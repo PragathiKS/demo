@@ -68,8 +68,6 @@ public class TabsListModel {
     @ValueMapValue
     private String pwPadding;
 
-    private String tabType;
-
     /** The pw display. */
     @ValueMapValue
     private String pwDisplay;
@@ -191,14 +189,6 @@ public class TabsListModel {
 
     public List<TabBeanModel> getTabs() {
 	return tabs;
-    }
-
-    public String[] getTags() {
-	return tags;
-    }
-
-    public String getTabType() {
-	return tabType;
     }
 
     public String getAnchorId() {
