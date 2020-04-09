@@ -52,11 +52,11 @@
         }
     }
 
-    &__title{
+    &__title {
         @include margin-bottom($padding-l);
         @include font-size($font-m-xl);
         @include line-height(32px, $font-m-xl);
-       
+
         @media #{$desktop} {
             @include margin-bottom($padding-l);
             @include font-size($font-xl);
