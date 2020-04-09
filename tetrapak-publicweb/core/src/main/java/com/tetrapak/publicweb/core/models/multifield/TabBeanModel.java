@@ -5,6 +5,7 @@ import javax.inject.Named;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
@@ -12,6 +13,10 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabBeanModel {
+    
+    /** The resource */
+    @Self
+    Resource resource;
     
     /** The subTitle */
     @ValueMapValue
@@ -65,6 +70,9 @@ public class TabBeanModel {
     /** The fileRefrence */
     @ValueMapValue
     private String fileRefrence;
+    
+    /** The pw button theme. */
+    private String pwButtonTheme;
     
     /** The alt */
     @ValueMapValue
@@ -156,6 +164,18 @@ public class TabBeanModel {
 
     public void setAlt(String alt) {
         this.alt = alt;
+    }
+
+    public String getPwButtonTheme() {
+	Resource pageContentRes = resource.getParent().getParent();
+        if("manual".equalsIgnoreCase(pageContentRes.getValueMap().get("contentType").toString())) {
+            pwButtonTheme = pageContentRes.getValueMap().get("pwButtonTheme").toString();
+        }
+        return pwButtonTheme;
+    }
+
+    public void setPwButtonTheme(String pwButtonTheme) {
+        this.pwButtonTheme = pwButtonTheme;
     }
     
 

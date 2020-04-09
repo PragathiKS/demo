@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -68,19 +69,11 @@ public class TabsListModel {
     /** The max teasers. */
     @Default(intValues = 9)
     @ValueMapValue
-    private int maxTeasers;
+    private int maxTabs;
 
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
-
-    /** The pw button theme. */
-    @ValueMapValue
-    private String pwButtonTheme;
-
-    /** The pw link theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The pw padding. */
     @ValueMapValue
@@ -100,7 +93,7 @@ public class TabsListModel {
     @ValueMapValue
     private String anchorTitle;
 
-    @ValueMapValue
+    @Inject
     @Named(value = "tabsManual")
     private List<TabBeanModel> tabListManual = new ArrayList<>();
 
@@ -108,7 +101,7 @@ public class TabsListModel {
     @Named(value = "tabsSemi")
     private List<TabBeanSemiAutoModel> tabListSemiAuto = new ArrayList<>();
 
-    private List<TabBeanModel> tabList = new ArrayList<>();
+    private List<TabBeanModel> tabs = new ArrayList<>();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
 
@@ -164,7 +157,8 @@ public class TabsListModel {
 	tabBean.setLinkURL(aggregator.getLinkPath());
 	tabBean.setTargetBlank(aggregator.getLinkTarget());
 	tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
-	tabList.add(tabBean);
+	tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
+	tabs.add(tabBean);
     }
 
     /**
@@ -182,7 +176,7 @@ public class TabsListModel {
      * set list from manual authoring
      */
     private void generateListManually() {
-	tabList.addAll(tabListManual);
+	tabs.addAll(tabListManual);
     }
 
     private SearchResult executeQuery(ResourceResolver resourceResolver) {
@@ -207,7 +201,7 @@ public class TabsListModel {
 	}
 	map.put("orderby", "jcr:content/cq:lastModified");
 	map.put("orderby.sort", "desc");
-	map.put("p.limit", String.valueOf(maxTeasers));
+	map.put("p.limit", String.valueOf(maxTabs));
 
 	LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
 	Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
@@ -235,14 +229,6 @@ public class TabsListModel {
 	return pwTheme;
     }
 
-    public String getPwButtonTheme() {
-	return pwButtonTheme;
-    }
-
-    public String getPwLinkTheme() {
-	return pwLinkTheme;
-    }
-
     public String getPwPadding() {
 	return pwPadding;
     }
@@ -251,8 +237,8 @@ public class TabsListModel {
 	return pwDisplay;
     }
 
-    public List<TabBeanModel> getTabList() {
-	return tabList;
+    public List<TabBeanModel> getTabs() {
+	return tabs;
     }
 
     public String[] getTags() {
