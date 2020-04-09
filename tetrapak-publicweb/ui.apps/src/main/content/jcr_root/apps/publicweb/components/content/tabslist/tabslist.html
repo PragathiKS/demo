@@ -3,5 +3,6 @@
        class="cq-placeholder"></p>
 </sly>
 
-<sly data-sly-use.model="com.tetrapak.publicweb.core.models.TabsListModel">
-</sly>
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.TabsListModel"
+     data-sly-use.lib="tablist-template.html"
+     data-sly-call="${lib.tablist_template @ data=model}" />

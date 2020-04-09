@@ -303,11 +303,13 @@ public class TabModel {
      * @return pw button theme
      */
     public String getPwButtonTheme() {
-        Resource pageContentRes = resource.getParent().getParent();
-        if("manual".equalsIgnoreCase(pageContentRes.getValueMap().get("contentType").toString())) {
-            pwButtonTheme = pageContentRes.getValueMap().get("pwButtonTheme").toString();
-        }
-        return pwButtonTheme;
+	if (resource != null) {
+	    Resource pageContentRes = resource.getParent().getParent();
+	    if ("manual".equalsIgnoreCase(pageContentRes.getValueMap().get("contentType").toString())) {
+		pwButtonTheme = pageContentRes.getValueMap().get("pwButtonTheme").toString();
+	    }
+	}
+	return pwButtonTheme;
     }
 
     /**
