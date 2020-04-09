@@ -2,20 +2,19 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import com.day.cq.wcm.api.PageManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.models.multifield.TabModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
@@ -91,11 +90,13 @@ public class TabsListModel {
     private List<SemiAutomaticModel> pagePaths = new ArrayList<>();
     
     @OSGiService
-    AggregatorService aggregatorService;
+    private AggregatorService aggregatorService;
 
     private List<TabModel> tabs = new ArrayList<>();
     
     private static final String TAB_LAYOUT_IMAGE = "imageText";
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
 
     /**
      * Post construct method to get the tab content from the multifield property
@@ -103,14 +104,18 @@ public class TabsListModel {
      */
     @PostConstruct
     protected void init() {
-	ResourceResolver resolver = resource.getResourceResolver();
-	PageManager pageManager = resolver.adaptTo(PageManager.class);
-	if ("automatic".equals(contentType) && pageManager != null) {
-	    generateListAutomaticWay(resolver, pageManager);
-	} else if ("semi-automatic".equals(contentType) && pageManager != null) {
-	    generateListSemiAutomatically(pageManager);
-	} else if ("manual".equals(contentType) && pageManager != null) {
+	switch (contentType) {
+	case "automatic":
+	    generateListAutomaticWay();
+	    break;
+	case "semi-automatic":
+	    generateListSemiAutomatically();
+	    break;
+	case "manual":
 	    generateListManually();
+	    break;
+	default:
+	    LOGGER.info("Not a valid content-type");
 	}
     }
 
@@ -118,7 +123,7 @@ public class TabsListModel {
      * @param resolver
      * @param pageManager
      */
-    private void generateListAutomaticWay(ResourceResolver resolver, PageManager pageManager) {
+    private void generateListAutomaticWay() {
 	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
 	if (!aggregatorList.isEmpty()) {
 	    setTabListfromAggregator(aggregatorList);
@@ -130,7 +135,7 @@ public class TabsListModel {
      * 
      * @param pageManager
      */
-    private void generateListSemiAutomatically(PageManager pageManager) {
+    private void generateListSemiAutomatically() {
 	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths, maxTabs);
 	if (!aggregatorList.isEmpty()) {
 	    setTabListfromAggregator(aggregatorList);

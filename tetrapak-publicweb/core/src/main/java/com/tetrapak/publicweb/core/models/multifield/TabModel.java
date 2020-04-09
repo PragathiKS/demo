@@ -25,7 +25,7 @@ public class TabModel {
     
     /** The resource */
     @Self
-    Resource resource;
+    private Resource resource;
     
     /** The tabType */
     @ValueMapValue
