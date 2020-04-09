@@ -2,6 +2,7 @@
     "use strict";
 
     $document.on("dialog-ready", function() {
+      setTimeout(function(){
         var $tabLayouts = $('.pw-tablist-multi');
         if($tabLayouts){
            $tabLayouts.each(function (i, tabLayout) {
@@ -34,6 +35,7 @@
           });
 
         }
+       }, 500);
     });
 
     $(document).on('foundation-contentloaded', function() {
