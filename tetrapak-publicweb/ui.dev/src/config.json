@@ -146,6 +146,7 @@
         "source/templates/components/contactAnchorLink/",
         "source/templates/components/analyticsglobaltagspw/",
         "source/templates/components/image/",
+        "source/templates/components/banner/",
         "source/templates/components/richtext/"
       ],
       "anlyticscode": [
