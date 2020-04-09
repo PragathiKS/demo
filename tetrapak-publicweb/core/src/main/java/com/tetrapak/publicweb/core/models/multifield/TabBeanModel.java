@@ -6,8 +6,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
+
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TabBeanModel.
@@ -60,7 +66,7 @@ public class TabBeanModel {
     /** The youtubeEmbedURL */
     @Named(value = "youtubeVideoID")
     @ValueMapValue
-    private String youtubeEmbedURL;
+    private String youtubeVideoID;
     
     /** The damVideoPath */
     @ValueMapValue
@@ -84,6 +90,14 @@ public class TabBeanModel {
     /** The alt */
     @ValueMapValue
     private String alt;
+    
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    /** The dynamic media service. */
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
     
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -136,7 +150,7 @@ public class TabBeanModel {
      * @return link URL
      */
     public String getLinkURL() {
-        return linkURL;
+        return LinkUtils.sanitizeLink(linkURL);
     }
 
     /**
@@ -163,7 +177,11 @@ public class TabBeanModel {
      * @return youtube Embed URL
      */
     public String getYoutubeEmbedURL() {
-        return youtubeEmbedURL;
+	String youtubeEmbedURL = StringUtils.EMPTY;
+	if (youtubeVideoID != null) {
+	    youtubeEmbedURL = YOUTUBE_URL_PREFIX + youtubeVideoID;
+	}
+	return youtubeEmbedURL;
     }
 
     /**
@@ -172,7 +190,10 @@ public class TabBeanModel {
      * @return damVideoPath
      */
     public String getDamVideoPath() {
-        return damVideoPath;
+	if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+	    damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+	}
+	return damVideoPath;
     }
 
     /**

@@ -19,6 +19,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.models.multifield.PagePathsBeanModel;
 import com.tetrapak.publicweb.core.models.multifield.TabBeanModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * Model class for Tab list component.
@@ -171,7 +172,7 @@ public class TabsListModel {
     }
 
     public String getReadMorePath() {
-	return readMorePath;
+	return LinkUtils.sanitizeLink(readMorePath);
     }
 
     public String getReadMoreTarget() {
