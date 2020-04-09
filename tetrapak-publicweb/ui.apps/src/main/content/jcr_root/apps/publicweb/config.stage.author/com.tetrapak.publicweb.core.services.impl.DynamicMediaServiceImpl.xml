@@ -5,5 +5,5 @@
           rootPath="/tetrapakstage"
           imageServiceUrl="https://s7g10.scene7.com/is/image"
           videoServiceUrl="https://s7g10.scene7.com/is/content"
-          dynamicMediaConfMap="[header-desktop=158\,24,header-mobileL=138\,31,header-mobileP=138\,31,footer-desktop=158\,24,footer-mobileL=158\,24 ,footer-mobileP=158\,24,image-desktop=880\,495,image-mobileL=256\,144,image-mobileP=256\,144,textVideo-desktop=800\,532,textVideo-mobileL=674\,448,textVideo-mobileP=257\,171,banner-desktop=1440\,480,banner-desktopL=1440\,480,banner-mobileL=320\,180,banner-mobileP=736\,245]"/>
+          dynamicMediaConfMap="[header-desktop=158\,24,header-mobileL=138\,31,header-mobileP=138\,31,footer-desktop=158\,24,footer-mobileL=158\,24 ,footer-mobileP=158\,24,image-desktop=880\,495,image-mobileL=256\,144,image-mobileP=256\,144,textVideo-desktop=800\,532,textVideo-desktopL=800\,532,textVideo-mobileL=674\,448,textVideo-mobileP=257\,171,banner-desktop=1440\,480,banner-desktopL=1440\,480,banner-mobileL=320\,180,banner-mobileP=736\,245]"/>
 
