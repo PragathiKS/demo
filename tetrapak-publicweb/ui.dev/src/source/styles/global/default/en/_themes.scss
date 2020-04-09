@@ -8,14 +8,26 @@
     }
 }
 
-.pw-padding {
+.pw-margin {
+  &--zero {
+    margin: 0;
+    }
 
+  &--regular {
+        margin: $margin-md 0;  
+    @media #{$desktop} {
+        margin: $margin-xxxl 0;
+        }
+    }
+}
+
+.pw-padding {
     &--zero {
         @include padding($padding-zero);
     }
 
     &--regular {
-        @include padding($padding-md);
+        @include padding($padding-l $padding-md);
         @media #{$desktop} {
             @include padding($padding-xxxl);
         }

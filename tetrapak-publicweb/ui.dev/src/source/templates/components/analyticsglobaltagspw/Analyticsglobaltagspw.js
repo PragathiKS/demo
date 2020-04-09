@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { storageUtil } from '../../../scripts/common/common';
 class Analyticsglobaltagspw {
   constructor({ el }) {
     this.root = $(el);
@@ -12,6 +13,16 @@ class Analyticsglobaltagspw {
      */
     const cookieValue=this.getCookies('lang-code');
     this.setUserinfo(cookieValue);
+
+    if(!storageUtil.get('gdprCookie')) {
+      window.digitalData.cookie={
+        cookieConsent:'no'
+      };
+    }else {
+      window.digitalData.cookie={
+        cookieConsent:'yes'
+      };
+    }
 
     window.digitalData.linkClick = {
       linkType:'',

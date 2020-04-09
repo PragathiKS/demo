@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:primaryType="sling:OsgiConfig"
-          rootPath="/tetrapakdev"
-          imageServiceUrl="https://s7g10.scene7.com/is/image"
-          videoServiceUrl="https://s7g10.scene7.com/is/content"
-          dynamicMediaConfMap="[header-desktop=158\,24,header-mobileL=138\,31,header-mobileP=138\,31,footer-desktop=158\,24,footer-mobileL=158\,24 ,footer-mobileP=158\,24,image-desktop=880\,495,image-mobileL=256\,144,image-mobileP=256\,144]"/>
+	xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="sling:OsgiConfig" rootPath="/tetrapakdev"
+	imageServiceUrl="https://s7g10.scene7.com/is/image"
+	videoServiceUrl="https://s7g10.scene7.com/is/content"
+	dynamicMediaConfMap="[header-desktop=158\,24,header-mobileL=138\,31,header-mobileP=138\,31,footer-desktop=158\,24,footer-mobileL=158\,24 ,footer-mobileP=158\,24,image-desktop=880\,495,image-mobileL=256\,144,image-mobileP=256\,144,textVideo-desktop=800\,532,textVideo-desktopL=800\,532,textVideo-mobileL=674\,448,textVideo-mobileP=257\,171,banner-desktop=1440\,480,banner-desktopL=1440\,480,banner-mobileL=320\,180,banner-mobileP=736\,245,textImage-desktop=600\,337,textImage-desktopL=600\,337,textImage-mobileL=600\,337,textImage-mobileP=257\,146]" />
 
