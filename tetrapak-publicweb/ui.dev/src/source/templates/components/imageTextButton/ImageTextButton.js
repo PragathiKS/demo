@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class ImageTextButton {
   constructor({ el }) {
@@ -6,12 +7,12 @@ class ImageTextButton {
   }
   cache = {};
   initCache() {
-    this.cache.$imageTextButtonLink = this.root.find('.js-textImage-analytics');;
+    this.cache.$imageTextButtonLink = this.root.find('.js-textImage-analytics');
   }
   bindEvents() {
     this.cache.$imageTextButtonLink.on('click', this.trackAnalytics);
   }
- 
+
 
 
   trackAnalytics = (e) => {
@@ -19,7 +20,7 @@ class ImageTextButton {
     const $target = $(e.target);
     const $this = $target.closest('.js-textImage-analytics');
     let trackingObj = {};
-    let eventType = 'content-load';
+    const eventType = 'content-load';
     const downloadtype = $this.data('download-type');
 
     if(downloadtype ==='download'){
