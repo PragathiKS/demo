@@ -1,7 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
 import javax.inject.Named;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -54,7 +53,7 @@ public class AggregatorModel {
     
     /** The linkTarget */
     @ValueMapValue
-    private Boolean linkTarget;
+    private String linkTarget;
 
     public String getTitle() {
         return title;
@@ -92,7 +91,7 @@ public class AggregatorModel {
         return pwLinkTheme;
     }
 
-    public Boolean getLinkTarget() {
+    public String getLinkTarget() {
         return linkTarget;
     }
 

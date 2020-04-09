@@ -48,7 +48,7 @@ public class TabBeanModel {
     
     /** The targetBlank */
     @ValueMapValue
-    private Boolean targetBlank;
+    private String targetBlank;
     
     /** The videoSource */
     @ValueMapValue
@@ -102,7 +102,7 @@ public class TabBeanModel {
         return linkURL;
     }
 
-    public Boolean getTargetBlank() {
+    public String getTargetBlank() {
         return targetBlank;
     }
 
@@ -158,7 +158,7 @@ public class TabBeanModel {
         this.linkURL = linkURL;
     }
 
-    public void setTargetBlank(Boolean targetBlank) {
+    public void setTargetBlank(String targetBlank) {
         this.targetBlank = targetBlank;
     }
 

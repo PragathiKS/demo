@@ -12,13 +12,13 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.models.multifield.PagePathsBeanModel;
 import com.tetrapak.publicweb.core.models.multifield.TabBeanModel;
-import com.tetrapak.publicweb.core.models.multifield.TabBeanSemiAutoModel;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.services.AggregatorService;
 
 /**
  * Model class for Tab list component.
@@ -86,7 +86,10 @@ public class TabsListModel {
 
     @ValueMapValue
     @Named(value = "tabsSemi")
-    private List<TabBeanSemiAutoModel> tabListSemiAuto = new ArrayList<>();
+    private List<PagePathsBeanModel> pagePaths = new ArrayList<>();
+    
+    @OSGiService
+    AggregatorService aggregatorService;
 
     private List<TabBeanModel> tabs = new ArrayList<>();
     
@@ -114,7 +117,7 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListAutomaticWay(ResourceResolver resolver, PageManager pageManager) {
-	List<AggregatorModel> aggregatorList = GlobalUtil.getAggregatorList(resource, tags, maxTabs);
+	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
 	if (!aggregatorList.isEmpty()) {
 	    setTabListfromAggregator(aggregatorList);
 	}
@@ -126,7 +129,7 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListSemiAutomatically(PageManager pageManager) {
-	List<AggregatorModel> aggregatorList = GlobalUtil.getAggregatorList(resource, tabListSemiAuto, maxTabs);
+	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths, maxTabs);
 	if (!aggregatorList.isEmpty()) {
 	    setTabListfromAggregator(aggregatorList);
 	}

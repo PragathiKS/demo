@@ -9,7 +9,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
  * The Class TabBeanModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class TabBeanSemiAutoModel {
+public class PagePathsBeanModel {
     
     /** The pageURL */
     @ValueMapValue

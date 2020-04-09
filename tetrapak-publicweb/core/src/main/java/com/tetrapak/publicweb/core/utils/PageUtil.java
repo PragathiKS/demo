@@ -101,13 +101,5 @@ public final class PageUtil {
         }
         return langauge;
     }
-    
-    /**
-     * @param currentPage
-     * @return aggregator
-     */
-    public static AggregatorModel getAggregator(Page currentPage) {
-	return currentPage.getContentResource().adaptTo(AggregatorModel.class);
-    }
 
 }

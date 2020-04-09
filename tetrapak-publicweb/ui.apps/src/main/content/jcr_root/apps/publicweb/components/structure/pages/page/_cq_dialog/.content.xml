@@ -348,7 +348,8 @@
                                                 fieldDescription="Check this to open the link in a new window"
                                                 name="./linkTarget"
                                                 text="Open In New Window? (for External URLs and PDFs)"
-                                                value="false"/>
+                                                uncheckedValue="_self"
+                                                value="_blank"/>
                                         </items>
                                     </aggregator>
                                 </items>
