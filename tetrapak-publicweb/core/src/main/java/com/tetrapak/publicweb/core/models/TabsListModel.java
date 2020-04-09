@@ -145,7 +145,7 @@ public class TabsListModel {
 	    TabModel tabBean = new TabModel();
 	    tabBean.setTitle(aggregator.getTitle());
 	    tabBean.setDescription(aggregator.getDescription());
-	    tabBean.setFileRefrence(aggregator.getImagePath());
+	    tabBean.setFileReference(aggregator.getImagePath());
 	    tabBean.setAlt(aggregator.getAltText());
 	    tabBean.setLinkTexti18n(aggregator.getLinkText());
 	    tabBean.setLinkURL(aggregator.getLinkPath());

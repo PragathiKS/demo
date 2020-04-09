@@ -80,9 +80,9 @@ public class TabModel {
     @ValueMapValue
     private String thumbnailAltText;
     
-    /** The fileRefrence */
+    /** The fileReference */
     @ValueMapValue
-    private String fileRefrence;
+    private String fileReference;
     
     /** The pw button theme. */
     private String pwButtonTheme;
@@ -219,8 +219,8 @@ public class TabModel {
      *
      * @return file Refrence
      */
-    public String getFileRefrence() {
-        return fileRefrence;
+    public String getFileReference() {
+        return fileReference;
     }
 
     /**
@@ -286,8 +286,8 @@ public class TabModel {
     /**
      * @param fileRefrence
      */
-    public void setFileRefrence(String fileRefrence) {
-        this.fileRefrence = fileRefrence;
+    public void setFileReference(String fileReference) {
+        this.fileReference = fileReference;
     }
 
     /**
