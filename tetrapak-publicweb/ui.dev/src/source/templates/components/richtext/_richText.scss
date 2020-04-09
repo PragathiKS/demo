@@ -1,6 +1,23 @@
 .tp-pw-richText {
     background: $color-white;
 
+    .tp-pw-richText-wrapper a {
+        @include padding(0);
+        border: 0;
+        color: $color-congress-blue;
+        background: none;
+        cursor: pointer;
+
+        &:hover {
+            @extend %btn-colors-hover;
+            background: none;
+        }
+        &::after {
+            @include padding-left(6px);
+            content: '\f117';
+        }
+    }
+
     .fullBleed {
         @include padding-left(0);
         @include padding-right(0);
@@ -84,7 +101,6 @@
         @include padding-top(16px);
     }
 
-
     ul ul ul {
         li::before {
             content: '\2012';
@@ -106,11 +122,6 @@
             @include padding-bottom(8px);
         }
     }
-
-
-
-
-
 
     table {
         @include margin-bottom(48px);
