@@ -25,14 +25,13 @@
 			"pwButtonTheme": "secondary",
 			"pwTheme": "grayscale-white",
 			"pwLinkTheme": "download",
-			"pwPadding": "regular",
 			"pwDisplay": "display-row",
 			"jcr:created": "Wed Feb 26 2020 12:31:03 GMT+0530",
-			"imageAltI18n": "Desktop Image Alt Text",
+			"imageAltText": "Desktop Image Alt Text",
 			"title": "Title",
 			"jcr:lastModified": "Wed Feb 26 2020 12:31:41 GMT+0530",
 			"sling:resourceType": "publicweb/components/content/imageTextButton",
-			"linkTexti18n": "Test",
+			"linkText": "Test",
 			"linkURL": "/content/dam/publicweb/Petrol.pdf"
 			}
 		}

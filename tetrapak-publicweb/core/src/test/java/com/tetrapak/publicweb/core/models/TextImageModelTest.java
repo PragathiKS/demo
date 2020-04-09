@@ -54,8 +54,8 @@ public class TextImageModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getSubTitle", "getTitle",
-                "getDescription", "getImagePath", "getImageAltI18n", "getLinkTexti18n", "getLinkURL", "getTargetBlank",
-                "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwPadding", "getPwDisplay" };
+                "getDescription", "getImagePath", "getImageAltText", "getLinkText", "getLinkURL", "getTargetBlank",
+                "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwDisplay" };
         Util.testLoadAndGetters(methods, model, resource);
     }
 }

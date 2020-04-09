@@ -38,13 +38,13 @@ public class TextImageModel {
     @ValueMapValue
     private String imagePath;
 
-    /** The image alt i18n. */
+    /** The image alt text. */
     @ValueMapValue
-    private String imageAltI18n;
+    private String imageAltText;
 
-    /** The link text i18n. */
+    /** The link text. */
     @ValueMapValue
-    private String linkTexti18n;
+    private String linkText;
 
     /** The link URL. */
     @ValueMapValue
@@ -65,10 +65,6 @@ public class TextImageModel {
     /** The pw link theme. */
     @ValueMapValue
     private String pwLinkTheme;
-
-    /** The pw padding. */
-    @ValueMapValue
-    private String pwPadding;
 
     /** The pw display. */
     @ValueMapValue
@@ -139,21 +135,21 @@ public class TextImageModel {
     }
 
     /**
-     * Gets the image alt I 18 n.
+     * Gets the image alt text.
      *
-     * @return the image alt I 18 n
+     * @return the image alt text
      */
-    public String getImageAltI18n() {
-        return imageAltI18n;
+    public String getImageAltText() {
+        return imageAltText;
     }
 
     /**
-     * Gets the link texti 18 n.
+     * Gets the link text.
      *
-     * @return the link texti 18 n
+     * @return the link text
      */
-    public String getLinkTexti18n() {
-        return linkTexti18n;
+    public String getLinkText() {
+        return linkText;
     }
 
     /**
@@ -199,15 +195,6 @@ public class TextImageModel {
      */
     public String getPwLinkTheme() {
         return pwLinkTheme;
-    }
-
-    /**
-     * Gets the pw padding.
-     *
-     * @return the pw padding
-     */
-    public String getPwPadding() {
-        return pwPadding;
     }
 
     /**
