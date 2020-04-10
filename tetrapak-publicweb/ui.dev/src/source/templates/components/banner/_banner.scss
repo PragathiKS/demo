@@ -1,6 +1,6 @@
 .tp-container-textImage {
+    @include padding(0);
     max-width: 100%;
-
     @media #{$desktop} {
         @include max-width($body-max-width);
         margin: 0 auto;
@@ -16,8 +16,7 @@
   }
 }
 .pw-banner {
-    @include margin-bottom($margin-xxxl);
-
+    @include margin-bottom(0);
     $self: &;
     position: relative;
 
@@ -46,7 +45,7 @@
             @include padding($padding-xxxl);
             color: $color-tundora;
             background-color: $color-wild-sand 0.9;
-            max-width: calc(40% - #{convert-to-rem(24px)});
+            max-width: calc(45% - #{convert-to-rem(24px)});
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -89,12 +88,12 @@
         }
 
     }
-    .pw-banner--left {
+    .display-row {
         @media #{$desktop} {
             left: $margin-xxxl;
         }
     }
-    .pw-banner--right {
+    .diplay-row-revered {
         @media #{$desktop} {
             right: $margin-xxxl;
         }
