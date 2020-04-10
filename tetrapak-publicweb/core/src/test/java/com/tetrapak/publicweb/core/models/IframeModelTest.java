@@ -1,9 +1,12 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.tetrapak.publicweb.core.models.IframeModel;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -47,9 +50,10 @@ public class IframeModelTest {
      *
      */
     @Test
-    public void simpleLoadAndGettersTest() {
-	final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getIframe" };
-	Util.testLoadAndGetters(methods, model, resource);
+    public void tesGetMehtods() {
+        Assert.assertEquals("https://tsoperationalbenchmark.tetrapak.com/Templates/Pages/Intro.aspx", model.getIframe());
+        Assert.assertEquals("anchorId", model.getAnchorId());
+        Assert.assertEquals("anchor title", model.getAnchorTitle());
     }
 
 }
