@@ -8,7 +8,7 @@ import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 
 public interface AggregatorService {
 
-    List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths, int maxTabs);
+    List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths);
 
     List<AggregatorModel> getAggregatorList(Resource resource,String[] tags,int maxTabs);
 

@@ -60,7 +60,7 @@ public class AggregatorServiceImpl implements AggregatorService {
      * @return aggregatorList
      */
     @Override
-    public List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths, int maxTabs) {
+    public List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths) {
 	List<AggregatorModel> aggregatorList = new ArrayList<>();
 	ResourceResolver resolver = resource.getResourceResolver();
 	PageManager pageManager = resolver.adaptTo(PageManager.class);

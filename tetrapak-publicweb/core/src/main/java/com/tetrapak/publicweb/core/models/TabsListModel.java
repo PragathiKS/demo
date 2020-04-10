@@ -81,17 +81,21 @@ public class TabsListModel {
     @ValueMapValue
     private String anchorTitle;
 
+    /** The tab List Manual. */
     @Inject
     @Named(value = "tabsManual")
     private List<TabModel> tabListManual = new ArrayList<>();
 
+    /** The tab List Semi Auto. */
     @Inject
     @Named(value = "tabsSemi")
     private List<SemiAutomaticModel> pagePaths = new ArrayList<>();
     
+    /** The aggregator Service. */
     @OSGiService
     private AggregatorService aggregatorService;
 
+    /** The tab List. */
     private List<TabModel> tabs = new ArrayList<>();
     
     private static final String TAB_LAYOUT_IMAGE = "imageText";
@@ -99,7 +103,7 @@ public class TabsListModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
 
     /**
-     * Post construct method to get the tab content from the multifield property
+     * Post construct method to get the tab list
      * saved in CRX for each of the tab.
      */
     @PostConstruct
@@ -124,9 +128,11 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListAutomaticWay() {
-	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
-	if (!aggregatorList.isEmpty()) {
-	    setTabListfromAggregator(aggregatorList);
+	if (tags != null && tags.length > 0) {
+	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
+	    if (!aggregatorList.isEmpty()) {
+		setTabListfromAggregator(aggregatorList);
+	    }
 	}
     }
 
@@ -136,9 +142,11 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListSemiAutomatically() {
-	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths, maxTabs);
-	if (!aggregatorList.isEmpty()) {
-	    setTabListfromAggregator(aggregatorList);
+	if (pagePaths != null && !pagePaths.isEmpty()) {
+	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths);
+	    if (!aggregatorList.isEmpty()) {
+		setTabListfromAggregator(aggregatorList);
+	    }
 	}
     }
 
@@ -169,42 +177,72 @@ public class TabsListModel {
 	tabs.addAll(tabListManual);
     }
 
+    /**
+     * @return the heading
+     */
     public String getHeading() {
 	return heading;
     }
 
+    /**
+     * @return the readMoreTextI18n
+     */
     public String getReadMoreTextI18n() {
 	return readMoreTextI18n;
     }
 
+    /**
+     * @return the readMorePath
+     */
     public String getReadMorePath() {
 	return LinkUtils.sanitizeLink(readMorePath);
     }
 
+    /**
+     * @return the readMoreTarget
+     */
     public String getReadMoreTarget() {
 	return readMoreTarget;
     }
 
+    /**
+     * @return the pwTheme
+     */
     public String getPwTheme() {
 	return pwTheme;
     }
 
+    /**
+     * @return the pwPadding
+     */
     public String getPwPadding() {
 	return pwPadding;
     }
 
+    /**
+     * @return the pwDisplay
+     */
     public String getPwDisplay() {
 	return pwDisplay;
     }
 
+    /**
+     * @return the tabs
+     */
     public List<TabModel> getTabs() {
 	return tabs;
     }
 
+    /**
+     * @return the anchorId
+     */
     public String getAnchorId() {
 	return anchorId;
     }
 
+    /**
+     * @return the anchorTitle
+     */
     public String getAnchorTitle() {
 	return anchorTitle;
     }
