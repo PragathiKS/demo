@@ -1,5 +1,5 @@
 <sly data-sly-template.richtext_template="${@data, flag}">
-  <div id="${data.anchorId}" data-module='RichText' title="${data.anchorTitle}" class="tp-container tp-pw-richText pw-theme--${data.pwTheme} col-sm-12 col-lg-12 d-flex justify-content-lg-center justify-content-sm-center pw-margin--${data.pwPadding}">
+  <div id="${data.anchorId}" data-module='RichText' title="${data.anchorTitle}" class="tp-container tp-pw-richText pw-theme--${data.pwTheme} col-sm-12 col-lg-12 d-flex justify-content-lg-center justify-content-sm-center pw-margin--${data.pwPadding} pw-padding--regular">
     <div data-link-section='Rich Text Editor' data-link-name='' class='col-lg-8 col-sm-12 fullBleed tp-pw-richText-wrapper'>
       ${data.text @context='html'}
     </div>
