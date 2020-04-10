@@ -3,7 +3,7 @@ import TextImage from './TextImage';
 
 describe('TextImage', function () {
   before(function () {
-    $(document.body).empty().html('<a class="TextImage jstextImageanalytics">Image Text Button</a>');
+    $(document.body).empty().html('<a class="TextImage js-textImage-analytics">Image Text Button</a>');
     this.TextImage = new TextImage({
       el: document.body
     });
@@ -24,7 +24,7 @@ describe('TextImage', function () {
     expect(this.initSpy.called).to.be.true;
   });
   it('should track analytics on click of "TextImage" button', function () {
-    $('.TextImage').trigger('click');
+    $('.js-textImage-analytics').trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
   });
 })
