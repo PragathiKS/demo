@@ -21,10 +21,15 @@ class TextImage {
     const $target = $(e.target);
     const $this = $target.closest('.js-textImage-analytics');
     let trackingObj = {};
-    const eventType = 'content-load';
+    let eventType = 'content-load';
     const downloadtype = $this.data('download-type');
 
     if(downloadtype ==='download'){
+      eventType = 'download';
+      trackingObj = {
+        eventType
+      };
+    } else {
       trackingObj = {
         eventType
       };
