@@ -7,7 +7,6 @@ import org.apache.sling.api.resource.Resource;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.AggregatorModel;
 
 /**
  * The Class PageUtil.

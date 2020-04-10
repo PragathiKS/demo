@@ -1,15 +1,11 @@
 package com.tetrapak.publicweb.core.utils;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
 import org.apache.commons.lang.StringUtils;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.tetrapak.publicweb.core.models.TabsListModel;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
 
 /**
  * This is a global util class to access globally common utility methods
@@ -65,5 +61,4 @@ public final class GlobalUtil {
                 + FORWARD_SLASH + damVideoPath;
         return damVideoPath;
     }
-    
 }
