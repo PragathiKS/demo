@@ -1,11 +1,11 @@
 <sly data-sly-template.banner_template="${@data, flag}">
 
   <div class="row pw-theme--${data.pwTheme} pw-margin--regular" data-module="Banner">
-      <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-banner col-md-12 ${data.bannerType} tp-container-${data.textImage}">
+      <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-banner tp-container-${data.bannerType}">
     <sly data-sly-test = "${!wcmmode.edit}">
 
     <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                     data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop='data.imageCrop', className='img-responsive'}">
+                     data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
                 </sly>
              
         </sly>
