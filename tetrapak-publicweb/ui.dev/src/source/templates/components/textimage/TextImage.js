@@ -13,7 +13,7 @@ class TextImage {
   bindEvents() {
     this.cache.$textImageLink.on('click', this.trackAnalytics);
   }
- 
+
 
 
   trackAnalytics = (e) => {
