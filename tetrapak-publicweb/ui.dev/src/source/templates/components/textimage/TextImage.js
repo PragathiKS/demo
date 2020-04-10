@@ -1,16 +1,17 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-class ImageTextButton {
+
+class TextImage {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    this.cache.$imageTextButtonLink = this.root.find('.js-textImage-analytics');
+    this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
   }
   bindEvents() {
-    this.cache.$imageTextButtonLink.on('click', this.trackAnalytics);
+    this.cache.$textImageLink.on('click', this.trackAnalytics);
   }
 
 
@@ -39,4 +40,4 @@ class ImageTextButton {
   }
 }
 
-export default ImageTextButton;
+export default TextImage;
