@@ -49,28 +49,34 @@
     ol,
     ul {
         @include margin-bottom(32px);
-        li::before {
-            color: $color-congress-blue;
+        li {
+            &::before {
+                color: $color-congress-blue;
+            }
         }
     }
 
     ul {
-        li::before {
-            @include margin-right($margin-sm);
-            display: inline-block;
-            color: $color-congress-blue;
-            content: '\2022';
+        li {
+            &::before {
+                @include margin-right($margin-sm);
+                display: inline-block;
+                color: $color-congress-blue;
+                content: '\2022';
+            }
         }
     }
 
     ol {
         counter-reset: section;
         list-style-type: none;
-        li::before {
-            @include margin-right($margin-sm);
-            @include font-size(14px);
-            content: counters(section, '.') ' ';
-            counter-increment: section;
+        li {
+            &::before {
+                @include margin-right($margin-sm);
+                @include font-size(14px);
+                content: counters(section, '.') ' ';
+                counter-increment: section;
+            }
         }
     }
 
@@ -103,9 +109,11 @@
     }
 
     ul ul ul {
-        li::before {
-            content: '\2012';
-            font-weight: 500;
+        li {
+            &::before {
+                content: '\2012';
+                font-weight: 500;
+            }
         }
         li {
             @include font-size(12px);
