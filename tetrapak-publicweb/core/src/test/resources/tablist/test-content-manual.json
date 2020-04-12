@@ -24,7 +24,7 @@
 "tabslist": {
 "jcr:primaryType": "nt:unstructured",
 "jcr:createdBy": "admin",
-"readMoreTextI18n": "Read for here",
+"readMoreText": "Read for here",
 "readMorePath": "/content/community/badging",
 "anchorTitle": "anchor title",
 "jcr:lastModifiedBy": "admin",
@@ -56,7 +56,7 @@
 "pwLinkTheme": "hyperlink",
 "alt": "Alt",
 "title": "Text Sub1",
-"linkTexti18n": "Click Here",
+"linkText": "Click Here",
 "linkURL": "/content/commons-ux/helloearth",
 "videoSource": "damVideo"
 },
@@ -70,7 +70,7 @@
 "pwLinkTheme": "hyperlink",
 "alt": "Alt",
 "title": "Title",
-"linkTexti18n": "Click Here",
+"linkText": "Click Here",
 "linkURL": "/content/commons-ux/helloearth",
 "videoSource": "damVideo"
 },
@@ -83,7 +83,7 @@
 "pwLinkTheme": "hyperlink",
 "thumbnailAltText": "post alt",
 "title": "Title1",
-"linkTexti18n": "Video Link",
+"linkText": "Video Link",
 "linkURL": "/content/commons-ux/helloearth",
 "damVideoPath": "/content/dam/tetrapak/publicweb/videos/file_example_MOV_1280_1_4MB.mov",
 "videoSource": "damVideo",
@@ -97,7 +97,7 @@
 "tabType": "videoText",
 "pwLinkTheme": "download",
 "title": "Title2",
-"linkTexti18n": "VLink 2",
+"linkText": "VLink 2",
 "youtubeVideoID": "UEfCxCLtOwk",
 "linkURL": "/content/community/badging",
 "videoSource": "youtube"
