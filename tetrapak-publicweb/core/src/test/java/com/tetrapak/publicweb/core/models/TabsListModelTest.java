@@ -160,11 +160,10 @@ public class TabsListModelTest {
 	model = resource.adaptTo(modelClass);
 	
 	assertEquals("Some Heading", model.getHeading());
-	assertEquals("Read for here", model.getReadMoreTextI18n());
+	assertEquals("Read for here", model.getReadMoreText());
 	assertEquals("/content/community/badging.html", model.getReadMorePath());
 	assertEquals("_blank", model.getReadMoreTarget());
 	assertEquals("grayscale-white", model.getPwTheme());
-	assertEquals("regular", model.getPwPadding());
 	assertEquals("display-row", model.getPwDisplay());
 	assertEquals("anchorId", model.getAnchorId());
 	assertEquals("anchor title", model.getAnchorTitle());
@@ -177,7 +176,7 @@ public class TabsListModelTest {
 		model.getTabs().get(1).getFileReference());
 	assertEquals("Alt", model.getTabs().get(1).getAlt());
 	assertEquals("hyperlink", model.getTabs().get(1).getPwLinkTheme());
-	assertEquals("Click Here", model.getTabs().get(1).getLinkTexti18n());
+	assertEquals("Click Here", model.getTabs().get(1).getLinkText());
 	assertEquals("/content/commons-ux/helloearth.html", model.getTabs().get(1).getLinkURL());
 	assertEquals("secondary", model.getTabs().get(1).getPwButtonTheme());
 
@@ -244,7 +243,7 @@ public class TabsListModelTest {
 		model.getTabs().get(0).getFileReference());
 	assertEquals("alt", model.getTabs().get(0).getAlt());
 	assertEquals("download", model.getTabs().get(0).getPwLinkTheme());
-	assertEquals("link text1", model.getTabs().get(0).getLinkTexti18n());
+	assertEquals("link text1", model.getTabs().get(0).getLinkText());
 	assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getTabs().get(0).getLinkURL());
 	assertEquals("link", model.getTabs().get(1).getPwButtonTheme());
     }
