@@ -145,7 +145,10 @@
         "source/templates/components/contactFooterForm/",
         "source/templates/components/contactAnchorLink/",
         "source/templates/components/analyticsglobaltagspw/",
-        "source/templates/components/image/"
+        "source/templates/components/image/",
+        "source/templates/components/banner/",
+        "source/templates/components/richtext/",
+        "source/templates/components/textImage/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

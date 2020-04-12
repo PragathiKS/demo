@@ -85,6 +85,7 @@ $padding-xl: 32px;
 $padding-xxl: 40px;
 $padding-xxxl: 48px;
 // Margin variables
+$margin-zero:0px;
 $margin-xss: 2px;
 $margin-xs: 4px;
 $margin-sm: 8px;
@@ -102,3 +103,6 @@ $min-accessible-dimension:46px;
 $letter-spacing-sm: 1px;
 // word spacing
 $word-spacing-sm: 1px;
+
+// text transforms
+$uppercase : uppercase ;

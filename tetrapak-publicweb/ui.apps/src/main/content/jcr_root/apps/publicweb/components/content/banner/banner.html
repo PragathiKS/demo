@@ -1,7 +1,7 @@
 <sly data-sly-test="${wcmmode.edit}">
-<p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
-</sly>
-<sly data-sly-use.banner="com.tetrapak.publicweb.core.models.BannerModel">
-
-
-</sly>
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    </sly>
+    
+    <sly data-sly-use.model="com.tetrapak.publicweb.core.models.BannerModel"
+         data-sly-use.lib="banner-template.html"
+         data-sly-call="${lib.banner_template @ data=model}" />
