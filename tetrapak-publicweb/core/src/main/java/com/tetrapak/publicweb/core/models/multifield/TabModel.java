@@ -43,9 +43,9 @@ public class TabModel {
     @ValueMapValue
     private String description;
     
-    /** The linkTexti18n */
+    /** The linkText */
     @ValueMapValue
-    private String linkTexti18n;
+    private String linkText;
     
     /** The linkURL */
     @ValueMapValue
@@ -136,12 +136,12 @@ public class TabModel {
     }
 
     /**
-     * Gets the link Texti18n.
+     * Gets the link Text.
      *
-     * @return link Texti18n
+     * @return link Text
      */
-    public String getLinkTexti18n() {
-        return linkTexti18n;
+    public String getLinkText() {
+        return linkText;
     }
 
     /**
@@ -263,10 +263,10 @@ public class TabModel {
     }
 
     /**
-     * @param linkTexti18n
+     * @param linkText
      */
-    public void setLinkTexti18n(String linkTexti18n) {
-        this.linkTexti18n = linkTexti18n;
+    public void setLinkText(String linkText) {
+        this.linkText = linkText;
     }
 
     /**

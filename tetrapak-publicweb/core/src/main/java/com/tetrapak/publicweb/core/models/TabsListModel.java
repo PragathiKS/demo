@@ -40,9 +40,9 @@ public class TabsListModel {
     @ValueMapValue
     private String contentType;
 
-    /** The read More Text I18n. */
+    /** The read More Text. */
     @ValueMapValue
-    private String readMoreTextI18n;
+    private String readMoreText;
 
     /** The read More Path. */
     @ValueMapValue
@@ -64,10 +64,6 @@ public class TabsListModel {
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
-
-    /** The pw padding. */
-    @ValueMapValue
-    private String pwPadding;
 
     /** The pw display. */
     @ValueMapValue
@@ -160,7 +156,7 @@ public class TabsListModel {
 	    tabBean.setDescription(aggregator.getDescription());
 	    tabBean.setFileReference(aggregator.getImagePath());
 	    tabBean.setAlt(aggregator.getAltText());
-	    tabBean.setLinkTexti18n(aggregator.getLinkText());
+	    tabBean.setLinkText(aggregator.getLinkText());
 	    tabBean.setLinkURL(aggregator.getLinkPath());
 	    tabBean.setTargetBlank(aggregator.getLinkTarget());
 	    tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
@@ -185,10 +181,10 @@ public class TabsListModel {
     }
 
     /**
-     * @return the readMoreTextI18n
+     * @return the readMoreText
      */
-    public String getReadMoreTextI18n() {
-	return readMoreTextI18n;
+    public String getReadMoreText() {
+	return readMoreText;
     }
 
     /**
@@ -210,13 +206,6 @@ public class TabsListModel {
      */
     public String getPwTheme() {
 	return pwTheme;
-    }
-
-    /**
-     * @return the pwPadding
-     */
-    public String getPwPadding() {
-	return pwPadding;
     }
 
     /**
