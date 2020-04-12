@@ -38,7 +38,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldDescription="Show as Button or link"
-                                fieldLabel="Link format"
+                                fieldLabel="Link Type"
                                 name="./pwButtonTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <linkButton
@@ -56,7 +56,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldDescription="Show as hyper link or download"
-                                fieldLabel="Link Theme"
+                                fieldLabel="Link behavior"
                                 name="./pwLinkTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <hyperlink
@@ -86,10 +86,11 @@
                                 </items>
                             </padding>
                             <display
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Layout Display"
-                                    name="./pwDisplay">
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Select to align text left or right"
+                                fieldLabel="Layout Display"
+                                name="./pwDisplay">
                                 <items jcr:primaryType="nt:unstructured">
                                     <rowLeftToRight
                                             jcr:primaryType="nt:unstructured"
