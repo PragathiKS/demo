@@ -85,7 +85,7 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"
                                         fieldDescription="Add page paths to automatically populate values"
-                                        fieldLabel="List of pages"
+                                        fieldLabel="Select pages"
                                         validation="multifield-max-12">
                                         <field
                                             jcr:primaryType="nt:unstructured"
