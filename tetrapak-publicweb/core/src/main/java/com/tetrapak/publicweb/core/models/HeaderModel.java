@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -124,7 +125,11 @@ public class HeaderModel {
                 final Page childPage = childPages.next();
                 if (!childPage.isHideInNav()) {
                     final LinkBean linkBean = new LinkBean();
-                    linkBean.setLinkText(childPage.getTitle());
+                    String title = page.getNavigationTitle();
+                    if(StringUtils.isBlank(title)) {
+                        title = page.getTitle();
+                    }
+                    linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
                     megaMenuLinksList.add(linkBean);
                 }
