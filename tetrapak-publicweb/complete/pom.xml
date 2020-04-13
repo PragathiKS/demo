@@ -17,8 +17,8 @@
     <!-- ====================================================================== -->
     <artifactId>tetrapak-publicweb.complete</artifactId>
     <packaging>content-package</packaging>
-    <name>Tetrapak Customerhub - Complete</name>
-    <description>Complete package for Tetrapak Customerhub</description>
+    <name>Tetrapak Publicweb - Complete</name>
+    <description>Complete package for Tetrapak Publicweb</description>
 	<properties>
         <aem.host>localhost</aem.host>
         <aem.port>4502</aem.port>
