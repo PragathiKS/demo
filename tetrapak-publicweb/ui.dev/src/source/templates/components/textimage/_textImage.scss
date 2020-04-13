@@ -32,7 +32,7 @@
     }
 
     &__leftPad {
-        @include padding-left($padding-md);
+        @include padding-left($padding-md); 
         @include padding-right($padding-md);
 
         @media #{$desktop} {
