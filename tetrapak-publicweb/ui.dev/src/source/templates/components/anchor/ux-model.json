@@ -1,0 +1,40 @@
+{
+  "anchors": [
+    {
+      "text": "Feature",
+      "id": "feature"
+    },
+    {
+      "text": "options",
+      "id": "options"
+    },
+    {
+      "text": "Package types",
+      "id": "package_types"
+    },
+    {
+      "text": "Feature",
+      "id": "feature"
+    },
+    {
+      "text": "options",
+      "id": "options"
+    },
+    {
+      "text": "Package types",
+      "id": "package_types"
+    },
+    {
+      "text": "Feature",
+      "id": "feature"
+    },
+    {
+      "text": "options",
+      "id": "options"
+    },
+    {
+      "text": "Package types",
+      "id": "package_types"
+    }
+  ]
+}

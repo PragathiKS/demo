@@ -1,0 +1,42 @@
+.pw-anchor {
+  //  background-color: $color-wild-sand;
+
+    &.tp-container {
+        @include padding(0);
+        @include margin(24px 32px);
+    }
+
+    .pw-anchor-list > .pw-anchor-content {
+        @include padding($padding-md);
+        color: $color-congress-blue;
+        font-weight: 500;
+        border-bottom: 1px solid $color-mercury;
+    }
+
+    @media #{$desktop} {
+        display: flex;
+        justify-content: center;
+        &.tp-container {
+            @include padding(0);
+            @include margin(32px auto);
+        }
+        .pw-anchor-list {
+            @include border-radius($border-radius);
+            @include padding(0);
+            border: 1px solid $color-mercury;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .pw-anchor-list > .pw-anchor-content {
+            @include padding($padding-md);
+            border-right: 1px solid $color-mercury;
+            border-bottom: 0;
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+}
