@@ -60,7 +60,7 @@ public class BreadcrumbModel {
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
         String title = currentPage.getNavigationTitle();
-        if(StringUtils.isEmpty(title)) {
+        if(StringUtils.isBlank(title)) {
             title = currentPage.getTitle();
         }
         breadcrumbPages.put(title, currentPage.getPath());
