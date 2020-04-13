@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -104,19 +106,21 @@ public class TabsListModel {
      */
     @PostConstruct
     protected void init() {
-	switch (contentType) {
-	case "automatic":
-	    generateListAutomaticWay();
-	    break;
-	case "semi-automatic":
-	    generateListSemiAutomatically();
-	    break;
-	case "manual":
-	    generateListManually();
-	    break;
-	default:
-	    LOGGER.info("Not a valid content-type");
-	}
+    if(StringUtils.isNotBlank(contentType)) {
+    	switch (contentType) {
+    	case "automatic":
+    	    generateListAutomaticWay();
+    	    break;
+    	case "semi-automatic":
+    	    generateListSemiAutomatically();
+    	    break;
+    	case "manual":
+    	    generateListManually();
+    	    break;
+    	default:
+    	    LOGGER.info("Not a valid content-type");
+    	}
+    }
     }
 
     /**
