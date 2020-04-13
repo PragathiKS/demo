@@ -7,7 +7,7 @@
           data-textImage-title="${data.title}"
           data-textImage-linkName="${data.linkText}"
           data-textImage-linkType="${data.linkType}">
-        <div class="pw-text-image__innerpadding pw-text-video--${data.pwDisplay}">   
+        <div class="pw-text-image__innerpadding pw-text-video--${data.pwDisplay === 'display-row' ? 'display-row-reversed' : 'display-row' }">   
           <div class="row">
             <div class="col-md-12 col-lg-6 pw-text-image__leftPad">
               <sly data-sly-test = "${!wcmmode.edit}">
