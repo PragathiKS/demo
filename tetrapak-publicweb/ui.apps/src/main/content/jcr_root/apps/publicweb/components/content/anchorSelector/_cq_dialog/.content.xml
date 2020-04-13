@@ -18,7 +18,7 @@
                             <anchorId
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter an anchor ID to be used in anchor component"
+                                fieldDescription="Enter an anchor ID to handle anchor functionality Example - tabhome01"
                                 fieldLabel="Anchor ID"
                                 name="./anchorId"/>
                             <anchorTitle
