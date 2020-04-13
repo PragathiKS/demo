@@ -1,5 +1,5 @@
 .pw-anchor {
-  //  background-color: $color-wild-sand;
+    //  background-color: $color-wild-sand;
 
     &.tp-container {
         @include padding(0);
@@ -26,7 +26,6 @@
             border: 1px solid $color-mercury;
             display: flex;
             justify-content: center;
-            flex-direction: row;
             flex-wrap: wrap;
         }
 
