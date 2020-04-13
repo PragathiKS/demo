@@ -151,10 +151,18 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Pinterest"
                                                             value="Pinterest"/>
-                                                        <googleplus
+                                                        <instagram
                                                             jcr:primaryType="nt:unstructured"
-                                                            text="Google-plus"
-                                                            value="Googleplus"/>
+                                                            text="Instagram"
+                                                            value="instagram"/>
+                                                        <wechat
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Wechat"
+                                                            value="wechat"/>
+                                                        <weibo
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Weibo"
+                                                            value="weibo"/>
                                                     </items>
                                                 </socialmedia>
                                                 <sociallinkpath
