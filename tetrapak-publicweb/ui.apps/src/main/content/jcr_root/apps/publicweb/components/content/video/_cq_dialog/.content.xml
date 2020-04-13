@@ -22,7 +22,7 @@
                                     granite:class="cq-dialog-dropdown-showhide"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldDescription="Please select video source DAM or Youtube to configure the video"
+                                    fieldDescription="Prefered video option is AEM DAM"
                                     fieldLabel="Select Video Source"
                                     name="./videoSource">
                                 <items jcr:primaryType="nt:unstructured">
@@ -47,7 +47,7 @@
                                     <youtubeVideoID
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldDescription="Please enter youtube ID For Example: fR-esiS1Pn0"
+                                            fieldDescription="Enter YouTube ID e.g. fR-esiS1Pn0"
                                             fieldLabel="Youtube Video ID"
                                             name="./youtubeVideoID"/>
                                 </items>
