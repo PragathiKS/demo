@@ -125,9 +125,9 @@ public class HeaderModel {
                 final Page childPage = childPages.next();
                 if (!childPage.isHideInNav()) {
                     final LinkBean linkBean = new LinkBean();
-                    String title = page.getNavigationTitle();
+                    String title = childPage.getNavigationTitle();
                     if(StringUtils.isBlank(title)) {
-                        title = page.getTitle();
+                        title = childPage.getTitle();
                     }
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
