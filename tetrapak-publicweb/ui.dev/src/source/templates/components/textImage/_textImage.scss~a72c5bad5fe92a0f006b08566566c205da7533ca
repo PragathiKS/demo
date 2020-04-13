@@ -57,7 +57,7 @@
         text-transform: $uppercase;
         @media #{$desktop} {
             @include margin-bottom($margin-xs);
-            text-transform: $uppercase;
+            text-transform:$uppercase;
         }
     }
 
