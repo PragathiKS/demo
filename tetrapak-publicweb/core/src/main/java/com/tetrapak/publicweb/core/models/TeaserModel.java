@@ -46,7 +46,7 @@ public class TeaserModel {
 
     /** The max tabs. */
     @ValueMapValue
-    private int maxTabs;
+    private int maxTeasers;
 
     /** The anchor id. */
     @ValueMapValue
@@ -100,7 +100,7 @@ public class TeaserModel {
      */
     private void generateListAutomaticWay() {
         if (tags != null && tags.length > 0) {
-            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTeasers);
             if (!aggregatorList.isEmpty()) {
                 setTabListfromAggregator(aggregatorList);
             }
