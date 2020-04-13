@@ -55,6 +55,7 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
                                             <list
+                                                granite:class="pw-tablist-manual-multi"
                                                 jcr:primaryType="nt:unstructured"
                                                 jcr:title="tabsManual"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
