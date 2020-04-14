@@ -23,7 +23,7 @@
               </button>
               
               
-
+            <sly data-sly-test.videoPathPW = "${tab.damVideoPath}" ></sly>
             <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
                     
@@ -42,7 +42,7 @@
                                                     <sly data-sly-test = "${!wcmmode.edit}">
                                                       <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=tab.thumbnailPath}"></sly>
                                                       <video title="${noval}" class="js-dam-player" controls poster="${dynamicImageModel.desktopUrl}">
-                                                        <source src="${tab.damVideoPath}">
+                                                        <source src="${videoPathPW}">
                                                       </video>
                                                     </sly>
                                                   </div>
