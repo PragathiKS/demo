@@ -57,6 +57,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                 fieldDescription="Link to destination path"
                                 fieldLabel="Link path"
+								rootPath="/content"
                                 name="./linkURL"/>
                             <targetBlank
                                 jcr:primaryType="nt:unstructured"
