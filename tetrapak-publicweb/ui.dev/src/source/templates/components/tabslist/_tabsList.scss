@@ -73,30 +73,6 @@
             }
         }
 
-        // .icon-Chevron_Down {
-        //     @include right($margin-md);
-        //     @include width($spacing-big-half);
-        //     @include height($spacing-big-half);
-        //     @include font-size($font-sm);
-        //     color: $color-congress-blue;
-        //     position: absolute;
-        //     top: 0;
-        //     bottom: 0;
-        //     margin: auto;
-        //     transition: transform $anim-speed-quick $anim-ease;
-
-        //     @media #{$desktop} {
-        //         right: 0;
-        //     }
-
-        //     &::before {
-        //         vertical-align: top;
-
-        //         @media #{$desktop} {
-        //             transform: rotate(-90deg);
-        //         }
-        //     }
-        // }
 
         .icon-left {
             @include right($margin-md);
@@ -291,5 +267,14 @@
         left: 0;
         width: 100%;
         height: 100%;
+    }
+}
+
+.tp-container-regular {
+    max-width: 100%;
+    margin: $margin-md;
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        margin: $margin-xxxl;
     }
 }
