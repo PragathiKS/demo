@@ -12,7 +12,7 @@ let ytRefs = [];
  */
 function _getIndex(currentTime, totalTime) {
   if (currentTime >= 0) {
-    const percentComplete = currentTime / totalTime * 100;
+    const percentComplete = (currentTime / totalTime) * 100;
     if (percentComplete < 25) {
       return 0;
     }
@@ -33,24 +33,40 @@ function _getIndex(currentTime, totalTime) {
  * @param {string} videoInteraction Video event
  * @param {number} videoLength Video length in seconds
  */
-function _trackVideoParameters(videoInteraction, videoLength,videoTime,trackingKey) {
-  const { videoName } = $(this).parents('.js-video-props').data();
-  const videomilestone = (videoInteraction==='25% milestone' && '25') || (videoInteraction==='50% milestone' && '50') || (videoInteraction==='75% milestone' && '75');
-  const videoSection = 'video';
+function _trackVideoParameters(
+  videoInteraction,
+  videoLength,
+  videoTime,
+  trackingKey
+) {
+  const { videoName } = $(this)
+    .parents('.js-video-props')
+    .data();
+
+  const videomilestone =
+    (videoInteraction === '25% milestone' && '25') ||
+    (videoInteraction === '50% milestone' && '50') ||
+    (videoInteraction === '75% milestone' && '75') ||
+    (videoInteraction === 'end' && '100');
+  const videoSection = 'site section1 of a page';
   const trackingObj = {
     videoName,
     videoSection,
-    videoLength:new Date(videoLength * 1000).toISOString().substr(11, 8),
-    videoTime:new Date(Math.round(videoTime) * 1000).toISOString().substr(11, 8),
+    videoLength: new Date(videoLength * 1000).toISOString().substr(11, 8),
+    videoTime: new Date(Math.round(videoTime) * 1000)
+      .toISOString()
+      .substr(11, 8),
     videoInteraction
   };
-  if(videomilestone){
-    trackingObj['videomilestone']= videomilestone;
+  if (videomilestone) {
+    trackingObj['videomilestone'] = videomilestone;
   }
-  if(videoInteraction === 'end'){
-    trackingObj['videoend']= 'true';
+  if (videoInteraction === 'end') {
+    trackingObj['videoend'] = 'true';
   }
-  trackAnalytics(trackingObj, 'video', trackingKey, undefined, false);
+  trackAnalytics(trackingObj, 'video', trackingKey, undefined, false, {
+    eventType: 'video'
+  });
 }
 
 /**
@@ -60,19 +76,34 @@ function _trackVideoParameters(videoInteraction, videoLength,videoTime,trackingK
  * @param {number} totalTime Total available time
  */
 function _calculateProgress(currentTime, totalTime) {
-  const percentCompleted = Math.floor(currentTime / totalTime * 100);
+  const percentCompleted = Math.floor((currentTime / totalTime) * 100);
   const $this = $(this);
   let trackIndex = $this.data('trackIndex');
   if (percentCompleted >= 25 && trackIndex === 0) {
-    _trackVideoParameters.apply(this, ['25% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
+    _trackVideoParameters.apply(this, [
+      '25% milestone',
+      Math.round(totalTime),
+      currentTime,
+      'videoMilestone'
+    ]);
     $this.data('trackIndex', (trackIndex = 1));
   }
   if (percentCompleted >= 50 && trackIndex === 1) {
-    _trackVideoParameters.apply(this, ['50% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
+    _trackVideoParameters.apply(this, [
+      '50% milestone',
+      Math.round(totalTime),
+      currentTime,
+      'videoMilestone'
+    ]);
     $this.data('trackIndex', (trackIndex = 2));
   }
   if (percentCompleted >= 75 && trackIndex === 2) {
-    _trackVideoParameters.apply(this, ['75% milestone', Math.round(totalTime),currentTime,'videoMilestone']);
+    _trackVideoParameters.apply(this, [
+      '75% milestone',
+      Math.round(totalTime),
+      currentTime,
+      'videoMilestone'
+    ]);
     $this.data('trackIndex', (trackIndex = 3));
   }
 }
@@ -88,7 +119,11 @@ export function pauseVideosByReference(el) {
     const $thisRef = $(ref);
     if ($thisRef.hasClass('js-yt-player')) {
       const ytPayerRef = ytRefs.find(ytRef => ytRef.el === ref);
-      if (ytPayerRef && ytPayerRef.ytPlayer && $thisRef.hasClass('is-playing')) {
+      if (
+        ytPayerRef &&
+        ytPayerRef.ytPlayer &&
+        $thisRef.hasClass('is-playing')
+      ) {
         ytPayerRef.ytPlayer.pauseVideo();
       }
     } else if ($thisRef.hasClass('is-playing') && ref.pause) {
@@ -108,7 +143,10 @@ function _onStateChange(thisIns, e) {
   const totalTime = thisIns.ytPlayer.getDuration();
   const videoTime = thisIns.ytPlayer.getCurrentTime();
   const $this = $(this);
-  $this.data('trackIndex', _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]));
+  $this.data(
+    'trackIndex',
+    _getIndex.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime])
+  );
   if (e.data === window.YT.PlayerState.PLAYING) {
     pauseVideosByReference($('.is-playing').not(this));
     $this.removeClass('is-paused is-stopped').addClass('is-playing');
@@ -116,14 +154,27 @@ function _onStateChange(thisIns, e) {
       clearInterval(thisIns.intervalRef);
     }
     thisIns.intervalRef = window.setInterval(() => {
-      _calculateProgress.apply(this, [thisIns.ytPlayer.getCurrentTime(), totalTime]);
+      _calculateProgress.apply(this, [
+        thisIns.ytPlayer.getCurrentTime(),
+        totalTime
+      ]);
     }, 500);
     const wasStarted = $this.data('started');
     if (['true', true].includes(wasStarted)) {
-      _trackVideoParameters.apply(this, ['resume', Math.round(totalTime),videoTime,'videoResume']);
+      _trackVideoParameters.apply(this, [
+        'resume',
+        Math.round(totalTime),
+        videoTime,
+        'videoResume'
+      ]);
     } else {
       $this.attr('data-started', 'true').data('started', 'true');
-      _trackVideoParameters.apply(this, ['start', Math.round(totalTime),videoTime,'videoStart']);
+      _trackVideoParameters.apply(this, [
+        'start',
+        Math.round(totalTime),
+        videoTime,
+        'videoStart'
+      ]);
     }
   }
   if (e.data === window.YT.PlayerState.PAUSED) {
@@ -131,7 +182,12 @@ function _onStateChange(thisIns, e) {
     if (thisIns.intervalRef) {
       window.clearInterval(thisIns.intervalRef);
     }
-    _trackVideoParameters.apply(this, ['pause', Math.round(totalTime),videoTime,'videoPause']);
+    _trackVideoParameters.apply(this, [
+      'pause',
+      Math.round(totalTime),
+      videoTime,
+      'videoPause'
+    ]);
   }
   if (e.data === window.YT.PlayerState.ENDED) {
     $this.removeClass('is-playing is-paused').addClass('is-stopped');
@@ -142,7 +198,12 @@ function _onStateChange(thisIns, e) {
       started: 'false',
       trackIndex: 0
     });
-    _trackVideoParameters.apply(this, ['end', Math.round(totalTime),totalTime,'videoEnd']);
+    _trackVideoParameters.apply(this, [
+      'end',
+      Math.round(totalTime),
+      totalTime,
+      'videoEndButtonClick'
+    ]);
   }
 }
 
@@ -150,18 +211,15 @@ function _onStateChange(thisIns, e) {
  * Promise that ensures that youtube API is ready
  * @public
  */
-export const ytPromise = new Promise(function (resolve) {
+export const ytPromise = new Promise(function(resolve) {
   const scr = document.createElement('script');
   scr.src = 'https://www.youtube.com/iframe_api';
   const firstScript = document.getElementsByTagName('script')[0];
   firstScript.parentNode.insertBefore(scr, firstScript);
-  window.onYouTubeIframeAPIReady = function (...args) {
+  window.onYouTubeIframeAPIReady = function(...args) {
     resolve(args);
-
   };
 });
-
-
 
 /**
  * Initializes youtube player API for existing videos
@@ -170,7 +228,7 @@ export const ytPromise = new Promise(function (resolve) {
 export function initializeYoutubePlayer() {
   const $ytVideos = $('.js-yt-player').not('.video-init');
   logger.log(`[Youtube]: ${$ytVideos.length} youtube video(s) initialized`);
-  $ytVideos.each(function () {
+  $ytVideos.each(function() {
     const thisIns = {};
     thisIns.el = this;
     if (window.YT && window.YT.Player) {
@@ -187,9 +245,6 @@ export function initializeYoutubePlayer() {
   });
 }
 
-
-
-
 /**
  * Clears youtube API instances
  * @public
@@ -203,7 +258,7 @@ export function removeYTReferences(ref) {
     return;
   }
   const initialLength = ytRefs.length;
-  $(ref).each(function () {
+  $(ref).each(function() {
     const $this = $(this);
     if ($this.hasClass('js-yt-player') && $this.hasClass('video-init')) {
       ytRefs = ytRefs.filter(ytRef => ytRef.el !== this);
@@ -211,7 +266,7 @@ export function removeYTReferences(ref) {
     }
   });
   const finalLength = ytRefs.length;
-  logger.log(`[Youtube]: ${(initialLength - finalLength)} reference(s) removed`);
+  logger.log(`[Youtube]: ${initialLength - finalLength} reference(s) removed`);
 }
 
 /**
@@ -223,12 +278,25 @@ function _onDAMPlay() {
   pauseVideosByReference($('.is-playing').not(this));
   $this.removeClass('is-paused is-stopped').addClass('is-playing');
   const wasStarted = $this.data('started');
-  $this.data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration]));
+  $this.data(
+    'trackIndex',
+    _getIndex.apply(this, [this.currentTime, this.duration])
+  );
   if (['true', true].includes(wasStarted)) {
-    _trackVideoParameters.apply(this, ['resume', Math.round(this.duration),this.currentTime,'videoResume']);
+    _trackVideoParameters.apply(this, [
+      'resume',
+      Math.round(this.duration),
+      this.currentTime,
+      'videoResume'
+    ]);
   } else {
     $this.attr('data-started', 'true').data('started', 'true');
-    _trackVideoParameters.apply(this, ['start', Math.round(this.duration),this.currentTime,'videoStart']);
+    _trackVideoParameters.apply(this, [
+      'start',
+      Math.round(this.duration),
+      this.currentTime,
+      'videoStart'
+    ]);
   }
 }
 
@@ -238,8 +306,19 @@ function _onDAMPlay() {
  */
 function _onDAMPause() {
   if (this.currentTime < this.duration) {
-    $(this).data('trackIndex', _getIndex.apply(this, [this.currentTime, this.duration])).removeClass('is-stopped is-playing').addClass('is-paused');
-    _trackVideoParameters.apply(this, ['pause', Math.round(this.duration),this.currentTime,'videoPause']);
+    $(this)
+      .data(
+        'trackIndex',
+        _getIndex.apply(this, [this.currentTime, this.duration])
+      )
+      .removeClass('is-stopped is-playing')
+      .addClass('is-paused');
+    _trackVideoParameters.apply(this, [
+      'pause',
+      Math.round(this.duration),
+      this.currentTime,
+      'videoPause'
+    ]);
   }
 }
 
@@ -257,11 +336,20 @@ function _onTimeUpdate() {
  * Fires when youtube video ends
  */
 function _onEnd() {
-  $(this).attr('data-started', 'false').data({
-    started: 'false',
-    trackIndex: 0
-  }).removeClass('is-playing is-paused').addClass('is-stopped');
-  _trackVideoParameters.apply(this, ['end', Math.round(this.duration),this.currentTime,'videoEndButtonClick']);
+  $(this)
+    .attr('data-started', 'false')
+    .data({
+      started: 'false',
+      trackIndex: 0
+    })
+    .removeClass('is-playing is-paused')
+    .addClass('is-stopped');
+  _trackVideoParameters.apply(this, [
+    'end',
+    Math.round(this.duration),
+    this.currentTime,
+    'videoEndButtonClick'
+  ]);
 }
 
 /**
@@ -271,7 +359,8 @@ function _onEnd() {
 export function initializeDAMPlayer() {
   const $damVideos = $('.js-dam-player').not('.video-init');
   logger.log(`[HTML5 video]: ${$damVideos.length} video(s) initialized`);
-  $damVideos.addClass('video-init')
+  $damVideos
+    .addClass('video-init')
     .on('play', _onDAMPlay)
     .on('pause', _onDAMPause)
     .on('timeupdate', _onTimeUpdate)
