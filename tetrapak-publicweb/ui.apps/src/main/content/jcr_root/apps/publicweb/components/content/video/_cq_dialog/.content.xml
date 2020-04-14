@@ -63,14 +63,12 @@
                                     <damVideoPath
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                            fieldDescription="Please select a video from DAM"
                                             fieldLabel="DAM Video Path"
                                             name="./damVideoPath"
                                             rootPath="/content/dam/tetrapak/publicweb"/>
                                     <image
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                            fieldDescription="Please select a poster image for the DAM video"
                                             fieldLabel="Poster image"
                                             name="./thumbnailPath"
                                             rootPath="/content/dam/tetrapak/publicweb"/>
