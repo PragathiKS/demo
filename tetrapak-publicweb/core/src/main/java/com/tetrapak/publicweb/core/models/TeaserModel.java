@@ -12,6 +12,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.eclipse.jetty.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,18 +81,20 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
-        switch (contentType) {
-            case "automatic":
-                generateListAutomaticWay();
-                break;
-            case "semi-automatic":
-                generateListSemiAutomatically();
-                break;
-            case "manual":
-                getManualList();
-                break;
-            default:
-                LOGGER.info("Not a valid content-type");
+        if (StringUtil.isBlank(contentType)) {
+            switch (contentType) {
+                case "automatic":
+                    generateListAutomaticWay();
+                    break;
+                case "semi-automatic":
+                    generateListSemiAutomatically();
+                    break;
+                case "manual":
+                    getManualList();
+                    break;
+                default:
+                    LOGGER.info("Not a valid content-type");
+            }
         }
     }
 
