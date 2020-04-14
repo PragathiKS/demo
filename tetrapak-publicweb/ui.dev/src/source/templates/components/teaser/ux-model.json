@@ -1,33 +1,56 @@
 {
-  "pwButtonTheme": "link",
-  "uxPreview": true,
+  "heading": "Heading",
+  "anchorId": "test",
+  "anchorTitle": "title",
+  "pwTheme": "grayscale-white",
   "teaserList": [
     {
-      "title": "<b>Bold Text</b> With Simple text",
-      "description": "This is some description",
-      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-      "altText": "alt",
-      "linkText": "link to open",
-      "linkPath": "#",
-      "targetNew": true
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/public-web/lang-master/en/home.html",
+      "linkTarget": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "pwButtonTheme": "link",
+      "assetName": "test.pdf",
+      "pwLinkTheme": "link"
     },
     {
-      "title": "<b>Bold Text</b> With Simple text",
-      "description": "This is some long description with lorem ipsum dolor sit and blah blah to check multiline behaviour of the component. Hope that the behaviour will be smooth and the component will work as expected. If not then we will figure out what should be done.",
-      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-      "altText": "alt",
-      "linkText": "link to open",
-      "linkPath": "#",
-      "targetNew": true
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/public-web/lang-master/en/home.html",
+      "linkTarget": "_self",
+      "fileReference": "",
+      "alt": "Image",
+      "pwButtonTheme": "link",
+      "assetName": "test.pdf",
+      "pwLinkTheme": "link"
     },
     {
-      "title": "<b>Bold Text</b> With Simple text",
-      "description": "This is some description with some <b>Html text</b>",
-      "imagePath": "https://images.unsplash.com/photo-1572988163424-1deefefec9c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-      "altText": "alt",
-      "linkText": "link to open",
-      "linkPath": "#",
-      "targetNew": false
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/public-web/lang-master/en/home.html",
+      "linkTarget": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "assetName": "test.pdf",
+      "pwButtonTheme": "link",
+      "pwLinkTheme": "link"
+    },
+    {
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/public-web/lang-master/en/home.html",
+      "linkTarget": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "assetName": "test.pdf",
+      "pwButtonTheme": "link",
+      "pwLinkTheme": "link"
     }
   ]
 }

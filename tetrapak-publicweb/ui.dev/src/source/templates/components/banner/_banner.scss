@@ -16,7 +16,10 @@
   }
 }
 .pw-banner {
-    @include margin-bottom(0);
+    @include margin-bottom(20px);
+    @media #{$desktop} {
+        @include margin-bottom(0);
+    }
     $self: &;
     position: relative;
 
