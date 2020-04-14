@@ -5,10 +5,10 @@
 
 @font-face {
 	font-family:"tp-icons";
-	src:url("../../../assets/fonts/tp-icons.eot?5df80f4139f3627a37fbff664be905b3");
-	src:url("../../../assets/fonts/tp-icons.eot?5df80f4139f3627a37fbff664be905b3#iefix") format("embedded-opentype"),
-		url("../../../assets/fonts/tp-icons.woff?5df80f4139f3627a37fbff664be905b3") format("woff"),
-		url("../../../assets/fonts/tp-icons.ttf?5df80f4139f3627a37fbff664be905b3") format("truetype");
+	src:url("../../../assets/fonts/tp-icons.eot?998f35a2e96f98a83294904f231350f8");
+	src:url("../../../assets/fonts/tp-icons.eot?998f35a2e96f98a83294904f231350f8#iefix") format("embedded-opentype"),
+		url("../../../assets/fonts/tp-icons.woff?998f35a2e96f98a83294904f231350f8") format("woff"),
+		url("../../../assets/fonts/tp-icons.ttf?998f35a2e96f98a83294904f231350f8") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -285,12 +285,8 @@
 	content:"\f12a";
 }
 
-.icon-Pinterest:before {
-	content:"\f0d2a";
-}
-.icon-Googleplus:before {
-	content:"\f0d2a";
-}
+
+
 .icon-Factory:before {
 	content:"\f12b";
 }
@@ -555,19 +551,31 @@
 
 
 
-.icon-Wine_Spirit:before {
+.icon-WeChat:before {
 	content:"\f157";
 }
 
 
 
-.icon-Word:before {
+.icon-Weibo:before {
 	content:"\f158";
 }
 
 
 
-.icon-Youtube:before {
+.icon-Wine_Spirit:before {
 	content:"\f159";
+}
+
+
+
+.icon-Word:before {
+	content:"\f15a";
+}
+
+
+
+.icon-Youtube:before {
+	content:"\f15b";
 }
 
