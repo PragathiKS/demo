@@ -104,18 +104,6 @@
                                         jcr:title="More Titles and Description"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <pagetitle
-                                                cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Page Title"
-                                                name="./pageTitle"
-                                                renderReadOnly="{Boolean}true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="pageTitle"/>
-                                            </pagetitle>
                                             <navigationtitle
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -129,17 +117,6 @@
                                                     allowBulkEdit="{Boolean}true"
                                                     cq-msm-lockable="navTitle"/>
                                             </navigationtitle>
-                                            <subtitle
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Subtitle"
-                                                name="./subtitle"
-                                                renderReadOnly="{Boolean}true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="subtitle"/>
-                                            </subtitle>
                                             <description
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -328,7 +305,7 @@
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                fieldDescription="Link to destination url"
+                                                fieldDescription="Link to destination URL"
                                                 fieldLabel="Link Path"
                                                 name="./linkPath"
                                                 rootPath="/content/tetrapak/public-web"/>

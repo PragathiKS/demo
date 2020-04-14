@@ -2,16 +2,16 @@ import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
-class TextImage {
+class Teaser {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
+    this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
   }
   bindEvents() {
-    this.cache.$textImageLink.on('click', this.trackAnalytics);
+    this.cache.$teaserLink.on('click', this.trackAnalytics);
   }
 
 
@@ -19,7 +19,7 @@ class TextImage {
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const $this = $target.closest('.js-textImage-analytics');
+    const $this = $target.closest('.js-teaser-analytics');
     let trackingObj = {};
     let eventType = 'content-load';
     const downloadtype = $this.data('download-type');
@@ -29,6 +29,8 @@ class TextImage {
       trackingObj = {
         eventType
       };
+    } if($this.attr('target') === 'blank') {
+      window._satellite.track('linkClick');
     } else {
       trackingObj = {
         eventType
@@ -45,4 +47,4 @@ class TextImage {
   }
 }
 
-export default TextImage;
+export default Teaser;

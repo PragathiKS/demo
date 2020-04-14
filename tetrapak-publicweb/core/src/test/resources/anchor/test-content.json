@@ -1,0 +1,97 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"hideContactFooterForm@Delete": "true",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Company",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"pwLinkTheme": "hyperlink",
+		"pwButtonTheme": "link",
+		"jcr:created": "Tue Apr 14 2020 11:45:57 GMT+0530",
+		"cq:lastModified": "Tue Apr 14 2020 13:04:28 GMT+0530",
+		"hideInSearch@Delete": "true",
+		"linkTarget": "_self",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"anchor": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Tue Apr 14 2020 11:46:07 GMT+0530",
+					"jcr:lastModified": "Tue Apr 14 2020 11:46:07 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/anchor"
+				},
+				"banner": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"anchorTitle": "Banner",
+					"jcr:lastModifiedBy": "admin",
+					"bannerType": "textImage",
+					"anchorId": "banner01",
+					"pwLinkTheme": "hyperlink",
+					"pwButtonTheme": "link",
+					"jcr:created": "Tue Apr 14 2020 12:51:27 GMT+0530",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"linkTarget": "_self",
+					"jcr:lastModified": "Tue Apr 14 2020 12:51:41 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/banner"
+				},
+				"textimage": {
+					"jcr:primaryType": "nt:unstructured",
+					"targetBlank": "_self",
+					"jcr:createdBy": "admin",
+					"anchorTitle": "Text",
+					"jcr:lastModifiedBy": "admin",
+					"anchorId": "text01",
+					"pwLinkTheme": "hyperlink",
+					"pwButtonTheme": "link",
+					"jcr:created": "Tue Apr 14 2020 12:51:47 GMT+0530",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"jcr:lastModified": "Tue Apr 14 2020 12:52:27 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/textImage"
+				},
+				"banner_752061369": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"bannerType": "textImage",
+					"pwLinkTheme": "hyperlink",
+					"pwButtonTheme": "link",
+					"jcr:created": "Tue Apr 14 2020 12:52:36 GMT+0530",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"linkTarget": "_self",
+					"jcr:lastModified": "Tue Apr 14 2020 12:52:40 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/banner"
+				},
+				"textvideo": {
+					"jcr:primaryType": "nt:unstructured",
+					"targetBlank": "_self",
+					"jcr:createdBy": "admin",
+					"anchorTitle": "text second",
+					"jcr:lastModifiedBy": "admin",
+					"anchorId": "text03",
+					"pwLinkTheme": "hyperlink",
+					"pwButtonTheme": "link",
+					"jcr:created": "Tue Apr 14 2020 12:59:52 GMT+0530",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"jcr:lastModified": "Tue Apr 14 2020 13:00:16 GMT+0530",
+					"videoSource": "damVideo",
+					"sling:resourceType": "publicweb/components/content/textVideo",
+					"pwPadding": "regular"
+				}
+			}
+		}
+	}
+}
