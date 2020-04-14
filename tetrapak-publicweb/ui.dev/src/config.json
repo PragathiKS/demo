@@ -148,6 +148,7 @@
         "source/templates/components/image/",
         "source/templates/components/banner/",
         "source/templates/components/richtext/",
+        "source/templates/components/tabslist/",
         "source/templates/components/textImage/",
         "source/templates/components/teaser/"
       ],
