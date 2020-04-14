@@ -24,7 +24,7 @@
         position: relative;
         width: 100%;
         @media #{$desktop} {
-          width: unset;
+            width: unset;
         }
     }
 
@@ -59,8 +59,10 @@
         &__subtitle {
             @include font-size($font-sm);
             display: none;
+            text-transform: $uppercase;
             @media #{$desktop} {
                 display: block;
+                text-transform: $uppercase;
             }
         }
 
@@ -97,7 +99,7 @@
             left: $margin-xxxl;
         }
     }
-    .display-row-reversed{
+    .display-row-reversed {
         @media #{$desktop} {
             right: $margin-xxxl;
         }

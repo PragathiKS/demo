@@ -3,43 +3,43 @@
      <div class="tp-container">
       <div data-sly-test="${data.title || data.imagePath}" class="pw-text-image pw-theme--${data.pwTheme}" 
           data-locator="text-image" data-module="TextImage"
-          data-textImage-contentName="${data.subtitle}"
+          data-textImage-contentName="${data.subTitle}"
           data-textImage-title="${data.title}"
-          data-textImage-linkName="${data.linkTexti18n}"
+          data-textImage-linkName="${data.linkText}"
           data-textImage-linkType="${data.linkType}">
-        <div class="pw-text-image__innerpadding pw-text-video--${data.pwDisplay}">   
+        <div class="pw-text-image__innerpadding pw-text-video--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">   
           <div class="row">
             <div class="col-md-12 col-lg-6 pw-text-image__leftPad">
               <sly data-sly-test = "${!wcmmode.edit}">
-                <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltI18n, className='pw-text-image__image'}" />
+                <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
               </sly>
               <sly data-sly-test = "${wcmmode.edit}">
-                <img alt="${data.imageAltI18n}" src="${data.imagePath}" class="pw-text-image__image" />
+                <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
               </div>
             <div class="col-md-12 col-lg-6 pw-text-image__rightPad">
-              <div data-sly-test="${data.subtitle}" class="pw-text-image__subtitle">
+              <div data-sly-test="${data.subTitle}" class="pw-text-image__subTitle">
                 <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
-                    data-sly-call="${subheading.subheading_template @ headingText=data.subtitle}"/>
+                    data-sly-call="${subheading.subheading_template @ headingText=data.subTitle}"/>
               </div>
               <div data-sly-test="${data.title}" class="pw-text-image__title">
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                    data-sly-call="${heading.heading_h2_template @ headingText=data.subtitle, variant='regular'}"/>
+                    data-sly-call="${heading.heading_h2_template @ headingText=data.title, variant='regular'}"/>
               </div>
               <p class="pw-text-image__description">${data.description}</p>
               <div class="pw-text-image__link" data-sly-test="${data.linkURL}">
-                  <a data-sly-test="${data.linkTexti18n}"
+                  <a data-sly-test="${data.linkText}"
                     href="${data.linkURL}"
                     class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
-                    title="${data.linkTexti18n}"
+                    title="${data.linkText}"
                     target="${data.targetBlank}"
                     data-link-type="internal"
                     data-link-section="Text and Image CTA Click"
-                    data-link-name="${data.linkTexti18n}"
+                    data-link-name="${data.linkText}"
                     data-button-link-type="${data.pwButtonTheme}"
                     data-download-type="${data.pwLinkTheme}"
                     >
-                    <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
+                    <span class="tpatom-link__text sly-text">${data.linkText}</span>
                     <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
                 </a>
           
