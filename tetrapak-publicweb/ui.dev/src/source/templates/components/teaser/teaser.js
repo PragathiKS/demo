@@ -29,6 +29,8 @@ class Teaser {
       trackingObj = {
         eventType
       };
+    } if($this.attr('target') === 'blank') {
+      window._satellite.track('linkClick');
     } else {
       trackingObj = {
         eventType
