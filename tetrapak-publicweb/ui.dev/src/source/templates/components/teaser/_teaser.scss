@@ -1,33 +1,34 @@
 .tp-teaser {
-    @include padding(8px);
-    @include margin(16px 0);
-    width: 100%;
-    border-radius: 5px;
+    @include padding($padding-md);
+    @include margin($margin-md);
 
     @media #{$desktop} {
-        @include padding(36px);
-        @include margin(48px 0);
+        @include padding($padding-xxxl);
+        @include margin($margin-xxxl);
     }
 
     &__heading {
-        @include padding($padding-sm);
-
-        @media #{$desktop} {
-            @include padding(12px);
-        }
+        @include padding-bottom($padding-l);
     }
 
     &__details {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-
-        &--image {
-            width: 100%;
+        .image {
+            @include margin-top($margin-l);
+         
+            @media #{$desktop} {
+                @include margin-top(0);
+            }
         }
 
-        @media #{$desktop} {
-            flex-direction: row;
+        .tilte {
+            @include padding-top($margin-l);
+            @include padding-bottom($margin-l);
+        }
+
+        .link {
+            @include padding-top($padding-l);
+            @include padding-bottom($padding-l); 
         }
     }
+
 }
