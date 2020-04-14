@@ -26,6 +26,7 @@
 "jcr:createdBy": "admin",
 "readMoreText": "Read for here",
 "readMorePath": "/content/community/badging",
+"pwLinkTheme": "hyperlink",
 "anchorTitle": "anchor title",
 "jcr:lastModifiedBy": "admin",
 "anchorId": "anchorId",

@@ -2,7 +2,14 @@ import $ from 'jquery';
 /**
  * Fire analytics
  */
-export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, transformCase = true) => {
+export const trackAnalytics = (
+  objectData,
+  objectName,
+  trackingKey,
+  objectKey,
+  transformCase = true,
+  eventObject = undefined
+) => {
   window.digitalData = window.digitalData || {};
 
   if (objectName) {
@@ -16,6 +23,9 @@ export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, t
       }
       window.digitalData[objectName][objectKey] = objectData;
     } else {
+      if (eventObject) {
+        window.digitalData['event'] = eventObject;
+      }
       window.digitalData[objectName] = objectData;
     }
 
@@ -33,10 +43,7 @@ export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, t
  */
 export const trackParams = (ob, obKey, trackingKey) => {
   window.digitalData = $.extend(window.digitalData, {});
-  if (
-    !$.isEmptyObject(ob)
-    && typeof obKey === 'string'
-  ) {
+  if (!$.isEmptyObject(ob) && typeof obKey === 'string') {
     window.digitalData[obKey] = $.extend(window.digitalData[obKey], ob);
     if (window._satellite) {
       window._satellite.track(trackingKey);
