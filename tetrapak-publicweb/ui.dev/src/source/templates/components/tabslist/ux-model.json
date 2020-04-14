@@ -2,13 +2,14 @@
 {
   "readMoreText":"Read more",
   "readMorePath":"/content/tetrapak/public-web/lang-masters/en/home.html",
-  "readMoreTarget":"_self/_blank",
+  "readMoreTarget":"_blank",
   "heading":"Solutions for all needs",
   "anchorId":"sdlki3uoeiuedlmm",
   "anchorTitle":"Tab List",
   "pwDisplay": "display-row",
   "pwTheme": "grayscale-lighter",
-  "pwPadding": "regular",
+  "pwLinkTheme": "download",
+  "assetName":"abc",
   "tabs":[
     { 
       "tabType":"textVideo",

@@ -114,8 +114,21 @@
           </sly>
           <sly data-sly-test = "${tabList.last}">
             <div class="pw-tablist__event">
-            <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
-            data-sly-call="${btnLink.button_template @btnPath=data.readMorePath, btnText=data.readMoreText ,btnTarget=data.readMoreTarget, variant='transparent'}" />
+              <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
+            <a data-sly-test="${tab.linkText}"
+                                 href="${data.readMorePath}"
+                                 class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
+                                 target="${data.readMoreTarget}"
+                                 data-link-section="Tab Click Text Hyperlink${buttonDownloadReadMore}"
+                                 data-link-name="${data.readMoreText}"
+                                 data-download-type="${data.pwLinkTheme}"
+                                 data-button-link-type="link"
+                                 data-asset-name="${data.assetName}"
+                                 data-tab-type = ""
+                                 rel="${data.readMoreTarget ? 'noopener noreferrer' : ''}">
+                                 <span class="tpatom-link__text sly-text">${data.readMoreText}</span>
+                                 <i class="icon icon-Circle_Arrow_Right"></i>
+                              </a>
           </div>
         </sly>
         </sly>

@@ -14,40 +14,6 @@ function _renderFirstTab() {
   });
   initializeDAMPlayer();
 }
-/**
- * Fire analytics on click of
- * any tab list
- */
-// function _trackAnalytics(type, el) {
-//   const { heading } = this.cache;
-//   const currentEl = $(el);
-
-//   const analyticsData = {
-//     linkType: 'internal',
-//     linkSection: 'tablist'
-//   };
-
-//   switch (type) {
-//   case 'tabclick': {
-//     analyticsData.linkParentTitle = $.trim(heading.toLowerCase());
-//     analyticsData.linkName = $.trim(currentEl.text());
-//     analyticsData.linkListPos = currentEl.data('index') + 1;
-//     break;
-//   }
-//   case 'descriptionLink': {
-//     const activeTab = currentEl.parents('.js-tablist').find('.js-tablist__event.active');
-//     analyticsData.linkType = currentEl.attr('target') === '_blank' ? 'external' : 'internal';
-//     analyticsData.contentName = $.trim(activeTab.text());
-//     analyticsData.linkParentTitle = $.trim(activeTab.next('.show').find('.js-tablist__event-detail-title').text());
-//     analyticsData.linkName = $.trim(currentEl.text());
-//     break;
-//   }
-//   default:
-//     break;
-//   }
-
-//   trackAnalytics(analyticsData, 'linkClick', 'linkClicked', undefined, false);
-// }
 
 class TabsList {
   constructor({ el }) {
@@ -68,7 +34,6 @@ class TabsList {
         const self = $(this);
         if (!self.hasClass(`active--${activeTheme}`)) {
           $this.showTabDetail(self.data('target'));
-          // $this.trackAnalytics('tabclick', this);
         }
         $this.root.find('.js-tablist__event').removeClass(`active--${activeTheme}`);
         self.addClass(`active--${activeTheme}`).toggleClass('m-active');
@@ -90,7 +55,6 @@ class TabsList {
     pauseVideosByReference($(this).find('.is-playing'));
   }
   renderFirstTab = () => _renderFirstTab.call(this);
-  // trackAnalytics = (type, el) => _trackAnalytics.apply(this, [type, el]);
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
@@ -102,7 +66,6 @@ class TabsList {
     const linkType = $this.attr('target') === '_blank'?'external':'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
-    // const videoName = $this.data('video-name');
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
