@@ -14,7 +14,6 @@
     &__details {
         .image {
             @include margin-top($margin-l);
-         
             @media #{$desktop} {
                 @include margin-top(0);
             }
@@ -27,7 +26,7 @@
 
         .link {
             @include padding-top($padding-l);
-            @include padding-bottom($padding-l); 
+            @include padding-bottom($padding-l);
         }
     }
 
