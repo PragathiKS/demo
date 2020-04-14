@@ -6,13 +6,13 @@
   "heading":"Solutions for all needs",
   "anchorId":"sdlki3uoeiuedlmm",
   "anchorTitle":"Tab List",
-  "pwDisplay": "display-row",
+  "pwDisplay": "display-row-reversed",
   "pwTheme": "grayscale-lighter",
   "pwLinkTheme": "download",
   "assetName":"abc",
   "tabs":[
     { 
-      "tabType":"textVideo",
+      "tabType":"videoText",
       "pwButtonTheme": "secondary",
       "pwLinkTheme": "hyperlink",
       "title": "Turn your products into success2",
@@ -27,7 +27,7 @@
       "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
       "assetName": "file.pdf",
       "videoName": "videoName"
-},{                               "tabType":"textImage",  
+},{                               "tabType":"imageText",  
                                   "pwButtonTheme": "link",
                                   "pwLinkTheme": "hyperlink",
                                   "title": "Turn your products into success1",
@@ -40,7 +40,7 @@
                                   "alt": "test",
                                   "assetName": "file.pdf"
                   },
-                   {              "tabType":"textVideo",
+                   {              "tabType":"videoText",
                                   "pwButtonTheme": "link",
                                   "pwLinkTheme": "download",
                                   "title": "Turn your products into success2",
@@ -56,7 +56,7 @@
                                   "assetName": "file.pdf",
                                   "videoName": "videoName"
                   },
-                  {              "tabType":"textVideo",
+                  {              "tabType":"videoText",
                                  "pwButtonTheme": "secondary",
                                  "pwLinkTheme": "download",
                                  "title": "Turn your products into success3",
@@ -65,7 +65,7 @@
                                  "linkText": "First Discover",
                                  "linkURL": "http://www.google.com",
                                  "targetBlank":"_self",
-                                 "videoSource": "dam",
+                                 "videoSource": "damVideo",
                                  "damVideoPath": "https://www.w3schools.com/tags/mov_bbb.mp4",
                                  "youtubeEmbedURL": "https://www.youtube.com/embed/ggJMQHltiQc",
                                  "thumbnailPath": "https://cdn-images-1.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",

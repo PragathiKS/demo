@@ -69,7 +69,7 @@ class TabsList {
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
-    const tabType = $this.data('tab-type') === 'textVideo'?'TextVideoClick':'TextImageClick';
+    const tabType = $this.data('tab-type') === 'videoText'?'TextVideoClick':'TextImageClick';
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
       linkParentTitle = `CTA-Download-pdf_${dwnDocName}`;

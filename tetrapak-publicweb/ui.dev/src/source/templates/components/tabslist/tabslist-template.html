@@ -28,9 +28,9 @@
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
                     
                   <!--image video component  -->                 
-                      <sly data-sly-test="${tab.tabType == 'textVideo'}">
+                      <sly data-sly-test="${tab.tabType == 'videoText'}">
                       
-                                      <sly data-sly-test="${tab.videoSource == 'dam'}">
+                                      <sly data-sly-test="${tab.videoSource == 'damVideo'}">
                                                     <div data-sly-test="${tab.damVideoPath}" class="tpatom-dam pw-tablist__media-wrapper">
                                                   
                                                     <sly data-sly-test = "${wcmmode.edit}">
@@ -64,7 +64,7 @@
                       </sly>
                       
                       
-                      <sly data-sly-test="${tab.tabType == 'textImage'}">
+                      <sly data-sly-test="${tab.tabType == 'imageText'}">
                                <div class="x-img-responsive">
                                 <sly data-sly-test = "${!wcmmode.edit}">
                                   <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" 
@@ -85,7 +85,7 @@
                             data-sly-call="${btnLink.button_template @btnPath=tab.linkURL, btnText=tab.linkText ,btnTarget=tab.targetBlank, variant=variant, customClasses='pw-tablist__event-detail-description-link js-tablist__event-detail-description-link'}" /> -->
                          
                             <!-- <sly data-sly-template.button_template="${@ btnPath, btnText, btnTooltip, btnTarget, flag, variant, customClasses, customData}"> -->
-                                <sly data-sly-test.tabContentType="${tab.tabType == 'textVideo' ? 'Text & Video' : 'Text & Image'}"/>
+                                <sly data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}"/>
                                 <sly data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA Hyperlink' : '_Text Hyperlink'}"/>
                                 <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}"/>  
                               <a data-sly-test="${tab.linkText}"
@@ -115,7 +115,7 @@
           <sly data-sly-test = "${tabList.last}">
             <div class="pw-tablist__event">
               <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
-            <a data-sly-test="${tab.linkText}"
+            <a data-sly-test="${data.readMorePath}"
                                  href="${data.readMorePath}"
                                  class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                                  target="${data.readMoreTarget}"
