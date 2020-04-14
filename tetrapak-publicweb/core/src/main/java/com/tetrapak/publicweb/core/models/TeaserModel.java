@@ -1,156 +1,195 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.TeaserBean;
-import com.tetrapak.publicweb.core.services.TeaserSearchService;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.tetrapak.publicweb.core.models.multifield.ManualModel;
+import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
+import com.tetrapak.publicweb.core.services.AggregatorService;
+
+/**
+ * The Class TeaserModel.
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TeaserModel {
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeaserModel.class);
+
+    /** The resource. */
     @Self
     private Resource resource;
 
-    @Inject
-    private TeaserSearchService teaserSearchService;
+    /** The heading. */
+    @ValueMapValue
+    private String heading;
 
-    @Inject
+    /** The content type. */
+    @ValueMapValue
     private String contentType;
 
-    @Inject
-    private String pwButtonTheme;
-
-    @Inject
+    /** The tags. */
+    @ValueMapValue
     private String[] tags;
 
-    @Inject
+    /** The max tabs. */
+    @ValueMapValue
     private int maxTeasers;
 
-    private List<TeaserBean> teaserList = new ArrayList<>();
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
 
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
+
+    /** The manual list. */
+    @Inject
+    private List<ManualModel> manualList;
+
+    /** The semi automatic list. */
+    @Inject
+    private List<SemiAutomaticModel> semiAutomaticList;
+
+    /** The teaser list. */
+    private List<ManualModel> teaserList = new ArrayList<>();
+
+    /** The aggregator service. */
+    @OSGiService
+    private AggregatorService aggregatorService;
+
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
-        ResourceResolver resolver = resource.getResourceResolver();
-        PageManager pageManager = resolver.adaptTo(PageManager.class);
-
-        if ("automatic".equals(contentType) && pageManager != null) {
-            generateListAutomaticWay(resolver);
-        } else if ("semi-automatic".equals(contentType) && pageManager != null) {
-            generateListSemiAutomatically(pageManager);
-        } else if ("manual".equals(contentType) && pageManager != null) {
-            generateListManually();
+        switch (contentType) {
+            case "automatic":
+                generateListAutomaticWay();
+                break;
+            case "semi-automatic":
+                generateListSemiAutomatically();
+                break;
+            case "manual":
+                getManualList();
+                break;
+            default:
+                LOGGER.info("Not a valid content-type");
         }
     }
 
-    private void generateListAutomaticWay(ResourceResolver resolver) {
-        //todo this path is to be made dynamic later when we have language and country specific pages
-        String rootPath = "/content";
-        List<Page> pagePaths = teaserSearchService.getListOfTeasers(resolver, tags, rootPath, maxTeasers);
-        if (null == pagePaths) {
-            return;
-        }
-        for (Page page : pagePaths) {
-            Resource jcrContentResource = page.getContentResource();
-            if (null != jcrContentResource) {
-                BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
-                addToList(page.getPath(), basePageModel);
+    /**
+     * Generate list automatic way.
+     */
+    private void generateListAutomaticWay() {
+        if (tags != null && tags.length > 0) {
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTeasers);
+            if (!aggregatorList.isEmpty()) {
+                setTabListfromAggregator(aggregatorList);
             }
         }
     }
 
-    private void generateListSemiAutomatically(PageManager pageManager) {
-        Resource listResource = resource.getChild("semiAutomaticList");
-        if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
-            Iterator<Resource> itr = listResource.listChildren();
-            while (itr.hasNext()) {
-                Resource itemResource = itr.next();
-                addToTeaserList(pageManager, itemResource);
-            }
+    /**
+     * Gets the manual list.
+     *
+     * @return the manual list
+     */
+    public void getManualList() {
+        teaserList.addAll(manualList);
+    }
+
+    /**
+     * Generate list semi automatically.
+     */
+    private void generateListSemiAutomatically() {
+        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
+        if (!aggregatorList.isEmpty()) {
+            setTabListfromAggregator(aggregatorList);
         }
     }
 
-    private void generateListManually() {
-        Resource listResource = resource.getChild("manualList");
-        if (null != listResource && !ResourceUtil.isNonExistingResource(listResource)) {
-            Iterator<Resource> itr = listResource.listChildren();
-            while (itr.hasNext()) {
-                Resource itemResource = itr.next();
-                ValueMap valueMap = itemResource.getValueMap();
-                TeaserBean teaserBean = new TeaserBean();
-                teaserBean.setTitle(valueMap.get("title", String.class));
-                teaserBean.setDescription(valueMap.get("description", String.class));
-                teaserBean.setImagePath(valueMap.get("imagePath", String.class));
-                teaserBean.setAltText(valueMap.get("altText", String.class));
-                teaserBean.setLinkText(valueMap.get("linkText", String.class));
-                teaserBean.setLinkPath(LinkUtils.sanitizeLink(valueMap.get("linkPath", String.class)));
-                teaserBean.setTargetNew(valueMap.get("targetNew", String.class));
-                teaserList.add(teaserBean);
-            }
+    /**
+     * Sets the tab list from aggregator.
+     *
+     * @param aggregatorList
+     *            the new tab list from aggregator
+     */
+    private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
+        for (AggregatorModel aggregator : aggregatorList) {
+            ManualModel teaser = new ManualModel();
+            teaser.setTitle(aggregator.getTitle());
+            teaser.setDescription(aggregator.getDescription());
+            teaser.setFileReference(aggregator.getImagePath());
+            teaser.setAlt(aggregator.getAltText());
+            teaser.setLinkText(aggregator.getLinkText());
+            teaser.setLinkPath(aggregator.getLinkPath());
+            teaser.setLinkTarget(aggregator.getLinkTarget());
+            teaser.setPwLinkTheme(aggregator.getPwLinkTheme());
+            teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
+            teaserList.add(teaser);
         }
     }
 
-    private void addToTeaserList(PageManager pageManager, Resource itemResource) {
-        ValueMap vMap = itemResource.getValueMap();
-        if (vMap.containsKey("pagePath")) {
-            String pagePath = (String) vMap.get("pagePath");
-            Page page = pageManager.getPage(pagePath);
-            if (page != null) {
-                Resource jcrContentResource = page.getContentResource();
-                if (null != jcrContentResource) {
-                    BasePageModel basePageModel = jcrContentResource.adaptTo(BasePageModel.class);
-                    addToList(pagePath, basePageModel);
-                }
-            }
-        }
+    /**
+     * Gets the heading.
+     *
+     * @return the heading
+     */
+    public String getHeading() {
+        return heading;
     }
 
-    private void addToList(String pagePath, BasePageModel basePageModel) {
-        if (basePageModel != null) {
-            TeaserBean teaserBean = new TeaserBean();
-            teaserBean.setTitle(basePageModel.getTitle());
-            teaserBean.setDescription(basePageModel.getDescription());
-            teaserBean.setImagePath(basePageModel.getImagePath());
-            teaserBean.setAltText(basePageModel.getAltText());
-            teaserBean.setLinkText(basePageModel.getLinkText());
-            if(StringUtils.isNotEmpty(basePageModel.getLinkPath())) {
-                teaserBean.setLinkPath(basePageModel.getLinkPath());
-            }else{
-                teaserBean.setLinkPath(LinkUtils.sanitizeLink(pagePath));
-            }
-            teaserBean.setTargetNew(basePageModel.getLinkTarget());
-            teaserList.add(teaserBean);
-        }
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
     }
 
-    public Resource getResource() {
-        return resource;
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
     }
 
-    public String getContentType() {
-        return contentType;
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
     }
 
-    public String getPwButtonTheme() {
-        return pwButtonTheme;
-    }
-
-    public List<TeaserBean> getTeaserList() {
-        return teaserList;
+    /**
+     * Gets the teaser list.
+     *
+     * @return the teaser list
+     */
+    public List<ManualModel> getTeaserList() {
+        return new ArrayList<>(teaserList);
     }
 }
