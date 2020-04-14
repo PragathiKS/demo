@@ -81,7 +81,7 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
-        if (StringUtils.isBlank(contentType)) {
+        if (StringUtils.isNotBlank(contentType)) {
             switch (contentType) {
                 case "automatic":
                     generateListAutomaticWay();
