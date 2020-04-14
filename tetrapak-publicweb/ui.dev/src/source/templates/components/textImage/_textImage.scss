@@ -53,6 +53,7 @@
 
 
     &__subTitle {
+        @include margin-top($margin-l);
         @include margin-bottom($margin-xss);
         text-transform: $uppercase;
         @media #{$desktop} {

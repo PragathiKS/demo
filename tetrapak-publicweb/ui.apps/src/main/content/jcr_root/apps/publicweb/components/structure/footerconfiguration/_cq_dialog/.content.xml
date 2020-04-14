@@ -157,12 +157,12 @@
                                                             value="instagram"/>
                                                         <wechat
                                                             jcr:primaryType="nt:unstructured"
-                                                            text="Wechat"
-                                                            value="wechat"/>
+                                                            text="WeChat"
+                                                            value="WeChat"/>
                                                         <weibo
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Weibo"
-                                                            value="weibo"/>
+                                                            value="Weibo"/>
                                                     </items>
                                                 </socialmedia>
                                                 <sociallinkpath

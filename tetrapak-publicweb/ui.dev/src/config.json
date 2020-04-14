@@ -149,7 +149,8 @@
         "source/templates/components/banner/",
         "source/templates/components/richtext/",
         "source/templates/components/tabslist/",
-        "source/templates/components/textImage/"
+        "source/templates/components/textImage/",
+        "source/templates/components/teaser/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
