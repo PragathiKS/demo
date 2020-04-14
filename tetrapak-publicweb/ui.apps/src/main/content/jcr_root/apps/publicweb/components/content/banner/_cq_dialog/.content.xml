@@ -117,7 +117,6 @@
                             <pwThemes
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
-                                fieldDescription="Please select a background theme"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
                             <pwLinkThemes
                                 jcr:primaryType="nt:unstructured"
@@ -126,7 +125,6 @@
                             <pwButtonThemes
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
-                                fieldDescription="Please select the button background theme"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
                         </items>
                     </column>
