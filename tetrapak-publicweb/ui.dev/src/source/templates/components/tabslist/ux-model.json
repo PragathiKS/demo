@@ -6,14 +6,14 @@
   "heading":"Solutions for all needs",
   "anchorId":"sdlki3uoeiuedlmm",
   "anchorTitle":"Tab List",
-  "pwDisplay": "display-row-reversed",
+  "pwDisplay": "display-row",
   "pwTheme": "grayscale-lighter",
   "pwLinkTheme": "download",
   "assetName":"abc",
   "tabs":[
     { 
       "tabType":"videoText",
-      "pwButtonTheme": "secondary",
+      "pwButtonTheme": "link link",
       "pwLinkTheme": "hyperlink",
       "title": "Turn your products into success2",
       "subTitle":"subtitle",
