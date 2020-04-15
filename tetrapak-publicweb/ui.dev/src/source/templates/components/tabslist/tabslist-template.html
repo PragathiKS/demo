@@ -7,7 +7,7 @@
       <!-- <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading d-none d-lg-block"> ${parentHeading}</h2> -->
        
       <div class="row">
-      <div class="pw-tablist__events accordion col-lg-5"> 
+      <div class="pw-tablist__events col-lg-5" id="accordion"> 
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
@@ -24,7 +24,7 @@
               
               
             <sly data-sly-test.videoPathPW = "${tab.damVideoPath}" ></sly>
-            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}">
+            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}" data-parent="#accordion">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
                     
                   <!--image video component  -->                 
