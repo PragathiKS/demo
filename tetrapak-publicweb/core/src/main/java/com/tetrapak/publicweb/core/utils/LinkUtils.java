@@ -16,6 +16,9 @@ public class LinkUtils extends WCMUsePojo {
     private static final String PARAM_LINK = "linkPath";
     private String sanitizedLink;
 
+    /** The Constant FORWARD_SLASH. */
+    private static final String FORWARD_SLASH = "/";
+
     /**
      * Add .html to link if is internal
      *
@@ -113,4 +116,27 @@ public class LinkUtils extends WCMUsePojo {
         return bean;
     }
 
+    /**
+     * Gets the asset name.
+     *
+     * @param path the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNoneEmpty(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
+    }
+
+    /**
+     * Gets the substring after last.
+     *
+     * @param path the path
+     * @return the substring after last
+     */
+    private static String getSubstringAfterLast(final String path) {
+        return StringUtils.substringAfterLast(path, FORWARD_SLASH);
+    }
 }
