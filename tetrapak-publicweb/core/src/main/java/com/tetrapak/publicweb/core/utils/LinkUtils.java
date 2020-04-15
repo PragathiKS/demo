@@ -124,7 +124,7 @@ public class LinkUtils extends WCMUsePojo {
      */
     public static String getAssetName(final String path) {
         String assetName = StringUtils.EMPTY;
-        if (StringUtils.isNoneEmpty(path)) {
+        if (StringUtils.isNotBlank(path)) {
             assetName = getSubstringAfterLast(path);
         }
         return assetName;
