@@ -1,6 +1,6 @@
 <sly data-sly-template.tabslist_template="${@data, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
-    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist pw-padding--regular tp-container-regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
+    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist tp-container pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="tablistanID" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
@@ -113,7 +113,7 @@
             </div>
           </sly>
           <sly data-sly-test = "${tabList.last}">
-            <div class="pw-tablist__event">
+            <div class="pw-tablist__event pw-tablist__event__readmore">
               <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
             <a data-sly-test="${data.readMorePath}"
                                  href="${data.readMorePath}"
