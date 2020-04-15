@@ -1,15 +1,15 @@
 <sly data-sly-template.textimage_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-     <div class="tp-container">
+     <div class="tp-container"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.title || data.imagePath}" class="pw-text-image pw-theme--${data.pwTheme}"
           data-locator="text-image" data-module="TextImage"
           data-textImage-contentName="${data.subTitle}"
           data-textImage-title="${data.title}"
           data-textImage-linkName="${data.linkText}"
           data-textImage-linkType="${data.linkType}">
-        <div class="pw-text-image__innerpadding pw-text-video--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">
+        <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">
           <div class="row">
-            <div class="col-md-12 col-lg-6 pw-text-image__leftPad">
+            <div class="col-md-12 col-lg-6 leftPad">
               <sly data-sly-test = "${!wcmmode.edit}">
                 <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
               </sly>
@@ -17,7 +17,7 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
               </div>
-            <div class="col-md-12 col-lg-6 pw-text-image__rightPad">
+            <div class="col-md-12 col-lg-6 rightPad">
               <div data-sly-test="${data.subTitle}" class="pw-text-image__subTitle">
                 <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
                     data-sly-call="${subheading.subheading_template @ headingText=data.subTitle}"/>

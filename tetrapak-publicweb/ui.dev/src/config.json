@@ -150,7 +150,8 @@
         "source/templates/components/richtext/",
         "source/templates/components/tabslist/",
         "source/templates/components/textImage/",
-        "source/templates/components/teaser/"
+        "source/templates/components/teaser/",
+        "source/templates/components/anchor/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

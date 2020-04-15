@@ -13,7 +13,7 @@
   "thumbnailPath": "https://s7g10.scene7.com/is/image/tetrapakdev/ContentImage4?scl=1",
   "targetBlank":"_self",
   "pwTheme": "grayscale-white",
-  "pwButtonTheme": "secondary",
+  "pwButtonTheme": "link",
   "pwPadding": "regular",
   "pwDisplay": "display-row",
   "assetName": "file.pdf",
