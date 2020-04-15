@@ -1,5 +1,6 @@
 {
   "anchorId": "video122",
+  "videoName": "videoName",
   "videoSource": "youtube",
   "youtubeEmbedURL": "https://www.youtube.com/embed/M7lc1UVf-VE",
   "damVideoPath": "/content/dam/tetrapak/publicweb/test.mp4",
