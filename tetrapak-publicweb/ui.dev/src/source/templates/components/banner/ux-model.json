@@ -1,9 +1,9 @@
 {
     "mobileImage": "https://pix10.agoda.net/hotelImages/163/1632316/1632316_17070922310054340703.jpg?s=1024x768",
     "desktopImage": "http://www.planet-obuca.com/js/vendor/skdslider/v1.0.2/slides/1.jpg",
-    "fileReference": "https://s7g10.scene7.com/is/image/tetrapakdev/Hero image?scl=1",
+    "fileReference": "https://support.pixelunion.net/hc/article_attachments/360048938214/Empire_slideshow_image_with_recommended_dimensions.png",
     "pwDisplay": "display-row-reversed",
-    "bannerType":"textImage",
+    "bannerType":"hero",
     "subtitle": "Join our webinar",
     "alt": "image",
     "title": "Smarter world, smarter business",

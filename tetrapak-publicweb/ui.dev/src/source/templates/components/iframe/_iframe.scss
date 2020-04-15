@@ -1,5 +1,13 @@
-.pw-iframe {
+.pw-container {
     display: block;
     width: 100%;
     height: 100vh;
+}
+.pw-container iframe {
+    @include margin(0 $margin-md);
+    @include padding(0 $padding-md);
+    @media #{$desktop} {
+        @include margin(0 $margin-xxxl);
+        @include padding(0 $padding-xxxl);
+	}
 }
