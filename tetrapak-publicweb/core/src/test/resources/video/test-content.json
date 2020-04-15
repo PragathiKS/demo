@@ -21,11 +21,11 @@
 			"anchorId": "vid123",
 			"anchorTitle": "video",
 			"linkURL": "/content/tetrapak/public-web/global/en/test",
-			"damVideoPath": "/content/dam/publicweb/asset.jpg",
+			"damVideoPath": "/content/dam/publicweb/Video.mp4",
 			"jcr:lastModified": "Tue Feb 25 2020 16:42:05 GMT+0530",
 			"videoSource": "youtube",
 			"youtubeEmbedURL":"https://www.youtube.com/embed/qwe123",
-			"sling:resourceType": "publicweb/components/content/textVideo",
+			"sling:resourceType": "publicweb/components/content/video",
 			"thumbnailPath": "/content/dam/publicweb/asset.jpg"
 			}
 		}
