@@ -1,6 +1,7 @@
 <sly data-sly-template.tabslist_template="${@data, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
-    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist tp-container pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
+    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
+      <div class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
@@ -138,4 +139,5 @@
       </div>
       </div>
     </div>
+  </div>
 </sly>
