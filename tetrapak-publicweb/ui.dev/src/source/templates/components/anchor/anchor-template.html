@@ -1,9 +1,9 @@
 <sly data-sly-template.anchor_template="${@data, flag}">
   <div class="pw-anchor tp-container" data-module="Anchor">
-    <ul data-link-section='Anchor' data-link-name='' class="pw-anchor-list">
-      <sly data-sly-list.anchorItem="${data.anchors}">
+    <ul class="pw-anchor-list">
+      <sly data-sly-list.anchorItem="${data.anchorDetailList}">
         <li class="pw-anchor-content">
-          <a href="${anchorItem.id}">${anchorItem.text}</a>
+          <a data-link-section='${anchorItem.anchorId}' data-link-name="${anchorItem.anchorTitle}" href="${anchorItem.anchorId}">${anchorItem.anchorTitle}</a>
         </li>
       </sly>
     </ul>

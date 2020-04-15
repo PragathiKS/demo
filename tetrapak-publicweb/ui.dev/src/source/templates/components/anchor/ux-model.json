@@ -1,40 +1,12 @@
 {
-  "anchors": [
+  "anchorDetailList": [
     {
-      "text": "Feature",
-      "id": "feature"
+      "anchorId":"Title01",
+      "anchorTitle": "Title"
     },
-    {
-      "text": "options",
-      "id": "options"
-    },
-    {
-      "text": "Package types",
-      "id": "package_types"
-    },
-    {
-      "text": "Feature",
-      "id": "feature"
-    },
-    {
-      "text": "options",
-      "id": "options"
-    },
-    {
-      "text": "Package types",
-      "id": "package_types"
-    },
-    {
-      "text": "Feature",
-      "id": "feature"
-    },
-    {
-      "text": "options",
-      "id": "options"
-    },
-    {
-      "text": "Package types",
-      "id": "package_types"
+     {
+      "anchorId":"home02",
+      "anchorTitle": "Title2 "
     }
-  ]
+  ] 
 }
