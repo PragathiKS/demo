@@ -13,13 +13,13 @@ class RichText {
     $anchorLink.on('click', this.trackAnalytics);
   }
 
-  trackAnalytics = (e) => {
-    e.preventDefault();
+  trackAnalytics = e => {
     const $this = $(e.target);
     const anchorText = $this.text();
     this.cache.$attributeDivId.attr('data-link-name', '');
     this.cache.$attributeDivId.attr('data-link-name', anchorText);
-  }
+    return true;
+  };
 
   init() {
     /* Mandatory method */
