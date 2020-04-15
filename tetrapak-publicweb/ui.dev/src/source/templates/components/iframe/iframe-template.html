@@ -1,0 +1,10 @@
+<sly data-sly-template.iframe_template="${@data, flag}">
+    <div data-module="Iframe" id="${data.anchorId}" title="${data.anchorTitle}" class="tp-container">
+     <sly data-sly-test = "${wcmmode.edit}">
+        <iframe src="${data.iframe}"  scrolling="yes" seamless="seamless" frameborder="0" style="width:100%;min-height:900px;"></iframe>
+      </sly>
+      <sly data-sly-test = "${!wcmmode.edit}">
+      <iframe src="${data.iframe}"  scrolling="yes" seamless="seamless" frameborder="0" class="pw-iframe"></iframe>
+  </sly>
+    </div>
+</sly>

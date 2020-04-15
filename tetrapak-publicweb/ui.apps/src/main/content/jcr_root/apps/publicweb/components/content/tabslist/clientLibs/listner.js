@@ -40,6 +40,17 @@
 
     $(document).on('foundation-contentloaded', function() {
         var $tabLayouts = $('.pw-tablist-multi');
+        var $tabManual = $(".pw-tablist-manual-multi")
+        if($tabManual){
+            var $tabManualAddButton =  $tabManual.children('.coral3-Button');
+           $tabManualAddButton.bind( "click", function(e) {
+            setTimeout(function(){
+         		$tabManual.children(".coral3-Multifield-item").last().find(".pw-tablist-multi").change();
+                $tabManual.children(".coral3-Multifield-item").last().find(".pw-vedio-showhide").change();
+            }, 500);
+        });
+        }
+
         if($tabLayouts){
              $tabLayouts.on('change', function(event){
                var $listContainers = $(this).parent().parent().find(".tabLayout-showhide-target");

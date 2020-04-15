@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -76,6 +78,10 @@ public class TabsListModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
+    
+    /** The pwLinkTheme */
+    @ValueMapValue
+    private String pwLinkTheme;
 
     /** The tab List Manual. */
     @Inject
@@ -104,19 +110,21 @@ public class TabsListModel {
      */
     @PostConstruct
     protected void init() {
-	switch (contentType) {
-	case "automatic":
-	    generateListAutomaticWay();
-	    break;
-	case "semi-automatic":
-	    generateListSemiAutomatically();
-	    break;
-	case "manual":
-	    generateListManually();
-	    break;
-	default:
-	    LOGGER.info("Not a valid content-type");
-	}
+    if(StringUtils.isNotBlank(contentType)) {
+    	switch (contentType) {
+    	case "automatic":
+    	    generateListAutomaticWay();
+    	    break;
+    	case "semi-automatic":
+    	    generateListSemiAutomatically();
+    	    break;
+    	case "manual":
+    	    generateListManually();
+    	    break;
+    	default:
+    	    LOGGER.info("Not a valid content-type");
+    	}
+    }
     }
 
     /**
@@ -234,6 +242,36 @@ public class TabsListModel {
      */
     public String getAnchorTitle() {
 	return anchorTitle;
+    }
+
+    /**
+     * @return pwLinkTheme
+     */
+    public String getPwLinkTheme() {
+        return pwLinkTheme;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotEmpty(readMorePath)) {
+            assetName = getSubstringAfterLast(readMorePath);
+        }
+        return assetName;
+    }
+
+    /**
+     * Gets the substring after last.
+     *
+     * @param path the path
+     * @return the substring after last
+     */
+    private String getSubstringAfterLast(final String path) {
+        return StringUtils.substringAfterLast(path, "/");
     }
 
 }

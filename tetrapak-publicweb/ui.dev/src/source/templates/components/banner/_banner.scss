@@ -16,7 +16,10 @@
   }
 }
 .pw-banner {
-    @include margin-bottom(0);
+    @include margin-bottom(20px);
+    @media #{$desktop} {
+        @include margin-bottom(0);
+    }
     $self: &;
     position: relative;
 
@@ -24,7 +27,7 @@
         position: relative;
         width: 100%;
         @media #{$desktop} {
-          width: unset;
+            width: unset;
         }
     }
 
@@ -58,7 +61,6 @@
 
         &__subtitle {
             @include font-size($font-sm);
-            display: none;
             text-transform: $uppercase;
             @media #{$desktop} {
                 display: block;
@@ -99,7 +101,7 @@
             left: $margin-xxxl;
         }
     }
-    .display-row-reversed{
+    .display-row-reversed {
         @media #{$desktop} {
             right: $margin-xxxl;
         }
