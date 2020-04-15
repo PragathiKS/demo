@@ -66,6 +66,7 @@
     &__subTitle {
         @include margin-top($margin-l);
         @include margin-bottom($margin-xss);
+        color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
             @include margin-bottom($margin-xs);
