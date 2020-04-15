@@ -23,6 +23,7 @@
     &__events-sidesection {
         @include padding($padding-l);
         background: $color-wild-sand;
+        min-height: 856px;
 
         @media #{$desktop} {
             border-radius: $border-radius;
