@@ -1,9 +1,9 @@
 <template
-        data-sly-template.dynamicMediaImage_template="${@ imagePath,altText,imageCrop,dheight,dwidth,mheightl,mheightp,mwidthp,imageCrop,className} ">
+        data-sly-template.dynamicMediaImage_template="${@ imagePath,altText,imageCrop,dheight,dwidth,mheightl,mheightp,mwidthp,imageCrop,componentName,className} ">
     <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' 
                                             @ imagePath=imagePath, altText=altText,
     										dheight=dheight,dwidth=dwidth,mheightl=mheightl,
-                                            mheightp=mheightp,mwidthp=mwidthp,imageCrop=imageCrop}">
+                                            mheightp=mheightp,mwidthp=mwidthp,imageCrop=imageCrop,componentName=componentName}">
     </sly>
 
     <img src="${dynamicImageModel.desktopUrl}" class="img-responsive js-dynamic-media ${className}"
