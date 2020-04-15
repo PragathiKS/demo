@@ -8,11 +8,9 @@
     .pw-banner {
         &__content {
             @include margin(24px 16px 0 16px);
-            background-color: transparent;
             @media #{$desktop} {
                 @include margin(0);
                 max-width: calc(45% - #{convert-to-rem(24px)});
-                background-color: $color-wild-sand 0.9;
             }
         }
     }
