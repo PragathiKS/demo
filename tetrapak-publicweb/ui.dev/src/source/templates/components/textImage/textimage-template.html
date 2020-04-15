@@ -1,13 +1,13 @@
 <sly data-sly-template.textimage_template="${@ data, flag}"
      data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
      <div class="tp-container"  id="${data.anchorId}" title="${data.anchorTitle}" >
-      <div data-sly-test="${data.title || data.imagePath}" class="pw-text-image pw-theme--${data.pwTheme}"
+      <div data-sly-test="${data.title || data.imagePath}" class="pw-text-image pw-theme--${data.pwTheme}" 
           data-locator="text-image" data-module="TextImage"
           data-textImage-contentName="${data.subTitle}"
           data-textImage-title="${data.title}"
           data-textImage-linkName="${data.linkText}"
           data-textImage-linkType="${data.linkType}">
-        <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">
+        <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">   
           <div class="row">
             <div class="col-md-12 col-lg-6 leftPad">
               <sly data-sly-test = "${!wcmmode.edit}">
@@ -40,9 +40,9 @@
                     data-download-type="${data.pwLinkTheme}"
                     >
                     <span class="tpatom-link__text sly-text">${data.linkText}</span>
-                    <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right'}"></i>
+                    <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
                 </a>
-
+          
               </div>
             </div>
           </div>

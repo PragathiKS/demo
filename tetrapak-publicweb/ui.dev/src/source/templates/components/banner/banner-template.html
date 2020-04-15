@@ -23,10 +23,10 @@
                 </div>
                 <p class="pw-banner__content__description">${data.text}</p>
                 <a data-sly-test="${data.linkLabel}" href="${data.linkPath}" class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics" title="${btnTooltip}"
-                target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}"
+                target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}" 
                 data-asset-name="${data.assetName}" data-link-section="Hero image banner"  data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}" data-link-type="internal" data-link-name="${data.linkLabel}">
                 <span class="tpatom-link__text sly-text">${data.linkLabel}</span>
-                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i>
+                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
               </a>
         </div>
       </div>
