@@ -1,5 +1,5 @@
 <sly data-sly-template.image_template="${@data, flag}">
-  <div id="${data.anchorId}" class="tp-pw-image tp-container ${data.pwPadding}" data-module="Image">
+  <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image tp-container ${data.pwPadding}" data-module="Image">
     
     <sly data-sly-test = "${data.linkURL}">
         <sly data-sly-test = "${!wcmmode.edit}">

@@ -1,13 +1,13 @@
 <sly data-sly-template.tabslist_template="${@data, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
-    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist pw-padding--regular tp-container-regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
+    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist tp-container pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="tablistanID" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
       <!-- <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading d-none d-lg-block"> ${parentHeading}</h2> -->
        
       <div class="row">
-      <div class="pw-tablist__events accordion col-lg-5"> 
+      <div class="pw-tablist__events col-lg-5" id="accordion"> 
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
@@ -24,7 +24,7 @@
               
               
             <sly data-sly-test.videoPathPW = "${tab.damVideoPath}" ></sly>
-            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}">
+            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}" data-parent="#accordion">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
                     
                   <!--image video component  -->                 
@@ -113,7 +113,7 @@
             </div>
           </sly>
           <sly data-sly-test = "${tabList.last}">
-            <div class="pw-tablist__event">
+            <div class="pw-tablist__event pw-tablist__event__readmore">
               <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
             <a data-sly-test="${data.readMorePath}"
                                  href="${data.readMorePath}"
