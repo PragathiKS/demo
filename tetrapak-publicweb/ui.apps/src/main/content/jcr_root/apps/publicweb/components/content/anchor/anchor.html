@@ -3,6 +3,6 @@
        class="cq-placeholder"></p>
 </sly>
 
-<sly data-sly-use.model="com.tetrapak.publicweb.core.models.AnchorModel">
-
-</sly>
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.AnchorModel" 
+		data-sly-use.lib="anchor-template.html"
+         data-sly-call="${lib.anchor_template @ data=model}" />
