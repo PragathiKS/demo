@@ -8,12 +8,14 @@
     .pw-banner {
         &__content {
             @include margin(24px 16px 0 16px);
+            background-color: transparent;
             @media #{$desktop} {
                 @include margin(0);
                 max-width: calc(45% - #{convert-to-rem(24px)});
+                background-color: $color-wild-sand 0.9;
+            }
         }
-     }
-  }
+    }
 }
 .pw-banner {
     @include margin-bottom(20px);
@@ -61,8 +63,11 @@
 
         &__subtitle {
             @include font-size($font-sm);
+            @include padding-bottom($padding-sm);
+
             text-transform: $uppercase;
             @media #{$desktop} {
+                @include padding-bottom($padding-md);
                 display: block;
                 text-transform: $uppercase;
             }
@@ -78,8 +83,8 @@
                 @include font-size($font-l);
                 @media #{$desktop} {
                     @include font-size($font-xl);
-              }
-           }
+                }
+            }
             @include max-height(64px);
             @media #{$desktop} {
                 max-height: convert-to-rem(140px);
@@ -94,7 +99,6 @@
                 max-height: convert-to-rem(120px);
             }
         }
-
     }
     .display-row {
         @media #{$desktop} {
