@@ -109,7 +109,7 @@ public class AggregatorServiceImpl implements AggregatorService {
 		map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
 	    }
 	}
-	map.put("orderby", "jcr:content/cq:lastModified");
+	map.put("orderby", "@jcr:content/cq:lastModified");
 	map.put("orderby.sort", "desc");
 	map.put("p.limit", String.valueOf(maxTabs));
 

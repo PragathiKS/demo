@@ -9,7 +9,7 @@
         <items jcr:primaryType="nt:unstructured">
             <tab
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Text &amp; Video"
+                jcr:title="Tab list"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
