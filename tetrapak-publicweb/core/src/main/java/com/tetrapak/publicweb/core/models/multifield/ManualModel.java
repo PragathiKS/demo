@@ -119,7 +119,7 @@ public class ManualModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return linkPath;
+        return LinkUtils.sanitizeLink(linkPath);
     }
 
     /**
@@ -138,7 +138,7 @@ public class ManualModel {
      * @return the link target
      */
     public String getLinkTarget() {
-        return LinkUtils.sanitizeLink(linkTarget);
+        return linkTarget;
     }
 
     /**
