@@ -90,9 +90,9 @@ public class DynamicImageModelTest {
 	        assertTrue("configuration map should not be empty",dynamicMediaConfMap.toString().length() > 0);
 	        Assert.assertEquals("default image URL","/content/dam/customerhub/cow-blue-background.png", dynamicImageModel.getDefaultImageUrl());
 	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?scl=1", dynamicImageModel.getDesktopLargeUrl());
-	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=500&hei=600&fmt=png-alpha", dynamicImageModel.getDesktopUrl());
-	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=100&hei=150&cropn=2.4375,2.28,3.48125,16.64&fmt=png-alpha", dynamicImageModel.getMobileLandscapeUrl());
-	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=250&hei=100&cropn=2.4375,2.28,3.48125,16.64&fmt=png-alpha", dynamicImageModel.getMobilePortraitUrl());
+	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=500&hei=600&fmt=png-alpha&resMode=bisharp", dynamicImageModel.getDesktopUrl());
+	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=100&hei=150&cropn=2.4375,2.28,3.48125,16.64&fmt=png-alpha&resMode=bisharp", dynamicImageModel.getMobileLandscapeUrl());
+	        Assert.assertEquals("default image URL","https://s7g10.scene7.com/is/image/tetrapak/p2?wid=250&hei=100&cropn=2.4375,2.28,3.48125,16.64&fmt=png-alpha&resMode=bisharp", dynamicImageModel.getMobilePortraitUrl());
 	        Assert.assertEquals("default image URL","/content/dam/tetrapak/p2.png", dynamicImageModel.getImagePath());
 
 	    }
