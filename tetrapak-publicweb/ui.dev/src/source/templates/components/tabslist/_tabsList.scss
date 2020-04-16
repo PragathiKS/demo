@@ -34,6 +34,7 @@
         @include font-size($font-l);
         @include line-height($padding-xl, $font-l);
         @include margin-bottom($margin-l);
+        font-weight: 300;
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
@@ -55,6 +56,7 @@
         position: relative;
         width: 100%;
         text-align: left;
+        font-weight: 500;
         div, a {
             @include padding($padding-md $margin-l $margin-l $margin-l);
 
@@ -214,6 +216,7 @@
         @include font-size($font-l);
         @include line-height($font-xl, $font-l);
         @include margin-bottom($margin-l);
+        font-weight: 300;
 
         @media #{$desktop} {
             @include margin-bottom($margin-l);
@@ -233,11 +236,11 @@
         }
     }
 
-    &__event-detail-description p {
+    &__event-detail-description {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         @include margin-bottom($margin-l);
-
+        font-weight: 500;
         @media #{$desktop} {
             @include margin-bottom($margin-l);
         }

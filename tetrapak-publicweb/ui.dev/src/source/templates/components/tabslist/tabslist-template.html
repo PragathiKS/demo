@@ -2,7 +2,7 @@
     <sly data-sly-test.parentHeading="${data.heading}" />
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
       <div class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
-      <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
+      <input type="hidden" id="tabComponentId" name="tabComponentId" value="satish" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
       <!-- <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading d-none d-lg-block"> ${parentHeading}</h2> -->
@@ -12,7 +12,7 @@
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
-            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_satish_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                 <div class="pw-tablist__event-title semi-bold">${tab.title}</div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
@@ -25,7 +25,7 @@
               
               
             <sly data-sly-test.videoPathPW = "${tab.damVideoPath}" ></sly>
-            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_${resource.name}_${tabList.index}" data-parent="#accordion">
+            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_satish_${tabList.index}" data-parent="#accordion">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
                     
                   <!--image video component  -->                 
