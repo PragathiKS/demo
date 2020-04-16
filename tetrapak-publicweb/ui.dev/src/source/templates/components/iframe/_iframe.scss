@@ -1,12 +1,13 @@
 .pw-container.pw-frame iframe {
     @include margin(0 $margin-md);
-    @include padding(0 $padding-md);
+    @include padding(0);
     display: block;
-    width: 100%;
     height: 100vh;
+    width: calc(100% - 32px);
     @media #{$desktop} {
         @include margin(0 $margin-xxxl);
         @include padding(0 $padding-xxxl);
+        width: calc(100% - 96px);
 	}
 }
 
