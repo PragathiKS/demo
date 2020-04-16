@@ -46,6 +46,7 @@ body {
     @include padding(0);
     max-width: 100%;
     margin: 16px auto 0 auto;
+    height: auto;
 
     @media #{$desktop} {
         @include max-width($body-max-width);
