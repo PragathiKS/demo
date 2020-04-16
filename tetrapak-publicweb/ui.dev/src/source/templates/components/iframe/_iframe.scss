@@ -6,7 +6,7 @@
     width: calc(100% - 32px);
     @media #{$desktop} {
         @include margin(0 $margin-xxxl);
-        @include padding(0 $padding-xxxl);
+        @include padding(0);
         width: calc(100% - 96px);
 	}
 }
