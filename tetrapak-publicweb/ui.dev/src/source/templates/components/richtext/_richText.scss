@@ -1,4 +1,26 @@
+.pw-container.reference-class {
+    @include margin-top(0);
+}
+
+.pw-container.pw-margin--regular.reference-class {
+    @include margin-top(16px);
+}
+
+@media #{$desktop} {
+    .pw-container.pw-margin--regular.reference-class {
+        @include margin-top(48px);
+    }
+}
+
 .tp-pw-richText {
+    &.tp-pw-richText-container {
+        @include margin-top(0);
+        @include margin-left(16px);
+        @include margin-right(16px);
+        @include padding(24px 16px);
+        width: auto;
+    }
+
     .tp-pw-richText-wrapper a {
         @include padding(0);
         border: 0;
@@ -20,39 +42,52 @@
     .fullBleed {
         @include padding-left(0);
         @include padding-right(0);
-        @include padding-top(24px);
-        @media #{$desktop} {
-           @include padding-top(48px);
-        }
     }
 
     h1 {
-        @include font-size(42px);
-        @include margin-bottom(24px);
+        @include font-size($font-xl);
+        @include margin-bottom(16px);
+        @include line-height(40px, $font-xl);
         font-weight: 300;
     }
 
+    h2 {
+        @include font-size(28px);
+        @include line-height(32px, 28px);
+        @include margin-bottom(16px);
+    }
+
     h3 {
-        @include font-size(24px);
-        @include margin-bottom(24px);
+        @include font-size($font-l);
+        @include line-height(32px, $font-l);
+        @include margin-bottom(16px);
         font-weight: 300;
     }
 
     h4 {
-        @include font-size(18px);
-        @include margin-bottom(48px);
+        @include font-size(20px);
+        @include margin-bottom($margin-l);
+        @include line-height(28px, 20px);
         font-weight: 500;
     }
 
     p {
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        @include margin-bottom(24px);
+        font-weight: 500;
+    }
+
+    small {
         @include font-size(14px);
-        @include margin-bottom(48px);
+        @include line-height(24px, 14px);
+        @include margin-bottom(16px);
         font-weight: 500;
     }
 
     ol,
     ul {
-        @include margin-bottom(32px);
+        @include margin-bottom(8px);
         li {
             &::before {
                 color: $color-congress-blue;
@@ -134,7 +169,7 @@
     }
 
     table {
-        @include margin-bottom(48px);
+        @include margin-bottom($margin-l);
         display: block;
         border-collapse: collapse;
         overflow-x: scroll;
@@ -156,6 +191,57 @@
         th {
             @include padding-left(8px);
             @include padding-right(14px);
+        }
+    }
+    @media #{$desktop} {
+        &.tp-pw-richText-container {
+            @include margin-top(0);
+            @include margin-left(48px);
+            @include margin-right(48px);
+            @include padding(48px);
+        }
+        h1 {
+            @include font-size($font-xxl);
+            @include line-height(48px, $font-xxl);
+            @include margin-bottom($margin-l);
+            font-weight: 300;
+        }
+        h2 {
+            @include font-size($font-xl);
+            @include line-height(40px, $font-xl);
+            @include margin-bottom($margin-l);
+        }
+        h3 {
+            @include font-size($font-l);
+            @include line-height(32px, $font-l);
+            @include margin-bottom($margin-l);
+            font-weight: 300;
+        }
+        h4 {
+            @include font-size($font-md);
+            @include margin-bottom($margin-xxxl);
+            @include line-height(48px, $font-md);
+            font-weight: 500;
+        }
+        p {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+            font-weight: 500;
+        }
+
+        small {
+            @include font-size(12px);
+            @include line-height(20px, 12px);
+            @include margin-bottom(24px);
+        }
+        ol,
+        ul {
+            @include margin-bottom($margin-xl);
+        }
+
+        table,
+        p {
+            @include margin-bottom($margin-xxxl);
         }
     }
 }
