@@ -12,6 +12,7 @@
     }
 
     &__details {
+        font-weight: 500;
         .teaserMargin {
             @include margin-bottom($margin-l);
             @media #{$desktop} {
