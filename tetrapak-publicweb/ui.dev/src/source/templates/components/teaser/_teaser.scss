@@ -39,6 +39,9 @@
                 @include margin-top(0);
             }
         }
+        .noTopPad {
+            @include padding-top($padding-zero);
+        }
         .tilte {
             @include padding-top($margin-l);
             @include padding-bottom($margin-l);
