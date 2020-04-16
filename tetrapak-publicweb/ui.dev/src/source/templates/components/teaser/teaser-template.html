@@ -1,4 +1,5 @@
 <sly data-sly-template.teaser_template="${@data, flag}">
+  <div class="pw-container">
     <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.heading}" class="tp-teaser__heading">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -38,5 +39,6 @@
         
 
       </div>
+    </div>
     </section>
 </sly>
