@@ -80,7 +80,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldLabel="Link path"
                                 name="./linkPath"
-                                rootPath="/content/tetrapak/public-web"/>
+                                rootPath="/content"/>
                             <linktarget
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

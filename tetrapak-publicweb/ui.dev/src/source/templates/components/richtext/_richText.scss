@@ -20,6 +20,10 @@
     .fullBleed {
         @include padding-left(0);
         @include padding-right(0);
+        @include padding-top(24px);
+        @media #{$desktop} {
+           @include padding-top(48px);
+        }
     }
 
     h1 {

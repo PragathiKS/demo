@@ -1,7 +1,8 @@
 <sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
-  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}"
-       class="pw-text-video tp-container pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
+  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}" 
+       class="pw-container"
        data-locator="text-video" data-module="TextVideo">
+    <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
     <div class="row">
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
         <p class="pw-text-video__subTitle d-none d-lg-block">${data.subTitle}</p>
@@ -25,7 +26,7 @@
                 data-download-type="${data.pwLinkTheme}"
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
-                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i>
+                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
              </a>
               </div>
       </div>
@@ -75,11 +76,12 @@
                 data-download-type="${data.pwLinkTheme}"
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
-                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i>
+                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
              </a>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>
