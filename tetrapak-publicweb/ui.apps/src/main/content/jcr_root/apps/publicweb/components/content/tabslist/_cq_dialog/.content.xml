@@ -236,6 +236,7 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <tabpaths
                                         jcr:primaryType="nt:unstructured"
+										granite:class="pw-tablist-semi-multi"
                                         jcr:title="tabsSemi"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"
