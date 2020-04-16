@@ -12,10 +12,14 @@
         }
     }
     .leftPad {
-        padding-left: 15px;
+        @media #{$desktop} {
+            padding-left: 15px;
+        }
     }
     .rightPad {
-        padding-right: 15px;
+        @media #{$desktop} {
+            padding-right: 15px;
+        }
     }
 
     &__events {
@@ -63,7 +67,8 @@
         width: 100%;
         text-align: left;
         font-weight: 500;
-        div, a {
+        div,
+        a {
             @include padding($padding-md $margin-l $margin-l $margin-l);
 
             @media #{$desktop} {
@@ -72,7 +77,8 @@
             }
         }
         &__readmore {
-            div, a {
+            div,
+            a {
                 margin: 0;
                 padding: $margin-l;
             }
