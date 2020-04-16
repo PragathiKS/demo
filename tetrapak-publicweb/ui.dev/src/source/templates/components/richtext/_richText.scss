@@ -1,10 +1,24 @@
+.pw-container.reference-class {
+    @include margin-top(0);
+}
+
+.pw-container.pw-margin--regular.reference-class {
+    @include margin-top(16px);
+}
+
+@media #{$desktop} {
+    .pw-container.pw-margin--regular.reference-class {
+        @include margin-top(48px);
+    }
+}
+
 .tp-pw-richText {
     &.tp-pw-richText-container {
         @include margin-top(0);
-    }
-
-    &.tp-pw-richText-container.pw-margin--regular {
-        @include margin-top(16px);
+        @include margin-left(16px);
+        @include margin-right(16px);
+        @include padding(24px 16px);
+        width: auto;
     }
 
     .tp-pw-richText-wrapper a {
@@ -28,10 +42,6 @@
     .fullBleed {
         @include padding-left(0);
         @include padding-right(0);
-        @include padding-top(24px);
-        @media #{$desktop} {
-            @include padding-top(48px);
-        }
     }
 
     h1 {
@@ -184,8 +194,11 @@
         }
     }
     @media #{$desktop} {
-        &.tp-pw-richText-container.pw-margin--regular {
-            @include margin-top($margin-xxxl);
+        &.tp-pw-richText-container {
+            @include margin-top(0);
+            @include margin-left(48px);
+            @include margin-right(48px);
+            @include padding(48px);
         }
         h1 {
             @include font-size($font-xxl);
