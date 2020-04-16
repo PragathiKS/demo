@@ -103,6 +103,11 @@ public class DynamicImageModel {
      * The Constant FMT_PNG_ALPHA.
      */
     private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
+    
+    /**
+     * The Constant IMAGE_SHARPNESS.
+     */
+    private static final String IMAGE_SHARPNESS = "resMode=bisharp";
 
     /**
      * The Constant HEIGHT.
@@ -208,6 +213,19 @@ public class DynamicImageModel {
      */
     private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
         return url.append(appendingString).append(FMT_PNG_ALPHA);
+    }
+    
+    /**
+     * Append Sharpness.
+     *
+     * @param url
+     *            the url
+     * @param appendingString
+     *            the appending string
+     * @return the string builder
+     */
+    private static StringBuilder appendSharpness(final StringBuilder url, final String appendingString) {
+        return url.append(appendingString).append(IMAGE_SHARPNESS);
     }
 
     /**
@@ -344,6 +362,12 @@ public class DynamicImageModel {
             } else {
                 url = appendTransparency(url, QUERY_PARAMETER);
             }
+        }
+        
+        if (queryFlag) {
+            url = appendSharpness(url, AMPERSAND);
+        } else {
+            url = appendSharpness(url, AMPERSAND);
         }
 
         return url.toString();
