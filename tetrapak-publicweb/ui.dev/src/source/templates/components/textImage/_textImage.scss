@@ -70,6 +70,7 @@
         color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
+            @include margin-top($margin-zero);
             @include margin-bottom($margin-xs);
             text-transform: $uppercase;
         }

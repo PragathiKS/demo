@@ -12,8 +12,13 @@
     }
 
     &__details {
-
         .teaserMargin {
+            @include margin-bottom($margin-l);
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+        .teaserMarginL {
             @include margin-bottom($margin-l);
             @media #{$desktop} {
                 @include margin-bottom($margin-xl);
@@ -21,7 +26,11 @@
         }
         .rightbar {
             border: 0 solid $color-mercury;
-            border-right-width: 1px;
+            @media #{$desktop} {
+                @include padding($padding-xxxl);
+                @include margin($margin-xxxl);
+                border-right-width: 1px;
+            }
         }
         .image {
             @include margin-top($margin-l);
