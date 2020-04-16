@@ -12,18 +12,29 @@
     }
 
     &__details {
+
+        .teaserMargin {
+            @include margin-bottom($margin-l);
+            @media #{$desktop} {
+                @include margin-bottom($margin-xl);
+            }
+        }
+        .rightbar {
+            border: 0 solid $color-mercury;
+            border-right-width: 1px;
+        }
         .image {
             @include margin-top($margin-l);
+            width: 100%;
             @media #{$desktop} {
                 @include margin-top(0);
             }
         }
-
         .tilte {
             @include padding-top($margin-l);
             @include padding-bottom($margin-l);
+            @include font-size($font-md);
         }
-
         .link {
             @include padding-top($padding-l);
             @include padding-bottom($padding-l);
