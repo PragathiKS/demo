@@ -167,6 +167,8 @@ public class TabsListModelTest {
 	assertEquals("display-row", model.getPwDisplay());
 	assertEquals("anchorId", model.getAnchorId());
 	assertEquals("anchor title", model.getAnchorTitle());
+	assertEquals("hyperlink", model.getPwLinkTheme());
+	assertEquals("badging", model.getAssetName());
 	
 	assertEquals("Title", model.getTabs().get(1).getTitle());
 	assertEquals("Sub Title", model.getTabs().get(1).getSubTitle());

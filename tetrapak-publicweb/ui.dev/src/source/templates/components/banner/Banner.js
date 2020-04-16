@@ -13,7 +13,6 @@ class Banner {
     const { $itbLink } = this.cache;
     $itbLink.on('click', this.trackAnalytics);
   }
-  
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);

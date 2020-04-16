@@ -12,11 +12,43 @@
         > .row {
             flex-direction: row;
         }
+        .leftPad {
+            @include padding-left($padding-md);
+            @include padding-right($padding-md);
+            @media #{$desktop} {
+                @include padding-left($padding-xxxl);
+                @include padding-right($padding-l);
+            }
+        }
+        .rightPad {
+            @include padding-left($padding-md);
+            @include padding-right($padding-md);
+            @media #{$desktop} {
+                @include padding-right($padding-xxxl);
+                @include padding-left($padding-l);
+            }
+        }
     }
 
     &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
+        }
+        .rightPad {
+            @include padding-left($padding-md);
+            @include padding-right($padding-md);
+            @media #{$desktop} {
+                @include padding-left($padding-xxxl);
+                @include padding-right($padding-l);
+            }
+        }
+        .leftPad {
+            @include padding-left($padding-md);
+            @include padding-right($padding-md);
+            @media #{$desktop} {
+                @include padding-right($padding-xxxl);
+                @include padding-left($padding-l);
+            }
         }
     }
 
@@ -31,29 +63,10 @@
         }
     }
 
-    &__leftPad {
-        @include padding-left($padding-md);
-        @include padding-right($padding-md);
-
-        @media #{$desktop} {
-            @include padding-left($padding-xxxl);
-            @include padding-right($padding-l);
-        }
-    }
-
-    &__rightPad {
-        @include padding-left($padding-md);
-        @include padding-right($padding-md);
-
-        @media #{$desktop} {
-            @include padding-right($padding-xxxl);
-            @include padding-left($padding-l);
-        }
-    }
-
-
     &__subTitle {
+        @include margin-top($margin-l);
         @include margin-bottom($margin-xss);
+        color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
             @include margin-bottom($margin-xs);

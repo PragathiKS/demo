@@ -78,6 +78,10 @@ public class TabsListModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
+    
+    /** The pwLinkTheme */
+    @ValueMapValue
+    private String pwLinkTheme;
 
     /** The tab List Manual. */
     @Inject
@@ -238,6 +242,36 @@ public class TabsListModel {
      */
     public String getAnchorTitle() {
 	return anchorTitle;
+    }
+
+    /**
+     * @return pwLinkTheme
+     */
+    public String getPwLinkTheme() {
+        return pwLinkTheme;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotEmpty(readMorePath)) {
+            assetName = getSubstringAfterLast(readMorePath);
+        }
+        return assetName;
+    }
+
+    /**
+     * Gets the substring after last.
+     *
+     * @param path the path
+     * @return the substring after last
+     */
+    private String getSubstringAfterLast(final String path) {
+        return StringUtils.substringAfterLast(path, "/");
     }
 
 }

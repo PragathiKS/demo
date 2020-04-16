@@ -1,7 +1,6 @@
 <sly data-sly-template.image_template="${@data, flag}">
-  <div id="${data.anchorId}" class="tp-pw-image tp-container ${data.pwPadding}" data-module="Image">
-    
-    <sly data-sly-test = "${data.linkURL}">
+  <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image tp-container ${data.pwPadding}" data-module="Image">
+    <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
         <sly data-sly-test = "${!wcmmode.edit}">
         <a class="js-tp-pw-image"href="${data.linkURL}" id="${data.anchorId}" title="${data.anchorTitle}" data-link-section="Image Click" data-link-parent-title="${data.alt}" data-link-name="not available">
             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -16,7 +15,7 @@
       </sly>
     </sly>
 
-    <sly data-sly-test = "${!data.linkURL}">        
+    <sly data-sly-test = "${!data.linkURL || data.linkURL=='#'}">        
         <sly data-sly-test = "${!wcmmode.edit}">
             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
                  data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, className='img-responsive'}" >

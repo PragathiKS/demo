@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -80,18 +81,20 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
-        switch (contentType) {
-            case "automatic":
-                generateListAutomaticWay();
-                break;
-            case "semi-automatic":
-                generateListSemiAutomatically();
-                break;
-            case "manual":
-                getManualList();
-                break;
-            default:
-                LOGGER.info("Not a valid content-type");
+        if (StringUtils.isNotBlank(contentType)) {
+            switch (contentType) {
+                case "automatic":
+                    generateListAutomaticWay();
+                    break;
+                case "semi-automatic":
+                    generateListSemiAutomatically();
+                    break;
+                case "manual":
+                    getManualList();
+                    break;
+                default:
+                    LOGGER.info("Not a valid content-type");
+            }
         }
     }
 

@@ -2,6 +2,8 @@ package com.tetrapak.publicweb.core.models;
 
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -10,7 +12,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
-
 
 /**
  * This is a model class for video component
@@ -90,5 +91,14 @@ public class VideoModel {
 
     public String getAnchorTitle() {
         return anchorTitle;
+    }
+
+    /**
+     * Gets the video name.
+     *
+     * @return the video name
+     */
+    public String getVideoName() {
+        return LinkUtils.getAssetName(damVideoPath);
     }
 }
