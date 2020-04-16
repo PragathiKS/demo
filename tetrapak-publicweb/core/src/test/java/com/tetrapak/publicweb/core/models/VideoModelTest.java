@@ -1,10 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class VideoModelTest {
 
@@ -62,5 +65,10 @@ public class VideoModelTest {
                 "getThumbnailPath", "getTextAlignment", "getPwTheme", "getPwButtonTheme", "getPwPadding",
                 "getPwDisplay","getAnchorId", "getAnchorTitle"};
         Util.testLoadAndGetters(methods, model, resource);
+    }
+
+    @Test
+    public void testVideoName() {
+        assertEquals("Video.mp4", model.getVideoName());
     }
 }

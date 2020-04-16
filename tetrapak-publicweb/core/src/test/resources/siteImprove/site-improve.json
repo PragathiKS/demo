@@ -1,0 +1,38 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+		    "jcr:primaryType": "nt:unstructured",
+		    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+		    "responsivegrid": {
+		      "jcr:primaryType": "nt:unstructured",
+		      "jcr:mixinTypes": [
+		        "cq:ReplicationStatus"
+		      ],
+		      "cq:lastReplicationAction": "Activate",
+		      "cq:lastReplicatedBy": "admin",
+		      "cq:lastReplicated": "Wed Mar 11 2020 09:36:03 GMT+0000",
+		      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+		      "siteimproveconfig": {
+		        "jcr:primaryType": "nt:unstructured",
+		        "jcr:createdBy": "admin",
+		        "jcr:lastModifiedBy": "admin",
+		        "jcr:created": "Mon Apr 13 2020 17:08:09 GMT+0530",
+		        "jcr:lastModified": "Mon Apr 13 2020 17:55:35 GMT+0530",
+		        "sling:resourceType": "publicweb/components/structure/siteimproveconfig",
+		        "siteImproveScriptPath": "//siteimproveanalytics.com/js/siteanalyze_72177.js"
+		      }
+		    }
+		  }
+	}
+	}

@@ -109,9 +109,6 @@ public class TextVideoModel {
     /** The Constant AUTHOR. */
     private static final String AUTHOR = "author";
 
-    /** The Constant FORWARD_SLASH. */
-    private static final String FORWARD_SLASH = "/";
-
     /**
      * The init method.
      */
@@ -307,11 +304,7 @@ public class TextVideoModel {
      * @return the asset name
      */
     public String getAssetName() {
-        String assetName = StringUtils.EMPTY;
-        if (StringUtils.isNotEmpty(linkURL)) {
-            assetName = getSubstringAfterLast(linkURL);
-        }
-        return assetName;
+        return LinkUtils.getAssetName(linkURL);
     }
 
     /**
@@ -320,20 +313,6 @@ public class TextVideoModel {
      * @return the video name
      */
     public String getVideoName() {
-        String videoName = StringUtils.EMPTY;
-        if (StringUtils.isNoneEmpty(damVideoPath)) {
-            videoName = getSubstringAfterLast(damVideoPath);
-        }
-        return videoName;
-    }
-
-    /**
-     * Gets the substring after last.
-     *
-     * @param path the path
-     * @return the substring after last
-     */
-    private String getSubstringAfterLast(final String path) {
-        return StringUtils.substringAfterLast(path, FORWARD_SLASH);
+        return LinkUtils.getAssetName(damVideoPath);
     }
 }
