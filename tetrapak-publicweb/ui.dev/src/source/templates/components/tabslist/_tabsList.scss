@@ -11,6 +11,12 @@
             flex-direction: row-reverse;
         }
     }
+    .leftPad {
+        padding-left: 15px;
+    }
+    .rightPad {
+        padding-right: 15px;
+    }
 
     &__events {
         padding: 0;
@@ -23,7 +29,7 @@
     &__events-sidesection {
         @include padding($padding-l);
         background: $color-wild-sand;
-        min-height: 856px;
+        min-height: 720px;
 
         @media #{$desktop} {
             border-radius: $border-radius;
