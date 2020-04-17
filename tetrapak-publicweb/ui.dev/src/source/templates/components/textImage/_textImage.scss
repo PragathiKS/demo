@@ -1,10 +1,10 @@
 .pw-text-image {
     @include border-radius($border-radius);
-    @include margin-bottom($margin-xxxl);
     @include padding($padding-md);
-
+    @include margin(0 $margin-md);
     @media #{$desktop} {
         @include padding($padding-xxxl);
+        @include margin(0 $margin-xxxl);
     }
 
 
@@ -16,7 +16,7 @@
             @include padding-left($padding-md);
             @include padding-right($padding-md);
             @media #{$desktop} {
-                @include padding-left($padding-xxxl);
+                @include padding-left($padding-md);
                 @include padding-right($padding-l);
             }
         }
@@ -24,7 +24,7 @@
             @include padding-left($padding-md);
             @include padding-right($padding-md);
             @media #{$desktop} {
-                @include padding-right($padding-xxxl);
+                @include padding-right($padding-md);
                 @include padding-left($padding-l);
             }
         }
@@ -38,7 +38,7 @@
             @include padding-left($padding-md);
             @include padding-right($padding-md);
             @media #{$desktop} {
-                @include padding-left($padding-xxxl);
+                @include padding-left($padding-md);
                 @include padding-right($padding-l);
             }
         }
@@ -46,7 +46,7 @@
             @include padding-left($padding-md);
             @include padding-right($padding-md);
             @media #{$desktop} {
-                @include padding-right($padding-xxxl);
+                @include padding-right($padding-md);
                 @include padding-left($padding-l);
             }
         }
@@ -58,17 +58,18 @@
         @include margin-bottom($margin-l);
 
         @media #{$desktop} {
-            @include margin-top($margin-xxxl);
-            @include margin-bottom($margin-xxxl);
+            @include margin-top(0);
+            @include margin-bottom(0);
         }
     }
 
     &__subTitle {
-        @include margin-top($margin-l);
+        @include margin-top($margin-md);
         @include margin-bottom($margin-xss);
         color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
+            @include margin-top($margin-zero);
             @include margin-bottom($margin-xs);
             text-transform: $uppercase;
         }

@@ -1,11 +1,19 @@
 <sly data-sly-template.banner_template="${@data, flag}">
-  <div class="row pw-theme--${data.pwTheme} pw-margin--regular" data-module="Banner">
-      <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-banner tp-container-${data.bannerType}">
+  <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
+      <div class="pw-banner pw-theme--${data.pwTheme}">
           <sly data-sly-test = "${!wcmmode.edit}">
             <div class="pw-banner__image-wrapper">
-            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                     data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
+            <sly data-sly-test="${data.bannerType == 'hero'}">
+                    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                                 data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive'}">
+                    </sly>
+            </sly>
+            <sly data-sly-test="${data.bannerType == 'textImage'}">
+                <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                                 data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
                 </sly>
+                    
+            </sly>
             </div>
             </sly>
               <sly data-sly-test = "${wcmmode.edit}">

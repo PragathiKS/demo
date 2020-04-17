@@ -26,7 +26,8 @@
 			"videoSource": "youtube",
 			"youtubeEmbedURL":"https://www.youtube.com/embed/qwe123",
 			"sling:resourceType": "publicweb/components/content/video",
-			"thumbnailPath": "/content/dam/publicweb/asset.jpg"
+			"thumbnailPath": "/content/dam/publicweb/asset.jpg",
+			"posterImageAltText": "Poster image alt text"
 			}
 		}
 	}

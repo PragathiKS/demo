@@ -22,7 +22,7 @@
                                 fieldLabel="Heading"
                                 name="./heading"/>
                             <contentType
-                                granite:class="cq-dialog-dropdown-showhide"
+                                granite:class="cq-dialog-dropdown-showhide tablist-contenttype"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Select settings"
@@ -236,6 +236,7 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <tabpaths
                                         jcr:primaryType="nt:unstructured"
+										granite:class="pw-tablist-semi-multi"
                                         jcr:title="tabsSemi"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"

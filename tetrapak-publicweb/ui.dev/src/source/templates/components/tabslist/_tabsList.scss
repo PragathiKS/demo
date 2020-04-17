@@ -11,6 +11,16 @@
             flex-direction: row-reverse;
         }
     }
+    .leftPad {
+        @media #{$desktop} {
+            padding-left: 15px;
+        }
+    }
+    .rightPad {
+        @media #{$desktop} {
+            padding-right: 15px;
+        }
+    }
 
     &__events {
         padding: 0;
@@ -23,7 +33,7 @@
     &__events-sidesection {
         @include padding($padding-l);
         background: $color-wild-sand;
-        min-height: 856px;
+        min-height: 720px;
 
         @media #{$desktop} {
             border-radius: $border-radius;
@@ -34,6 +44,7 @@
         @include font-size($font-l);
         @include line-height($padding-xl, $font-l);
         @include margin-bottom($margin-l);
+        font-weight: 300;
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
@@ -55,7 +66,9 @@
         position: relative;
         width: 100%;
         text-align: left;
-        div, a {
+        font-weight: 500;
+        div,
+        a {
             @include padding($padding-md $margin-l $margin-l $margin-l);
 
             @media #{$desktop} {
@@ -64,7 +77,8 @@
             }
         }
         &__readmore {
-            div, a {
+            div,
+            a {
                 margin: 0;
                 padding: $margin-l;
             }
@@ -214,6 +228,7 @@
         @include font-size($font-l);
         @include line-height($font-xl, $font-l);
         @include margin-bottom($margin-l);
+        font-weight: 300;
 
         @media #{$desktop} {
             @include margin-bottom($margin-l);
@@ -233,23 +248,23 @@
         }
     }
 
-    &__event-detail-description p {
+    &__event-detail-description {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         @include margin-bottom($margin-l);
-
+        font-weight: 500;
         @media #{$desktop} {
             @include margin-bottom($margin-l);
         }
     }
 
-    &__event-detail-description-link {
-        @include margin-top($margin-l);
+    // &__event-detail-description-link {
+    //     @include margin-bottom($margin-l);
 
-        @media #{$desktop} {
-            @include margin-top($margin-l);
-        }
-    }
+    //     @media #{$desktop} {
+    //         @include margin-bottom($margin-l);
+    //     }
+    // }
 
     video {
         width: 100%;
