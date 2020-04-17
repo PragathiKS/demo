@@ -45,13 +45,11 @@ body {
 	vertical-align: -3px;
 }
 
-.icon-Circle_Arrow_Right_pw,
-.icon-Chevron_Left_pw,
-.icon-Chevron_Right_pw{
+.icon-Circle_Arrow_Right_pw{
     position: relative;
     &::before{
         position: absolute;
-        top: -23px;
+        top: 1px;
     }
 }
 
