@@ -48,7 +48,12 @@ function _trackVideoParameters(
     (videoInteraction === '50% milestone' && '50') ||
     (videoInteraction === '75% milestone' && '75') ||
     (videoInteraction === 'end' && '100');
-  const videoSection = 'site section1 of a page';
+  const videoSection =
+    (window &&
+      window.digitalData &&
+      window.digitalData.pageinfo &&
+      window.digitalData.pageinfo.siteSection1) ||
+    '';
   const trackingObj = {
     videoName,
     videoSection,
