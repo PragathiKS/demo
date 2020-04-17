@@ -258,13 +258,13 @@
         }
     }
 
-    &__event-detail-description-link {
-        @include margin-top($margin-l);
+    // &__event-detail-description-link {
+    //     @include margin-bottom($margin-l);
 
-        @media #{$desktop} {
-            @include margin-top($margin-l);
-        }
-    }
+    //     @media #{$desktop} {
+    //         @include margin-bottom($margin-l);
+    //     }
+    // }
 
     video {
         width: 100%;
