@@ -65,8 +65,10 @@
 
         &__subtitle {
             @include font-size($font-sm);
+            @include margin-bottom($margin-sm);
             text-transform: $uppercase;
             @media #{$desktop} {
+                @include margin-bottom($margin-md);
                 display: block;
                 text-transform: $uppercase;
             }
