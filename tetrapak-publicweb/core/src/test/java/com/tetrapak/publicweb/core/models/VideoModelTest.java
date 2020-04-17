@@ -60,10 +60,10 @@ public class VideoModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[]{"getTitle", "getDescription", "getLinkTexti18n", "getLinkURL",
+        final String[] methods = new String[]{"getTitle", "getDescription", "getLinkTexti18n", "getLinkURL",
                 "getTargetBlank", "getVideoSource", "getYoutubeVideoID", "getYoutubeEmbedURL", "getDamVideoPath",
-                "getThumbnailPath", "getTextAlignment", "getPwTheme", "getPwButtonTheme", "getPwPadding",
-                "getPwDisplay","getAnchorId", "getAnchorTitle"};
+                "getThumbnailPath", "getPosterImageAltText", "getTextAlignment", "getPwTheme", "getPwButtonTheme",
+                "getPwPadding", "getPwDisplay", "getAnchorId", "getAnchorTitle" };
         Util.testLoadAndGetters(methods, model, resource);
     }
 

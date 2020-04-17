@@ -45,6 +45,10 @@ public class VideoModel {
     @ValueMapValue
     private String thumbnailPath;
 
+    /** The poster image alt text. */
+    @ValueMapValue
+    private String posterImageAltText;
+
     private String youtubeEmbedURL;
 
     @ValueMapValue
@@ -79,6 +83,15 @@ public class VideoModel {
 
     public String getThumbnailPath() {
         return thumbnailPath;
+    }
+
+    /**
+     * Gets the poster image alt text.
+     *
+     * @return the poster image alt text
+     */
+    public String getPosterImageAltText() {
+        return posterImageAltText;
     }
 
     public String getPwTheme() {
