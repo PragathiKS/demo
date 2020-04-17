@@ -5,7 +5,7 @@
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
-      <!-- <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading d-none d-lg-block"> ${parentHeading}</h2> -->
+
       <div class="row">
       <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'leftPad' : 'rightPad'}" id="accordion">
         <sly data-sly-list.tab="${data.tabs}">
