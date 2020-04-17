@@ -22,12 +22,58 @@
         }
     }
 
-    &__events {
+    // &__events {
+    //     padding: 0;
+    //     @media #{$desktop} {
+    //         @include padding-right($padding-l);
+    //         padding-left: 0;
+    //     }
+    // }
+
+    &__events-icright {
         padding: 0;
         @media #{$desktop} {
             @include padding-right($padding-l);
             padding-left: 0;
         }
+
+        div,
+        a {
+            @media #{$desktop} {
+                @include margin-right(-$margin-l);
+            }
+        }
+
+        // &__readmore {
+        //     div,
+        //     a {
+        //         margin: 0;
+        //         padding: $margin-l;
+        //     }
+        // }
+    }
+
+    &__events-icleft {
+        padding: 0;
+        @media #{$desktop} {
+            @include padding-left($padding-l);
+            padding-right: 0;
+        }
+
+        div {
+            @media #{$desktop} {
+                @include margin-left(-$margin-l);
+            }
+        }
+
+        // &__readmore {
+        //     border-bottom: 0;
+        //     div,
+        //     a {
+        //         margin: 0;
+        //         padding: $margin-l;
+        //     }
+        // }
     }
 
     &__events-sidesection {
@@ -60,20 +106,26 @@
         display: block;
         color: $color-congress-blue;
         background-color: transparent;
-        border-top: 1px solid $color-mercury;
-        // border-bottom: 1px solid $color-mercury;
+        // border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
         margin-top: -1px;
         position: relative;
         width: 100%;
         text-align: left;
         font-weight: 500;
+        &:last-child {
+            border-bottom: 0;
+        }
+        &:first-child {
+            border-top: 1px solid $color-mercury;
+        }
         div,
         a {
             @include padding($padding-md $margin-l $margin-l $margin-l);
 
             @media #{$desktop} {
                 @include padding($padding-md $margin-l $padding-md $margin-l);
-                @include margin-right(-$margin-l);
+                // @include margin-right(-$margin-l);
             }
         }
         &__readmore {
@@ -115,8 +167,8 @@
                 }
             }
             @media #{$desktop} {
-                @include left($margin-sm);
-                right: unset;
+                @include left(-$margin-md);
+                right: auto;
             }
         }
 

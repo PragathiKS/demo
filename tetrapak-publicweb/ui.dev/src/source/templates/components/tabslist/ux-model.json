@@ -1,13 +1,13 @@
 
 {
   "readMoreText":"Read more",
-  "readMorePath":"",
+  "readMorePath":"/readMOre",
   "readMoreTarget":"_blank",
   "heading":"Solutions for all needs",
   "anchorId":"sdlki3uoeiuedlmm",
   "anchorTitle":"Tab List",
-  "pwDisplay": "display-row",
-  "pwTheme": "grayscale-lighter",
+  "pwDisplay": "display-row-reversed",
+  "pwTheme": "grayscale-white",
   "pwLinkTheme": "download",
   "assetName":"abc",
   "tabs":[

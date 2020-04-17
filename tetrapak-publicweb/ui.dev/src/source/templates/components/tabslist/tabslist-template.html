@@ -7,7 +7,7 @@
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
        
       <div class="row">
-      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'leftPad' : 'rightPad'}" id="accordion"> 
+      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright leftPad' : 'pw-tablist__events-icleft rightPad'}" id="accordion"> 
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
