@@ -5,6 +5,8 @@
     }
 
     .pw-anchor-list > .pw-anchor-content {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
         @include padding($padding-md);
         color: $color-congress-blue;
         font-weight: 500;
@@ -28,7 +30,7 @@
         }
 
         .pw-anchor-list > .pw-anchor-content {
-            @include padding($padding-md);
+            @include padding($padding-sm $padding-md);
             border-right: 1px solid $color-mercury;
             border-bottom: 0;
             &:last-child {

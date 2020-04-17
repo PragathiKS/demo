@@ -1,17 +1,17 @@
 <sly data-sly-template.tabslist_template="${@data, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
-    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist tp-container pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
-      <input type="hidden" id="tabComponentId" name="tabComponentId" value="tablistanID" />
+    <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
+      <div class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
+      <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
-      <!-- <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading d-none d-lg-block"> ${parentHeading}</h2> -->
 
       <div class="row">
-      <div class="pw-tablist__events col-lg-5" id="accordion">
+      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'leftPad' : 'rightPad'}" id="accordion">
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
-            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_tablistanID_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                 <div class="pw-tablist__event-title semi-bold">${tab.title}</div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
@@ -24,7 +24,7 @@
 
 
             <sly data-sly-test.videoPathPW = "${tab.damVideoPath}" ></sly>
-            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_tablistanID_${tabList.index}" data-parent="#accordion">
+            <div class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}" id="tab_${resource.name}_${tabList.index}" data-parent="#accordion">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}" data-video-name="${tab.videoSource == 'youtube' ? tab.youtubeEmbedURL : tab.damVideoPath}">
 
                   <!--image video component  -->
@@ -64,7 +64,7 @@
                       </sly>
 
 
-                      <sly data-sly-test="${tab.tabType == 'imageText'}">
+                      <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                                <div class="x-img-responsive">
                                 <sly data-sly-test = "${!wcmmode.edit}">
                                   <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -77,9 +77,9 @@
                             </div>
                       </sly>
                   <!--end image video component  -->
-                  <p class="pw-tablist__event-detail-subtitle js-tablist__event-detail-subtitle">${tab.subTitle}</p>
+                  <sly data-sly-test = "${tab.subTitle}"><p class="pw-tablist__event-detail-subtitle js-tablist__event-detail-subtitle">${tab.subTitle}</p></sly>
                   <h3 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">${tab.title}</h3>
-                    <div class="pw-tablist__event-detail-description">${tab.description}</div>
+                  <sly data-sly-test = "${tab.description}"><div class="pw-tablist__event-detail-description">${tab.description}</div></sly>
                     <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
                       <!-- <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
                             data-sly-call="${btnLink.button_template @btnPath=tab.linkURL, btnText=tab.linkText ,btnTarget=tab.targetBlank, variant=variant, customClasses='pw-tablist__event-detail-description-link js-tablist__event-detail-description-link'}" /> -->
@@ -134,8 +134,9 @@
         </sly>
       </div>
 
-      <div class="pw-tablist__events-sidesection js-tablist__events-sidesection ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} col-lg-7 d-none d-lg-block" aria-live="polite">
+      <div class="pw-tablist__events-sidesection js-tablist__events-sidesection ${data.pwDisplay == 'display-row' ? 'rightPad' : 'leftPad'} ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} col-lg-7 d-none d-lg-block" aria-live="polite">
       </div>
       </div>
     </div>
+  </div>
 </sly>

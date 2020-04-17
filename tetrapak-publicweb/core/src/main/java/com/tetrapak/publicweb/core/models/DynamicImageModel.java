@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * @author Sandip Kumar
  */
-@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class DynamicImageModel {
 
     @SlingObject
@@ -50,6 +50,9 @@ public class DynamicImageModel {
 
     @RequestAttribute
     private String imageCrop;
+
+    @RequestAttribute
+    private String componentName;
 
     /**
      * The asset alt text.
@@ -100,6 +103,11 @@ public class DynamicImageModel {
      * The Constant FMT_PNG_ALPHA.
      */
     private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
+    
+    /**
+     * The Constant IMAGE_SHARPNESS.
+     */
+    private static final String IMAGE_SHARPNESS = "resMode=bisharp";
 
     /**
      * The Constant HEIGHT.
@@ -197,18 +205,34 @@ public class DynamicImageModel {
     /**
      * Append transparency.
      *
-     * @param url             the url
-     * @param appendingString the appending string
+     * @param url
+     *            the url
+     * @param appendingString
+     *            the appending string
      * @return the string builder
      */
     private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
         return url.append(appendingString).append(FMT_PNG_ALPHA);
     }
+    
+    /**
+     * Append Sharpness.
+     *
+     * @param url
+     *            the url
+     * @param appendingString
+     *            the appending string
+     * @return the string builder
+     */
+    private static StringBuilder appendSharpness(final StringBuilder url, final String appendingString) {
+        return url.append(appendingString).append(IMAGE_SHARPNESS);
+    }
 
     /**
      * Check image transparency.
      *
-     * @param type type
+     * @param type
+     *            type
      * @return true, if successful
      */
     private static boolean checkImageTransparency(final String type) {
@@ -218,8 +242,10 @@ public class DynamicImageModel {
     /**
      * Creates the url.
      *
-     * @param paramUrl           the url
-     * @param imageConfiguration the image configuration
+     * @param paramUrl
+     *            the url
+     * @param imageConfiguration
+     *            the image configuration
      * @return the string
      */
     private String createUrl(final String paramUrl, final String type, final String imageConfiguration) {
@@ -280,24 +306,33 @@ public class DynamicImageModel {
     /**
      * Gets the component name.
      *
-     * @param resource the resource
+     * @param resource
+     *            the resource
      * @return the component name
      */
-    private static String getComponentName(final Resource resource) {
-        return StringUtils.substringAfterLast(resource.getResourceType(), PATH_SEPARATOR);
+    private String getComponentName(final Resource resource) {
+        if (StringUtils.isNotBlank(componentName)) {
+            return componentName;
+        } else {
+            return StringUtils.substringAfterLast(resource.getResourceType(), PATH_SEPARATOR);
+        }
     }
 
     /**
      * Gets the url.
      *
-     * @param paramUrl the param url
-     * @param width    the width
-     * @param height   the height
-     * @param crop     the crop
+     * @param paramUrl
+     *            the param url
+     * @param width
+     *            the width
+     * @param height
+     *            the height
+     * @param crop
+     *            the crop
      * @return the url
      */
     private static String getUrl(final String paramUrl, final String type, final String width, final String height,
-                                 final String crop) {
+            final String crop) {
         boolean queryFlag = false;
         StringBuilder url = new StringBuilder(paramUrl);
         if (StringUtils.isNotEmpty(width)) {
@@ -328,6 +363,12 @@ public class DynamicImageModel {
                 url = appendTransparency(url, QUERY_PARAMETER);
             }
         }
+        
+        if (queryFlag) {
+            url = appendSharpness(url, AMPERSAND);
+        } else {
+            url = appendSharpness(url, AMPERSAND);
+        }
 
         return url.toString();
     }
@@ -335,7 +376,8 @@ public class DynamicImageModel {
     /**
      * Creates the URL for the devices(Desktop,IPad,Mobile).
      *
-     * @param deviceType the device type
+     * @param deviceType
+     *            the device type
      * @return the string
      */
     private String createDynamicMediaUrl(final String deviceType, final String imagePath, final String type) {
@@ -358,7 +400,7 @@ public class DynamicImageModel {
     }
 
     private String getImageConfigurations(String deviceType, Map<String, String> dynamicMediaConfiguration,
-                                          StringBuilder key) {
+            StringBuilder key) {
         String imageConfiguration;
         String cropping = getCroppingFromMobile();
         if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
@@ -375,8 +417,8 @@ public class DynamicImageModel {
         return imageConfiguration;
     }
 
-    private String getImageConfigurationForMobile(Map<String, String> dynamicMediaConfiguration,
-                                                  StringBuilder key, String cropping, String mWidth, String mHeight) {
+    private String getImageConfigurationForMobile(Map<String, String> dynamicMediaConfiguration, StringBuilder key,
+            String cropping, String mWidth, String mHeight) {
         if (StringUtils.isNotEmpty(mWidth) && StringUtils.isNotEmpty(mHeight)) {
             return mWidth + "," + mHeight + "," + cropping;
         } else if (StringUtils.isNotEmpty(cropping)) {

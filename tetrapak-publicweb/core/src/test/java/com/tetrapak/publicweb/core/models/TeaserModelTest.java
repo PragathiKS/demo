@@ -154,7 +154,7 @@ public class TeaserModelTest {
         assertEquals("Alt", model.getTeaserList().get(1).getAlt());
         assertEquals("hyperlink", model.getTeaserList().get(1).getPwLinkTheme());
         assertEquals("Link Text", model.getTeaserList().get(1).getLinkText());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/solutions",
+        assertEquals("/content/tetrapak/public-web/lang-masters/en/solutions.html",
                 model.getTeaserList().get(1).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
         assertEquals("solutions", model.getTeaserList().get(1).getAssetName());
@@ -180,7 +180,7 @@ public class TeaserModelTest {
         assertEquals("alt", model.getTeaserList().get(0).getAlt());
         assertEquals("download", model.getTeaserList().get(0).getPwLinkTheme());
         assertEquals("link text1", model.getTeaserList().get(0).getLinkText());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/home", model.getTeaserList().get(0).getLinkPath());
+        assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getTeaserList().get(0).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
     }
 

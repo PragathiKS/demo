@@ -9,7 +9,7 @@
         <items jcr:primaryType="nt:unstructured">
             <tab
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Text &amp; Video"
+                jcr:title="Tab list"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
@@ -22,7 +22,7 @@
                                 fieldLabel="Heading"
                                 name="./heading"/>
                             <contentType
-                                granite:class="cq-dialog-dropdown-showhide"
+                                granite:class="cq-dialog-dropdown-showhide tablist-contenttype"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Select settings"
@@ -236,6 +236,7 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <tabpaths
                                         jcr:primaryType="nt:unstructured"
+										granite:class="pw-tablist-semi-multi"
                                         jcr:title="tabsSemi"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"

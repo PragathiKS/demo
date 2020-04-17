@@ -1,6 +1,10 @@
 .tp-pw-footer {
+    @include margin-top(24px);
     min-height: 100px;
     background-color: $color-congress-blue;
+    @media #{$desktop} {
+        @include margin-top(48px);
+    }
 
     &__container {
         @include padding(48px $padding-sm);

@@ -1,3 +1,6 @@
+body {
+ background: $color-wild-sand;
+}
 .pw-theme {
     $self: &;
     &--grayscale-white {
@@ -14,9 +17,9 @@
     }
 
   &--regular {
-        margin: $margin-md $margin-md 0 $margin-md;
+        margin: 0 $margin-md 0 $margin-md;
     @media #{$desktop} {
-        margin: $margin-xxxl $margin-xxxl 0 $margin-xxxl;
+        margin: 0 $margin-xxxl 0 $margin-xxxl;
         }
     }
 }
@@ -49,5 +52,17 @@
     &::before{
         position: absolute;
         top: -23px;
+    }
+}
+
+.pw-container {
+    @include padding(0);
+    max-width: 100%;
+    margin: 16px auto 0 auto;
+    height: auto;
+
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        margin: 48px auto 0 auto;
     }
 }

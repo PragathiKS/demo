@@ -12,18 +12,44 @@
     }
 
     &__details {
+        font-weight: 500;
+        .teaserMargin {
+            @include margin-bottom($margin-l);
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
+        .teaserMarginL {
+            @include margin-bottom($margin-l);
+            @media #{$desktop} {
+                @include margin-bottom($margin-xl);
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
+        .rightbar {
+            border: 0 solid $color-mercury;
+            @media #{$desktop} {
+                border-right-width: 1px;
+            }
+        }
         .image {
             @include margin-top($margin-l);
+            width: 100%;
             @media #{$desktop} {
                 @include margin-top(0);
             }
         }
-
+        .noTopPad {
+            @include padding-top($padding-zero);
+        }
         .tilte {
             @include padding-top($margin-l);
             @include padding-bottom($margin-l);
+            @include font-size($font-md);
         }
-
         .link {
             @include padding-top($padding-l);
             @include padding-bottom($padding-l);

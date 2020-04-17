@@ -68,6 +68,22 @@
              });
         }
 
+		 var contentTypes = $('.tablist-contenttype');
+
+         if(contentTypes){
+             contentTypes.on('change', function(event){
+                 var contentTypesCurrVal = $(contentTypes).val();
+                   var tabsData = $(this).parent().parent().find(".contentType-showhide-target");
+                    tabsData.each(function (i, tabData) {
+                        if($(tabData).data("showhidetargetvalue") != contentTypesCurrVal){
+                            $(tabData).find(".coral3-Multifield-item").remove();
+                        }
+                        $(".pw-tablist-manual-multi").children('.coral3-Button').removeAttr("disabled");
+                        $(".pw-tablist-semi-multi").children('.coral3-Button').removeAttr("disabled");
+                    });
+             });
+        }
+
         var $vedioTypes = $('.pw-vedio-showhide');
         if($vedioTypes){
              $vedioTypes.on('change', function(event){

@@ -38,11 +38,8 @@
                                             jcr:primaryType="nt:unstructured"
                                             features="*"/>
                                     <links
-                                            jcr:primaryType="nt:unstructured"
-                                            features="*"/>
-                                    <image
-                                            jcr:primaryType="nt:unstructured"
-                                            features="*"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
                                     <findreplace
                                             jcr:primaryType="nt:unstructured"
                                             features="*"/>

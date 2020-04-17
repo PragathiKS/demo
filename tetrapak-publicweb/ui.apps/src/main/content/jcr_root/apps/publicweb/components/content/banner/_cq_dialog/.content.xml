@@ -32,10 +32,6 @@
                                         value="hero"/>
                                 </items>
                             </bannertype>
-                            <pwDisplay
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
                         </items>
                     </column>
                 </items>
@@ -80,7 +76,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldLabel="Link path"
                                 name="./linkPath"
-                                rootPath="/content/tetrapak/public-web"/>
+                                rootPath="/content"/>
                             <linktarget
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
@@ -126,6 +122,10 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
+							<pwDisplay
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
                         </items>
                     </column>
                 </items>

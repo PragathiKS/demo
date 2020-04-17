@@ -18,6 +18,7 @@ class Anchor {
     e.preventDefault();
     const $this = $(e.target);
     const anchorId = $this.data('link-section');
+    location.hash = anchorId;
     scrollToElement(null,`#${anchorId}`);
   };
 
