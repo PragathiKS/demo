@@ -121,20 +121,14 @@
         }
         div,
         a {
-            @include padding($padding-md $margin-l $margin-l $margin-l);
+            @include padding($padding-md $margin-l $padding-md $padding-md);
 
             @media #{$desktop} {
                 @include padding($padding-md $margin-l $padding-md $margin-l);
                 // @include margin-right(-$margin-l);
             }
         }
-        &__readmore {
-            div,
-            a {
-                margin: 0;
-                padding: $margin-l;
-            }
-        }
+        
 
         &:first-of-type {
             @include margin-top(0);
@@ -167,7 +161,7 @@
                 }
             }
             @media #{$desktop} {
-                @include left(-$margin-md);
+                // @include left(-$margin-md);
                 right: auto;
             }
         }
@@ -267,6 +261,40 @@
                     transform: rotate(-180deg);
                 }
             }
+        }
+    }
+
+    &__event-readmore-icleft {
+        a {
+            @include padding($padding-l $padding-md);
+            margin: 0;
+            @media #{$desktop} {
+                @include padding($padding-l $padding-xxxl);
+            }
+        }
+    }
+
+    &__event-readmore-icright {
+        a {
+            @include padding($padding-l $padding-md);
+            margin: 0;
+            @media #{$desktop} {
+                @include padding($padding-l);
+            }
+        }
+    }
+
+    &__event-title-icleft {
+        @include margin-left(0);
+        @media #{$desktop} {
+            @include margin-left($margin-l);
+        }
+    }
+
+    &__event-title-icright {
+        @include margin-right(0);
+        @media #{$desktop} {
+            @include margin-right($margin-l);
         }
     }
 
