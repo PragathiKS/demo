@@ -32,10 +32,8 @@
             @extend %btn-colors-hover;
             background: none;
         }
-        &::after {
+        & > .icon {
             @include padding-left(6px);
-            content: '\f117';
-            font-family: 'tp-icons';
         }
     }
 
@@ -172,7 +170,7 @@
         @include margin-bottom($margin-l);
         display: block;
         border-collapse: collapse;
-        overflow-x: scroll;
+        overflow-x: auto;
         width: 100%;
 
         th {

@@ -42,7 +42,7 @@
                                 name="./linkTexti18n"/>
                             <linkUrl
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Link to destination path"
                                 fieldLabel="Link path"
 								rootPath="/content"
