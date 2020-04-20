@@ -100,6 +100,16 @@
                                                         ref="styles"/>
                                             </popovers>
                                         </inline>
+                                        <dialogFullScreen
+                                          jcr:primaryType="nt:unstructured"
+                                          toolbar="[format#bold,format#italic,format#underline,#justify,#lists,subsuperscript#subscript,subsuperscript#superscript,links#modifylink,links#unlink,links#anchor,#image,findreplace#find,findreplace#replace,spellcheck#checktext,misctools#specialchars,misctools#sourceedit,#styles,#paraformat,table#table]">
+                                          <popovers jcr:primaryType="nt:unstructured">
+                                            <paraformat
+                                              jcr:primaryType="nt:unstructured"
+                                              items="paraformat:getFormats:paraformat-pulldown"
+                                              ref="paraformat"/>
+                                          </popovers>
+                                        </dialogFullScreen>
                                     </cui>
                                 </uiSettings>
                             </text>
