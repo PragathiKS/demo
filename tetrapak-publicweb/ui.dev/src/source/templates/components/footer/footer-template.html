@@ -5,12 +5,12 @@
         <div class="col-lg-3 text-lg-left">
           <div class="footer-logo footer-analytics">
           <sly data-sly-test = "${!wcmmode.edit}">
-          <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+          <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" data-link-name="Tetra Pak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
             </a>
           </sly>
           <sly data-sly-test = "${wcmmode.edit}">
-            <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+            <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" data-link-name="Tetra Pak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
               <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
               </a>
           </sly>  
@@ -38,7 +38,7 @@
          </div>
       </div>
       <div class="col tp_goTopBtn">
-        <a href="#" class="tp_textBtn tp-pw-footer__link" id="tp-pw-footer__link">${data.goToTopLabel} <i
+        <a href="#" class="tp_textBtn tp-pw-footer__link" data-link-section="Footer Navigation" data-link-name="${data.goToTopLabel}" id="tp-pw-footer__link">${data.goToTopLabel} <i
           class="icon-Circle_Arrow_Up"></i></a>
       </div>
     </div>
