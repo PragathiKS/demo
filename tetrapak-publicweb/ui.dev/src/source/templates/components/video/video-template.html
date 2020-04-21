@@ -11,7 +11,7 @@
             <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel'
                                             @ imagePath=data.thumbnailPath}">
             </sly>
-            <video class="js-dam-player" controls poster="${dynamicImageModel.desktopUrl}">
+            <video class="js-dam-player" controls title="${data.videoName}" poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
           </div>
@@ -21,7 +21,7 @@
             data-video-name="${data.videoName}">
 
 
-            <iframe class='js-yt-player' src="${data.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
+            <iframe class='js-yt-player'  title="${data.videoName}" src="${data.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
             </iframe>
 
