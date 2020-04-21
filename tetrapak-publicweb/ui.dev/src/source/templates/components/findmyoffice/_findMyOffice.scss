@@ -21,9 +21,32 @@
         &__label {
             @include line-height(24px, 14px);
             @include margin-bottom(0);
+            &.opacity {
+                opacity: 0.4;
+            }
         }
         &__field {
-            @include margin-top($margin-md)
+            @include margin-top($margin-l);
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: auto;
+        }
+    }
+
+    &__form-group__address {
+        &__office-name,
+        &__office-phone-number,
+        &__office-site {
+            @include margin-top($margin-l);
+        }
+        &__office-address {
+            @include margin-top($margin-md);
+        }
+        &__office-phone-number {
+            &__label {
+                font-weight: 900;
+            }
         }
     }
 }
