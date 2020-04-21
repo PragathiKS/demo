@@ -1,0 +1,29 @@
+.pw-find-my-office {
+    &__map {
+        @include height(620px);
+    }
+    &__wrapper {
+        @include margin-left($margin-xxxl);
+        @include margin-right($margin-xxxl);
+        position: relative;
+    }
+    &__form-group {
+        @include padding($padding-xxxl);
+        background-color: $color-white;
+        position: absolute;
+        width: 395px;
+        top: $margin-xxxl;
+        left: $margin-xxxl;
+        z-index: 1;
+        h2 {
+            font-weight: 300;
+        }
+        &__label {
+            @include line-height(24px, 14px);
+            @include margin-bottom(0);
+        }
+        &__field {
+            @include margin-top($margin-md)
+        }
+    }
+}
