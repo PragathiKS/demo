@@ -2,7 +2,7 @@
   var SELECT_REQUIRED_VALIDATOR = "pw.semiauto",
     foundationReg = $(window).adaptTo("foundation-registry");
   foundationReg.register("foundation.validation.validator", {
-    selector: 'foundation-autocomplete[data-foundation-validation="pw.semiauto"]',
+    selector: 'input[data-foundation-validation="pw.semiauto"]',
     validate: function(el) {
       var value = $(el).val();
 
