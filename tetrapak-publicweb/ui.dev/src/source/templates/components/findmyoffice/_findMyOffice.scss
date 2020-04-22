@@ -1,0 +1,59 @@
+.pw-find-my-office {
+    &__map {
+        @include height(620px);
+    }
+    &__wrapper {
+        @include margin-left($margin-xxxl);
+        @include margin-right($margin-xxxl);
+        position: relative;
+    }
+    &__form-group {
+        @include padding($padding-xxxl);
+        background-color: $color-white;
+        position: absolute;
+        width: 395px;
+        top: $margin-xxxl;
+        left: $margin-xxxl;
+        z-index: 1;
+        h2 {
+            font-weight: 300;
+        }
+        &__label {
+            @include line-height(24px, 14px);
+            @include margin-bottom(0);
+            &.opacity {
+                opacity: 0.4;
+            }
+        }
+        &__field {
+            @include margin-top($margin-l);
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: auto;
+        }
+    }
+
+    &__form-group__address {
+        &__office-name,
+        &__office-phone-number,
+        &__office-site {
+            @include margin-top($margin-l);
+        }
+        &__office-address {
+            @include margin-top($margin-md);
+        }
+        &__office-phone-number {
+            &__label {
+                font-weight: 900;
+            }
+        }
+        &__office-phone-number {
+            font-weight: 900;
+        }
+        &__office-name {
+            font-weight: 900;
+            line-height: 24px;
+        }
+    }
+}

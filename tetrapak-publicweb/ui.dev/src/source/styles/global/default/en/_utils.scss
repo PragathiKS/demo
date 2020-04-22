@@ -32,7 +32,7 @@ $progress-units: (
     &__bar {
         background-color: $color-white;
         position: absolute;
-        width: calc(100% - #{convert-to-rem($padding-l*2)});
+        width: calc(100% - #{convert-to-rem($padding-l * 2)});
         height: 1px;
         left: $padding-l;
         top: 50%;
@@ -43,7 +43,7 @@ $progress-units: (
     }
     @each $key, $value in $progress-units {
         #{ $self }__bar--#{ $key } {
-            width: calc(#{ $value } - #{convert-to-rem($padding-l)});
+            width: calc(#{$value} - #{convert-to-rem($padding-l)});
         }
     }
     &__point {
@@ -111,7 +111,8 @@ $progress-units: (
         &-input {
             visibility: hidden;
             &:checked ~ .form-check-radio {
-                &::before { //sass-lint:disable-line nesting-depth
+                &::before {
+                    //sass-lint:disable-line nesting-depth
                     background: $color-boulder;
                 }
             }
@@ -150,12 +151,18 @@ $progress-units: (
         font-size: $font-xs;
     }
     &__dropdown__toggle {
-        @include padding(0 30px 0 8px);
+        @include padding(0 30px 0 16px);
         @include line-height(40px, 40px);
         height: convert-to-rem(40px);
         background-color: $color-white;
-        border-color: $color-boulder;
+        border-color: $color-tundora;
         width: 100%;
+        color: $color-tundora;
+
+        &.show {
+            @include border-radius($border-radius $border-radius 0 0);
+            border-bottom: 0;
+        }
 
         &::after {
             @include margin(0);
@@ -163,27 +170,31 @@ $progress-units: (
             font-family: 'tp-icons';
             content: '\f111';
             position: absolute;
-            right: 8px;
+            right: 16px;
         }
     }
 
     &__dropdown__menu {
+        @include margin-top(0);
         @include padding(0);
-        border: 0;
+        border: 1px solid $color-tundora;
         width: 100%;
         max-height: 200px;
-        overflow-y: scroll;
+        overflow-y: auto;
+        &.show {
+            @include border-radius(0 0 $border-radius $border-radius);
+        }
+
         .dropdown-item {
-            @include border-xs($color-boulder);
-            @include padding(0 21px);
+            @include padding(0 16px);
+            border: 0;
             font-family: $font-light;
             line-height: convert-to-rem(40px);
             height: convert-to-rem(40px);
-            &:not(:last-child) {
-                border-bottom: 0;
-            }
+            color: $color-tundora;
+            cursor: pointer;
             &:hover {
-                background-color: ($color-mercury);
+                background-color: $color-wild-sand;
             }
         }
         .active {
@@ -228,10 +239,12 @@ $progress-units: (
 }
 
 .richtext {
-    ol ol, ul ul {
+    ol ol,
+    ul ul {
         @include padding(0 0 0 20px);
     }
-    ol, ul {
+    ol,
+    ul {
         li:before {
             color: $color-congress-blue;
         }
@@ -246,8 +259,8 @@ $progress-units: (
     }
     ul ul ul {
         li:before {
-          content: '\2012';
-          font-weight: bold;
+            content: '\2012';
+            font-weight: bold;
         }
     }
     ol {
