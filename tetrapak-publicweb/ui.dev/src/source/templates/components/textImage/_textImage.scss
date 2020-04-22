@@ -93,8 +93,8 @@
     &__link {
         @include margin-bottom($padding-l);
         @include padding($padding-zero);
+        @include line-height(28px, 16px);
         background-color: none;
-
         @media #{$desktop} {
             @include margin-bottom($margin-zero);
             @include padding($padding-zero);
