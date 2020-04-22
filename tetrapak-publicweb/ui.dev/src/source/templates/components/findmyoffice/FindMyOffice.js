@@ -16,6 +16,7 @@ class FindMyOffice {
     this.cache.selectedCountryValue = '';
     this.cache.selectedCityValue = '';
     this.cache.selectedOffice = {};
+    this.cache.marker = null;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
     this.setCityInitialState();
@@ -78,15 +79,26 @@ class FindMyOffice {
       );
       this.renderOfficeDetailsPanel(this.cache.selectedOffice);
     }
-    this.renderMarkerPosition(this.cache.normalizedData[this.cache.selectedCountryValue]);
+    this.cache.marker && this.cache.marker.setMap(null);
+    this.renderMarkerPosition(
+      this.cache.normalizedData[this.cache.selectedCountryValue]
+    );
   };
 
   renderMarkerPosition = office => {
-    new this.cache.googleMaps.Marker({
-      position: { lat: office.latitude, lng: office.longitude },
-      map: this.cache.map,
+    var latLng = new this.cache.googleMaps.LatLng(
+      office.latitude,
+      office.longitude
+    );
+    this.cache.marker = new this.cache.googleMaps.Marker({
+      position: latLng,
       title: office.name
     });
+
+    // To add the marker to the map, call setMap();
+    this.cache.marker.setMap(this.cache.map);
+    this.cache.map.setZoom(10);
+    this.cache.map.panTo(this.cache.marker.position);
   };
 
   resetOfficeDetails = () => {
@@ -115,6 +127,7 @@ class FindMyOffice {
     this.cache.selectedOffice =
       selectedOfficeDetails.length > 0 && selectedOfficeDetails[0];
     this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+    this.cache.marker && this.cache.marker.setMap(null);
     this.renderMarkerPosition(this.cache.selectedOffice);
   };
 
