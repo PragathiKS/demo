@@ -105,7 +105,7 @@
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                                                     fieldDescription="Suggested to use characters less than recommended Limit: 700 chars considering translations"
-                                                                    fieldLabel="Description"
+                                                                    fieldLabel="Body text"
                                                                     name="./description"/>
                                                                 <imagecontainer
                                                                     granite:class="hide tabLayout-showhide-target"
@@ -258,6 +258,7 @@
                                                             fieldDescription="Select internal pages to display metadata information from linked pages"
                                                             fieldLabel="Page URL"
                                                             name="./pageURL"
+															validation="pw.semiauto"
                                                             rootPath="/content/tetrapak/public-web"/>
                                                     </items>
                                                 </column>
@@ -277,7 +278,7 @@
                                     <tags
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/gui/components/common/tagspicker"
-                                        fieldDescription="Select at one or more tags to populate values"
+                                        fieldDescription="Content matching all selected tags will be displayed"
                                         fieldLabel="Tags"
                                         name="./tags"
                                         rootPath="/content/cq:tags"/>
