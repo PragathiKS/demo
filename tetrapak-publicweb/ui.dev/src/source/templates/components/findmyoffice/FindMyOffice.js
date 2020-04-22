@@ -17,6 +17,8 @@ class FindMyOffice {
     this.cache.selectedCityValue = '';
     this.cache.selectedOffice = {};
     this.cache.marker = null;
+    this.cache.defaultLatitude = 55.6998089;
+    this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
     this.setCityInitialState();
@@ -92,7 +94,8 @@ class FindMyOffice {
     );
     this.cache.marker = new this.cache.googleMaps.Marker({
       position: latLng,
-      title: office.name
+      title: office.name,
+      icon: '/content/dam/publicweb/Pin.png'
     });
 
     // To add the marker to the map, call setMap();
@@ -232,17 +235,49 @@ class FindMyOffice {
   };
 
   initMap = () => {
-    const currentLat = 55.6998089;
-    const currentLng = 13.1676404;
     this.cache.map = new this.cache.googleMaps.Map(
       document.querySelector('.js-pw-find-my-office__map'),
       {
         //eslint-disable-line
-        center: { lat: currentLat, lng: currentLng },
+        center: {
+          lat: this.cache.defaultLatitude,
+          lng: this.cache.defaultLongitude
+        },
         disableDefaultUI: true,
-        zoom: 5
+        zoom: 2
       }
     );
+    var gotoMapButton = document.createElement('div');
+    gotoMapButton.setAttribute(
+      'style',
+      'margin: 5px; border: 1px solid; padding: 1px 12px; font: bold 11px Roboto, Arial, sans-serif; color: #000000; background-color: #FFFFFF; cursor: pointer;'
+    );
+    gotoMapButton.innerHTML = 'View larger map';
+    this.cache.map.controls[
+      this.cache.googleMaps.ControlPosition.TOP_RIGHT
+    ].push(gotoMapButton);
+    this.cache.googleMaps.event.addDomListener(
+      gotoMapButton,
+      'click',
+      this.viewLargeMap
+    );
+  };
+
+  viewLargeMap = () => {
+    let uri = '';
+    if (this.cache.marker && this.cache.marker.getPosition()) {
+      uri = this.cache.marker && this.cache.marker.getPosition();
+    } else {
+      uri = new this.cache.googleMaps.LatLng({
+        lat: this.cache.defaultLatitude,
+        lng: this.cache.defaultLongitude
+      });
+    }
+    var url = `https://www.google.com/maps?q=${encodeURIComponent(
+      uri.toUrlValue()
+    )}`;
+    // you can also hard code the URL
+    window.open(url);
   };
 
   countryDropDownToggle = e => {
