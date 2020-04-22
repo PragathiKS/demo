@@ -1,8 +1,8 @@
 <sly data-sly-template.video_template="${@ data, flag}"
   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <div data-module="Video" id="${data.anchorId}" title="${data.anchorTitle}" data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}"
-    class="pw-video tp-container pw-theme--${data.pwTheme}" data-locator="video" id="${data.anchorId}">
-    <div class="row">
+    class="pw-video pw-container pw-theme--${data.pwTheme}" data-locator="video" id="${data.anchorId}">
+    <div class="row pw-video__innerpadding">
       <div
         class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">

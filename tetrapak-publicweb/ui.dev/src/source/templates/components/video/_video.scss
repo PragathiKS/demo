@@ -41,6 +41,26 @@
         }
     }
 
+    .pw-container {
+        @include margin($margin-md);
+        @include margin-bottom($margin-zero);
+        @media #{$desktop} {
+            @include margin($margin-xxxl);
+            @include margin-bottom($margin-zero);
+        }
+    }
+
+    &__innerpadding {
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-l);
+
+        @media #{$desktop} {
+            @include margin-top(0);
+            @include margin-bottom(0);
+        }
+    }
+
+
     &__video {
         @include border-radius($border-radius);
         @include margin-bottom($padding-md);
