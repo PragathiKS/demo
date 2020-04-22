@@ -101,6 +101,7 @@
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                             fieldLabel="Page URL"
                                                             name="./pageURL"
+															validation="pw.semiauto"
                                                             rootPath="/content/tetrapak/public-web"/>
                                                     </items>
                                                 </column>

@@ -258,6 +258,7 @@
                                                             fieldDescription="Select internal pages to display metadata information from linked pages"
                                                             fieldLabel="Page URL"
                                                             name="./pageURL"
+															validation="pw.semiauto"
                                                             rootPath="/content/tetrapak/public-web"/>
                                                     </items>
                                                 </column>
