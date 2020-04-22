@@ -63,7 +63,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                 fieldDescription="Recommended to use characters less than set Limit: 220 chars considering translations"
-                                fieldLabel="Description (Max character : 220)"
+                                fieldLabel="Description (Max character : 210)"
                                 maxlength="{Long}220"
                                 name="./text"/>
                             <linkLabel
