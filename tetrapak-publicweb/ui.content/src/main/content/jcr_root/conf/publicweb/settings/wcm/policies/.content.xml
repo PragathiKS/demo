@@ -28,6 +28,10 @@
                             </assetToComponentMapping>
                         </cq:authoring>
                         <jcr:content
+                            cq:lastReplicated="{Date}2020-03-26T08:31:42.151Z"
+                            cq:lastReplicatedBy="admin"
+                            cq:lastReplicationAction="Activate"
+                            jcr:mixinTypes="[cq:ReplicationStatus]"
                             jcr:primaryType="nt:unstructured"
                             mergeList="{Boolean}true"/>
                     </content-default>
@@ -38,8 +42,21 @@
                         jcr:title="publicweb language config"
                         sling:resourceType="wcm/core/components/policy/policy"
                         components="group:tetrapak-publicweb-configuration">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <jcr:content
+                            cq:lastReplicated="{Date}2020-03-25T10:18:47.040Z"
+                            cq:lastReplicatedBy="admin"
+                            cq:lastReplicationAction="Activate"
+                            jcr:mixinTypes="[cq:ReplicationStatus]"
+                            jcr:primaryType="nt:unstructured"/>
                     </policy_1584985457140>
+                    <policy_1587502093717
+                        jcr:lastModified="{Date}2020-04-22T02:18:56.770+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="publicweb external redirect"
+                        sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1587502093717>
                 </responsivegrid>
             </components>
         </foundation>

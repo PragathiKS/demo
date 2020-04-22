@@ -7,18 +7,18 @@
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
 
       <div class="row">
-      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'leftPad' : 'rightPad'}" id="accordion">
+      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright leftPad' : 'pw-tablist__events-icleft rightPad'}" id="accordion"> 
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
             <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
-                <div class="pw-tablist__event-title semi-bold">${tab.title}</div>
+                <div><p class="pw-tablist__event-title-icright semi-bold">${tab.title}</p></div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
               </sly>
               <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
                 <i class="icon icon-left icon-Chevron_Down"></i>
-                <div class="pw-tablist__event-title semi-bold">${tab.title}</div>
+                <div><p class="pw-tablist__event-title-icleft semi-bold">${tab.title}<p></div>
               </sly>
               </button>
 
@@ -115,7 +115,7 @@
             </div>
           </sly>
           <sly data-sly-test = "${tabList.last && data.readMorePath}">
-            <div class="pw-tablist__event pw-tablist__event__readmore">
+            <div class="pw-tablist__event ${data.pwDisplay == 'display-row' ? 'pw-tablist__event-readmore-icright' : 'pw-tablist__event-readmore-icleft'}">
               <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
             <a
                                  href="${data.readMorePath}"
