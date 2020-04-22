@@ -34,23 +34,33 @@
         }
 
         #{$self}__video {
-            @include margin-bottom($padding-md);
+            @include margin-bottom($padding-zero);
             @media #{$desktop} {
-                @include margin-bottom($padding-l);
+                @include margin-bottom($padding-zero);
             }
+        }
+    }
+
+    &__innerpadding {
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-l);
+
+        @media #{$desktop} {
+            @include margin-top(0);
+            @include margin-bottom(0);
         }
     }
 
     &__video {
         @include border-radius($border-radius);
-        @include margin-bottom($padding-md);
+        @include margin-bottom($padding-zero);
         height: 0;
         overflow: hidden;
         padding-bottom: 56.25%;
         position: relative;
 
         @media #{$desktop} {
-            @include margin-bottom(0);
+            @include margin-bottom($padding-zero);
         }
 
         video,
@@ -65,4 +75,16 @@
         }
     }
 
+    .pw-text-video__video {
+        @include margin-bottom(0);
+    }
+}
+
+.pw-container-inner {
+    @include margin($margin-md);
+    @include margin-bottom($margin-zero);
+    @media #{$desktop} {
+        @include margin($margin-xxxl);
+        @include margin-bottom($margin-zero);
+    }
 }

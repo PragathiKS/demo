@@ -5,4 +5,6 @@
     <rep:policy/>
     <public-web-landing-page/>
     <public-web-language-level-page/>
+    <public-web-external-redirect-page/>
+    <public-web-landing-page-with-section-menu/>
 </jcr:root>

@@ -5,12 +5,12 @@
         <div class="col-lg-3 text-lg-left">
           <div class="footer-logo footer-analytics">
           <sly data-sly-test = "${!wcmmode.edit}">
-          <a class="tp-pw-footer-data-analytics" data-link-type="internal" data-link-section="logo" data-link-parent-title="Brand Logo" data-link-name="TetraPak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+          <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" data-link-name="Tetra Pak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
             </a>
           </sly>
           <sly data-sly-test = "${wcmmode.edit}">
-            <a class="tp-pw-footer-data-analytics" data-link-type="internal" data-link-section="logo" data-link-parent-title="Brand Logo" data-link-name="TetraPak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
+            <a class="tp-pw-footer-data-analytics" data-link-section="Footer Navigation" data-link-name="Tetra Pak" href="${data.logoLink}" ctypeone="brand logo" ctitle="tetra pak" target="${data.logoLinkTarget}">
               <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
               </a>
           </sly>  
@@ -21,7 +21,7 @@
               style="justify-content: center;">
             <li class="tp-pw-footer__navigation-list__item footer-analytics">
               <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link tp-pw-footer-data-analytics" href="${navigationItems.linkPath}"
-                 datatag="${navigationItems.linkType}" data-link-type="internal" data-link-section="Navigation menu" data-link-parent-title="Footer links" data-link-name="${navigationItems.linkLabel}" ctype="footer" ctypeone="footer nav link"
+                 datatag="${navigationItems.linkType}" data-link-section="Footer Navigation" data-link-name="${navigationItems.linkLabel}" ctype="footer" ctypeone="footer nav link"
                  target="${navigationItems.linkTarget}">${navigationItems.linkLabel}</a>
             </li>
           </ul>
@@ -32,13 +32,13 @@
                href="${socialLink.socialMediaLink}" target="_blank"
                data-sly-test="${socialLink.socialMediaLink}"
                datatag="external" ctype="footer" ctypeone="social share"
-               data-link-type="external" data-link-section="Footer - Share link" data-link-parent-title="Social Share" data-link-name="${socialLink.socialMedia}"
+               data-link-section="Footer Navigation_Social icons" data-link-name="${socialLink.socialMedia}"
                ctitle="${socialLink.socialMediaName}"><i class="icon-${socialLink.socialMedia}"></i></a>
           </div>
          </div>
       </div>
       <div class="col tp_goTopBtn">
-        <a href="#" class="tp_textBtn tp-pw-footer__link" id="tp-pw-footer__link">${data.goToTopLabel} <i
+        <a href="#" class="tp_textBtn tp-pw-footer__link" data-link-section="Footer Navigation" data-link-name="${data.goToTopLabel}" id="tp-pw-footer__link">${data.goToTopLabel} <i
           class="icon-Circle_Arrow_Up"></i></a>
       </div>
     </div>
