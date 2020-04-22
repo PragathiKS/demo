@@ -20,21 +20,16 @@ class Footer {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.tp-pw-footer-data-analytics');
-    if (window.digitalData) {
-      $.extend(window.digitalData, {
-        linkClick: {
-          linkType: $this.data('link-type'),
-          linkSection: $this.data('link-section'),
-          linkParentTitle: $this.data('link-parent-title'),
-          linkName: $this.data('link-name')
-        }
-      });
-      if (window._satellite) {
-        window._satellite.track('linkClick');
-      }
+    const targetLink = $this.attr('target');
+    const url = $this.attr('href');
+    
+    if(targetLink === '_blank'){
+      window._satellite.track('linkClick');
     }
-    var url = $this.attr('href');
-    window.open(url, $this.attr('target'));
+
+    if(url && targetLink){
+      window.open(url, targetLink);
+    }
   }
   goToTop() {
     $global.animate({ scrollTop: 0 }, 700);

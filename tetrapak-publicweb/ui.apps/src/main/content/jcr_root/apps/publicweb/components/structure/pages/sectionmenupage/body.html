@@ -1,0 +1,20 @@
+<div>
+  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
+</div>
+<div>
+  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/sectionmenu'}"/>
+</div>
+<div>
+  <sly data-sly-resource="${'contactAnchorLink' @ resourceType='publicweb/components/structure/contactAnchorLink'}"/>
+</div>
+<div>
+  <sly data-sly-include="content.html"></sly>
+</div>
+
+  <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
+</div>
+<sly data-sly-include="siteimprove.html"></sly>
+<sly data-sly-use.cookiemodel="com.tetrapak.publicweb.core.models.CookieConsentModel"/>
+<sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">
+	<sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/publicweb/components/content/cookieconsent'}"/>
+</sly>
