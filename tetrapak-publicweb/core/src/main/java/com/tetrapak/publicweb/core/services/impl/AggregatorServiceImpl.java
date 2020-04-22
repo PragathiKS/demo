@@ -26,97 +26,101 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
 @Component(immediate = true, service = AggregatorService.class)
 public class AggregatorServiceImpl implements AggregatorService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AggregatorServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AggregatorServiceImpl.class);
 
-    /**
-     * @param resource
-     * @param tags
-     * @param maxTabs
-     * @return aggregatorList
-     */
-    @Override
-    public List<AggregatorModel> getAggregatorList(Resource resource, String[] tags, int maxTabs) {
-	List<AggregatorModel> aggregatorList = new ArrayList<>();
-	ResourceResolver resolver = resource.getResourceResolver();
-	PageManager pageManager = resolver.adaptTo(PageManager.class);
-	SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs);
-	for (Hit hit : searchResults.getHits()) {
-	    try {
-		AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
-		if (aggregator != null) {
-		    aggregatorList.add(aggregator);
+	/**
+	 * @param resource
+	 * @param tags
+	 * @param maxTabs
+	 * @return aggregatorList
+	 */
+	@Override
+	public List<AggregatorModel> getAggregatorList(Resource resource, String[] tags, int maxTabs) {
+		List<AggregatorModel> aggregatorList = new ArrayList<>();
+		ResourceResolver resolver = resource.getResourceResolver();
+		PageManager pageManager = resolver.adaptTo(PageManager.class);
+		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs);
+		for (Hit hit : searchResults.getHits()) {
+			try {
+				AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
+				if (aggregator != null) {
+					aggregatorList.add(aggregator);
+				}
+			} catch (RepositoryException e) {
+				LOGGER.info("RepositoryException in getAggregatorList", e.getMessage(), e);
+			}
 		}
-	    } catch (RepositoryException e) {
-		LOGGER.info("RepositoryException in getAggregatorList", e.getMessage(), e);
-	    }
+		return aggregatorList;
 	}
-	return aggregatorList;
-    }
 
-    /**
-     * @param resource
-     * @param pagePaths
-     * @param maxTabs
-     * @return aggregatorList
-     */
-    @Override
-    public List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths) {
-	List<AggregatorModel> aggregatorList = new ArrayList<>();
-	ResourceResolver resolver = resource.getResourceResolver();
-	PageManager pageManager = resolver.adaptTo(PageManager.class);
-	for (SemiAutomaticModel pagePath : pagePaths) {
-	    AggregatorModel aggregator = getAggregator(pageManager.getPage(pagePath.getPageURL()));
-	    if (aggregator != null) {
-		aggregatorList.add(aggregator);
-	    }
+	/**
+	 * @param resource
+	 * @param pagePaths
+	 * @param maxTabs
+	 * @return aggregatorList
+	 */
+	@Override
+	public List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths) {
+		List<AggregatorModel> aggregatorList = new ArrayList<>();
+		ResourceResolver resolver = resource.getResourceResolver();
+		PageManager pageManager = resolver.adaptTo(PageManager.class);
+		for (SemiAutomaticModel pagePath : pagePaths) {
+			// logic added to exclude external links or not available resources - SMAR-12038
+			Page currentPage = pageManager.getPage(pagePath.getPageURL());
+			if (currentPage != null) {
+				AggregatorModel aggregator = getAggregator(currentPage);
+				if (aggregator != null) {
+					aggregatorList.add(aggregator);
+				}
+			}
+		}
+		return aggregatorList;
 	}
-	return aggregatorList;
-    }
 
-    /**
-     * @param currentPage
-     * @return aggregator
-     */
-    @Override
-    public AggregatorModel getAggregator(Page currentPage) {
-	return currentPage.getContentResource().adaptTo(AggregatorModel.class);
-    }
-
-    /**
-     * @param resource
-     * @param tags
-     * @param maxTabs
-     * @return query results
-     */
-    public static SearchResult executeAggregatorQuery(Resource resource, String[] tags, int maxTabs) {
-	LOGGER.info("Executing executeQuery method.");
-	ResourceResolver resourceResolver = resource.getResourceResolver();
-	Map<String, String> map = new HashMap<>();
-
-	// adapt a ResourceResolver to a QueryBuilder
-	QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
-	Session session = resourceResolver.adaptTo(Session.class);
-
-	// Adding query parameters
-	map.put("path", PageUtil.getLanguagePage(resource).getPath());
-	map.put("type", "cq:Page");
-
-	// Parameter to look for tags on the page.
-	if (tags != null && tags.length > 0) {
-	    map.put("1_group.p.and", "true");
-	    for (int i = 0; i < tags.length; i++) {
-		map.put("1_group." + (i + 1) + "_group.property", "jcr:content/cq:tags");
-		map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
-	    }
+	/**
+	 * @param currentPage
+	 * @return aggregator
+	 */
+	@Override
+	public AggregatorModel getAggregator(Page currentPage) {
+		return currentPage.getContentResource().adaptTo(AggregatorModel.class);
 	}
-	map.put("orderby", "@jcr:content/cq:lastModified");
-	map.put("orderby.sort", "desc");
-	map.put("p.limit", String.valueOf(maxTabs));
 
-	LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
-	Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+	/**
+	 * @param resource
+	 * @param tags
+	 * @param maxTabs
+	 * @return query results
+	 */
+	public static SearchResult executeAggregatorQuery(Resource resource, String[] tags, int maxTabs) {
+		LOGGER.info("Executing executeQuery method.");
+		ResourceResolver resourceResolver = resource.getResourceResolver();
+		Map<String, String> map = new HashMap<>();
 
-	return query.getResult();
-    }
+		// adapt a ResourceResolver to a QueryBuilder
+		QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
+		Session session = resourceResolver.adaptTo(Session.class);
+
+		// Adding query parameters
+		map.put("path", PageUtil.getLanguagePage(resource).getPath());
+		map.put("type", "cq:Page");
+
+		// Parameter to look for tags on the page.
+		if (tags != null && tags.length > 0) {
+			map.put("1_group.p.and", "true");
+			for (int i = 0; i < tags.length; i++) {
+				map.put("1_group." + (i + 1) + "_group.property", "jcr:content/cq:tags");
+				map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
+			}
+		}
+		map.put("orderby", "@jcr:content/cq:lastModified");
+		map.put("orderby.sort", "desc");
+		map.put("p.limit", String.valueOf(maxTabs));
+
+		LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
+		Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+
+		return query.getResult();
+	}
 
 }
