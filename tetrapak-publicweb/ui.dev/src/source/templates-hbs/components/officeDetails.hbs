@@ -1,13 +1,13 @@
 <div>
     <div class="pw-find-my-office__form-group__address__office-name">
-        <h4 class="pw-office-locator__office-details-panel__name">{{this.name}}</h4>
+        <h4>{{this.name}}</h4>
     </div>
     <p class="pw-find-my-office__form-group__address__office-address">
         {{this.address}}
     </p>
     <div class="pw-find-my-office__form-group__address__office-phone-number">
         <p class='pw-find-my-office__form-group__address__office-phone-number__label'>Phone</p>
-        <p>{{this.Phone}}</p>
+        <p>{{this.phoneNumber}}</p>
     </div>
-    <a class='pw-find-my-office__form-group__address__office-site' href="#">Go to local site</a>
+    <a class='pw-find-my-office__form-group__address__office-site' href="{{this.localSiteUrl}}">Go to local site</a>
 </div>

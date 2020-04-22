@@ -13,6 +13,9 @@ class FindMyOffice {
     this.cache.googleMaps = '';
     this.cache.officesList = [];
     this.cache.normalizedData = {};
+    this.cache.selectedCountryValue = '';
+    this.cache.selectedCityValue = '';
+    this.cache.selectedOffice = {};
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
     this.setCityInitialState();
@@ -48,18 +51,71 @@ class FindMyOffice {
   }
 
   onClickCountryItem = e => {
+    this.cache.selectedCountryValue = e.target.innerText;
+    $('.js-pw-find-my-office__form-group__country-field').css(
+      'display',
+      'block'
+    );
     $('.js-pw-form__dropdown__country').html(e.target.innerText);
     this.renderCities();
     this.clearSelectedCities();
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
     this.cache.selectedCity.on('click', this.onClickCityItem);
+    this.resetOfficeDetails();
+    this.cache.selectedOffice = {};
+    if (
+      Object.keys(this.cache.normalizedData).length !== 0 &&
+      this.cache.normalizedData[this.cache.selectedCountryValue].offices
+        .length === 1
+    ) {
+      this.cache.selectedOffice = this.cache.normalizedData[
+        this.cache.selectedCountryValue
+      ].offices[0];
+      $('.js-pw-find-my-office__form-group__address').css('display', 'block');
+      $('.js-pw-find-my-office__form-group__country-field').css(
+        'display',
+        'none'
+      );
+      this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+    }
+    this.renderMarkerPosition(this.cache.normalizedData[this.cache.selectedCountryValue]);
   };
+
+  renderMarkerPosition = office => {
+    new this.cache.googleMaps.Marker({
+      position: { lat: office.latitude, lng: office.longitude },
+      map: this.cache.map,
+      title: office.name
+    });
+  };
+
+  resetOfficeDetails = () => {
+    this.cache.selectedOffice = {};
+    this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+    $('.js-pw-find-my-office__form-group__address').css('display', 'none');
+  };
+
   onClickCityItem = e => {
+    this.cache.selectedCityValue = e.target.innerText;
+    $('.js-pw-find-my-office__form-group__address').css('display', 'block');
     $('.js-pw-form__dropdown__city').html(e.target.innerText);
+    this.renderOfficeDetails(this.cache.selectedCityValue);
   };
 
   clearSelectedCities = () => {
     $('.js-pw-form__dropdown__city').html('Select City');
+  };
+
+  renderOfficeDetails = officeName => {
+    const selectedOfficeDetails =
+      Object.keys(this.cache.normalizedData).length !== 0 &&
+      this.cache.normalizedData[this.cache.selectedCountryValue].offices.filter(
+        office => office.name === officeName
+      );
+    this.cache.selectedOffice =
+      selectedOfficeDetails.length > 0 && selectedOfficeDetails[0];
+    this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+    this.renderMarkerPosition(this.cache.selectedOffice);
   };
 
   renderOfficeDetailsPanel = office => {
@@ -95,67 +151,40 @@ class FindMyOffice {
   getOfficesList = () => {
     this.cache.normalizedData = {
       Australia: {
-        lat: -25.274398,
-        lng: 133.775136,
+        latitude: -25.274398,
+        longitude: 133.775136,
         offices: [
           {
-            Title: 'Office - Melbourne',
             name: 'Tetra Pak Marketing Pty Ltd',
-            Address:
+            address:
               'Level 2, 5 Burwood Road,\r\nHawthorn VIC 3122 Australia\r\n',
-            Country: 'Australia',
-            'E-mail': 'info.au@tetrapak.com',
-            'Google Maps Url':
-              'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12606.65458755712!2d145.0219618!3d-37.8213467!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc7dfbb7fe63da174!2sTetra+Pak!5e0!3m2!1ssv!2snz!4v1499411324448',
-            Phone: '+61 3 8561 3800',
-            Fax: '+61 3 9818 4250',
-            'Local site url': '/au',
-            Modified: '5/28/19 7:45',
-            'Item Type': 'Item',
-            Path: 'Lists/Offices',
-            lat: -37.8213467,
-            lng: 145.0219618
+            phoneNumber: '+61 3 8561 3800',
+            fax: '+61 3 9818 4250',
+            localSiteUrl: 'http://tetrapak.com/au',
+            latitude: -37.8213467,
+            longitude: 145.0219618
           }
         ]
       },
       Sweden: {
-        lat: '60.128161',
-        lng: '18.643501',
+        latitude: 60.128161,
+        longitude: 18.643501,
         offices: [
           {
-            Title: 'Marketing & Sales',
             name: 'Tetra Pak Sverige AB',
-            'Local Name': 'Tetra Pak Nordics',
-            Address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            Cluster: 'Europe & Central Asia',
-            Country: 'Sweden',
-            'E-mail': 'info.se@tetrapak.com',
-            'Google Maps Url':
-              'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4498.206546301627!2d13.190959829407474!3d55.68719225009939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465397e9489281e1%3A0x75046ec0553d3a1e!2sAB+Tetra+Pak!5e0!3m2!1sen!2s!4v1423494195747',
-            Phone: '+46 46 36 10 00',
-            'Local site url': '/se',
-            Modified: '4/27/18 8:02',
-            'Item Type': 'Item',
-            Path: 'Lists/Offices',
-            lat: 55.68719225009939,
-            lng: 13.190959829407474
+            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
+            phoneNumber: '+46 46 36 10 00',
+            localSiteUrl: 'http://tetrapak.com/se',
+            latitude: 55.68719225009939,
+            longitude: 13.190959829407474
           },
           {
-            Title: 'Head functions',
             name: 'AB Tetra Pak',
-            Address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            Cluster: 'Europe & Central Asia',
-            Country: 'Sweden',
-            'E-mail': 'info.se@tetrapak.com',
-            'Google Maps Url':
-              'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4498.206546301627!2d13.190959829407474!3d55.68719225009939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465397e9489281e1%3A0x75046ec0553d3a1e!2sAB+Tetra+Pak!5e0!3m2!1sen!2s!4v1423494195747',
-            Phone: '+46 46 36 10 00',
-            'Local site url': '/se',
-            Modified: '4/27/18 8:02',
-            'Item Type': 'Item',
-            Path: 'Lists/Offices',
-            lat: 55.68719225009939,
-            lng: 13.190959829407474
+            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
+            phoneNumber: '+46 46 36 10 00',
+            localSiteUrl: 'http://tetrapak.com/se',
+            latitude: 58.68719225009939,
+            longitude: 145.190959829407474
           }
         ]
       }
@@ -166,7 +195,7 @@ class FindMyOffice {
     $('.js-pw-form__dropdown__city').attr('disabled', true);
     $('.js-pw-find-my-office__form-group__label').addClass('opacity');
     $(window).click(function() {
-      $('.dropdown-menu').removeClass('show');
+      $('.dropdown-menu,.dropdown-toggle').removeClass('show');
     });
   };
 
@@ -206,21 +235,28 @@ class FindMyOffice {
   countryDropDownToggle = e => {
     e.stopPropagation();
     if ($('.js-pw-form__dropdown__city-select').hasClass('show')) {
-      $('.js-pw-form__dropdown__city-select').removeClass('show');
+      $(
+        '.js-pw-form__dropdown__city-select,.js-pw-form__dropdown__city'
+      ).removeClass('show');
     }
-    $('.js-pw-form__dropdown__country-select').toggleClass('show');
+    $(
+      '.js-pw-form__dropdown__country-select,.js-pw-form__dropdown__country'
+    ).toggleClass('show');
   };
 
   cityDropDownToggle = e => {
     e.stopPropagation();
     if (e.target.disabled) {
-      // or this.disabled
       return;
     }
     if ($('.js-pw-form__dropdown__country-select').hasClass('show')) {
-      $('.js-pw-form__dropdown__country-select').removeClass('show');
+      $(
+        '.js-pw-form__dropdown__country-select,.js-pw-form__dropdown__country'
+      ).removeClass('show');
     }
-    $('.js-pw-form__dropdown__city-select').toggleClass('show');
+    $(
+      '.js-pw-form__dropdown__city-select,.js-pw-form__dropdown__city'
+    ).toggleClass('show');
   };
 
   normalizeData = () => {
