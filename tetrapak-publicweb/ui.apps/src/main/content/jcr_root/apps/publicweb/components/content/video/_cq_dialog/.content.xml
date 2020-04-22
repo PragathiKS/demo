@@ -47,7 +47,7 @@
                                     <youtubeVideoID
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldDescription="Enter YouTube ID e.g. fR-esiS1Pn0"
+                                            fieldDescription="Enter the youtube ID to be picked from URL e.g. fR-esiS1Pn0"
                                             fieldLabel="Youtube Video ID"
                                             name="./youtubeVideoID"/>
                                 </items>
