@@ -20,19 +20,6 @@ class Breadcrumb {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp_pw-breadcrumb__link');
-    if (window.digitalData) {
-      $.extend(window.digitalData, {
-        linkClick: {
-          linkType: 'internal',
-          linkSection: $this.data('link-section'),
-          linkParentTitle: $this.data('link-parent-title'),
-          linkName: $this.data('link-name')
-        }
-      });
-      if (window._satellite) {
-        window._satellite.track('linkClick');
-      }
-    }
     window.open($this.attr('href'), '_self');
   }
 

@@ -48,7 +48,7 @@
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
           <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
-          data-video-name="${data.videoName}">
+          data-video-name="${data.youtubeEmbedURL}">
             <iframe  class='js-yt-player' src="${data.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>

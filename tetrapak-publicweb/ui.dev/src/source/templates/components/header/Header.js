@@ -47,23 +47,15 @@ class Header {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
-    if (window.digitalData) {
-      $.extend(window.digitalData, {
-        linkClick: {
-          linkType: 'internal',
-          linkSection: $this.data('link-section'),
-          linkParentTitle: $this.data('link-parent-title'),
-          linkName: $this.data('link-name')
-        }
-      });
-      if (window._satellite) {
-        window._satellite.track('linkClick');
-      }
+    const targetLink = $this.attr('target');
+    const url = $this.attr('href');
+    
+    if(targetLink === '_blank'){
+      window._satellite.track('linkClick');
     }
 
-    if($this.data('link-section') === 'logo') {
-      var url = $this.attr('href');
-      window.open(url, $this.attr('target'));
+    if(url && targetLink){
+      window.open(url, targetLink);
     }
   }
 

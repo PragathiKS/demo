@@ -13,7 +13,7 @@
         <module>core</module>
         <module>ui.dev</module>
         <module>ui.apps</module>
-        <!--<module>ui.content</module> -->
+        <module>ui.content</module>
 		<module>complete</module>
     </modules>
 	 <distributionManagement>
