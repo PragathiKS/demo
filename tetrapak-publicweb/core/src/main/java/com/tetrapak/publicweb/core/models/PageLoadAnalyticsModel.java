@@ -6,6 +6,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -13,10 +14,11 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Set;
 
 @Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
@@ -32,7 +34,7 @@ public class PageLoadAnalyticsModel {
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
-
+    private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
     private String channel = StringUtils.EMPTY;
     private String pageName = StringUtils.EMPTY;
     private String siteLanguage = StringUtils.EMPTY;
@@ -112,6 +114,9 @@ public class PageLoadAnalyticsModel {
             pageName += ":" + siteSection0.toString();
             if (StringUtils.isNotEmpty(siteSection1.toString())) {
                 pageName += ":" + siteSection1.toString();
+                if (PW_ERROR_PAGE_TEMPLATE_NAME.equalsIgnoreCase(pageType)) {
+                    siteSection1 = new StringBuilder(channel);
+                }
                 updateLowerSection();
             }
         }
