@@ -69,15 +69,16 @@ class TabsList {
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
-    const tabType = $this.data('tab-type') === 'videoText'?'TextVideoClick':'TextImageClick';
+    const videoName = $this.data('video-name');
+    // const tabType = $this.data('tab-type') === 'videoText'?'TextVideoClick':'TextImageClick';
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${dwnDocName}`;
+      linkParentTitle = `CTA-Download-pdf_${videoName}`;
       eventType = 'download';
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink - Download-pdf_${dwnDocName}`;
+      linkParentTitle = `Text hyperlink - Download-pdf_${videoName}`;
       eventType = 'download';
     }
 
@@ -91,10 +92,10 @@ class TabsList {
         dwnType,
         eventType
       };
-      trackAnalytics(trackingObj, 'linkClick', tabType, undefined, false);
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    if($this.attr('target')==='_blank'){
+    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
       window._satellite.track('linkClick');
     }
 

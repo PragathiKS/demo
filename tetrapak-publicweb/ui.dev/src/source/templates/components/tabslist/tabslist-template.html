@@ -88,6 +88,8 @@
                                 <sly data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}"/>
                                 <sly data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA Hyperlink' : '_Text Hyperlink'}"/>
                                 <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}"/>
+                                <sly data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}"/>
+                                
                               <a data-sly-test="${tab.linkText}"
                                  href="${tab.linkURL}"
                                  class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
@@ -99,7 +101,7 @@
                                  data-download-type="${tab.pwLinkTheme}"
                                  data-button-link-type="${tab.pwButtonTheme}"
                                  data-asset-name="${tab.assetName}"
-                                 data-video-name="${tab.videoName}"
+                                 data-video-name="${videoName}"
                                  data-tab-type = "${tab.tabType}"
                                  rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
                                  <span class="tpatom-link__text sly-text">${tab.linkText}</span>
