@@ -1,0 +1,39 @@
+{
+  "Australia": {
+    "latitude": -25.274398,
+    "longitude": 133.775136,
+    "offices": [
+      {
+        "name": "Tetra Pak Marketing Pty Ltd",
+        "address": "Level 2, 5 Burwood Road,\r\nHawthorn VIC 3122 Australia\r\n",
+        "phoneNumber": "+61 3 8561 3800",
+        "fax": "+61 3 9818 4250",
+        "localSiteUrl": "http://tetrapak.com/au",
+        "latitude": -37.8213467,
+        "longitude": 145.0219618
+      }
+    ]
+  },
+  "Sweden": {
+    "latitude": 60.128161,
+    "longitude": 18.643501,
+    "offices": [
+      {
+        "name": "Tetra Pak Sverige AB",
+        "address": "Ruben Rausings gata SE-221 86 Lund SWEDEN",
+        "phoneNumber": "+46 46 36 10 00",
+        "localSiteUrl": "http://tetrapak.com/se",
+        "latitude": 55.68719225009939,
+        "longitude": 13.190959829407474
+      },
+      {
+        "name": "AB Tetra Pak",
+        "address": "Ruben Rausings gata SE-221 86 Lund SWEDEN",
+        "phoneNumber": "+46 46 36 10 00",
+        "localSiteUrl": "http://tetrapak.com/se",
+        "latitude": 58.68719225009939,
+        "longitude": 145.190959829407474
+      }
+    ]
+  }
+}

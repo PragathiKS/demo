@@ -2,9 +2,22 @@ import FindMyOffice from './FindMyOffice';
 import $ from 'jquery';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import { render } from '../../../scripts/utils/render';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import tpOffices from './data/tp-offices.json';
 import findMyOfficeTemplate from '../../../test-templates-hbs/findMyOffice.hbs';
 
 describe('FindMyOffice', function() {
+  const jqRef = {
+    setRequestHeader() {
+      // Dummy Method
+    }
+  };
+  function ajaxResponse(response) {
+    const pr = $.Deferred();
+    pr.resolve(response, 'success', jqRef);
+    return pr.promise();
+  }
+
   before(function() {
     $(document.body)
       .empty()
@@ -17,6 +30,10 @@ describe('FindMyOffice', function() {
     this.initMapSpy = sinon.spy(this.findMyOffice, 'initMap');
     this.renderCountriesSpy = sinon.spy(this.findMyOffice, 'renderCountries');
     this.getOfficesListSpy = sinon.spy(this.findMyOffice, 'getOfficesList');
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+    this.ajaxStub.returns(
+      ajaxResponse(tpOffices)
+    );
     this.onClickCountryItemSpy = sinon.spy(
       this.findMyOffice,
       'onClickCountryItem'
@@ -44,6 +61,7 @@ describe('FindMyOffice', function() {
     this.renderSpy.restore();
     this.getOfficesListSpy.restore();
     this.renderCountriesSpy.restore();
+    this.ajaxStub.restore();
     this.onClickCountryItemSpy.restore();
     this.onClickCityItemSpy.restore();
     this.countryDropDownToggleSpy.restore();

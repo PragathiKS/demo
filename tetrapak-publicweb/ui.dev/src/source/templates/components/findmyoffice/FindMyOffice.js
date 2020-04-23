@@ -175,7 +175,7 @@ class FindMyOffice {
       })
       .done(data => {
         if (data) {
-          this.cache.normalizedData = this.normalizeData(data);
+          this.cache.normalizedData = data;
         }
       });
   };
