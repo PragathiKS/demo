@@ -1,6 +1,5 @@
 import FindMyOffice from './FindMyOffice';
 import $ from 'jquery';
-import loadGoogleMapsApi from 'load-google-maps-api';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import tpOffices from './data/tp-offices.json';
@@ -27,13 +26,14 @@ describe('FindMyOffice', function() {
     });
     this.initSpy = sinon.spy(this.findMyOffice, 'init');
     this.renderSpy = sinon.spy(render, 'fn');
-    this.initMapSpy = sinon.spy(this.findMyOffice, 'initMap');
+    this.handleGoogleMapApiSpy = sinon.spy(
+      this.findMyOffice,
+      'handleGoogleMapApi'
+    );
     this.renderCountriesSpy = sinon.spy(this.findMyOffice, 'renderCountries');
     this.getOfficesListSpy = sinon.spy(this.findMyOffice, 'getOfficesList');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.returns(
-      ajaxResponse(tpOffices)
-    );
+    this.ajaxStub.returns(ajaxResponse(tpOffices));
     this.onClickCountryItemSpy = sinon.spy(
       this.findMyOffice,
       'onClickCountryItem'
@@ -53,11 +53,24 @@ describe('FindMyOffice', function() {
     );
 
     this.findMyOffice.init();
+    const googleMap = {
+      event: {
+        addDomListener: () => null
+      },
+      LatLng: () => null,
+      Marker: () => ({ setMap: () => null }),
+      Map: () => ({ controls: [[]], setZoom: () => null, panTo: () => null }),
+      ControlPosition: {
+        TOP_RIGHT: 0
+      }
+    };
+
+    this.findMyOffice.handleGoogleMapApi(googleMap);
   });
   after(function() {
     $(document.body).empty();
     this.initSpy.restore();
-    this.initMapSpy.restore();
+    this.handleGoogleMapApiSpy.restore();
     this.renderSpy.restore();
     this.getOfficesListSpy.restore();
     this.renderCountriesSpy.restore();
@@ -72,18 +85,9 @@ describe('FindMyOffice', function() {
   it('should initialize', function() {
     expect(this.findMyOffice.init.called).to.be.true;
   });
-
-  it('should initialize google map', function(done) {
-    this.timeout(30000);
-    loadGoogleMapsApi({
-      key: 'AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ',
-      libraries: ['places', 'geometry']
-    })
-      .then(res => {
-        expect(res).to.not.be.null;
-        done();
-      })
-      .catch(done);
+  it('should call handleGoogleMapApi', function(done) {
+    expect(this.findMyOffice.handleGoogleMapApi.called).to.be.true;
+    done();
   });
   it('should call getOfficeList', function(done) {
     expect(this.findMyOffice.getOfficesList.called).to.be.true;

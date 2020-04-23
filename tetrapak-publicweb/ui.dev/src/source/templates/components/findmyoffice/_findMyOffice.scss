@@ -34,9 +34,11 @@
         &__field {
             @include margin-top($margin-l);
         }
-        .btn:disabled {
-            opacity: 0.4;
-            cursor: auto;
+        .btn {
+            &:disabled {
+                opacity: 0.4;
+                cursor: auto;
+            }
         }
     }
 
