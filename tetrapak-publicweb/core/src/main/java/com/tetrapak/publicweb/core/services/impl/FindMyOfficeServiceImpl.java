@@ -14,7 +14,6 @@ import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -25,18 +24,15 @@ import com.day.cq.commons.jcr.JcrConstants;
 import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.beans.OfficeBean;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
-import com.tetrapak.publicweb.core.services.impl.SiteImproveScriptServiceImpl.SiteImproveScriptServiceConfig;
 
 /**
  * The Class FindMyOfficeServiceImpl.
  */
-@Component(
-        service = FindMyOfficeService.class,
-        immediate = true,
-        configurationPolicy = ConfigurationPolicy.OPTIONAL)
+@Component(service = FindMyOfficeService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = FindMyOfficeServiceImpl.FindMyOfficeServiceConfig.class)
 public class FindMyOfficeServiceImpl implements FindMyOfficeService {
     private FindMyOfficeServiceConfig config;
+
     @ObjectClassDefinition(name = "Find My Office Configuration", description = "Find My Office Service Configuration")
     @interface FindMyOfficeServiceConfig {
 
@@ -80,11 +76,11 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
     /** The country list. */
     private Map<String, CountryBean> countryOfficeList = new HashMap<>();
 
-
     /**
      * activate method
      *
-     * @param config site Improve Script URL configuration
+     * @param config
+     *            site Improve Script URL configuration
      */
     @Activate
     public void activate(FindMyOfficeServiceConfig config) {
