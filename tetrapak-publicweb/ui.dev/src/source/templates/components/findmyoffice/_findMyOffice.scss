@@ -1,3 +1,9 @@
+.google-api {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
 .pw-find-my-office {
     &__map {
         @include height(620px);
@@ -28,9 +34,11 @@
         &__field {
             @include margin-top($margin-l);
         }
-        .btn:disabled {
-            opacity: 0.4;
-            cursor: auto;
+        .btn {
+            &:disabled {
+                opacity: 0.4;
+                cursor: auto;
+            }
         }
     }
 

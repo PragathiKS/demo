@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 
 class FindMyOffice {
@@ -21,30 +23,20 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
-    this.cache.linkSectionElement = this.root.find('.js-pw-find-my-office__wrapper');
+    this.cache.googleApi = this.root.find('.js-google-api');
+    this.cache.linkSectionElement = this.root.find(
+      '.js-pw-find-my-office__wrapper'
+    );
     this.setCityInitialState();
   }
 
   bindEvents() {
+    const googleApiKey = this.cache.googleApi.data('google-api-key');
     loadGoogleMapsApi({
-      key: 'AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ',
+      key: googleApiKey,
       libraries: ['places', 'geometry']
     })
-      .then(googleMaps => {
-        this.cache.googleMaps = googleMaps;
-        this.cache.googleMaps.event.addDomListener(
-          window,
-          'load',
-          this.initMap()
-        );
-        this.getOfficesList();
-        this.renderCountries();
-        this.cache.selectedCountry = this.root.find(
-          '.js-dropdown-item-country'
-        );
-
-        this.cache.selectedCountry.on('click', this.onClickCountryItem);
-      })
+      .then(this.handleGoogleMapApi)
       .catch(function(error) {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -53,6 +45,16 @@ class FindMyOffice {
     this.cache.countryToggle.on('click', this.countryDropDownToggle);
     this.cache.cityToggle.on('click', this.cityDropDownToggle);
   }
+
+  handleGoogleMapApi = googleMaps => {
+    this.cache.googleMaps = googleMaps;
+    this.cache.googleMaps.event.addDomListener(window, 'load', this.initMap());
+    this.getOfficesList();
+    this.renderCountries();
+    this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
+
+    this.cache.selectedCountry.on('click', this.onClickCountryItem);
+  };
 
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
@@ -137,14 +139,12 @@ class FindMyOffice {
 
   renderOfficeDetailsPanel = office => {
     this.cache.linkSectionElement.attr('data-link-name', office.name);
-    render.fn(
-      {
-        template: 'officeDetails',
-        data: office,
-        target: '.js-pw-find-my-office-office-details',
-        hidden: false
-      }
-    );
+    render.fn({
+      template: 'officeDetails',
+      data: office,
+      target: '.js-pw-find-my-office-office-details',
+      hidden: false
+    });
   };
 
   renderCountryOfficesList = countries => {
@@ -164,46 +164,20 @@ class FindMyOffice {
   };
 
   getOfficesList = () => {
-    this.cache.normalizedData = {
-      Australia: {
-        latitude: -25.274398,
-        longitude: 133.775136,
-        offices: [
-          {
-            name: 'Tetra Pak Marketing Pty Ltd',
-            address:
-              'Level 2, 5 Burwood Road,\r\nHawthorn VIC 3122 Australia\r\n',
-            phoneNumber: '+61 3 8561 3800',
-            fax: '+61 3 9818 4250',
-            localSiteUrl: 'http://tetrapak.com/au',
-            latitude: -37.8213467,
-            longitude: 145.0219618
-          }
-        ]
-      },
-      Sweden: {
-        latitude: 60.128161,
-        longitude: 18.643501,
-        offices: [
-          {
-            name: 'Tetra Pak Sverige AB',
-            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            phoneNumber: '+46 46 36 10 00',
-            localSiteUrl: 'http://tetrapak.com/se',
-            latitude: 55.68719225009939,
-            longitude: 13.190959829407474
-          },
-          {
-            name: 'AB Tetra Pak',
-            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            phoneNumber: '+46 46 36 10 00',
-            localSiteUrl: 'http://tetrapak.com/se',
-            latitude: 58.68719225009939,
-            longitude: 145.190959829407474
-          }
-        ]
-      }
-    };
+    const servletPath = this.cache.googleApi.data('google-api-servlet');
+    ajaxWrapper
+      .getXhrObj({
+        url: servletPath,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json'
+      })
+      .done(data => {
+        if (data) {
+          this.cache.normalizedData = data;
+        }
+      });
   };
 
   setCityInitialState = () => {
@@ -304,26 +278,6 @@ class FindMyOffice {
     $(
       '.js-pw-form__dropdown__city-select,.js-pw-form__dropdown__city'
     ).toggleClass('show');
-  };
-
-  normalizeData = () => {
-    const offices = [
-      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3005.8900171346613!2d29.02389!3d41.115093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab595eb4c4ee1%3A0x8efd6045e1e8eb3d!2sNurol+Plaza!5e0!3m2!1sen!2s!4v1423470732620'
-    ];
-    const latRegex = /!3d(.*?)!/;
-    const lngRegex = /!2d(.*?)!/;
-    return offices.map((obj, i) => {
-      if (obj['Google Maps Url'].length > 0) {
-        obj.lat = parseFloat(obj['Google Maps Url'].match(latRegex)[1] || 0);
-        obj.lng = parseFloat(obj['Google Maps Url'].match(lngRegex)[1] || 0);
-      } else {
-        obj.lat = 55.6998089;
-        obj.lng = 13.1676404;
-      }
-      obj.mapMarker = {};
-      obj.id = i;
-      return obj;
-    });
   };
 
   init() {
