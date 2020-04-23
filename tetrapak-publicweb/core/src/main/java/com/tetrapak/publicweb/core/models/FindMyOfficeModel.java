@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
@@ -33,24 +32,10 @@ public class FindMyOfficeModel {
     @ValueMapValue
     private String anchorTitle;
 
-    /** The servlet path. */
-    private String servletPath;
-
-    /** The google api key. */
-    private String googleApiKey;
 
     /** The find my office service impl. */
     @Inject
     private FindMyOfficeServiceImpl findMyOfficeServiceImpl;
-
-    /**
-     * Inits the.
-     */
-    @PostConstruct
-    public void init() {
-        servletPath = resource.getPath() + ".json";
-        googleApiKey = findMyOfficeServiceImpl.getGoogleApiKey();
-    }
 
     /**
      * Gets the heading.
@@ -67,7 +52,7 @@ public class FindMyOfficeModel {
      * @return the servlet path
      */
     public String getServletPath() {
-        return servletPath;
+        return resource.getPath() + ".json";
     }
 
     /**
@@ -94,7 +79,7 @@ public class FindMyOfficeModel {
      * @return the google api key
      */
     public String getGoogleApiKey() {
-        return googleApiKey;
+        return findMyOfficeServiceImpl.getGoogleApiKey();
     }
 
 }
