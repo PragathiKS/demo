@@ -1,6 +1,8 @@
 package com.tetrapak.publicweb.core.servlets;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.Servlet;
 
@@ -9,13 +11,15 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.json.JSONObject;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
 
 /**
@@ -46,10 +50,12 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         final ResourceResolver resolver = request.getResourceResolver();
-        JSONObject jsonObject = new JSONObject(findMyOfficeServiceImpl.getFindMyOfficeData(resolver));
-        final String responseString = jsonObject.toString();
+        final Map<String, CountryBean> treeMap = new TreeMap<String, CountryBean>(
+                findMyOfficeServiceImpl.getFindMyOfficeData(resolver));
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
         try {
-            resp.getWriter().write(responseString);
+            resp.getWriter().write(mapper.writeValueAsString(treeMap));
         } catch (IOException ioException) {
             LOGGER.error("ioException :{}", ioException);
         }

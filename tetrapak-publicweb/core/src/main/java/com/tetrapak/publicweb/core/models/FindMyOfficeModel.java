@@ -1,12 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
 
 /**
  * The Class FindMyOfficeModel.
@@ -22,16 +24,18 @@ public class FindMyOfficeModel {
     @ValueMapValue
     private String heading;
 
-    /** The servlet path. */
-    private String servletPath;
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
 
-    /**
-     * Inits the.
-     */
-    @PostConstruct
-    public void init() {
-        servletPath = resource.getPath() + ".json";
-    }
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
+
+    /** The find my office service impl. */
+    @Inject
+    private FindMyOfficeServiceImpl findMyOfficeServiceImpl;
 
     /**
      * Gets the heading.
@@ -48,7 +52,34 @@ public class FindMyOfficeModel {
      * @return the servlet path
      */
     public String getServletPath() {
-        return servletPath;
+        return resource.getPath() + ".json";
+    }
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
+
+    /**
+     * Gets the google api key.
+     *
+     * @return the google api key
+     */
+    public String getGoogleApiKey() {
+        return findMyOfficeServiceImpl.getGoogleApiKey();
     }
 
 }
