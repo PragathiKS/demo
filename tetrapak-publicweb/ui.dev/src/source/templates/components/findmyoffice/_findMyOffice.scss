@@ -40,6 +40,12 @@
         &__office-site {
             @include margin-top($margin-l);
         }
+        &__office-phone-number,
+        &__office-address,
+        &__office-site {
+            line-height: 24px;
+        }
+
         &__office-address {
             @include margin-top($margin-md);
         }
@@ -48,12 +54,11 @@
                 font-weight: 900;
             }
         }
-        &__office-phone-number {
-            font-weight: 900;
-        }
         &__office-name {
-            font-weight: 900;
-            line-height: 24px;
+            h4 {
+                line-height: 24px;
+                font-weight: 900;
+            }
         }
     }
 }
