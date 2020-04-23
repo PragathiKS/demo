@@ -21,6 +21,7 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
+    this.cache.linkSectionElement = this.root.find('.js-pw-find-my-office__wrapper');
     this.setCityInitialState();
   }
 
@@ -135,15 +136,13 @@ class FindMyOffice {
   };
 
   renderOfficeDetailsPanel = office => {
+    this.cache.linkSectionElement.attr('data-link-name', office.name);
     render.fn(
       {
         template: 'officeDetails',
         data: office,
         target: '.js-pw-find-my-office-office-details',
         hidden: false
-      },
-      function() {
-        $(this).fadeIn();
       }
     );
   };
