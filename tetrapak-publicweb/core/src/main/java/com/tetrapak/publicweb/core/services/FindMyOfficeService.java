@@ -29,4 +29,14 @@ public @interface FindMyOfficeService {
             description = "Offices Content Fragment Root Path")
     String getOfficesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/offices";
 
+    /**
+     * Gets the google API key.
+     *
+     * @return the google API key
+     */
+    @AttributeDefinition(
+            name = "Offices Content Fragment Root Path",
+            description = "Offices Content Fragment Root Path")
+    String getGoogleAPIKey() default "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ";
+
 }
