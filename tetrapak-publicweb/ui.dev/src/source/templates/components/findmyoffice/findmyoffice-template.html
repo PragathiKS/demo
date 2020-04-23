@@ -1,11 +1,11 @@
-<sly data-sly-template.findmyoffice_template="${@data, flag}">
+<sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div data-module="FindMyOffice">
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
-      <div class='pw-find-my-office__wrapper'>
+      <div data-link-section='Find my office' data-link-name='' class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
 
         <div class="pw-find-my-office__form-group">
           <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
-            data-sly-call="${title.heading_h2_template @ headingText='Tetra Pak Offices', variant='regular'}" />
+            data-sly-call="${title.heading_h2_template @ headingText=data.heading, variant='regular'}" />
           <div class="pw-find-my-office__form-group__field"><label class="pw-find-my-office__form-group__label"
               for="country">Country</label>
             <div class="pw-form__dropdown dropdown text-left">
