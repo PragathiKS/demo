@@ -31,14 +31,14 @@ class TextImage {
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
-    const imageAltText = $this.data('alt-text');
+    const imageTitle = $this.data('image-title');
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${imageAltText}`;
+      linkParentTitle = `CTA-Download-pdf_${imageTitle}`;
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text Hyperlink-Download-pdf_${imageAltText}`;
+      linkParentTitle = `Text Hyperlink-Download-pdf_${imageTitle}`;
     }
    
     if(downloadtype ==='download'){
