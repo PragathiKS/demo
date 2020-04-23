@@ -1,0 +1,61 @@
+{
+
+	"jcr:primaryType": "sling:Folder",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Tue Apr 21 2020 15:27:49 GMT+0530",
+	"cyprus": {
+		"jcr:primaryType": "dam:Asset",
+		"jcr:mixinTypes": [
+			"mix:referenceable",
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:versionHistory": "b3e4b92d-0f59-4dd8-81bc-bc96bb6af752",
+		"jcr:predecessors": [
+			"fae6c95b-92b3-4a8d-b063-b9682bbf2b42"
+		],
+		"jcr:created": "Wed Apr 22 2020 19:14:33 GMT+0530",
+		"jcr:baseVersion": "fae6c95b-92b3-4a8d-b063-b9682bbf2b42",
+		"jcr:isCheckedOut": true,
+		"jcr:uuid": "4daf80e1-fce8-4dea-8b21-c7b87eff0952",
+		"jcr:content": {
+			"jcr:primaryType": "dam:AssetContent",
+			"jcr:title": "Cyprus",
+			"jcr:lastModifiedBy": "admin",
+			"jcr:description": "",
+			"contentFragment": true,
+			"cq:name": "cyprus",
+			"jcr:lastModified": "Wed Apr 22 2020 19:14:50 GMT+0530",
+			"lastFragmentSave": "Wed Apr 22 2020 19:14:50 GMT+0530",
+			"cq:parentPath": "/content/dam/tetrapak/findMyOffice/contentFragments/countries",
+			"renditions": {
+				"jcr:primaryType": "nt:folder",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Apr 22 2020 19:14:33 GMT+0530"
+			},
+			"related": {
+				"jcr:primaryType": "nt:unstructured"
+			},
+			"metadata": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:Taggable"
+				]
+			},
+			"data": {
+				"jcr:primaryType": "nt:unstructured",
+				"cq:model": "/conf/global/settings/dam/cfm/models/country",
+				"master": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:Taggable"
+					],
+					"latitude": 35.126413,
+					"latitude@LastModified": "Wed Apr 22 2020 19:14:50 GMT+0530",
+					"longitude": 33.429859,
+					"longitude@LastModified": "Wed Apr 22 2020 19:14:50 GMT+0530"
+				}
+			}
+		}
+	}
+}

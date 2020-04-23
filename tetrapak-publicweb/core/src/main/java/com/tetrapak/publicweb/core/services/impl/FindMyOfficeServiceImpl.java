@@ -15,7 +15,9 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,16 +25,51 @@ import com.day.cq.commons.jcr.JcrConstants;
 import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.beans.OfficeBean;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
+import com.tetrapak.publicweb.core.services.impl.SiteImproveScriptServiceImpl.SiteImproveScriptServiceConfig;
 
 /**
  * The Class FindMyOfficeServiceImpl.
  */
 @Component(
-        service = FindMyOfficeServiceImpl.class,
+        service = FindMyOfficeService.class,
         immediate = true,
         configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = FindMyOfficeService.class)
-public class FindMyOfficeServiceImpl {
+@Designate(ocd = FindMyOfficeServiceImpl.FindMyOfficeServiceConfig.class)
+public class FindMyOfficeServiceImpl implements FindMyOfficeService {
+    private FindMyOfficeServiceConfig config;
+    @ObjectClassDefinition(name = "Find My Office Configuration", description = "Find My Office Service Configuration")
+    @interface FindMyOfficeServiceConfig {
+
+        /**
+         * Gets the countries content fragment root path.
+         *
+         * @return the countries content fragment root path
+         */
+        @AttributeDefinition(
+                name = "Countries Content Fragment Root Path",
+                description = "countries Content Fragment Root Path")
+        String getCountriesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/countries";
+
+        /**
+         * Gets the offices content fragment root path.
+         *
+         * @return the offices content fragment root path
+         */
+        @AttributeDefinition(
+                name = "Offices Content Fragment Root Path",
+                description = "Offices Content Fragment Root Path")
+        String getOfficesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/offices";
+
+        /**
+         * Gets the google API key.
+         *
+         * @return the google API key
+         */
+        @AttributeDefinition(
+                name = "Offices Content Fragment Root Path",
+                description = "Offices Content Fragment Root Path")
+        String getGoogleAPIKey() default "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ";
+    }
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FindMyOfficeServiceImpl.class);
@@ -43,28 +80,15 @@ public class FindMyOfficeServiceImpl {
     /** The country list. */
     private Map<String, CountryBean> countryOfficeList = new HashMap<>();
 
-    /** The countries root path. */
-    private String countriesRootPath;
-
-    /** The offices root path. */
-    private String officesRootPath;
-
-    /** The google api key. */
-    private String googleApiKey;
 
     /**
-     * Activate.
+     * activate method
      *
-     * @param findMyOfficeService
-     *            the find my office service
+     * @param config site Improve Script URL configuration
      */
     @Activate
-    @Modified
-    protected void activate(FindMyOfficeService findMyOfficeService) {
-        countriesRootPath = findMyOfficeService.getCountriesContentFragmentRootPath();
-        officesRootPath = findMyOfficeService.getOfficesContentFragmentRootPath();
-        googleApiKey = findMyOfficeService.getGoogleAPIKey();
-
+    public void activate(FindMyOfficeServiceConfig config) {
+        this.config = config;
     }
 
     /**
@@ -74,9 +98,10 @@ public class FindMyOfficeServiceImpl {
      *            the resource resolver
      * @return the find my office data
      */
+    @Override
     public Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver) {
         LOGGER.debug("Inside getFindMyOfficeData method");
-        Resource countriesRootRes = resourceResolver.getResource(countriesRootPath);
+        Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
         if (Objects.nonNull(countriesRootRes)) {
             final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
             while (rootIterator.hasNext()) {
@@ -119,7 +144,7 @@ public class FindMyOfficeServiceImpl {
             final ValueMap vMap = dataResource.getValueMap();
             countryBean.setLongitude(vMap.get("longitude", Double.class));
             countryBean.setLatitude(vMap.get("latitude", Double.class));
-            final String countryPath = officesRootPath + "/" + countryName;
+            final String countryPath = getOfficeCfRootPath() + "/" + countryName;
             Resource countryResource = resourceResolver.getResource(countryPath);
             List<OfficeBean> officeBeanList = new ArrayList<>();
             if (Objects.nonNull(countryResource)) {
@@ -183,7 +208,19 @@ public class FindMyOfficeServiceImpl {
      *
      * @return the google api key
      */
+    @Override
     public String getGoogleApiKey() {
-        return googleApiKey;
+        return config.getGoogleAPIKey();
     }
+
+    @Override
+    public String getCountryCfRootPath() {
+        return config.getCountriesContentFragmentRootPath();
+    }
+
+    @Override
+    public String getOfficeCfRootPath() {
+        return config.getOfficesContentFragmentRootPath();
+    }
+
 }
