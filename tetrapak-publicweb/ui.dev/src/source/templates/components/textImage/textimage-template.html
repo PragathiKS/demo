@@ -28,14 +28,14 @@
               </div>
               <p class="pw-text-image__description">${data.description}</p>
               <div class="pw-text-image__link" data-sly-test="${data.linkURL}">
-                <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text' : 'CTA'}"/>
+                <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
                 <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? 'Download' : 'Hyperlink'}"/>
                   <a data-sly-test="${data.linkText}"
                     href="${data.linkURL}"
                     class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
                     title="${data.linkText}"
                     target="${data.targetBlank}"
-                    data-link-section="Text & Image_${dataLinkSectionCTAText} ${dataLinkSectionDownloadHyper}"
+                    data-link-section="Text & Image_${dataLinkSectionCTAText}_${dataLinkSectionDownloadHyper}"
                     data-link-name="${data.linkText}"
                     data-button-link-type="${data.pwButtonTheme}"
                     data-download-type="${data.pwLinkTheme}"

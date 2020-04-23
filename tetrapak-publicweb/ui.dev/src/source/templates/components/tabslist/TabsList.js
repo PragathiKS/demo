@@ -70,15 +70,16 @@ class TabsList {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const videoName = $this.data('video-name');
-    // const tabType = $this.data('tab-type') === 'videoText'?'TextVideoClick':'TextImageClick';
+    const altText = $this.data('alt-text');
+    const linkParentCocat = $this.data('tab-type') === 'videoText'? videoName : altText;
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${videoName}`;
+      linkParentTitle = `CTA-Download-pdf_${linkParentCocat}`;
       eventType = 'download';
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink - Download-pdf_${videoName}`;
+      linkParentTitle = `Text hyperlink - Download-pdf_${linkParentCocat}`;
       eventType = 'download';
     }
 
