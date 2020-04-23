@@ -21,7 +21,9 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
-    this.cache.linkSectionElement = this.root.find('.js-pw-find-my-office__wrapper');
+    this.cache.linkSectionElement = this.root.find(
+      '.js-pw-find-my-office__wrapper'
+    );
     this.setCityInitialState();
   }
 
@@ -30,21 +32,7 @@ class FindMyOffice {
       key: 'AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ',
       libraries: ['places', 'geometry']
     })
-      .then(googleMaps => {
-        this.cache.googleMaps = googleMaps;
-        this.cache.googleMaps.event.addDomListener(
-          window,
-          'load',
-          this.initMap()
-        );
-        this.getOfficesList();
-        this.renderCountries();
-        this.cache.selectedCountry = this.root.find(
-          '.js-dropdown-item-country'
-        );
-
-        this.cache.selectedCountry.on('click', this.onClickCountryItem);
-      })
+      .then(this.handleGoogleMapApi)
       .catch(function(error) {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -53,6 +41,16 @@ class FindMyOffice {
     this.cache.countryToggle.on('click', this.countryDropDownToggle);
     this.cache.cityToggle.on('click', this.cityDropDownToggle);
   }
+
+  handleGoogleMapApi = googleMaps => {
+    this.cache.googleMaps = googleMaps;
+    this.cache.googleMaps.event.addDomListener(window, 'load', this.initMap());
+    this.getOfficesList();
+    this.renderCountries();
+    this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
+
+    this.cache.selectedCountry.on('click', this.onClickCountryItem);
+  };
 
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
@@ -137,14 +135,12 @@ class FindMyOffice {
 
   renderOfficeDetailsPanel = office => {
     this.cache.linkSectionElement.attr('data-link-name', office.name);
-    render.fn(
-      {
-        template: 'officeDetails',
-        data: office,
-        target: '.js-pw-find-my-office-office-details',
-        hidden: false
-      }
-    );
+    render.fn({
+      template: 'officeDetails',
+      data: office,
+      target: '.js-pw-find-my-office-office-details',
+      hidden: false
+    });
   };
 
   renderCountryOfficesList = countries => {
@@ -304,26 +300,6 @@ class FindMyOffice {
     $(
       '.js-pw-form__dropdown__city-select,.js-pw-form__dropdown__city'
     ).toggleClass('show');
-  };
-
-  normalizeData = () => {
-    const offices = [
-      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3005.8900171346613!2d29.02389!3d41.115093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab595eb4c4ee1%3A0x8efd6045e1e8eb3d!2sNurol+Plaza!5e0!3m2!1sen!2s!4v1423470732620'
-    ];
-    const latRegex = /!3d(.*?)!/;
-    const lngRegex = /!2d(.*?)!/;
-    return offices.map((obj, i) => {
-      if (obj['Google Maps Url'].length > 0) {
-        obj.lat = parseFloat(obj['Google Maps Url'].match(latRegex)[1] || 0);
-        obj.lng = parseFloat(obj['Google Maps Url'].match(lngRegex)[1] || 0);
-      } else {
-        obj.lat = 55.6998089;
-        obj.lng = 13.1676404;
-      }
-      obj.mapMarker = {};
-      obj.id = i;
-      return obj;
-    });
   };
 
   init() {
