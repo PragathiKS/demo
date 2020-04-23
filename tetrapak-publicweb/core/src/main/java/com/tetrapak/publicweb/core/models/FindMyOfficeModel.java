@@ -22,6 +22,14 @@ public class FindMyOfficeModel {
     @ValueMapValue
     private String heading;
 
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
     /** The servlet path. */
     private String servletPath;
 
@@ -49,6 +57,24 @@ public class FindMyOfficeModel {
      */
     public String getServletPath() {
         return servletPath;
+    }
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
     }
 
 }

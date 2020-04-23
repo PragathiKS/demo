@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -79,6 +78,12 @@ public class FindMyOfficeServiceImpl {
                 final CountryBean countryBean = new CountryBean();
                 final Resource childResource = rootIterator.next();
                 if (Objects.nonNull(childResource) && !childResource.getPath().contains("jcr:content")) {
+                    String countryTitle = StringUtils.EMPTY;
+                    final String jcrPath = childResource.getPath() + "/jcr:content";
+                    Resource jcrResource = resourceResolver.getResource(jcrPath);
+                    if (Objects.nonNull(jcrResource)) {
+                        countryTitle = jcrResource.getValueMap().get("jcr:title", StringUtils.EMPTY);
+                    }
                     final String countryName = childResource.getName();
                     final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
                     Resource dataResource = resourceResolver.getResource(dataPath);
@@ -112,13 +117,13 @@ public class FindMyOfficeServiceImpl {
                         }
                         countryBean.setOffices(officeBeanList);
                     }
-
-                    countryOfficeList.put(WordUtils.capitalize(countryName), countryBean);
+                    countryOfficeList.put(countryTitle, countryBean);
                 }
 
             }
 
         }
+
         return countryOfficeList;
     }
 }
