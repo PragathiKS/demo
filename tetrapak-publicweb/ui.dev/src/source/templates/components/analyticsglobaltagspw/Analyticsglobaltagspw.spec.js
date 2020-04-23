@@ -7,6 +7,7 @@ describe('Analyticsglobaltagspw', function () {
   };
   before(function () {
     x = new Analyticsglobaltagspw({ el: document.body });
+    x.init();
   });
   it('should initialize', function () {
   	document.cookie='lang-code=fr';

@@ -14,6 +14,13 @@ class Analyticsglobaltagspw {
     const cookieValue=this.getCookies('lang-code');
     this.setUserinfo(cookieValue);
 
+    if(window.digitalData.error && window.digitalData.error.errorcode) {
+      const oldPageName = window.digitalData.pageinfo.pageName;
+      window.digitalData.pageinfo={
+        pageName: `${oldPageName}:${document.location.pathname}`
+      }
+    }
+
     if(!storageUtil.get('gdprCookie')) {
       window.digitalData.cookie={
         cookieConsent:'no'
