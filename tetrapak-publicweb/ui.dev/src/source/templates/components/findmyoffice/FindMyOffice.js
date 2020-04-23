@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 
 class FindMyOffice {
@@ -21,6 +23,7 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
+    this.cache.googleApi = this.root.find('.js-google-api');
     this.cache.linkSectionElement = this.root.find(
       '.js-pw-find-my-office__wrapper'
     );
@@ -28,8 +31,9 @@ class FindMyOffice {
   }
 
   bindEvents() {
+    const googleApiKey = this.cache.googleApi.data('google-api-key');
     loadGoogleMapsApi({
-      key: 'AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ',
+      key: googleApiKey,
       libraries: ['places', 'geometry']
     })
       .then(this.handleGoogleMapApi)
@@ -160,46 +164,20 @@ class FindMyOffice {
   };
 
   getOfficesList = () => {
-    this.cache.normalizedData = {
-      Australia: {
-        latitude: -25.274398,
-        longitude: 133.775136,
-        offices: [
-          {
-            name: 'Tetra Pak Marketing Pty Ltd',
-            address:
-              'Level 2, 5 Burwood Road,\r\nHawthorn VIC 3122 Australia\r\n',
-            phoneNumber: '+61 3 8561 3800',
-            fax: '+61 3 9818 4250',
-            localSiteUrl: 'http://tetrapak.com/au',
-            latitude: -37.8213467,
-            longitude: 145.0219618
-          }
-        ]
-      },
-      Sweden: {
-        latitude: 60.128161,
-        longitude: 18.643501,
-        offices: [
-          {
-            name: 'Tetra Pak Sverige AB',
-            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            phoneNumber: '+46 46 36 10 00',
-            localSiteUrl: 'http://tetrapak.com/se',
-            latitude: 55.68719225009939,
-            longitude: 13.190959829407474
-          },
-          {
-            name: 'AB Tetra Pak',
-            address: 'Ruben Rausings gata SE-221 86 Lund SWEDEN',
-            phoneNumber: '+46 46 36 10 00',
-            localSiteUrl: 'http://tetrapak.com/se',
-            latitude: 58.68719225009939,
-            longitude: 145.190959829407474
-          }
-        ]
-      }
-    };
+    const servletPath = this.cache.googleApi.data('google-api-servlet');
+    ajaxWrapper
+      .getXhrObj({
+        url: servletPath,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json'
+      })
+      .done(data => {
+        if (data) {
+          this.cache.normalizedData = this.normalizeData(data);
+        }
+      });
   };
 
   setCityInitialState = () => {
