@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "id",
     "name",
-    "shapes"
+    "shapes",
+    "openingclosures",
+    "fillingmachines"
 })
 public class Packagetype {
 
@@ -20,6 +22,10 @@ public class Packagetype {
     private String name;
     @JsonProperty("shapes")
     private List<Shape> shapes = null;
+    @JsonProperty("openingclosures")
+    private List<Openingclosure> openingclosures = null;
+    @JsonProperty("fillingmachines")
+    private List<FillingMachine> fillingmachines = null;
 
     @JsonProperty("id")
     public String getId() {
@@ -49,6 +55,16 @@ public class Packagetype {
     @JsonProperty("shapes")
     public void setShapes(List<Shape> shapes) {
         this.shapes = shapes;
+    }
+    
+    @JsonProperty("fillingmachines")
+    public List<FillingMachine> getFillingmachines() {
+        return fillingmachines;
+    }
+
+    @JsonProperty("fillingmachines")
+    public void setFillingmachines(List<FillingMachine> fillingmachines) {
+        this.fillingmachines = fillingmachines;
     }
 
 }

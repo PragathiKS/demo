@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.schedulers;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +16,8 @@ import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 import com.tetrapak.publicweb.core.beans.pxp.File;
 import com.tetrapak.publicweb.core.beans.pxp.Files;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
+import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
 
@@ -30,10 +31,13 @@ public class FullFeedImportScheduledTask implements Runnable {
     public static @interface Config {
 
         @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "*/30 * * * * ?";
+        String scheduler_expression() default "0 0 0 ? * SUN *";
 
         @AttributeDefinition(name = "Disable Scheduled Task", description = "Disable Scheduled Task")
         boolean scheduler_disable() default false;
+        
+        @AttributeDefinition(name = "Refresh Bearer Token Time", description = "Refresh Bearer Token Time")
+        int scheduler_refreshTokenTime() default 2700000;
 
     }
     
@@ -50,6 +54,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     private BearerToken bearerToken;
     
     private Boolean isDisabled = false;
+    
+    private int refreshTokenTime;
+    
+    private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
 
     @Override
     public void run() {
@@ -88,7 +96,7 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
     
     private void processFillingMachines(String fileURI,String fileType,String language) {
-        List<FillingMachine> fillingMachinesList = apiGEEService.getFillingMachines(bearerToken.getAccessToken(), fileURI);
+        List<FillingMachine> fillingMachinesList = apiGEEService.getFillingMachines(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
         if(!fillingMachinesList.isEmpty()) {
             productService.createProductRootIfNotExists(fileType);
             for(FillingMachine fillingMachine:fillingMachinesList) {
@@ -99,25 +107,39 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
     
     private void processEquipments(String fileURI,String fileType,String language) {
-            
+        List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
+        if(!equipements.isEmpty()) {
+            productService.createProductRootIfNotExists(fileType);
+            for(ProcessingEquipement equipement:equipements) {
+                productService.createProductProcessingEquipement(equipement,language);
+            }
+        }
     }
      
     private void processPackageTypes(String fileURI,String fileType,String language) {
-         
+        List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
+        if(!packageTypes.isEmpty()) {
+            productService.createProductRootIfNotExists(fileType);
+            for(Packagetype packageType:packageTypes) {
+                productService.createProductPackageType(packageType,language);
+            }
+        }
     }
     
     private void setBearerToken() {
+        bearerToken = apiGEEService.getBearerToken();
         TimerTask scheduleBearerTokenUpdate = new TimerTask() {
             public void run() {
                 bearerToken = apiGEEService.getBearerToken();
             }
         };
-        timer.scheduleAtFixedRate(scheduleBearerTokenUpdate, Calendar.getInstance().getTime(), 1000 * 60 * 45);
+        timer.scheduleAtFixedRate(scheduleBearerTokenUpdate,refreshTokenTime,refreshTokenTime);
     }
     
     @Activate
     protected void activate(final Config config) {
         isDisabled = config.scheduler_disable();
+        refreshTokenTime = config.scheduler_refreshTokenTime();
     }
 
 }

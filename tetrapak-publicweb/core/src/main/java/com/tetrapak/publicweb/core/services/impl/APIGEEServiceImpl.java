@@ -12,6 +12,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,6 +28,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 import com.tetrapak.publicweb.core.beans.pxp.Files;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
+import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.config.APIGEEServiceConfig;
 
@@ -66,7 +69,7 @@ public class APIGEEServiceImpl implements APIGEEService {
         BearerToken bearerToken = new BearerToken();
         String authString = config.apigeeClientID() + ":" + config.apigeeClientSecret();
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
-        String jsonResponse = getAPIGeeRespose("BASIC", TOKEN_API_URI, encodedAuthString,true);
+        String jsonResponse = getAPIGeePostRespose("Basic", TOKEN_API_URI, encodedAuthString);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
@@ -80,7 +83,7 @@ public class APIGEEServiceImpl implements APIGEEService {
     @Override
     public List<FillingMachine> getFillingMachines(String token, String fileURI) {
         List<FillingMachine> fillingMachines = new ArrayList<FillingMachine>();
-        String jsonResponse = getAPIGeeRespose("BEARER", fileURI, token,false);
+        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 fillingMachines = Arrays.asList(new ObjectMapper().readValue(jsonResponse, FillingMachine[].class));
@@ -90,11 +93,39 @@ public class APIGEEServiceImpl implements APIGEEService {
         }
         return fillingMachines;
     }
+    
+    @Override
+    public List<Packagetype> getPackageTypes(String token, String fileURI) {
+        List<Packagetype> packageType = new ArrayList<Packagetype>();
+        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
+        if(StringUtils.isNotBlank(jsonResponse)) {
+            try {
+                packageType = Arrays.asList(new ObjectMapper().readValue(jsonResponse, Packagetype[].class));
+            } catch (IOException e) {
+                LOGGER.error("Unable to convert json to pojo for the list of files response", e);
+            }
+        }
+        return packageType;
+    }
+    
+    @Override
+    public List<ProcessingEquipement> getProcessingEquipements(String token, String fileURI) {
+        List<ProcessingEquipement> equipements = new ArrayList<ProcessingEquipement>();
+        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
+        if(StringUtils.isNotBlank(jsonResponse)) {
+            try {
+                equipements = Arrays.asList(new ObjectMapper().readValue(jsonResponse, ProcessingEquipement[].class));
+            } catch (IOException e) {
+                LOGGER.error("Unable to convert json to pojo for the list of files response", e);
+            }
+        }
+        return equipements;
+    }
 
     @Override
     public Files getListOfFiles(String type, String token) {
         Files listOfFiles = new Files();
-        String jsonResponse = getAPIGeeRespose("BEARER", FULL_FEED_FILES_URI, token,false);
+        String jsonResponse = getAPIGeeGetRespose("Bearer", FULL_FEED_FILES_URI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 listOfFiles = new ObjectMapper().readValue(jsonResponse, Files.class);
@@ -105,25 +136,47 @@ public class APIGEEServiceImpl implements APIGEEService {
         return listOfFiles;
     }
     
-    private String getAPIGeeRespose(String authType,String apiURI,String encodedAuthString,Boolean isGrantType) {
+    private String getAPIGeePostRespose(String authType,String apiURI,String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
         
-        //API Call to APIGEE End point to get json data
+        //POST API Call to APIGEE End point to get json data
         final String apiURL = config.apigeeServiceUrl() + apiURI;
         HttpPost postRequest = new HttpPost(apiURL);
         postRequest.addHeader("Authorization", authType + " " + encodedAuthString);
-        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");       
         postRequest.addHeader("Accept", "application/json");
+        ArrayList<NameValuePair> postParameters = new ArrayList<>();
+        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
      
         HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {
-            if(isGrantType) {
-                ArrayList<NameValuePair> postParameters = new ArrayList<>();
-                postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
-                postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
-            }
+        try {             
+            postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
             HttpResponse httpResponse = httpClient.execute(postRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();  
+            if(statusCode == SUCESSS) {
+                jsonResponse = EntityUtils.toString(httpResponse.getEntity());
+            }
+            LOGGER.debug("Http Post request status code: {}", statusCode);
+        } catch (IOException e) {
+            LOGGER.error("Unable to connect to the url {}", apiURL, e);
+        }
+        return jsonResponse;
+    }
+    
+    private String getAPIGeeGetRespose(String authType,String apiURI,String encodedAuthString) {
+        String jsonResponse = StringUtils.EMPTY;
+        
+        //GET API Call to APIGEE End point to get json data
+        final String apiURL = config.apigeeServiceUrl() + apiURI;
+        HttpGet getRequest = new HttpGet(apiURL);
+        getRequest.addHeader("Authorization", authType + " " + encodedAuthString);      
+        getRequest.addHeader("Accept", "application/json");
+     
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+        try {             
+            HttpResponse httpResponse = httpClient.execute(getRequest);
             statusCode = httpResponse.getStatusLine().getStatusCode();  
             if(statusCode == SUCESSS) {
                 jsonResponse = EntityUtils.toString(httpResponse.getEntity());

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "benefitsimage",
     "header",
+    "thumbnail",
     "id",
     "packagetypes",
     "options"
@@ -29,6 +30,8 @@ public class FillingMachine {
     private String benefitsimage;
     @JsonProperty("header")
     private String header;
+    @JsonProperty("thumbnail")
+    private String thumbnail;
     @JsonProperty("id")
     private String id;
     @JsonProperty("packagetypes")
@@ -84,6 +87,16 @@ public class FillingMachine {
     @JsonProperty("header")
     public void setHeader(String header) {
         this.header = header;
+    }
+    
+    @JsonProperty("thumbnail")
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    @JsonProperty("thumbnail")
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     @JsonProperty("id")

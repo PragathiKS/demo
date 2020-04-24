@@ -1,15 +1,8 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.PersistenceException;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Component;
@@ -17,9 +10,10 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.commons.jcr.JcrUtil;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
+import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
@@ -57,23 +51,21 @@ public class ProductServiceImpl implements ProductService {
             e.printStackTrace();
         }
     }
-    
-    private boolean isProductNodeExists(final Node productNode, final String productId, final ResourceResolver resolver)
-            throws RepositoryException, PersistenceException {
-        final String productPath = productNode.getPath() + "/" + productId;
-        final Resource productResource = resolver.getResource(productPath);
-        boolean status = false;
-        if (null == productResource) {
-            status = false;
-        } else {
-            status = true;
-        }
-        return status;
-
-    }
 
     @Override
     public void createProductFillingMachine(FillingMachine fillingMachine, String langauge) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    @Override
+    public void createProductPackageType(Packagetype packageType, String langauge) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    @Override
+    public void createProductProcessingEquipement(ProcessingEquipement equipement, String langauge) {
         // TODO Auto-generated method stub
         
     }
@@ -103,22 +95,6 @@ public class ProductServiceImpl implements ProductService {
      */
     private void setResourceResolver() {       
         this.resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
-    }
-    
-    /**
-     * Save session.
-     * @param session the session
-     */
-    private static void saveSession(final Session session) {
-        if (session != null && session.isLive()) {
-            try {
-                session.save();
-            } catch (final RepositoryException e) {
-                LOGGER.error("Error saving session", e);
-            }
-        }
-
-    }
-    
+    }    
     
 }
