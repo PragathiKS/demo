@@ -1,7 +1,7 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
-    <div class="google-api js-google-api" data-google-api-key="${data.googleApiKey}"
-      data-google-api-servlet="${data.servletPath}"></div>
+    <div class="google-api js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
+      data-google-api-servlet="${data.servletPath}">${"goToLocalSite" @i18n}</div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
       <div data-link-section='Find my office' data-link-name=''
         class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>

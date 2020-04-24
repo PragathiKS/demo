@@ -23,6 +23,10 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
+    this.cache.goToLocalSiteElement = this.root.find('.js-i18-value');
+    this.cache.goToLocalSiteI18nValue = $(
+      this.cache.goToLocalSiteElement
+    ).text();
     this.cache.cityFieldTextValue = $(this.cache.cityToggle).text();
     this.cache.googleApi = this.root.find('.js-google-api');
     this.cache.linkSectionElement = this.root.find(
@@ -141,7 +145,7 @@ class FindMyOffice {
     this.cache.linkSectionElement.attr('data-link-name', office.name);
     render.fn({
       template: 'officeDetails',
-      data: office,
+      data: { ...office, goToLocalSiteText: this.cache.goToLocalSiteI18nValue },
       target: '.js-pw-find-my-office-office-details',
       hidden: false
     });
