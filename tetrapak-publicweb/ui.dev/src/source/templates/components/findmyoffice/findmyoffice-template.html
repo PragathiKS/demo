@@ -1,6 +1,7 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
-    <div class="google-api js-google-api" data-google-api-key="${data.googleApiKey}" data-google-api-servlet="${data.servletPath}"></div>
+    <div class="google-api js-google-api" data-google-api-key="${data.googleApiKey}"
+      data-google-api-servlet="${data.servletPath}"></div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
       <div data-link-section='Find my office' data-link-name=''
         class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
@@ -9,30 +10,22 @@
           <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
             data-sly-call="${title.heading_h2_template @ headingText=data.heading, variant='regular'}" />
           <div class="pw-find-my-office__form-group__field"><label class="pw-find-my-office__form-group__label"
-              for="country">Country</label>
+              for="country">${"country" @i18n}</label>
             <div class="pw-form__dropdown dropdown text-left">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
-                type="button" aria-haspopup="true" aria-expanded="false">
-                ${'Select country' @ i18n}
-
-
-              </button>
+                type="button" aria-haspopup="true" aria-expanded="false">${"selectCountry" @i18n}</button>
               <ul class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select">
 
             </div>
           </div>
           <div class="pw-find-my-office__form-group__field js-pw-find-my-office__form-group__country-field"><label
               class="pw-find-my-office__form-group__label js-pw-find-my-office__form-group__label"
-              for="country">Office</label>
+              for="country">${"office" @i18n}</label>
             <div class="pw-form__dropdown dropdown text-left">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__city js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
-                type="button" aria-haspopup="true" aria-expanded="false">
-                ${'Select Office' @ i18n}
-
-
-              </button>
+                type="button" aria-haspopup="true" aria-expanded="false">${"selectOffice" @i18n}</button>
               <ul class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__city-select">
 
             </div>

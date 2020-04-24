@@ -156,6 +156,8 @@ $progress-units: (
         height: convert-to-rem(40px);
         background-color: $color-white;
         border-color: $color-tundora;
+        overflow: hidden;
+        text-overflow: ellipsis;
         width: 100%;
         color: $color-tundora;
 
@@ -192,6 +194,8 @@ $progress-units: (
             line-height: convert-to-rem(40px);
             height: convert-to-rem(40px);
             color: $color-tundora;
+            overflow: hidden;
+            text-overflow: ellipsis;
             cursor: pointer;
             &:hover {
                 background-color: $color-wild-sand;
