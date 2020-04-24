@@ -152,7 +152,8 @@
         "source/templates/components/textImage/",
         "source/templates/components/teaser/",
         "source/templates/components/anchor/",
-        "source/templates/components/megamenusolution/"
+        "source/templates/components/megamenusolution/",
+        "source/templates/components/findMyOffice/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
