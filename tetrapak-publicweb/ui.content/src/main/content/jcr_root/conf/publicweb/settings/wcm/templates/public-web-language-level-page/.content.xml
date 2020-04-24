@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2020-03-23T23:15:11.904+05:30"
         cq:lastModifiedBy="admin"
-        cq:templateType="/conf/publicweb/settings/wcm/template-types/language-page"
+        cq:templateType="/conf/publicweb/settings/wcm/template-types/empty-page"
         jcr:description="Template for creating language configuration pages"
         jcr:primaryType="cq:PageContent"
         jcr:title="Public Web Language Page"
