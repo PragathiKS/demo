@@ -23,6 +23,11 @@ class FindMyOffice {
     this.cache.defaultLongitude = 13.1676404;
     this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
     this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
+    this.cache.goToLocalSiteElement = this.root.find('.js-i18-value');
+    this.cache.goToLocalSiteI18nValue = $(
+      this.cache.goToLocalSiteElement
+    ).text();
+    this.cache.cityFieldTextValue = $(this.cache.cityToggle).text();
     this.cache.googleApi = this.root.find('.js-google-api');
     this.cache.linkSectionElement = this.root.find(
       '.js-pw-find-my-office__wrapper'
@@ -50,10 +55,6 @@ class FindMyOffice {
     this.cache.googleMaps = googleMaps;
     this.cache.googleMaps.event.addDomListener(window, 'load', this.initMap());
     this.getOfficesList();
-    this.renderCountries();
-    this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
-
-    this.cache.selectedCountry.on('click', this.onClickCountryItem);
   };
 
   onClickCountryItem = e => {
@@ -68,7 +69,10 @@ class FindMyOffice {
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
     this.cache.selectedCity.on('click', this.onClickCityItem);
     this.resetOfficeDetails();
-    this.cache.selectedOffice = {};
+    this.cache.selectedOffice = this.cache.normalizedData[
+      this.cache.selectedCountryValue
+    ];
+    let mapZoomLevel = 5;
     if (
       Object.keys(this.cache.normalizedData).length !== 0 &&
       this.cache.normalizedData[this.cache.selectedCountryValue].offices
@@ -83,14 +87,13 @@ class FindMyOffice {
         'none'
       );
       this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+      mapZoomLevel = 10;
     }
     this.cache.marker && this.cache.marker.setMap(null);
-    this.renderMarkerPosition(
-      this.cache.normalizedData[this.cache.selectedCountryValue]
-    );
+    this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel });
   };
 
-  renderMarkerPosition = office => {
+  renderMarkerPosition = (office, mapZoomLevel) => {
     var latLng = new this.cache.googleMaps.LatLng(
       office.latitude,
       office.longitude
@@ -103,7 +106,7 @@ class FindMyOffice {
 
     // To add the marker to the map, call setMap();
     this.cache.marker.setMap(this.cache.map);
-    this.cache.map.setZoom(10);
+    this.cache.map.setZoom((mapZoomLevel && mapZoomLevel.mapZoomLevel) || 5);
     this.cache.map.panTo(this.cache.marker.position);
   };
 
@@ -121,7 +124,7 @@ class FindMyOffice {
   };
 
   clearSelectedCities = () => {
-    $('.js-pw-form__dropdown__city').html('Select City');
+    $('.js-pw-form__dropdown__city').text(this.cache.cityFieldTextValue);
   };
 
   renderOfficeDetails = officeName => {
@@ -134,14 +137,17 @@ class FindMyOffice {
       selectedOfficeDetails.length > 0 && selectedOfficeDetails[0];
     this.renderOfficeDetailsPanel(this.cache.selectedOffice);
     this.cache.marker && this.cache.marker.setMap(null);
-    this.renderMarkerPosition(this.cache.selectedOffice);
+    this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel: 10 });
   };
 
   renderOfficeDetailsPanel = office => {
-    this.cache.linkSectionElement.attr('data-link-name', office.name);
+    const linkName =
+      (office.name && `${office.name} - ${this.cache.selectedCountryValue}`) ||
+      this.cache.selectedCountryValue;
+    this.cache.linkSectionElement.attr('data-link-name', linkName);
     render.fn({
       template: 'officeDetails',
-      data: office,
+      data: { ...office, goToLocalSiteText: this.cache.goToLocalSiteI18nValue },
       target: '.js-pw-find-my-office-office-details',
       hidden: false
     });
@@ -176,6 +182,12 @@ class FindMyOffice {
       .done(data => {
         if (data) {
           this.cache.normalizedData = data;
+          this.renderCountries();
+          this.cache.selectedCountry = this.root.find(
+            '.js-dropdown-item-country'
+          );
+
+          this.cache.selectedCountry.on('click', this.onClickCountryItem);
         }
       });
   };
@@ -217,7 +229,7 @@ class FindMyOffice {
           lng: this.cache.defaultLongitude
         },
         disableDefaultUI: true,
-        zoom: 2
+        zoom: 3
       }
     );
     var gotoMapButton = document.createElement('div');
