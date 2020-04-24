@@ -3,24 +3,28 @@
     &--display-row {
         > .row {
             flex-direction: row;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
     &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
-    .leftPad {
-        @media #{$desktop} {
-            padding-left: 15px;
-        }
-    }
-    .rightPad {
-        @media #{$desktop} {
-            padding-right: 15px;
-        }
-    }
+    // .leftPad {
+    //     @media #{$desktop} {
+    //         padding-left: 15px;
+    //     }
+    // }
+    // .rightPad {
+    //     @media #{$desktop} {
+    //         padding-right: 15px;
+    //     }
+    // }
 
     // &__events {
     //     padding: 0;
@@ -124,7 +128,7 @@
             @include padding($padding-md $margin-l $padding-md $padding-md);
 
             @media #{$desktop} {
-                @include padding($padding-md $margin-l $padding-md $margin-l);
+                @include padding($padding-md $margin-l $padding-md $padding-md);
                 // @include margin-right(-$margin-l);
             }
         }
@@ -279,7 +283,7 @@
             @include padding($padding-l $padding-md);
             margin: 0;
             @media #{$desktop} {
-                @include padding($padding-l);
+                @include padding($padding-l $margin-md);
             }
         }
     }
@@ -287,7 +291,7 @@
     &__event-title-icleft {
         @include margin-left(0);
         @media #{$desktop} {
-            @include margin-left($margin-l);
+            @include margin-left($margin-xl);
         }
     }
 
