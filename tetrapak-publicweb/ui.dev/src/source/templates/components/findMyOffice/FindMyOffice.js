@@ -40,12 +40,7 @@ class FindMyOffice {
     loadGoogleMapsApi({
       key: googleApiKey,
       libraries: ['places', 'geometry']
-    })
-      .then(this.handleGoogleMapApi)
-      .catch(function(error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      });
+    }).then(this.handleGoogleMapApi);
 
     this.cache.countryToggle.on('click', this.countryDropDownToggle);
     this.cache.cityToggle.on('click', this.cityDropDownToggle);
@@ -59,10 +54,7 @@ class FindMyOffice {
 
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
-    $('.js-pw-find-my-office__form-group__country-field').css(
-      'display',
-      'block'
-    );
+    $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
     $('.js-pw-form__dropdown__country').html(e.target.innerText);
     this.renderCities();
     this.clearSelectedCities();
@@ -81,11 +73,8 @@ class FindMyOffice {
       this.cache.selectedOffice = this.cache.normalizedData[
         this.cache.selectedCountryValue
       ].offices[0];
-      $('.js-pw-find-my-office__form-group__address').css('display', 'block');
-      $('.js-pw-find-my-office__form-group__country-field').css(
-        'display',
-        'none'
-      );
+      $('.js-pw-find-my-office__form-group__address').removeClass('hide');
+      $('.js-pw-find-my-office__form-group__city-field').addClass('hide');
       this.renderOfficeDetailsPanel(this.cache.selectedOffice);
       mapZoomLevel = 10;
     }
@@ -94,7 +83,7 @@ class FindMyOffice {
   };
 
   renderMarkerPosition = (office, mapZoomLevel) => {
-    var latLng = new this.cache.googleMaps.LatLng(
+    const latLng = new this.cache.googleMaps.LatLng(
       office.latitude,
       office.longitude
     );
@@ -113,12 +102,12 @@ class FindMyOffice {
   resetOfficeDetails = () => {
     this.cache.selectedOffice = {};
     this.renderOfficeDetailsPanel(this.cache.selectedOffice);
-    $('.js-pw-find-my-office__form-group__address').css('display', 'none');
+    $('.js-pw-find-my-office__form-group__address').addClass('hide');
   };
 
   onClickCityItem = e => {
     this.cache.selectedCityValue = e.target.innerText;
-    $('.js-pw-find-my-office__form-group__address').css('display', 'block');
+    $('.js-pw-find-my-office__form-group__address').removeClass('hide');
     $('.js-pw-form__dropdown__city').html(e.target.innerText);
     this.renderOfficeDetails(this.cache.selectedCityValue);
   };
@@ -232,7 +221,7 @@ class FindMyOffice {
         zoom: 3
       }
     );
-    var gotoMapButton = document.createElement('div');
+    const gotoMapButton = document.createElement('div');
     gotoMapButton.setAttribute(
       'style',
       'margin: 5px; border: 1px solid; padding: 1px 12px; font: bold 11px Roboto, Arial, sans-serif; color: #000000; background-color: #FFFFFF; cursor: pointer;'
@@ -258,7 +247,7 @@ class FindMyOffice {
         lng: this.cache.defaultLongitude
       });
     }
-    var url = `https://www.google.com/maps?q=${encodeURIComponent(
+    const url = `https://www.google.com/maps?q=${encodeURIComponent(
       uri.toUrlValue()
     )}`;
     // you can also hard code the URL

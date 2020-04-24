@@ -20,7 +20,7 @@
         width: 395px;
         top: $margin-xxxl;
         left: $margin-xxxl;
-        z-index: 1;
+        z-index: $zindex-p;
         h2 {
             font-weight: 300;
         }
@@ -28,7 +28,7 @@
             @include line-height(24px, 14px);
             @include margin-bottom(0);
             &.opacity {
-                opacity: 0.4;
+                opacity: $opacity-disabled;
             }
         }
         &__field {
@@ -36,8 +36,14 @@
         }
         .btn {
             &:disabled {
-                opacity: 0.4;
+                opacity: $opacity-disabled;
                 cursor: auto;
+            }
+        }
+        &__city-field,
+        &__address {
+            &.hide {
+                display: none;
             }
         }
     }
