@@ -62,8 +62,18 @@ public class Packagetype {
         return fillingmachines;
     }
 
+    @JsonProperty("openingclosures")
+    public void setOpeningclosures(List<Openingclosure> openingclosures) {
+        this.openingclosures = openingclosures;
+    }
+    
+    @JsonProperty("openingclosures")
+    public List<Openingclosure> getOpeningclosures() {
+        return openingclosures;
+    }
+
     @JsonProperty("fillingmachines")
-    public void setFillingmachines(List<FillingMachine> fillingmachines) {
+    public void setFillingMachines(List<FillingMachine> fillingmachines) {
         this.fillingmachines = fillingmachines;
     }
 

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.publicweb.core.beans.pxp.FeatureOption;
+import com.tetrapak.publicweb.core.beans.pxp.Openingclosure;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
 import com.tetrapak.publicweb.core.constants.PWConstants;
@@ -83,37 +84,64 @@ public final class ProductImportUtil {
         }
     }
 
-    public static void createOrUpdatePackageTypes(ResourceResolver resolver, String rootPath, String resourceName,
-            List<Packagetype> packageTypes) throws PersistenceException {
-        final Map<String, Object> properties = new HashMap<>();
-        properties.put("jcr:primaryType", NT_UNSTRUCTURED);
-        createOrUpdateResource(resolver, rootPath, resourceName, properties);
-        String packagePath = rootPath + PWConstants.SLASH + resourceName;
+    public static void createOrUpdatePackageTypes(ResourceResolver resolver, String rootPath,
+            List<Packagetype> packageTypes,Map<String, Object> properties) throws PersistenceException {    
         if (packageTypes != null) {
             for (Packagetype packageType : packageTypes) {
-                createOrUpdatePackageType(resolver, packageType, properties, packagePath);
+                createOrUpdatePackageType(resolver, packageType, properties, rootPath);
             }
         }
     }
 
     public static void createOrUpdatePackageType(ResourceResolver resolver, Packagetype packageType,
-            Map<String, Object> properties, String packagePath) throws PersistenceException {
+            Map<String, Object> properties, String rootPath) throws PersistenceException {
         if (packageType != null) {
             properties.put("id", packageType.getId());
             properties.put("name", packageType.getName());
-            Resource packageTypeRes = createOrUpdateResource(resolver, packagePath, packageType.getId(), properties);
+            Resource packageTypeRes = createOrUpdateResource(resolver, rootPath, packageType.getId(), properties);
             if (packageTypeRes != null) {
                 if (packageType.getShapes() != null && !packageType.getShapes().isEmpty()) {
                     createOrUpdateShapes(resolver, packageTypeRes, properties, packageType);
+                }
+                if (packageType.getOpeningclosures() != null && !packageType.getOpeningclosures().isEmpty()) {
+                    createOrUpdateOpeningClosures(resolver, packageTypeRes, properties, packageType);
+                }
+                if (packageType.getFillingmachines() != null && !packageType.getFillingmachines().isEmpty()) {
+                    //createOrUpdateFillingMachines//(resolver, packageTypeRes, properties, packageType);
                 }
             }
         }
     }
 
+    public static void createOrUpdateOpeningClosures(ResourceResolver resolver, Resource packageTypeRes,
+            Map<String, Object> properties, Packagetype packageType) throws PersistenceException {
+        final Map<String, Object> openingClouserProperties = new HashMap<>();
+        openingClouserProperties.put("jcr:primaryType", NT_UNSTRUCTURED);
+        Resource openingClouserRes = createOrUpdateResource(resolver, packageTypeRes.getPath(), "openingclousers", openingClouserProperties);
+        if (openingClouserRes != null) {
+            int i = 1;
+            for (Openingclosure openingClousers : packageType.getOpeningclosures()) {
+                if (openingClousers != null) {
+                    properties.put("id", openingClousers.getId());
+                    properties.put("name", openingClousers.getName());
+                    properties.put("thumbnail", openingClousers.getThumbnail());
+                    properties.put("type", openingClousers.getType());
+                    properties.put("principle", openingClousers.getPrinciple());
+                    if (openingClousers.getBenefits() != null && !openingClousers.getBenefits().isEmpty()) {
+                        properties.put("benifits", openingClousers.getBenefits().toArray(new String[openingClousers.getBenefits().size()]));
+                    }
+                    createOrUpdateResource(resolver, openingClouserRes.getPath(), String.valueOf(i), properties);
+                    i++;
+                }
+            }
+        }
+
+    }
+    
     public static void createOrUpdateShapes(ResourceResolver resolver, Resource packageTypeRes,
             Map<String, Object> properties, Packagetype packageType) throws PersistenceException {
         final Map<String, Object> shapesProperties = new HashMap<>();
-        properties.put("jcr:primaryType", NT_UNSTRUCTURED);
+        shapesProperties.put("jcr:primaryType", NT_UNSTRUCTURED);
         Resource shapeRes = createOrUpdateResource(resolver, packageTypeRes.getPath(), "shapes", shapesProperties);
         if (shapeRes != null) {
             int i = 1;

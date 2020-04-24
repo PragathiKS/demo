@@ -82,8 +82,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProductPackageType(String productType, List<Packagetype> packageTypes, String langauge) {
-
+    public void createProductPackageType(String productType, List<Packagetype> packageTypes, String language) {
+        setResourceResolver();
+        if (resolver == null) {
+            LOGGER.info("Sytem User Session is null");
+            return;
+        }
+        try {
+            Resource productTypeResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            if (productTypeResource != null) {
+                final Map<String, Object> properties = new HashMap<>();
+                properties.put("jcr:primaryType", NT_UNSTRUCTURED);
+                String productTypeResPath = productTypeResource.getPath();
+                ProductImportUtil.createOrUpdatePackageTypes(resolver, productTypeResPath, packageTypes, properties);
+            }
+            saveSession(session);
+        } catch (PersistenceException e) {
+            LOGGER.error("PersistenceException while creating root product node", e);
+        } finally {
+            if (resolver != null && resolver.isLive()) {
+                resolver.close();
+            }
+            if (session != null && session.isLive()) {
+                session.logout();
+            }
+        }
     }
 
     @Override
@@ -108,8 +131,11 @@ public class ProductServiceImpl implements ProductService {
                         fillingMachine.getFeatures());
                 ProductImportUtil.createOrUpdateFeatureOrOpions(resolver, languageRes.getPath(), "options",
                         fillingMachine.getOptions());
-                ProductImportUtil.createOrUpdatePackageTypes(resolver, languageRes.getPath(), "packagetypes",
-                        fillingMachine.getPackagetypes());
+                final Map<String, Object> propertiesPackageType = new HashMap<>();
+                propertiesPackageType.put("jcr:primaryType", NT_UNSTRUCTURED);
+                Resource packageRootRes = ProductImportUtil.createOrUpdateResource(resolver, languageRes.getPath(), "packagetypes", propertiesPackageType);
+                ProductImportUtil.createOrUpdatePackageTypes(resolver, packageRootRes.getPath(),
+                        fillingMachine.getPackagetypes(),properties);
             }
         }
     }
