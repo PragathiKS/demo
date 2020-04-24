@@ -151,7 +151,8 @@
         "source/templates/components/tabslist/",
         "source/templates/components/textImage/",
         "source/templates/components/teaser/",
-        "source/templates/components/anchor/"
+        "source/templates/components/anchor/",
+        "source/templates/components/megamenusolution/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
