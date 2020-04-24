@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -78,9 +79,9 @@ public final class GlobalUtil {
      * @param paramMap Java Util Map
      * @return sling resource resolver
      */
-    public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory,
-            final Map<String, Object> paramMap) {
-        ResourceResolver resourceResolver = null;
+    public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) {
+        ResourceResolver resourceResolver = null; final Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
         if (!paramMap.isEmpty()) {
             try {
                 resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);

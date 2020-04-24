@@ -101,10 +101,8 @@ public class ProductServiceImpl implements ProductService {
     /**
      * Sets the resource resolver.
      */
-    private void setResourceResolver() {
-        final Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-        this.resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory, paramMap);
+    private void setResourceResolver() {       
+        this.resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
     }
     
     /**
