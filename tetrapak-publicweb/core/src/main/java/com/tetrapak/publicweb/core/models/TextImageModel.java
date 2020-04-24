@@ -205,4 +205,13 @@ public class TextImageModel {
     public String getPwDisplay() {
         return pwDisplay;
     }
+    
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        return LinkUtils.getAssetName(linkURL);
+    }
 }

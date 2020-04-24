@@ -30,9 +30,4 @@ describe('Image', function () {
     expect(this.image.trackAnalytics.called).to.be.true;
   });
 
-  it('should set digitalData after track analytics call', function() {
-    expect(window.digitalData.linkClick.linkType).to.equal('internal');
-  });
-
-
 });

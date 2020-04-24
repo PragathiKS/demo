@@ -2,7 +2,7 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:file">
     <jcr:content
-        jcr:lastModifiedBy="Administrator"
-        jcr:mimeType="text/javascript"
+        jcr:lastModifiedBy="admin"
+        jcr:mimeType="image/png"
         jcr:primaryType="nt:resource"/>
 </jcr:root>

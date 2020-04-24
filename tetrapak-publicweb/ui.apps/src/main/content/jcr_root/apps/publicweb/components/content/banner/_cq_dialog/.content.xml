@@ -49,21 +49,21 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Recommended to use characters less than set Limit: 30 chars considering translations"
-                                fieldLabel="Title"
+                                fieldLabel="Title (Max character : 30)"
                                 maxlength="{Long}30"
                                 name="./title"/>
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Recommended to use characters less than set Limit: 35 chars considering translations"
-                                fieldLabel="Subtitle"
+                                fieldLabel="Subtitle (Max character : 35)"
                                 maxlength="{Long}35"
                                 name="./subtitle"/>
                             <text
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                 fieldDescription="Recommended to use characters less than set Limit: 220 chars considering translations"
-                                fieldLabel="Description"
+                                fieldLabel="Description (Max character : 220)"
                                 maxlength="{Long}220"
                                 name="./text"/>
                             <linkLabel
