@@ -1,4 +1,15 @@
 .tp-pw-header {
+    .tp-pw-header__container {
+        .pw-megamenusolution {
+            display: none;
+        }
+    }
+    .tp-pw-mobile-navigation {
+        .pw-megamenusolution {
+            display: none;
+        }
+    }
+
     background: $color-white;
     $self: &;
     &__container {
@@ -25,7 +36,6 @@
             width: 156px;
         }
     }
-
 
     &__hamburger-close {
         display: flex;
@@ -84,7 +94,7 @@
                 display: none;
                 @media #{$desktop} {
                     display: inline;
-            }
+                }
             }
         }
         i {
@@ -108,7 +118,7 @@
         $pw-banner: &;
         &__content {
             @media #{$desktop} {
-                @include padding-left($padding-xxxl*2);
+                @include padding-left($padding-xxxl * 2);
                 @include padding-right($padding-l/2);
                 color: $color-white;
                 background-color: transparent;
@@ -132,7 +142,7 @@
                 left: auto;
                 @media #{$desktop} {
                     @include padding-left($padding-l/2);
-                    @include padding-right($padding-xxxl*2);
+                    @include padding-right($padding-xxxl * 2);
                     left: 50%;
                     transform: translate(0, -50%);
                 }
@@ -172,7 +182,6 @@
             padding-left: 0;
         }
     }
-
 }
 
 .tp-pw-mobile-navigation {
@@ -192,8 +201,8 @@
             a {
                 color: $color-tundora;
             }
+        }
     }
-  }
     &__secondary {
         background: $color-wild-sand;
         li {
@@ -202,10 +211,8 @@
                 color: $color-congress-blue;
                 i:first-child {
                     padding-right: #{convert-to-rem(10px)};
-            }
+                }
             }
         }
     }
 }
-
-

@@ -13,6 +13,11 @@ class Header {
     this.cache.$mobileMenu = this.root.find('.js-tp-pw-mobile-navigation');
     this.cache.$hamburgerToggle = this.root.find('.js-tp-pw-header__hamburger');
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
+    this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
+    this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$megaMenuSolutionDesktop = this.root.find('.tp-pw-header__container .pw-megamenusolution');
+    this.cache.$megaMenuSolutionMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenusolution');
+
   }
 
   bindEvents() {
@@ -20,6 +25,28 @@ class Header {
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
+    this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
+    this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
+    this.cache.$clickMenuLink.on('click', this.handleMenuClick);
+
+  }
+  handleMouseOver = () => {
+    const { $megaMenuSolutionDesktop } = this.cache;
+    $('.tp-pw-header__main-navigation.col-6').css('position','static');
+    $megaMenuSolutionDesktop.css('display','flex');
+
+  }
+  handleMouseOut = () => {
+    const { $megaMenuSolutionDesktop } = this.cache;
+    $megaMenuSolutionDesktop.css('display','none');
+    $('.tp-pw-header__main-navigation.col-6').css('position:relative');
+
+  }
+  handleMenuClick = () => {
+    const { $megaMenuSolutionMobile } = this.cache;
+    $megaMenuSolutionMobile.css('display','block').addClass('is-open');
+
+
   }
 
   hideMobileMenuOnResize = () => {
@@ -49,7 +76,7 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
-    
+
     if(targetLink === '_blank'){
       window._satellite.track('linkClick');
     }

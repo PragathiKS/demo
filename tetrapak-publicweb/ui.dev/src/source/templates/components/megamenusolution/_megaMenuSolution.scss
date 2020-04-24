@@ -1,6 +1,23 @@
 .pw-megamenusolution {
     position: relative;
-    overflow: hidden;
+    background-color: $color-white;
+
+    &.is-open {
+        position: absolute;
+        top: -80px;
+    }
+    @media #{$desktop} {
+        display: flex;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        width: 100%;
+
+        justify-content: center;
+        nav {
+            max-width: $body-max-width;
+        }
+    }
     a {
         color: $color-congress-blue;
         @media #{$desktop} {
@@ -19,7 +36,6 @@
             @include padding(0);
             margin-left: 12px;
             margin-right: 12px;
-            max-width: 250px;
             flex-basis: 0;
             border-bottom: 0;
         }
@@ -28,13 +44,21 @@
             border-bottom: 0;
         }
     }
-
+    .heading-cta {
+        @include padding($padding-md 0);
+        display: block;
+        border-bottom: 1px solid $color-mercury;
+        h2 {
+            @include margin(0);
+            display: inline-block;
+        }
+    }
     h2 {
         @include font-size($font-m-sm);
         @include line-height($font-l, $font-baseline);
         @include margin($margin-xl 0);
-        font-weight: 900;
         display: flex;
+        font-weight: 900;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
@@ -46,6 +70,7 @@
         @include font-size($font-m-sm);
         @include line-height($font-l, $font-baseline);
         @include margin(0);
+        color: $color-congress-blue;
         font-family: $font-bold;
         font-weight: 900;
         @media #{$desktop} {
@@ -54,6 +79,7 @@
             @include margin($margin-l 0);
             font-family: $font-light;
             font-weight: 500;
+
         }
     }
     p {
@@ -89,6 +115,7 @@
                 }
                 @media #{$desktop} {
                     @include margin-bottom($margin-l);
+                    @include margin-left(0);
                     @include padding(0);
                     border-bottom: 0;
                 }
@@ -100,15 +127,25 @@
             max-width: 100%;
             height: auto;
         }
+        .col {
+            @media #{$desktop} {
+                min-width: 250px;
+            }
+        }
     }
     .pw-megamenusolution__btm {
+        @media #{$desktop} {
+            @include padding($margin-xl 0);
+            background-color: $color-wild-sand;
+        }
         h2 {
             @include margin(0);
             @include padding($padding-md 0);
-            border-bottom: 1px solid $color-mercury;
             color: $color-congress-blue;
+            border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
+                @include margin-bottom($margin-xl);
                 color: $color-tundora;
                 border-bottom: 0;
                 text-align: center;
@@ -166,10 +203,10 @@
             }
 
             h2 {
+                display: block;
                 padding: 0;
                 border-bottom: 0;
                 text-align: center;
-                display: block;
                 i {
                     @include margin-left($padding-md);
                     left: 0;
