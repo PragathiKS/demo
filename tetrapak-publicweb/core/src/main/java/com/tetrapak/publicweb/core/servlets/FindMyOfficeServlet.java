@@ -55,6 +55,8 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
         try {
+            resp.setContentType("text/html; charset=UTF-8");
+            resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(mapper.writeValueAsString(treeMap));
         } catch (IOException ioException) {
             LOGGER.error("ioException :{}", ioException);
