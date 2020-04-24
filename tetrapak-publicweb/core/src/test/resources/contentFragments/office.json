@@ -1,0 +1,46 @@
+{
+	"jcr:primaryType": "nt:folder",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Apr 22 2020 18:18:21 GMT+0530",
+	"cyprus": {
+		"jcr:primaryType": "sling:Folder",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Wed Apr 22 2020 18:18:54 GMT+0530",
+		"office_athens": {
+			"jcr:primaryType": "dam:Asset",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Apr 22 2020 18:18:54 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "dam:AssetContent",
+				"jcr:title": "Office - Athens",
+				"jcr:description": "Content Fragment for office_athens",
+				"contentFragment": true,
+				"cq:name": "office_athens",
+				"renditions": {
+					"jcr:primaryType": "nt:folder",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Wed Apr 22 2020 18:18:54 GMT+0530"
+				},
+				"related": {
+					"jcr:primaryType": "nt:unstructured"
+				},
+				"metadata": {
+					"jcr:primaryType": "nt:unstructured"
+				},
+				"data": {
+					"jcr:primaryType": "nt:unstructured",
+					"cq:model": "/conf/publicweb/settings/dam/cfm/models/office",
+					"master": {
+						"jcr:primaryType": "nt:unstructured",
+						"latitude": "38.045454804312044",
+						"phoneNumber": "+30 210 616 7500",
+						"address": "Note: office located in Greece\nSorou 10, Maroussi, Athens",
+						"fax": "+30 210 619 9690",
+						"name": "Tetra Pak Hellas S.A.",
+						"longitude": "23.805462915702677"
+					}
+				}
+			}
+		}
+	}
+}
