@@ -1,11 +1,19 @@
 package com.tetrapak.publicweb.core.utils;
 
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
 
 /**
  * This is a global util class to access globally common utility methods
@@ -19,6 +27,8 @@ public final class GlobalUtil {
             adding a private constructor to hide the implicit one
          */
     }
+    
+    private static final Logger LOG =  LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
      * Method to get service
@@ -60,5 +70,26 @@ public final class GlobalUtil {
         damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
                 + FORWARD_SLASH + damVideoPath;
         return damVideoPath;
+    }
+    
+    /**
+     * This method returns service resolver based on parameter map.
+     * @param resourceFactory ResourceResolverFactory
+     * @param paramMap Java Util Map
+     * @return sling resource resolver
+     */
+    public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory,
+            final Map<String, Object> paramMap) {
+        ResourceResolver resourceResolver = null;
+        if (!paramMap.isEmpty()) {
+            try {
+                resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
+                LOG.debug("resourceResolver for user {}", resourceResolver.getUserID());
+            } catch (final LoginException e) {
+                LOG.error("Unable to fetch resourceResolver for subservice {} exception {}",
+                        paramMap.get(ResourceResolverFactory.SUBSERVICE), e);
+            }
+        }
+        return resourceResolver;
     }
 }
