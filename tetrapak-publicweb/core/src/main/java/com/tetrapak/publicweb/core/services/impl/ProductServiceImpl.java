@@ -1,8 +1,14 @@
 package com.tetrapak.publicweb.core.services.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.PersistenceException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Component;
@@ -10,91 +16,146 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.day.cq.commons.jcr.JcrUtil;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.ProductImportUtil;
 
 /**
  * Impl class for API GEE Service
+ * 
  * @author Sandip Kumar
  */
 @Component(immediate = true, service = ProductService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ProductServiceImpl implements ProductService {
 
-    
-    private static final Logger LOGGER =  LoggerFactory.getLogger(ProductServiceImpl.class);
-      
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     private static final String FILLING_MACHINE = "fillingmachines";
-    
+
     private static final String PROCESSING_EQUIPEMENT = "processingequipments";
-    
+
     private static final String PACKAGE_TYPE = "packagetypes";
-    
-    private static final String ROOT_PATH = "/var/commerce/products/pxp/";
-    
-    private static final String SLING_FOLDER = "sling:Folder";
-    
+
+    private static final String NT_UNSTRUCTURED = "nt:unstructured";
+
     @Reference
     private ResourceResolverFactory resolverFactory;
-    
-    private ResourceResolver resourceResolver;
+
+    private ResourceResolver resolver;
+
+    private Session session;
 
     @Override
-    public void createProductRootIfNotExists(String fileType) {
+    public void createProductFillingMachine(String productType, List<FillingMachine> fillingMachines, String language) {
+        setResourceResolver();
+        if (resolver == null) {
+            LOGGER.info("Sytem User Session is null");
+            return;
+        }
         try {
-            JcrUtil.createPath(ROOT_PATH, SLING_FOLDER, resourceResolver.adaptTo(Session.class));
-        } catch (RepositoryException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Resource productTypeResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            if (productTypeResource != null) {
+                String productTypeResPath = productTypeResource.getPath();
+                for (FillingMachine fillingMachine : fillingMachines) {
+                    if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
+                        Resource productRes = ProductImportUtil.createOrUpdateProductResource(resolver,
+                                productTypeResPath, fillingMachine.getId());
+                        createFillingMachineLanguageResource(productRes,fillingMachine,language);
+                    }
+                }
+            }
+            saveSession(session);
+        } catch (PersistenceException e) {
+            LOGGER.error("PersistenceException while creating root product node", e);
+        } finally {
+            if (resolver != null && resolver.isLive()) {
+                resolver.close();
+            }
+            if (session != null && session.isLive()) {
+                session.logout();
+            }
+        }
+
+    }
+
+    @Override
+    public void createProductPackageType(String productType, List<Packagetype> packageTypes, String langauge) {
+
+    }
+
+    @Override
+    public void createProductProcessingEquipement(String productType, List<ProcessingEquipement> equipements,
+            String langauge) {
+
+    }
+
+    private void createFillingMachineLanguageResource(Resource productRes, FillingMachine fillingMachine,
+            String language) throws PersistenceException {
+        if (productRes != null) {
+            final Map<String, Object> properties = new HashMap<>();
+            properties.put("jcr:primaryType", NT_UNSTRUCTURED);
+            properties.put("benefits", fillingMachine.getBenefits());
+            properties.put("name", fillingMachine.getName());
+            properties.put("benefitsimage", fillingMachine.getBenefitsimage());
+            properties.put("header", fillingMachine.getHeader());
+            Resource languageRes = ProductImportUtil.createOrUpdateResource(resolver, productRes.getPath(), language,
+                    properties);
+            if (languageRes != null) {
+                ProductImportUtil.createOrUpdateFeatureOrOpions(resolver, languageRes.getPath(), "features",
+                        fillingMachine.getFeatures());
+                ProductImportUtil.createOrUpdateFeatureOrOpions(resolver, languageRes.getPath(), "options",
+                        fillingMachine.getOptions());
+                ProductImportUtil.createOrUpdatePackageTypes(resolver, languageRes.getPath(), "packagetypes",
+                        fillingMachine.getPackagetypes());
+            }
         }
     }
 
     @Override
-    public void createProductFillingMachine(FillingMachine fillingMachine, String langauge) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public void createProductPackageType(Packagetype packageType, String langauge) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public void createProductProcessingEquipement(ProcessingEquipement equipement, String langauge) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
     public String getLanguage(String fileURI) {
-        return fileURI.substring(fileURI.lastIndexOf('/')+1).split("_")[1].replaceAll(".json", "");
+        return fileURI.substring(fileURI.lastIndexOf('/') + 1).split("_")[1].replaceAll(".json", "");
     }
-    
+
     @Override
     public String getFileType(String fileURI) {
         String fileType = StringUtils.EMPTY;
-        if(fileURI.contains(PROCESSING_EQUIPEMENT)) {
+        if (fileURI.contains(PROCESSING_EQUIPEMENT)) {
             fileType = PROCESSING_EQUIPEMENT;
         }
-        if(fileURI.contains(FILLING_MACHINE)) {
+        if (fileURI.contains(FILLING_MACHINE)) {
             fileType = FILLING_MACHINE;
         }
-        if(fileURI.contains(PACKAGE_TYPE)) {
+        if (fileURI.contains(PACKAGE_TYPE)) {
             fileType = PACKAGE_TYPE;
         }
-        return fileType;           
+        return fileType;
     }
-    
+
     /**
      * Sets the resource resolver.
      */
-    private void setResourceResolver() {       
-        this.resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
-    }    
-    
+    private void setResourceResolver() {
+        this.resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
+    }
+
+    /**
+     * Save session.
+     * 
+     * @param session
+     *            the session
+     */
+    private static void saveSession(final Session session) {
+        if (session != null && session.isLive()) {
+            try {
+                session.save();
+            } catch (final RepositoryException e) {
+                LOGGER.error("Error saving session", e);
+            }
+        }
+
+    }
+
 }

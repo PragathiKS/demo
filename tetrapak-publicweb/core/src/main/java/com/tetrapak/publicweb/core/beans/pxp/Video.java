@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "poster",
     "src"
 })
-public class OptionVideo {
+public class Video {
 
     @JsonProperty("poster")
     private String poster;

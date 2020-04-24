@@ -96,12 +96,9 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
     
     private void processFillingMachines(String fileURI,String fileType,String language) {
-        List<FillingMachine> fillingMachinesList = apiGEEService.getFillingMachines(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
-        if(!fillingMachinesList.isEmpty()) {
-            productService.createProductRootIfNotExists(fileType);
-            for(FillingMachine fillingMachine:fillingMachinesList) {
-                productService.createProductFillingMachine(fillingMachine,language);
-            }
+        List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
+        if(!fillingMachines.isEmpty()) {
+            productService.createProductFillingMachine(fileType,fillingMachines,language);
         }
         
     }
@@ -109,20 +106,14 @@ public class FullFeedImportScheduledTask implements Runnable {
     private void processEquipments(String fileURI,String fileType,String language) {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
         if(!equipements.isEmpty()) {
-            productService.createProductRootIfNotExists(fileType);
-            for(ProcessingEquipement equipement:equipements) {
-                productService.createProductProcessingEquipement(equipement,language);
-            }
+            productService.createProductProcessingEquipement(fileType,equipements,language);
         }
     }
      
     private void processPackageTypes(String fileURI,String fileType,String language) {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(), FULL_FEED_FILES_URI+fileURI);
         if(!packageTypes.isEmpty()) {
-            productService.createProductRootIfNotExists(fileType);
-            for(Packagetype packageType:packageTypes) {
-                productService.createProductPackageType(packageType,language);
-            }
+            productService.createProductPackageType(fileType,packageTypes,language);
         }
     }
     

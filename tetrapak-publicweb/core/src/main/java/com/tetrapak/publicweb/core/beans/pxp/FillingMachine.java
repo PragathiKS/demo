@@ -23,7 +23,7 @@ public class FillingMachine {
     @JsonProperty("benefits")
     private String benefits;
     @JsonProperty("features")
-    private List<Feature> features = null;
+    private List<FeatureOption> features = null;
     @JsonProperty("name")
     private String name;
     @JsonProperty("benefitsimage")
@@ -37,7 +37,7 @@ public class FillingMachine {
     @JsonProperty("packagetypes")
     private List<Packagetype> packagetypes = null;
     @JsonProperty("options")
-    private List<Option> options = null;
+    private List<FeatureOption> options = null;
 
     @JsonProperty("benefits")
     public String getBenefits() {
@@ -50,12 +50,12 @@ public class FillingMachine {
     }
 
     @JsonProperty("features")
-    public List<Feature> getFeatures() {
+    public List<FeatureOption> getFeatures() {
         return features;
     }
 
     @JsonProperty("features")
-    public void setFeatures(List<Feature> features) {
+    public void setFeatures(List<FeatureOption> features) {
         this.features = features;
     }
 
@@ -120,12 +120,12 @@ public class FillingMachine {
     }
 
     @JsonProperty("options")
-    public List<Option> getOptions() {
+    public List<FeatureOption> getOptions() {
         return options;
     }
 
     @JsonProperty("options")
-    public void setOptions(List<Option> options) {
+    public void setOptions(List<FeatureOption> options) {
         this.options = options;
     }
 

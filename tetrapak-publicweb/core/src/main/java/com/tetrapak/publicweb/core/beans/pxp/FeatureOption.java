@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "image",
     "video"
 })
-public class Option {
+public class FeatureOption {
 
     @JsonProperty("name")
     private String name;
@@ -22,9 +22,9 @@ public class Option {
     @JsonProperty("body")
     private String body;
     @JsonProperty("image")
-    private Object image;
+    private String image;
     @JsonProperty("video")
-    private OptionVideo video;
+    private Video video;
 
     @JsonProperty("name")
     public String getName() {
@@ -57,22 +57,22 @@ public class Option {
     }
 
     @JsonProperty("image")
-    public Object getImage() {
+    public String getImage() {
         return image;
     }
 
     @JsonProperty("image")
-    public void setImage(Object image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
     @JsonProperty("video")
-    public OptionVideo getVideo() {
+    public Video getVideo() {
         return video;
     }
 
     @JsonProperty("video")
-    public void setVideo(OptionVideo video) {
+    public void setVideo(Video video) {
         this.video = video;
     }
 

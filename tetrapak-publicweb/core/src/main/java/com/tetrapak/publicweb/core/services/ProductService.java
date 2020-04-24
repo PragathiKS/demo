@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.services;
 
+import java.util.List;
+
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
@@ -9,16 +11,14 @@ import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
  */
 public interface ProductService {
 
-    void createProductRootIfNotExists(String fileType);
-
-    void createProductFillingMachine(FillingMachine fillingMachine,String langauge);
+    void createProductFillingMachine(String productType,List<FillingMachine> fillingMachines,String langauge);
     
     String getFileType(String fileURI);
     
     String getLanguage(String fileURI);
 
-    void createProductPackageType(Packagetype packageType, String langauge);
+    void createProductPackageType(String productType,List<Packagetype> packageTypes, String langauge);
 
-    void createProductProcessingEquipement(ProcessingEquipement equipement, String langauge);
+    void createProductProcessingEquipement(String productType,List<ProcessingEquipement> equipements, String langauge);
 }
 
