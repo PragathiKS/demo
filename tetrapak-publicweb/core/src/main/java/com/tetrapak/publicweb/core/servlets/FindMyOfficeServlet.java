@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.servlets;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -17,7 +18,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
@@ -52,12 +52,14 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
         final ResourceResolver resolver = request.getResourceResolver();
         final Map<String, CountryBean> treeMap = new TreeMap<String, CountryBean>(
                 findMyOfficeService.getFindMyOfficeData(resolver));
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+        Map<String, CountryBean> fullMap = new LinkedHashMap<>();
+        fullMap.putAll(findMyOfficeService.getCorporateOfficeList());
+        fullMap.putAll(treeMap);
+        ObjectMapper mapper = new ObjectMapper();      
         try {
             resp.setContentType("text/html; charset=UTF-8");
             resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().write(mapper.writeValueAsString(treeMap));
+            resp.getWriter().write(mapper.writeValueAsString(fullMap));
         } catch (IOException ioException) {
             LOGGER.error("ioException :{}", ioException);
         }

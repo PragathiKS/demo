@@ -1,11 +1,12 @@
 package com.tetrapak.publicweb.core.services.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -31,8 +32,13 @@ import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 @Component(service = FindMyOfficeService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = FindMyOfficeServiceImpl.FindMyOfficeServiceConfig.class)
 public class FindMyOfficeServiceImpl implements FindMyOfficeService {
+
+    /** The config. */
     private FindMyOfficeServiceConfig config;
 
+    /**
+     * The Interface FindMyOfficeServiceConfig.
+     */
     @ObjectClassDefinition(name = "Find My Office Configuration", description = "Find My Office Service Configuration")
     @interface FindMyOfficeServiceConfig {
 
@@ -74,10 +80,13 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
     private static String DATA_ROOT_PATH = "/jcr:content/data/master";
 
     /** The country list. */
-    private Map<String, CountryBean> countryOfficeList = new HashMap<>();
+    private Map<String, CountryBean> countryOfficeList = new LinkedHashMap<>();
+
+    /** The corporate office list. */
+    private Map<String, CountryBean> corporateOfficeList = new TreeMap<>();
 
     /**
-     * activate method
+     * activate method.
      *
      * @param config
      *            site Improve Script URL configuration
@@ -112,7 +121,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
                     final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
                     Resource dataResource = resourceResolver.getResource(dataPath);
                     setCountryBean(resourceResolver, countryBean, countryName, dataResource);
-                    countryOfficeList.put(countryTitle, countryBean);
+                    setLists(countryBean, countryTitle);
                 }
 
             }
@@ -120,6 +129,22 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
         }
 
         return countryOfficeList;
+    }
+
+    /**
+     * Sets the lists.
+     *
+     * @param countryBean
+     *            the country bean
+     * @param countryTitle
+     *            the country title
+     */
+    private void setLists(final CountryBean countryBean, String countryTitle) {
+        if (countryTitle.contains("Corporate")) {
+            corporateOfficeList.put(countryTitle, countryBean);
+        } else {
+            countryOfficeList.put(countryTitle, countryBean);
+        }
     }
 
     /**
@@ -209,14 +234,33 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
         return config.getGoogleAPIKey();
     }
 
+    /**
+     * Gets the country cf root path.
+     *
+     * @return the country cf root path
+     */
     @Override
     public String getCountryCfRootPath() {
         return config.getCountriesContentFragmentRootPath();
     }
 
+    /**
+     * Gets the office cf root path.
+     *
+     * @return the office cf root path
+     */
     @Override
     public String getOfficeCfRootPath() {
         return config.getOfficesContentFragmentRootPath();
+    }
+
+    /**
+     * Gets the corporate office list.
+     *
+     * @return the corporate office list
+     */
+    public Map<String, CountryBean> getCorporateOfficeList() {
+        return corporateOfficeList;
     }
 
 }

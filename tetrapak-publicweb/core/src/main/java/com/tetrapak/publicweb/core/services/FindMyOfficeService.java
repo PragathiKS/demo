@@ -19,6 +19,13 @@ public interface FindMyOfficeService {
      * @return the find my office data
      */
     Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver);
+    
+    /**
+     * Gets the corporate office list.
+     *
+     * @return the corporate office list
+     */
+    Map<String, CountryBean> getCorporateOfficeList();
 
     /**
      * Gets the google api key.

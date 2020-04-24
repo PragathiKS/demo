@@ -67,7 +67,7 @@ public class FindMyOfficeServletTest {
     public void doGet() throws IOException {
         findMyOfficeServlet.doGet(context.request(), context.response());
         assertEquals(
-                "{\"Cyprus\":{\"latitude\":35.126413,\"longitude\":33.429859,\"offices\":[{\"address\":\"Note: office located in Greece\\nSorou 10, Maroussi, Athens\",\"fax\":\"+30 210 619 9690\",\"latitude\":38.045454804312044,\"localSiteUrl\":\"\",\"longitude\":23.805462915702677,\"name\":\"Tetra Pak Hellas S.A.\",\"phoneNumber\":\"+30 210 616 7500\"}]}}",
+                "{\"Cyprus\":{\"longitude\":33.429859,\"latitude\":35.126413,\"offices\":[{\"name\":\"Tetra Pak Hellas S.A.\",\"address\":\"Note: office located in Greece\\nSorou 10, Maroussi, Athens\",\"phoneNumber\":\"+30 210 616 7500\",\"fax\":\"+30 210 619 9690\",\"longitude\":23.805462915702677,\"latitude\":38.045454804312044,\"localSiteUrl\":\"\"}]}}",
                 context.response().getOutputAsString());
     }
 }
