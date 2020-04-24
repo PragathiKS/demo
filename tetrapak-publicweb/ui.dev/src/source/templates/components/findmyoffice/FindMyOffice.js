@@ -69,7 +69,9 @@ class FindMyOffice {
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
     this.cache.selectedCity.on('click', this.onClickCityItem);
     this.resetOfficeDetails();
-    this.cache.selectedOffice = {};
+    this.cache.selectedOffice = this.cache.normalizedData[
+      this.cache.selectedCountryValue
+    ];
     let mapZoomLevel = 5;
     if (
       Object.keys(this.cache.normalizedData).length !== 0 &&
@@ -88,10 +90,7 @@ class FindMyOffice {
       mapZoomLevel = 10;
     }
     this.cache.marker && this.cache.marker.setMap(null);
-    this.renderMarkerPosition(
-      this.cache.normalizedData[this.cache.selectedCountryValue],
-      { mapZoomLevel }
-    );
+    this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel });
   };
 
   renderMarkerPosition = (office, mapZoomLevel) => {
@@ -142,7 +141,10 @@ class FindMyOffice {
   };
 
   renderOfficeDetailsPanel = office => {
-    this.cache.linkSectionElement.attr('data-link-name', office.name);
+    const linkName =
+      (office.name && `${office.name} - ${this.cache.selectedCountryValue}`) ||
+      this.cache.selectedCountryValue;
+    this.cache.linkSectionElement.attr('data-link-name', linkName);
     render.fn({
       template: 'officeDetails',
       data: { ...office, goToLocalSiteText: this.cache.goToLocalSiteI18nValue },
