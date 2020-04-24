@@ -1,42 +1,44 @@
 package com.tetrapak.publicweb.core.services;
 
-import org.osgi.service.metatype.annotations.AttributeDefinition;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+import java.util.Map;
+
+import org.apache.sling.api.resource.ResourceResolver;
+
+import com.tetrapak.publicweb.core.beans.CountryBean;
 
 /**
  * The Interface FindMyOfficeService.
  */
-@ObjectClassDefinition(name = "Find My Office Configuration", description = "Find My Office Service Configuration")
-public @interface FindMyOfficeService {
+public interface FindMyOfficeService {
 
     /**
-     * Gets the countries content fragment root path.
+     * Gets the find my office data.
      *
-     * @return the countries content fragment root path
+     * @param resourceResolver
+     *            the resource resolver
+     * @return the find my office data
      */
-    @AttributeDefinition(
-            name = "Countries Content Fragment Root Path",
-            description = "countries Content Fragment Root Path")
-    String getCountriesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/countries";
+    Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver);
 
     /**
-     * Gets the offices content fragment root path.
+     * Gets the google api key.
      *
-     * @return the offices content fragment root path
+     * @return the google api key
      */
-    @AttributeDefinition(
-            name = "Offices Content Fragment Root Path",
-            description = "Offices Content Fragment Root Path")
-    String getOfficesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/offices";
+    String getGoogleApiKey();
 
     /**
-     * Gets the google API key.
+     * Gets the country cf root path.
      *
-     * @return the google API key
+     * @return the country cf root path
      */
-    @AttributeDefinition(
-            name = "Offices Content Fragment Root Path",
-            description = "Offices Content Fragment Root Path")
-    String getGoogleAPIKey() default "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ";
+    String getCountryCfRootPath();
+
+    /**
+     * Gets the office cf root path.
+     *
+     * @return the office cf root path
+     */
+    String getOfficeCfRootPath();
 
 }

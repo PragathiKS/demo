@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.CountryBean;
-import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
+import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
  * The Class FindMyOfficeServlet.
@@ -37,7 +37,7 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = -5454246014078059527L;
 
     @Reference
-    private FindMyOfficeServiceImpl findMyOfficeServiceImpl;
+    private FindMyOfficeService findMyOfficeService;
 
     /**
      * Do get.
@@ -51,7 +51,7 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         final ResourceResolver resolver = request.getResourceResolver();
         final Map<String, CountryBean> treeMap = new TreeMap<String, CountryBean>(
-                findMyOfficeServiceImpl.getFindMyOfficeData(resolver));
+                findMyOfficeService.getFindMyOfficeData(resolver));
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
         try {

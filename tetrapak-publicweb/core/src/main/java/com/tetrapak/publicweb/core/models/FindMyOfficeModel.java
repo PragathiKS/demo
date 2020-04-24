@@ -8,7 +8,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
+import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
  * The Class FindMyOfficeModel.
@@ -35,7 +35,7 @@ public class FindMyOfficeModel {
 
     /** The find my office service impl. */
     @Inject
-    private FindMyOfficeServiceImpl findMyOfficeServiceImpl;
+    private FindMyOfficeService findMyOfficeService;
 
     /**
      * Gets the heading.
@@ -79,7 +79,7 @@ public class FindMyOfficeModel {
      * @return the google api key
      */
     public String getGoogleApiKey() {
-        return findMyOfficeServiceImpl.getGoogleApiKey();
+        return findMyOfficeService.getGoogleApiKey();
     }
 
 }
