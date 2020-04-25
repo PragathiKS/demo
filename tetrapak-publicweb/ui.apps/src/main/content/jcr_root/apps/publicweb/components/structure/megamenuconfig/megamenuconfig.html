@@ -1,0 +1,20 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <sly data-sly-use.menu="com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel">
+        <sly data-sly-list.solution="${menu.endToEndSolutionSection}">
+            ${solution.alt}
+            ${solution.title}
+            ${solution.description}
+            ${solution.path @context = "uri"}
+        </sly>
+        <sly data-sly-list.links="${menu.linkSection}">
+            ${links.linkText}
+            ${links.linkUrl}
+        </sly>
+        <sly data-sly-list.food="${menu.foodCategorySection}">
+            ${food.alt}
+            ${food.title}
+            ${food.path @context = "uri"}
+        </sly>
+    </sly>
+</sly>
