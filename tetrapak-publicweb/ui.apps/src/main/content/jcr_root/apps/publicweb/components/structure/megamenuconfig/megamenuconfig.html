@@ -1,20 +1,25 @@
 <sly data-sly-test="${wcmmode.edit}">
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
     <sly data-sly-use.menu="com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel">
+        <b>End to end solution section</b><br/>
         <sly data-sly-list.solution="${menu.endToEndSolutionSection}">
-            ${solution.alt}
-            ${solution.title}
-            ${solution.description}
-            ${solution.path @context = "uri"}
+            Image: ${solution.fileReference}<br/>
+            Image alt text: ${solution.alt}<br/>
+            Title: ${solution.title}<br/>
+            Body text: ${solution.description}<br/>
+            Path: ${solution.path @context = "uri"}<br/><br/>
         </sly>
+        <b>Link section</b><br/>
         <sly data-sly-list.links="${menu.linkSection}">
-            ${links.linkText}
-            ${links.linkUrl}
+            Link label: ${links.linkText}<br/>
+            Link path: ${links.linkUrl}<br/><br/>
         </sly>
+        <b>Food category section</b><br/>
         <sly data-sly-list.food="${menu.foodCategorySection}">
-            ${food.alt}
-            ${food.title}
-            ${food.path @context = "uri"}
+            Image: ${food.fileReference}<br/>
+            Image alt text: ${food.alt}<br/>
+            Title: ${food.title}<br/>
+            Path: ${food.path @context = "uri"}<br/><br/>
         </sly>
     </sly>
 </sly>
