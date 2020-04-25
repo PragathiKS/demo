@@ -15,8 +15,8 @@ class Header {
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
     this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
-    this.cache.$megaMenuSolutionDesktop = this.root.find('.tp-pw-header__container .pw-megamenusolution');
-    this.cache.$megaMenuSolutionMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenusolution');
+    this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
+    this.cache.$megaMenuMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenu');
 
   }
 
@@ -31,20 +31,20 @@ class Header {
 
   }
   handleMouseOver = () => {
-    const { $megaMenuSolutionDesktop } = this.cache;
+    const { $megaMenuDesktop } = this.cache;
     $('.tp-pw-header__main-navigation.col-6').css('position','static');
-    $megaMenuSolutionDesktop.css('display','block');
+    $megaMenuDesktop.css('display','block');
 
   }
   handleMouseOut = () => {
-    const { $megaMenuSolutionDesktop } = this.cache;
-    $megaMenuSolutionDesktop.css('display','none');
+    const { $megaMenuDesktop } = this.cache;
+    $megaMenuDesktop.css('display','none');
     $('.tp-pw-header__main-navigation.col-6').css('position:relative');
 
   }
   handleMenuClick = () => {
-    const { $megaMenuSolutionMobile } = this.cache;
-    $megaMenuSolutionMobile.css('display','block').addClass('is-open');
+    const { $megaMenuMobile } = this.cache;
+    $megaMenuMobile.css('display','block').addClass('is-open');
 
 
   }

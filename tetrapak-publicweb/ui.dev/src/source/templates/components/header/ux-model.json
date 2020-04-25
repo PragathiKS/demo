@@ -26,7 +26,7 @@
       "linkPath": "/content/tetrapak/public-web/global/en/about-us"
     }
   ],
-  "megaMenuSolution" : {
+  "megaMenuConfigurationModel" : {
     "topSectionSubtitle": "Tetra Pak end-to-end solutions",
     "topSectionUrl": "/content/dam/publicweb/solution.html",
     "bottomSectionSubtitle": "Food categories",
@@ -37,28 +37,28 @@
         "alt": "Processing",
         "title": "Processing",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the",
-        "cta": "/content/dam/publicweb/processing.html"
+        "path": "/content/dam/publicweb/processing.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/packaging/content-image/three_packages_feat_craft_effect_on_desk.png",
         "alt": "Packaging",
         "title": "Packaging",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the",
-        "cta": "/content/dam/publicweb/packaging.html"
+        "path": "/content/dam/publicweb/packaging.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/packaging/content-image/icv-promo.jpg",
         "alt": "Services",
         "title": "Services",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the",
-        "cta": "/content/dam/publicweb/processing.html"
+        "path": "/content/dam/publicweb/processing.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/services/content-image/straws-from-above.jpg",
         "alt": "Lorem ipsum",
         "title": "Lorem ipsum",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the",
-        "cta": "/content/dam/publicweb/packaging.html"
+        "path": "/content/dam/publicweb/packaging.html"
       }
     ],
     "linkSection": [
@@ -79,60 +79,60 @@
         "linkUrl": "/content/dam/publicweb/solutions/automation.html"
       }
     ],
-    "footerCategorySection": [
+    "foodCategorySection": [
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Cheese",
         "title": "Cheese",
-        "cta": "/content/dam/publicweb/cheese.html"
+        "path": "/content/dam/publicweb/cheese.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Dairy",
         "title": "Dairy",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Food",
         "title": "Food",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Ice Cream",
         "title": "Ice Cream",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Plant Based Drinks",
         "title": "Plant Based Drinks",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Wine and spiris",
         "title": "Wine and spiris",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Pet Food",
         "title": "Pet Food",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Plant Based Drinks",
         "title": "Plant Based Drinks",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       },
       {
         "fileReference": "https://assets.tetrapak.com/static/publishingimages/sustainability/content-image/tetra-recart-carton-package.jpg",
         "alt": "Dairy",
         "title": "Dairy",
-        "cta": "/content/dam/publicweb/dairy.html"
+        "path": "/content/dam/publicweb/dairy.html"
       }
     ]
   }

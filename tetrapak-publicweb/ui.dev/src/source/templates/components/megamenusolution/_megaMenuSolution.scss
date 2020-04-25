@@ -1,4 +1,4 @@
-.pw-megamenusolution {
+.pw-megamenu {
     position: relative;
     background-color: $color-white;
 
@@ -55,6 +55,7 @@
         h2 {
             @include margin(0);
             display: inline-block;
+            width: 90%;
         }
     }
     h2 {
@@ -127,7 +128,7 @@
             }
         }
     }
-    .pw-megamenusolution__top {
+    .pw-megamenu__top {
         img {
             max-width: 100%;
             height: auto;
@@ -142,14 +143,24 @@
             @include margin($margin-xl 0);
         }
     }
-    .pw-megamenusolution__btm {
+    .pw-megamenu__bottom {
         @media #{$desktop} {
             @include padding($margin-xl 0);
             background-color: $color-wild-sand;
         }
+        .heading-bottom-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @media #{$desktop} {
+                justify-content: center;
+            }
+        }
+
         h2 {
             @include margin(0);
             @include padding($padding-md 0);
+            display: inline-block;
             color: $color-congress-blue;
             border-bottom: 1px solid $color-mercury;
             text-align: left;
@@ -213,10 +224,11 @@
             }
 
             h2 {
-                display: block;
+                display: inline-block;
                 padding: 0;
                 border-bottom: 0;
                 text-align: center;
+                width: 90%;
                 i {
                     @include margin-left($padding-md);
                     left: 0;
