@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
@@ -65,5 +67,10 @@ public class HeaderModelTest {
                 "getLoginLink", "getContactLink", "getContactLinkTarget", "getContactText", "getLoginLabel",
                 "getMegaMenuLinksList" };
         Util.testLoadAndGetters(methods, model, resource);
+    }
+
+    @Test
+    public void testMegaMenuConfigurationModel() {
+        assertNotNull(model.getMegaMenuConfigurationModel());
     }
 }
