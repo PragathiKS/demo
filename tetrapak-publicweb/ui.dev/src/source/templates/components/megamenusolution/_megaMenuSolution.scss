@@ -6,17 +6,21 @@
         position: absolute;
         top: -80px;
     }
+
     @media #{$desktop} {
         display: flex;
         overflow: hidden;
         position: absolute;
         left: 0;
         width: 100%;
-
         justify-content: center;
         nav {
             max-width: $body-max-width;
+            margin: 0 auto;
         }
+    }
+    hr {
+        @include margin-top($padding-xl);
     }
     a {
         color: $color-congress-blue;
@@ -62,6 +66,7 @@
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
+            @include margin-bottom($margin-xl);
             display: block;
             justify-content: center;
         }
@@ -77,9 +82,9 @@
             @include font-size($font-md);
             @include line-height($font-l, $font-baseline);
             @include margin($margin-l 0);
+            color: $color-tundora;
             font-family: $font-light;
             font-weight: 500;
-
         }
     }
     p {
@@ -103,7 +108,6 @@
         .list-side-links {
             @media #{$desktop} {
                 @include padding-left($padding-l);
-                @include margin-left(12px);
             }
 
             li {
@@ -117,6 +121,7 @@
                     @include margin-bottom($margin-l);
                     @include margin-left(0);
                     @include padding(0);
+                    @include font-size($font-sm);
                     border-bottom: 0;
                 }
             }
@@ -129,8 +134,12 @@
         }
         .col {
             @media #{$desktop} {
-                min-width: 250px;
+                width: 250px;
+                max-width: 250px;
             }
+        }
+        @media #{$desktop} {
+            @include margin($margin-xl 0);
         }
     }
     .pw-megamenusolution__btm {
@@ -146,6 +155,7 @@
             text-align: left;
             @media #{$desktop} {
                 @include margin-bottom($margin-xl);
+                @include padding(0);
                 color: $color-tundora;
                 border-bottom: 0;
                 text-align: center;

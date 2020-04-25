@@ -28,6 +28,7 @@
     &__logo-placeholder {
         display: none;
         @media #{$desktop} {
+            @include padding-left(36px);
             display: block;
         }
 

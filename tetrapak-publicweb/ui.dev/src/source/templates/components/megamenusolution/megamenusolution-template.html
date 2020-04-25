@@ -1,6 +1,7 @@
 <sly data-sly-template.megamenusolution_template="${@data, flag}">
   <div data-module="MegaMenuSolution" class="pw-megamenusolution">
      <!--/* Component HTML code goes here */-->
+     <hr class="d-none d-xl-block"/>
      <nav>
         <div class="container-fluid pw-megamenusolution__top">
            <h2 class="d-none d-xl-block">${data.topSectionSubtitle}</h2>
@@ -11,7 +12,7 @@
 
            <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
               <li class="col">
-                 <a href="${endToEndSolutionSection.cta}">
+                 <a href="${endToEndSolutionSection.path}">
                     <img class="d-none d-xl-block" src="${endToEndSolutionSection.fileReference} " />
                     <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
 +                   data-sly-call="${title.heading_h3_template @ headingText=endToEndSolutionSection.title, variant='regular'}"/>
@@ -33,7 +34,7 @@
               </li>
            </ul>
         </div>
-        <div class="container-fluid pw-megamenusolution__btm">
+        <div class="container-fluid pw-megamenusolution__btm" data-sly-test="${!data.hideFoodCategories}" >
           <!-- <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
            data-sly-call="${title.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}"/>
            <i class="icon icon-Chevron_Right d-md-none js-open-menu"></i> -->
@@ -41,8 +42,8 @@
               <i class="icon icon-Chevron_Right d-md-none"></i>
            </h2>
            <div class="bottom-teaser-list js-bottom-teaser-list">
-              <ul class="row" data-sly-list.footerCategorySection=${data.footerCategorySection}>
-                <li class="col d-md-none" data-sly-test="${footerCategorySectionList.first}">
+              <ul class="row" data-sly-list.foodCategorySection=${data.foodCategorySection}>
+                <li class="col d-md-none" data-sly-test="${foodCategorySectionList.first}">
                   <!-- <i class="icon icon-Chevron_Left d-md-none js-close-menu"></i>
                   <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
 +                   data-sly-call="${title.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}"/> -->
@@ -53,9 +54,9 @@
                   </h2>
                 </li>
                 <li class="col">
-                  <a href="${footerCategorySection.cta}">
-                  <img class="d-none d-xl-block" src="${footerCategorySection.fileReference}"  alt="${footerCategorySection.alt}" width="97" height="54"/>
-                  ${footerCategorySection.title}
+                  <a href="${foodCategorySection.path}">
+                  <img class="d-none d-xl-block" src="${foodCategorySection.fileReference}"  alt="${foodCategorySection.alt}" width="97" height="54"/>
+                  ${foodCategorySection.title}
                   </a>
                 </li>
              </ul>

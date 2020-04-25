@@ -33,7 +33,7 @@ class Header {
   handleMouseOver = () => {
     const { $megaMenuSolutionDesktop } = this.cache;
     $('.tp-pw-header__main-navigation.col-6').css('position','static');
-    $megaMenuSolutionDesktop.css('display','flex');
+    $megaMenuSolutionDesktop.css('display','block');
 
   }
   handleMouseOut = () => {
