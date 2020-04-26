@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.sling.api.resource.Resource;
@@ -65,7 +67,7 @@ public class MegaMenuConfigurationModel {
      * @return the top section url
      */
     public String getTopSectionUrl() {
-        return topSectionUrl;
+        return LinkUtils.sanitizeLink(topSectionUrl);
     }
 
     /**
@@ -83,7 +85,7 @@ public class MegaMenuConfigurationModel {
      * @return the bottom section url
      */
     public String getBottomSectionUrl() {
-        return bottomSectionUrl;
+        return LinkUtils.sanitizeLink(bottomSectionUrl);
     }
 
     /**

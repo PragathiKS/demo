@@ -53,9 +53,9 @@ public class MegaMenuConfigurationSolutionModelTest {
     @Test
     public void testSubtitlesAndUrl() {
         assertEquals("Tetra pak end to end solution", model.getTopSectionSubtitle());
-        assertEquals("/content/tetrapak/public-web/language-masters/en/solutions", model.getTopSectionUrl());
+        assertEquals("/content/tetrapak/public-web/language-masters/en/solutions.html", model.getTopSectionUrl());
         assertEquals("Food categories", model.getBottomSectionSubtitle());
-        assertEquals("/content/tetrapak/public-web/language-masters/en/food", model.getBottomSectionUrl());
+        assertEquals("/content/tetrapak/public-web/language-masters/en/food.html", model.getBottomSectionUrl());
     }
 
     /**
