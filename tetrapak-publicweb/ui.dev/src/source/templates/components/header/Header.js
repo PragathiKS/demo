@@ -17,6 +17,9 @@ class Header {
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
     this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
     this.cache.$megaMenuMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenu');
+    this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
+    this.cache.$overlay = $('.js-pw-overlay');
+    this.cache.$body = $('body');
 
   }
 
@@ -32,15 +35,19 @@ class Header {
   }
 
   handleMouseOver = () => {
-    const { $megaMenuDesktop } = this.cache;
-    $('.tp-pw-header__main-navigation.col-6').css('position','static');
+    const { $megaMenuDesktop, $parentNavElement, $overlay, $body } = this.cache;
+    $parentNavElement.css('position','static');
     $megaMenuDesktop.css('display','block');
+    $body.css('position','relative');
+    $overlay.removeClass('d-none');
   }
 
   handleMouseOut = () => {
-    const { $megaMenuDesktop } = this.cache;
+    const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
     $megaMenuDesktop.css('display','none');
-    $('.tp-pw-header__main-navigation.col-6').css('position:relative');
+    $parentNavElement.css('position','relative');
+    $body.css('position','static');
+    $overlay.addClass('d-none');
   }
 
   handleMenuClick = () => {
