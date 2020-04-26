@@ -30,23 +30,22 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
 
   }
+
   handleMouseOver = () => {
     const { $megaMenuDesktop } = this.cache;
     $('.tp-pw-header__main-navigation.col-6').css('position','static');
     $megaMenuDesktop.css('display','block');
-
   }
+
   handleMouseOut = () => {
     const { $megaMenuDesktop } = this.cache;
     $megaMenuDesktop.css('display','none');
     $('.tp-pw-header__main-navigation.col-6').css('position:relative');
-
   }
+
   handleMenuClick = () => {
     const { $megaMenuMobile } = this.cache;
     $megaMenuMobile.css('display','block').addClass('is-open');
-
-
   }
 
   hideMobileMenuOnResize = () => {
