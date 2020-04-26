@@ -49,6 +49,8 @@ public class APIGEEServiceImpl implements APIGEEService {
     
     private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/full";
     
+    private static final String BEARER = "Bearer";
+    
     private static final int SUCESSS = 200;
     
     ObjectMapper mapper; 
@@ -74,7 +76,7 @@ public class APIGEEServiceImpl implements APIGEEService {
             try {
                 bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
             } catch (IOException e) {
-                LOGGER.error("Unable to convert json to pojo for the bearer token response", jsonResponse, e);
+                LOGGER.error("Unable to convert json to pojo for the bearer token response", e.getMessage(), e);
             }
         }
         return bearerToken;
@@ -82,13 +84,13 @@ public class APIGEEServiceImpl implements APIGEEService {
 
     @Override
     public List<FillingMachine> getFillingMachines(String token, String fileURI) {
-        List<FillingMachine> fillingMachines = new ArrayList<FillingMachine>();
-        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
+        List<FillingMachine> fillingMachines = new ArrayList<>();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 fillingMachines = Arrays.asList(new ObjectMapper().readValue(jsonResponse, FillingMachine[].class));
             } catch (IOException e) {
-                LOGGER.error("Unable to convert json to pojo for the list of files response", e);
+                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(), e);
             }
         }
         return fillingMachines;
@@ -96,13 +98,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     
     @Override
     public List<Packagetype> getPackageTypes(String token, String fileURI) {
-        List<Packagetype> packageType = new ArrayList<Packagetype>();
-        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
+        List<Packagetype> packageType = new ArrayList<>();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 packageType = Arrays.asList(new ObjectMapper().readValue(jsonResponse, Packagetype[].class));
             } catch (IOException e) {
-                LOGGER.error("Unable to convert json to pojo for the list of files response", e);
+                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(), e);
             }
         }
         return packageType;
@@ -110,13 +112,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     
     @Override
     public List<ProcessingEquipement> getProcessingEquipements(String token, String fileURI) {
-        List<ProcessingEquipement> equipements = new ArrayList<ProcessingEquipement>();
-        String jsonResponse = getAPIGeeGetRespose("Bearer", fileURI, token);
+        List<ProcessingEquipement> equipements = new ArrayList<>();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 equipements = Arrays.asList(new ObjectMapper().readValue(jsonResponse, ProcessingEquipement[].class));
             } catch (IOException e) {
-                LOGGER.error("Unable to convert json to pojo for the list of files response", e);
+                LOGGER.error("Unable to convert equipements to pojo for the list of files response", e.getMessage(), e);
             }
         }
         return equipements;
@@ -125,7 +127,7 @@ public class APIGEEServiceImpl implements APIGEEService {
     @Override
     public Files getListOfFiles(String type, String token) {
         Files listOfFiles = new Files();
-        String jsonResponse = getAPIGeeGetRespose("Bearer", FULL_FEED_FILES_URI, token);
+        String jsonResponse = getAPIGeeGetRespose(BEARER, FULL_FEED_FILES_URI, token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 listOfFiles = new ObjectMapper().readValue(jsonResponse, Files.class);

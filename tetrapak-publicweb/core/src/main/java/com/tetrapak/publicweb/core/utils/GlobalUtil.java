@@ -80,7 +80,8 @@ public final class GlobalUtil {
      * @return sling resource resolver
      */
     public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) {
-        ResourceResolver resourceResolver = null; final Map<String, Object> paramMap = new HashMap<>();
+        ResourceResolver resourceResolver = null; 
+        final Map<String, Object> paramMap = new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
         if (!paramMap.isEmpty()) {
             try {

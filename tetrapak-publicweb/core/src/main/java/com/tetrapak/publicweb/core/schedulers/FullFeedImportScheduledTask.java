@@ -34,10 +34,10 @@ public class FullFeedImportScheduledTask implements Runnable {
         String scheduler_expression() default "0 0 0 ? * SUN *";
 
         @AttributeDefinition(name = "Disable Scheduled Task", description = "Disable Scheduled Task")
-        boolean scheduler_disable() default false;
+        boolean schedulerDisable() default false;
         
         @AttributeDefinition(name = "Refresh Bearer Token Time", description = "Refresh Bearer Token Time")
-        int scheduler_refreshTokenTime() default 2700000;
+        int schedulerRefreshTokenTime() default 2700000;
 
     }
     
@@ -61,7 +61,7 @@ public class FullFeedImportScheduledTask implements Runnable {
 
     @Override
     public void run() {
-        if(isDisabled) {
+        if(Boolean.TRUE.equals(isDisabled)) {
             LOGGER.info("{{FullFeedImportScheduledTask is disabled}}");
             return;
         }
@@ -71,28 +71,32 @@ public class FullFeedImportScheduledTask implements Runnable {
             Files listOfFiles = apiGEEService.getListOfFiles("full", bearerToken.getAccessToken());
             if (listOfFiles.getFiles() != null && !listOfFiles.getFiles().isEmpty()) {
                 for (File file : listOfFiles.getFiles()) {
-                    if(file != null && StringUtils.isNotBlank(file.getName())) {
-                        String fileType = productService.getFileType(file.getName());
-                        String language = productService.getLanguage(file.getName());
-                        switch (fileType) {
-                            case "fillingmachines":
-                                processFillingMachines(file.getName(),fileType,language);
-                                break;
-                            case "processingequipments":
-                                processEquipments(file.getName(),fileType,language);
-                                break;
-                            case "packagetypes":
-                                processPackageTypes(file.getName(),fileType,language);
-                                break;
-                            default:
-                                LOGGER.info("Not a valid file type to process for url {}",file.getName());
-                                break;
-                        }
-                    }
+                    processFile(file);
                 }
             }
         }
         timer.cancel();
+    }
+    
+    private void processFile(File file) {
+        if(file != null && StringUtils.isNotBlank(file.getName())) {
+            String fileType = productService.getFileType(file.getName());
+            String language = productService.getLanguage(file.getName());
+            switch (fileType) {
+                case "fillingmachines":
+                    processFillingMachines(file.getName(),fileType,language);
+                    break;
+                case "processingequipments":
+                    processEquipments(file.getName(),fileType,language);
+                    break;
+                case "packagetypes":
+                    processPackageTypes(file.getName(),fileType,language);
+                    break;
+                default:
+                    LOGGER.info("Not a valid file type to process for url {}",file.getName());
+                    break;
+            }
+        }
     }
     
     private void processFillingMachines(String fileURI,String fileType,String language) {
@@ -129,8 +133,8 @@ public class FullFeedImportScheduledTask implements Runnable {
     
     @Activate
     protected void activate(final Config config) {
-        isDisabled = config.scheduler_disable();
-        refreshTokenTime = config.scheduler_refreshTokenTime();
+        isDisabled = config.schedulerDisable();
+        refreshTokenTime = config.schedulerRefreshTokenTime();
     }
 
 }

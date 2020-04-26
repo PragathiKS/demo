@@ -1,9 +1,7 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import java.util.List;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import org.apache.commons.lang3.StringUtils;
@@ -39,8 +37,6 @@ public class ProductServiceImpl implements ProductService {
 
     private static final String PACKAGE_TYPE = "packagetypes";
 
-    private static final String NT_UNSTRUCTURED = "nt:unstructured";
-
     @Reference
     private ResourceResolverFactory resolverFactory;
 
@@ -61,9 +57,7 @@ public class ProductServiceImpl implements ProductService {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
                     if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
-                        Resource productRes = ProductImportUtil.createOrUpdateProductResource(resolver,
-                                productTypeResPath, fillingMachine.getId());
-                        createFillingMachineLanguageResource(productRes,fillingMachine,language);
+                        ProductImportUtil.createOrUpdateFillingMachine(resolver,productTypeResPath,fillingMachine,language);
                     }
                 }
             }
@@ -71,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating root product node", e);
         } finally {
-            if (resolver != null && resolver.isLive()) {
+            if (resolver.isLive()) {
                 resolver.close();
             }
             if (session != null && session.isLive()) {
@@ -91,16 +85,14 @@ public class ProductServiceImpl implements ProductService {
         try {
             Resource productTypeResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
             if (productTypeResource != null) {
-                final Map<String, Object> properties = new HashMap<>();
-                properties.put("jcr:primaryType", NT_UNSTRUCTURED);
                 String productTypeResPath = productTypeResource.getPath();
-                ProductImportUtil.createOrUpdatePackageTypes(resolver, productTypeResPath, packageTypes, properties);
+                ProductImportUtil.createOrUpdatePackageTypes(resolver, productTypeResPath, packageTypes, language);
             }
             saveSession(session);
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating root product node", e);
         } finally {
-            if (resolver != null && resolver.isLive()) {
+            if (resolver.isLive()) {
                 resolver.close();
             }
             if (session != null && session.isLive()) {
@@ -112,33 +104,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void createProductProcessingEquipement(String productType, List<ProcessingEquipement> equipements,
             String langauge) {
-
+        //TO DO
     }
 
-    private void createFillingMachineLanguageResource(Resource productRes, FillingMachine fillingMachine,
-            String language) throws PersistenceException {
-        if (productRes != null) {
-            final Map<String, Object> properties = new HashMap<>();
-            properties.put("jcr:primaryType", NT_UNSTRUCTURED);
-            properties.put("benefits", fillingMachine.getBenefits());
-            properties.put("name", fillingMachine.getName());
-            properties.put("benefitsimage", fillingMachine.getBenefitsimage());
-            properties.put("header", fillingMachine.getHeader());
-            Resource languageRes = ProductImportUtil.createOrUpdateResource(resolver, productRes.getPath(), language,
-                    properties);
-            if (languageRes != null) {
-                ProductImportUtil.createOrUpdateFeatureOrOpions(resolver, languageRes.getPath(), "features",
-                        fillingMachine.getFeatures());
-                ProductImportUtil.createOrUpdateFeatureOrOpions(resolver, languageRes.getPath(), "options",
-                        fillingMachine.getOptions());
-                final Map<String, Object> propertiesPackageType = new HashMap<>();
-                propertiesPackageType.put("jcr:primaryType", NT_UNSTRUCTURED);
-                Resource packageRootRes = ProductImportUtil.createOrUpdateResource(resolver, languageRes.getPath(), "packagetypes", propertiesPackageType);
-                ProductImportUtil.createOrUpdatePackageTypes(resolver, packageRootRes.getPath(),
-                        fillingMachine.getPackagetypes(),properties);
-            }
-        }
-    }
 
     @Override
     public String getLanguage(String fileURI) {
