@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-
 import java.util.List;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -8,18 +7,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.services.ProductService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import com.tetrapak.publicweb.core.utils.ProductImportUtil;
+import com.tetrapak.publicweb.core.utils.FillingMachineUtil;
+import com.tetrapak.publicweb.core.utils.PackageTypeUtil;
+import com.tetrapak.publicweb.core.utils.ProcessingEquipementUtil;
+import com.tetrapak.publicweb.core.utils.ProductUtil;
 
 /**
  * Impl class for API GEE Service
@@ -29,111 +28,110 @@ import com.tetrapak.publicweb.core.utils.ProductImportUtil;
 @Component(immediate = true, service = ProductService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ProductServiceImpl implements ProductService {
 
+    /** The logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
+    /** The fillingmachines. */
     private static final String FILLING_MACHINE = "fillingmachines";
 
+    /** The processingequipments. */
     private static final String PROCESSING_EQUIPEMENT = "processingequipments";
 
+    /** The packagetypes. */
     private static final String PACKAGE_TYPE = "packagetypes";
 
-    @Reference
-    private ResourceResolverFactory resolverFactory;
-
-    private ResourceResolver resolver;
-
-    private Session session;
-
+    /**
+     * @param productType
+     * @param fillingMachines
+     * @param language
+     */
     @Override
-    public void createProductFillingMachine(String productType, List<FillingMachine> fillingMachines, String language) {
-        setResourceResolver();
-        if (resolver == null) {
-            LOGGER.info("Tetrapak Sytem User Session is null");
-            return;
-        }
+    public void createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
+            List<FillingMachine> fillingMachines, String language) {
         try {
-            Resource productTypeResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
+            saveSession(session);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
                     if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
-                        ProductImportUtil.createOrUpdateFillingMachine(resolver,productTypeResPath,fillingMachine,language);
+                        FillingMachineUtil.createOrUpdateFillingMachine(resolver, productTypeResPath, fillingMachine,
+                                language);
+                        saveSession(session);
                     }
                 }
             }
-            saveSession(session);
-        } catch (PersistenceException e) {
-            LOGGER.error("PersistenceException while creating root product node", e);
-        } finally {
-            if (resolver.isLive()) {
-                resolver.close();
-            }
-            if (session != null && session.isLive()) {
-                session.logout();
-            }
-        }
 
+        } catch (PersistenceException e) {
+            LOGGER.error("PersistenceException while creating filling machine", e);
+        }
     }
 
+    /**
+     * @param productType
+     * @param packageTypes
+     * @param language
+     */
     @Override
-    public void createProductPackageType(String productType, List<Packagetype> packageTypes, String language) {
-        setResourceResolver();
-        if (resolver == null) {
-            LOGGER.info("Sytem User Session is null");
-            return;
-        }
+    public void createProductPackageType(ResourceResolver resolver, Session session, String productType,
+            List<Packagetype> packageTypes, String language) {
         try {
-            Resource productTypeResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
+            saveSession(session);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
-                ProductImportUtil.createOrUpdatePackageTypes(resolver, productTypeResPath, packageTypes, language);
+                if (packageTypes != null) {
+                    for (Packagetype packageType : packageTypes) {
+                        PackageTypeUtil.createOrUpdatePackageType(resolver, productTypeResPath, packageType, language);
+                        saveSession(session);
+                    }
+                }
             }
-            saveSession(session);
         } catch (PersistenceException e) {
-            LOGGER.error("PersistenceException while creating root product node", e);
-        } finally {
-            if (resolver.isLive()) {
-                resolver.close();
-            }
-            if (session != null && session.isLive()) {
-                session.logout();
-            }
+            LOGGER.error("PersistenceException while creating package type", e);
+
         }
     }
 
+    /**
+     * @param productType
+     * @param equipments
+     * @param language
+     */
     @Override
-    public void createProductProcessingEquipement(String productType, List<ProcessingEquipement> equipements,
-            String language) {
-        setResourceResolver();
-        if (resolver == null) {
-            LOGGER.info("Sytem User Session is null");
-            return;
-        }
+    public void createProductProcessingEquipement(ResourceResolver resolver, Session session, String productType,
+            List<ProcessingEquipement> equipments, String language) {
         try {
-            Resource equipementResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
+            saveSession(session);
             if (equipementResource != null) {
                 String equipementResourcePath = equipementResource.getPath();
-                ProductImportUtil.createOrUpdateProcessingEquipements(resolver, equipementResourcePath, equipements, language);
+                if (equipments != null && !equipments.isEmpty()) {
+                    for (ProcessingEquipement equipment : equipments) {
+                        ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, equipementResourcePath,
+                                equipment, language);
+                        saveSession(session);
+                    }
+                }
+
             }
-            saveSession(session);
         } catch (PersistenceException e) {
-            LOGGER.error("PersistenceException while creating root product node", e);
-        } finally {
-            if (resolver.isLive()) {
-                resolver.close();
-            }
-            if (session != null && session.isLive()) {
-                session.logout();
-            }
+            LOGGER.error("PersistenceException while creating product node", e);
+
         }
     }
 
-
+    /**
+     * return language
+     */
     @Override
     public String getLanguage(String fileURI) {
         return fileURI.substring(fileURI.lastIndexOf('/') + 1).split("_")[1].replaceAll(".json", "");
     }
 
+    /**
+     * return file type.
+     */
     @Override
     public String getFileType(String fileURI) {
         String fileType = StringUtils.EMPTY;
@@ -147,13 +145,6 @@ public class ProductServiceImpl implements ProductService {
             fileType = PACKAGE_TYPE;
         }
         return fileType;
-    }
-
-    /**
-     * Sets the resource resolver.
-     */
-    private void setResourceResolver() {
-        this.resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
     }
 
     /**

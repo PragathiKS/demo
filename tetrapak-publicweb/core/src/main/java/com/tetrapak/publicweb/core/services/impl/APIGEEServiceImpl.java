@@ -41,16 +41,22 @@ import com.tetrapak.publicweb.core.services.config.APIGEEServiceConfig;
 @Designate(ocd = APIGEEServiceConfig.class)
 public class APIGEEServiceImpl implements APIGEEService {
 
+    /** The config. */
     private APIGEEServiceConfig config;
     
+    /** The logger. */
     private static final Logger LOGGER =  LoggerFactory.getLogger(APIGEEServiceImpl.class);
     
+    /** The token api url. */
     private static final String TOKEN_API_URI = "/oauth2/v2/token";
     
+    /** The full feed files uri. */
     private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/full";
     
+    /** The bearer. */
     private static final String BEARER = "Bearer";
     
+    /** The success. */
     private static final int SUCESSS = 200;
     
     ObjectMapper mapper; 
@@ -65,6 +71,9 @@ public class APIGEEServiceImpl implements APIGEEService {
         this.config = config;
     }
 
+    /**
+     * return bearer token
+     */
     @Override
     public BearerToken getBearerToken() {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
@@ -82,6 +91,9 @@ public class APIGEEServiceImpl implements APIGEEService {
         return bearerToken;
     }
 
+    /**
+     * return filling machines
+     */
     @Override
     public List<FillingMachine> getFillingMachines(String token, String fileURI) {
         List<FillingMachine> fillingMachines = new ArrayList<>();
@@ -96,6 +108,9 @@ public class APIGEEServiceImpl implements APIGEEService {
         return fillingMachines;
     }
     
+    /**
+     * return package types
+     */
     @Override
     public List<Packagetype> getPackageTypes(String token, String fileURI) {
         List<Packagetype> packageType = new ArrayList<>();
@@ -110,6 +125,9 @@ public class APIGEEServiceImpl implements APIGEEService {
         return packageType;
     }
     
+    /**
+     * return processing equipements
+     */
     @Override
     public List<ProcessingEquipement> getProcessingEquipements(String token, String fileURI) {
         List<ProcessingEquipement> equipements = new ArrayList<>();
@@ -124,6 +142,9 @@ public class APIGEEServiceImpl implements APIGEEService {
         return equipements;
     }
 
+    /** return list of files
+     *
+     */
     @Override
     public Files getListOfFiles(String type, String token) {
         Files listOfFiles = new Files();
@@ -138,6 +159,12 @@ public class APIGEEServiceImpl implements APIGEEService {
         return listOfFiles;
     }
     
+    /**
+     * @param authType
+     * @param apiURI
+     * @param encodedAuthString
+     * @return api gee post response
+     */
     private String getAPIGeePostRespose(String authType,String apiURI,String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
         
@@ -166,6 +193,12 @@ public class APIGEEServiceImpl implements APIGEEService {
         return jsonResponse;
     }
     
+    /**
+     * @param authType
+     * @param apiURI
+     * @param encodedAuthString
+     * @return api gee get response
+     */
     private String getAPIGeeGetRespose(String authType,String apiURI,String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
         
