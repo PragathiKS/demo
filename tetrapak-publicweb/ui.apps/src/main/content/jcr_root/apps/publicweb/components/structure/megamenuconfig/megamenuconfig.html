@@ -2,6 +2,8 @@
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
     <sly data-sly-use.menu="com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel">
         <b>End to end solution section</b><br/>
+        Section title: ${menu.topSectionSubtitle}<br/>
+        Section title URL: ${menu.topSectionUrl}<br/>
         <sly data-sly-list.solution="${menu.endToEndSolutionSection}">
             Image: ${solution.fileReference}<br/>
             Image alt text: ${solution.alt}<br/>
@@ -15,6 +17,8 @@
             Link path: ${links.linkUrl}<br/><br/>
         </sly>
         <b>Food category section</b><br/>
+        Section title: ${menu.bottomSectionSubtitle}<br/>
+        Section title URL: ${menu.bottomSectionUrl}<br/>
         <sly data-sly-list.food="${menu.foodCategorySection}">
             Image: ${food.fileReference}<br/>
             Image alt text: ${food.alt}<br/>
