@@ -9,12 +9,14 @@ import javax.jcr.Session;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.commons.scheduler.ScheduleOptions;
+import org.apache.sling.commons.scheduler.Scheduler;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,33 +32,18 @@ import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
+import com.tetrapak.publicweb.core.services.config.PXPConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
- * @author Sandip Kumars
+ * @author Sandip Kumar
  * 
  *         Full Feed Scheduler for products import.
  *
  */
-@Designate(ocd = FullFeedImportScheduledTask.Config.class)
+@Designate(ocd = PXPConfig.class)
 @Component(service = Runnable.class)
 public class FullFeedImportScheduledTask implements Runnable {
-
-    @ObjectClassDefinition(
-            name = "Full FeedProduct Import Scheduled Job",
-            description = "Full FeedProduct Import Scheduled Job")
-    public static @interface Config {
-
-        @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 0 0 ? * SUN *";
-
-        @AttributeDefinition(name = "Disable Scheduled Task", description = "Disable Scheduled Task")
-        boolean schedulerDisable() default false;
-
-        @AttributeDefinition(name = "Refresh Bearer Token Time", description = "Refresh Bearer Token Time")
-        int schedulerRefreshTokenTime() default 2700000;
-
-    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
 
@@ -76,6 +63,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     @Reference
     private ResourceResolverFactory resolverFactory;
 
+    /** The scheduler. */
+    @Reference
+    Scheduler scheduler;
+
     /** The resolver. */
     private ResourceResolver resolver;
 
@@ -88,13 +79,22 @@ public class FullFeedImportScheduledTask implements Runnable {
     /** The bearer token. */
     private BearerToken bearerToken;
 
-    /** The isDisabled. */
-    private Boolean isDisabled = false;
-
     /** The refresh token time. */
     private int refreshTokenTime;
 
-    /** The resolver. */
+    /** The dam root path. */
+    private String damRootPath;
+
+    /** The video Types. */
+    private String videoTypes;
+
+    /** The scheduler ID. */
+    private int schedulerID;
+
+    /** The FULL FEED Scheduler ID. */
+    private static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
+
+    /** The full feed files uri. */
     private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
 
     /**
@@ -102,13 +102,9 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     @Override
     public void run() {
-        if (Boolean.TRUE.equals(isDisabled)) {
-            LOGGER.info("{{FullFeedImportScheduledTask is disabled}}");
-            return;
-        }
         setResourceResolver();
         if (resolver == null) {
-            LOGGER.info("Tetrapak System User Session is null");
+            LOGGER.debug("Tetrapak System User Session is null");
             return;
         }
         timer = new Timer();
@@ -169,7 +165,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
-            productService.createProductFillingMachine(resolver, session, fileType, fillingMachines, language);
+            productService.createProductFillingMachine(resolver, session, fileType, fillingMachines, language,
+                    damRootPath, videoTypes);
         }
 
     }
@@ -183,7 +180,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
-            productService.createProductProcessingEquipement(resolver, session, fileType, equipements, language);
+            productService.createProductProcessingEquipement(resolver, session, fileType, equipements, language,
+                    damRootPath, videoTypes);
         }
     }
 
@@ -196,7 +194,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
-            productService.createProductPackageType(resolver, session, fileType, packageTypes, language);
+            productService.createProductPackageType(resolver, session, fileType, packageTypes, language, damRootPath,
+                    videoTypes);
         }
     }
 
@@ -236,9 +235,55 @@ public class FullFeedImportScheduledTask implements Runnable {
      * @param config
      */
     @Activate
-    protected void activate(final Config config) {
-        isDisabled = config.schedulerDisable();
+    protected void activate(PXPConfig config) {
+        schedulerID = FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
+        videoTypes = config.videoTypes();
+        damRootPath = config.damRootPath();
+    }
+
+    /**
+     * @param config
+     */
+    @Modified
+    protected void modified(PXPConfig config) {
+        removeScheduler();
+        schedulerID = FULL_FEED_SCHEDULER_ID.hashCode();
+        refreshTokenTime = config.schedulerRefreshTokenTime();
+        videoTypes = config.videoTypes();
+        damRootPath = config.damRootPath();
+        addScheduler(config);
+    }
+
+    /**
+     * @param config
+     */
+    @Deactivate
+    protected void deactivate(PXPConfig config) {
+        removeScheduler();
+    }
+
+    /**
+     * Add a scheduler based on the scheduler ID
+     */
+    private void addScheduler(PXPConfig config) {
+        if (config.fullFeedSchedulerDisable()) {
+            ScheduleOptions sopts = scheduler.EXPR(config.fullFeedSchedulerExpression());
+            sopts.name(String.valueOf(schedulerID));
+            sopts.canRunConcurrently(false);
+            scheduler.schedule(this, sopts);
+            LOGGER.debug("FullFeedImportScheduledTask added succesfully");
+        } else {
+            LOGGER.debug("FullFeedImportScheduledTask is Disabled, no scheduler job created");
+        }
+    }
+
+    /**
+     * Remove a scheduler based on the scheduler ID
+     */
+    private void removeScheduler() {
+        LOGGER.debug("Removing FullFeedImportScheduledTask Job '{}'", schedulerID);
+        scheduler.unschedule(String.valueOf(schedulerID));
     }
 
 }

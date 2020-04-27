@@ -15,21 +15,25 @@ import com.tetrapak.publicweb.core.beans.pxp.Technology;
 import com.tetrapak.publicweb.core.beans.pxp.TechnologyType;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 
-public class ProcessingEquipementUtil extends ProductUtil{
-    
+public class ProcessingEquipementUtil extends ProductUtil {
 
     /**
      * @param resolver
+     * @param productType
      * @param rootPath
      * @param equipment
      * @param language
+     * @param damRootPath
+     * @param videoTypes
      * @return product path
      * @throws PersistenceException
      */
-    public static String createOrUpdateProcessingEquipements(ResourceResolver resolver, String rootPath,
-            ProcessingEquipement equipment, String language) throws PersistenceException {
-        Resource equipmentsRes = createOrUpdateProductResource(resolver, rootPath, equipment.getId());
-        String productPath=StringUtils.EMPTY;
+    public static String createOrUpdateProcessingEquipements(ResourceResolver resolver, String productType,
+            String rootPath, ProcessingEquipement equipment, String language, String damRootPath, String videoTypes)
+            throws PersistenceException {
+        String productID = equipment.getId();
+        Resource equipmentsRes = createOrUpdateProductResource(resolver, rootPath, productID);
+        String productPath = StringUtils.EMPTY;
         if (equipmentsRes != null) {
             productPath = equipmentsRes.getPath();
             ResourceUtil.deleteResource(resolver, productPath + PWConstants.SLASH + language);
@@ -38,10 +42,14 @@ public class ProcessingEquipementUtil extends ProductUtil{
             langProperties.put(PWConstants.NAME, equipment.getName());
             langProperties.put(PWConstants.HEADER, equipment.getHeader());
             langProperties.put(PWConstants.BENEFITS, equipment.getBenefits());
+            langProperties.put(PWConstants.BENEFITS_IMAGE, processAndGetPXPAssetDAMPath(resolver, damRootPath,
+                    equipment.getBenefitsimage(), productType, productID, videoTypes));
             Resource langRes = ResourceUtil.createOrUpdateResource(resolver, productPath, language, langProperties);
             if (langRes != null) {
-                createOrUpdateFeatureOrOpions(resolver, langRes.getPath(), PWConstants.FEATURES, equipment.getFeatures());
-                createOrUpdateFeatureOrOpions(resolver, langRes.getPath(), PWConstants.OPTIONS, equipment.getOptions());
+                createOrUpdateFeatureOrOpions(resolver, productType, productID, langRes.getPath(), PWConstants.FEATURES,
+                        equipment.getFeatures(), damRootPath, videoTypes);
+                createOrUpdateFeatureOrOpions(resolver, productType, productID, langRes.getPath(), PWConstants.OPTIONS,
+                        equipment.getOptions(), damRootPath, videoTypes);
                 createOrUpdateCategories(resolver, langRes.getPath(), equipment.getCategories());
                 createOrUpdateTechnology(resolver, langRes.getPath(), equipment.getTechnology());
                 createOrUpdateTechnologyTypes(resolver, langRes.getPath(), equipment.getTechnologyType());
@@ -49,7 +57,7 @@ public class ProcessingEquipementUtil extends ProductUtil{
         }
         return productPath;
     }
-    
+
     /**
      * @param resolver
      * @param rootPath
@@ -68,7 +76,8 @@ public class ProcessingEquipementUtil extends ProductUtil{
                     if (category != null) {
                         properties.put(PWConstants.ID, category.getId());
                         properties.put(PWConstants.NAME, category.getName());
-                        ResourceUtil.createOrUpdateResource(resolver, categoriesRes.getPath(), String.valueOf(i), properties);
+                        ResourceUtil.createOrUpdateResource(resolver, categoriesRes.getPath(), String.valueOf(i),
+                                properties);
                         i++;
                     }
                 }

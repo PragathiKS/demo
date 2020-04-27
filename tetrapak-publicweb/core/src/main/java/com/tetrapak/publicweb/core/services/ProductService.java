@@ -16,15 +16,15 @@ import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
 public interface ProductService {
 
     void createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
-            List<FillingMachine> fillingMachines, String langauge);
+            List<FillingMachine> fillingMachines, String langauge, String damRootPath, String viedoTypes);
 
     String getFileType(String fileURI);
 
     String getLanguage(String fileURI);
 
     void createProductPackageType(ResourceResolver resolver, Session session, String productType,
-            List<Packagetype> packageTypes, String langauge);
+            List<Packagetype> packageTypes, String langauge, String damRootPath, String viedoTypes);
 
     void createProductProcessingEquipement(ResourceResolver resolver, Session session, String productType,
-            List<ProcessingEquipement> equipements, String langauge);
+            List<ProcessingEquipement> equipements, String langauge, String damRootPath, String viedoTypes);
 }

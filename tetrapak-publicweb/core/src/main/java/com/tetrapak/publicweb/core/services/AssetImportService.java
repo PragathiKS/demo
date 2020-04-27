@@ -7,12 +7,7 @@ import com.tetrapak.publicweb.core.beans.pxp.AssetDetail;
  */
 public interface AssetImportService {
 
-	AssetDetail getAssetDetailfromInputStream(String url);
-	
-	String getDAMRootPath();
-	
-	String[] getAssetTypeMapping();
-	
+	AssetDetail getAssetDetailfromInputStream(String url);	
 	
 }
 

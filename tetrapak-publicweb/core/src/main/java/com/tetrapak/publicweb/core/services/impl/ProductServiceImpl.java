@@ -31,23 +31,27 @@ public class ProductServiceImpl implements ProductService {
     /** The logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-    /** The fillingmachines. */
+    /** The filling machines. */
     private static final String FILLING_MACHINE = "fillingmachines";
 
-    /** The processingequipments. */
+    /** The processing equipments. */
     private static final String PROCESSING_EQUIPEMENT = "processingequipments";
 
-    /** The packagetypes. */
+    /** The package types. */
     private static final String PACKAGE_TYPE = "packagetypes";
 
     /**
+     * @param resolver
+     * @param session
      * @param productType
      * @param fillingMachines
      * @param language
+     * @param damRootPath
+     * @param videoTypes
      */
     @Override
     public void createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
-            List<FillingMachine> fillingMachines, String language) {
+            List<FillingMachine> fillingMachines, String language, String damRootPath, String videoTypes) {
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
             saveSession(session);
@@ -55,8 +59,8 @@ public class ProductServiceImpl implements ProductService {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
                     if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
-                        FillingMachineUtil.createOrUpdateFillingMachine(resolver, productTypeResPath, fillingMachine,
-                                language);
+                        FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType, productTypeResPath,
+                                fillingMachine, language, damRootPath, videoTypes);
                         saveSession(session);
                     }
                 }
@@ -68,13 +72,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * @param resolver
+     * @param session
      * @param productType
      * @param packageTypes
      * @param language
+     * @param damRootPath
+     * @param videoTypes
      */
     @Override
     public void createProductPackageType(ResourceResolver resolver, Session session, String productType,
-            List<Packagetype> packageTypes, String language) {
+            List<Packagetype> packageTypes, String language, String damRootPath, String videoTypes) {
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
             saveSession(session);
@@ -82,7 +90,8 @@ public class ProductServiceImpl implements ProductService {
                 String productTypeResPath = productTypeResource.getPath();
                 if (packageTypes != null) {
                     for (Packagetype packageType : packageTypes) {
-                        PackageTypeUtil.createOrUpdatePackageType(resolver, productTypeResPath, packageType, language);
+                        PackageTypeUtil.createOrUpdatePackageType(resolver, productType, productTypeResPath,
+                                packageType, language, damRootPath, videoTypes);
                         saveSession(session);
                     }
                 }
@@ -94,13 +103,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * @param resolver
+     * @param session
      * @param productType
      * @param equipments
      * @param language
+     * @param damRootPath
+     * @param videoTypes
      */
     @Override
     public void createProductProcessingEquipement(ResourceResolver resolver, Session session, String productType,
-            List<ProcessingEquipement> equipments, String language) {
+            List<ProcessingEquipement> equipments, String language, String damRootPath, String videoTypes) {
         try {
             Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
             saveSession(session);
@@ -108,8 +121,8 @@ public class ProductServiceImpl implements ProductService {
                 String equipementResourcePath = equipementResource.getPath();
                 if (equipments != null && !equipments.isEmpty()) {
                     for (ProcessingEquipement equipment : equipments) {
-                        ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, equipementResourcePath,
-                                equipment, language);
+                        ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, productType,
+                                equipementResourcePath, equipment, language, damRootPath, videoTypes);
                         saveSession(session);
                     }
                 }

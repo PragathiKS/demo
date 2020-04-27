@@ -58,6 +58,9 @@ public class PWConstants {
 
     /** The Constant BENEFITS. */
     public static final String BENEFITS = "benefits";
+    
+    /** The Constant BENEFITS_IMAGE. */
+    public static final String BENEFITS_IMAGE ="benefitsimage";
 
     /** The Constant IMAGE. */
     public static final String IMAGE = "image";
@@ -76,5 +79,8 @@ public class PWConstants {
     
     /** The Constant OPTIONS. */
     public static final String OPTIONS = "options";
+    
+    /** The Constant VIDEO. */
+    public static final String VIDEO = "video";
 
 }

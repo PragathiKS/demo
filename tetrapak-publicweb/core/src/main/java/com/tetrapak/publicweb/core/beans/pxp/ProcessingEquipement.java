@@ -34,6 +34,8 @@ public class ProcessingEquipement {
     private String header;
     @JsonProperty("benefits")
     private String benefits;
+    @JsonProperty("benefitsimage")
+    private String benefitsimage;
     @JsonProperty("features")
     private List<FeatureOption> features = null;
     @JsonProperty("options")
@@ -107,6 +109,16 @@ public class ProcessingEquipement {
     @JsonProperty("benefits")
     public void setBenefits(String benefits) {
         this.benefits = benefits;
+    }
+    
+    @JsonProperty("benefitsimage")
+    public String getBenefitsimage() {
+        return benefitsimage;
+    }
+
+    @JsonProperty("benefitsimage")
+    public void setBenefitsimage(String benefitsimage) {
+        this.benefitsimage = benefitsimage;
     }
 
     @JsonProperty("features")
