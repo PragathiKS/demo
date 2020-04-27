@@ -11,7 +11,7 @@
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
-            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}" data-link-name="${tab.title}" data-link-section="Tab Click_list_${data.heading}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                 <div><p class="pw-tablist__event-title-icright semi-bold">${tab.title}</p></div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
@@ -123,7 +123,7 @@
                                  href="${data.readMorePath}"
                                  class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                                  target="${data.readMoreTarget}"
-                                 data-link-section="Tab Click Text Hyperlink${buttonDownloadReadMore}"
+                                 data-link-section="Tab Click_Text Hyperlink${buttonDownloadReadMore}"
                                  data-link-name="${data.readMoreText}"
                                  data-download-type="${data.pwLinkTheme}"
                                  data-button-link-type="link"
