@@ -60,6 +60,16 @@
             &:last-child {
                 margin-right: 0;
             }
+            &.hover-menu-link {
+                & > a {
+                    @include padding(0 $padding-sm $padding-sm);
+                    @include line-height($font-l, $font-m-baseline);
+                    height: 30px;
+                }
+                &:hover > a {
+                    border-bottom: 3px solid;
+                }
+            }
         }
 
         a {
