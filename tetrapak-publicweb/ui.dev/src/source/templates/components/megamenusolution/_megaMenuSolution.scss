@@ -62,17 +62,19 @@
             width: 90%;
         }
     }
+    .heading-d-link {
+        @include margin($margin-xl 0);
+        text-align: center;
+    }
     h2 {
         @include font-size($font-m-sm);
         @include line-height($font-l, $font-m-baseline);
-        @include margin($margin-xl 0);
         display: flex;
         font-weight: 900;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
             @include line-height($font-l, $font-baseline);
-            @include margin-bottom($margin-xl);
             display: block;
             font-family: $font-bold;
             justify-content: center;
@@ -161,10 +163,10 @@
             justify-content: space-between;
             align-items: center;
             @media #{$desktop} {
+                @include margin-bottom($margin-xl);
                 justify-content: center;
             }
         }
-
         h2 {
             @include margin(0);
             @include padding($padding-md 0);
@@ -173,7 +175,6 @@
             border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
-                @include margin-bottom($margin-xl);
                 @include padding(0);
                 color: $color-tundora;
                 border-bottom: 0;
@@ -247,7 +248,7 @@
     }
     &__bottom-bar {
         border: 0;
-        height: 205px;
+        height: 193px;
         background-color: $color-wild-sand;
         position: absolute;
         width: 100%;

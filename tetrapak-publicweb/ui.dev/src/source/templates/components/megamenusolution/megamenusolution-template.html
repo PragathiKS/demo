@@ -4,8 +4,14 @@
       <hr class="d-none d-xl-block" />
       <nav>
           <div class="container-fluid pw-megamenu__top">
-              <sly data-sly-test.isMobile="${!isMobile}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
-
+            <sly data-sly-test.isMobile="${!isMobile}">
+              <div class="heading-d-link">
+                <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}" title="${data.topSectionSubtitle}">
+                  <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
+                </a>
+                <sly data-sly-test="${data.topSectionUrl == '#'}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
+              </div>
+          </sly>
               <div class="heading-cta d-md-none">
                   <i class="icon icon-Chevron_Left js-close-menu"></i>
                   <sly data-sly-use.solutiontitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${solutiontitle.heading_h2_template @ headingText='Solution', variant='regular'}" />
@@ -38,7 +44,10 @@
           </div>
           <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
               <div class="heading-bottom-cta">
+                <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}" title="${data.bottomSectionSubtitle}">
                   <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
+                </a>
+                <sly data-sly-test="${data.bottomSectionUrl == '#'}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
                   <i class="icon icon-Chevron_Right d-md-none js-open-menu"></i>
               </div>
               <div class="bottom-teaser-list js-bottom-teaser-list">
