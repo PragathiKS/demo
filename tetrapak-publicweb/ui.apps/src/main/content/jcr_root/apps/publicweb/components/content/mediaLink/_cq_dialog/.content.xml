@@ -43,7 +43,8 @@
                                 jcr:primaryType="nt:unstructured"
                                 jcr:title="List"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true">
+                                composite="{Boolean}true"
+                                fieldLabel="Configure Media &amp; Link section">
                                 <field
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -56,12 +57,14 @@
                                                 <linkLabel
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Link Label"
+                                                    fieldDescription="Link text"
+                                                    fieldLabel="Link label"
                                                     name="./linkLabel"/>
                                                 <linkUrl
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldLabel="Link Url"
+                                                    fieldDescription="Link to destination path"
+                                                    fieldLabel="Link path"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
                                             </items>
@@ -91,7 +94,8 @@
                                 jcr:primaryType="nt:unstructured"
                                 jcr:title="List"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true">
+                                composite="{Boolean}true"
+                                fieldLabel="Configure Media &amp; Link section">
                                 <field
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -104,11 +108,13 @@
                                                 <linkLabel
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Link Label"
+                                                    fieldDescription="Link text"
+                                                    fieldLabel="Link label"
                                                     name="./linkLabel"/>
                                                 <linkUrl
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="Link to destination path"
                                                     fieldLabel="Link Url"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
@@ -135,11 +141,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Title"
                                 name="./columnThreeTitle"/>
-                            <columntwo
+                            <columnthree
                                 jcr:primaryType="nt:unstructured"
                                 jcr:title="List"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true">
+                                composite="{Boolean}true"
+                                fieldLabel="Configure Media &amp; Link section">
                                 <field
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -152,11 +159,13 @@
                                                 <linkLabel
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Link Label"
+                                                    fieldDescription="Link text"
+                                                    fieldLabel="Link label"
                                                     name="./linkLabel"/>
                                                 <linkUrl
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="Link to destination path"
                                                     fieldLabel="Link Url"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
@@ -164,7 +173,7 @@
                                         </column>
                                     </items>
                                 </field>
-                            </columntwo>
+                            </columnthree>
                         </items>
                     </column>
                 </items>
@@ -193,4 +202,3 @@
         </items>
     </content>
 </jcr:root>
-
