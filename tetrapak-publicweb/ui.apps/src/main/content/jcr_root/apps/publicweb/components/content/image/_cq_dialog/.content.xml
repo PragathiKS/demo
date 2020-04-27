@@ -25,6 +25,7 @@
                                     allowUpload="{Boolean}false"
                                     class="cq-droptarget"
 									fieldLabel="Image"
+									fieldDescription="Use smart crop to highlight image section to be displayed in mobile."
                                     fileNameParameter="./fileName"
                                     fileReferenceParameter="./fileReference"
                                     mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
