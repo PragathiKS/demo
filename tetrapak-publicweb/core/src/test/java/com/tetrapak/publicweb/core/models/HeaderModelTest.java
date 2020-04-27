@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.apache.sling.api.resource.Resource;
@@ -72,5 +73,10 @@ public class HeaderModelTest {
     @Test
     public void testMegaMenuConfigurationModel() {
         assertNotNull(model.getMegaMenuConfigurationModel());
+    }
+
+    @Test
+    public void testSolutionPageLink() {
+        assertEquals("/content/tetrapak/public-web/global/en/solutions.html", model.getSolutionPage());
     }
 }
