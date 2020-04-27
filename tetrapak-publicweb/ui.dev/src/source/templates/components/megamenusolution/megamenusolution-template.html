@@ -66,14 +66,14 @@
                             </sly>
                             <sly data-sly-test = "${wcmmode.edit}">
                               <img class="d-none d-xl-block" src="${foodCategorySection.fileReference}" alt="${foodCategorySection.alt}" />
-                              <span class="img-title">${foodCategorySection.title}</span>
                             </sly>
+                            <span class="img-title">${foodCategorySection.title}</span>
                           </a>
                       </li>
                   </ul>
               </div>
           </div>
       </nav>
-      <div class="pw-megamenu__bottom-bar"></div>
+      <div data-sly-test="${!data.hideFoodCategories}" class="pw-megamenu__bottom-bar"></div>
   </div>
 </sly>
