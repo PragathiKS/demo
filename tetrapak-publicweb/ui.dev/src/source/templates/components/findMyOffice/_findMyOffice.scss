@@ -29,6 +29,9 @@
                 opacity: $opacity-disabled;
             }
         }
+        .country-field {
+            @include margin-top($margin-md);
+        }
         &__field {
             @include margin-top($margin-l);
             font-weight: 500;
@@ -89,6 +92,9 @@
             top: $margin-xxxl;
             left: $margin-xxxl;
             z-index: $zindex-p;
+            .country-field {
+                @include margin-top($margin-l);
+            }
         }
         &__form-group__address {
             &__office-name {
