@@ -30,9 +30,11 @@
     +               data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}"/>
                 </div>
                 <p class="pw-banner__content__description">${data.text}</p>
+                <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
+                <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
                 <a data-sly-test="${data.linkLabel}" href="${data.linkPath}" class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics" title="${btnTooltip}"
                 target="${data.linkTarget}" rel="${data.linkTarget}" 
-                data-asset-name="${data.assetName}" data-link-section="Hero image banner"  data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}" data-link-type="internal" data-link-name="${data.linkLabel}">
+                data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"  data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
                 <span class="tpatom-link__text sly-text">${data.linkLabel}</span>
                 <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
               </a>
