@@ -43,19 +43,21 @@ public class ProductAssetsImportJob implements JobConsumer {
 
 		Session session = null;
 		setResourceResolver();
-		if(resourceResolver !=null) {
+		if (resourceResolver != null) {
 			session = resourceResolver.adaptTo(Session.class);
-			String sourceurl = job.getProperty("sourceurl").toString();
-			String finalDAMPath = job.getProperty("finalDAMPath").toString();
+			if (null != session) {
+				String sourceurl = job.getProperty("sourceurl").toString();
+				String finalDAMPath = job.getProperty("finalDAMPath").toString();
 
-			//fetch the Asset binary from given URL
-			AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
+				// fetch the Asset binary from given URL
+				AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
 
-			//construct DAM Path
-			LOGGER.debug("final DAMPath {}",finalDAMPath);
-			// upload the assets in AEM DAM
-			createAsset(finalDAMPath, assetDetail, session);
-			return JobResult.OK;
+				// construct DAM Path
+				LOGGER.debug("final DAMPath {}", finalDAMPath);
+				// upload the assets in AEM DAM
+				return createAsset(finalDAMPath, assetDetail, session);
+			}
+
 		}
 		return JobResult.FAILED;
 	}
@@ -65,8 +67,9 @@ public class ProductAssetsImportJob implements JobConsumer {
 	 * @param finalDAMPath
 	 * @param assetDetail
 	 * @param session
+	 * @return
 	 */
-	private void createAsset(String finalDAMPath, AssetDetail assetDetail, Session session) {
+	private JobResult createAsset(String finalDAMPath, AssetDetail assetDetail, Session session) {
 		LOGGER.debug("Inside creatin assets {}", finalDAMPath);
 		Resource resource = resourceResolver.getResource(finalDAMPath);
 		if (resource == null) {
@@ -75,11 +78,14 @@ public class ProductAssetsImportJob implements JobConsumer {
 			if (assetManager != null) {
 				assetManager.createAsset(finalDAMPath, assetDetail.getIs(), assetDetail.getContentType(), true);
 				LOGGER.debug("Asset Created at location{}", finalDAMPath);
-				saveSession(session);
-				replicateAsset(finalDAMPath, session); // activate the asset
+				if (JobResult.OK == saveSession(session)) {
+					return replicateAsset(finalDAMPath, session); // activate the asset
+				}
 			}
-		}else {
-			LOGGER.info("Asset already exists, skipping Asset creation. asset Path :  {} ",finalDAMPath);
+			return JobResult.FAILED;
+		} else {
+			LOGGER.info("Asset already exists, skipping Asset creation. asset Path :  {} ", finalDAMPath);
+			return JobResult.CANCEL;
 		}
 	}
 
@@ -87,18 +93,19 @@ public class ProductAssetsImportJob implements JobConsumer {
 	 * 
 	 * @param assetsLocation
 	 * @param session
+	 * @return
 	 */
-	private void replicateAsset(String assetsLocation, Session session) {
+	private JobResult replicateAsset(String assetsLocation, Session session) {
 		try {
 			replicator.replicate(session, ReplicationActionType.ACTIVATE, assetsLocation);
-			saveSession(session);
 			LOGGER.debug("Asset replicated");
+			return saveSession(session);
 		} catch (ReplicationException e) {
 			LOGGER.error("Exception while replicating asset {}", e);
+			return JobResult.FAILED;
 		}
 	}
 
-	
 	/**
 	 * Sets the resource resolver.
 	 */
@@ -110,16 +117,19 @@ public class ProductAssetsImportJob implements JobConsumer {
 	 * Save session.
 	 * 
 	 * @param session the session
+	 * @return
 	 */
-	private static void saveSession(final Session session) {
-		if (session != null && session.isLive()) {
+	private JobResult saveSession(final Session session) {
+		if (session.isLive()) {
 			try {
 				LOGGER.debug("saving session");
 				session.save();
+				return JobResult.OK;
 			} catch (final RepositoryException e) {
 				LOGGER.error("Error saving session", e);
 			}
 		}
+		return JobResult.FAILED;
 
 	}
 
