@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
     public void createProductFillingMachine(String productType, List<FillingMachine> fillingMachines, String language) {
         setResourceResolver();
         if (resolver == null) {
-            LOGGER.info("Sytem User Session is null");
+            LOGGER.info("Tetrapak Sytem User Session is null");
             return;
         }
         try {
@@ -103,8 +103,29 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void createProductProcessingEquipement(String productType, List<ProcessingEquipement> equipements,
-            String langauge) {
-        //TO DO
+            String language) {
+        setResourceResolver();
+        if (resolver == null) {
+            LOGGER.info("Sytem User Session is null");
+            return;
+        }
+        try {
+            Resource equipementResource = ProductImportUtil.createOrUpdateProductRootResource(resolver, productType);
+            if (equipementResource != null) {
+                String equipementResourcePath = equipementResource.getPath();
+                ProductImportUtil.createOrUpdateProcessingEquipements(resolver, equipementResourcePath, equipements, language);
+            }
+            saveSession(session);
+        } catch (PersistenceException e) {
+            LOGGER.error("PersistenceException while creating root product node", e);
+        } finally {
+            if (resolver.isLive()) {
+                resolver.close();
+            }
+            if (session != null && session.isLive()) {
+                session.logout();
+            }
+        }
     }
 
 
