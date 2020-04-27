@@ -154,6 +154,7 @@ $progress-units: (
         @include padding(0 30px 0 16px);
         @include line-height(40px, 40px);
         height: convert-to-rem(40px);
+        font-weight: 500;
         background-color: $color-white;
         border-color: $color-tundora;
         overflow: hidden;
@@ -193,6 +194,7 @@ $progress-units: (
             font-family: $font-light;
             line-height: convert-to-rem(40px);
             height: convert-to-rem(40px);
+            font-weight: 500;
             color: $color-tundora;
             overflow: hidden;
             text-overflow: ellipsis;

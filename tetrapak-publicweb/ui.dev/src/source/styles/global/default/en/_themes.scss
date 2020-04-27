@@ -1,5 +1,8 @@
 body {
- background: $color-wild-sand;
+    background: $color-wild-sand;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
 }
 .pw-theme {
     $self: &;
@@ -12,14 +15,14 @@ body {
 }
 
 .pw-margin {
-  &--zero {
-    margin: 0;
+    &--zero {
+        margin: 0;
     }
 
-  &--regular {
-        margin: 0 $margin-md 0 $margin-md;  
-    @media #{$desktop} {
-        margin: 0 $margin-xxxl 0 $margin-xxxl;
+    &--regular {
+        margin: 0 $margin-md 0 $margin-md;
+        @media #{$desktop} {
+            margin: 0 $margin-xxxl 0 $margin-xxxl;
         }
     }
 }
@@ -41,7 +44,6 @@ body {
     color: $color-jordy-blue;
 }
 
-
 .pw-container {
     @include padding(0);
     max-width: 100%;
@@ -51,5 +53,12 @@ body {
     @media #{$desktop} {
         @include max-width($body-max-width);
         margin: 48px auto 0 auto;
+    }
+}
+
+@media #{$desktop} {
+    body {
+        font-size: 14px;
+        line-height: 24px;
     }
 }
