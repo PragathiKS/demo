@@ -1,5 +1,5 @@
 
-package com.tetrapak.publicweb.core.jobs.consumer;
+package com.tetrapak.publicweb.core.jobs;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
