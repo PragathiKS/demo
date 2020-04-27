@@ -1,0 +1,79 @@
+<sly data-sly-template.megamenusolution_template="${@data, isMobile, flag}">
+  <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
+      <!--/* Component HTML code goes here */-->
+      <hr class="d-none d-xl-block" />
+      <nav>
+          <div class="container-fluid pw-megamenu__top">
+            <sly data-sly-test.isMobile="${!isMobile}">
+              <div class="heading-d-link">
+                <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}" title="${data.topSectionSubtitle}" aria-label="${data.topSectionSubtitle}">
+                  <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
+                </a>
+                <sly data-sly-test="${data.topSectionUrl == '#'}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
+              </div>
+          </sly>
+              <div class="heading-cta d-md-none">
+                  <i class="icon icon-Chevron_Left js-close-menu"></i>
+                  <sly data-sly-use.solutiontitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${solutiontitle.heading_h2_template @ headingText='Solution', variant='regular'}" />
+              </div>
+              <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
+                  <li class="col">
+                      <a href="${endToEndSolutionSection.path}">
+                        <sly data-sly-test = "${!wcmmode.edit}">
+                          <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=endToEndSolutionSection.fileReference, altText=endToEndSolutionSection.alt, componentName='megaMenuSolutionSection', className=''}" />
+                        </sly>
+                        <sly data-sly-test = "${wcmmode.edit}">
+                          <img class="d-none d-xl-block" src="${endToEndSolutionSection.fileReference}"  alt="${endToEndSolutionSection.alt}"/>
+                        </sly>
+                          <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" + data-sly-call="${title.heading_h3_template @ headingText=endToEndSolutionSection.title, variant='regular'}" />
+                          <p class="d-none d-xl-block">
+                              ${endToEndSolutionSection.description}
+                          </p>
+                      </a>
+                  </li>
+                  <li class="col col-side-links" data-sly-test="${endToEndSolutionSectionList.last}">
+                      <ul class="list-side-links" data-sly-list.linkSection=${data.linkSection}>
+                          <li>
+                              <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/link/link-template.html" data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-xl-inline-block'}">
+                              </sly>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
+              <div class="heading-bottom-cta">
+                <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}" title="${data.bottomSectionSubtitle}" aria-label="${data.bottomSectionSubtitle}">
+                  <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
+                </a>
+                <sly data-sly-test="${data.bottomSectionUrl == '#'}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
+                  <i class="icon icon-Chevron_Right d-md-none js-open-menu"></i>
+              </div>
+              <div class="bottom-teaser-list js-bottom-teaser-list">
+                  <ul class="row" data-sly-list.foodCategorySection=${data.foodCategorySection}>
+                      <li class="col d-md-none" data-sly-test="${foodCategorySectionList.first}">
+                          <div>
+                              <i class="icon icon-Chevron_Left d-md-none js-close-menu"></i>
+                              <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
+                          </div>
+                      </li>
+                      <li class="col">
+                          <a href="${foodCategorySection.path}">
+                            <sly data-sly-test = "${!wcmmode.edit}">
+                              <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                              data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=foodCategorySection.fileReference, altText=foodCategorySection.alt, componentName='megaMenuFoodCategorySection', className=''}" />
+                            </sly>
+                            <sly data-sly-test = "${wcmmode.edit}">
+                              <img class="d-none d-xl-block" src="${foodCategorySection.fileReference}" alt="${foodCategorySection.alt}" />
+                              <span class="img-title">${foodCategorySection.title}</span>
+                            </sly>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <div class="pw-megamenu__bottom-bar"></div>
+  </div>
+</sly>
