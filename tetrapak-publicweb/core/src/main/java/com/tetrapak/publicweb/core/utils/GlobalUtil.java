@@ -13,6 +13,8 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.AssetImportService;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
 
@@ -65,7 +67,7 @@ public final class GlobalUtil {
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
-        final String FORWARD_SLASH = "/";
+        final String FORWARD_SLASH = PWConstants.SLASH;
         damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
         damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
         damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
@@ -83,16 +85,74 @@ public final class GlobalUtil {
         ResourceResolver resourceResolver = null; 
         final Map<String, Object> paramMap = new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-        if (!paramMap.isEmpty()) {
-            try {
+        try {
                 resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
-                LOG.debug("resourceResolver for user {}", resourceResolver.getUserID());
             } catch (final LoginException e) {
                 LOG.error("Unable to fetch resourceResolver for subservice {} exception {}",
                         paramMap.get(ResourceResolverFactory.SUBSERVICE), e);
             }
-        }
         return resourceResolver;
     }
    	
+    /**
+     * Global function which provides DAM asset path for PXP integration
+     * 
+     * @param productId
+     * @param categoryId
+     * @param sourceurl
+     * @return
+     */
+	public static String getDAMPath(String productId, String categoryId, String sourceurl) {
+		String finalDAMPath = null;
+		AssetImportService assetImportService = getService(AssetImportService.class);
+		if(null != assetImportService) {
+			String assetType = getassetType(sourceurl,assetImportService);
+			String fileName = getFileName(sourceurl);
+
+			if (!StringUtils.isEmpty(assetType) && !StringUtils.isEmpty(categoryId) && !StringUtils.isEmpty(productId)
+					&& !StringUtils.isEmpty(fileName)) {
+				finalDAMPath = new StringBuffer(assetImportService.getDAMRootPath()).append(PWConstants.SLASH).append(categoryId).append(PWConstants.SLASH)
+						.append(productId).append(PWConstants.SLASH).append(assetType).append(PWConstants.SLASH).append(fileName).toString();
+			} else {
+				LOG.error(
+						"One of the mandatory input not provided for DAM path \n Asset Type {}  \nCategoryId  {} \nProductId {} \nfileName {}",
+						assetType, categoryId, productId, fileName);
+			}
+		}
+		return finalDAMPath;
+
+	}
+
+	/**Extract filename from given URL
+	 * 
+	 * @param fileURL
+	 * @return
+	 */
+	public static String getFileName(String fileURL) {
+		// extracts file name from URL
+		return fileURL.substring(fileURL.lastIndexOf('/') + 1, fileURL.length());
+	}
+
+	/**
+	 * Fetch Asset Type based on File extension depending on mapping
+	 * 
+	 * @param sourceurl
+	 * @return
+	 */
+	public static String getassetType(String sourceurl,AssetImportService assetImportService) {
+		String assetType = "";
+		String[] contentTypeMapping = assetImportService.getAssetTypeMapping();
+		String fileExtension = sourceurl.substring(sourceurl.lastIndexOf('.') + 1, sourceurl.length());
+		LOG.debug("fileExtension {}",fileExtension);
+		for (String mapping : contentTypeMapping) {
+			if (mapping.contains(fileExtension)) {
+				assetType = mapping.split("=")[0];
+				break;
+			}
+		}
+		LOG.debug("asset Type {}", assetType);
+		return assetType;
+	}
+    
+    
 }
