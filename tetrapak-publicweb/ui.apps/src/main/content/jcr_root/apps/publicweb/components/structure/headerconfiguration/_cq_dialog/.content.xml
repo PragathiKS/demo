@@ -78,6 +78,12 @@
                                 text="New Window"
                                 uncheckedValue="_self"
                                 value="_blank"/>
+                            <solutionpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Solution page path"
+                                name="./solutionPage"
+                                rootPath="/content/tetrapak/public-web"/>
                         </items>
                     </column>
                 </items>

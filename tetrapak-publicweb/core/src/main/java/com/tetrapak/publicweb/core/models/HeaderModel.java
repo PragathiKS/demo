@@ -62,6 +62,9 @@ public class HeaderModel {
     /** The login label. */
     private String loginLabel;
 
+    /** The solution page. */
+    private String solutionPage;
+
     /** The mega menu links list. */
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
@@ -90,6 +93,7 @@ public class HeaderModel {
                 contactText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = configurationModel.getLoginLink();
+                solutionPage = configurationModel.getSolutionPage();
             }
             setMegaMenuLinksList(rootPath);
         }
@@ -250,5 +254,14 @@ public class HeaderModel {
      */
     public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
         return megaMenuConfigurationModel;
+    }
+
+    /**
+     * Gets the solution page.
+     *
+     * @return the solution page
+     */
+    public String getSolutionPage() {
+        return solutionPage;
     }
 }

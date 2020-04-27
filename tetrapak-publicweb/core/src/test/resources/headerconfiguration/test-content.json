@@ -35,7 +35,8 @@
 					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
 					"contactLinkTarget": "_blank",
 					"logoLink": "/content/tetrapak/public-web/global/en",
-					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png"
+					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
+					"solutionPage": "/content/tetrapak/public-web/global/en/solutions"
 				}
 			}
 		}
