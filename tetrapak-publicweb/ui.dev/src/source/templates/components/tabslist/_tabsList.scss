@@ -3,31 +3,81 @@
     &--display-row {
         > .row {
             flex-direction: row;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
     &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
-    .leftPad {
-        @media #{$desktop} {
-            padding-left: 15px;
-        }
-    }
-    .rightPad {
-        @media #{$desktop} {
-            padding-right: 15px;
-        }
-    }
+    // .leftPad {
+    //     @media #{$desktop} {
+    //         padding-left: 15px;
+    //     }
+    // }
+    // .rightPad {
+    //     @media #{$desktop} {
+    //         padding-right: 15px;
+    //     }
+    // }
 
-    &__events {
+    // &__events {
+    //     padding: 0;
+    //     @media #{$desktop} {
+    //         @include padding-right($padding-l);
+    //         padding-left: 0;
+    //     }
+    // }
+
+    &__events-icright {
         padding: 0;
         @media #{$desktop} {
             @include padding-right($padding-l);
             padding-left: 0;
         }
+
+        div,
+        a {
+            @media #{$desktop} {
+                @include margin-right(-$margin-l);
+            }
+        }
+
+        // &__readmore {
+        //     div,
+        //     a {
+        //         margin: 0;
+        //         padding: $margin-l;
+        //     }
+        // }
+    }
+
+    &__events-icleft {
+        padding: 0;
+        @media #{$desktop} {
+            @include padding-left($padding-l);
+            padding-right: 0;
+        }
+
+        div {
+            @media #{$desktop} {
+                @include margin-left(-$margin-l);
+            }
+        }
+
+        // &__readmore {
+        //     border-bottom: 0;
+        //     div,
+        //     a {
+        //         margin: 0;
+        //         padding: $margin-l;
+        //     }
+        // }
     }
 
     &__events-sidesection {
@@ -60,29 +110,29 @@
         display: block;
         color: $color-congress-blue;
         background-color: transparent;
-        border-top: 1px solid $color-mercury;
-        // border-bottom: 1px solid $color-mercury;
+        // border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
         margin-top: -1px;
         position: relative;
         width: 100%;
         text-align: left;
         font-weight: 500;
+        &:last-child {
+            border-bottom: 0;
+        }
+        &:first-child {
+            border-top: 1px solid $color-mercury;
+        }
         div,
         a {
-            @include padding($padding-md $margin-l $margin-l $margin-l);
+            @include padding($padding-md $margin-l $padding-md $padding-md);
 
             @media #{$desktop} {
-                @include padding($padding-md $margin-l $padding-md $margin-l);
-                @include margin-right(-$margin-l);
+                @include padding($padding-md $margin-l $padding-md $padding-md);
+                // @include margin-right(-$margin-l);
             }
         }
-        &__readmore {
-            div,
-            a {
-                margin: 0;
-                padding: $margin-l;
-            }
-        }
+        
 
         &:first-of-type {
             @include margin-top(0);
@@ -115,8 +165,8 @@
                 }
             }
             @media #{$desktop} {
-                @include left($margin-sm);
-                right: unset;
+                // @include left(-$margin-md);
+                right: auto;
             }
         }
 
@@ -215,6 +265,40 @@
                     transform: rotate(-180deg);
                 }
             }
+        }
+    }
+
+    &__event-readmore-icleft {
+        a {
+            @include padding($padding-l $padding-md);
+            margin: 0;
+            @media #{$desktop} {
+                @include padding($padding-l $padding-xxxl);
+            }
+        }
+    }
+
+    &__event-readmore-icright {
+        a {
+            @include padding($padding-l $padding-md);
+            margin: 0;
+            @media #{$desktop} {
+                @include padding($padding-l $margin-md);
+            }
+        }
+    }
+
+    &__event-title-icleft {
+        @include margin-left(0);
+        @media #{$desktop} {
+            @include margin-left($margin-xl);
+        }
+    }
+
+    &__event-title-icright {
+        @include margin-right(0);
+        @media #{$desktop} {
+            @include margin-right($margin-l);
         }
     }
 

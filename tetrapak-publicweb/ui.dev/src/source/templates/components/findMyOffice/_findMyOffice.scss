@@ -1,0 +1,78 @@
+.google-api {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.pw-find-my-office {
+    &__map {
+        @include height(780px);
+    }
+    &__wrapper {
+        @include margin-left($margin-xxxl);
+        @include margin-right($margin-xxxl);
+        position: relative;
+    }
+    &__form-group {
+        @include padding($padding-xxxl);
+        background-color: $color-white;
+        position: absolute;
+        width: 395px;
+        top: $margin-xxxl;
+        left: $margin-xxxl;
+        z-index: $zindex-p;
+        h2 {
+            font-weight: 300;
+        }
+        &__label {
+            @include line-height(24px, 14px);
+            @include margin-bottom(0);
+            &.opacity {
+                opacity: $opacity-disabled;
+            }
+        }
+        &__field {
+            @include margin-top($margin-l);
+        }
+        .btn {
+            &:disabled {
+                opacity: $opacity-disabled;
+                cursor: auto;
+            }
+        }
+        &__city-field,
+        &__address {
+            &.hide {
+                display: none;
+            }
+        }
+    }
+
+    &__form-group__address {
+        &__office-name,
+        &__office-phone-number,
+        &__office-site {
+            @include margin-top($margin-l);
+        }
+        &__office-phone-number,
+        &__office-address,
+        &__office-site {
+            line-height: 24px;
+        }
+
+        &__office-address {
+            @include margin-top($margin-md);
+        }
+        &__office-phone-number {
+            &__label {
+                font-weight: 900;
+            }
+        }
+        &__office-name {
+            h4 {
+                line-height: 24px;
+                font-weight: 900;
+            }
+        }
+    }
+}

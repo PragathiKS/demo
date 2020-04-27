@@ -1,0 +1,43 @@
+<sly data-sly-template.findMyOffice_template="${@data, flag}">
+  <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
+    <div class="google-api js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
+      data-google-api-servlet="${data.servletPath}">${"goToLocalSite" @i18n}</div>
+    <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
+      <div data-link-section='Find my office' data-link-name=''
+        class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
+
+        <div class="pw-find-my-office__form-group">
+          <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+            data-sly-call="${title.heading_h2_template @ headingText=data.heading, variant='regular'}" />
+          <div class="pw-find-my-office__form-group__field"><label class="pw-find-my-office__form-group__label"
+              for="country">${"country" @i18n}</label>
+            <div class="pw-form__dropdown dropdown text-left">
+              <button
+                class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                type="button" aria-haspopup="true" aria-expanded="false">${"selectCountry" @i18n}</button>
+              <ul class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select">
+              </ul>
+            </div>
+          </div>
+          <div
+            class="pw-find-my-office__form-group__field pw-find-my-office__form-group__city-field js-pw-find-my-office__form-group__city-field">
+            <label class="pw-find-my-office__form-group__label js-pw-find-my-office__form-group__label"
+              for="country">${"office" @i18n}</label>
+            <div class="pw-form__dropdown dropdown text-left">
+              <button
+                class="btn dropdown-toggle js-pw-form__dropdown__city js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                type="button" aria-haspopup="true" aria-expanded="false">${"selectOffice" @i18n}</button>
+              <ul class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__city-select">
+              </ul>
+            </div>
+          </div>
+          <div class='pw-find-my-office__form-group__address js-pw-find-my-office__form-group__address'>
+            <div class="js-pw-find-my-office-office-details"></div>
+          </div>
+        </div>
+        <div class="pw-find-my-office__map js-pw-find-my-office__map"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</sly>

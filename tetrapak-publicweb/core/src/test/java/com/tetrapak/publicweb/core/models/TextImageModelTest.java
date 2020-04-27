@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -58,4 +59,9 @@ public class TextImageModelTest {
                 "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwDisplay" };
         Util.testLoadAndGetters(methods, model, resource);
     }
+    
+    @Test
+    public void testNotEmptyAssetName() {
+        assertEquals("Petrol.pdf", model.getAssetName());
+    } 
 }
