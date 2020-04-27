@@ -1,12 +1,12 @@
 <sly data-sly-template.megamenusolution_template="${@data, isMobile, flag}">
-  <div data-module="MegaMenuSolution" class="pw-megamenu">
+  <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
       <!--/* Component HTML code goes here */-->
       <hr class="d-none d-xl-block" />
       <nav>
           <div class="container-fluid pw-megamenu__top">
             <sly data-sly-test.isMobile="${!isMobile}">
               <div class="heading-d-link">
-                <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}" title="${data.topSectionSubtitle}">
+                <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}" title="${data.topSectionSubtitle}" aria-label="${data.topSectionSubtitle}">
                   <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
                 </a>
                 <sly data-sly-test="${data.topSectionUrl == '#'}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
@@ -44,7 +44,7 @@
           </div>
           <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
               <div class="heading-bottom-cta">
-                <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}" title="${data.bottomSectionSubtitle}">
+                <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}" title="${data.bottomSectionSubtitle}" aria-label="${data.bottomSectionSubtitle}">
                   <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
                 </a>
                 <sly data-sly-test="${data.bottomSectionUrl == '#'}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
@@ -66,7 +66,7 @@
                             </sly>
                             <sly data-sly-test = "${wcmmode.edit}">
                               <img class="d-none d-xl-block" src="${foodCategorySection.fileReference}" alt="${foodCategorySection.alt}" />
-                              ${foodCategorySection.title}
+                              <span class="img-title">${foodCategorySection.title}</span>
                             </sly>
                           </a>
                       </li>

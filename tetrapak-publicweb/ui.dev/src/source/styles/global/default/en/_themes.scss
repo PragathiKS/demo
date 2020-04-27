@@ -53,7 +53,7 @@ body {
         margin: 48px auto 0 auto;
     }
 }
-.pw-overlay{
+.pw-overlay {
     background-color:$color-black;
     opacity: 0.5;
     width: 100%;
@@ -61,4 +61,10 @@ body {
     position: absolute;
     top:90px;
     z-index: $zindex-s;
+}
+.pw-position-relative {
+    position: relative;
+}
+.pw-position-static {
+    position: static;
 }

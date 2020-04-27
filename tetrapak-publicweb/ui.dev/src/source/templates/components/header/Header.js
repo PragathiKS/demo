@@ -36,17 +36,17 @@ class Header {
 
   handleMouseOver = () => {
     const { $megaMenuDesktop, $parentNavElement, $overlay, $body } = this.cache;
-    $parentNavElement.css('position','static');
-    $megaMenuDesktop.css('display','block');
-    $body.css('position','relative');
+    $parentNavElement.addClass('pw-position-static');
+    $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
+    $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
   }
 
   handleMouseOut = () => {
     const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
-    $megaMenuDesktop.css('display','none');
-    $parentNavElement.css('position','relative');
-    $body.css('position','static');
+    $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
+    $parentNavElement.removeClass('pw-position-static');
+    $body.removeClass('pw-position-relative');
     $overlay.addClass('d-none');
   }
 

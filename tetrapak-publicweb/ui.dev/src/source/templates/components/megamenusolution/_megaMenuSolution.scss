@@ -239,16 +239,21 @@
                 text-align: center;
                 width: 90%;
                 i {
-                    @include margin-left($padding-md);
                     left: 0;
                     position: absolute;
                 }
+            }
+            .img-title {
+                @include margin-top($margin-xs);
+                @include padding-top($padding-xxs);
+                @include line-height($font-l, $font-baseline);
+                display: inline-block;
             }
         }
     }
     &__bottom-bar {
         border: 0;
-        height: 193px;
+        height: 202px;
         background-color: $color-wild-sand;
         position: absolute;
         width: 100%;
