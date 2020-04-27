@@ -94,19 +94,5 @@ public final class GlobalUtil {
         }
         return resourceResolver;
     }
-    
-    /**
-   	 * 
-   	 * @param fileName
-   	 * @return
-   	 */
-   	public static String validatingAssetName(String fileName) {
-   		String pattern = "[a-zA-Z0-9-_.]+";
-   		if (fileName.matches(pattern)) {
-   			return fileName;
-   		}
-   		LOG.error("Asset file name validation failed. Asset fileName {}",fileName);
-   		return "";
-   	}
    	
 }

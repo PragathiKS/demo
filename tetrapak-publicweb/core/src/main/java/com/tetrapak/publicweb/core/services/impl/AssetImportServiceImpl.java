@@ -57,7 +57,7 @@ public class AssetImportServiceImpl implements AssetImportService {
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				String contentType = httpConn.getContentType();
 				InputStream is = httpConn.getInputStream();
-				assetDetail.setFileName(GlobalUtil.validatingAssetName(getFileName(sourceurl)));
+				assetDetail.setFileName(getFileName(sourceurl));
 				assetDetail.setContentType(contentType);
 				assetDetail.setIs(is);
 				
