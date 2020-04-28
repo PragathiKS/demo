@@ -42,23 +42,32 @@ public class ProductAssetsImportJob implements JobConsumer {
 	public JobResult process(final Job job) {
 
 		Session session = null;
-		setResourceResolver();
-		if (resourceResolver != null) {
-			session = resourceResolver.adaptTo(Session.class);
-			if (null != session) {
-				String sourceurl = job.getProperty("sourceurl").toString();
-				String finalDAMPath = job.getProperty("finalDAMPath").toString();
-				LOGGER.debug("final DAMPath {}", finalDAMPath);
-
-				// fetch the Asset binary from given URL
-				AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
-
-				if (null != assetDetail) {
-					// upload the assets in AEM DAM
-					return createAsset(finalDAMPath, assetDetail, session);
-				}
-			}
-		}
+		try {
+    		setResourceResolver();
+    		if (resourceResolver != null) {
+    			session = resourceResolver.adaptTo(Session.class);
+    			if (null != session) {
+    				String sourceurl = job.getProperty("sourceurl").toString();
+    				String finalDAMPath = job.getProperty("finalDAMPath").toString();
+    				LOGGER.debug("final DAMPath {}", finalDAMPath);
+    
+    				// fetch the Asset binary from given URL
+    				AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
+    
+    				if (null != assetDetail) {
+    					// upload the assets in AEM DAM
+    					return createAsset(finalDAMPath, assetDetail, session);
+    				}
+    			}
+    		}
+    	} finally {
+            if (resourceResolver.isLive()) {
+                resourceResolver.close();
+            }
+            if (session != null && session.isLive()) {
+                session.logout();
+            }
+        }
 		return JobResult.FAILED;
 	}
 
