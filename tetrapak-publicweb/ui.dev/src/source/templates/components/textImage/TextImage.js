@@ -34,11 +34,11 @@ class TextImage {
     const imageTitle = $this.data('image-title');
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${imageTitle}`;
+      linkParentTitle = `CTA_Download_pdf_${imageTitle}`;
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text Hyperlink-Download-pdf_${imageTitle}`;
+      linkParentTitle = `Text Hyperlink_Download_pdf_${imageTitle}`;
     }
    
     if(downloadtype ==='download'){

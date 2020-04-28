@@ -27,42 +27,24 @@ class TextVideo {
     let linkParentTitle = '';
     let trackingObj = {};
     const dwnType = 'ungated';
-    let eventType = 'content-load';
-    const linkType = $this.data('link-type');
+    const eventType = 'download';
+    const linkType = $this.attr('target') === '_blank'?'external':'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
-    const videoName = $this.data('video-name');
+    const videoTitle = $this.data('video-title');
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
 
-    if(buttonLinkType==='secondary' && downloadtype ==='hyperlink'){
-      linkParentTitle = `CTA-Hyperlink_${videoName}`;
-    }
-
-    if(buttonLinkType==='link' && downloadtype ==='hyperlink'){
-      linkParentTitle = `Text hyperlink_${videoName}`;
-    }
-
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${videoName}`;
-      eventType = 'download';
+      linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink - Download-pdf_${videoName}`;
-      eventType = 'download';
+      linkParentTitle = `Text hyperlink_Download_pdf_${videoTitle}`;
     }
 
-    if(downloadtype !=='download'){
-      trackingObj = {
-        linkType,
-        linkSection,
-        linkParentTitle,
-        linkName,
-        eventType
-      };
-    }else{
+    if(downloadtype ==='download'){
       trackingObj = {
         linkType,
         linkSection,
@@ -72,9 +54,13 @@ class TextVideo {
         dwnType,
         eventType
       };
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    trackAnalytics(trackingObj, 'linkClick', 'TextVideoClick', undefined, false);
+    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
+      window._satellite.track('linkClick');
+    }
+
     window.open($this.attr('href'), $this.attr('target'));
   }
 

@@ -11,7 +11,7 @@
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
-            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+            <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}" data-link-name="${tab.title}" data-link-section="Tab Click_list_${data.heading}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                 <div><p class="pw-tablist__event-title-icright semi-bold">${tab.title}</p></div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
@@ -81,12 +81,9 @@
                   <h3 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">${tab.title}</h3>
                   <sly data-sly-test = "${tab.description}"><div class="pw-tablist__event-detail-description">${tab.description}</div></sly>
                     <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-                      <!-- <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
-                            data-sly-call="${btnLink.button_template @btnPath=tab.linkURL, btnText=tab.linkText ,btnTarget=tab.targetBlank, variant=variant, customClasses='pw-tablist__event-detail-description-link js-tablist__event-detail-description-link'}" /> -->
-
-                            <!-- <sly data-sly-template.button_template="${@ btnPath, btnText, btnTooltip, btnTarget, flag, variant, customClasses, customData}"> -->
+        
                                 <sly data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}"/>
-                                <sly data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA Hyperlink' : '_Text Hyperlink'}"/>
+                                <sly data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}"/>
                                 <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}"/>
                                 <sly data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}"/>
                                 
@@ -123,7 +120,7 @@
                                  href="${data.readMorePath}"
                                  class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                                  target="${data.readMoreTarget}"
-                                 data-link-section="Tab Click Text Hyperlink${buttonDownloadReadMore}"
+                                 data-link-section="Tab Click_Text Hyperlink${buttonDownloadReadMore}"
                                  data-link-name="${data.readMoreText}"
                                  data-download-type="${data.pwLinkTheme}"
                                  data-button-link-type="link"
