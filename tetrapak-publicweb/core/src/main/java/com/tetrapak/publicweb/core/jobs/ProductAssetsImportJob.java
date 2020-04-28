@@ -35,39 +35,29 @@ public class ProductAssetsImportJob implements JobConsumer {
 	@Reference
 	private AssetImportService assetimportservice;
 
-	private ResourceResolver resourceResolver;
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductAssetsImportJob.class);
 
 	public JobResult process(final Job job) {
 
 		Session session = null;
-		try {
-    		setResourceResolver();
-    		if (resourceResolver != null) {
-    			session = resourceResolver.adaptTo(Session.class);
-    			if (null != session) {
-    				String sourceurl = job.getProperty("sourceurl").toString();
-    				String finalDAMPath = job.getProperty("finalDAMPath").toString();
-    				LOGGER.debug("final DAMPath {}", finalDAMPath);
-    
-    				// fetch the Asset binary from given URL
-    				AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
-    
-    				if (null != assetDetail) {
-    					// upload the assets in AEM DAM
-    					return createAsset(finalDAMPath, assetDetail, session);
-    				}
-    			}
-    		}
-    	} finally {
-            if (resourceResolver != null && resourceResolver.isLive()) {
-                resourceResolver.close();
-            }
-            if (session != null && session.isLive()) {
-                session.logout();
-            }
-        }
+		try(ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)){
+			if (resourceResolver != null) {
+				session = resourceResolver.adaptTo(Session.class);
+				if (null != session) {
+					String sourceurl = job.getProperty("sourceurl").toString();
+					String finalDAMPath = job.getProperty("finalDAMPath").toString();
+					LOGGER.debug("final DAMPath {}", finalDAMPath);
+					// fetch the Asset binary from given URL
+					AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
+
+					if (null != assetDetail) {
+						// upload the assets in AEM DAM
+						return createAsset(finalDAMPath, assetDetail, session, resourceResolver);
+					}
+				}
+			}	
+		}
+		
 		return JobResult.FAILED;
 	}
 
@@ -76,9 +66,10 @@ public class ProductAssetsImportJob implements JobConsumer {
 	 * @param finalDAMPath
 	 * @param assetDetail
 	 * @param session
+	 * @param resourceResolver 
 	 * @return
 	 */
-	private JobResult createAsset(String finalDAMPath, AssetDetail assetDetail, Session session) {
+	private JobResult createAsset(String finalDAMPath, AssetDetail assetDetail, Session session, ResourceResolver resourceResolver) {
 		LOGGER.debug("Inside creatin assets {}", finalDAMPath);
 		Resource resource = resourceResolver.getResource(finalDAMPath);
 		if (resource == null) {
@@ -113,13 +104,6 @@ public class ProductAssetsImportJob implements JobConsumer {
 			LOGGER.error("Exception while replicating asset {}", e);
 			return JobResult.FAILED;
 		}
-	}
-
-	/**
-	 * Sets the resource resolver.
-	 */
-	private void setResourceResolver() {
-		this.resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
 	}
 
 	/**
