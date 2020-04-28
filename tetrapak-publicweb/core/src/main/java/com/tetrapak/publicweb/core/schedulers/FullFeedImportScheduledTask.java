@@ -240,6 +240,7 @@ public class FullFeedImportScheduledTask implements Runnable {
         refreshTokenTime = config.schedulerRefreshTokenTime();
         videoTypes = config.videoTypes();
         damRootPath = config.damRootPath();
+        addScheduler(config);
     }
 
     /**
