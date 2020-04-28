@@ -16,9 +16,7 @@ class Analyticsglobaltagspw {
 
     if(window.digitalData.error && window.digitalData.error.errorcode) {
       const oldPageName = window.digitalData.pageinfo.pageName;
-      window.digitalData.pageinfo={
-        pageName: `${oldPageName}:${document.location.pathname}`
-      };
+      window.digitalData.pageinfo.pageName = `${oldPageName}:${document.location.pathname}`;
     }
 
     if(!storageUtil.get('gdprCookie')) {
