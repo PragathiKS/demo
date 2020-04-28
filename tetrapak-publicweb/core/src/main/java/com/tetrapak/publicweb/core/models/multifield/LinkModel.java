@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -20,6 +21,12 @@ public class LinkModel {
     /** The Link url. */
     @ValueMapValue
     private String linkUrl;
+
+    /** The asset name. */
+    private String assetName;
+
+    /** The Constant FORWARD_SLASH. */
+    private static final String FORWARD_SLASH = "/";
 
     /**
      * Gets the link label.
@@ -57,6 +64,19 @@ public class LinkModel {
      */
     public void setLinkUrl(String linkUrl) {
         this.linkUrl = linkUrl;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+        assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotEmpty(linkUrl)) {
+            assetName = StringUtils.substringAfterLast(linkUrl, FORWARD_SLASH);
+        }
+        return assetName;
     }
 
 }
