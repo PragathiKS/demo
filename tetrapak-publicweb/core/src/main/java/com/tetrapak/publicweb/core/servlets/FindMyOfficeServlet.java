@@ -55,13 +55,13 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
         Map<String, CountryBean> fullMap = new LinkedHashMap<>();
         fullMap.putAll(findMyOfficeService.getCorporateOfficeList());
         fullMap.putAll(treeMap);
-        ObjectMapper mapper = new ObjectMapper();      
+        ObjectMapper mapper = new ObjectMapper();
         try {
             resp.setContentType("text/html; charset=UTF-8");
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(mapper.writeValueAsString(fullMap));
         } catch (IOException ioException) {
-            LOGGER.error("ioException :{}", ioException);
+            LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
         }
     }
 }
