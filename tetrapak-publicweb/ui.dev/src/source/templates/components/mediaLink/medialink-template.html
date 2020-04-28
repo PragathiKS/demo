@@ -1,0 +1,60 @@
+<sly data-sly-template.medialink_template="${@data, flag}">
+    <div class="pw-container" id="${data.anchorId}" title="${data.anchorTitle}">
+        <div class="medialink" data-module="MediaLink">
+            <div data-sly-test="${data.heading}" class="medialink__heading">
+                <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                    data-sly-call="${heading.heading_h2_template @ headingText=data.heading, variant='regular'}" />
+            </div>
+            <div data-sly-test="${data.columnOneTitle && data.columnTwoTitle && data.columnThreeTitle}"
+                class="medialink__subheadingwrap">
+                <div data-sly-test="${data.columnOneTitle}" class="row medialink__subheadingRow">
+                    <div class="col-md-4 medialink__subheading">
+                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
+                    </div>
+                    <div data-sly-test="${data.columnTwoTitle}" class="col-md-4 medialink__subheading">
+                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
+                    </div>
+                    <div data-sly-test="${data.columnThreeTitle}" class="col-md-4 medialink__subheading">
+                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
+                    </div>
+                </div>
+            </div>
+            <div data-sly-test="${data.columnOneList && data.columnTwoList && data.columnThreeList}"
+                class="medialink__subheadingwrap">
+                <div data-sly-test="${data.columnOneList.length}" class="row medialink__linkListRow">
+                    <div class="${data.columnThreeList && data.columnThreeList.length  ? 'col-md-4' : 'col-md-6' } medialink__linklist" data-sly-list.child="${data.columnOneList}">
+                        <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                            title="${child.linkLabel}" 
+                            data-link-name="${child.linkLabel}">
+                            <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
+                            <i class="icon icon-Circle_Arrow_Right"></i>
+                        
+                        </a>
+                    </div>
+                    <div class="${data.columnThreeList && data.columnThreeList.length  ? 'col-md-4' : 'col-md-6' } medialink__linklist" data-sly-list.child="${data.columnTwoList}">
+                        <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                            title="${child.linkLabel}" 
+                            data-link-name="${child.linkLabel}">
+                            <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
+                            <i class="icon icon-Circle_Arrow_Right"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-4 medialink__linklist" data-sly-list.child="${data.columnThreeList}">
+                        <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                            title="${child.linkLabel}" 
+                            data-link-name="${child.linkLabel}">
+                            <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
+                            <i class="icon icon-Circle_Arrow_Right medialink__icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>
