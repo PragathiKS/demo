@@ -15,6 +15,7 @@ class Header {
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
     this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$headerMobile = this.root.find('.tp-pw-header__container');
     this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
     this.cache.$megaMenuMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenu');
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
@@ -53,6 +54,7 @@ class Header {
   handleMenuClick = () => {
     const { $megaMenuMobile } = this.cache;
     $megaMenuMobile.css('display','block').addClass('is-open');
+    this.cache.$headerMobile.addClass('d-none');
   }
 
   hideMobileMenuOnResize = () => {

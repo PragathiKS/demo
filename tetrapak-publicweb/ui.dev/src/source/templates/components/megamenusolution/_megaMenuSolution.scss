@@ -48,8 +48,10 @@
             border-bottom: 0;
         }
         &:last-child {
-            @include padding(0);
-            border-bottom: 0;
+            @media #{$desktop} {
+                @include padding(0);
+                border-bottom: 0;
+            }
         }
     }
     .heading-cta {
@@ -110,6 +112,8 @@
     }
 
     .col-side-links {
+        @include padding(0);
+        border: 0;
         @media #{$desktop} {
             border-left: 1px solid $color-mercury;
         }
@@ -184,6 +188,12 @@
         .col {
             @include margin(0);
             @include padding($padding-md);
+            a {
+                color: $color-congress-blue;
+                @media #{$desktop} {
+                    color: $color-tundora;
+                }
+             }
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
@@ -203,13 +213,13 @@
         .bottom-teaser-list {
             @include padding(0 $padding-md);
             visibility: hidden;
-            top: 0;
+            top: 80px;
             left: 100%;
             width: 100%;
             height: 100%;
             position: absolute;
             overflow: auto;
-            background: $color-wild-sand;
+            background: $color-white;
             z-index: 11;
             @media #{$desktop} {
                 display: flex;
@@ -219,6 +229,7 @@
                 width: auto;
                 top: auto;
                 justify-content: center;
+                background: $color-wild-sand;
             }
 
             &.active {
@@ -238,6 +249,7 @@
                 border-bottom: 0;
                 text-align: center;
                 width: 90%;
+                color: $color-tundora;
                 i {
                     left: 0;
                     position: absolute;
