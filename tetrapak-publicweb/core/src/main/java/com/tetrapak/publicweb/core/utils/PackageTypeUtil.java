@@ -97,7 +97,7 @@ public class PackageTypeUtil extends ProductUtil {
                 if (shape != null) {
                     shapesProperties.remove(PWConstants.ID);
                     shapesProperties.put(PWConstants.NAME, shape.getName());
-                    shapesProperties.put(PWConstants.HEADER, processAndGetPXPAssetDAMPath(resolver, damRootPath,
+                    shapesProperties.put(PWConstants.THUMBNAIL, processAndGetPXPAssetDAMPath(resolver, damRootPath,
                             shape.getThumbnail(), productType, productID, videoTypes));
                     if (shape.getVolumes() != null && !shape.getVolumes().isEmpty()) {
                         shapesProperties.put("volumes",

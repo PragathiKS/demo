@@ -54,18 +54,17 @@ public class ProductServiceImpl implements ProductService {
             List<FillingMachine> fillingMachines, String language, String damRootPath, String videoTypes) {
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
-            saveSession(session);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
                     if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
                         FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType, productTypeResPath,
                                 fillingMachine, language, damRootPath, videoTypes);
-                        saveSession(session);
+                       
                     }
                 }
             }
-
+            saveSession(session);
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating filling machine", e);
         }
@@ -85,17 +84,16 @@ public class ProductServiceImpl implements ProductService {
             List<Packagetype> packageTypes, String language, String damRootPath, String videoTypes) {
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
-            saveSession(session);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 if (packageTypes != null) {
                     for (Packagetype packageType : packageTypes) {
                         PackageTypeUtil.createOrUpdatePackageType(resolver, productType, productTypeResPath,
                                 packageType, language, damRootPath, videoTypes);
-                        saveSession(session);
                     }
                 }
             }
+            saveSession(session);
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating package type", e);
 
@@ -116,18 +114,17 @@ public class ProductServiceImpl implements ProductService {
             List<ProcessingEquipement> equipments, String language, String damRootPath, String videoTypes) {
         try {
             Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
-            saveSession(session);
             if (equipementResource != null) {
                 String equipementResourcePath = equipementResource.getPath();
                 if (equipments != null && !equipments.isEmpty()) {
                     for (ProcessingEquipement equipment : equipments) {
                         ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, productType,
-                                equipementResourcePath, equipment, language, damRootPath, videoTypes);
-                        saveSession(session);
+                                equipementResourcePath, equipment, language, damRootPath, videoTypes);                       
                     }
                 }
 
             }
+            saveSession(session);
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating product node", e);
 

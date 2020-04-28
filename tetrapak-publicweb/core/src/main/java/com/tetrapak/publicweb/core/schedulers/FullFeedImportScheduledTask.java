@@ -42,7 +42,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  *
  */
 @Designate(ocd = PXPConfig.class)
-@Component(service = Runnable.class)
+@Component(immediate = true,service = FullFeedImportScheduledTask.class)
 public class FullFeedImportScheduledTask implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
@@ -267,7 +267,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      * Add a scheduler based on the scheduler ID
      */
     private void addScheduler(PXPConfig config) {
-        if (config.fullFeedSchedulerDisable()) {
+        if (!config.fullFeedSchedulerDisable()) {
             ScheduleOptions sopts = scheduler.EXPR(config.fullFeedSchedulerExpression());
             sopts.name(String.valueOf(schedulerID));
             sopts.canRunConcurrently(false);
