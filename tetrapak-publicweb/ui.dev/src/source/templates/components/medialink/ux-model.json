@@ -1,0 +1,39 @@
+{
+    "heading":"Heading",
+    "anchorId": "anchor01",
+    "anchorTitle": "Anchor Title",
+    "pwTheme": "grayscale-white",
+    "columnOneTitle": "Title One",
+    "columnTwoTitle":"Title Two",
+    "columnThreeTitle": "Title Three",
+    "columnOneList": [
+        {
+          "linkLabel": "Solutions Solutions Solutions Solutions Solutions ",
+          "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html"
+        },
+        {
+          "linkLabel": "Home Home Home Home Home Home Home Home ",
+          "linkUrl": "/content/tetrapak/public-web/global/en/home.html"
+        }
+      ],
+      "columnTwoList": [
+        {
+          "linkLabel": "Solutions",
+          "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html"
+        },
+        {
+          "linkLabel": "Home",
+          "linkUrl": "/content/tetrapak/public-web/global/en/home.html"
+        }
+      ],
+      "columnThreeList": [
+        {
+          "linkLabel": "Solutions",
+          "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html"
+        },
+        {
+          "linkLabel": "Home",
+          "linkUrl": "/content/tetrapak/public-web/global/en/home.html"
+        }
+      ]
+    }

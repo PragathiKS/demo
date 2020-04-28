@@ -153,7 +153,8 @@
         "source/templates/components/teaser/",
         "source/templates/components/anchor/",
         "source/templates/components/megamenusolution/",
-        "source/templates/components/findMyOffice/"
+        "source/templates/components/findMyOffice/",
+        "source/templates/components/medialink/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
