@@ -18,7 +18,7 @@
         background-color: $color-white;
         position: static;
         width: 100%;
-        header {
+        h2 {
             @include line-height(32px, $font-l);
             font-weight: 300;
             font-size: $font-l;
@@ -92,9 +92,6 @@
             top: $margin-xxxl;
             left: $margin-xxxl;
             z-index: $zindex-p;
-            .country-field {
-                @include margin-top($margin-l);
-            }
         }
         &__form-group__address {
             &__office-name {
@@ -105,7 +102,7 @@
                 }
             }
         }
-        header {
+        h2 {
             @include line-height(40px, $font-xl);
             font-size: $font-xl;
         }
