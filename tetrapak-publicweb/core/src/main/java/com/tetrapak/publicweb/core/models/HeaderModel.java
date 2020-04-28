@@ -62,8 +62,14 @@ public class HeaderModel {
     /** The login label. */
     private String loginLabel;
 
+    /** The solution page. */
+    private String solutionPage;
+
     /** The mega menu links list. */
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
+
+    /** The mega menu configuration model. */
+    private MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
 
     /**
      * Inits the.
@@ -87,8 +93,22 @@ public class HeaderModel {
                 contactText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = configurationModel.getLoginLink();
+                solutionPage = configurationModel.getSolutionPage();
             }
             setMegaMenuLinksList(rootPath);
+        }
+        populateMegaMenuConfigurationModel();
+    }
+
+    /**
+     * Populate mega menu configuration model.
+     */
+    private void populateMegaMenuConfigurationModel() {
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
+        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
+        if (Objects.nonNull(megaMenuConfigResource)) {
+            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
         }
     }
 
@@ -227,4 +247,21 @@ public class HeaderModel {
         return new ArrayList<>(megaMenuLinksList);
     }
 
+    /**
+     * Gets the mega menu configuration model.
+     *
+     * @return the mega menu configuration model
+     */
+    public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
+        return megaMenuConfigurationModel;
+    }
+
+    /**
+     * Gets the solution page.
+     *
+     * @return the solution page
+     */
+    public String getSolutionPage() {
+        return solutionPage;
+    }
 }

@@ -13,6 +13,14 @@ class Header {
     this.cache.$mobileMenu = this.root.find('.js-tp-pw-mobile-navigation');
     this.cache.$hamburgerToggle = this.root.find('.js-tp-pw-header__hamburger');
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
+    this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
+    this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
+    this.cache.$megaMenuMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenu');
+    this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
+    this.cache.$overlay = $('.js-pw-overlay');
+    this.cache.$body = $('body');
+
   }
 
   bindEvents() {
@@ -20,6 +28,31 @@ class Header {
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
+    this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
+    this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
+    this.cache.$clickMenuLink.on('click', this.handleMenuClick);
+
+  }
+
+  handleMouseOver = () => {
+    const { $megaMenuDesktop, $parentNavElement, $overlay, $body } = this.cache;
+    $parentNavElement.addClass('pw-position-static');
+    $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
+    $body.addClass('pw-position-relative');
+    $overlay.removeClass('d-none');
+  }
+
+  handleMouseOut = () => {
+    const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
+    $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
+    $parentNavElement.removeClass('pw-position-static');
+    $body.removeClass('pw-position-relative');
+    $overlay.addClass('d-none');
+  }
+
+  handleMenuClick = () => {
+    const { $megaMenuMobile } = this.cache;
+    $megaMenuMobile.css('display','block').addClass('is-open');
   }
 
   hideMobileMenuOnResize = () => {
@@ -49,7 +82,7 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
-    
+
     if(targetLink === '_blank'){
       window._satellite.track('linkClick');
     }

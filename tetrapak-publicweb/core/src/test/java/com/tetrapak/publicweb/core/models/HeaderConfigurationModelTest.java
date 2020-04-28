@@ -55,7 +55,7 @@ public class HeaderConfigurationModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         String[] methods = new String[] { "getLogoLink", "getLogoLinkTarget", "getLogoAlt", "getLoginLink",
-                "getLoginLabel", "getContactLink", "getContactText", "getContactLinkTarget" };
+                "getLoginLabel", "getContactLink", "getContactText", "getContactLinkTarget", "getSolutionPage" };
         Util.testLoadAndGetters(methods, model, resource);
     }
 }
