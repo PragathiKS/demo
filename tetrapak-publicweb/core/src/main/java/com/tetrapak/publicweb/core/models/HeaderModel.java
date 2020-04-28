@@ -11,12 +11,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
@@ -71,6 +73,9 @@ public class HeaderModel {
     /** The mega menu configuration model. */
     private MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
 
+    /** The solution page title. */
+    private String solutionPageTitle;
+
     /**
      * Inits the.
      */
@@ -96,6 +101,7 @@ public class HeaderModel {
                 solutionPage = configurationModel.getSolutionPage();
             }
             setMegaMenuLinksList(rootPath);
+            setSolutionPageTitle();
         }
         populateMegaMenuConfigurationModel();
     }
@@ -263,5 +269,28 @@ public class HeaderModel {
      */
     public String getSolutionPage() {
         return solutionPage;
+    }
+
+    /**
+     * Gets the solution page title.
+     *
+     * @return the solution page title
+     */
+    public String getSolutionPageTitle() {
+        return solutionPageTitle;
+    }
+
+    /**
+     * Sets the solution page title.
+     *
+     * @param headerConfigurationResource the new solution page title
+     */
+    private void setSolutionPageTitle() {
+        final String solutionPageJcrContentPath = StringUtils.substringBefore(solutionPage, ".") + "/jcr:content";
+        final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
+        if (Objects.nonNull(solutionPageResource)) {
+            final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
+            solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
+        }
     }
 }
