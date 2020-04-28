@@ -1,0 +1,6 @@
+.icon {
+    &--link {
+        @include margin-left($margin-xs);
+        vertical-align: middle;
+    }
+}

@@ -6,6 +6,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
@@ -54,6 +55,10 @@ public class HeaderConfigurationModel {
     /** The contact link target. */
     @Inject
     private String contactLinkTarget;
+
+    /** The solution page. */
+    @ValueMapValue
+    private String solutionPage;
 
     /**
      * Gets the logo image path.
@@ -136,4 +141,12 @@ public class HeaderConfigurationModel {
         return contactLinkTarget;
     }
 
+    /**
+     * Gets the solution page.
+     *
+     * @return the solution page
+     */
+    public String getSolutionPage() {
+        return LinkUtils.sanitizeLink(solutionPage);
+    }
 }
