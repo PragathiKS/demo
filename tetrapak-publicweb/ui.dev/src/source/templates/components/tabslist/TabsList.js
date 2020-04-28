@@ -72,12 +72,12 @@ class TabsList {
     const tabTitle = $this.data('tab-title');
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA-Download-pdf_${tabTitle}`;
+      linkParentTitle = `CTA_Download_pdf_${tabTitle}`;
       eventType = 'download';
     }
 
     if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink - Download-pdf_${tabTitle}`;
+      linkParentTitle = `Text hyperlink_Download_pdf_${tabTitle}`;
       eventType = 'download';
     }
 
