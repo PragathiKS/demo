@@ -71,16 +71,28 @@ public class ProcessingEquipementUtil extends ProductUtil {
             properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
             Resource categoriesRes = ResourceUtil.createOrUpdateResource(resolver, rootPath, "categories", properties);
             if (categoriesRes != null) {
-                int i = 1;
-                for (Category category : categories) {
-                    if (category != null) {
-                        properties.put(PWConstants.ID, category.getId());
-                        properties.put(PWConstants.NAME, category.getName());
-                        ResourceUtil.createOrUpdateResource(resolver, categoriesRes.getPath(), String.valueOf(i),
-                                properties);
-                        i++;
-                    }
-                }
+
+                processCategory(resolver, categoriesRes, categories, properties);
+            }
+        }
+    }
+
+    /**
+     * @param resolver
+     * @param categoriesRes
+     * @param categories
+     * @param properties
+     * @throws PersistenceException
+     */
+    private static void processCategory(ResourceResolver resolver, Resource categoriesRes, List<Category> categories,
+            final Map<String, Object> properties) throws PersistenceException {
+        int i = 1;
+        for (Category category : categories) {
+            if (category != null) {
+                properties.put(PWConstants.ID, category.getId());
+                properties.put(PWConstants.NAME, category.getName());
+                ResourceUtil.createOrUpdateResource(resolver, categoriesRes.getPath(), String.valueOf(i), properties);
+                i++;
             }
         }
     }

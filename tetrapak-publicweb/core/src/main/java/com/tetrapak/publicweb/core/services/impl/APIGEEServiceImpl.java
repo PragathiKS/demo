@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.services.impl;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -58,8 +59,6 @@ public class APIGEEServiceImpl implements APIGEEService {
     
     /** The success. */
     private static final int SUCESSS = 200;
-    
-    ObjectMapper mapper; 
 
     /**
      * activate method
@@ -79,7 +78,7 @@ public class APIGEEServiceImpl implements APIGEEService {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         BearerToken bearerToken = new BearerToken();
         String authString = config.apigeeClientID() + ":" + config.apigeeClientSecret();
-        String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
+        String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
         String jsonResponse = getAPIGeePostRespose("Basic", TOKEN_API_URI, encodedAuthString);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {

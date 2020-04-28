@@ -23,14 +23,14 @@ import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
  * @author Nitin Kumar
  */
 public final class GlobalUtil {
+    
+    private static final Logger LOG =  LoggerFactory.getLogger(GlobalUtil.class);
 
     private GlobalUtil() {
         /*
             adding a private constructor to hide the implicit one
          */
     }
-    
-    private static final Logger LOG =  LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
      * Method to get service
@@ -84,15 +84,15 @@ public final class GlobalUtil {
      * @return sling resource resolver
      */
     public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) {
-        ResourceResolver resourceResolver = null; 
+        ResourceResolver resourceResolver = null;
         final Map<String, Object> paramMap = new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
         try {
-                resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
-            } catch (final LoginException e) {
-                LOG.error("Unable to fetch resourceResolver for subservice {} exception {}",
-                        paramMap.get(ResourceResolverFactory.SUBSERVICE), e);
-            }
+            resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
+        } catch (final LoginException e) {
+            LOG.error("Unable to fetch resourceResolver for subservice {} exception {}",
+                    paramMap.get(ResourceResolverFactory.SUBSERVICE), e.getMessage(), e);
+        }
         return resourceResolver;
     }
    	

@@ -53,7 +53,7 @@ public final class FillingMachineUtil extends ProductUtil {
                 Resource packageRootRes = ResourceUtil.createOrUpdateResource(resolver, languageRes.getPath(),
                         "packagetypes", propertiesPackageType);
                 if (packageRootRes != null) {
-                    createOrUpdatePackageTypesReferences(resolver, productType, packageRootRes.getPath(),
+                    createOrUpdatePackageTypesReferences(resolver, packageRootRes.getPath(),
                             fillingMachine.getPackagetypes(), damRootPath, videoTypes);
                 }
             }
@@ -65,30 +65,42 @@ public final class FillingMachineUtil extends ProductUtil {
      * @param resolver
      * @param productType
      * @param rootPath
-     * @param packageTypes
      * @param damRootPath
      * @param videoTypes
      * @throws PersistenceException
      */
-    public static void createOrUpdatePackageTypesReferences(ResourceResolver resolver, String productType,
-            String rootPath, List<Packagetype> packageTypes, String damRootPath, String videoTypes)
+    public static void createOrUpdatePackageTypesReferences(ResourceResolver resolver, String rootPath,
+            List<Packagetype> packageTypes, String damRootPath, String videoTypes)
             throws PersistenceException {
-        if (packageTypes != null) {
-            Map<String, Object> properties = new HashMap<>();
-            properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+        if (packageTypes != null) {           
             for (Packagetype packageType : packageTypes) {
-                if (packageType != null) {
-                    properties.put(PWConstants.ID, packageType.getId());
-                    properties.put(PWConstants.NAME, packageType.getName());
-                    Resource packageTypeRes = ResourceUtil.createOrUpdateResource(resolver, rootPath,
-                            packageType.getId(), properties);
-                    if (packageTypeRes != null && packageType.getShapes() != null
-                            && !packageType.getShapes().isEmpty()) {
-                        PackageTypeUtil.createOrUpdateShapes(resolver, "packagetypes", packageType.getId(), packageTypeRes,
-                                packageType, damRootPath, videoTypes);
+                processPackageTypeReference(resolver, rootPath, packageType, damRootPath, videoTypes);
+            }
+        }
+    }
+    
+    /**
+     * @param resolver
+     * @param rootPath
+     * @param packageType
+     * @param damRootPath
+     * @param videoTypes
+     * @throws PersistenceException
+     */
+    private static void processPackageTypeReference(ResourceResolver resolver, String rootPath,
+            Packagetype packageType, String damRootPath, String videoTypes) throws PersistenceException {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+        if (packageType != null) {
+            properties.put(PWConstants.ID, packageType.getId());
+            properties.put(PWConstants.NAME, packageType.getName());
+            Resource packageTypeRes = ResourceUtil.createOrUpdateResource(resolver, rootPath,
+                    packageType.getId(), properties);
+            if (packageTypeRes != null && packageType.getShapes() != null
+                    && !packageType.getShapes().isEmpty()) {
+                PackageTypeUtil.createOrUpdateShapes(resolver, "packagetypes", packageType.getId(), packageTypeRes,
+                        packageType, damRootPath, videoTypes);
 
-                    }
-                }
             }
         }
     }

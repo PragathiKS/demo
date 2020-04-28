@@ -49,15 +49,15 @@ public class FullFeedImportScheduledTask implements Runnable {
 
     /** The apiGEE service. */
     @Reference
-    APIGEEService apiGEEService;
+    private APIGEEService apiGEEService;
 
     /** The product service. */
     @Reference
-    ProductService productService;
+    private ProductService productService;
 
     /** The replicator. */
     @Reference
-    Replicator replicator;
+    private Replicator replicator;
 
     /** The resolverFactory. */
     @Reference
@@ -65,7 +65,7 @@ public class FullFeedImportScheduledTask implements Runnable {
 
     /** The scheduler. */
     @Reference
-    Scheduler scheduler;
+    private Scheduler scheduler;
 
     /** The resolver. */
     private ResourceResolver resolver;
@@ -110,14 +110,7 @@ public class FullFeedImportScheduledTask implements Runnable {
         timer = new Timer();
         try {
             setBearerToken();
-            if (bearerToken != null && StringUtils.isNotBlank(bearerToken.getAccessToken())) {
-                Files listOfFiles = apiGEEService.getListOfFiles("full", bearerToken.getAccessToken());
-                if (listOfFiles.getFiles() != null && !listOfFiles.getFiles().isEmpty()) {
-                    for (File file : listOfFiles.getFiles()) {
-                        processFile(file);
-                    }
-                }
-            }
+            processFiles();
             replicateAllProducts();
         } finally {
 
@@ -130,6 +123,20 @@ public class FullFeedImportScheduledTask implements Runnable {
             }
         }
 
+    }
+    
+    /**
+     * process files
+     */
+    private void processFiles() {
+        if (bearerToken != null && StringUtils.isNotBlank(bearerToken.getAccessToken())) {
+            Files listOfFiles = apiGEEService.getListOfFiles("full", bearerToken.getAccessToken());
+            if (listOfFiles.getFiles() != null && !listOfFiles.getFiles().isEmpty()) {
+                for (File file : listOfFiles.getFiles()) {
+                    processFile(file);
+                }
+            }
+        }
     }
 
     /**
@@ -220,7 +227,7 @@ public class FullFeedImportScheduledTask implements Runnable {
             replicator.replicate(session, ReplicationActionType.ACTIVATE,
                     PWConstants.ROOT_PATH + PWConstants.SLASH + PWConstants.PXP);
         } catch (ReplicationException e) {
-            LOGGER.error("Replication Exception in activating PXP products");
+            LOGGER.error("Replication Exception in activating PXP products",e.getMessage(),e);
         }
     }
 

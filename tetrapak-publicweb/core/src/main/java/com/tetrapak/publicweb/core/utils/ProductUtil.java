@@ -17,12 +17,12 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 
 public class ProductUtil {
 
+    /** LOGGER */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductUtil.class);
+    
     protected ProductUtil() {
         // Only Sub Class can use Product Util Object
     }
-
-    /** LOGGER */
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductUtil.class);
 
     /**
      * @param resolver
@@ -82,23 +82,42 @@ public class ProductUtil {
             properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
             ResourceUtil.createOrUpdateResource(resolver, rootPath, resourceName, properties);
             String featuresPath = rootPath + PWConstants.SLASH + resourceName;
-            int i = 1;
-            for (FeatureOption featureOption : featureOptions) {
-                if (featureOption != null) {
-                    properties.put(PWConstants.NAME, featureOption.getName());
-                    properties.put(PWConstants.HEADER, featureOption.getHeader());
-                    properties.put(PWConstants.BODY, featureOption.getBody());
-                    properties.put(PWConstants.IMAGE, processAndGetPXPAssetDAMPath(resolver, damRootPath,
-                            featureOption.getImage(), productType, productID, videoTypes));
-                    if (featureOption.getVideo() != null) {
-                        properties.put(PWConstants.SRC, processAndGetPXPAssetDAMPath(resolver, damRootPath,
-                                featureOption.getVideo().getSrc(), productType, productID, videoTypes));
-                        properties.put(PWConstants.POSTER, processAndGetPXPAssetDAMPath(resolver, damRootPath,
-                                featureOption.getVideo().getPoster(), productType, productID, videoTypes));
-                    }
-                    ResourceUtil.createOrUpdateResource(resolver, featuresPath, String.valueOf(i), properties);
-                    i++;
+            processFeatureOption(resolver, productType, productID, featuresPath, featureOptions, damRootPath,
+                    videoTypes);
+        }
+    }
+
+    /**
+     * @param resolver
+     * @param productType
+     * @param productID
+     * @param featuresPath
+     * @param featureOptions
+     * @param damRootPath
+     * @param videoTypes
+     * @throws PersistenceException
+     */
+    private static void processFeatureOption(ResourceResolver resolver, String productType, String productID,
+            String featuresPath, List<FeatureOption> featureOptions, String damRootPath, String videoTypes)
+            throws PersistenceException {
+        final Map<String, Object> properties = new HashMap<>();
+        properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+        int i = 1;
+        for (FeatureOption featureOption : featureOptions) {
+            if (featureOption != null) {
+                properties.put(PWConstants.NAME, featureOption.getName());
+                properties.put(PWConstants.HEADER, featureOption.getHeader());
+                properties.put(PWConstants.BODY, featureOption.getBody());
+                properties.put(PWConstants.IMAGE, processAndGetPXPAssetDAMPath(resolver, damRootPath,
+                        featureOption.getImage(), productType, productID, videoTypes));
+                if (featureOption.getVideo() != null) {
+                    properties.put(PWConstants.SRC, processAndGetPXPAssetDAMPath(resolver, damRootPath,
+                            featureOption.getVideo().getSrc(), productType, productID, videoTypes));
+                    properties.put(PWConstants.POSTER, processAndGetPXPAssetDAMPath(resolver, damRootPath,
+                            featureOption.getVideo().getPoster(), productType, productID, videoTypes));
                 }
+                ResourceUtil.createOrUpdateResource(resolver, featuresPath, String.valueOf(i), properties);
+                i++;
             }
         }
     }

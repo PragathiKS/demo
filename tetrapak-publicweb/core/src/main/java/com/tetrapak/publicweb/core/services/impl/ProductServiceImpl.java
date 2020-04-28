@@ -57,16 +57,33 @@ public class ProductServiceImpl implements ProductService {
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
-                    if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
-                        FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType, productTypeResPath,
-                                fillingMachine, language, damRootPath, videoTypes);
-                       
-                    }
+                    processFillingMachine(resolver, productTypeResPath, productTypeResPath, fillingMachine, language,
+                            damRootPath, videoTypes);
                 }
             }
             saveSession(session);
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating filling machine", e);
+        }
+    }
+    
+    /**
+     * @param resolver
+     * @param productTypeResPath
+     * @param productType
+     * @param fillingMachine
+     * @param language
+     * @param damRootPath
+     * @param videoTypes
+     * @throws PersistenceException
+     */
+    private void processFillingMachine(ResourceResolver resolver, String productTypeResPath, String productType,
+            FillingMachine fillingMachine, String language, String damRootPath, String videoTypes)
+            throws PersistenceException {
+        if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
+            FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType, productTypeResPath, fillingMachine,
+                    language, damRootPath, videoTypes);
+
         }
     }
 
@@ -86,11 +103,9 @@ public class ProductServiceImpl implements ProductService {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
-                if (packageTypes != null) {
-                    for (Packagetype packageType : packageTypes) {
-                        PackageTypeUtil.createOrUpdatePackageType(resolver, productType, productTypeResPath,
-                                packageType, language, damRootPath, videoTypes);
-                    }
+                for (Packagetype packageType : packageTypes) {
+                    PackageTypeUtil.createOrUpdatePackageType(resolver, productType, productTypeResPath, packageType,
+                            language, damRootPath, videoTypes);
                 }
             }
             saveSession(session);
@@ -116,13 +131,10 @@ public class ProductServiceImpl implements ProductService {
             Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
             if (equipementResource != null) {
                 String equipementResourcePath = equipementResource.getPath();
-                if (equipments != null && !equipments.isEmpty()) {
-                    for (ProcessingEquipement equipment : equipments) {
-                        ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, productType,
-                                equipementResourcePath, equipment, language, damRootPath, videoTypes);                       
-                    }
+                for (ProcessingEquipement equipment : equipments) {
+                    ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, productType,
+                            equipementResourcePath, equipment, language, damRootPath, videoTypes);
                 }
-
             }
             saveSession(session);
         } catch (PersistenceException e) {

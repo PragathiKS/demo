@@ -12,7 +12,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 
 import com.tetrapak.publicweb.core.constants.PWConstants;
 
-public class ResourceUtil {
+public final class ResourceUtil {
     
     private ResourceUtil() {
         /*
