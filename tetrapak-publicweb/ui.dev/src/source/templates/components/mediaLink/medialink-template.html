@@ -5,7 +5,7 @@
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                     data-sly-call="${heading.heading_h2_template @ headingText=data.heading, variant='regular'}" />
             </div>
-            <div data-sly-test="${data.columnOneList && data.columnTwoList && data.columnThreeList}"
+            <div data-sly-test="${data.columnOneList || data.columnTwoList || data.columnThreeList}"
                 class="medialink__subheadingwrap">
                 <div data-sly-test="${data.columnOneList.size > 0}" class="row medialink__linkListRow">
                     <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' } col-sm-12 medialink__linklist">
