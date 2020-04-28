@@ -1,15 +1,16 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
-    <div class="google-api js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
+    <div class="hidden-element js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
       data-google-api-servlet="${data.servletPath}">${"goToLocalSite" @i18n}</div>
+    <div class="hidden-element js-hidden-element">${"viewLargerMap" @i18n}</div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
       <div data-link-section='Find my office' data-link-name=''
         class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
 
         <div class="pw-find-my-office__form-group">
           <header>${data.heading}</header>
-          <div class="pw-find-my-office__form-group__field country-field"><label class="pw-find-my-office__form-group__label"
-              for="country">${"country" @i18n}</label>
+          <div class="pw-find-my-office__form-group__field country-field"><label
+              class="pw-find-my-office__form-group__label" for="country">${"country" @i18n}</label>
             <div class="pw-form__dropdown dropdown text-left">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"

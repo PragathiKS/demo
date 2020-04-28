@@ -29,6 +29,7 @@ class FindMyOffice {
     ).text();
     this.cache.cityFieldTextValue = $(this.cache.cityToggle).text();
     this.cache.googleApi = this.root.find('.js-google-api');
+    this.cache.hiddenElement = this.root.find('.js-hidden-element');
     this.cache.linkSectionElement = this.root.find(
       '.js-pw-find-my-office__wrapper'
     );
@@ -226,7 +227,7 @@ class FindMyOffice {
       'style',
       'margin: 5px; border: 1px solid; padding: 1px 12px; font: bold 11px Roboto, Arial, sans-serif; color: #000000; background-color: #FFFFFF; cursor: pointer;'
     );
-    gotoMapButton.innerHTML = 'View larger map';
+    gotoMapButton.innerHTML = $(this.cache.hiddenElement).text();
     this.cache.map.controls[
       this.cache.googleMaps.ControlPosition.TOP_RIGHT
     ].push(gotoMapButton);
