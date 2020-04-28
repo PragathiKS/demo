@@ -11,38 +11,39 @@
     }
 
     &__heading {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-left($margin-l);
         @media #{$desktop} {
+            @include margin-left($margin-zero);
             @include margin-bottom($margin-md);
             font-weight: 300;
         }
     }
 
     &__subheading {
-        @media #{$desktop} {
-            @include margin-bottom($margin-md);
-        }
-
+        @include margin-left($margin-l);
+        @include margin-bottom($margin-md);        
         h4 {
-            @media #{$desktop} {
-                @include font-size($font-md);
-                @include line-height($font-l, $font-md);
-                font-weight: 500;
-            }
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
         }
     }
 
     &__linklist {
-        @include padding-left($margin-l);
-        @include padding-right($margin-l);
-        &:first-child {
-            @include padding-left($margin-zero);
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include padding-left($margin-l);
+            @include padding-right($margin-l);
+            @include margin-bottom($margin-zero);
+            &:first-child {
+                @include padding-left($margin-zero);
+            }
+            &:last-child {
+                @include padding-right($margin-zero);
+            }
         }
-        &:last-child {
-            @include padding-right($margin-zero);
-        }
-
     }
-
     &__link {
         @include min-height(56px) ;
         display: flex;
@@ -62,8 +63,8 @@
             @media #{$desktop} {
                 @include margin-left(16px);
                 @include margin-right(16px);
-                @include line-height(56px, 1px);
                 display: inline-block;
+                line-height: 56px;
             }
         }
     }

@@ -8,7 +8,7 @@
             <div data-sly-test="${data.columnOneTitle && data.columnTwoTitle && data.columnThreeTitle}"
                 class="medialink__subheadingwrap">
                 <div data-sly-test="${data.columnOneTitle}" class="row medialink__subheadingRow">
-                    <div class="col-md-4 medialink__subheading">
+                    <div class="col-md-4  medialink__subheading">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                             data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
                     </div>
@@ -24,33 +24,33 @@
             </div>
             <div data-sly-test="${data.columnOneList && data.columnTwoList && data.columnThreeList}"
                 class="medialink__subheadingwrap">
-                <div data-sly-test="${data.columnOneList.length}" class="row medialink__linkListRow">
-                    <div class="${data.columnThreeList && data.columnThreeList.length  ? 'col-md-4' : 'col-md-6' } medialink__linklist" data-sly-list.child="${data.columnOneList}">
+                <div data-sly-test="${data.columnOneList.size > 0}" class="row medialink__linkListRow">
+                    <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' } col-sm-12 medialink__linklist" data-sly-list.child="${data.columnOneList}">
                         <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
                             class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                             title="${child.linkLabel}" 
                             data-link-name="${child.linkLabel}">
                             <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
-                            <i class="icon icon-Circle_Arrow_Right"></i>
-                        
+                            <i class="icon icon-link"></i>
+                
                         </a>
                     </div>
-                    <div class="${data.columnThreeList && data.columnThreeList.length  ? 'col-md-4' : 'col-md-6' } medialink__linklist" data-sly-list.child="${data.columnTwoList}">
+                    <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' }  col-sm-12 medialink__linklist" data-sly-list.child="${data.columnTwoList}">
                         <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
                             class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                             title="${child.linkLabel}" 
                             data-link-name="${child.linkLabel}">
                             <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
-                            <i class="icon icon-Circle_Arrow_Right"></i>
+                            <i class="icon icon-link"></i>
                         </a>
                     </div>
-                    <div class="col-md-4 medialink__linklist" data-sly-list.child="${data.columnThreeList}">
+                    <div class="col-md-4  col-sm-12 medialink__linklist" data-sly-list.child="${data.columnThreeList}">
                         <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
                             class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                             title="${child.linkLabel}" 
                             data-link-name="${child.linkLabel}">
                             <span class="tpatom-link__text sly-text">${child.linkLabel}</span>
-                            <i class="icon icon-Circle_Arrow_Right medialink__icon"></i>
+                            <i class="icon icon-link medialink__icon"></i>
                         </a>
                     </div>
                 </div>
