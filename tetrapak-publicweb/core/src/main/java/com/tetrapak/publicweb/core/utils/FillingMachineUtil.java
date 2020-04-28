@@ -84,7 +84,7 @@ public final class FillingMachineUtil extends ProductUtil {
                             packageType.getId(), properties);
                     if (packageTypeRes != null && packageType.getShapes() != null
                             && !packageType.getShapes().isEmpty()) {
-                        PackageTypeUtil.createOrUpdateShapes(resolver, productType, packageType.getId(), packageTypeRes,
+                        PackageTypeUtil.createOrUpdateShapes(resolver, "packagetypes", packageType.getId(), packageTypeRes,
                                 packageType, damRootPath, videoTypes);
 
                     }

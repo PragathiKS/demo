@@ -70,7 +70,7 @@ public class PackageTypeUtil extends ProductUtil {
             createOrUpdateOpeningClosures(resolver, productType, productID, langRes, packageType, damRootPath,
                     videoTypes);
         }
-        createorUpdateFillingMachinesReferences(resolver, productType, packageType, langRes.getPath(), damRootPath,
+        createorUpdateFillingMachinesReferences(resolver, "fillingmachines", packageType, langRes.getPath(), damRootPath,
                 videoTypes);
     }
 
