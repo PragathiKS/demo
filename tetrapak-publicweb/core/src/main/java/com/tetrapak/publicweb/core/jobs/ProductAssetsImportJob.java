@@ -61,7 +61,7 @@ public class ProductAssetsImportJob implements JobConsumer {
     			}
     		}
     	} finally {
-            if (resourceResolver.isLive()) {
+            if (resourceResolver != null && resourceResolver.isLive()) {
                 resourceResolver.close();
             }
             if (session != null && session.isLive()) {
