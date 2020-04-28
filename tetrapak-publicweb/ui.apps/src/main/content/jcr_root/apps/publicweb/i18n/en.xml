@@ -32,5 +32,5 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="viewLargerMap"
-        sling:message="View larger map "/>
+        sling:message="View larger map"/>
 </jcr:root>
