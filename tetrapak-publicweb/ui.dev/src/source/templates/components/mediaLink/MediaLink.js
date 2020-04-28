@@ -18,17 +18,19 @@ class MediaLink {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-medialink-analytics');
-    
-    const linkParentTitle = '';
+    let linkParentTitle = '';
     let trackingObj = {};
-    const linkType = $this.hasClass('icon-external') ? 'external':'internal';
+    const linkType = $this.hasClass('icon-Union') ? 'external':'internal';
     const linkName = $this.data('link-name');
     const dwnDocName = $this.data('asset-name');
     const dwnType = 'ungated';
     const eventType = 'download';
-    const downloadtype = $this.hasClass('icon-download') ? 'download':'_download';
-    const linkSection = `medialink-${downloadtype}`;
-    if(downloadtype ==='download'){
+    const downloadtype = $this.hasClass('icon-Download') ? 'download':'_download';
+    const sectionTitle = $this.data('section-name');  
+    let linkSection = $this.data('link-section');
+    if(downloadtype ==='download') {
+      linkParentTitle = `Text Hyperlink_Download_pdf_${sectionTitle}`;
+      linkSection = 'Related links and downloads_Hyperlink_Download';
       trackingObj = {
         linkType,
         linkSection,
@@ -39,9 +41,7 @@ class MediaLink {
         eventType
       };
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
-    } else {
-      window._satellite.track('linkClick');
-    }
+    } 
     window.open($this.attr('href'), $this.attr('target'));
   }
 

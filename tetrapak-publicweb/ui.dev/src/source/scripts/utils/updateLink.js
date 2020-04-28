@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const myDomain = 'jsbin.com';
+const myDomain = 'tetrapak.com';
 const componentList = ['.medialink'];
 
 const isExternal = function (url) {
@@ -34,11 +34,14 @@ export default  () => {
       const thisHref = $(this).attr('href');
       const iconEl = $(this).find('i.icon')[0];
       if (isDownloable(thisHref)) {
-        $(iconEl).addClass('icon-download');
+        $(iconEl).addClass('icon-Download');
+        $(this).attr('target','_self');
       } else if (isExternal(thisHref)) {
-        $(iconEl).addClass('icon-external');
+        $(iconEl).addClass('icon-Union');
+        $(this).attr('target','_blank');
       } else {
-        $(iconEl).addClass('icon-internal');
+        $(iconEl).addClass('icon-Circle_Arrow_Right');
+        $(this).attr('target','_self');
       }
     });
   });
