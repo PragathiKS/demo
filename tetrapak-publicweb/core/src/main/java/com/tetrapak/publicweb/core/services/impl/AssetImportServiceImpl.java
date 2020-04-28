@@ -28,7 +28,7 @@ public class AssetImportServiceImpl implements AssetImportService {
 	@Override
 	public AssetDetail getAssetDetailfromInputStream(String sourceurl) {
 
-		AssetDetail assetDetail = new AssetDetail();
+		AssetDetail assetDetail = null;
 		try {
 			URL url = new URL(sourceurl);
 			HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -36,6 +36,7 @@ public class AssetImportServiceImpl implements AssetImportService {
 
 			// check HTTP response code first
 			if (responseCode == HttpURLConnection.HTTP_OK) {
+				assetDetail = new AssetDetail();
 				InputStream is = httpConn.getInputStream();
 				assetDetail.setFileName(GlobalUtil.getFileName(sourceurl));
 				assetDetail.setContentType(httpConn.getContentType());
