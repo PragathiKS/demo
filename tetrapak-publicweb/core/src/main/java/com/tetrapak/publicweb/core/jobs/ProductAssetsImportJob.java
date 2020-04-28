@@ -48,16 +48,16 @@ public class ProductAssetsImportJob implements JobConsumer {
 			if (null != session) {
 				String sourceurl = job.getProperty("sourceurl").toString();
 				String finalDAMPath = job.getProperty("finalDAMPath").toString();
+				LOGGER.debug("final DAMPath {}", finalDAMPath);
 
 				// fetch the Asset binary from given URL
 				AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
 
-				// construct DAM Path
-				LOGGER.debug("final DAMPath {}", finalDAMPath);
-				// upload the assets in AEM DAM
-				return createAsset(finalDAMPath, assetDetail, session);
+				if (null != assetDetail) {
+					// upload the assets in AEM DAM
+					return createAsset(finalDAMPath, assetDetail, session);
+				}
 			}
-
 		}
 		return JobResult.FAILED;
 	}
