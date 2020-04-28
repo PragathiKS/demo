@@ -28,4 +28,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="goToLocalSite"
         sling:message="Go to Local Site"/>
+   <viewLargerMap
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="viewLargerMap"
+        sling:message="View larger map"/>
 </jcr:root>
