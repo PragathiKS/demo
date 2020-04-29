@@ -33,7 +33,7 @@ public @interface PXPConfig {
      * @return bearer token refreh time
      */
     @AttributeDefinition(name = "Refresh Bearer Token Time (in milliseconds)", description = "Refresh Bearer Token Time")
-    int schedulerRefreshTokenTime() default 2700000;
+    int schedulerRefreshTokenTime() default 3000000;
    
     /**
      * PXP DAM ROOT PATH
@@ -49,6 +49,6 @@ public @interface PXPConfig {
      * @return video types
      */
     @AttributeDefinition(name = "Video Type Mapping", description = "types of video in PXP.Add comma seprated.")
-    String videoTypes() default "mp4";
+    String videoTypes() default "mp4,webm,mpg,mp2,mpeg,mpe,mpv,ogg,m4p,m4v,avi,wmv,mov,qt,flv,swf,avchd";
 
 }

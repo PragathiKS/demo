@@ -106,6 +106,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     @Override
     public void run() {
+        LOGGER.info("{{Public Web Full Feed Product Import Scheduled Task Started}}");
         setResourceResolver();
         pathsToReplicate = new HashSet<>();
         if (resolver == null) {
@@ -120,12 +121,14 @@ public class FullFeedImportScheduledTask implements Runnable {
         } finally {
 
             timer.cancel();
+            timer.purge();
             if (resolver.isLive()) {
                 resolver.close();
             }
             if (session != null && session.isLive()) {
                 session.logout();
             }
+            LOGGER.info("{{Public Web Full Feed Product Import Scheduled Task Ended}}");
         }
 
     }
