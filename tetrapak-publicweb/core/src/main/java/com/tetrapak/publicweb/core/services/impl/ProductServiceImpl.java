@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.utils.FillingMachineUtil;
 import com.tetrapak.publicweb.core.utils.PackageTypeUtil;
@@ -31,14 +33,8 @@ public class ProductServiceImpl implements ProductService {
     /** The logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-    /** The filling machines. */
-    private static final String FILLING_MACHINE = "fillingmachines";
-
-    /** The processing equipments. */
-    private static final String PROCESSING_EQUIPEMENT = "processingequipments";
-
-    /** The package types. */
-    private static final String PACKAGE_TYPE = "packagetypes";
+    /** The paths to replicate. */
+    private List<String> pathToReplicate;
 
     /**
      * @param resolver
@@ -48,16 +44,18 @@ public class ProductServiceImpl implements ProductService {
      * @param language
      * @param damRootPath
      * @param videoTypes
+     * @return
      */
     @Override
-    public void createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
+    public List<String> createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
             List<FillingMachine> fillingMachines, String language, String damRootPath, String videoTypes) {
+        pathToReplicate = new ArrayList<>();
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 for (FillingMachine fillingMachine : fillingMachines) {
-                    processFillingMachine(resolver, productTypeResPath, productTypeResPath, fillingMachine, language,
+                    processFillingMachine(resolver, productTypeResPath, productType, fillingMachine, language,
                             damRootPath, videoTypes);
                 }
             }
@@ -65,8 +63,9 @@ public class ProductServiceImpl implements ProductService {
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating filling machine", e);
         }
+        return pathToReplicate;
     }
-    
+
     /**
      * @param resolver
      * @param productTypeResPath
@@ -81,8 +80,9 @@ public class ProductServiceImpl implements ProductService {
             FillingMachine fillingMachine, String language, String damRootPath, String videoTypes)
             throws PersistenceException {
         if (fillingMachine != null && StringUtils.isNotBlank(fillingMachine.getId())) {
-            FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType, productTypeResPath, fillingMachine,
-                    language, damRootPath, videoTypes);
+            String productPath = FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType,
+                    productTypeResPath, fillingMachine, language, damRootPath, videoTypes);
+            pathToReplicate.add(productPath);
 
         }
     }
@@ -95,17 +95,20 @@ public class ProductServiceImpl implements ProductService {
      * @param language
      * @param damRootPath
      * @param videoTypes
+     * @return
      */
     @Override
-    public void createProductPackageType(ResourceResolver resolver, Session session, String productType,
+    public List<String> createProductPackageType(ResourceResolver resolver, Session session, String productType,
             List<Packagetype> packageTypes, String language, String damRootPath, String videoTypes) {
+        pathToReplicate = new ArrayList<>();
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
             if (productTypeResource != null) {
                 String productTypeResPath = productTypeResource.getPath();
                 for (Packagetype packageType : packageTypes) {
-                    PackageTypeUtil.createOrUpdatePackageType(resolver, productType, productTypeResPath, packageType,
-                            language, damRootPath, videoTypes);
+                    String productPath = PackageTypeUtil.createOrUpdatePackageType(resolver, productType,
+                            productTypeResPath, packageType, language, damRootPath, videoTypes);
+                    pathToReplicate.add(productPath);
                 }
             }
             saveSession(session);
@@ -113,6 +116,7 @@ public class ProductServiceImpl implements ProductService {
             LOGGER.error("PersistenceException while creating package type", e);
 
         }
+        return pathToReplicate;
     }
 
     /**
@@ -125,15 +129,18 @@ public class ProductServiceImpl implements ProductService {
      * @param videoTypes
      */
     @Override
-    public void createProductProcessingEquipement(ResourceResolver resolver, Session session, String productType,
-            List<ProcessingEquipement> equipments, String language, String damRootPath, String videoTypes) {
+    public List<String> createProductProcessingEquipement(ResourceResolver resolver, Session session,
+            String productType, List<ProcessingEquipement> equipments, String language, String damRootPath,
+            String videoTypes) {
+        pathToReplicate = new ArrayList<>();
         try {
             Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
             if (equipementResource != null) {
                 String equipementResourcePath = equipementResource.getPath();
                 for (ProcessingEquipement equipment : equipments) {
-                    ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver, productType,
-                            equipementResourcePath, equipment, language, damRootPath, videoTypes);
+                    String productPath = ProcessingEquipementUtil.createOrUpdateProcessingEquipements(resolver,
+                            productType, equipementResourcePath, equipment, language, damRootPath, videoTypes);
+                    pathToReplicate.add(productPath);
                 }
             }
             saveSession(session);
@@ -141,6 +148,7 @@ public class ProductServiceImpl implements ProductService {
             LOGGER.error("PersistenceException while creating product node", e);
 
         }
+        return pathToReplicate;
     }
 
     /**
@@ -157,14 +165,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public String getFileType(String fileURI) {
         String fileType = StringUtils.EMPTY;
-        if (fileURI.contains(PROCESSING_EQUIPEMENT)) {
-            fileType = PROCESSING_EQUIPEMENT;
+        if (fileURI.contains(PWConstants.PROCESSING_EQUIPEMENT)) {
+            fileType = PWConstants.PROCESSING_EQUIPEMENT;
         }
-        if (fileURI.contains(FILLING_MACHINE)) {
-            fileType = FILLING_MACHINE;
+        if (fileURI.contains(PWConstants.FILLING_MACHINE)) {
+            fileType = PWConstants.FILLING_MACHINE;
         }
-        if (fileURI.contains(PACKAGE_TYPE)) {
-            fileType = PACKAGE_TYPE;
+        if (fileURI.contains(PWConstants.PACKAGE_TYPE)) {
+            fileType = PWConstants.PACKAGE_TYPE;
         }
         return fileType;
     }

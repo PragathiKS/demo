@@ -82,5 +82,15 @@ public class PWConstants {
     
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
+    
+    /** The filling machines. */
+    public static final String FILLING_MACHINE = "fillingmachines";
+
+    /** The processing equipments. */
+    public static final String PROCESSING_EQUIPEMENT = "processingequipments";
+
+    /** The package types. */
+    public static final String PACKAGE_TYPE = "packagetypes";
+    
 
 }

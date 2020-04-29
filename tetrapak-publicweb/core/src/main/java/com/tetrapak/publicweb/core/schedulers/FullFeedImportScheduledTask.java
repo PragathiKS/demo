@@ -1,6 +1,8 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,7 +44,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  *
  */
 @Designate(ocd = PXPConfig.class)
-@Component(immediate = true,service = FullFeedImportScheduledTask.class)
+@Component(immediate = true, service = FullFeedImportScheduledTask.class)
 public class FullFeedImportScheduledTask implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
@@ -97,12 +99,15 @@ public class FullFeedImportScheduledTask implements Runnable {
     /** The full feed files uri. */
     private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
 
+    private Set<String> pathsToReplicate;
+
     /**
      * start scheduler
      */
     @Override
     public void run() {
         setResourceResolver();
+        pathsToReplicate = new HashSet<>();
         if (resolver == null) {
             LOGGER.debug("Tetrapak System User Session is null");
             return;
@@ -124,7 +129,7 @@ public class FullFeedImportScheduledTask implements Runnable {
         }
 
     }
-    
+
     /**
      * process files
      */
@@ -172,8 +177,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
-            productService.createProductFillingMachine(resolver, session, fileType, fillingMachines, language,
-                    damRootPath, videoTypes);
+            pathsToReplicate.addAll(productService.createProductFillingMachine(resolver, session, fileType,
+                    fillingMachines, language, damRootPath, videoTypes));
         }
 
     }
@@ -187,8 +192,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
-            productService.createProductProcessingEquipement(resolver, session, fileType, equipements, language,
-                    damRootPath, videoTypes);
+            pathsToReplicate.addAll(productService.createProductProcessingEquipement(resolver, session, fileType,
+                    equipements, language, damRootPath, videoTypes));
         }
     }
 
@@ -201,8 +206,8 @@ public class FullFeedImportScheduledTask implements Runnable {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(),
                 FULL_FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
-            productService.createProductPackageType(resolver, session, fileType, packageTypes, language, damRootPath,
-                    videoTypes);
+            pathsToReplicate.addAll(productService.createProductPackageType(resolver, session, fileType, packageTypes,
+                    language, damRootPath, videoTypes));
         }
     }
 
@@ -214,6 +219,9 @@ public class FullFeedImportScheduledTask implements Runnable {
         TimerTask scheduleBearerTokenUpdate = new TimerTask() {
             public void run() {
                 bearerToken = apiGEEService.getBearerToken();
+                if (bearerToken != null) {
+                    LOGGER.debug("Bearer Token Refreshed. New token is {}", bearerToken.getAccessToken());
+                }
             }
         };
         timer.scheduleAtFixedRate(scheduleBearerTokenUpdate, refreshTokenTime, refreshTokenTime);
@@ -226,8 +234,19 @@ public class FullFeedImportScheduledTask implements Runnable {
         try {
             replicator.replicate(session, ReplicationActionType.ACTIVATE,
                     PWConstants.ROOT_PATH + PWConstants.SLASH + PWConstants.PXP);
+            replicator.replicate(session, ReplicationActionType.ACTIVATE,
+                    PWConstants.ROOT_PATH + PWConstants.SLASH + PWConstants.PXP + PWConstants.SLASH + PWConstants.PXP);
+            replicator.replicate(session, ReplicationActionType.ACTIVATE, PWConstants.ROOT_PATH + PWConstants.SLASH
+                    + PWConstants.PXP + PWConstants.SLASH + PWConstants.PACKAGE_TYPE);
+            replicator.replicate(session, ReplicationActionType.ACTIVATE, PWConstants.ROOT_PATH + PWConstants.SLASH
+                    + PWConstants.PXP + PWConstants.SLASH + PWConstants.PROCESSING_EQUIPEMENT);
+            replicator.replicate(session, ReplicationActionType.ACTIVATE, PWConstants.ROOT_PATH + PWConstants.SLASH
+                    + PWConstants.PXP + PWConstants.SLASH + PWConstants.FILLING_MACHINE);
+            for (String pathToReplicate : pathsToReplicate) {
+                replicator.replicate(session, ReplicationActionType.ACTIVATE, pathToReplicate);
+            }
         } catch (ReplicationException e) {
-            LOGGER.error("Replication Exception in activating PXP products",e.getMessage(),e);
+            LOGGER.error("Replication Exception in activating PXP products", e.getMessage(), e);
         }
     }
 
