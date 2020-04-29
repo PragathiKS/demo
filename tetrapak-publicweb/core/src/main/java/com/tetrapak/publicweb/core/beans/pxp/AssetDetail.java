@@ -2,6 +2,11 @@ package com.tetrapak.publicweb.core.beans.pxp;
 
 import java.io.InputStream;
 
+/**
+ * 
+ * @author Akash Bansal
+ *
+ */
 public class AssetDetail {
 	
 	private InputStream is;

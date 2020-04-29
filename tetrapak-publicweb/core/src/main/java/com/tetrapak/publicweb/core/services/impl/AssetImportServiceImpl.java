@@ -17,7 +17,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 /**
  * IMPL class for Asset Import Service
  * 
- * @author akabansa1
+ * @author Akash Bansal
  *
  */
 @Component(immediate = true, service = AssetImportService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
@@ -48,6 +48,6 @@ public class AssetImportServiceImpl implements AssetImportService {
 			LOGGER.error("Error occured while fetching assets from PXP {}", e);
 		}
 		return assetDetail;
-	}	
+	}
 
 }
