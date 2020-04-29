@@ -3,6 +3,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
+import { isMobile } from '../../../scripts/common/common';
 
 class FindMyOffice {
   constructor({ el }) {
@@ -29,6 +30,7 @@ class FindMyOffice {
     ).text();
     this.cache.cityFieldTextValue = $(this.cache.cityToggle).text();
     this.cache.googleApi = this.root.find('.js-google-api');
+    this.cache.hiddenElement = this.root.find('.js-hidden-element');
     this.cache.linkSectionElement = this.root.find(
       '.js-pw-find-my-office__wrapper'
     );
@@ -56,6 +58,7 @@ class FindMyOffice {
     this.cache.selectedCountryValue = e.target.innerText;
     $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
     $('.js-pw-form__dropdown__country').html(e.target.innerText);
+    $('.js-pw-form__dropdown__country').attr('title', e.target.innerText);
     this.renderCities();
     this.clearSelectedCities();
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
@@ -76,10 +79,22 @@ class FindMyOffice {
       $('.js-pw-find-my-office__form-group__address').removeClass('hide');
       $('.js-pw-find-my-office__form-group__city-field').addClass('hide');
       this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+      !isMobile() && this.checkForMapHeight();
       mapZoomLevel = 10;
     }
     this.cache.marker && this.cache.marker.setMap(null);
     this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel });
+  };
+
+  checkForMapHeight = () => {
+    const minimumMarginAroundForm = 96;
+    const formHeight =
+      $('.pw-find-my-office__form-group').outerHeight() +
+      minimumMarginAroundForm;
+    const existingMapHeight = $('.js-pw-find-my-office__map').outerHeight();
+    if (formHeight > existingMapHeight) {
+      $('.js-pw-find-my-office__map').height(formHeight);
+    }
   };
 
   renderMarkerPosition = (office, mapZoomLevel) => {
@@ -109,6 +124,7 @@ class FindMyOffice {
     this.cache.selectedCityValue = e.target.innerText;
     $('.js-pw-find-my-office__form-group__address').removeClass('hide');
     $('.js-pw-form__dropdown__city').html(e.target.innerText);
+    $('.js-pw-form__dropdown__city').attr('title', e.target.innerText);
     this.renderOfficeDetails(this.cache.selectedCityValue);
   };
 
@@ -125,6 +141,7 @@ class FindMyOffice {
     this.cache.selectedOffice =
       selectedOfficeDetails.length > 0 && selectedOfficeDetails[0];
     this.renderOfficeDetailsPanel(this.cache.selectedOffice);
+    !isMobile() && this.checkForMapHeight();
     this.cache.marker && this.cache.marker.setMap(null);
     this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel: 10 });
   };
@@ -226,7 +243,7 @@ class FindMyOffice {
       'style',
       'margin: 5px; border: 1px solid; padding: 1px 12px; font: bold 11px Roboto, Arial, sans-serif; color: #000000; background-color: #FFFFFF; cursor: pointer;'
     );
-    gotoMapButton.innerHTML = 'View larger map';
+    gotoMapButton.innerHTML = $(this.cache.hiddenElement).text();
     this.cache.map.controls[
       this.cache.googleMaps.ControlPosition.TOP_RIGHT
     ].push(gotoMapButton);

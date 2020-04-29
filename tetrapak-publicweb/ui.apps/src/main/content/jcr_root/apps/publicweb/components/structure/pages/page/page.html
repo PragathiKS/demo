@@ -2,10 +2,11 @@
 <html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page" lang="${page.language}"
       data-sly-use.head="head.html"
       data-sly-use.footer="footer.html">
-    <head data-sly-call="${head.head @ page = page}"></head>
+    <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
+    <head data-sly-call="${head.head @ page = page, digitalDataModel = digitalDataModel }"></head>
     <body>
         <sly data-sly-include="body.html"></sly>
-        <sly data-sly-call="${footer.footer @ page = page}"></sly>
+        <sly data-sly-call="${footer.footer @ page = page, digitalDataModel = digitalDataModel }"></sly>
         <div class="pw-overlay js-pw-overlay d-none"></div>
     </body>
 </html>

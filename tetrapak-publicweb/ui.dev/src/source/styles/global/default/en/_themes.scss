@@ -1,5 +1,8 @@
 body {
- background: $color-wild-sand;
+    background: $color-wild-sand;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
 }
 .pw-theme {
     $self: &;
@@ -12,14 +15,14 @@ body {
 }
 
 .pw-margin {
-  &--zero {
-    margin: 0;
+    &--zero {
+        margin: 0;
     }
 
-  &--regular {
+    &--regular {
         margin: 0 $margin-md 0 $margin-md;
-    @media #{$desktop} {
-        margin: 0 $margin-xxxl 0 $margin-xxxl;
+        @media #{$desktop} {
+            margin: 0 $margin-xxxl 0 $margin-xxxl;
         }
     }
 }
@@ -41,6 +44,17 @@ body {
     color: $color-jordy-blue;
 }
 
+.icon-Youtube_pw:before {
+    vertical-align: -3px;
+}
+
+.icon-Circle_Arrow_Right_pw {
+    position: relative;
+    &::before {
+        position: absolute;
+        top: 1px;
+    }
+}
 
 .pw-container {
     @include padding(0);
@@ -54,12 +68,12 @@ body {
     }
 }
 .pw-overlay {
-    background-color:$color-black;
+    background-color: $color-black;
     opacity: 0.5;
     width: 100%;
     height: 100%;
     position: absolute;
-    top:90px;
+    top: 90px;
     z-index: $zindex-s;
 }
 .pw-position-relative {
@@ -67,4 +81,11 @@ body {
 }
 .pw-position-static {
     position: static;
+}
+
+@media #{$desktop} {
+    body {
+        font-size: 14px;
+        line-height: 24px;
+    }
 }
