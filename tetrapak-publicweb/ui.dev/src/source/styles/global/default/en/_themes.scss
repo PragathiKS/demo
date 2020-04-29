@@ -44,6 +44,18 @@ body {
     color: $color-jordy-blue;
 }
 
+.icon-Youtube_pw:before {
+    vertical-align: -3px;
+}
+
+.icon-Circle_Arrow_Right_pw {
+    position: relative;
+    &::before {
+        position: absolute;
+        top: 1px;
+    }
+}
+
 .pw-container {
     @include padding(0);
     max-width: 100%;

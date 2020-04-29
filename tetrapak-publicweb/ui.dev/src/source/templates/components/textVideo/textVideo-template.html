@@ -2,7 +2,7 @@
   <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
   <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
 
-  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}" 
+  <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}"
        class="pw-container"
        data-locator="text-video" data-module="TextVideo">
     <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
@@ -27,7 +27,7 @@
                 data-button-link-type="${data.pwButtonTheme}"
                 data-download-type="${data.pwLinkTheme}"
                 >
-                <span class="tpatom-link__text sly-text">${data.linkTexti18n} <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i></span>
+                <span class="tpatom-link__text sly-text">${data.linkTexti18n} <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
               </div>
       </div>
@@ -75,7 +75,7 @@
                 data-button-link-type="${data.pwButtonTheme}"
                 data-download-type="${data.pwLinkTheme}"
                 >
-                <span class="tpatom-link__text sly-text">${data.linkTexti18n} <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i></span>                
+                <span class="tpatom-link__text sly-text">${data.linkTexti18n} <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
         </div>
       </div>
