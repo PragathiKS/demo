@@ -4,7 +4,7 @@
       <div class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
-      <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading}</h2>
+      <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading @ context='html'}</h2>
 
       <div class="row">
       <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}" id="accordion"> 
@@ -13,12 +13,12 @@
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
             <button type="button" class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}" data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}" data-link-name="${tab.title}" data-link-section="Tab Click_list_${data.heading}">
               <sly data-sly-test="${data.pwDisplay == 'display-row'}">
-                <div><p class="pw-tablist__event-title-icright semi-bold">${tab.title}</p></div>
+                <div><p class="pw-tablist__event-title-icright semi-bold">${tab.title @ context='html'}</p></div>
                 <i class="icon icon-right icon-Chevron_Down"></i>
               </sly>
               <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
                 <i class="icon icon-left icon-Chevron_Down"></i>
-                <div><p class="pw-tablist__event-title-icleft semi-bold">${tab.title}<p></div>
+                <div><p class="pw-tablist__event-title-icleft semi-bold">${tab.title @ context='html'}<p></div>
               </sly>
               </button>
 
@@ -77,9 +77,9 @@
                             </div>
                       </sly>
                   <!--end image video component  -->
-                  <sly data-sly-test = "${tab.subTitle}"><p class="pw-tablist__event-detail-subtitle js-tablist__event-detail-subtitle">${tab.subTitle}</p></sly>
-                  <h3 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">${tab.title}</h3>
-                  <sly data-sly-test = "${tab.description}"><div class="pw-tablist__event-detail-description">${tab.description}</div></sly>
+                  <sly data-sly-test = "${tab.subTitle}"><p class="pw-tablist__event-detail-subtitle js-tablist__event-detail-subtitle">${tab.subTitle @ context='html'}</p></sly>
+                  <h3 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">${tab.title @ context='html'}</h3>
+                  <sly data-sly-test = "${tab.description}"><div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div></sly>
                     <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
         
                                 <sly data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}"/>
@@ -103,7 +103,7 @@
                                  data-alt-text = "${tab.alt}"
                                  data-tab-title = "${tab.title}"
                                  rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
-                                 <span class="tpatom-link__text sly-text">${tab.linkText}</span>
+                                 <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}</span>
                                  <i class="icon${variant != 'transparent' ? ' icon-Chevron_Right' : ' icon-Circle_Arrow_Right'}"></i>
                               </a>
                             <!-- </sly> -->
@@ -128,7 +128,7 @@
                                  data-tab-title = "${data.heading}"
                                  data-tab-type = ""
                                  rel="${data.readMoreTarget ? 'noopener noreferrer' : ''}">
-                                 <span class="tpatom-link__text sly-text">${data.readMoreText}</span>
+                                 <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}</span>
                                  <i class="icon icon-Circle_Arrow_Right"></i>
                               </a>
           </div>
