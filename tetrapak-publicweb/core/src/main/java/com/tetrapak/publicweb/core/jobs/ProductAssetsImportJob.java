@@ -1,6 +1,9 @@
 
 package com.tetrapak.publicweb.core.jobs;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -46,7 +49,6 @@ public class ProductAssetsImportJob implements JobConsumer {
 	public JobResult process(final Job job) {
 
 		Session session = null;
-
 		// using try with resources to close the resources after
 		try (ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
 			if (resourceResolver != null) {
@@ -63,8 +65,12 @@ public class ProductAssetsImportJob implements JobConsumer {
 						// fetch the Asset binary from given URL
 						AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
 						if (null != assetDetail) {
-							// upload the assets in AEM DAM
-							return createAsset(finalDAMPath, assetDetail, session, resourceResolver);
+							try(InputStream is = assetDetail.getIs()){
+								// upload the assets in AEM DAM
+								return createAsset(finalDAMPath, assetDetail.getContentType(), is, session, resourceResolver);
+							} catch (IOException e) {
+								LOGGER.error("Error while closing Input Stream for damPath {} \nSource URL {}",finalDAMPath,sourceurl);
+							}
 						}
 					} else {
 						LOGGER.info("Asset already exists, skipping Asset creation. asset Path :  {} ", finalDAMPath);
@@ -73,7 +79,6 @@ public class ProductAssetsImportJob implements JobConsumer {
 				}
 			}
 		}
-
 		return JobResult.FAILED;
 	}
 
@@ -86,12 +91,12 @@ public class ProductAssetsImportJob implements JobConsumer {
 	 * @param resourceResolver
 	 * @return
 	 */
-	private JobResult createAsset(String finalDAMPath, AssetDetail assetDetail, Session session,
+	private JobResult createAsset(String finalDAMPath, String contentType, InputStream is, Session session,
 			ResourceResolver resourceResolver) {
 		LOGGER.debug("Inside creatin assets {}", finalDAMPath);
 		AssetManager assetManager = resourceResolver.adaptTo(AssetManager.class);
 		if (assetManager != null) {
-			assetManager.createAsset(finalDAMPath, assetDetail.getIs(), assetDetail.getContentType(), true);
+			assetManager.createAsset(finalDAMPath, is, contentType, true);
 			LOGGER.debug("Asset Created at location{}", finalDAMPath);
 			if (JobResult.OK == saveSession(session)) {
 				return replicateAsset(finalDAMPath, session); // activate the asset

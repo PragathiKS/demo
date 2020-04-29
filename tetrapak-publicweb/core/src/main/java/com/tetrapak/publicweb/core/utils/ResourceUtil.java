@@ -34,11 +34,9 @@ public final class ResourceUtil {
         Resource resource = resolver.getResource(rootPath + PWConstants.SLASH + resourceName);
         if (null != rootResource && null == resource) {
             resource = resolver.create(rootResource, resourceName, properties);
-            resolver.commit();
         } else if (null != resource) {
             ModifiableValueMap map = resource.adaptTo(ModifiableValueMap.class);
             map.putAll(properties);
-            resolver.commit();
         }
         return resource;
     }
@@ -59,7 +57,6 @@ public final class ResourceUtil {
         Resource resource = resolver.getResource(rootPath + PWConstants.SLASH + resourceName);
         if (null != rootResource && null == resource) {
             resource = resolver.create(rootResource, resourceName, properties);
-            resolver.commit();
         }
         return resource;
     }
@@ -72,7 +69,6 @@ public final class ResourceUtil {
     public static void deleteResource(ResourceResolver resolver,String resourcePath) throws PersistenceException {
         if(resolver.getResource(resourcePath) != null) {
             resolver.delete(resolver.getResource(resourcePath));
-            resolver.commit();
         }
     }
 }

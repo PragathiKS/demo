@@ -42,10 +42,10 @@ public class AssetImportServiceImpl implements AssetImportService {
 				assetDetail.setContentType(httpConn.getContentType());
 				assetDetail.setIs(is);
 			} else {
-				LOGGER.error("Error occured while fetching assets from PXP {}", responseCode);
+				LOGGER.error("Error occured while fetching assets from PXP {} Error code {}",sourceurl, responseCode);
 			}
 		} catch (IOException e) {
-			LOGGER.error("Error occured while fetching assets from PXP {}", e);
+			LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}",sourceurl, e);
 		}
 		return assetDetail;
 	}
