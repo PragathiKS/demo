@@ -93,7 +93,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                 composite="{Boolean}true"
-                                fieldDescription="Suggested to use links less than recommended limit 7"
+                                fieldDescription="Recommendation to add upto 7 links"
                                 fieldLabel="Link section">
                                 <field
                                     jcr:primaryType="nt:unstructured"
