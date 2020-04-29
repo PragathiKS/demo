@@ -22,6 +22,12 @@ import com.tetrapak.publicweb.core.beans.pxp.AssetDetail;
 import com.tetrapak.publicweb.core.services.AssetImportService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
+/**
+ * Sling job to add assets to AEM DAM
+ * 
+ * @author Akash Bansal
+ *
+ */
 @Component(immediate = true, service = JobConsumer.class, property = {
 		JobConsumer.PROPERTY_TOPICS + "=pxp/dam/assets/create" })
 public class ProductAssetsImportJob implements JobConsumer {
@@ -72,6 +78,7 @@ public class ProductAssetsImportJob implements JobConsumer {
 	}
 
 	/**
+	 * Create asset in DAM returns the JobResult based on asset creation result
 	 * 
 	 * @param finalDAMPath
 	 * @param assetDetail
@@ -94,6 +101,7 @@ public class ProductAssetsImportJob implements JobConsumer {
 	}
 
 	/**
+	 * Replicate the asset
 	 * 
 	 * @param assetsLocation
 	 * @param session
