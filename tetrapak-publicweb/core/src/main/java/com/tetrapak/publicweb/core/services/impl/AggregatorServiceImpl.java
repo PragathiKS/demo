@@ -32,14 +32,15 @@ public class AggregatorServiceImpl implements AggregatorService {
 	 * @param resource
 	 * @param tags
 	 * @param maxTabs
+	 * @param logicalOperator
 	 * @return aggregatorList
 	 */
 	@Override
-	public List<AggregatorModel> getAggregatorList(Resource resource, String[] tags, int maxTabs) {
+	public List<AggregatorModel> getAggregatorList(Resource resource, String[] tags, int maxTabs, String logicalOperator) {
 		List<AggregatorModel> aggregatorList = new ArrayList<>();
 		ResourceResolver resolver = resource.getResourceResolver();
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
-		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs);
+		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs,logicalOperator);
 		for (Hit hit : searchResults.getHits()) {
 			try {
 				AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
@@ -87,12 +88,15 @@ public class AggregatorServiceImpl implements AggregatorService {
 	}
 
 	/**
-	 * @param resource
-	 * @param tags
-	 * @param maxTabs
+	 * Execute aggregator query.
+	 *
+	 * @param resource the resource
+	 * @param tags the tags
+	 * @param maxTabs the max tabs
+	 * @param logicalOperator the logical operator
 	 * @return query results
 	 */
-	public static SearchResult executeAggregatorQuery(Resource resource, String[] tags, int maxTabs) {
+	public static SearchResult executeAggregatorQuery(Resource resource, String[] tags, int maxTabs, String logicalOperator) {
 		LOGGER.info("Executing executeQuery method.");
 		ResourceResolver resourceResolver = resource.getResourceResolver();
 		Map<String, String> map = new HashMap<>();
@@ -107,7 +111,7 @@ public class AggregatorServiceImpl implements AggregatorService {
 
 		// Parameter to look for tags on the page.
 		if (tags != null && tags.length > 0) {
-			map.put("1_group.p.and", "true");
+			map.put("1_group.p."+logicalOperator, "true");
 			for (int i = 0; i < tags.length; i++) {
 				map.put("1_group." + (i + 1) + "_group.property", "jcr:content/cq:tags");
 				map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);

@@ -49,6 +49,10 @@ public class TeaserModel {
     @ValueMapValue
     private int maxTeasers;
 
+    /** The logical operator. */
+    @ValueMapValue
+    private String logicalOperator;
+
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -103,7 +107,8 @@ public class TeaserModel {
      */
     private void generateListAutomaticWay() {
         if (tags != null && tags.length > 0) {
-            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTeasers);
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTeasers,
+                    logicalOperator);
             if (!aggregatorList.isEmpty()) {
                 setTabListfromAggregator(aggregatorList);
             }

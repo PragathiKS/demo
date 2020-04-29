@@ -63,6 +63,10 @@ public class TabsListModel {
     @ValueMapValue
     private int maxTabs;
 
+    /** The logical operator. */
+    @ValueMapValue
+    private String logicalOperator;
+
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
@@ -78,7 +82,7 @@ public class TabsListModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
-    
+
     /** The pwLinkTheme */
     @ValueMapValue
     private String pwLinkTheme;
@@ -92,39 +96,38 @@ public class TabsListModel {
     @Inject
     @Named(value = "tabsSemi")
     private List<SemiAutomaticModel> pagePaths = new ArrayList<>();
-    
+
     /** The aggregator Service. */
     @OSGiService
     private AggregatorService aggregatorService;
 
     /** The tab List. */
     private List<TabModel> tabs = new ArrayList<>();
-    
+
     private static final String TAB_LAYOUT_IMAGE = "imageText";
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(TabsListModel.class);
 
     /**
-     * Post construct method to get the tab list
-     * saved in CRX for each of the tab.
+     * Post construct method to get the tab list saved in CRX for each of the tab.
      */
     @PostConstruct
     protected void init() {
-    if(StringUtils.isNotBlank(contentType)) {
-    	switch (contentType) {
-    	case "automatic":
-    	    generateListAutomaticWay();
-    	    break;
-    	case "semi-automatic":
-    	    generateListSemiAutomatically();
-    	    break;
-    	case "manual":
-    	    generateListManually();
-    	    break;
-    	default:
-    	    LOGGER.info("Not a valid content-type");
-    	}
-    }
+        if (StringUtils.isNotBlank(contentType)) {
+            switch (contentType) {
+                case "automatic":
+                    generateListAutomaticWay();
+                    break;
+                case "semi-automatic":
+                    generateListSemiAutomatically();
+                    break;
+                case "manual":
+                    generateListManually();
+                    break;
+                default:
+                    LOGGER.info("Not a valid content-type");
+            }
+        }
     }
 
     /**
@@ -132,12 +135,13 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListAutomaticWay() {
-	if (tags != null && tags.length > 0) {
-	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
-	    if (!aggregatorList.isEmpty()) {
-		setTabListfromAggregator(aggregatorList);
-	    }
-	}
+        if (tags != null && tags.length > 0) {
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs,
+                    logicalOperator);
+            if (!aggregatorList.isEmpty()) {
+                setTabListfromAggregator(aggregatorList);
+            }
+        }
     }
 
     /**
@@ -146,102 +150,102 @@ public class TabsListModel {
      * @param pageManager
      */
     private void generateListSemiAutomatically() {
-	if (pagePaths != null && !pagePaths.isEmpty()) {
-	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths);
-	    if (!aggregatorList.isEmpty()) {
-		setTabListfromAggregator(aggregatorList);
-	    }
-	}
+        if (pagePaths != null && !pagePaths.isEmpty()) {
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, pagePaths);
+            if (!aggregatorList.isEmpty()) {
+                setTabListfromAggregator(aggregatorList);
+            }
+        }
     }
 
     /**
      * @param aggregatorList
      */
     private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
-	for (AggregatorModel aggregator : aggregatorList) {
-	    TabModel tabBean = new TabModel();
-	    tabBean.setTitle(aggregator.getTitle());
-	    tabBean.setDescription(aggregator.getDescription());
-	    tabBean.setFileReference(aggregator.getImagePath());
-	    tabBean.setAlt(aggregator.getAltText());
-	    tabBean.setLinkText(aggregator.getLinkText());
-	    tabBean.setLinkURL(aggregator.getLinkPath());
-	    tabBean.setTargetBlank(aggregator.getLinkTarget());
-	    tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
-	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
-	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
-	    tabs.add(tabBean);
-	}
+        for (AggregatorModel aggregator : aggregatorList) {
+            TabModel tabBean = new TabModel();
+            tabBean.setTitle(aggregator.getTitle());
+            tabBean.setDescription(aggregator.getDescription());
+            tabBean.setFileReference(aggregator.getImagePath());
+            tabBean.setAlt(aggregator.getAltText());
+            tabBean.setLinkText(aggregator.getLinkText());
+            tabBean.setLinkURL(aggregator.getLinkPath());
+            tabBean.setTargetBlank(aggregator.getLinkTarget());
+            tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
+            tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
+            tabBean.setTabType(TAB_LAYOUT_IMAGE);
+            tabs.add(tabBean);
+        }
     }
 
     /**
      * set list from manual authoring
      */
     private void generateListManually() {
-	tabs.addAll(tabListManual);
+        tabs.addAll(tabListManual);
     }
 
     /**
      * @return the heading
      */
     public String getHeading() {
-	return heading;
+        return heading;
     }
 
     /**
      * @return the readMoreText
      */
     public String getReadMoreText() {
-	return readMoreText;
+        return readMoreText;
     }
 
     /**
      * @return the readMorePath
      */
     public String getReadMorePath() {
-	return LinkUtils.sanitizeLink(readMorePath);
+        return LinkUtils.sanitizeLink(readMorePath);
     }
 
     /**
      * @return the readMoreTarget
      */
     public String getReadMoreTarget() {
-	return readMoreTarget;
+        return readMoreTarget;
     }
 
     /**
      * @return the pwTheme
      */
     public String getPwTheme() {
-	return pwTheme;
+        return pwTheme;
     }
 
     /**
      * @return the pwDisplay
      */
     public String getPwDisplay() {
-	return pwDisplay;
+        return pwDisplay;
     }
 
     /**
      * @return the tabs
      */
     public List<TabModel> getTabs() {
-	return tabs;
+        return tabs;
     }
 
     /**
      * @return the anchorId
      */
     public String getAnchorId() {
-	return anchorId;
+        return anchorId;
     }
 
     /**
      * @return the anchorTitle
      */
     public String getAnchorTitle() {
-	return anchorTitle;
+        return anchorTitle;
     }
 
     /**
@@ -267,7 +271,8 @@ public class TabsListModel {
     /**
      * Gets the substring after last.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return the substring after last
      */
     private String getSubstringAfterLast(final String path) {
