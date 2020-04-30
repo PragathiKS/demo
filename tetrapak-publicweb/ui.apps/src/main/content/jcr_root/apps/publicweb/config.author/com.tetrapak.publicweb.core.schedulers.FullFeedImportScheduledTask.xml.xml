@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+          fullFeedSchedulerExpression="0 0 0 ? * SUN *"
+          fullFeedSchedulerDisable="false"
+          schedulerRefreshTokenTime="3000000"
+		  damRootPath="/content/dam/tetrapak/publicweb/pxp"
+		  videoTypes="mp4,webm,mpg,mp2,mpeg,mpe,mpv,ogg,m4p,m4v,avi,wmv,mov,qt,flv,swf,avchd"/>

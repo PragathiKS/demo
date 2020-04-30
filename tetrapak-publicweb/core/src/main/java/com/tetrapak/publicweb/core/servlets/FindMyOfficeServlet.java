@@ -61,7 +61,7 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(mapper.writeValueAsString(fullMap));
         } catch (IOException ioException) {
-            LOGGER.error("ioException :{}", ioException);
+            LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
         }
     }
 }

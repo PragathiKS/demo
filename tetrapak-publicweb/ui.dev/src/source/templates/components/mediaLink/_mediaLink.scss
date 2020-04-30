@@ -1,0 +1,76 @@
+.medialink {
+    @include border-radius($border-radius);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include margin(0 $margin-md);
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+        @include padding-left($padding-xxxl);
+        @include padding-right($padding-xxxl);
+        @include margin(0 $margin-xxxl);
+    }
+
+    &__heading {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-top($margin-l);
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include margin-top($margin-zero);
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+    }
+
+    &__subheading {
+        @include margin-bottom($margin-md);
+        @include min-height(24px);
+        h4 {
+            @include padding-left($padding-zero);
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            font-weight: 500;
+        }
+    }
+
+    &__linklist {
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include padding-left($margin-l);
+            @include padding-right($margin-l);
+            @include margin-bottom($margin-zero);
+            &:first-child {
+                @include padding-left(15px);
+            }
+            &:last-child {
+                @include padding-right(15px);
+            }
+        }
+    }
+    &__link {
+        @include min-height(56px);
+        @include line-height(24px, 14px);
+        @include font-size(14px);
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-mercury;
+        span {
+            @include margin($margin-md);
+            @include line-height(24px, 14px);
+            color: $color-congress-blue;
+            font-weight: 500;
+        }
+        i.icon {
+            @include margin-left(16px);
+            @include margin-right(16px);
+            display: inline-block;
+            line-height: 56px;
+            &::before {
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+}
