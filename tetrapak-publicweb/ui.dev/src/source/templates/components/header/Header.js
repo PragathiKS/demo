@@ -57,14 +57,14 @@ class Header {
     const { $megaMenuMobile } = this.cache;
     $megaMenuMobile.removeClass('is-close');
     $megaMenuMobile.addClass('is-open');
-    this.cache.$headerMobile.addClass('d-none');
+    // this.cache.$headerMobile.addClass('d-none');
   }
 
   handleCloseSolEvent = () => {
     const { $megaMenuMobile } = this.cache;
     $megaMenuMobile.removeClass('is-open');
     $megaMenuMobile.addClass('is-close');
-    this.cache.$headerMobile.removeClass('d-none');
+    // this.cache.$headerMobile.removeClass('d-none');
   }
 
   hideMobileMenuOnResize = () => {
