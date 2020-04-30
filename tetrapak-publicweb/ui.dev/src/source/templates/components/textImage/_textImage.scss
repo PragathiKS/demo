@@ -82,7 +82,7 @@
     &__description {
         @include font-size(16px);
         @include line-height(28px, 16px);
-        @include margin-bottom($padding-md);
+        @include margin-bottom($padding-l);
         color: $color-boulder;
         @media #{$tablet} {
             @include font-size(14px);
