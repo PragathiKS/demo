@@ -26,7 +26,7 @@ class MediaLink {
     const dwnType = 'ungated';
     const eventType = 'download';
     const downloadtype = $this.hasClass('icon-Download') ? 'download':'_download';
-    const sectionTitle = $this.data('section-name');  
+    const sectionTitle = $this.data('section-name');
     let linkSection = $this.data('link-section');
     if(downloadtype ==='download') {
       linkParentTitle = `Text Hyperlink_Download_pdf_${sectionTitle}`;
@@ -41,7 +41,7 @@ class MediaLink {
         eventType
       };
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
-    } 
+    }
     window.open($this.attr('href'), $this.attr('target'));
   }
 

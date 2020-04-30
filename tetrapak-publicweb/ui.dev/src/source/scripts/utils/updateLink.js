@@ -16,7 +16,7 @@ const isExternal = function (url) {
 };
 
 const isDownloable = function (url) {
-  const fileList = ['.pdf', '.xls', '.xlsx', '.doc', '.docx', '.ppt', '.pttx', '.jpeg', '.png', '.svg'] ;
+  const fileList = ['.pdf', '.xls', '.xlsx', '.doc', '.docx', '.ppt', '.pttx', '.jpeg', '.png', '.jpg', '.svg'] ;
   let flag = false ;
   const endPart = url.split('/').pop() ;
 
