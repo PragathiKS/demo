@@ -30,7 +30,7 @@
                   <!--image video component  -->
                       <sly data-sly-test="${tab.tabType == 'videoText'}">
 
-                                      <sly data-sly-test="${tab.videoSource == 'damVideo'}">
+                                      <sly data-sly-test="${tab.videoSource == 'damVideo' && tab.damVideoPath}">
                                                     <div data-sly-test="${tab.damVideoPath}" class="tpatom-dam pw-tablist__media-wrapper">
 
                                                     <sly data-sly-test = "${wcmmode.edit}">
