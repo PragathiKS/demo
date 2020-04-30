@@ -227,7 +227,7 @@
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
-            border-bottom: 1px solid $color-mercury;
+            // border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
                 @include padding(0);
