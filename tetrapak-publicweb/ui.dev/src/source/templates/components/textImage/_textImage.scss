@@ -83,6 +83,7 @@
         @include font-size(16px);
         @include line-height(28px, 16px);
         @include margin-bottom($padding-md);
+        color: $color-boulder;
         @media #{$tablet} {
             @include font-size(14px);
             @include line-height(24px, 14px);
