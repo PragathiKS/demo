@@ -23,23 +23,24 @@ import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
  * @author Nitin Kumar
  */
 public final class GlobalUtil {
-    
-    private static final Logger LOG =  LoggerFactory.getLogger(GlobalUtil.class);
+
+    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
     private GlobalUtil() {
         /*
-            adding a private constructor to hide the implicit one
+         * adding a private constructor to hide the implicit one
          */
     }
 
     /**
      * Method to get service
      *
-     * @param clazz class type
+     * @param clazz
+     *            class type
      * @return T
      */
     public static <T> T getService(final Class<T> clazz) {
-        if(FrameworkUtil.getBundle(clazz) == null) {
+        if (FrameworkUtil.getBundle(clazz) == null) {
             return null;
         }
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
@@ -64,23 +65,28 @@ public final class GlobalUtil {
     /**
      * get scene 7 video url
      *
-     * @param damVideoPath        video path
-     * @param dynamicMediaService dynamic media service
+     * @param damVideoPath
+     *            video path
+     * @param dynamicMediaService
+     *            dynamic media service
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
         final String FORWARD_SLASH = PWConstants.SLASH;
         damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
         damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
-        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
-                + FORWARD_SLASH + damVideoPath;
+        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath() + FORWARD_SLASH
+                + damVideoPath;
         return damVideoPath;
     }
-    
+
     /**
      * This method returns service resolver based on parameter map.
-     * @param resourceFactory ResourceResolverFactory
-     * @param paramMap Java Util Map
+     * 
+     * @param resourceFactory
+     *            ResourceResolverFactory
+     * @param paramMap
+     *            Java Util Map
      * @return sling resource resolver
      */
     public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) {
@@ -95,7 +101,7 @@ public final class GlobalUtil {
         }
         return resourceResolver;
     }
-   	
+
     /**
      * Global function which provides DAM asset path for PXP integration
      * 
@@ -104,7 +110,7 @@ public final class GlobalUtil {
      * @param sourceurl
      * @return
      */
-    public static String getDAMPath(String damRootPath, String sourceurl, String categoryId,String productId,
+    public static String getDAMPath(String damRootPath, String sourceurl, String categoryId, String productId,
             String videoTypes) {
         String finalDAMPath = null;
         String assetType = getAssetType(sourceurl, videoTypes);
@@ -150,5 +156,5 @@ public final class GlobalUtil {
         }
         return assetType;
     }
-    
+
 }

@@ -13,12 +13,13 @@ import org.apache.sling.api.resource.ResourceResolver;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 
 public final class ResourceUtil {
-    
+
     private ResourceUtil() {
         /*
-         adding a private constructor to hide the implicit one
-       */
+         * adding a private constructor to hide the implicit one
+         */
     }
+
     /**
      * @param resolver
      * @param rootPath
@@ -60,14 +61,14 @@ public final class ResourceUtil {
         }
         return resource;
     }
-    
+
     /**
      * @param resolver
      * @param resourcePath
      * @throws PersistenceException
      */
-    public static void deleteResource(ResourceResolver resolver,String resourcePath) throws PersistenceException {
-        if(resolver.getResource(resourcePath) != null) {
+    public static void deleteResource(ResourceResolver resolver, String resourcePath) throws PersistenceException {
+        if (resolver.getResource(resourcePath) != null) {
             resolver.delete(resolver.getResource(resourcePath));
         }
     }
