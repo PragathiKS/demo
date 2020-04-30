@@ -47,7 +47,7 @@
                     <div class="col-md-4  col-sm-12 medialink__linklist" data-sly-test="${data.columnThreeTitle && data.columnThreeTitle.length }">
                         <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" class="medialink__subheading">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
+                                data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnThreeList}">
                             <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
