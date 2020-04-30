@@ -49,6 +49,10 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/include"
                                                     fieldLabel="Image path"
                                                     path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                                                <note
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/authoring/dialog/note"
+                                                    note="Edit option for Image is not applicable for Tetra Pak"/>
                                                 <alt
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/include"
@@ -168,6 +172,10 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/include"
                                                     fieldLabel="Image path"
                                                     path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                                                <note
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/authoring/dialog/note"
+                                                    note="Edit option for Image is not applicable for Tetra Pak"/>
                                                 <alt
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/include"
