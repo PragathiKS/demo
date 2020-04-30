@@ -14,6 +14,7 @@ $tablet: '(min-width: #{$v-tablet})'; // Usage => @media #{$tablet} { ... }
 $tablet-large: '(min-width: #{$v-tablet-l})'; // Usage => @media #{$tablet-large} { ... }
 $desktop: '(min-width: #{$v-desktop})'; // Usage => @media #{$desktop} { ... }
 $desktop-large: '(min-width: #{$v-desktop-l})'; // Usage => @media #{$desktop-large} { ... }
+$desktop-xl: '(min-width: #{$v-desktop-max})'; // Usage => @media #{$desktop-xl} { ... }
 // Breakpoints landscape
 $tablet-landscape: '#{$tablet} and (orientation: landscape)'; // Usage => @media #{$tablet-landscape} { ... }
 $tablet-large-landscape: '#{$tablet-large} and (orientation: landscape)'; // Usage => @media #{tablet-large-landscape}

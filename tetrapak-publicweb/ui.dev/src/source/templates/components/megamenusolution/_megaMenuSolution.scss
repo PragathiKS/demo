@@ -145,7 +145,9 @@
         }
         .col {
             @media #{$desktop} {
-                width: 250px;
+                max-width: 168px;
+            }
+            @media #{$desktop-xl} {
                 max-width: 250px;
             }
         }
@@ -187,7 +189,10 @@
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
-                max-width: 100px;
+                max-width: 70px;
+            }
+            @media #{$desktop-xl} {
+                max-width: 97px;
             }
             &:last-child {
                 border-bottom: 1px solid $color-mercury;

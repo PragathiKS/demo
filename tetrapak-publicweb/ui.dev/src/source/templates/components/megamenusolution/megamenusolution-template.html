@@ -1,7 +1,7 @@
 <sly data-sly-template.megamenusolution_template="${@data, isMobile, flag}">
   <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
       <!--/* Component HTML code goes here */-->
-      <hr class="d-none d-xl-block" />
+      <hr class="d-none d-lg-block" />
       <nav>
           <div class="container-fluid pw-megamenu__top">
             <sly data-sly-test.isMobile="${!isMobile}">
@@ -24,10 +24,10 @@
                           data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=endToEndSolutionSection.fileReference, altText=endToEndSolutionSection.alt, componentName='megaMenuSolutionSection', className=''}" />
                         </sly>
                         <sly data-sly-test = "${wcmmode.edit}">
-                          <img class="d-none d-xl-block" src="${endToEndSolutionSection.fileReference}"  alt="${endToEndSolutionSection.alt}"/>
+                          <img class="d-none d-lg-block" src="${endToEndSolutionSection.fileReference}"  alt="${endToEndSolutionSection.alt}"/>
                         </sly>
                           <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" + data-sly-call="${title.heading_h3_template @ headingText=endToEndSolutionSection.title, variant='regular'}" />
-                          <p class="d-none d-xl-block">
+                          <p class="d-none d-lg-block">
                               ${endToEndSolutionSection.description}
                           </p>
                       </a>
@@ -65,7 +65,7 @@
                               data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=foodCategorySection.fileReference, altText=foodCategorySection.alt, componentName='megaMenuFoodCategorySection', className=''}" />
                             </sly>
                             <sly data-sly-test = "${wcmmode.edit}">
-                              <img class="d-none d-xl-block" src="${foodCategorySection.fileReference}" alt="${foodCategorySection.alt}" />
+                              <img class="d-none d-lg-block" src="${foodCategorySection.fileReference}" alt="${foodCategorySection.alt}" />
                             </sly>
                             <span class="img-title">${foodCategorySection.title}</span>
                           </a>
