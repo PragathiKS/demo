@@ -90,7 +90,7 @@
         margin-right: -15px;
 
         .js-close-menu-solution {
-            padding: 20px 16px;
+            padding: 18px 16px;
             background-color: $color-wild-sand;
             overflow: hidden;
             @media #{$desktop} {
@@ -111,7 +111,7 @@
         }
     }
     .heading-d-link {
-        @include margin(26px 0);
+        @include margin(28px 0);
         text-align: center;
         @media #{$desktop} {
             @include margin($margin-xl 0);
@@ -290,7 +290,7 @@
 
             .js-close-menu {
                 margin-left: -16px;
-                padding: 20px 16px;
+                padding: 18px 16px;
                 background-color: $color-wild-sand;
             }
 

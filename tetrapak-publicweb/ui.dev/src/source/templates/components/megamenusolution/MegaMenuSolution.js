@@ -12,6 +12,8 @@ class MegaMenuSolution {
     this.cache.$menuOpener = this.root.find('.js-open-menu');
     this.cache.$menuCloser = this.root.find('.js-close-menu');
     this.cache.$bottomTeaser = this.root.find('.js-bottom-teaser-list');
+    this.cache.$megamenuBottom = this.root.find('.pw-megamenu__bottom');
+    // this.cache.$headingBottom = this.root.find('.heading-bottom-cta');
   }
   bindEvents() {
     /* Bind jQuery events here */
@@ -21,14 +23,16 @@ class MegaMenuSolution {
   }
 
   handleCloseEvent = () => {
-    const { $bottomTeaser } = this.cache;
+    const { $bottomTeaser, $megamenuBottom } = this.cache;
+    $megamenuBottom.css({'height': 'auto'});
     $bottomTeaser.removeClass('active').addClass('hide');
   }
 
   handleOpenEvent = (e) => {
     e.preventDefault();
-    const { $bottomTeaser } = this.cache;
+    const { $bottomTeaser, $megamenuBottom } = this.cache;
     $bottomTeaser.addClass('active').removeClass('hide');
+    $megamenuBottom.css({'height': '0px'});
   }
 
   isMobileMode() {
