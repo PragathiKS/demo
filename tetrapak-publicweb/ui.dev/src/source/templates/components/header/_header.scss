@@ -1,4 +1,5 @@
 .tp-pw-header {
+    background: $color-white;
     .nav-link {
         padding: 16px;
     }
@@ -12,8 +13,6 @@
     //         display: none;
     //     }
     // }
-
-    background: $color-white;
     $self: &;
     &__container {
         @include padding(0 3px 0);
@@ -201,8 +200,8 @@
 .tp-pw-mobile-navigation {
     @include font-size($font-baseline);
     @include line-height($font-l, $font-m-baseline);
-    font-weight: 500;
     display: none;
+    font-weight: 500;
     width: 100%;
     position: absolute;
     z-index: $zindex-p;
@@ -219,7 +218,6 @@
             a {
                 color: $color-congress-blue;
             }
-            
         }
     }
     &__secondary {
