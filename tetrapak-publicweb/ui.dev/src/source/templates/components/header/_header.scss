@@ -1,14 +1,17 @@
 .tp-pw-header {
+    .nav-link {
+        padding: 16px;
+    }
     .tp-pw-header__container {
         .pw-megamenu {
             display: none;
         }
     }
-    .tp-pw-mobile-navigation {
-        .pw-megamenu {
-            display: none;
-        }
-    }
+    // .tp-pw-mobile-navigation {
+    //     .pw-megamenu {
+    //         display: none;
+    //     }
+    // }
 
     background: $color-white;
     $self: &;
@@ -200,6 +203,7 @@
     width: 100%;
     position: absolute;
     z-index: $zindex-p;
+    overflow: auto;
 
     @media #{$desktop} {
         display: none;
@@ -210,8 +214,9 @@
         li {
             border-bottom: 1px solid $color-mercury;
             a {
-                color: $color-tundora;
+                color: $color-congress-blue;
             }
+            
         }
     }
     &__secondary {
@@ -219,9 +224,9 @@
         li {
             border-bottom: 1px solid $color-mercury;
             a {
-                color: $color-congress-blue;
+                color: $color-tundora;
                 i:first-child {
-                    padding-right: #{convert-to-rem(10px)};
+                    padding-right: #{convert-to-rem(8px)};
                 }
             }
         }

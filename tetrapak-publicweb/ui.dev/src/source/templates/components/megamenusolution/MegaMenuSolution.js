@@ -6,6 +6,7 @@ class MegaMenuSolution {
     this.root = $(el);
   }
   cache = {};
+
   initCache() {
     /* Initialize selector cache here */
     this.cache.$menuOpener = this.root.find('.js-open-menu');
@@ -15,18 +16,19 @@ class MegaMenuSolution {
   bindEvents() {
     /* Bind jQuery events here */
     const { $menuOpener, $menuCloser } = this.cache;
-    this.isMobileMode() && $menuOpener.on('click',this.handleOpenEvent);
-    this.isMobileMode() && $menuCloser.on('click',this.handleCloseEvent);
-  }
-
-  handleOpenEvent = () => {
-    const { $bottomTeaser } = this.cache;
-    $bottomTeaser.addClass('active').removeClass('hide');
+    $menuOpener.on('click',this.handleOpenEvent);
+    $menuCloser.on('click',this.handleCloseEvent);
   }
 
   handleCloseEvent = () => {
     const { $bottomTeaser } = this.cache;
     $bottomTeaser.removeClass('active').addClass('hide');
+  }
+
+  handleOpenEvent = (e) => {
+    e.preventDefault();
+    const { $bottomTeaser } = this.cache;
+    $bottomTeaser.addClass('active').removeClass('hide');
   }
 
   isMobileMode() {
