@@ -278,7 +278,7 @@
 									<logicaloperator
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                        fieldLabel="Tag Relation "
+                                        fieldLabel="Tag filter"
                                         name="./logicalOperator">
                                         <items jcr:primaryType="nt:unstructured">
                                             <and
@@ -295,7 +295,7 @@
                                     <tags
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/gui/components/common/tagspicker"
-                                        fieldDescription="Content matching all selected tags will be displayed"
+                                        fieldDescription="Content displayed based on Tag selected and Tag filter."
                                         fieldLabel="Tags"
                                         name="./tags"
                                         rootPath="/content/cq:tags"/>
