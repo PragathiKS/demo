@@ -58,20 +58,20 @@ class Header {
   hideMobileMenuOnResize = () => {
     this.cache.$mobileMenu.fadeOut(10);
     this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
-    this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
+    this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
     this.toggleFlag = false;
   }
 
   openMobileMenuBoxToggle = () => {
     if(!this.toggleFlag){
       this.cache.$mobileMenu.fadeIn(300);
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close');
       this.toggleFlag = true;
     }else {
       this.cache.$mobileMenu.fadeOut(300);
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.toggleFlag = false;
     }
   }

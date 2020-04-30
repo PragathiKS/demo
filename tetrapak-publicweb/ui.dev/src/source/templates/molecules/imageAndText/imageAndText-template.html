@@ -15,7 +15,7 @@
                     <sly data-sly-test.linkUrl="${data.linkPath}"></sly>
                     <sly data-sly-test.isExternal="${data.targetNew}" />
                     <sly data-sly-test.modifier="${isLink ? 'transparent' : 'primary'}" />
-                    <sly data-sly-test.linkIconClass="${isLink ? 'icon-Circle_Arrow_Right' : 'icon-Chevron_Right'}" />
+                    <sly data-sly-test.linkIconClass="${isLink ? 'icon-Circle_Arrow_Right_pw' : 'icon-Chevron_Right_pw'}" />
                     <div class="tpmol-image-card__link">
                         <sly data-sly-use.linkAtom="/apps/commons/components/atoms/link/link-template.html"
                              data-sly-call="${linkAtom.link_template @url=linkUrl,text=linkText,baseClass='',isExternal=isExternal,modifier=modifier,

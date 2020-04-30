@@ -79,7 +79,7 @@
 
     @media #{$desktop} {
         &__map {
-            @include height(780px);
+            @include height(680px);
         }
         &__wrapper {
             @include margin-left($margin-xxxl);
