@@ -10,7 +10,7 @@ public interface AggregatorService {
 
     List<AggregatorModel> getAggregatorList(Resource resource, List<SemiAutomaticModel> pagePaths);
 
-    List<AggregatorModel> getAggregatorList(Resource resource,String[] tags,int maxTabs);
+    List<AggregatorModel> getAggregatorList(Resource resource,String[] tags,int maxTabs, String logicalOperator);
 
     AggregatorModel getAggregator(Page currentPage);
 
