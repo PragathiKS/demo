@@ -252,8 +252,8 @@
                 @include margin-top($margin-xs);
                 @include padding-top($padding-xxs);
                 @include line-height($font-l, $font-baseline);
-                font-weight: 500;
                 display: inline-block;
+                font-weight: 500;
             }
         }
     }
