@@ -9,12 +9,12 @@
                 class="medialink__subheadingwrap">
                 <div data-sly-test="${data.columnOneList.size > 0}" class="row medialink__linkListRow ${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) ? '' :'topMargin' }" >
                     <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' } col-sm-12 medialink__linklist">
-                        <div class="medialink__subheading">
+                        <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" class="medialink__subheading">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnOneList}">
-                            <a data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" href="${child.linkUrl}"
+                            <a href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                                 title="${child.linkLabel}" 
                                 data-asset-name="${child.assetName}"
