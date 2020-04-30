@@ -50,7 +50,7 @@
         }
     }
     &__link {
-        @include min-height(56px) ;
+        @include min-height(56px);
         @include line-height(24px, 14px);
         @include font-size(14px);
         display: flex;

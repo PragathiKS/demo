@@ -52,10 +52,27 @@
                                 fieldDescription="In automatic way content is searched with authored tags"
                                 showhidetargetvalue="automatic">
                                 <items jcr:primaryType="nt:unstructured">
+									<logicaloperator
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Tag filter"
+                                        name="./logicalOperator">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <and
+                                                jcr:primaryType="nt:unstructured"
+                                                selected="true"
+                                                text="AND"
+                                                value="and"/>
+                                            <or
+                                                jcr:primaryType="nt:unstructured"
+                                                text="OR"
+                                                value="or"/>
+                                        </items>
+                                    </logicaloperator>
                                     <tags
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/gui/components/common/tagspicker"
-                                        fieldDescription="Content matching all selected tags will be displayed"
+                                        fieldDescription="Content displayed based on Tag selected and Tag filter."
                                         fieldLabel="Tags"
                                         name="./tags"
                                         rootPath="/content/cq:tags"/>
