@@ -31,6 +31,7 @@ import com.tetrapak.publicweb.core.beans.pxp.Files;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.config.APIGEEServiceConfig;
 
@@ -50,9 +51,6 @@ public class APIGEEServiceImpl implements APIGEEService {
     
     /** The token api url. */
     private static final String TOKEN_API_URI = "/oauth2/v2/token";
-    
-    /** The full feed files uri. */
-    private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/full";
     
     /** The bearer. */
     private static final String BEARER = "Bearer";
@@ -147,7 +145,8 @@ public class APIGEEServiceImpl implements APIGEEService {
     @Override
     public Files getListOfFiles(String type, String token) {
         Files listOfFiles = new Files();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, FULL_FEED_FILES_URI, token);
+        String jsonResponse = getAPIGeeGetRespose(BEARER, PWConstants.FULL_FEED_FILES_URI + PWConstants.FULL_FEED,
+                token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 listOfFiles = new ObjectMapper().readValue(jsonResponse, Files.class);

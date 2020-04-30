@@ -3,13 +3,7 @@ package com.tetrapak.publicweb.core.constants;
 /**
  * The Class PWConstants.
  */
-public class PWConstants {
-    
-    private PWConstants() {
-      /*
-        adding a private constructor to hide the implicit one
-      */
-     }
+public final class PWConstants {
     
     /** The Constant ENGLISH_LANGUAGE_ISO_CODE. */
     public static final String ENGLISH_LANGUAGE_ISO_CODE = "en";
@@ -91,6 +85,21 @@ public class PWConstants {
 
     /** The package types. */
     public static final String PACKAGE_TYPE = "packagetypes";
+    
+    /** The FULL FEED Scheduler ID. */
+    public static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
+
+    /** The full feed files uri. */
+    public static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
+    
+    /** The full feed */
+    public static final String FULL_FEED = "full";
+    
+    private PWConstants() {
+        /*
+          adding a private constructor to hide the implicit one
+        */
+       }
     
 
 }

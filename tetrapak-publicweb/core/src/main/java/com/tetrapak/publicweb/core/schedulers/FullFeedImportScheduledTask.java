@@ -17,6 +17,7 @@ import org.apache.sling.commons.scheduler.ScheduleOptions;
 import org.apache.sling.commons.scheduler.Scheduler;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
@@ -46,7 +47,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  *
  */
 @Designate(ocd = PXPConfig.class)
-@Component(immediate = true, service = FullFeedImportScheduledTask.class)
+@Component(immediate = true, service = FullFeedImportScheduledTask.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class FullFeedImportScheduledTask implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
@@ -94,12 +95,6 @@ public class FullFeedImportScheduledTask implements Runnable {
 
     /** The scheduler ID. */
     private int schedulerID;
-
-    /** The FULL FEED Scheduler ID. */
-    private static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
-
-    /** The full feed files uri. */
-    private static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
 
     private Set<String> pathsToReplicate;
 
@@ -176,7 +171,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processFillingMachines(String fileURI, String fileType, String language) {
         List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(),
-                FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FULL_FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
             pathsToReplicate.addAll(productService.createProductFillingMachine(resolver, session, fileType,
                     fillingMachines, language, damRootPath, videoTypes));
@@ -191,7 +186,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processEquipments(String fileURI, String fileType, String language) {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(),
-                FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FULL_FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
             pathsToReplicate.addAll(productService.createProductProcessingEquipement(resolver, session, fileType,
                     equipements, language, damRootPath, videoTypes));
@@ -205,7 +200,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processPackageTypes(String fileURI, String fileType, String language) {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(),
-                FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FULL_FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
             pathsToReplicate.addAll(productService.createProductPackageType(resolver, session, fileType, packageTypes,
                     language, damRootPath, videoTypes));
@@ -266,7 +261,7 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     @Activate
     protected void activate(PXPConfig config) {
-        schedulerID = FULL_FEED_SCHEDULER_ID.hashCode();
+        schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
         videoTypes = config.videoTypes();
         damRootPath = config.damRootPath();
@@ -279,7 +274,7 @@ public class FullFeedImportScheduledTask implements Runnable {
     @Modified
     protected void modified(PXPConfig config) {
         removeScheduler();
-        schedulerID = FULL_FEED_SCHEDULER_ID.hashCode();
+        schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
         videoTypes = config.videoTypes();
         damRootPath = config.damRootPath();
