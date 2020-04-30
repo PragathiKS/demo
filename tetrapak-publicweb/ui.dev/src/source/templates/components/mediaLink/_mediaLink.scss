@@ -50,7 +50,7 @@
         }
     }
     &__link {
-        @include min-height(56px) ;
+        @include min-height(56px);
         @include line-height(24px, 14px);
         @include font-size(14px);
         display: flex;
@@ -58,8 +58,8 @@
         border-bottom: 1px solid $color-mercury;
         span {
             @include margin($margin-md);
-            color: $color-congress-blue;
             @include line-height(24px, 14px);
+            color: $color-congress-blue;
             font-weight: 500;
         }
         i.icon {
@@ -67,10 +67,10 @@
             @include margin-right(16px);
             display: inline-block;
             line-height: 56px;
-        }
-        i.icon::before{
-            height: 16px;
-            width: 16px;
+            &::before {
+                height: 16px;
+                width: 16px;
+            }
         }
     }
 }
