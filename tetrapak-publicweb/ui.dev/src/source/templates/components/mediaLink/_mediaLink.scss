@@ -17,16 +17,21 @@
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include margin-top($margin-zero);
+        }
+
+        h2 {
             font-weight: 300;
         }
     }
 
     &__subheading {
         @include margin-bottom($margin-md);
+        @include min-height(24px);
         h4 {
             @include padding-left($padding-zero);
             @include font-size($font-md);
             @include line-height($font-l, $font-md);
+            font-weight: 500;
         }
     }
 
@@ -54,6 +59,7 @@
         span {
             @include margin($margin-md);
             color: $color-congress-blue;
+            @include line-height(24px, 14px);
             font-weight: 500;
         }
         i.icon {
@@ -61,6 +67,10 @@
             @include margin-right(16px);
             display: inline-block;
             line-height: 56px;
+        }
+        i.icon::before{
+            height: 16px;
+            width: 16px;
         }
     }
 }
