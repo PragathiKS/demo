@@ -199,6 +199,9 @@
 }
 
 .tp-pw-mobile-navigation {
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-m-baseline);
+    font-weight: 500;
     display: none;
     width: 100%;
     position: absolute;
