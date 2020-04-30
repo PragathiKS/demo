@@ -77,6 +77,11 @@ public class HeaderModelTest {
 
     @Test
     public void testSolutionPageLink() {
-        assertEquals("/content/tetrapak/public-web/global/en/solutions.html", model.getSolutionPage());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/solutions.html", model.getSolutionPage());
+    }
+
+    @Test
+    public void testSolutionPageTitle() {
+        assertEquals("Solutions", model.getSolutionPageTitle());
     }
 }
