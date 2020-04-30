@@ -14,7 +14,7 @@
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnOneList}">
-                            <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            <a data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                                 title="${child.linkLabel}" 
                                 data-asset-name="${child.assetName}"
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' }  col-sm-12 medialink__linklist">
-                        <div data-sly-test="${data.columnTwoTitle}" class="medialink__subheading">
+                        <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" class="medialink__subheading">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
                         </div>
@@ -44,8 +44,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-4  col-sm-12 medialink__linklist">
-                        <div data-sly-test="${data.columnThreeTitle}" class="medialink__subheading">
+                    <div class="col-md-4  col-sm-12 medialink__linklist" data-sly-test="${data.columnThreeTitle && data.columnThreeTitle.length }">
+                        <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" class="medialink__subheading">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
                         </div>
