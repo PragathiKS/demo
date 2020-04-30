@@ -9,12 +9,12 @@ import com.tetrapak.publicweb.core.beans.pxp.AssetDetail;
  */
 public interface AssetImportService {
 
-	/**
-	 * Function to fetch assets binary stream from given URL
-	 * @param url
-	 * @return
-	 */
-	AssetDetail getAssetDetailfromInputStream(String url);	
-	
-}
+    /**
+     * Function to fetch assets binary stream from given URL
+     * 
+     * @param url
+     * @return
+     */
+    AssetDetail getAssetDetailfromInputStream(String url);
 
+}

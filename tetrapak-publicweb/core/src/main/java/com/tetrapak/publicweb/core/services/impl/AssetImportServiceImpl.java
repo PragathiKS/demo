@@ -23,31 +23,31 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 @Component(immediate = true, service = AssetImportService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class AssetImportServiceImpl implements AssetImportService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AssetImportServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AssetImportServiceImpl.class);
 
-	@Override
-	public AssetDetail getAssetDetailfromInputStream(String sourceurl) {
+    @Override
+    public AssetDetail getAssetDetailfromInputStream(String sourceurl) {
 
-		AssetDetail assetDetail = null;
-		try {
-			URL url = new URL(sourceurl);
-			HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-			int responseCode = httpConn.getResponseCode();
+        AssetDetail assetDetail = null;
+        try {
+            URL url = new URL(sourceurl);
+            HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+            int responseCode = httpConn.getResponseCode();
 
-			// check HTTP response code first
-			if (responseCode == HttpURLConnection.HTTP_OK) {
-				assetDetail = new AssetDetail();
-				InputStream is = httpConn.getInputStream();
-				assetDetail.setFileName(GlobalUtil.getFileName(sourceurl));
-				assetDetail.setContentType(httpConn.getContentType());
-				assetDetail.setIs(is);
-			} else {
-				LOGGER.error("Error occured while fetching assets from PXP {} Error code {}",sourceurl, responseCode);
-			}
-		} catch (IOException e) {
-			LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}",sourceurl, e);
-		}
-		return assetDetail;
-	}
+            // check HTTP response code first
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                assetDetail = new AssetDetail();
+                InputStream is = httpConn.getInputStream();
+                assetDetail.setFileName(GlobalUtil.getFileName(sourceurl));
+                assetDetail.setContentType(httpConn.getContentType());
+                assetDetail.setIs(is);
+            } else {
+                LOGGER.error("Error occured while fetching assets from PXP {} Error code {}", sourceurl, responseCode);
+            }
+        } catch (IOException e) {
+            LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}", sourceurl, e);
+        }
+        return assetDetail;
+    }
 
 }
