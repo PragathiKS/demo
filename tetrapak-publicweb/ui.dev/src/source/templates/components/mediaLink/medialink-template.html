@@ -14,7 +14,7 @@
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnOneList}">
-                            <a data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" href="${child.linkUrl}"
+                            <a href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
                                 title="${child.linkLabel}" 
                                 data-asset-name="${child.assetName}"
