@@ -48,7 +48,7 @@
         width: 100%;
         justify-content: center;
         nav {
-            max-width: $body-max-width;
+            width: 100%;
             margin: 0 auto;
             z-index: $zindex-s;
             position: relative;
@@ -145,11 +145,11 @@
         font-weight: 900;
         @media #{$desktop} {
             @include font-size($font-md);
-            @include line-height($font-md, $font-baseline);
             @include margin($margin-l 0);
             color: $color-tundora;
             font-family: $font-light;
             font-weight: 500;
+            line-height: 24px;
         }
     }
     p {
@@ -182,9 +182,9 @@
                 @include padding($padding-md);
                 border-bottom: 1px solid $color-mercury;
                 a {
-                    @include line-height($font-l, $font-baseline);
                     color: $color-congress-blue;
                     font-weight: 500;
+                    line-height: 20px;
                 }
                 @media #{$desktop} {
                     @include margin-bottom($margin-l);
@@ -203,9 +203,11 @@
         }
         .col {
             @media #{$desktop} {
+                width: 168px;
                 max-width: 168px;
             }
             @media #{$desktop-xl} {
+                width: 250px;
                 max-width: 250px;
             }
         }
@@ -251,13 +253,15 @@
                 @media #{$desktop} {
                     color: $color-tundora;
                 }
-             }
+            }
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
+                width: 70px;
                 max-width: 70px;
             }
             @media #{$desktop-xl} {
+                width: 97px;
                 max-width: 97px;
             }
             &:last-child {
@@ -325,19 +329,10 @@
             .img-title {
                 @include margin-top($margin-xs);
                 @include padding-top($padding-xxs);
-                @include line-height($font-l, $font-baseline);
                 display: inline-block;
                 font-weight: 500;
+                line-height: 20px;
             }
         }
-    }
-    &__bottom-bar {
-        border: 0;
-        height: 202px;
-        background-color: $color-wild-sand;
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        margin: 0;
     }
 }
