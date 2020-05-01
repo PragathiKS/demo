@@ -12,15 +12,20 @@
 
     &__heading {
         @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
-        @include margin-top($margin-l);
+        @include padding-top($padding-l);
         @include margin-bottom($margin-md);
         @media #{$desktop} {
-            @include margin-top($margin-zero);
+            @include padding-top($padding-zero);
         }
 
         h2 {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
             font-weight: 300;
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                @include line-height(40px, $font-xl);
+            }
         }
     }
 
@@ -75,5 +80,11 @@
     }
     .topMargin {
         @include margin-top($margin-xxl) ;
+    }
+    .noMobile {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }   
     }
 }
