@@ -58,7 +58,7 @@ describe('FindMyOffice', function() {
         addDomListener: () => null
       },
       LatLng: () => null,
-      Marker: () => ({ setMap: () => null }),
+      Marker: () => ({ setMap: () => null, setVisible: () => null }),
       Map: () => ({ controls: [[]], setZoom: () => null, panTo: () => null }),
       ControlPosition: {
         TOP_RIGHT: 0
