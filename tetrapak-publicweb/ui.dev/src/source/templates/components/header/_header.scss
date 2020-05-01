@@ -1,16 +1,18 @@
 .tp-pw-header {
+    background: $color-white;
+    .nav-link {
+        padding: 16px;
+    }
     .tp-pw-header__container {
         .pw-megamenu {
             display: none;
         }
     }
-    .tp-pw-mobile-navigation {
-        .pw-megamenu {
-            display: none;
-        }
-    }
-
-    background: $color-white;
+    // .tp-pw-mobile-navigation {
+    //     .pw-megamenu {
+    //         display: none;
+    //     }
+    // }
     $self: &;
     &__container {
         @include padding(0 3px 0);
@@ -196,10 +198,14 @@
 }
 
 .tp-pw-mobile-navigation {
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-m-baseline);
     display: none;
+    font-weight: 500;
     width: 100%;
     position: absolute;
     z-index: $zindex-p;
+    overflow: auto;
 
     @media #{$desktop} {
         display: none;
@@ -210,7 +216,7 @@
         li {
             border-bottom: 1px solid $color-mercury;
             a {
-                color: $color-tundora;
+                color: $color-congress-blue;
             }
         }
     }
@@ -219,9 +225,9 @@
         li {
             border-bottom: 1px solid $color-mercury;
             a {
-                color: $color-congress-blue;
+                color: $color-tundora;
                 i:first-child {
-                    padding-right: #{convert-to-rem(10px)};
+                    padding-right: #{convert-to-rem(8px)};
                 }
             }
         }

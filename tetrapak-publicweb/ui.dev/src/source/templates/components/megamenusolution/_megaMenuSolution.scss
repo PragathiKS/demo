@@ -1,11 +1,39 @@
 .pw-megamenu {
-    position: relative;
-    background-color: $color-white;
+    visibility: hidden;
+    top: 80px;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+    background: $color-white;
+    z-index: 11;
+
+    @media #{$desktop} {
+        position: relative;
+        visibility: visible;
+        top: unset;
+        left: unset;
+        width: unset;
+        height: unset;
+        z-index: 11;
+    }
 
     &.is-open {
         position: absolute;
         top: -80px;
+        height: auto;
+        visibility: visible;
+        transform: translateX(-100%);
+        transition: transform 440ms ease-out;
     }
+
+    &.is-close {
+        visibility: hidden;
+        transform: translateX(95%);
+        transition: transform 1440ms ease-out;
+    }
+
     img {
         @include border-radius($border-radius);
     }
@@ -48,14 +76,34 @@
             border-bottom: 0;
         }
         &:last-child {
-            @include padding(0);
-            border-bottom: 0;
+            @media #{$desktop} {
+                @include padding(0);
+                border-bottom: 0;
+            }
         }
     }
     .heading-cta {
         @include padding($padding-md 0);
         display: block;
         border-bottom: 1px solid $color-mercury;
+        margin-left: -15px;
+        margin-right: -15px;
+
+        .js-close-menu-solution {
+            padding: 18px 16px;
+            background-color: $color-wild-sand;
+            overflow: hidden;
+            @media #{$desktop} {
+                padding: auto;
+                background-color: none;
+            }
+        }
+
+        @media #{$desktop} {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         h2 {
             @include margin(0);
             display: inline-block;
@@ -63,8 +111,11 @@
         }
     }
     .heading-d-link {
-        @include margin($margin-xl 0);
+        @include margin(28px 0);
         text-align: center;
+        @media #{$desktop} {
+            @include margin($margin-xl 0);
+        }
     }
     h2 {
         @include font-size($font-m-sm);
@@ -110,6 +161,8 @@
     }
 
     .col-side-links {
+        @include padding(0);
+        border: 0;
         @media #{$desktop} {
             border-left: 1px solid $color-mercury;
         }
@@ -156,9 +209,11 @@
         }
     }
     &__bottom {
+        border-bottom: 1px solid $color-mercury;
         @media #{$desktop} {
             @include padding($margin-xl 0);
             background-color: $color-wild-sand;
+            border-bottom: 0;
         }
         .heading-bottom-cta {
             display: flex;
@@ -174,7 +229,7 @@
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
-            border-bottom: 1px solid $color-mercury;
+            // border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
                 @include padding(0);
@@ -186,6 +241,12 @@
         .col {
             @include margin(0);
             @include padding($padding-md);
+            a {
+                color: $color-congress-blue;
+                @media #{$desktop} {
+                    color: $color-tundora;
+                }
+             }
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
@@ -208,13 +269,13 @@
         .bottom-teaser-list {
             @include padding(0 $padding-md);
             visibility: hidden;
-            top: 0;
+            top: 80px;
             left: 100%;
             width: 100%;
             height: 100%;
             position: absolute;
             overflow: auto;
-            background: $color-wild-sand;
+            background: $color-white;
             z-index: 11;
             @media #{$desktop} {
                 display: flex;
@@ -224,6 +285,13 @@
                 width: auto;
                 top: auto;
                 justify-content: center;
+                background: $color-wild-sand;
+            }
+
+            .js-close-menu {
+                margin-left: -16px;
+                padding: 18px 16px;
+                background-color: $color-wild-sand;
             }
 
             &.active {
@@ -239,6 +307,7 @@
 
             h2 {
                 display: inline-block;
+                color: $color-tundora;
                 padding: 0;
                 border-bottom: 0;
                 text-align: center;

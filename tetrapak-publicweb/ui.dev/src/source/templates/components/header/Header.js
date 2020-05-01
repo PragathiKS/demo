@@ -15,22 +15,25 @@ class Header {
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
     this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$headerMobile = this.root.find('.tp-pw-header__container');
     this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
-    this.cache.$megaMenuMobile = this.root.find('.js-tp-pw-mobile-navigation .pw-megamenu');
+    this.cache.$megaMenuMobile = this.root.find('.pw-megamenu');
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
+    this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$body = $('body');
 
   }
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder } = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
     this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
     this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
+    this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
 
   }
 
@@ -52,7 +55,16 @@ class Header {
 
   handleMenuClick = () => {
     const { $megaMenuMobile } = this.cache;
-    $megaMenuMobile.css('display','block').addClass('is-open');
+    $megaMenuMobile.removeClass('is-close');
+    $megaMenuMobile.addClass('is-open');
+    // this.cache.$headerMobile.addClass('d-none');
+  }
+
+  handleCloseSolEvent = () => {
+    const { $megaMenuMobile } = this.cache;
+    $megaMenuMobile.removeClass('is-open');
+    $megaMenuMobile.addClass('is-close');
+    // this.cache.$headerMobile.removeClass('d-none');
   }
 
   hideMobileMenuOnResize = () => {

@@ -62,6 +62,10 @@ public class TabsListModel {
     @Default(intValues = 9)
     @ValueMapValue
     private int maxTabs;
+    
+    /** The logical operator. */
+    @ValueMapValue
+    private String logicalOperator;
 
     /** The pw theme. */
     @ValueMapValue
@@ -133,7 +137,7 @@ public class TabsListModel {
      */
     private void generateListAutomaticWay() {
 	if (tags != null && tags.length > 0) {
-	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs);
+	    List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTabs,logicalOperator);
 	    if (!aggregatorList.isEmpty()) {
 		setTabListfromAggregator(aggregatorList);
 	    }

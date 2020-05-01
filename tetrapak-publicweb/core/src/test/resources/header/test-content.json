@@ -36,7 +36,7 @@
 					"contactLinkTarget": "_blank",
 					"logoLink": "/content/tetrapak/public-web/global/en",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-					"solutionPage": "/content/tetrapak/public-web/global/en/solutions"
+					"solutionPage": "/content/tetrapak/publicweb/language-masters/en/solutions"
 				},
 				"megamenuconfig": {
 					"jcr:primaryType": "nt:unstructured",
@@ -111,6 +111,21 @@
 					}
 				}
 			}
+		}
+	},
+	"solutions" : {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Mon Mar 30 2020 18:24:51 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:createdBy": "admin",
+			"jcr:title": "Solutions",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"jcr:created": "Mon Mar 30 2020 18:24:51 GMT+0530",
+			"cq:lastModified": "Mon Mar 30 2020 18:24:51 GMT+0530",
+			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+			"cq:lastModifiedBy": "admin"
 		}
 	}
 }

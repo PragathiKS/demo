@@ -208,7 +208,7 @@ public class TeaserModelTest {
         Mockito.when(searchResult.getHits()).thenReturn(hits);
         Mockito.when(hit.getPath()).thenReturn(SOLUTIONS_PAGE);
         Mockito.when(pageManager.getPage(SOLUTIONS_PAGE)).thenReturn(context.pageManager().getPage(SOLUTIONS_PAGE));
-        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4);
+        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4,"and");
         assertEquals("Solutions", aggregatorList.get(0).getTitle());
         assertEquals("Solution Desc", aggregatorList.get(0).getDescription());
         assertEquals("_self", aggregatorList.get(0).getLinkTarget());
