@@ -28,7 +28,9 @@ class FindMyOffice {
     this.cache.goToLocalSiteI18nValue = $(
       this.cache.goToLocalSiteElement
     ).text();
-    this.cache.cityFieldTextValue = $(this.cache.cityToggle).text();
+    this.cache.cityFieldTextValue = $(
+      '.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text'
+    ).text();
     this.cache.googleApi = this.root.find('.js-google-api');
     this.cache.hiddenElement = this.root.find('.js-hidden-element');
     this.cache.linkSectionElement = this.root.find(
@@ -57,7 +59,9 @@ class FindMyOffice {
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
     $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
-    $('.js-pw-form__dropdown__country').html(e.target.innerText);
+    $(
+      '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
+    ).text(e.target.innerText);
     $('.js-pw-form__dropdown__country').attr('title', e.target.innerText);
     this.renderCities();
     this.clearSelectedCities();
@@ -68,6 +72,7 @@ class FindMyOffice {
       this.cache.selectedCountryValue
     ];
     let mapZoomLevel = 5;
+    let markerVisibility = false;
     if (
       Object.keys(this.cache.normalizedData).length !== 0 &&
       this.cache.normalizedData[this.cache.selectedCountryValue].offices
@@ -81,9 +86,13 @@ class FindMyOffice {
       this.renderOfficeDetailsPanel(this.cache.selectedOffice);
       !isMobile() && this.checkForMapHeight();
       mapZoomLevel = 10;
+      markerVisibility = true;
     }
     this.cache.marker && this.cache.marker.setMap(null);
-    this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel });
+    this.renderMarkerPosition(this.cache.selectedOffice, {
+      mapZoomLevel,
+      markerVisibility
+    });
   };
 
   checkForMapHeight = () => {
@@ -97,7 +106,7 @@ class FindMyOffice {
     }
   };
 
-  renderMarkerPosition = (office, mapZoomLevel) => {
+  renderMarkerPosition = (office, options) => {
     const latLng = new this.cache.googleMaps.LatLng(
       office.latitude,
       office.longitude
@@ -110,7 +119,8 @@ class FindMyOffice {
 
     // To add the marker to the map, call setMap();
     this.cache.marker.setMap(this.cache.map);
-    this.cache.map.setZoom((mapZoomLevel && mapZoomLevel.mapZoomLevel) || 5);
+    this.cache.marker.setVisible(options.markerVisibility);
+    this.cache.map.setZoom((options.mapZoomLevel) || 5);
     this.cache.map.panTo(this.cache.marker.position);
   };
 
@@ -123,13 +133,17 @@ class FindMyOffice {
   onClickCityItem = e => {
     this.cache.selectedCityValue = e.target.innerText;
     $('.js-pw-find-my-office__form-group__address').removeClass('hide');
-    $('.js-pw-form__dropdown__city').html(e.target.innerText);
+    $('.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text').text(
+      e.target.innerText
+    );
     $('.js-pw-form__dropdown__city').attr('title', e.target.innerText);
     this.renderOfficeDetails(this.cache.selectedCityValue);
   };
 
   clearSelectedCities = () => {
-    $('.js-pw-form__dropdown__city').text(this.cache.cityFieldTextValue);
+    $('.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text').text(
+      this.cache.cityFieldTextValue
+    );
   };
 
   renderOfficeDetails = officeName => {
@@ -143,7 +157,10 @@ class FindMyOffice {
     this.renderOfficeDetailsPanel(this.cache.selectedOffice);
     !isMobile() && this.checkForMapHeight();
     this.cache.marker && this.cache.marker.setMap(null);
-    this.renderMarkerPosition(this.cache.selectedOffice, { mapZoomLevel: 10 });
+    this.renderMarkerPosition(this.cache.selectedOffice, {
+      mapZoomLevel: 10,
+      markerVisibility: true
+    });
   };
 
   renderOfficeDetailsPanel = office => {
@@ -212,7 +229,9 @@ class FindMyOffice {
   };
 
   renderCities = () => {
-    const selectedCountry = $('.js-pw-form__dropdown__country').text();
+    const selectedCountry = $(
+      '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
+    ).text();
     const cities = [];
     this.cache.normalizedData[selectedCountry] &&
       this.cache.normalizedData[selectedCountry].offices.map(city => {

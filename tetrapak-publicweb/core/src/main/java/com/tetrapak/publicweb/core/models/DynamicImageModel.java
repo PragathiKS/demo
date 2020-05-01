@@ -289,6 +289,9 @@ public class DynamicImageModel {
         if (null == imageCrop) {
             return StringUtils.EMPTY;
         }
+        if(width > 1280) {
+            width = (long) 1280;
+        }
         String[] cropArray = imageCrop.split(",");
         Double topW = Double.valueOf(cropArray[0]);
         Double topH = Double.valueOf(cropArray[1]);

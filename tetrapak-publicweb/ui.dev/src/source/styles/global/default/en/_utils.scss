@@ -158,6 +158,7 @@ $progress-units: (
         background-color: $color-white;
         border-color: $color-tundora;
         overflow: hidden;
+        position: relative;
         text-overflow: ellipsis;
         width: 100%;
         color: $color-tundora;
@@ -168,10 +169,10 @@ $progress-units: (
         }
 
         &::after {
-            @include margin(0);
+            content: '';
             border: 0;
-            font-family: 'tp-icons';
-            content: '\f111';
+        }
+        .icon {
             position: absolute;
             right: 16px;
         }
