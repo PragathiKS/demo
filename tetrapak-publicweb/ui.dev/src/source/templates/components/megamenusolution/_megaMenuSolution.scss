@@ -201,7 +201,7 @@
         }
         .col {
             @media #{$desktop} {
-                width:168px;
+                width: 168px;
                 max-width: 168px;
             }
             @media #{$desktop-xl} {
@@ -251,7 +251,7 @@
                 @media #{$desktop} {
                     color: $color-tundora;
                 }
-             }
+            }
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
@@ -333,5 +333,4 @@
             }
         }
     }
-
 }
