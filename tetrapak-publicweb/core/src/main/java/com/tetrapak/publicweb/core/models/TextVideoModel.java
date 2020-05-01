@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -119,7 +120,9 @@ public class TextVideoModel {
         }
 
         if (youtubeVideoID != null) {
-            youtubeEmbedURL = YOUTUBE_URL_PREFIX + youtubeVideoID;
+            youtubeEmbedURL = YOUTUBE_URL_PREFIX
+                    + (youtubeVideoID.contains("?") ? (youtubeVideoID + "&" + PWConstants.ENABLE_JS_API)
+                            : (youtubeVideoID + "?" + PWConstants.ENABLE_JS_API));
         }
 
         if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
