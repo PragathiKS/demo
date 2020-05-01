@@ -124,9 +124,9 @@
     }
     h2 {
         @include font-size($font-m-sm);
-        @include line-height($font-l, $font-m-baseline);
+        @include line-height($font-l, $font-m-sm);
         display: flex;
-        font-weight: 900;
+        font-weight: 500;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
@@ -138,7 +138,7 @@
     }
     h3 {
         @include font-size($font-m-sm);
-        @include line-height($font-m-md, $font-baseline);
+        @include line-height($font-l, $font-m-sm);
         @include margin(0);
         color: $color-congress-blue;
         font-family: $font-bold;
