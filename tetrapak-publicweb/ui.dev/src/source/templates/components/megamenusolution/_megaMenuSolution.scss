@@ -17,7 +17,7 @@
         width: 100%;
         justify-content: center;
         nav {
-            max-width: $body-max-width;
+            width: 100%;
             margin: 0 auto;
             z-index: $zindex-s;
             position: relative;
@@ -257,13 +257,5 @@
             }
         }
     }
-    &__bottom-bar {
-        border: 0;
-        height: 202px;
-        background-color: $color-wild-sand;
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        margin: 0;
-    }
+
 }
