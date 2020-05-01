@@ -1,5 +1,5 @@
 <sly data-sly-template.teaser_template="${@data, flag}">
-  <div class="pw-container">
+  <div class="pw-container" data-module="teaser">
     <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.heading}" class="tp-teaser__heading">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -26,10 +26,10 @@
                 class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
                 title="${child.linkText}"
                 target="${child.targetBlank}"
-                data-link-type="internal"
                 data-link-section="Teaser${buttonLinkType}${buttonDownloadCheck}"
                 data-link-name="${child.linkText}"
-                data-link-title=""
+                data-link-title="${data.heading}"
+                data-asset-name="${child.assetName}"
                 data-button-link-type="${child.pwButtonTheme}"
                 data-download-type="${child.pwLinkTheme}"
                 >
