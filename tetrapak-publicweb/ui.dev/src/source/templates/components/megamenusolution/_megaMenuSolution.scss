@@ -143,11 +143,11 @@
         font-weight: 900;
         @media #{$desktop} {
             @include font-size($font-md);
-            @include line-height($font-md, $font-baseline);
             @include margin($margin-l 0);
             color: $color-tundora;
             font-family: $font-light;
             font-weight: 500;
+            line-height: 24px;
         }
     }
     p {
@@ -180,9 +180,9 @@
                 @include padding($padding-md);
                 border-bottom: 1px solid $color-mercury;
                 a {
-                    @include line-height($font-l, $font-baseline);
                     color: $color-congress-blue;
                     font-weight: 500;
+                    line-height: 20px;
                 }
                 @media #{$desktop} {
                     @include margin-bottom($margin-l);
@@ -327,9 +327,9 @@
             .img-title {
                 @include margin-top($margin-xs);
                 @include padding-top($padding-xxs);
-                @include line-height($font-l, $font-baseline);
                 display: inline-block;
                 font-weight: 500;
+                line-height: 20px;
             }
         }
     }
