@@ -18,14 +18,18 @@
 
           <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
           <div class="link" data-sly-test="${child.linkText}">
-              <a data-sly-test="${child.linkText}"
+            <sly data-sly-test.buttonLinkType="${child.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}"/>
+            <sly data-sly-test.buttonDownloadCheck="${child.pwLinkTheme == 'download' ? '_Download' : ''}"/>  
+            
+            <a data-sly-test="${child.linkText}"
                 href="${child.linkPath}"
                 class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
                 title="${child.linkText}"
                 target="${child.targetBlank}"
                 data-link-type="internal"
-                data-link-section="Teaser_CTA Click_Download"
+                data-link-section="Teaser${buttonLinkType}${buttonDownloadCheck}"
                 data-link-name="${child.linkText}"
+                data-link-title=""
                 data-button-link-type="${child.pwButtonTheme}"
                 data-download-type="${child.pwLinkTheme}"
                 >
