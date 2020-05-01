@@ -201,9 +201,11 @@
         }
         .col {
             @media #{$desktop} {
+                width:168px;
                 max-width: 168px;
             }
             @media #{$desktop-xl} {
+                width: 250px;
                 max-width: 250px;
             }
         }
@@ -253,9 +255,11 @@
             @media #{$desktop} {
                 @include margin(0 $margin-sm);
                 padding: 0;
+                width: 70px;
                 max-width: 70px;
             }
             @media #{$desktop-xl} {
+                width: 97px;
                 max-width: 97px;
             }
             &:last-child {
