@@ -20,12 +20,12 @@ class MediaLink {
     const $this = $target.closest('.js-medialink-analytics');
     let linkParentTitle = '';
     let trackingObj = {};
-    const linkType = $this.hasClass('icon-Union') ? 'external':'internal';
+    const linkType = $this.find('i.icon').hasClass('icon-Union') ? 'external':'internal';
     const linkName = $this.data('link-name');
     const dwnDocName = $this.data('asset-name');
     const dwnType = 'ungated';
     const eventType = 'download';
-    const downloadtype = $this.hasClass('icon-Download') ? 'download':'_download';
+    const downloadtype = $this.find('i.icon').hasClass('icon-Download') ? 'download':'_download';
     const sectionTitle = $this.data('section-name');
     let linkSection = $this.data('link-section');
     if(downloadtype ==='download') {
