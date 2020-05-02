@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class Header {
   constructor({ el }) {
@@ -44,6 +45,7 @@ class Header {
     $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
     $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
+    dynMedia.processImages();
   }
 
   handleMouseOut = () => {
