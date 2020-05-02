@@ -205,7 +205,7 @@
     width: 100%;
     position: absolute;
     z-index: $zindex-p;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 
     @media #{$desktop} {
