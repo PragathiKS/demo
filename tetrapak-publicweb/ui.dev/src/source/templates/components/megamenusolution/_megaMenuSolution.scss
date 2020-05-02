@@ -92,7 +92,7 @@
         margin-left: -15px;
         margin-right: -15px;
 
-        .js-close-menu-solution {
+        .js-design-close-menu-solution {
             @include padding(18px $margin-md);
             @include margin(-16px -16px -16px 0);
             background-color: $color-wild-sand;
@@ -174,7 +174,7 @@
 
         .list-side-links {
             @media #{$desktop} {
-                @include padding-left($padding-l);
+                @include padding-left(20px);
             }
 
             li {
@@ -297,7 +297,7 @@
                 background: $color-wild-sand;
             }
 
-            .js-close-menu {
+            .js-design-close-menu {
                 margin-left: -16px;
                 padding: 18px 16px;
                 background-color: $color-wild-sand;
