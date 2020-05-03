@@ -41,7 +41,9 @@
     }
 
     &__linklist {
-        @include margin-bottom($margin-l);
+        &:last-child {
+            @include margin-bottom($margin-l);
+        }
         @media #{$desktop} {
             @include padding-left($margin-l);
             @include padding-right($margin-l);
@@ -51,6 +53,7 @@
             }
             &:last-child {
                 @include padding-right(15px);
+                @include margin-bottom($margin-zero);
             }
         }
     }
@@ -85,6 +88,6 @@
         display: none;
         @media #{$desktop} {
             display: block;
-        }   
+        }
     }
 }
