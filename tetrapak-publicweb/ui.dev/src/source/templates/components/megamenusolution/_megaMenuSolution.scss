@@ -300,6 +300,8 @@
             .js-design-close-menu {
                 margin: -16px;
                 padding: 18px 16px;
+                @include padding(18px $margin-md);
+                @include margin(-16px);
                 background-color: $color-wild-sand;
             }
 
