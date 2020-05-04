@@ -24,8 +24,24 @@ public @interface PXPConfig {
      *
      * @return API GEE Service Url
      */
-    @AttributeDefinition(name = "Disable Full Feed Scheduled Task", description = "Disable Full Feed Scheduled Task")
+    @AttributeDefinition(name = "Disable Full Feed Scheduled Task", description = "Disable Delta Feed Scheduled Task")
     boolean fullFeedSchedulerDisable() default false;
+    
+    /**
+     * DELTA Feed Cron-job expression
+     *
+     * @return DELTA Feed Cron-job expression
+     */
+    @AttributeDefinition(name = "Delta Feed Cron-job expression")
+    String deltaFeedSchedulerExpression() default "0 0 0 ? * * *";
+
+    /**
+     * DISABLE DELTA FEED SCHEDULER.
+     *
+     * @return API GEE Service Url
+     */
+    @AttributeDefinition(name = "Delta Full Feed Scheduled Task", description = "Disable Delta Feed Scheduled Task")
+    boolean deltaFeedSchedulerDisable() default false;
 
     /**
      * BEARER TOKEN REFRESH TIME

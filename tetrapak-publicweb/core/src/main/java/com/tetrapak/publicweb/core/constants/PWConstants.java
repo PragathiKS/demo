@@ -103,9 +103,12 @@ public final class PWConstants {
 
     /** The FULL FEED Scheduler ID. */
     public static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
+    
+    /** The DELTA FEED Scheduler ID. */
+    public static final String DELTA_FEED_SCHEDULER_ID = "pwpxpdeltafeedschedulerID@tetrapak";
 
-    /** The full feed files uri. */
-    public static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
+    /** The feed files uri. */
+    public static final String FEED_FILES_URI = "/equipment/pxpparameters/files/";
     
     /** The filling machine template. */
     public static final String FILLING_MACHINE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page";
@@ -118,6 +121,9 @@ public final class PWConstants {
     
     /** The full feed */
     public static final String FULL_FEED = "full";
+    
+    /** The delta feed */
+    public static final String DELTA_FEED = "delta";
 
     private PWConstants() {
         /*

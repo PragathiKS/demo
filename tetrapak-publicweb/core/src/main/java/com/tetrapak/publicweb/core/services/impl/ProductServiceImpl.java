@@ -2,8 +2,10 @@ package com.tetrapak.publicweb.core.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
@@ -12,10 +14,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.ProcessingEquipement;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.utils.FillingMachineUtil;
 import com.tetrapak.publicweb.core.utils.PackageTypeUtil;
@@ -47,8 +49,9 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public List<String> createProductFillingMachine(ResourceResolver resolver, Session session, String productType,
-            List<FillingMachine> fillingMachines, String language, String damRootPath, String videoTypes) {
+    public List<String> createOrUpdateProductFillingMachine(ResourceResolver resolver, Session session,
+            String productType, List<FillingMachine> fillingMachines, String language, String damRootPath,
+            String videoTypes) {
         pathToReplicate = new ArrayList<>();
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
@@ -98,7 +101,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public List<String> createProductPackageType(ResourceResolver resolver, Session session, String productType,
+    public List<String> createOrUpdateProductPackageType(ResourceResolver resolver, Session session, String productType,
             List<Packagetype> packageTypes, String language, String damRootPath, String videoTypes) {
         pathToReplicate = new ArrayList<>();
         try {
@@ -129,7 +132,7 @@ public class ProductServiceImpl implements ProductService {
      * @param videoTypes
      */
     @Override
-    public List<String> createProductProcessingEquipement(ResourceResolver resolver, Session session,
+    public List<String> createOrUpdateProductProcessingEquipement(ResourceResolver resolver, Session session,
             String productType, List<ProcessingEquipement> equipments, String language, String damRootPath,
             String videoTypes) {
         pathToReplicate = new ArrayList<>();
@@ -149,32 +152,6 @@ public class ProductServiceImpl implements ProductService {
 
         }
         return pathToReplicate;
-    }
-
-    /**
-     * return language
-     */
-    @Override
-    public String getLanguage(String fileURI) {
-        return fileURI.substring(fileURI.lastIndexOf('/') + 1).split("_")[1].replaceAll(".json", "");
-    }
-
-    /**
-     * return file type.
-     */
-    @Override
-    public String getFileType(String fileURI) {
-        String fileType = StringUtils.EMPTY;
-        if (fileURI.contains(PWConstants.PROCESSING_EQUIPEMENT)) {
-            fileType = PWConstants.PROCESSING_EQUIPEMENT;
-        }
-        if (fileURI.contains(PWConstants.FILLING_MACHINE)) {
-            fileType = PWConstants.FILLING_MACHINE;
-        }
-        if (fileURI.contains(PWConstants.PACKAGE_TYPE)) {
-            fileType = PWConstants.PACKAGE_TYPE;
-        }
-        return fileType;
     }
 
     /**
