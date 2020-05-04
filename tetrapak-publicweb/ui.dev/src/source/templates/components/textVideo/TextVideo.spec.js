@@ -1,5 +1,6 @@
 import TextVideo from './TextVideo';
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import textVideoTemplate from '../../../test-templates-hbs/textVideo.hbs';
 
 describe('TextVideo', function () {
