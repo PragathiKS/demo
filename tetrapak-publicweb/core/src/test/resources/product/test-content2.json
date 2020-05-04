@@ -11,7 +11,7 @@
 "jcr:title": "PXP Processing Equipement",
 "cq:lastReplicationAction": "Activate",
 "jcr:versionHistory": "cf6b6cfd-b5a4-49d5-a036-380ce8f8b9bd",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-processing-equipement-page",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
 "productId":"processing_equipment13225",
 "cq:lastReplicatedBy": "admin",
 "jcr:created": "Tue Jan 21 2020 01:43:09 GMT+0000",
