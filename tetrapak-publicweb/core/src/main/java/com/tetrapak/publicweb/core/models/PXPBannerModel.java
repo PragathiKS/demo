@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -35,10 +36,12 @@ public class PXPBannerModel {
 
     /** The pw display. */
     @ValueMapValue
+    @Default(values = "display-row")
     private String pwDisplay;
 
     /** The pw theme. */
     @ValueMapValue
+    @Default(values = "grayscale-white")
     private String pwTheme;
 
     /** The anchor id. */
