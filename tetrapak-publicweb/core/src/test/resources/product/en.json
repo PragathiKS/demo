@@ -1,0 +1,39 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jan 21 2020 01:43:09 GMT+0000",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"jcr:createdBy": "admin",
+"socialMedia": [
+"facebook",
+"pinterest"
+],
+"jcr:title": "English",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "98753764-1c31-4cec-93ef-14110cbe43d1",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+"cq:lastReplicatedBy": "admin",
+"jcr:language": "en",
+"jcr:predecessors": [
+"83b42859-a943-4228-9752-3ed4ce90baf8"
+],
+"jcr:created": "Tue Jan 21 2020 01:43:09 GMT+0000",
+"cq:lastReplicated": "Thu Apr 30 2020 08:01:54 GMT+0000",
+"cq:lastModified": "Sun May 03 2020 10:20:53 GMT+0000",
+"jcr:baseVersion": "83b42859-a943-4228-9752-3ed4ce90baf8",
+"jcr:isCheckedOut": true,
+"jcr:uuid": "682a4138-3b11-45af-84ca-2783ceaf07bc",
+"sling:resourceType": "publicweb/components/structure/pages/emptypage",
+"cq:allowedTemplates": [
+"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+],
+"errorPages": "/content/tetrapak/public-web/lang-masters/en/error",
+"cq:lastModifiedBy": "sapient-sandip"
+}
+}

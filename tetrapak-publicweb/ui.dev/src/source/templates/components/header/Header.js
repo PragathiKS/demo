@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class Header {
   constructor({ el }) {
@@ -20,6 +21,7 @@ class Header {
     this.cache.$megaMenuMobile = this.root.find('.pw-megamenu');
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
     this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
+    this.cache.$bottomTeaserH = this.root.find('.js-bottom-teaser-list');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$body = $('body');
 
@@ -43,6 +45,7 @@ class Header {
     $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
     $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
+    dynMedia.processImages();
   }
 
   handleMouseOut = () => {
@@ -85,6 +88,13 @@ class Header {
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.toggleFlag = false;
+
+      //hide other navigation on close
+      const { $megaMenuMobile, $bottomTeaserH } = this.cache;
+      $bottomTeaserH.removeClass('active').addClass('hide');
+      $megaMenuMobile.removeClass('is-open');
+      $megaMenuMobile.addClass('is-close');
+            
     }
   }
 

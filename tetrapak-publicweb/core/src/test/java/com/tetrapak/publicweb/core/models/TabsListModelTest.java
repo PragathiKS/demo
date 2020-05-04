@@ -186,7 +186,7 @@ public class TabsListModelTest {
 	assertEquals("https://s7g10.scene7.com/is/content/tetrapak/file_example_MOV_1280_1_4MB",
 		model.getTabs().get(2).getDamVideoPath());
 	assertEquals("/content/dam/tetrapak/publicweb/ContentImage6.png", model.getTabs().get(2).getThumbnailPath());
-	assertEquals("https://www.youtube.com/embed/UEfCxCLtOwk", model.getTabs().get(3).getYoutubeEmbedURL());
+	assertEquals("https://www.youtube.com/embed/UEfCxCLtOwk?enablejsapi=1", model.getTabs().get(3).getYoutubeEmbedURL());
 
 	assertEquals("file_example_MOV_1280_1_4MB", model.getTabs().get(2).getVideoName());
 	assertEquals("badging", model.getTabs().get(3).getAssetName());

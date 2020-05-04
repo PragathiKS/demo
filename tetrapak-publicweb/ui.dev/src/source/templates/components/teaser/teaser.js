@@ -20,24 +20,40 @@ class Teaser {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-teaser-analytics');
+    let linkParentTitle = '';
     let trackingObj = {};
-    let eventType = 'content-load';
+    const dwnType = 'ungated';
+    const eventType = 'download';
+    const linkType = $this.attr('target') === '_blank'?'external':'internal';
+    const linkSection = $this.data('link-section');
+    const linkName = $this.data('link-name');
+    const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
+    const dwnDocName = $this.data('asset-name');
+    const linkTitle = $this.data('link-title');
 
-    if(downloadtype ==='download'){
-      eventType = 'download';
-      trackingObj = {
-        eventType
-      };
-    } if($this.attr('target') === 'blank') {
-      window._satellite.track('linkClick');
-    } else {
-      trackingObj = {
-        eventType
-      };
+
+    if(buttonLinkType==='secondary' && downloadtype ==='download'){
+      linkParentTitle = `CTA_Download_pdf_${linkTitle}`;
     }
 
-    trackAnalytics(trackingObj, 'linkClick', 'TextImageClick', undefined, false);
+    if(buttonLinkType==='link' && downloadtype ==='download'){
+      linkParentTitle = `Text hyperlink_Download_pdf_${linkTitle}`;
+    }
+
+    if(downloadtype ==='download'){
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName,
+        dwnDocName,
+        dwnType,
+        eventType
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+    }
+
     window.open($this.attr('href'), $this.attr('target'));
   }
 

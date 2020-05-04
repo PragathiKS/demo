@@ -57,6 +57,15 @@
                         sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1587502093717>
+                    <policy_1588323636441
+                        jcr:lastModified="{Date}2020-05-01T14:30:56.145+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="publicweb PXP"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:tetrapak-publicweb,group:tetrapak-publicweb-pxp]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1588323636441>
                 </responsivegrid>
             </components>
         </foundation>

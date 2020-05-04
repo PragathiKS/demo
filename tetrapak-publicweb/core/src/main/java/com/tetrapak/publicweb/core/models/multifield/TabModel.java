@@ -11,86 +11,88 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TabBeanModel.
+ * 
  * @author Sandip Kumar
  *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabModel {
-    
+
     /** The resource */
     @Self
     private Resource resource;
-    
+
     /** The tabType */
     @ValueMapValue
     private String tabType;
-    
+
     /** The subTitle */
     @ValueMapValue
     private String subTitle;
-    
+
     /** The title */
     @ValueMapValue
     private String title;
-    
+
     /** The description */
     @ValueMapValue
     private String description;
-    
+
     /** The linkText */
     @ValueMapValue
     private String linkText;
-    
+
     /** The linkURL */
     @ValueMapValue
     private String linkURL;
-    
+
     /** The pwLinkTheme */
     @ValueMapValue
     private String pwLinkTheme;
-    
+
     /** The targetBlank */
     @ValueMapValue
     private String targetBlank;
-    
+
     /** The videoSource */
     @ValueMapValue
     private String videoSource;
-  
+
     /** The youtubeEmbedURL */
     @Named(value = "youtubeVideoID")
     @ValueMapValue
     private String youtubeVideoID;
-    
+
     /** The damVideoPath */
     @ValueMapValue
     private String damVideoPath;
-    
+
     /** The thumbnailPath */
     @ValueMapValue
     private String thumbnailPath;
-    
+
     /** The thumbnailAltText */
     @ValueMapValue
     private String thumbnailAltText;
-    
+
     /** The fileReference */
     @ValueMapValue
     private String fileReference;
-    
+
     /** The pw button theme. */
     private String pwButtonTheme;
-    
+
     /** The alt */
     @ValueMapValue
     private String alt;
-    
+
     /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
@@ -98,10 +100,10 @@ public class TabModel {
     /** The dynamic media service. */
     @OSGiService
     private DynamicMediaService dynamicMediaService;
-    
+
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
-    
+
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
 
@@ -177,11 +179,13 @@ public class TabModel {
      * @return youtube Embed URL
      */
     public String getYoutubeEmbedURL() {
-	String youtubeEmbedURL = StringUtils.EMPTY;
-	if (youtubeVideoID != null) {
-	    youtubeEmbedURL = YOUTUBE_URL_PREFIX + youtubeVideoID;
-	}
-	return youtubeEmbedURL;
+        String youtubeEmbedURL = StringUtils.EMPTY;
+        if (youtubeVideoID != null) {
+            youtubeEmbedURL = YOUTUBE_URL_PREFIX
+                    + (youtubeVideoID.contains("?") ? (youtubeVideoID + "&" + PWConstants.ENABLE_JS_API)
+                            : (youtubeVideoID + "?" + PWConstants.ENABLE_JS_API));
+        }
+        return youtubeEmbedURL;
     }
 
     /**
@@ -190,10 +194,10 @@ public class TabModel {
      * @return damVideoPath
      */
     public String getDamVideoPath() {
-	if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
-	    damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
-	}
-	return damVideoPath;
+        if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+        }
+        return damVideoPath;
     }
 
     /**
@@ -303,13 +307,13 @@ public class TabModel {
      * @return pw button theme
      */
     public String getPwButtonTheme() {
-	if (resource != null) {
-	    Resource pageContentRes = resource.getParent().getParent();
-	    if ("manual".equalsIgnoreCase(pageContentRes.getValueMap().get("contentType").toString())) {
-		pwButtonTheme = pageContentRes.getValueMap().get("pwButtonTheme").toString();
-	    }
-	}
-	return pwButtonTheme;
+        if (resource != null) {
+            Resource pageContentRes = resource.getParent().getParent();
+            if ("manual".equalsIgnoreCase(pageContentRes.getValueMap().get("contentType").toString())) {
+                pwButtonTheme = pageContentRes.getValueMap().get("pwButtonTheme").toString();
+            }
+        }
+        return pwButtonTheme;
     }
 
     /**
@@ -329,7 +333,7 @@ public class TabModel {
     public void setTabType(String tabType) {
         this.tabType = tabType;
     }
-    
+
     /**
      * Gets the asset name.
      *
@@ -359,12 +363,12 @@ public class TabModel {
     /**
      * Gets the substring after last.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return the substring after last
      */
     private String getSubstringAfterLast(final String path) {
         return StringUtils.substringAfterLast(path, FORWARD_SLASH);
     }
-    
 
 }

@@ -12,8 +12,8 @@
                 <sly data-sly-test="${data.topSectionUrl == '#'}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
               </div>
           </sly>
-              <div class="heading-cta d-md-none">
-                  <i class="icon icon-Chevron_Left js-close-menu-solution"></i>
+              <div class="heading-cta d-md-none js-close-menu-solution">
+                  <i class="icon icon-Chevron_Left js-design-close-menu-solution"></i>
                   <sly data-sly-use.solutiontitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${solutiontitle.heading_h2_template @ headingText='Solution', variant='regular'}" />
               </div>
               <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
@@ -43,18 +43,18 @@
               </ul>
           </div>
           <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
-              <div class="heading-bottom-cta">
+              <div class="heading-bottom-cta js-open-menu">
                 <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}" title="${data.bottomSectionSubtitle}" aria-label="${data.bottomSectionSubtitle}">
                   <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
                 </a>
                 <sly data-sly-test="${data.bottomSectionUrl == '#'}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
-                  <i class="icon icon-Chevron_Right d-md-none js-open-menu"></i>
+                  <i class="icon icon-Chevron_Right d-md-none"></i>
               </div>
               <div class="bottom-teaser-list js-bottom-teaser-list">
                   <ul class="row" data-sly-list.foodCategorySection=${data.foodCategorySection}>
-                      <li class="col d-md-none" data-sly-test="${foodCategorySectionList.first}">
+                      <li class="col d-md-none js-close-menu" data-sly-test="${foodCategorySectionList.first}">
                           <div>
-                              <i class="icon icon-Chevron_Left d-md-none js-close-menu"></i>
+                              <i class="icon icon-Chevron_Left d-md-none js-design-close-menu"></i>
                               <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html" data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
                           </div>
                       </li>
@@ -74,6 +74,5 @@
               </div>
           </div>
       </nav>
-      <div data-sly-test="${!data.hideFoodCategories}" class="pw-megamenu__bottom-bar d-none d-xl-block"></div>
   </div>
 </sly>
