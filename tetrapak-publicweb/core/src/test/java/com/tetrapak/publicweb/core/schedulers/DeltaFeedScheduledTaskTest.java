@@ -64,8 +64,12 @@ public class DeltaFeedScheduledTaskTest {
         context.registerService(APIGEEService.class, apiGEEService);
         MockOsgi.activate(apiGEEService, context.bundleContext(),apiGeeConfig);
         
+        final Map<String, Object> config = new HashMap<String, Object>();
+        config.put("damRootPath", "/content/dam/tetrapak/publicweb/pxp");
+        config.put("videoTypes", "mp4");
         productService = new ProductServiceImpl();
         context.registerService(ProductService.class, productService);
+        MockOsgi.activate(productService, context.bundleContext(),config);
         
         context.getService(APIGEEService.class);
     }
@@ -76,8 +80,6 @@ public class DeltaFeedScheduledTaskTest {
         config.put("deltaFeedSchedulerExpression", "0 0 0 ? * * *");
         config.put("deltaFeedSchedulerDisable", false);
         config.put("schedulerRefreshTokenTime", 2700000);
-        config.put("damRootPath", "/content/dam/tetrapak/publicweb/pxp");
-        config.put("videoTypes", "mp4");
         
         MockOsgi.injectServices(deltaFeedTask, context.bundleContext());
         MockOsgi.activate(deltaFeedTask, context.bundleContext(),config);

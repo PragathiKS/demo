@@ -107,11 +107,18 @@ public final class ResourceUtil {
     /**
      * @param resolver
      * @param resourcePath
-     * @throws PersistenceException
      */
-    public static void deleteResource(ResourceResolver resolver, String resourcePath) throws PersistenceException {
+    public static void deleteResource(ResourceResolver resolver, Session session, String resourcePath) {
         if (resolver.getResource(resourcePath) != null) {
-            resolver.delete(resolver.getResource(resourcePath));
+            try {
+                resolver.delete(resolver.getResource(resourcePath));
+                session.save();
+            } catch (PersistenceException e) {
+                LOGGER.error("PersistenceException Exception in deleting PXP products", e.getMessage(), e);
+
+            } catch (RepositoryException e) {
+                LOGGER.error("RepositoryException Exception in deleting PXP products", e.getMessage(), e);
+            }
         }
     }
 }

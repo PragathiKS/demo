@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.jcr.Session;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -34,7 +33,7 @@ import com.tetrapak.publicweb.core.beans.pxp.Files;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
-import com.tetrapak.publicweb.core.services.config.PXPConfig;
+import com.tetrapak.publicweb.core.services.config.DeltaPXPConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.ProductUtil;
 import com.tetrapak.publicweb.core.utils.ResourceUtil;
@@ -46,7 +45,7 @@ import com.tetrapak.publicweb.core.utils.ResourceUtil;
  * 
  *         Delta Feed Scheduler for products import.
  */
-@Designate(ocd = PXPConfig.class)
+@Designate(ocd = DeltaPXPConfig.class)
 @Component(
         immediate = true,
         service = DeltaFeedImportScheduledTask.class,
@@ -90,12 +89,6 @@ public class DeltaFeedImportScheduledTask implements Runnable {
 
     /** The refresh token time. */
     private int refreshTokenTime;
-
-    /** The dam root path. */
-    private String damRootPath;
-
-    /** The video Types. */
-    private String videoTypes;
 
     /** The scheduler ID. */
     private int schedulerID;
@@ -196,14 +189,17 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 PWConstants.FEED_FILES_URI + fileURI);
         if (deltaFillingMachines != null && !deltaFillingMachines.getFillingMachine().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
-                    deltaFillingMachines.getFillingMachine(), language, damRootPath, videoTypes));
+                    deltaFillingMachines.getFillingMachine(), language));
         }
         if (!deltaFillingMachines.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaFillingMachines.getDeleted());
             for (String deletedProduct : deltaFillingMachines.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session,
                         PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session,
+                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
             }
+            
         }
     }
 
@@ -222,12 +218,14 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 .getDeltaProcessingEquipements(bearerToken.getAccessToken(), PWConstants.FEED_FILES_URI + fileURI);
         if (deltaEquipements != null && !deltaEquipements.getProcessingEquipement().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductProcessingEquipement(resolver, session, fileType,
-                    deltaEquipements.getProcessingEquipement(), language, damRootPath, videoTypes));
+                    deltaEquipements.getProcessingEquipement(), language));
         }
         if (!deltaEquipements.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaEquipements.getDeleted());
             for (String deletedProduct : deltaEquipements.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session,
+                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session,
                         PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
             }
         }
@@ -248,13 +246,15 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 PWConstants.FEED_FILES_URI + fileURI);
         if (deltaPackageTypes != null && !deltaPackageTypes.getPackagetype().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductPackageType(resolver, session, fileType,
-                    deltaPackageTypes.getPackagetype(), language, damRootPath, videoTypes));
+                    deltaPackageTypes.getPackagetype(), language));
         }
         if (!deltaPackageTypes.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaPackageTypes.getDeleted());
             for (String deletedProduct : deltaPackageTypes.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session,
                         PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.PACKAGE_TYPE + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session,
+                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
             }
         }
     }
@@ -303,11 +303,9 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Activate
-    protected void activate(PXPConfig config) {
+    protected void activate(DeltaPXPConfig config) {
         schedulerID = PWConstants.DELTA_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 
@@ -318,12 +316,10 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Modified
-    protected void modified(PXPConfig config) {
+    protected void modified(DeltaPXPConfig config) {
         removeScheduler();
         schedulerID = PWConstants.DELTA_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 
@@ -334,7 +330,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Deactivate
-    protected void deactivate(PXPConfig config) {
+    protected void deactivate(DeltaPXPConfig config) {
         removeScheduler();
     }
 
@@ -344,7 +340,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param config
      *            the config
      */
-    private void addScheduler(PXPConfig config) {
+    private void addScheduler(DeltaPXPConfig config) {
         if (!config.deltaFeedSchedulerDisable()) {
             ScheduleOptions sopts = scheduler.EXPR(config.deltaFeedSchedulerExpression());
             sopts.name(String.valueOf(schedulerID));

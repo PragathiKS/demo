@@ -85,12 +85,6 @@ public class FullFeedImportScheduledTask implements Runnable {
     /** The refresh token time. */
     private int refreshTokenTime;
 
-    /** The dam root path. */
-    private String damRootPath;
-
-    /** The video Types. */
-    private String videoTypes;
-
     /** The scheduler ID. */
     private int schedulerID;
 
@@ -169,7 +163,7 @@ public class FullFeedImportScheduledTask implements Runnable {
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
             productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
-                    fillingMachines, language, damRootPath, videoTypes);
+                    fillingMachines, language);
         }
 
     }
@@ -184,7 +178,7 @@ public class FullFeedImportScheduledTask implements Runnable {
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
             productService.createOrUpdateProductProcessingEquipement(resolver, session,
-                    fileType, equipements, language, damRootPath, videoTypes);
+                    fileType, equipements, language);
         }
     }
 
@@ -198,7 +192,7 @@ public class FullFeedImportScheduledTask implements Runnable {
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
             productService.createOrUpdateProductPackageType(resolver, session, fileType,
-                    packageTypes, language, damRootPath, videoTypes);
+                    packageTypes, language);
         }
     }
 
@@ -246,8 +240,6 @@ public class FullFeedImportScheduledTask implements Runnable {
     protected void activate(PXPConfig config) {
         schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 
@@ -259,8 +251,6 @@ public class FullFeedImportScheduledTask implements Runnable {
         removeScheduler();
         schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 

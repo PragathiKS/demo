@@ -8,24 +8,24 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  *
  * @author Sandip Kumar
  */
-@ObjectClassDefinition(name = "Public Web PXP Full Feed Configuration", description = "Public Web PXP Full Feed Configuration")
-public @interface PXPConfig {
-
+@ObjectClassDefinition(name = "Public Web PXP Delta Feed Configuration", description = "Public Web PXP Delta Feed Configuration")
+public @interface DeltaPXPConfig {
+    
     /**
-     * Full Feed Cron-job expression
+     * DELTA Feed Cron-job expression
      *
-     * @return Full Feed Cron-job expression
+     * @return DELTA Feed Cron-job expression
      */
-    @AttributeDefinition(name = "Full Feed Cron-job expression")
-    String fullFeedSchedulerExpression() default "0 0 0 ? * SUN *";
+    @AttributeDefinition(name = "Delta Feed Cron-job expression")
+    String deltaFeedSchedulerExpression() default "0 0 0 ? * * *";
 
     /**
-     * DISABLE FULL FEED SCHEDULER.
+     * DISABLE DELTA FEED SCHEDULER.
      *
      * @return API GEE Service Url
      */
-    @AttributeDefinition(name = "Disable Full Feed Scheduled Task", description = "Disable Delta Feed Scheduled Task")
-    boolean fullFeedSchedulerDisable() default false;
+    @AttributeDefinition(name = "Delta Full Feed Scheduled Task", description = "Disable Delta Feed Scheduled Task")
+    boolean deltaFeedSchedulerDisable() default false;
 
     /**
      * BEARER TOKEN REFRESH TIME

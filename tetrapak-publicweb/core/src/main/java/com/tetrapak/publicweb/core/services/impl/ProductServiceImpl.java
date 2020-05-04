@@ -10,8 +10,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,12 +35,39 @@ import com.tetrapak.publicweb.core.utils.ProductUtil;
  */
 @Component(immediate = true, service = ProductService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ProductServiceImpl implements ProductService {
+    
+    @ObjectClassDefinition(name = "Public Web Product Import Config",
+            description = "Public Web Product Import Config")
+    public static @interface Config {
+
+        /**
+         * PXP DAM ROOT PATH
+         *
+         * @return dam root path
+         */
+        @AttributeDefinition(name = "DAM root Path")
+        String damRootPath() default "/content/dam/tetrapak/publicweb/pxp";
+
+        /**
+         * PXP Video Types
+         *
+         * @return video types
+         */
+        @AttributeDefinition(name = "Video Type Mapping", description = "types of video in PXP.Add comma seprated.")
+        String videoTypes() default "mp4,webm,mpg,mp2,mpeg,mpe,mpv,ogg,m4p,m4v,avi,wmv,mov,qt,flv,swf,avchd";
+    }
 
     /** The logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     /** The paths to replicate. */
     private List<String> pathToReplicate;
+    
+    /** The dam root path. */
+    private String damRootPath;
+    
+    /** The video types. */
+    private String videoTypes;
 
     /**
      * @param resolver
@@ -50,8 +81,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<String> createOrUpdateProductFillingMachine(ResourceResolver resolver, Session session,
-            String productType, List<FillingMachine> fillingMachines, String language, String damRootPath,
-            String videoTypes) {
+            String productType, List<FillingMachine> fillingMachines, String language) {
         pathToReplicate = new ArrayList<>();
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
@@ -102,7 +132,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<String> createOrUpdateProductPackageType(ResourceResolver resolver, Session session, String productType,
-            List<Packagetype> packageTypes, String language, String damRootPath, String videoTypes) {
+            List<Packagetype> packageTypes, String language) {
         pathToReplicate = new ArrayList<>();
         try {
             Resource productTypeResource = ProductUtil.createProductRootResource(resolver, productType);
@@ -133,8 +163,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<String> createOrUpdateProductProcessingEquipement(ResourceResolver resolver, Session session,
-            String productType, List<ProcessingEquipement> equipments, String language, String damRootPath,
-            String videoTypes) {
+            String productType, List<ProcessingEquipement> equipments, String language) {
         pathToReplicate = new ArrayList<>();
         try {
             Resource equipementResource = ProductUtil.createProductRootResource(resolver, productType);
@@ -169,6 +198,24 @@ public class ProductServiceImpl implements ProductService {
             }
         }
 
+    }
+    
+    /**
+     * @param config
+     */
+    @Activate
+    protected void activate(final Config config) {
+        damRootPath = config.damRootPath();
+        videoTypes = config.videoTypes();
+    }
+
+    /**
+     * @param config
+     */
+    @Modified
+    protected void modified(final Config config) {
+        damRootPath = config.damRootPath();
+        videoTypes = config.videoTypes();
     }
 
 }
