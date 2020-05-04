@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import MediaLink from './MediaLink';
 
 describe('MediaLink', function () {
