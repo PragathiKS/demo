@@ -178,8 +178,8 @@ public class ProductModel {
                 if (shape.getValueMap().containsKey(PWConstants.THUMBNAIL)) {
                     shapeBean.setThumbnail(shape.getValueMap().get(PWConstants.THUMBNAIL).toString());
                 }
-                if (shape.getValueMap().containsKey("volumes")) {
-                    String[] volumes = (String[]) shape.getValueMap().get("volumes");
+                if (shape.getValueMap().containsKey(PWConstants.VOLUMES)) {
+                    String[] volumes = (String[]) shape.getValueMap().get(PWConstants.VOLUMES);
                     shapeBean.setVolumes(Arrays.asList(volumes));
                 }
                 shapesList.add(shapeBean);
