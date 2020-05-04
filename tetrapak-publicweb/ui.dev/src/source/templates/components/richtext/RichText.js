@@ -17,7 +17,6 @@ class RichText {
   trackAnalytics = e => {
     const $this = $(e.target);
     const anchorText = $this.text();
-    this.cache.$attributeDivId.attr('data-link-name', '');
     this.cache.$attributeDivId.attr('data-link-name', anchorText);
     return true;
   };
