@@ -41,7 +41,7 @@ public class PXPBannerModel {
 
     /** The pw theme. */
     @ValueMapValue
-    @Default(values = "grayscale-white")
+    @Default(values = "grayscale-lighter")
     private String pwTheme;
 
     /** The anchor id. */
