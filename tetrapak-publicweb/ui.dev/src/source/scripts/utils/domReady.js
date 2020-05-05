@@ -6,6 +6,7 @@
 import dynamicMedia from './dynamicMedia';
 import customEvents from './customEvents';
 import updateLink from './updateLink';
+import movehash from './moveHash';
 import { $body } from './commonSelectors';
 import $ from 'jquery';
 import { responsive } from './responsive';
@@ -16,6 +17,7 @@ export default {
     dynamicMedia.init();
     responsive.init();
     updateLink();
+    movehash();
     $body.on('show.bs.modal', function () {
       $(this).addClass('tp-no-backdrop');
     }).on('hidden.bs.modal', function () {
