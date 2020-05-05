@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Teaser from './teaser';
 
 describe('Teaser', function () {
