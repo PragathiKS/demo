@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.jcr.Session;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -20,9 +19,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.day.cq.replication.ReplicationActionType;
-import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 import com.tetrapak.publicweb.core.beans.pxp.DeltaFillingMachine;
@@ -34,6 +30,7 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.services.config.DeltaPXPConfig;
+import com.tetrapak.publicweb.core.utils.DeltaFeedUtil;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.ProductUtil;
 import com.tetrapak.publicweb.core.utils.ResourceUtil;
@@ -117,8 +114,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         try {
             setBearerToken();
             processFiles();
-            activateUpdatedProducts();
-            deactivatePDPs();
+            DeltaFeedUtil.activateUpdatedProducts(resolver, replicator, session, pathsToActivate);
+            DeltaFeedUtil.deactivatePDPs(resolver, replicator, session, deletedProducts);
         } finally {
             timer.cancel();
             timer.purge();
@@ -170,10 +167,6 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         }
     }
 
-    private void deactivatePDPs() {
-          // TO:DO
-    }
-
     /**
      * Process filling machines.
      *
@@ -199,7 +192,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 ResourceUtil.deleteResource(resolver, session,
                         PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
             }
-            
+
         }
     }
 
@@ -273,20 +266,6 @@ public class DeltaFeedImportScheduledTask implements Runnable {
             }
         };
         timer.scheduleAtFixedRate(scheduleBearerTokenUpdate, refreshTokenTime, refreshTokenTime);
-    }
-
-    /**
-     * replicate products.
-     */
-    private void activateUpdatedProducts() {
-        try {
-            for (String pathToActivate : pathsToActivate) {
-                replicator.replicate(session, ReplicationActionType.ACTIVATE, pathToActivate);
-                ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(pathToActivate));
-            }
-        } catch (ReplicationException e) {
-            LOGGER.error("Replication Exception in activating PXP products", e.getMessage(), e);
-        }
     }
 
     /**

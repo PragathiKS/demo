@@ -25,6 +25,12 @@ public final class PWConstants {
     
     /** The Constant PXP_ROOT_PATH. */
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
+    
+    /** The Constant CONTENT_ROOT_PATH. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
+    
+    /** The Constant PRODUCT_MAPPING_ROOT_NODE. */
+    public static final String PRODUCT_MAPPING_ROOT_NODE = "/content/tetrapak/publicweb/productMappingNode/productMappingNode";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";
