@@ -45,7 +45,7 @@ public class AssetImportServiceImpl implements AssetImportService {
                 LOGGER.error("Error occured while fetching assets from PXP {} Error code {}", sourceurl, responseCode);
             }
         } catch (IOException e) {
-            LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}", sourceurl, e);
+            LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}", sourceurl,e.getMessage(), e);
         }
         return assetDetail;
     }

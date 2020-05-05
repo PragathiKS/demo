@@ -73,7 +73,7 @@ public class ProductAssetsImportJob implements JobConsumer {
                                         resourceResolver);
                             } catch (IOException e) {
                                 LOGGER.error("Error while closing Input Stream for damPath {} \nSource URL {}",
-                                        finalDAMPath, sourceurl);
+                                        finalDAMPath, sourceurl,e);
                             }
                         }
                     } else {
@@ -122,7 +122,7 @@ public class ProductAssetsImportJob implements JobConsumer {
             LOGGER.debug("Asset replicated");
             return saveSession(session);
         } catch (ReplicationException e) {
-            LOGGER.error("Exception while replicating asset {}", e);
+            LOGGER.error("Exception while replicating asset {}",e.getMessage() ,e);
             return JobResult.FAILED;
         }
     }
