@@ -83,6 +83,7 @@
         @include margin-bottom($padding-l);
         ul {
             li {
+                display: flex;
                 &::before {
                     @include margin-right($margin-sm);
                     display: inline-block;
