@@ -1,10 +1,15 @@
 @Library('jenkins-pipeline-library') _
 
-pipeline {   
-        agent any
-        triggers {
-        cron('H 1 * * 1-5')
+pipeline {
+    agent {
+        node {
+        label 'cfe-deploy'
+        }
     }
+         triggers {
+         cron('H 1 * * 1-5')
+     }
+    
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
@@ -52,7 +57,7 @@ pipeline {
             agent {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
-                    label 'linux&&docker'
+                    label 'cfe-deploy'
                 }
             }
 
@@ -110,7 +115,7 @@ pipeline {
         stage('Karma, Pa11y, Zap Tools Execution') {
             agent {
                 node {
-                label 'linux&&docker'
+                label 'cfe-deploy'
             } 
             }            
             steps {
@@ -147,7 +152,7 @@ pipeline {
         stage('Sitespeed Execution') {
             agent {
                 node {
-                label 'linux&&docker'
+                label 'cfe-deploy'
             } 
             }            
             steps {

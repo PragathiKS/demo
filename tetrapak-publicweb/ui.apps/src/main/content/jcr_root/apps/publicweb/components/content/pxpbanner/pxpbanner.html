@@ -2,3 +2,7 @@
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 </sly>
 
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.PXPBannerModel"
+     data-sly-use.lib="/apps/publicweb/components/content/textImage/textImage-template.html"
+     data-sly-call="${lib.textImage_template @ data=model, componentName='pxpbanner'}" />
+
