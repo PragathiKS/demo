@@ -187,10 +187,6 @@ class FindMyOffice {
   };
 
   renderCitiesOfficesList = cities => {
-    /* eslint-disable */
-    console.log(cities)
-    /* eslint-enable */
-    
     render.fn({
       template: 'citiesOfficesList',
       data: cities,
