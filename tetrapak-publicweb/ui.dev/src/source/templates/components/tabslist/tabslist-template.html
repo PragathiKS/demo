@@ -7,7 +7,6 @@
       <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading @
         context='html'}</h2>
-
       <div class="row">
         <div
           class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}"
@@ -33,26 +32,21 @@
                   </div>
                 </sly>
               </button>
-
-
               <sly data-sly-test.videoPathPW="${tab.damVideoPath}"></sly>
               <div
                 class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}"
                 id="tab_${resource.name}_${tabList.index}" data-parent="#accordion">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}"
                   data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
-
                   <!--image video component  -->
                   <sly data-sly-test="${tab.tabType == 'videoText'}">
                     <sly data-sly-test="${tab.videoSource == 'damVideo' && tab.damVideoPath}">
                       <div data-sly-test="${tab.damVideoPath}" class="tpatom-dam pw-tablist__media-wrapper">
-
                         <sly data-sly-test="${wcmmode.edit}">
                           <video title="${noval}" class="js-dam-player" controls poster="${tab.thumbnailPath}">
                             <source src="${tab.damVideoPath}">
                           </video>
                         </sly>
-
                         <sly data-sly-test="${!wcmmode.edit}">
                           <sly
                             data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=tab.thumbnailPath}">
@@ -64,7 +58,6 @@
                         </sly>
                       </div>
                     </sly>
-
                     <sly data-sly-test="${tab.videoSource == 'youtube'}">
                       <!-- youtube video -->
                       <div data-sly-test="${tab.youtubeEmbedURL}" class="tpatom-youtube pw-tablist__media-wrapper">
@@ -76,8 +69,6 @@
                       <!-- youtube video end -->
                     </sly>
                   </sly>
-
-
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
                       <sly data-sly-test="${!wcmmode.edit}">
@@ -88,7 +79,6 @@
                       <sly data-sly-test="${wcmmode.edit}">
                         <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
                       </sly>
-
                     </div>
                   </sly>
                   <!--end image video component  -->
@@ -102,7 +92,6 @@
                     <div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div>
                   </sly>
                   <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-
                     <sly
                       data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
                     <sly
@@ -110,7 +99,6 @@
                     <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}" />
                     <sly
                       data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
-
                     <a data-sly-test="${tab.linkText}" href="${tab.linkURL}"
                       class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                       data-custom="${customData @ context='text'}" title="${btnTooltip}" target="${tab.targetBlank}"
@@ -124,9 +112,7 @@
                           class="icon${variant != 'transparent' ? ' icon-Chevron_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
                     </a>
                     <!-- </sly> -->
-
                   </sly>
-
                 </div>
               </div>
             </sly>
@@ -147,7 +133,6 @@
             </sly>
           </sly>
         </div>
-
         <div
           class="pw-tablist__events-sidesection js-tablist__events-sidesection ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} col-lg-7 d-none d-lg-block"
           aria-live="polite">
