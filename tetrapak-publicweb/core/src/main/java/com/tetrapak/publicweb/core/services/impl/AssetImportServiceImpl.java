@@ -36,6 +36,8 @@ public class AssetImportServiceImpl implements AssetImportService {
 
             // check HTTP response code first
             if (responseCode == HttpURLConnection.HTTP_OK) {
+                LOGGER.debug("Success :: Fetching assets from PXP URL: {} Content Type {}", sourceurl,
+                        httpConn.getContentType());
                 assetDetail = new AssetDetail();
                 InputStream is = httpConn.getInputStream();
                 assetDetail.setFileName(GlobalUtil.getFileName(sourceurl));
@@ -45,7 +47,7 @@ public class AssetImportServiceImpl implements AssetImportService {
                 LOGGER.error("Error occured while fetching assets from PXP {} Error code {}", sourceurl, responseCode);
             }
         } catch (IOException e) {
-            LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}", sourceurl,e.getMessage(), e);
+            LOGGER.error("Error occured while fetching assets from PXP {}  Error :: {}", sourceurl, e.getMessage(), e);
         }
         return assetDetail;
     }
