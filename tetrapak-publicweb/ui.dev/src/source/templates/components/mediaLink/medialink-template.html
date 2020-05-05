@@ -5,10 +5,10 @@
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                     data-sly-call="${heading.heading_h2_template @ headingText=data.heading, variant='regular'}" />
             </div>
-            <div  data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList) && data.columnOneList.size>0}"
+            <div  data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList)}"
                 class="medialink__subheadingwrap">
-                <div data-sly-test="${(data.columnOneList && data.columnOneList.size>0) || data.columnOneTitle }" class="row medialink__linkListRow ${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) ? '' :'topMargin' }" >
-                    <div class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' } col-sm-12 medialink__linklist">
+                <div class="row medialink__linkListRow ${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) ? '' :'topMargin' }" >
+                    <div data-sly-test="${(data.columnOneList && data.columnOneList.size>0) || data.columnOneTitle }" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle.size) ? 'col-md-6' : 'col-md-4' } col-sm-12 medialink__linklist">
                         <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }" class="medialink__subheading ${data.columnOneTitle ? '' : 'noMobile'}">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
@@ -26,8 +26,8 @@
                             </a>
                         </div>
                     </div>
-                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${data.columnThreeList && data.columnThreeList.size > 0  ? 'col-md-4' : 'col-md-6' }  col-sm-12 medialink__linklist">
-                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) && data.columnTwoList.size>0 }" class="medialink__subheading  ${data.columnTwoTitle ? '' : 'noMobile'}">
+                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle.size)  ? 'col-md-6' : 'col-md-4' }  col-sm-12 medialink__linklist">
+                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }" class="medialink__subheading  ${data.columnTwoTitle ? '' : 'noMobile'}">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
                         </div>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-md-4  col-sm-12 medialink__linklist" data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
-                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) && data.columnThreeList.size>0 }" class="medialink__subheading  ${data.columnThreeTitle ? '' : 'noMobile'}">
+                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }" class="medialink__subheading  ${data.columnThreeTitle ? '' : 'noMobile'}">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
                         </div>
