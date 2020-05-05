@@ -7,7 +7,6 @@
         @include margin(0 $margin-xxxl);
     }
 
-
     &--display-row {
         > .row {
             flex-direction: row;
@@ -52,7 +51,6 @@
         }
     }
 
-
     &__innerpadding {
         @include margin-top($margin-l);
         @include margin-bottom($margin-l);
@@ -83,7 +81,17 @@
         @include font-size(16px);
         @include line-height(28px, 16px);
         @include margin-bottom($padding-l);
-        color: $color-boulder;
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-congress-blue;
+                    content: '\2022';
+                }
+            }
+        }
         @media #{$tablet} {
             @include font-size(14px);
             @include line-height(24px, 14px);
