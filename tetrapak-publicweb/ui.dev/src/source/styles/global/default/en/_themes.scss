@@ -1,8 +1,13 @@
 body {
+    @include line-height($font-l,$font-baseline);
+    font-family:$font-bold;
     background: $color-wild-sand;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 28px;
+    font-size: $font-baseline;
+}
+h1,h2,h3,h4{
+    font-family:$font-light;
+    font-weight:500;
 }
 .pw-theme {
     $self: &;
@@ -81,11 +86,4 @@ body {
 }
 .pw-position-static {
     position: static;
-}
-
-@media #{$desktop} {
-    body {
-        font-size: 14px;
-        line-height: 24px;
-    }
 }

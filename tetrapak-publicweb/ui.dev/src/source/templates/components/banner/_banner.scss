@@ -67,6 +67,7 @@
             @include font-size($font-sm);
             @include margin-bottom($margin-sm);
             text-transform: $uppercase;
+            line-height: $font-normal;
             @media #{$desktop} {
                 @include margin-bottom($margin-md);
                 display: block;
@@ -74,16 +75,20 @@
             }
         }
 
-        &__title,
+        &__title {
+            @include margin-bottom($margin-md);
+        }
         &__description {
-            @include margin-bottom($padding-l);
+            @include margin-bottom($margin-l);
         }
 
         &__title {
             h2 {
                 @include font-size($font-l);
+                @include line-height($font-xl,$font-l);
                 @media #{$desktop} {
                     @include font-size($font-xl);
+                    line-height: 40px;
               }
            }
             @include max-height(64px);
