@@ -81,13 +81,6 @@
         @include font-size(16px);
         @include line-height(28px, 16px);
         @include margin-bottom($padding-l);
-        @media #{$tablet} {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
-            @include margin-bottom($padding-l);
-        }
-    }
-    p {
         ul {
             li {
                 &::before {
@@ -97,6 +90,11 @@
                     content: '\2022';
                 }
             }
+        }
+        @media #{$tablet} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+            @include margin-bottom($padding-l);
         }
     }
 

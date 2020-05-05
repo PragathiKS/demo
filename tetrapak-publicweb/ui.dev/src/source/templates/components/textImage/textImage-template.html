@@ -7,7 +7,7 @@
           data-textImage-title="${data.title}"
           data-textImage-linkName="${data.linkText}"
           data-textImage-linkType="${data.linkType}">
-        <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay == 'display-row' ? 'display-row-reversed' : 'display-row' }">
+        <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay}">
           <div class="row">
             <div class="col-md-12 col-lg-6 leftPad">
               <sly data-sly-test = "${!wcmmode.edit}">
@@ -26,7 +26,7 @@
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                     data-sly-call="${heading.heading_h2_template @ headingText=data.title, variant='regular'}"/>
               </div>
-              <p class="pw-text-image__description">${data.description @ context='html'}</p>
+              <div class="pw-text-image__description">${data.description @context='html'}</div>
               <div class="pw-text-image__link" data-sly-test="${data.linkURL}">
                 <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
                 <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
