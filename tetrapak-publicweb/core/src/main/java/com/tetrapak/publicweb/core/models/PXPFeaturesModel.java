@@ -73,6 +73,7 @@ public class PXPFeaturesModel {
                 } else if (Objects.nonNull(feature.getVideo())) {
                     tab.setDamVideoPath(feature.getVideo().getSrc());
                     tab.setThumbnailPath(feature.getVideo().getPoster());
+                    tab.setThumbnailAltText(feature.getName());
                     tab.setTabType("videoText");
                     tab.setVideoSource("damVideo");
                 }
