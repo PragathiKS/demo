@@ -33,6 +33,7 @@ public class PXPShapesVolumesModel {
 
     /** The heading. */
     @ValueMapValue
+    @Default(values = "Shapes & Volumes")
     private String heading;
 
     /** The anchor id. */
@@ -69,7 +70,9 @@ public class PXPShapesVolumesModel {
         for (Shape shape : list) {
             ManualModel teaser = new ManualModel();
             teaser.setTitle(shape.getName());
-            teaser.setDescription(getDescription(shape.getVolumes()));
+            if(null != shape.getVolumes()) {
+                teaser.setDescription(getDescription(shape.getVolumes()));
+            }
             teaser.setFileReference(shape.getThumbnail());
             teaser.setAlt(shape.getName());
             teaserList.add(teaser);
@@ -84,7 +87,7 @@ public class PXPShapesVolumesModel {
      * @return
      */
     private String getDescription(List<String> volumes) {
-        return String.join(",",volumes);
+        return String.join(", ",volumes);
     }
 
 
