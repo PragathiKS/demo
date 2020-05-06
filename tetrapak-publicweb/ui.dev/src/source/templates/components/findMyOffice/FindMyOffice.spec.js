@@ -1,5 +1,6 @@
 import FindMyOffice from './FindMyOffice';
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import tpOffices from './data/tp-offices.json';
@@ -32,6 +33,7 @@ describe('FindMyOffice', function() {
     );
     this.renderCountriesSpy = sinon.spy(this.findMyOffice, 'renderCountries');
     this.getOfficesListSpy = sinon.spy(this.findMyOffice, 'getOfficesList');
+    this.goToLocalSiteSpy = sinon.spy(this.findMyOffice, 'goToLocalSite');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse(tpOffices));
     this.onClickCountryItemSpy = sinon.spy(
@@ -73,6 +75,7 @@ describe('FindMyOffice', function() {
     this.handleGoogleMapApiSpy.restore();
     this.renderSpy.restore();
     this.getOfficesListSpy.restore();
+    this.goToLocalSiteSpy.restore();
     this.renderCountriesSpy.restore();
     this.ajaxStub.restore();
     this.onClickCountryItemSpy.restore();
@@ -91,6 +94,11 @@ describe('FindMyOffice', function() {
   });
   it('should call getOfficeList', function(done) {
     expect(this.findMyOffice.getOfficesList.called).to.be.true;
+    done();
+  });
+  it('should call goToLocalSite', function(done) {
+    $('.js-localSiteUrl').trigger('click');
+    expect(this.findMyOffice.goToLocalSite.called).to.be.true;
     done();
   });
   it('should render countries', function(done) {

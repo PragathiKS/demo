@@ -36,6 +36,7 @@ export default  () => {
       if (isDownloable(thisHref)) {
         $(iconEl).addClass('icon-Download');
         $(this).attr('target','_self');
+        $(this).attr('data-link-section', 'Related links and downloads_Hyperlink_Download');
       } else if (isExternal(thisHref)) {
         $(iconEl).addClass('icon-Union');
         $(this).attr('target','_blank');

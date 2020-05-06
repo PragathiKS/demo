@@ -85,7 +85,7 @@
         &__title {
             h2 {
                 @include font-size($font-l);
-                @include line-height($font-xl,$font-l);
+                @include line-height($font-xl, $font-l);
                 @media #{$desktop} {
                     @include font-size($font-xl);
                     line-height: 40px;

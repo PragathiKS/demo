@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -48,6 +49,33 @@ class FindMyOffice {
 
     this.cache.countryToggle.on('click', this.countryDropDownToggle);
     this.cache.cityToggle.on('click', this.cityDropDownToggle);
+    this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);
+  }
+
+  goToLocalSite = e => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-localSiteUrl');
+    const OfficeName = $this.data('office-name');
+    const targetLink = $this.attr('target');
+    const url = $this.attr('href');
+
+    const trackingObj = {
+      locateCountry: this.cache.selectedCountryValue,
+      locateOffice: OfficeName,
+      officeName: OfficeName
+    };
+    const eventObj = {
+      eventType: 'gotolocalsite',
+      event: 'findmyoffice'
+    };
+
+    this.trackAnalyticsCall(trackingObj, eventObj);
+  
+    if(url && targetLink){
+      window.open(url, targetLink);
+    }
+
   }
 
   handleGoogleMapApi = googleMaps => {
@@ -58,6 +86,7 @@ class FindMyOffice {
 
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
+    this.cache.selectedCountryValue = String(this.cache.selectedCountryValue).trim();
     $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
     $(
       '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
@@ -132,6 +161,7 @@ class FindMyOffice {
 
   onClickCityItem = e => {
     this.cache.selectedCityValue = e.target.innerText;
+    this.cache.selectedCityValue = String(this.cache.selectedCityValue).trim();
     $('.js-pw-find-my-office__form-group__address').removeClass('hide');
     $('.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text').text(
       e.target.innerText
@@ -164,6 +194,21 @@ class FindMyOffice {
   };
 
   renderOfficeDetailsPanel = office => {
+   
+    if(office.name){
+      const trackingObj = {
+        locateCountry: this.cache.selectedCountryValue,
+        locateOffice: office.name,
+        officeName: office.name
+      };
+   
+      const eventObj = {
+        eventType: 'office address result',
+        event: 'findmyoffice'
+      };
+
+      this.trackAnalyticsCall(trackingObj, eventObj);
+    }
     const linkName =
       (office.name && `${office.name} - ${this.cache.selectedCountryValue}`) ||
       this.cache.selectedCountryValue;
@@ -175,6 +220,10 @@ class FindMyOffice {
       hidden: false
     });
   };
+
+  trackAnalyticsCall = (trackingObj, eventObj) => {
+    trackAnalytics(trackingObj, 'locateUs', 'locateUsClick', undefined, false, eventObj);
+  }
 
   renderCountryOfficesList = countries => {
     render.fn({
@@ -231,14 +280,14 @@ class FindMyOffice {
   renderCities = () => {
     const selectedCountry = $(
       '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
-    ).text();
+    ).text().trim();
     const cities = [];
     this.cache.normalizedData[selectedCountry] &&
       this.cache.normalizedData[selectedCountry].offices.map(city => {
         cities.push(city);
       });
     if (cities.length > 0) {
-      $('.js-pw-form__dropdown__city').attr('disabled', false);
+      $('.js-pw-form__dropdown__city').removeAttr('disabled');
       $('.js-pw-find-my-office__form-group__label').removeClass('opacity');
       this.renderCitiesOfficesList(cities);
     }
