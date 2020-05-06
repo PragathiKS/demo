@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.jcr.Node;
 import javax.jcr.Session;
 
 import org.apache.sling.api.resource.LoginException;
@@ -30,146 +31,158 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class ProductAssetsImportJobTest {
 
-	/** The resolver factory. */
-	@Mock
-	private ResourceResolverFactory resolverFactory;
+    /** The resolver factory. */
+    @Mock
+    private ResourceResolverFactory resolverFactory;
 
-	/** The resource resolver. */
-	@Mock
-	private ResourceResolver resourceResolver;
+    /** The resource resolver. */
+    @Mock
+    private ResourceResolver resourceResolver;
 
-	@Mock
-	private Replicator replicator;
+    @Mock
+    private Replicator replicator;
 
-	@Mock
-	private Resource existingResource;
+    @Mock
+    private Resource existingResource;
 
-	@Mock
-	private AssetManager assetManager;
+    @Mock
+    private Resource nodeResource;
 
-	@Mock
-	private AssetImportService assetImportService;
+    @Mock
+    private Node node;
 
-	@Mock
-	private Session session;
+    @Mock
+    private AssetManager assetManager;
 
-	/** The resource resolver. */
-	@Mock
-	private Job job;
+    @Mock
+    private AssetImportService assetImportService;
 
-	/** The site search servlet. */
-	@InjectMocks
-	private ProductAssetsImportJob assetImportjob = new ProductAssetsImportJob();
+    @Mock
+    private Session session;
 
-	@Rule
-	public final AemContext aemContext = new AemContext();
+    /** The resource resolver. */
+    @Mock
+    private Job job;
 
-	private String sourceUrl = "https://myimageurl/myimage.jpg";
-	private String existingDAMPath = "/content/dam/tetrapak/pxp/category4/product3/images/myimage.jpg";
-	private String nonExistingDAMPath = "/content/dam/tetrapak/pxp/category1/product1/images/myimage.jpg";
-	private AssetDetail assetDetail = new AssetDetail();
-	@Mock
-	private Throwable replicationException;
+    /** The site search servlet. */
+    @InjectMocks
+    private ProductAssetsImportJob assetImportjob = new ProductAssetsImportJob();
 
-	@Before
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
+    @Rule
+    public final AemContext aemContext = new AemContext();
 
-	}
+    private String sourceUrl = "https://myimageurl/myimage.jpg";
+    private String existingDAMPath = "/content/dam/tetrapak/pxp/category4/product3/images/myimage.jpg";
+    private String nonExistingDAMPath = "/content/dam/tetrapak/pxp/category1/product1/images/myimage.jpg";
+    private AssetDetail assetDetail = new AssetDetail();
+    @Mock
+    private Throwable replicationException;
 
-	@Test
-	public void testProcess() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
-			when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-			when(job.getProperty("sourceurl")).thenReturn(sourceUrl);
-			when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
-			when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
-			when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(assetManager);
-			when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
-			when(session.isLive()).thenReturn(true);
-		} catch (LoginException e) {
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
 
-		}
-		assertEquals(JobResult.OK, assetImportjob.process(job));
-	}
+    }
 
-	@Test
-	public void testSessionExpired() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
-			when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-			when(job.getProperty("sourceurl")).thenReturn(sourceUrl);
-			when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
-			when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
-			when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(assetManager);
-			when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
-			when(session.isLive()).thenReturn(false);
-		} catch (LoginException e) {
-		}
-		assertEquals(JobResult.FAILED, assetImportjob.process(job));
-	}
+    @Test
+    public void testProcess() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
+            when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+            when(job.getProperty("sourceurl")).thenReturn(sourceUrl);
+            when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
+            when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
+            when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(assetManager);
+            when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
+            when(resourceResolver.getResource(nonExistingDAMPath.concat("/jcr:content/metadata")))
+                    .thenReturn(nodeResource);
+            when(nodeResource.adaptTo(Node.class)).thenReturn(node);
+            when(session.isLive()).thenReturn(true);
+        } catch (LoginException e) {
 
-	@Test
-	public void testSessionNull() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
-			when(resourceResolver.adaptTo(Session.class)).thenReturn(null);
-		} catch (LoginException e) {
-		}
-		assertEquals(JobResult.FAILED, assetImportjob.process(job));
-	}
+        }
+        assertEquals("ProductAssetImportJob", JobResult.OK, assetImportjob.process(job));
+    }
 
-	@Test
-	public void testNullAssetManager() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
-			when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-			when(job.getProperty("sourceurl")).thenReturn("https://myimageurl/myimage.jpg");
-			when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
-			when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
-			when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(null);
+    @Test
+    public void testSessionExpired() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
+            when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+            when(job.getProperty("sourceurl")).thenReturn(sourceUrl);
+            when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
+            when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
+            when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(assetManager);
+            when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
+            when(resourceResolver.getResource(nonExistingDAMPath.concat("/jcr:content/metadata")))
+                    .thenReturn(nodeResource);
+            when(nodeResource.adaptTo(Node.class)).thenReturn(node);
+            when(session.isLive()).thenReturn(false);
+        } catch (LoginException e) {
+        }
+        assertEquals("ProductAssetImportJob", JobResult.FAILED, assetImportjob.process(job));
+    }
 
-		} catch (LoginException e) {
+    @Test
+    public void testSessionNull() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
+            when(resourceResolver.adaptTo(Session.class)).thenReturn(null);
+        } catch (LoginException e) {
+        }
+        assertEquals("ProductAssetImportJob", JobResult.FAILED, assetImportjob.process(job));
+    }
 
-		}
-		assertEquals(JobResult.FAILED, assetImportjob.process(job));
-	}
+    @Test
+    public void testNullAssetManager() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
+            when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+            when(job.getProperty("sourceurl")).thenReturn("https://myimageurl/myimage.jpg");
+            when(job.getProperty("finalDAMPath")).thenReturn(nonExistingDAMPath);
+            when(resourceResolver.getResource(nonExistingDAMPath)).thenReturn(null);
+            when(resourceResolver.adaptTo(AssetManager.class)).thenReturn(null);
 
-	@Test
-	public void testNullResourceResolver() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(null);
-		} catch (LoginException e) {
+        } catch (LoginException e) {
 
-		}
-		assertEquals(JobResult.FAILED, assetImportjob.process(job));
-	}
+        }
+        assertEquals("ProductAssetImportJob", JobResult.FAILED, assetImportjob.process(job));
+    }
 
-	@Test
-	public void testAssetAlreadyExists() {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
-		try {
-			when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
-			when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-			when(job.getProperty("sourceurl")).thenReturn("https://myimageurl/myimage.jpg");
-			when(job.getProperty("finalDAMPath")).thenReturn(existingDAMPath);
-			when(resourceResolver.getResource(existingDAMPath)).thenReturn(existingResource);
-			when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
-		} catch (LoginException e) {
-		}
-		assertEquals(JobResult.CANCEL, assetImportjob.process(job));
-	}
+    @Test
+    public void testNullResourceResolver() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(null);
+        } catch (LoginException e) {
+
+        }
+        assertEquals("ProductAssetImportJob", JobResult.FAILED, assetImportjob.process(job));
+    }
+
+    @Test
+    public void testAssetAlreadyExists() {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+        try {
+            when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resourceResolver);
+            when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+            when(job.getProperty("sourceurl")).thenReturn("https://myimageurl/myimage.jpg");
+            when(job.getProperty("finalDAMPath")).thenReturn(existingDAMPath);
+            when(resourceResolver.getResource(existingDAMPath)).thenReturn(existingResource);
+            when(assetImportService.getAssetDetailfromInputStream(sourceUrl)).thenReturn(assetDetail);
+        } catch (LoginException e) {
+        }
+        assertEquals("ProductAssetImportJob", JobResult.CANCEL, assetImportjob.process(job));
+    }
 
 }
