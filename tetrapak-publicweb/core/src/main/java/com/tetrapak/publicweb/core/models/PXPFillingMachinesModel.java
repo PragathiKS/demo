@@ -6,6 +6,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -104,7 +105,8 @@ public class PXPFillingMachinesModel {
                 final Resource pageResource = resourceResolver.getResource(hit.getPath());
                 final ValueMap valueMap = pageResource.getValueMap();
                 if (valueMap.containsKey(PRODUCT_ID)) {
-                    final String pagePath = LinkUtils.sanitizeLink(StringUtils.substringBeforeLast(hit.getPath(), "/"));
+                    final String pagePath = LinkUtils
+                            .sanitizeLink(StringUtils.substringBeforeLast(hit.getPath(), PWConstants.SLASH));
                     LOGGER.debug("Product id: {} and page path: {}", valueMap.get(PRODUCT_ID), pagePath);
                     productPageMap.put(valueMap.get(PRODUCT_ID).toString(), pagePath);
                 }
