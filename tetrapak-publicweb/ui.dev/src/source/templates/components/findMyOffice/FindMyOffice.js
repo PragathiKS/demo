@@ -87,6 +87,7 @@ class FindMyOffice {
 
   onClickCountryItem = e => {
     this.cache.selectedCountryValue = e.target.innerText;
+    this.cache.selectedCountryValue = String(this.cache.selectedCountryValue).trim();
     $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
     $(
       '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
@@ -161,6 +162,7 @@ class FindMyOffice {
 
   onClickCityItem = e => {
     this.cache.selectedCityValue = e.target.innerText;
+    this.cache.selectedCityValue = String(this.cache.selectedCityValue).trim();
     $('.js-pw-find-my-office__form-group__address').removeClass('hide');
     $('.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text').text(
       e.target.innerText
@@ -280,14 +282,14 @@ class FindMyOffice {
   renderCities = () => {
     const selectedCountry = $(
       '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
-    ).text();
+    ).text().trim();
     const cities = [];
     this.cache.normalizedData[selectedCountry] &&
       this.cache.normalizedData[selectedCountry].offices.map(city => {
         cities.push(city);
       });
     if (cities.length > 0) {
-      $('.js-pw-form__dropdown__city').attr('disabled', false);
+      $('.js-pw-form__dropdown__city').removeAttr('disabled');
       $('.js-pw-find-my-office__form-group__label').removeClass('opacity');
       this.renderCitiesOfficesList(cities);
     }
