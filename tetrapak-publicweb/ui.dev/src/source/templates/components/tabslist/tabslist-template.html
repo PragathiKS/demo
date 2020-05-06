@@ -1,4 +1,4 @@
-<sly data-sly-template.tabslist_template="${@data, flag}">
+<sly data-sly-template.tabslist_template="${@data, componentName, flag}">
     <sly data-sly-test.parentHeading="${data.heading}" />
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
       <div class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
@@ -7,7 +7,7 @@
       <h2 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading @ context='html'}</h2>
 
       <div class="row">
-      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}" id="accordion"> 
+      <div class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}" id="accordion">
         <sly data-sly-list.tab="${data.tabs}">
           <sly data-sly-test="${tab.title}">
             <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}"/>
@@ -81,12 +81,12 @@
                   <h3 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">${tab.title @ context='html'}</h3>
                   <sly data-sly-test = "${tab.description}"><div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div></sly>
                     <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-        
+
                                 <sly data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}"/>
                                 <sly data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}"/>
                                 <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}"/>
                                 <sly data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}"/>
-                                
+
                               <a data-sly-test="${tab.linkText}"
                                  href="${tab.linkURL}"
                                  class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
@@ -113,7 +113,7 @@
                 </div>
             </div>
           </sly>
-          <sly data-sly-test = "${tabList.last && data.readMorePath!='#'}">
+          <sly data-sly-test = "${tabList.last && data.readMorePath && data.readMorePath!='#'}">
             <div class="pw-tablist__event ${data.pwDisplay == 'display-row' ? 'pw-tablist__event-readmore-icright' : 'pw-tablist__event-readmore-icleft'}">
               <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
             <a
