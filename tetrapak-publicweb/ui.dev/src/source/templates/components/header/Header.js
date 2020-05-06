@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 class Header {
@@ -105,8 +106,18 @@ class Header {
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
 
-    if(targetLink === '_blank'){
-      window._satellite.track('linkClick');
+    const linkName = $this.data('link-name');
+    if(linkName==='contact us envelope') {
+      const trackingObj = {
+        linkSection: 'Find my office',
+        linkParentTitle: '',
+        linkName: 'Contact Us'
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'findmyoffice'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
 
     if(url && targetLink){

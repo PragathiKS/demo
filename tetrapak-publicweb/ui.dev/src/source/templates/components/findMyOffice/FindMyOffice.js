@@ -1,9 +1,11 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import { isMobile } from '../../../scripts/common/common';
+import tpjson from './data/tp-offices.json';
 
 class FindMyOffice {
   constructor({ el }) {
@@ -48,6 +50,33 @@ class FindMyOffice {
 
     this.cache.countryToggle.on('click', this.countryDropDownToggle);
     this.cache.cityToggle.on('click', this.cityDropDownToggle);
+    this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);
+  }
+
+  goToLocalSite = e => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-localSiteUrl');
+    const OfficeName = $this.data('office-name');
+    const targetLink = $this.attr('target');
+    const url = $this.attr('href');
+
+    const trackingObj = {
+      locateCountry: this.cache.selectedCountryValue,
+      locateOffice: OfficeName,
+      officeName: OfficeName
+    };
+    const eventObj = {
+      eventType: 'gotolocalsite',
+      event: 'findmyoffice'
+    };
+
+    this.trackAnalyticsCall(trackingObj, eventObj);
+  
+    if(url && targetLink){
+      window.open(url, targetLink);
+    }
+
   }
 
   handleGoogleMapApi = googleMaps => {
@@ -164,6 +193,21 @@ class FindMyOffice {
   };
 
   renderOfficeDetailsPanel = office => {
+   
+    if(office.name){
+      const trackingObj = {
+        locateCountry: this.cache.selectedCountryValue,
+        locateOffice: office.name,
+        officeName: office.name
+      };
+   
+      const eventObj = {
+        eventType: 'office address result',
+        event: 'findmyoffice'
+      };
+
+      this.trackAnalyticsCall(trackingObj, eventObj);
+    }
     const linkName =
       (office.name && `${office.name} - ${this.cache.selectedCountryValue}`) ||
       this.cache.selectedCountryValue;
@@ -175,6 +219,10 @@ class FindMyOffice {
       hidden: false
     });
   };
+
+  trackAnalyticsCall = (trackingObj, eventObj) => {
+    trackAnalytics(trackingObj, 'locateUs', 'locateUsClick', undefined, false, eventObj);
+  }
 
   renderCountryOfficesList = countries => {
     render.fn({
@@ -204,7 +252,8 @@ class FindMyOffice {
       })
       .done(data => {
         if (data) {
-          this.cache.normalizedData = data;
+          // this.cache.normalizedData = data;
+          this.cache.normalizedData = tpjson;
           this.renderCountries();
           this.cache.selectedCountry = this.root.find(
             '.js-dropdown-item-country'
