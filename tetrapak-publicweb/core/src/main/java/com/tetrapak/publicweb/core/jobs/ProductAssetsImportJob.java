@@ -4,6 +4,7 @@ package com.tetrapak.publicweb.core.jobs;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -22,6 +23,7 @@ import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
 import com.tetrapak.publicweb.core.beans.pxp.AssetDetail;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.AssetImportService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
@@ -113,6 +115,11 @@ public class ProductAssetsImportJob implements JobConsumer {
         AssetManager assetManager = resourceResolver.adaptTo(AssetManager.class);
         if (assetManager != null) {
             assetManager.createAsset(finalDAMPath, is, contentType, true);
+            try {
+                addReplicationNodeProperty(finalDAMPath, resourceResolver);
+            } catch (RepositoryException e) {
+                LOGGER.error("Exception occured while setting property {}", e.getMessage(), e);
+            }
             LOGGER.debug("Asset Created at location{}", finalDAMPath);
             if (JobResult.OK == saveSession(session)) {
                 // activate the asset
@@ -120,6 +127,12 @@ public class ProductAssetsImportJob implements JobConsumer {
             }
         }
         return JobResult.FAILED;
+    }
+
+    private void addReplicationNodeProperty(String finalDAMPath, ResourceResolver resourceResolver) throws RepositoryException {
+        Resource resource = resourceResolver.getResource(finalDAMPath.concat("/jcr:content/metadata"));
+        Node assetNode = resource.adaptTo(Node.class);
+        assetNode.setProperty(PWConstants.REPLICATION_PXP,"true");
     }
 
     /**
@@ -133,7 +146,7 @@ public class ProductAssetsImportJob implements JobConsumer {
         try {
             replicator.replicate(session, ReplicationActionType.ACTIVATE, assetsLocation);
             LOGGER.debug("Asset replicated");
-            return saveSession(session);
+            return JobResult.OK;
         } catch (ReplicationException e) {
             LOGGER.error("Exception while replicating asset {}", e.getMessage(), e);
             return JobResult.FAILED;

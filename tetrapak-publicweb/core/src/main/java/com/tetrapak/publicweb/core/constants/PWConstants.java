@@ -119,6 +119,8 @@ public final class PWConstants {
     /** The full feed */
     public static final String FULL_FEED = "full";
 
+    public static final String REPLICATION_PXP = "replicationpxp";
+
     private PWConstants() {
         /*
          * adding a private constructor to hide the implicit one
