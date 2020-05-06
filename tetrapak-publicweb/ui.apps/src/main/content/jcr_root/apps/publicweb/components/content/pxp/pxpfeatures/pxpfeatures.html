@@ -1,4 +1,6 @@
 <sly data-sly-test="${wcmmode.edit}">
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 </sly>
-
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.PXPFeaturesModel"
+     data-sly-use.lib="/apps/publicweb/components/content/tabsList/tabsList-template.html"
+     data-sly-call="${lib.tabsList_template @ data=model, componentName='pxpfeatures'}" />

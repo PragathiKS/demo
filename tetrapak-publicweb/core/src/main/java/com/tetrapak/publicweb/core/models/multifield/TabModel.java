@@ -25,71 +25,71 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabModel {
 
-    /** The resource */
+    /** The resource. */
     @Self
     private Resource resource;
 
-    /** The tabType */
+    /** The tabType. */
     @ValueMapValue
     private String tabType;
 
-    /** The subTitle */
+    /** The subTitle. */
     @ValueMapValue
     private String subTitle;
 
-    /** The title */
+    /** The title. */
     @ValueMapValue
     private String title;
 
-    /** The description */
+    /** The description. */
     @ValueMapValue
     private String description;
 
-    /** The linkText */
+    /** The linkText. */
     @ValueMapValue
     private String linkText;
 
-    /** The linkURL */
+    /** The linkURL. */
     @ValueMapValue
     private String linkURL;
 
-    /** The pwLinkTheme */
+    /** The pwLinkTheme. */
     @ValueMapValue
     private String pwLinkTheme;
 
-    /** The targetBlank */
+    /** The targetBlank. */
     @ValueMapValue
     private String targetBlank;
 
-    /** The videoSource */
+    /** The videoSource. */
     @ValueMapValue
     private String videoSource;
 
-    /** The youtubeEmbedURL */
+    /** The youtubeEmbedURL. */
     @Named(value = "youtubeVideoID")
     @ValueMapValue
     private String youtubeVideoID;
 
-    /** The damVideoPath */
+    /** The damVideoPath. */
     @ValueMapValue
     private String damVideoPath;
 
-    /** The thumbnailPath */
+    /** The thumbnailPath. */
     @ValueMapValue
     private String thumbnailPath;
 
-    /** The thumbnailAltText */
+    /** The thumbnailAltText. */
     @ValueMapValue
     private String thumbnailAltText;
 
-    /** The fileReference */
+    /** The fileReference. */
     @ValueMapValue
     private String fileReference;
 
     /** The pw button theme. */
     private String pwButtonTheme;
 
-    /** The alt */
+    /** The alt. */
     @ValueMapValue
     private String alt;
 
@@ -246,56 +246,80 @@ public class TabModel {
     }
 
     /**
+     * Sets the pw link theme.
+     *
      * @param pwLinkTheme
+     *            the new pw link theme
      */
     public void setPwLinkTheme(String pwLinkTheme) {
         this.pwLinkTheme = pwLinkTheme;
     }
 
     /**
+     * Sets the title.
+     *
      * @param title
+     *            the new title
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
+     * Sets the description.
+     *
      * @param description
+     *            the new description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
+     * Sets the link text.
+     *
      * @param linkText
+     *            the new link text
      */
     public void setLinkText(String linkText) {
         this.linkText = linkText;
     }
 
     /**
+     * Sets the link URL.
+     *
      * @param linkURL
+     *            the new link URL
      */
     public void setLinkURL(String linkURL) {
         this.linkURL = linkURL;
     }
 
     /**
+     * Sets the target blank.
+     *
      * @param targetBlank
+     *            the new target blank
      */
     public void setTargetBlank(String targetBlank) {
         this.targetBlank = targetBlank;
     }
 
     /**
-     * @param fileRefrence
+     * Sets the file reference.
+     *
+     * @param fileReference
+     *            the new file reference
      */
     public void setFileReference(String fileReference) {
         this.fileReference = fileReference;
     }
 
     /**
+     * Sets the alt.
+     *
      * @param alt
+     *            the new alt
      */
     public void setAlt(String alt) {
         this.alt = alt;
@@ -317,18 +341,29 @@ public class TabModel {
     }
 
     /**
+     * Sets the pw button theme.
+     *
      * @param pwButtonTheme
+     *            the new pw button theme
      */
     public void setPwButtonTheme(String pwButtonTheme) {
         this.pwButtonTheme = pwButtonTheme;
     }
 
+    /**
+     * Gets the tab type.
+     *
+     * @return the tab type
+     */
     public String getTabType() {
         return tabType;
     }
 
     /**
+     * Sets the tab type.
+     *
      * @param tabType
+     *            the new tab type
      */
     public void setTabType(String tabType) {
         this.tabType = tabType;
@@ -369,6 +404,56 @@ public class TabModel {
      */
     private String getSubstringAfterLast(final String path) {
         return StringUtils.substringAfterLast(path, FORWARD_SLASH);
+    }
+
+    /**
+     * Sets the sub title.
+     *
+     * @param subTitle
+     *            the new sub title
+     */
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    /**
+     * Sets the video source.
+     *
+     * @param videoSource
+     *            the new video source
+     */
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
+
+    /**
+     * Sets the dam video path.
+     *
+     * @param damVideoPath
+     *            the new dam video path
+     */
+    public void setDamVideoPath(String damVideoPath) {
+        this.damVideoPath = damVideoPath;
+    }
+
+    /**
+     * Sets the thumbnail path.
+     *
+     * @param thumbnailPath
+     *            the new thumbnail path
+     */
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
+    }
+
+    /**
+     * Sets the thumbnail alt text.
+     *
+     * @param thumbnailAltText
+     *            the new thumbnail alt text
+     */
+    public void setThumbnailAltText(String thumbnailAltText) {
+        this.thumbnailAltText = thumbnailAltText;
     }
 
 }
