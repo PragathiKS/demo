@@ -172,7 +172,10 @@
         border-collapse: collapse;
         overflow-x: auto;
         width: 100%;
-
+        tbody {
+            display: table;
+            width: 100%;
+        }
         th {
             @include padding-top(9px);
             @include padding-bottom(9px);
