@@ -7,6 +7,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -14,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -46,13 +45,8 @@ public class PXPFillingMachinesModel {
     @Self
     private Resource resource;
 
-    /** The resource resolver. */
-    @Inject
-    private ResourceResolver resourceResolver;
-
     /** The heading. */
     @ValueMapValue
-    @Default(values = "Filling machine")
     private String heading;
 
     /** The pw theme. */
@@ -70,6 +64,9 @@ public class PXPFillingMachinesModel {
     /** The filling machine list. */
     private List<FillingMachine> fillingMachineList;
 
+    /** The teaser list. */
+    private final List<ManualModel> teaserList = new ArrayList<>();
+
     /** The Constant PRODUCT_ID. */
     private static final String PRODUCT_ID = "productId";
 
@@ -80,15 +77,36 @@ public class PXPFillingMachinesModel {
     protected void init() {
         final ProductModel product = resource.adaptTo(ProductModel.class);
         fillingMachineList = product.getFillingMachineReferences();
+        setTeaserList(fillingMachineList);
     }
 
     /**
-     * Gets the filling machine list.
+     * Gets the teaser list.
      *
-     * @return the filling machine list
+     * @return the teaser list
      */
-    public List<FillingMachine> getFillingMachineList() {
-        return new ArrayList<>(fillingMachineList);
+    public List<ManualModel> getTeaserList() {
+        return new ArrayList<>(teaserList);
+    }
+
+    /**
+     * Sets the teaser list.
+     *
+     * @param list the new teaser list
+     */
+    private void setTeaserList(final List<FillingMachine> list) {
+        final Map<String, String> productPageMap = getProductPageMap();
+        for (final FillingMachine fillingMachine : list) {
+            final ManualModel teaser = new ManualModel();
+            teaser.setTitle(fillingMachine.getName());
+            teaser.setDescription(fillingMachine.getHeader());
+            teaser.setFileReference(fillingMachine.getThumbnail());
+            teaser.setAlt(fillingMachine.getName());
+            teaser.setLinkText("Read more");
+            teaser.setLinkPath(productPageMap.get(fillingMachine.getId()));
+            teaserList.add(teaser);
+        }
+        LOGGER.debug("Teaser list updated successfully.");
     }
 
     /**
@@ -102,6 +120,7 @@ public class PXPFillingMachinesModel {
         for (final Hit hit : searchResult.getHits()) {
             try {
                 LOGGER.debug("Product page path: {}", hit.getPath());
+                final ResourceResolver resourceResolver = resource.getResourceResolver();
                 final Resource pageResource = resourceResolver.getResource(hit.getPath());
                 final ValueMap valueMap = pageResource.getValueMap();
                 if (valueMap.containsKey(PRODUCT_ID)) {
@@ -124,6 +143,7 @@ public class PXPFillingMachinesModel {
      */
     private SearchResult executeProductIdQuery() {
         LOGGER.info("Inside executeProductIdQuery()");
+        final ResourceResolver resourceResolver = resource.getResourceResolver();
         final QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
         final Session session = resourceResolver.adaptTo(Session.class);
         final Query query = queryBuilder.createQuery(PredicateGroup.create(populateQueryMap()), session);
