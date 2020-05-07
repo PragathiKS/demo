@@ -1,7 +1,6 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +23,7 @@ public class FillingMachine {
     @JsonProperty("benefits")
     private String benefits;
     @JsonProperty("features")
-    private List<FeatureOption> features;
+    private List<FeatureOption> features = null;
     @JsonProperty("name")
     private String name;
     @JsonProperty("benefitsimage")
@@ -36,9 +35,9 @@ public class FillingMachine {
     @JsonProperty("id")
     private String id;
     @JsonProperty("packagetypes")
-    private List<Packagetype> packagetypes;
+    private List<Packagetype> packagetypes = null;
     @JsonProperty("options")
-    private List<FeatureOption> options;
+    private List<FeatureOption> options = null;
 
     @JsonProperty("benefits")
     public String getBenefits() {
@@ -52,12 +51,12 @@ public class FillingMachine {
 
     @JsonProperty("features")
     public List<FeatureOption> getFeatures() {
-        return new ArrayList<>(features);
+        return features;
     }
 
     @JsonProperty("features")
     public void setFeatures(List<FeatureOption> features) {
-        this.features = new ArrayList<>(features);
+        this.features = features;
     }
 
     @JsonProperty("name")
@@ -112,22 +111,22 @@ public class FillingMachine {
 
     @JsonProperty("packagetypes")
     public List<Packagetype> getPackagetypes() {
-        return new ArrayList<>(packagetypes);
+        return packagetypes;
     }
 
     @JsonProperty("packagetypes")
     public void setPackagetypes(List<Packagetype> packagetypes) {
-        this.packagetypes = new ArrayList<>(packagetypes);
+        this.packagetypes = packagetypes;
     }
 
     @JsonProperty("options")
     public List<FeatureOption> getOptions() {
-        return new ArrayList<>(options);
+        return options;
     }
 
     @JsonProperty("options")
     public void setOptions(List<FeatureOption> options) {
-        this.options = new ArrayList<>(options);
+        this.options = options;
     }
 
 }

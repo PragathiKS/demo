@@ -1,7 +1,6 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,7 +29,7 @@ public class ProcessingEquipement {
     @JsonProperty("technologytypes")
     private TechnologyType technologyType;
     @JsonProperty("categories")
-    private List<Category> categories;
+    private List<Category> categories = null;
     @JsonProperty("header")
     private String header;
     @JsonProperty("benefits")
@@ -38,9 +37,9 @@ public class ProcessingEquipement {
     @JsonProperty("benefitsimage")
     private String benefitsimage;
     @JsonProperty("features")
-    private List<FeatureOption> features;
+    private List<FeatureOption> features = null;
     @JsonProperty("options")
-    private List<FeatureOption> options;
+    private List<FeatureOption> options = null;
 
     @JsonProperty("id")
     public String getId() {
@@ -84,12 +83,12 @@ public class ProcessingEquipement {
 
     @JsonProperty("categories")
     public List<Category> getCategories() {
-        return  new ArrayList<>(categories);
+        return categories;
     }
 
     @JsonProperty("categories")
     public void setCategories(List<Category> categories) {
-        this.categories = new ArrayList<>(categories);
+        this.categories = categories;
     }
 
     @JsonProperty("header")
@@ -124,22 +123,22 @@ public class ProcessingEquipement {
 
     @JsonProperty("features")
     public List<FeatureOption> getFeatures() {
-        return new ArrayList<>(features);
+        return features;
     }
 
     @JsonProperty("features")
     public void setFeatures(List<FeatureOption> features) {
-        this.features = new ArrayList<>(features);
+        this.features = features;
     }
 
     @JsonProperty("options")
     public List<FeatureOption> getOptions() {
-        return new ArrayList<>(options);
+        return options;
     }
 
     @JsonProperty("options")
     public void setOptions(List<FeatureOption> options) {
-        this.options = new ArrayList<>(options);
+        this.options = options;
     }
 
 }

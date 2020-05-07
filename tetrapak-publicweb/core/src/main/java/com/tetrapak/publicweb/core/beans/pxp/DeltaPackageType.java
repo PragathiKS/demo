@@ -1,7 +1,6 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,22 +20,22 @@ public class DeltaPackageType {
 
     @JsonProperty("delta")
     public List<Packagetype> getPackagetype() {
-        return new ArrayList<>(packageType);
+        return packageType;
     }
 
     @JsonProperty("delta")
     public void setPackageType(List<Packagetype> packageType) {
-        this.packageType = new ArrayList<>(packageType);
+        this.packageType = packageType;
     }
 
     @JsonProperty("deleted")
     public List<String> getDeleted() {
-        return new ArrayList<>(deleted);
+        return deleted;
     }
 
     @JsonProperty("deleted")
     public void setDeleted(List<String> deleted) {
-        this.deleted = new ArrayList<>(deleted);
+        this.deleted = deleted;
     }
 
 }
