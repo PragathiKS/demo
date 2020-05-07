@@ -1,8 +1,8 @@
-/* eslint-disable */
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
@@ -47,62 +47,8 @@ class FindMyOffice {
 
   onKeydown = (event, options) => {
     if ($('.dropdown-menu').hasClass('show')) {
-      this.search(event, options);
+      keyDownSearch.call(this, event, options);
     }
-  };
-
-  searchOption = (index, options) => {
-    let option;
-
-    if (this.searchValue) {
-      option = this.searchOptionInRange(index, options.length, options);
-
-      if (!option) {
-        option = this.searchOptionInRange(0, index, options);
-      }
-    }
-
-    return option;
-  };
-
-  search = (event, options) => {
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout);
-    }
-
-    const char = String.fromCharCode(event.keyCode);
-    this.previousSearchChar = this.currentSearchChar;
-    this.currentSearchChar = char;
-
-    if (this.previousSearchChar === this.currentSearchChar) {
-      this.searchValue = this.currentSearchChar;
-    } else {
-      this.searchValue = this.searchValue ? this.searchValue + char : char;
-    }
-
-    let searchIndex = 0;
-    const newOption = this.searchOption(searchIndex, options);
-
-    if (newOption) {
-      $('.dropdown-item')
-        .get(newOption.index)
-        .focus();
-    }
-
-    this.searchTimeout = setTimeout(() => {
-      this.searchValue = null;
-    }, 500);
-  };
-
-  searchOptionInRange = (start, end, searchOptionInRange) => {
-    for (let i = start; i < end; i++) {
-      const opt = searchOptionInRange[i].toUpperCase();
-      if (opt.startsWith(this.searchValue)) {
-        return { value: opt, index: i };
-      }
-    }
-
-    return null;
   };
 
   bindEvents() {
@@ -314,14 +260,6 @@ class FindMyOffice {
   };
 
   getOfficesList = () => {
-    this.cache.normalizedData = tpJson;
-    this.renderCountries();
-    this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
-    $(
-      '.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select'
-    ).keydown(e => this.onKeydown(e, Object.keys(this.cache.normalizedData)));
-    this.cache.selectedCountry.on('click', this.onClickCountryItem);
-    return;
     const servletPath = this.cache.googleApi.data('google-api-servlet');
     ajaxWrapper
       .getXhrObj({
@@ -333,13 +271,16 @@ class FindMyOffice {
       })
       .done(data => {
         if (data) {
-          this.cache.normalizedData = data;
           this.cache.normalizedData = tpJson;
           this.renderCountries();
           this.cache.selectedCountry = this.root.find(
             '.js-dropdown-item-country'
           );
-
+          $(
+            '.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select'
+          ).keydown(e =>
+            this.onKeydown(e, Object.keys(this.cache.normalizedData))
+          );
           this.cache.selectedCountry.on('click', this.onClickCountryItem);
         }
       });
