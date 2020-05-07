@@ -42,7 +42,6 @@
         }
         .image {
             @include margin-top($margin-l);
-            // width: 100%;
             @media #{$desktop} {
                 @include margin-top(0);
             }
