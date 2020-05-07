@@ -19,6 +19,7 @@ class FindMyOffice {
     this.cache.map = {};
     this.cache.googleMaps = '';
     this.cache.officesList = [];
+    this.cache.officesNameList = [];
     this.cache.normalizedData = {};
     this.cache.selectedCountryValue = '';
     this.cache.cities = [];
@@ -46,7 +47,7 @@ class FindMyOffice {
 
   onKeydown = (event, options) => {
     if ($('.dropdown-menu').hasClass('show')) {
-      this.search(event,options);
+      this.search(event, options);
     }
   };
 
@@ -64,7 +65,7 @@ class FindMyOffice {
     return option;
   };
 
-  search = (event,options) => {
+  search = (event, options) => {
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
@@ -158,7 +159,7 @@ class FindMyOffice {
     this.clearSelectedCities();
     $(
       '.js-pw-form__dropdown__city,.js-pw-form__dropdown__city-select'
-    ).keydown(e => this.onKeydown(e));
+    ).keydown(e => this.onKeydown(e, this.cache.officesNameList));
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
     this.cache.selectedCity.on('click', this.onClickCityItem);
     this.resetOfficeDetails();
@@ -304,10 +305,10 @@ class FindMyOffice {
     });
   };
 
-  renderCitiesOfficesList = cities => {
+  renderCitiesOfficesList = () => {
     render.fn({
       template: 'citiesOfficesList',
-      data: cities,
+      data: this.cache.cities,
       target: '.js-pw-form__dropdown__city-select'
     });
   };
@@ -368,8 +369,13 @@ class FindMyOffice {
     if (this.cache.cities.length > 0) {
       $('.js-pw-form__dropdown__city').removeAttr('disabled');
       $('.js-pw-find-my-office__form-group__label').removeClass('opacity');
-      this.renderCitiesOfficesList(this.cache.cities);
+      this.getOfficesName();
+      this.renderCitiesOfficesList();
     }
+  };
+
+  getOfficesName = () => {
+    this.cache.officesNameList = this.cache.cities.map(office => office.name);
   };
 
   initMap = () => {
