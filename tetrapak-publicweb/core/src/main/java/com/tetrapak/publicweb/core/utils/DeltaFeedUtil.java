@@ -90,8 +90,12 @@ public final class DeltaFeedUtil {
         // Adding query parameters
         map.put("path", PWConstants.CONTENT_ROOT_PATH);
         map.put("type", "cq:Page");
+        
+        // Search only product type pages.
+        map.put("1_property", "jcr:content/sling:resourceType");
+        map.put("1_property.value", "publicweb/components/structure/pages/pxpproductpage");
 
-        // Parameter to look for tags on the page.
+        // Search product Id's on the page.
         if (productIds != null) {
             map.put("1_group.p.or", "true");
             int i = 1;
