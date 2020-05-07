@@ -11,11 +11,15 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 
 import com.tetrapak.publicweb.core.beans.pxp.FeatureOption;
 import com.tetrapak.publicweb.core.models.multifield.TabModel;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * The Class PXPFeaturesModel.
@@ -53,6 +57,17 @@ public class PXPFeaturesModel {
     /** The tabs. */
     private List<TabModel> tabs = new ArrayList<>();
 
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    /** The dynamic media service. */
+    @OSGiService
+    private DynamicMediaService dynamicMediaService;
+
+    /** The Constant AUTHOR. */
+    private static final String AUTHOR = "author";
+
     /**
      * Inits the.
      */
@@ -71,7 +86,9 @@ public class PXPFeaturesModel {
                     tab.setAlt(feature.getName());
                     tab.setTabType("imageText");
                 } else if (Objects.nonNull(feature.getVideo())) {
-                    tab.setDamVideoPath(feature.getVideo().getSrc());
+                    String damVideoPath = feature.getVideo().getSrc();
+                    damVideoPath = setDynamicMediaVideoPath(damVideoPath);
+                    tab.setDamVideoPath(damVideoPath);
                     tab.setThumbnailPath(feature.getVideo().getPoster());
                     tab.setThumbnailAltText(feature.getName());
                     tab.setTabType("videoText");
@@ -80,6 +97,20 @@ public class PXPFeaturesModel {
                 tabs.add(tab);
             }
         }
+    }
+
+    /**
+     * Sets the dynamic media video path.
+     *
+     * @param damVideoPath
+     *            the dam video path
+     * @return the string
+     */
+    private String setDynamicMediaVideoPath(String damVideoPath) {
+        if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+        }
+        return damVideoPath;
     }
 
     /**

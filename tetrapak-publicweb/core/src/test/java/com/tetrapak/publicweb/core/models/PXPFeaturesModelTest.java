@@ -2,12 +2,17 @@ package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -50,6 +55,12 @@ public class PXPFeaturesModelTest {
 
     /** The resource. */
     private Resource resource;
+    
+    private DynamicMediaService dynamicMediaService;
+    
+    /** THE DYNAMIC MEDIA CONF. */
+    String[] dynamicMediaConfMap = {
+        "getstarted-desktop=1440\\,300,getstarted-mobileL=414\\,259\\,0.333\\,0\\,0.333\\,1,getstarted-mobileP=414\\,259\\,0.333\\,0\\,0.333\\,1" };
 
     /**
      * Sets the up.
@@ -59,6 +70,18 @@ public class PXPFeaturesModelTest {
      */
     @Before
     public void setUp() throws Exception {
+        
+     // Dynamic Media Serivce
+        dynamicMediaService = new DynamicMediaServiceImpl();
+        final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
+        configuraionServiceConfig.put("rootPath", "/tetrapak");
+        configuraionServiceConfig.put("dynamicMediaConfMap", dynamicMediaConfMap);
+        configuraionServiceConfig.put("imageServiceUrl", "https://s7g10.scene7.com/is/image");
+        configuraionServiceConfig.put("videoServiceUrl", "https://s7g10.scene7.com/is/content");
+        context.registerInjectActivateService(dynamicMediaService, configuraionServiceConfig);
+
+        // Set run modes
+        context.runMode("publish");
 
         context.load().json(PRODUCTS_DATA, PWConstants.PXP_ROOT_PATH);
         context.load().json(EN_LANGUAGE_RESOURCE_CONTENT, EN_LANGUAGE_CONTENT_ROOT);
@@ -80,7 +103,7 @@ public class PXPFeaturesModelTest {
         assertEquals("PXPFeatures", "anchor123", model.getAnchorId());
         assertEquals("PXPFeatures", "grayscale-white", model.getPwTheme());
         assertEquals("PXPFeatures", "display-row", model.getPwDisplay());
-
+        assertEquals("PXPFeatures", "Features", model.getHeading());
         assertEquals("PXPFeatures",
                 "<p>There's no need to halt production in order to refill with packaging material or strips since both are replaced automatically. Automation also ensures that splices between packaging material reels and strip applications are of consistent, repeatable quality.</p>",
                 model.getTabs().get(0).getDescription());

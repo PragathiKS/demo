@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
+import java.util.Objects;
+
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
@@ -194,9 +196,11 @@ public class TabModel {
      * @return damVideoPath
      */
     public String getDamVideoPath() {
-        if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
+        if (Objects.nonNull(slingSettingsService) && Objects.nonNull(dynamicMediaService)
+                && !slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
+
         return damVideoPath;
     }
 
