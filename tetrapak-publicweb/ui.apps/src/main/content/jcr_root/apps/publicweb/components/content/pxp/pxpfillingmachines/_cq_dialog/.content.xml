@@ -21,6 +21,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
                                 name="./heading"/>
+                            <linkText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Link text"
+                                fieldLabel="Link label"
+                                name="./linkText"/>
                         </items>
                     </column>
                 </items>

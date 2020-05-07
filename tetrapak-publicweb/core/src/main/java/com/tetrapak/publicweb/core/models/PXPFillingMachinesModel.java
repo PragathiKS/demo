@@ -17,6 +17,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
@@ -49,6 +50,10 @@ public class PXPFillingMachinesModel {
     @ValueMapValue
     private String heading;
 
+    /** The link text. */
+    @ValueMapValue
+    private String linkText;
+
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
@@ -60,6 +65,9 @@ public class PXPFillingMachinesModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
+
+    @OSGiService
+    private QueryBuilder queryBuilder;
 
     /** The filling machine list. */
     private List<FillingMachine> fillingMachineList;
@@ -102,7 +110,7 @@ public class PXPFillingMachinesModel {
             teaser.setDescription(fillingMachine.getHeader());
             teaser.setFileReference(fillingMachine.getThumbnail());
             teaser.setAlt(fillingMachine.getName());
-            teaser.setLinkText("Read more");
+            teaser.setLinkText(linkText);
             teaser.setLinkPath(productPageMap.get(fillingMachine.getId()));
             teaserList.add(teaser);
         }
@@ -144,7 +152,6 @@ public class PXPFillingMachinesModel {
     private SearchResult executeProductIdQuery() {
         LOGGER.info("Inside executeProductIdQuery()");
         final ResourceResolver resourceResolver = resource.getResourceResolver();
-        final QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
         final Session session = resourceResolver.adaptTo(Session.class);
         final Query query = queryBuilder.createQuery(PredicateGroup.create(populateQueryMap()), session);
         return query.getResult();
