@@ -2,12 +2,10 @@ package com.tetrapak.publicweb.core.workflow;
 
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -33,13 +31,10 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class AssetReplicationWorkflowProcessTest {
 
+
     /** The resolver factory. */
     @Mock
     private ResourceResolverFactory resolverFactory;
-
-    /** The resource resolver. */
-    @Mock
-    private ResourceResolver resourceResolver;
 
     @Mock
     private Replicator replicator;
@@ -54,10 +49,6 @@ public class AssetReplicationWorkflowProcessTest {
     private AssetImportService assetImportService;
 
     @Mock
-    private Session session;
-
-    /** The resource resolver. */
-    @Mock
     private WorkItem workItem;
 
     /** The site search servlet. */
@@ -67,8 +58,9 @@ public class AssetReplicationWorkflowProcessTest {
     @Rule
     public final AemContext aemContext = new AemContext();
 
-    private String payloadPath = "/content/dam/tetrapak/publicweb/pxp/category4/product3/images/myimage.jpg/jcr:content/renditions/original";
-    private String assetPath = "/content/dam/tetrapak/publicweb/pxp/category4/product3/images/myimage.jpg";
+    private String PAYLOAD_PATH = "/content/dam/tetrapak/publicweb/pxp/category4/product3/images/myimage.jpg/jcr:content/renditions/original";
+    private String ASSET_PATH = "/content/dam/tetrapak/publicweb/pxp/category4/product3/images/myimage.jpg";
+    private String ASSET_RESOURCE_CONTENT = "/workflow/test-asset.json";
 
     @Mock
     private Throwable replicationException;
@@ -82,28 +74,27 @@ public class AssetReplicationWorkflowProcessTest {
     @Mock
     private MetaDataMap paramMetaDataMap;
 
+    /** The model class. */
+    Class<Node> nodeClass = Node.class;
+    
     Asset asset;
     List<String> paths;
 
     @Mock
-    private Node node;
+    Node node;
 
     @Before
     public void setup() throws RepositoryException {
 
         MockitoAnnotations.initMocks(this);
-        aemContext.build().resource(assetPath, "jcr:primaryType", "dam:Asset").commit();
-        Resource assetResource = aemContext.resourceResolver().getResource(assetPath);
+        aemContext.load().json(ASSET_RESOURCE_CONTENT,ASSET_PATH );
+        aemContext.addModelsForClasses(nodeClass);
+        Resource assetResource = aemContext.currentResource(ASSET_PATH);
         asset = assetResource.adaptTo(Asset.class);
-
         paramMetaDataMap = new SimpleMetaDataMap();
-        paths = new ArrayList<>();
-        paths.add(assetPath);
-
         when(workItem.getWorkflowData()).thenReturn(workflowData);
-        when(workflowData.getPayload()).thenReturn(payloadPath);
-        when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(resourceResolver);
-
+        when(workflowData.getPayload()).thenReturn(PAYLOAD_PATH);
+        when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(assetResource.getResourceResolver());
     }
 
     @Test
