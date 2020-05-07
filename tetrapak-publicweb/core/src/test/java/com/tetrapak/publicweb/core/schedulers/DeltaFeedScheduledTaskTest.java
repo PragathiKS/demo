@@ -1,18 +1,32 @@
 package com.tetrapak.publicweb.core.schedulers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.jcr.Session;
+
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.commons.scheduler.Scheduler;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.osgi.service.component.annotations.Reference;
 
 import com.day.cq.replication.Replicator;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.mock.MockReplicatorImpl;
 import com.tetrapak.publicweb.core.mock.MockScheduler;
@@ -38,6 +52,22 @@ public class DeltaFeedScheduledTaskTest {
     Replicator replicator;
     
     ResourceResolverFactory resolverFactory;
+    
+    /** The query builder. */
+    @Mock
+    private QueryBuilder queryBuilder;
+    
+    /** The result. */  
+    @Mock   
+    SearchResult searchResult;
+    
+    /** The query. */   
+    @Mock   
+    private Query query; 
+    
+    /** The hit. */ 
+    @Mock   
+    private Hit hit;
    
 
     /** The scheduler. */
@@ -45,16 +75,33 @@ public class DeltaFeedScheduledTaskTest {
     Scheduler scheduler;
 
     private DeltaFeedImportScheduledTask deltaFeedTask = new DeltaFeedImportScheduledTask();
+    
+    private static final String PRODUCT_PAGE = "/content/tetrapak/public-web/lang-masters/en/solutions/processing/main-technology-areas/test-prod-1";
 
     @Before
     public void setUp() throws Exception { 
     
         context.load().json("/product/root.json", PWConstants.ROOT_PATH);
+        MockitoAnnotations.initMocks(this);
+        
         replicator = new MockReplicatorImpl();
         context.registerService(Replicator.class, replicator);
         
         scheduler = new MockScheduler(deltaFeedTask);
         context.registerService(Scheduler.class, scheduler);
+        
+        context.registerAdapter(ResourceResolver.class, QueryBuilder.class, new Function<ResourceResolver, QueryBuilder>() {
+            @Override
+            public QueryBuilder apply(ResourceResolver arg0) {
+                return queryBuilder;
+            }
+        });
+        Mockito.when(queryBuilder.createQuery(Mockito.any(PredicateGroup.class), Mockito.any(Session.class))).thenReturn(query);
+        Mockito.when(query.getResult()).thenReturn(searchResult);
+        List<Hit> hits = new ArrayList<Hit>();
+        hits.add(hit);
+        Mockito.when(searchResult.getHits()).thenReturn(hits);
+        Mockito.when(hit.getPath()).thenReturn(PRODUCT_PAGE);
         
         final Map<String, Object> apiGeeConfig = new HashMap<String, Object>();
         apiGeeConfig.put("apigeeServiceUrl", "https://api-mig.tetrapak.com");
