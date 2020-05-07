@@ -46,7 +46,7 @@ public class PXPShapesVolumesModel {
 
     /** The pw theme. */
     @ValueMapValue
-    @Default(values = "grayscale-lighter")
+    @Default(values = "grayscale-white")
     private String pwTheme;
 
     /** The teaser list. */
