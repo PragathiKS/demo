@@ -83,7 +83,7 @@
         position: relative;
 
         @media #{$desktop} {
-            @include margin-bottom($margin-xxxl);
+            @include margin-bottom(0);
         }
 
         video,
