@@ -94,15 +94,11 @@ class FindMyOffice {
       this.cache.selectedCountryValue
     ).trim();
     $('.js-pw-find-my-office__form-group__city-field').removeClass('hide');
-    $(
-      '.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text'
-    ).text(e.target.innerText);
+    $('.js-pw-form__dropdown__country .js-pw-form__dropdown__country-text').text(e.target.innerText);
     $('.js-pw-form__dropdown__country').attr('title', e.target.innerText);
     this.renderCities();
     this.clearSelectedCities();
-    $(
-      '.js-pw-form__dropdown__city,.js-pw-form__dropdown__city-select'
-    ).keydown(e => this.onKeydown(e, this.cache.officesNameList));
+    $('.js-pw-form__dropdown__city,.js-pw-form__dropdown__city-select').keydown(e => this.onKeydown(e, this.cache.officesNameList));
     this.cache.selectedCity = this.root.find('.js-dropdown-item-city');
     this.cache.selectedCity.on('click', this.onClickCityItem);
     this.resetOfficeDetails();
