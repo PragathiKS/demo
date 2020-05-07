@@ -27,8 +27,6 @@ class FindMyOffice {
     this.cache.marker = null;
     this.cache.defaultLatitude = 55.6998089;
     this.cache.defaultLongitude = 13.1676404;
-    this.cache.countryToggle = this.root.find('.js-pw-form__dropdown__country');
-    this.cache.cityToggle = this.root.find('.js-pw-form__dropdown__city');
     this.cache.goToLocalSiteElement = this.root.find('.js-i18-value');
     this.cache.goToLocalSiteI18nValue = $(
       this.cache.goToLocalSiteElement
