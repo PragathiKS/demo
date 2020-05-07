@@ -37,19 +37,16 @@ public class AssetReplicationWorkflowProcess implements WorkflowProcess {
         LOGGER.debug("inside execute");
         String payloadPath = workItem.getWorkflowData().getPayload().toString();
         String finalPayloadPath = payloadPath.replaceAll("renditions/original", "metadata");
-        ResourceResolver resourceResolver = workflowSession.adaptTo(ResourceResolver.class);
         Session session = null;
         String pathToCheck = DEFAULT_PATH_TO_CHECK;
         if (paramMetaDataMap.containsKey(TYPE_PROCESS_ARGS)) {
             pathToCheck = paramMetaDataMap.get(TYPE_PROCESS_ARGS, String.class);
         }
         try {
-            if (resourceResolver != null) {
-                session = resourceResolver.adaptTo(Session.class);
-                if (session != null) {
-                    LOGGER.debug("inside session {} ", session);
-                    replicateAsset(finalPayloadPath, session, pathToCheck);
-                }
+            session = workflowSession.adaptTo(Session.class);
+            if (session != null) {
+                LOGGER.debug("inside session {} ", session);
+                replicateAsset(finalPayloadPath, session, pathToCheck);
             }
         } catch (RepositoryException | ReplicationException e) {
             LOGGER.error("Error occured while asset replication :: {}", e.getMessage(), e);
@@ -75,7 +72,6 @@ public class AssetReplicationWorkflowProcess implements WorkflowProcess {
             LOGGER.info("assetPath {} ", assetPath);
             replicator.replicate(session, ReplicationActionType.ACTIVATE, assetPath);
             LOGGER.debug("asset has been replicated : assetPath {} ", assetPath);
-            session.save();
         }
     }
 
