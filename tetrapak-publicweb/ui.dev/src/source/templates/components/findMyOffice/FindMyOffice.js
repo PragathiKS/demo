@@ -7,7 +7,6 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import { isMobile } from '../../../scripts/common/common';
-import tpJson from './data/tp-offices.json';
 
 class FindMyOffice {
   constructor({ el }) {
@@ -271,7 +270,7 @@ class FindMyOffice {
       })
       .done(data => {
         if (data) {
-          this.cache.normalizedData = tpJson;
+          this.cache.normalizedData = data;
           this.renderCountries();
           this.cache.selectedCountry = this.root.find(
             '.js-dropdown-item-country'
