@@ -107,7 +107,7 @@ public class PXPFillingMachinesModelTest {
         final Class<PXPFillingMachinesModel> modelClass = PXPFillingMachinesModel.class;
         context.addModelsForClasses(modelClass);
 
-        final List<String> idList = new ArrayList<String>();
+        final List<String> idList = new ArrayList<>();
         idList.add("/content/tetrapak/public-web/lang-masters/en/test-equip-19647/jcr:content");
         MockHelper.loadQuery(context, idList);
 
