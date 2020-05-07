@@ -1,5 +1,6 @@
 import FindMyOffice from './FindMyOffice';
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import tpOffices from './data/tp-offices.json';
