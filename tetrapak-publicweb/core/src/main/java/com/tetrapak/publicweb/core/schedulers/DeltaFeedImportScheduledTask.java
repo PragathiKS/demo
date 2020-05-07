@@ -150,21 +150,19 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
             String fileType = ProductUtil.getFileType(file.getName());
             String language = ProductUtil.getLanguage(file.getName());
-            if (language.equalsIgnoreCase("en")) {
-                switch (fileType) {
-                    case "fillingmachines":
-                        processFillingMachines(file.getName(), fileType, language);
-                        break;
-                    case "processingequipments":
-                        processEquipments(file.getName(), fileType, language);
-                        break;
-                    case "packagetypes":
-                        processPackageTypes(file.getName(), fileType, language);
-                        break;
-                    default:
-                        LOGGER.info("Not a valid file type to process for url {}", file.getName());
-                        break;
-                }
+            switch (fileType) {
+                case "fillingmachines":
+                    processFillingMachines(file.getName(), fileType, language);
+                    break;
+                case "processingequipments":
+                    processEquipments(file.getName(), fileType, language);
+                    break;
+                case "packagetypes":
+                    processPackageTypes(file.getName(), fileType, language);
+                    break;
+                default:
+                    LOGGER.info("Not a valid file type to process for url {}", file.getName());
+                    break;
             }
         }
     }
@@ -189,10 +187,10 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (!deltaFillingMachines.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaFillingMachines.getDeleted());
             for (String deletedProduct : deltaFillingMachines.getDeleted()) {
-                ResourceUtil.deactivatePath(replicator, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
-                ResourceUtil.deleteResource(resolver, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
+                ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.FILLING_MACHINE + PWConstants.SLASH + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.FILLING_MACHINE + PWConstants.SLASH + deletedProduct);
             }
 
         }
@@ -218,10 +216,10 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (!deltaEquipements.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaEquipements.getDeleted());
             for (String deletedProduct : deltaEquipements.getDeleted()) {
-                ResourceUtil.deactivatePath(replicator, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
-                ResourceUtil.deleteResource(resolver, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
+                ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.PROCESSING_EQUIPEMENT + PWConstants.SLASH + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.PROCESSING_EQUIPEMENT + PWConstants.SLASH + deletedProduct);
             }
         }
     }
@@ -246,10 +244,10 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (!deltaPackageTypes.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaPackageTypes.getDeleted());
             for (String deletedProduct : deltaPackageTypes.getDeleted()) {
-                ResourceUtil.deactivatePath(replicator, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.PACKAGE_TYPE + deletedProduct);
-                ResourceUtil.deleteResource(resolver, session,
-                        PWConstants.PXP_ROOT_PATH + PWConstants.SLASH + PWConstants.FILLING_MACHINE + deletedProduct);
+                ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.PACKAGE_TYPE + PWConstants.SLASH + deletedProduct);
+                ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
+                        + PWConstants.PACKAGE_TYPE + PWConstants.SLASH + deletedProduct);
             }
         }
     }
