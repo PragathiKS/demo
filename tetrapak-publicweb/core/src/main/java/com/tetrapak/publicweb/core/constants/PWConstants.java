@@ -127,6 +127,9 @@ public final class PWConstants {
     
     /** The delta feed */
     public static final String DELTA_FEED = "delta";
+    
+    /** The default bearer token refresh time */
+    public static final int  FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
 
     private PWConstants() {
         /*

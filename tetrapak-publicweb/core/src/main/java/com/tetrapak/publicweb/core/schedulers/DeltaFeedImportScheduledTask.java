@@ -150,21 +150,21 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
             String fileType = ProductUtil.getFileType(file.getName());
             String language = ProductUtil.getLanguage(file.getName());
-            if(language.equalsIgnoreCase("en")) {
-            switch (fileType) {
-                case "fillingmachines":
-                    processFillingMachines(file.getName(), fileType, language);
-                    break;
-                case "processingequipments":
-                    processEquipments(file.getName(), fileType, language);
-                    break;
-                case "packagetypes":
-                    processPackageTypes(file.getName(), fileType, language);
-                    break;
-                default:
-                    LOGGER.info("Not a valid file type to process for url {}", file.getName());
-                    break;
-            }
+            if (language.equalsIgnoreCase("en")) {
+                switch (fileType) {
+                    case "fillingmachines":
+                        processFillingMachines(file.getName(), fileType, language);
+                        break;
+                    case "processingequipments":
+                        processEquipments(file.getName(), fileType, language);
+                        break;
+                    case "packagetypes":
+                        processPackageTypes(file.getName(), fileType, language);
+                        break;
+                    default:
+                        LOGGER.info("Not a valid file type to process for url {}", file.getName());
+                        break;
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.beans.pxp;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Files {
 
     @JsonProperty("files")
-    private List<File> files = null;
+    private List<File> filesList;
 
     @JsonProperty("files")
     public List<File> getFiles() {
-        return files;
+        return new ArrayList<>(filesList);
     }
 
     @JsonProperty("files")
     public void setFiles(List<File> files) {
-    this.files = files;
+        this.filesList = new ArrayList<>(filesList);
     }
 }

@@ -1,6 +1,7 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,7 +29,7 @@ public class Openingclosure {
     @JsonProperty("principle")
     private String principle;
     @JsonProperty("benefits")
-    private List<String> benefits = null;
+    private List<String> benefits;
 
     @JsonProperty("id")
     public String getId() {
@@ -82,12 +83,12 @@ public class Openingclosure {
 
     @JsonProperty("benefits")
     public List<String> getBenefits() {
-        return benefits;
+        return new ArrayList<>(benefits);
     }
 
     @JsonProperty("benefits")
     public void setBenefits(List<String> benefits) {
-        this.benefits = benefits;
+        this.benefits = new ArrayList<>(benefits);
     }
 
 }

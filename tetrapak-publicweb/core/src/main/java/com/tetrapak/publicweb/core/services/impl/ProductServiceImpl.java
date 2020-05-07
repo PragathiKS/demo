@@ -98,7 +98,7 @@ public class ProductServiceImpl implements ProductService {
         } catch (PersistenceException e) {
             LOGGER.error("PersistenceException while creating filling machine", e);
         }
-        return pathToReplicate;
+        return new ArrayList<>(pathToReplicate);
     }
 
     /**
@@ -118,7 +118,6 @@ public class ProductServiceImpl implements ProductService {
             String productPath = FillingMachineUtil.createOrUpdateFillingMachine(resolver, productType,
                     productTypeResPath, fillingMachine, language, damRootPath, videoTypes);
             pathToReplicate.add(productPath);
-
         }
     }
 
@@ -151,7 +150,7 @@ public class ProductServiceImpl implements ProductService {
             LOGGER.error("PersistenceException while creating package type", e);
 
         }
-        return pathToReplicate;
+        return new ArrayList<>(pathToReplicate);
     }
 
     /**
@@ -182,7 +181,7 @@ public class ProductServiceImpl implements ProductService {
             LOGGER.error("PersistenceException while creating product node", e);
 
         }
-        return pathToReplicate;
+        return new ArrayList<>(pathToReplicate);
     }
 
     /**
@@ -216,8 +215,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Modified
     protected void modified(final Config config) {
-        damRootPath = config.damRootPath();
-        videoTypes = config.videoTypes();
+        activate(config);
     }
 
 }

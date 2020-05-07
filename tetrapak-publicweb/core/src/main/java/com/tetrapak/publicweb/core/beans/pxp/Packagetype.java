@@ -1,6 +1,7 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,11 +22,11 @@ public class Packagetype {
     @JsonProperty("name")
     private String name;
     @JsonProperty("shapes")
-    private List<Shape> shapes = null;
+    private List<Shape> shapes;
     @JsonProperty("openingclosures")
-    private List<Openingclosure> openingclosures = null;
+    private List<Openingclosure> openingclosures;
     @JsonProperty("fillingmachines")
-    private List<FillingMachine> fillingmachines = null;
+    private List<FillingMachine> fillingmachines;
 
     @JsonProperty("id")
     public String getId() {
@@ -49,32 +50,32 @@ public class Packagetype {
 
     @JsonProperty("shapes")
     public List<Shape> getShapes() {
-        return shapes;
+        return new ArrayList<>(shapes);
     }
 
     @JsonProperty("shapes")
     public void setShapes(List<Shape> shapes) {
-        this.shapes = shapes;
+        this.shapes = new ArrayList<>(shapes);
     }
     
     @JsonProperty("fillingmachines")
     public List<FillingMachine> getFillingmachines() {
-        return fillingmachines;
+        return new ArrayList<>(fillingmachines);
     }
 
     @JsonProperty("openingclosures")
     public void setOpeningclosures(List<Openingclosure> openingclosures) {
-        this.openingclosures = openingclosures;
+        this.openingclosures = new ArrayList<>(openingclosures);
     }
     
     @JsonProperty("openingclosures")
     public List<Openingclosure> getOpeningclosures() {
-        return openingclosures;
+        return new ArrayList<>(openingclosures);
     }
 
     @JsonProperty("fillingmachines")
     public void setFillingMachines(List<FillingMachine> fillingmachines) {
-        this.fillingmachines = fillingmachines;
+        this.fillingmachines = new ArrayList<>(fillingmachines);
     }
 
 }

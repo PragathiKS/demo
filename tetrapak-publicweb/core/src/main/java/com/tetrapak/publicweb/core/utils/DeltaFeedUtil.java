@@ -46,7 +46,7 @@ public final class DeltaFeedUtil {
      * replicate products.
      */
     public static void activateUpdatedProducts(ResourceResolver resolver, Replicator replicator, Session session,
-            Set<String> pathsToActivate) {
+            Iterable<String>  pathsToActivate) {
         try {
             for (String pathToActivate : pathsToActivate) {
                 replicator.replicate(session, ReplicationActionType.ACTIVATE, pathToActivate);

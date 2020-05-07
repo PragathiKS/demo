@@ -1,6 +1,7 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,22 +21,22 @@ public class DeltaFillingMachine {
 
     @JsonProperty("delta")
     public List<FillingMachine> getFillingMachine() {
-        return fillingMachine;
+        return new ArrayList<>(fillingMachine);
     }
 
     @JsonProperty("delta")
     public void setFillingMachine(List<FillingMachine> fillingMachine) {
-        this.fillingMachine = fillingMachine;
+        this.fillingMachine = new ArrayList<>(fillingMachine);
     }
 
     @JsonProperty("deleted")
     public List<String> getDeleted() {
-        return deleted;
+        return new ArrayList<>(deleted);
     }
 
     @JsonProperty("deleted")
     public void setDeleted(List<String> deleted) {
-        this.deleted = deleted;
+        this.deleted = new ArrayList<>(deleted);
     }
 
 }

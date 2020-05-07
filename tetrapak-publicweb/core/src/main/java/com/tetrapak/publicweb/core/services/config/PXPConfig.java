@@ -3,6 +3,8 @@ package com.tetrapak.publicweb.core.services.config;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
+
 /**
  * OSGi configuration for PXP
  *
@@ -33,6 +35,6 @@ public @interface PXPConfig {
      * @return bearer token refreh time
      */
     @AttributeDefinition(name = "Refresh Bearer Token Time (in milliseconds)", description = "Refresh Bearer Token Time")
-    int schedulerRefreshTokenTime() default 3000000;
+    int schedulerRefreshTokenTime() default PWConstants.FIFTY_MIN_IN_MILLI_SECONDS;
 
 }

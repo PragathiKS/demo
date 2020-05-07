@@ -1,6 +1,7 @@
 
 package com.tetrapak.publicweb.core.beans.pxp;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,7 +20,7 @@ public class Shape {
     @JsonProperty("thumbnail")
     private String thumbnail;
     @JsonProperty("volumes")
-    private List<String> volumes = null;
+    private List<String> volumes;
 
     @JsonProperty("name")
     public String getName() {
@@ -43,12 +44,12 @@ public class Shape {
 
     @JsonProperty("volumes")
     public List<String> getVolumes() {
-        return volumes;
+        return new ArrayList<>(volumes);
     }
 
     @JsonProperty("volumes")
     public void setVolumes(List<String> volumes) {
-        this.volumes = volumes;
+        this.volumes = new ArrayList<>(volumes);
     }
 
 }
