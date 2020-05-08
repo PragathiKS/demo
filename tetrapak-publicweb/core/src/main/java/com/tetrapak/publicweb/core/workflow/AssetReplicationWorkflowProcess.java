@@ -36,20 +36,15 @@ public class AssetReplicationWorkflowProcess implements WorkflowProcess {
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap paramMetaDataMap) {
         LOGGER.debug("inside execute");
         String payloadPath = workItem.getWorkflowData().getPayload().toString();
-        String finalPayloadPath = payloadPath.replaceAll("renditions/original", "metadata");
+        String metadataNodePath = payloadPath.replace("renditions/original", "metadata");
         ResourceResolver resourceResolver = workflowSession.adaptTo(ResourceResolver.class);
-        Session session = null;
         String pathToCheck = DEFAULT_PATH_TO_CHECK;
         if (paramMetaDataMap.containsKey(TYPE_PROCESS_ARGS)) {
             pathToCheck = paramMetaDataMap.get(TYPE_PROCESS_ARGS, String.class);
         }
         try {
             if (resourceResolver != null) {
-                session = resourceResolver.adaptTo(Session.class);
-                if (session != null) {
-                    LOGGER.debug("inside session {} ", session);
-                    replicateAsset(finalPayloadPath, session, pathToCheck);
-                }
+                    replicateAsset(metadataNodePath, resourceResolver, pathToCheck);
             }
         } catch (RepositoryException | ReplicationException e) {
             LOGGER.error("Error occured while asset replication :: {}", e.getMessage(), e);
@@ -59,23 +54,22 @@ public class AssetReplicationWorkflowProcess implements WorkflowProcess {
     /**
      * Replicate the asset in payload
      * 
-     * @param finalPayloadPath
-     * @param session
+     * @param metadataNodePath
+     * @param resourceResolver
      * @param pathToCheck
      * 
      * @throws RepositoryException
      * @throws ReplicationException
      */
-    private void replicateAsset(String finalPayloadPath, Session session, String pathToCheck)
+    private void replicateAsset(String metadataNodePath, ResourceResolver resourceResolver, String pathToCheck)
             throws RepositoryException, ReplicationException {
-        Node node = session.getNode(finalPayloadPath);
-        if (finalPayloadPath.contains(pathToCheck) && node.hasProperty(PWConstants.REPLICATION_PXP)) {
+        Node node = resourceResolver.getResource(metadataNodePath).adaptTo(Node.class);
+        if (metadataNodePath.contains(pathToCheck) && (null != node && node.hasProperty(PWConstants.REPLICATION_PXP))) {
             node.getProperty(PWConstants.REPLICATION_PXP).remove();
-            String assetPath = finalPayloadPath.replaceAll("/jcr:content/metadata", "");
-            LOGGER.info("assetPath {} ", assetPath);
-            replicator.replicate(session, ReplicationActionType.ACTIVATE, assetPath);
+            String assetPath = metadataNodePath.replace("/jcr:content/metadata", "");
+            LOGGER.debug("trigerring replication : assetPath {} ", assetPath);
+            replicator.replicate( resourceResolver.adaptTo(Session.class), ReplicationActionType.ACTIVATE, assetPath);
             LOGGER.debug("asset has been replicated : assetPath {} ", assetPath);
-            session.save();
         }
     }
 

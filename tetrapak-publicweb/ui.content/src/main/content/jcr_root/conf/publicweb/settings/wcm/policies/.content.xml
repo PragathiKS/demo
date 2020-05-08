@@ -66,6 +66,36 @@
                         components="[group:tetrapak-publicweb,group:tetrapak-publicweb-pxp]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1588323636441>
+                    <policy_1588921226260
+                        jcr:description="This policy is used for PW Package types template pages"
+                        jcr:lastModified="{Date}2020-05-08T12:34:34.956+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="publicweb PXP package types"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:tetrapak-publicweb,/apps/publicweb/components/content/pxp/pxpfillingmachines,/apps/publicweb/components/content/pxp/pxpopenings,/apps/publicweb/components/content/pxp/pxpshapesandvolumes]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1588921226260>
+                    <policy_1588922527548
+                        jcr:description="This policy is used for PW processing equipment template pages"
+                        jcr:lastModified="{Date}2020-05-08T13:05:18.097+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="publicweb PXP processing equipment"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:tetrapak-publicweb,/apps/publicweb/components/content/pxp/pxpbanner,/apps/publicweb/components/content/pxp/pxpfeatures,/apps/publicweb/components/content/pxp/pxpoptions]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1588922527548>
+                    <policy_1588922864407
+                        jcr:description="This policy is used for PW filling machine template pages"
+                        jcr:lastModified="{Date}2020-05-08T13:01:25.737+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="publicweb PXP filling machine"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:tetrapak-publicweb,/apps/publicweb/components/content/pxp/pxpbanner,/apps/publicweb/components/content/pxp/pxpfeatures,/apps/publicweb/components/content/pxp/pxpoptions,/apps/publicweb/components/content/pxp/pxppackagetypes]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1588922864407>
                 </responsivegrid>
             </components>
         </foundation>
