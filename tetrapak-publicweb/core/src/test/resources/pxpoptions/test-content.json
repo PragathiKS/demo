@@ -1,0 +1,38 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "sapient-sandip",
+	"jcr:created": "Tue Mar 24 2020 08:08:47 GMT+0000",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:title": "PXP Filling Machine",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "cf6b6cfd-b5a4-49d5-a036-380ce8f8b9bd",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+		"productId": "equipment1272",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:created": "Tue Jan 21 2020 01:43:09 GMT+0000",
+		"cq:lastReplicated": "Thu Apr 30 2020 07:41:13 GMT+0000",
+		"cq:lastModified": "Thu Apr 30 2020 04:34:02 GMT+0000",
+		"jcr:description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"jcr:baseVersion": "20a6f62d-47b4-47a4-947f-1dcd5b064aeb",
+		"jcr:isCheckedOut": true,
+		"jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid"
+		},
+		"pxpoptions": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:lastModifiedBy": "admin",
+			"jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
+			"sling:resourceType": "publicweb/components/content/pxpfeatures",
+			"anchorId": "anchor123",
+			"anchorTitle": "Anchor title"
+		}
+	}
+}
