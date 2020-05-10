@@ -30,7 +30,10 @@
 "id": "equipment1272",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" },
+"en": {
+"jcr:primaryType": "nt:unstructured"
+}
 },
 "equipment7002": {
 "jcr:primaryType": "nt:unstructured",
@@ -43,7 +46,10 @@
 "id": "equipment7002",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" },
+"en": {
+"jcr:primaryType": "nt:unstructured"
+}
 },
 "equipment19647": {
 "jcr:primaryType": "nt:unstructured",
@@ -56,7 +62,10 @@
 "id": "equipment19647",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" },
+"en": {
+"jcr:primaryType": "nt:unstructured"
+}
 },
 "equipment1308": {
 "jcr:primaryType": "nt:unstructured",
@@ -69,7 +78,7 @@
 "id": "equipment1308",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1260": {
 "jcr:primaryType": "nt:unstructured",
@@ -82,7 +91,7 @@
 "id": "equipment1260",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1279": {
 "jcr:primaryType": "nt:unstructured",
@@ -95,7 +104,7 @@
 "id": "equipment1279",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment20015": {
 "jcr:primaryType": "nt:unstructured",
@@ -108,7 +117,7 @@
 "id": "equipment20015",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1255": {
 "jcr:primaryType": "nt:unstructured",
@@ -121,7 +130,7 @@
 "id": "equipment1255",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment12116": {
 "jcr:primaryType": "nt:unstructured",
@@ -134,7 +143,7 @@
 "id": "equipment12116",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1252": {
 "jcr:primaryType": "nt:unstructured",
@@ -147,7 +156,7 @@
 "id": "equipment1252",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1287": {
 "jcr:primaryType": "nt:unstructured",
@@ -160,7 +169,7 @@
 "id": "equipment1287",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1304": {
 "jcr:primaryType": "nt:unstructured",
@@ -173,7 +182,7 @@
 "id": "equipment1304",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1288": {
 "jcr:primaryType": "nt:unstructured",
@@ -186,7 +195,7 @@
 "id": "equipment1288",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1299": {
 "jcr:primaryType": "nt:unstructured",
@@ -199,7 +208,7 @@
 "id": "equipment1299",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment21979": {
 "jcr:primaryType": "nt:unstructured",
@@ -212,7 +221,7 @@
 "id": "equipment21979",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1251": {
 "jcr:primaryType": "nt:unstructured",
@@ -225,7 +234,7 @@
 "id": "equipment1251",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment1296": {
 "jcr:primaryType": "nt:unstructured",
@@ -238,7 +247,7 @@
 "id": "equipment1296",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "equipment19976": {
 "jcr:primaryType": "nt:unstructured",
@@ -251,7 +260,7 @@
 "id": "equipment19976",
 "jcr:lastModified": "Wed May 06 2020 20:03:35 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 }
 },
 "packagetypes": {
@@ -275,7 +284,7 @@
 "id": "packagetype1652",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1698": {
 "jcr:primaryType": "nt:unstructured",
@@ -288,7 +297,7 @@
 "id": "packagetype1698",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1648": {
 "jcr:primaryType": "nt:unstructured",
@@ -301,7 +310,7 @@
 "id": "packagetype1648",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1650": {
 "jcr:primaryType": "nt:unstructured",
@@ -314,7 +323,7 @@
 "id": "packagetype1650",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype2351": {
 "jcr:primaryType": "nt:unstructured",
@@ -327,7 +336,7 @@
 "id": "packagetype2351",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1651": {
 "jcr:primaryType": "nt:unstructured",
@@ -340,7 +349,7 @@
 "id": "packagetype1651",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1646": {
 "jcr:primaryType": "nt:unstructured",
@@ -353,7 +362,7 @@
 "id": "packagetype1646",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1697": {
 "jcr:primaryType": "nt:unstructured",
@@ -366,7 +375,7 @@
 "id": "packagetype1697",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype6336": {
 "jcr:primaryType": "nt:unstructured",
@@ -379,7 +388,7 @@
 "id": "packagetype6336",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1695": {
 "jcr:primaryType": "nt:unstructured",
@@ -392,7 +401,7 @@
 "id": "packagetype1695",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "packagetype1649": {
 "jcr:primaryType": "nt:unstructured",
@@ -405,7 +414,7 @@
 "id": "packagetype1649",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_tetra_stelo_aseptic": {
 "jcr:primaryType": "nt:unstructured",
@@ -418,7 +427,7 @@
 "id": "pxp3_tetra_stelo_aseptic",
 "jcr:lastModified": "Wed May 06 2020 20:03:51 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 }
 },
 "processingequipments": {
@@ -442,7 +451,7 @@
 "id": "processing_equipment17553",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13249": {
 "jcr:primaryType": "nt:unstructured",
@@ -455,7 +464,7 @@
 "id": "processing_equipment13249",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13259": {
 "jcr:primaryType": "nt:unstructured",
@@ -468,7 +477,7 @@
 "id": "processing_equipment13259",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23485": {
 "jcr:primaryType": "nt:unstructured",
@@ -481,7 +490,7 @@
 "id": "processing_equipment23485",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment19786": {
 "jcr:primaryType": "nt:unstructured",
@@ -494,7 +503,7 @@
 "id": "processing_equipment19786",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17558": {
 "jcr:primaryType": "nt:unstructured",
@@ -507,7 +516,7 @@
 "id": "processing_equipment17558",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23626": {
 "jcr:primaryType": "nt:unstructured",
@@ -520,7 +529,7 @@
 "id": "processing_equipment23626",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15942": {
 "jcr:primaryType": "nt:unstructured",
@@ -533,7 +542,7 @@
 "id": "processing_equipment15942",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23375": {
 "jcr:primaryType": "nt:unstructured",
@@ -546,7 +555,7 @@
 "id": "processing_equipment23375",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13225": {
 "jcr:primaryType": "nt:unstructured",
@@ -559,7 +568,7 @@
 "id": "processing_equipment13225",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13275": {
 "jcr:primaryType": "nt:unstructured",
@@ -572,7 +581,7 @@
 "id": "processing_equipment13275",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment24918": {
 "jcr:primaryType": "nt:unstructured",
@@ -585,7 +594,7 @@
 "id": "processing_equipment24918",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23582": {
 "jcr:primaryType": "nt:unstructured",
@@ -598,7 +607,7 @@
 "id": "processing_equipment23582",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17623": {
 "jcr:primaryType": "nt:unstructured",
@@ -611,7 +620,7 @@
 "id": "processing_equipment17623",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23513": {
 "jcr:primaryType": "nt:unstructured",
@@ -624,7 +633,7 @@
 "id": "processing_equipment23513",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23537": {
 "jcr:primaryType": "nt:unstructured",
@@ -637,7 +646,7 @@
 "id": "processing_equipment23537",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment20309": {
 "jcr:primaryType": "nt:unstructured",
@@ -650,7 +659,7 @@
 "id": "processing_equipment20309",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment19797": {
 "jcr:primaryType": "nt:unstructured",
@@ -663,7 +672,7 @@
 "id": "processing_equipment19797",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23455": {
 "jcr:primaryType": "nt:unstructured",
@@ -676,7 +685,7 @@
 "id": "processing_equipment23455",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_76617": {
 "jcr:primaryType": "nt:unstructured",
@@ -689,7 +698,7 @@
 "id": "pxp3_76617",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23564": {
 "jcr:primaryType": "nt:unstructured",
@@ -702,7 +711,7 @@
 "id": "processing_equipment23564",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13276": {
 "jcr:primaryType": "nt:unstructured",
@@ -715,7 +724,7 @@
 "id": "processing_equipment13276",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23548": {
 "jcr:primaryType": "nt:unstructured",
@@ -728,7 +737,7 @@
 "id": "processing_equipment23548",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_76574": {
 "jcr:primaryType": "nt:unstructured",
@@ -741,7 +750,7 @@
 "id": "pxp3_76574",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17743": {
 "jcr:primaryType": "nt:unstructured",
@@ -754,7 +763,7 @@
 "id": "processing_equipment17743",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment24678": {
 "jcr:primaryType": "nt:unstructured",
@@ -767,7 +776,7 @@
 "id": "processing_equipment24678",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23466": {
 "jcr:primaryType": "nt:unstructured",
@@ -780,7 +789,7 @@
 "id": "processing_equipment23466",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23685": {
 "jcr:primaryType": "nt:unstructured",
@@ -793,7 +802,7 @@
 "id": "processing_equipment23685",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23723": {
 "jcr:primaryType": "nt:unstructured",
@@ -806,7 +815,7 @@
 "id": "processing_equipment23723",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23575": {
 "jcr:primaryType": "nt:unstructured",
@@ -819,7 +828,7 @@
 "id": "processing_equipment23575",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23650": {
 "jcr:primaryType": "nt:unstructured",
@@ -832,7 +841,7 @@
 "id": "processing_equipment23650",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment22068": {
 "jcr:primaryType": "nt:unstructured",
@@ -845,7 +854,7 @@
 "id": "processing_equipment22068",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment16076": {
 "jcr:primaryType": "nt:unstructured",
@@ -858,7 +867,7 @@
 "id": "processing_equipment16076",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23530": {
 "jcr:primaryType": "nt:unstructured",
@@ -871,7 +880,7 @@
 "id": "processing_equipment23530",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment20313": {
 "jcr:primaryType": "nt:unstructured",
@@ -884,7 +893,7 @@
 "id": "processing_equipment20313",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15272": {
 "jcr:primaryType": "nt:unstructured",
@@ -897,7 +906,7 @@
 "id": "processing_equipment15272",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment19974": {
 "jcr:primaryType": "nt:unstructured",
@@ -910,7 +919,7 @@
 "id": "processing_equipment19974",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17682": {
 "jcr:primaryType": "nt:unstructured",
@@ -923,7 +932,7 @@
 "id": "processing_equipment17682",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23489": {
 "jcr:primaryType": "nt:unstructured",
@@ -936,7 +945,7 @@
 "id": "processing_equipment23489",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17795": {
 "jcr:primaryType": "nt:unstructured",
@@ -949,7 +958,7 @@
 "id": "processing_equipment17795",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23501": {
 "jcr:primaryType": "nt:unstructured",
@@ -962,7 +971,7 @@
 "id": "processing_equipment23501",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15959": {
 "jcr:primaryType": "nt:unstructured",
@@ -975,7 +984,7 @@
 "id": "processing_equipment15959",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23379": {
 "jcr:primaryType": "nt:unstructured",
@@ -988,7 +997,7 @@
 "id": "processing_equipment23379",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13274": {
 "jcr:primaryType": "nt:unstructured",
@@ -1001,7 +1010,7 @@
 "id": "processing_equipment13274",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23718": {
 "jcr:primaryType": "nt:unstructured",
@@ -1014,7 +1023,7 @@
 "id": "processing_equipment23718",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment20310": {
 "jcr:primaryType": "nt:unstructured",
@@ -1027,7 +1036,7 @@
 "id": "processing_equipment20310",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17603": {
 "jcr:primaryType": "nt:unstructured",
@@ -1040,7 +1049,7 @@
 "id": "processing_equipment17603",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23541": {
 "jcr:primaryType": "nt:unstructured",
@@ -1053,7 +1062,7 @@
 "id": "processing_equipment23541",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment19999": {
 "jcr:primaryType": "nt:unstructured",
@@ -1066,7 +1075,7 @@
 "id": "processing_equipment19999",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15932": {
 "jcr:primaryType": "nt:unstructured",
@@ -1079,7 +1088,7 @@
 "id": "processing_equipment15932",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17573": {
 "jcr:primaryType": "nt:unstructured",
@@ -1092,7 +1101,7 @@
 "id": "processing_equipment17573",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17792": {
 "jcr:primaryType": "nt:unstructured",
@@ -1105,7 +1114,7 @@
 "id": "processing_equipment17792",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23495": {
 "jcr:primaryType": "nt:unstructured",
@@ -1118,7 +1127,7 @@
 "id": "processing_equipment23495",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23552": {
 "jcr:primaryType": "nt:unstructured",
@@ -1131,7 +1140,7 @@
 "id": "processing_equipment23552",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment24904": {
 "jcr:primaryType": "nt:unstructured",
@@ -1144,7 +1153,7 @@
 "id": "processing_equipment24904",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23400": {
 "jcr:primaryType": "nt:unstructured",
@@ -1157,7 +1166,7 @@
 "id": "processing_equipment23400",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23599": {
 "jcr:primaryType": "nt:unstructured",
@@ -1170,7 +1179,7 @@
 "id": "processing_equipment23599",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23506": {
 "jcr:primaryType": "nt:unstructured",
@@ -1183,7 +1192,7 @@
 "id": "processing_equipment23506",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15922": {
 "jcr:primaryType": "nt:unstructured",
@@ -1196,7 +1205,7 @@
 "id": "processing_equipment15922",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment20311": {
 "jcr:primaryType": "nt:unstructured",
@@ -1209,7 +1218,7 @@
 "id": "processing_equipment20311",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17670": {
 "jcr:primaryType": "nt:unstructured",
@@ -1222,7 +1231,7 @@
 "id": "processing_equipment17670",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23523": {
 "jcr:primaryType": "nt:unstructured",
@@ -1235,7 +1244,7 @@
 "id": "processing_equipment23523",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23482": {
 "jcr:primaryType": "nt:unstructured",
@@ -1248,7 +1257,7 @@
 "id": "processing_equipment23482",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17630": {
 "jcr:primaryType": "nt:unstructured",
@@ -1261,7 +1270,7 @@
 "id": "processing_equipment17630",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23450": {
 "jcr:primaryType": "nt:unstructured",
@@ -1274,7 +1283,7 @@
 "id": "processing_equipment23450",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23459": {
 "jcr:primaryType": "nt:unstructured",
@@ -1287,7 +1296,7 @@
 "id": "processing_equipment23459",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23469": {
 "jcr:primaryType": "nt:unstructured",
@@ -1300,7 +1309,7 @@
 "id": "processing_equipment23469",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13282": {
 "jcr:primaryType": "nt:unstructured",
@@ -1313,7 +1322,7 @@
 "id": "processing_equipment13282",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment16075": {
 "jcr:primaryType": "nt:unstructured",
@@ -1326,7 +1335,7 @@
 "id": "processing_equipment16075",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23558": {
 "jcr:primaryType": "nt:unstructured",
@@ -1339,7 +1348,7 @@
 "id": "processing_equipment23558",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17609": {
 "jcr:primaryType": "nt:unstructured",
@@ -1352,7 +1361,7 @@
 "id": "processing_equipment17609",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17904": {
 "jcr:primaryType": "nt:unstructured",
@@ -1365,7 +1374,7 @@
 "id": "processing_equipment17904",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13242": {
 "jcr:primaryType": "nt:unstructured",
@@ -1378,7 +1387,7 @@
 "id": "processing_equipment13242",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment22526": {
 "jcr:primaryType": "nt:unstructured",
@@ -1391,7 +1400,7 @@
 "id": "processing_equipment22526",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17675": {
 "jcr:primaryType": "nt:unstructured",
@@ -1404,7 +1413,7 @@
 "id": "processing_equipment17675",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment24832": {
 "jcr:primaryType": "nt:unstructured",
@@ -1417,7 +1426,7 @@
 "id": "processing_equipment24832",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15944": {
 "jcr:primaryType": "nt:unstructured",
@@ -1430,7 +1439,7 @@
 "id": "processing_equipment15944",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17641": {
 "jcr:primaryType": "nt:unstructured",
@@ -1443,7 +1452,7 @@
 "id": "processing_equipment17641",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_76750": {
 "jcr:primaryType": "nt:unstructured",
@@ -1456,7 +1465,7 @@
 "id": "pxp3_76750",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17636": {
 "jcr:primaryType": "nt:unstructured",
@@ -1469,7 +1478,7 @@
 "id": "processing_equipment17636",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17646": {
 "jcr:primaryType": "nt:unstructured",
@@ -1482,7 +1491,7 @@
 "id": "processing_equipment17646",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_76662": {
 "jcr:primaryType": "nt:unstructured",
@@ -1495,7 +1504,7 @@
 "id": "pxp3_76662",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13277": {
 "jcr:primaryType": "nt:unstructured",
@@ -1508,7 +1517,7 @@
 "id": "processing_equipment13277",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13283": {
 "jcr:primaryType": "nt:unstructured",
@@ -1521,7 +1530,7 @@
 "id": "processing_equipment13283",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17595": {
 "jcr:primaryType": "nt:unstructured",
@@ -1534,7 +1543,7 @@
 "id": "processing_equipment17595",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment16168": {
 "jcr:primaryType": "nt:unstructured",
@@ -1547,7 +1556,7 @@
 "id": "processing_equipment16168",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment21991": {
 "jcr:primaryType": "nt:unstructured",
@@ -1560,7 +1569,7 @@
 "id": "processing_equipment21991",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment15914": {
 "jcr:primaryType": "nt:unstructured",
@@ -1573,7 +1582,7 @@
 "id": "processing_equipment15914",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_63985": {
 "jcr:primaryType": "nt:unstructured",
@@ -1586,7 +1595,7 @@
 "id": "pxp3_63985",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17788": {
 "jcr:primaryType": "nt:unstructured",
@@ -1599,7 +1608,7 @@
 "id": "processing_equipment17788",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment24813": {
 "jcr:primaryType": "nt:unstructured",
@@ -1612,7 +1621,7 @@
 "id": "processing_equipment24813",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23474": {
 "jcr:primaryType": "nt:unstructured",
@@ -1625,7 +1634,7 @@
 "id": "processing_equipment23474",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13253": {
 "jcr:primaryType": "nt:unstructured",
@@ -1638,7 +1647,7 @@
 "id": "processing_equipment13253",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17582": {
 "jcr:primaryType": "nt:unstructured",
@@ -1651,7 +1660,7 @@
 "id": "processing_equipment17582",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23457": {
 "jcr:primaryType": "nt:unstructured",
@@ -1664,7 +1673,7 @@
 "id": "processing_equipment23457",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23354": {
 "jcr:primaryType": "nt:unstructured",
@@ -1677,7 +1686,7 @@
 "id": "processing_equipment23354",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17745": {
 "jcr:primaryType": "nt:unstructured",
@@ -1690,7 +1699,7 @@
 "id": "processing_equipment17745",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17652": {
 "jcr:primaryType": "nt:unstructured",
@@ -1703,7 +1712,7 @@
 "id": "processing_equipment17652",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23364": {
 "jcr:primaryType": "nt:unstructured",
@@ -1716,7 +1725,7 @@
 "id": "processing_equipment23364",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13280": {
 "jcr:primaryType": "nt:unstructured",
@@ -1729,7 +1738,7 @@
 "id": "processing_equipment13280",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23695": {
 "jcr:primaryType": "nt:unstructured",
@@ -1742,7 +1751,7 @@
 "id": "processing_equipment23695",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23714": {
 "jcr:primaryType": "nt:unstructured",
@@ -1755,7 +1764,7 @@
 "id": "processing_equipment23714",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17657": {
 "jcr:primaryType": "nt:unstructured",
@@ -1768,7 +1777,7 @@
 "id": "processing_equipment17657",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "pxp3_64076": {
 "jcr:primaryType": "nt:unstructured",
@@ -1781,7 +1790,7 @@
 "id": "pxp3_64076",
 "jcr:lastModified": "Sun May 10 2020 19:40:00 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17542": {
 "jcr:primaryType": "nt:unstructured",
@@ -1794,7 +1803,7 @@
 "id": "processing_equipment17542",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17761": {
 "jcr:primaryType": "nt:unstructured",
@@ -1807,7 +1816,7 @@
 "id": "processing_equipment17761",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13278": {
 "jcr:primaryType": "nt:unstructured",
@@ -1820,7 +1829,7 @@
 "id": "processing_equipment13278",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment23389": {
 "jcr:primaryType": "nt:unstructured",
@@ -1833,7 +1842,7 @@
 "id": "processing_equipment23389",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment17756": {
 "jcr:primaryType": "nt:unstructured",
@@ -1846,7 +1855,7 @@
 "id": "processing_equipment17756",
 "jcr:lastModified": "Wed May 06 2020 20:07:04 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 },
 "processing_equipment13240": {
 "jcr:primaryType": "nt:unstructured",
@@ -1859,7 +1868,7 @@
 "id": "processing_equipment13240",
 "jcr:lastModified": "Wed May 06 2020 20:07:05 GMT+0000",
 "sling:resourceType": "commerce/components/product",
-"cq:commerceType": "product"
+"cq:commerceType": "product", "en": { "jcr:primaryType": "nt:unstructured" }
 }
 }
 }
