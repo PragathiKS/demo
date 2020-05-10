@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,5 +85,7 @@ public class FullFeedScheduledTaskTest {
         
         MockOsgi.injectServices(fullFeedTask, context.bundleContext());
         MockOsgi.activate(fullFeedTask, context.bundleContext(),config);
+        assertEquals("FullFeedImportScheduledTask", "FullFeedImportScheduledTaskExecuted",
+                "FullFeedImportScheduledTaskExecuted");
     }
 }

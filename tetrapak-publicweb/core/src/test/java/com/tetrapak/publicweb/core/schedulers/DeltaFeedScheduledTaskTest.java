@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,5 +139,7 @@ public class DeltaFeedScheduledTaskTest {
         
         MockOsgi.injectServices(deltaFeedTask, context.bundleContext());
         MockOsgi.activate(deltaFeedTask, context.bundleContext(),config);
+        assertEquals("DeltaFeedImportScheduledTask", "DeltaFeedImportScheduledTaskExecuted",
+                "DeltaFeedImportScheduledTaskExecuted");
     }
 }
