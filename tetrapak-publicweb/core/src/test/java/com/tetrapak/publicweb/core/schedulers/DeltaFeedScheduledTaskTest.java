@@ -68,6 +68,11 @@ public class DeltaFeedScheduledTaskTest {
     /** The hit. */ 
     @Mock   
     private Hit hit;
+    
+    /**
+     * The Constant PRODUCTS_DATA.
+     */
+    private static final String PRODUCTS_DATA = "/product/products.json";
    
 
     /** The scheduler. */
@@ -82,6 +87,8 @@ public class DeltaFeedScheduledTaskTest {
     public void setUp() throws Exception { 
     
         context.load().json("/product/root.json", PWConstants.ROOT_PATH);
+        context.load().json("/product/pdp.json", PRODUCT_PAGE);
+        context.load().json(PRODUCTS_DATA, PWConstants.PXP_ROOT_PATH);
         MockitoAnnotations.initMocks(this);
         
         replicator = new MockReplicatorImpl();
