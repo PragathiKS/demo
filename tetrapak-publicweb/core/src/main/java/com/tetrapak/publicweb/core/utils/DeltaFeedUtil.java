@@ -62,6 +62,7 @@ public final class DeltaFeedUtil {
      */
     public static void deactivatePDPs(ResourceResolver resolver, Replicator replicator, Session session,
             Set<String> productIds) {
+        LOGGER.debug("'Deleted Product ID::"+productIds.toString());
         SearchResult result = executeQuery(resolver, productIds);
         if (result != null) {
             for (Hit hit : result.getHits()) {
@@ -104,8 +105,9 @@ public final class DeltaFeedUtil {
         map.put("2_group.p.or", "true");
         int i = 1;
         for (String productId : productIds) {
-            map.put("2_group." + (i + 1) + "_group.property", "jcr:content/productId");
-            map.put("2_group." + (i + 1) + "_group.property.value", productId);
+            map.put("2_group." + (i) + "_property", "jcr:content/productId");
+            map.put("2_group." + (i) + "_property.value", productId);
+            i++;
         }
 
         map.put("p.limit", "-1");
