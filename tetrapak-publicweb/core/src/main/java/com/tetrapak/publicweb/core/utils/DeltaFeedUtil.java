@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationException;
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.replication.Replicator;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -62,16 +63,30 @@ public final class DeltaFeedUtil {
      */
     public static void deactivatePDPs(ResourceResolver resolver, Replicator replicator, Session session,
             Set<String> productIds) {
-        LOGGER.debug("'Deleted Product ID::"+productIds.toString());
+        LOGGER.debug("'Deleted Product ID::" + productIds.toString());
         SearchResult result = executeQuery(resolver, productIds);
         if (result != null) {
             for (Hit hit : result.getHits()) {
-                try {
-                    ResourceUtil.deactivatePath(replicator, session, hit.getPath());
-                } catch (RepositoryException e) {
-                    LOGGER.error("RepositoryException Exception in deactivating PXP PDP", e.getMessage(), e);
-                }
+                deactivatePDP(replicator, session, hit);
             }
+        }
+    }
+
+    /**
+     * @param resolver
+     * @param replicator
+     * @param session
+     * @param hit
+     */
+    private static void deactivatePDP(Replicator replicator, Session session, Hit hit) {
+        try {
+            // Check if Page in Activation state then only deactivate PDP.
+            ReplicationStatus status = replicator.getReplicationStatus(session, hit.getPath());
+            if (status != null && status.isDelivered()) {
+                ResourceUtil.deactivatePath(replicator, session, hit.getPath());
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException Exception in deactivating PXP PDP", e.getMessage(), e);
         }
     }
     
