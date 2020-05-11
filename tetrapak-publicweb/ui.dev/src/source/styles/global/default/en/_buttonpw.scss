@@ -6,6 +6,7 @@
     line-height: 1;
 
     .icon {
+        @include margin-left($margin-sm);
         @include font-size($font-baseline);
         line-height:$font-baseline;
         display: inline-block;
@@ -20,6 +21,7 @@
     }
     
     .icon.icon-Circle_Arrow_Right_pw {
+        @include margin-left($margin-xs);
         @include font-size(16px);
         line-height:$font-baseline;
         display: inline-block;
