@@ -111,10 +111,6 @@ public final class DeltaFeedUtil {
         map.put("path", PWConstants.CONTENT_ROOT_PATH);
         map.put("type", "cq:Page");
 
-        // Search only product type pages.
-        map.put("1_property", "jcr:content/sling:resourceType");
-        map.put("1_property.value", "publicweb/components/structure/pages/pxpproductpage");
-
         // Search product Id's on the page.
 
         map.put("2_group.p.or", "true");
