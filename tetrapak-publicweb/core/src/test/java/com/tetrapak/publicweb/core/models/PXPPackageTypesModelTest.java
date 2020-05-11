@@ -29,7 +29,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 /**
  * The Class PXPFillingMachinesModelTest.
  */
-public class PXPFillingMachinesModelTest {
+public class PXPPackageTypesModelTest {
 
     /** The context. */
     @Rule
@@ -39,19 +39,17 @@ public class PXPFillingMachinesModelTest {
     private static final String PRODUCTS_DATA = "/product/test-Products.json";
 
     /** The Constant RESOURCE_CONTENT. */
-    private static final String RESOURCE_CONTENT = "/pxpfillingmachines/test-content.json";
+    private static final String RESOURCE_CONTENT = "/pxppackagetypes/test-content.json";
 
     /** The Constant RESOURCE_CONTENT_TWO. */
-    private static final String RESOURCE_CONTENT_TWO = "/pxpfillingmachines/test-content-two.json";
+    private static final String RESOURCE_CONTENT_PACKAGE_TYPES = "/pxppackagetypes/test-content-two.json";
 
-    /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en";
+    private static final String TEST_CONTENT_FILLING_MACHINE = "/content/tetrapak/public-web/lang-masters/en";
 
-    /** The Constant TEST_CONTENT_ROOT_TWO. */
-    private static final String TEST_CONTENT_ROOT_TWO = "/content/tetrapak/public-web/lang-masters/en/test-equip-19647";
+    private static final String TEST_CONTENT_PACKAGE_TYPE_ROOT = "/content/tetrapak/public-web/lang-masters/en/packagetypes";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/pxpfillingmachines";
+    private static final String RESOURCE_PATH = TEST_CONTENT_FILLING_MACHINE + "/jcr:content/pxppackagetypes";
 
     /** The resolver. */
     @Mock
@@ -91,7 +89,7 @@ public class PXPFillingMachinesModelTest {
 
     /** The pxp filling machines model. */
     @InjectMocks
-    private PXPFillingMachinesModel pxpFillingMachinesModel;
+    private PXPPackageTypesModel pxpPackageTypesModel;
 
     /**
      * The setup method.
@@ -102,17 +100,20 @@ public class PXPFillingMachinesModelTest {
     @Before
     public void setUp() throws Exception {
         context.load().json(PRODUCTS_DATA, PWConstants.PXP_ROOT_PATH);
-        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-        context.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT_TWO);
-        final Class<PXPFillingMachinesModel> modelClass = PXPFillingMachinesModel.class;
+        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_FILLING_MACHINE);
+        context.load().json(RESOURCE_CONTENT_PACKAGE_TYPES, TEST_CONTENT_PACKAGE_TYPE_ROOT);
+        final Class<PXPPackageTypesModel> modelClass = PXPPackageTypesModel.class;
         context.addModelsForClasses(modelClass);
 
-        final List<String> pathList = new ArrayList<>();
-        pathList.add("/content/tetrapak/public-web/lang-masters/en/test-equip-19647");
-        MockHelper.loadQuery(context, pathList);
+        final List<String> idList = new ArrayList<>();
+        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik");
+        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-fino");
+        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik-aseptic");
+        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-classic");
+        MockHelper.loadQuery(context, idList);
 
         resource = context.currentResource(RESOURCE_PATH);
-        pxpFillingMachinesModel = resource.adaptTo(modelClass);
+        pxpPackageTypesModel = resource.adaptTo(modelClass);
         initMocks(this);
     }
 
@@ -121,10 +122,10 @@ public class PXPFillingMachinesModelTest {
      */
     @Test
     public void testGetters() {
-        assertEquals("Some Heading", pxpFillingMachinesModel.getHeading());
-        assertEquals("grayscale-white", pxpFillingMachinesModel.getPwTheme());
-        assertEquals("anchorId", pxpFillingMachinesModel.getAnchorId());
-        assertEquals("anchor title", pxpFillingMachinesModel.getAnchorTitle());
+        assertEquals("Package Types", pxpPackageTypesModel.getHeading());
+        assertEquals("grayscale-white", pxpPackageTypesModel.getPwTheme());
+        assertEquals("anchor123", pxpPackageTypesModel.getAnchorId());
+        assertEquals("Anchor title", pxpPackageTypesModel.getAnchorTitle());
     }
 
     /**
@@ -135,10 +136,11 @@ public class PXPFillingMachinesModelTest {
      */
     @Test
     public void testTeaserList() throws Exception {
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/test-equip-19647.html",
-                pxpFillingMachinesModel.getTeaserList().get(0).getLinkPath());
-        assertEquals("The filling machine for water", pxpFillingMachinesModel.getTeaserList().get(0).getDescription());
-        assertEquals("/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment19647/image/tt3_xh_ic_benefits.png",
-                pxpFillingMachinesModel.getTeaserList().get(0).getFileReference());
+        assertEquals("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik.html",
+                pxpPackageTypesModel.getTeaserList().get(0).getLinkPath());
+        assertEquals("500 ml, 1000 ml", pxpPackageTypesModel.getTeaserList().get(0).getDescription());
+        assertEquals(
+                "/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment1272/image/A3-Flex-no-DIMC-Benefits.png",
+                pxpPackageTypesModel.getTeaserList().get(0).getFileReference());
     }
 }

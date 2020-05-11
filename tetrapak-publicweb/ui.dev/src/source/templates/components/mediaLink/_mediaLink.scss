@@ -58,7 +58,7 @@
             }
         }
     }
-    &__link {
+    &__link.tpatom-link--transparent {
         @include min-height(56px);
         @include line-height(24px, 14px);
         @include font-size(14px);
@@ -74,12 +74,17 @@
         i.icon {
             @include margin-left(16px);
             @include margin-right(16px);
+            @include margin-top(16px);
             display: inline-block;
-            line-height: 56px;
+            line-height: 24px;
             &::before {
                 height: 16px;
                 width: 16px;
             }
+        }
+        .icon.icon-Circle_Arrow_Right_pw {
+            @include margin-top(16px);
+            line-height: 24px;
         }
     }
     .topMargin {

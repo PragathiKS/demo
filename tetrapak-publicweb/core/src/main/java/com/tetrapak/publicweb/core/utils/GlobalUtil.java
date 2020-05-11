@@ -72,11 +72,13 @@ public final class GlobalUtil {
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
-        final String FORWARD_SLASH = PWConstants.SLASH;
-        damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
-        damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
-        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath() + FORWARD_SLASH
-                + damVideoPath;
+        if(StringUtils.isNotBlank(damVideoPath)) {
+            final String FORWARD_SLASH = PWConstants.SLASH;
+            damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
+            damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
+            damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath() + FORWARD_SLASH
+                    + damVideoPath;
+        }
         return damVideoPath;
     }
 
