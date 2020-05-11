@@ -1,16 +1,10 @@
 package com.tetrapak.publicweb.core.schedulers;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.jcr.Session;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.commons.scheduler.ScheduleOptions;
@@ -24,7 +18,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
@@ -39,6 +32,8 @@ import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
 import com.tetrapak.publicweb.core.services.config.PXPConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.ProductUtil;
+import com.tetrapak.publicweb.core.utils.ResourceUtil;
 
 /**
  * @author Sandip Kumar
@@ -47,7 +42,10 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  *
  */
 @Designate(ocd = PXPConfig.class)
-@Component(immediate = true, service = FullFeedImportScheduledTask.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(
+        immediate = true,
+        service = FullFeedImportScheduledTask.class,
+        configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class FullFeedImportScheduledTask implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
@@ -87,16 +85,8 @@ public class FullFeedImportScheduledTask implements Runnable {
     /** The refresh token time. */
     private int refreshTokenTime;
 
-    /** The dam root path. */
-    private String damRootPath;
-
-    /** The video Types. */
-    private String videoTypes;
-
     /** The scheduler ID. */
     private int schedulerID;
-
-    private Set<String> pathsToReplicate;
 
     /**
      * start scheduler
@@ -105,7 +95,6 @@ public class FullFeedImportScheduledTask implements Runnable {
     public void run() {
         LOGGER.info("{{Public Web Full Feed Product Import Scheduled Task Started}}");
         setResourceResolver();
-        pathsToReplicate = new HashSet<>();
         if (resolver == null) {
             LOGGER.debug("Tetrapak System User Session is null");
             return;
@@ -145,8 +134,8 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processFile(File file) {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
-            String fileType = productService.getFileType(file.getName());
-            String language = productService.getLanguage(file.getName());
+            String fileType = ProductUtil.getFileType(file.getName());
+            String language = ProductUtil.getLanguage(file.getName());
             switch (fileType) {
                 case "fillingmachines":
                     processFillingMachines(file.getName(), fileType, language);
@@ -171,10 +160,10 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processFillingMachines(String fileURI, String fileType, String language) {
         List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(),
-                PWConstants.FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
-            pathsToReplicate.addAll(productService.createProductFillingMachine(resolver, session, fileType,
-                    fillingMachines, language, damRootPath, videoTypes));
+            productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
+                    fillingMachines, language);
         }
 
     }
@@ -186,10 +175,10 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processEquipments(String fileURI, String fileType, String language) {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(),
-                PWConstants.FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
-            pathsToReplicate.addAll(productService.createProductProcessingEquipement(resolver, session, fileType,
-                    equipements, language, damRootPath, videoTypes));
+            productService.createOrUpdateProductProcessingEquipement(resolver, session,
+                    fileType, equipements, language);
         }
     }
 
@@ -200,10 +189,10 @@ public class FullFeedImportScheduledTask implements Runnable {
      */
     private void processPackageTypes(String fileURI, String fileType, String language) {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(),
-                PWConstants.FULL_FEED_FILES_URI + fileURI);
+                PWConstants.FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
-            pathsToReplicate.addAll(productService.createProductPackageType(resolver, session, fileType, packageTypes,
-                    language, damRootPath, videoTypes));
+            productService.createOrUpdateProductPackageType(resolver, session, fileType,
+                    packageTypes, language);
         }
     }
 
@@ -230,22 +219,10 @@ public class FullFeedImportScheduledTask implements Runnable {
         try {
             replicator.replicate(session, ReplicationActionType.ACTIVATE,
                     PWConstants.ROOT_PATH + PWConstants.SLASH + PWConstants.PXP);
-            replicateAllChildResource(
+            ResourceUtil.replicateChildResources(replicator, session,
                     resolver.getResource(PWConstants.ROOT_PATH + PWConstants.SLASH + PWConstants.PXP));
         } catch (ReplicationException e) {
             LOGGER.error("Replication Exception in activating PXP products", e.getMessage(), e);
-        }
-    }
-
-    private void replicateAllChildResource(Resource rootRes) throws ReplicationException {
-        if (rootRes == null || !rootRes.hasChildren()) {
-            return;
-        }
-        Iterator<Resource> itr = rootRes.listChildren();
-        while (itr.hasNext()) {
-            Resource res = itr.next();
-            replicator.replicate(session, ReplicationActionType.ACTIVATE, res.getPath());
-            replicateAllChildResource(res);
         }
     }
 
@@ -263,8 +240,6 @@ public class FullFeedImportScheduledTask implements Runnable {
     protected void activate(PXPConfig config) {
         schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 
@@ -276,8 +251,6 @@ public class FullFeedImportScheduledTask implements Runnable {
         removeScheduler();
         schedulerID = PWConstants.FULL_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
-        videoTypes = config.videoTypes();
-        damRootPath = config.damRootPath();
         addScheduler(config);
     }
 

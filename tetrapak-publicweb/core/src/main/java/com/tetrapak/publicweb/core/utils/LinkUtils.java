@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.utils;
 
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.publicweb.core.beans.NavigationLinkBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.commons.lang3.StringUtils;
@@ -42,7 +43,7 @@ public class LinkUtils extends WCMUsePojo {
      * @return the root path
      */
     public static String getRootPath(String pagePath) {
-        return Text.getAbsoluteParent(pagePath, 4);
+        return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
     }
 
     /**

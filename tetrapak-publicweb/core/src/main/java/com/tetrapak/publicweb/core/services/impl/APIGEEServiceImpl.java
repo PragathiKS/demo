@@ -27,6 +27,9 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
+import com.tetrapak.publicweb.core.beans.pxp.DeltaFillingMachine;
+import com.tetrapak.publicweb.core.beans.pxp.DeltaPackageType;
+import com.tetrapak.publicweb.core.beans.pxp.DeltaProcessingEquipement;
 import com.tetrapak.publicweb.core.beans.pxp.Files;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
@@ -138,14 +141,65 @@ public class APIGEEServiceImpl implements APIGEEService {
         }
         return equipements;
     }
+    
+    /**
+     * return delta filling machines
+     */
+    @Override
+    public DeltaFillingMachine getDeltaFillingMachines(String token, String fileURI) {
+        DeltaFillingMachine fillingMachines = new DeltaFillingMachine();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if(StringUtils.isNotBlank(jsonResponse)) {
+            try {
+                fillingMachines = new ObjectMapper().readValue(jsonResponse, DeltaFillingMachine.class);
+            } catch (IOException e) {
+                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(), e);
+            }
+        }
+        return fillingMachines;
+    }
+    
+    /**
+     * return delta package types
+     */
+    @Override
+    public DeltaPackageType getDeltaPackageTypes(String token, String fileURI) {
+        DeltaPackageType packageType = new DeltaPackageType();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if(StringUtils.isNotBlank(jsonResponse)) {
+            try {
+                packageType = new ObjectMapper().readValue(jsonResponse, DeltaPackageType.class);
+            } catch (IOException e) {
+                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(), e);
+            }
+        }
+        return packageType;
+    }
+    
+    /**
+     * return delta processing equipements
+     */
+    @Override
+    public DeltaProcessingEquipement getDeltaProcessingEquipements(String token, String fileURI) {
+        DeltaProcessingEquipement equipements = new DeltaProcessingEquipement();
+        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if(StringUtils.isNotBlank(jsonResponse)) {
+            try {
+                equipements = new ObjectMapper().readValue(jsonResponse, DeltaProcessingEquipement.class);
+            } catch (IOException e) {
+                LOGGER.error("Unable to convert equipements to pojo for the list of files response", e.getMessage(), e);
+            }
+        }
+        return equipements;
+    }
 
     /** return list of files
      *
      */
     @Override
-    public Files getListOfFiles(String type, String token) {
+    public Files getListOfFiles(String feedType, String token) {
         Files listOfFiles = new Files();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, PWConstants.FULL_FEED_FILES_URI + PWConstants.FULL_FEED,
+        String jsonResponse = getAPIGeeGetRespose(BEARER, PWConstants.FEED_FILES_URI + feedType,
                 token);
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {

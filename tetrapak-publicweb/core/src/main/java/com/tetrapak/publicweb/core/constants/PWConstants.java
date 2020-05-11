@@ -25,7 +25,10 @@ public final class PWConstants {
     
     /** The Constant PXP_ROOT_PATH. */
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
-
+    
+    /** The Constant CONTENT_ROOT_PATH. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/public-web";
+    
     /** The Constant PXP. */
     public static final String PXP = "pxp";
 
@@ -103,9 +106,12 @@ public final class PWConstants {
 
     /** The FULL FEED Scheduler ID. */
     public static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
+    
+    /** The DELTA FEED Scheduler ID. */
+    public static final String DELTA_FEED_SCHEDULER_ID = "pwpxpdeltafeedschedulerID@tetrapak";
 
-    /** The full feed files uri. */
-    public static final String FULL_FEED_FILES_URI = "/equipment/pxpparameters/files/";
+    /** The feed files uri. */
+    public static final String FEED_FILES_URI = "/equipment/pxpparameters/files/";
     
     /** The filling machine template. */
     public static final String FILLING_MACHINE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page";
@@ -118,6 +124,12 @@ public final class PWConstants {
     
     /** The full feed */
     public static final String FULL_FEED = "full";
+    
+    /** The delta feed */
+    public static final String DELTA_FEED = "delta";
+    
+    /** The default bearer token refresh time */
+    public static final int  FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
 
     public static final String REPLICATION_PXP = "replicationpxp";
 
