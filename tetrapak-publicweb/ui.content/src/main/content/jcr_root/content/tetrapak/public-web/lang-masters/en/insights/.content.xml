@@ -4,10 +4,10 @@
     <jcr:content
         cq:lastModified="{Date}2020-03-24T05:37:21.465Z"
         cq:lastModifiedBy="admin"
-        cq:lastReplicated="{Date}2020-03-24T05:46:52.639Z"
+        cq:lastReplicated="{Date}2020-05-11T07:08:04.575Z"
         cq:lastReplicatedBy="admin"
         cq:lastReplicationAction="Activate"
-        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:template="/conf/publicweb/settings/wcm/template-types/landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
@@ -16,4 +16,8 @@
         sling:resourceType="publicweb/components/structure/pages/landingpage"
         hideContactFooterForm_x0040_Delete="true"
         hideInSearch_x0040_Delete="true"/>
+    <food-categories/>
+    <business-areas/>
+    <handbooks/>
+    <tetra-pak-index/>
 </jcr:root>
