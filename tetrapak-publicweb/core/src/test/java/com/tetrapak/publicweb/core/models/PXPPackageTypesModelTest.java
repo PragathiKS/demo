@@ -140,7 +140,7 @@ public class PXPPackageTypesModelTest {
                 pxpPackageTypesModel.getTeaserList().get(0).getLinkPath());
         assertEquals("500 ml, 1000 ml", pxpPackageTypesModel.getTeaserList().get(0).getDescription());
         assertEquals(
-                "/content/dam/tetrapak/publicweb/pxp/packagetypes/packagetype1695/image/tba_1000_b_perforation_np_relative.png",
+                "/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment1272/image/A3-Flex-no-DIMC-Benefits.png",
                 pxpPackageTypesModel.getTeaserList().get(0).getFileReference());
     }
 }
