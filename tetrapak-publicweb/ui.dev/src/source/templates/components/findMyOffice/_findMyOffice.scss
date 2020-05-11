@@ -4,6 +4,15 @@
     visibility: hidden;
 }
 
+.view-larger-map {
+    @include padding(1px 12px);
+    border: 1px solid $color-black;
+    background-color: $color-white;
+    cursor: pointer;
+    font-family: $font-bold;
+    margin: 5px;
+}
+
 .pw-find-my-office {
     &__map {
         @include height(288px);
