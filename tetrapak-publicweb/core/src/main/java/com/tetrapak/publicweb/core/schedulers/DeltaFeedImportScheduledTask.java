@@ -180,7 +180,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processFillingMachines(String fileURI, String fileType, String language) {
         DeltaFillingMachine deltaFillingMachines = apiGEEService.getDeltaFillingMachines(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaFillingMachines != null && !deltaFillingMachines.getFillingMachine().isEmpty()) {
+        if (deltaFillingMachines != null && deltaFillingMachines.getFillingMachine() != null
+                && !deltaFillingMachines.getFillingMachine().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
                     deltaFillingMachines.getFillingMachine(), language));
         }
@@ -209,7 +210,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processEquipments(String fileURI, String fileType, String language) {
         DeltaProcessingEquipement deltaEquipements = apiGEEService
                 .getDeltaProcessingEquipements(bearerToken.getAccessToken(), PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaEquipements != null && !deltaEquipements.getProcessingEquipement().isEmpty()) {
+        if (deltaEquipements != null && deltaEquipements.getProcessingEquipement() != null
+                && !deltaEquipements.getProcessingEquipement().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductProcessingEquipement(resolver, session, fileType,
                     deltaEquipements.getProcessingEquipement(), language));
         }
@@ -237,7 +239,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processPackageTypes(String fileURI, String fileType, String language) {
         DeltaPackageType deltaPackageTypes = apiGEEService.getDeltaPackageTypes(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaPackageTypes != null && !deltaPackageTypes.getPackagetype().isEmpty()) {
+        if (deltaPackageTypes != null && deltaPackageTypes.getPackagetype() != null
+                && !deltaPackageTypes.getPackagetype().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductPackageType(resolver, session, fileType,
                     deltaPackageTypes.getPackagetype(), language));
         }
