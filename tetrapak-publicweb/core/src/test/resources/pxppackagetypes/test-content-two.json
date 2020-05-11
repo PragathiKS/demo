@@ -1,0 +1,44 @@
+{
+"jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Thu Apr 30 2020 08:13:55 GMT+0000",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ]
+    },
+"tetra-brik" : {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+     "jcr:content": {
+    "productId": "packagetype1695"
+    }
+},
+"tetra-fino" : {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+         "jcr:content": {
+    "productId": "packagetype1652"
+    }
+},
+"tetra-brik-aseptic" : {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+         "jcr:content": {
+    "productId": "packagetype1698"
+    }
+},
+"tetra-classic" : {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+         "jcr:content": {
+    "productId": "pxp3_tetra_stelo_aseptic"
+    }
+}
+}
+

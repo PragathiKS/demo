@@ -17,10 +17,11 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
-import com.tetrapak.publicweb.core.services.ProductPagesSearchService;
+import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
 /**
  * The Class PXPPackageTypesModel.
@@ -58,7 +59,7 @@ public class PXPPackageTypesModel {
     private final List<ManualModel> teaserList = new ArrayList<>();
 
     @OSGiService
-    private ProductPagesSearchService productPageSearchService;
+    private QueryBuilder queryBuilder;
 
     /**
      * Inits the.
@@ -76,8 +77,8 @@ public class PXPPackageTypesModel {
      */
     private void setPackageTypeList(final List<Packagetype> list) {
 
-        final Map<String, String> productPageMap = productPageSearchService.getProductPageMap(getIdList(list),
-                resource);
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(list),
+                resource, queryBuilder);
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();

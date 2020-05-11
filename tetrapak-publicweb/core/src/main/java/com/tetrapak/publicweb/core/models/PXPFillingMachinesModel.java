@@ -16,9 +16,10 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
-import com.tetrapak.publicweb.core.services.ProductPagesSearchService;
+import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
 /**
  * The Class PXPFillingMachinesModel.
@@ -60,8 +61,8 @@ public class PXPFillingMachinesModel {
     private final List<ManualModel> teaserList = new ArrayList<>();
 
     @OSGiService
-    private ProductPagesSearchService productPageSearchService;
-    
+    private QueryBuilder queryBuilder;
+
     /**
      * The init method.
      */
@@ -87,7 +88,8 @@ public class PXPFillingMachinesModel {
      * @param list the new teaser list
      */
     private void setTeaserList(final List<FillingMachine> list) {
-        final Map<String, String> productPageMap = productPageSearchService.getProductPageMap(getIdList(), resource);
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(), resource,
+                queryBuilder);
         for (final FillingMachine fillingMachine : list) {
             final ManualModel teaser = new ManualModel();
             teaser.setTitle(fillingMachine.getName());
@@ -101,7 +103,7 @@ public class PXPFillingMachinesModel {
         LOGGER.debug("Teaser list updated successfully.");
     }
 
-   
+
 
     /**
      * Gets the id list.

@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.services.impl;
+package com.tetrapak.publicweb.core.utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,13 +7,9 @@ import java.util.Map;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,47 +19,44 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.ProductPagesSearchService;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
- * Implementation class for {@link ProductPagesSearchService}
+ * This is a util class to access product page process related utility methods
  *
  */
-@Component(
-        immediate = true,
-        service = ProductPagesSearchService.class,
-        configurationPolicy = ConfigurationPolicy.OPTIONAL)
-public class ProductPagesSearchServiceImpl implements ProductPagesSearchService {
+public final class ProductPageUtil {
 
-    @Reference
-    private QueryBuilder queryBuilder;
-
+    private ProductPageUtil() {
+        /*
+         * adding a private constructor to hide the implicit one
+         */
+    }
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductPagesSearchServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductPageUtil.class);
 
     /**
      * Gets the product page map where key is product id and value is product page path.
      *
      * @param list
      * @param resource
+     * @param queryBuilder
      *
      * @return the product page map
      */
-    @Override
-    public Map<String, String> getProductPageMap(final List<String> list, final Resource resource) {
+    public static Map<String, String> getProductPageMap(final List<String> list, final Resource resource,
+            final QueryBuilder queryBuilder) {
         final Map<String, String> productPageMap = new HashMap<>();
-        final SearchResult searchResult = executeProductIdQuery(list, resource);
+        final SearchResult searchResult = executeProductIdQuery(list, resource, queryBuilder);
         for (final Hit hit : searchResult.getHits()) {
             try {
                 LOGGER.debug("Product page path: {}", hit.getPath());
                 final ResourceResolver resourceResolver = resource.getResourceResolver();
-                final Resource pageResource = resourceResolver.getResource(hit.getPath());
+
+                final Resource pageResource = resourceResolver.getResource(hit.getPath() + "/jcr:content");
                 final ValueMap valueMap = pageResource.getValueMap();
                 if (valueMap.containsKey(PWConstants.PRODUCT_ID)) {
                     final String pagePath = LinkUtils
-                            .sanitizeLink(StringUtils.substringBeforeLast(hit.getPath(), PWConstants.SLASH));
+                            .sanitizeLink(hit.getPath());
                     LOGGER.debug("Product id: {} and page path: {}", valueMap.get(PWConstants.PRODUCT_ID), pagePath);
                     productPageMap.put(valueMap.get(PWConstants.PRODUCT_ID).toString(), pagePath);
                 }
@@ -79,10 +72,12 @@ public class ProductPagesSearchServiceImpl implements ProductPagesSearchService 
      *
      * @param list
      * @param resource
+     * @param queryBuilder
      *
      * @return the search result
      */
-    private SearchResult executeProductIdQuery(final List<String> list, final Resource resource) {
+    private static SearchResult executeProductIdQuery(final List<String> list, final Resource resource,
+            final QueryBuilder queryBuilder) {
         LOGGER.info("Inside executeProductIdQuery()");
         final ResourceResolver resourceResolver = resource.getResourceResolver();
         final Session session = resourceResolver.adaptTo(Session.class);
@@ -98,11 +93,12 @@ public class ProductPagesSearchServiceImpl implements ProductPagesSearchService 
      *
      * @return the map
      */
-    private Map<String, String> populateQueryMap(final List<String> idList, final Resource resource) {
+    private static Map<String, String> populateQueryMap(final List<String> idList, final Resource resource) {
         LOGGER.debug("Id list size: {}", idList.size());
         final Map<String, String> map = new HashMap<>();
         map.put("path", PageUtil.getLanguagePage(resource).getPath());
-        map.put("property", PWConstants.PRODUCT_ID);
+        map.put("type", "cq:Page");
+        map.put("property", "@jcr:content/" + PWConstants.PRODUCT_ID);
         for (int i = 0; i < idList.size(); i++) {
             map.put("property." + (i + 1) + "_value", idList.get(i));
         }
