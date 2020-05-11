@@ -6,6 +6,10 @@
     @include margin-top(16px);
 }
 
+.pw-container.pw-margin--zero.reference-class {
+    @include margin-top(0);
+}
+
 @media #{$desktop} {
     .pw-container.pw-margin--regular.reference-class {
         @include margin-top(48px);
@@ -172,7 +176,10 @@
         border-collapse: collapse;
         overflow-x: auto;
         width: 100%;
-
+        tbody {
+            display: table;
+            width: 100%;
+        }
         th {
             @include padding-top(9px);
             @include padding-bottom(9px);
@@ -201,23 +208,23 @@
         h1 {
             @include font-size($font-xxl);
             @include line-height(48px, $font-xxl);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
             font-weight: 300;
         }
         h2 {
             @include font-size($font-xl);
             @include line-height(40px, $font-xl);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
         }
         h3 {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
             font-weight: 300;
         }
         h4 {
             @include font-size($font-md);
-            @include margin-bottom($margin-xxxl);
+            @include margin-bottom($margin-xxl);
             @include line-height(48px, $font-md);
             font-weight: 500;
         }

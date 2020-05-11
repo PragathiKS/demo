@@ -2,7 +2,7 @@ body{
     @include line-height($font-l,$font-baseline);
     font-family:$font-bold;
     background: $color-wild-sand;
-    font-weight: 500;
+    font-weight: normal;
     font-size: $font-baseline;
 }
 a {

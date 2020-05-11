@@ -44,7 +44,8 @@
     &__subTitle {
         @include margin-bottom($padding-sm);
         @include font-size($font-sm);
-        @include line-height(20px, $font-sm);
+        @include line-height(16px, $font-sm);
+        color: $color-boulder;
         text-transform: uppercase;
 
         @media #{$desktop} {

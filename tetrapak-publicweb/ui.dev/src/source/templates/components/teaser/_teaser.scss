@@ -8,7 +8,7 @@
     }
 
     &__heading {
-        @include padding-bottom($padding-l);
+        @include padding-bottom($padding-md);
         h2.tp-atom-heading {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);
@@ -21,6 +21,11 @@
 
     &__details {
         font-weight: 500;
+        img {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .teaserMargin {
             @include margin-bottom($margin-l);
             @media #{$desktop} {
@@ -45,7 +50,6 @@
         }
         .image {
             @include margin-top($margin-l);
-            width: 100%;
             @media #{$desktop} {
                 @include margin-top(0);
             }

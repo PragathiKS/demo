@@ -11,9 +11,8 @@
             @include margin(0 48px);
         }
         &__content {
-            @include margin(0 16px 0 16px);
+            @include margin(0);
             @media #{$desktop} {
-                @include margin(0);
                 max-width: calc(45% - #{convert-to-rem(24px)});
         }
      }
@@ -68,6 +67,7 @@
         @media #{$desktop} {
             @include margin-top(0);
             @include padding($padding-xxxl);
+            @include margin(-48px 0 0 0);
             color: $color-tundora;
             background-color: $color-wild-sand 0.9;
             max-width: calc(45% - #{convert-to-rem(24px)});
@@ -80,6 +80,7 @@
         &__subtitle {
             @include font-size($font-sm);
             @include margin-bottom($margin-sm);
+            color: $color-boulder;
             text-transform: $uppercase;
             line-height: $font-normal;
             @media #{$desktop} {
@@ -99,7 +100,7 @@
         &__title {
             h2 {
                 @include font-size($font-l);
-                @include line-height($font-xl,$font-l);
+                @include line-height($font-xl, $font-l);
                 @media #{$desktop} {
                     @include font-size($font-xl);
                     line-height: 40px;
