@@ -1,14 +1,11 @@
 import $ from 'jquery';
-
-const goToSection = function (id) {
-  $('html, body').animate({
-    scrollTop: $(id).offset().top
-  }, 0);
-};
+import { scrollToElement } from '../common/common';
 
 export default () => {
   const hash = window.location.hash;
   if (hash) {
-    goToSection(hash);
+    $(window).on('load', function() {
+      scrollToElement(null, hash);
+    });
   }
 };
