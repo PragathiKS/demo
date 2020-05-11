@@ -23,10 +23,10 @@
                   <div>
                     <p class="pw-tablist__event-title-icright semi-bold">${tab.title @ context='html'}</p>
                   </div>
-                  <i class="icon icon-right icon-Chevron_Down"></i>
+                  <i class="icon icon-right icon-Arrow_Right_pw"></i>
                 </sly>
                 <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
-                  <i class="icon icon-left icon-Chevron_Down"></i>
+                  <i class="icon icon-left icon-Arrow_Right_pw"></i>
                   <div>
                     <p class="pw-tablist__event-title-icleft semi-bold">${tab.title @ context='html'}<p>
                   </div>
@@ -109,7 +109,7 @@
                       data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
                       <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}
                         <i
-                          class="icon${variant != 'transparent' ? ' icon-Chevron_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
+                          class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
                     </a>
                     <!-- </sly> -->
                   </sly>

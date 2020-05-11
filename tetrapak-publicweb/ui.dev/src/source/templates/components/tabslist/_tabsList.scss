@@ -161,7 +161,7 @@
                 vertical-align: top;
 
                 @media #{$desktop} {
-                    transform: rotate(90deg);
+                    transform: rotate(-180deg);
                 }
             }
             @media #{$desktop} {
@@ -190,7 +190,7 @@
                 vertical-align: top;
 
                 @media #{$desktop} {
-                    transform: rotate(-90deg);
+                    transform: rotate(-360deg);
                 }
             }
         }
@@ -257,7 +257,7 @@
                 color: $color-tundora;
             }
 
-            .icon-Chevron_Down {
+            .icon-Arrow_Right_pw {
                 color: $color-tundora;
 
                 @media #{$mobile} {

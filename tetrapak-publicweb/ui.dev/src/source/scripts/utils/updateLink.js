@@ -41,7 +41,7 @@ export default  () => {
         $(iconEl).addClass('icon-Union');
         $(this).attr('target','_blank');
       } else {
-        $(iconEl).addClass('icon-Circle_Arrow_Right');
+        $(iconEl).addClass('icon-Circle_Arrow_Right_pw');
         $(this).attr('target','_self');
       }
     });
