@@ -1,0 +1,28 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Test Package Type",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/pxpproductpage",
+		"cq:lastModifiedBy": "admin",
+		"productId": "equipment1272",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+		"pxppackagetypes": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:createdBy": "admin",
+			"jcr:lastModifiedBy": "admin",
+			"jcr:created": "Thu Apr 09 2020 16:28:48 GMT+0530",
+			"jcr:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
+			"sling:resourceType": "publicweb/components/content/pxp/pxppackagetypes",
+			"anchorId": "anchor123",
+			"anchorTitle": "Anchor title",
+			"pwTheme": "grayscale-white",
+			"heading": "Package Types"
+		}
+	}
+}

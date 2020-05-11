@@ -479,7 +479,16 @@
 "id": "packagetype1695",
 "name": "Tetra Brik® Aseptic",
 "shapes": {
-"jcr:primaryType": "nt:unstructured"
+"jcr:primaryType": "nt:unstructured",
+"1": {
+"jcr:primaryType": "nt:unstructured",
+"name" : "Base",
+"volumes" : [
+"500 ml",
+"1000 ml"
+],
+"thumbnail" : "/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment1272/image/A3-Flex-no-DIMC-Benefits.png"
+}
 }
 },
 "packagetype1652": {

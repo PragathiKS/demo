@@ -1,20 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.multifield.ManualModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -23,15 +16,10 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import com.day.cq.search.QueryBuilder;
+import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.models.multifield.ManualModel;
+import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
 /**
  * The Class PXPFillingMachinesModel.
@@ -66,17 +54,14 @@ public class PXPFillingMachinesModel {
     @ValueMapValue
     private String anchorTitle;
 
-    @OSGiService
-    private QueryBuilder queryBuilder;
-
     /** The filling machine list. */
     private List<FillingMachine> fillingMachineList;
 
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
-    /** The Constant PRODUCT_ID. */
-    private static final String PRODUCT_ID = "productId";
+    @OSGiService
+    private QueryBuilder queryBuilder;
 
     /**
      * The init method.
@@ -103,7 +88,8 @@ public class PXPFillingMachinesModel {
      * @param list the new teaser list
      */
     private void setTeaserList(final List<FillingMachine> list) {
-        final Map<String, String> productPageMap = getProductPageMap();
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(), resource,
+                queryBuilder);
         for (final FillingMachine fillingMachine : list) {
             final ManualModel teaser = new ManualModel();
             teaser.setTitle(fillingMachine.getName());
@@ -117,63 +103,7 @@ public class PXPFillingMachinesModel {
         LOGGER.debug("Teaser list updated successfully.");
     }
 
-    /**
-     * Gets the product page map where key is product id and value is product page path.
-     *
-     * @return the product page map
-     */
-    public Map<String, String> getProductPageMap() {
-        final Map<String, String> productPageMap = new HashMap<>();
-        final SearchResult searchResult = executeProductIdQuery();
-        for (final Hit hit : searchResult.getHits()) {
-            try {
-                LOGGER.debug("Product page path: {}", hit.getPath());
-                final ResourceResolver resourceResolver = resource.getResourceResolver();
-                final Resource pageResource = resourceResolver.getResource(hit.getPath());
-                final ValueMap valueMap = pageResource.getValueMap();
-                if (valueMap.containsKey(PRODUCT_ID)) {
-                    final String pagePath = LinkUtils
-                            .sanitizeLink(StringUtils.substringBeforeLast(hit.getPath(), PWConstants.SLASH));
-                    LOGGER.debug("Product id: {} and page path: {}", valueMap.get(PRODUCT_ID), pagePath);
-                    productPageMap.put(valueMap.get(PRODUCT_ID).toString(), pagePath);
-                }
-            } catch (final RepositoryException e) {
-                LOGGER.error("Repository exception while searching for product id: ", e);
-            }
-        }
-        return productPageMap;
-    }
 
-    /**
-     * Execute product id query.
-     *
-     * @return the search result
-     */
-    private SearchResult executeProductIdQuery() {
-        LOGGER.info("Inside executeProductIdQuery()");
-        final ResourceResolver resourceResolver = resource.getResourceResolver();
-        final Session session = resourceResolver.adaptTo(Session.class);
-        final Query query = queryBuilder.createQuery(PredicateGroup.create(populateQueryMap()), session);
-        return query.getResult();
-    }
-
-    /**
-     * Populate query map.
-     *
-     * @return the map
-     */
-    private Map<String, String> populateQueryMap() {
-        final List<String> idList = getIdList();
-        LOGGER.debug("Id list size: {}", idList.size());
-        final Map<String, String> map = new HashMap<>();
-        map.put("path", PageUtil.getLanguagePage(resource).getPath());
-        map.put("property", PRODUCT_ID);
-        for (int i = 0; i < idList.size(); i++) {
-            map.put("property." + (i + 1) + "_value", idList.get(i));
-        }
-        map.put("p.limit", "-1");
-        return map;
-    }
 
     /**
      * Gets the id list.
