@@ -26,7 +26,7 @@ public @interface PXPConfig {
      *
      * @return API GEE Service Url
      */
-    @AttributeDefinition(name = "Disable Full Feed Scheduled Task", description = "Disable Delta Feed Scheduled Task")
+    @AttributeDefinition(name = "Disable Full Feed Scheduled Task", description = "Disable Full Feed Scheduled Task")
     boolean fullFeedSchedulerDisable() default false;
 
     /**
