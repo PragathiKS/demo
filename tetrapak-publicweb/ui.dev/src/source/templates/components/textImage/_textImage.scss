@@ -1,6 +1,6 @@
 .pw-text-image {
     @include border-radius($border-radius);
-    @include padding($padding-md);
+    @include padding($padding-l $padding-md);
     @include margin(0 $margin-md);
     @media #{$desktop} {
         @include padding($padding-xxxl);
@@ -52,8 +52,8 @@
     }
 
     &__innerpadding {
-        @include margin-top($margin-l);
-        @include margin-bottom($margin-l);
+        @include margin-top(0);
+        @include margin-bottom(0);
 
         @media #{$desktop} {
             @include margin-top(0);
@@ -70,6 +70,10 @@
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
             text-transform: $uppercase;
+        }
+        span.tpatom-subheading {
+            @include font-size($font-sm);
+            line-height: $font-normal;
         }
     }
 
@@ -92,7 +96,7 @@
                 }
             }
         }
-        @media #{$tablet} {
+        @media #{$desktop} {
             @include font-size(14px);
             @include line-height(24px, 14px);
             @include margin-bottom($padding-l);
@@ -100,7 +104,7 @@
     }
 
     &__link {
-        @include margin-bottom($padding-l);
+        @include margin-bottom(0);
         @include padding($padding-zero);
         @include line-height(28px, 16px);
         background-color: none;
@@ -114,5 +118,15 @@
 
     &__image {
         width: 100%;
+    }
+}
+.tpatom-heading {
+    &--regular {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            line-height: 40px;
+        }
     }
 }

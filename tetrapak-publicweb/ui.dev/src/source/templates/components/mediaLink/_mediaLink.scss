@@ -41,6 +41,7 @@
     }
 
     &__linklist {
+        @include margin-bottom($margin-l);
         &:last-child {
             @include margin-bottom($margin-l);
         }

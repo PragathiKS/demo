@@ -1,0 +1,66 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable"
+  ],
+  "jcr:createdBy": "admin",
+  "jcr:created": "Wed Apr 29 2020 01:55:34 GMT+0530",
+  "jcr:uuid": "26de47dc-09ab-43eb-bdea-d209d65492b3",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:lastModifiedBy": "admin",
+    "dam:assetState": "processed",
+    "jcr:lastModified": "Wed Apr 29 2020 01:55:34 GMT+0530",
+    "dam:relativePath": "tetrapak/publicweb/myimage.png",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Wed Apr 29 2020 01:55:34 GMT+0530",
+      "cq5dam.web.1280.1280.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "workflow-process-service",
+        "jcr:created": "Wed Apr 29 2020 01:55:34 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Wed Apr 29 2020 01:55:34 GMT+0530"
+        }
+      },
+      "cq5dam.thumbnail.48.48.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "workflow-process-service",
+        "jcr:created": "Wed Apr 29 2020 01:55:34 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Wed Apr 29 2020 01:55:34 GMT+0530"
+        }
+      },
+      "original": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Apr 29 2020 01:55:34 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Wed Apr 29 2020 01:55:34 GMT+0530"
+        }
+      }
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "dam:Physicalwidthininches": "29.718507766723633",
+      "dam:Fileformat": "PNG",
+      "dam:Progressive": "no",
+      "dam:extracted": "Wed Apr 29 2020 01:55:34 GMT+0530",
+      "dc:format": "image/png",
+      "dam:MIMEtype": "image/png"
+    }
+  }
+}

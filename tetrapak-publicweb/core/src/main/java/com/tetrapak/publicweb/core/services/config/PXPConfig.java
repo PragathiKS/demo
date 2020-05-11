@@ -3,12 +3,14 @@ package com.tetrapak.publicweb.core.services.config;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
+
 /**
  * OSGi configuration for PXP
  *
  * @author Sandip Kumar
  */
-@ObjectClassDefinition(name = "Public Web PXP Import Configuration", description = "Public Web PXP Import Configuration")
+@ObjectClassDefinition(name = "Public Web PXP Full Feed Configuration", description = "Public Web PXP Full Feed Configuration")
 public @interface PXPConfig {
 
     /**
@@ -33,22 +35,6 @@ public @interface PXPConfig {
      * @return bearer token refreh time
      */
     @AttributeDefinition(name = "Refresh Bearer Token Time (in milliseconds)", description = "Refresh Bearer Token Time")
-    int schedulerRefreshTokenTime() default 3000000;
-   
-    /**
-     * PXP DAM ROOT PATH
-     *
-     * @return dam root path
-     */
-    @AttributeDefinition(name = "DAM root Path")
-    String damRootPath() default "/content/dam/tetrapak/publicweb/pxp";
-
-    /**
-     * PXP Video Types
-     *
-     * @return video types
-     */
-    @AttributeDefinition(name = "Video Type Mapping", description = "types of video in PXP.Add comma seprated.")
-    String videoTypes() default "mp4,webm,mpg,mp2,mpeg,mpe,mpv,ogg,m4p,m4v,avi,wmv,mov,qt,flv,swf,avchd";
+    int schedulerRefreshTokenTime() default PWConstants.FIFTY_MIN_IN_MILLI_SECONDS;
 
 }

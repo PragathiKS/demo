@@ -98,6 +98,7 @@
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
+            @include margin-bottom($margin-md);
         }
     }
 
@@ -189,7 +190,7 @@
                 vertical-align: top;
 
                 @media #{$desktop} {
-                    transform: rotate(-90deg);
+                    transform: rotate(360deg);
                 }
             }
         }
@@ -254,10 +255,9 @@
         &:not(.collapsed) {
             @media #{$mobile} {
                 color: $color-tundora;
-                background: $color-wild-sand;
             }
 
-            .icon-Chevron_Down {
+            .icon-Arrow_Right_pw {
                 color: $color-tundora;
 
                 @media #{$mobile} {
@@ -314,7 +314,7 @@
         font-weight: 300;
 
         @media #{$desktop} {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
 
         }
     }
@@ -323,6 +323,7 @@
         @include font-size($font-sm);
         @include line-height($font-m-md, $font-sm);
         @include margin-bottom($margin-md);
+        color: $color-boulder;
         text-transform: uppercase;
 
         @media #{$desktop} {

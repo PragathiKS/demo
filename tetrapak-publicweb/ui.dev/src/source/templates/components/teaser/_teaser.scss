@@ -1,5 +1,5 @@
 .tp-teaser {
-    @include padding($padding-md);
+    @include padding($padding-l $padding-md);
     @include margin($margin-md);
 
     @media #{$desktop} {
@@ -8,11 +8,24 @@
     }
 
     &__heading {
-        @include padding-bottom($padding-l);
+        @include padding-bottom($padding-md);
+        h2.tp-atom-heading {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                line-height: 40px;
+            }
+         }
     }
 
     &__details {
         font-weight: 500;
+        img {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .teaserMargin {
             @include margin-bottom($margin-l);
             @media #{$desktop} {
@@ -37,7 +50,6 @@
         }
         .image {
             @include margin-top($margin-l);
-            width: 100%;
             @media #{$desktop} {
                 @include margin-top(0);
             }
@@ -47,8 +59,9 @@
         }
         .tilte {
             @include padding-top($margin-l);
-            @include padding-bottom($margin-l);
+            @include padding-bottom($margin-md);
             @include font-size($font-md);
+            line-height: 24px;
         }
         .link {
             @include padding-top($padding-l);

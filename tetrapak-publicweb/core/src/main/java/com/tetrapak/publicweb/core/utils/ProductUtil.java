@@ -154,5 +154,29 @@ public class ProductUtil {
         }
         return damPath;
     }
+    
+    /**
+     * return language
+     */
+    public static String getLanguage(String fileURI) {
+        return fileURI.substring(fileURI.lastIndexOf('/') + 1).split("_")[1].replaceAll(".json", "");
+    }
+
+    /**
+     * return file type.
+     */
+    public static String getFileType(String fileURI) {
+        String fileType = StringUtils.EMPTY;
+        if (fileURI.contains(PWConstants.PROCESSING_EQUIPEMENT)) {
+            fileType = PWConstants.PROCESSING_EQUIPEMENT;
+        }
+        if (fileURI.contains(PWConstants.FILLING_MACHINE)) {
+            fileType = PWConstants.FILLING_MACHINE;
+        }
+        if (fileURI.contains(PWConstants.PACKAGE_TYPE)) {
+            fileType = PWConstants.PACKAGE_TYPE;
+        }
+        return fileType;
+    }
 
 }

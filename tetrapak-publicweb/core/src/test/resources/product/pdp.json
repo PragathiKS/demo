@@ -1,0 +1,44 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "sapient-sandip",
+"jcr:created": "Tue May 05 2020 13:10:09 GMT+0000",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"hideContactFooterForm@Delete": "true",
+"jcr:createdBy": "sapient-sandip",
+"jcr:title": "test prod 1",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "1897aa28-2a86-4140-8590-f114fc16ca9b",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
+"cq:lastReplicatedBy": "admin",
+"productId": "processing_equipment23726",
+"pwLinkTheme": "hyperlink",
+"jcr:predecessors": [
+"4a09674b-5179-49bf-bdf2-9e7e63081c47"
+],
+"pwButtonTheme": "link",
+"jcr:created": "Tue May 05 2020 13:10:09 GMT+0000",
+"cq:lastReplicated": "Sun May 10 2020 19:48:30 GMT+0000",
+"cq:lastModified": "Tue May 05 2020 13:16:04 GMT+0000",
+"jcr:baseVersion": "4a09674b-5179-49bf-bdf2-9e7e63081c47",
+"jcr:isCheckedOut": true,
+"hideInSearch@Delete": "true",
+"linkTarget": "_self",
+"jcr:uuid": "98b6ab88-9432-4bcf-a540-e8f88d5af7f5",
+"sling:resourceType": "publicweb/components/structure/pages/pxpproductpage",
+"cq:lastModifiedBy": "sapient-sandip",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"cq:lastReplicated": "Thu May 07 2020 21:02:36 GMT+0000",
+"sling:resourceType": "wcm/foundation/components/responsivegrid"
+}
+}
+}

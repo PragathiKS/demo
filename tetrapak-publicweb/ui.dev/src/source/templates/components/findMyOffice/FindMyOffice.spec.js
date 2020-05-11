@@ -41,14 +41,6 @@ describe('FindMyOffice', function() {
       'onClickCountryItem'
     );
     this.onClickCityItemSpy = sinon.spy(this.findMyOffice, 'onClickCityItem');
-    this.countryDropDownToggleSpy = sinon.spy(
-      this.findMyOffice,
-      'countryDropDownToggle'
-    );
-    this.cityDropDownToggleSpy = sinon.spy(
-      this.findMyOffice,
-      'cityDropDownToggle'
-    );
     this.renderMarkerPositionSpy = sinon.spy(
       this.findMyOffice,
       'renderMarkerPosition'
@@ -80,8 +72,6 @@ describe('FindMyOffice', function() {
     this.ajaxStub.restore();
     this.onClickCountryItemSpy.restore();
     this.onClickCityItemSpy.restore();
-    this.countryDropDownToggleSpy.restore();
-    this.cityDropDownToggleSpy.restore();
     this.renderMarkerPositionSpy.restore();
   });
 
@@ -112,14 +102,6 @@ describe('FindMyOffice', function() {
   it('should call onClickCityItem on click', function() {
     $('.js-dropdown-item-city').trigger('click');
     expect(this.findMyOffice.onClickCityItem.called).to.be.true;
-  });
-  it('should call countryDropDownToggle on click', function() {
-    $('.js-pw-form__dropdown__country').trigger('click');
-    expect(this.findMyOffice.countryDropDownToggle.called).to.be.true;
-  });
-  it('should call cityDropDownToggle on click', function() {
-    $('.js-pw-form__dropdown__city').trigger('click');
-    expect(this.findMyOffice.cityDropDownToggle.called).to.be.true;
   });
   it('should render renderMarkerPosition', function(done) {
     expect(this.findMyOffice.renderMarkerPosition.called).to.be.true;

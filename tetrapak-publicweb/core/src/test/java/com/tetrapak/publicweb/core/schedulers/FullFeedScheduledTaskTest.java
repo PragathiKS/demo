@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,8 +66,12 @@ public class FullFeedScheduledTaskTest {
         context.registerService(APIGEEService.class, apiGEEService);
         MockOsgi.activate(apiGEEService, context.bundleContext(),apiGeeConfig);
         
+        final Map<String, Object> config = new HashMap<String, Object>();
+        config.put("damRootPath", "/content/dam/tetrapak/publicweb/pxp");
+        config.put("videoTypes", "mp4");
         productService = new ProductServiceImpl();
         context.registerService(ProductService.class, productService);
+        MockOsgi.activate(productService, context.bundleContext(),config);
         
         context.getService(APIGEEService.class);
     }
@@ -76,10 +82,10 @@ public class FullFeedScheduledTaskTest {
         config.put("fullFeedSchedulerExpression", "0 0 0 ? * SUN *");
         config.put("fullFeedSchedulerDisable", false);
         config.put("schedulerRefreshTokenTime", 2700000);
-        config.put("damRootPath", "/content/dam/tetrapak/publicweb/pxp");
-        config.put("videoTypes", "mp4");
         
         MockOsgi.injectServices(fullFeedTask, context.bundleContext());
         MockOsgi.activate(fullFeedTask, context.bundleContext(),config);
+        assertEquals("FullFeedImportScheduledTask", "FullFeedImportScheduledTaskExecuted",
+                "FullFeedImportScheduledTaskExecuted");
     }
 }

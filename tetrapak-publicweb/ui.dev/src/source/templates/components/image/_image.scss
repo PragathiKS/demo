@@ -1,6 +1,31 @@
 .tp-pw-image {
     max-width: 100%;
+    &__center-align {
+        margin: 0 auto;
+    }
+    &__regular {
+        @include padding(0);
+        max-width: 100%;
+        margin: 16px auto 0;
+        height: auto;
+
+        @media #{$desktop} {
+            @include max-width($body-max-width);
+            margin: 48px auto 0;
+    }
+    }
+    &__zero {
+        @include padding(0);
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+
+        @media #{$desktop} {
+            @include max-width($body-max-width);
+            margin: 0 auto;
+    }
+    }
 }
-.regular {
-    @include padding(16px 16px 24px 16px);
-}
+// .regular {
+//     @include padding(16px 16px 24px 16px);
+// }

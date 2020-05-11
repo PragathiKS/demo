@@ -6,24 +6,29 @@
     line-height: 1;
 
     .icon {
-        @include font-size($font-baseline);
-        line-height:$font-baseline;
+        @include margin-left($margin-sm);
+        @include font-size(12px);
+        line-height: 12px;
         display: inline-block;
         vertical-align: top;
+        margin-top: 7px;
+        margin-left: 8px;
 
         &::before {
             @include font-size(12px);
             @include height(12px);
-            @include margin-top(7px);
+            @include margin-top(0);
             display: inline-block;
         }
     }
     
     .icon.icon-Circle_Arrow_Right_pw {
+        @include margin-left($margin-xs);
         @include font-size(16px);
         line-height:$font-baseline;
         display: inline-block;
         vertical-align: top;
+        margin-top: 0;
 
         &::before {
             @include font-size(16px);
@@ -36,7 +41,7 @@
     span {
         @include margin-right($margin-xs);
         @include line-height(24px, $font-baseline);
-        @include padding-right($padding-sm);
+        @include padding-right(0);
         vertical-align: top;
         display: inline-block;
 
@@ -223,7 +228,7 @@
 .tpatom-link {
      &--transparent {
         span {
-            @include padding-right(4px);
+            @include padding-right(0);
         }
      }
 }

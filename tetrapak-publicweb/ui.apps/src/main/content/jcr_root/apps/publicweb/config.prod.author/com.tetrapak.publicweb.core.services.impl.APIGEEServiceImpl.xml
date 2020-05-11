@@ -2,5 +2,5 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
           apigeeServiceUrl="https://api.tetrapak.com"
-          apigeeClientID="Cg3webHGK4jCbK5Gvw3C1nG26OtGHvoJ"
-          apigeeClientSecret="9dR6zLA1LoKt9hXC"/>
+          apigeeClientID="TGCPX4CRJFGN8yEjcunv9VzlSIuaYzKJ"
+          apigeeClientSecret="pE9jEQyzR8WTxJi4"/>
