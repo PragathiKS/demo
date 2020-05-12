@@ -38,8 +38,7 @@
                 <a data-sly-test="${data.linkLabel}" href="${data.linkPath}" class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics" title="${btnTooltip}"
                 target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}"
                 data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"  data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}" data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
-                <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}
-                <i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+                <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
               </a>
         </div>
       </div>
