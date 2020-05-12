@@ -1,4 +1,10 @@
 .tp-pw-header {
+    @media #{$desktop} {
+        .pw-header-icons {
+            @include padding-bottom($padding-sm);
+        }
+    }
+
     background: $color-white;
     .nav-link {
         padding: 16px;
@@ -22,7 +28,7 @@
         z-index: $zindex-t;
 
         @media #{$desktop} {
-            @include padding(32px 35px 0);
+            @include padding(32px 0);
             height: #{convert-to-rem(90px)};
         }
     }
@@ -30,6 +36,7 @@
     &__logo-placeholder {
         display: none;
         @media #{$desktop} {
+            @include padding-bottom($padding-sm);
             @include padding-left(36px);
             display: block;
         }
@@ -177,7 +184,7 @@
     max-width: 100%;
 
     @media #{$desktop} {
-        @include padding(0 15px);
+        @include padding(0 $padding-xxxl);
         @include max-width($body-max-width);
         margin: 0 auto;
     }
