@@ -27,21 +27,45 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  * The Class PXPBannerModelTest.
  */
 public class PXPOpeningsModelTest {
+
+    /** The context. */
     @Rule
     public final AemContext context = new AemContext();
+
+    /** The resource bundle. */
     @Mock
     private ResourceBundle resourceBundle;
+
+    /** The i18n. */
     @Mock
     private I18n i18n;
+
+    /** The request. */
     private final MockSlingHttpServletRequest request = context.request();
+
     /** The Constant PRODUCTS_DATA. */
     private static final String PRODUCTS_DATA = "/product/test-Products.json";
+
+    /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/pxpopenings/test-content.json";
+
+    /** The Constant PACKAGE_TYPE_CONTENT_ROOT. */
     private static final String PACKAGE_TYPE_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en/package-type";
+
+    /** The Constant RESOURCE_PATH. */
     private static final String RESOURCE_PATH = PACKAGE_TYPE_CONTENT_ROOT + "/jcr:content/pxpopenings";
+
+    /** The model. */
     private PXPOpeningsModel model;
+
+    /** The model class. */
     private final Class<PXPOpeningsModel> modelClass = PXPOpeningsModel.class;
 
+    /**
+     * The setup method.
+     *
+     * @throws Exception the exception
+     */
     @Before
     public void setUp() throws Exception {
         context.load().json(PRODUCTS_DATA, PWConstants.PXP_ROOT_PATH);
@@ -62,11 +86,19 @@ public class PXPOpeningsModelTest {
         initMocks(this);
     }
 
+    /**
+     * Simple load test.
+     */
     @Test
     public void simpleLoadTest() {
         assertNotNull(model);
     }
 
+    /**
+     * Test getters.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetters() throws Exception {
         assertEquals("Openings", model.getHeading());
@@ -75,6 +107,11 @@ public class PXPOpeningsModelTest {
         assertEquals("grayscale-white", model.getPwTheme());
     }
 
+    /**
+     * Test teaser list.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testTeaserList() throws Exception {
         final List<ManualModel> teaserList = model.getTeaserList();
