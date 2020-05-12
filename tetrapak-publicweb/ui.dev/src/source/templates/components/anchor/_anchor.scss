@@ -5,7 +5,7 @@
         @include margin($margin-l $margin-xl);
         @media #{$desktop} {
             @include margin($margin-l margin-xl -margin-md $margin-xl);
-         }
+        }
     }
 
     .pw-anchor-list > .pw-anchor-content {
