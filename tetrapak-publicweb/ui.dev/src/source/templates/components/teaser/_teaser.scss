@@ -21,6 +21,22 @@
 
     &__details {
         font-weight: 500;
+        h5 {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-family: $font-black;
+        }
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-congress-blue;
+                    content: "\2022";
+                }
+            }
+        }
         img {
             display: flex;
             margin-left: auto;

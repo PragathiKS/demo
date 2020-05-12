@@ -1,0 +1,28 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Tue Mar 24 2020 08:08:47 GMT+0000",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:createdBy": "admin",
+    "jcr:title": "PXP Openings",
+    "cq:lastReplicationAction": "Activate",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-package-type-page",
+    "productId": "packagetype1647",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:created": "Tue May 08 2020 01:43:09 GMT+0000",
+    "cq:lastReplicated": "Thu Apr 30 2020 07:41:13 GMT+0000",
+    "cq:lastModified": "Thu Apr 30 2020 04:34:02 GMT+0000",
+    "sling:resourceType": "publicweb/components/structure/pages/pxpproductpage",
+    "pxpopenings": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:lastModified": "Thu May 08 2020 13:28:04 GMT+0000",
+      "sling:resourceType": "publicweb/components/content/pxpopenings",
+      "heading": "Openings",
+      "anchorId": "anchor123",
+      "anchorTitle": "Anchor title",
+      "pwTheme": "grayscale-white"
+    }
+  }
+}
