@@ -180,11 +180,13 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processFillingMachines(String fileURI, String fileType, String language) {
         DeltaFillingMachine deltaFillingMachines = apiGEEService.getDeltaFillingMachines(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaFillingMachines != null && !deltaFillingMachines.getFillingMachine().isEmpty()) {
+        if (deltaFillingMachines != null && deltaFillingMachines.getFillingMachine() != null
+                && !deltaFillingMachines.getFillingMachine().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
                     deltaFillingMachines.getFillingMachine(), language));
         }
-        if (!deltaFillingMachines.getDeleted().isEmpty()) {
+        if (deltaFillingMachines != null && deltaFillingMachines.getDeleted() != null
+                && !deltaFillingMachines.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaFillingMachines.getDeleted());
             for (String deletedProduct : deltaFillingMachines.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
@@ -209,11 +211,13 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processEquipments(String fileURI, String fileType, String language) {
         DeltaProcessingEquipement deltaEquipements = apiGEEService
                 .getDeltaProcessingEquipements(bearerToken.getAccessToken(), PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaEquipements != null && !deltaEquipements.getProcessingEquipement().isEmpty()) {
+        if (deltaEquipements != null && deltaEquipements.getProcessingEquipement() != null
+                && !deltaEquipements.getProcessingEquipement().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductProcessingEquipement(resolver, session, fileType,
                     deltaEquipements.getProcessingEquipement(), language));
         }
-        if (!deltaEquipements.getDeleted().isEmpty()) {
+        if (deltaEquipements != null && deltaEquipements.getDeleted() != null
+                && !deltaEquipements.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaEquipements.getDeleted());
             for (String deletedProduct : deltaEquipements.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
@@ -237,11 +241,13 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void processPackageTypes(String fileURI, String fileType, String language) {
         DeltaPackageType deltaPackageTypes = apiGEEService.getDeltaPackageTypes(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
-        if (deltaPackageTypes != null && !deltaPackageTypes.getPackagetype().isEmpty()) {
+        if (deltaPackageTypes != null && deltaPackageTypes.getPackagetype() != null
+                && !deltaPackageTypes.getPackagetype().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductPackageType(resolver, session, fileType,
                     deltaPackageTypes.getPackagetype(), language));
         }
-        if (!deltaPackageTypes.getDeleted().isEmpty()) {
+        if (deltaPackageTypes != null && deltaPackageTypes.getDeleted() != null
+                && !deltaPackageTypes.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaPackageTypes.getDeleted());
             for (String deletedProduct : deltaPackageTypes.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH

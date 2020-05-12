@@ -42,6 +42,10 @@ public class PXPPackageTypesModel {
     @Default(values = "Package Types")
     private String heading;
 
+    /** The link text. */
+    @ValueMapValue
+    private String linkText;
+
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -82,13 +86,14 @@ public class PXPPackageTypesModel {
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();
-                teaser.setTitle(packageType.getName().concat(" ").concat(shape.getName()));
+                final String title = packageType.getName().concat(" ").concat(shape.getName());
+                teaser.setTitle(title);
                 if (null != shape.getVolumes()) {
                     teaser.setDescription(getDescription(shape.getVolumes()));
                 }
                 teaser.setFileReference(shape.getThumbnail());
-                teaser.setAlt(shape.getName());
-                teaser.setLinkText("Read more");
+                teaser.setAlt(title);
+                teaser.setLinkText(linkText);
                 teaser.setLinkPath(productPageMap.get(packageType.getId()));
                 teaserList.add(teaser);
             }

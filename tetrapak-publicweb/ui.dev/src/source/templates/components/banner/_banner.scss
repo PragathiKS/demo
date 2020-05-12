@@ -32,6 +32,10 @@
         @media #{$desktop} {
             width: unset;
         }
+        img {
+            max-width: unset;
+            width: 100%;
+         }
     }
 
     &__image {
