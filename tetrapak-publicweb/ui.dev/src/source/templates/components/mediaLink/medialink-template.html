@@ -16,7 +16,7 @@
                         <div data-sly-list.child="${data.columnOneList}">
                             <a href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}" 
+                                title="${child.linkLabel}"
                                 data-asset-name="${child.assetName}"
                                 data-section-name="${data.columnOneTitle || data.heading}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
@@ -25,7 +25,7 @@
                             </a>
                         </div>
                     </div>
-                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle)  ? 'col-md-4' : 'col-md-6' }  col-sm-12 medialink__linklist">
+                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle)  ? 'col-md-4' : 'col-md-6' }  col-sm-12 medialink__linklist ${data.columnTwoTitle ? '' : 'noMobileHeader'}">
                         <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }" class="medialink__subheading  ${data.columnTwoTitle ? '' : 'noMobile'}">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
@@ -33,7 +33,7 @@
                         <div data-sly-list.child="${data.columnTwoList}">
                             <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}" 
+                                title="${child.linkLabel}"
                                 data-asset-name="${child.assetName}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
                                 data-section-name="${data.columnTwoTitle || data.heading}"
@@ -42,7 +42,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-4  col-sm-12 medialink__linklist" data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
+                    <div class="col-md-4  col-sm-12 medialink__linklist ${data.columnThreeTitle ? '' : 'noMobileHeader'}" data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
                         <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }" class="medialink__subheading  ${data.columnThreeTitle ? '' : 'noMobile'}">
                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
@@ -50,7 +50,7 @@
                         <div data-sly-list.child="${data.columnThreeList}">
                             <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}" 
+                                title="${child.linkLabel}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
                                 data-section-name="${data.columnThreeTitle || data.heading}"
                                 data-asset-name="${child.assetName}"

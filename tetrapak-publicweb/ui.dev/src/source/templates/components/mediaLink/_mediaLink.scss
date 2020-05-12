@@ -45,6 +45,9 @@
         &:last-child {
             @include margin-bottom($margin-l);
         }
+        &.noMobileHeader {
+            @include margin-top(-$margin-l);
+        }
         @media #{$desktop} {
             @include padding-left($margin-l);
             @include padding-right($margin-l);
@@ -55,6 +58,9 @@
             &:last-child {
                 @include padding-right(15px);
                 @include margin-bottom($margin-zero);
+            }
+            &.noMobileHeader {
+                @include margin-top($margin-zero);
             }
         }
     }
@@ -88,7 +94,7 @@
         }
     }
     .topMargin {
-        @include margin-top($margin-xxl) ;
+        @include margin-top($margin-xxl);
     }
     .noMobile {
         display: none;
