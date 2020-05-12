@@ -54,7 +54,7 @@ public class PXPOpeningsModel {
 
     /** The pw theme. */
     @ValueMapValue(via = "resource")
-    @Default(values = "grayscale-lighter")
+    @Default(values = "grayscale-white")
     private String pwTheme;
 
     /** The anchor id. */
