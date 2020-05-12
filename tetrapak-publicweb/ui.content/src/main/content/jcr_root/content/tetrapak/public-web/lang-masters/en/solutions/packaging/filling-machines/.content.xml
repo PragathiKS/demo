@@ -5,7 +5,7 @@
         cq:allowedTemplates="/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page"
         cq:lastModified="{Date}2020-05-04T10:16:52.074Z"
         cq:lastModifiedBy="sapient-abhishek"
-        cq:lastReplicated="{Date}2020-05-11T13:20:07.822Z"
+        cq:lastReplicated="{Date}2020-05-11T15:37:02.849Z"
         cq:lastReplicatedBy="sapient-bimmi"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"

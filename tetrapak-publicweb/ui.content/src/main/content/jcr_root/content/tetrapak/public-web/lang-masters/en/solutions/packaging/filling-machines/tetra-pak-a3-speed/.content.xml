@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2020-05-11T10:40:28.024Z"
         cq:lastModifiedBy="sapient-bimmi"
-        cq:lastReplicated="{Date}2020-05-11T13:20:08.316Z"
+        cq:lastReplicated="{Date}2020-05-12T04:49:09.211Z"
         cq:lastReplicatedBy="sapient-bimmi"
         cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page"
@@ -32,7 +32,7 @@
                     jcr:lastModified="{Date}2020-05-01T16:15:16.961+05:30"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/pxpbanner"/>
+                    sling:resourceType="publicweb/components/content/pxp/pxpbanner"/>
                 <breadcrumb
                     jcr:created="{Date}2020-05-01T16:15:21.019+05:30"
                     jcr:createdBy="admin"
