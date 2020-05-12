@@ -6,11 +6,19 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.i18n.ResourceBundleProvider;
+import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 import javax.servlet.Servlet;
 
@@ -71,5 +79,47 @@ public class MockHelper {
             LOGGER.error("Exception occurred: ", e);
         }
         return null;
+    }
+
+    /**
+     * Method to mock ResoureBundleProvider.
+     *
+     * @param request the request
+     * @return ResourceBundleProvider
+     */
+    public static final ResourceBundleProvider mockResourceBundleProvider(final MockSlingHttpServletRequest request,
+            final Map<String, String> keyValueMap) {
+        return new ResourceBundleProvider() {
+            @Override
+            public ResourceBundle getResourceBundle(final String arg0, final Locale arg1) {
+                if (Objects.isNull(arg0) && arg1.equals(request.getLocale())) {
+                    return new ResourceBundle() {
+                        @Override
+                        protected Object handleGetObject(final String key) {
+                            if (keyValueMap.containsKey(key)) {
+                                return keyValueMap.get(key);
+                            }
+                            return null;
+                        }
+
+                        @Override
+                        public Enumeration<String> getKeys() {
+                            return Collections.enumeration(keySet());
+                        }
+                    };
+                }
+                return null;
+            }
+
+            @Override
+            public ResourceBundle getResourceBundle(final Locale arg0) {
+                return null;
+            }
+
+            @Override
+            public Locale getDefaultLocale() {
+                return null;
+            }
+        };
     }
 }

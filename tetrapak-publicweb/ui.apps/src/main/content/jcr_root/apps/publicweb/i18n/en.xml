@@ -13,6 +13,20 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="office"
         sling:message="Office"/>
+    <pxpopenings jcr:primaryType="nt:folder">
+        <benefits
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="openingbenefits"
+            sling:message="Benefits:"/>
+        <principle
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="openingprinciple"
+            sling:message="Principle:"/>
+        <type
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="openingtype"
+            sling:message="Type:"/>
+    </pxpopenings>
     <selectCountry
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
