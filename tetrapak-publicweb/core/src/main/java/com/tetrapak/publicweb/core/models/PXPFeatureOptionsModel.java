@@ -15,6 +15,9 @@ import com.tetrapak.publicweb.core.models.multifield.TabModel;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
+/**
+ * The Class PXPFeatureOptionsModel.
+ */
 public class PXPFeatureOptionsModel {
 
     /** The pw theme. */
@@ -46,6 +49,13 @@ public class PXPFeatureOptionsModel {
     /** The Constant AUTHOR. */
     private static final String AUTHOR = "author";
 
+    /**
+     * Sets the tab list.
+     *
+     * @param featureOptions
+     *            the feature options
+     * @return the list
+     */
     public List<TabModel> setTabList(List<FeatureOption> featureOptions) {
         List<TabModel> tabs = new ArrayList<>();
         for (FeatureOption feature : featureOptions) {
