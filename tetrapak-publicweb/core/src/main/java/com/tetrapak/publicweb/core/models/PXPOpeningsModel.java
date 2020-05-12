@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import com.day.cq.i18n.I18n;
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.beans.pxp.Openingclosure;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -94,15 +95,6 @@ public class PXPOpeningsModel {
     /** The Constant LI_END. */
     private static final String LI_END = "</li>";
 
-    /** The Constant OPENING_TYPE. */
-    private static final String OPENING_TYPE = "openingtype";
-
-    /** The Constant OPENING_PRINCIPLE. */
-    private static final String OPENING_PRINCIPLE = "openingprinciple";
-
-    /** The Constant OPENING_BENEFITS. */
-    private static final String OPENING_BENEFITS = "openingbenefits";
-
     /**
      * The init method.
      */
@@ -148,11 +140,11 @@ public class PXPOpeningsModel {
     private String getDescription(final Openingclosure opening) {
         final StringBuilder description = new StringBuilder();
         if (i18n != null) {
-            description.append(H5_START + i18n.get(OPENING_TYPE) + H5_END);
+            description.append(H5_START + i18n.get(PWConstants.PXP_OPENINGS_TYPE) + H5_END);
             description.append(SPAN_START + opening.getType() + SPAN_END);
-            description.append(H5_START + i18n.get(OPENING_PRINCIPLE) + H5_END);
+            description.append(H5_START + i18n.get(PWConstants.PXP_OPENINGS_PRINCIPLE) + H5_END);
             description.append(SPAN_START + opening.getPrinciple() + SPAN_END);
-            description.append(H5_START + i18n.get(OPENING_BENEFITS) + H5_END);
+            description.append(H5_START + i18n.get(PWConstants.PXP_OPENINGS_BENEFITS) + H5_END);
             description.append(UL_START);
             for (final String benefit : opening.getBenefits()) {
                 description.append(LI_START + benefit + LI_END);

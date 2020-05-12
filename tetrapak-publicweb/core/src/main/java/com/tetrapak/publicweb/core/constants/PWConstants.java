@@ -22,13 +22,13 @@ public final class PWConstants {
 
     /** The Constant ROOT_PATH. */
     public static final String ROOT_PATH = "/var/commerce/products";
-    
+
     /** The Constant PXP_ROOT_PATH. */
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
-    
+
     /** The Constant CONTENT_ROOT_PATH. */
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/public-web";
-    
+
     /** The Constant PXP. */
     public static final String PXP = "pxp";
 
@@ -40,10 +40,10 @@ public final class PWConstants {
 
     /** The Constant JCR_PRIMARY_TYPE. */
     public static final String JCR_PRIMARY_TYPE = "jcr:primaryType";
-    
+
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
-    
+
     /** The Constant PRODUCT_ID. */
     public static final String PRODUCT_ID = "productId";
 
@@ -91,7 +91,7 @@ public final class PWConstants {
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
-    
+
     /** The Constant VOLUMES. */
     public static final String VOLUMES = "volumes";
 
@@ -106,33 +106,46 @@ public final class PWConstants {
 
     /** The FULL FEED Scheduler ID. */
     public static final String FULL_FEED_SCHEDULER_ID = "pwpxpfullfeedschedulerID@tetrapak";
-    
+
     /** The DELTA FEED Scheduler ID. */
     public static final String DELTA_FEED_SCHEDULER_ID = "pwpxpdeltafeedschedulerID@tetrapak";
 
     /** The feed files uri. */
     public static final String FEED_FILES_URI = "/equipment/pxpparameters/files/";
-    
+
     /** The filling machine template. */
     public static final String FILLING_MACHINE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page";
-    
+
     /** The processing equipments template. */
     public static final String PROCESSING_EQUIP_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page";
-    
+
     /** The package type template. */
     public static final String PACKAGE_TYPE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-package-type-page";
-    
-    /** The full feed */
+
+    /** The full feed. */
     public static final String FULL_FEED = "full";
-    
-    /** The delta feed */
+
+    /** The delta feed. */
     public static final String DELTA_FEED = "delta";
-    
-    /** The default bearer token refresh time */
+
+    /** The default bearer token refresh time. */
     public static final int  FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
 
+    /** The Constant REPLICATION_PXP. */
     public static final String REPLICATION_PXP = "replicationpxp";
 
+    /** The Constant PXP_OPENINGS_TYPE. */
+    public static final String PXP_OPENINGS_TYPE = "openingtype";
+
+    /** The Constant PXP_OPENINGS_PRINCIPLE. */
+    public static final String PXP_OPENINGS_PRINCIPLE = "openingprinciple";
+
+    /** The Constant PXP_OPENINGS_BENEFITS. */
+    public static final String PXP_OPENINGS_BENEFITS = "openingbenefits";
+
+    /**
+     * Instantiates a new PW constants.
+     */
     private PWConstants() {
         /*
          * adding a private constructor to hide the implicit one
