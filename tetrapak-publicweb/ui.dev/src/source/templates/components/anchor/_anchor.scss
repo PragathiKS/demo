@@ -4,7 +4,7 @@
         @include padding(0);
         @include margin($margin-l $margin-xl);
         @media #{$desktop} {
-          @include margin($margin-l margin-xl -margin-md $margin-xl);
+            @include margin($margin-l margin-xl -margin-md $margin-xl);
          }
     }
 
