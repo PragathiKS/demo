@@ -7,7 +7,6 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -28,7 +27,6 @@ public class PXPOptionsModel extends PXPFeatureOptionsModel {
 
     /** The heading. */
     @ValueMapValue
-    @Default(values = "Options")
     private String heading;
 
     /** The tabs. */

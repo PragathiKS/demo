@@ -31,6 +31,7 @@
 			"jcr:lastModifiedBy": "admin",
 			"jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
 			"sling:resourceType": "publicweb/components/content/pxpfeatures",
+			"heading": "Features",
 			"anchorId": "anchor123",
 			"anchorTitle": "Anchor title"
 		}
