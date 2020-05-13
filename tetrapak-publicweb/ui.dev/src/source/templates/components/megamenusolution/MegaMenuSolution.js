@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { isMobileMode } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class MegaMenuSolution {
   constructor({ el }) {
@@ -13,27 +14,54 @@ class MegaMenuSolution {
     this.cache.$menuCloser = this.root.find('.js-close-menu');
     this.cache.$bottomTeaser = this.root.find('.js-bottom-teaser-list');
     this.cache.$megamenuBottom = this.root.find('.pw-megamenu__bottom');
+    this.cache.$navigationLink = this.root.find('.js-navigation-Link');
     // this.cache.$headingBottom = this.root.find('.heading-bottom-cta');
   }
   bindEvents() {
     /* Bind jQuery events here */
-    const { $menuOpener, $menuCloser } = this.cache;
-    $menuOpener.on('click',this.handleOpenEvent);
-    $menuCloser.on('click',this.handleCloseEvent);
+    const { $menuOpener, $menuCloser, $navigationLink } = this.cache;
+    $menuOpener.on('click', this.handleOpenEvent);
+    $menuCloser.on('click', this.handleCloseEvent);
+    $navigationLink.on('click', this.trackAnalytics);
   }
 
   handleCloseEvent = () => {
     const { $bottomTeaser, $megamenuBottom } = this.cache;
-    $megamenuBottom.css({'height': 'auto'});
+    $megamenuBottom.css({ height: 'auto' });
     $bottomTeaser.removeClass('active').addClass('hide');
-  }
+  };
 
-  handleOpenEvent = (e) => {
+  trackAnalytics = e => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-navigation-Link');
+    const linkSection = $this.data('link-section');
+    const linkName = $this.data('link-name');
+
+    const trackingObj = {
+      linkName,
+      linkSection
+    };
+
+    const eventObj = {
+      eventType: 'navigation click',
+      event: 'Navigation'
+    };
+    trackAnalytics(
+      trackingObj,
+      'navigation',
+      'navigationClick',
+      undefined,
+      false,
+      eventObj
+    );
+  };
+
+  handleOpenEvent = e => {
     e.preventDefault();
     const { $bottomTeaser, $megamenuBottom } = this.cache;
     $bottomTeaser.addClass('active').removeClass('hide');
-    $megamenuBottom.css({'height': '0px'});
-  }
+    $megamenuBottom.css({ height: '0px' });
+  };
 
   isMobileMode() {
     return isMobileMode(...arguments);

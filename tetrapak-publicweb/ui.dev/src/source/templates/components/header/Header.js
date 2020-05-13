@@ -23,13 +23,14 @@ class Header {
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
     this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
     this.cache.$bottomTeaserH = this.root.find('.js-bottom-teaser-list');
+    this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$body = $('body');
 
   }
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -37,6 +38,7 @@ class Header {
     this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
+    $headerItem.on('click', this.trackNavigationAnalytics);
 
   }
 
@@ -95,8 +97,30 @@ class Header {
       $bottomTeaserH.removeClass('active').addClass('hide');
       $megaMenuMobile.removeClass('is-open');
       $megaMenuMobile.addClass('is-close');
-            
     }
+  }
+
+  trackNavigationAnalytics = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-item');
+    const linkName = $this.data('link-name');
+
+    const trackingObj = {
+      linkName
+    };
+
+    const eventObj = {
+      eventType: 'navigation click',
+      event: 'Navigation'
+    };
+    trackAnalytics(
+      trackingObj,
+      'navigation',
+      'navigationClick',
+      undefined,
+      false,
+      eventObj
+    );
   }
 
   trackAnalytics = (e) => {
