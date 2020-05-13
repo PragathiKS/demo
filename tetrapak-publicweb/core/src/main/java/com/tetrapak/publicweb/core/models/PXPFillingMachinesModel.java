@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.FillingMachine;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
@@ -100,6 +101,7 @@ public class PXPFillingMachinesModel {
             teaser.setAlt(fillingMachine.getName());
             teaser.setLinkText(linkText);
             teaser.setLinkPath(productPageMap.get(fillingMachine.getId()));
+            teaser.setLinkTarget(PWConstants.SELF_TARGET);
             teaserList.add(teaser);
         }
         LOGGER.debug("Teaser list updated successfully.");

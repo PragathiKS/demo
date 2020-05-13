@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
@@ -95,6 +96,7 @@ public class PXPPackageTypesModel {
                 teaser.setAlt(title);
                 teaser.setLinkText(linkText);
                 teaser.setLinkPath(productPageMap.get(packageType.getId()));
+                teaser.setLinkTarget(PWConstants.SELF_TARGET);
                 teaserList.add(teaser);
             }
         }
