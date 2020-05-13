@@ -33,7 +33,6 @@ public class PXPShapesVolumesModel {
 
     /** The heading. */
     @ValueMapValue
-    @Default(values = "Shapes & Volumes")
     private String heading;
 
     /** The anchor id. */

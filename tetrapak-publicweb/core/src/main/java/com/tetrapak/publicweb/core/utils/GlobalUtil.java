@@ -44,7 +44,7 @@ public final class GlobalUtil {
             return null;
         }
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
-        ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
+        final ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
         if (null == serviceReference) {
             return null;
         }
@@ -55,7 +55,7 @@ public final class GlobalUtil {
      * @return site improve script
      */
     public static String getSiteImproveScript() {
-        SiteImproveScriptService siteImproveScriptService = getService(SiteImproveScriptService.class);
+        final SiteImproveScriptService siteImproveScriptService = getService(SiteImproveScriptService.class);
         if (null == siteImproveScriptService) {
             return null;
         }
@@ -71,7 +71,7 @@ public final class GlobalUtil {
      *            dynamic media service
      * @return video path from scene 7
      */
-    public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
+    public static String getVideoUrlFromScene7(String damVideoPath, final DynamicMediaService dynamicMediaService) {
         if(StringUtils.isNotBlank(damVideoPath)) {
             final String FORWARD_SLASH = PWConstants.SLASH;
             damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
@@ -84,7 +84,7 @@ public final class GlobalUtil {
 
     /**
      * This method returns service resolver based on parameter map.
-     * 
+     *
      * @param resourceFactory
      *            ResourceResolverFactory
      * @param paramMap
@@ -106,17 +106,17 @@ public final class GlobalUtil {
 
     /**
      * Global function which provides DAM asset path for PXP integration
-     * 
+     *
      * @param productId
      * @param categoryId
      * @param sourceurl
      * @return
      */
-    public static String getDAMPath(String damRootPath, String sourceurl, String categoryId, String productId,
-            String videoTypes) {
+    public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId, final String productId,
+            final String videoTypes) {
         String finalDAMPath = null;
-        String assetType = getAssetType(sourceurl, videoTypes);
-        String fileName = getFileName(sourceurl);
+        final String assetType = getAssetType(sourceurl, videoTypes);
+        final String fileName = getFileName(sourceurl);
 
         if (!StringUtils.isEmpty(assetType) && !StringUtils.isEmpty(categoryId) && !StringUtils.isEmpty(productId)
                 && !StringUtils.isEmpty(fileName)) {
@@ -134,24 +134,45 @@ public final class GlobalUtil {
 
     /**
      * Extract filename from given URL
-     * 
+     *
      * @param fileURL
      * @return
      */
-    public static String getFileName(String fileURL) {
+    public static String getFileName(final String fileURL) {
         return fileURL.substring(fileURL.lastIndexOf('/') + 1, fileURL.length());
     }
 
     /**
      * Fetch Asset Type based on File extension depending on mapping
-     * 
+     *
      * @param sourceurl
      * @param videoTypes
      * @return
      */
-    public static String getAssetType(String sourceurl, String videoTypes) {
+    public static String getAssetContentType(final String sourceurl, final String[] contentTypeMapping) {
+        String contenType = PWConstants.APPLICATION_OCTET_STREAM;
+        final String fileExtension = sourceurl.substring(sourceurl.lastIndexOf('.') + 1, sourceurl.length());
+        LOG.debug("fileExtension {}", fileExtension);
+        for (final String mapping : contentTypeMapping) {
+            if (mapping.contains(fileExtension)) {
+                contenType = mapping.split("=")[0];
+                break;
+            }
+        }
+        LOG.debug("asset Type {}", contenType);
+        return contenType;
+        }
+
+    /**
+     * Fetch Asset Type based on File extension depending on mapping
+     *
+     * @param sourceurl
+     * @param videoTypes
+     * @return
+     */
+    public static String getAssetType(final String sourceurl, final String videoTypes) {
         String assetType = PWConstants.IMAGE;
-        String fileExtension = sourceurl.substring(sourceurl.lastIndexOf('.') + 1, sourceurl.length());
+        final String fileExtension = sourceurl.substring(sourceurl.lastIndexOf('.') + 1, sourceurl.length());
         LOG.debug("fileExtension {}", fileExtension);
         if (videoTypes.contains(fileExtension)) {
             assetType = PWConstants.VIDEO;

@@ -40,7 +40,6 @@ public class PXPPackageTypesModel {
 
     /** The heading. */
     @ValueMapValue
-    @Default(values = "Package Types")
     private String heading;
 
     /** The link text. */
