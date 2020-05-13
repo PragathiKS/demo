@@ -4,6 +4,9 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:21:17.346Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:37:00.317Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
@@ -24,4 +27,7 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <tetra-pak-ingredient-doser-a3/>
+    <tetra-pak-ingredient-doser-m3/>
+    <tetra-pak-ingredient-doser-4000-a2/>
 </jcr:root>

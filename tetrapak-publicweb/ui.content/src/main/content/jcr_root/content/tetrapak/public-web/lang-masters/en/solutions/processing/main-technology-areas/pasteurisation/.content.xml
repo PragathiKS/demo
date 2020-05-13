@@ -4,11 +4,14 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:15:44.848Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:58.807Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="pasteurisation"
+        jcr:title="Pasteurization "
         jcr:uuid="6cf78dd1-4e6e-41f4-ad45-b2cfd9fe8f73"
         sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
         hideContactFooterForm_x0040_Delete="true"
@@ -24,4 +27,9 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <tetra-pak-pasteurizer-bf/>
+    <tetra-pak-pasteurizer-d/>
+    <tetra-pak-pasteurizer-d-base/>
+    <tetra-pak-pasteurizer-pfc/>
+    <tetra-pak-pasteurizer-bc/>
 </jcr:root>

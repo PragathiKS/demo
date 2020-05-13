@@ -4,11 +4,14 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:12:04.869Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:58.155Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="buffering"
+        jcr:title="Buffering"
         jcr:uuid="c919904c-edb8-4785-bda1-e96358e9a09d"
         sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
         hideContactFooterForm_x0040_Delete="true"
@@ -24,4 +27,7 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <high-hygiene-tank/>
+    <mh-tank/>
+    <tetra-alsafe/>
 </jcr:root>

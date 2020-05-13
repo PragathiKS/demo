@@ -4,6 +4,9 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:19:16.880Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:59.492Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
@@ -24,4 +27,5 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <exact-weight-string/>
 </jcr:root>

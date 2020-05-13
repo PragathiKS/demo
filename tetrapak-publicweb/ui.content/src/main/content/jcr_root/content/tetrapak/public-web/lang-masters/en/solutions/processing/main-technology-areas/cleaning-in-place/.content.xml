@@ -4,11 +4,14 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:12:48.904Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:58.155Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="cleaning in place"
+        jcr:title="Cleaning in Place"
         jcr:uuid="74e0e175-85d5-4f79-9d75-8cd83bc55362"
         sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
         hideContactFooterForm_x0040_Delete="true"
@@ -24,4 +27,5 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <tetra-pak-cip-unit-p/>
 </jcr:root>

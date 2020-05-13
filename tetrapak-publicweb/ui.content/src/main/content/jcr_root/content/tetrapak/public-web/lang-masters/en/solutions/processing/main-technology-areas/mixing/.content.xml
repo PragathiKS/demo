@@ -4,11 +4,14 @@
     <jcr:content
         cq:lastModified="{Date}2020-04-30T07:15:26.175Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:58.807Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
         jcr:primaryType="cq:PageContent"
-        jcr:title="mixing"
+        jcr:title="Mixing"
         jcr:uuid="40e8ebcc-bc57-4512-8001-ecc8941306b7"
         sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
         hideContactFooterForm_x0040_Delete="true"
@@ -24,4 +27,9 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"/>
         </root>
     </jcr:content>
+    <tetra-pak-high-shear-mixer/>
+    <tetra-pak-food-processor/>
+    <tetra-pak-mixer-rjci/>
+    <tetra-pak-high-shear-mixer-batch/>
+    <tetra-pak-high-shear-mixers-for-cold-emulsions/>
 </jcr:root>

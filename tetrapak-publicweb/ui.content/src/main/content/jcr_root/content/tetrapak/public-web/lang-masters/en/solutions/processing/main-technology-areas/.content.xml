@@ -5,6 +5,9 @@
         cq:allowedTemplates="/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page"
         cq:lastModified="{Date}2020-05-05T05:38:53.124Z"
         cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2020-05-11T15:36:58.155Z"
+        cq:lastReplicatedBy="sapient-bimmi"
+        cq:lastReplicationAction="Activate"
         cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
         jcr:isCheckedOut="{Boolean}true"
         jcr:mixinTypes="[mix:versionable]"
@@ -27,29 +30,29 @@
     </jcr:content>
     <blending/>
     <buffering/>
-    <carbonisation/>
+    <carbonization/>
     <separation/>
     <cleaning-in-place/>
     <dosing/>
     <evaporation/>
     <extraction/>
-    <heat--exchangers/>
-    <homogenisation/>
-    <membrane-filtration-/>
+    <heat-exchangers/>
+    <homogenization/>
+    <membrane-filtration/>
     <mixing/>
     <pasteurisation/>
     <powder-handling/>
     <selected-plant-components/>
-    <spray-drying-/>
-    <standardisation/>
-    <sugar-dissolving-/>
+    <spray-drying/>
+    <standardization/>
+    <sugar-dissolving/>
     <sugar-treatment-/>
-    <uht--treatment/>
+    <uht-treatment/>
     <block-forming/>
     <curd-making/>
-    <draining--cheddaring---mellowing/>
-    <draining--forming---mould-filling/>
-    <draining--washing---blending/>
+    <draining-cheddaring-mellowing/>
+    <draining-forming-mould-filling/>
+    <draining-washing-blending/>
     <liquid-filled-cheese/>
     <milk-reception/>
     <whey-handling/>
@@ -63,7 +66,4 @@
     <moulding/>
     <secondary-packaging/>
     <wrapping/>
-    <tetra-pak--aseptic-dosing-unit-f/>
-    <filling-machine-test/>
-    <PET/>
 </jcr:root>
