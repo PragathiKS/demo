@@ -90,13 +90,13 @@ public class PXPFeaturesModelTest {
     }
 
     /**
-     * Test model, resource and all getters of the ImageTextBanner model.
+     * Test PXP features methods.
      *
      * @throws Exception
      *             the exception
      */
     @Test
-    public void testBannerMethods() throws Exception {
+    public void testPXPFeaturesMethods() throws Exception {
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
         assertEquals("PXPFeatures", "Anchor title", model.getAnchorTitle());

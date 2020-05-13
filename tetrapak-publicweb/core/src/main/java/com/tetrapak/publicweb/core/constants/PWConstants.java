@@ -143,6 +143,11 @@ public final class PWConstants {
     /** The Constant PXP_OPENINGS_BENEFITS. */
     public static final String PXP_OPENINGS_BENEFITS = "openingbenefits";
 
+    /** The TARGET SAME TAB. */
+    public static final String SELF_TARGET = "_self";
+
+    public static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
+
     /**
      * Instantiates a new PW constants.
      */

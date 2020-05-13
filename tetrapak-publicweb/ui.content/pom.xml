@@ -63,6 +63,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <acHandling>merge_preserve</acHandling>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
                 </configuration>
             </plugin>
             <plugin>
@@ -70,6 +71,7 @@
                 <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <filterSource>${basedir}/src/main/content/META-INF/vault/filter.xml</filterSource>
                     <verbose>true</verbose>
                     <failOnError>true</failOnError>
                     <group>tetrapak-publicweb</group>
