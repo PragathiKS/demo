@@ -7,11 +7,11 @@
     </p>{{/if}}
     {{#if this.phoneNumber}}<div class="pw-find-my-office__form-group__address__office-phone-number">
         <p class='pw-find-my-office__form-group__address__office-phone-number__label'>Phone</p>
-        <p>{{this.phoneNumber}}</p>
+        <p x-ms-format-detection="none">{{this.phoneNumber}}</p>
     </div>{{/if}}
     {{#if this.fax}}<div class="pw-find-my-office__form-group__address__office-phone-number">
         <p class='pw-find-my-office__form-group__address__office-phone-number__label'>Fax</p>
-        <p>{{this.fax}}</p>
+        <p x-ms-format-detection="none">{{this.fax}}</p>
     </div>{{/if}}
     {{#if this.localSiteUrl}}<a class='pw-find-my-office__form-group__address__office-site js-localSiteUrl' data-office-name="{{this.name}}" target="_blank"
         href="{{this.localSiteUrl}}">{{this.goToLocalSiteText}}</a>{{/if}}
