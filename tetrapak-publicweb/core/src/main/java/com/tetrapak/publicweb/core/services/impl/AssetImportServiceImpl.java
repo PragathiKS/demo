@@ -40,7 +40,7 @@ public class AssetImportServiceImpl implements AssetImportService {
         @AttributeDefinition(
                 name = "Content Type Mapping",
                 description = "Content Type Mapping, add comma seperated mapping in fomrmat video/mp4=mp4")
-        String[] getContentTypeMapping() default "/content/dam/tetrapak/findMyOffice/contentFragments/countries";
+        String[] getContentTypeMapping() default "image/jpeg=jpg";
 
     }
 
