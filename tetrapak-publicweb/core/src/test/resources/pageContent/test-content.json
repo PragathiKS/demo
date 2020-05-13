@@ -1,0 +1,40 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Homepage",
+		"title": "title",
+		"jcr:description": "Description",
+		"author": "admin",
+		"hideInNav": "false",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"cq:lastReplicated": "Wed Nov 01 2017 17:09:43 GMT+0530",
+		"subtitle": "home",
+		"hideContactAnchorLink": "true",
+		"hideContactFooterForm": "true",
+		"navTitle": "Nav Title",
+		"altText": "Image Alt Text",
+		"imagePath": "/content/dam/publicweb/asset.jpg",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"linkTarget": "true",
+		"vanityDescription": "Vanity Description",
+		"ctaTexti18nKey": "Cta Text i18n Key",
+		"openInNewWindow":"true",
+		"showImage":"true",
+		"articleImagePath":"/content/dam/publicweb/1320x500-test1.png",
+		"articleImageAltI18n":"Article Image Alt I18n",
+		"linkText": [
+			"Link Text",
+			"/content/tetrapak/public-web/global/en/test"
+		],
+		"cq:tags": [
+			"we-retail:activity"
+		],
+		"cq:lastModifiedBy": "admin"
+	}
+}

@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
 
 /**
  * This is a global util class to access globally common utility methods
@@ -51,16 +50,7 @@ public final class GlobalUtil {
         return (T) bundleContext.getService(serviceReference);
     }
 
-    /**
-     * @return site improve script
-     */
-    public static String getSiteImproveScript() {
-        final SiteImproveScriptService siteImproveScriptService = getService(SiteImproveScriptService.class);
-        if (null == siteImproveScriptService) {
-            return null;
-        }
-        return siteImproveScriptService.getSiteImproveScriptUrl();
-    }
+
 
     /**
      * get scene 7 video url
