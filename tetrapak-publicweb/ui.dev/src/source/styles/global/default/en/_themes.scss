@@ -4,6 +4,13 @@ body{
     background: $color-wild-sand;
     font-weight: normal;
     font-size: $font-baseline;
+   font-style: normal;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   -ms-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+   text-size-adjust: 100%;
 }
 a {
     @include line-height($font-l,$font-baseline);
