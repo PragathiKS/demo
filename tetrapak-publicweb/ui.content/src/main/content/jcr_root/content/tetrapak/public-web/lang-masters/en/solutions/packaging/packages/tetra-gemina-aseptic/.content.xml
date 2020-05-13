@@ -48,7 +48,8 @@
                     jcr:lastModified="{Date}2020-05-04T13:45:49.058+05:30"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/pxp/pxpopenings"/>
+                    sling:resourceType="publicweb/components/content/pxp/pxpopenings"
+                    heading="Openings"/>
                 <pxpfillingmachines
                     jcr:created="{Date}2020-05-04T13:45:52.991+05:30"
                     jcr:createdBy="admin"
