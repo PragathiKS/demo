@@ -55,6 +55,7 @@
 						<failOnError>true</failOnError>
 						<failOnEmptyFilter>false</failOnEmptyFilter>
                         <failOnDependencyErrors>false</failOnDependencyErrors>
+						<allowIndexDefinitions>true</allowIndexDefinitions>
 						<embeddeds>
 							<embedded>
 								<groupId>tetrapak-publicweb</groupId>

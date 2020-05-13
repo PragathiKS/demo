@@ -17,20 +17,6 @@
                 editable="{Boolean}true">
                 <cq:responsive jcr:primaryType="nt:unstructured"/>
             </responsivegrid>
-            <banner
-                jcr:created="{Date}2020-04-21T15:21:44.506+05:30"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2020-04-21T15:21:44.506+05:30"
-                jcr:lastModifiedBy="admin"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="publicweb/components/content/banner"/>
-            <mediaLink
-                jcr:created="{Date}2020-04-21T15:21:44.506+05:30"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2020-04-21T15:21:44.506+05:30"
-                jcr:lastModifiedBy="admin"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="publicweb/components/content/mediaLink"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">
