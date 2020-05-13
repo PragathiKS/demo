@@ -77,21 +77,6 @@
                                         jcr:primaryType="nt:unstructured"
                                         showhidetargetvalue="damVideo"/>
                             </damVideoSource>
-                            <imagealttext
-                                granite:class="hide videoType-showhide-target"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <alttext
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Poster image alt text"
-                                        name="./posterImageAltText"/>
-                                </items>
-                                <granite:data
-                                    jcr:primaryType="nt:unstructured"
-                                    showhidetargetvalue="damVideo"/>
-                            </imagealttext>
                             <pwThemes
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/include"
