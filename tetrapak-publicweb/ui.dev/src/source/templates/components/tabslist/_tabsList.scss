@@ -160,7 +160,7 @@
                 vertical-align: top;
 
                 @media #{$desktop} {
-                    transform: rotate(-180deg);
+                    transform: rotate(90deg);
                 }
             }
             @media #{$desktop} {
@@ -183,6 +183,9 @@
 
             @media #{$desktop} {
                 right: 0;
+            }
+            @media #{$mobile} {
+                transform: rotate(90deg);
             }
 
             &::before {
@@ -260,7 +263,7 @@
                 color: $color-tundora;
 
                 @media #{$mobile} {
-                    transform: rotate(-180deg);
+                    transform: rotate(90deg);
                 }
             }
         }
