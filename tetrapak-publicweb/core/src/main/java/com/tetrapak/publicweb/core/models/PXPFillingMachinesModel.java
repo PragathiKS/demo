@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -44,6 +45,7 @@ public class PXPFillingMachinesModel {
 
     /** The pw theme. */
     @ValueMapValue
+    @Default(values = "grayscale-white")
     private String pwTheme;
 
     /** The anchor id. */
