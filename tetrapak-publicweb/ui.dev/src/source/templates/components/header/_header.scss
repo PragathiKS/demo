@@ -130,7 +130,6 @@
         .icon-ver-line {
             @include margin-left($margin-md);
             border: 1px solid $color-mercury;
-            transform: rotate(90deg);
         }
     }
 
