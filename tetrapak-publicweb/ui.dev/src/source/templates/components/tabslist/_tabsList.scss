@@ -160,7 +160,7 @@
                 vertical-align: top;
 
                 @media #{$desktop} {
-                    transform: rotate(90deg);
+                    transform: rotate(180deg);
                 }
             }
             @media #{$desktop} {
@@ -252,6 +252,12 @@
             @media #{$mobile} {
                 border-color: $color-mercury;
             }
+
+            .icon-Arrow_Right_pw {
+                @media #{$mobile} {
+                    transform: rotate(90deg);
+                }
+            }
         }
 
         &:not(.collapsed) {
@@ -263,7 +269,7 @@
                 color: $color-tundora;
 
                 @media #{$mobile} {
-                    transform: rotate(90deg);
+                    transform: rotate(270deg);
                 }
             }
         }
