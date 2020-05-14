@@ -50,10 +50,10 @@
         <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" class="d-flex justify-content-between js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkText == 'Solutions' ? 'js-click-menu-link' : ''}" href="${megaMenuItem.linkPath}">
           <span>
             ${megaMenuItem.linkText}
-            <sly data-sly-test = "${megaMenuItem.linkText == 'Solutions'}">
+          </span>
+          <sly data-sly-test = "${megaMenuItem.linkText == 'Solutions'}">
             <i class="icon-Chevron_Right"></i>
           </sly>
-         </span>
         </a>
         <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true}" />
 
