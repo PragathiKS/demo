@@ -340,6 +340,19 @@
         @media #{$desktop} {
             @include margin-bottom($margin-l);
         }
+        ul {
+            @include padding-top($padding-sm);
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-congress-blue;
+                    content: '\2022';
+                }
+            }
+        }
+
     }
 
     // &__event-detail-description-link {
