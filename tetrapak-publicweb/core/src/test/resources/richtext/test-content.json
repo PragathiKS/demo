@@ -41,6 +41,7 @@
           "pwTheme": "grayscale-white",
           "text": "<p>test content</p>\r\n",
           "pwPadding": "Regular Padding",
+          "topSpacing": "topmargins",
           "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
           "sling:resourceType": "publicweb/components/content/richtext",
           "textIsRich": "true"
