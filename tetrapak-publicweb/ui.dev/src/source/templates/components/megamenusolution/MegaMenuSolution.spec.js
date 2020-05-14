@@ -1,6 +1,7 @@
 import MegaMenuSolution from './MegaMenuSolution';
 import $ from 'jquery';
 import megamenuTemplate from '../../../test-templates-hbs/megamenusolution.hbs';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('MegaMenuSolution', function () {
   before(function () {
