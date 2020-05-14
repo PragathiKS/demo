@@ -27,7 +27,7 @@
                 href="${child.linkPath}"
                 class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
                 title="${child.linkText}"
-                target="${child.targetBlank}"
+                target="${child.targetBlank != null ? child.targetBlank : child.linkTarget}"
                 data-link-section="Teaser${buttonLinkType}${buttonDownloadCheck}"
                 data-link-name="${child.linkText}"
                 data-link-title="${child.title || data.heading}"
