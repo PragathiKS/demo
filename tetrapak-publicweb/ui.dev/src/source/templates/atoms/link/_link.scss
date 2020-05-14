@@ -2,5 +2,7 @@
     &--link {
         @include margin-left($margin-xs);
         vertical-align: middle;
+        height: 14px;
+        width: 14px;
     }
 }

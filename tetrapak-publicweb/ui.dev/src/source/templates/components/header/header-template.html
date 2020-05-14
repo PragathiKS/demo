@@ -23,7 +23,7 @@
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
 
             <li class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link hover-menu-link' : ''}">
-              <a class="js-tp-pw-header-logo-digital-data" data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
+              <a class="js-tp-pw-header-logo-digital-data js-tp-pw-header-item" data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
               <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel}" />
             </li>
           </ul>
@@ -47,7 +47,7 @@
     <!-- Links -->
     <ul class="tp-pw-mobile-navigation__primary" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
       <li class="">
-        <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" class="d-flex justify-content-between js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkText == 'Solutions' ? 'js-click-menu-link' : ''}" href="${megaMenuItem.linkPath}">
+        <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" class="d-flex justify-content-between js-tp-pw-header-item js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkText == 'Solutions' ? 'js-click-menu-link' : ''}" href="${megaMenuItem.linkPath}">
           <span>
             ${megaMenuItem.linkText}
           </span>
