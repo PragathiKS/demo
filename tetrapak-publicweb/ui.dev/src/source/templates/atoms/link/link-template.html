@@ -1,7 +1,7 @@
 <sly data-sly-template.link_template="${@ linkText,linkURL, anchorClass, iconClass, parentLink}">
-  <a data-link-section='Related links' data-link-name='${parentLink}:${linkText}'
-    href="${linkURL}" class="${anchorClass} js-navigation-Link" title="${linkText}">
+  <a data-link-section='Related links' data-link-name='${parentLink}:${linkText}' href="${linkURL}"
+    class="${anchorClass} js-navigation-Link" title="${linkText}">
     ${linkText}
-    <i class="icon icon-Circle_Arrow_Right icon--link ${iconClass}"></i>
+    <i class="icon icon--link ${iconClass}"></i>
   </a>
 </sly>

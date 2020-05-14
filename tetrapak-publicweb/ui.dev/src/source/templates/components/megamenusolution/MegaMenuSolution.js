@@ -42,6 +42,12 @@ class MegaMenuSolution {
       linkSection
     };
 
+    if ($this.find('i.icon').length) {
+      trackingObj['linkType'] = $this.find('i.icon').hasClass('icon-Union')
+        ? 'external'
+        : 'internal';
+    }
+
     const eventObj = {
       eventType: 'navigation click',
       event: 'Navigation'
