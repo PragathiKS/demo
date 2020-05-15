@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 const myDomain = 'tetrapak.com';
-const componentList = ['.medialink'];
+const componentList = ['.medialink','.pw-megamenu'];
 
 const isExternal = function (url) {
   if (url.includes('http://') || url.includes('https://')) {

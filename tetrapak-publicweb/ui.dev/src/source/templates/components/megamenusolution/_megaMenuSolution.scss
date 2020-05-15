@@ -191,6 +191,7 @@
                     @include margin-left(0);
                     @include padding(0);
                     @include font-size($font-sm);
+                    @include margin-right(0);
                     border-bottom: 0;
                 }
             }

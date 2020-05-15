@@ -10,7 +10,7 @@
       <div class="row">
         <div
           class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}"
-          id="accordion">
+          id="accordion_${resource.name}">
           <sly data-sly-list.tab="${data.tabs}">
             <sly data-sly-test="${tab.title}">
               <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}" />
@@ -35,7 +35,7 @@
               <sly data-sly-test.videoPathPW="${tab.damVideoPath}"></sly>
               <div
                 class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}"
-                id="tab_${resource.name}_${tabList.index}" data-parent="#accordion">
+                id="tab_${resource.name}_${tabList.index}" data-parent="#accordion_${resource.name}">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}"
                   data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
                   <!--image video component  -->

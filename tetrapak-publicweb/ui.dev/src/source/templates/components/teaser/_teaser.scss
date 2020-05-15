@@ -3,7 +3,7 @@
     @include margin($margin-md);
 
     @media #{$desktop} {
-         @include padding($padding-xxxl $padding-xxxl $padding-zero $padding-xxxl);
+        @include padding($padding-xxxl $padding-xxxl $padding-zero $padding-xxxl);
         @include margin($margin-xxxl);
     }
 
@@ -16,7 +16,7 @@
                 @include font-size($font-xl);
                 line-height: 40px;
             }
-         }
+        }
     }
 
     &__details {
@@ -84,5 +84,4 @@
             @include padding-bottom($padding-l);
         }
     }
-
 }
