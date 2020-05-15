@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
@@ -62,8 +64,13 @@ public class FooterModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[] { "getLogoLink", "getLogoLinkTarget", "getLogoAlt", "getGoToTopLabel",
-                "getFooterLinks", "getSocialLinks" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("/content/tetrapak/public-web/lang-masters.html", model.getLogoLink());
+        assertEquals("_blank", model.getLogoLinkTarget());
+        assertEquals("Logo ", model.getLogoAlt());
+        assertEquals("Go To Top", model.getGoToTopLabel());
+        assertEquals("Link text 2", model.getFooterLinks().get(1).getLinkLabel());
+        assertEquals("/content/tetrapak/public-web.html", model.getFooterLinks().get(1).getLinkPath());
+        assertEquals("Linkedin", model.getSocialLinks().get(0).getSocialMedia());
+        assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
     }
 }

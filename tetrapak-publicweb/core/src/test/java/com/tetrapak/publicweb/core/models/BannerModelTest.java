@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -55,9 +57,23 @@ public class BannerModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[] { "getBannerType", "getSubtitle", "getTitle", "getText", "getLinkLabel",
-                "getLinkPath", "getLinkTarget", "getPwLinkTheme", "getFileReference", "getAlt", "getPwDisplay",
-                "getPwTheme", "getPwButtonTheme", "getAnchorId", "getAnchorTitle","getImageCrop","getAssetName" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("textImage", model.getBannerType());
+        assertEquals("Subtitle", model.getSubtitle());
+        assertEquals("Title", model.getTitle());
+        assertEquals("Lorem Ipsum is simply dummy text of the printing and typesetting industry.", model.getText());
+        assertEquals("Link Label", model.getLinkLabel());
+        assertEquals("/content/tetrapak/public-web/global/en.html", model.getLinkPath());
+        assertEquals("_blank", model.getLinkTarget());
+        assertEquals("download", model.getPwLinkTheme());
+        assertEquals("/content/dam/tetrapak/publicweb/image.png", model.getFileReference());
+        assertEquals("Image", model.getAlt());
+        assertEquals("display-row-reversed", model.getPwDisplay());
+        assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("link", model.getPwButtonTheme());
+        assertEquals("test", model.getAnchorId());
+        assertEquals("title", model.getAnchorTitle());
+        assertEquals("103,146,629,672", model.getImageCrop());
+        assertEquals("en.html", model.getAssetName());
+
     }
 }

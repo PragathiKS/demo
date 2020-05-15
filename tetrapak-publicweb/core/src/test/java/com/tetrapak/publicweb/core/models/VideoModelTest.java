@@ -39,7 +39,8 @@ public class VideoModelTest {
     /**
      * Sets the up.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -60,11 +61,15 @@ public class VideoModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        final String[] methods = new String[]{"getTitle", "getDescription", "getLinkTexti18n", "getLinkURL",
-                "getTargetBlank", "getVideoSource", "getYoutubeVideoID", "getYoutubeEmbedURL", "getDamVideoPath",
-                "getThumbnailPath", "getPosterImageAltText", "getTextAlignment", "getPwTheme", "getPwButtonTheme",
-                "getPwPadding", "getPwDisplay", "getAnchorId", "getAnchorTitle" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("vid123", model.getAnchorId());
+        assertEquals("video", model.getAnchorTitle());
+        assertEquals("youtube", model.getVideoSource());
+        assertEquals("qwe123", model.getYoutubeVideoID());
+        assertEquals("/content/dam/publicweb/Video.mp4", model.getDamVideoPath());
+        assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailPath());
+        assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("https://www.youtube.com/embed/qwe123?enablejsapi=1", model.getYoutubeEmbedURL());
+        assertEquals("Poster image alt text", model.getPosterImageAltText());
     }
 
     @Test
