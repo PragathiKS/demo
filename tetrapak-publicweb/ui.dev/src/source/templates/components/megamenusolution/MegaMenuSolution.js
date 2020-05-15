@@ -70,7 +70,6 @@ class MegaMenuSolution {
       eventObj,
       linkClickObject
     );
-    return false;
   };
 
   handleOpenEvent = e => {
