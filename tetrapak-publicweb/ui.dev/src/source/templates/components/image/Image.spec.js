@@ -1,6 +1,7 @@
 import Image from './Image';
 import $ from 'jquery';
 import imageTemplate from '../../../test-templates-hbs/image.hbs';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Image', function () {
   before(function () {

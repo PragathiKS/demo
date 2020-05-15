@@ -1,5 +1,6 @@
 import RichText from './RichText';
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import richtextTemplate from '../../../test-templates-hbs/richtext.hbs';
 
 describe('RichText', function () {
