@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/publicweb" mode="update"/>
+    <filter root="/conf/publicweb"/>
     <filter root="/oak:index/productIdPropertyIndex" mode="merge"/>
     <filter root="/content/tetrapak/public-web" mode="merge"/>
 </workspaceFilter>
