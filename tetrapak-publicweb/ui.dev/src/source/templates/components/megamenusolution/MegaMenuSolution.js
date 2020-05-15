@@ -34,18 +34,27 @@ class MegaMenuSolution {
   trackAnalytics = e => {
     const $target = $(e.target);
     const $this = $target.closest('.js-navigation-Link');
-    const linkSection = $this.data('link-section');
-    const linkName = $this.data('link-name');
+    const navigationSection = $this.data('link-section');
+    const navigationLinkName = $this.data('link-name');
+
+    let linkClickObject = null;
 
     const trackingObj = {
-      linkName,
-      linkSection
+      navigationLinkName,
+      navigationSection
     };
 
     if ($this.find('i.icon').length) {
-      trackingObj['linkType'] = $this.find('i.icon').hasClass('icon-Union')
+      const linkType = $this.find('i.icon').hasClass('icon-Union')
         ? 'external'
         : 'internal';
+
+      linkClickObject = {
+        linkType,
+        linkSection: '',
+        linkParentTitle: '',
+        linkName: ''
+      };
     }
 
     const eventObj = {
@@ -58,8 +67,10 @@ class MegaMenuSolution {
       'navigationClick',
       undefined,
       false,
-      eventObj
+      eventObj,
+      linkClickObject
     );
+    return false;
   };
 
   handleOpenEvent = e => {
