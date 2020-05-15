@@ -59,24 +59,26 @@ public class PXPFeatureOptionsModel {
     public List<TabModel> setTabList(List<FeatureOption> featureOptions) {
         List<TabModel> tabs = new ArrayList<>();
         for (FeatureOption feature : featureOptions) {
-            TabModel tab = new TabModel();
-            tab.setTitle(feature.getHeader());
-            tab.setSubTitle(feature.getName());
-            tab.setDescription(feature.getBody());
-            if (StringUtils.isNotBlank(feature.getImage())) {
-                tab.setFileReference(feature.getImage());
-                tab.setAlt(feature.getName());
-                tab.setTabType("imageText");
-            } else if (Objects.nonNull(feature.getVideo())) {
-                String damVideoPath = feature.getVideo().getSrc();
-                damVideoPath = setDynamicMediaVideoPath(damVideoPath);
-                tab.setDamVideoPath(damVideoPath);
-                tab.setThumbnailPath(feature.getVideo().getPoster());
-                tab.setThumbnailAltText(feature.getName());
-                tab.setTabType("videoText");
-                tab.setVideoSource("damVideo");
+            if (Objects.nonNull(feature.getHeader())) {
+                TabModel tab = new TabModel();
+                tab.setTitle(feature.getHeader());
+                tab.setSubTitle(feature.getName());
+                tab.setDescription(feature.getBody());
+                if (StringUtils.isNotBlank(feature.getImage())) {
+                    tab.setFileReference(feature.getImage());
+                    tab.setAlt(feature.getName());
+                    tab.setTabType("imageText");
+                } else if (Objects.nonNull(feature.getVideo())) {
+                    String damVideoPath = feature.getVideo().getSrc();
+                    damVideoPath = setDynamicMediaVideoPath(damVideoPath);
+                    tab.setDamVideoPath(damVideoPath);
+                    tab.setThumbnailPath(feature.getVideo().getPoster());
+                    tab.setThumbnailAltText(feature.getName());
+                    tab.setTabType("videoText");
+                    tab.setVideoSource("damVideo");
+                }
+                tabs.add(tab);
             }
-            tabs.add(tab);
         }
         return tabs;
     }
