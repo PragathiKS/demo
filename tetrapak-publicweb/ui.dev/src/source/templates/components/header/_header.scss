@@ -213,7 +213,7 @@
     z-index: $zindex-p;
     overflow-y: auto;
     overflow-x: hidden;
-
+    background-color: $color-white;
     @media #{$desktop} {
         display: none;
     }

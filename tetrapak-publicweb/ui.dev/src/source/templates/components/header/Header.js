@@ -86,6 +86,7 @@ class Header {
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close');
       this.toggleFlag = true;
+      $('body').css('overflow','hidden');
     }else {
       this.cache.$mobileMenu.fadeOut(300);
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
@@ -97,6 +98,7 @@ class Header {
       $bottomTeaserH.removeClass('active').addClass('hide');
       $megaMenuMobile.removeClass('is-open');
       $megaMenuMobile.addClass('is-close');
+      $('body').css('overflow','auto');
     }
   }
 
