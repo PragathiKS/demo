@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
@@ -67,8 +69,10 @@ public class BreadcrumbModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[] { "getHomeLabel", "getHomePagePath", "getBreadcrumbSubpages" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("Home", model.getHomeLabel());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/home.html", model.getHomePagePath());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/solution",
+                model.getBreadcrumbSubpages().get("English"));
     }
 
 }

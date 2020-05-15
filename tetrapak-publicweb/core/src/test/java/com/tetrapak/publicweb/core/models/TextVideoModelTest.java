@@ -78,11 +78,24 @@ public class TextVideoModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() {
-        final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getSubTitle", "getTitle",
-                "getDescription", "getLinkTexti18n", "getLinkURL", "getVideoSource",
-                "getYoutubeVideoID", "getDamVideoPath", "getThumbnailPath", "getThumbnailAltText",
-                "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwPadding", "getPwDisplay" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("anchor123", model.getAnchorId());
+        assertEquals("Anchor title", model.getAnchorTitle());
+        assertEquals("Subtitle", model.getSubTitle());
+        assertEquals("text video", model.getTitle());
+        assertEquals("description for the text video to see how it behaves", model.getDescription());
+        assertEquals("Test", model.getLinkTexti18n());
+        assertEquals("/content/dam/publicweb/Petrol.pdf", model.getLinkURL());
+        assertEquals("youtube", model.getVideoSource());
+        assertEquals("1X7zhVCIUtg", model.getYoutubeVideoID());
+        assertEquals("/content/dam/publicweb/Video.mp4", model.getDamVideoPath());
+        assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailPath());
+        assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailAltText());
+        assertEquals("secondary", model.getPwButtonTheme());
+        assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("download", model.getPwLinkTheme());
+        assertEquals("regular", model.getPwPadding());
+        assertEquals("display-row", model.getPwDisplay());
+        
     }
 
     @Test

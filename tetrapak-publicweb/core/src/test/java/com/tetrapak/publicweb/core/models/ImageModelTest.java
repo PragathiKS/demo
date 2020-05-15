@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
+
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,8 +56,11 @@ public class ImageModelTest {
      */
     @Test
     public void testLoadAndGetters() throws Exception {
-        String[] methods = new String[]{"getFileReference", "getAlt", "getLinkURL",
-                "getPwPadding", "getAnchorId", "getAnchorTitle"};
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("/content/dam/tetrapak/publicweb/TetraPakLogo.png", model.getFileReference());
+        assertEquals("alt", model.getAlt());
+        assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getLinkURL());
+        assertEquals("regular", model.getPwPadding());
+        assertEquals("imageid", model.getAnchorId());
+        assertEquals("image", model.getAnchorTitle());
     }
 }

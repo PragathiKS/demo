@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -51,8 +53,12 @@ public class LandingPageModelTest {
 	 */
 	@Test
 	public void simpleLoadAndGettersTest() throws Exception {
-		String[] methods = new String[] { "getTitle", "getVanityDescription", "getCtaTexti18nKey", "isOpenInNewWindow",
-				"getShowImage", "getArticleImagePath", "getArticleImageAltI18n" };
-		Util.testLoadAndGetters(methods, model, resource);
+	    assertEquals("title", model.getTitle());
+	    assertEquals("Vanity Description", model.getVanityDescription());
+	    assertEquals("Cta Text i18n Key", model.getCtaTexti18nKey());
+	    assertEquals(true, model.isOpenInNewWindow());
+	    assertEquals(true, model.getShowImage());
+	    assertEquals("/content/dam/publicweb/1320x500-test1.png", model.getArticleImagePath());
+	    assertEquals("Article Image Alt I18n", model.getArticleImageAltI18n());
 	}
 }

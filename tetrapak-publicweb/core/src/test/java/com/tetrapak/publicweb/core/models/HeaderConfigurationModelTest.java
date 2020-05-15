@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -54,8 +56,15 @@ public class HeaderConfigurationModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[] { "getLogoLink", "getLogoLinkTarget", "getLogoAlt", "getLoginLink",
-                "getLoginLabel", "getContactLink", "getContactText", "getContactLinkTarget", "getSolutionPage" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("/content/tetrapak/public-web/global/en.html", model.getLogoLink());
+        assertEquals("_blank", model.getLogoLinkTarget());
+        assertEquals("Logo ", model.getLogoAlt());
+        assertEquals("http://www.google.com", model.getLoginLink());
+        assertEquals("Login Label", model.getLoginLabel());
+        assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactLink());
+        assertEquals("Contact Us Label", model.getContactText());
+        assertEquals("_blank", model.getContactLinkTarget());
+        assertEquals("/content/tetrapak/public-web/global/en/solutions.html", model.getSolutionPage());
+        assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
     }
 }
