@@ -8,7 +8,8 @@ export const trackAnalytics = (
   trackingKey,
   objectKey,
   transformCase = true,
-  eventObject = undefined
+  eventObject = undefined,
+  linkClickObject = undefined
 ) => {
   window.digitalData = window.digitalData || {};
 
@@ -26,9 +27,11 @@ export const trackAnalytics = (
       if (eventObject) {
         window.digitalData['event'] = eventObject;
       }
+      if (linkClickObject) {
+        window.digitalData['linkClick'] = linkClickObject;
+      }
       window.digitalData[objectName] = objectData;
     }
-
     if (window._satellite) {
       window._satellite.track(trackingKey);
     }

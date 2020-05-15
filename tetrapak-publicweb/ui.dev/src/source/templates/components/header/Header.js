@@ -103,10 +103,10 @@ class Header {
   trackNavigationAnalytics = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-item');
-    const linkName = $this.data('link-name');
+    const navigationLinkName = $this.data('link-name');
 
     const trackingObj = {
-      linkName
+      navigationLinkName
     };
 
     const eventObj = {
