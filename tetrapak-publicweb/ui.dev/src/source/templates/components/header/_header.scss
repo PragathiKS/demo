@@ -214,6 +214,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     background-color: $color-white;
+    min-height: 100vh;
     @media #{$desktop} {
         display: none;
     }
