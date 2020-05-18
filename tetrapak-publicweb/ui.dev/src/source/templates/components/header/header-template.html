@@ -24,7 +24,7 @@
 
             <li class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link hover-menu-link' : ''}">
               <a class="js-tp-pw-header-logo-digital-data js-tp-pw-header-item" data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
-              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel}" />
+              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText }" />
             </li>
           </ul>
         </div>
