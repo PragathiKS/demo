@@ -23,7 +23,7 @@ class Header {
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
     this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
     this.cache.$bottomTeaserH = this.root.find('.js-bottom-teaser-list');
-    this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
+    this.cache.$headerItem = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$body = $('body');
 
@@ -36,6 +36,8 @@ class Header {
     $(window).on('resize', this.hideMobileMenuOnResize);
     this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
     this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
+    this.cache.$headerItem.on('mouseover', this.handleHeaderItemMouseOver);
+    this.cache.$headerItem.on('mouseout', this.handleHeaderItemMouseOut);
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
@@ -49,6 +51,24 @@ class Header {
     $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
     dynMedia.processImages();
+  }
+
+  handleHeaderItemMouseOver = (e) => {
+    const {$parentNavElement, $body } = this.cache;
+    $parentNavElement.addClass('pw-position-static');
+    $body.addClass('pw-position-relative');
+    const $target = $(e.target);
+    const $this = $target.closest('.js-main-menu-link-hover');
+    $this.children('.pw-navigation').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
+  }
+
+  handleHeaderItemMouseOut = (e) => {
+    const {$parentNavElement, $body } = this.cache;
+    const $target = $(e.target);
+    const $this = $target.closest('.js-main-menu-link-hover');
+    $parentNavElement.removeClass('pw-position-static');
+    $body.removeClass('pw-position-relative');
+    $this.children('.pw-navigation').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
   }
 
   handleMouseOut = () => {

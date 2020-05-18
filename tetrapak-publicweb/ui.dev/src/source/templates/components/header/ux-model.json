@@ -3,12 +3,12 @@
   "logoAlt": "Logo",
   "logoLinkTarget": "_blank",
   "logoImagePath": "/content/dam/tetrapak/publicweb/en/global/header/TetraPakLogo.png",
-  "loginLabel":"My tetra pak",
-  "loginLink":"http://mytetrapak.com",
-  "contactText":"Contact",
-  "contactLink":"/content/tetrapak/publicweb/language-masters/en",
-  "contactLinkTarget":"_blank",
-  "solutionPage":"/content/tetrapak/public-web/global/en/solutions",
+  "loginLabel": "My tetra pak",
+  "loginLink": "http://mytetrapak.com",
+  "contactText": "Contact",
+  "contactLink": "/content/tetrapak/publicweb/language-masters/en",
+  "contactLinkTarget": "_blank",
+  "solutionPage": "/content/tetrapak/public-web/global/en/solutions",
   "megaMenuLinksList": [
     {
       "linkText": "Solutions",
@@ -16,18 +16,147 @@
     },
     {
       "linkText": "Insights",
-      "linkPath": "/content/tetrapak/public-web/global/en/insights"
+      "linkPath": "/content/tetrapak/public-web/global/en/insights",
+      "navigationConfigurationModel": {
+        "sectionHomePageTitle": "",
+        "sectionHomePagePath": "",
+        "sectionRaws": "6",
+        "sectionMenuMap": [
+          {
+            "linkText": "Processing by application",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false,
+            "subSectionMenuMap": {
+              "pseudoCategoriesSection": [
+                {
+                  "title": "Ice Creams",
+                  "subsections": [
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    },
+                    {
+                      "linkText": "Beverages",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "external": false
+                    }
+                  ]
+                }
+              ],
+              "subSections": [
+                {
+                  "linkText": "Dairy",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                  "external": false
+                },
+                {
+                  "linkText": "Beverages",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                  "external": false
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "linkText": "Sustainability",
-      "linkPath": "/content/tetrapak/public-web/global/en/sustainability"
+      "linkPath": "/content/tetrapak/public-web/global/en/sustainability",
+      "navigationConfigurationModel": {
+        "sectionHomePageTitle": "",
+        "sectionHomePagePath": "",
+        "sectionRaws": "6",
+        "sectionMenuMap": [
+          {
+            "linkText": "Processing by application",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false,
+            "subSectionMenuMap": {
+              "pseudoCategoriesSection": [
+                {
+                  "title": "Ice Creams",
+                  "subsections": [
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    },
+                    {
+                      "linkText": "Beverages",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "external": false
+                    }
+                  ]
+                }
+              ],
+              "subSections": [
+                {
+                  "linkText": "Dairy",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                  "external": false
+                },
+                {
+                  "linkText": "Beverages",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                  "external": false
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "linkText": "About Tetra Pak",
-      "linkPath": "/content/tetrapak/public-web/global/en/about-us"
+      "linkPath": "/content/tetrapak/public-web/global/en/about-us",
+      "navigationConfigurationModel": {
+        "sectionHomePageTitle": "",
+        "sectionHomePagePath": "",
+        "sectionRaws": "6",
+        "sectionMenuMap": [
+          {
+            "linkText": "Processing by application",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false,
+            "subSectionMenuMap": {
+              "pseudoCategoriesSection": [
+                {
+                  "title": "Ice Creams",
+                  "subsections": [
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    },
+                    {
+                      "linkText": "Beverages",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "external": false
+                    }
+                  ]
+                }
+              ],
+              "subSections": [
+                {
+                  "linkText": "Dairy",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                  "external": false
+                },
+                {
+                  "linkText": "Beverages",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                  "external": false
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
   ],
-  "megaMenuConfigurationModel" : {
+  "megaMenuConfigurationModel": {
     "topSectionSubtitle": "Tetra Pak end-to-end solutions",
     "topSectionUrl": "/content/dam/publicweb/solution.html",
     "bottomSectionSubtitle": "Food categories",
@@ -153,6 +282,4 @@
       }
     ]
   }
-
-
 }

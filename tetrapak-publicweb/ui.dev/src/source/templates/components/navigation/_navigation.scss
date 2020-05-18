@@ -1,0 +1,9 @@
+.pw-navigation {
+    @media #{$desktop} {
+        display: none;
+        position: absolute;
+        &.show {
+            display: block;
+        }
+    }
+}
