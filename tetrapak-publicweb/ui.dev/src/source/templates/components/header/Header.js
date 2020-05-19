@@ -4,6 +4,7 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
+import { updateQueryString } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -48,17 +49,6 @@ class Header {
     $parentNavElement.addClass('pw-position-static');
     $body.addClass('pw-position-relative');
 
-  }
-
-  updateQueryString=(uri, key, value) => {
-    var re = new RegExp('([?|&])' + key + '=.*?(&|$)', 'i');
-    const separator = uri.indexOf('?') !== -1 ? '&' : '?';
-    if (uri.match(re)) {
-      return uri.replace(re, `$1${  key  }=${  value  }$2`);
-    }
-    else {
-      return `${uri + separator + key  }=${  value}`;
-    }
   }
 
   handleMouseOver = () => {
@@ -140,10 +130,11 @@ class Header {
   }
 
   handleMainNavClick =(e) => {
+    event.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-item');
     const linkName = $this.data('link-name');
-    const updatedUrl = this.updateQueryString($this.attr('href'),'header',linkName);
+    const updatedUrl = updateQueryString($this.attr('href'),'header',linkName);
     if(updatedUrl){
       window.open(updatedUrl, '_self');
     }
@@ -153,7 +144,7 @@ class Header {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-item');
     const navigationLinkName = $this.data('link-name');
-    
+
     const trackingObj = {
       navigationLinkName
     };

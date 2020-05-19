@@ -1,5 +1,6 @@
 /* eslint-disable */
 import $ from 'jquery';
+import { updateQueryString } from '../../../scripts/common/common';
 
 class SectionMenu {
   constructor({ el }) {
@@ -15,29 +16,42 @@ class SectionMenu {
     $sectionMenuHeaderItem.on('mouseover', this.handleHeaderItemMouseOver);
     $sectionMenuHeaderItem.on('mouseout', this.handleHeaderItemMouseOut);
     $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
+    $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
   }
 
-  updateQueryString=(uri, key, value) => {
-    var re = new RegExp('([?|&])' + key + '=.*?(&|$)', 'i');
-    const separator = uri.indexOf('?') !== -1 ? '&' : '?';
-    if (uri.match(re)) {
-      return uri.replace(re, `$1${  key  }=${  value  }$2`);
-    }
-    else {
-      return `${uri + separator + key  }=${  value}`;
-    }
+  getMainMenuItem = ($target)=>{
+    const $mainMenuLink = $target.closest('.js-main-menu-link-hover');
+    const $mainMenuItem = $mainMenuLink.children('a');
+    return $mainMenuItem.data('link-name');
+  }
+
+  getL2MenuItem = ($target)=>{
+    const $l2MenuLink = $target.closest('.js-section-menu-navigation-Link');
+    const $l2MenuItem = $l2MenuLink.children('a');
+    return $l2MenuItem.data('link-name');
   }
 
   handleSectionMenuClick =(e)=>{
+    e.preventDefault();
     const $target = $(e.target);
-    const $parentLink = $target.closest('.js-main-menu-link-hover');
-    const $mainHeaderAnchor = $parentLink.children('a');
     const $this = $target.closest('.js-section-menu-item-link');
-    const mainMenuLinkName = $mainHeaderAnchor.data('link-name');
     const linkName = $this.data('link-name');
-    const updatedUrl = this.updateQueryString($this.attr('href'),'header',mainMenuLinkName);
-     finalUrl = this.updateQueryString(updatedUrl,'header',linkName);
-    if(finalUrl){
+    const updatedUrl = updateQueryString($this.attr('href'),'header',this.getMainMenuItem($target));
+    const finalUrl = updateQueryString(updatedUrl,'l2',linkName);
+     if(finalUrl){
+      window.open(finalUrl, '_self');
+    }
+  }
+
+  handleSubSectionMenuClick =(e)=>{
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-sub-menu-navigation-link-item');
+    const linkName = $this.data('link-name');
+    const urlWithL1 = updateQueryString($this.attr('href'),'header',this.getMainMenuItem($target));
+    const urlWithL2 = updateQueryString(urlWithL1,'l2',this.getL2MenuItem($target));
+    const finalUrl = updateQueryString(urlWithL2,'l3',linkName);
+     if(finalUrl){
       window.open(finalUrl, '_self');
     }
   }
