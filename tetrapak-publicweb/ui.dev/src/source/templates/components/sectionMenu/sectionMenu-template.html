@@ -1,0 +1,24 @@
+<sly data-sly-template.sectionMenu_template="${@ data, linkText,linkURL, anchorClass, iconClass, parentLink}">
+  <div data-module="SectionMenu">
+    <div class="js-section-menu-navigation-Link">
+      <a data-link-name='${parentLink}:${linkText}' href="${linkURL}" class="${anchorClass}" title="${linkText}">
+        ${linkText}
+        <sly data-sly-test="${data.external}">
+          <i class="icon icon--link ${iconClass}"></i>
+        </sly>
+        <sly data-sly-test="${data.subSectionMenuMap}">
+          <i class="icon with-arrow icon--link ${iconClass}"></i>
+        </sly>
+        <sly data-sly-test="${!data.subSectionMenuMap && !data.external}">
+          <i class="icon without-arrow icon--link ${iconClass}"></i>
+        </sly>
+      </a>
+      <sly data-sly-test="${data.subSectionMenuMap}">
+        <sly
+          data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
+          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenuMap}">
+        </sly>
+      </sly>
+    </div>
+  </div>
+</sly>

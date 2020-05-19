@@ -2,8 +2,18 @@
     @media #{$desktop} {
         display: none;
         position: absolute;
+        width: 100%;
+        left: 0;
+        background: $color-white;
         &.show {
             display: block;
+        }
+        hr {
+            @include margin-top($padding-l);
+            @include margin-bottom($padding-l);
+        }
+        &__container {
+            @include padding-bottom($padding-l);
         }
     }
 }

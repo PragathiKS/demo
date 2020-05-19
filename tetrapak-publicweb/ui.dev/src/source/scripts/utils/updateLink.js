@@ -1,10 +1,10 @@
 import $ from 'jquery';
 
 const myDomain = 'tetrapak.com';
-const componentList = ['.medialink','.pw-megamenu'];
+const componentList = ['.medialink','.pw-megamenu','.pw-navigation'];
 
 const isExternal = function (url) {
-  if (url.includes('http://') || url.includes('https://')) {
+  if (url && url.includes('http://') ||  url && url.includes('https://')) {
     if (url.includes(myDomain)) {
       return false;
     } else {
@@ -18,10 +18,10 @@ const isExternal = function (url) {
 const isDownloable = function (url) {
   const fileList = ['.pdf', '.xls', '.xlsx', '.doc', '.docx', '.ppt', '.pttx', '.jpeg', '.png', '.jpg', '.svg'] ;
   let flag = false ;
-  const endPart = url.split('/').pop() ;
+  const endPart = url && url.split('/').pop() ;
 
   for (let i = 0; i < fileList.length; i++) {
-    if (endPart.includes(fileList[i])) {
+    if (endPart && endPart.includes(fileList[i])) {
       flag = true ;
     }
   }
@@ -40,6 +40,12 @@ export default  () => {
       } else if (isExternal(thisHref)) {
         $(iconEl).addClass('icon-Union');
         $(this).attr('target','_blank');
+      } else if($(iconEl).hasClass('with-arrow')){
+        $(iconEl).addClass('icon-Chevron_Down');
+        $(this).attr('target','_self');
+      }else if($(iconEl).hasClass('without-arrow')){
+        $(iconEl).addClass('');
+        $(this).attr('target','_self');
       } else {
         $(iconEl).addClass('icon-Circle_Arrow_Right_pw');
         $(this).attr('target','_self');

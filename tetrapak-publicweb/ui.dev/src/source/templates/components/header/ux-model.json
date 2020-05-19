@@ -18,12 +18,12 @@
       "linkText": "Insights",
       "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
-        "sectionHomePageTitle": "",
+        "sectionHomePageTitle": "Insight overview",
         "sectionHomePagePath": "",
         "sectionRaws": "6",
         "sectionMenuMap": [
           {
-            "linkText": "Processing by application",
+            "linkText": "Insight Processing",
             "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenuMap": {
@@ -57,20 +57,30 @@
                 }
               ]
             }
+          },
+          {
+            "linkText": "Insight equipment",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false
+          },
+          {
+            "linkText": "Insight external",
+            "linkPath": "https://www.google.com",
+            "external": true
           }
         ]
       }
     },
     {
       "linkText": "Sustainability",
-      "linkPath": "/content/tetrapak/public-web/global/en/sustainability",
+      "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
-        "sectionHomePageTitle": "",
+        "sectionHomePageTitle": "Sustainability overview",
         "sectionHomePagePath": "",
         "sectionRaws": "6",
         "sectionMenuMap": [
           {
-            "linkText": "Processing by application",
+            "linkText": "Sustainability Processing",
             "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenuMap": {
@@ -104,20 +114,30 @@
                 }
               ]
             }
+          },
+          {
+            "linkText": "Sustainability equipment",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false
+          },
+          {
+            "linkText": "Sustainability external",
+            "linkPath": "https://www.google.com",
+            "external": true
           }
         ]
       }
     },
     {
-      "linkText": "About Tetra Pak",
-      "linkPath": "/content/tetrapak/public-web/global/en/about-us",
+      "linkText": "About Tetra pak",
+      "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
-        "sectionHomePageTitle": "",
+        "sectionHomePageTitle": "About Tetra pak overview",
         "sectionHomePagePath": "",
         "sectionRaws": "6",
         "sectionMenuMap": [
           {
-            "linkText": "Processing by application",
+            "linkText": "About Tetra pak Processing",
             "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenuMap": {
@@ -151,6 +171,16 @@
                 }
               ]
             }
+          },
+          {
+            "linkText": "About Tetra pak equipment",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false
+          },
+          {
+            "linkText": "About Tetra pak external",
+            "linkPath": "https://www.google.com",
+            "external": true
           }
         ]
       }

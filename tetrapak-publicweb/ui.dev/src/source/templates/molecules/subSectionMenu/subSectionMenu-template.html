@@ -1,0 +1,17 @@
+<sly data-sly-template.subSectionMenu_template="${@ data}">
+  <div class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
+    <ul data-sly-list.subSectionsItem=${data.subSections}>
+      <li>
+        <a target="_self" href="${subSectionsItem.linkPath}">
+          ${subSectionsItem.linkText}
+          <sly data-sly-test="${subSectionsItem.external}">
+            <i class="icon icon--link ${iconClass}"></i>
+          </sly>
+          <sly data-sly-test="${!subSectionsItem.external}">
+            <i class="icon without-arrow icon--link ${iconClass}"></i>
+          </sly>
+        </a>
+      </li>
+    </ul>
+  </div>
+</sly>

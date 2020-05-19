@@ -1,3 +1,4 @@
+/* eslint-disable */
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
@@ -30,7 +31,7 @@ class Header {
   }
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem,$parentNavElement,$body} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -41,6 +42,8 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
+    // $parentNavElement.addClass('pw-position-static');
+    // $body.addClass('pw-position-relative');
 
   }
 

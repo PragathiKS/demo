@@ -1,0 +1,10 @@
+.pw-sub-section-menu {
+    @media #{$desktop} {
+        @include padding-top($padding-l);
+        display: none;
+        position: absolute;
+        &.show {
+            display: block;
+        }
+    }
+}
