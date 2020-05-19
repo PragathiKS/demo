@@ -37,7 +37,7 @@
                 class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}"
                 id="tab_${resource.name}_${tabList.index}" data-parent="#accordion_${resource.name}">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}"
-                  data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
+                  data-video-type="${tab.videoSource}" data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
                   <!--image video component  -->
                   <sly data-sly-test="${tab.tabType == 'videoText'}">
                     <sly data-sly-test="${tab.videoSource == 'damVideo' && tab.damVideoPath}">
