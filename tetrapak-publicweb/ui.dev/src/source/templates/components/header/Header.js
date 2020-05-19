@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
@@ -42,9 +44,21 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
+    $('.js-tp-pw-header-item').on('click', this.handleMainNavClick);
     $parentNavElement.addClass('pw-position-static');
     $body.addClass('pw-position-relative');
 
+  }
+
+  updateQueryString=(uri, key, value) => {
+    var re = new RegExp('([?|&])' + key + '=.*?(&|$)', 'i');
+    const separator = uri.indexOf('?') !== -1 ? '&' : '?';
+    if (uri.match(re)) {
+      return uri.replace(re, `$1${  key  }=${  value  }$2`);
+    }
+    else {
+      return `${uri + separator + key  }=${  value}`;
+    }
   }
 
   handleMouseOver = () => {
@@ -125,11 +139,21 @@ class Header {
     }
   }
 
+  handleMainNavClick =(e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-item');
+    const linkName = $this.data('link-name');
+    const updatedUrl = this.updateQueryString($this.attr('href'),'header',linkName);
+    if(updatedUrl){
+      window.open(updatedUrl, '_self');
+    }
+  }
+
   trackNavigationAnalytics = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-item');
     const navigationLinkName = $this.data('link-name');
-
+    
     const trackingObj = {
       navigationLinkName
     };

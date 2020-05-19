@@ -3,11 +3,17 @@
         @include padding-top($padding-l);
         display: none;
         position: absolute;
-        li {
-            @include margin(0 $margin-l);
+        ul li {
+            @include padding(0 $margin-l);
+            @include margin(0);
+            background: $color-wild-sand;
+            &:first-child {
+                @include margin-left(0);
+            }
+
         }
         a {
-            @include line-height($font-sm, $font-baseline);
+            @include line-height(20px, $font-sm);
             font-weight: normal;
             font-size: $font-sm;
             color: $color-tundora;
