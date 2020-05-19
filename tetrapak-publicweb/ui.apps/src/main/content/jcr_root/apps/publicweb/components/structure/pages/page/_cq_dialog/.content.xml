@@ -254,6 +254,13 @@
                                                 fieldLabel="Error Pages"
                                                 name="./errorPages"
                                                 rootPath="/content"/>
+											<disableenvelope
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./disableEnvelope"
+                                                text="Disable Contact us Envelope"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
                                         </items>
                                     </baseProperties>
                                 </items>

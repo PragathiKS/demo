@@ -1,13 +1,16 @@
 .pw-contactAnchorLink {
     color: $color-white;
     background-color: $color-congress-blue;
-    font-size: 20px;
-    padding: 10px 14px;
+    font-size: 14px;
+    padding: 8px 12px;
     border-radius: 100%;
     opacity: 1;
     pointer-events: visible;
     transition: opacity 0.3s ease;
-
+    .icon-Envelope_pw::before {
+        font-size: 16px;
+        line-height: 16px;
+    }
     &:hover {
         color: $color-mercury;
     }

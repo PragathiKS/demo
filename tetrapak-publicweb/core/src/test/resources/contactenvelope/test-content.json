@@ -1,0 +1,131 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "English",
+		"cq:lastReplicationAction": "Activate",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-base-page",
+		"cq:lastReplicatedBy": "roomahaj",
+		"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+		"cq:lastReplicated": "Wed Dec 04 2019 14:34:58 GMT+0000",
+		"cq:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/page",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"headerconfiguration": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"loginLabel": "Login Label",
+					"loginLink": "http://www.google.com",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
+					"contactLink": "/content/tetrapak/public-web/global/en",
+					"contactText": "Contact Us Label",
+					"logoLinkTarget": "_blank",
+					"logoAlt": "Logo ",
+					"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
+					"contactLinkTarget": "_blank",
+					"logoLink": "/content/tetrapak/public-web/global/en",
+					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
+					"solutionPage": "/content/tetrapak/publicweb/language-masters/en/solutions"
+				},
+				"megamenuconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"bottomSectionSubtitle": "Food categories",
+					"bottomSectionUrl": "/content/tetrapak/public-web/language-masters/en/food",
+					"jcr:created": "Thu Apr 23 2020 19:16:30 GMT+0530",
+					"topSectionSubtitle": "Tetra pak end to end solution",
+					"topSectionUrl": "/content/tetrapak/public-web/language-masters/en/solutions",
+					"hideFoodCategories": "true",
+					"jcr:lastModified": "Sat Apr 25 2020 00:07:56 GMT+0530",
+					"sling:resourceType": "publicweb/components/structure/megamenuconfig",
+					"endToEndSolutionSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Lorem ipsum",
+							"fileReference": "/content/dam/tetrapak/processing.jpg",
+							"alt": "Processing",
+							"path": "/content/tetrapak/public-web/lang-masters/en",
+							"title": "Processing"
+						}
+					},
+					"linkSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/public-web/language-masters/en/aseptic",
+							"linkText": "Aseptic solutions"
+						}
+					},
+					"foodCategorySection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/cheese.jpg",
+							"alt": "Cheese",
+							"path": "/content/tetrapak/public-web/lang-masters/en/food-categories/cheese",
+							"title": "Cheese"
+						}
+					}
+				}
+			}
+		}
+	},
+	"check": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:createdBy": "admin",
+			"jcr:title": "check",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
+			"cq:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
+			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+			"cq:lastModifiedBy": "admin",
+			"root": {
+				"jcr:primaryType": "nt:unstructured",
+				"responsivegrid": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"contactenvelope": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Mar 24 2020 12:26:39 GMT+0530",
+						"jcr:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
+						"sling:resourceType": "publicweb/components/structure/contactenvelope"
+					}
+				}
+			}
+		}
+	},
+	"solutions" : {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Mon Mar 30 2020 18:24:51 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:createdBy": "admin",
+			"jcr:title": "Solutions",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"jcr:created": "Mon Mar 30 2020 18:24:51 GMT+0530",
+			"cq:lastModified": "Mon Mar 30 2020 18:24:51 GMT+0530",
+			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+			"cq:lastModifiedBy": "admin"
+		}
+	}
+}
