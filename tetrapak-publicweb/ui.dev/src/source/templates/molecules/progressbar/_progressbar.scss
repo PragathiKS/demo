@@ -1,0 +1,63 @@
+.pw-progressbar_wrapper {
+    width: 100%;
+    min-height: 45px;
+    margin: $margin-xxxl 0 $margin-l;
+    display: flex;
+    .step-box {
+        flex: 1;
+        flex-direction: column;
+        position: relative;
+        color: $color-white;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 13px;
+            left: 2px;
+            height: 2px;
+            width: calc(100% - 2px);
+            background-color: $color-mercury;
+        }
+
+        &:last-child::after {
+            width: 0;
+            height: 0;
+        }
+
+        .steps {
+            background: $color-mercury;
+            border-radius: 50%;
+            display: inline-block;
+            height: 8px;
+            width: 8px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+            > span {
+                display: none;
+            }
+        }
+
+        &.done {
+            &::after {
+                background: $color-congress-blue;
+            }
+            .steps {
+                background: $color-congress-blue;
+                border-color: $color-congress-blue;
+            }
+        }
+
+        &.active {
+            .steps {
+                border-color: $color-congress-blue;
+                background: $color-congress-blue;
+                height: 24px;
+                width: 24px;
+                > span {
+                    display: block;
+                }
+            }
+        }
+    }
+}
