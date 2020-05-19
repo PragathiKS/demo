@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Contact us"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <contactus
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Contact us"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <heading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Heading"
+                                name="./heading"/>
+                            <summarytext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Description"
+                                name="./descriptionText"/>
+                            <file
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                allowUpload="{Boolean}false"
+                                autoStart="{Boolean}false"
+                                class="cq-droptarget"
+                                fieldLabel="Image"
+                                fileNameParameter="./fileName"
+                                fileReferenceParameter="./image"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
+                                multiple="{Boolean}false"
+                                name="./file"
+                                title="Upload Image Asset"
+                                uploadUrl="${suffix.path}"
+                                useHTML5="{Boolean}true"/>
+                            <alt
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
+                                fieldLabel="Alternative Text"
+                                name="./alt"/>
+                        </items>
+                    </column>
+                </items>
+            </contactus>
+            <form
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Form"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <formheadings
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Form Heading Texts"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <purposeofcontacttext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Purpose of contact text"
+                                        name="./purposeOfContactText"/>
+                                    <contactinfotext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Contact info text"
+                                        name="./contactInfoText"/>
+                                    <howcanwehelptext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="How can we help text"
+                                        name="./howCanWeHelpText"/>
+                                    <summarytext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Summary text"
+                                        name="./summaryText"/>
+                                </items>
+                            </formheadings>
+                            <formfields
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Form Fields Label"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <firstNamelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="First Name label"
+                                        name="./firstNameLabel"/>
+                                    <lastNamelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Last Name label"
+                                        name="./lastNameLabel"/>
+                                    <emaillabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Email label"
+                                        name="./emailLabel"/>
+                                    <emailplaceholder
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Email placeholder text"
+                                        name="./emailPlaceholder"/>
+                                    <messagelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Message label"
+                                        name="./messageLabel"/>
+                                    <countrylabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Country label"
+                                        name="./countryLabel"/>
+                                </items>
+                            </formfields>
+                            <formbuttons
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Form Buttons"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <nextbuttonlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Next button label"
+                                        name="./nextbuttonLabel"/>
+                                    <previousbuttonlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Previous button label"
+                                        name="./previousbuttonLabel"/>
+                                    <submitbuttonlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Submit button label"
+                                        name="./submitbuttonLabel"/>
+                                     <newrequestbuttonlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="New Request button label"
+                                        name="./newrequestbuttonLabel"/>
+                                </items>
+                            </formbuttons>
+                        </items>
+                    </column>
+                </items>
+            </form>
+            <anchor
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/include"
+                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+            <design
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Design"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+                        </items>
+                    </column>
+                </items>
+            </design>
+            <thankyou
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Thank you"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <heading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Heading"
+                                name="./thankyouHeading"/>
+                            <summarytext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Description"
+                                name="./thankyouDescriptionText"/>
+                            <file
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                allowUpload="{Boolean}false"
+                                autoStart="{Boolean}false"
+                                class="cq-droptarget"
+                                fieldLabel="Thank you Image"
+                                fileNameParameter="./fileName"
+                                fileReferenceParameter="./thankyouImage"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
+                                multiple="{Boolean}false"
+                                name="./file"
+                                title="Upload Thank you Image"
+                                uploadUrl="${suffix.path}"
+                                useHTML5="{Boolean}true"/>
+                            <alt
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
+                                fieldLabel="Alternative Text"
+                                name="./thankyouImageAltText"/>
+                        </items>
+                    </column>
+                </items>
+            </thankyou>
+        </items>
+    </content>
+</jcr:root>

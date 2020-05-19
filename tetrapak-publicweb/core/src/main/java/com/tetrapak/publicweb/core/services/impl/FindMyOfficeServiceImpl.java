@@ -22,7 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.CountryBean;
+import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.beans.OfficeBean;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
@@ -71,6 +73,17 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
                 name = "Offices Content Fragment Root Path",
                 description = "Offices Content Fragment Root Path")
         String getGoogleAPIKey() default "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ";
+
+        /**
+         * Gets the google API key.
+         *
+         * @return the google API key
+         */
+        @AttributeDefinition(
+                name = "Purpose of contact Content Fragment Root Path",
+                description = "Purpose of contact  Content Fragment Root Path")
+        String geturposeOfcontactRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/purposeofcontact";
+
     }
 
     /** The Constant LOGGER. */
@@ -80,10 +93,10 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
     private static String DATA_ROOT_PATH = "/jcr:content/data/master";
 
     /** The country list. */
-    private Map<String, CountryBean> countryOfficeList = new LinkedHashMap<>();
+    private final Map<String, CountryBean> countryOfficeList = new LinkedHashMap<>();
 
     /** The corporate office list. */
-    private Map<String, CountryBean> corporateOfficeList = new TreeMap<>();
+    private final Map<String, CountryBean> corporateOfficeList = new TreeMap<>();
 
     /**
      * activate method.
@@ -92,7 +105,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *            site Improve Script URL configuration
      */
     @Activate
-    public void activate(FindMyOfficeServiceConfig config) {
+    public void activate(final FindMyOfficeServiceConfig config) {
         this.config = config;
     }
 
@@ -104,22 +117,23 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @return the find my office data
      */
     @Override
-    public Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver) {
+    public Map<String, CountryBean> getFindMyOfficeData(final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside getFindMyOfficeData method");
-        Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
+        final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
         if (Objects.nonNull(countriesRootRes)) {
             final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
             while (rootIterator.hasNext()) {
                 final CountryBean countryBean = new CountryBean();
                 final Resource childResource = rootIterator.next();
                 if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
+                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
                     String countryTitle = StringUtils.EMPTY;
-                    final String jcrPath = childResource.getPath() + "/" + JcrConstants.JCR_CONTENT;
-                    Resource jcrResource = resourceResolver.getResource(jcrPath);
-                    countryTitle = setCountryTitle(countryTitle, jcrResource);
+                    if (Objects.nonNull(jcrResource)) {
+                        countryTitle = setCountryTitle(jcrResource);
+                    }
                     final String countryName = childResource.getName();
                     final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
-                    Resource dataResource = resourceResolver.getResource(dataPath);
+                    final Resource dataResource = resourceResolver.getResource(dataPath);
                     setCountryBean(resourceResolver, countryBean, countryName, dataResource);
                     setLists(countryBean, countryTitle);
                 }
@@ -139,7 +153,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @param countryTitle
      *            the country title
      */
-    private void setLists(final CountryBean countryBean, String countryTitle) {
+    private void setLists(final CountryBean countryBean, final String countryTitle) {
         if (countryTitle.contains("Corporate")) {
             corporateOfficeList.put(countryTitle, countryBean);
         } else {
@@ -159,15 +173,15 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @param dataResource
      *            the data resource
      */
-    private void setCountryBean(ResourceResolver resourceResolver, final CountryBean countryBean,
-            final String countryName, Resource dataResource) {
+    private void setCountryBean(final ResourceResolver resourceResolver, final CountryBean countryBean,
+            final String countryName, final Resource dataResource) {
         if (Objects.nonNull(dataResource)) {
             final ValueMap vMap = dataResource.getValueMap();
             countryBean.setLongitude(vMap.get("longitude", Double.class));
             countryBean.setLatitude(vMap.get("latitude", Double.class));
             final String countryPath = getOfficeCfRootPath() + "/" + countryName;
-            Resource countryResource = resourceResolver.getResource(countryPath);
-            List<OfficeBean> officeBeanList = new ArrayList<>();
+            final Resource countryResource = resourceResolver.getResource(countryPath);
+            final List<OfficeBean> officeBeanList = new ArrayList<>();
             if (Objects.nonNull(countryResource)) {
                 final Iterator<Resource> officeIterator = countryResource.listChildren();
                 while (officeIterator.hasNext()) {
@@ -193,7 +207,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @param officeDataResource
      *            the office data resource
      */
-    private void setOfficeBean(List<OfficeBean> officeBeanList, final OfficeBean officeBean,
+    private void setOfficeBean(final List<OfficeBean> officeBeanList, final OfficeBean officeBean,
             final Resource officeDataResource) {
         if (Objects.nonNull(officeDataResource)) {
             final ValueMap officeMap = officeDataResource.getValueMap();
@@ -217,11 +231,8 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *            the jcr resource
      * @return the string
      */
-    private String setCountryTitle(String countryTitle, Resource jcrResource) {
-        if (Objects.nonNull(jcrResource)) {
-            countryTitle = jcrResource.getValueMap().get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
-        }
-        return countryTitle;
+    private String setCountryTitle(final Resource jcrResource) {
+        return jcrResource.getValueMap().get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
     }
 
     /**
@@ -259,8 +270,59 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *
      * @return the corporate office list
      */
+    @Override
     public Map<String, CountryBean> getCorporateOfficeList() {
         return corporateOfficeList;
+    }
+
+    @Override
+    public String[] fetchEmailAddresses(final ContactUs contactUs) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<DropdownOption> fetchPurposeOfContacts(final ResourceResolver resourceResolver) {
+        final List<DropdownOption> purposeOfContactList = new ArrayList<>();
+        final Resource purposeOfContactRootRes = resourceResolver.getResource(config.geturposeOfcontactRootPath());
+        if (Objects.nonNull(purposeOfContactRootRes)) {
+            final Iterator<Resource> rootIterator = purposeOfContactRootRes.listChildren();
+            while (rootIterator.hasNext()) {
+                final Resource childResource = rootIterator.next();
+                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
+                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
+                    if (Objects.nonNull(jcrResource)) {
+                        final DropdownOption purposeOfContact = new DropdownOption();
+                        purposeOfContact.setKey(childResource.getName());
+                        purposeOfContact.setValue(setCountryTitle(jcrResource));
+                        purposeOfContactList.add(purposeOfContact);
+                    }
+                }
+            }
+        }
+        return purposeOfContactList;
+    }
+
+    @Override
+    public List<DropdownOption> fetchCountryList(final ResourceResolver resourceResolver) {
+        final List<DropdownOption> countryList = new ArrayList<>();
+        final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
+        if (Objects.nonNull(countriesRootRes)) {
+            final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
+            while (rootIterator.hasNext()) {
+                final Resource childResource = rootIterator.next();
+                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
+                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
+                    if (Objects.nonNull(jcrResource)) {
+                        final DropdownOption country = new DropdownOption();
+                        country.setKey(childResource.getName());
+                        country.setValue(setCountryTitle(jcrResource));
+                        countryList.add(country);
+                    }
+                }
+            }
+        }
+        return countryList;
     }
 
 }
