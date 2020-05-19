@@ -39,7 +39,7 @@ function _trackVideoParameters(
   videoTime,
   trackingKey
 ) {
-  const { videoName } = $(this)
+  const { videoName,videoType } = $(this)
     .parents('.js-video-props')
     .data();
 
@@ -50,7 +50,8 @@ function _trackVideoParameters(
     (videoInteraction === 'end' && '100');
   const trackingObj = {
     videoName,
-    videoSection: (window.digitalData.pageinfo && window.digitalData.pageinfo.siteSection1) || '',
+    videoType,
+    videoSection: (window.digitalData && window.digitalData.pageinfo && window.digitalData.pageinfo.siteSection1) || '',
     videoLength: new Date(videoLength * 1000).toISOString().substr(11, 8),
     videoTime: new Date(Math.round(videoTime) * 1000)
       .toISOString()
