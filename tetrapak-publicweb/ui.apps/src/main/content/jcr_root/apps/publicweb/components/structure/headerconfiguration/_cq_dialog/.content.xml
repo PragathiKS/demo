@@ -60,14 +60,12 @@
                             <contactlink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Link to contact us page"
                                 fieldLabel="Contact Us Link"
                                 name="./contactLink"
                                 rootPath="/content/tetrapak/public-web"/>
 							<contacttext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Required for Accessibility use"
                                 fieldLabel="Contact Us Alt Text"
                                 name="./contactText"/>
                             <solutionpage
