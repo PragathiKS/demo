@@ -155,7 +155,9 @@
         "source/templates/components/megamenusolution/",
         "source/templates/components/findMyOffice/",
         "source/templates/components/mediaLink/",
-        "source/templates/components/navigation/"
+        "source/templates/components/navigation/",
+        "source/templates/components/sectionMenu/"
+
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
