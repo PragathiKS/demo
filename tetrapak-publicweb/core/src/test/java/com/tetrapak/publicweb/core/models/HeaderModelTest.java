@@ -69,9 +69,8 @@ public class HeaderModelTest {
         assertEquals("Logo ", model.getLogoAlt());
         assertEquals("http://www.google.com", model.getLoginLink());
         assertEquals("Login Label", model.getLoginLabel());
-        assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactLink());
-        assertEquals("Contact Us Label", model.getContactText());
-        assertEquals("_blank", model.getContactLinkTarget());
+        assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactUsLink());
+        assertEquals("Contact Us Label", model.getContactUsAltText());
         assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
         assertEquals("/content/tetrapak/publicweb/language-masters/en/check.html",
                 model.getMegaMenuLinksList().get(0).getLinkPath());

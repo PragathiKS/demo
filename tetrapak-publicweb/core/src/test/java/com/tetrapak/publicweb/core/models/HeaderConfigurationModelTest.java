@@ -63,7 +63,6 @@ public class HeaderConfigurationModelTest {
         assertEquals("Login Label", model.getLoginLabel());
         assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactLink());
         assertEquals("Contact Us Label", model.getContactText());
-        assertEquals("_blank", model.getContactLinkTarget());
         assertEquals("/content/tetrapak/public-web/global/en/solutions.html", model.getSolutionPage());
         assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
     }
