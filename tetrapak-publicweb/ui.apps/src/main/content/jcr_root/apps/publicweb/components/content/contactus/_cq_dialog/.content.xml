@@ -23,7 +23,7 @@
                                 name="./heading"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                 fieldLabel="Description"
                                 name="./descriptionText"/>
                             <file
@@ -60,73 +60,109 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <formheadings
+                            <step1
                                 jcr:primaryType="nt:unstructured"
-                                jcr:title="Form Heading Texts"
+                                jcr:title="Form Step 1"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                 <items jcr:primaryType="nt:unstructured">
                                     <purposeofcontacttext
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Purpose of contact text"
+                                        fieldLabel="Step 1 headline"
                                         name="./purposeOfContactText"/>
+                                </items>
+                            </step1>
+                            <step2
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Form Step 2"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
                                     <contactinfotext
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Contact info text"
+                                        fieldLabel="Step 2 headline"
                                         name="./contactInfoText"/>
-                                    <howcanwehelptext
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="How can we help text"
-                                        name="./howCanWeHelpText"/>
-                                    <summarytext
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Summary text"
-                                        name="./summaryText"/>
-                                </items>
-                            </formheadings>
-                            <formfields
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="Form Fields Label"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                <items jcr:primaryType="nt:unstructured">
                                     <firstNamelabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="First Name label"
+                                        fieldLabel="First Name field label"
                                         name="./firstNameLabel"/>
                                     <lastNamelabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Last Name label"
+                                        fieldLabel="Last Name field label"
                                         name="./lastNameLabel"/>
                                     <emaillabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Email label"
+                                        fieldLabel="Email field label"
                                         name="./emailLabel"/>
                                     <emailplaceholder
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Email placeholder text"
                                         name="./emailPlaceholder"/>
-                                    <messagelabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Message label"
-                                        name="./messageLabel"/>
                                     <countrylabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Country label"
+                                        fieldLabel="Country field label"
                                         name="./countryLabel"/>
+                                    <summarytext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Summary heading text"
+                                        name="./summaryText"/>
                                 </items>
-                            </formfields>
+                            </step2>
+                            <step3
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Form Step 3"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <howcanwehelptext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Step 3 headline"
+                                        name="./howCanWeHelpText"/>
+                                    <messagelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Message field label"
+                                        name="./messageLabel"/>
+                                    <privacypolicytext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                        fieldLabel="Privacy and Consent approval text"
+                                        name="./privacyPolicy"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins jcr:primaryType="nt:unstructured">
+                                            <links
+                                                jcr:primaryType="nt:unstructured"
+                                                features="modifylink,unlink"/>
+                                            <paraformat
+                                                jcr:primaryType="nt:unstructured"
+                                                features="*"/>
+                                        </rtePlugins>
+                                        <uiSettings jcr:primaryType="nt:unstructured">
+                                            <cui jcr:primaryType="nt:unstructured">
+                                                <dialogFullScreen
+                                                    jcr:primaryType="nt:unstructured"
+                                                    toolbar="[links#modifylink,links#unlink,#paraformat]">
+                                                    <popovers jcr:primaryType="nt:unstructured">
+                                                        <paraformat
+                                                            jcr:primaryType="nt:unstructured"
+                                                            items="paraformat:getFormats:paraformat-pulldown"
+                                                            ref="paraformat"/>
+                                                    </popovers>
+                                                </dialogFullScreen>
+                                            </cui>
+                                        </uiSettings>
+                                    </privacypolicytext>
+                                </items>
+                            </step3>
                             <formbuttons
                                 jcr:primaryType="nt:unstructured"
-                                jcr:title="Form Buttons"
+                                jcr:title="Form Button Labels"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                 <items jcr:primaryType="nt:unstructured">
                                     <nextbuttonlabel
@@ -144,7 +180,7 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Submit button label"
                                         name="./submitbuttonLabel"/>
-                                     <newrequestbuttonlabel
+                                    <newrequestbuttonlabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="New Request button label"
@@ -155,27 +191,6 @@
                     </column>
                 </items>
             </form>
-            <anchor
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/include"
-                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
-            <design
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Design"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pwThemes
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
-                        </items>
-                    </column>
-                </items>
-            </design>
             <thankyou
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Thank you"
@@ -190,11 +205,6 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
                                 name="./thankyouHeading"/>
-                            <summarytext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Description"
-                                name="./thankyouDescriptionText"/>
                             <file
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
@@ -216,10 +226,60 @@
                                 fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
                                 fieldLabel="Alternative Text"
                                 name="./thankyouImageAltText"/>
+                            <summarytext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldLabel="Description"
+                                name="./thankyouDescriptionText"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[links#modifylink,links#unlink,#paraformat]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </dialogFullScreen>
+                                    </cui>
+                                </uiSettings>
+                            </summarytext>
                         </items>
                     </column>
                 </items>
             </thankyou>
+            <anchor
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/include"
+                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+            <design
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Design"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+                        </items>
+                    </column>
+                </items>
+            </design>
         </items>
     </content>
 </jcr:root>
