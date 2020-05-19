@@ -55,7 +55,7 @@
             <i class="icon-Chevron_Right"></i>
           </sly>
         </a>
-        <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true}" />
+        <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true, mainHeader=megaMenuItem.linkText }" />
 
       </li>
     </ul>
