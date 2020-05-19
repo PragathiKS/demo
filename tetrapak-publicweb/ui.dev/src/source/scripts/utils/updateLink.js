@@ -48,6 +48,7 @@ export default  () => {
       const thisHref = $(this).attr('href');
       if(thisHref) {
         const iconEl = $(this).find('i.icon')[0];
+        $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
           $(this).attr('target','_self');
