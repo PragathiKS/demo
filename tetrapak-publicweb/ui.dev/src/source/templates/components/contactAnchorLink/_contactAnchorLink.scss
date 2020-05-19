@@ -23,13 +23,13 @@
 }
 
 .pw-contactAnchorLink-wrapper {
+    @include right($margin-sm);
+    @include bottom($margin-sm);
     position: fixed;
-    right: 16px;
-    bottom: 16px;
     z-index: 1;
 
     @media #{$desktop} {
-        right: 48px;
-        bottom: 48px;
+        @include right($margin-l);
+        @include bottom($margin-l);
     }
 }
