@@ -20,12 +20,10 @@ public class ContactUs {
     private String email;
     @JsonProperty("message")
     private String message;
-
     @JsonProperty("purposeOfContact")
     public String getPurposeOfContact() {
         return purposeOfContact;
     }
-
     @JsonProperty("purposeOfContact")
     public void setPurposeOfContact(final String purposeOfContact) {
         this.purposeOfContact = purposeOfContact;
