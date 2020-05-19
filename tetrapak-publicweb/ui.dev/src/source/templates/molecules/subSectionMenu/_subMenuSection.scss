@@ -3,6 +3,15 @@
         @include padding-top($padding-l);
         display: none;
         position: absolute;
+        li {
+            @include margin(0 $margin-l);
+        }
+        a {
+            @include line-height($font-sm, $font-baseline);
+            font-weight: normal;
+            font-size: $font-sm;
+            color: $color-tundora;
+        }
         &.show {
             display: block;
         }

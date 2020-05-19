@@ -42,8 +42,8 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
-    // $parentNavElement.addClass('pw-position-static');
-    // $body.addClass('pw-position-relative');
+    $parentNavElement.addClass('pw-position-static');
+    $body.addClass('pw-position-relative');
 
   }
 
@@ -69,16 +69,16 @@ class Header {
     const {$parentNavElement, $body } = this.cache;
     const $target = $(e.target);
     const $this = $target.closest('.js-main-menu-link-hover');
-    $parentNavElement.removeClass('pw-position-static');
-    $body.removeClass('pw-position-relative');
+    // $parentNavElement.removeClass('pw-position-static');
+    // $body.removeClass('pw-position-relative');
     $this.children('.pw-navigation').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
   }
 
   handleMouseOut = () => {
     const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
     $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
-    $parentNavElement.removeClass('pw-position-static');
-    $body.removeClass('pw-position-relative');
+    // $parentNavElement.removeClass('pw-position-static');
+    // $body.removeClass('pw-position-relative');
     $overlay.addClass('d-none');
   }
 

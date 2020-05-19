@@ -46,9 +46,29 @@
               ],
               "subSections": [
                 {
-                  "linkText": "Dairy",
+                  "linkText": "Processing",
                   "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
                   "external": false
+                },
+                {
+                  "linkText": "Servicing",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                  "external": false
+                },
+                {
+                  "linkText": "Packages",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                  "external": true
+                },
+                {
+                  "linkText": "Beverages",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                  "external": false
+                },
+                {
+                  "linkText": "Dairy",
+                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                  "external": true
                 },
                 {
                   "linkText": "Beverages",
