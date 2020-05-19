@@ -1,0 +1,49 @@
+{
+    "heading": "Contact us",
+    "image": "/content/dam/tetrapak/myimage.jpg",
+    "alt": "contact us",
+    "descriptionText": "Loren ipsum",
+    "anchorId": "test",
+    "anchorTitle": "title",
+    "pwTheme": "grayscale-white",
+    "previousbuttonLabel": "Previous",
+    "nextbuttonLabel": "Next",
+    "submitbuttonLabel": "Submit",
+    "purposeOfContactText": "Purpose of contact",
+    "contactInfoText": "Contact information",
+    "howCanWeHelpText": "How can we help you?",
+    "summaryText": "Summary",
+    "purposeOfContactOptions": [
+        {
+            "key": "Sustainability",
+            "value": "sustainability"
+        },
+        {
+            "key": "Career",
+            "value": "career"
+        },
+        {
+            "key": "Other",
+            "value": "other"
+        }
+    ],
+    "firstNameLabel": "First name",
+    "lastNameLabel": "Last name",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "E.g. example@example.com",
+    "messageLabel": "message",
+    "countryLabel": "Country",
+    "countryOptions": [
+        "Denmark",
+        "Germany",
+        "UK"
+    ],
+    "privacyPolicy": "",
+    "thankyouStep": {
+        "heading": "Thank you for your request",
+        "image": "/content/dam/tetrapak/myimage.jpg",
+        "alt": "contact us",
+        "descriptionText": "We will get back to you as soon as possible",
+        "newrequestbuttonLabel": "New request"
+    }
+}

@@ -1,0 +1,88 @@
+.pw-contactus-form {
+    .errorMsg {
+        display: none;
+        color: $color-alert;
+        font-size: 12px;
+    }
+
+    .formfield {
+        &.field-error {
+            .errorMsg {
+                display: block;
+            }
+        }
+    }
+    .tab-pane {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    h4 {
+        font-family: $font-bold;
+        &.tpatom-heading {
+            @include margin-bottom(16px);
+        }
+    }
+    .separator {
+        border-bottom: 1px solid $color-mercury;
+        margin-bottom: 24px;
+        @media #{$desktop} {
+            @include margin-bottom(0);
+            border-bottom: 0;
+            border-right: 1px solid $color-mercury;
+            padding-left: $margin-xxxl;
+            & + div {
+                @include padding-left(48px);
+            }
+            .pw-image-container {
+                @include padding-left(24px);
+            }
+        }
+    }
+    .main-heading {
+        @include margin-bottom($margin-md);
+        overflow-wrap: break-word;
+    }
+    .sub-heading {
+        @include margin-bottom($margin-l);
+    }
+    .tab-pane.thankyou {
+        img {
+            @include margin-bottom($margin-l);
+        }
+        h2,
+        p {
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    .summary {
+        label + p {
+            font-weight: 900;
+        }
+    }
+
+    .button-group {
+        .previousbtn {
+            @include margin-right($margin-md);
+            border: 1px solid $color-congress-blue;
+            background-color: $color-white;
+            color: $color-congress-blue;
+
+            i {
+                @include padding-left(5px);
+                transform: rotate(180deg);
+                float: left;
+            }
+        }
+    }
+
+    .pw-progress {
+        .pw-progressbar__steps {
+            p {
+                @include margin-top($margin-xxxl);
+            }
+        }
+    }
+}
