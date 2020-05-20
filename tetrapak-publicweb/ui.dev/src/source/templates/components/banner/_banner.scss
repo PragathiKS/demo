@@ -97,12 +97,6 @@
 
         &__title {
             @include margin-bottom($margin-md);
-        }
-        &__description {
-            @include margin-bottom($margin-l);
-        }
-
-        &__title {
             h2 {
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
@@ -117,6 +111,7 @@
             }
         }
         &__description {
+            @include margin-bottom($margin-l);
             @include font-size(16px);
             @include line-height(28px, 16px);
             @media #{$desktop} {
