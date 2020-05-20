@@ -26,7 +26,7 @@
     @include right($margin-sm);
     @include bottom($margin-sm);
     position: fixed;
-    z-index: 1;
+    z-index: 2;
 
     @media #{$desktop} {
         @include right($margin-l);
