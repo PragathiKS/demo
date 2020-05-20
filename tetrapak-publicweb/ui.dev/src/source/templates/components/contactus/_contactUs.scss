@@ -35,6 +35,9 @@
         @include padding-bottom(24px);
         border-bottom: 1px solid $color-mercury;
         margin-bottom: 24px;
+        .pw-image-container {
+            @include margin-bottom(24px);
+        }
         @media #{$desktop} {
             @include margin-bottom(0);
             @include padding-bottom(0);
@@ -45,6 +48,7 @@
                 @include padding-left(48px);
             }
             .pw-image-container {
+                @include margin-bottom(0);
                 @include padding-right(24px);
             }
             h4 {
@@ -67,8 +71,7 @@
     }
 
     .summary {
-        label + p {
-            @include padding-left(48px);
+        div + div {
             font-weight: 900;
         }
     }
@@ -99,9 +102,12 @@
     .pw-progress {
         .pw-progressbar__steps {
             p {
-                @include margin-top($margin-xxxl);
+                @include margin-top($margin-l);
                 color: $color-congress-blue;
                 font-size: 12px;
+                @media #{$desktop} {
+                    @include margin-top($margin-xxxl);
+                }
             }
         }
     }

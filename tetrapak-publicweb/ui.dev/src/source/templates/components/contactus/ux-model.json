@@ -35,12 +35,12 @@
     "countryLabel": "Country",
     "countryOptions": [
         {
-            "key": " Denmark ",
-            "value": "denmark"
+            "key": "denmark",
+            "value": "Denmark"
         },
         {
-            "key": "Australia",
-            "value": "australia"
+            "key": "australia",
+            "value": "Australia"
         }
     ],
     "privacyPolicy": "<p>I accept <a href=\"https: //www.tetrapak.com/about/legal-information\">Tetra Pak’s privacy policy</a></p>",

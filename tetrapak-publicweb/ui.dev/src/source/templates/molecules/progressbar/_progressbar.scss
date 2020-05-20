@@ -1,8 +1,10 @@
 .pw-progressbar_wrapper {
     width: 100%;
-    min-height: 45px;
-    margin: $margin-xxxl 0 $margin-l;
     display: flex;
+    margin: $margin-l 0;
+    @media #{$desktop} {
+        margin: $margin-xxxl 0 $margin-l;
+    }
     .step-box {
         flex: 1;
         flex-direction: column;

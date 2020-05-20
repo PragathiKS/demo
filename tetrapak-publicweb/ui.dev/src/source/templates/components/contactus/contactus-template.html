@@ -1,7 +1,7 @@
 <sly data-sly-template.contactus_template="${@data, flag}">
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-locator="contact-us">
-        <div class="pw-contactus-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular" id="pw-contactUs"
-            data-module="ContactUs">
+        <div class="pw-contactus-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
+            id="pw-contactUs" data-module="ContactUs">
             <div class="tab-content">
                 <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-contactfooter" autocomplete="off"
                     method="GET">
@@ -11,9 +11,6 @@
                             <div class="col-md-6 separator">
                                 <div class="row">
                                     <div class="col-sm-12 main-heading">
-                                        <!-- <sly data-sly-test="${data.titleI18n}"
-                                            data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                            data-sly-call="${heading.heading_h4_template @ headingText=data.titleI18n}" /> -->
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                             data-sly-call="${heading.heading_h2_template @ headingText=data.heading}" />
@@ -62,7 +59,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters">
+                                    <div class="row no-gutters button-group">
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                                             data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget='#cf-step-2',icon_classes='icon-Arrow_Right_pw'}" />
                                     </div>
@@ -87,10 +84,8 @@
                                     </div>
                                 </div>
                                 <div class="row summary">
-                                    <div class="col-sm-12">
-                                        <label>${data.purposeOfContactText @ i18n}</label>
-                                        <p class="purposeOfContact d-inline-block"></p>
-                                    </div>
+                                    <div class="col-md-6">${data.purposeOfContactText}</div>
+                                    <div class="col-md-6 purposeOfContact"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -117,20 +112,21 @@
                                             </sly>
                                         </div>
                                         <div class="col-sm-12">
-                                            <div class="form-group">
+                                            <div class="form-group country-field">
                                                 <label for="country">${'country' @ i18n}</label>
                                                 <div class="pw-form__dropdown dropdown text-left">
                                                     <button
-                                                        class="btn dropdown-toggle text-capital pw-form__dropdown__toggle category__toggle text-left"
+                                                        class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
-                                                        ${'pleaseselect ' @ i18n}
+                                                        <span class="js-pw-form__dropdown__country-text">${'selectCountry' @ i18n}</span>
+                                                        <i class="icon icon-Chevron_Down"></i></button>
                                                     </button>
-                                                    <div class="dropdown-menu pw-form__dropdown__menu"
+                                                    <div class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select"
                                                         data-sly-list.country="${data.countryOptions}">
                                                         <a href="#"
                                                             class="dropdown-item ${country.first? 'active' : ''}"
-                                                            data-country="${country.key}">
+                                                            data-country="${country.key}" data-countrytitle="${country.value}">
                                                             ${country.value}
                                                         </a>
                                                     </div>
@@ -176,22 +172,20 @@
                                     </div>
                                 </div>
                                 <div class="row summary">
-                                    <div class="col-sm-12">
-                                        <label>${data.purposeOfContactText}</label>
-                                        <p class="purposeOfContact d-inline-block"></p>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <label>${'firstName' @ i18n}</label>
-                                        <p class="firstName d-inline-block"></p>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <label>${'lastName' @ i18n}</label>
-                                        <p class="lastName d-inline-block"></p>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <label>${'email' @ i18n}</label>
-                                        <p class="email d-inline-block"></p>
-                                    </div>
+                                    <div class="col-md-6">${data.purposeOfContactText}</div>
+                                    <div class="col-md-6 purposeOfContact"></div>
+                                </div>
+                                <div class="row summary">
+                                    <div class="col-md-6">${'firstName' @ i18n}</div>
+                                    <div class="col-md-6 firstName"></div>
+                                </div>
+                                <div class="row summary">
+                                    <div class="col-md-6">${'lastName' @ i18n}</div>
+                                    <div class="col-md-6 lastName"></div>
+                                </div>
+                                <div class="row summary">
+                                    <div class="col-md-6">${'email' @ i18n}</div>
+                                    <div class="col-md-6 email"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -205,9 +199,10 @@
                                         <div class="col-sm-12">
                                             <div class="formfield">
                                                 <label for="messageText">${'message' @i18n}</label>
-                                                <textarea class="form-control" id="messageText" rows="5"
+                                                <textarea class="form-control" id="messageText" rows="5" name="message"
                                                     required></textarea>
                                                 <div class="errorMsg">${'Please fill in this field' @i18n}</div>
+                                                <input type="text" name="contactUsHoneyPot" id="contactUsHoneyPot" class="honeyPotField d-none" tabindex="-1" />
                                             </div>
                                             <div class="privacy-policy">
                                                 ${data.privacyPolicy @ context="html"}
@@ -237,15 +232,16 @@
                     <div class="tab-pane" role="tabpanel" id="cf-step-final">
                         <div class="row thankyou">
                             <div class="col text-center">
-                                <img class="img-fluid" src="${data.thankyouImage}"
-                                    alt="${data.thankyouImageAltText}">
+                                <img class="img-fluid" src="${data.thankyouImage}" alt="${data.thankyouImageAltText}">
                                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                     data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
                                 <p>
                                     ${data.thankyouDescriptionText @ context='html'}
                                 </p>
-                                <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                    data-sly-call="${nextButton.tabbutton_template @ btnText='newrequest', btnTarget='#cf-step-1' }" />
+                                <div class="button-group">
+                                    <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                        data-sly-call="${nextButton.tabbutton_template @ btnText='newrequest', btnTarget='#cf-step-1' }" />
+                                </div>
                             </div>
                         </div>
                     </div>
