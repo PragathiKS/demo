@@ -148,7 +148,7 @@ public final class PWConstants {
 
     public static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
 
-    public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/";
+    public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/publicweb/contactusemail.txt";
 
     /**
      * Instantiates a new PW constants.

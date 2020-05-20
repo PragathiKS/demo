@@ -1,16 +1,17 @@
-From: admin@adobe.com
-Subject: Greetings
+From: noreply@tetrapak.com
+Subject: Contact request from www.tetrapak.com for ${country}, ${purpose}.
 
-<div style="color: blue;">
+Your name
+${firstName} ${lastName}
 
-Hello ${recipientName}
+Email
+${email}
 
-Find your message here: ${message}
+Purpose of contact
+${purpose}
 
-From,
-Adobe Team
+Your message
+${message}
 
--------------------------------------------------------
-This is an automatic generated message. Please do not reply.
-
-</div>
+Country/Location
+${country}

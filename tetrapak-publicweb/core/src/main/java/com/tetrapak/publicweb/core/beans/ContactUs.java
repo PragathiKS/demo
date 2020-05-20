@@ -12,6 +12,10 @@ public class ContactUs {
     private String purposeOfContact;
     @JsonProperty("country")
     private String country;
+    @JsonProperty("purposeOfContactTitle")
+    private String purposeOfContactTitle;
+    @JsonProperty("countryTitle")
+    private String countryTitle;
     @JsonProperty("firstName")
     private String firstName;
     @JsonProperty("lastName")
@@ -78,5 +82,26 @@ public class ContactUs {
     public void setMessage(final String message) {
         this.message = message;
     }
+
+    @JsonProperty("purposeOfContactTitle")
+    public String getPurposeOfContactTitle() {
+        return purposeOfContactTitle;
+    }
+
+    @JsonProperty("purposeOfContactTitle")
+    public void setPurposeOfContactTitle(final String purposeOfContactTitle) {
+        this.purposeOfContactTitle = purposeOfContactTitle;
+    }
+
+    @JsonProperty("countryTitle")
+    public String getCountryTitle() {
+        return countryTitle;
+    }
+
+    @JsonProperty("countryTitle")
+    public void setCountryTitle(final String countryTitle) {
+        this.countryTitle = countryTitle;
+    }
+
 
 }

@@ -91,7 +91,7 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="emailPlaceholder"
-        sling:message="E.g. example@example.com"/>
+        sling:message="example@example.com"/>
    <sustainability
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
@@ -112,9 +112,4 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pleaseselectanoption"
         sling:message="Please select an option"/>
-   <pleaseselect
-        jcr:mixinTypes="[sling:Message]"
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pleaseselect"
-        sling:message="Please select"/>  
 </jcr:root>

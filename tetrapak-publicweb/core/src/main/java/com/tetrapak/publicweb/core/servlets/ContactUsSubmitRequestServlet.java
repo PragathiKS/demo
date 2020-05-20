@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
@@ -31,13 +31,14 @@ import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 @Component(
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Contact Us form Submit Servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/contactus" })
-public class ContactUsSubmitRequestServlet extends SlingSafeMethodsServlet {
+                "sling.servlet.methods=" + HttpConstants.METHOD_POST,
+                "sling.servlet.paths=" + "/bin/tetrapak/pw-contactus" })
+public class ContactUsSubmitRequestServlet extends SlingAllMethodsServlet {
+
     /**
      *
      */
-    private static final long serialVersionUID = 1114119284497481645L;
+    private static final long serialVersionUID = -4582610735374949058L;
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactUsSubmitRequestServlet.class);
@@ -57,11 +58,13 @@ public class ContactUsSubmitRequestServlet extends SlingSafeMethodsServlet {
      *            the resp
      */
     @Override
-    protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
+    protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
+        LOGGER.debug("calling servlet");
         ContactUsResponse contactusResp = new ContactUsResponse();
         try {
-
-            final ContactUs contactUs = new ObjectMapper().readValue(request.getAttribute("inputJson").toString(),
+            final String inputJson = request.getParameter("inputJson");
+            LOGGER.debug("inPutJson :: {}", inputJson);
+            final ContactUs contactUs = new ObjectMapper().readValue(inputJson,
                     ContactUs.class);
 
             if (validateRequest(contactUs)) {
@@ -86,7 +89,7 @@ public class ContactUsSubmitRequestServlet extends SlingSafeMethodsServlet {
      * @return
      */
     private boolean validateRequest(final ContactUs contactUs) {
-        return StringUtils.isEmpty(contactUs.getCountry());
+        return !StringUtils.isEmpty(contactUs.getCountry());
     }
 
     /**
@@ -123,10 +126,10 @@ public class ContactUsSubmitRequestServlet extends SlingSafeMethodsServlet {
         // these parameters are used in email template
         emailParams.put("firstName", contactUs.getFirstName());
         emailParams.put("lastName", contactUs.getLastName());
-        emailParams.put("purposeOfContact", contactUs.getPurposeOfContact());
-        emailParams.put("country", contactUs.getCountry());
+        emailParams.put("purpose", contactUs.getPurposeOfContactTitle());
+        emailParams.put("country", contactUs.getCountryTitle());
         emailParams.put("message", contactUs.getMessage());
-        emailParams.put("userEmail", contactUs.getEmail());
+        emailParams.put("email", contactUs.getEmail());
 
         if (jobMgr != null) {
             final Map<String, Object> properties = new HashMap<>();

@@ -308,6 +308,8 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
                 }
             }
         }
+        countryList
+                .sort((final DropdownOption op1, final DropdownOption op2) -> op1.getValue().compareTo(op2.getValue()));
         return countryList;
     }
 
