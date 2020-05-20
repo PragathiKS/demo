@@ -74,7 +74,6 @@ class Header {
   }
 
   getStickyHeaderData = (data) => {
-    // const header = $('.js-hidden').data('header-list');
     const headerArray = [
       {
         'linkText': 'Solutions',
@@ -87,7 +86,7 @@ class Header {
           'sectionHomePageTitle': 'Insight overview',
           'sectionHomePagePath': '',
           'sectionRaws': '6',
-          'sectionMenuMap': [
+          'sectionMenu': [
             {
               'linkText': 'Insight Processing',
               'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
@@ -147,7 +146,7 @@ class Header {
           'sectionHomePageTitle': 'Sustainability overview',
           'sectionHomePagePath': '',
           'sectionRaws': '6',
-          'sectionMenuMap': [
+          'sectionMenu': [
             {
               'linkText': 'Sustainability Processing',
               'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
@@ -207,7 +206,7 @@ class Header {
           'sectionHomePageTitle': 'About Tetra pak overview',
           'sectionHomePagePath': '',
           'sectionRaws': '6',
-          'sectionMenuMap': [
+          'sectionMenu': [
             {
               'linkText': 'About Tetra pak Processing',
               'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
@@ -268,7 +267,7 @@ class Header {
   getActiveMenu = (header,data) => {
     header['active'] = true;
     if(data.activeL2){
-      header['navigationConfigurationModel']['sectionMenuMap'].forEach((sectionItem) => {
+      header['navigationConfigurationModel']['sectionMenu'].forEach((sectionItem) => {
         if(sectionItem.linkText === data.activeL2){
           sectionItem['active'] = true;
         }
@@ -278,12 +277,12 @@ class Header {
       for(const i in header){
         if(i === 'navigationConfigurationModel'){
           for(const j in header[i]){
-            if( j === 'sectionMenuMap'){
+            if( j === 'sectionMenu'){
               header[i][j].forEach((sectionMenuItem) => {
                 if(sectionMenuItem.active === true){
                   if(sectionMenuItem.subSectionMenu.pseudoCategoriesSection){
                     sectionMenuItem.subSectionMenu.pseudoCategoriesSection.forEach((pseudoCategory) => {
-                      pseudoCategory.subsections.forEach((subSection) => {
+                      pseudoCategory.subSections.forEach((subSection) => {
                         if(subSection.linkText === data.activeL3){
                           subSection['active'] = true;
                         }
