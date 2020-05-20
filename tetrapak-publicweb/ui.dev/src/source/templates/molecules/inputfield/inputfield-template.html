@@ -1,10 +1,10 @@
 <sly
-    data-sly-template.inputfield_template="${@ inputType, inputClass, id, placeholder, label, error}">
+    data-sly-template.inputfield_template="${@ inputType, inputClass, id, placeholder, label, error, required}">
     <sly data-sly-test.placeholderVal="${placeholder ? placeholder : ''}"></sly>
     <div data-sly-test="${inputType}" class="form-group">
         <label for="${id}">${label @ i18n}</label>
-        <input type="${inputType}" class="form-control ${inputClass}" id="${id}"
-            placeholder="${placeholderVal}">
+        <input type="${inputType}" class="form-control ${inputClass}" id="${id}" name="${id}"
+            placeholder="${placeholderVal}" required="${required}">
         <div data-sly-test="${error}" class="errorMsg">${error}</div>
     </div>
 </sly>

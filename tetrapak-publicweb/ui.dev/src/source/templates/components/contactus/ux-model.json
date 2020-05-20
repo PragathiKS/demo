@@ -34,16 +34,19 @@
     "messageLabel": "message",
     "countryLabel": "Country",
     "countryOptions": [
-        "Denmark",
-        "Germany",
-        "UK"
+        {
+            "key": " Denmark ",
+            "value": "denmark"
+        },
+        {
+            "key": "Australia",
+            "value": "australia"
+        }
     ],
-    "privacyPolicy": "",
-    "thankyouStep": {
-        "heading": "Thank you for your request",
-        "image": "/content/dam/tetrapak/myimage.jpg",
-        "alt": "contact us",
-        "descriptionText": "We will get back to you as soon as possible",
-        "newrequestbuttonLabel": "New request"
-    }
+    "privacyPolicy": "<p>I accept <a href=\"https: //www.tetrapak.com/about/legal-information\">Tetra Pak’s privacy policy</a></p>",
+    "thankyouHeading": "thank you for your request",
+    "thankyouImage": "/content/dam/tetrapak/myimage.jpg",
+    "thankyouImageAltText ": "contact us",
+    "thankyouDescriptionText": "<p>We will get back to you as soon as possible</p>",
+    "newrequestbuttonLabel": "New request"
 }

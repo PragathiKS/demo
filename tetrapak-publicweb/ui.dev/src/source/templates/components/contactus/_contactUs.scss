@@ -1,15 +1,22 @@
 .pw-contactus-form {
+    .form-group {
+        @include margin-bottom(16px);
+    }
+    .privacy-policy {
+        @include margin-top(24px);
+    }
     .errorMsg {
         display: none;
         color: $color-alert;
         font-size: 12px;
     }
-
-    .formfield {
-        &.field-error {
-            .errorMsg {
-                display: block;
-            }
+    .text-capital {
+        text-transform: capitalize;
+    }
+    .formfield,
+    .form-group {
+        label {
+            @include margin-bottom(0);
         }
     }
     .tab-pane {
@@ -20,23 +27,28 @@
     }
     h4 {
         font-family: $font-bold;
-        &.tpatom-heading {
+        &.tpatom-heading--small {
             @include margin-bottom(16px);
         }
     }
     .separator {
+        @include padding-bottom(24px);
         border-bottom: 1px solid $color-mercury;
         margin-bottom: 24px;
         @media #{$desktop} {
             @include margin-bottom(0);
+            @include padding-bottom(0);
             border-bottom: 0;
             border-right: 1px solid $color-mercury;
-            padding-left: $margin-xxxl;
+            padding-right: $margin-xxxl;
             & + div {
                 @include padding-left(48px);
             }
             .pw-image-container {
-                @include padding-left(24px);
+                @include padding-right(24px);
+            }
+            h4 {
+                @include margin-bottom($margin-l);
             }
         }
     }
@@ -44,10 +56,7 @@
         @include margin-bottom($margin-md);
         overflow-wrap: break-word;
     }
-    .sub-heading {
-        @include margin-bottom($margin-l);
-    }
-    .tab-pane.thankyou {
+    .thankyou {
         img {
             @include margin-bottom($margin-l);
         }
@@ -59,21 +68,30 @@
 
     .summary {
         label + p {
+            @include padding-left(48px);
             font-weight: 900;
         }
     }
 
     .button-group {
+        .tpatom-btn--primary {
+            &:hover {
+                color: $color-white;
+            }
+        }
         .previousbtn {
             @include margin-right($margin-md);
             border: 1px solid $color-congress-blue;
             background-color: $color-white;
             color: $color-congress-blue;
-
             i {
                 @include padding-left(5px);
                 transform: rotate(180deg);
                 float: left;
+            }
+            &:hover {
+                border: 1px solid $color-jordy-blue;
+                color: $color-jordy-blue;
             }
         }
     }
@@ -82,6 +100,8 @@
         .pw-progressbar__steps {
             p {
                 @include margin-top($margin-xxxl);
+                color: $color-congress-blue;
+                font-size: 12px;
             }
         }
     }

@@ -5,3 +5,12 @@
         display: none;
     }
 }
+.field-error {
+    input[type=text],
+    input[type=email] {
+        border: 1px solid $color-alert;
+    }
+    .errorMsg {
+        display: block;
+    }
+}
