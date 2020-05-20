@@ -82,31 +82,6 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Step 2 headline"
                                         name="./contactInfoText"/>
-                                    <firstNamelabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="First Name field label"
-                                        name="./firstNameLabel"/>
-                                    <lastNamelabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Last Name field label"
-                                        name="./lastNameLabel"/>
-                                    <emaillabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Email field label"
-                                        name="./emailLabel"/>
-                                    <emailplaceholder
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Email placeholder text"
-                                        name="./emailPlaceholder"/>
-                                    <countrylabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Country field label"
-                                        name="./countryLabel"/>
                                     <summarytext
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -124,11 +99,6 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Step 3 headline"
                                         name="./howCanWeHelpText"/>
-                                    <messagelabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Message field label"
-                                        name="./messageLabel"/>
                                     <privacypolicytext
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/gui/components/authoring/dialog/richtext"
@@ -160,33 +130,6 @@
                                     </privacypolicytext>
                                 </items>
                             </step3>
-                            <formbuttons
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="Form Button Labels"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <nextbuttonlabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Next button label"
-                                        name="./nextbuttonLabel"/>
-                                    <previousbuttonlabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Previous button label"
-                                        name="./previousbuttonLabel"/>
-                                    <submitbuttonlabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Submit button label"
-                                        name="./submitbuttonLabel"/>
-                                    <newrequestbuttonlabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="New Request button label"
-                                        name="./newrequestbuttonLabel"/>
-                                </items>
-                            </formbuttons>
                         </items>
                     </column>
                 </items>

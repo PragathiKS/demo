@@ -47,4 +47,74 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="viewLargerMap"
         sling:message="View larger map"/>
+   <previous
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="previous"
+        sling:message="Previous"/>
+    <next
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="next"
+        sling:message="Next"/>       
+    <submit
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="submit"
+        sling:message="Submit"/>
+   <newrequest
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="newrequest"
+        sling:message="New Request"/>
+   <message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="message"
+        sling:message="Message"/>
+   <firstName
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="firstName"
+        sling:message="First name"/>
+    <lastName
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="lastName"
+        sling:message="Last name"/>
+   <email
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="email"
+        sling:message="E-mail"/>
+   <emailPlaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="emailPlaceholder"
+        sling:message="E.g. example@example.com"/>
+   <sustainability
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="sustainability"
+        sling:message="Sustainability"/>
+   <career
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="career"
+        sling:message="Career"/>
+   <other
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="other"
+        sling:message="Other"/>
+   <pleaseselectanoption
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pleaseselectanoption"
+        sling:message="Please select an option"/>
+   <pleaseselect
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pleaseselect"
+        sling:message="Please select"/>  
 </jcr:root>

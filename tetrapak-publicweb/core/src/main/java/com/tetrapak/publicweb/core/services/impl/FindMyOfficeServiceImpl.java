@@ -26,6 +26,7 @@ import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.beans.OfficeBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
@@ -276,31 +277,16 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
     }
 
     @Override
-    public String[] fetchEmailAddresses(final ContactUs contactUs) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<DropdownOption> fetchPurposeOfContacts(final ResourceResolver resourceResolver) {
-        final List<DropdownOption> purposeOfContactList = new ArrayList<>();
-        final Resource purposeOfContactRootRes = resourceResolver.getResource(config.geturposeOfcontactRootPath());
-        if (Objects.nonNull(purposeOfContactRootRes)) {
-            final Iterator<Resource> rootIterator = purposeOfContactRootRes.listChildren();
-            while (rootIterator.hasNext()) {
-                final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
-                    if (Objects.nonNull(jcrResource)) {
-                        final DropdownOption purposeOfContact = new DropdownOption();
-                        purposeOfContact.setKey(childResource.getName());
-                        purposeOfContact.setValue(setCountryTitle(jcrResource));
-                        purposeOfContactList.add(purposeOfContact);
-                    }
-                }
-            }
+    public String[] fetchContactEmailAddresses(final ContactUs contactUs, final ResourceResolver resourceResolver) {
+        String[] contactEmails = null;
+        final String countryDataPath = getCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
+                + DATA_ROOT_PATH;
+        final Resource countryDataResource = resourceResolver.getResource(countryDataPath);
+        if (Objects.nonNull(countryDataResource)) {
+            contactEmails = (String[]) countryDataResource.getValueMap()
+                    .get(contactUs.getPurposeOfContact() + "emails");
         }
-        return purposeOfContactList;
+        return contactEmails;
     }
 
     @Override

@@ -51,10 +51,8 @@ public interface FindMyOfficeService {
      */
     String getOfficeCfRootPath();
 
-    String[] fetchEmailAddresses(ContactUs contactUs);
-
     List<DropdownOption> fetchCountryList(ResourceResolver resourceResolver);
 
-    List<DropdownOption> fetchPurposeOfContacts(ResourceResolver resourceResolver);
+    String[] fetchContactEmailAddresses(ContactUs contactUs, ResourceResolver resourceResolver);
 
 }

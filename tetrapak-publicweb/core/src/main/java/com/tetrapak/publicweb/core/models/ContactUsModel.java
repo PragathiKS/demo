@@ -48,30 +48,6 @@ public class ContactUsModel {
     @ValueMapValue
     private String summaryText;
     @ValueMapValue
-    private String firstNameLabel;
-    @ValueMapValue
-    private String lastNameLabel;
-    @ValueMapValue
-    private String emailLabel;
-    @ValueMapValue
-    private String emailPlaceholder;
-    @ValueMapValue
-    private String messageLabel;
-    @ValueMapValue
-    private String countryLabel;
-    @ValueMapValue
-    private String previousbuttonLabel;
-    @ValueMapValue
-    private String nextbuttonLabel;
-    @ValueMapValue
-    private String submitbuttonLabel;
-    @ValueMapValue
-    private String newrequestbuttonLabel;
-
-    private List<DropdownOption> purposeOfContactOptions = null;
-    private List<DropdownOption> countryOptions = null;
-
-    @ValueMapValue
     private String privacyPolicy;
     @ValueMapValue
     private String thankyouHeading;
@@ -82,6 +58,8 @@ public class ContactUsModel {
     @ValueMapValue
     private String thankyouDescriptionText;
 
+    private List<DropdownOption> countryOptions = null;
+
     @OSGiService
     private FindMyOfficeService findMyOffice;
 
@@ -91,7 +69,6 @@ public class ContactUsModel {
     @PostConstruct
     protected void init() {
         setCountryOptions();
-        setPurposeOfContactOptions();
     }
 
     public String getHeading() {
@@ -138,50 +115,6 @@ public class ContactUsModel {
         return summaryText;
     }
 
-    public String getFirstNameLabel() {
-        return firstNameLabel;
-    }
-
-    public String getLastNameLabel() {
-        return lastNameLabel;
-    }
-
-    public String getEmailLabel() {
-        return emailLabel;
-    }
-
-    public String getEmailPlaceholder() {
-        return emailPlaceholder;
-    }
-
-    public String getMessageLabel() {
-        return messageLabel;
-    }
-
-    public String getCountryLabel() {
-        return countryLabel;
-    }
-
-    public String getPreviousbuttonLabel() {
-        return previousbuttonLabel;
-    }
-
-    public String getNextbuttonLabel() {
-        return nextbuttonLabel;
-    }
-
-    public String getSubmitbuttonLabel() {
-        return submitbuttonLabel;
-    }
-
-    public String getNewrequestbuttonLabel() {
-        return newrequestbuttonLabel;
-    }
-
-    public List<DropdownOption> getPurposeOfContactOptions() {
-        return purposeOfContactOptions;
-    }
-
     public List<DropdownOption> getCountryOptions() {
         return countryOptions;
     }
@@ -204,10 +137,6 @@ public class ContactUsModel {
 
     public String getThankyouDescriptionText() {
         return thankyouDescriptionText;
-    }
-
-    private void setPurposeOfContactOptions() {
-        this.purposeOfContactOptions = findMyOffice.fetchPurposeOfContacts(resource.getResourceResolver());
     }
 
     private void setCountryOptions() {
