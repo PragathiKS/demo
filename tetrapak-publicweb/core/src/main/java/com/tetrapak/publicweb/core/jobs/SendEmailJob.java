@@ -9,17 +9,17 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import com.adobe.acs.commons.email.EmailService;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 /**
- * Sling job to add assets to AEM DAM
+ * Sling job to send email
  *
- * @author Akash Bansal
  *
  */
 @Component(
         immediate = true,
         service = JobConsumer.class,
-        property = { JobConsumer.PROPERTY_TOPICS + "=com/tetrapak/publicweb/sendemail" })
+        property = { JobConsumer.PROPERTY_TOPICS + "=" + PWConstants.SEND_EMAIL_JOB_TOPIC })
 public class SendEmailJob implements JobConsumer {
 
     @Reference
@@ -33,5 +33,4 @@ public class SendEmailJob implements JobConsumer {
                 (String[]) job.getProperty("receipientsArray"));
                     return JobResult.OK;
     }
-
 }

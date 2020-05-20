@@ -13,6 +13,11 @@ public class ContactUsResponse {
     @JsonProperty("statusCode")
     private String statusCode;
 
+    public ContactUsResponse(final String statusCode, final String statusMessage) {
+        this.statusCode = statusCode;
+        this.statusMessage = statusMessage;
+    }
+
     @JsonProperty("statusMessage")
     public String getStatusMessage() {
         return statusMessage;
