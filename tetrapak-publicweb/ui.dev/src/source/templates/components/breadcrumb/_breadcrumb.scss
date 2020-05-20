@@ -1,43 +1,41 @@
 .tp_pw-breadcrumb {
-    @include margin($spacing-small 0);
+    @include max-width($body-max-width);
     display: none;
-    color: $color-boulder;
+    color: $color-tundora;
     overflow: hidden;
     position: relative;
     width: 100%;
 
     @media #{$desktop} {
-        @include margin($spacing-big 0);
-        display: inline-block;
+        @include margin($spacing-big auto);
+        display: block;
+    }
+
+    &__wrapper {
+        margin: 0 48px;
+        padding: 0 48px;
     }
 
     &__link {
-        @include font-size(12px);
-        @include line-height(28px, 16px);
-        color: $color-boulder;
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
+        color: $color-tundora;
         font-weight: normal;
-        @media #{$tablet} {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
-        }
     }
 
-    .tp_icon {
-        @include font-size(8px);
-        @include margin(0 $margin-sm);
-
+    .icon-Arrow_Right_pw.tp_icon {
+        @include margin(0 6px);
+        @include font-size($font-xxs);
+        @include line-height($font-xxs, $font-xxs);
         display: inline;
         vertical-align: middle;
     }
 
     span {
-        @include font-size(12px);
-        @include line-height(28px, 16px);
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
         color: $color-tundora;
         font-weight: normal;
-        @media #{$tablet} {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
-        }
+        margin-left: -$margin-xs;
     }
 }

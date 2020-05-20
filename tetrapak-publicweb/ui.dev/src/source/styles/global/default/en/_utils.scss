@@ -257,14 +257,14 @@ $progress-units: (
     ol,
     ul {
         li:before {
-            color: $color-congress-blue;
+            color: $color-tundora;
         }
     }
     ul {
         li:before {
             @include margin-right($margin-sm);
             content: '\2022';
-            color: $color-congress-blue;
+            color: $color-tundora;
             display: inline-block;
         }
     }
