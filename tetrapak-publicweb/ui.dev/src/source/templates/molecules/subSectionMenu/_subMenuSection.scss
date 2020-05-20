@@ -3,14 +3,39 @@
         @include padding-top($padding-l);
         display: none;
         position: absolute;
-        ul li {
-            @include padding(0 $margin-l);
+        .pseudo-category {
+            display: inline-block;
+        }
+
+        .sub-section-category {
+            border: 1px solid;
+            display: flex;
+            @include padding($padding-xxxl);
+            @include padding-top($padding-l);
+        }
+
+        hr {
+            @include margin($margin-md 0);
+            color: $color-mercury;
+        }
+
+        & > ul {
+            border: 1px solid;
+            display: flex;
+            @include padding($padding-xxxl);
+            @include padding-top($padding-l);
+
+            & > li {
+                @include margin-right(80px);
+            }
+        }
+
+        li {
             @include margin(0);
             background: $color-wild-sand;
             &:first-child {
                 @include margin-left(0);
             }
-
         }
         a {
             @include line-height(20px, $font-sm);
@@ -20,6 +45,16 @@
         }
         &.show {
             display: block;
+        }
+
+        .category-child-ul {
+            display: flex;
+            & > ul {
+                @include margin-right(80px);
+                &:last-child {
+                    @include margin-right(0);
+                }
+            }
         }
     }
 }

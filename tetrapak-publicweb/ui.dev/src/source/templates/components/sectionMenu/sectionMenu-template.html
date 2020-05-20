@@ -16,7 +16,7 @@
       <sly data-sly-test="${data.subSectionMenu}">
         <sly
           data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenu}">
+          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenu, subSectionCount=data.subSectionCount}">
         </sly>
       </sly>
     </div>
