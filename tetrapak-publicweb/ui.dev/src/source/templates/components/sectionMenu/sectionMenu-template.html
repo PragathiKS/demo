@@ -6,17 +6,17 @@
         <sly data-sly-test="${data.external}">
           <i class="icon icon--link ${iconClass}"></i>
         </sly>
-        <sly data-sly-test="${data.subSectionMenuMap}">
+        <sly data-sly-test="${data.subSectionMenu}">
           <i class="icon with-arrow icon--link ${iconClass}"></i>
         </sly>
-        <sly data-sly-test="${!data.subSectionMenuMap && !data.external}">
+        <sly data-sly-test="${!data.subSectionMenu && !data.external}">
           <i class="icon without-arrow icon--link ${iconClass}"></i>
         </sly>
       </a>
-      <sly data-sly-test="${data.subSectionMenuMap}">
+      <sly data-sly-test="${data.subSectionMenu}">
         <sly
           data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenuMap}">
+          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenu}">
         </sly>
       </sly>
     </div>

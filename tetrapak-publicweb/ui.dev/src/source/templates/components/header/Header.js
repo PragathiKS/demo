@@ -3,6 +3,7 @@
 
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { render } from '../../../scripts/utils/render';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 import { updateQueryString } from '../../../scripts/common/common';
 
@@ -46,9 +47,263 @@ class Header {
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
     $('.js-tp-pw-header-item').on('click', this.handleMainNavClick);
-    $parentNavElement.addClass('pw-position-static');
-    $body.addClass('pw-position-relative');
+    // $parentNavElement.addClass('pw-position-static');
+    // $body.addClass('pw-position-relative');
+    this.getActiveHeaderData();
+  }
 
+  getActiveHeaderData = () => {
+    const getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+      }
+    };
+    const activeMainMenu = getUrlParameter('header');
+    const activeL2 = getUrlParameter('l2');
+    const activeL3 = getUrlParameter('l3');
+    this.getStickyHeaderData({activeMainMenu,activeL2,activeL3});
+  }
+
+  getStickyHeaderData = (data) => {
+    // const header = $('.js-hidden').data('header-list');
+    const headerArray = [
+      {
+        'linkText': 'Solutions',
+        'linkPath': '/content/tetrapak/public-web/global/en/solutions'
+      },
+      {
+        'linkText': 'Insights',
+        'linkPath': '/content/tetrapak/public-web/global/en/insights',
+        'navigationConfigurationModel': {
+          'sectionHomePageTitle': 'Insight overview',
+          'sectionHomePagePath': '',
+          'sectionRaws': '6',
+          'sectionMenuMap': [
+            {
+              'linkText': 'Insight Processing',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false,
+              'subSectionMenu': {
+                'subSections': [
+                  {
+                    'linkText': 'Processing',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Servicing',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Packages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Dairy',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  }
+                ]
+              }
+            },
+            {
+              'linkText': 'Insight equipment',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false
+            },
+            {
+              'linkText': 'Insight external',
+              'linkPath': 'https://www.google.com',
+              'external': true
+            }
+          ]
+        }
+      },
+      {
+        'linkText': 'Sustainability',
+        'linkPath': '/content/tetrapak/public-web/global/en/insights',
+        'navigationConfigurationModel': {
+          'sectionHomePageTitle': 'Sustainability overview',
+          'sectionHomePagePath': '',
+          'sectionRaws': '6',
+          'sectionMenuMap': [
+            {
+              'linkText': 'Sustainability Processing',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false,
+              'subSectionMenu': {
+                'subSections': [
+                  {
+                    'linkText': 'Sustainability Pro',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Sustainability Ser',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Sustainability Pack',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Dairy',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  }
+                ]
+              }
+            },
+            {
+              'linkText': 'Sustainability equipment',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false
+            },
+            {
+              'linkText': 'Sustainability external',
+              'linkPath': 'https://www.google.com',
+              'external': true
+            }
+          ]
+        }
+      },
+      {
+        'linkText': 'About Tetra pak',
+        'linkPath': '/content/tetrapak/public-web/global/en/insights',
+        'navigationConfigurationModel': {
+          'sectionHomePageTitle': 'About Tetra pak overview',
+          'sectionHomePagePath': '',
+          'sectionRaws': '6',
+          'sectionMenuMap': [
+            {
+              'linkText': 'About Tetra pak Processing',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false,
+              'subSectionMenu': {
+                'subSections': [
+                  {
+                    'linkText': 'About Pro',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'About Ser',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Packages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  },
+                  {
+                    'linkText': 'Dairy',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html',
+                    'external': true
+                  },
+                  {
+                    'linkText': 'Beverages',
+                    'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html',
+                    'external': false
+                  }
+                ]
+              }
+            },
+            {
+              'linkText': 'About Tetra pak equipment',
+              'linkPath': '/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html',
+              'external': false
+            },
+            {
+              'linkText': 'About Tetra pak external',
+              'linkPath': 'https://www.google.com',
+              'external': true
+            }
+          ]
+        }
+      }
+    ];
+    const activeMainHeader = headerArray.filter((header) => header.linkText === data.activeMainMenu);
+    return activeMainHeader[0] && this.getActiveMenu(activeMainHeader[0],data);
+  }
+
+  getActiveMenu = (header,data) => {
+    header['active'] = true;
+    if(data.activeL2){
+      header['navigationConfigurationModel']['sectionMenuMap'].forEach((sectionItem) => {
+        if(sectionItem.linkText === data.activeL2){
+          sectionItem['active'] = true;
+        }
+      });
+    }
+    if(data.activeL3){
+      for(const i in header){
+        if(i === 'navigationConfigurationModel'){
+          for(const j in header[i]){
+            if( j === 'sectionMenuMap'){
+              header[i][j].forEach((sectionMenuItem) => {
+                if(sectionMenuItem.active === true){
+                  if(sectionMenuItem.subSectionMenu.pseudoCategoriesSection){
+                    sectionMenuItem.subSectionMenu.pseudoCategoriesSection.forEach((pseudoCategory) => {
+                      pseudoCategory.subsections.forEach((subSection) => {
+                        if(subSection.linkText === data.activeL3){
+                          subSection['active'] = true;
+                        }
+                      });
+                    });
+                  } else {
+                    sectionMenuItem.subSectionMenu.subSections.forEach((subCategory) => {
+                      if(subCategory.linkText === data.activeL3){
+                        subCategory['active'] = true;
+                      }
+                    });
+                  }
+                }
+              });
+            }
+          }
+        }
+      }
+    }
+    return header;
   }
 
   handleMouseOver = () => {
@@ -73,16 +328,16 @@ class Header {
     const {$parentNavElement, $body } = this.cache;
     const $target = $(e.target);
     const $this = $target.closest('.js-main-menu-link-hover');
-    // $parentNavElement.removeClass('pw-position-static');
-    // $body.removeClass('pw-position-relative');
+    $parentNavElement.removeClass('pw-position-static');
+    $body.removeClass('pw-position-relative');
     $this.children('.pw-navigation').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
   }
 
   handleMouseOut = () => {
     const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
     $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
-    // $parentNavElement.removeClass('pw-position-static');
-    // $body.removeClass('pw-position-relative');
+    $parentNavElement.removeClass('pw-position-static');
+    $body.removeClass('pw-position-relative');
     $overlay.addClass('d-none');
   }
 
