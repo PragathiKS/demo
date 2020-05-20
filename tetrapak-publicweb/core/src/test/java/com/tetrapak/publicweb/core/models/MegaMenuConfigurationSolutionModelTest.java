@@ -34,7 +34,8 @@ public class MegaMenuConfigurationSolutionModelTest {
     /**
      * The setup method.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -53,9 +54,7 @@ public class MegaMenuConfigurationSolutionModelTest {
     @Test
     public void testSubtitlesAndUrl() {
         assertEquals("Tetra pak end to end solution", model.getTopSectionSubtitle());
-        assertEquals("/content/tetrapak/public-web/language-masters/en/solutions.html", model.getTopSectionUrl());
         assertEquals("Food categories", model.getBottomSectionSubtitle());
-        assertEquals("/content/tetrapak/public-web/language-masters/en/food.html", model.getBottomSectionUrl());
     }
 
     /**
