@@ -51,7 +51,7 @@
             }
         }
         .teaserMarginL {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
                 @include margin-bottom($margin-xxxl);
                 @include padding-left($margin-l);
@@ -81,7 +81,6 @@
         }
         .link {
             @include padding-top($padding-l);
-            @include padding-bottom($padding-l);
         }
     }
 }
