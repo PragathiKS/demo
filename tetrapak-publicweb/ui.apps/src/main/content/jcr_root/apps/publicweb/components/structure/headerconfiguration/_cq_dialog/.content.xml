@@ -57,27 +57,17 @@
                                 fieldLabel="My TetraPak Link"
                                 name="./loginLink"
                                 rootPath="/content/tetrapak/public-web"/>
-                            <contacttext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Hover text"
-                                fieldLabel="Contact Title"
-                                name="./contactText"/>
                             <contactlink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Link to contact us page"
-                                fieldLabel="Contact Link"
+                                fieldLabel="Contact Us Link"
                                 name="./contactLink"
                                 rootPath="/content/tetrapak/public-web"/>
-                            <contactlinktarget
+							<contacttext
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Open link in a new window ?"
-                                name="./contactLinkTarget"
-                                text="New Window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Contact Us Alt Text"
+                                name="./contactText"/>
                             <solutionpage
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"

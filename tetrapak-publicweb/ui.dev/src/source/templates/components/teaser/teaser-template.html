@@ -1,4 +1,4 @@
-<sly data-sly-template.teaser_template="${@data,componentName, flag}">
+<sly data-sly-template.teaser_template="${@data, flag}">
   <div class="pw-container" data-module="teaser">
     <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.heading}" class="tp-teaser__heading">
@@ -7,7 +7,7 @@
       </div>
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row" data-sly-list.child="${data.teaserList}">
-        <sly data-sly-test.teaserType="${teaserSize > 2 ? [componentName,'2'] : [componentName,'1'] @ join=''}"/>
+        <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
         <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
           
           <a data-sly-test="${child.linkPath}"

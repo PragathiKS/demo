@@ -1,4 +1,4 @@
-<sly data-sly-template.megamenusolution_template="${@data, isMobile, flag}">
+<sly data-sly-template.megamenusolution_template="${@data, isMobile, flag, mainHeader}">
   <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
     <!--/* Component HTML code goes here */-->
     <hr class="d-none d-lg-block" />
@@ -6,13 +6,7 @@
       <div class="container-fluid pw-megamenu__top">
         <sly data-sly-test.isMobile="${!isMobile}">
           <div class="heading-d-link">
-            <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}"
-              title="${data.topSectionSubtitle}" aria-label="${data.topSectionSubtitle}">
-              <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
-                data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
-            </a>
-            <sly data-sly-test="${data.topSectionUrl == '#'}"
-              data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+            <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
           </div>
         </sly>
@@ -23,7 +17,8 @@
         </div>
         <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
           <li class="col">
-            <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions' data-link-name='Solution:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
+            <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions'
+              data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -44,7 +39,7 @@
             <ul class="list-side-links" data-sly-list.linkSection=${data.linkSection}>
               <li>
                 <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/link/link-template.html"
-                  data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, parentLink='Solution', linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-xl-inline-block'}">
+                  data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, parentLink=mainHeader, linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-xl-inline-block'}">
                 </sly>
               </li>
             </ul>
@@ -53,13 +48,7 @@
       </div>
       <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
         <div class="heading-bottom-cta js-open-menu">
-          <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}"
-            title="${data.bottomSectionSubtitle}" aria-label="${data.bottomSectionSubtitle}">
-            <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
-              data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
-          </a>
-          <sly data-sly-test="${data.bottomSectionUrl == '#'}"
-            data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+          <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
           <i class="icon icon-Chevron_Right d-md-none"></i>
         </div>
@@ -73,8 +62,8 @@
               </div>
             </li>
             <li class="col">
-              <a class="js-navigation-Link" data-link-section='Food categories' data-link-name='Solution:${foodCategorySection.title}'
-                href="${foodCategorySection.path}">
+              <a class="js-navigation-Link" data-link-section='Food categories'
+                data-link-name='${mainHeader}:${foodCategorySection.title}' href="${foodCategorySection.path}">
                 <sly data-sly-test="${!wcmmode.edit}">
                   <sly
                     data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"

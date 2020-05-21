@@ -1,6 +1,8 @@
 import Breadcrumb from './Breadcrumb';
 import $ from 'jquery';
 import breadcrumbTemplate from '../../../test-templates-hbs/breadcrumb.hbs';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
 
 describe('Breadcrumb', function () {
   before(function () {

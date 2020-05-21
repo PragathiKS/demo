@@ -21,13 +21,6 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Section title"
                                 name="./topSectionSubtitle"/>
-                            <topSectionUrl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Configure path to make section title clickable"
-                                fieldLabel="Section title URL"
-                                name="./topSectionUrl"
-                                rootPath="/content/tetrapak/public-web"/>
                             <solution
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
@@ -144,13 +137,6 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Section title"
                                 name="./bottomSectionSubtitle"/>
-                            <bottomSectionUrl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Configure path to make section title clickable"
-                                fieldLabel="Section title URL"
-                                name="./bottomSectionUrl"
-                                rootPath="/content/tetrapak/public-web"/>
                             <foodCategory
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
