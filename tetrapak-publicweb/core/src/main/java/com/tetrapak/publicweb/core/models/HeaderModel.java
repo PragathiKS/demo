@@ -72,6 +72,9 @@ public class HeaderModel {
 
     /** The solution page title. */
     private String solutionPageTitle;
+    
+    /** The market list. */
+    private MarketSelectorModel marketList = new MarketSelectorModel();
 
     /**
      * Inits the.
@@ -288,5 +291,12 @@ public class HeaderModel {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
             solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
         }
+    }
+
+    /**
+     * @return markets list
+     */
+    public MarketSelectorModel getMarketList() {
+        return request.adaptTo(MarketSelectorModel.class);
     }
 }
