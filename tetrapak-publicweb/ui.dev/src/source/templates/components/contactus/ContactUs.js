@@ -106,8 +106,6 @@ class ContactUs {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
-        } else {
-          $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
       if (isvalid  && !honeyPotFieldValue) {
