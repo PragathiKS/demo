@@ -4,7 +4,14 @@
         @include padding(0);
         @include margin($margin-l $margin-xl);
         @media #{$desktop} {
-            @include margin($margin-l margin-xl -margin-md $margin-xl);
+            @include margin($margin-l $margin-xl $margin-zero $margin-xl);
+            @include margin-bottom(-$margin-md);
+        }
+    }
+    &__regular {
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-xxxl);
+            @include margin($margin-zero $margin-xxxl);
         }
     }
 
@@ -21,8 +28,10 @@
         display: flex;
         justify-content: center;
         &.tp-container {
+            @include max-width($body-max-width);
             @include padding(0);
-            @include margin($margin-xl auto);
+            @include margin($margin-xl auto $margin-zero auto);
+            @include margin-bottom(-$margin-md);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);

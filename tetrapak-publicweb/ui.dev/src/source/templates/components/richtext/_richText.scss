@@ -54,15 +54,15 @@
     }
 
     h1 {
-        @include font-size($font-xl);
+        @include font-size($font-l);
         @include margin-bottom(16px);
-        @include line-height(40px, $font-xl);
+        @include line-height(32px, $font-xl);
         font-weight: 300;
     }
 
     h2 {
-        @include font-size(28px);
-        @include line-height(32px, 28px);
+        @include font-size(18px);
+        @include line-height(24px, 18px);
         @include margin-bottom(16px);
     }
 
@@ -99,7 +99,7 @@
         @include margin-bottom(8px);
         li {
             &::before {
-                color: $color-congress-blue;
+                color: $color-tundora;
             }
             &:last-child {
                 @include padding-bottom(0);
@@ -112,8 +112,9 @@
             &::before {
                 @include margin-right($margin-sm);
                 display: inline-block;
-                color: $color-congress-blue;
+                color: $color-tundora;
                 content: '\2022';
+
             }
         }
     }
@@ -197,6 +198,7 @@
             @include padding-top(9px);
             @include padding-bottom(9px);
             border-bottom: 1px solid $color-black;
+            font-weight: 500;
         }
 
         td {
