@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, API_CONTACTUS_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
@@ -40,7 +41,7 @@ class ContactUs {
     ajaxWrapper.getXhrObj({
       url: API_CONTACTUS_FORM,
       method: ajaxMethods.POST,
-      data: {'inputJson': this.cache.requestPayload}
+      data: {'inputJson': JSON.stringify(this.cache.requestPayload)}
     }).done(
       () => {
         $('.tab-pane' , this.root).removeClass('active');
@@ -55,7 +56,7 @@ class ContactUs {
     this.cache.$radio.on('change', function() {
       const value = this.value;
       const id = $(this).attr('id');
-      $('input[type=hidden][name="purposeOfContact"]').val(value);
+      $('input[type=hidden][name="purposeOfContactTitle"]').val(value);
       self.cache.requestPayload['purposeOfContact'] = id;
       self.cache.requestPayload['purposeOfContactTitle'] = value;
     });
@@ -95,6 +96,7 @@ class ContactUs {
       e.stopPropagation();
       var isvalid = true;
       const honeyPotFieldValue = $('#contactUsHoneyPot', self.root).val();
+      self.cache.requestPayload['message'] = $('[name="message"]').val();
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
@@ -104,11 +106,6 @@ class ContactUs {
       if (isvalid  && !honeyPotFieldValue) {
         self.submitForm();   
       }
-    });
-
-    this.cache.$dropdown.click(function () {
-      $(this).toggleClass('show');
-      $(this).find('.dropdown-menu').toggleClass('show');
     });
 
     this.cache.$dropItem.click(function (e) {
@@ -122,9 +119,6 @@ class ContactUs {
       self.cache.requestPayload['countryTitle'] = countryTitle;
       self.cache.$dropItem.removeClass('active');
       $(this).addClass('active');
-      $(parentDrop).removeClass('show');
-      $(parentDrop).find('.dropdown-menu').removeClass('show');
-      e.stopPropagation();
     });
 
   }

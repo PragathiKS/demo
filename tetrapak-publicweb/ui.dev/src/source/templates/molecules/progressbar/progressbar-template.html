@@ -1,13 +1,23 @@
 <sly data-sly-template.progressbar_template="${@ activeStep, totalStep}">
-    <div class="pw-progressbar_wrapper">
-        <div class="step1 step-box ${activeStep == 1 ? 'active' : 'done'}">
-            <span class="steps"><span>1</span></span>
-        </div>
-        <div class="step2 step-box ${activeStep == 2 ? 'active' : ''} ${activeStep > 2 ? 'done' : ''}">
-            <span class="steps"><span>2</span></span>
-        </div>
-        <div class="step3 step-box ${activeStep == 3 ? 'active' : ''}">
-            <span class="steps"><span>3</span></span>
-        </div>
-    </div>
+    <ul class="pw-progressbar_wrapper">
+        <li class="step1 step-box ${activeStep == 1 ? 'active' : 'done'}">
+            <div class="steps">
+                <span class="circle"><span>1</span></span>
+            </div>
+        </li>
+        <li class="step2 step-box ${activeStep == 2 ? 'active' : ''} ${activeStep > 2 ? 'done' : ''}">
+            <div class="steps">
+                <span class="circle">
+                    <span>2</span>
+                </span>
+            </div>
+        </li>
+        <li class="step3 step-box ${activeStep == 3 ? 'active' : ''}">
+            <div class="steps">
+                <span class="circle">
+                    <span>3</span>
+                </span>
+            </div>
+        </li>
+    </ul>
 </sly>

@@ -1,64 +1,77 @@
-.pw-progressbar_wrapper {
-    width: 100%;
+ul.pw-progressbar_wrapper {
     display: flex;
+    position: relative;
+    justify-content: space-between;
     margin: $margin-l 0;
     @media #{$desktop} {
         margin: $margin-xxxl 0 $margin-l;
     }
     .step-box {
-        flex: 1;
-        flex-direction: column;
+        display: flex;
         position: relative;
-        color: $color-white;
-        &::after {
-            content: "";
-            position: absolute;
-            top: 13px;
-            left: 2px;
-            height: 2px;
-            width: calc(100% - 2px);
-            background-color: $color-mercury;
+        flex: 1;
+        align-items: center;
+        &:not(:first-child) {
+            &::before {
+                content: '';
+                position: relative;
+                flex: 1;
+                height: 1px;
+                margin: 2px 0 0;
+                background-color: $color-mercury;
+            }
         }
-
-        &:last-child::after {
-            width: 0;
-            height: 0;
+        &:not(:last-child) {
+            &::after {
+                content: '';
+                position: relative;
+                flex: 1;
+                height: 1px;
+                margin: 2px 0 0;
+                background-color: $color-mercury;
+            }
         }
-
-        .steps {
-            background: $color-mercury;
-            border-radius: 50%;
-            display: inline-block;
-            height: 8px;
-            width: 8px;
+        > .steps {
+            color: $color-jordy-blue;
+            text-decoration: none;
             text-align: center;
-            vertical-align: middle;
-            position: relative;
-            z-index: 1;
-            > span {
-                display: none;
+            // padding: 1.5rem;
+            .circle {
+                display: inline-block;
+                color: $color-white;
+                width: 8px;
+                height: 8px;
+                line-height: 1.7rem;
+                text-align: center;
+                background: $color-mercury;
+                border-radius: 50%;
+                z-index: 1;
+                > span {
+                    display: none;
+                }
             }
         }
 
         &.done {
-            &::after {
-                background: $color-congress-blue;
+            .circle {
+                background-color: $color-congress-blue;
             }
-            .steps {
+            &::after,
+            &::before {
                 background: $color-congress-blue;
-                border-color: $color-congress-blue;
             }
         }
-
         &.active {
-            .steps {
-                border-color: $color-congress-blue;
-                background: $color-congress-blue;
+            .circle {
+                background-color: $color-congress-blue;
                 height: 24px;
                 width: 24px;
                 > span {
                     display: block;
                 }
+            }
+            &::before {
+                background-color: $color-congress-blue;
             }
         }
     }

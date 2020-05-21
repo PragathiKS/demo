@@ -5,6 +5,6 @@
         <label for="${id}">${label @ i18n}</label>
         <input type="${inputType}" class="form-control ${inputClass}" id="${id}" name="${id}"
             placeholder="${placeholderVal @i18n}" required="${required}">
-        <div data-sly-test="${error}" class="errorMsg">${error}</div>
+        <div data-sly-test="${error}" class="errorMsg">${error @ i18n}</div>
     </div>
 </sly>

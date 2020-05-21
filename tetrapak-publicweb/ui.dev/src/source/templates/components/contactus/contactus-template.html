@@ -42,7 +42,7 @@
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
                                                 data-sly-call="${radioField.radiofieldinput_template @ id='other', label='other', name='purposeOfContactOptions'}">
                                             </sly>
-                                            <input type="hidden" name="purposeOfContact" class="form-control"
+                                            <input type="hidden" name="purposeOfContactTitle" class="form-control"
                                                 id="purposeOfContact" required>
                                             <div class="errorMsg">${'pleaseselectanoption' @i18n}</div>
                                         </div>
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                     <div class="row no-gutters pw-progress">
-                                        <div class="col-md-7">
+                                        <div class="col-md-9">
                                             <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
                                                 data-sly-call="${progressBar.progressbar_template @ activeStep=2}">
                                             </sly>
@@ -210,7 +210,7 @@
                                         </div>
                                     </div>
                                     <div class="row no-gutters pw-progress">
-                                        <div class="col-md-7">
+                                        <div class="col-md-9">
                                             <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
                                                 data-sly-call="${progressBar.progressbar_template @ activeStep=3}">
                                             </sly>

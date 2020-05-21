@@ -85,8 +85,8 @@
         .previousbtn {
             @include margin-right($margin-md);
             border: 1px solid $color-congress-blue;
-            background-color: $color-white;
             color: $color-congress-blue;
+            background-color: $color-white;
             i {
                 @include padding-left(5px);
                 transform: rotate(180deg);
@@ -101,6 +101,7 @@
 
     .pw-progress {
         .pw-progressbar__steps {
+            @include padding-left($padding-md);
             p {
                 @include margin-top($margin-l);
                 color: $color-congress-blue;
