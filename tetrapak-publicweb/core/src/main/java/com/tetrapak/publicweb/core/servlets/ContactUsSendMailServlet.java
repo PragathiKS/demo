@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 
 /**
  * The Class ContactUsSubmitRequestServlet.
@@ -42,6 +43,9 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
     @Reference
     private ContactUsMailService contactUsMailService;
 
+    @Reference
+    private CountryDetailService countryDetailService;
+
     /**
      * Do get.
      *
@@ -59,8 +63,12 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
             if (!StringUtils.isEmpty(inputJson)) {
                 final ContactUs contactUs = new ObjectMapper().readValue(inputJson, ContactUs.class);
                 if (validateRequest(contactUs)) {
+
+                    final String[] mailAddresses = countryDetailService.fetchContactEmailAddresses(contactUs,
+                            request.getResourceResolver());
+
                     // send email
-                    contactusResp = contactUsMailService.sendEmailForNotification(contactUs, request);
+                    contactusResp = contactUsMailService.sendEmailForNotification(contactUs, mailAddresses);
                 } else {
                     contactusResp.setStatusMessage("Mandatory fields Validation Error");
                 }
