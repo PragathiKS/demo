@@ -10,13 +10,26 @@
         <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay}">
           <div class="row">
             <div class="col-md-12 col-lg-6 leftPad">
-              <sly data-sly-test = "${!wcmmode.edit}">
-                <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
-              </sly>
-              <sly data-sly-test = "${wcmmode.edit}">
-                <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
-              </sly>
-              </div>
+              <a data-sly-test="${data.linkText}"
+                    href="${data.linkURL}"
+                    class="img-link js-textImage-analytics"
+                    title="${data.linkText}"
+                    target="${data.targetBlank}"
+                    data-link-section="Text & Image_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"
+                    data-link-name="${data.linkText}"
+                    data-button-link-type="${data.pwButtonTheme}"
+                    data-download-type="${data.pwLinkTheme}"
+                    data-asset-name="${data.assetName}"
+                    data-image-title="${data.title}"
+              >
+                <sly data-sly-test = "${!wcmmode.edit}">
+                  <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
+                </sly>
+                <sly data-sly-test = "${wcmmode.edit}">
+                  <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
+                </sly>
+              </a>
+            </div>
             <div class="col-md-12 col-lg-6 rightPad">
               <div data-sly-test="${data.subTitle}" class="pw-text-image__subTitle">
                 <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
