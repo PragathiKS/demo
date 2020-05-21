@@ -72,9 +72,6 @@ public class HeaderModel {
 
     /** The solution page title. */
     private String solutionPageTitle;
-    
-    /** The market list. */
-    private MarketSelectorModel marketList = new MarketSelectorModel();
 
     /**
      * Inits the.
