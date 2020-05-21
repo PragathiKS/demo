@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -16,7 +15,6 @@ import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
-import com.tetrapak.publicweb.core.services.CountryDetailService;
 
 @Component(immediate = true, service = ContactUsMailService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ContactUsMailServiceImpl implements ContactUsMailService {
@@ -26,16 +24,10 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
     @Reference
     private JobManager jobMgr;
 
-    @Reference
-    private CountryDetailService countryDetailService;
-
     @Override
-    public ContactUsResponse sendEmailForNotification(final ContactUs contactUs,
-            final SlingHttpServletRequest request) {
+    public ContactUsResponse sendEmailForNotification(final ContactUs contactUs, final String[] mailAddresses) {
         LOGGER.debug("inside sendEmailForNotification");
 
-        final String[] mailAddresses = countryDetailService.fetchContactEmailAddresses(contactUs,
-                request.getResourceResolver());
         if (Objects.nonNull(mailAddresses)) {
             // Set the dynamic variables of email template
             final Map<String, String> emailParams = new HashMap<>();
@@ -48,12 +40,11 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
             emailParams.put("message", contactUs.getMessage());
             emailParams.put("email", contactUs.getEmail());
             emailParams.put("domainURL", contactUs.getDomainURL());
-
+            final Map<String, Object> properties = new HashMap<>();
+            properties.put("templatePath", PWConstants.CONTACT_US_MAIL_TEMPLATE_PATH);
+            properties.put("emailParams", emailParams);
+            properties.put("receipientsArray", mailAddresses);
             if (jobMgr != null) {
-                final Map<String, Object> properties = new HashMap<>();
-                properties.put("templatePath", PWConstants.CONTACT_US_MAIL_TEMPLATE_PATH);
-                properties.put("emailParams", emailParams);
-                properties.put("receipientsArray", mailAddresses);
                 jobMgr.addJob(PWConstants.SEND_EMAIL_JOB_TOPIC, properties);
             } else {
                 LOGGER.error("JobManager Reference null");
