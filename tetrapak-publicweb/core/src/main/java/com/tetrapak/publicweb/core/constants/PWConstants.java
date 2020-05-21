@@ -16,6 +16,9 @@ public final class PWConstants {
 
     /** The Constant COUNTRY_LEVEL. */
     public static final int COUNTRY_PAGE_LEVEL = 3;
+    
+    /** The Constant MARKET_ROOT_PAGE_LEVEL. */
+    public static final int MARKET_ROOT_PAGE_LEVEL = 2;
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";

@@ -1,12 +1,16 @@
 package com.tetrapak.publicweb.core.utils;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
 
 /**
  * The Class PageUtil.
@@ -99,6 +103,25 @@ public final class PageUtil {
             langauge = PWConstants.ENGLISH_LANGUAGE_ISO_CODE;
         }
         return langauge;
+    }
+    
+    /**
+     * @param resolver
+     * @param languagePath
+     * @return home page path
+     */
+    public static String getHomePagePath(ResourceResolver resolver,String languagePath) {
+        String homePagePath = languagePath + "/home";
+        final String path = languagePath + "/jcr:content/root/responsivegrid/headerconfiguration";
+        final Resource headerConfigurationResource = resolver.getResource(path);
+        if (Objects.nonNull(headerConfigurationResource)) {
+            final HeaderConfigurationModel configurationModel = headerConfigurationResource
+                    .adaptTo(HeaderConfigurationModel.class);
+            if (Objects.nonNull(configurationModel)) {
+                homePagePath = configurationModel.getHomePage();
+            }  
+        }
+        return LinkUtils.sanitizeLink(homePagePath);
     }
 
 }

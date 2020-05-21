@@ -74,6 +74,11 @@
                                 fieldLabel="Solution page path"
                                 name="./solutionPage"
                                 rootPath="/content/tetrapak/public-web"/>
+                            <marketTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Market Selector Title"
+                                name="./marketTitle"/>
                         </items>
                     </column>
                 </items>
