@@ -16,6 +16,7 @@
 .pw-find-my-office {
     &__map {
         @include height(288px);
+        border-radius: 4px;
     }
     &__wrapper {
         @include margin-left($margin-md);
@@ -52,6 +53,14 @@
             &:disabled {
                 opacity: $opacity-disabled;
                 cursor: auto;
+            }
+            .icon-Arrow_Right_pw {
+                &::before {
+                    color: $color-text;
+                    font-size: $font-sm;
+                    line-height: $font-sm;
+                    transform: rotate(90deg);
+                }
             }
         }
         &__city-field,
