@@ -5,16 +5,33 @@
         position: absolute;
         width: 100%;
         left: 0;
+        z-index: 2;
         background: $color-white;
         &.show {
             display: block;
         }
         hr {
             @include margin-top($padding-l);
-            @include margin-bottom($padding-l);
+            @include margin-bottom(18px);
         }
         &__container {
-            @include padding-bottom($padding-l);
+            @include padding-bottom(18px);
+
+            .section-link-home {
+                @include padding(0 15px);
+                position: absolute;
+                z-index: 1;
+                & > a {
+                    color: $color-tundora;
+                    &:hover {
+                        color: $color-jordy-blue;
+                        font-weight: 900;
+                    }
+                }
+            }
+        }
+        .z-index-lower {
+            z-index: 1;
         }
     }
 }

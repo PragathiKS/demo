@@ -19,7 +19,7 @@
       "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
         "sectionHomePageTitle": "Insight overview",
-        "sectionHomePagePath": "",
+        "sectionHomePagePath": "insight page",
         "sectionRaws": "6",
         "sectionMenu": [
           {
@@ -38,7 +38,7 @@
                       "external": false
                     },
                     {
-                      "linkText": "Beverages",
+                      "linkText": "Beverages Beverages Beverages",
                       "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
                       "external": false
                     },
@@ -192,7 +192,7 @@
       "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
         "sectionHomePageTitle": "About Tetra pak overview",
-        "sectionHomePagePath": "",
+        "sectionHomePagePath": "About Page",
         "sectionRaws": "6",
         "sectionMenu": [
           {

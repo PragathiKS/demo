@@ -1,7 +1,7 @@
 <sly data-sly-template.sectionMenu_template="${@ data, linkText,linkURL, anchorClass, iconClass, parentLink}">
   <div data-module="SectionMenu">
-    <div class="js-section-menu-navigation-Link">
-      <a data-link-name='${linkText}' href="${linkURL}" class="${anchorClass} js-section-menu-item-link" title="${linkText}">
+    <div class="section-menu-navigation-Link js-section-menu-navigation-Link pw-position-relative">
+      <a data-link-name='${linkText}' href="${linkURL}" class="${anchorClass} section-menu-item-link js-section-menu-item-link" title="${linkText}">
         ${linkText}
         <sly data-sly-test="${data.external}">
           <i class="icon icon--link ${iconClass}"></i>

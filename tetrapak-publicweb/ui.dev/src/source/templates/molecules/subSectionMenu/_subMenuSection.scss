@@ -1,10 +1,16 @@
 .pw-sub-section-menu {
     @media #{$desktop} {
-        @include padding-top($padding-l);
+        @include padding-top(18px);
         display: none;
         position: absolute;
+        left: 50%;
+        transform: translate(-50%);
         .pseudo-category {
             display: inline-block;
+        }
+        .pseudo-category-header {
+            text-transform: uppercase;
+            color: $color-boulder;
         }
 
         .sub-section-category {
@@ -28,12 +34,13 @@
             @include padding-top($padding-l);
 
             & > li {
-                @include margin-right(80px);
+                @include margin-right(48px);
             }
         }
 
         li {
             @include margin(0);
+            white-space: nowrap;
             background: $color-wild-sand;
             &:first-child {
                 @include margin-left(0);
@@ -41,7 +48,6 @@
         }
         a {
             @include line-height(20px, $font-sm);
-            font-weight: normal;
             font-size: $font-sm;
             color: $color-tundora;
         }
@@ -52,7 +58,7 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-right(80px);
+                @include margin-right(48px);
                 &:last-child {
                     @include margin-right(0);
                 }

@@ -1,10 +1,10 @@
 <sly data-sly-template.navigation_template="${@data, showStickySection, flag}">
-  <div class="${showStickySection ? 'd-lg-block' :''} pw-navigation" aria-hidden="true" aria-expanded="false" data-module="Navigation">
+  <div class="${showStickySection ? 'd-lg-block z-index-lower' :''} pw-navigation" aria-hidden="true" aria-expanded="false" data-module="Navigation">
     <hr class="d-none d-lg-block" />
     <div class='tp-container pw-navigation__container'>
       <div class='row'>
-        <div class='col-lg-2'><a href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a></div>
-        <div class='col-lg-10'>
+        <div class="section-link-home"><a href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a></div>
+        <div class='col-lg-12'>
           <ul class="d-flex list-section-menu-links justify-content-center" data-sly-list.linkSection=${data.sectionMenu}>
             <li>
               <sly

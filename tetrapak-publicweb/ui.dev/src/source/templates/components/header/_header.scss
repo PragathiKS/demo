@@ -63,7 +63,7 @@
         }
 
         li {
-            @include margin(0 24px);
+            @include margin(0 20px);
             &:first-child {
                 margin-left: 0;
             }
