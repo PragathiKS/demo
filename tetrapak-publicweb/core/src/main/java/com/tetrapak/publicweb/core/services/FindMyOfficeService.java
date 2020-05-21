@@ -1,13 +1,10 @@
 package com.tetrapak.publicweb.core.services;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.sling.api.resource.ResourceResolver;
 
-import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.CountryBean;
-import com.tetrapak.publicweb.core.beans.DropdownOption;
 
 /**
  * The Interface FindMyOfficeService.
@@ -22,7 +19,7 @@ public interface FindMyOfficeService {
      * @return the find my office data
      */
     Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver);
-
+    
     /**
      * Gets the corporate office list.
      *
@@ -50,9 +47,5 @@ public interface FindMyOfficeService {
      * @return the office cf root path
      */
     String getOfficeCfRootPath();
-
-    List<DropdownOption> fetchCountryList(ResourceResolver resourceResolver);
-
-    String[] fetchContactEmailAddresses(ContactUs contactUs, ResourceResolver resourceResolver);
 
 }

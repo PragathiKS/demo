@@ -13,7 +13,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.beans.DropdownOption;
-import com.tetrapak.publicweb.core.services.FindMyOfficeService;
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactUsModel {
@@ -61,7 +61,7 @@ public class ContactUsModel {
     private List<DropdownOption> countryOptions = null;
 
     @OSGiService
-    private FindMyOfficeService findMyOffice;
+    private CountryDetailService findMyOffice;
 
     /**
      * Inits the.

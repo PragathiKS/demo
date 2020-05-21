@@ -24,6 +24,9 @@ public class ContactUs {
     private String email;
     @JsonProperty("message")
     private String message;
+    @JsonProperty("domainURL")
+    private String domainURL;
+
     @JsonProperty("purposeOfContact")
     public String getPurposeOfContact() {
         return purposeOfContact;
@@ -102,6 +105,24 @@ public class ContactUs {
     public void setCountryTitle(final String countryTitle) {
         this.countryTitle = countryTitle;
     }
+
+    /**
+     * @return the domainURL
+     */
+    @JsonProperty("domainURL")
+    public String getDomainURL() {
+        return domainURL;
+    }
+
+    /**
+     * @param domainURL
+     *            the domainURL to set
+     */
+    @JsonProperty("domainURL")
+    public void setDomainURL(final String domainURL) {
+        this.domainURL = domainURL;
+    }
+
 
 
 }
