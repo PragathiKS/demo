@@ -6,6 +6,14 @@
     .button-group {
         @include margin-top($margin-l);
     }
+    .text-capital {
+        text-transform: capitalize;
+    }
+    // Error styling
+    .serviceError {
+        display: none;
+        color: $color-alert;
+    }
     .errorMsg {
         display: none;
         color: $color-alert;
@@ -13,9 +21,6 @@
         &.purposeOfContactError {
             @include margin-top($margin-sm);
         }
-    }
-    .text-capital {
-        text-transform: capitalize;
     }
     .formfield,
     .form-group {

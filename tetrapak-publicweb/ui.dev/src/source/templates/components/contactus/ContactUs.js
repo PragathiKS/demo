@@ -57,9 +57,15 @@ class ContactUs {
       method: ajaxMethods.POST,
       data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
     }).done(
-      () => {
-        $('.tab-pane', this.root).removeClass('active');
-        $('#cf-step-final', this.root).addClass('active');
+      (response) => {
+        if(response.statusCode === 200) {
+          $('.tab-pane', this.root).removeClass('active');
+          $('#cf-step-final', this.root).addClass('active');
+          $('.serviceError').removeClass('d-block');
+        } else {
+          $('.serviceError', this.root).text(response.statusMessage);
+          $('.serviceError').addClass('d-block');
+        }
       }
     );
   }
