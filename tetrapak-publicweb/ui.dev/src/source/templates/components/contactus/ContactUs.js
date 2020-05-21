@@ -42,9 +42,9 @@ class ContactUs {
     }
   };
 
-  getCountryList () {
+  getCountryList() {
     const self = this;
-    $('.js-pw-form__dropdown__country-select > a').map(function (){
+    $('.js-pw-form__dropdown__country-select > a').map(function () {
       const datael = $(this)[0];
       self.cache.countryList.push($(datael).data('countrytitle'));
     });
@@ -58,7 +58,7 @@ class ContactUs {
       data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
     }).done(
       (response) => {
-        if(response.statusCode === 200) {
+        if (response.statusCode === 200) {
           $('.tab-pane', this.root).removeClass('active');
           $('#cf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
