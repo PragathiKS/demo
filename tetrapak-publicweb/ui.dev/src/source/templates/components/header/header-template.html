@@ -21,10 +21,9 @@
         </div>
         <div class="tp-pw-header__main-navigation col-6">
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
-
             <li class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link' : 'js-main-menu-link-hover'} hover-menu-link">
               <a class="${megaMenuItem.linkText == 'Insights' ? 'sticky-main-header':'' } js-tp-pw-header-logo-digital-data js-tp-pw-header-item" data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
-              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel}" />
+              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText}" />
               <sly data-sly-test="${megaMenuItem.linkPath != data.solutionPage}" data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html" data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel}" />
               <sly data-sly-test="${megaMenuItem.linkText == 'Insights'}" data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html" data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel,showStickySection=true }" />
             </li>
@@ -34,7 +33,7 @@
           <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
             <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data js-tp-pw-header__search-box-toggle" data-link-section="Header Navigation" data-link-name="Internal Search icon" href="#">
                 <i class="icon-Search_pw"></i></a>
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="contact us envelope" target="_self" href="#"><i class="icon-Envelope"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="contact us envelope" target="_self" title="${data.contactUsAltText}" href="${data.contactUsLink}"><i class="icon-Envelope_pw"></i></a>
             <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="market locator" href="#" datatag="internal" ctype="header" ctypeone="country selector"><i class="icon-Globe"></i></a>
               <span class="tp-pw-header__secondary-navigation"><i class="icon-ver-line"></i></span>
             <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="login_My tetrapak" target="_blank" href="${data.loginLink}"><i class="icon-Avatar"></i><span>${data.loginLabel}</span></a>
@@ -57,13 +56,13 @@
             <i class="icon-Chevron_Right"></i>
           </sly>
         </a>
-        <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true}" />
+        <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true, mainHeader=megaMenuItem.linkText }" />
 
       </li>
     </ul>
     <ul class="tp-pw-mobile-navigation__secondary">
       <li class="tp-pw-mobile-navigation__secondary__link">
-        <a class="nav-link js-tp-pw-header-logo-digital-data" target="_self" href="#" data-link-section="Header Navigation" data-link-name="contact us envelope"><i class="icon-Envelope"></i><span>${data.contactText}</span></a>
+        <a class="nav-link js-tp-pw-header-logo-digital-data" target="_self" title="${data.contactUsAltText}" href="${data.contactUsLink}" data-link-section="Header Navigation" data-link-name="contact us envelope"><i class="icon-Envelope_pw"></i><span>${data.contactText}</span></a>
       </li>
       <li class="tp-pw-mobile-navigation__secondary__link">
         <a class="d-flex justify-content-between nav-link js-tp-pw-header-logo-digital-data" href="#" data-link-section="Header Navigation" data-link-name="market locator"><span><i class="icon-Globe"></i>English(Canada)</span></a>

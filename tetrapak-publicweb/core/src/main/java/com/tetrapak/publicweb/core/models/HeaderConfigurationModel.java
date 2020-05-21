@@ -52,10 +52,6 @@ public class HeaderConfigurationModel {
     @Inject
     private String contactText;
 
-    /** The contact link target. */
-    @Inject
-    private String contactLinkTarget;
-
     /** The solution page. */
     @ValueMapValue
     private String solutionPage;
@@ -130,15 +126,6 @@ public class HeaderConfigurationModel {
      */
     public String getContactText() {
         return contactText;
-    }
-
-    /**
-     * Gets the contact link target.
-     *
-     * @return the contact link target
-     */
-    public String getContactLinkTarget() {
-        return contactLinkTarget;
     }
 
     /**

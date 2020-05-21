@@ -51,9 +51,14 @@
             }
         }
         .teaserMarginL {
-            @include margin-bottom($margin-l);
+            &:last-child {
+                @include margin-bottom($margin-l);
+                @media #{$desktop} {
+                    @include margin-bottom($margin-xxxl);
+                }
+            }
+            @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
-                @include margin-bottom($margin-xxxl);
                 @include padding-left($margin-l);
                 @include padding-right($margin-l);
             }

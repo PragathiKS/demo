@@ -1,7 +1,7 @@
 .tp-pw-header {
     @media #{$desktop} {
         .pw-header-icons {
-            @include padding-bottom($padding-sm);
+            @include padding-bottom(0);
         }
     }
 
@@ -28,8 +28,8 @@
         z-index: $zindex-t;
 
         @media #{$desktop} {
-            @include padding(32px 0);
-            height: #{convert-to-rem(90px)};
+            @include padding(23px 0);
+            height: auto;
         }
     }
 
@@ -53,6 +53,10 @@
         @media #{$desktop} {
             display: none;
         }
+        .icon-Burger_pw::before {
+            font-size: $font-normal;
+            line-height: $font-normal;
+        }
     }
 
     &__main-navigation {
@@ -63,7 +67,7 @@
         }
 
         li {
-            @include margin(0 20px);
+            @include margin(0 12px);
             &:first-child {
                 margin-left: 0;
             }
@@ -72,9 +76,10 @@
             }
             &.hover-menu-link {
                 & > a {
-                    @include padding(0 $padding-sm $padding-sm);
+                    @include padding(0 $padding-sm);
                     @include line-height($font-l, $font-m-baseline);
-                    height: 30px;
+                    height: 24px;
+                    font-weight: normal;
                 }
                 &:hover > a {
                     border-bottom: 3px solid;
@@ -86,7 +91,9 @@
         }
 
         a {
+            @include padding(0 $padding-sm);
             color: $color-congress-blue;
+            font-weight: normal;
         }
     }
 
@@ -239,6 +246,9 @@
                 color: $color-tundora;
                 i:first-child {
                     padding-right: #{convert-to-rem(8px)};
+                }
+                i {
+                    @include font-size($font-normal);
                 }
             }
         }

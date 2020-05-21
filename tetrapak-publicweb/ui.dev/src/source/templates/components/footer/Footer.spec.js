@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Footer from './Footer';
 import footerTemplate from '../../../test-templates-hbs/footer.hbs';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Footer', function () {
   before(function () {
