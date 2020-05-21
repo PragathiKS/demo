@@ -50,13 +50,13 @@
                 @include padding-right($margin-l);
             }
         }
-        .teaserMarginL:last-child {
-            @include margin-bottom($margin-l);
-            @media #{$desktop} {
-                 @include margin-bottom($margin-xxxl);
-            }
-        }
         .teaserMarginL {
+            &:last-child {
+                @include margin-bottom($margin-l);
+                @media #{$desktop} {
+                    @include margin-bottom($margin-xxxl);
+                }
+            }
             @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
                 @include padding-left($margin-l);
