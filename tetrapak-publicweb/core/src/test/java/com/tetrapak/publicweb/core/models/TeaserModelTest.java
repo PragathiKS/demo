@@ -148,11 +148,9 @@ public class TeaserModelTest {
 
         assertEquals("Title", model.getTeaserList().get(1).getTitle());
         assertEquals("Description", model.getTeaserList().get(1).getDescription());
-        assertEquals("_blank", model.getTeaserList().get(1).getLinkTarget());
         assertEquals("/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
                 model.getTeaserList().get(1).getFileReference());
         assertEquals("Alt", model.getTeaserList().get(1).getAlt());
-        assertEquals("hyperlink", model.getTeaserList().get(1).getPwLinkTheme());
         assertEquals("Link Text", model.getTeaserList().get(1).getLinkText());
         assertEquals("/content/tetrapak/public-web/lang-masters/en/solutions.html",
                 model.getTeaserList().get(1).getLinkPath());
@@ -174,13 +172,12 @@ public class TeaserModelTest {
         model = resource.adaptTo(modelClass);
         assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
         assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());
-        assertEquals("_self", model.getTeaserList().get(0).getLinkTarget());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
                 model.getTeaserList().get(0).getFileReference());
         assertEquals("alt", model.getTeaserList().get(0).getAlt());
-        assertEquals("download", model.getTeaserList().get(0).getPwLinkTheme());
         assertEquals("link text1", model.getTeaserList().get(0).getLinkText());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getTeaserList().get(0).getLinkPath());
+        assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html",
+                model.getTeaserList().get(0).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
     }
 
@@ -208,13 +205,11 @@ public class TeaserModelTest {
         Mockito.when(searchResult.getHits()).thenReturn(hits);
         Mockito.when(hit.getPath()).thenReturn(SOLUTIONS_PAGE);
         Mockito.when(pageManager.getPage(SOLUTIONS_PAGE)).thenReturn(context.pageManager().getPage(SOLUTIONS_PAGE));
-        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4,"and");
+        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4, "and");
         assertEquals("Solutions", aggregatorList.get(0).getTitle());
         assertEquals("Solution Desc", aggregatorList.get(0).getDescription());
-        assertEquals("_self", aggregatorList.get(0).getLinkTarget());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg", aggregatorList.get(0).getImagePath());
         assertEquals("alt", aggregatorList.get(0).getAltText());
-        assertEquals("download", aggregatorList.get(0).getPwLinkTheme());
         assertEquals("link text1", aggregatorList.get(0).getLinkText());
         assertEquals("/content/tetrapak/public-web/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
         assertEquals("link", aggregatorList.get(0).getPwButtonTheme());

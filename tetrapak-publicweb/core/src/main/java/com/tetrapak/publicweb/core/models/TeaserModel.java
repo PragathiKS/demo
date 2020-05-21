@@ -149,8 +149,6 @@ public class TeaserModel {
             teaser.setAlt(aggregator.getAltText());
             teaser.setLinkText(aggregator.getLinkText());
             teaser.setLinkPath(aggregator.getLinkPath());
-            teaser.setLinkTarget(aggregator.getLinkTarget());
-            teaser.setPwLinkTheme(aggregator.getPwLinkTheme());
             teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
             teaserList.add(teaser);
         }

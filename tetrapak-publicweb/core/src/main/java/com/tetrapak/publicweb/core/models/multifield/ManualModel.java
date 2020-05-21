@@ -30,10 +30,6 @@ public class ManualModel {
     @ValueMapValue
     private String linkPath;
 
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
-
     /** The file reference. */
     @ValueMapValue
     private String fileReference;
@@ -41,10 +37,6 @@ public class ManualModel {
     /** The alt. */
     @ValueMapValue
     private String alt;
-
-    /** The pw theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The pw button theme. */
     @ValueMapValue
@@ -133,25 +125,6 @@ public class ManualModel {
     }
 
     /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
-    }
-
-    /**
-     * Sets the link target.
-     *
-     * @param linkTarget
-     *            the new link target
-     */
-    public void setLinkTarget(String linkTarget) {
-        this.linkTarget = linkTarget;
-    }
-
-    /**
      * Gets the file reference.
      *
      * @return the file reference
@@ -187,24 +160,6 @@ public class ManualModel {
      */
     public void setAlt(String alt) {
         this.alt = alt;
-    }
-
-    /**
-     * Gets the pw theme.
-     *
-     * @return the pw theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
-
-    /**
-     * Sets the pw theme.
-     *
-     * @param pwLinkTheme the new pw link theme
-     */
-    public void setPwLinkTheme(String pwLinkTheme) {
-        this.pwLinkTheme = pwLinkTheme;
     }
 
     /**

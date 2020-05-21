@@ -63,8 +63,6 @@ public class BannerModelTest {
         assertEquals("Lorem Ipsum is simply dummy text of the printing and typesetting industry.", model.getText());
         assertEquals("Link Label", model.getLinkLabel());
         assertEquals("/content/tetrapak/public-web/global/en.html", model.getLinkPath());
-        assertEquals("_blank", model.getLinkTarget());
-        assertEquals("download", model.getPwLinkTheme());
         assertEquals("/content/dam/tetrapak/publicweb/image.png", model.getFileReference());
         assertEquals("Image", model.getAlt());
         assertEquals("display-row-reversed", model.getPwDisplay());

@@ -167,17 +167,14 @@ public class TabsListModelTest {
 	assertEquals("display-row", model.getPwDisplay());
 	assertEquals("anchorId", model.getAnchorId());
 	assertEquals("anchor title", model.getAnchorTitle());
-	assertEquals("hyperlink", model.getPwLinkTheme());
 	assertEquals("badging", model.getAssetName());
 	
 	assertEquals("Title", model.getTabs().get(1).getTitle());
 	assertEquals("Sub Title", model.getTabs().get(1).getSubTitle());
 	assertEquals("Description Text", model.getTabs().get(1).getDescription());
-	assertEquals("_blank", model.getTabs().get(1).getTargetBlank());
 	assertEquals("/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
 		model.getTabs().get(1).getFileReference());
 	assertEquals("Alt", model.getTabs().get(1).getAlt());
-	assertEquals("hyperlink", model.getTabs().get(1).getPwLinkTheme());
 	assertEquals("Click Here", model.getTabs().get(1).getLinkText());
 	assertEquals("/content/commons-ux/helloearth.html", model.getTabs().get(1).getLinkURL());
 	assertEquals("secondary", model.getTabs().get(1).getPwButtonTheme());
@@ -218,11 +215,9 @@ public class TabsListModelTest {
 	List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4,"and");
 	assertEquals("Solutions", aggregatorList.get(0).getTitle());
 	assertEquals("Solution Desc", aggregatorList.get(0).getDescription());
-	assertEquals("_blank", aggregatorList.get(0).getLinkTarget());
 	assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
 		aggregatorList.get(0).getImagePath());
 	assertEquals("alt", aggregatorList.get(0).getAltText());
-	assertEquals("download", aggregatorList.get(0).getPwLinkTheme());
 	assertEquals("link text1", aggregatorList.get(0).getLinkText());
 	assertEquals("/content/tetrapak/public-web/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
 	assertEquals("link", aggregatorList.get(0).getPwButtonTheme());
@@ -240,11 +235,9 @@ public class TabsListModelTest {
 	model = resource.adaptTo(modelClass);
 	assertEquals("Solutions", model.getTabs().get(0).getTitle());
 	assertEquals("Solution Desc", model.getTabs().get(0).getDescription());
-	assertEquals("_blank", model.getTabs().get(0).getTargetBlank());
 	assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
 		model.getTabs().get(0).getFileReference());
 	assertEquals("alt", model.getTabs().get(0).getAlt());
-	assertEquals("download", model.getTabs().get(0).getPwLinkTheme());
 	assertEquals("link text1", model.getTabs().get(0).getLinkText());
 	assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getTabs().get(0).getLinkURL());
 	assertEquals("link", model.getTabs().get(1).getPwButtonTheme());
