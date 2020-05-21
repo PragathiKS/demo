@@ -9,6 +9,9 @@
         display: none;
         color: $color-alert;
         font-size: 12px;
+        &.purposeOfContactError {
+            @include margin-top($margin-sm);
+        }
     }
     .text-capital {
         text-transform: capitalize;
@@ -17,6 +20,11 @@
     .form-group {
         label {
             @include margin-bottom(0);
+        }
+        &.field-error {
+            .pw-form__dropdown__toggle {
+                border-color: $color-alert;
+            }
         }
     }
     .tab-pane {
