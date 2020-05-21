@@ -3,7 +3,6 @@ import 'bootstrap';
 
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, API_CONTACTUS_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
-import keyDownSearch from '../../../scripts/utils/searchDropDown';
 
 class ContactUs {
   constructor({ el }) {
@@ -112,7 +111,7 @@ class ContactUs {
         }
       });
       if (isvalid  && !honeyPotFieldValue) {
-        self.submitForm();   
+        self.submitForm();
       }
     });
 
@@ -128,7 +127,6 @@ class ContactUs {
       self.cache.$dropItem.removeClass('active');
       $(this).addClass('active');
     });
-    
   }
   init() {
     /* Mandatory method */
