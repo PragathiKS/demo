@@ -1,6 +1,7 @@
 <sly data-sly-template.tabslist_template="${@data, componentName, flag}">
   <sly data-sly-test.parentHeading="${data.heading}" />
-  <div auto-locator="${componentName}" id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
+  <div auto-locator="${componentName}" id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container"
+    data-module="TabsList">
     <div
       class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
       <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
@@ -28,7 +29,8 @@
                 <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
                   <i class="icon icon-left icon-Arrow_Right_pw"></i>
                   <div>
-                    <p class="pw-tablist__event-title-icleft semi-bold">${tab.title @ context='html'}<p>
+                    <p class="pw-tablist__event-title-icleft semi-bold">${tab.title @ context='html'}
+                    <p>
                   </div>
                 </sly>
               </button>
@@ -37,6 +39,7 @@
                 class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}"
                 id="tab_${resource.name}_${tabList.index}" data-parent="#accordion_${resource.name}">
                 <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}"
+                  data-video-type="${tab.videoSource}"
                   data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
                   <!--image video component  -->
                   <sly data-sly-test="${tab.tabType == 'videoText'}">
@@ -71,14 +74,33 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
-                      <sly data-sly-test="${!wcmmode.edit}">
-                        <sly
-                          data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
-                      </sly>
-                      <sly data-sly-test="${wcmmode.edit}">
-                        <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
-                      </sly>
+                      <a data-sly-test="${tab.linkURL}" href="${tab.linkURL ? tab.linkURL : '#'}"
+                        class="img-link js-tablist__event-detail-description-link"
+                        data-custom="${customData @ context='text'}" target="${tab.targetBlank}"
+                        data-link-section="${tabContentType}${buttonLinkType}${buttonDownloadCheck}"
+                        data-link-name="${tab.linkText}" data-download-type="${tab.pwLinkTheme}"
+                        data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                        data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
+                        data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
+                        <sly data-sly-test="${!wcmmode.edit}">
+                          <sly
+                            data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
+                        </sly>
+                        <sly data-sly-test="${wcmmode.edit}">
+                          <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
+                        </sly>
+                      </a>
+                      <span data-sly-test="${!tab.linkURL}">
+                        <sly data-sly-test="${!wcmmode.edit}">
+                          <sly
+                            data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
+                        </sly>
+                        <sly data-sly-test="${wcmmode.edit}">
+                          <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
+                        </sly>
+                      </span>
                     </div>
                   </sly>
                   <!--end image video component  -->
@@ -107,7 +129,8 @@
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                       data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
-                      <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}<i class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
+                      <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}<i
+                          class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
                     </a>
                     <!-- </sly> -->
                   </sly>
@@ -124,7 +147,8 @@
                   data-link-name="${data.readMoreText}" data-download-type="${data.pwLinkTheme}"
                   data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
                   data-tab-type="" rel="${data.readMoreTarget ? 'noopener noreferrer' : ''}">
-                  <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+                  <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}<i
+                      class="icon icon-Circle_Arrow_Right_pw"></i></span>
                 </a>
               </div>
             </sly>
@@ -137,4 +161,9 @@
       </div>
     </div>
   </div>
+</sly>
+</div>
+</div>
+</div>
+</div>
 </sly>
