@@ -11,6 +11,7 @@ body{
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
    text-size-adjust: 100%;
+   position: relative;
 }
 a {
     @include line-height($font-l,$font-baseline);

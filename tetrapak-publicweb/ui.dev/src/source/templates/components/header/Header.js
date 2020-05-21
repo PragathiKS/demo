@@ -1,9 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { render } from '../../../scripts/utils/render';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 import { updateQueryString } from '../../../scripts/common/common';
 
@@ -28,27 +24,24 @@ class Header {
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
     this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
     this.cache.$bottomTeaserH = this.root.find('.js-bottom-teaser-list');
-    this.cache.$headerItem = this.root.find('.js-main-menu-link-hover');
+    this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
+    this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
-    this.cache.$body = $('body');
-
   }
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem,$parentNavElement,$body} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
     this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
     this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
-    this.cache.$headerItem.on('mouseover', this.handleHeaderItemMouseOver);
-    this.cache.$headerItem.on('mouseout', this.handleHeaderItemMouseOut);
+    this.cache.$headerItemLink.on('mouseover', this.handleHeaderItemMouseOver);
+    this.cache.$headerItemLink.on('mouseout', this.handleHeaderItemMouseOut);
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
-    $('.js-tp-pw-header-item').on('click', this.handleMainNavClick);
-    // $parentNavElement.addClass('pw-position-static');
-    // $body.addClass('pw-position-relative');
+    $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
     this.getActiveHeaderData();
   }
 
@@ -306,37 +299,30 @@ class Header {
   }
 
   handleMouseOver = () => {
-    const { $megaMenuDesktop, $parentNavElement, $overlay, $body } = this.cache;
-    $parentNavElement.addClass('pw-position-static');
+    const { $megaMenuDesktop, $overlay } = this.cache;
     $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
-    $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
     dynMedia.processImages();
   }
 
   handleHeaderItemMouseOver = (e) => {
-    const {$parentNavElement, $body } = this.cache;
-    $parentNavElement.addClass('pw-position-static');
-    $body.addClass('pw-position-relative');
     const $target = $(e.target);
     const $this = $target.closest('.js-main-menu-link-hover');
+    if($this.children('.sticky-main-header').length > 0){
+      return false;
+    }
     $this.children('.pw-navigation').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
   }
 
   handleHeaderItemMouseOut = (e) => {
-    const {$parentNavElement, $body } = this.cache;
     const $target = $(e.target);
     const $this = $target.closest('.js-main-menu-link-hover');
-    $parentNavElement.removeClass('pw-position-static');
-    $body.removeClass('pw-position-relative');
     $this.children('.pw-navigation').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
   }
 
   handleMouseOut = () => {
-    const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
+    const { $megaMenuDesktop, $overlay } = this.cache;
     $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
-    $parentNavElement.removeClass('pw-position-static');
-    $body.removeClass('pw-position-relative');
     $overlay.addClass('d-none');
   }
 

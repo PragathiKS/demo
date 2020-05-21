@@ -59,6 +59,7 @@
         display: none;
         @media #{$desktop} {
             display: block;
+            position: static;
         }
 
         li {
@@ -78,12 +79,14 @@
                 &:hover > a {
                     border-bottom: 3px solid;
                 }
+                & > .sticky-main-header {
+                    border-bottom: 3px solid;
+                }
             }
         }
 
         a {
             color: $color-congress-blue;
-            font-weight: bold;
         }
     }
 
