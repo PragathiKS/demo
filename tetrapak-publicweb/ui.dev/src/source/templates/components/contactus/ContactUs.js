@@ -3,6 +3,7 @@ import 'bootstrap';
 
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, API_CONTACTUS_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 
 class ContactUs {
   constructor({ el }) {
@@ -11,17 +12,14 @@ class ContactUs {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('button[type="submit"]', this.root);
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdown = $('.pw-form__dropdown', this.root);
     this.cache.requestPayload = {
+      'domainURL': window.location.host,
       'purposeOfContact': '',
       'country' : '',
       'firstName': '',
@@ -61,6 +59,12 @@ class ContactUs {
       self.cache.requestPayload['purposeOfContactTitle'] = value;
     });
 
+    this.cache.$newRequestBtn.click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      location.reload();
+    });
+
     this.cache.$nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).data('target');
@@ -86,8 +90,10 @@ class ContactUs {
       }
       if(isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        $('.tab-pane').removeClass('active');
-        $(target).addClass('active');
+        if(target) {
+          $('.tab-pane').removeClass('active');
+          $(target).addClass('active');
+        }
       }
     });
 
@@ -101,6 +107,8 @@ class ContactUs {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
+        } else {
+          $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
       if (isvalid  && !honeyPotFieldValue) {
@@ -113,14 +121,14 @@ class ContactUs {
       const country = $(this).data('country');
       const countryTitle = $(this).data('countrytitle');
       const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle', parentDrop).text(country);
+      $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(country);
       self.cache.requestPayload['country'] = country;
       self.cache.requestPayload['countryTitle'] = countryTitle;
       self.cache.$dropItem.removeClass('active');
       $(this).addClass('active');
     });
-
+    
   }
   init() {
     /* Mandatory method */

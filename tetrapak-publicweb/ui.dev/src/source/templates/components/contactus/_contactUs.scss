@@ -1,9 +1,10 @@
 .pw-contactus-form {
     .form-group {
-        @include margin-bottom(16px);
+        @include margin-bottom($margin-md);
     }
-    .privacy-policy {
-        @include margin-top(24px);
+    .privacy-policy,
+    .button-group {
+        @include margin-top($margin-l);
     }
     .errorMsg {
         display: none;
@@ -36,15 +37,15 @@
     h4 {
         font-family: $font-bold;
         &.tpatom-heading--small {
-            @include margin-bottom(16px);
+            @include margin-bottom($margin-md);
         }
     }
     .separator {
-        @include padding-bottom(24px);
+        @include padding-bottom($padding-l);
+        @include margin-bottom($margin-l);
         border-bottom: 1px solid $color-mercury;
-        margin-bottom: 24px;
         .pw-image-container {
-            @include margin-bottom(24px);
+            @include margin-bottom($padding-l);
         }
         @media #{$desktop} {
             @include margin-bottom(0);
@@ -53,11 +54,11 @@
             border-right: 1px solid $color-mercury;
             padding-right: $margin-xxxl;
             & + div {
-                @include padding-left(48px);
+                @include padding-left($padding-xxxl);
             }
             .pw-image-container {
                 @include margin-bottom(0);
-                @include padding-right(24px);
+                @include padding-right($padding-l);
             }
             h4 {
                 @include margin-bottom($margin-l);
@@ -79,6 +80,7 @@
     }
 
     .summary {
+        @include margin-bottom($margin-md);
         div + div {
             font-weight: 900;
         }

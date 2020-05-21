@@ -1,10 +1,10 @@
 ul.pw-progressbar_wrapper {
+    @include margin($margin-l 0);
     display: flex;
     position: relative;
     justify-content: space-between;
-    margin: $margin-l 0;
     @media #{$desktop} {
-        margin: $margin-xxxl 0 $margin-l;
+        @include margin($margin-xxxl 0 0);
     }
     .step-box {
         display: flex;
