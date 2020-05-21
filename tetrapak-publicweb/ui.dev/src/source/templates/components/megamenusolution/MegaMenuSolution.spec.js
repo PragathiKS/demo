@@ -1,5 +1,6 @@
 import MegaMenuSolution from './MegaMenuSolution';
 import $ from 'jquery';
+import { isMobileMode } from '../../../scripts/common/common';
 import megamenuTemplate from '../../../test-templates-hbs/megamenusolution.hbs';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
