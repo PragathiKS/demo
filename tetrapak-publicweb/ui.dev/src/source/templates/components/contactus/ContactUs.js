@@ -3,6 +3,7 @@ import 'bootstrap';
 
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, API_CONTACTUS_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 
 class ContactUs {
   constructor({ el }) {
@@ -17,16 +18,17 @@ class ContactUs {
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdown = $('.pw-form__dropdown', this.root);
+    this.cache.countryList = [];
     this.cache.requestPayload = {
       'domainURL': window.location.host,
       'purposeOfContact': '',
-      'country' : '',
+      'country': '',
       'firstName': '',
       'lastName': '',
       'email': '',
-      'message' : '',
-      'countryTitle' : '',
-      'purposeOfContactTitle' : ''
+      'message': '',
+      'countryTitle': '',
+      'purposeOfContactTitle': ''
     };
   }
 
@@ -34,14 +36,29 @@ class ContactUs {
     return REG_EMAIL.test(email);
   }
 
+  onKeydown = (event, options) => {
+    if ($('.dropdown-menu').hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  getCountryList () {
+    const self = this;
+    $('.js-pw-form__dropdown__country-select > a').map(function (){
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $('.js-pw-form__dropdown__country, .js-pw-form__dropdown__country-select').keydown(e => this.onKeydown(e, this.cache.countryList));
+  }
+
   submitForm = () => {
     ajaxWrapper.getXhrObj({
       url: API_CONTACTUS_FORM,
       method: ajaxMethods.POST,
-      data: {'inputJson': JSON.stringify(this.cache.requestPayload)}
+      data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
     }).done(
       () => {
-        $('.tab-pane' , this.root).removeClass('active');
+        $('.tab-pane', this.root).removeClass('active');
         $('#cf-step-final', this.root).addClass('active');
       }
     );
@@ -50,7 +67,7 @@ class ContactUs {
   bindEvents() {
     /* Bind jQuery events here */
     const self = this;
-    this.cache.$radio.on('change', function() {
+    this.cache.$radio.on('change', function () {
       const value = this.value;
       const id = $(this).attr('id');
       $('input[type=hidden][name="purposeOfContactTitle"]').val(value);
@@ -58,7 +75,7 @@ class ContactUs {
       self.cache.requestPayload['purposeOfContactTitle'] = value;
     });
 
-    this.cache.$newRequestBtn.click(function(e) {
+    this.cache.$newRequestBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
       location.reload();
@@ -70,11 +87,11 @@ class ContactUs {
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
       const textarea = tab.find('textarea');
-      if(!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
+      if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
-          if(fieldName in self.cache.requestPayload) {
+          if (fieldName in self.cache.requestPayload) {
             self.cache.requestPayload[fieldName] = $(this).val();
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
@@ -87,9 +104,9 @@ class ContactUs {
           }
         });
       }
-      if(isvalid) {
+      if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if(target) {
+        if (target) {
           $('.tab-pane').removeClass('active');
           $(target).addClass('active');
         }
@@ -108,7 +125,7 @@ class ContactUs {
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }
       });
-      if (isvalid  && !honeyPotFieldValue) {
+      if (isvalid && !honeyPotFieldValue) {
         self.submitForm();
       }
     });
@@ -130,6 +147,7 @@ class ContactUs {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.getCountryList();
   }
 }
 
