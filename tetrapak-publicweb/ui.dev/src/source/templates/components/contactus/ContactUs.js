@@ -43,11 +43,11 @@ class ContactUs {
 
   getCountryList() {
     const self = this;
-    $('.js-pw-form__dropdown__country-select > a').map(function () {
+    $('.country-dropdown-select > a').map(function () {
       const datael = $(this)[0];
       self.cache.countryList.push($(datael).data('countrytitle'));
     });
-    $('.js-pw-form__dropdown__country, .js-pw-form__dropdown__country-select').keydown(e => this.onKeydown(e, this.cache.countryList));
+    $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
   }
 
   submitForm = () => {
