@@ -219,7 +219,7 @@ public class SectionMenuModel {
             pseudoCategoriesSectionBean.setTitle(entrySet.getKey());
 
             final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue());
-            pseudoCategoriesSectionBean.setSubsections(subSectionList);
+            pseudoCategoriesSectionBean.setSubSections(subSectionList);
             pseudoCategoriesSectionBean.setSubSectionCount(subSectionList.size());
             pseudoSection.add(pseudoCategoriesSectionBean);
         }
