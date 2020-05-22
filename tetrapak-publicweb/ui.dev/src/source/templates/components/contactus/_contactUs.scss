@@ -79,7 +79,7 @@
             @include margin-bottom($margin-l);
         }
         h2,
-        p {
+        .descriptionTextThankyou {
             @include margin-bottom($margin-md);
         }
     }
