@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
+import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
 
@@ -33,12 +34,13 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
             final Map<String, String> emailParams = new HashMap<>();
 
             // these parameters are used in email template
-            emailParams.put("firstName", contactUs.getFirstName());
-            emailParams.put("lastName", contactUs.getLastName());
-            emailParams.put("purpose", contactUs.getPurposeOfContactTitle());
-            emailParams.put("country", contactUs.getCountryTitle());
-            emailParams.put("message", contactUs.getMessage());
-            emailParams.put("email", contactUs.getEmail());
+
+            emailParams.put(FormConstants.FIRST_NAME, contactUs.getFirstName());
+            emailParams.put(FormConstants.LAST_NAME, contactUs.getLastName());
+            emailParams.put(FormConstants.PURPOSE, contactUs.getPurposeOfContactTitle());
+            emailParams.put(FormConstants.COUNTRY, contactUs.getCountryTitle());
+            emailParams.put(FormConstants.MESSAGE, contactUs.getMessage());
+            emailParams.put(FormConstants.EMAIL, contactUs.getEmail());
             emailParams.put("domainURL", contactUs.getDomainURL());
             final Map<String, Object> properties = new HashMap<>();
             properties.put("templatePath", PWConstants.CONTACT_US_MAIL_TEMPLATE_PATH);
