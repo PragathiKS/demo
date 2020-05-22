@@ -58,7 +58,7 @@ class ContactUs {
       data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
     }).done(
       (response) => {
-        if (response.statusCode === 200) {
+        if (response.statusCode === '200') {
           $('.tab-pane', this.root).removeClass('active');
           $('#cf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
@@ -142,7 +142,7 @@ class ContactUs {
       const countryTitle = $(this).data('countrytitle');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
-      $('input', parentDrop).val(country);
+      $('input', parentDrop).val(countryTitle);
       self.cache.requestPayload['country'] = country;
       self.cache.requestPayload['countryTitle'] = countryTitle;
       self.cache.$dropItem.removeClass('active');
