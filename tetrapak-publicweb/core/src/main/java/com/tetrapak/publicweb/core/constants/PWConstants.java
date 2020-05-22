@@ -122,6 +122,9 @@ public final class PWConstants {
     /** The package type template. */
     public static final String PACKAGE_TYPE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-package-type-page";
 
+    /** The Constant EXTERNAL_REDIRECT_TEMPLATE. */
+    public static final String EXTERNAL_REDIRECT_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page";
+
     /** The full feed. */
     public static final String FULL_FEED = "full";
 

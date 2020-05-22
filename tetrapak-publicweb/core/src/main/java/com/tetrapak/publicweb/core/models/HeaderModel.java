@@ -1,11 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,15 +13,18 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * The Class HeaderModel.
@@ -36,6 +38,10 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+
+    @Inject
+    @Self
+    private SectionMenuModel sectionMenuModel;
 
     /** The logo image path. */
     private String logoImagePath;
@@ -120,7 +126,7 @@ public class HeaderModel {
      * @param rootPath
      *            the new mega menu links list
      */
-    public void setMegaMenuLinksList(String rootPath) {
+    public void setMegaMenuLinksList(final String rootPath) {
         final Resource rootResource = request.getResourceResolver().getResource(rootPath);
         if (Objects.nonNull(rootResource)) {
             final ResourceResolver resourceResolver = rootResource.getResourceResolver();
@@ -140,7 +146,7 @@ public class HeaderModel {
      * @param page
      *            the new link bean
      */
-    private void setLinkBean(Page page) {
+    private void setLinkBean(final Page page) {
         if (Objects.nonNull(page)) {
             final Iterator<Page> childPages = page.listChildren();
             while (childPages.hasNext()) {
@@ -288,5 +294,9 @@ public class HeaderModel {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
             solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
         }
+    }
+
+    public SectionMenuModel getNavigationConfigurationModel() {
+        return sectionMenuModel;
     }
 }
