@@ -139,8 +139,8 @@
         }
     }
     h3 {
-        @include font-size($font-md);
-        @include line-height($font-l, $font-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
         @media #{$desktop} {
