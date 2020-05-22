@@ -2,6 +2,7 @@
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-locator="ContactUs">
         <div class="pw-contactus-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
             id="pw-contactUs" data-module="ContactUs" auto_locator="contactUsParentContainerStep1">
+           <div class="hidden-element js-contactus-api" data-contactus-api-servlet="${data.servletPath}"></div>
             <div class="tab-content">
                 <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-contactfooter" autocomplete="off"
                     method="GET">
