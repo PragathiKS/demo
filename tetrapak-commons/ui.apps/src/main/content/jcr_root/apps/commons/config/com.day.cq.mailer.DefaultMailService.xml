@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="sling:OsgiConfig"
+    smtp.password="6ca7+w\=Gr2wK3YT8a6dA"
+	debug.email="true"
+	smtp.user="SRVSECFE@TETRAPAK.COM"
+	smtp.port="587"
+	smtp.starttls="true"
+	smtp.ssl="false"
+	smtp.host="smtp.office365.com"
+	from.address="SRVSECFE@TETRAPAK.COM" />

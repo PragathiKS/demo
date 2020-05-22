@@ -270,4 +270,13 @@ public class ContactUsModel {
         this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
+    /**
+     * Gets the servlet path.
+     *
+     * @return the servlet path
+     */
+    public String getServletPath() {
+        return resource.getPath() + ".data.json";
+    }
+
 }

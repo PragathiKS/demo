@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, API_CONTACTUS_FORM, REG_EMAIL } from '../../../scripts/utils/constants';
+import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 
 class ContactUs {
@@ -12,6 +12,7 @@ class ContactUs {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
+    this.cache.contactusapi = this.root.find('.js-contactus-api');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('button[type="submit"]', this.root);
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
@@ -51,8 +52,9 @@ class ContactUs {
   }
 
   submitForm = () => {
+    const servletPath = this.cache.contactusapi.data('contactus-api-servlet');
     ajaxWrapper.getXhrObj({
-      url: API_CONTACTUS_FORM,
+      url: servletPath,
       method: ajaxMethods.POST,
       data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
     }).done(
