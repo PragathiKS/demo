@@ -14,9 +14,18 @@
             @include margin(0);
             @media #{$desktop} {
                 max-width: calc(45% - #{convert-to-rem(24px)});
+            }
         }
-     }
-  }
+        .banner-sibling {
+            display: none;
+            @media #{$desktop} {
+                display: inline-block;
+                background-color: $color-wild-sand;
+                position: absolute;
+                opacity: 0.9;
+            }
+        }
+    }
 }
 .pw-banner {
     @include margin-bottom(20px);
@@ -74,12 +83,12 @@
             @include padding($padding-xxxl);
             @include margin(-48px 0 0 0);
             color: $color-tundora;
-            background-color: $color-wild-sand 0.9;
+            background-color: transparent;
             max-width: calc(45% - #{convert-to-rem(24px)});
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            opacity: 0.9;
+            opacity: 1;
         }
 
         &__subtitle {
@@ -121,6 +130,15 @@
             }
         }
 
+    }
+    .banner-sibling {
+        display: none;
+        @media #{$desktop} {
+            display: inline-block;
+            background-color: $color-wild-sand;
+            position: absolute;
+            opacity: 0.9;
+        }
     }
     .display-row {
         @media #{$desktop} {
