@@ -1,16 +1,18 @@
 package com.tetrapak.publicweb.core.beans;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * The Class LanguageBean.
  */
-public class LanguageBean implements Comparable<LanguageBean> {
-
+public class LanguageBean implements Comparable<LanguageBean>{
+    
     /** The language name. */
     private String languageName;
-
+    
     /** The link path. */
     private String linkPath;
-
+    
     /** The language index. */
     private int languageIndex;
 
@@ -26,8 +28,7 @@ public class LanguageBean implements Comparable<LanguageBean> {
     /**
      * Sets the language name.
      *
-     * @param languageName
-     *            the new language name
+     * @param languageName the new language name
      */
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
@@ -45,8 +46,7 @@ public class LanguageBean implements Comparable<LanguageBean> {
     /**
      * Sets the link path.
      *
-     * @param pagePath
-     *            the new link path
+     * @param pagePath the new link path
      */
     public void setLinkPath(String pagePath) {
         this.linkPath = pagePath;
@@ -64,8 +64,7 @@ public class LanguageBean implements Comparable<LanguageBean> {
     /**
      * Sets the language index.
      *
-     * @param languageIndex
-     *            the new language index
+     * @param languageIndex the new language index
      */
     public void setLanguageIndex(int languageIndex) {
         this.languageIndex = languageIndex;
@@ -74,20 +73,21 @@ public class LanguageBean implements Comparable<LanguageBean> {
     /**
      * Compare to.
      *
-     * @param obj
-     *            the obj
+     * @param obj the obj
      * @return the int
      */
     @Override
     public int compareTo(LanguageBean obj) {
+        if(StringUtils.isBlank(languageName)){
+            return 0;
+        }
         return languageName.compareTo(obj.getLanguageName());
-    }
-
+    }    
+    
     /**
      * Equals.
      *
-     * @param obj
-     *            the obj
+     * @param obj the obj
      * @return true, if successful
      */
     @Override
@@ -100,7 +100,7 @@ public class LanguageBean implements Comparable<LanguageBean> {
         }
         return languageName.equalsIgnoreCase(((LanguageBean) obj).getLanguageName());
     }
-
+    
     /**
      * Hash code.
      *
@@ -110,5 +110,7 @@ public class LanguageBean implements Comparable<LanguageBean> {
     public int hashCode() {
         return languageName.hashCode();
     }
+    
+    
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * The Class MarketBean.
  */
@@ -60,6 +62,9 @@ public class MarketBean implements Comparable<MarketBean>{
      */
     @Override
     public int compareTo(MarketBean obj) {
+        if(StringUtils.isBlank(marketName)){
+            return 0;
+        }
         return marketName.compareTo(obj.getMarketName());
     }    
     

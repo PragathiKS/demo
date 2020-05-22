@@ -42,12 +42,27 @@ public class MarketSelectorModel {
     /** The market title. */
     private String marketTitle;
 
+    /** The language count. */
+    private int languageCount;
+
+    /** The market rows. */
+    private int marketRows;
+
+    /** The Constant TOTAL_COLUMNS. */
+    private static final int TOTAL_COLUMNS = 4;
+
+    /** The Constant COLUMN2. */
+    private static final int COLUMN2 = 2;
+
+    /** The Constant COLUMN3. */
+    private static final int COLUMN3 = 3;
+
     /**
      * Inits the.
      */
     @PostConstruct
     protected void init() {
-        LOGGER.debug("inside init method");
+        LOGGER.debug("MarketSelectorModel::inside init method");
         final String rootPath = LinkUtils.getMarketsRootPath(request.getPathInfo());
         Resource marketRootRes = request.getResourceResolver().getResource(rootPath);
         if (Objects.nonNull(marketRootRes)) {
@@ -57,7 +72,25 @@ public class MarketSelectorModel {
             }
         }
     }
-    
+
+    /**
+     * @return global market
+     */
+    private MarketBean getGlobalMarket() {
+        MarketBean globalMarketBean = new MarketBean();
+        LanguageBean globalLanguageBean = new LanguageBean();
+        globalLanguageBean.setLanguageIndex(1);
+        globalLanguageBean.setLanguageName(PageUtil
+                .getCurrentPage(request.getResourceResolver().getResource(
+                        PWConstants.GLOBLA_MARKET_PATH + PWConstants.SLASH + PWConstants.ENGLISH_LANGUAGE_ISO_CODE))
+                .getTitle());
+        globalLanguageBean.setLinkPath(getGlobalMarketPath());
+        List<LanguageBean> globalLanguages = new ArrayList<>();
+        globalLanguages.add(globalLanguageBean);
+        globalMarketBean.setLanguages(globalLanguages);
+        globalMarketBean.setMarketName(getGlobalMarketTitle());
+        return globalMarketBean;
+    }
 
     /**
      * Process markets.
@@ -66,21 +99,23 @@ public class MarketSelectorModel {
      *            the market pages
      */
     private void processMarkets(Iterator<Page> marketPages) {
-        int languageCount = 0;
+        if (Objects.nonNull(request.getResourceResolver().getResource(
+                PWConstants.GLOBLA_MARKET_PATH + PWConstants.SLASH + PWConstants.ENGLISH_LANGUAGE_ISO_CODE))) {
+            languageCount++;
+        }
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
             if (!marketPage.getName().equalsIgnoreCase(PWConstants.GB_ISO_CODE)
                     && !marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 MarketBean marketBean = new MarketBean();
-                marketBean.setMarketName(marketPage.getPageTitle());
+                marketBean.setMarketName(marketPage.getTitle());
                 List<LanguageBean> languages = new ArrayList<>();
                 while (languagePages.hasNext()) {
                     languageCount++;
                     Page languagePage = languagePages.next();
                     LanguageBean languageBean = new LanguageBean();
-                    languageBean.setLanguageName(languagePage.getPageTitle());
-                    languageBean.setLanguageIndex(languageCount);
+                    languageBean.setLanguageName(languagePage.getTitle());
                     languageBean.setLinkPath(LinkUtils
                             .sanitizeLink(languagePage.getPath() + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH));
                     languages.add(languageBean);
@@ -88,6 +123,11 @@ public class MarketSelectorModel {
                 marketBean.setLanguages(languages);
                 markets.add(marketBean);
             }
+        }
+        if (languageCount % TOTAL_COLUMNS == 0) {
+            marketRows = languageCount / TOTAL_COLUMNS;
+        } else {
+            marketRows = languageCount / TOTAL_COLUMNS + 1;
         }
     }
 
@@ -97,8 +137,24 @@ public class MarketSelectorModel {
      * @return the markets
      */
     public List<MarketBean> getMarkets() {
-        Collections.sort(markets);
-        return new ArrayList<>(markets);
+        List<MarketBean> finalMarkets = new ArrayList<>();
+        int index = 0;
+        if (Objects.nonNull(request.getResourceResolver().getResource(
+                PWConstants.GLOBLA_MARKET_PATH + PWConstants.SLASH + PWConstants.ENGLISH_LANGUAGE_ISO_CODE))) {
+            finalMarkets.add(getGlobalMarket());
+            index++;
+        }
+        if (null != markets && !markets.isEmpty()) {
+            Collections.sort(markets);
+            for (int i = 0; i < markets.size(); i++) {
+                for (int j = 0; j < markets.get(i).getLanguages().size(); j++) {
+                    index++;
+                    markets.get(i).getLanguages().get(j).setLanguageIndex(index);
+                }
+            }
+            finalMarkets.addAll(markets);
+        }
+        return new ArrayList<>(finalMarkets);
     }
 
     /**
@@ -116,10 +172,10 @@ public class MarketSelectorModel {
      *
      * @return the global market title
      */
-    public String getGlobalMarketTitle() {
+    private String getGlobalMarketTitle() {
         if (Objects.nonNull(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))) {
             return PageUtil.getCurrentPage(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))
-                    .getPageTitle();
+                    .getTitle();
         }
         return StringUtils.EMPTY;
     }
@@ -142,4 +198,68 @@ public class MarketSelectorModel {
         }
         return marketTitle;
     }
+
+    /**
+     * Gets the col 1 end.
+     *
+     * @return the col 1 end
+     */
+    public int getCol1End() {
+        return marketRows;
+    }
+
+    /**
+     * Gets the col 2 start.
+     *
+     * @return the col 2 start
+     */
+    public int getCol2Start() {
+        return marketRows + 1;
+    }
+
+    /**
+     * Gets the col 2 end.
+     *
+     * @return the col 2 end
+     */
+    public int getCol2End() {
+        return marketRows * COLUMN2;
+    }
+
+    /**
+     * Gets the col 3 start.
+     *
+     * @return the col 3 start
+     */
+    public int getCol3Start() {
+        return marketRows * COLUMN2 + 1;
+    }
+
+    /**
+     * Gets the col 3 end.
+     *
+     * @return the col 3 end
+     */
+    public int getCol3End() {
+        return marketRows * COLUMN3;
+    }
+
+    /**
+     * Gets the col 4 start.
+     *
+     * @return the col 4 start
+     */
+    public int getCol4Start() {
+        return marketRows * COLUMN3 + 1;
+    }
+
+    /**
+     * Gets the col 4 end.
+     *
+     * @return the col 4 end
+     */
+    public int getCol4End() {
+        return languageCount;
+    }
+
 }

@@ -149,15 +149,6 @@ public class HeaderConfigurationModel {
     public String getMarketTitle() {
         return marketTitle;
     }
-
-    /**
-     * Sets the market title.
-     *
-     * @param marketTitle the new market title
-     */
-    public void setMarketTitle(String marketTitle) {
-        this.marketTitle = marketTitle;
-    }
     
     
 }
