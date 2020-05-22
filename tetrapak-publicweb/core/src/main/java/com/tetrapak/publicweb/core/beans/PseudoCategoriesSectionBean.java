@@ -14,7 +14,7 @@ public class PseudoCategoriesSectionBean {
     private int subSectionCount;
 
     /** The subsections. */
-    private List<SubSectionBean> subsections;
+    private List<SubSectionBean> subSections;
 
     /**
      * Gets the title.
@@ -54,20 +54,20 @@ public class PseudoCategoriesSectionBean {
     }
 
     /**
-     * Gets the subsections.
+     * Gets the sub sections.
      *
-     * @return the subsections
+     * @return the sub sections
      */
-    public List<SubSectionBean> getSubsections() {
-        return subsections;
+    public List<SubSectionBean> getSubSections() {
+        return subSections;
     }
 
     /**
-     * Sets the subsections.
+     * Sets the sub sections.
      *
-     * @param subsections the new subsections
+     * @param subSections the new sub sections
      */
-    public void setSubsections(final List<SubSectionBean> subsections) {
-        this.subsections = subsections;
+    public void setSubSections(final List<SubSectionBean> subSections) {
+        this.subSections = subSections;
     }
 }
