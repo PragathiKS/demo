@@ -63,7 +63,6 @@ class ContactUs {
           $('#cf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
         } else {
-          $('.serviceError', this.root).text(response.statusMessage);
           $('.serviceError').addClass('d-block');
         }
       }
