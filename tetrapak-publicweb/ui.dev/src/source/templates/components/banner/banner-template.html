@@ -47,7 +47,8 @@
           <sly data-sly-test="${data.bannerType == 'hero'}">
           <div class="pw-banner__contentwrapper">
           </sly>
-            <div data-sly-test="${data.title}" class="pw-banner__content ${data.pwDisplay}">
+            <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
+            <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
                 <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
                   ${data.subtitle @ context='html'}
                 </div>
