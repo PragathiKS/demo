@@ -124,22 +124,23 @@
     }
     h2 {
         @include line-height($font-l, $font-baseline);
-        @include line-height($font-l, $font-m-sm);
         display: flex;
-        font-family: $font-black;
-        font-weight: 900;
+        font-family: $font-bold;
+        font-size: $font-baseline;
+        font-weight: 500;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
             @include line-height($font-l, $font-baseline);
             display: block;
+            font-family: $font-black;
             font-size: $font-baseline;
             justify-content: center;
         }
     }
     h3 {
-        @include font-size($font-md);
-        @include line-height($font-l, $font-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
         @media #{$desktop} {
@@ -235,6 +236,9 @@
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
+            font-family: $font-bold;
+            font-size: $font-baseline;
+            font-weight: 500;
             // border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {

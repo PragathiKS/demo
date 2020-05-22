@@ -267,7 +267,7 @@
                                 <sly data-sly-test="${!wcmmode.edit}">
                                     <sly data-sly-test="${data.thankyouImage}"
                                         data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                                        data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.thankyouImageAltText, altText=data.thankyouImageAltText}" />
+                                        data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.thankyouImage, altText=data.thankyouImageAltText}" />
                                 </sly>
                                 <sly data-sly-test="${wcmmode.edit}">
                                     <img data-sly-test="${data.thankyouImage}" auto_locator="contactUsThankYouPageImage" alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
