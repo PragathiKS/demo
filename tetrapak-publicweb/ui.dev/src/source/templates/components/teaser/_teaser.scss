@@ -9,6 +9,9 @@
 
     &__heading {
         @include padding-bottom($padding-md);
+        @media #{$desktop} {
+            @include padding-left($padding-l);
+        }
         h2.tp-atom-heading {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);

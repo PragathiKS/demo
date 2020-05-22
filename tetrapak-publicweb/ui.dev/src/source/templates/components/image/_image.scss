@@ -1,7 +1,12 @@
 .tp-pw-image {
     max-width: 100%;
+    .pw-padding--regular {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
     &__center-align {
         margin: 0 auto;
+        padding: 0;
     }
     &__regular {
         @include padding(0);
