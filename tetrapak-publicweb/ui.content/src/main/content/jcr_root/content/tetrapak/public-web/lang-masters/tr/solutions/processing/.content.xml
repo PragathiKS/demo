@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:29.762Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:05:17.925Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:28.551Z"
+        cq:tags="[tetrapak:packaging,tetrapak:processing,tetrapak:services]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/processing"
+        jcr:description="Tags present in this are :&#xd;&#xa;1) Packaging ,  2)Processing , 3)Services&#xd;&#xa;"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Processing"
+        jcr:uuid="87a4bced-86de-48c7-822a-95f90f966bfa"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/text-and-image/shutterstock_104710151_flying_fruits.png"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+    <applications/>
+    <main-technology-areas/>
+</jcr:root>

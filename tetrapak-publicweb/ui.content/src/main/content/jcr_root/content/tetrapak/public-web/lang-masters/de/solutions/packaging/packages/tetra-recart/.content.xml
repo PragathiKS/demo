@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:26.623Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:31.170Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-package-type-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/packaging/packages/tetra-recart"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Recart"
+        jcr:uuid="5726c9b8-b577-476c-a33f-9a8417899e0c"
+        sling:resourceType="publicweb/components/structure/pages/pxpproductpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        productId="packagetype1697"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <anchor
+                    jcr:created="{Date}2020-05-13T10:56:36.333Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-13T10:56:36.333Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/anchor"/>
+                <pxpshapesandvolumes
+                    jcr:created="{Date}2020-05-04T13:44:02.176+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-13T10:56:56.927Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpshapesandvolumes"
+                    anchorId="shapes"
+                    anchorTitle="Shapes &amp; Volumes"
+                    heading="Shapes &amp; Volumes"
+                    pwTheme="grayscale-white"/>
+                <pxpopenings
+                    jcr:created="{Date}2020-05-04T13:45:49.058+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-13T10:56:44.464Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpopenings"
+                    anchorId="openings"
+                    anchorTitle="Openings Organism"
+                    heading="PXP Openings Organism"
+                    pwTheme="grayscale-lighter"/>
+                <pxpfillingmachines
+                    jcr:created="{Date}2020-05-04T13:45:52.991+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-13T10:57:13.952Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpfillingmachines"
+                    anchorId="filling"
+                    anchorTitle="Filling machine"
+                    heading="Filling machine"
+                    linkText="Read more"
+                    pwTheme="grayscale-white"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

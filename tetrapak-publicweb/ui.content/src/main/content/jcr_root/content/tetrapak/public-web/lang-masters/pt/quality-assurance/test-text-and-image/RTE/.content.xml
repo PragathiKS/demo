@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:27.856Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:07:02.346Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:07.769Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/test-text-and-image/RTE"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="RTE"
+        jcr:uuid="14a422e7-265c-482d-9779-fcd93ac04afb"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <richtext_215392973
+                    jcr:created="{Date}2020-04-13T06:13:45.017Z"
+                    jcr:createdBy="sapient-kunal"
+                    jcr:lastModified="{Date}2020-04-13T06:18:51.928Z"
+                    jcr:lastModifiedBy="sapient-kunal"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    pwPadding="regular"
+                    pwTheme="grayscale-lighter"
+                    text="&lt;p>Hello this is &lt;b>&lt;i>&lt;u>Rich text editor&lt;/u>&lt;/i>&lt;/b>&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
