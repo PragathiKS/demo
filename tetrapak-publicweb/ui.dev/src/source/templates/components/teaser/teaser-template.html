@@ -6,7 +6,7 @@
             data-sly-call="${heading.heading_h2_template @ headingText=data.heading}"/>
       </div>
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
-      <div class="tp-teaser__details row" data-sly-list.child="${data.teaserList}">
+      <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
         <sly data-sly-test.teaserType="${teaserSize > 2 ? [componentName,'2'] : [componentName,'1'] @ join=''}"/>
         <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
           <sly data-sly-test = "${!wcmmode.edit}">

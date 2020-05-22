@@ -45,7 +45,7 @@
             <ul class="list-side-links" data-sly-list.linkSection=${data.linkSection}>
               <li>
                 <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/link/link-template.html"
-                  data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, parentLink=mainHeader, linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-xl-inline-block'}">
+                  data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, parentLink=mainHeader, linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-md-inline-block'}">
                 </sly>
               </li>
             </ul>
