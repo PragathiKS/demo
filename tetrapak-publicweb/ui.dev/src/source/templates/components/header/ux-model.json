@@ -152,7 +152,36 @@
         "path": "/content/dam/publicweb/dairy.html"
       }
     ]
-  }
-
-
+  },
+    "marketList": {
+      "globalMarketPath": "/content/tetrapak/public-web/global/en/home.html",
+      "globalMarketTitle": "TetraPak Global",
+      "marketTitle": "Choose your market",
+      "markets": [{
+        "marketName": "United States",
+        "languages": [{
+          "langaugeIndex": 1,
+          "langaugeName": "English",
+          "linkPath": "/content/tetrapak/public-web/us/en/home.html"
+        }]
+      }, {
+        "marketName": "Morocco, Tunisia, Algeria",
+        "languages": [{
+          "langaugeIndex": 2,
+          "langaugeName": "English",
+          "linkPath": "/content/tetrapak/public-web/mta/en/home.html"
+        }]
+      }, {
+        "marketName": "Canada",
+        "languages": [{
+          "langaugeIndex": 3,
+          "langaugeName": "English",
+          "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+        }, {
+          "langaugeIndex": 4,
+          "langaugeName": "French",
+          "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+        }]
+      }]
+    }
 }

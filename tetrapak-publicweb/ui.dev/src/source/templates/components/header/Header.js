@@ -39,6 +39,10 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
+    
+    this.root.find('.js-header__selected-lang1').on('click', () => {
+      this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup1');
+    });
 
   }
 
