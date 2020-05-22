@@ -7,13 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.apache.sling.xss.XSSAPI;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.mock.MockHelper;
+import com.tetrapak.publicweb.core.mock.MockXSSAPI;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.impl.ContactUsMailServiceImpl;
@@ -37,6 +41,8 @@ public class ContactUsSendMailServletTest {
 
     private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/countries";
 
+    String inputJson;
+
     /**
      * Setup.
      *
@@ -59,7 +65,7 @@ public class ContactUsSendMailServletTest {
         context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
 
         // set request Input Json
-        final String inputJson = IOUtils
+        inputJson = IOUtils
                 .toString(this.getClass().getResourceAsStream("/contactus/test-sendmailrequest.json"),
                 "UTF-8");
         final Map<String, Object> parameterMap = new HashMap<>();
@@ -67,6 +73,15 @@ public class ContactUsSendMailServletTest {
         context.request().setParameterMap(parameterMap);
 
         context.request().setResource(context.currentResource());
+
+        context.registerAdapter(SlingHttpServletRequest.class, XSSAPI.class,
+                new Function<SlingHttpServletRequest, XSSAPI>() {
+
+                    @Override
+                    public XSSAPI apply(final SlingHttpServletRequest arg0) {
+                        return new MockXSSAPI(inputJson);
+                    }
+                });
 
     }
 

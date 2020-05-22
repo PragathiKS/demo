@@ -9,6 +9,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -58,7 +59,9 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         ContactUsResponse contactusResp = new ContactUsResponse("500", "Server Error");
         try {
-            final String inputJson = request.getParameter("inputJson");
+            String inputJson = request.getParameter("inputJson");
+            final XSSAPI xssapi = request.adaptTo(XSSAPI.class);
+            inputJson = xssapi.getValidJSON(inputJson, "");
             LOGGER.debug("Contact us servlet InputJson :: {}", inputJson);
             if (!StringUtils.isEmpty(inputJson)) {
                 final ContactUs contactUs = new ObjectMapper().readValue(inputJson, ContactUs.class);
