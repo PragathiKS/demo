@@ -36,7 +36,9 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     /**
      * The Interface CountryDetailServiceConfig.
      */
-    @ObjectClassDefinition(name = "Find My Office Configuration", description = "Find My Office Service Configuration")
+    @ObjectClassDefinition(
+            name = "Public Web Country Detail Service Configuration",
+            description = "Public Web Country Detail Service Configuration")
     @interface CountryDetailServiceConfig {
 
         /**
@@ -56,7 +58,6 @@ public class CountryDetailServiceImpl implements CountryDetailService {
 
     /** The data root path. */
     private static final String DATA_ROOT_PATH = "/jcr:content/data/master";
-
 
     /**
      * activate method.
@@ -82,7 +83,6 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         return jcrResource.getValueMap().get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
     }
 
-
     /**
      * Gets the country cf root path.
      *
@@ -92,7 +92,6 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     public String getCountryCfRootPath() {
         return countryConfig.getCountriesContentFragmentRootPath();
     }
-
 
     @Override
     public String[] fetchContactEmailAddresses(final ContactUs contactUs, final ResourceResolver resourceResolver) {
