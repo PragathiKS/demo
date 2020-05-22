@@ -58,10 +58,10 @@ public class ContactUsModel {
     @ValueMapValue
     private String thankyouDescriptionText;
 
-    private List<DropdownOption> countryOptions = null;
+    private List<DropdownOption> countryOptions;
 
     @OSGiService
-    private CountryDetailService findMyOffice;
+    private CountryDetailService countryDetailService;
 
     /**
      * Inits the.
@@ -140,7 +140,7 @@ public class ContactUsModel {
     }
 
     private void setCountryOptions() {
-        this.countryOptions = findMyOffice.fetchCountryList(resource.getResourceResolver());
+        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
 }
