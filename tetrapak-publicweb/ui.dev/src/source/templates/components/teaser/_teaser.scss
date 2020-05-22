@@ -17,7 +17,7 @@
             @include line-height($font-xl, $font-l);
             @media #{$desktop} {
                 @include font-size($font-xl);
-                line-height: 4;
+                line-height: 40px;
             }
         }
     }

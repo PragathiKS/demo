@@ -52,14 +52,11 @@ public class HeaderModel {
     /** The login link. */
     private String loginLink;
 
-    /** The contact link. */
-    private String contactLink;
+    /** The contact us link. */
+    private String contactUsLink;
 
-    /** The contact link target. */
-    private String contactLinkTarget;
-
-    /** The contact text. */
-    private String contactText;
+    /** The contact us alt text. */
+    private String contactUsAltText;
 
     /** The login label. */
     private String loginLabel;
@@ -93,9 +90,8 @@ public class HeaderModel {
                 logoLink = configurationModel.getLogoLink();
                 logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
-                contactLink = configurationModel.getContactLink();
-                contactLinkTarget = configurationModel.getContactLinkTarget();
-                contactText = configurationModel.getContactText();
+                contactUsLink = configurationModel.getContactLink();
+                contactUsAltText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = configurationModel.getLoginLink();
                 solutionPage = configurationModel.getSolutionPage();
@@ -151,16 +147,25 @@ public class HeaderModel {
                 final Page childPage = childPages.next();
                 if (!childPage.isHideInNav()) {
                     final LinkBean linkBean = new LinkBean();
-                    String title = childPage.getNavigationTitle();
-                    if(StringUtils.isBlank(title)) {
-                        title = childPage.getTitle();
-                    }
+                    String title = getTitle(childPage);
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
                     megaMenuLinksList.add(linkBean);
                 }
             }
         }
+    }
+    
+    /**
+     * @param childPage
+     * @return title
+     */
+    private String getTitle(Page childPage) {
+        String title = childPage.getNavigationTitle();
+        if(StringUtils.isBlank(title)) {
+            title = childPage.getTitle();
+        }
+        return title;
     }
 
     /**
@@ -213,17 +218,8 @@ public class HeaderModel {
      *
      * @return the contact link
      */
-    public String getContactLink() {
-        return contactLink;
-    }
-
-    /**
-     * Gets the contact link target.
-     *
-     * @return the contact link target
-     */
-    public String getContactLinkTarget() {
-        return contactLinkTarget;
+    public String getContactUsLink() {
+        return contactUsLink;
     }
 
     /**
@@ -231,8 +227,8 @@ public class HeaderModel {
      *
      * @return the contact text
      */
-    public String getContactText() {
-        return contactText;
+    public String getContactUsAltText() {
+        return contactUsAltText;
     }
 
     /**

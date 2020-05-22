@@ -1,13 +1,16 @@
 .pw-contactAnchorLink {
     color: $color-white;
     background-color: $color-congress-blue;
-    font-size: 20px;
-    padding: 10px 14px;
+    font-size: 14px;
+    padding: 8px 12px;
     border-radius: 100%;
     opacity: 1;
     pointer-events: visible;
     transition: opacity 0.3s ease;
-
+    .icon-Contact_Floater_pw::before {
+        font-size: 16px;
+        line-height: 16px;
+    }
     &:hover {
         color: $color-mercury;
     }
@@ -20,13 +23,13 @@
 }
 
 .pw-contactAnchorLink-wrapper {
+    @include right($margin-sm);
+    @include bottom($margin-sm);
     position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 1;
+    z-index: 2;
 
     @media #{$desktop} {
-        right: 48px;
-        bottom: 48px;
+        @include right($margin-l);
+        @include bottom($margin-l);
     }
 }

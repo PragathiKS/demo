@@ -6,13 +6,7 @@
       <div class="container-fluid pw-megamenu__top">
         <sly data-sly-test.isMobile="${!isMobile}">
           <div class="heading-d-link">
-            <a data-sly-test="${data.topSectionUrl != '#'}" href="${data.topSectionUrl}"
-              title="${data.topSectionSubtitle}" aria-label="${data.topSectionSubtitle}">
-              <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
-                data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
-            </a>
-            <sly data-sly-test="${data.topSectionUrl == '#'}"
-              data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+            <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
           </div>
         </sly>
@@ -54,13 +48,7 @@
       </div>
       <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
         <div class="heading-bottom-cta js-open-menu">
-          <a data-sly-test="${data.bottomSectionUrl != '#'}" href="${data.bottomSectionUrl}"
-            title="${data.bottomSectionSubtitle}" aria-label="${data.bottomSectionSubtitle}">
-            <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
-              data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
-          </a>
-          <sly data-sly-test="${data.bottomSectionUrl == '#'}"
-            data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+          <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
           <i class="icon icon-Chevron_Right d-md-none"></i>
         </div>
