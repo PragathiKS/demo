@@ -38,9 +38,6 @@ public class FooterModel {
     /** The logo link. */
     private String logoLink;
 
-    /** The logo link target. */
-    private String logoLinkTarget;
-
     /** The logo alt. */
     private String logoAlt;
 
@@ -68,7 +65,6 @@ public class FooterModel {
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = configurationModel.getLogoLink();
-                logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
                 socialLinks = configurationModel.getSocialLinks();
                 footerLinks = configurationModel.getFooterLinks();
@@ -94,15 +90,6 @@ public class FooterModel {
      */
     public String getLogoLink() {
         return logoLink;
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
     }
 
     /**
