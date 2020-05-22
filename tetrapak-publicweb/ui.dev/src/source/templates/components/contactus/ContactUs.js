@@ -17,7 +17,6 @@ class ContactUs {
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
-    this.cache.$dropdown = $('.pw-form__dropdown', this.root);
     this.cache.countryList = [];
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -126,7 +125,7 @@ class ContactUs {
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
-      var isvalid = true;
+      let isvalid = true;
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
       requestPayload['message'] = $('[name="message"]').val();
       $('input, textarea').each(function () {
