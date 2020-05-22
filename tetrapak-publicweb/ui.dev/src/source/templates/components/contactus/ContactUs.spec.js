@@ -3,18 +3,21 @@ import $ from 'jquery';
 import contactUsTemplate from '../../../test-templates-hbs/contactUs.hbs';
 
 describe('ContactUs', function () {
-  before(function () {
+  beforeEach(function () {
     $(document.body).empty().html(contactUsTemplate());
     this.contactUs = new ContactUs({
       el: document.body
     });
     this.initSpy = sinon.spy(this.contactUs, 'init');
-    this.initSpy = sinon.spy(this.contactUs, 'getCountryList');
+    this.getCountryListSpy = sinon.spy(this.contactUs, 'getCountryList');
+    this.submitFormSpy = sinon.spy(this.contactUs, 'submitForm');
     this.contactUs.init();
   });
-  after(function () {
+  afterEach(function () {
     $(document.body).empty();
     this.initSpy.restore();
+    this.getCountryListSpy.restore();
+    this.submitFormSpy.restore();
   });
 
   it('should initialize', function () {
@@ -37,7 +40,7 @@ describe('ContactUs', function () {
     expect(this.contactUs.cache.requestPayload['purposeOfContact']).to.equal('other');
   });
 
-  it('should update request payload when step-2 next button is clicked', function () {
+  it('should update request payload when step-2 next button is clicked', function (done) {
     document.getElementById('firstName').value = 'first';
     document.getElementById('lastName').value = 'last';
     document.getElementById('email').value = 'email';
@@ -45,11 +48,45 @@ describe('ContactUs', function () {
     expect(this.contactUs.cache.requestPayload['firstName']).to.equal('first');
     expect(this.contactUs.cache.requestPayload['lastName']).to.equal('last');
     expect(this.contactUs.cache.requestPayload['email']).to.equal('email');
+    done();
   });
 
-  it('should update request payload when step-3 next button is clicked', function () {
+  it('should update request payload when step-3 next button is clicked', function (done) {
     document.getElementById('messageText').value = 'mockmessage';
     document.getElementById('step3btn').click();
     expect(this.contactUs.cache.requestPayload['message']).to.equal('mockmessage');
+    done();
+  });
+
+  it('should not submit Form when required fields are empty', function (done) {
+    document.getElementById('messageText').value = 'mockmessage';
+    this.contactUs.cache.$submitBtn.click();
+    expect(this.contactUs.submitForm.called).to.be.false;
+    done();
+  });
+
+  it('should submit Form when required fields are not empty', function (done) {
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('email').value = 'email';
+    document.getElementById('messageText').value = 'mockmessage';
+    document.getElementById('purposeOfContact').value = 'Career';
+    document.getElementById('country').value = 'mock country';
+    this.contactUs.cache.$submitBtn.click();
+    expect(this.contactUs.submitForm.called).to.be.true;
+    done();
+  });
+
+  it('should not submit Form when honeypot field is filled', function (done) {
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('email').value = 'email';
+    document.getElementById('messageText').value = 'mockmessage';
+    document.getElementById('purposeOfContact').value = 'Career';
+    document.getElementById('country').value = 'mock country';
+    document.getElementById('contactUsHoneyPot').value = 'honeypot';
+    this.contactUs.cache.$submitBtn.click();
+    expect(this.contactUs.submitForm.called).to.be.false;
+    done();
   });
 });
