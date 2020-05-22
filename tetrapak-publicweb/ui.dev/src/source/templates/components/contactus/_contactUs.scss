@@ -27,6 +27,9 @@
         label {
             @include margin-bottom(0);
         }
+        .pw-form__dropdown__toggle i {
+            transform: rotate(90deg);
+        }
         &.field-error {
             .pw-form__dropdown__toggle {
                 border-color: $color-alert;

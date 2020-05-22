@@ -84,7 +84,7 @@ describe('ContactUs', function () {
     document.getElementById('messageText').value = 'mockmessage';
     document.getElementById('purposeOfContact').value = 'Career';
     document.getElementById('country').value = 'mock country';
-    document.getElementById('contactUsHoneyPot').value = 'honeypot';
+    document.getElementById('pardot_extra_field').value = 'honeypot';
     this.contactUs.cache.$submitBtn.click();
     expect(this.contactUs.submitForm.called).to.be.false;
     done();

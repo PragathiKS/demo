@@ -44,17 +44,18 @@
                         <div class="tab-content tab-content-steps">
                             <div class="row">
                                 <div class="col-sm-12 formfield">
-                                        <label for="firstName">firstName</label>
-                                        <input type="text" id="firstName" name="firstName" required="true">
+                                    <label for="firstName">firstName</label>
+                                    <input type="text" id="firstName" name="firstName" required="true">
                                 </div>
                                 <div class="col-sm-12 formfield">
-                                        <label for="lastName">firstName</label>
-                                        <input type="text" id="lastName" name="lastName" required="true">
+                                    <label for="lastName">firstName</label>
+                                    <input type="text" id="lastName" name="lastName" required="true">
                                 </div>
                                 <div class="col-sm-12 formfield">
-                                        <label for="email">email</label>
-                                        <input type="text" id="email" name="email" required="true" placeholder='emailPlaceholder'>
-                                        <div class="errorMsg">email error</div>
+                                    <label for="email">email</label>
+                                    <input type="text" id="email" name="email" required="true"
+                                        placeholder='emailPlaceholder'>
+                                    <div class="errorMsg">email error</div>
                                 </div>
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="form-group country-field">
@@ -69,10 +70,12 @@
                                             </button>
                                             <div
                                                 class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select">
-                                                <a href="#" class="dropdown-item" data-country="denmark" data-countrytitle="Denmark">
+                                                <a href="#" class="dropdown-item" data-country="denmark"
+                                                    data-countrytitle="Denmark">
                                                     Denmark
                                                 </a>
-                                                <a href="#" class="dropdown-item" data-country="canada" data-countrytitle="Canada">
+                                                <a href="#" class="dropdown-item" data-country="canada"
+                                                    data-countrytitle="Canada">
                                                     Canada
                                                 </a>
                                             </div>
@@ -82,7 +85,8 @@
                                 </div>
                             </div>
                             <div class="row no-gutters button-group">
-                                <button data-target="#cf-step-3" id="step2btn" type="button" class="tpatom-btn tpatom-btn--primary">
+                                <button data-target="#cf-step-3" id="step2btn" type="button"
+                                    class="tpatom-btn tpatom-btn--primary">
                                     <span class="tp-next-btn__text">next</span>
                                     <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                                 </button>
@@ -103,16 +107,29 @@
                                         <textarea class="form-control" id="messageText" rows="5" name="message"
                                             required="true"></textarea>
                                         <div class="errorMsg">Please fill in this field</div>
-                                        <input type="text" name="contactUsHoneyPot" id="contactUsHoneyPot" class="honeyPotField d-none" tabindex="-1" />
+                                        <input type="text" name="contactUsHoneyPot" id="pardot_extra_field"
+                                            class="honeyPotField d-none" tabindex="-1" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row no-gutters button-group">
-                                <button data-target="#cf-step-final" type="submit" class="tpatom-btn tpatom-btn--primary" id="step3btn">
+                                <button data-target="#cf-step-final" type="submit"
+                                    class="tpatom-btn tpatom-btn--primary" id="step3btn">
                                     <span class="tp-next-btn__text">submit</span>
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="cf-step-final">
+                <div class="row thankyou">
+                    <div class="button-group">
+                        <button data-target="#cf-step-3" type="button"
+                            class="tpatom-btn tpatom-btn--primary newRequestBtn">
+                            <span class="tp-next-btn__text">newrequest</span>
+                            <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                        </button>
                     </div>
                 </div>
             </div>

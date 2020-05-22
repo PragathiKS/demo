@@ -69,24 +69,29 @@ class ContactUs {
     );
   }
 
+  newRequestHanlder = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    location.reload();
+  }
+
+  onRadioChangeHandler = e => {
+    const { requestPayload } = this.cache;
+    const value = e.target.value;
+    const id = e.target.id;
+    $('input[type=hidden][name="purposeOfContactTitle"]').val(value);
+    requestPayload['purposeOfContact'] = id;
+    requestPayload['purposeOfContactTitle'] = value;
+  }
+
   bindEvents() {
     /* Bind jQuery events here */
+    const { requestPayload, $radio, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
     const self = this;
-    this.cache.$radio.on('change', function () {
-      const value = this.value;
-      const id = $(this).attr('id');
-      $('input[type=hidden][name="purposeOfContactTitle"]').val(value);
-      self.cache.requestPayload['purposeOfContact'] = id;
-      self.cache.requestPayload['purposeOfContactTitle'] = value;
-    });
+    $newRequestBtn.on('click', this.newRequestHanlder);
+    $radio.on('change', this.onRadioChangeHandler);
 
-    this.cache.$newRequestBtn.click(function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      location.reload();
-    });
-
-    this.cache.$nextbtn.click(function (e) {
+    $nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
@@ -97,7 +102,7 @@ class ContactUs {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
-            self.cache.requestPayload[fieldName] = $(this).val();
+            requestPayload[fieldName] = $(this).val();
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
             isvalid = false;
@@ -118,12 +123,12 @@ class ContactUs {
       }
     });
 
-    this.cache.$submitBtn.click(function (e) {
+    $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
       var isvalid = true;
-      const honeyPotFieldValue = $('#contactUsHoneyPot', self.root).val();
-      self.cache.requestPayload['message'] = $('[name="message"]').val();
+      const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
+      requestPayload['message'] = $('[name="message"]').val();
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
@@ -135,16 +140,16 @@ class ContactUs {
       }
     });
 
-    this.cache.$dropItem.click(function (e) {
+    $dropItem.click(function (e) {
       e.preventDefault();
       const country = $(this).data('country');
       const countryTitle = $(this).data('countrytitle');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
-      self.cache.requestPayload['country'] = country;
-      self.cache.requestPayload['countryTitle'] = countryTitle;
-      self.cache.$dropItem.removeClass('active');
+      requestPayload['country'] = country;
+      requestPayload['countryTitle'] = countryTitle;
+      $dropItem.removeClass('active');
       $(this).addClass('active');
     });
   }
