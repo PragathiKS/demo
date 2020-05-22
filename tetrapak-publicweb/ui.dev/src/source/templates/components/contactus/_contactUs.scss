@@ -1,0 +1,133 @@
+.pw-contactus-form {
+    .form-group {
+        @include margin-bottom($margin-md);
+    }
+    .privacy-policy,
+    .button-group {
+        @include margin-top($margin-l);
+    }
+    .text-capital {
+        text-transform: capitalize;
+    }
+    // Error styling
+    .serviceError {
+        display: none;
+        color: $color-alert;
+    }
+    .errorMsg {
+        display: none;
+        color: $color-alert;
+        font-size: 12px;
+        &.purposeOfContactError {
+            @include margin-top($margin-sm);
+        }
+    }
+    .formfield,
+    .form-group {
+        label {
+            @include margin-bottom(0);
+        }
+        .pw-form__dropdown__toggle i {
+            transform: rotate(90deg);
+        }
+        &.field-error {
+            .pw-form__dropdown__toggle {
+                border-color: $color-alert;
+            }
+        }
+    }
+    .tab-pane {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    h4 {
+        font-family: $font-bold;
+        &.tpatom-heading--small {
+            @include margin-bottom($margin-md);
+        }
+    }
+    .separator {
+        @include padding-bottom($padding-l);
+        @include margin-bottom($margin-l);
+        border-bottom: 1px solid $color-mercury;
+        .pw-image-container {
+            @include margin-bottom($padding-l);
+        }
+        @media #{$desktop} {
+            @include margin-bottom(0);
+            @include padding-bottom(0);
+            border-bottom: 0;
+            border-right: 1px solid $color-mercury;
+            padding-right: $margin-xxxl;
+            & + div {
+                @include padding-left($padding-xxxl);
+            }
+            .pw-image-container {
+                @include margin-bottom(0);
+                @include padding-right($padding-l);
+            }
+            h4 {
+                @include margin-bottom($margin-l);
+            }
+        }
+    }
+    .main-heading {
+        @include margin-bottom($margin-md);
+        overflow-wrap: break-word;
+    }
+    .thankyou {
+        img {
+            @include margin-bottom($margin-l);
+        }
+        h2,
+        .descriptionTextThankyou {
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    .summary {
+        @include margin-bottom($margin-md);
+        div + div {
+            font-weight: 900;
+        }
+    }
+
+    .button-group {
+        .tpatom-btn--primary {
+            &:hover {
+                color: $color-white;
+            }
+        }
+        .previousbtn {
+            @include margin-right($margin-md);
+            border: 1px solid $color-congress-blue;
+            color: $color-congress-blue;
+            background-color: $color-white;
+            i {
+                @include padding-left(5px);
+                transform: rotate(180deg);
+                float: left;
+            }
+            &:hover {
+                border: 1px solid $color-jordy-blue;
+                color: $color-jordy-blue;
+            }
+        }
+    }
+
+    .pw-progress {
+        .pw-progressbar__steps {
+            @include padding-left($padding-md);
+            p {
+                @include margin-top($margin-l);
+                color: $color-congress-blue;
+                font-size: 12px;
+                @media #{$desktop} {
+                    @include margin-top($margin-xxxl);
+                }
+            }
+        }
+    }
+}

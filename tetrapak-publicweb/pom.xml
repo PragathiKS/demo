@@ -699,7 +699,13 @@
                 <version>5.7.4</version>
                 <scope>provided</scope>
             </dependency>
-
+			<!-- mail -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
+				<scope>provided</scope>
+			</dependency>
             <!-- Testing -->
            <dependency>
                 <groupId>junit</groupId>
