@@ -49,12 +49,14 @@ export default () => {
       const thisHref = $(this).attr('href');
       if (thisHref) {
         const iconEl = $(this).find('i.icon')[0];
+        // external link flag
+        const iconExternal = $(this).find('i.icon.is-external')[0];
         $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
           $(this).attr('target', '_self');
           $(this).attr('data-link-section', 'Related links and downloads_Hyperlink_Download');
-        } else if (isExternal(thisHref)) {
+        } else if (isExternal(thisHref) || iconExternal) {
           $(iconEl).addClass('icon-Union');
           $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){

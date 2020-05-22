@@ -5,6 +5,15 @@
         position: absolute;
         left: 50%;
         transform: translate(-50%);
+        &.show.show-modal-from-left {
+            left: 8px;
+            transform: translate(0%);
+        }
+        &.show.show-modal-from-right {
+            right: 8px;
+            left: auto;
+            transform: translate(0%);
+        }
         .pseudo-category {
             display: inline-block;
         }

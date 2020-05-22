@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import { updateQueryString } from '../../../scripts/common/common';
 
@@ -19,31 +18,31 @@ class SectionMenu {
     $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
   }
 
-  getMainMenuItem = ($target)=>{
+  getMainMenuItem = ($target) => {
     const $mainMenuLink = $target.closest('.js-main-menu-link-hover');
     const $mainMenuItem = $mainMenuLink.children('a');
     return $mainMenuItem.data('link-name');
   }
 
-  getL2MenuItem = ($target)=>{
+  getL2MenuItem = ($target) => {
     const $l2MenuLink = $target.closest('.js-section-menu-navigation-Link');
     const $l2MenuItem = $l2MenuLink.children('a');
     return $l2MenuItem.data('link-name');
   }
 
-  handleSectionMenuClick =(e)=>{
+  handleSectionMenuClick =(e) => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-item-link');
     const linkName = $this.data('link-name');
     const updatedUrl = updateQueryString($this.attr('href'),'header',this.getMainMenuItem($target));
     const finalUrl = updateQueryString(updatedUrl,'l2',linkName);
-     if(finalUrl){
+    if(finalUrl){
       window.open(finalUrl, '_self');
     }
   }
 
-  handleSubSectionMenuClick =(e)=>{
+  handleSubSectionMenuClick =(e) => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-sub-menu-navigation-link-item');
@@ -51,7 +50,7 @@ class SectionMenu {
     const urlWithL1 = updateQueryString($this.attr('href'),'header',this.getMainMenuItem($target));
     const urlWithL2 = updateQueryString(urlWithL1,'l2',this.getL2MenuItem($target));
     const finalUrl = updateQueryString(urlWithL2,'l3',linkName);
-     if(finalUrl){
+    if(finalUrl){
       window.open(finalUrl, '_self');
     }
   }
@@ -62,6 +61,14 @@ class SectionMenu {
     const $sectionMenuItemAnchor = $this.children('a');
     $this.children('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
     $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-Chevron_Up').removeClass('icon-Chevron_Down');
+
+    /* check modal view port position */
+    const modalPoints =$this.children('.js-sub-menu-navigation-Link')[0] && $this.children('.js-sub-menu-navigation-Link')[0].getBoundingClientRect();
+    if(modalPoints && modalPoints.left < 0){
+      $this.children('.js-sub-menu-navigation-Link').addClass('show-modal-from-left');
+    } else if(modalPoints && modalPoints.right > (window.innerWidth || document.documentElement.clientWidth)){
+      $this.children('.js-sub-menu-navigation-Link').addClass('show-modal-from-right');
+    }
   }
 
   handleHeaderItemMouseOut = (e) => {

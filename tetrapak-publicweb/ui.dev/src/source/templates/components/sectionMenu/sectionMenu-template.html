@@ -4,9 +4,9 @@
       <a data-link-name='${linkText}' href="${linkURL}" class="${anchorClass} section-menu-item-link js-section-menu-item-link" title="${linkText}">
         ${linkText}
         <sly data-sly-test="${data.external}">
-          <i class="icon icon--link ${iconClass}"></i>
+          <i class="icon is-external icon--link ${iconClass}"></i>
         </sly>
-        <sly data-sly-test="${data.subSectionMenu}">
+        <sly data-sly-test="${data.subSectionMenu && !data.external}">
           <i class="icon with-arrow icon--link ${iconClass}"></i>
         </sly>
         <sly data-sly-test="${!data.subSectionMenu && !data.external}">
