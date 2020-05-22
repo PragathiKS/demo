@@ -63,10 +63,8 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
             if (!StringUtils.isEmpty(inputJson)) {
                 final ContactUs contactUs = new ObjectMapper().readValue(inputJson, ContactUs.class);
                 if (validateRequest(contactUs)) {
-
                     final String[] mailAddresses = countryDetailService.fetchContactEmailAddresses(contactUs,
                             request.getResourceResolver());
-
                     // send email
                     contactusResp = contactUsMailService.sendEmailForNotification(contactUs, mailAddresses);
                 } else {

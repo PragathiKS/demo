@@ -49,9 +49,8 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
             } else {
                 LOGGER.error("JobManager Reference null");
             }
-            return new ContactUsResponse("200", "Success");
         }
-        return new ContactUsResponse("500", "Error while fetching email address");
+        return new ContactUsResponse("200", "Success");
     }
 
 }

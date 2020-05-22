@@ -112,4 +112,29 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pleaseselectanoption"
         sling:message="Please select an option"/>
+   <step
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="step"
+        sling:message="Step"/>
+   <of
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="of"
+        sling:message="of"/>
+   <pleasefillinfield
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pleasefillinfield"
+        sling:message="Please fill in this field"/>
+   <emailformaterror
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="emailformaterror"
+        sling:message="Please enter your email in this format: example@example.com"/>
+   <serviceerrormsg
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="serviceerrormsg"
+        sling:message="Something went wrong. Please try again."/>          
 </jcr:root>
