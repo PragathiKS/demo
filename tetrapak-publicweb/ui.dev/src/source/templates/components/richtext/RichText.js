@@ -6,7 +6,6 @@ class RichText {
   cache = {};
   initCache() {
     this.cache.$anchorLink = this.root.find('a');
-    this.addIcon();
     this.cache.$attributeDivId = this.root.find('.tp-pw-richText-wrapper');
   }
   bindEvents() {
@@ -19,14 +18,6 @@ class RichText {
     const anchorText = $this.text();
     this.cache.$attributeDivId.attr('data-link-name', anchorText);
     return true;
-  };
-
-  addIcon = () => {
-    const { $anchorLink } = this.cache;
-    $.each($anchorLink, function() {
-      const $this = $(this);
-      $this.append(`<i class="icon icon-Circle_Arrow_Right"></i>`);
-    });
   };
 
   init() {

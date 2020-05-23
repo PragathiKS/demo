@@ -102,6 +102,11 @@
                 @include margin(auto);
                 background-color: none;
             }
+            &::before {
+                font-size: 16px;
+                line-height: 16px;
+                transform: rotate(180deg);
+            }
         }
 
         @media #{$desktop} {
@@ -143,6 +148,7 @@
         @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
+        font-family: $font-bold;
         @media #{$desktop} {
             @include margin($margin-l 0);
             color: $color-tundora;
@@ -230,6 +236,12 @@
                 @include margin-bottom($margin-xl);
                 justify-content: center;
             }
+            i.icon-Arrow_Right_pw {
+                &::before {
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+            }
         }
         h2 {
             @include margin(0);
@@ -304,6 +316,9 @@
                 @include padding(18px $margin-md);
                 @include margin(-16px);
                 background-color: $color-wild-sand;
+                &::before {
+                    transform: rotate(-180deg);
+                }
             }
 
             &.active {
