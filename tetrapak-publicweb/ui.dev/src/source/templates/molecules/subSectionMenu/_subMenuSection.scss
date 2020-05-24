@@ -36,9 +36,9 @@
         }
 
         & > ul {
-            border: 1px solid;
             background: $color-wild-sand;
             display: flex;
+            box-shadow: 0 4px 16px $shadow;
             @include padding($padding-xxxl);
             @include padding-top($padding-l);
 
