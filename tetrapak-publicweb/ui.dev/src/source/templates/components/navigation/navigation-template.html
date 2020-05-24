@@ -9,7 +9,7 @@
             <li>
               <sly
                 data-sly-use.sectionItem="/apps/publicweb/components/content/sectionMenu/sectionMenu-template.html"
-                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText}">
+                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, selectedL2=data.pageHierarchy && data.pageHierarchy.l2,selectedL3=data.pageHierarchy && data.pageHierarchy.l3, linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText}">
               </sly>
             </li>
           </ul>

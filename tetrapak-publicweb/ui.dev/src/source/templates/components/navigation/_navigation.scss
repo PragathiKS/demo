@@ -10,7 +10,7 @@
         left: 0;
         z-index: 2;
         background: $color-white;
-        box-shadow: 0 4px 16px $shadow;
+        box-shadow: 0 4px 16px -10px $shadow;
         a {
             @include padding(0 $padding-sm);
             color: $color-congress-blue;

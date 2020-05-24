@@ -43,7 +43,7 @@
             @include padding-top($padding-l);
 
             & > li {
-                @include margin-right(48px);
+                @include margin-right($margin-xxxl);
             }
         }
 

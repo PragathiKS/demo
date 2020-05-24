@@ -2,4 +2,7 @@
     &:hover {
         color: $color-jordy-blue;
     }
+    &.active {
+        font-weight: 900;
+    }
 }
