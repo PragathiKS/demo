@@ -6,20 +6,13 @@ class Navigation {
   }
   cache = {};
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.$stickySectionMenu = this.root.closest('.sticky-section-menu');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    const { $stickySectionMenu } = this.cache;
+    if($stickySectionMenu.length > 0){
+      $('.body-content').addClass('body-top-padding');
+    }
   }
   init() {
     /* Mandatory method */

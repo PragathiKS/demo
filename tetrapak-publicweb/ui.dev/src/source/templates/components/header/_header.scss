@@ -1,5 +1,8 @@
 .tp-pw-header {
     @media #{$desktop} {
+        height: 80px;
+        width: 100%;
+        top: 0;
         .pw-header-icons {
             @include padding-bottom(0);
         }
@@ -29,7 +32,13 @@
 
         @media #{$desktop} {
             @include padding(23px 0);
-            height: auto;
+            height: 80px;
+            position: fixed;
+            background: $color-white;
+            width: 100%;
+            .header-items {
+                height: 34px;
+            }
         }
     }
 

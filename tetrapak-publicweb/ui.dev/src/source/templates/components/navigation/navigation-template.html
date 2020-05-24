@@ -1,6 +1,6 @@
-<sly data-sly-template.navigation_template="${@data, showStickySection, flag}">
-  <div class="${showStickySection ? 'd-lg-block z-index-lower' :''} pw-navigation" aria-hidden="true" aria-expanded="false" data-module="Navigation">
-    <hr class="d-none d-lg-block" />
+<sly data-sly-template.navigation_template="${@data, navigationTypeSticky, flag}">
+  <div class="${ navigationTypeSticky ? 'd-lg-block sticky' :''} pw-navigation" aria-hidden="true" aria-expanded="false" data-module="Navigation">
+    <hr class="hr-display" />
     <div class='tp-container pw-navigation__container'>
       <div class='row'>
         <div class="section-link-home"><a href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a></div>

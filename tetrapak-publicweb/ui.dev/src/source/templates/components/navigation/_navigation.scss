@@ -1,4 +1,7 @@
 .pw-navigation {
+    .hr-display {
+        display: none;
+    }
     @media #{$desktop} {
         display: none;
         // display: block;
@@ -7,11 +10,28 @@
         left: 0;
         z-index: 2;
         background: $color-white;
+        a {
+            @include padding(0 $padding-sm);
+            color: $color-congress-blue;
+            font-weight: normal;
+        }
+        &.sticky {
+            display: block;
+            z-index: 1;
+            position: fixed;
+            top: 80px;
+            & > .pw-navigation__container {
+                @include padding-top(18px);
+            }
+            & > .hr-display {
+                display: none;
+            }
+        }
         &.show {
             display: block;
         }
         hr {
-            @include margin-top($padding-l);
+            @include margin-top(26px);
             @include margin-bottom(18px);
         }
         &__container {
@@ -29,9 +49,20 @@
                     }
                 }
             }
+            .list-section-menu-links {
+                li {
+                    &:first-child {
+                        @include margin-left(0);
+                    }
+                    &:last-child {
+                        @include margin-right(0);
+                    }
+                    @include margin(0 12px);
+                }
+            }
         }
-        .z-index-lower {
-            z-index: 1;
+        .hr-display {
+            display: block;
         }
     }
 }

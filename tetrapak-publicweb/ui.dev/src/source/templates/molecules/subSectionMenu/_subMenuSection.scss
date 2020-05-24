@@ -23,7 +23,7 @@
         }
 
         .sub-section-category {
-            border: 1px solid;
+            // border: 1px solid;
             background: $color-wild-sand;
             display: flex;
             @include padding($padding-xxxl);
@@ -67,7 +67,7 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-right(48px);
+                @include margin-right($margin-xxxl);
                 &:last-child {
                     @include margin-right(0);
                 }
