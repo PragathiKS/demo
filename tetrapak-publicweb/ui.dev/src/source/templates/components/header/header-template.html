@@ -52,7 +52,7 @@
             ${megaMenuItem.linkText}
           </span>
           <sly data-sly-test = "${megaMenuItem.linkText == 'Solutions'}">
-            <i class="icon-Chevron_Right"></i>
+            <i class="icon-Arrow_Right_pw"></i>
           </sly>
         </a>
         <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true, mainHeader=megaMenuItem.linkText }" />

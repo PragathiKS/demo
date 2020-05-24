@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { isDesktopMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Banner {
@@ -8,9 +9,23 @@ class Banner {
   cache = {};
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
+    this.cache.$existingBanner=this.root.find('.pw-banner__content.banner-parent');
+    this.cache.$siblingBanner=this.root.find('.pw-banner__content.banner-sibling');
   }
   bindEvents() {
     const { $itbLink } = this.cache;
+    if (
+      isDesktopMode() ) {
+      const { $existingBanner } = this.cache;
+      const { $siblingBanner }= this.cache;
+
+      $(window).on('load resize',function(){
+        const bannerHeight = $existingBanner.outerHeight();
+        const bannerWidth = $existingBanner.outerWidth();
+        $siblingBanner.css('width',bannerWidth);
+        $siblingBanner.css('height',bannerHeight);
+      });
+    }
     $itbLink.on('click', this.trackAnalytics);
   }
   trackAnalytics = (e) => {
