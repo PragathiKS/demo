@@ -1,6 +1,6 @@
 <sly data-sly-template.navigationLink_template="${@ subSectionsItem,selectedL3}">
   <a data-link-name="${subSectionsItem.linkText}" class="${selectedL3 == subSectionsItem.linkText ? 'active':''} sub-menu-navigation-link-item js-sub-menu-navigation-link-item"
-    href="${subSectionsItem.linkPath}">
+    href="${subSectionsItem.linkPath}" target="${subSectionsItem.external ? '_blank' : '_self'}">
     ${subSectionsItem.linkText}
     <sly data-sly-test="${subSectionsItem.external}">
       <i class="icon is-external icon--link ${iconClass}"></i>

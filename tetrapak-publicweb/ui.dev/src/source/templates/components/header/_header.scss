@@ -90,12 +90,10 @@
                     height: 24px;
                     font-weight: normal;
                 }
-                &:hover > a {
+                &:hover > a,
+                .active {
                     border-bottom: 3px solid;
                 }
-                // & > .sticky-main-header {
-                //     border-bottom: 3px solid;
-                // }
             }
         }
 
