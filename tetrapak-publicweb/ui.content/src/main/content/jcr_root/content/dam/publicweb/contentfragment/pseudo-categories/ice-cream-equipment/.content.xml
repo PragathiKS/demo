@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:dam="http://www.day.com/dam/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:isCheckedOut="{Boolean}true"
+    jcr:mixinTypes="[mix:referenceable,mix:versionable]"
+    jcr:primaryType="dam:Asset"
+    jcr:uuid="33cdaa14-0f0d-4f3f-9f84-8daffb7aea64">
+    <jcr:content
+        cq:name="ice-cream-equipment"
+        cq:parentPath="/content/dam/tetrapak/publicweb/pseudo-categories/content-fragments"
+        dam:relativePath="tetrapak/publicweb/contentfragment/pseudo-categories/ice-cream-equipment"
+        jcr:description=""
+        jcr:lastModified="{Date}2020-05-21T12:17:50.119+05:30"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="dam:AssetContent"
+        jcr:title="Ice Cream Equipment"
+        contentFragment="{Boolean}true"
+        lastFragmentSave="{Date}2020-05-21T12:17:50.119+05:30">
+        <data
+            cq:model="/conf/publicweb/settings/dam/cfm/models/pseudo-catogories"
+            jcr:primaryType="nt:unstructured">
+            <master
+                jcr:mixinTypes="[cq:Taggable]"
+                jcr:primaryType="nt:unstructured"
+                pseudoCateoryKey="ICE CREAM EQUIPMENT"
+                pseudoCateoryKey_x0040_LastModified="{Date}2020-05-21T12:17:50.083+05:30"
+                pseudoCateoryValue="ICE CREAM EQUIPMENT"
+                pseudoCateoryValue_x0040_LastModified="{Date}2020-05-21T12:17:50.084+05:30"/>
+        </data>
+        <metadata
+            jcr:mixinTypes="[cq:Taggable]"
+            jcr:primaryType="nt:unstructured"/>
+        <related jcr:primaryType="nt:unstructured"/>
+    </jcr:content>
+</jcr:root>

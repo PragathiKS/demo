@@ -44,6 +44,9 @@ public final class PWConstants {
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
 
+    /** The Constant CQ_REDIRECT_TARGET. */
+    public static final String CQ_REDIRECT_TARGET = "cq:redirectTarget";
+
     /** The Constant PRODUCT_ID. */
     public static final String PRODUCT_ID = "productId";
 

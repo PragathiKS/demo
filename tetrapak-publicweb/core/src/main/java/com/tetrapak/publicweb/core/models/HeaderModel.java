@@ -4,6 +4,7 @@ import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +14,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 /**
  * The Class HeaderModel.
@@ -38,10 +37,6 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-
-    @Inject
-    @Self
-    private SectionMenuModel sectionMenuModel;
 
     /** The logo image path. */
     private String logoImagePath;
@@ -156,12 +151,17 @@ public class HeaderModel {
                     String title = getTitle(childPage);
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
+                    if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
+                        final SectionMenuModel sectionMenuModel = new SectionMenuModel();
+                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension());
+                        linkBean.setNavigationConfigurationModel(sectionMenuModel);
+                    }
                     megaMenuLinksList.add(linkBean);
                 }
             }
         }
     }
-    
+
     /**
      * @param childPage
      * @return title
@@ -288,7 +288,7 @@ public class HeaderModel {
      * @param headerConfigurationResource the new solution page title
      */
     private void setSolutionPageTitle() {
-        final String solutionPageJcrContentPath = StringUtils.substringBefore(solutionPage, ".") + "/jcr:content";
+        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension() + PWConstants.SLASH + JcrConstants.JCR_CONTENT;
         final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
         if (Objects.nonNull(solutionPageResource)) {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
@@ -296,7 +296,12 @@ public class HeaderModel {
         }
     }
 
-    public SectionMenuModel getNavigationConfigurationModel() {
-        return sectionMenuModel;
+    /**
+     * Gets the solution page without extension.
+     *
+     * @return the solution page without extension
+     */
+    private String getSolutionPageWithoutExtension() {
+        return StringUtils.substringBefore(solutionPage, ".");
     }
 }

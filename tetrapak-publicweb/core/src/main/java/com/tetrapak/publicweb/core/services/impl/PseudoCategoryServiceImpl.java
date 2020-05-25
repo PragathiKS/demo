@@ -41,7 +41,7 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
         @AttributeDefinition(
                 name = "Pseudo Categories Content Fragment Root Path",
                 description = "Pseudo Categories Content Fragment Root Path")
-        String getPseudoCategoriesCFRootPath() default "/content/dam/tetrapak/publicweb/pseudo-categories/content-fragments";
+        String getPseudoCategoriesCFRootPath() default "/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories";
     }
 
     /** The Constant LOGGER. */
@@ -49,9 +49,6 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
 
     /** The config. */
     private PseudoCategoryServiceConfig config;
-
-    /** The data root path. */
-    private static String DATA_ROOT_PATH = "/jcr:content/data/master";
 
     /**
      * Activate.
@@ -73,7 +70,7 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
             while (resourceIterator.hasNext()) {
                 final Resource childResource = resourceIterator.next();
                 if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
+                    final String dataPath = childResource.getPath() + "/jcr:content/data/master";
                     final Resource dataResource = resourceResolver.getResource(dataPath);
                     final ValueMap valueMap = dataResource.getValueMap();
                     pseudoCategoryMap.put(valueMap.get("pseudoCateoryKey", StringUtils.EMPTY),
