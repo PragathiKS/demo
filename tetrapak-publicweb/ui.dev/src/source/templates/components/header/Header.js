@@ -40,7 +40,7 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
-    $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
+    // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
   }
 
   handleMouseOver = () => {
@@ -114,12 +114,12 @@ class Header {
     }
   }
 
-  handleMainNavClick =(e) => {
-    event.preventDefault();
-    const $target = $(e.target);
-    const $this = $target.closest('.js-tp-pw-header-item');
-    window.open($this.attr('href'), '_self');
-  }
+  // handleMainNavClick =(e) => {
+  //   e.preventDefault();
+  //   const $target = $(e.target);
+  //   const $this = $target.closest('.js-tp-pw-header-item');
+  //   window.open($this.attr('href'), '_self');
+  // }
 
   trackNavigationAnalytics = (e) => {
     const $target = $(e.target);

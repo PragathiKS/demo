@@ -5,32 +5,32 @@ class SectionMenu {
   }
   cache = {};
   initCache() {
-    this.cache.$sectionMenuHeaderItem = this.root.find('.js-section-menu-navigation-Link');
+    this.cache.$sectionMenuItem = this.root.find('.js-section-menu-navigation-Link');
   }
 
   bindEvents() {
-    const { $sectionMenuHeaderItem } = this.cache;
-    $sectionMenuHeaderItem.on('mouseover', this.handleHeaderItemMouseOver);
-    $sectionMenuHeaderItem.on('mouseout', this.handleHeaderItemMouseOut);
-    $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
-    $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
+    const { $sectionMenuItem } = this.cache;
+    $sectionMenuItem.on('mouseover', this.handleSectionMenuItemMouseOver);
+    $sectionMenuItem.on('mouseout', this.handleSectionMenuItemMouseOut);
+    // $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
+    // $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
   }
 
-  handleSectionMenuClick =(e) => {
-    e.preventDefault();
-    const $target = $(e.target);
-    const $this = $target.closest('.js-section-menu-item-link');
-    window.open($this.attr('href'), $this.attr('target'));
-  }
+  // handleSectionMenuClick =(e) => {
+  //   e.preventDefault();
+  //   const $target = $(e.target);
+  //   const $this = $target.closest('.js-section-menu-item-link');
+  //   window.open($this.attr('href'), $this.attr('target'));
+  // }
 
-  handleSubSectionMenuClick =(e) => {
-    e.preventDefault();
-    const $target = $(e.target);
-    const $this = $target.closest('.js-sub-menu-navigation-link-item');
-    window.open($this.attr('href'), $this.attr('target'));
-  }
+  // handleSubSectionMenuClick =(e) => {
+  //   e.preventDefault();
+  //   const $target = $(e.target);
+  //   const $this = $target.closest('.js-sub-menu-navigation-link-item');
+  //   window.open($this.attr('href'), $this.attr('target'));
+  // }
 
-  handleHeaderItemMouseOver = (e) => {
+  handleSectionMenuItemMouseOver = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
@@ -46,7 +46,7 @@ class SectionMenu {
     }
   }
 
-  handleHeaderItemMouseOut = (e) => {
+  handleSectionMenuItemMouseOut = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
