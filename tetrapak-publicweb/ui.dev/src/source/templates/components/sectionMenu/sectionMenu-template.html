@@ -6,10 +6,10 @@
         <sly data-sly-test="${data.external}">
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon is-external icon--link ${iconClass}"></i>
         </sly>
-        <sly data-sly-test="${data.subSectionMenu.subSections && !data.external}">
+        <sly data-sly-test="${(data.subSectionMenu.subSections || data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow icon--link ${iconClass}"></i>
         </sly>
-        <sly data-sly-test="${!data.subSectionMenu.subSections && !data.external}">
+        <sly data-sly-test="${(!data.subSectionMenu.subSections || !data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon without-arrow icon--link ${iconClass}"></i>
         </sly>
       </a>
