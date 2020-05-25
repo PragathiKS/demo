@@ -13,10 +13,10 @@
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon without-arrow icon--link ${iconClass}"></i>
         </sly>
       </a>
-      <sly data-sly-test="${data.subSectionMenu}">
+      <sly data-sly-test.subSection="${data.subSectionMenu}">
         <sly
           data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-          data-sly-call="${linkMolecule.subSectionMenu_template @ data=data.subSectionMenu, subSectionCount=data.subSectionCount, selectedL3=selectedL3}">
+          data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3}">
         </sly>
       </sly>
     </div>
