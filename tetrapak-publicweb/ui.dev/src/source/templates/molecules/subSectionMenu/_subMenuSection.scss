@@ -38,7 +38,11 @@
 
         & > ul {
             & > li {
-                @include margin-right($margin-xxxl);
+                @include margin-left($margin-xxxl);
+                &:first-child {
+                    @include margin-left(0);
+                }
+
             }
         }
 
@@ -52,6 +56,7 @@
         }
         a {
             @include line-height(20px, $font-sm);
+            @include padding(0);
             font-size: $font-sm;
             color: $color-tundora;
         }
@@ -62,9 +67,9 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-right($margin-xxxl);
-                &:last-child {
-                    @include margin-right(0);
+                @include margin-left($margin-xxxl);
+                &:first-child {
+                    @include margin-left(0);
                 }
             }
         }

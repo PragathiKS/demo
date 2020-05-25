@@ -51,7 +51,7 @@
                 }
             }
             .list-section-menu-links {
-                li {
+                & > li {
                     &:first-child {
                         @include margin-left(0);
                     }
