@@ -1,7 +1,7 @@
 <sly data-sly-template.subSectionMenu_template="${@ data,subSectionCount,selectedL3}">
-  <div class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
+  <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
     <sly data-sly-test="${data.subSections}">
-      <div class='category-child-ul sub-section-category'>
+      <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
         <ul data-sly-list.subSectionsItem=${data.subSections}>
           <li data-sly-test="${subSectionsItemList.index <= 5}">
             <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
@@ -41,10 +41,10 @@
     </sly>
 
     <sly data-sly-test="${data.pseudoCategoriesSection}">
-      <ul data-sly-list.pseudoCategoriesSectionItem=${data.pseudoCategoriesSection}>
+      <ul auto-locator="L3L4Flyout-L3L4FlyoutPadding" data-sly-list.pseudoCategoriesSectionItem=${data.pseudoCategoriesSection}>
         <li class="pseudo-category">
           <div>
-            <div class='pseudo-category-header'>
+            <div auto-locator="L3LinksFontStyle" class='pseudo-category-header'>
               ${pseudoCategoriesSectionItem.title}
             </div>
             <hr />
