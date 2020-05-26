@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { isExternal } from '../../../scripts/utils/updateLink';
 import { isDesktopMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
@@ -72,10 +73,28 @@ class Banner {
     window.open($this.attr('href'), $this.attr('target'));
   }
 
+  addLinkAttr() {
+    this.root.find('a').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          $(this).attr('rel', 'noopener noreferrer');
+          $(this).data('link-type','external');
+        } else {
+          $(this).data('link-type','internal');
+        }
+      }
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 

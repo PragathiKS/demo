@@ -6,6 +6,7 @@ import { pauseVideosByReference} from '../../../scripts/utils/videoAnalytics';
 
 describe('TabsList', function () {
   before(function () {
+    this.enableTimeouts(false);
     $(document.body).empty().html(tabslistTemplate());
     this.tabslist = new TabsList({ el: document.body });
     this.initSpy = sinon.spy(this.tabslist, 'init');
@@ -34,5 +35,5 @@ describe('TabsList', function () {
     expect(this.tabslist.init.called).to.be.true;
   });
 
-  
+
 });
