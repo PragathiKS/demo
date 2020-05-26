@@ -111,6 +111,7 @@ public class HeaderModelTest {
         assertEquals("Header", "Choose Your Market", model.getMarketList().getMarketTitle());
         assertEquals("Header", "/content/tetrapak/public-web/gb/en/home.html",
                 model.getMarketList().getGlobalMarketPath());
+        assertEquals("Header", "", model.getMarketList().getCurrentMarket());
         assertEquals("Header", "English", model.getMarketList().getCurrentLanguage());
         assertEquals("Header", 14, model.getMarketList().getCol1End());
         assertEquals("Header", 15, model.getMarketList().getCol2Start());
