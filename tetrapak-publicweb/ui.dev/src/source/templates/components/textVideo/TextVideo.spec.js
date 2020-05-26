@@ -5,7 +5,6 @@ import textVideoTemplate from '../../../test-templates-hbs/textVideo.hbs';
 
 describe('TextVideo', function () {
   before(function () {
-    this.enableTimeouts(false);
     $(document.body).empty().html(textVideoTemplate());
     this.textVideo = new TextVideo({ el: document.body });
     this.initSpy = sinon.spy(this.textVideo, 'init');

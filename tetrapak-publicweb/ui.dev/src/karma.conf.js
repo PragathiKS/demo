@@ -19,6 +19,7 @@ module.exports = function (config) {
       }
     },
     browserNoActivityTimeout: 60000,
+    browserDisconnectTolerance: 2,
     singleRun: true, //just run once by default
     port: 9876,
     colors: true,

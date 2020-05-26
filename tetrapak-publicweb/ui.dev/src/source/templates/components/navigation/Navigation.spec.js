@@ -2,7 +2,6 @@ import $ from 'jquery';
 import Navigation from './Navigation';
 
 describe('Navigation', function() {
-  this.enableTimeouts(false);
   before(function() {
     $(document.body)
       .empty()
