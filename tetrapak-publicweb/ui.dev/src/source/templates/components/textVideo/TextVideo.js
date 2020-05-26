@@ -36,6 +36,7 @@ class TextVideo {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
 
+    
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
       linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
     }
