@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:26.880Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:05:13.132Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:41.813Z"
+        cq:tags="[tetrapak:funnel-stages,tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-1"
+        jcr:description="Drawing on over 60 years of professional insight, our aseptic performance specialists work to measure, benchmark and prevent food safety and quality issues, while our service teams offer ongoing training (at customer sites or at our training facilities) for plant operators around handling, storing and displaying products along the production line.&#xd;&#xa;&#xd;&#xa;Quality can also be compromised during transportation and distribution. We therefore carry out rigorous tests across the value chain to ensure that products are fully protected."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Engaging our customers"
+        jcr:uuid="21422470-ed5f-46ed-bc8f-990bb403766c"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Shopping"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/Shopping.png"
+        linkPath="https://loripsum.net/"
+        linkTarget="_self"
+        linkText="Link Text"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-04-09T10:13:27.908Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-09T10:13:27.908Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <title
+                    jcr:created="{Date}2020-04-09T10:13:33.714Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-09T10:13:33.714Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/title"/>
+                <image
+                    jcr:created="{Date}2020-04-09T10:13:41.862Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-09T10:15:00.254Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"
+                    alt="Alt text for image"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    fileReference="/content/dam/tetrapak/publicweb/en/global/header/hero_newdrink.jpg"
+                    linkURL="/content/tetrapak/public-web/lang-masters/zh/home"
+                    pwPadding="regular"/>
+                <video
+                    jcr:created="{Date}2020-04-09T10:15:08.595Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-09T10:15:33.963Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/video"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    pwTheme="grayscale-white"
+                    videoSource="youtube"
+                    youtubeVideoID="1X7zhVCIUtg"/>
+                <textvideo
+                    jcr:created="{Date}2020-04-09T10:16:29.244Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-13T11:12:38.242Z"
+                    jcr:lastModifiedBy="sapient-jerlin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/Transform_your_business_sustainably.mp4"
+                    description="Tetra Pak® Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis istud, quaeso, nesciebat? Quae cum dixisset paulumque institisset, Quid est? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis istud, quaeso, nesciebat? Quae cum dixisset paulumque institisset, Quid est?"
+                    linkTexti18n="Read more about our service solutions"
+                    linkURL="https://assets.tetrapak.com/static/documents/productdevelopmentcentres.pdf"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row"
+                    pwLinkTheme="download"
+                    pwPadding="regular"
+                    pwTheme="grayscale-lighter"
+                    subTitle="Lorem ipsum dolor sit amet"
+                    targetBlank="_blank"
+                    thumbnailAltText="Poster image alt text"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/Strawberry.png"
+                    title="Service Solutions"
+                    videoSource="damVideo"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

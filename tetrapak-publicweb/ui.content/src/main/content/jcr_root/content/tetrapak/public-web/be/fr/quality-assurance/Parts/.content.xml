@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:20:53.179Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:46:58.312Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:18:21.971Z"
+        cq:tags="[tetrapak:services,tetrapak:services/parts]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/Parts"
+        jcr:description="Tetra Pak genuine parts are designed and tested for the best performance in the food manufacturing industry"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Pak Parts for the best performance"
+        jcr:uuid="9cee4364-ef7d-4392-a4bf-5f0661a3f75b"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:46:58.242Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:46:58.247Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <banner
+                    cq:lastRolledout="{Date}2020-05-20T12:46:58.256Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T08:28:21.317Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:46:58.252Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    alt="Parts"
+                    bannerType="hero"
+                    fileReference="/content/dam/tetra-pak/media-box/global/english/service/TPS_Parts_2880x960.png"
+                    linkTarget="_self"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    title="EVERY LITTLE PART COUNTS"/>
+                <richtext
+                    cq:lastRolledout="{Date}2020-05-20T12:46:58.261Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T09:08:37.307Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:46:58.258Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    text="&lt;h1>​​​​​​​​​​​​​​​​​​​​​​​​​Tetra Pak&lt;sup>®&lt;/sup>&amp;nbsp;Parts​​&lt;br>&#xd;&#xa;High-quality parts and services&lt;br>&#xd;&#xa;forreliable production&lt;/h1>&#xd;&#xa;&lt;p>Tetra Pak&lt;sup>®&lt;/sup>&amp;nbsp;genuine parts are designed and tested for the best performance in the food manufacturing industry. Making sure you always have the right parts to remain efficient and safe can be a​​ challenge. With Tetra Pak's world-class supply chain, you can relax knowing that you'll get what you need – when you need it.&lt;/p>&#xd;&#xa;&lt;h2>We will support you with genuine parts...&lt;/h2>&#xd;&#xa;&lt;p>All our parts are tested to the most rigorous food industry specifications and manufactured to the highest quality standards. With 500 000 parts available in our assortment, we cover the full need of your equipment.​​​&lt;/p>&#xd;&#xa;&lt;p>Read more about our&amp;nbsp;&lt;a title=&quot;Services e-business&quot; href=&quot;https://editor.tetrapak.com/services/e-business&quot;>e-business&amp;nbsp;​solution for ordering&amp;nbsp;parts and equipment online​&lt;/a>&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <textimage
+                    cq:lastRolledout="{Date}2020-05-20T12:46:58.269Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T09:11:08.469Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:46:58.264Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textImage"
+                    description="A world-class organisation that keeps your equipment and operations running so you can focus on production. Learn how Tetra Pak® reduces equipment downtime and optimises our customers’ maintenance costs by supplying spare parts. On time. Every time. Everywhere."
+                    imageAltText="Frontiers of Parts Logistics whitepaper"
+                    imagePath="/content/dam/tetrapak/publicweb/demo-assets/frontiers-parts-logistics-whitepaper.jpg"
+                    linkText="Sign up to download the technical paper, “Frontiers of Parts Logistics&quot;"
+                    linkURL="http://tetrapak.com/services/parts/frontiers-parts-logistics"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-lighter"
+                    targetBlank="_blank"
+                    title="Your parts: On time. Every time. Everywhere."/>
+                <tabslist
+                    cq:lastRolledout="{Date}2020-05-20T12:46:58.277Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T09:25:26.032Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:46:58.272Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="manual"
+                    heading="Tetra Pak® Parts"
+                    logicalOperator="and"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMoreTarget="_self">
+                    <tabsManual
+                        cq:lastRolledout="{Date}2020-05-20T12:46:58.278Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.284Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Tetra Pak spare parts on their way in lorry on highway."
+                            description="To ensure you get what you need - when you need it, we offer different logistic solutions catering to your every need:&#xd;&#xa;&#xd;&#xa;Planned: scheduled weekly delivery to get best possible parts availability&#xd;&#xa;&#xd;&#xa;​Priority: same day dispatch&#xd;&#xa;&#xd;&#xa;​Express: emergency service with hand-carry option"
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/truck2880x1620.png"
+                            pwLinkTheme="hyperlink"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="...shipped on time"
+                            videoSource="damVideo"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.289Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Smiling employee in factory, using Tetra Pak parts."
+                            description="* Genuine parts from Tetra Pak&#xd;&#xa;&#xd;&#xa;* Maintenance units&#xd;&#xa;&#xd;&#xa;* Logistic solutions through Parts Control"
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/TPS_Parts_girl.png"
+                            pwLinkTheme="hyperlink"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Tetra Pak® Parts include:"
+                            videoSource="damVideo"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.295Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Milk cartons from an Asian dairy producer using Maintenance Units and parts from Tetra Pak."
+                            description="A dairy producer in Asia asked for our help in order to improve their maintenance procedures, reduce downtime and associated costs. By conducting filling-machine maintenance using Maintenance Units and combining several parts to perform function together, we helped our customer to reduce operational cost. We also achieved a reduction in filling-machine downtime to 5.5 hours when using Maintenance Units vs. 24.5 hours when using single parts."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/packages-conveyor.png"
+                            linkText="Read full customer case: Maintenance Units helped Asian dairy producer reduce equipment downtime by 78% (pdf)"
+                            linkURL="/content/dam/tetra-pak/media-box/global/english/service/case-reduced-maintenance-costs.pdf"
+                            pwLinkTheme="download"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Don't just take our word for it..."
+                            videoSource="damVideo"/>
+                    </tabsManual>
+                </tabslist>
+                <medialink
+                    cq:lastRolledout="{Date}2020-05-20T12:46:58.300Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T09:35:29.595Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:46:58.297Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    columnOneTitle="Links"
+                    columnTwoTitle="Downloads"
+                    heading="Links &amp; Downloads"
+                    pwTheme="grayscale-lighter">
+                    <columnOneList
+                        cq:lastRolledout="{Date}2020-05-20T12:46:58.303Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.306Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Services"
+                            linkUrl="http://tetrapak.com/services"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.308Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak® e-Business"
+                            linkUrl="http://tetrapak.com/services/e-business"/>
+                    </columnOneList>
+                    <columnTwoList
+                        cq:lastRolledout="{Date}2020-05-20T12:46:58.309Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:46:58.311Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Parts Leaflet"
+                            linkUrl="/content/dam/tetra-pak/media-box/global/english/service/tetra-pak-parts-leaflet.pdf"/>
+                    </columnTwoList>
+                </medialink>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

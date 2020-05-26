@@ -1,0 +1,5 @@
+<sly data-sly-template.input_template="${@ inputType, inputClass, id, placeholder}">
+    <sly data-sly-test.placeholderVal="${placeholder ? placeholder : ''}"></sly>
+    <input type="${inputType}" class="form-control ${inputClass}" id="${id}" name="${id}"
+        placeholder="${placeholderVal}">
+</sly>

@@ -71,6 +71,15 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
+                          <a data-sly-test="${tab.linkURL}"  
+                          href="${tab.linkURL ? tab.linkURL : '#'}"
+                          class="img-link js-tablist__event-detail-description-link"
+                          data-custom="${customData @ context='text'}" target="${tab.targetBlank}"
+                          data-link-section="${tabContentType}${buttonLinkType}${buttonDownloadCheck}"
+                          data-link-name="${tab.linkText}" data-download-type="${tab.pwLinkTheme}"
+                          data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                          data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
+                          data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
                       <sly data-sly-test="${!wcmmode.edit}">
                         <sly
                           data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -79,6 +88,17 @@
                       <sly data-sly-test="${wcmmode.edit}">
                         <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
                       </sly>
+                      </a>
+                      <span data-sly-test="${!tab.linkURL}">
+                      <sly data-sly-test="${!wcmmode.edit}">
+                        <sly
+                          data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
+                      </sly>
+                      <sly data-sly-test="${wcmmode.edit}">
+                        <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
+                      </sly>
+                  </span>
                     </div>
                   </sly>
                   <!--end image video component  -->

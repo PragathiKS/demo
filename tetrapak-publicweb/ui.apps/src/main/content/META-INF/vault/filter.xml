@@ -3,4 +3,5 @@
     <filter root="/apps/publicweb" mode="update"/>
     <filter root="/apps/publicweb/i18n/en" mode="update"/>
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
+    <filter root="/etc/notification/email/publicweb" mode="update"/>
 </workspaceFilter>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:00.824Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:07.303Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Pak Pasteurizer D Base"
+        jcr:uuid="0940c55d-1452-44ef-a376-c9d38cb22af8"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        ctaTexti18nKey="Explore Tetra Pak® Pasteurizer D Base"
+        productImageAltI18n="Explore Tetra Pak® Pasteurizer D Base"
+        productImagePath="/content/dam/publicweb/products/tetra_pak_pasteurizer_d_basic_feed_module_phe_lineview.png"
+        title="Tetra Pak® Pasteurizer D Base"
+        vanityDescription="This unit is for continuous pasteurization and processing of dairy products. Up to 10,000 l/h for milk and yoghurt. Up to 5,000 l/h for cream "/>
+</jcr:root>

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:29:33.061Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:07.006Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Organism-Practice"
+        jcr:uuid="240bd5ca-4b54-46ef-aca7-d56058a46df4"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:38:06.821Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:38:06.826Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <textimage
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.839Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:15:23.816Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.834Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textImage"
+                    anchorId="processing"
+                    anchorTitle="How to process the food"
+                    description="We work for and with our customers to provide preferred processing and packaging solutions for food. We apply our commitment to innovation, our understanding of consumer needs and our relationships with suppliers to deliver these solutions, wherever and whenever food is consumed. We believe in responsible industry leadership, creating profitable growth in harmony with environmental sustainability and good corporate citizenship.​​​"
+                    imageAltText="Image alt text"
+                    imagePath="/content/dam/tetrapak/publicweb/text-and-image/yoghurt-blueberries 1 (2).png"
+                    linkText="Link"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Text and Image Organism Sub title"
+                    targetBlank="_self"
+                    title="Tetrapak Food Safety"/>
+                <richtext
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.847Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:15:45.580Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.840Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    pwPadding="zero"
+                    pwTheme="grayscale-lighter"
+                    text="&lt;p>&lt;b>&lt;u>​​​​PROTECTS WHAT'S GOOD​&lt;/u>&lt;/b>&lt;/p>&#xd;&#xa;&lt;p>&lt;b>Our Mission&lt;/b>&lt;/p>&#xd;&#xa;&lt;p>We work for and with our customers to provide preferred processing and packaging solutions for food. We apply our commitment to innovation, our understanding of consumer needs, and our relationships with suppliers to deliver these solutions, wherever and whenever food is consumed. We believe in responsible industry leadership, creating profitable growth in harmony with environmental sustainability and good corporate citizenship.​​​&lt;/p>&#xd;&#xa;&lt;p>Our brand is our promise, delivered: to our customers, to our employees, to our suppliers, and to the communities in which we operate.​​ All over the world - from the streets of Egypt to the forests of Brazil, Tetra Pak strives to protect the safety of food and the environment.&lt;/p>&#xd;&#xa;&lt;table cellpadding=&quot;1&quot; cellspacing=&quot;10&quot; border=&quot;1&quot;>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;th scope=&quot;col&quot;>Column 1 &lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column 2 &lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column 3&lt;/th>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Row2&lt;/td>&#xd;&#xa;&lt;td>Row2&lt;/td>&#xd;&#xa;&lt;td>Row2&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <banner
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.859Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:15:56.493Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.853Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/banner/robot-energy-assessment.png"
+                    linkLabel="About Tetrapak.."
+                    linkPath="/content/tetrapak/public-web/ca/en/about-tetra-pak/the-company/protects-whats-good"
+                    linkTarget="_blank"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subtitle="Banner Organism Sub title"
+                    text="We have identified the main challenges in oat-based beverage production, how processing parameters can best be managed, and we can guide you in developing your processing lines for plant-based products."
+                    title="Tetrapak Food Safety"/>
+                <teaser
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.869Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:09.207Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.865Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    heading="Teaser Organism Heading"
+                    logicalOperator="or"
+                    maxTeasers="4"
+                    pwTheme="grayscale-white"
+                    tags="[qa-tags:CoconutWater/RefinedCoconutWater,qa-tags:Desserts/ContinuousHighViscous,qa-tags:CoconutWater/UnrefinedCoconutWater]">
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.871Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.877Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser One"
+                            description="We enable brands in the cheese, dairy, prepared foods, ice cream, and beverage businesses to find ways to move forward. Our strong focus on processing solutions for the food industry puts us in the best position to understand your business and offer just what you need."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/ice-cream 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/high-shear-mixer-for-cold-emulsions"
+                            linkTarget="_self"
+                            linkText="Diary products"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="download"
+                            title="Primary Teaser"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.883Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser two"
+                            description="We provide complete solutions and processing equipment for dairy, cheese, ice cream, beverages and prepared food. You provide old favourites or new recipes filled with your own brand of passion and uniqueness. That’s a great way of creating success together."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/fbf_food_landing_2 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/tetra-pak-food-processor"
+                            linkTarget="_self"
+                            linkText="Equipment"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Secondary Teaser"/>
+                    </manualList>
+                </teaser>
+                <tabslist
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.892Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:20.371Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.886Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="manual"
+                    heading="Tab List  as Manual Settings"
+                    logicalOperator="and"
+                    maxTabs="2"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/cq:tags/qa-tags/Dairy/Yohgurt"
+                    readMoreTarget="_self"
+                    readMoreText="Read More"
+                    tags="[qa-tags:Dairy/BabyFood,qa-tags:Dairy/Yohgurt]">
+                    <tabsManual
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.894Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.902Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="We have identified the main challenges in oat-based beverage production, how processing parameters can best be managed, and we can guide you in developing your processing lines for plant-based products."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/fbf_sot_new-1 1.png"
+                            linkText="About Soya"
+                            linkURL="/content/tetrapak/public-web/ca/en/about-tetra-pak/news---events/images"
+                            pwLinkTheme="hyperlink"
+                            subTitle="subtitle"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Food Category - Tab 1"
+                            videoSource="damVideo"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.908Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="We have identified the main challenges in oat-based beverage production, how processing parameters can best be managed, and we can guide you in developing your processing lines for plant-based products."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/juice-drinks 1.png"
+                            linkText="About Vitamins"
+                            linkURL="/content/tetrapak/public-web/ca/en/about-tetra-pak/news---events/images"
+                            pwLinkTheme="hyperlink"
+                            subTitle="sub title"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Food Category - Tab 2"
+                            videoSource="damVideo"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.913Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="We have identified the main challenges in oat-based beverage production, how processing parameters can best be managed, and we can guide you in developing your processing lines for plant-based products."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/powder-spoon 1.png"
+                            pwLinkTheme="hyperlink"
+                            subTitle="sub title"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Food Category - Tab 3"
+                            videoSource="damVideo"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.919Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/publicweb/videos/file_example_MOV_1280_1_4MB.mov"
+                            description="We have identified the main challenges in oat-based beverage production, how processing parameters can best be managed, and we can guide you in developing your processing lines for plant-based products."
+                            pwLinkTheme="hyperlink"
+                            subTitle="video tab sub title"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            thumbnailPath="/content/dam/tetrapak/publicweb/images/Teaser1.png"
+                            title="Food Category - Tab 4(video)"
+                            videoSource="damVideo"/>
+                    </tabsManual>
+                </tabslist>
+                <tabslist_copy
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.927Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:20.371Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.922Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="semi-automatic"
+                    heading="Tab List as semi automatic settings"
+                    logicalOperator="and"
+                    maxTabs="2"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/cq:tags/qa-tags/Dairy/Yohgurt"
+                    readMoreTarget="_self"
+                    readMoreText="Read More"
+                    tags="[qa-tags:Dairy/BabyFood,qa-tags:Dairy/Yohgurt]">
+                    <tabsSemi
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.929Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.932Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/quality-assurance/qa-component-mix-2"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.934Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/quality-assurance/qa-component-mix-1"/>
+                    </tabsSemi>
+                </tabslist_copy>
+                <tabslist_copy_copy
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.943Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:20.371Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.938Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="automatic"
+                    heading="Tab List Organism as Automatic Settings"
+                    logicalOperator="and"
+                    maxTabs="6"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-lighter"
+                    readMorePath="/content/cq:tags/qa-tags/Dairy/Yohgurt"
+                    readMoreTarget="_self"
+                    readMoreText="Read More"
+                    tags="[qa-tags:Dairy/BabyFood,qa-tags:Dairy/Yohgurt,tetrapak:food,tetrapak:packaging/package-type/tetra-brik-aseptic,tetrapak:packaging/straws/straight-straw,tetrapak:packaging/straws/paper-straws]"/>
+                <teaser_copy
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.950Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:09.207Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.946Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="semi-automatic"
+                    heading="Teaser Organism as Semi Automatic Settings"
+                    logicalOperator="or"
+                    maxTeasers="4"
+                    pwTheme="grayscale-white"
+                    tags="[qa-tags:CoconutWater/RefinedCoconutWater,qa-tags:Desserts/ContinuousHighViscous,qa-tags:CoconutWater/UnrefinedCoconutWater]">
+                    <semiAutomaticList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.952Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.956Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/tetra-pak-food-processor"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.958Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/high-shear-mixer-for-cold-emulsions"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.960Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/tetra-pak-pasteurizer-d-base"/>
+                    </semiAutomaticList>
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.961Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.968Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser One"
+                            description="We enable brands in the cheese, dairy, prepared foods, ice cream, and beverage businesses to find ways to move forward. Our strong focus on processing solutions for the food industry puts us in the best position to understand your business and offer just what you need."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/ice-cream 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/high-shear-mixer-for-cold-emulsions"
+                            linkTarget="_self"
+                            linkText="Diary products"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="download"
+                            title="Primary Teaser"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.974Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser two"
+                            description="We provide complete solutions and processing equipment for dairy, cheese, ice cream, beverages and prepared food. You provide old favourites or new recipes filled with your own brand of passion and uniqueness. That’s a great way of creating success together."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/fbf_food_landing_2 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/tetra-pak-food-processor"
+                            linkTarget="_self"
+                            linkText="Equipment"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Secondary Teaser"/>
+                    </manualList>
+                </teaser_copy>
+                <teaser_copy_copy
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.980Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-13T05:16:09.207Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.976Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="automatic"
+                    heading="Teaser Organism as Automatic Settings"
+                    logicalOperator="or"
+                    maxTeasers="1"
+                    pwTheme="grayscale-white"
+                    tags="[qa-tags:CoconutWater/RefinedCoconutWater,qa-tags:Desserts/ContinuousHighViscous,qa-tags:CoconutWater/UnrefinedCoconutWater]">
+                    <semiAutomaticList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.982Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.985Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/tetra-pak-food-processor"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.987Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/high-shear-mixer-for-cold-emulsions"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.989Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/products/tetra-pak-pasteurizer-d-base"/>
+                    </semiAutomaticList>
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.991Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.997Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser One"
+                            description="We enable brands in the cheese, dairy, prepared foods, ice cream, and beverage businesses to find ways to move forward. Our strong focus on processing solutions for the food industry puts us in the best position to understand your business and offer just what you need."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/ice-cream 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/high-shear-mixer-for-cold-emulsions"
+                            linkTarget="_self"
+                            linkText="Diary products"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="download"
+                            title="Primary Teaser"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:07.002Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Teaser two"
+                            description="We provide complete solutions and processing equipment for dairy, cheese, ice cream, beverages and prepared food. You provide old favourites or new recipes filled with your own brand of passion and uniqueness. That’s a great way of creating success together."
+                            fileReference="/content/dam/publicweb/food-category-section--solutions/fbf_food_landing_2 1.png"
+                            linkPath="/content/tetrapak/public-web/ca/en/products/tetra-pak-food-processor"
+                            linkTarget="_self"
+                            linkText="Equipment"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Secondary Teaser"/>
+                    </manualList>
+                </teaser_copy_copy>
+                <banner_1982700118
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.005Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-05-14T04:55:24.796Z"
+                    jcr:createdBy="sapient-madhupriya"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.003Z"
+                    jcr:lastModifiedBy="sapient-madhupriya"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

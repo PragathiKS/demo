@@ -31,3 +31,4 @@ export const API_SEARCH_RESULTS = '/bin/tetrapak/pw-search';
 export const GET_CAROUSEL_ITEM = '/bin/tetrapak/pw-carousellisting';
 export const API_SOFT_CONVERSION = '/bin/tetrapak/pw-softconversion';
 export const API_CONTACT_FORM = '/bin/tetrapak/pw-contactfooter';
+export const API_CONTACTUS_FORM = '/bin/tetrapak/pw-contactus';
