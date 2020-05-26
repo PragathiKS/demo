@@ -154,7 +154,8 @@
         "source/templates/components/anchor/",
         "source/templates/components/megamenusolution/",
         "source/templates/components/findMyOffice/",
-        "source/templates/components/mediaLink/"
+        "source/templates/components/mediaLink/",
+        "source/templates/components/marketselector/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
