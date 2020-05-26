@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
@@ -54,7 +55,7 @@ public class BreadcrumbModel {
         LOGGER.debug("Inside init method");
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        homePagePath = LinkUtils.sanitizeLink(rootPath + "/home");
+        homePagePath = LinkUtils.sanitizeLink(rootPath + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH);
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;

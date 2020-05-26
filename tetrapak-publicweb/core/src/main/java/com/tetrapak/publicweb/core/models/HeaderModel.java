@@ -289,4 +289,11 @@ public class HeaderModel {
             solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
         }
     }
+
+    /**
+     * @return markets list
+     */
+    public MarketSelectorModel getMarketList() {
+        return request.adaptTo(MarketSelectorModel.class);
+    }
 }

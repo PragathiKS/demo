@@ -45,6 +45,17 @@ public class LinkUtils extends WCMUsePojo {
     public static String getRootPath(String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
     }
+    
+    /**
+     * Gets the root path.
+     *
+     * @param pagePath
+     *            the page path
+     * @return the root path
+     */
+    public static String getMarketsRootPath(String pagePath) {
+        return Text.getAbsoluteParent(pagePath, PWConstants.MARKET_ROOT_PAGE_LEVEL);
+    }
 
     /**
      * Used for analytics code to determine the link type
