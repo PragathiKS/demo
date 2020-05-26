@@ -1,10 +1,12 @@
 import MegaMenuSolution from './MegaMenuSolution';
 import $ from 'jquery';
-import megamenuTemplate from '../../../test-templates-hbs/megamenusolution.hbs';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import megamenuTemplate from '../../../test-templates-hbs/megamenusolution.hbs';
 
 describe('MegaMenuSolution', function () {
+  this.enableTimeouts(false);
   before(function () {
+    this.enableTimeouts(false);
     $(document.body).empty().html(megamenuTemplate());
     this.megaMenu = new MegaMenuSolution({
       el: document.body,
